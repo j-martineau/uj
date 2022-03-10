@@ -1,0 +1,22 @@
+Package: uj
+Title: Utilities by JAM: flexible, compact utility code
+Version: 0.0.0.9000
+Authors@R:
+    person("Joseph", "Martineau", , "martineauj@gmail.com",
+           role = c("aut", "cre"), comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Defines new object types (scalar, vect, mvect, vlist), extended
+    classes such as atomic data.frames, extended modes such as non-negative
+    whole numbered, fundamental types, shapes, defined dimensionality, effective
+    dimensionality, and completeness. Check for any combination of properties
+    plus compatibility and comparability of objects; valid element, row, and
+    column counts; and valid element values. Robust variable validation, more
+    compact and new features for 'apply' functionality, string management,
+    failsafe logical functions, and some additional general utility functions
+    that make my coding life easier.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Imports:
+    tidyverse, tibble, scales
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
