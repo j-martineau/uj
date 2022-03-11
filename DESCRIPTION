@@ -2,7 +2,7 @@ Package: uj
 Title: Utilities by JAM: flexible, compact utility code
 Version: 0.0.0.9000
 Authors@R:
-    person("Joseph", "Martineau", , "martineauj@gmail.com",
+    person("Joseph", "Martineau", "A.", "martineauj@gmail.com",
            role = c("aut", "cre"), comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: Defines new object types (scalar, vect, mvect, vlist), extended
     classes such as atomic data.frames, extended modes such as non-negative
