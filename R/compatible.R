@@ -63,7 +63,7 @@
 #' compatible(list(letters), LETTERS, as.character(0:9))
 #' @export
 compatible <- function(..., recyclable. = TRUE) {
-  x  <- list(...)                                                                 # arguments in [...] as a list
+  x  <- list(...)                                                                # arguments in [...] as a list
   N  <- length(x)
   VX <- N >= 2
   VR <- isTF(recyclable.)
@@ -122,14 +122,14 @@ compatible_atbs <- function(..., bind. = "c") {
   if (!VX) {E <- c(E, "\n  * [...] must multiple (and only) atomic tibbles.")}
   if (!VB) {E <- c(E, "\n  * [bind.] must be 'c' or 'r'.")}
   if (xdef(E)) {stop(E)}
-  R <- bind. == "r"                                                               # row bind?
-  C <- bind. == "c"                                                               # col bind?
+  R <- bind. == "r"                                                              # row bind?
+  C <- bind. == "c"                                                              # col bind?
   for (i in 2:N) {                                                               # for [...elt(2)] and above
     Y <- x[[i]]; Z <- x[[i - 1]]                                                 # > extract it and the previous argument
     if (R & ncol(Y) != ncol(Z)) {return(F)}                                      # > if row binding, but number of columns differ, not compatible
     if (C & nrow(Y) != nrow(Z)) {return(F)}                                      # > if column binding, but number of rows differ, not compatible
     if (R & !identical(colnames(Y), colnames(Z))) {return(F)}                    # > if col names must match but they do not, not compatible
-    for (j in 1:ncol(Y)) {if (!compatible(Y[[j]], Z[[j]])) {return(F)}}       # > if args are not mode-compatible, not compatible
+    for (j in 1:ncol(Y)) {if (!compatible(Y[[j]], Z[[j]])) {return(F)}}          # > if args are not mode-compatible, not compatible
   }
   T
 }

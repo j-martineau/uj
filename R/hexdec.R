@@ -46,5 +46,5 @@ todec <- function(x) {
 #' @export
 tohex <- function(x) {
   if (!cmp_nnw_vec(x)) {stop("\n  * [x] must be non-empty, atomic, and contain only non-negative whole numbers.")}
-  paste0("#", toupper(as.character.hexmd(x)))
+  paste0("#", toupper(as.character.hexmode(x)))
 }

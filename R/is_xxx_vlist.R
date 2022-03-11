@@ -17,8 +17,8 @@
 #'                                            containing no \code{NA} values.
 #'   }
 #' @param x An object
-#' @param xmd \code{NULL} or a character scalar from \code{xmd_vals}
-#'   indicating an optional check for a specific xmd.
+#' @param xxx \code{NULL} or a character scalar from \code{mmm_vals}
+#'   indicating an optional check for a specific mmm.
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
 is_vlist <- function(x) {if (is.data.frame(x)) {F} else {is.list(x)}}
@@ -42,14 +42,14 @@ is_emp_vlist <- function(x) {if (!is_vlist(x)) {F} else {length(x) == 0}}
 
 #' @rdname is_xxx_vlist
 #' @export
-is_atm_vlist <- function(x, xmd = NULL) {
-  V <- ifelse(is.null(xmd), T, isIN(xmd, xmd_vals()))
-  if (!V) {stop("\n  * [xmd] must be NULL or a character scalar value from xmd_vals().")}
+is_atm_vlist <- function(x, xxx = NULL) {
+  V <- ifelse(is.null(xxx), T, isIN(xxx, mmm_vals()))
+  if (!V) {stop("\n  * [xxx] must be NULL or a character scalar value from mmm_vals().")}
   if (!is_pop_vlist(x)) {F}
   else if (!all(sapply(x, is.atomic))) {F}
-  else if (is.null(xmd)) {T}
+  else if (is.null(xxx)) {T}
   else {
-    R <- paste0("x", xmd, "(x[[", 1:length(x), "]])")
+    R <- paste0("x", xxx, "(x[[", 1:length(x), "]])")
     R <- paste0(R, collapse = ", ")
     R <- paste0("all(", R, ")")
     run(R)
@@ -65,7 +65,7 @@ is_rcr_vlist <- function(x) {
 
 #' @rdname is_xxx_vlist
 #' @export
-is_cmp_vlist <- function(x, xmd = NULL) {
-  if (!is_atm_vlist(x, xmd)) {F}
+is_cmp_vlist <- function(x, xxx = NULL) {
+  if (!is_atm_vlist(x, xxx)) {F}
   else {!any(is.na(av(x)))}
 }

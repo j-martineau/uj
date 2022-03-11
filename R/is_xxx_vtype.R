@@ -1,10 +1,10 @@
 #' @name is_xxx_vtype
 #' @family is_functions
-#' @title Is an object a vtype?
+#' @title Is an object a vtype (maybe with another property as well)?
 #' @description A vtype is a non-data.frame object that is empty, effectively
 #'   scalar, or effectively linear (having ≥ 2 elements). This includes any
 #'   vector or vlist, empty arrays, scalar, and effectively
-#'   linear/\link[=edim]{effectively 1D} arrays (populated arrays having
+#'   linear/\link[=eee]{effectively 1D} arrays (populated arrays having
 #'   multiple index positions in only 1 dimension).
 #'   \cr\cr
 #'   Also checks for the following types of vtypes:
@@ -23,14 +23,14 @@
 #'                                            containing no \code{NA} elements.
 #'   }
 #' @param x An object
-#' @param xmd \code{NULL} or a character scalar from \code{xmd_vals}
-#'   indicating an optional check for a specific xmd.
+#' @param xxx \code{NULL} or a character scalar from \code{mmm_vals}
+#'   indicating an optional check for a specific extended mode.
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
 is_vtype <- function(x) {
   if (is.vector(x)) {T}
   else if (!is.array(x)) {F}
-  else {edim(x) < 2}
+  else {eee(x) < 2}
 }
 
 #' @name is_xxx_vtype
@@ -47,13 +47,13 @@ is_emp_vtype <- function(x) {if (!is_vtype(x)) {F} else {length(x) == 0}}
 
 #' @name is_xxx_vtype
 #' @export
-is_atm_vtype <- function(x, xmd = NULL) {
-  V <- ifelse(is.null(xmd), T, isIN(xmd, xmd_vals()))
-  if (!V) {stop("\n  * [xmd] must be NULL or a character scalar value from xmd_vals().")}
+is_atm_vtype <- function(x, xxx = NULL) {
+  V <- ifelse(is.null(xxx), T, isIN(xxx, mmm_vals()))
+  if (!V) {stop("\n  * [xxx] must be NULL or a character scalar value from mmm_vals().")}
   if (!is_pop_vtype(x)) {F}
   else if (!is.atomic(x)) {F}
-  else if (is.null(xmd)) {T}
-  else {run("x", xmd, "(x)")}
+  else if (is.null(xxx)) {T}
+  else {run("x", xxx, "(x)")}
 }
 
 #' @name is_xxx_vtype
@@ -62,7 +62,7 @@ is_rcr_vtype <- function(x) {if (!is_pop_vtype(x)) {F} else {is.recursive(x)}}
 
 #' @name is_xxx_vtype
 #' @export
-is_cmp_vtype <- function(x, xmd = NULL) {
-  if (!is_atm_vtype(x, xmd)) {F}
+is_cmp_vtype <- function(x, xxx = NULL) {
+  if (!is_atm_vtype(x, xxx)) {F}
   else {!any(is.na(x))}
 }

@@ -27,7 +27,7 @@
 #'   \strong{\code{ox_n}}
 #'   \cr Creates Oxford comma lists specifying a number (\code{n}), a comparison
 #'   (\code{comp}), and whether that comparison comes before or after the list
-#'   (\code{compFirst}) to create a list of the form \code{'{n} {comp} of
+#'   (\code{comp.first}) to create a list of the form \code{'{n} {comp} of
 #'   {list}'} or of the form \code{'{comp} {n} of {list}'} where \code{list} is
 #'   the Oxford comma list with the next to last and last elements separated by
 #'   \code{conj}.
@@ -35,7 +35,7 @@
 #'   \strong{\code{ox_exactly}, \code{ox_less}, \code{ox_more}, \code{ox_fewer},
 #'   \code{ox_greater, ox_atleast}, \code{ox_atmost}, \code{ox_nogreater},
 #'   \code{ox_nofewer}, \code{ox_nomore}, and \code{ox_noless}}
-#'   \cr These functions call \code{ox_n} with \code{compFirst = TRUE} and,
+#'   \cr These functions call \code{ox_n} with \code{comp.first = TRUE} and,
 #'   respectively, \code{comp} equal to \code{'exactly'}, \code{'less than'},
 #'   \code{'more than'}, \code{'fewer than'}, \code{'greater than'}, \code{'at
 #'   least'}, \code{'at most'}, \code{'no greater than'}, \code{'no fewer
@@ -43,7 +43,7 @@
 #'   \cr\cr
 #'   \strong{\code{ox_ormore}, \code{ox_orgreater}, \code{ox_orless}, and
 #'   \code{ox_orfewer}}
-#'   \cr These functions call \code{ox_n} with \code{compFirst = FALSE} and,
+#'   \cr These functions call \code{ox_n} with \code{comp.first = FALSE} and,
 #'   respectively, \code{comp} equal to \code{'or more'}, \code{'or greater'},
 #'   \code{'or less'}, and \code{'or fewer'}, respectively.
 #' @param ... Any number of arguments coerceable to mode character.
@@ -54,7 +54,7 @@
 #' @param n A integer scalar.
 #' @param comp A character scalar used for comparing to \code{n}, such as
 #'   \code{'at least'} or \code{'or fewer'}.
-#' @param compFirst A logical scalar used to determine whether \code{comp} is
+#' @param comp.first A logical scalar used to determine whether \code{comp} is
 #'   placed in front of \code{n} rather than after \code{n}..
 #' @return A character scalar containing all atomic elements of \code{...}
 #'   formatted as an Oxford-comma separated list.
@@ -90,7 +90,7 @@
 #'
 #' ox_n(Fruits, n = 1)
 #' ox_n(Fruits, conj = "and", n = 2, comp = "from among")
-#' ox_n(Fruits, conj = "and", n = 2, comp = "at least", compFirst = TRUE)
+#' ox_n(Fruits, conj = "and", n = 2, comp = "at least", comp.first = TRUE)
 #'
 #' ox_exactly(Fruits, n = 2)
 #' ox_less(Fruits, n = 2)
@@ -138,7 +138,8 @@ ox <- function(..., conj = "and", pref = "", quote = 0) {
   Last <- x[N]                                                                   # Get the last element of X
   if (N > 1) {                                                                   # If there is more than one element in the list
     List <- paste0(x[1:(N - 1)], collapse = ", ")                                # > Create a comma separated list with all but the last element of X
-    conj <- paste0(f0(N == 2, " ", ", "), conj, " ")                         # > If there are only 2, no addiitional comma to conj the last element to the list
+    conj <- paste0(f0(N == 2, " ", ", "), conj, " ")                            # > If there are only 2, no addiitional comma to conj the last element to the list
+                    # > If there are only 2, no addiitional comma to conj the last element to the list
   } else {List <- conj <- ""}                                                    # Otherwise the list of non-last elements and the conj for the last item aren't needed
   paste0(pref, List, conj, Last)                                                 # Put everything together
 }
@@ -253,16 +254,16 @@ ox_noless <- function(..., conj = "and", n = 1) {ox_n(..., comp = "no less than"
 
 #' @rdname Oxford
 #' @export
-ox_ormore <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or more", n = n, compFirst = F)}
+ox_ormore <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or more", n = n, comp.first = F)}
 
 #' @rdname Oxford
 #' @export
-ox_orgreater <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or greater", n = n, compFirst = F)}
+ox_orgreater <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or greater", n = n, comp.first = F)}
 
 #' @rdname Oxford
 #' @export
-ox_orless <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or less", n = n, compFirst = F)}
+ox_orless <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or less", n = n, comp.first = F)}
 
 #' @rdname Oxford
 #' @export
-ox_orfewer <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or fewer", n = n, compFirst = F)}
+ox_orfewer <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or fewer", n = n, comp.first = F)}

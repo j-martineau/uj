@@ -15,8 +15,8 @@
 #'                                             containing no \code{NA} elements.
 #'   }
 #' @param x An object
-#' @param xmd \code{NULL} or a character scalar from \code{xmd_vals}
-#'   indicating an optional check for a specific xmd.
+#' @param xxx \code{NULL} or a character scalar from \code{mmm_vals}
+#'   indicating an optional check for a specific extended mode
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
 is_any_matrix <- function(x) {is.matrix(x)}
@@ -31,13 +31,13 @@ is_emp_matrix <- function(x) {if (length(x) > 0) {F} else {is.matrix(x)}}
 
 #' @rdname is_xxx_matrix
 #' @export
-is_atm_matrix <- function(x, xmd = NULL) {
-  V <- ifelse(is.null(xmd), T, isIN(xmd, xmd_vals()))
-  if (!V) {stop("\n  * [xmd] must be NULL or a character scalar value from xmd_vals().")}
+is_atm_matrix <- function(x, xxx = NULL) {
+  V <- ifelse(is.null(xxx), T, isIN(xxx, mmm_vals()))
+  if (!V) {stop("\n  * [xxx] must be NULL or a character scalar value from mmm_vals().")}
   if (!is_pop_matrix(x)) {F}
   else if (!is.atomic(x)) {F}
-  else if (is.null(xmd)) {T}
-  else {run("x", xmd, "(x)")}
+  else if (is.null(xxx)) {T}
+  else {run("x", xxx, "(x)")}
 }
 
 #' @rdname is_xxx_matrix
@@ -49,7 +49,7 @@ is_rcr_matrix <- function(x) {
 
 #' @rdname is_xxx_matrix
 #' @export
-is_cmp_matrix <- function(x, xmd = NULL) {
-  if (!is_atm_matrix(x, xmd)) {F}
+is_cmp_matrix <- function(x, xxx = NULL) {
+  if (!is_atm_matrix(x, xxx)) {F}
   else {!any(is.na(x))}
 }

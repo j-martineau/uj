@@ -1,6 +1,6 @@
 #' @name is_xxx_generic
 #' @family is_functions
-#' @title Is an object a generic
+#' @title Is an object a generic (maybe with another property as well)?
 #' @description A generic is an array, \link[=is_vtype]{vtype},
 #'   \link[tibble:is_tibble]{tibble}, or \link[=is_vlist]{vlist}.
 #'   \cr\cr
@@ -23,8 +23,8 @@
 #'                  no \code{NA} elements.
 #'   }
 #' @param x An object
-#' @param xmd \code{NULL} or a character scalar from \code{xmd_vals}
-#'   indicating an optional check for a specific xmd.
+#' @param xxx \code{NULL} or a character scalar from \code{mmm_vals}
+#'   indicating an optional check for a specific extended mode.
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
 is_generic <- function(x) {
@@ -46,13 +46,13 @@ is_emp_generic <- function(x) {if (length(x) > 0) {F} else {is_generic(x)}}
 
 #' @rdname is_xxx_generic
 #' @export
-is_atm_generic <- function(x, xmd = NULL) {
-  V <- ifelse(is.null(xmd), T, isIN(xmd, xmd_vals()))
-  if (!V) {stop("\n  * [xmd] must be NULL or a character scalar value from xmd_vals().")}
+is_atm_generic <- function(x, xxx = NULL) {
+  V <- ifelse(is.null(xxx), T, isIN(xxx, mmm_vals()))
+  if (!V) {stop("\n  * [xxx] must be NULL or a character scalar value from mmm_vals().")}
   if (!is_pop_generic(x)) {F}
   else if (!is.atomic(x)) {F}
-  else if (is.null(xmd)) {T}
-  else {run("x", xmd, "(x)")}
+  else if (is.null(xxx)) {T}
+  else {run("x", xxx, "(x)")}
 }
 
 #' @rdname is_xxx_generic
@@ -63,7 +63,7 @@ is_rcr_generic <- function(x) {
 
 #' @rdname is_xxx_generic
 #' @export
-is_cmp_generic <- function(x, xmd = NULL) {
-  if (!is_atm_generic(x, xmd)) {F}
+is_cmp_generic <- function(x, xxx = NULL) {
+  if (!is_atm_generic(x, xxx)) {F}
   else {!any(is.na(av(x)))}
 }

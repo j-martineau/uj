@@ -1,6 +1,6 @@
 #' @name is_xxx_tibble
 #' @family is_functions
-#' @title Is an object a type of tibble?
+#' @title Is an object a type of tibble (maybe with another property as well)?
 #' @description Checks for the following types of tibbles:
 #'   \tabular{lll}{
 #'   \strong{Type}\tab\strong{Function}   \tab\strong{Definition}
@@ -17,8 +17,8 @@
 #'                                             containing no \code{NA} elements.
 #'   }
 #' @param x An object
-#' @param xmd \code{NULL} or a character scalar from \code{xmd_vals}
-#'   indicating an optional check for a specific xmd.
+#' @param xxx \code{NULL} or a character scalar from \code{mmm_vals}
+#'   indicating an optional check for a specific extended mode
 #' @return \code{TRUE} or \code{FALSE}
 is_any_tibble <- function(x) {tibble::is_tibble(x)}
 
@@ -32,14 +32,14 @@ is_emp_tibble <- function(x) {if (!tibble::is_tibble(x)) {F} else {length(x) == 
 
 #' @rdname is_xxx_tibble
 #' @export
-is_atm_tibble <- function(x, xmd = NULL) {
-  V <- ifelse(is.null(xmd), T, isIN(xmd, xmd_vals()))
-  if (!V) {stop("\n  * [xmd] must be NULL or a character scalar value from xmd_vals().")}
+is_atm_tibble <- function(x, xxx = NULL) {
+  V <- ifelse(is.null(xxx), T, isIN(xxx, mmm_vals()))
+  if (!V) {stop("\n  * [xxx] must be NULL or a character scalar value from mmm_vals().")}
   if (!is_pop_tibble(x)) {F}
   else if (!all(apply(x, 2, is.atomic))) {F}
-  else if (is.null(xmd)) {T}
+  else if (is.null(xxx)) {T}
   else {
-    R <- paste0("x", xmd, "(x[ , ", 1:length(x), "])")
+    R <- paste0("x", xxx, "(x[ , ", 1:length(x), "])")
     R <- paste0(R, collapse = ", ")
     R <- paste0("all(", R, ")")
     run(R)
@@ -56,7 +56,7 @@ is_rcr_tibble <- function(x) {
 
 #' @rdname is_xxx_tibble
 #' @export
-is_cmp_tibble <- function(x, xmd = NULL) {
-  if (is_atm_tibble(x, xmd)) {!any(is.na(x))}
+is_cmp_tibble <- function(x, xxx = NULL) {
+  if (is_atm_tibble(x, xxx)) {!any(is.na(x))}
   else {F}
 }

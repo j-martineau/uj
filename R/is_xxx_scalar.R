@@ -13,8 +13,8 @@
 #'   \cr Complete \tab\code{is_cmp_scalar}\tab A non-\code{NA} atomic scalar.
 #'   }
 #' @param x An object
-#' @param xmd \code{NULL} or a character scalar from \code{xmd_vals}
-#'   indicating an optional check for a specific xmd.
+#' @param xxx \code{NULL} or a character scalar from \code{mmm_vals}
+#'   indicating an optional check for a specific extended mode
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
 is_scalar <- function(x) {
@@ -28,13 +28,13 @@ is_any_scalar <- is_scalar
 
 #' @name is_xxx_scalar
 #' @export
-is_atm_scalar <- function(x, xmd = NULL) {
-  V <- ifelse(is.null(xmd), T, isIN(xmd, xmd_vals()))
-  if (!V) {stop("\n  * [xmd] must be NULL or a character scalar value from xmd_vals().")}
+is_atm_scalar <- function(x, xxx = NULL) {
+  V <- ifelse(is.null(xxx), T, isIN(xxx, mmm_vals()))
+  if (!V) {stop("\n  * [xxx] must be NULL or a character scalar value from mmm_vals().")}
   if (!is_scalar(x)) {F}
   else if (!is.atomic(x)) {F}
-  else if (is.null(xmd)) {T}
-  else {run("x", xmd, "(x)")}
+  else if (is.null(xxx)) {T}
+  else {run("x", xxx, "(x)")}
 }
 
 #' @name is_xxx_scalar
@@ -43,7 +43,7 @@ is_rcr_scalar <- function(x) {if (!is_scalar(x)) {F} else {is.recursive(x)}}
 
 #' @name is_xxx_scalar
 #' @export
-is_cmp_scalar <- function(x, xmd = NULL) {
-  if (!is_atm_scalar(x, xmd)) {F}
+is_cmp_scalar <- function(x, xxx = NULL) {
+  if (!is_atm_scalar(x, xxx)) {F}
   else {!is.na(x)}
 }

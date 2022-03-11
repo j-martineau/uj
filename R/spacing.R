@@ -11,12 +11,12 @@
 #'   side(s) \code{s.} (via \code{\link[stringr]{str_pad}}).
 #'   \cr\cr
 #'   \strong{\code{trm}}
-#'   \cr Trims whitespace the the left and right ends of strings (via
+#'   \cr Trims white space the the left and right ends of strings (via
 #'   \code{\link[stringr]{str_trim}}).
 #'   \cr\cr
 #'   \strong{\code{sqz}}
-#'   \cr Trims whitespace from the left and right ends and extra whitespace from
-#'   the middle of strings (via \code{\link[stringr]{str_squish}}).
+#'   \cr Trims white space from the left and right ends and extra white space
+#'   rom the middle of strings (via \code{\link[stringr]{str_squish}}).
 #' @param ... An arbitrary number of atomic arguments to be processed.
 #' @param n. Whole-number scalar indicating the number of spaces or pad
 #'   characters.

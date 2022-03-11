@@ -1,3 +1,4 @@
+#' @name uv
 #' @family values
 #' @title Reduce all arguments to a single vector of unique atomic values
 #' @description \code{\link[=av]{Atomizes}} \code{...}, reducing the set of
@@ -8,3 +9,7 @@
 #' @examples uv(0:5, 5:10, 10:15, 15:20)
 #' @export
 uv <- function(...) {unique(av(...))}
+
+#' @rdname uv
+#' @export
+uav <- uv

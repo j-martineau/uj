@@ -42,37 +42,45 @@
 #'   \code{NA_complex_}, \code{NA_integer_}, and \code{NA_real_}).
 #'   \cr\cr
 #'   \strong{\code{isLG}}
-#'   \cr Evaluates whether \code{x} is an effectively logical scalar (i.e.,
-#'   \code{isT | isF | isNa}, because \code{NA} is coerceable to any
-#'   atomic mode).
+#'   \cr Evaluates whether \code{x} is an effectively logical scalar (because
+#'   because \code{NA} is coerceable to any atomic mode, this is operationalized
+#'   as \code{isT | isF | isNa}).
 #'   \cr\cr
 #'   \strong{\code{isBL, notBL}}
 #'   \cr Evaluates whether \code{x} is a character scalar, and if so, whether
 #'   it is a blank string, or \code{""}.
 #'   \cr\cr
-#'   \strong{\code{norX, norXX}}
-#'   \cr Calls \code{isX(x)} or \code{isXX(x, y)} for each element of \code{x}
-#'   and returns \code{TRUE} if the number of \code{TRUE} values returned
-#'   is \code{0}.
+#'   \emph{From here on}, \strong{\code{X}} \emph{and} \strong{\code{XX}}
+#'   \emph{are placeholders for properties incorporated into the names of
+#'   functions defined above such as the properties} \strong{\code{T}},
+#'   \strong{\code{F}}, \emph{or} \strong{\code{TF}}.
 #'   \cr\cr
-#'   \strong{\code{anyX, anyXX}}
-#'   \cr Calls \code{isX(x)} or \code{isXX(x, y)} for each element of \code{x}
-#'   and returns \code{TRUE} if any \code{TRUE} values were returned.
+#'   \code{nor\strong{X}, nor\strong{XX}}
+#'   \cr Calls \code{is\strong{X}(x)} or \code{is\strong{XX}(x, y)}  for each
+#'   element of \code{x} and returns \code{TRUE} if the number of \code{TRUE}
+#'   values returned is \code{0}.
 #'   \cr\cr
-#'   \strong{\code{allX, allXX}}
-#'   \cr Calls \code{isX(x)} or \code{isXX(x, y)} for each element of \code{x}
-#'   and returns \code{TRUE} if the number of \code{TRUE} values returned
-#'   is positive and equal to the length of \code{x}.
+#'   \code{any\strong{X}, any\strong{XX}}
+#'   \cr Calls \code{is\strong{X}(x)} or \code{is\strong{XX}(x, y)} for each
+#'   element of \code{x} and returns \code{TRUE} if any \code{TRUE} values were
+#'   returned.
 #'   \cr\cr
-#'   \strong{\code{oneX, oneXX}}
-#'   \cr Calls \code{isX(x)} or \code{isXX(x, y)} for each element of \code{x}
-#'   and returns \code{TRUE} if the number of \code{TRUE} values returned
-#'   is \code{1}.
+#'   \code{all\strong{X}, all\strong{XX}}
+#'   \cr Calls \code{is\strong{X}(x)} or \code{is\strong{XX}(x, y)} for each
+#'   element of \code{x} and returns \code{TRUE} if the number of \code{TRUE}
+#'   values returned is positive and equal to the length of \code{x}.
 #'   \cr\cr
-#'   \strong{\code{twoX, twoXX}}
-#'   \cr Calls \code{isX(x)} or \code{isXX(x, y)} for each element of \code{x}
-#'   and returns \code{TRUE} if the number of \code{TRUE} values returned
-#'   is \code{2} or greater..
+#'   \code{one\strong{X}, one\strong{XX}}
+#'   \cr Calls \code{is\strong{X}(x)} or \code{is\strong{XX}(x, y)} for each
+#'   element of \code{x} and returns \code{TRUE} if the number of \code{TRUE}
+#'   values returned is
+#'   \code{1}.
+#'   \cr\cr
+#'   \code{two\strong{X}, two\strong{XX}}
+#'   \cr Calls \code{is\strong{X}(x)} or \code{is\strong{XX}(x, y)} for each
+#'   element of \code{x} and returns \code{TRUE} if the number of \code{TRUE}
+#'   values returned is
+#'   \code{2} or greater.
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
 isIN <- function(x, ...) {

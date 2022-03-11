@@ -40,18 +40,18 @@
 #'   each named argument in \code{...}, checks whether it satisfies a property
 #'   function in \code{funs.}, and if not, banks an error message. \code{funs.}
 #'   must be a character scalar containing the names of one or more
-#'   \link[=prop_funs]{property functions}, separated by pipes. An argument
+#'   \link[=xxx_funs]{property functions}, separated by pipes. An argument
 #'   passes the test if calling any one of the functions results in a value of
 #'   \code{TRUE}.
 #'   \cr\cr
-#'   \strong{\code{bank_prop(prop., ..., nas.)}}
+#'   \strong{\code{bank_xxx(xxx., ..., nas.)}}
 #'   \cr More flexible but less efficient than \code{bank_funs}. For
 #'   each named argument in \code{...}, banks an error message if it does
-#'   satisfy the \link[=is_prop]{property specification} in \code{prop.}. If
+#'   satisfy the \link[=is_xxx]{property specification} in \code{xxx.}. If
 #'   \code{na. = TRUE}, arguments may also be atomic scalar \code{NA} values.
-#'   \code{prop.} must be a character scalar containing one or more property
+#'   \code{xxx.} must be a character scalar containing one or more property
 #'   combos. Property combos are created by separating multiple properties from
-#'   \code{\link{props_all()}}. A property combo may be a single property.
+#'   \code{\link{xxx_all()}}. A property combo may be a single property.
 #'   Multiple property combos are separated from each other using pipes. An
 #'   argument satisfies the property specification if it satisfies any of the
 #'   property combos.
@@ -64,10 +64,10 @@
 #'   not match a value from any unnamed argument in \code{...}, banks an error
 #'   message.
 #'   \cr\cr
-#'   \strong{\code{bank_dots(prop., ..., named.)}}
+#'   \strong{\code{bank_dots(xxx., ..., named.)}}
 #'   \cr Bank errors if dot arguments do not satisfy a property specification,
 #'   and optionally, if they are not named. Checks if each argument in
-#'   \code{...} satisfies the property specification in \code{prop.}, and if not
+#'   \code{...} satisfies the property specification in \code{prop.} and if not,
 #'   banks an error message. If \code{named. = TRUE}, checks whether all
 #'   arguments in \code{...} are named, and if not banks an error message.
 #'   \cr\cr
@@ -116,11 +116,11 @@
 #' @param extras. \code{NUlL} or an complete atomic object containing additional
 #'   atomic values that qualify as valid.
 #' @param funs. A character scalar containing a
-#'   \link[=prop_funs]{property function} name or multiple property function
+#'   \link[=xxx_funs]{property function} name or multiple property function
 #'   names separated by pipes, which are used to check if named arguments in
 #'   code{...} satisfy the property specification in any of the function names.
-#' @param prop. A character scalar containing one or more property combos
-#'   (combos are created by separating one or more \link[=prop_vals]{property
+#' @param xxx. A character scalar containing one or more property combos
+#'   (combos are created by separating one or more \link[=xxx_vals]{property
 #'   values} with underscores. Multiple combos are separated by pipes.
 #' @param named. \code{TRUE} or \code{FALSE} indicating whether arguments in
 #'   \code{...} must be uniquely named without using blank strings.
@@ -287,13 +287,13 @@ bank_funs <- function(funs., ...) {
   NN    <- length(Names)
   VD    <- ND > 0
   VN    <- f0(ND != NN, F, !any(Names == "") & isEQ(Names, unique(Names)))
-  VF    <- all(sapply(FUNS, is_prop_fun))
+  VF    <- all(sapply(FUNS, is_xxx_fun))
   E  <- NULL
   if (!VD) {E <- c(E, "\n  * [...] is empty.")}
   if (!VN) {E <- c(E, "\n  * All arguments in [...] must be uniquely named without using blank strings.")}
-  if (!VF) {E <- c(E, "\n  * After splitting on pipes, [funs] contains a value not found in prop_funs().")}
+  if (!VF) {E <- c(E, "\n  * After splitting on pipes, [funs] contains a value not found in xxx_funs().")}
   if (!xnll(E)) {stop(E)}
-  E <- paste0("[", Names, "] must be ", define_combos(funs.))
+  E <- paste0("[", Names, "] must be ", define_xxx_combos(funs.))
   for (i in 1:ND) {
     V <- FALSE
     for (fun in FUNS) {V <- V | eval(parse(text = paste0(fun, "(...elt(i))")))}
@@ -304,25 +304,25 @@ bank_funs <- function(funs., ...) {
 
 #' @rdname errs
 #' @export
-bank_prop <- function(prop., ..., nas. = F) {
+bank_xxx <- function(xxx., ..., nas. = F) {
   Names <- ...names()
   ND    <- ...length()
   NN    <- length(Names)
-  VPR   <- f0(!cmp_chr_scl(prop.), F, is_valid_props(prop.))
+  VPR   <- f0(!cmp_chr_scl(xxx.), F, is_valid_xxx(xxx.))
   VDT   <- ND > 0
   VNM   <- f0(ND != NN, F, !any(Names == "") & isEQ(Names, unique(Names)))
   VNA   <- isTF(nas.)
   E     <- NULL
-  if (!VPR) {E <- c(E, "\n  * [prop.] is not a valid property specification.")}
+  if (!VPR) {E <- c(E, "\n  * [xxx.] is not a valid property specification.")}
   if (!VDT) {E <- c(E, "\n  * [...] is empty.")}
   if (!VNM) {E <- c(E, "\n  * All arguments in [...] must be uniquely named without using blank strings.")}
   if (!VNA) {E <- c(E, "\n  * [nas.] must be TRUE or FALSE.")}
   if (!xnll(E)) {stop(E)}
-  E <- paste0("[", Names, "] must be ", define_combos(prop.), ".")
+  E <- paste0("[", Names, "] must be ", define_xxx_combos(xxx.), ".")
   for (i in 1:ND) {
     V <- F
     if (nas.) {V <- isNa(...elt(i))}
-    if (!V ) {V <- is_prop(...elt(i), prop.)}
+    if (!V ) {V <- is_xxx(...elt(i), xxx.)}
     if (!V) {bank_err(E[i], gens. = 1)}
   }
   NULL
@@ -372,12 +372,12 @@ bank_vals <- function(...) {
 
 #' @rdname errs
 #' @export
-bank_dots <- function(prop., ..., named. = F) {
+bank_dots <- function(xxx., ..., named. = F) {
   Dots  <- list(...)
   Named <- named_dots(...)
   Blank <- unnamed_dots(...)
   N  <- names(Named)
-  VP <- f0(!cmp_chr_scl(prop.), F, is_valid_props(prop.))
+  VP <- f0(!cmp_chr_scl(xxx.), F, is_valid_xxx(xxx.))
   VD <- ...length() > 0
   VN <- isTF(named.)
   VM <- f0(!VD | !VN          , T,
@@ -385,13 +385,13 @@ bank_dots <- function(prop., ..., named. = F) {
         f0(length(Blank) > 0  , F,
         f0(any(names(N) == ""), F, isEQ(N, unique(N))))))
   E  <- NULL
-  if (!VP) {E <- c(E, "\n  * [prop.] must be a character scalar containing a valid property specification (see is_valid_props).")}
+  if (!VP) {E <- c(E, "\n  * [xxx.] must be a character scalar containing a valid property specification (see is_valid_xxx).")}
   if (!VD) {E <- c(E, "\n  * [...] is empty.")}
   if (!VM) {E <- c(E, "\n  * When [named. = TRUE], all arguments in [...] must be uniquely named without using blank strings.")}
   if (!VN) {E <- c(E, "\n  * [named.] must be TRUE or FALSE.")}
   if (xdef(E)) {stop(E)}
-  VD <- sapply(Dots, is_prop, prop = prop.)
-  if (!VD) {bank_err("All arguments in [...] must be ", define_combos(prop.), ".", gens. = 1)}
+  VD <- sapply(Dots, is_xxx, xxx = xxx.)
+  if (!VD) {bank_err("All arguments in [...] must be ", define_xxx_combos(xxx.), ".", gens. = 1)}
   NULL
 }
 
@@ -443,13 +443,13 @@ bank_pats <- function(pats., ...) {
   AVL <- cmp_chr_avl(pats.)
   NPP <- f0(AVL, lengths(pats.), 0)
   NUN <- length(unique(Names))
-  VPT <- f0(AVL, all(sapply(av(pats.), is_valid_props)), F)
+  VPT <- f0(AVL, all(sapply(av(pats.), is_valid_xxx)), F)
   VEQ <- all(NPP == NDT)
   VUN <- NDT == NUN
   E   <- NULL
   if (!AVL   ) {E <- c(E, "\n  * [pats] must be a complate atomic vlist (see is_cmp_vlist).")}
   if (NPT < 2) {E <- c(E, "\n  * The number of patterns in [pats] is less than 2.")}
-  if (!VPT   ) {E <- c(E, "\n  * All values in [pats] must be valid property specification (see is_valid_props)")}
+  if (!VPT   ) {E <- c(E, "\n  * All values in [pats] must be valid property specification (see is_valid_xxx)")}
   if (NDT < 2) {E <- c(E, "\n  * The number of arguments in [...] is less than 2.")}
   if (NBL > 0) {E <- c(E, "\n  * All arguments in [...] must be named.")}
   if (!VUN   ) {E <- c(E, "\n  * Arguments in [...] must be uniquely named.")}
@@ -457,13 +457,13 @@ bank_pats <- function(pats., ...) {
   if (xdef(E)) {stop(E)}
   NC <- rep.int(0, NDT)
   for (i in 1:NPT) {
-    Props <- pats.[[i]]
+    XXX <- pats.[[i]]
     Valid <- T
     for (j in 1:NDT) {
       Var  <- Names[j]
-      Prop <- Props[j]
-      NC[j] <- max(NC[j], nchar(Prop))
-      if (Valid) {Valid <- Valid & is_prop(Var, Prop)}
+      xxx <- XXX[j]
+      NC[j] <- max(NC[j], nchar(xxx))
+      if (Valid) {Valid <- Valid & is_xxx(Var, xxx)}
     }
     if (Valid) {return(NULL)}
   }

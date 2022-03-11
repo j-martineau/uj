@@ -7,7 +7,7 @@
 #'   qualify.
 #' @return \code{TRUE} or \code{FALSE}.
 is_color <- function(x, na = FALSE) {
-  if (!isTF(na)) {stop("\n  * [na] must be TRUE or FALSE.x")}
+  if (!isTF(na)) {stop("\n  * [na] must be TRUE or FALSE.")}
   else if (!xchr(x)) {F}
   else if (isF(na) & any(is.na(x))) {F}
   else {!isERR(as_color(x, na = na))}

@@ -1,6 +1,6 @@
 #' @name is_xxx_array
 #' @family is_functions
-#' @title Is an object an array?
+#' @title Is an object an array (maybe with another property as well)?
 #' @description Checks for the following types of arrays:
 #'   \tabular{lll}{
 #'   \strong{Type}\tab\strong{Function}  \tab\strong{Definition}
@@ -13,8 +13,8 @@
 #'                                            \code{NA} elements.
 #'   }
 #' @param x An object
-#' @param xmd \code{NULL} or a character scalar from \code{xmd_vals}
-#'   indicating an optional check for a specific xmd.
+#' @param xxx \code{NULL} or a character scalar from \code{mmm_vals}
+#'   indicating an optional check for a specific extended mode.
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
 is_any_array <- function(x) {is.array(x)}
@@ -29,13 +29,13 @@ is_emp_array <- function(x) {if (length(x) > 0) {F} else {is.array(x)}}
 
 #' @rdname is_xxx_array
 #' @export
-is_atm_array <- function(x, xmd = NULL) {
-  V <- ifelse(is.null(xmd), T, isIN(xmd, xmd_vals()))
-  if (!V) {stop("\n  * [xmd] must be NULL or a character scalar value from xmd_vals().")}
+is_atm_array <- function(x, xxx = NULL) {
+  V <- ifelse(is.null(xxx), T, isIN(xxx, mmm_vals()))
+  if (!V) {stop("\n  * [xxx] must be NULL or a character scalar value from mmm_vals().")}
   if (!is_pop_array(x)) {F}
   else if (!is.atomic(x)) {F}
-  else if (is.null(xmd)) {T}
-  else {run("x", xmd, "(x)")}
+  else if (is.null(xxx)) {T}
+  else {run("x", xxx, "(x)")}
 }
 
 #' @rdname is_xxx_array
@@ -44,7 +44,7 @@ is_rcr_array <- function(x) {if (!is_pop_array(x)) {F} else {is.recursive(x)}}
 
 #' @rdname is_xxx_array
 #' @export
-is_cmp_array <- function(x, xmd = NULL) {
-  if (!is_atm_array(x, xmd)) {F}
+is_cmp_array <- function(x, xxx = NULL) {
+  if (!is_atm_array(x, xxx)) {F}
   else {!any(is.na(x))}
 }

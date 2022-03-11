@@ -79,9 +79,9 @@
 #' @export
 logicals <- NULL
 
-validate_lgc <- function(x, prop = 'lgc', gens = 0, last = F) {
-  VX <- eval(parse(text = paste0(prop, "(x)")))
-  if (!VX) {bank_err("[x] must be ", define_combo(prop), ".", gens = gens + 1)}
+validate_lgc <- function(x, xxx = 'lgc', gens = 0, last = F) {
+  VX <- eval(parse(text = paste0(xxx, "(x)")))
+  if (!VX) {bank_err("[x] must be ", define_xxx_combo(xxx), ".", gens = gens + 1)}
   if (last) {err_check(gens + 1)}
   NULL
 }
@@ -91,8 +91,8 @@ validate_lgc <- function(x, prop = 'lgc', gens = 0, last = F) {
 not <- function(x, na. = 'err') {
   VN <- f0(isLG(na.), T, isEQ(na., 'err'))
   if (!VN) {stop("\n  * [na.] must be TRUE, FALSE, NA, or 'err'.")}
-  prop <- f0(isEQ(na, 'err'), "cmp_lgc", 'lgc')
-  validate_lgc(x, prop, last = T)
+  xxx <- f0(isEQ(na, 'err'), "cmp_lgc", 'lgc')
+  validate_lgc(x, xxx, last = T)
   if (isTF(na.)) {x[is.na(x)] <- na.}
   !x
 }
@@ -102,9 +102,9 @@ not <- function(x, na. = 'err') {
 and <- function(x, y, na. = 'err') {
   VN <- f0(isLG(na.), T, isEQ(na., 'err'))
   if (!VN) {stop("\n  * [na.] must be TRUE, FALSE, NA, or 'err'.")}
-  prop <- f0(isEQ(na, 'err'), "cmp_lgc", 'lgc')
-  validate_lgc(x, prop)
-  validate_lgc(y, prop, last = T)
+  xxx <- f0(isEQ(na, 'err'), "cmp_lgc", 'lgc')
+  validate_lgc(x, xxx)
+  validate_lgc(y, xxx, last = T)
   if (isTF(na.)) {
     x[is.na(x)] <- na.
     y[is.na(x)] <- na.
@@ -117,9 +117,9 @@ and <- function(x, y, na. = 'err') {
 or <- function(x, y, na. = 'err') {
   VN <- f0(isLG(na.), T, isEQ(na., 'err'))
   if (!VN) {stop("\n  * [na.] must be TRUE, FALSE, NA, or 'err'.")}
-  prop <- f0(isEQ(na., 'err'), "cmp_lgc", 'lgc')
-  validate_lgc(x, prop)
-  validate_lgc(y, prop, last = T)
+  xxx <- f0(isEQ(na., 'err'), "cmp_lgc", 'lgc')
+  validate_lgc(x, xxx)
+  validate_lgc(y, xxx, last = T)
   if (isTF(na.)) {
     x[is.na(x)] <- na.
     y[is.na(x)] <- na.
@@ -132,9 +132,9 @@ or <- function(x, y, na. = 'err') {
 one <- function(x, y, na. = 'err') {
   VN <- f0(isLG(na.), T, isEQ(na., 'err'))
   if (!VN) {stop("\n  * [na.] must be TRUE, FALSE, NA, or 'err'.")}
-  prop <- f0(isEQ(na., 'err'), "cmp_lgc", 'lgc')
-  validate_lgc(x, prop)
-  validate_lgc(y, prop, last = T)
+  xxx <- f0(isEQ(na., 'err'), "cmp_lgc", 'lgc')
+  validate_lgc(x, xxx)
+  validate_lgc(y, xxx, last = T)
   if (isTF(na)) {
     x[is.na(x)] <- na.
     y[is.na(x)] <- na.

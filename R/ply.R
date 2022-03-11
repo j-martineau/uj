@@ -57,10 +57,10 @@
 #'                               with \code{FALSE}.
 #'   \cr\code{na}\tab\code{'err'}\tab Throw an error if the result contains any
 #'                               \code{NA} values.
-#'   \cr\code{arg}\tab\code{\link[uj:is_prop]{prop}}
+#'   \cr\code{arg}\tab\code{\link[uj:is_xxx]{xxx}}
 #'                \tab Inspect \code{x} for the specified properties before
 #'                     processing and throw an error if they are not met.
-#'   \cr\code{out}\tab \code{\link[uj:is_prop]{prop}}
+#'   \cr\code{out}\tab \code{\link[uj:is_xxx]{xxx}}
 #'                \tab After processing, inspect the result for the specified
 #'                     properties and throw an error if they are not met.
 #'   \cr\code{agg}\tab\code{'nor'}\tab Evaluate whether the result contains zero
@@ -109,8 +109,8 @@ ply <- function(x, fun., dim., ..., proc. = NULL) {
   VS    <- isTF(s)
   VNA   <- f0(isLG(na ), T, isEQ(na, "err"))
   VAGG  <- f0(xnll(agg), T, isIN(agg, ValidAgg))
-  VARG  <- f0(xnll(arg), T, is_valid_props(arg))
-  VOUT  <- f0(xnll(out), T, is_valid_props(out))
+  VARG  <- f0(xnll(arg), T, is_valid_xxx(arg))
+  VOUT  <- f0(xnll(out), T, is_valid_xxx(out))
   E <- NULL
   if (!xfun(fun.)) {E <- c(E, "\n  * [fun.] is not a function or the name of function.")}
   if (!VD  ) {E <- c(E, "\n  * [dim.] must be 0 or a vector of positive whole numbers.")}
@@ -125,7 +125,7 @@ ply <- function(x, fun., dim., ..., proc. = NULL) {
   if (!VOUT) {E <- c(E, "\n  * When supplied, [proc.$out] must be a valid property specification as validated by is_valid_props().")}
   if (xdef(E)) {stop(E)}
   if (a1) {x <- av(x)}
-  if (xdef(arg)) {if (!is_prop(x, arg)) {stop("\n  * [x] does not match [proc.$arg = '", arg, "'].")}}
+  if (xdef(arg)) {if (!is_xxx(x, arg)) {stop("\n  * [x] does not match [proc.$arg = '", arg, "'].")}}
   if (isEQ(dim., 0)) {
     ND <- length(dim(x))
     x <- f0(xarr(x) | tibble::is_tibble(x), apply(x, 1:ND, fun., ...),
@@ -135,7 +135,7 @@ ply <- function(x, fun., dim., ..., proc. = NULL) {
   else {x <- apply(x, dim., fun., ...)}
   if (s ) {x <- simplify2array(x)}
   if (a2) {x <- av(x)}
-  if (xdef(out)) {if (!is_prop(x, out)) {stop("\n  * [x] does not match [proc.$out = '", out, "'].")}}
+  if (xdef(out)) {if (!is_xxx(x, out)) {stop("\n  * [x] does not match [proc.$out = '", out, "'].")}}
   if (xdef(agg)) {
     ERR <- isEQ(na, 'err')
     VLG <- xlgc(x)
@@ -227,7 +227,7 @@ colply <- function(x, fun., ..., proc. = NULL) {
 #' @rdname ply
 #' @export
 dimply <- function(x, fun., ..., proc. = NULL) {
-  dim. <- f0(ddim(x) < 2, 0, 1:length(dim(x)))
+  dim. <- f0(ddd(x) < 2, 0, 1:length(dim(x)))
   ply(x, fun., dim., ..., proc. = proc.)
 }
 

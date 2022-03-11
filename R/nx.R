@@ -94,10 +94,10 @@ n_is <- function(x, n. = NULL, min. = NULL, max. = NULL, eq. = F) {
   if (!VE) {E <- c(E, "\n  * [eq.] must be TRUE or FALSE.")}
   if (xdef(E)) {stop(E)}
   if (length(c(n., min., max.)) == 0 & !eq.) {return(x)}                         # if no restrictions are specified, return the raw counts
-  N <- f0(xnll(n.  ), T, all(x %in% n.))                                      # whether exact argument length restriction is met
-  M <- f0(xnll(min.), T, all(x >= min.))                                      # whether min argument length restriction is met
-  X <- f0(xnll(max.), T, all(x <= max.))                                      # whether max argument length restriction is met
-  E <- f0(eq., length(unique(x)) == 1, T)                                    # whether argument length equality restriction is met
+  N <- f0(xnll(n.  ), T, all(x %in% n.))                                         # whether exact argument length restriction is met
+  M <- f0(xnll(min.), T, all(x >= min.))                                         # whether min argument length restriction is met
+  X <- f0(xnll(max.), T, all(x <= max.))                                         # whether max argument length restriction is met
+  E <- f0(eq., length(unique(x)) == 1, T)                                        # whether argument length equality restriction is met
   (N & M & X & E)                                                                # whether all argument length restrictions are met
 }
 
