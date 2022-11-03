@@ -10,7 +10,7 @@
 \alias{uc}
 \title{Convert String Case}
 \usage{
-tocase(case, ..., a. = T)
+tocase(case., ..., a. = T)
 
 tosentence(..., a. = T)
 
@@ -25,33 +25,39 @@ tc(..., a. = T)
 uc(..., a. = T)
 }
 \arguments{
-\item{case}{\code{'l'}, \code{'s'}, \code{'t'}, or \code{'u'} to indicate
+\item{case.}{\code{'l'}, \code{'s'}, \code{'t'}, or \code{'u'} to indicate
 lower, sentence, title, or upper case. Case insensitive.}
 
 \item{...}{An arbitrary number of atomic arguments to be processed.}
 
-\item{a}{.\code{TRUE} or \code{FALSE} indicating whether to
-\link[=a.]{atomize} \code{...} before processing.}
+\item{a.}{\code{TRUE} or \code{FALSE} indicating whether to
+\link[=av]{atomize} \code{...} before processing.}
 }
 \description{
 Convert strings to lower, upper, sentence, and title cases
 (supplements \code{tolower} and \code{toupper}).
 
-\strong{\code{tocase}}
-\cr Converts to the case specified in \code{case}.
-\cr\cr
-\strong{\code{tosentence, sc}}
-\cr Converts to sentence case via \code{\link[stringr]{str_to_sentence}}.
-\cr\cr
-\strong{\code{totitle, tc}}
-\cr Converts to sentence case via \code{\link[stringr]{str_to_title}}.
-\cr\cr
-\strong{\code{lc}}
-\cr Converts to lower case via \code{\link[base]{tolower}}.
-\cr\cr
-\strong{\code{uc}}
-\cr Converts to upper case via \code{\link[base]{toupper}}.
+Convert to the case specified in \code{case}.
 }
+\section{Functions}{
+\itemize{
+\item \code{tosentence}: Convert to sentence case via
+\code{\link[stringr]{str_to_sentence}}.
+
+\item \code{totitle}: Convert to sentence case via
+\code{\link[stringr]{str_to_title}}.
+
+\item \code{lc}: Converts to lower case via \code{\link[base]{tolower}}.
+
+\item \code{sc}: Convert to sentence case via
+\code{\link[stringr]{str_to_sentence}}.
+
+\item \code{tc}: Convert to title case via
+\code{\link[stringr]{str_to_title}}.
+
+\item \code{uc}: Converts to upper case via \code{\link[base]{tolower}}.
+}}
+
 \examples{
 TestTitle    <- "This is a Title"
 TestSentence <- "This is a sentence."
@@ -71,9 +77,9 @@ scase(TestVector, case = "UPPER")
 }
 \seealso{
 Other strings: 
-\code{\link{Oxford}},
 \code{\link{delim}},
 \code{\link{ipat}()},
+\code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{spacing}},
 \code{\link{ss}()},

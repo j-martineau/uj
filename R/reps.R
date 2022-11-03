@@ -1,78 +1,70 @@
 #' @name reps
 #' @family values
-#' @title Replication
-#' @description Extended functionality for \code{\link[base:rep]{base::rep}}.
-#' @details \strong{\code{reps}}
-#'   \cr \code{\link[=a]{atomizes}} \code{...} and concatenates \code{r} copies
-#'   of the resulting vector. For example, \code{reps(0:1, 9, r = 2)} gives the
-#'   result \code{c(0, 1, 9, 0, 1, 9)}.
-#'   \cr\cr
-#'   \strong{\code{each}}
-#'   \cr \code{\link[=a.]{atomizes}} \code{...} and creates \code{e} copies of
-#'   each element of the resulting vector in place. For example, \code{each(0:1,
-#'   9, e = 2)} gives the result \code{c(0, 0, 1, 1, 9, 9)}.
-#'   \cr\cr
-#'   \strong{\code{reps_each} and \code{each_reps}}
-#'   \cr Call \code{reps} then \code{each} and vice versa, respectively.
+#' @title Extended functionality for \code{\link[base:rep]{base::rep}}.
+#' @description \code{\link[=a]{atomize}} \code{...} and concatenate \code{r}
+#'   copies of the resulting vector. For example, \code{reps(0:1, 9, r = 2)}
+#'   gives the result \code{c(0, 1, 9, 0, 1, 9)}.
 #' @param ... One or more atomic vectors to be replicated, reduced to unique
 #'   values, or reduced to unique duplicated values.
-#' @param r An integer scalar giving the number of replications of entire
+#' @param r. An integer scalar giving the number of replications of entire
 #'   vectors.
-#' @param e An integer scalar giving the number of times each value is to be
+#' @param e. An integer scalar giving the number of times each value is to be
 #'   replicated in place before replication of the entire vector.
 #' @return An atomic vector.
 #' @examples
-#' reps(0:4, 5:9, r = 2)
-#' each(0:4, 5:9, r = 2)
-#' reps_each(0:4, 5:9, r = 2, e = 2)
-#' each_reps(0:4, 5:9, e = 2, r = 2)
+#' reps(0:4, 5:9, r. = 2)
+#' each(0:4, 5:9, r. = 2)
+#' reps_each(0:4, 5:9, r. = 2, e. = 2)
+#' each_reps(0:4, 5:9, e. = 2, r. = 2)
 #' @export
-reps <- function(..., r = 1) {
-  VX <- all(sapply(list(...), xvec))
-  VR <- cmp_psw_scl(r)
-  E <- NULL
-  if (!VX) {E <- c(E, "\n  * Arguments in [...] must be atomic vectors.")}
-  if (!VR) {E <- c(E, "\n  * [r] must be a positive, whole-number scalar.")}
-  if (xdef(E)) {stop(E)}
-  rep.int(av(...), r)
+reps <- function(..., r. = 1) {
+  vd. <- all(sapply(list(...), ivec))
+  vr. <- cmp_psw_scl(r.)
+  err. <- NULL
+  if (!vd.) {err. <- c(err., "\n • Arguments in [...] must be atomic vectors.")}
+  if (!vr.) {err. <- c(err., "\n • [r.] must be a positive, whole-number scalar.")}
+  if (idef(err.)) {stop(err.)}
+  rep.int(av(...), r.)
 }
 
-#' @rdname reps
+#' @describeIn reps \code{\link[=a.]{atomize}} \code{...} and create \code{e}
+#'   copies of each element of the resulting vector in place. For example,
+#'   \code{each(0:1, 9, e = 2)} gives the result \code{c(0, 0, 1, 1, 9, 9)}.
 #' @export
-each <- function(..., e = 1) {
-  VX <- all(sapply(list(...), xvec))
-  VE <- cmp_psw_scl(e)
-  E <- NULL
-  if (!VX) {E <- c(E, "\n  * Arguments in [...] must be atomic vectors.")}
-  if (!VE) {E <- c(E, "\n  * [e] must be a positive, whole-number scalar.")}
-  if (xdef(E)) {stop(E)}
-  rep(av(...), each = e)
+each <- function(..., e. = 1) {
+  vd. <- all(sapply(list(...), ivec))
+  ve. <- cmp_psw_scl(e.)
+  err. <- NULL
+  if (!vd.) {err. <- c(err., "\n • Arguments in [...] must be atomic vectors.")}
+  if (!ve.) {err. <- c(err., "\n • [e.] must be a positive, whole-number scalar.")}
+  if (idef(err.)) {stop(err.)}
+  rep(av(...), each = e.)
 }
 
-#' @rdname reps
+#' @describeIn reps Call \code{reps} then \code{each}.
 #' @export
-reps_each <- function(..., r = 1, e = 1) {
-  VX <- all(sapply(list(...), xvec))
-  VR <- cmp_psw_scl(r)
-  VE <- cmp_psw_scl(e)
-  E <- NULL
-  if (!VX) {E <- c(E, "\n  * Arguments in [...] must be atomic vectors.")}
-  if (!VR) {E <- c(E, "\n  * [r] must be a positive, whole-number scalar.")}
-  if (!VE) {E <- c(E, "\n  * [e] must be a positive, whole-number scalar.")}
-  if (xdef(E)) {stop(E)}
-  rep(rep.int(av(...), r), each = e)
+reps_each <- function(..., r. = 1, e. = 1) {
+  vd. <- all(sapply(list(...), ivec))
+  ve. <- cmp_psw_scl(e.)
+  vr. <- cmp_psw_scl(r.)
+  err. <- NULL
+  if (!vd.) {err. <- c(err., "\n • Arguments in [...] must be atomic vectors.")}
+  if (!ve.) {err. <- c(err., "\n • [e.] must be a positive, whole-number scalar.")}
+  if (!vr.) {err. <- c(err., "\n • [r.] must be a positive, whole-number scalar.")}
+  if (idef(err.)) {stop(err.)}
+  rep(rep.int(av(...), r.), each = e.)
 }
 
-#' @rdname reps
+#' @describeIn reps Call \code{each} then \code{reps}.
 #' @export
-each_reps <- function(..., e = 1, r = 1) {
-  VX <- all(sapply(list(...), xvec))
-  VE <- cmp_psw_scl(e)
-  VR <- cmp_psw_scl(r)
-  E <- NULL
-  if (!VX) {E <- c(E, "\n  * Arguments in [...] must be atomic vectors.")}
-  if (!VE) {E <- c(E, "\n  * [e] must be a positive, whole-number scalar.")}
-  if (!VR) {E <- c(E, "\n  * [r] must be a positive, whole-number scalar.")}
-  if (xdef(E)) {stop(E)}
-  rep.int(rep(av(...), each = e), r)
+each_reps <- function(..., e. = 1, r. = 1) {
+  vd. <- all(sapply(list(...), ivec))
+  ve. <- cmp_psw_scl(e.)
+  vr. <- cmp_psw_scl(r.)
+  err. <- NULL
+  if (!vd.) {err. <- c(err., "\n • Arguments in [...] must be atomic vectors.")}
+  if (!ve.) {err. <- c(err., "\n • [e.] must be a positive, whole-number scalar.")}
+  if (!vr.) {err. <- c(err., "\n • [r.] must be a positive, whole-number scalar.")}
+  if (idef(err.)) {stop(err.)}
+  rep.int(rep(av(...), each = e.), r.)
 }

@@ -30,36 +30,32 @@ A logical vector (\code{ipat}), an empty or numeric vector
 (\code{wpat, npat, ppat}), or a list of numeric vectors (\code{ppats}).
 }
 \description{
-Simplified string indexing for fixed patterns
+Logically indexes character vector elements containing a pattern
+as \code{TRUE} or \code{FALSE}.
 }
 \details{
-\strong{\code{ipat}}
-\cr Logically indexes character vector elements containing a pattern as
-\code{TRUE} or \code{FALSE}.
-\cr\cr
-\strong{\code{wpat}}
-\cr Numerically indexes character vector elements containing a pattern as
-integer element numbers.
-\cr\cr
-\strong{\code{npat}}
-\cr Counts the number of times a pattern appears in each element of a
-character vector.
-\cr\cr
-\strong{\code{ppat}}
-\cr Identifies the position of \emph{the first} character of the first
-instance of a pattern in each element of a character vector.
-\cr\cr
-\strong{\code{ppats}}
-\cr Identifies the position of the first character of \emph{every} instance
-of a pattern in each element of a character vector.
-
 Always atomizes \code{...} via \code{a(...)} to create a single
 character vector to search for a fixed pattern.
 }
+\section{Functions}{
+\itemize{
+\item \code{wpat}: Numerically indexes character vector elements containing a
+pattern as integer element numbers.
+
+\item \code{npat}: Counts the number of times a pattern appears in each element
+of a character vector.
+
+\item \code{ppat}: Identifies the position of \emph{the first} character of the
+first instance of a pattern in each element of a character vector.
+
+\item \code{ppats}: Identifies the position of the first character of
+\emph{every} instance of a pattern in each element of a character vector.
+}}
+
 \seealso{
 Other strings: 
-\code{\link{Oxford}},
 \code{\link{delim}},
+\code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{spacing}},
 \code{\link{ss}()},

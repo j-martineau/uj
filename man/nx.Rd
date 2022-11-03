@@ -19,11 +19,21 @@
 \alias{nat}
 \alias{n0}
 \alias{n1}
+\alias{n2}
+\alias{n3}
 \alias{n1p}
 \alias{n2p}
+\alias{n3p}
+\alias{nd0}
+\alias{nd1}
+\alias{nd2}
+\alias{nd3}
+\alias{nd1p}
+\alias{nd2p}
+\alias{nd3p}
 \title{Dedicated counting functions}
 \usage{
-n_is(x, n. = NULL, min. = NULL, max. = NULL, eq. = F)
+n_is(x., n. = NULL, min. = NULL, max. = NULL, eq. = F)
 
 nx(
   ...,
@@ -109,12 +119,32 @@ n0(..., na. = F, a. = T)
 
 n1(..., na. = F, a. = T)
 
+n2(..., na. = F, a. = T)
+
+n3(..., na. = F, a. = T)
+
 n1p(..., na. = F, eq. = T, a. = T)
 
 n2p(..., na. = F, eq. = T, a. = T)
+
+n3p(..., na. = F, eq. = T, a. = T)
+
+nd0(...)
+
+nd1(...)
+
+nd2(...)
+
+nd3(...)
+
+nd1p(...)
+
+nd2p(...)
+
+nd3p(...)
 }
 \arguments{
-\item{x}{A non-negative whole-number object.}
+\item{x.}{A non-negative whole-number object.}
 
 \item{n.}{Optional non-negative whole-number vector of valid element, row, or
 column counts.}
@@ -132,7 +162,7 @@ separately.}
 
 \item{vals.}{Optional atomic vector indicating specific values to be counted.}
 
-\item{lt., le, .ge., gt.}{Optional atomic scalars indicating specific values
+\item{lt., le., .ge., gt.}{Optional atomic scalars indicating specific values
 elements of arguments in \code{...} must be less than, less than or equal
 to, greater than or equal to, or greater than, respectively, to be counted.}
 }
@@ -140,37 +170,71 @@ to, greater than or equal to, or greater than, respectively, to be counted.}
 An integer or logical scalar or vector.
 }
 \description{
-Dedicated counting functions
+Check for specific counts, minimum counts, maximum counts, and
+equal counts. Returns counts themselves if no checks are specified.
 }
-\details{
-\strong{\code{n_is}}
-\cr Checks for specific counts, minimum counts, maximum counts, and equal
-counts. Returns counts themselves if no checks are specified.
-\cr\cr
-\strong{\code{n.}, \code{nr}, and \code{nc}}
-\cr Get or check counts of elements, rows, and columns, respectively.
-\cr\cr
-\strong{\code{ns}, \code{nmin}, and \code{nmax}}
-\cr Get the number of elements in each argument in \code{...}, the minimum
-length of any argument in \code{...}, and the maximum length of any
-argument in \code{...}, respectively.
-\cr\cr
-\strong{\code{nsame}}
-\cr Checks all arguments in \code{...} for the same length.
-\cr\cr
-\strong{\code{nw}, \code{nt}, \code{nf}, \code{nu}, \code{nav}, \code{nna},
-and \code{nok}}
-\cr Get or check counts of \code{TRUE}, \code{TRUE}, \code{FALSE}, unique
-atomic, atomic, \code{NA}, and non-\code{NA} values, respectively.
-\cr\cr
-\strong{\code{n0}, \code{n1}, \code{n1p}, and \code{n2p}}
-\cr Check for counts of \code{0}, \code{1}, \code{≥ 1}, and \code{≥ 2},
-  respectively.
-\cr\cr
-\strong{\code{nch}}
-\cr Gets or checks number of characters in each element of character
-scalars, vectors, matrices, and arrays.
-}
+\section{Functions}{
+\itemize{
+\item \code{nx}: Length of arguments.
+
+\item \code{ns}: Lengths of \code{...} arguments.
+
+\item \code{nmin}: Minimum length of any \code{...} argument.
+
+\item \code{nmax}: Maximum length of any \code{...} argument.
+
+\item \code{nsame}: Whether all \code{...} arguments have the same length.
+
+\item \code{nw}: Number of \code{TRUE} elements.
+
+\item \code{nt}: Number of \code{TRUE} elements.
+
+\item \code{nf}: Number of \code{FALSE} elements.
+
+\item \code{nu}: Number of unique elements.
+
+\item \code{nr}: Number of rows.
+
+\item \code{nc}: Number of columns.
+
+\item \code{nch}: Number of characters in each element.
+argument.
+
+\item \code{nna}: Number of \code{NA} values.
+
+\item \code{nok}: Number of non-\code{NA} values.
+
+\item \code{nat}: Number of atomic elements.
+
+\item \code{n0}: Is the number of elements 0?
+
+\item \code{n1}: Is the number of elements 1?
+
+\item \code{n2}: Is the number of elements 2?
+
+\item \code{n3}: Is the number of elements 3?
+
+\item \code{n1p}: Is the number of elements 1 or gerater?
+
+\item \code{n2p}: Is the number of elements 2 or greater?
+
+\item \code{n3p}: Is the number of elements 3 or greater?
+
+\item \code{nd0}: Is the number of dot arguments 0?
+
+\item \code{nd1}: Is the number of dot arguments 1?
+
+\item \code{nd2}: Is the number of dot arguments 2?
+
+\item \code{nd3}: Is the number of dot arguments 2?
+
+\item \code{nd1p}: Is the number of dot arguments 1 or greater?
+
+\item \code{nd2p}: Is the number of dot arguments 2 or greater?
+
+\item \code{nd3p}: Is the number of dot arguments 3 or greater?
+}}
+
 \examples{
 N <- 0:15
 n_is(N, n. = 0:5)

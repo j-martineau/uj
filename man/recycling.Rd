@@ -14,13 +14,13 @@ recyclable(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL, err. = F)
 recycle(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL)
 }
 \arguments{
-\item{n.}{for \code{recyclable_n}, the lengths of arguments to be recycled;
+\item{n.}{For \code{recyclable_n}, the lengths of arguments to be recycled;
 for \code{recyclable} and \code{recycle}, \code{NULL} or the set of valid
 recycled argument lengths.}
 
-\item{targ.}{target length of recycled arguments.}
+\item{targ.}{Target length of recycled arguments.}
 
-\item{...}{named arguments to be recycled in the calling function.}
+\item{...}{Named arguments to be recycled in the calling function.}
 
 \item{min.}{\code{NULL} or the minimum valid recycled argument length.}
 
@@ -29,7 +29,7 @@ recycled argument lengths.}
 \item{err.}{\code{TRUE} or \code{FALSE} indicating whether to throw an error
 if the arguments in \code{...} are not recyclable.}
 
-\item{lengths.}{vector of lengths to check for recyclability.}
+\item{lengths.}{Vector of lengths to check for recyclability.}
 }
 \value{
 \code{recyclable_n} and \code{recyclable} return \code{TRUE} or
@@ -37,19 +37,20 @@ if the arguments in \code{...} are not recyclable.}
 side effect of recycling arguments in the environment of a parent function.
 }
 \description{
-Check for recyclability and recycle arguments.
+Check whether the vector of lengths in \code{n.} represents
+recyclable arguments subject to the setting in \code{targ.}.
 }
-\details{
-\strong{\code{recyclable_n}}
-\cr Checks whether a vector of lengths represents recyclable arguments.
-\cr\cr
-\strong{\code{recyclable}}
-\cr Checks arguments in \code{...} for recyclability.
-\cr\cr
-\strong{\code{recycle}}
-\cr Recycles arguments in \code{...} in the environment of the function
-\code{gens.} generations back in the function call stack.
-}
+\section{Functions}{
+\itemize{
+\item \code{recyclable}: Evaluate whether arguments in \code{...} are recyclable
+subject to settings in the arguments \code{n.}, \code{min.}, \code{max.},
+and \code{targ.}.
+
+\item \code{recycle}: Recycle arguments in \code{...} in the environment of
+the calling function subject to settings in the arguments \code{n.},
+\code{min.}, \code{max.}, and \code{targ.}.
+}}
+
 \seealso{
 Other meta: 
 \code{\link{as_xxx}},

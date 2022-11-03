@@ -2,102 +2,105 @@
 % Please edit documentation in R/mmm.R
 \name{mmm}
 \alias{mmm}
+\alias{ichr}
+\alias{ich1}
+\alias{iclr}
+\alias{ievn}
+\alias{ifac}
+\alias{ifrc}
+\alias{iind}
+\alias{ilgl}
+\alias{ineg}
+\alias{ingw}
+\alias{inng}
+\alias{innw}
+\alias{inps}
+\alias{inpw}
+\alias{inst}
+\alias{inum}
+\alias{iodd}
+\alias{iord}
+\alias{ipct}
+\alias{ipos}
+\alias{ippn}
+\alias{ipsw}
+\alias{isrt}
+\alias{istr}
+\alias{iuno}
+\alias{iwhl}
 \alias{mmm_vals}
-\alias{xchr}
-\alias{xch1}
-\alias{xclr}
-\alias{xfac}
-\alias{xfrc}
-\alias{xind}
-\alias{xlgc}
-\alias{xneg}
-\alias{xngw}
-\alias{xnng}
-\alias{xnnw}
-\alias{xnps}
-\alias{xnpw}
-\alias{xnst}
-\alias{xnum}
-\alias{xodd}
-\alias{xord}
-\alias{xpct}
-\alias{xpos}
-\alias{xppn}
-\alias{xpsw}
-\alias{xsrt}
-\alias{xstr}
-\alias{xuno}
-\alias{xwhl}
-\alias{is_mmm}
+\alias{immm}
 \title{Extended Mode (mmm) Property Family}
 \usage{
+mmm(x.)
+
+ichr(x.)
+
+ich1(x.)
+
+iclr(x.)
+
+ievn(x.)
+
+ifac(x.)
+
+ifrc(x.)
+
+iind(x.)
+
+ilgl(x.)
+
+ineg(x.)
+
+ingw(x.)
+
+inng(x.)
+
+innw(x.)
+
+inps(x.)
+
+inpw(x.)
+
+inst(x.)
+
+inum(x.)
+
+iodd(x.)
+
+iord(x.)
+
+ipct(x.)
+
+ipos(x.)
+
+ippn(x.)
+
+ipsw(x.)
+
+isrt(x.)
+
+istr(x.)
+
+iuno(x.)
+
+iwhl(x.)
+
 mmm_vals()
 
-xchr(x)
-
-xch1(x)
-
-xclr(x)
-
-xfac(x)
-
-xfrc(x)
-
-xind(x)
-
-xlgc(x)
-
-xneg(x)
-
-xngw(x)
-
-xnng(x)
-
-xnnw(x)
-
-xnps(x)
-
-xnpw(x)
-
-xnst(x)
-
-xnum(x)
-
-xodd(x)
-
-xord(x)
-
-xpct(x)
-
-xpos(x)
-
-xppn(x)
-
-xpsw(x)
-
-xsrt(x)
-
-xstr(x)
-
-xuno(x)
-
-xwhl(x)
-
-mmm(x)
-
-is_mmm(x, xxx, ...)
+immm(x., xxx., ...)
 }
 \arguments{
-\item{x}{An object.}
+\item{x.}{An object.}
 
 \item{...}{Additional arguments to \code{\link{meets}} containing value and
 element/row/column count restrictions.}
 
-\item{mmm}{A character scalar containing one or more values from
+\item{mmm.}{A character scalar containing one or more values from
 \code{mmm_vals()} separated by pipes and/or underscores. Combinations
 of mmms can be specified by separating them with underscores. Separating
 mmms or combinations of mmms with pipes will result in a value of
-\code{TRUE} if any of them applies to \code{x}.}
+\code{TRUE} if any of them applies to \code{x.}.}
 }
 \value{
 \code{mmm_vals} and \code{mmm} returns a character vector or
@@ -105,84 +108,127 @@ mmms or combinations of mmms with pipes will result in a value of
 details for more information.
 }
 \description{
+mmm Get a character vector containing every extended mode
+property from \code{mmm_vals()} that is applicable to \code{x}.
+}
+\details{
 Extended modes are defined for non-empty atomic objects. For all
 other objects, the extended mode is \code{NULL}. These are not formally
 defined classes, but are evaluated dynamically based on the current
-characteristics of an object. See details.
-}
-\details{
-Extended modes \strong{apply only to non-empty atomic objects}.
+characteristics of an object.
+\cr\cr
 Atomic objects that contain only \code{NA} values are of every extended
 mode, as they can be coerced to any mode without introducing new \code{NA}
 values. The following tables gives mmm values, names, and requirements
 \strong{for non-\code{NA} values only}.
 \cr\cr
-\strong{Character Extended Modes}
-\tabular{lll}{
-\strong{Value}\tab\strong{Name}\tab\strong{Requirements}
-\cr\emph{\code{'chr'}}\tab\emph{character}\tab\emph{character}
-\cr \code{'clr'}\tab color\tab hex color value or color name
-\cr \code{'ch1'}\tab ch.one\tab single characters
-\cr \code{'str'}\tab string\tab no blank ("") values
-}
-\strong{Categorical Extended Modes}
-\tabular{lll}{
-\strong{Value}\tab\strong{Name}\tab\strong{Requirements}
-\cr\code{'fac'}\tab factor\tab factor
-\cr\code{'lgc'}\tab logical\tab logical
-\cr\code{'ord'}\tab ordered\tab ordered factor
-\cr\code{'uno'}\tab unordered\tab unordered factor
-}
-\strong{Combination Extended Modes}
-\tabular{lll}{
-\strong{Value}\tab\strong{Name}\tab\strong{Requirements}
-\cr\code{'ind'}\tab indexer\tab logical or positive whole number
-\cr\code{'srt'}\tab sortable\tab character, logical, numeric, or ordered
-\cr\code{'nst'}\tab nonsortable\tab atomic, but not sortable
-}
-\strong{Numeric Extended Modes}
-\tabular{lll}{
-\strong{Value}\tab\strong{Name}\tab\strong{Requirements}
-\cr\emph{\code{'num'}}\tab\emph{numeric}       \tab\emph{numeric}
-\cr      \code{'frc'} \tab fractional          \tab any fractional value
-\cr      \code{'pct'} \tab percent             \tab values in [0, 100]
-\cr      \code{'ppn'} \tab proportion          \tab values in [0, 1]
-\cr\emph{\code{'pos'}}\tab\emph{positive}      \tab\emph{values > 0}
-\cr\emph{\code{'nng'}}\tab\emph{non-negative}  \tab\emph{values ≥ 0}
-\cr\emph{\code{'nps'}}\tab\emph{non-positive}  \tab\emph{values ≤ 0}
-\cr\emph{\code{'neg'}}\tab\emph{negative}      \tab\emph{values < 0}
-\cr      \code{'whl'} \tab whole               \tab whole numbers
-\cr      \code{'evn'} \tab even                \tab even (whole) numbers
-\cr      \code{'odd'} \tab odd                 \tab odd (whole) numbers
-\cr\emph{\code{'psw'}}\tab\emph{positive whole}\tab\emph{whole numbers > 0}
-\cr\emph{\code{'nnw'}}\tab\emph{non-neg whole} \tab\emph{whole numbers ≥ 0}
-\cr\emph{\code{'npw'}}\tab\emph{non-pos whole} \tab\emph{whole numbers ≤ 0}
-\cr\emph{\code{'ngw'}}\tab\emph{negative whole}\tab\emph{whole numbers < 0}
-}
-\strong{\code{mmm_vals}}
-\cr Gets all valid extended mode properties.
-\cr\cr
-\strong{\code{mmm}}
-\cr Gets a character vector containing every extended mode property from
-\code{mmm_vals()} that is applicable to \code{x}.
-\cr\cr
-\strong{\code{is_mmm}}
-\cr Evaluates whether \code{xxx} contains an extended mode property
-applicable to \code{x}.
-\cr\cr
-\strong{\code{xmmm}}
-\cr Evaluates whether \code{x} has the extended mode property represented by
-\code{mmm}.
-\cr\cr
+\strong{Character Extended Modes}\tabular{lll}{
+EXTENDED    \tab EXTENDED       \tab QUALIFYING                        \cr
+MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
+\code{'chr'}\tab character      \tab character                         \cr
+\code{'clr'}\tab color          \tab hex color value or color name     \cr
+\code{'ch1'}\tab onechar        \tab single characters                 \cr
+\code{'str'}\tab string         \tab no blank ("") values                }
+\strong{Categorical Extended Modes}\tabular{lll}{
+EXTENDED    \tab EXTENDED       \tab QUALIFYING                        \cr
+MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
+\code{'fac'}\tab factor         \tab factor                            \cr
+\code{'lgl'}\tab logical        \tab logical                           \cr
+\code{'ord'}\tab ordered        \tab ordered factor                    \cr
+\code{'uno'}\tab unordered      \tab unordered factor                    }
+\strong{Combination Extended Modes}\tabular{lll}{
+EXTENDED    \tab EXTENDED       \tab QUALIFYING                        \cr
+MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
+\code{'ind'}\tab indexer        \tab logical or positive whole number  \cr
+\code{'srt'}\tab sortable       \tab character, logical, numeric, or
+ordered factor                     \cr
+\code{'nst'}\tab nonsortable    \tab atomic, but not sortable            }
+\strong{Numeric Extended Modes}\tabular{lll}{
+EXTENDED    \tab EXTENDED       \tab QUALIFYING                        \cr
+MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
+\code{'num'}\tab numeric        \tab numeric                           \cr
+\code{'frc'}\tab fractional     \tab fractionally valued numeric       \cr
+\code{'pct'}\tab percent        \tab percentage valued (in [0, 100]) \cr
+\code{'ppn'}\tab proportion     \tab proportion valued (in [0, 1])   \cr
+\code{'pos'}\tab positive       \tab positive valued numeric           \cr
+\code{'nng'}\tab non-negative   \tab non-negative valued numeric       \cr
+\code{'nps'}\tab non-positive   \tab non-positive valued numeric       \cr
+\code{'neg'}\tab negative       \tab negative valued numeric           \cr
+\code{'whl'}\tab whole          \tab whole number valued               \cr
+\code{'evn'}\tab even           \tab even (whole) number-valued        \cr
+\code{'odd'}\tab odd            \tab odd (whole) number-valued         \cr
+\code{'psw'}\tab positive whole \tab positive whole-number valued      \cr
+\code{'nnw'}\tab non-neg whole  \tab non-negative whole-number valued  \cr
+\code{'npw'}\tab non-pos whole  \tab non-positive whole-number valued  \cr
+\code{'ngw'}\tab negative whole \tab negative whole-number valued        }
 \strong{Additional Arguments in \code{...}}
 \cr Submitting additional arguments to \code{is_mmm} via \code{...} allows
 for checking not just extended mode but whether length, number of rows,
 number of columns, and element values meet flexible criteria.
 }
+\section{Functions}{
+\itemize{
+\item \code{ichr}: Is \code{x.} of extended mode character?
+
+\item \code{ich1}: Is \code{x.} of extended mode onechar?
+
+\item \code{iclr}: Is \code{x.} of extended mode color?
+
+\item \code{ievn}: Is \code{x.} of extended mode even-numeric?
+
+\item \code{ifac}: Is \code{x.} of extended mode factor?
+
+\item \code{ifrc}: Is \code{x.} of extended mode fractional-numeric?
+
+\item \code{iind}: Is \code{x.} of extended mode indexer?
+
+\item \code{ilgl}: Is \code{x.} of extended mode logical?
+
+\item \code{ineg}: Is \code{x.} of extended mode negative-numeric?
+
+\item \code{ingw}: Is \code{x.} of extended mode negative-whole-numeric?
+
+\item \code{inng}: Is \code{x.} of extended mode non-negative-numeric?
+
+\item \code{innw}: Is \code{x.} of extended mode non-negative-whole-numeric?
+
+\item \code{inps}: Is \code{x.} of extended mode non-positive-numeric?
+
+\item \code{inpw}: Is \code{x.} of extended mode non-positive-whole-numeric?
+
+\item \code{inst}: Is \code{x.} of extended mode non-sortable?
+
+\item \code{inum}: Is \code{x.} of extended mode numeric?
+
+\item \code{iodd}: Is \code{x.} of extended mode odd-numeric?
+
+\item \code{iord}: Is \code{x.} of extended mode ordered factor?
+
+\item \code{ipct}: Is \code{x.} of extended mode percentage-numeric?
+
+\item \code{ipos}: Is \code{x.} of extended mode positive-numeric?
+
+\item \code{ippn}: Is \code{x.} of extended mode proportion-numeric?
+
+\item \code{ipsw}: Is \code{x.} of extended mode positive-whole-numeric?
+
+\item \code{isrt}: Is \code{x.} of extended mode sortable?
+
+\item \code{istr}: Is \code{x.} of extended mode string?
+
+\item \code{iuno}: Is \code{x.} of extended mode unordered factor?
+
+\item \code{iwhl}: Is \code{x.} of extended mode whole-numeric?
+
+\item \code{mmm_vals}: Get a character vector of all possible extended mode values.
+
+\item \code{immm}: Does \code{x} have the extended mode properties in
+\code{xxx}?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -199,6 +245,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -209,7 +257,6 @@ Other props:
 \code{\link{mmm_mvc}},
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

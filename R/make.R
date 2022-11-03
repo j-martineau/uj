@@ -1,9 +1,8 @@
 #' @name make
 #' @family meta
-#' @title Make atomic vectors, atomic matrices, atomic tibbles, and atomic or
-#'   recursive vlists
-#' @description Extended functionality for creating vectors, matrices,
-#'   tibbles and vlists.
+#' @title Extended functionality for creating atomic vectors, atomic matrices,
+#'   atomic tibbles, and atomic or recursive vlists
+#' @description Create an atomic vector.
 #' @details \strong{\code{vec(..., r, en.)}}
 #'   \cr Creates an atomic vector from the atomic objects in \code{...}
 #'   collapsed into a vector, replicated \code{r.} times, with optional element
@@ -35,14 +34,20 @@
 #'   \cr Creates a \link[=is_vlist]{vlist} from the arguments in \code{...} with
 #'   optional element names to replace any names of arguments in \code{...}.
 #'   \cr\cr
-#'   \strong{\code{mk_diag(x = 1, n = 1)}}
-#'   \cr Creates a square, atomic diagonal matrix. For numeric \code{x},
-#'   off-diagonals are \code{0}. For logical \code{x}, off diagonals are
-#'   \code{FALSE}. For character \code{x}, off diagonals are blank strings
+#'   \strong{\code{mkvls(...)}}
+#'   \cr Creates a named vlist by taking the original call and parsing arguments
+#'   to get element names. Allows for more concise code such as
+#'   \code{mkvls(letters, LETTERS)} giving the same result as \code{list(letters
+#'   = letters, LETTERS = LETTERS)}.
+#'   \cr\cr
+#'   \strong{\code{mkdiag(x. = 1, n. = 1)}}
+#'   \cr Creates a square, atomic diagonal matrix. For numeric \code{x.},
+#'   off-diagonals are \code{0}. For logical \code{x.}, off diagonals are
+#'   \code{FALSE}. For character \code{x.}, off diagonals are blank strings
 #'   (\code{""}). For all others, off diagonals are \code{NA}.
-#' @param ... Objects to placed in an atomic vect, atomic matrix, atomib tibble,
+#' @param ... Objects to placed in an atomic vect, atomic matrix, atomic tibble,
 #'   vlist, or square atomic diagonal matrix.
-#' @param en. Optional character vector of names to apply to vector or list
+#' @param vn. Optional character vector of names to apply to vector or list
 #'   elements. May be pipe-delimited in character vector.
 #' @param cn. Optional character vector of names to apply to columns of a matrix
 #'   or tibble. May be pipe-delimited in character vector. For tibbles, this
@@ -53,161 +58,171 @@
 #' @param nr. Number of rows.
 #' @param nc. Number of columns.
 #' @param br. Whether to fill matrices by row.
-#' @param x An numeric, logical, or character object of length 1 or greater.
-#' @param n A positive whole number indicating the number of replications of
+#' @param x. An numeric, logical, or character object of length 1 or greater.
+#' @param n. A positive whole number indicating the number of replications of
 #'   \code{x}.
 #' @return An \link[=is_atm_tibble]{atomic tibble}, an
 #'   \link[=is_atm_vect]{atomic vect}, an \link[=is_atm_matrix]{atomic matrix}
 #'   (\code{mat.}), or a \link[=is_vlist]{vlist.} All others return the value of
 #'   function they are thin wrappers for.
 #' @export
-vec <- function(..., r. = 1, en. = NULL) {
-  x <- av(...)
-  if (length(x) == 0 | isEQ(r., 0)) {x <- vector()}
-  VR <- cmp_nnw_scl(r.)
-  VN <- f0(xnll(en.), T, cmp_chr_vec(en.))
-  E <- NULL
-  if (!VR) {E <- c(E, "\n  * [r.] must be a non-negative, whole-number scalar.")}
-  if (!VN) {E <- c(E, "\n  * [en.] must be NULL or a character scalar/vector.")}
-  if (xdef(E)) {stop(E)}
-  if (r. > 1) {x <- rep.int(x, r.)}
-  if (xdef(en.)) {
-    en. <- ssP(en.)
-    if (length(x) != length(en.)) {stop("\n  * [en.] must be the same length as the resulting vector.")}
-    names(x) <- en.
+vec <- function(..., r. = 1, vn. = NULL) {
+  x. <- av(...)
+  if (length(x.) == 0 | isEQ(r., 0)) {x. <- vector()}
+  vr. <- cmp_nnw_scl(r.)
+  vvn. <- f0(inll(vn.), T, cmp_chr_vec(vn.))
+  err. <- NULL
+  if (!vr.) {err. <- c(err., "\n • [r.] must be a non-negative, whole-number scalar.")}
+  if (!vvn.) {err. <- c(err., "\n • [en.] must be NULL or a character scalar/vector.")}
+  if (idef(err.)) {stop(err.)}
+  if (r. > 1) {x. <- rep.int(x., r.)}
+  if (idef(vn.)) {
+    vn. <- ssP(vn.)
+    if (length(x.) != length(vn.)) {stop("\n • [vn.] must be the same length as the resulting vector.")}
+    names(x.) <- vn.
   }
-  x
+  x.
 }
 
-#' @rdname make
+#' @describeIn make Create a vector of missing/\code{NA} values.
 #' @export
 vec_na <- function(r.) {vec(NA, r. = r.)}
 
-#' @rdname make
+#' @describeIn make Create an atomic matrix.
 #' @export
 mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
-  x  <- av(...)
-  if (length(x) == 0) {X <- NA} else {X <- x}
-  VNR <- f0(xnll(nr.), T, cmp_nnw_scl(nr.))
-  VNC <- f0(xnll(nc.), T, cmp_nnw_scl(nc.))
-  VBR <- isTF(br.)
-  VRN <- f0(xnll(rn.), T, cmp_chr_vec(rn.))
-  VCN <- f0(xnll(cn.), T, cmp_chr_vec(cn.))
-  E <- NULL
-  if (!VNR) {E <- c(E, "\n  * [nr.] must be NULL or a non-negative, whole number scalar.")}
-  if (!VNC) {E <- c(E, "\n  * [nc.] must be NULL or a non-negative, whole number scalar.")}
-  if (!VBR) {E <- c(E, "\n  * [br.] must be TRUE or FALSE.")}
-  if (xdef(E)) {stop(E)}
-  if      (is.null(nr.) & is.null(nc.)) {NR <- 1  ; NC <- length(x)      }
-  else if (is.null(nr.)               ) {NC <- nc.; NR <- length(x) / nc.}
-  else if (               is.null(nc.)) {NR <- nr.; NC <- length(x) / nr.}
+  av. <- av(...)
+  if (length(av.) == 0) {x. <- NA} else {x. <- av.}
+  vnr. <- f0(inll(nr.), T, cmp_nnw_scl(nr.))
+  vnc. <- f0(inll(nc.), T, cmp_nnw_scl(nc.))
+  vbr. <- isTF(br.)
+  vrn. <- f0(inll(rn.), T, cmp_chr_vec(rn.))
+  vcn. <- f0(inll(cn.), T, cmp_chr_vec(cn.))
+  err. <- NULL
+  if (!vnr.) {err. <- c(err., "\n • [nr.] must be NULL or a non-negative, whole number scalar.")}
+  if (!vnc.) {err. <- c(err., "\n • [nc.] must be NULL or a non-negative, whole number scalar.")}
+  if (!vbr.) {err. <- c(err., "\n • [br.] must be TRUE or FALSE.")}
+  if (idef(err.)) {stop(err.)}
+  if      (is.null(nr.) & is.null(nc.)) {nr0. <- 1  ; nc0. <- length(av.)      }
+  else if (is.null(nr.)               ) {nc0. <- nc.; nr0. <- length(av.) / nc.}
+  else if (               is.null(nc.)) {nr0. <- nr.; nc0. <- length(av.) / nr.}
   rn. <- ssP(rn.)
   cn. <- ssP(cn.)
-  VRC <- round(NR) == NR & round(NC) == NC & NR * NC == length(x)
-  VRN <- f0(xnll(rn.), T, f0(!VRC, T, length(rn.) == NR))
-  VCN <- f0(xnll(cn.), T, f0(!VRC, T, length(cn.) == NC))
-  if (VRN & VCN) {
-    NT <- nr. * nc.
-    if (NT > 0) {VRP <- (NT / length(X)) == round(NT / length(X))}
-    else {VRP <- length(x) == 0}
+  vrc. <- round(nr0.) == nr0. & round(nc0.) == nc0. & nr0. * nc0. == length(av.)
+  vrn. <- f0(inll(rn.), T, f0(!vrc., T, length(rn.) == nr0.))
+  vcn. <- f0(inll(cn.), T, f0(!vrc., T, length(cn.) == nc0.))
+  if (vrn. & vcn.) {
+    nt. <- nr. * nc.
+    if (nt. > 0) {vrp. <- (nt. / length(x.)) == round(nt. / length(x.))}
+    else {vrp. <- length(x.) == 0}
   }
-  else {VRP <- T}
-  if (!VRC) {
-    if      (xnll(nr.)) {E <- c(E, "\n  * [nc.] is not a divisor of length(av(...))." )}
-    else if (xnll(nc.)) {E <- c(E, "\n  * [nr.] is not a divisor of length(av(...))." )}
-    else                {E <- c(E, "\n  * [nr. * nc.] does not equal length(av(...)).")}
+  else {vrp. <- T}
+  if (!vrc.) {
+    if      (inll(nr.)) {err. <- c(err., "\n • [nc.] is not a divisor of length(av(...))." )}
+    else if (inll(nc.)) {err. <- c(err., "\n • [nr.] is not a divisor of length(av(...))." )}
+    else                {err. <- c(err., "\n • [nr. * nc.] does not equal length(av(...)).")}
   }
-  if (!VRN) {E <- c(E, "\n  * [rn.] must be NULL or a complete vect of length equal to the number of resulting rows."   )}
-  if (!VCN) {E <- c(E, "\n  * [cn.] must be NULL or a complete vect of length equal to the number of resulting columns.")}
-  if (xdef(E)) {stop(E)}
-  matrix(x, nrow = nr., ncol = nc., byrow = br.)
-  rownames(x) <- rn.
-  colnames(x) <- cn.
+  if (!vrn.) {err. <- c(err., "\n • [rn.] must be NULL or a complete vect of length equal to the number of resulting rows."   )}
+  if (!vcn.) {err. <- c(err., "\n • [cn.] must be NULL or a complete vect of length equal to the number of resulting columns.")}
+  if (idef(err.)) {stop(err.)}
+  x. <- matrix(av., nrow = nr., ncol = nc., byrow = br.)
+  rownames(x.) <- rn.
+  colnames(x.) <- cn.
 }
 
-#' @rdname make
+#' @describeIn make Create an atomic tibble with zero rows.
 #' @export
 atb0 <- function(cn.) {
-  if (!cmp_chr_vec(cn.)) {stop("\n  * [cn.] must be a non-NA character scalar or vector.")}
+  if (!cmp_chr_vec(cn.)) {stop("\n • [cn.] must be a non-NA character scalar or vector.")}
   run("tibble::tibble(", daw(ss(cn.), " = NA", w. = ", "), ", .rows = 0)")
 }
 
-#' @rdname make
+#' @describeIn make Create an atomic tibble containing only missing values.
 #' @export
 atb_na <- function(cn., nr.) {
-  VCN <- cmp_chr_vec(cn.)
-  VNR <- cmp_psw_scl(nr.)
-  E   <- NULL
-  if (!VCN) {E <- c(E, "\n  * [cn.] must be a non-NA character scalar or vector.")}
-  if (!VNR) {E <- c(E, "\n  * [nr.] must be NULL or a positive, whole number scalar.")}
-  if (!xnll(E)) {stop(E)}
-  Val <- rep.int(NA, nr.)
-  run("tibble::tibble(", daw(ss(cn.), " = Val", w. = ", "), ")")
+  vc. <- cmp_chr_vec(cn.)
+  vn. <- cmp_psw_scl(nr.)
+  err. <- NULL
+  if (!vc.) {err. <- c(err., "\n • [cn.] must be a non-NA character scalar or vector.")}
+  if (!vn.) {err. <- c(err., "\n • [nr.] must be NULL or a positive, whole number scalar.")}
+  if (!inll(err.)) {stop(err.)}
+  val. <- rep.int(NA, nr.)
+  run("tibble::tibble(", daw(ss(cn.), " = val.", w. = ", "), ")")
 }
 
-#' @rdname make
+#' @describeIn make Create an atomic tibble from named arguments or from column
+#'   names in \code{cn.}.
 #' @export
-atb <- function(..., rn. = NULL, cn. = NULL) {
-  x <- list(...)
-  rn. <- f0(cmp_chr_vec(rn.), ss(rn.), rn.)
+atb <- function(..., cn. = NULL) {
+  x. <- list(...)
   cn. <- f0(cmp_chr_vec(cn.), ss(cn.), cn.)
-  N <- length(x)
-  L <- lengths(x)
-  M <- max(L)
-  VXN <- ...length() > 0
-  VXL <- f0(!VXN, T, all(lengths(x)))
-  VXV <- f0(!VXN | !VXL, T, all(sapply(x, xvec)))
-  VXR <- f0(N == 0, F, f0(any(L == 0), F, all(M / L == round(M / L))))
-  VRN <- f0(xnll(rn.), T, f0(!cmp_chr_vec(rn.), F, length(rn.) == M))
-  VCN <- f0(xnll(cn.), T, f0(!cmp_chr_vec(cn.), F, length(cn.) == N))
-  E <- NULL
-  if (!VXN) {E <- c(E, "\n  * [...] is empty.")}
-  if (!VXL) {E <- c(E, "\n  * [...] contains an empty argument.")}
-  if (!VXV) {E <- c(E, "\n  * Arguments in [...] must be atomic vects.")}
-  if (!VXR) {E <- c(E, "\n  * Arguments in [...] are not recyclable .")}
-  if (!VRN) {E <- c(E, "\n  * [rn.] must be NULL or match the number of rows produced.")}
-  if (!VCN) {E <- c(E, "\n  * [cn.] must be NULL or match the number of arguments in [...].")}
-  if (xdef(E)) {stop(E)}
-  x <- tibble::tibble(...)
-  if (xdef(rn.)) {rownames(x) <- rn.}
-  if (xdef(cn.)) {colnames(x) <- cn.}
+  n. <- length(x.)
+  ns. <- lengths(x.)
+  mxn. <- max(ns.)
+  v0. <- ...length() > 0
+  vns. <- f0(!v0., T, all(lengths(x.) %in% ns.))
+  vxv. <- f0(!v0. | !vns., T, all(sapply(x., xvec)))
+  vxr. <- f0(n. == 0, F, f0(any(ns. == 0), F, all(mxn. / ns. == round(mxn. / ns.))))
+  vcn. <- f0(inll(cn.), T, f0(!cmp_chr_vec(cn.), F, length(cn.) == n.))
+  err. <- NULL
+  if (!v0.) {err. <- c(err., "\n • [...] is empty.")}
+  if (!vns.) {err. <- c(err., "\n • [...] contains an empty argument.")}
+  if (!vxv.) {err. <- c(err., "\n • Arguments in [...] must be atomic vects.")}
+  if (!vxr.) {err. <- c(err., "\n • Arguments in [...] are not recyclable .")}
+  if (!vcn.) {err. <- c(err., "\n • [cn.] must be NULL or match the number of arguments in [...].")}
+  if (idef(err.)) {stop(err.)}
+  x. <- tibble::tibble(...)
+  if (idef(cn.)) {colnames(x.) <- cn.}
+  x.
 }
 
-#' @rdname make
+#' @describeIn make Create a named vlist from named arguments or from unnamed
+#'   arguments and element names provided in \code{en.}.
 #' @export
 vls <- function(..., en. = NULL) {
-  x <- list(...)
+  x. <- list(...)
   en. <- f0(cmp_chr_vec(en.), ss(en.), en.)
-  N <- length(x)
-  VXN <- ...length() > 0
-  VNN <- f0(xnll(en.), T, f0(!cmp_chr_vec(en.), F, length(en.) == N))
-  E <- NULL
-  if (!VXN) {E <- c(E, "\n  * [...] is empty.")}
-  if (!VNN) {E <- c(E, "\n  * [en.] must be NULL or match the number of arguments in [...].")}
-  if (xdef(E)) {stop(E)}
-  if (xdef(en.)) {names(x) <- en.}
-  x
+  n. <- length(x.)
+  v0. <- ...length() > 0
+  vn. <- f0(inll(en.), T, f0(!cmp_chr_vec(en.), F, length(en.) == n.))
+  err. <- NULL
+  if (!v0.) {err. <- c(err., "\n • [...] is empty.")}
+  if (!vn.) {err. <- c(err., "\n • [en.] must be NULL or match the number of arguments in [...].")}
+  if (idef(err.)) {stop(err.)}
+  if (idef(en.)) {names(x.) <- en.}
+  x.
 }
 
-#' @rdname make
+#' @describeIn make Make a list where element names are derived from the
+#'   original function call. For example, \code{mkls(letters, LETTERS)} results
+#'   in the same output as \code{list(letters = letters, LETTERS = LETTERS)}
 #' @export
-mk_diag <- function(x = 1, n = 1) {
-  VX <- xnum(x) | xlgc(x) | xchr(x)
-  VN <- cmp_psw_scl(n)
-  VL <- f0(length(x) > 1, T, f0(VN, T, n > 1))
-  E <- NULL
-  if (!VX) {E <- c(E, "\n  * [x] must be an numeric, logical, or character.")}
-  if (!VN) {E <- c(E, "\n  * [n] must a positive, whole-number scalar.")}
-  if (!VL) {E <- c(E, "\n  * Neither [length(x)] nor [n] is greater than 1.")}
-  if (xdef(E)) {stop(E)}
-  NR <- nrow(x); NC <- ncol(x)
-  if (is.matrix(x)) {if (NR > 0 & NR == NC) {x <- diag(x, NR, NC)}}
-  x <- av(x)
-  if (n > 1) {x <- rep(x, n)}
-  if (all(is.na(x))) {x[is.na(x)] <- NA_real_}
-  N <- length(x)
-  Blank <- f0(xnum(x), 0, f0(xlgc(x), F, f0(xchr(x), "", NA)))
-  R <- matrix(Blank, nrow = N, ncol = N)
-  diag(R) <- x
-  return(R)
+mkls <- function(...) {
+  x. <- as_chr(match.call())                                                     # get a function call object and convert to character
+  x. <- x.[2:nx(x.)]                                                             # remove the function call leaving the variables as named in the calling function
+  x. <- dw0("list(", glst(peq(x., x.)), ")")                                     # create the call [list(<var1> = <var1>, <var2> = <var2>, ...)]
+  eval.parent(parse(text = x., n = 1))                                           # and evaluate it in the environment of the calling function
+}
+
+#' @describeIn make Create a diagonal matrix.
+#' @export
+mkdiag <- function(x. = 1, n. = 1) {
+  vx. <- xnum(x.) | xlgl(x.) | xchr(x.)
+  vn. <- cmp_psw_scl(n.)
+  vns. <- f0(length(x.) > 1, T, f0(vn., T, n. > 1))
+  err. <- NULL
+  if (!vx.) {err. <- c(err., "\n • [x.] must be an numeric, logical, or character.")}
+  if (!vn.) {err. <- c(err., "\n • [n.] must a positive, whole-number scalar.")}
+  if (!vns.) {err. <- c(err., "\n • Neither [length(x.)] nor [n.] is greater than 1.")}
+  if (idef(err.)) {stop(err.)}
+  nr. <- nrow(x.); nc. <- ncol(x.)
+  if (is.matrix(x.)) {if (nr. > 0 & nr. == nc.) {x. <- diag(x., nr., nc.)}}
+  x. <- av(x.)
+  if (n. > 1) {x. <- rep(x., n.)}
+  if (all(is.na(x.))) {x.[is.na(x.)] <- NA_real_}
+  l. <- length(x.)
+  blank. <- f0(xnum(x.), 0, f0(xlgl(x.), F, f0(xchr(x.), "", NA)))
+  out. <- matrix(blank., nrow = l., ncol = l.)
+  diag(out.) <- x.
+  out.
 }

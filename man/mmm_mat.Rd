@@ -3,7 +3,6 @@
 \name{mmm_mat}
 \alias{mmm_mat}
 \alias{mmm_mat_vals}
-\alias{atm_mat}
 \alias{chr_mat}
 \alias{ch1_mat}
 \alias{clr_mat}
@@ -11,8 +10,7 @@
 \alias{fac_mat}
 \alias{frc_mat}
 \alias{ind_mat}
-\alias{lgc_mat}
-\alias{cnb_mat}
+\alias{lgl_mat}
 \alias{neg_mat}
 \alias{ngw_mat}
 \alias{nng_mat}
@@ -35,8 +33,6 @@
 \usage{
 mmm_mat_vals()
 
-atm_mat(x)
-
 chr_mat(x)
 
 ch1_mat(x)
@@ -51,9 +47,7 @@ frc_mat(x)
 
 ind_mat(x)
 
-lgc_mat(x)
-
-cnb_mat(x)
+lgl_mat(x)
 
 neg_mat(x)
 
@@ -98,12 +92,69 @@ whl_mat(x)
 \code{TRUE} or \code{FALSE}
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_atm_matrix}}.
+Get all possible extended mode + atomic matrix properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{atm_mat}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{chr_mat}: Is \code{x} a character matrix?
+
+\item \code{ch1_mat}: Is \code{x} a onechar matrix?
+
+\item \code{clr_mat}: Is \code{x} a color matrix?
+
+\item \code{evn_mat}: Is \code{x} an even-numeric matrix?
+
+\item \code{fac_mat}: Is \code{x} a factor matrix?
+
+\item \code{frc_mat}: Is \code{x} a fractional-numeric matrix?
+
+\item \code{ind_mat}: Is \code{x} an indexer matrix?
+
+\item \code{lgl_mat}: Is \code{x} a logical matrix?
+
+\item \code{neg_mat}: Is \code{x} a negative-numeric matrix?
+
+\item \code{ngw_mat}: Is \code{x} a negative-whole-numeric matrix?
+
+\item \code{nng_mat}: Is \code{x} a non-negative-numeric matrix?
+
+\item \code{nnw_mat}: Is \code{x} a non-negative-whole-numeric matrix?
+
+\item \code{nps_mat}: Is \code{x} a non-positive-numeric matrix?
+
+\item \code{npw_mat}: Is \code{x} a non-positive-whole-numeric matrix?
+
+\item \code{nst_mat}: Is \code{x} a non-sortable matrix?
+
+\item \code{num_mat}: Is \code{x} a numeric matrix?
+
+\item \code{odd_mat}: Is \code{x} an odd-numeric matrix?
+
+\item \code{ord_mat}: Is \code{x} an ordered-factor matrix?
+
+\item \code{pct_mat}: Is \code{x} a percent-numeric matrix?
+
+\item \code{pos_mat}: Is \code{x} a positive-numeric matrix?
+
+\item \code{ppn_mat}: Is \code{x} a proportion-numeric matrix?
+
+\item \code{psw_mat}: Is \code{x} a positive-whole-numeric matrix?
+
+\item \code{srt_mat}: Is \code{x} a sortable matrix?
+
+\item \code{str_mat}: Is \code{x} a string matrix?
+
+\item \code{uno_mat}: Is \code{x} an unordered-factor matrix?
+
+\item \code{whl_mat}: Is \code{x} whole-numeric matrix?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -120,6 +171,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -130,7 +183,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

@@ -5,6 +5,8 @@
 \alias{na}
 \alias{ok}
 \alias{sub_na}
+\alias{nas}
+\alias{oks}
 \alias{rm_na}
 \title{Manage NA and Non-NA Values}
 \usage{
@@ -13,6 +15,10 @@ na(x)
 ok(x)
 
 sub_na(x, s)
+
+nas(x)
+
+oks(x)
 
 rm_na(x)
 }
@@ -24,18 +30,16 @@ rm_na(x)
 }
 \value{
 An atomic scalar, an atomic vector, an atomic array, an
-\link[=is_atm_tibble]{atomic tibble}, or an
-\link[=is_atm_vlist]{atomic vlist}.
+\link[=is_atm_tbl]{atomic tibble}, or an
+\link[=is_atm_vls]{atomic vlist}.
 }
 \description{
-Identify \code{NA} values, identify OK values (i.e., not
-\code{NA}), substitute a value for \code{NA} values, or remove \code{NA}
-values.
+Index \code{NA} values of \code{x}
 }
 \details{
 All functions in this group take atomic objects,
-\link[=is_atm_tibble]{atomic tibbles} and
-\link[=is_atm_vlist]{atomic vlists}.
+\link[=is_atm_tbl]{atomic tibbles} and
+\link[=is_atm_vls]{atomic vlists}.
 \cr\cr
 \strong{\code{na}}
 \cr Returns an object with the same dimensions as \code{x} where all atomic
@@ -47,22 +51,43 @@ whether the original atomic value was \code{NA}.
 values are replaced by either \code{TRUE} or \code{FALSE} indicating
 whether the original atomic value was OK (i.e., not \code{NA}).
 \cr\cr
-\strong{\code{sub.na}}
+\strong{\code{nas}}
+\cr Returns \code{TRUE} or \code{FALSE} according to whether \code{x} is an
+\code{NA} scalar.
+\cr\cr
+\strong{\code{oks}}
+\cr Returns \code{TRUE} or \code{FALSE} according to whether \code{x} is a
+non-\code{NA} scalar.
+\cr\cr
+\strong{\code{sub_na}}
 \cr Returns an object with the same dimensions as \code{x} where all
 \code{NA} values are replaced by \code{s}. Note that the modes of \code{x}
 and \code{s} must be \link[=compatible]{compatible}.
 \cr\cr
-\strong{\code{rm.na}}
+\strong{\code{rm_na}}
 If there are no \code{NA} values in \code{x}, this function returns
 \code{x} unchanged.
 \cr\cr
 However, if there are \code{NA} values in \code{x}, by removing \code{NA}
 values from \code{x}, this function changes the dimensions of and/or class
 of \code{x}. If \code{x} is an array or an atomic tibble, its class is
-reduced to an atomic vector sans \code{NA} values. If \code{x} is an atomic
-vlist, any elements with \code{NA} values are reduced to atomic vectors
-sans their \code{NA} values.
+reduced to an atomic vector sans \code{NA} values. If \code{x} is an
+\link[=is_atm_vls]{atomic vlist}, any elements with \code{NA} values are
+reduced to atomic vectors sans their \code{NA} values.
 }
+\section{Functions}{
+\itemize{
+\item \code{ok}: Index non-\code{NA} values of \code{x}.
+
+\item \code{sub_na}: Substitute \code{s} for \code{NA} values of \code{x}.
+
+\item \code{nas}: Is \code{x} an \code{NA} scalar?
+
+\item \code{oks}: Is \code{x} a non-\code{NA} scalar?
+
+\item \code{rm_na}: Remove \code{NA} values of \code{x}.
+}}
+
 \seealso{
 Other meta: 
 \code{\link{as_xxx}},

@@ -18,9 +18,4 @@
 #' print(CallVector)
 #' print(CallScalar)
 #' @export
-run <- function(...) {
-  Command <- unlist(list(...), T, F)
-  Command <- paste0(Command, collapse = "")
-  Command <- parse(text = Command)
-  eval(Command, envir = parent.frame(1))
-}
+run <- function(...) {eval.parent(parse(text = daw00(...)), n = 1)}

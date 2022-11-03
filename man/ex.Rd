@@ -10,17 +10,17 @@ ex(x, r = NULL, c = NULL, e = NULL)
 \item{x}{Any valid R object.}
 
 \item{r}{A logical or integer vector indexing rows to extract from \code{x}
-of \link[=ddim]{defined dimensionality} 2.}
+of \link[=ddd]{defined dimensionality} 2.}
 
 \item{c}{A logical or integer vector indexing columns to extract from
-\code{x} of \link[=ddim]{defined dimensionality} 2.}
+\code{x} of \link[=ddd]{defined dimensionality} 2.}
 
 \item{e}{A logical or integer vector indexing elements to extract from
-\code{x} of \link[=ddim]{defined dimensionality} 1.}
+\code{x} of \link[=ddd]{defined dimensionality} 1.}
 }
 \description{
 Extract specific rows and/or columns of matrices and tibbles
-or extract specific elements of vects or vlists.
+or extract specific elements of vecs or vlists.
 }
 \examples{
 Mat <- matrix(1:100, nrow = 10)

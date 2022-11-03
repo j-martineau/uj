@@ -9,11 +9,12 @@
 \alias{atb_na}
 \alias{atb}
 \alias{vls}
-\alias{mk_diag}
-\title{Make atomic vectors, atomic matrices, atomic tibbles, and atomic or
-recursive vlists}
+\alias{mkls}
+\alias{mkdiag}
+\title{Extended functionality for creating atomic vectors, atomic matrices,
+atomic tibbles, and atomic or recursive vlists}
 \usage{
-vec(..., r. = 1, en. = NULL)
+vec(..., r. = 1, vn. = NULL)
 
 vec_na(r.)
 
@@ -23,19 +24,21 @@ atb0(cn.)
 
 atb_na(cn., nr.)
 
-atb(..., rn. = NULL, cn. = NULL)
+atb(..., cn. = NULL)
 
 vls(..., en. = NULL)
 
-mk_diag(x = 1, n = 1)
+mkls(...)
+
+mkdiag(x. = 1, n. = 1)
 }
 \arguments{
-\item{...}{Objects to placed in an atomic vect, atomic matrix, atomib tibble,
+\item{...}{Objects to placed in an atomic vect, atomic matrix, atomic tibble,
 vlist, or square atomic diagonal matrix.}
 
 \item{r.}{Number of replications.}
 
-\item{en.}{Optional character vector of names to apply to vector or list
+\item{vn.}{Optional character vector of names to apply to vector or list
 elements. May be pipe-delimited in character vector.}
 
 \item{nr.}{Number of rows.}
@@ -51,9 +54,9 @@ tibble. May be pipe-delimited in character vector.}
 or tibble. May be pipe-delimited in character vector. For tibbles, this
 argument can be used only if the arguments in \code{...} are not named.}
 
-\item{x}{An numeric, logical, or character object of length 1 or greater.}
+\item{x.}{An numeric, logical, or character object of length 1 or greater.}
 
-\item{n}{A positive whole number indicating the number of replications of
+\item{n.}{A positive whole number indicating the number of replications of
 \code{x}.}
 }
 \value{
@@ -63,8 +66,7 @@ An \link[=is_atm_tibble]{atomic tibble}, an
 function they are thin wrappers for.
 }
 \description{
-Extended functionality for creating vectors, matrices,
-tibbles and vlists.
+Create an atomic vector.
 }
 \details{
 \strong{\code{vec(..., r, en.)}}
@@ -98,12 +100,41 @@ to replace any names of arguments in \code{...}.
 \cr Creates a \link[=is_vlist]{vlist} from the arguments in \code{...} with
 optional element names to replace any names of arguments in \code{...}.
 \cr\cr
-\strong{\code{mk_diag(x = 1, n = 1)}}
-\cr Creates a square, atomic diagonal matrix. For numeric \code{x},
-off-diagonals are \code{0}. For logical \code{x}, off diagonals are
-\code{FALSE}. For character \code{x}, off diagonals are blank strings
+\strong{\code{mkvls(...)}}
+\cr Creates a named vlist by taking the original call and parsing arguments
+to get element names. Allows for more concise code such as
+\code{mkvls(letters, LETTERS)} giving the same result as \code{list(letters
+  = letters, LETTERS = LETTERS)}.
+\cr\cr
+\strong{\code{mkdiag(x. = 1, n. = 1)}}
+\cr Creates a square, atomic diagonal matrix. For numeric \code{x.},
+off-diagonals are \code{0}. For logical \code{x.}, off diagonals are
+\code{FALSE}. For character \code{x.}, off diagonals are blank strings
 (\code{""}). For all others, off diagonals are \code{NA}.
 }
+\section{Functions}{
+\itemize{
+\item \code{vec_na}: Create a vector of missing/\code{NA} values.
+
+\item \code{mat}: Create an atomic matrix.
+
+\item \code{atb0}: Create an atomic tibble with zero rows.
+
+\item \code{atb_na}: Create an atomic tibble containing only missing values.
+
+\item \code{atb}: Create an atomic tibble from named arguments or from column
+names in \code{cn.}.
+
+\item \code{vls}: Create a named vlist from named arguments or from unnamed
+arguments and element names provided in \code{en.}.
+
+\item \code{mkls}: Make a list where element names are derived from the
+original function call. For example, \code{mkls(letters, LETTERS)} results
+in the same output as \code{list(letters = letters, LETTERS = LETTERS)}
+
+\item \code{mkdiag}: Create a diagonal matrix.
+}}
+
 \seealso{
 Other meta: 
 \code{\link{as_xxx}},

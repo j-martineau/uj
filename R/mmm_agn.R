@@ -1,7 +1,8 @@
 #' @name mmm_agn
 #' @family props
 #' @title Extended Mode + Atomic Generic (mmm + agn)
-#' @description See \code{\link{mmm}}, and \code{\link{is_atm_generic}}.
+#' @description Get all possible extended mode + atomic generic properties.
+#' @details See \code{\link{mmm}}, and \code{\link{atm_gen}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
@@ -11,114 +12,106 @@ mmm_agn_vals <- function() {
   x
 }
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a character atomic generic?
 #' @export
-atm_agn <- function(x) {is_atm_generic(x)}
+chr_agn <- function(x) {atm_gen(x, "chr")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a onechar atomic generic?
 #' @export
-chr_agn <- function(x) {is_atm_generic(x, "chr")}
+ch1_agn <- function(x) {atm_gen(x, "ch1")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a color atomic
 #' @export
-ch1_agn <- function(x) {is_atm_generic(x, "ch1")}
+clr_agn <- function(x) {atm_gen(x, "clr")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} an even-numeric atomic generic?
 #' @export
-clr_agn <- function(x) {is_atm_generic(x, "clr")}
+evn_agn <- function(x) {atm_gen(x, "evn")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a factor atomic generic?
 #' @export
-evn_agn <- function(x) {is_atm_generic(x, "evn")}
+fac_agn <- function(x) {atm_gen(x, "fac")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a fractional-numeric atomic generic?
 #' @export
-fac_agn <- function(x) {is_atm_generic(x, "fac")}
+frc_agn <- function(x) {atm_gen(x, "frc")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} an indexer atomic generic?
 #' @export
-frc_agn <- function(x) {is_atm_generic(x, "frc")}
+ind_agn <- function(x) {atm_gen(x, "ind")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a logical atomic generic?
 #' @export
-ind_agn <- function(x) {is_atm_generic(x, "ind")}
+lgl_agn <- function(x) {atm_gen(x, "lgl")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a negative-numeric atomic generic?
 #' @export
-lgc_agn <- function(x) {is_atm_generic(x, "lgc")}
+neg_agn <- function(x) {atm_gen(x, "neg")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a negative-whole-numeric atomic generic?
 #' @export
-cnb_agn <- function(x) {is_atm_generic(x, "cnb")}
+ngw_agn <- function(x) {atm_gen(x, "ngw")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a non-negative-numeric atomic generic?
 #' @export
-neg_agn <- function(x) {is_atm_generic(x, "neg")}
+nng_agn <- function(x) {atm_gen(x, "nng")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a non-negative-whole-numeric atomic generic?
 #' @export
-ngw_agn <- function(x) {is_atm_generic(x, "ngw")}
+nnw_agn <- function(x) {atm_gen(x, "nnw")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a non-positive-numeric atomic generic?
 #' @export
-nng_agn <- function(x) {is_atm_generic(x, "nng")}
+nps_agn <- function(x) {atm_gen(x, "nps")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a non-positive-whole-numeric atomic generic?
 #' @export
-nnw_agn <- function(x) {is_atm_generic(x, "nnw")}
+npw_agn <- function(x) {atm_gen(x, "npw")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a non-sortable atomic generic?
 #' @export
-nps_agn <- function(x) {is_atm_generic(x, "nps")}
+nst_agn <- function(x) {atm_gen(x, "nst")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a numeric atomic generic?
 #' @export
-npw_agn <- function(x) {is_atm_generic(x, "npw")}
+num_agn <- function(x) {atm_gen(x, "num")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} an odd-numeric atomic generic?
 #' @export
-nst_agn <- function(x) {is_atm_generic(x, "nst")}
+odd_agn <- function(x) {atm_gen(x, "odd")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} an ordered-factor atomic generic?
 #' @export
-num_agn <- function(x) {is_atm_generic(x, "num")}
+ord_agn <- function(x) {atm_gen(x, "ord")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a percent-numeric atomic generic?
 #' @export
-odd_agn <- function(x) {is_atm_generic(x, "odd")}
+pct_agn <- function(x) {atm_gen(x, "pct")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a positive-numeric atomic generic?
 #' @export
-ord_agn <- function(x) {is_atm_generic(x, "ord")}
+pos_agn <- function(x) {atm_gen(x, "pos")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a proportion-numeric atomic generic?
 #' @export
-pct_agn <- function(x) {is_atm_generic(x, "pct")}
+ppn_agn <- function(x) {atm_gen(x, "ppn")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a positive-whole-numeric atomic generic?
 #' @export
-pos_agn <- function(x) {is_atm_generic(x, "pos")}
+psw_agn <- function(x) {atm_gen(x, "psw")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a sortable atomic generic?
 #' @export
-ppn_agn <- function(x) {is_atm_generic(x, "ppn")}
+srt_agn <- function(x) {atm_gen(x, "srt")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a string atomic generic?
 #' @export
-psw_agn <- function(x) {is_atm_generic(x, "psw")}
+str_agn <- function(x) {atm_gen(x, "str")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} an unordered-factor atomic generic?
 #' @export
-srt_agn <- function(x) {is_atm_generic(x, "srt")}
+uno_agn <- function(x) {atm_gen(x, "uno")}
 
-#' @rdname mmm_agn
+#' @describeIn mmm_agn Is \code{x} a whole-numeric atomic generic?
 #' @export
-str_agn <- function(x) {is_atm_generic(x, "str")}
-
-#' @rdname mmm_agn
-#' @export
-uno_agn <- function(x) {is_atm_generic(x, "uno")}
-
-#' @rdname mmm_agn
-#' @export
-whl_agn <- function(x) {is_atm_generic(x, "whl")}
+whl_agn <- function(x) {atm_gen(x, "whl")}

@@ -1,7 +1,8 @@
 #' @name mmm_mvc
 #' @family props
 #' @title Extended Mode + Atomic mvect (mmm + mvc)
-#' @description See \code{\link{mmm}}, and \code{\link{is_atm_mvect}}.
+#' @description Get all possible extended mode + atomic mvect properties.
+#' @details See \code{\link{mmm}}, and \code{\link{atm_mvc}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
@@ -11,114 +12,106 @@ mmm_mvc_vals <- function() {
   x
 }
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a character mvect?
 #' @export
-atm_mvc <- function(x) {is_atm_mvect(x)}
+chr_mvc <- function(x) {atm_mvc(x, "chr")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a onechar mvect?
 #' @export
-chr_mvc <- function(x) {is_atm_mvect(x, "chr")}
+ch1_mvc <- function(x) {atm_mvc(x, "ch1")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a color mvect?
 #' @export
-ch1_mvc <- function(x) {is_atm_mvect(x, "ch1")}
+clr_mvc <- function(x) {atm_mvc(x, "clr")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} an even-numeric mvect?
 #' @export
-clr_mvc <- function(x) {is_atm_mvect(x, "clr")}
+evn_mvc <- function(x) {atm_mvc(x, "evn")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a factor mvect?
 #' @export
-evn_mvc <- function(x) {is_atm_mvect(x, "evn")}
+fac_mvc <- function(x) {atm_mvc(x, "fac")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a fractional-numeric mvect?
 #' @export
-fac_mvc <- function(x) {is_atm_mvect(x, "fac")}
+frc_mvc <- function(x) {atm_mvc(x, "frc")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} an indexer mvect?
 #' @export
-frc_mvc <- function(x) {is_atm_mvect(x, "frc")}
+ind_mvc <- function(x) {atm_mvc(x, "ind")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a logical mvect?
 #' @export
-ind_mvc <- function(x) {is_atm_mvect(x, "ind")}
+lgl_mvc <- function(x) {atm_mvc(x, "lgl")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a negative-numeric mvect?
 #' @export
-lgc_mvc <- function(x) {is_atm_mvect(x, "lgc")}
+neg_mvc <- function(x) {atm_mvc(x, "neg")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a negative-whole-numeric mvect?
 #' @export
-cnb_mvc <- function(x) {is_atm_mvect(x, "cnb")}
+ngw_mvc <- function(x) {atm_mvc(x, "ngw")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a non-negative-numeric mvect?
 #' @export
-neg_mvc <- function(x) {is_atm_mvect(x, "neg")}
+nng_mvc <- function(x) {atm_mvc(x, "nng")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a non-negative-whole-numeric mvect?
 #' @export
-ngw_mvc <- function(x) {is_atm_mvect(x, "ngw")}
+nnw_mvc <- function(x) {atm_mvc(x, "nnw")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a non-positive-numeric mvect?
 #' @export
-nng_mvc <- function(x) {is_atm_mvect(x, "nng")}
+nps_mvc <- function(x) {atm_mvc(x, "nps")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a non-positive-whole-numeric mvect?
 #' @export
-nnw_mvc <- function(x) {is_atm_mvect(x, "nnw")}
+npw_mvc <- function(x) {atm_mvc(x, "npw")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a non-sortable atomic mvect?
 #' @export
-nps_mvc <- function(x) {is_atm_mvect(x, "nps")}
+nst_mvc <- function(x) {atm_mvc(x, "nst")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a numeric mvect?
 #' @export
-npw_mvc <- function(x) {is_atm_mvect(x, "npw")}
+num_mvc <- function(x) {atm_mvc(x, "num")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} an odd-numeric mvect?
 #' @export
-nst_mvc <- function(x) {is_atm_mvect(x, "nst")}
+odd_mvc <- function(x) {atm_mvc(x, "odd")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} an ordered-factor mvect?
 #' @export
-num_mvc <- function(x) {is_atm_mvect(x, "num")}
+ord_mvc <- function(x) {atm_mvc(x, "ord")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a percent-numeric mvect?
 #' @export
-odd_mvc <- function(x) {is_atm_mvect(x, "odd")}
+pct_mvc <- function(x) {atm_mvc(x, "pct")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a positive-numeric mvect?
 #' @export
-ord_mvc <- function(x) {is_atm_mvect(x, "ord")}
+pos_mvc <- function(x) {atm_mvc(x, "pos")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a proportion-numeric mvect?
 #' @export
-pct_mvc <- function(x) {is_atm_mvect(x, "pct")}
+ppn_mvc <- function(x) {atm_mvc(x, "ppn")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a positive-whole-numeric mvect?
 #' @export
-pos_mvc <- function(x) {is_atm_mvect(x, "pos")}
+psw_mvc <- function(x) {atm_mvc(x, "psw")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a sortable atomic mvect?
 #' @export
-ppn_mvc <- function(x) {is_atm_mvect(x, "ppn")}
+srt_mvc <- function(x) {atm_mvc(x, "srt")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a string mvect?
 #' @export
-psw_mvc <- function(x) {is_atm_mvect(x, "psw")}
+str_mvc <- function(x) {atm_mvc(x, "str")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} an unordered-factor mvect?
 #' @export
-srt_mvc <- function(x) {is_atm_mvect(x, "srt")}
+uno_mvc <- function(x) {atm_mvc(x, "uno")}
 
-#' @rdname mmm_mvc
+#' @describeIn mmm_mvc Is \code{x} a whole-numeric mvect?
 #' @export
-str_mvc <- function(x) {is_atm_mvect(x, "str")}
-
-#' @rdname mmm_mvc
-#' @export
-uno_mvc <- function(x) {is_atm_mvect(x, "uno")}
-
-#' @rdname mmm_mvc
-#' @export
-whl_mvc <- function(x) {is_atm_mvect(x, "whl")}
+whl_mvc <- function(x) {atm_mvc(x, "whl")}

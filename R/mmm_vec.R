@@ -1,7 +1,8 @@
 #' @name mmm_vec
 #' @family props
-#' @title Extended Mode + Atomic vect (mmm + vec)
-#' @description See \code{\link{mmm}}, and \code{\link{is_atm_vect}}.
+#' @title Extended Mode + Atomic vec (mmm + vec)
+#' @details See \code{\link{mmm}}, and \code{\link{atm_vec}}.
+#' @description Get all possible extended mode + atomic vec properties.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
@@ -11,110 +12,102 @@ mmm_vec_vals <- function() {
   x
 }
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a character atomic vec?
 #' @export
-atm_vec <- function(x) {is_atm_vect(x)}
+chr_vec <- function(x) {atm_vec(x, "chr")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a onechar atomic vec?
 #' @export
-chr_vec <- function(x) {is_atm_vect(x, "chr")}
+clr_vec <- function(x) {atm_vec(x, "clr")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} an even-number atomic vec?
 #' @export
-clr_vec <- function(x) {is_atm_vect(x, "clr")}
+evn_vec <- function(x) {atm_vec(x, "evn")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a factor atomic vec?
 #' @export
-evn_vec <- function(x) {is_atm_vect(x, "evn")}
+fac_vec <- function(x) {atm_vec(x, "fac")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a fractional-number atomic vec?
 #' @export
-fac_vec <- function(x) {is_atm_vect(x, "fac")}
+frc_vec <- function(x) {atm_vec(x, "frc")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} an indexer atomic vec?
 #' @export
-frc_vec <- function(x) {is_atm_vect(x, "frc")}
+ind_vec <- function(x) {atm_vec(x, "ind")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a logical atomic vec?
 #' @export
-ind_vec <- function(x) {is_atm_vect(x, "ind")}
+lgl_vec <- function(x) {atm_vec(x, "lgl")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a negative-number atomic vec?
 #' @export
-lgc_vec <- function(x) {is_atm_vect(x, "lgc")}
+neg_vec <- function(x) {atm_vec(x, "neg")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a negative-whole-number atomic vec?
 #' @export
-cnb_vec <- function(x) {is_atm_vect(x, "cnb")}
+ngw_vec <- function(x) {atm_vec(x, "ngw")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a non-negative-number atomic vec?
 #' @export
-neg_vec <- function(x) {is_atm_vect(x, "neg")}
+nng_vec <- function(x) {atm_vec(x, "nng")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a non-negative-whole-number atomic vec?
 #' @export
-ngw_vec <- function(x) {is_atm_vect(x, "ngw")}
+nnw_vec <- function(x) {atm_vec(x, "nnw")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a non-positive-number atomic vec?
 #' @export
-nng_vec <- function(x) {is_atm_vect(x, "nng")}
+nps_vec <- function(x) {atm_vec(x, "nps")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a non-positive-whole-number atomic vec?
 #' @export
-nnw_vec <- function(x) {is_atm_vect(x, "nnw")}
+npw_vec <- function(x) {atm_vec(x, "npw")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a non-sortable atomic vec?
 #' @export
-nps_vec <- function(x) {is_atm_vect(x, "nps")}
+nst_vec <- function(x) {atm_vec(x, "nst")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a number atomic vec?
 #' @export
-npw_vec <- function(x) {is_atm_vect(x, "npw")}
+num_vec <- function(x) {atm_vec(x, "num")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} an odd-number atomic vec?
 #' @export
-nst_vec <- function(x) {is_atm_vect(x, "nst")}
+odd_vec <- function(x) {atm_vec(x, "odd")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} an ordered-factor atomic vec?
 #' @export
-num_vec <- function(x) {is_atm_vect(x, "num")}
+ord_vec <- function(x) {atm_vec(x, "ord")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a percent-number atomic vec?
 #' @export
-odd_vec <- function(x) {is_atm_vect(x, "odd")}
+pct_vec <- function(x) {atm_vec(x, "pct")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a positive-number atomic vec?
 #' @export
-ord_vec <- function(x) {is_atm_vect(x, "ord")}
+pos_vec <- function(x) {atm_vec(x, "pos")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a atomic proportion-number vec?
 #' @export
-pct_vec <- function(x) {is_atm_vect(x, "pct")}
+ppn_vec <- function(x) {atm_vec(x, "ppn")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a positive-whole-number atomic vec?
 #' @export
-pos_vec <- function(x) {is_atm_vect(x, "pos")}
+psw_vec <- function(x) {atm_vec(x, "psw")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a sortable atomic vec?
 #' @export
-ppn_vec <- function(x) {is_atm_vect(x, "ppn")}
+srt_vec <- function(x) {atm_vec(x, "srt")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a string atomic vec?
 #' @export
-psw_vec <- function(x) {is_atm_vect(x, "psw")}
+str_vec <- function(x) {atm_vec(x, "str")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a unordered-factor atomic vec?
 #' @export
-srt_vec <- function(x) {is_atm_vect(x, "srt")}
+uno_vec <- function(x) {atm_vec(x, "uno")}
 
-#' @rdname mmm_vec
+#' @describeIn mmm_vec Is \code{x} a whole-number atomic vec?
 #' @export
-str_vec <- function(x) {is_atm_vect(x, "str")}
-
-#' @rdname mmm_vec
-#' @export
-uno_vec <- function(x) {is_atm_vect(x, "uno")}
-
-#' @rdname mmm_vec
-#' @export
-whl_vec <- function(x) {is_atm_vect(x, "whl")}
+whl_vec <- function(x) {atm_vec(x, "whl")}

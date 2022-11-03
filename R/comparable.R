@@ -7,29 +7,29 @@
 #'   levels (in the same order).
 #' @param ... An arbitrary number of arguments to be checked for comparability
 #'   with each other.
-#' @param recycle A logical scalar indicating whether arguments in \code{...}
+#' @param recycle. A logical scalar indicating whether arguments in \code{...}
 #'   must be recyclable to be comparable.
 #' @return A logical scalar.
 #' @export
-comparable <- function(..., recycle = T) {
-  x <- list(...)                                                                 # arguments in [...] as a list
-  N <- length(x)
-  E <- NULL
-  if (N < 2) {E <- c(E, "\n  * [...] must contain multiple arguments.")}
-  if (!isTF(recycle)) {E <- c(E, "\n  * [recycle] must be TRUE or FALSE.")}
-  if (xdef(E)) {stop(E)}
-  if (recycle) {
-    R <- unique(lengths(x))                                                      # unique set of argument length
-    R <- max(R) / R                                                              # number of replications needed for recycling
-    if (any(R != round(R))) {return(F)}                                          # if arguments must be recyclable and any rep is fractional, not comparable
+comparable <- function(..., recycle. = T) {
+  x. <- list(...)                                                                # arguments in [...] as a list
+  n. <- length(x.)
+  err. <- NULL
+  if (n. < 2) {err. <- c(err., "\n  * [...] must contain multiple arguments.")}
+  if (!isTF(recycle.)) {err. <- c(err., "\n  * [recycle.] must be TRUE or FALSE.")}
+  if (idef(err.)) {stop(err.)}
+  if (recycle.) {
+    nrep. <- unique(lengths(x.))                                                 # unique set of argument length
+    nrep. <- max(nrep.) / nrep.                                                  # number of replications needed for recycling
+    if (any(nrep. != round(nrep.))) {return(F)}                                  # if arguments must be recyclable and any rep is fractional, not comparable
   }
-  CH <- all(sapply(x, is.character))
-  LG <- all(sapply(x, is.logical))
-  NM <- all(sapply(x, is.numeric))
-  OF <- all(sapply(x, is.ordered))
-  if ( CH |  LG | NM) {return(T)}
-  if (!OF) {return(F)}
-  LV <- sapply(x, levels)
-  for (i in 2:N) {if (!identical(LV[[i]], LV[[i - 1]])) {return(F)}}
+  chr. <- all(sapply(x., is.character))
+  lgl. <- all(sapply(x., is.logical))
+  num. <- all(sapply(x., is.numeric))
+  ord. <- all(sapply(x., is.ordered))
+  if ( chr. | lgl. | num.) {return(T)}
+  if (!ord.) {return(F)}
+  levs. <- sapply(x., levels)
+  for (i. in 2:n.) {if (!identical(levs.[[i.]], levs.[[i. - 1]])) {return(F)}}
   T
 }

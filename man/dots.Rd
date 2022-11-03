@@ -61,37 +61,30 @@ allowed.}
 unique.}
 }
 \description{
-Get named arguments from \code{...} with default values if missing,
-named and unnamed arguments from \code{...}, and names of arguments in
-\code{...}.
-}
-\details{
-\strong{\code{dots}}
-\cr Extract one or more arguments from those in \code{...} based on their
-names matching values supplied in \code{names.}. If a supplied name matches
-the name of an arguments in \code{...}, that argument is returned.
+Extract one or more arguments from those in \code{...} based on
+their names matching values supplied in \code{names.}. If a supplied name
+matches the name of an arguments in \code{...}, that argument is returned.
 Otherwise, the element of \code{defs.} with a matching name is returned.
 \cr\cr
 \code{names.} must be an atomic scalar/vector, and is coerced to character
 mode. The exceptions are \code{NULL} and \code{NA}, which are converted to
-\code{'NULL'} and \code{'NA'}. Any values of \code{names.} that are reserved
-words or non-valid object names are backtick quoted for matching.
+\code{'NULL'} and \code{'NA'}. Any values of \code{names.} that are
+reserved words or non-valid object names are backtick quoted for matching.
 \cr\cr
 \code{defs.} is a named list with default values to return if there is no
 matching argument for a value in \code{names.}.
 \cr\cr
 Each value in \code{names.} must have a matching argument in \code{...} or
 a matching element in \code{defs.}.
-\cr\cr
-\strong{\code{dot}}
-\cr A simplified version for extracting a single named argument from
-\code{...} or, if a matching argument is not found, its default value.
-\cr\cr
-\strong{\code{dot_names}}
-\cr If \code{names.} is \code{NULL}, the return value is \code{...names()},
-otherwise, \code{names.} i returned. Throws an error in the following
-cases
+}
+\section{Functions}{
 \itemize{
+\item \code{dot}: A simplified version for extracting a single named argument from
+\code{...} or, if a matching argument is not found, its default value.
+
+\item \code{dot_names}: If \code{names.} is \code{NULL}, the return value is
+\code{...names()}, otherwise, \code{names.} i returned. Throws an error in
+the following cases:\itemize{
 \item \code{0} Arguments are supplied in \code{...}, \code{names.} is not
 \code{NULL} and its length is not equal to the number of arguments
 in \code{...}.
@@ -103,15 +96,13 @@ name is \code{''} or (b) \code{u.} is \code{TRUE} and multiple
 arguments in \code{...} share a name.
 \item \code{names.} is not \code{NULL} and either (a) \code{blank.} is
 \code{TRUE} and \code{names.} contains \code{''} or (b) \code{u.}
-is \code{TRUE} and \code{names.} contains duplicate values.
-}
-\cr\cr
-\strong{\code{named_args(...)}}
-\cr Extracts named arguments from \code{...} as a named list (does not
-include arguments named with blank strings).
-\cr\cr
-\strong{\code{unnamed_args(...)}}
-\cr Extract unnamed arguments from \code{...} as an unnamed list (includes
-any arguments named with blank strings).
-}
+is \code{TRUE} and \code{names.} contains duplicate values.       }
+
+\item \code{named_dots}: Extracts named arguments from \code{...} as a named list
+(does not include arguments named with blank strings).
+
+\item \code{unnamed_dots}: Extract unnamed arguments from \code{...} as an unnamed list
+(includes any arguments named with blank strings).
+}}
+
 \concept{dot_args}

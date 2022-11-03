@@ -1,7 +1,8 @@
 #' @name mmm_avt
 #' @family props
 #' @title Extended Mode + Atomic vtype (mmm + avt)
-#' @description See \code{\link{mmm}}, and \code{\link{is_atm_vtype}}.
+#' @description Get all possible extended mode + atomic vtype properties.
+#' @details See \code{\link{mmm}}, and \code{\link{atm_vtp}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
@@ -11,114 +12,106 @@ mmm_avt_vals <- function() {
   x
 }
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a character atomic vtype?
 #' @export
-atm_avt <- function(x) {is_atm_vtype(x)}
+chr_avt <- function(x) {atm_vtp(x, "chr")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a onechar atomic vtype?
 #' @export
-chr_avt <- function(x) {is_atm_vtype(x, "chr")}
+ch1_avt <- function(x) {atm_vtp(x, "ch1")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a color atomic vtype?
 #' @export
-ch1_avt <- function(x) {is_atm_vtype(x, "ch1")}
+clr_avt <- function(x) {atm_vtp(x, "clr")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} an even-numeric atomic vtype?
 #' @export
-clr_avt <- function(x) {is_atm_vtype(x, "clr")}
+evn_avt <- function(x) {atm_vtp(x, "evn")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a factor atomic vtype?
 #' @export
-evn_avt <- function(x) {is_atm_vtype(x, "evn")}
+fac_avt <- function(x) {atm_vtp(x, "fac")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a fractional-numeric atomic vtype?
 #' @export
-fac_avt <- function(x) {is_atm_vtype(x, "fac")}
+frc_avt <- function(x) {atm_vtp(x, "frc")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} an indexer atomic vtype?
 #' @export
-frc_avt <- function(x) {is_atm_vtype(x, "frc")}
+ind_avt <- function(x) {atm_vtp(x, "ind")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a logical atomic vtype?
 #' @export
-ind_avt <- function(x) {is_atm_vtype(x, "ind")}
+lgl_avt <- function(x) {atm_vtp(x, "lgl")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a negative-numeric atomic vtype?
 #' @export
-lgc_avt <- function(x) {is_atm_vtype(x, "lgc")}
+neg_avt <- function(x) {atm_vtp(x, "neg")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a non-negative-whole-numeric atomic vtype?
 #' @export
-cnb_avt <- function(x) {is_atm_vtype(x, "cnb")}
+ngw_avt <- function(x) {atm_vtp(x, "ngw")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a non-negative-numeric atomic vtype?
 #' @export
-neg_avt <- function(x) {is_atm_vtype(x, "neg")}
+nng_avt <- function(x) {atm_vtp(x, "nng")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a non-negative-whole-numeric atomic vtype?
 #' @export
-ngw_avt <- function(x) {is_atm_vtype(x, "ngw")}
+nnw_avt <- function(x) {atm_vtp(x, "nnw")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a non-positive-numeric atomic vtype?
 #' @export
-nng_avt <- function(x) {is_atm_vtype(x, "nng")}
+nps_avt <- function(x) {atm_vtp(x, "nps")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a non-positive-whole-numeric atomic vtype?
 #' @export
-nnw_avt <- function(x) {is_atm_vtype(x, "nnw")}
+npw_avt <- function(x) {atm_vtp(x, "npw")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a non-sortable atomic atomic vtype?
 #' @export
-nps_avt <- function(x) {is_atm_vtype(x, "nps")}
+nst_avt <- function(x) {atm_vtp(x, "nst")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a numeric atomic vtype?
 #' @export
-npw_avt <- function(x) {is_atm_vtype(x, "npw")}
+num_avt <- function(x) {atm_vtp(x, "num")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} an odd-numeric atomic vtype?
 #' @export
-nst_avt <- function(x) {is_atm_vtype(x, "nst")}
+odd_avt <- function(x) {atm_vtp(x, "odd")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} an ordered-factor atomic vtype?
 #' @export
-num_avt <- function(x) {is_atm_vtype(x, "num")}
+ord_avt <- function(x) {atm_vtp(x, "ord")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a percent-numeric atomic vtype?
 #' @export
-odd_avt <- function(x) {is_atm_vtype(x, "odd")}
+pct_avt <- function(x) {atm_vtp(x, "pct")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a positive-numeric atomic vtype?
 #' @export
-ord_avt <- function(x) {is_atm_vtype(x, "ord")}
+pos_avt <- function(x) {atm_vtp(x, "pos")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a proportion-numeric atomic vtype?
 #' @export
-pct_avt <- function(x) {is_atm_vtype(x, "pct")}
+ppn_avt <- function(x) {atm_vtp(x, "ppn")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a positive-whole-numeric atomic vtype?
 #' @export
-pos_avt <- function(x) {is_atm_vtype(x, "pos")}
+psw_avt <- function(x) {atm_vtp(x, "psw")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a sortable atomic atomic vtype?
 #' @export
-ppn_avt <- function(x) {is_atm_vtype(x, "ppn")}
+srt_avt <- function(x) {atm_vtp(x, "srt")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a string atomic vtype?
 #' @export
-psw_avt <- function(x) {is_atm_vtype(x, "psw")}
+str_avt <- function(x) {atm_vtp(x, "str")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} an unordered-factor atomic vtype?
 #' @export
-srt_avt <- function(x) {is_atm_vtype(x, "srt")}
+uno_avt <- function(x) {atm_vtp(x, "uno")}
 
-#' @rdname mmm_avt
+#' @describeIn mmm_avt Is \code{x} a whole-numeric atomic vtype?
 #' @export
-str_avt <- function(x) {is_atm_vtype(x, "str")}
-
-#' @rdname mmm_avt
-#' @export
-uno_avt <- function(x) {is_atm_vtype(x, "uno")}
-
-#' @rdname mmm_avt
-#' @export
-whl_avt <- function(x) {is_atm_vtype(x, "whl")}
+whl_avt <- function(x) {atm_vtp(x, "whl")}

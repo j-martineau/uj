@@ -28,42 +28,37 @@ or both).}
 \item{p.}{Character scalar containing a single character used to pad strings.}
 }
 \description{
-Create a string of spaces, pad a string with spaces, trim spaces
-from strings, and squeeze extra spaces from the middle of strings.
+Create a string of spaces.
 }
-\details{
-\strong{\code{spaces}}
-\cr Creates a string of \code{n.} spaces.
-\cr\cr
-\strong{\code{pad}}
-\cr Pads strings to length \code{N} using the padding character \code{p} on
-side(s) \code{s.} (via \code{\link[stringr]{str_pad}}).
-\cr\cr
-\strong{\code{trm}}
-\cr Trims white space the the left and right ends of strings (via
-\code{\link[stringr]{str_trim}}).
-\cr\cr
-\strong{\code{sqz}}
-\cr Trims white space from the left and right ends and extra white space
-rom the middle of strings (via \code{\link[stringr]{str_squish}}).
-}
+\section{Functions}{
+\itemize{
+\item \code{pad}: Pad a string with leading and/or trailing spaces
+using \code{\link[stringr]{pad}}.
+
+\item \code{sqz}: Trim leading, trailing, and extra internal spaces
+spaces using \code{\link[stringr]{str_squish}}.
+
+\item \code{trm}: Trim leading and trailing spaces using
+\code{\link[stringr]{str_trim}}.
+}}
+
 \examples{
 spaces(0)
 spaces(4)
-pad(0:9, N = 3)
-pad(0:9, N = 3, S = "r")
-pad(0:9, N = 3, S = "l")
-pad(0:9, N = 3, S = "b")
-pad(0:9, N = 3, S = "b", P = "*")
+pad(0:9, n. = 3)
+pad(0:9, n. = 3, s. = "r")
+pad(0:9, n. = 3, s. = "l")
+pad(0:9, n. = 3, s. = "b")
+pad(0:9, n. = 3, s. = "b", p. = "*")
 trm(c("a ", "b", "c", " ", "d  ", ""))
 sqz(c("a ", "b", "c", " ", "d  ", ""))
 sqz(trm(c("a ", "b", "c", " ", "d  ", "")))
 }
 \seealso{
 Other strings: 
-\code{\link{Oxford}},
 \code{\link{delim}},
 \code{\link{ipat}()},
+\code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{ss}()},
 \code{\link{tocase}()},

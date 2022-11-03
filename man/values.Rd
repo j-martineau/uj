@@ -33,11 +33,17 @@ generations back to the value \code{val}.
 }
 \description{
 Check for the existence of an object in the environment of a
-specific calling function (\code{vexist}), get the value of an object in
-the environment of a specific calling function (\code{vget}), and set the
-value of an object in the environment of a specific calling function
-(\code{vset}).
+specific calling function.
 }
+\section{Functions}{
+\itemize{
+\item \code{vget}: get the value of an object in the environment of a
+specific calling function.
+
+\item \code{vset}: set the value of an object in the environment of a
+specific calling function.
+}}
+
 \examples{
 fun.a <- function() {A <- 0; fun.b()}
 fun.b <- function() {B <- 1; fun.c()}

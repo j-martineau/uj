@@ -28,22 +28,23 @@ function where the initial call was made.}
 Evaluate objects, flag any errors
 }
 \details{
-\strong{\code{failsafe(x)}}
-\cr Attempts to call \code{identity(x)}. If an error is produced in doing
-so, returns an object of class \code{'error'} or of class
+Attempts to call \code{identity(x)}. If an error is produced in
+doing so, returns an object of class \code{'error'} or of class
 \code{'simpleError'}. If an error is not generated, returns the safely
 evaluated value of \code{x}.
-\cr\cr
-\strong{\code{isERR(x)}}
-\cr Evaluates whether calling \code{identity(x)} produced an error.
-\cr\cr
-\strong{\code{notERR(x)}}
-Evaluates whether calling \code{identity(x)} did not produce an error.
-\cr\cr
-\strong{\code{msgERR(x)}}
-Gets any error message associated with calling \code{identity(x)}. If there
-is none, returns \code{NULL}.
 }
+\section{Functions}{
+\itemize{
+\item \code{isERR}: Evaluates whether calling \code{identity(x)} produced an
+error.
+
+\item \code{notERR}: Evaluates whether calling \code{identity(x)} did not
+produce an error.
+
+\item \code{msgERR}: Gets any error message associated with calling
+\code{identity(x)}. If there is none, returns \code{NULL}.
+}}
+
 \seealso{
 Other meta: 
 \code{\link{as_xxx}},

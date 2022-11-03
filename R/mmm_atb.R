@@ -1,7 +1,8 @@
 #' @name mmm_atb
 #' @family props
 #' @title Extended Mode + Atomic tibble (mmm + atb)
-#' @description See \code{\link{mmm}} and \code{\link{is_atm_tibble}}.
+#' @description Get all possible extended mode + atomic tibble properties.
+#' @details See \code{\link{mmm}} and \code{\link{atm_tbl}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
@@ -11,110 +12,106 @@ mmm_atb_vals <- function() {
   x
 }
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a character atomic tibble?
 #' @export
-atm_atb <- function(x) {is_atm_tibble(x)}
+chr_atb <- function(x) {atm_tbl(x, "chr")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a onechar atomic tibble?
 #' @export
-chr_atb <- function(x) {f0(!is_atm_tibble(x), F, xchr(x))}
+ch1_atb <- function(x) {atm_tbl(x, "ch1")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a color atomic tibble?
 #' @export
-ch1_atb <- function(x) {f0(!is_atm_tibble(x), F, xch1(x))}
+clr_atb <- function(x) {atm_tbl(x, "clr")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a even-numeric atomic tibble?
 #' @export
-clr_atb <- function(x) {f0(!is_atm_tibble(x), F, xclr(x))}
+evn_atb <- function(x) {atm_tbl(x, "evn")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a factor atomic tibble?
 #' @export
-evn_atb <- function(x) {f0(!is_atm_tibble(x), F, xevn(x))}
+fac_atb <- function(x) {atm_tbl(x, "fac")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a fractional-numeric atomic tibble?
 #' @export
-fac_atb <- function(x) {f0(!is_atm_tibble(x), F, xfac(x))}
+frc_atb <- function(x) {atm_tbl(x, "frc")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} an indexer atomic tibble?
 #' @export
-frc_atb <- function(x) {f0(!is_atm_tibble(x), F, xfrc(x))}
+ind_atb <- function(x) {atm_tbl(x, "ind")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a logical atomic tibble?
 #' @export
-ind_atb <- function(x) {f0(!is_atm_tibble(x), F, xind(x))}
+lgl_atb <- function(x) {atm_tbl(x, "lgl")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a negative-numeric atomic tibble?
 #' @export
-lgc_atb <- function(x) {f0(!is_atm_tibble(x), F, xlgc(x))}
+neg_atb <- function(x) {atm_tbl(x, "neg")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a non-negative-whole-numeric atomic tibble?
 #' @export
-neg_atb <- function(x) {f0(!is_atm_tibble(x), F, xneg(x))}
+ngw_atb <- function(x) {atm_tbl(x, "ngw")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a non-negative-numeric atomic tibble?
 #' @export
-ngw_atb <- function(x) {f0(!is_atm_tibble(x), F, xngw(x))}
+nng_atb <- function(x) {atm_tbl(x, "nng")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a non-negative-whole-numeric atomic tibble?
 #' @export
-nng_atb <- function(x) {f0(!is_atm_tibble(x), F, xnng(x))}
+nnw_atb <- function(x) {atm_tbl(x, "nnw")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a non-positive-numeric atomic tibble?
 #' @export
-nnw_atb <- function(x) {f0(!is_atm_tibble(x), F, xnnw(x))}
+nps_atb <- function(x) {atm_tbl(x, "nps")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a non-positive-whole-numeric atomic tibble?
 #' @export
-nps_atb <- function(x) {f0(!is_atm_tibble(x), F, xnps(x))}
+npw_atb <- function(x) {atm_tbl(x, "npw")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a non-sortable atomic tibble?
 #' @export
-npw_atb <- function(x) {f0(!is_atm_tibble(x), F, xnpw(x))}
+nst_atb <- function(x) {atm_tbl(x, "nst")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a numeric atomic tibble?
 #' @export
-nst_atb <- function(x) {f0(!is_atm_tibble(x), F, xnst(x))}
+num_atb <- function(x) {atm_tbl(x, "num")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} an odd-numeric atomic tibble?
 #' @export
-num_atb <- function(x) {f0(!is_atm_tibble(x), F, xnum(x))}
+odd_atb <- function(x) {atm_tbl(x, "odd")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} an ordered-factor atomic tibble?
 #' @export
-odd_atb <- function(x) {f0(!is_atm_tibble(x), F, xodd(x))}
+ord_atb <- function(x) {atm_tbl(x, "ord")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a percent-numeric atomic tibble?
 #' @export
-ord_atb <- function(x) {f0(!is_atm_tibble(x), F, xord(x))}
+pct_atb <- function(x) {atm_tbl(x, "pct")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a positive-numeric atomic tibble?
 #' @export
-pct_atb <- function(x) {f0(!is_atm_tibble(x), F, xpct(x))}
+pos_atb <- function(x) {atm_tbl(x, "pos")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a positive-whole-numeric atomic tibble?
 #' @export
-pos_atb <- function(x) {f0(!is_atm_tibble(x), F, xpos(x))}
+psw_atb <- function(x) {atm_tbl(x, "psw")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a proportion-numeric atomic tibble?
 #' @export
-psw_atb <- function(x) {f0(!is_atm_tibble(x), F, xpsw(x))}
+ppn_atb <- function(x) {atm_tbl(x, "ppn")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a sortable atomic tibble?
 #' @export
-ppn_atb <- function(x) {f0(!is_atm_tibble(x), F, xppn(x))}
+srt_atb <- function(x) {atm_tbl(x, "srt")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a string atomic tibble?
 #' @export
-srt_atb <- function(x) {f0(!is_atm_tibble(x), F, xsrt(x))}
+str_atb <- function(x) {atm_tbl(x, "str")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} an unordered-factor atomic tibble?
 #' @export
-str_atb <- function(x) {f0(!is_atm_tibble(x), F, xstr(x))}
+uno_atb <- function(x) {atm_tbl(x, "uno")}
 
-#' @rdname mmm_atb
+#' @describeIn mmm_atb Is \code{x} a whole-numeric atomic tibble?
 #' @export
-uno_atb <- function(x) {f0(!is_atm_tibble(x), F, xuno(x))}
-
-#' @rdname mmm_atb
-#' @export
-whl_atb <- function(x) {f0(!is_atm_tibble(x), F, xwhl(x))}
+whl_atb <- function(x) {atm_tbl(x, "whl")}

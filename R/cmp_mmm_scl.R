@@ -1,7 +1,9 @@
 #' @name cmp_mmm_scl
 #' @family props
 #' @title Complete + Extended Mode + Atomic Scalar (cmp + mmm + scl)
-#' @description See \code{\link{mmm}}, and \code{\link{is_cmp_scalar}}.
+#' @description Get all possible complete + extended mode + atomic scalar
+#'   properties.
+#' @details See \code{\link{mmm}}, and \code{\link{cmp_scl}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
@@ -11,114 +13,121 @@ cmp_mmm_scl_vals <- function() {
   x
 }
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete atomic scalar?
 #' @export
-cmp_atm_scl <- function(x) {is_cmp_scalar(x)}
+cmp_atm_scl <- function(x) {cmp_scl(x) & iatm(x)}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete character atomic scalar?
 #' @export
-cmp_chr_scl <- function(x) {is_cmp_scalar(x, "chr")}
+cmp_chr_scl <- function(x) {cmp_scl(x, "chr")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete onechar atomic scalar?
 #' @export
-cmp_ch1_scl <- function(x) {is_cmp_scalar(x, "ch1")}
+cmp_ch1_scl <- function(x) {cmp_scl(x, "ch1")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete color atomic scalar?
 #' @export
-cmp_clr_scl <- function(x) {is_cmp_scalar(x, "clr")}
+cmp_clr_scl <- function(x) {cmp_scl(x, "clr")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete even-numeric atomic scalar?
 #' @export
-cmp_evn_scl <- function(x) {is_cmp_scalar(x, "evn")}
+cmp_evn_scl <- function(x) {cmp_scl(x, "evn")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete factor atomic scalar?
 #' @export
-cmp_fac_scl <- function(x) {is_cmp_scalar(x, "fac")}
+cmp_fac_scl <- function(x) {cmp_scl(x, "fac")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete fractional-numeric atomic
+#'   scalar?
 #' @export
-cmp_frc_scl <- function(x) {is_cmp_scalar(x, "frc")}
+cmp_frc_scl <- function(x) {cmp_scl(x, "frc")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete indexer atomic scalar?
 #' @export
-cmp_ind_scl <- function(x) {is_cmp_scalar(x, "ind")}
+cmp_ind_scl <- function(x) {cmp_scl(x, "ind")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete logical atomic scalar?
 #' @export
-cmp_lgc_scl <- function(x) {is_cmp_scalar(x, "lgc")}
+cmp_lgl_scl <- function(x) {cmp_scl(x, "lgl")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete negative-numeric atomic
+#'   scalar?
 #' @export
-cmp_cnb_scl <- function(x) {is_cmp_scalar(x, "cnb")}
+cmp_neg_scl <- function(x) {cmp_scl(x, "neg")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete negative-whole-numeric atomic
+#'   scalar?
 #' @export
-cmp_neg_scl <- function(x) {is_cmp_scalar(x, "neg")}
+cmp_ngw_scl <- function(x) {cmp_scl(x, "ngw")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete non-negative-numeric atomic
+#'   scalar?
 #' @export
-cmp_ngw_scl <- function(x) {is_cmp_scalar(x, "ngw")}
+cmp_nng_scl <- function(x) {cmp_scl(x, "nng")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete non-negative-whole-numeric
+#'   atomic scalar?
 #' @export
-cmp_nng_scl <- function(x) {is_cmp_scalar(x, "nng")}
+cmp_nnw_scl <- function(x) {cmp_scl(x, "nnw")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete non-positive-numeric atomic
+#'   scalar?
 #' @export
-cmp_nnw_scl <- function(x) {is_cmp_scalar(x, "nnw")}
+cmp_nps_scl <- function(x) {cmp_scl(x, "nps")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete non-positive-whole-numeric
+#'   atomic scalar?
 #' @export
-cmp_nps_scl <- function(x) {is_cmp_scalar(x, "nps")}
+cmp_npw_scl <- function(x) {cmp_scl(x, "npw")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete non-sortable atomic scalar?
 #' @export
-cmp_npw_scl <- function(x) {is_cmp_scalar(x, "npw")}
+cmp_nst_scl <- function(x) {cmp_scl(x, "nst")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete numeric atomic scalar?
 #' @export
-cmp_nst_scl <- function(x) {is_cmp_scalar(x, "nst")}
+cmp_num_scl <- function(x) {cmp_scl(x, "num")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete odd-numeric atomic scalar?
 #' @export
-cmp_num_scl <- function(x) {is_cmp_scalar(x, "num")}
+cmp_odd_scl <- function(x) {cmp_scl(x, "odd")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete ordered-factor atomic scalar?
 #' @export
-cmp_odd_scl <- function(x) {is_cmp_scalar(x, "odd")}
+cmp_ord_scl <- function(x) {cmp_scl(x, "ord")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete percent-numeric atomic scalar?
 #' @export
-cmp_ord_scl <- function(x) {is_cmp_scalar(x, "ord")}
+cmp_pct_scl <- function(x) {cmp_scl(x, "pct")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete positive-numeric atomic
+#'   scalar?
 #' @export
-cmp_pct_scl <- function(x) {is_cmp_scalar(x, "pct")}
+cmp_pos_scl <- function(x) {cmp_scl(x, "pos")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete proportion-numeric atomic
+#'   scalar?
 #' @export
-cmp_pos_scl <- function(x) {is_cmp_scalar(x, "pos")}
+cmp_ppn_scl <- function(x) {cmp_scl(x, "ppn")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete positive-whole-numeric atomic
+#'   scalar?
 #' @export
-cmp_ppn_scl <- function(x) {is_cmp_scalar(x, "ppn")}
+cmp_psw_scl <- function(x) {cmp_scl(x, "psw")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete sortable atomic scalar?
 #' @export
-cmp_psw_scl <- function(x) {is_cmp_scalar(x, "psw")}
+cmp_srt_scl <- function(x) {cmp_scl(x, "srt")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete string atomic scalar?
 #' @export
-cmp_srt_scl <- function(x) {is_cmp_scalar(x, "srt")}
+cmp_str_scl <- function(x) {cmp_scl(x, "str")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete unordered-factor atomic
+#'   scalar?
 #' @export
-cmp_str_scl <- function(x) {is_cmp_scalar(x, "str")}
+cmp_uno_scl <- function(x) {cmp_scl(x, "uno")}
 
-#' @rdname cmp_mmm_scl
+#' @describeIn cmp_mmm_scl Is \code{x} a complete whole-numeric atomic scalar?
 #' @export
-cmp_uno_scl <- function(x) {is_cmp_scalar(x, "uno")}
-
-#' @rdname cmp_mmm_scl
-#' @export
-cmp_whl_scl <- function(x) {is_cmp_scalar(x, "whl")}
+cmp_whl_scl <- function(x) {cmp_scl(x, "whl")}

@@ -20,21 +20,18 @@ ncallers()
 \code{ncallers} returns a non-negative whole-number scalar.
 }
 \description{
-Names of functions in the call stack, name of the immediate
-calling function, and the number of functions in the call stack.
+Gets the names of all calling functions, with the immediate
+calling function in the first position and, if \code{gens.} is not
+\code{NULL}, selects elements from the call stack specified by
+\code{gens.}.
 }
-\details{
-\strong{\code{callers}}
-\cr Gets the names of all calling functions, with the immediate calling
-function in the first position and, if \code{gens.} is not \code{NULL},
-selects elements from the call stack specified by \code{gens.}.
-\cr\cr
-\strong{\code{caller}}
-\cr Gets the name of the immediate calling function.
-\cr\cr
-\strong{\code{ncallers}}
-\cr Gets the number of functions in the call stack.
-}
+\section{Functions}{
+\itemize{
+\item \code{caller}: Get the immediate calling function.
+
+\item \code{ncallers}: Get the number of calling functions in the call stack.
+}}
+
 \examples{
 fun.a <- function() {A <- 0; fun.b()}
 fun.b <- function() {B <- 1; fun.c()}

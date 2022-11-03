@@ -1,7 +1,9 @@
 #' @name cmp_mmm_mat
 #' @family props
 #' @title Complete + Extended Mode + Atomic Matrix (comp + mmm + mat)
-#' @description See \code{\link{mmm}}, and \code{\link{is_cmp_matrix}}.
+#' @description Get all possible complete + extended mode + atomic matrix
+#'   properties.
+#' @details See \code{\link{mmm}}, and \code{\link{cmp_mat}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
@@ -11,114 +13,119 @@ cmp_mmm_mat_vals <- function() {
   x
 }
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete atomic matrix?
 #' @export
-cmp_atm_mat <- function(x) {is_cmp_matrix(x)}
+cmp_atm_mat <- function(x) {cmp_mat(x) & iatm(x)}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete character atomic matrix?
 #' @export
-cmp_chr_mat <- function(x) {is_cmp_matrix(x, "chr")}
+cmp_chr_mat <- function(x) {cmp_mat(x, "chr")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete onechar atomic matrix?
 #' @export
-cmp_ch1_mat <- function(x) {is_cmp_matrix(x, "ch1")}
+cmp_ch1_mat <- function(x) {cmp_mat(x, "ch1")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete color atomic matrix?
 #' @export
-cmp_clr_mat <- function(x) {is_cmp_matrix(x, "clr")}
+cmp_clr_mat <- function(x) {cmp_mat(x, "clr")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete even-number atomic matrix?
 #' @export
-cmp_evn_mat <- function(x) {is_cmp_matrix(x, "evn")}
+cmp_evn_mat <- function(x) {cmp_mat(x, "evn")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete factor atomic matrix?
 #' @export
-cmp_fac_mat <- function(x) {is_cmp_matrix(x, "fac")}
+cmp_fac_mat <- function(x) {cmp_mat(x, "fac")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete fractional-number atomic
+#'   matrix?
 #' @export
-cmp_frc_mat <- function(x) {is_cmp_matrix(x, "frc")}
+cmp_frc_mat <- function(x) {cmp_mat(x, "frc")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete indexer atomic matrix?
 #' @export
-cmp_ind_mat <- function(x) {is_cmp_matrix(x, "ind")}
+cmp_ind_mat <- function(x) {cmp_mat(x, "ind")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete logical atomic matrix?
 #' @export
-cmp_lgc_mat <- function(x) {is_cmp_matrix(x, "lgc")}
+cmp_lgl_mat <- function(x) {cmp_mat(x, "lgl")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete negative-number atomic matrix?
 #' @export
-cmp_cnb_mat <- function(x) {is_cmp_matrix(x, "cnb")}
+cmp_neg_mat <- function(x) {cmp_mat(x, "neg")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete negative-whole-number atomic
+#'   matrix?
 #' @export
-cmp_neg_mat <- function(x) {is_cmp_matrix(x, "neg")}
+cmp_ngw_mat <- function(x) {cmp_mat(x, "ngw")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete non-negative-number atomic
+#'   matrix?
 #' @export
-cmp_ngw_mat <- function(x) {is_cmp_matrix(x, "ngw")}
+cmp_nng_mat <- function(x) {cmp_mat(x, "nng")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete non-negative-whole-number
+#'   atomic matrix?
 #' @export
-cmp_nng_mat <- function(x) {is_cmp_matrix(x, "nng")}
+cmp_nnw_mat <- function(x) {cmp_mat(x, "nnw")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete non-positive-number atomic
+#'   matrix?
 #' @export
-cmp_nnw_mat <- function(x) {is_cmp_matrix(x, "nnw")}
+cmp_nps_mat <- function(x) {cmp_mat(x, "nps")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete non-positive-whole-number
+#'   atomic matrix?
 #' @export
-cmp_nps_mat <- function(x) {is_cmp_matrix(x, "nps")}
+cmp_npw_mat <- function(x) {cmp_mat(x, "npw")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete non-sortable atomic matrix?
 #' @export
-cmp_npw_mat <- function(x) {is_cmp_matrix(x, "npw")}
+cmp_nst_mat <- function(x) {cmp_mat(x, "nst")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete number atomic matrix?
 #' @export
-cmp_nst_mat <- function(x) {is_cmp_matrix(x, "nst")}
+cmp_num_mat <- function(x) {cmp_mat(x, "num")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete odd-number atomic matrix?
 #' @export
-cmp_num_mat <- function(x) {is_cmp_matrix(x, "num")}
+cmp_odd_mat <- function(x) {cmp_mat(x, "odd")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete ordered-factor atomic matrix?
 #' @export
-cmp_odd_mat <- function(x) {is_cmp_matrix(x, "odd")}
+cmp_ord_mat <- function(x) {cmp_mat(x, "ord")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete percent-number atomic matrix?
 #' @export
-cmp_ord_mat <- function(x) {is_cmp_matrix(x, "ord")}
+cmp_pct_mat <- function(x) {cmp_mat(x, "pct")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete positive-number atomic matrix?
 #' @export
-cmp_pct_mat <- function(x) {is_cmp_matrix(x, "pct")}
+cmp_pos_mat <- function(x) {cmp_mat(x, "pos")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete proportion-number atomic
+#'   matrix?
 #' @export
-cmp_pos_mat <- function(x) {is_cmp_matrix(x, "pos")}
+cmp_ppn_mat <- function(x) {cmp_mat(x, "ppn")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete positive-whole-number atomic
+#'   matrix?
 #' @export
-cmp_ppn_mat <- function(x) {is_cmp_matrix(x, "ppn")}
+cmp_psw_mat <- function(x) {cmp_mat(x, "psw")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete sortable atomic matrix?
 #' @export
-cmp_psw_mat <- function(x) {is_cmp_matrix(x, "psw")}
+cmp_srt_mat <- function(x) {cmp_mat(x, "srt")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete string atomic matrix?
 #' @export
-cmp_srt_mat <- function(x) {is_cmp_matrix(x, "srt")}
+cmp_str_mat <- function(x) {cmp_mat(x, "str")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete unordered-factor atomic
+#'   matrix?
 #' @export
-cmp_str_mat <- function(x) {is_cmp_matrix(x, "str")}
+cmp_uno_mat <- function(x) {cmp_mat(x, "uno")}
 
-#' @rdname cmp_mmm_mat
+#' @describeIn cmp_mmm_mat Is \code{x} a complete whole-number atomic matrix?
 #' @export
-cmp_uno_mat <- function(x) {is_cmp_matrix(x, "uno")}
-
-#' @rdname cmp_mmm_mat
-#' @export
-cmp_whl_mat <- function(x) {is_cmp_matrix(x, "whl")}
+cmp_whl_mat <- function(x) {cmp_mat(x, "whl")}

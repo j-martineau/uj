@@ -2,35 +2,35 @@
 % Please edit documentation in R/ddd.R
 \name{ddd}
 \alias{ddd}
-\alias{ddd_vals}
 \alias{nddd}
-\alias{xd0D}
-\alias{xd1D}
-\alias{xd2D}
-\alias{xdHD}
-\alias{is_ddd}
+\alias{id0D}
+\alias{id1D}
+\alias{id2D}
+\alias{idHD}
+\alias{ddd_vals}
+\alias{iddd}
 \title{Defined Dimensionality (ddd) Property Family}
 \usage{
+ddd(x.)
+
+nddd(x.)
+
+id0D(x.)
+
+id1D(x.)
+
+id2D(x.)
+
+idHD(x.)
+
 ddd_vals()
 
-nddd(x)
-
-xd0D(x)
-
-xd1D(x)
-
-xd2D(x)
-
-xdHD(x)
-
-ddd(x)
-
-is_ddd(x, xxx, ...)
+iddd(x., xxx., ...)
 }
 \arguments{
-\item{x}{An object.}
+\item{x.}{An object.}
 
-\item{xxx}{A character scalar containing one or more values from
+\item{xxx.}{A character scalar containing one or more values from
 \code{ddd_vals()} separated by pipes and/or underscores. Combinations of
 defined dimensionality properties can be specified by separating them with
 underscores. Separating defined dimensionality properties or combinations
@@ -46,54 +46,54 @@ element/row/column count restrictions.}
 others return either \code{TRUE} or \code{FALSE}.
 }
 \description{
-An object's defined dimensionality is the number of dimensions
-on which its components can be indexed. The following table gives levels of
-defined dimensionality, property values assigned to levels of defined
-dimensionality, property names, and a definition of each value of defined
-dimensionality.
-\tabular{llll}{
-\strong{Defined Dim}      \tab\strong{Property}    \tab\strong{Property}
-\tab\strong{Qualifying}
-\cr\strong{Dimensionality}\tab\strong{Value}       \tab\strong{Name}
-\tab\strong{Objects}
-\cr\code{0}  \tab\code{'d0D'}\tab 0-dimensional    \tab\code{NULL}.
-\cr\code{1}  \tab\code{'d1D'}\tab 1-dimensional    \tab vector, vlist, or
-1-dimensional
-array.
-\cr\code{2}  \tab\code{'d2D'}\tab 2-dimensional    \tab tibble or matrix.
-\cr\code{≥ 3}\tab\code{'dHD'}\tab Hyper-dimensional\tab array with 3 or
-more dimensions.
-}
+Gets a vector of all defined dimensionality properties from
+\code{ddd_vals()} that are applicable to \code{x.}.
 }
 \details{
-\strong{\code{ddd_vals}}
-\cr Gets all valid defined dimensionality property values.
-\cr\cr
-\strong{\code{nddd}}
-\cr Gets the \strong{number} of defined dimensions of \code{x} (i.e., not a
-character scalar defined dimensionality property from \code{ddd_vals}).
-\cr\cr
-\strong{\code{ddd}}
-\cr Gets a vector of all defined dimensionality properties from
-\code{ddd_vals()} that are applicable to \code{x}.
-\cr\cr
-\strong{\code{is_ddd}}
-\cr Evaluates whether at least one of the defined dimensionality properties
-in \code{ddd} is applicable to \code{x}.
-\cr\cr
-\strong{\code{xd0D}, \code{xd1D}, \code{xd2D}, and \code{xdHD}}
-\cr Evaluate whether \code{x} has, respectively, \code{0}, \code{1},
-\code{2}, and \code{3+} defined dimensions.
-\cr\cr
-\strong{Additional Arguments in \code{...}}
-\cr Submitting additional arguments to \code{is_ddim} via \code{...} allows
+An object's defined dimensionality (def. dim.) is the number of
+dimensions on which its components can be indexed. The following table
+gives levels of defined dimensionality, property values assigned to levels
+of defined dimensionality, property names, and a definition of each value
+of defined dimensionality.\tabular{llll}{
+NUMBER OF  \tab DEF. DIM.  \tab DEF. DIM. \tab TYPES OF                \cr
+DEFINED    \tab PROPERTY   \tab PROPERTY  \tab QUALIFYING              \cr
+DIMENSIONS \tab VALUE      \tab NAME      \tab OBJECTS                 \cr
+\code{0}   \tab\code{'d0D'}\tab of 0-dimensional structure 
+\tab \code{NULL}                            \cr
+\code{1}   \tab\code{'d1D'}\tab of 1-dimensional structure
+\tab vector, vlist, 1-dimensional array     \cr
+\code{2}   \tab\code{'d2D'}\tab of 2-dimensional structure 
+\tab tibble or matrix                       \cr
+\code{≥ 3} \tab\code{'dHD'}\tab of hyper-dimensional structure 
+\tab array with 3+ dimensions.                }
+Submitting additional arguments to \code{is_ddd} via \code{...} allows
 for checking not just the defined dimensionality but whether length, number
 of rows, number of columns, and element values meet flexible criteria.
 }
+\section{Functions}{
+\itemize{
+\item \code{nddd}: Gets the \strong{number} of defined dimensions of \code{x.}
+(i.e., not a character scalar defined dimensionality property from
+\code{ddd_vals}).
+
+\item \code{id0D}: Evaluate whether \code{x.} has \code{0} defined dimensions.
+
+\item \code{id1D}: Evaluate whether \code{x.} has \code{1} defined dimension.
+
+\item \code{id2D}: Evaluate whether \code{x.} has \code{2} defined dimensions.
+
+\item \code{idHD}: Evaluate whether \code{x.} has \code{3+} defined dimensions.
+
+\item \code{ddd_vals}: Get a character vector of all possible defined dimensionality
+property values.
+
+\item \code{iddd}: Evaluates whether at least one of the defined dimensionality
+properties in \code{xxx.} is applicable to \code{x.}.
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -109,6 +109,8 @@ Other props:
 \code{\link{compatible}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -120,7 +122,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

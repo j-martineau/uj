@@ -11,8 +11,7 @@
 \alias{cmp_fac_arr}
 \alias{cmp_frc_arr}
 \alias{cmp_ind_arr}
-\alias{cmp_lgc_arr}
-\alias{cmp_cnb_arr}
+\alias{cmp_lgl_arr}
 \alias{cmp_neg_arr}
 \alias{cmp_ngw_arr}
 \alias{cmp_nng_arr}
@@ -51,9 +50,7 @@ cmp_frc_arr(x)
 
 cmp_ind_arr(x)
 
-cmp_lgc_arr(x)
-
-cmp_cnb_arr(x)
+cmp_lgl_arr(x)
 
 cmp_neg_arr(x)
 
@@ -98,12 +95,79 @@ cmp_whl_arr(x)
 \code{TRUE} or \code{FALSE}
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_cmp_array}}.
+Get all possible complete + extended mode + array properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{cmp_arr}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{cmp_atm_arr}: Is \code{x} a complete atomic array?
+
+\item \code{cmp_chr_arr}: Is \code{x} a complete character atomic array?
+
+\item \code{cmp_ch1_arr}: Is \code{x} a complete onechar atomic array?
+
+\item \code{cmp_clr_arr}: Is \code{x} a complete color atomic array?
+
+\item \code{cmp_evn_arr}: Is \code{x} a complete even-numeric atomic array?
+
+\item \code{cmp_fac_arr}: Is \code{x} a complete factor atomic array?
+
+\item \code{cmp_frc_arr}: Is \code{x} a complete fractional-numeric atomic
+array?
+
+\item \code{cmp_ind_arr}: Is \code{x} a complete indexer atomic array?
+
+\item \code{cmp_lgl_arr}: Is \code{x} a complete logical atomic array?
+
+\item \code{cmp_neg_arr}: Is \code{x} a complete negative-numeric atomic array?
+
+\item \code{cmp_ngw_arr}: Is \code{x} a complete negative-whole-numeric atomic
+array?
+
+\item \code{cmp_nng_arr}: Is \code{x} a complete non-negative-numeric atomic
+array?
+
+\item \code{cmp_nnw_arr}: Is \code{x} a complete non-negative-whole-numeric
+atomic array?
+
+\item \code{cmp_nps_arr}: Is \code{x} a complete non-positive-numeric atomic
+array?
+
+\item \code{cmp_npw_arr}: Is \code{x} a complete non-positive-whole-numeric
+atomic array?
+
+\item \code{cmp_nst_arr}: Is \code{x} a complete non-sortable atomic array?
+
+\item \code{cmp_num_arr}: Is \code{x} a complete numeric atomic array?
+
+\item \code{cmp_odd_arr}: Is \code{x} a complete odd-numeric atomic array?
+
+\item \code{cmp_ord_arr}: Is \code{x} a complete ordered-factor atomic array?
+
+\item \code{cmp_pct_arr}: Is \code{x} a complete percent-numeric atomic array?
+
+\item \code{cmp_pos_arr}: Is \code{x} a complete positive-numeric atomic array?
+
+\item \code{cmp_ppn_arr}: Is \code{x} a complete proportion-numeric atomic
+array?
+
+\item \code{cmp_psw_arr}: Is \code{x} a complete positive-whole-numeric atomic
+array?
+
+\item \code{cmp_srt_arr}: Is \code{x} a complete sortable atomic array?
+
+\item \code{cmp_str_arr}: Is \code{x} a complete string atomic array?
+
+\item \code{cmp_uno_arr}: Is \code{x} a complete unordered-factor atomic array?
+
+\item \code{cmp_whl_arr}: Is \code{x} a complete whole-numeric atomic array?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_atb}},
 \code{\link{cmp_mmm_avl}},
@@ -119,6 +183,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -130,7 +196,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

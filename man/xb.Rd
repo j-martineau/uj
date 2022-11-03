@@ -4,6 +4,7 @@
 \alias{xb}
 \alias{cb}
 \alias{rb}
+\alias{cb_unq}
 \title{Robustly Error-Checked Row and Column Binding for Atomic Matrices and
 Atomic Tibbles.}
 \usage{
@@ -12,18 +13,20 @@ xb(..., bind. = NA)
 cb(...)
 
 rb(...)
+
+cb_unq(x., y.)
 }
 \arguments{
-\item{...}{Either
-\link[=compatible_mats]{atomic matrices compatible for binding} or
-\link[=compatible_atbs]{atomic tibbles compatible for binding}.}
+\item{..., x., y.}{Either \link[=compatible_mats]{atomic matrices compatible
+for binding} or \link[=compatible_atbs]{atomic tibbles compatible for
+binding}.}
 
 \item{bind.}{\code{'r'} to indicate row binding, \code{'c'} to indicate
 column, or \code{NA} to identify whether either row or column binding is
 successful and return whichever was successful.}
 }
 \value{
-An \link[=is_atm_tibble]{atomic tibble} or an atomic matrix.
+An \link[=atm_tbl]{atomic tibble} or an atomic matrix.
 }
 \description{
 Requires all arguments in \code{...} to be either (a)
@@ -31,22 +34,22 @@ Requires all arguments in \code{...} to be either (a)
 \link[=compatible_atbs]{compatible atomic tibbles}.
 }
 \details{
-\strong{\code{cb}}
-\cr Column binds arguments in \code{...}.
-\cr\cr
-\strong{\code{rb}}
-\cr Row binds arguments in \code{...}.
-\cr\cr
-\strong{\code{xb}}
-\cr If \code{bind. = 'c'}, column binds arguments in \code{...}.
-\cr\cr
-If \code{bind. = 'r'}, row binds arguments in \code{...}.
-\cr\cr
-If \code{bind. = NA}, attempts to row bind and column bind arguments in
-\code{...}. If both are successful, processes an error indicating ambiguous
-dimension for binding. If neither is successful, processes an associated
-error. Otherwise, returns the result that was successful.
+If \code{bind. = NA}, \code{xb} attempts to row bind and column bind
+arguments in \code{...}. If both are successful, processes an error
+indicating ambiguous dimension for binding. If neither is successful,
+processes an associated error. Otherwise, returns the result that was
+successful.
 }
+\section{Functions}{
+\itemize{
+\item \code{cb}: Column bind an arbitrary number of matrices or data frames.
+
+\item \code{rb}: Row bind an arbitrary number of matrices or data frames.
+
+\item \code{cb_unq}: Column bind two data frames or matrices keeping only the
+intersection of columns/variables they share.
+}}
+
 \seealso{
 Other meta: 
 \code{\link{as_xxx}},

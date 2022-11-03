@@ -11,8 +11,7 @@
 \alias{cmp_fac_mat}
 \alias{cmp_frc_mat}
 \alias{cmp_ind_mat}
-\alias{cmp_lgc_mat}
-\alias{cmp_cnb_mat}
+\alias{cmp_lgl_mat}
 \alias{cmp_neg_mat}
 \alias{cmp_ngw_mat}
 \alias{cmp_nng_mat}
@@ -51,9 +50,7 @@ cmp_frc_mat(x)
 
 cmp_ind_mat(x)
 
-cmp_lgc_mat(x)
-
-cmp_cnb_mat(x)
+cmp_lgl_mat(x)
 
 cmp_neg_mat(x)
 
@@ -98,12 +95,81 @@ cmp_whl_mat(x)
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_cmp_matrix}}.
+Get all possible complete + extended mode + atomic matrix
+properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{cmp_mat}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{cmp_atm_mat}: Is \code{x} a complete atomic matrix?
+
+\item \code{cmp_chr_mat}: Is \code{x} a complete character atomic matrix?
+
+\item \code{cmp_ch1_mat}: Is \code{x} a complete onechar atomic matrix?
+
+\item \code{cmp_clr_mat}: Is \code{x} a complete color atomic matrix?
+
+\item \code{cmp_evn_mat}: Is \code{x} a complete even-number atomic matrix?
+
+\item \code{cmp_fac_mat}: Is \code{x} a complete factor atomic matrix?
+
+\item \code{cmp_frc_mat}: Is \code{x} a complete fractional-number atomic
+matrix?
+
+\item \code{cmp_ind_mat}: Is \code{x} a complete indexer atomic matrix?
+
+\item \code{cmp_lgl_mat}: Is \code{x} a complete logical atomic matrix?
+
+\item \code{cmp_neg_mat}: Is \code{x} a complete negative-number atomic matrix?
+
+\item \code{cmp_ngw_mat}: Is \code{x} a complete negative-whole-number atomic
+matrix?
+
+\item \code{cmp_nng_mat}: Is \code{x} a complete non-negative-number atomic
+matrix?
+
+\item \code{cmp_nnw_mat}: Is \code{x} a complete non-negative-whole-number
+atomic matrix?
+
+\item \code{cmp_nps_mat}: Is \code{x} a complete non-positive-number atomic
+matrix?
+
+\item \code{cmp_npw_mat}: Is \code{x} a complete non-positive-whole-number
+atomic matrix?
+
+\item \code{cmp_nst_mat}: Is \code{x} a complete non-sortable atomic matrix?
+
+\item \code{cmp_num_mat}: Is \code{x} a complete number atomic matrix?
+
+\item \code{cmp_odd_mat}: Is \code{x} a complete odd-number atomic matrix?
+
+\item \code{cmp_ord_mat}: Is \code{x} a complete ordered-factor atomic matrix?
+
+\item \code{cmp_pct_mat}: Is \code{x} a complete percent-number atomic matrix?
+
+\item \code{cmp_pos_mat}: Is \code{x} a complete positive-number atomic matrix?
+
+\item \code{cmp_ppn_mat}: Is \code{x} a complete proportion-number atomic
+matrix?
+
+\item \code{cmp_psw_mat}: Is \code{x} a complete positive-whole-number atomic
+matrix?
+
+\item \code{cmp_srt_mat}: Is \code{x} a complete sortable atomic matrix?
+
+\item \code{cmp_str_mat}: Is \code{x} a complete string atomic matrix?
+
+\item \code{cmp_uno_mat}: Is \code{x} a complete unordered-factor atomic
+matrix?
+
+\item \code{cmp_whl_mat}: Is \code{x} a complete whole-number atomic matrix?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -119,6 +185,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -130,7 +198,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

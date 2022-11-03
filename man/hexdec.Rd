@@ -15,12 +15,17 @@ tohex(x)
 representations.}
 }
 \description{
-Convert between integer and hexadecimal
+Convert from hexadecimal to decimal.
 }
 \details{
 Hexademical representation is of mode character and may begin with
 "#".
 }
+\section{Functions}{
+\itemize{
+\item \code{tohex}: Convert from decimal to hexadecimal.
+}}
+
 \seealso{
 Other math: 
 \code{\link{inc}()}

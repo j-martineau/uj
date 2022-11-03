@@ -2,10 +2,7 @@
 #' @family meta
 #' @title Calling functions and objects in their immediate environments
 #' @description Check for the existence of an object in the environment of a
-#'   specific calling function (\code{vexist}), get the value of an object in
-#'   the environment of a specific calling function (\code{vget}), and set the
-#'   value of an object in the environment of a specific calling function
-#'   (\code{vset}).
+#'   specific calling function.
 #' @param name A character scalar giving the name of an object.
 #' @param val A value to place into the object specified by \code{name}.
 #' @param err A logical scalar whether to throw an error if the object specified
@@ -40,46 +37,48 @@
 #' fun.a()
 #' @export
 exist <- function(name, err = T, gens = 1) {
-  VN <- cmp_chr_scl(name)
-  VE <- isTF(err)
-  VG <- cmp_psw_scl(gens)
-  E <- NULL
-  if (!VN) {E <- c(E, "\n * [name] must be a non-NA character scalar.")}
-  if (!VE) {E <- c(E, "\n * [err] must be TRUE or FALSE.")}
-  if (!VG) {E <- c(E, "\n * [gens] must be a positive whole number scalar.")}
-  if (xdef(E)) {stop(E)}
-  Env <- parent.frame(gens + 1)                                                  # Get the environment of the requested generation in the call stack
-  if (exists(name, Env, inherits = F)) {return(T)}                               # If an object with the specified name exists in the specified environment, return T
+  vn <- cmp_chr_scl(name)
+  ve <- isTF(err)
+  vg <- cmp_psw_scl(gens)
+  err <- NULL
+  if (!vn) {err <- c(err, "\n • [name] must be a non-NA character scalar.")}
+  if (!ve) {err <- c(err, "\n • [err] must be TRUE or FALSE.")}
+  if (!vg) {err <- c(err, "\n • [gens] must be a positive whole number scalar.")}
+  if (idef(err)) {stop(err)}
+  env <- parent.frame(gens + 1)                                                  # Get the environment of the requested generation in the call stack
+  if (exists(name, env, inherits = F)) {return(T)}                               # If an object with the specified name exists in the specified environment, return T
   if (!err) {return(F)}                                                          # If an error should not immediately be thrown, return F
-  if (gens > 1) {Targ <- c("target function (", callers(gens + 1), ") ", gens, " generations back from the ")}
-  else {Targ <- ""}
-  Call <- callers(1)                                                          # Get the name of the immediate calling function
-  stop("\n  * No object named [name = '", name, "'] exists in the environment of the ", Targ, "calling function (", Call, ").")
+  if (gens > 1) {targ <- c("target function (", callers(gens + 1), ") ", gens, " generations back from the ")}
+  else {targ <- ""}
+  call <- callers(1)                                                             # Get the name of the immediate calling function
+  stop("\n • No object named [name = '", name, "'] exists in the environment of the ", targ, "calling function (", call, ").")
 }
 
-#' @rdname values
+#' @describeIn values get the value of an object in the environment of a
+#'   specific calling function.
 #' @export
 vget <- function(name, err = T, gens = 1) {
-  VN <- cmp_chr_scl(name)
-  VE <- isTF(err)
-  VG <- cmp_psw_scl(gens)
-  E <- NULL
-  if (!VN) {E <- c(E, "\n * [name] must be a non-NA character scalar.")}
-  if (!VE) {E <- c(E, "\n * [err] must be TRUE or FALSE.")}
-  if (!VG) {E <- c(E, "\n * [gens] must be a positive whole number scalar.")}
-  if (xdef(E)) {stop(E)}
+  vn <- cmp_chr_scl(name)
+  ve <- isTF(err)
+  vg <- cmp_psw_scl(gens)
+  err <- NULL
+  if (!vn) {err <- c(err, "\n • [name] must be a non-NA character scalar.")}
+  if (!ve) {err <- c(err, "\n • [err] must be TRUE or FALSE.")}
+  if (!vg) {err <- c(err, "\n • [gens] must be a positive whole number scalar.")}
+  if (idef(err)) {stop(err)}
   if (!exist(name, err, gens)) {NULL}                                            # If the named object does not exist in the target function, return NULL
   else {get(name, envir = parent.frame(gens + 1), inherits = F)}                 # Otherwise, get the value of the named object and return it.
 }
 
-#' @rdname values
+#' @describeIn values set the value of an object in the environment of a
+#'   specific calling function.
 #' @export
 vset <- function(name, val, gens = 1) {
-  VN <- cmp_chr_scl(name)
-  VG <- cmp_psw_scl(gens)
-  E <- NULL
-  if (!VN) {E <- c(E, "\n * [name] must be a non-NA character scalar.")}
-  if (!VG) {E <- c(E, "\n * [gens] must be a positive whole number scalar.")}
-  if (xdef(E)) {stop(E)}
+  vn <- cmp_chr_scl(name)
+  vg <- cmp_psw_scl(gens)
+  err <- NULL
+  if (!vn) {err <- c(err, "\n • [name] must be a non-NA character scalar.")}
+  if (!vg) {err <- c(err, "\n • [gens] must be a positive whole number scalar.")}
+  if (idef(err)) {stop(err)}
   assign(name, val, envir = parent.frame(gens + 1), inherits = F)                # Set the value of the named object in the target functions environment to the specified value
 }

@@ -2,32 +2,62 @@
 % Please edit documentation in R/as_xxx.R
 \name{as_xxx}
 \alias{as_xxx}
-\alias{as_color}
+\alias{as_clr}
 \alias{as_fun}
+\alias{as_chr}
+\alias{as_int}
+\alias{as_num}
+\alias{as_lgl}
+\alias{as_ord}
+\alias{as_uno}
 \title{Extended \code{as} Property (xxx) Functions}
 \usage{
-as_color(x, na = F)
+as_clr(x, na = F)
 
 as_fun(x)
+
+as_chr()
+
+as_int()
+
+as_num()
+
+as_lgl()
+
+as_ord(x, levs)
+
+as_uno(x, levs)
 }
 \arguments{
 \item{x}{An object}
 
 \item{na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values
 qualify as missing color representations.}
+
+\item{levs}{Character vector giving ordered factor levels.}
 }
 \description{
-Extended \code{as} Property (xxx) Functions
-}
-\details{
-\strong{\code{as_color}}
-\cr Coerce a valid ℝ color representation to hexadecimal RGB
+Coerce a valid ℝ color representation to hexadecimal RGB
 character representation.
-\cr\cr
-\strong{\code{as_fun}}
-\cr Return \code{x} if it is a function, otherwise, search for a function
-with the name contained in \code{x} and return that function.
 }
+\section{Functions}{
+\itemize{
+\item \code{as_fun}: Return \code{x} if it is a function, otherwise, search for
+a function with the name contained in \code{x} and return that function.
+
+\item \code{as_chr}: \code{as.character} wrapper.
+
+\item \code{as_int}: \code{as.integer} wrapper.
+
+\item \code{as_num}: \code{as.numeric} wrapper.
+
+\item \code{as_lgl}: \code{as.logical} wrapper.
+
+\item \code{as_ord}: Coerce to ordered factor.
+
+\item \code{as_uno}: Coerce to unordered factor.
+}}
+
 \seealso{
 Other meta: 
 \code{\link{av}()},

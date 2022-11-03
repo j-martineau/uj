@@ -2,9 +2,12 @@
 % Please edit documentation in R/dups.R
 \name{dups}
 \alias{dups}
+\alias{idups}
 \title{Identify Duplicate Values.}
 \usage{
 dups(...)
+
+idups(x, int = F)
 }
 \arguments{
 \item{...}{One or more atomic vectors to be evaluated for duplicated values.}
@@ -25,17 +28,19 @@ elements (\code{idups(x, int = TRUE)}).
 Extended functionality for \code{duplicated}.
 }
 \details{
-\strong{\code{dups}}
-\cr Atomizes \code{...} (i.e., reduces it to a single atomic vector) and
+Atomizes \code{...} (i.e., reduces it to a single atomic vector) and
 reduces the resulting vector to contain one copy of each duplicated
 element.
-\strong{\code{idups}}
-\cr Indexes all elements of \code{x} that are duplicates of elements
-appearing earlier in \code{x}, either as a logical vector of the same
-length as \code{x} (when \code{int = FALSE}) or as an integer vector whose
-length is the same as the number of elements in \code{x} that are
-duplicates of earlier elements (when \code{int = TRUE}).
 }
+\section{Functions}{
+\itemize{
+\item \code{idups}: Indexes all elements of \code{x} that are duplicates of
+elements appearing earlier in \code{x}, either as a logical vector of the
+same length as \code{x} (when \code{int = FALSE}) or as an integer vector
+whose length is the same as the number of elements in \code{x} that are
+duplicates of earlier elements (when \code{int = TRUE}).
+}}
+
 \examples{
 dups(0:5, 5:10, 10:15, 15:20)
 idups(c(0:5, 5:10, 10:15, 15:20))

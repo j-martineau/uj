@@ -68,241 +68,361 @@
 \alias{twoBL}
 \title{Failsafe \code{is} functions}
 \usage{
-isIN(x, ...)
+isIN(x., ...)
 
-isID(x, y)
+isID(
+  x,
+  y,
+  num.eq = TRUE,
+  single.NA = TRUE,
+  attrib.as.set = TRUE,
+  ignore.bytecode = TRUE,
+  ignore.environment = FALSE,
+  ignore.srcref = TRUE
+)
 
-isEQ(x, y)
+isEQ(x., y.)
 
-isT(x)
+isT(x.)
 
-isF(x)
+isF(x.)
 
-isNa(x)
+isNa(x.)
 
-isOk(x)
+isOk(x.)
 
-isTF(x)
+isTF(x.)
 
-isLG(x)
+isLG(x.)
 
-isBL(x)
+isBL(x.)
 
-notIN(x, ...)
+notIN(x., ...)
 
-notID(x, y)
+notID(x., y.)
 
-notEQ(x, y)
+notEQ(x., y.)
 
-notBL(x)
+notBL(x.)
 
-norIN(x, ...)
+norIN(x., ...)
 
-norID(x, y)
+norID(x., y.)
 
-norEQ(x, y)
+norEQ(x., y.)
 
-norT(x)
+norT(x.)
 
-norF(x)
+norF(x.)
 
-norNa(x)
+norNa(x.)
 
-norOk(x)
+norOk(x.)
 
-norTF(x)
+norTF(x.)
 
-norLG(x)
+norLG(x.)
 
-norBL(x)
+norBL(x.)
 
-anyIN(x, ...)
+anyIN(x., ...)
 
-anyID(x, y)
+anyID(x., y.)
 
-anyEQ(x, y)
+anyEQ(x., y.)
 
-anyT(x)
+anyT(x.)
 
-anyF(x)
+anyF(x.)
 
-anyNa(x)
+anyNa(x.)
 
-anyOk(x)
+anyOk(x.)
 
-anyTF(x)
+anyTF(x.)
 
-anyLG(x)
+anyLG(x.)
 
-anyBL(x)
+anyBL(x.)
 
-allIN(x, ...)
+allIN(x., ...)
 
-allID(x, y)
+allID(x., y.)
 
-allEQ(x, y)
+allEQ(x., y.)
 
-allT(x)
+allT(x.)
 
-allF(x)
+allF(x.)
 
-allNa(x)
+allNa(x.)
 
-allOk(x)
+allOk(x.)
 
-allTF(x)
+allTF(x.)
 
-allLG(x)
+allLG(x.)
 
-allBL(x)
+allBL(x.)
 
-oneIN(x, ...)
+oneIN(x., ...)
 
-oneID(x, y)
+oneID(x., y.)
 
-oneEQ(x, y)
+oneEQ(x., y.)
 
-oneT(x)
+oneT(x.)
 
-oneF(x)
+oneF(x.)
 
-oneNa(x)
+oneNa(x.)
 
-oneOk(x)
+oneOk(x.)
 
-oneTF(x)
+oneTF(x.)
 
-oneLG(x)
+oneLG(x.)
 
-oneBL(x)
+oneBL(x.)
 
-twoIN(x, ...)
+twoIN(x., ...)
 
-twoID(x, y)
+twoID(x., y.)
 
-twoEQ(x, y)
+twoEQ(x., y.)
 
-twoT(x)
+twoT(x.)
 
-twoF(x)
+twoF(x.)
 
-twoNa(x)
+twoNa(x.)
 
-twoOk(x)
+twoOk(x.)
 
-twoTF(x)
+twoTF(x.)
 
-twoLG(x)
+twoLG(x.)
 
-twoBL(x)
+twoBL(x.)
 }
 \arguments{
-\item{x, y}{any object.}
+\item{x., y.}{any object.}
 
-\item{...}{objects to check for containing \code{x}.}
+\item{...}{objects to check for containing \code{x.}.}
 }
 \value{
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-Functions that produce a \code{TRUE} or \code{FALSE} result as
-long as identity-evaluating their arguments (i.e.,
-\code{identity(arg_name)}) does not itself produce an error.
+Is \code{x.} in the collective set of atomized values from
+\code{...}?
 }
 \details{
-\strong{\code{isIN, notIN}}
-\cr The first determines whether \code{x} is an atomic scalar and if so,
-whether \code{y} is a non-empty atomic object, and if so, whether \code{x}
-is contained in any argument in \code{...}. Arguments in \code{...} are
-evaluated left to right, and does not evaluate returning \code{TRUE} as
-soon as it finds an argument containing \code{x}. Returns \code{FALSE} in
-the following special cases: \code{x} is not atomic, \code{x} is not of
-length \code{1}, a non-atomic argument is encountered in \code{...}, or an
-error is generated in evaluating \code{x} or any argument in \code{...}.
-The second returns the opposite of the first.
-\cr\cr
-\strong{\code{norIN, anyIN, allIN, oneIN, twoIN}}
-\cr These functions call \code{isIN(x, ...)} for every element of \code{x}
-and evaluate, respectively, whether \code{0}, \code{1} or more, all,
-exactly \code{1}, and \code{2} or more of the results were \code{TRUE}.
-\cr\cr
-\strong{\code{isID, notID}}
-\cr Thin wrappers for \code{identical} and \code{!identical}, respectively.
-\cr\cr
-\strong{\code{isEQ, notEQ}}
-\cr Thin wrappers for \code{setequal} and \code{!setequal}, respectively,
-but for atomic arguments only, meaning that if \code{x} and/or \code{y} are
-not atomic, they are considered not set equal.
-\cr\cr
-\strong{\code{isT, isF, isTF}}
-\cr Thin wrappers for \code{isTRUE}, \code{isFALSE}, and \code{(isTRUE |
-  isFALSE)}, respectively, evaluating whether \code{x} is an atomic scalar
-\code{TRUE}, an atomic scalar \code{FALSE}, or either, respectively.
-\cr\cr
-\strong{\code{isNa, isOk}}
-\cr Evaluates, respectively, whether or not
-\code{x} is an atomic scalar \code{NA} (includes \code{NA_character_},
-\code{NA_complex_}, \code{NA_integer_}, and \code{NA_real_}).
-\cr\cr
-\strong{\code{isLG}}
-\cr Evaluates whether \code{x} is an effectively logical scalar (i.e.,
-\code{isT | isF | isNa}, because \code{NA} is coerceable to any
-atomic mode).
-\cr\cr
-\strong{\code{isBL, notBL}}
-\cr Evaluates whether \code{x} is a character scalar, and if so, whether
-it is a blank string, or \code{""}.
-\cr\cr
-\emph{From here on}, \strong{\code{X}} \emph{and} \strong{\code{XX}}
-\emph{are placeholders for properties incorporated into the names of
-functions defined above such as the properties} \strong{\code{T}},
-\strong{\code{F}}, \emph{or} \strong{\code{TF}}.
-\cr\cr
-\code{nor\strong{X}, nor\strong{XX}}
-\cr Calls \code{is\strong{X}(x)} or \code{is\strong{XX}(x, y)}  for each
-element of \code{x} and returns \code{TRUE} if the number of \code{TRUE}
-values returned is \code{0}.
-\cr\cr
-\code{any\strong{X}, any\strong{XX}}
-\cr Calls \code{is\strong{X}(x)} or \code{is\strong{XX}(x, y)} for each
-element of \code{x} and returns \code{TRUE} if any \code{TRUE} values were
-returned.
-\cr\cr
-\code{all\strong{X}, all\strong{XX}}
-\cr Calls \code{is\strong{X}(x)} or \code{is\strong{XX}(x, y)} for each
-element of \code{x} and returns \code{TRUE} if the number of \code{TRUE}
-values returned is positive and equal to the length of \code{x}.
-\cr\cr
-\code{one\strong{X}, one\strong{XX}}
-\cr Calls \code{is\strong{X}(x)} or \code{is\strong{XX}(x, y)} for each
-element of \code{x} and returns \code{TRUE} if the number of \code{TRUE}
-values returned is
-\code{1}.
-\cr\cr
-\code{two\strong{X}, two\strong{XX}}
-\cr Calls \code{is\strong{X}(x)} or \code{is\strong{XX}(x, y)} for each
-element of \code{x} and returns \code{TRUE} if the number of \code{TRUE}
-values returned is
-\code{2} or greater.
+Functions that produce a \code{TRUE} or \code{FALSE} result as long
+as identity-evaluating their arguments (i.e., \code{identity(arg_name)})
+does not itself produce an error.
 }
+\section{Functions}{
+\itemize{
+\item \code{isID}: Are \code{x.} and \code{y.} identical?
+
+\item \code{isEQ}: Are \code{x.} and \code{y.} atomic and setequal?
+
+\item \code{isT}: Is \code{x.} scalar \code{TRUE}?
+
+\item \code{isF}: Is \code{x.} scalar \code{FALSE}?
+
+\item \code{isNa}: Is \code{x.} scalar \code{NA}?
+
+\item \code{isOk}: Is \code{x.} atomic, scalar, and non-\code{NA}?
+
+\item \code{isTF}: Is \code{x.} either scalar \code{TRUE} or scalar
+\code{FALSE}?
+
+\item \code{isLG}: Is \code{x.} scalar logical (\code{TRUE}, \code{FALSE}
+or \code{NA})?
+
+\item \code{isBL}: Is \code{x.} a scalar blank string?
+
+\item \code{notIN}: Is \code{x.} atomic, of length 1, and not contained in
+any argument in \code{...}?
+
+\item \code{notID}: Thin wrapper for \code{!identical}.
+
+\item \code{notEQ}: Is \code{x.} not atomic, \code{y.} not atomic, or are
+they not setequal?
+
+\item \code{notBL}: Is \code{x.} not a scalar blank string?
+
+\item \code{norIN}: Are no elements of \code{x.} in the collective
+atomized values from \code{...}?
+
+\item \code{norID}: Are no elements of \code{x.} identical to \code{y.}?
+
+\item \code{norEQ}: Are no elements of \code{x.} identical to \code{y.}?
+
+\item \code{norT}: Are no elements of \code{x.} scalar \code{TRUE}?
+
+\item \code{norF}: Are no elements of \code{x.} scalar \code{FALSE}?
+
+\item \code{norNa}: Are no elements of \code{x.} scalar \code{NA}?
+
+\item \code{norOk}: Are no elements of \code{x.} scalar non-\code{NA}?
+
+\item \code{norTF}: Are no elements of \code{x.} either scalar
+\code{TRUE} or scalar \code{FALSE}?
+
+\item \code{norLG}: Are no elements of \code{x.} scalar logical
+(\code{NA}, \code{TRUE}, or \code{FALSE})?
+
+\item \code{norBL}: Are no elements of \code{x.} blank string scalars?
+
+\item \code{anyIN}: Are any elements of \code{x.} in the collective
+atomized values from \code{...}?
+
+\item \code{anyID}: Are any elements of \code{x.} identical to \code{y.}?
+
+\item \code{anyEQ}: Are any elements of \code{x.} set-equal to \code{y.}?
+
+\item \code{anyT}: Are any elements of \code{x.} scalar \code{TRUE}?
+
+\item \code{anyF}: Are any elements of \code{x.} scalar \code{FALSE}?
+
+\item \code{anyNa}: Are any elements of \code{x.} scalar, atomic, and
+\code{NA}?
+
+\item \code{anyOk}: Are any elements of \code{x.} scalar, atomic, and
+non-\code{NA}?
+
+\item \code{anyTF}: Are no elements of \code{x.} scalar \code{TRUE} or
+scalar \code{FALSE}?
+
+\item \code{anyLG}: Are any elements of \code{x.} scalar logical
+(\code{TRUE}, \code{FALSE}, or \code{NA})?
+
+\item \code{anyBL}: Are any elements of \code{x.} scalar blank strings?
+
+\item \code{allIN}: Are all elements of \code{x.} in the collective set of
+atomized values from \code{...}?
+
+\item \code{allID}: Are all elements of \code{x.} identical to \code{y.}?
+
+\item \code{allEQ}: Are all elements of \code{x.} set-equal to \code{y.}?
+
+\item \code{allT}: Are all elements of \code{x.} scalar \code{TRUE}?
+
+\item \code{allF}: Are all elements of \code{x.} scalar \code{FALSE}?
+
+\item \code{allNa}: Are all elements of \code{x.} scalar \code{NA}?
+
+\item \code{allOk}: Are all elements of \code{x.} scalar, atomic, and
+non-\code{NA}?
+
+\item \code{allTF}: Are all elements of \code{x.} scalar \code{TRUE} or
+scalar \code{FALSE}?
+
+\item \code{allLG}: Are all elements of \code{x.} scalar logical
+(\code{TRUE}, \code{FALSE}, or \code{NA})?
+
+\item \code{allBL}: Are all elements of \code{x.} scalar blank strings?
+
+\item \code{oneIN}: Is exactly one element of \code{x.} in the collective
+set of atomized values from \code{...}?
+
+\item \code{oneID}: Is exactly one element of \code{x.} identical to
+\code{y.}?
+
+\item \code{oneEQ}: Is exactly one element of \code{x.} set-equal to
+\code{y.}?
+
+\item \code{oneT}: Is exactly one element of \code{x.} scalar
+\code{TRUE}?
+
+\item \code{oneF}: Is exactly one element of \code{x.} scalar
+\code{FALSE}?
+
+\item \code{oneNa}: Is exactly one element of \code{x.} scalar \code{NA}?
+
+\item \code{oneOk}: Is exactly one element of \code{x.} scalar, atomic,
+and non-\code{NA}?
+
+\item \code{oneTF}: Is exactly one element of \code{x.} scalar \code{TRUE}
+or scalar \code{FALSE}?
+
+\item \code{oneLG}: Is exactly one element of \code{x.} scalar logical
+(\code{TRUE}, \code{FALSE}, or \code{NA})?
+
+\item \code{oneBL}: Is exactly one element of \code{x.} a scalar blank
+string?
+
+\item \code{twoIN}: Are two or more elements of \code{x.} in the
+collective set of atomized values from \code{...}?
+
+\item \code{twoID}: Are two or more elements of \code{x.} identical to
+\code{y.}?
+
+\item \code{twoEQ}: Are two or more elements of \code{x.} set-equal to
+\code{y.}?
+
+\item \code{twoT}: Are two or more elements of \code{x.} scalar
+\code{TRUE}?
+
+\item \code{twoF}: Are two or more elements of \code{x.} scalar
+\code{FALSE}?
+
+\item \code{twoNa}: Are two or more elements of \code{x.} scalar
+\code{NA}?
+
+\item \code{twoOk}: Are two or more elements of \code{x.} scalar, atomic,
+and non-\code{NA}?
+
+\item \code{twoTF}: Are two or more elements of \code{x.} scalar
+\code{TRUE} or scalar \code{FALSE}?
+
+\item \code{twoLG}: Are two or more elements of \code{x.} scalar logical
+(\code{TRUE}, \code{FALSE} or \code{NA})?
+
+\item \code{twoBL}: Are two or more elements of \code{x.} scalar blank
+strings?
+}}
+
 \seealso{
 Other failsafe: 
 \code{\link{failsafe}()}
 
-Other is_functions: 
-\code{\link{is_color}()},
-\code{\link{is_sortable}()},
-\code{\link{is_unique}()},
-\code{\link{is_xxx_array}},
-\code{\link{is_xxx_generic}},
-\code{\link{is_xxx_matrix}},
-\code{\link{is_xxx_mvect}},
-\code{\link{is_xxx_scalar}},
-\code{\link{is_xxx_tibble}},
-\code{\link{is_xxx_vect}},
-\code{\link{is_xxx_vlist}},
-\code{\link{is_xxx_vtype}},
-\code{\link{logicals}}
+Other props: 
+\code{\link{ccc}()},
+\code{\link{cmp_mmm_agn}},
+\code{\link{cmp_mmm_arr}},
+\code{\link{cmp_mmm_atb}},
+\code{\link{cmp_mmm_avl}},
+\code{\link{cmp_mmm_avt}},
+\code{\link{cmp_mmm_gen}},
+\code{\link{cmp_mmm_mat}},
+\code{\link{cmp_mmm_mvc}},
+\code{\link{cmp_mmm_scl}},
+\code{\link{cmp_mmm_vec}},
+\code{\link{cmp_mmm}},
+\code{\link{comparable}()},
+\code{\link{compatible}()},
+\code{\link{ddd}()},
+\code{\link{eee}()},
+\code{\link{fff}()},
+\code{\link{is_xxx}},
+\code{\link{meets}()},
+\code{\link{mmm_agn}},
+\code{\link{mmm_arr}},
+\code{\link{mmm_atb}},
+\code{\link{mmm_avl}},
+\code{\link{mmm_avt}},
+\code{\link{mmm_mat}},
+\code{\link{mmm_mvc}},
+\code{\link{mmm_scl}},
+\code{\link{mmm_vec}},
+\code{\link{mmm}()},
+\code{\link{sss}()},
+\code{\link{ttt}()},
+\code{\link{xxx}()}
 }
 \concept{failsafe}
-\concept{is_functions}
+\concept{props}

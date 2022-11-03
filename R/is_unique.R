@@ -11,17 +11,17 @@
 #' @export
 is_unique <- function(x, a = T, na = F) {
   if (isTRUE(a)) {x <- unlist(x, T, F)}
-  VX  <- is.atomic(x)
-  VN  <- length(x) > 0
-  VA  <- isTF(a)
-  VNA <- isTF(na)
-  VX2 <- f0(VX & isFALSE(na), !any(is.na(x)), T)
-  E   <- NULL
-  if (!VX ) {E <- c(E, "\n  * [x] must be atomic.")}
-  if (!VN ) {E <- c(E, "\n  * [x] is of length 0.")}
-  if (!VA ) {E <- c(E, "\n  * [a] must be TRUE or FALSE.")}
-  if (!VNA) {E <- c(E, "\n  * [na] must be TRUE or FALSE.")}
-  if (!VX2) {E <- c(E, "\n  * [x] contains NA but [na = FALSE].")}
-  if (xdef(E)) {stop(E)}
+  vx  <- is.atomic(x)
+  vn  <- length(x) > 0
+  va  <- isTF(a)
+  vna <- isTF(na)
+  vx2 <- f0(vx & isFALSE(na), !any(is.na(x)), T)
+  err <- NULL
+  if (!vx ) {err <- c(err, "\n • [x] must be atomic.")}
+  if (!vn ) {err <- c(err, "\n • [x] is of length 0.")}
+  if (!va ) {err <- c(err, "\n • [a] must be TRUE or FALSE.")}
+  if (!vna) {err <- c(err, "\n • [na] must be TRUE or FALSE.")}
+  if (!vx2) {err <- c(err, "\n • [x] contains NA but [na = FALSE].")}
+  if (idef(err)) {stop(err)}
   length(x) == length(unique(x))
 }

@@ -1,7 +1,8 @@
 #' @name mmm_arr
 #' @family props
 #' @title Extended Mode + Atomic array (mmm + arr)
-#' @description See \code{\link{mmm}} and \code{\link{is_atm_array}}.
+#' @description Get all possible extended mode + array properties.
+#' @details See \code{\link{mmm}} and \code{\link{is_atm_arr}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
@@ -11,110 +12,106 @@ mmm_arr_vals <- function() {
   x
 }
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a character atomic array?
 #' @export
-atm_arr <- function(x) {is_atm_array(x)}
+chr_arr <- function(x) {atm_arr(x, "chr")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a onechar atomic array?
 #' @export
-chr_arr <- function(x) {f0(!is_atm_array(x), F, xchr(x))}
+ch1_arr <- function(x) {atm_arr(x, "ch1")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a color atomic array?
 #' @export
-ch1_arr <- function(x) {f0(!is_atm_array(x), F, xch1(x))}
+clr_arr <- function(x) {atm_arr(x, "clr")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} an even-numeric atomic array?
 #' @export
-clr_arr <- function(x) {f0(!is_atm_array(x), F, xclr(x))}
+evn_arr <- function(x) {atm_arr(x, "evn")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a factor atomic array?
 #' @export
-evn_arr <- function(x) {f0(!is_atm_array(x), F, xevn(x))}
+fac_arr <- function(x) {atm_arr(x, "fac")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a fractional-numeric atomic array?
 #' @export
-fac_arr <- function(x) {f0(!is_atm_array(x), F, xfac(x))}
+frc_arr <- function(x) {atm_arr(x, "frc")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} an indexer atomic array?
 #' @export
-frc_arr <- function(x) {f0(!is_atm_array(x), F, xfrc(x))}
+ind_arr <- function(x) {atm_arr(x, "ind")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a logical atomic array?
 #' @export
-ind_arr <- function(x) {f0(!is_atm_array(x), F, xind(x))}
+lgl_arr <- function(x) {atm_arr(x, "lgl")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a negative-numeric atomic array?
 #' @export
-lgc_arr <- function(x) {f0(!is_atm_array(x), F, xlgc(x))}
+neg_arr <- function(x) {atm_arr(x, "neg")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a negative-whole-numeric atomic array?
 #' @export
-neg_arr <- function(x) {f0(!is_atm_array(x), F, xneg(x))}
+ngw_arr <- function(x) {atm_arr(x, "ngw")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a non-negative-numeric atomic array?
 #' @export
-ngw_arr <- function(x) {f0(!is_atm_array(x), F, xngw(x))}
+nng_arr <- function(x) {atm_arr(x, "nng")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a non-negative-whole atomic array?
 #' @export
-nng_arr <- function(x) {f0(!is_atm_array(x), F, xnng(x))}
+nnw_arr <- function(x) {atm_arr(x, "nnw")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a non-positive-numeric atomic array?
 #' @export
-nnw_arr <- function(x) {f0(!is_atm_array(x), F, xnnw(x))}
+nps_arr <- function(x) {atm_arr(x, "nps")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a non-positive-whole-numeric atomic array?
 #' @export
-nps_arr <- function(x) {f0(!is_atm_array(x), F, xnps(x))}
+npw_arr <- function(x) {atm_arr(x, "npw")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a non-sortable atomic array?
 #' @export
-npw_arr <- function(x) {f0(!is_atm_array(x), F, xnpw(x))}
+nst_arr <- function(x) {atm_arr(x, "nst")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a numeric atomic array?
 #' @export
-nst_arr <- function(x) {f0(!is_atm_array(x), F, xnst(x))}
+num_arr <- function(x) {atm_arr(x, "num")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} an odd-numeric atomic array?
 #' @export
-num_arr <- function(x) {f0(!is_atm_array(x), F, xnum(x))}
+odd_arr <- function(x) {atm_arr(x, "odd")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} an ordered-factor atomic array?
 #' @export
-odd_arr <- function(x) {f0(!is_atm_array(x), F, xodd(x))}
+ord_arr <- function(x) {atm_arr(x, "ord")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a percent-numeric atomic array?
 #' @export
-ord_arr <- function(x) {f0(!is_atm_array(x), F, xord(x))}
+pct_arr <- function(x) {atm_arr(x, "pct")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a positive-numeric atomic array?
 #' @export
-pct_arr <- function(x) {f0(!is_atm_array(x), F, xpct(x))}
+pos_arr <- function(x) {atm_arr(x, "pos")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a positive-whole-numeric atomic array?
 #' @export
-pos_arr <- function(x) {f0(!is_atm_array(x), F, xpos(x))}
+psw_arr <- function(x) {atm_arr(x, "psw")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a proportion-numeric atomic array?
 #' @export
-psw_arr <- function(x) {f0(!is_atm_array(x), F, xpsw(x))}
+ppn_arr <- function(x) {atm_arr(x, "ppn")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a sortable atomic array?
 #' @export
-ppn_arr <- function(x) {f0(!is_atm_array(x), F, xppn(x))}
+srt_arr <- function(x) {atm_arr(x, "srt")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a string atomic array?
 #' @export
-srt_arr <- function(x) {f0(!is_atm_array(x), F, xsrt(x))}
+str_arr <- function(x) {atm_arr(x, "str")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a unordered-factor atomic array?
 #' @export
-str_arr <- function(x) {f0(!is_atm_array(x), F, xstr(x))}
+uno_arr <- function(x) {atm_arr(x, "uno")}
 
-#' @rdname mmm_arr
+#' @describeIn mmm_arr Is \code{x} a whole-numeric atomic array?
 #' @export
-uno_arr <- function(x) {f0(!is_atm_array(x), F, xuno(x))}
-
-#' @rdname mmm_arr
-#' @export
-whl_arr <- function(x) {f0(!is_atm_array(x), F, xwhl(x))}
+whl_arr <- function(x) {atm_arr(x, "whl")}

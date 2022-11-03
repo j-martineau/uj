@@ -15,4 +15,4 @@
 #' av("celery", "beets", "lettuce")
 #' av("celery", "beets", "lettuce")
 #' @export
-av <- function(...) {as.vector(unlist(list(...), T, F))}
+av <- function(...) {x. <- as.vector(unlist(list(...), T, F)); attributes(x.) <- NULL; x.}

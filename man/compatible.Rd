@@ -25,34 +25,34 @@ with each other.}
 A logical scalar.
 }
 \description{
+Determines whether modes of all arguments in \code{...} are
+compatible, meaning that all are character, logical, numeric, ordered
+factor with the same set of levels (in the same order), or unordered factor
+with the same set of levels (in any order).
+}
+\details{
 Compatibility means that arguments are either (a) all numeric,
 (b) all character, (c) all logical, (d) all unordered factor with the same
 levels, or (e) ordered factor with the same levels in the same order.
 \cr\cr
-\emph{For \link[=is_atm_tibble]{atomic tibbles}} (applicable function is
+\emph{For \link[=is_atm_tbl]{atomic tibbles}} (applicable function is
 \code{compatible_atbs}): Arguments are compatible for row binding if they
 have identical column names and their respective columns are of compatible
 modes. Arguments are compatible for column binding if they have the same
 number of rows.
 \cr\cr
 \emph{For atomic matrices} (\code{compatible_mats}): Arguments are
-compatible for column vs. row binding, if their modes are compatible and
+compatible for column vs. row binding if their modes are compatible and
 they have, respectively the same number of rows vs. columns.
 }
-\details{
-\strong{\code{compatible}}
-\cr Determines whether modes of all arguments in \code{...} are
-compatible, meaning that all are character, logical, numeric, ordered
-factor with the same set of levels (in the same order), or unordered factor
-with the same set of levels (in any order).
-\cr\cr
-\strong{\code{compatible_mats}}
-\cr Determines whether matrices are compatible for row or column binding.
-\cr\cr
-\strong{\code{compatible_atbs}}
-\cr Determines whether \link[=is_atm_tibble]{atomic tibbles} are compatible
-for row or column binding.
-}
+\section{Functions}{
+\itemize{
+\item \code{compatible_mats}: Are all matrices in \code{...} compatible for binding?
+
+\item \code{compatible_atbs}: Are all atomic tibbles in \code{...} compatible for
+binding?
+}}
+
 \examples{
 N0 <- 0
 N7 <- 0:7
@@ -86,7 +86,6 @@ compatible(list(letters), LETTERS, as.character(0:9))
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -102,6 +101,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -113,7 +114,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

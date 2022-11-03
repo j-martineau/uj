@@ -3,7 +3,6 @@
 \name{mmm_avl}
 \alias{mmm_avl}
 \alias{mmm_avl_vals}
-\alias{atm_avl}
 \alias{chr_avl}
 \alias{ch1_avl}
 \alias{clr_avl}
@@ -11,8 +10,7 @@
 \alias{fac_avl}
 \alias{frc_avl}
 \alias{ind_avl}
-\alias{lgc_avl}
-\alias{cnb_avl}
+\alias{lgl_avl}
 \alias{neg_avl}
 \alias{ngw_avl}
 \alias{nng_avl}
@@ -35,8 +33,6 @@
 \usage{
 mmm_avl_vals()
 
-atm_avl(x)
-
 chr_avl(x)
 
 ch1_avl(x)
@@ -51,9 +47,7 @@ frc_avl(x)
 
 ind_avl(x)
 
-lgc_avl(x)
-
-cnb_avl(x)
+lgl_avl(x)
 
 neg_avl(x)
 
@@ -98,12 +92,69 @@ whl_avl(x)
 \code{TRUE} or \code{FALSE}
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_atm_vlist}}.
+Get all possible extended mode + atomic vlist properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{atm_vls}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{chr_avl}: Is \code{x} a character atomic vlist?
+
+\item \code{ch1_avl}: Is \code{x} a onechar atomic vlist?
+
+\item \code{clr_avl}: Is \code{x} a color atomic vlist?
+
+\item \code{evn_avl}: Is \code{x} an even-numeric atomic vlist?
+
+\item \code{fac_avl}: Is \code{x} a factor atomic vlist?
+
+\item \code{frc_avl}: Is \code{x} a fractional-numeric atomic vlist?
+
+\item \code{ind_avl}: Is \code{x} an indexer atomic vlist?
+
+\item \code{lgl_avl}: Is \code{x} a logical atomic vlist?
+
+\item \code{neg_avl}: Is \code{x} a negative-numeric atomic vlist?
+
+\item \code{ngw_avl}: Is \code{x} a negative-whole-numeric atomic vlist?
+
+\item \code{nng_avl}: Is \code{x} a non-negative-numeric atomic vlist?
+
+\item \code{nnw_avl}: Is \code{x} a non-negative-whole-numeric atomic vlist?
+
+\item \code{nps_avl}: Is \code{x} a non-positive-numeric atomic vlist?
+
+\item \code{npw_avl}: Is \code{x} a non-positive-whole-numeric atomic vlist?
+
+\item \code{nst_avl}: Is \code{x} a non-sortable atomic vlist?
+
+\item \code{num_avl}: Is \code{x} a numeric atomic vlist?
+
+\item \code{odd_avl}: Is \code{x} an odd-numeric atomic vlist?
+
+\item \code{ord_avl}: Is \code{x} an ordered-factor atomic vlist?
+
+\item \code{pct_avl}: Is \code{x} a percent-numeric atomic vlist?
+
+\item \code{pos_avl}: Is \code{x} a positive-numeric atomic vlist?
+
+\item \code{ppn_avl}: Is \code{x} a proportion-numeric atomic vlist?
+
+\item \code{psw_avl}: Is \code{x} a positive-whole-numeric atomic vlist?
+
+\item \code{srt_avl}: Is \code{x} a sortable atomic vlist?
+
+\item \code{str_avl}: Is \code{x} a string atomic vlist?
+
+\item \code{uno_avl}: Is \code{x} an unordered-factor atomic vlist?
+
+\item \code{whl_avl}: Is \code{x} a whole-numeric atomic vlist?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -120,6 +171,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -130,7 +183,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

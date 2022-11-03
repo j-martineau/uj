@@ -5,44 +5,41 @@
 \alias{pgrid0}
 \title{\code{expand.grid} for \code{paste} and \code{paste0}}
 \usage{
-pgrid(..., p = " ", ch = F, add.blank = F)
+pgrid(..., p. = " ", ch. = F, add.blank. = F)
 
-pgrid0(..., ch = F, add.blank = F)
+pgrid0(..., ch. = F, add.blank. = F)
 }
 \arguments{
 \item{...}{Non-empty atomic objects.}
 
-\item{p}{A character scalar to use as the 'paste'.}
+\item{p.}{A character scalar to use as the 'paste'.}
 
-\item{ch}{A logical scalar indicating whether to split arguments in
+\item{ch.}{A logical scalar indicating whether to split arguments in
 \code{...} into consituent characters after conversion to mode 'character'.}
 
-\item{add.blank}{Whether to add a blank ("") to each argument in \code{...}.}
+\item{add.blank.}{Whether to add a blank ("") to each argument in \code{...}.}
 }
 \value{
 A character vector.
 }
 \description{
-\code{expand.grid} for \code{paste} and \code{paste0}
-}
-\details{
-\strong{\code{p.grid}}
-\cr Converts arguments in \code{...} to character, separating them into
-their constituent characters (if \code{ch = T}), add a blank string (if
-\code{add.blank = T}), and create a character vector containing all
+Convert arguments in \code{...} to character, separating them
+into their constituent characters (if \code{ch = T}), add a blank string
+(if \code{add.blank = T}), and create a character vector containing all
 possible combinations of elements in \code{...} pasted together using the
 'paste' \code{p}. The first part of the character scalar in each element of
 the result is from \code{...1}, the second from \code{..2}, and so on.
-\cr\cr
-\strong{\code{pgrid0}}
-\cr Calls \code{pgrid} with \code{p} specified as a blank string (i.e.,
-\code{""}).
 }
+\section{Functions}{
+\itemize{
+\item \code{pgrid0}: Call \code{pgrid} with \code{p. = ""} (a blank string).
+}}
+
 \seealso{
 Other strings: 
-\code{\link{Oxford}},
 \code{\link{delim}},
 \code{\link{ipat}()},
+\code{\link{ox}()},
 \code{\link{spacing}},
 \code{\link{ss}()},
 \code{\link{tocase}()},

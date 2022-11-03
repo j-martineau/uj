@@ -3,7 +3,6 @@
 \name{mmm_atb}
 \alias{mmm_atb}
 \alias{mmm_atb_vals}
-\alias{atm_atb}
 \alias{chr_atb}
 \alias{ch1_atb}
 \alias{clr_atb}
@@ -11,7 +10,7 @@
 \alias{fac_atb}
 \alias{frc_atb}
 \alias{ind_atb}
-\alias{lgc_atb}
+\alias{lgl_atb}
 \alias{neg_atb}
 \alias{ngw_atb}
 \alias{nng_atb}
@@ -34,8 +33,6 @@
 \usage{
 mmm_atb_vals()
 
-atm_atb(x)
-
 chr_atb(x)
 
 ch1_atb(x)
@@ -50,7 +47,7 @@ frc_atb(x)
 
 ind_atb(x)
 
-lgc_atb(x)
+lgl_atb(x)
 
 neg_atb(x)
 
@@ -95,12 +92,69 @@ whl_atb(x)
 \code{TRUE} or \code{FALSE}
 }
 \description{
-See \code{\link{mmm}} and \code{\link{is_atm_tibble}}.
+Get all possible extended mode + atomic tibble properties.
 }
+\details{
+See \code{\link{mmm}} and \code{\link{atm_tbl}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{chr_atb}: Is \code{x} a character atomic tibble?
+
+\item \code{ch1_atb}: Is \code{x} a onechar atomic tibble?
+
+\item \code{clr_atb}: Is \code{x} a color atomic tibble?
+
+\item \code{evn_atb}: Is \code{x} a even-numeric atomic tibble?
+
+\item \code{fac_atb}: Is \code{x} a factor atomic tibble?
+
+\item \code{frc_atb}: Is \code{x} a fractional-numeric atomic tibble?
+
+\item \code{ind_atb}: Is \code{x} an indexer atomic tibble?
+
+\item \code{lgl_atb}: Is \code{x} a logical atomic tibble?
+
+\item \code{neg_atb}: Is \code{x} a negative-numeric atomic tibble?
+
+\item \code{ngw_atb}: Is \code{x} a non-negative-whole-numeric atomic tibble?
+
+\item \code{nng_atb}: Is \code{x} a non-negative-numeric atomic tibble?
+
+\item \code{nnw_atb}: Is \code{x} a non-negative-whole-numeric atomic tibble?
+
+\item \code{nps_atb}: Is \code{x} a non-positive-numeric atomic tibble?
+
+\item \code{npw_atb}: Is \code{x} a non-positive-whole-numeric atomic tibble?
+
+\item \code{nst_atb}: Is \code{x} a non-sortable atomic tibble?
+
+\item \code{num_atb}: Is \code{x} a numeric atomic tibble?
+
+\item \code{odd_atb}: Is \code{x} an odd-numeric atomic tibble?
+
+\item \code{ord_atb}: Is \code{x} an ordered-factor atomic tibble?
+
+\item \code{pct_atb}: Is \code{x} a percent-numeric atomic tibble?
+
+\item \code{pos_atb}: Is \code{x} a positive-numeric atomic tibble?
+
+\item \code{psw_atb}: Is \code{x} a positive-whole-numeric atomic tibble?
+
+\item \code{ppn_atb}: Is \code{x} a proportion-numeric atomic tibble?
+
+\item \code{srt_atb}: Is \code{x} a sortable atomic tibble?
+
+\item \code{str_atb}: Is \code{x} a string atomic tibble?
+
+\item \code{uno_atb}: Is \code{x} an unordered-factor atomic tibble?
+
+\item \code{whl_atb}: Is \code{x} a whole-numeric atomic tibble?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -117,6 +171,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -127,7 +183,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

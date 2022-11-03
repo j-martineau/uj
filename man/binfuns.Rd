@@ -6,8 +6,8 @@
 \alias{\%!IS\%}
 \alias{\%EQ\%}
 \alias{\%!EQ\%}
-\alias{\%&\%}
-\alias{\%|\%}
+\alias{\%AND\%}
+\alias{\%OR\%}
 \alias{\%!\%}
 \alias{\%1\%}
 \alias{\%IN\%}
@@ -24,9 +24,9 @@ x \%EQ\% y
 
 x \%!EQ\% y
 
-x \%&\% y
+x \%AND\% y
 
-x \%|\% y
+x \%OR\% y
 
 x \%!\% y
 
@@ -44,60 +44,51 @@ x \%LACKS\% y
 \item{x, y}{Any objects.}
 }
 \description{
-Binary Functions Returning Only a Scalar \code{TRUE} or \code{FALSE}.
+Evaluates whether \code{x} and \code{y} are identical.
 }
-\details{
-\strong{\code{x \%IS\% y}}
-\cr Evaluates whether \code{x} and \code{y} are identical.
-\cr\cr
-\strong{\code{x \%!IS\% y}}
-\cr Evaluates whether \code{x} and \code{y} are not identical.
-\cr\cr
-\strong{\code{x \%EQ\% y}}
-\cr Evaluates whether \code{x} and \code{y} are \code{\link{set.equal}}. If
-\code{x} and \code{y} are not \link[=compatible]{compatible}, returns
-\code{FALSE}.
-\cr\cr
-\strong{\code{x \%!EQ\% y}}
-\cr Evaluates whether \code{x} and \code{y} are not
+\section{Functions}{
+\itemize{
+\item \code{\%!IS\%}: Evaluates whether \code{x} and \code{y} are not
+identical.
+
+\item \code{\%EQ\%}: Evaluates whether \code{x} and \code{y} are
+\code{\link{set.equal}}. If \code{x} and \code{y} are not
+\link[=compatible]{compatible}, returns \code{FALSE}.
+
+\item \code{\%!EQ\%}: Evaluates whether \code{x} and \code{y} are not
 \code{\link{set.equal}}. If \code{x} and \code{y} are not
 \link[=compatible]{compatible}, returns \code{TRUE}.
-\cr\cr
-\strong{\code{x \%&\% y}}
-\cr Evaluates whether \code{x} and \code{y} are both \code{TRUE} (that is,
-a scalar \code{TRUE} value).
-\cr\cr
-\strong{\code{x \%|\% y}}
-\cr Evaluates whether \code{x} and/or \code{y} is \code{TRUE}.
-\cr\cr
-\strong{\code{x \%!\% y}}
-\cr Evaluates whether \code{x} and \code{y} are both \code{FALSE} (that is,
-a scalar \code{FALSE} value).
-\cr\cr
-\strong{\code{x \%1\% y}}
-\cr Evaluates whether one of \code{x} or \code{y} is \code{TRUE}.
-\cr\cr
-\strong{\code{x \%IN\% y}}
-\cr Evaluates whether atomic scalar \code{x} is contained in atomic object
-\code{y}. If \code{x} is not atomic scalar, \code{y} is not atomic, or
-\code{x} and \code{y} are not compatible, returns \code{FALSE}.
-\cr\cr
-\strong{\code{x \%!IN\% y}}
-\cr Evaluates whether atomic scalar \code{x} is contained in atomic object
-\code{y}. If \code{x} is not atomic scalar, \code{y} is not atomic, or
-\code{x} and \code{y} are not compatible, returns \code{FALSE}.
-\cr\cr
-\strong{\code{x \%HAS\% y}}
-\cr Evaluates whether atomic object \code{x} contains atomic scalar
-\code{y}. If \code{x} is not atomic, \code{y} is not atomic scalar, or
-\code{x} and \code{y} are not compatible, returns \code{FALSE}.
-\cr\cr
-\strong{\code{x \%LACKS\% y}}
-\cr Evaluates whether atomic object \code{x} lacks (does not contain)
-atomic scalar \code{y}. If \code{x} is not atomic, \code{y} is not atomic
-scalar, or \code{x} and \code{y} are not compatible, returns
+
+\item \code{\%AND\%}: Evaluates whether \code{x} and \code{y} are both
+\code{TRUE} (that is, a scalar \code{TRUE} value).
+
+\item \code{\%OR\%}: Evaluates whether \code{x} and/or \code{y} is
 \code{TRUE}.
-}
+
+\item \code{\%!\%}: Evaluates whether \code{x} and \code{y} are both
+\code{FALSE} (that is, a scalar \code{FALSE} value).
+
+\item \code{\%1\%}: Evaluates whether one of \code{x} or \code{y} is
+\code{TRUE}.
+
+\item \code{\%IN\%}: Evaluates whether atomic scalar \code{x} is contained in
+atomic object \code{y}. If \code{x} is not atomic scalar, \code{y} is not
+atomic, or \code{x} and \code{y} are not compatible, returns \code{FALSE}.
+
+\item \code{\%!IN\%}: Evaluates whether atomic scalar \code{x} is contained in
+atomic object \code{y}. If \code{x} is not atomic scalar, \code{y} is not
+atomic, or \code{x} and \code{y} are not compatible, returns \code{FALSE}.
+
+\item \code{\%HAS\%}: Evaluates whether atomic object \code{x} contains atomic
+scalar \code{y}. If \code{x} is not atomic, \code{y} is not atomic scalar,
+or \code{x} and \code{y} are not compatible, returns \code{FALSE}.
+
+\item \code{\%LACKS\%}: Evaluates whether atomic object \code{x} lacks (does not
+contain) atomic scalar \code{y}. If \code{x} is not atomic, \code{y} is not
+atomic scalar, or \code{x} and \code{y} are not compatible, returns
+\code{TRUE}.
+}}
+
 \seealso{
 Other meta: 
 \code{\link{as_xxx}},

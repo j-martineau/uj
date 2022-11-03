@@ -1,7 +1,8 @@
 #' @name mmm_mat
 #' @family props
 #' @title Extended Mode + Atomic matrix (mmm + mat)
-#' @description See \code{\link{mmm}}, and \code{\link{is_atm_matrix}}.
+#' @description Get all possible extended mode + atomic matrix properties.
+#' @details See \code{\link{mmm}}, and \code{\link{atm_mat}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
@@ -11,114 +12,106 @@ mmm_mat_vals <- function() {
   x
 }
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a character matrix?
 #' @export
-atm_mat <- function(x) {is_atm_matrix(x)}
+chr_mat <- function(x) {atm_mat(x, "chr")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a onechar matrix?
 #' @export
-chr_mat <- function(x) {is_atm_matrix(x, "chr")}
+ch1_mat <- function(x) {atm_mat(x, "ch1")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a color matrix?
 #' @export
-ch1_mat <- function(x) {is_atm_matrix(x, "ch1")}
+clr_mat <- function(x) {atm_mat(x, "clr")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} an even-numeric matrix?
 #' @export
-clr_mat <- function(x) {is_atm_matrix(x, "clr")}
+evn_mat <- function(x) {atm_mat(x, "evn")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a factor matrix?
 #' @export
-evn_mat <- function(x) {is_atm_matrix(x, "evn")}
+fac_mat <- function(x) {atm_mat(x, "fac")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a fractional-numeric matrix?
 #' @export
-fac_mat <- function(x) {is_atm_matrix(x, "fac")}
+frc_mat <- function(x) {atm_mat(x, "frc")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} an indexer matrix?
 #' @export
-frc_mat <- function(x) {is_atm_matrix(x, "frc")}
+ind_mat <- function(x) {atm_mat(x, "ind")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a logical matrix?
 #' @export
-ind_mat <- function(x) {is_atm_matrix(x, "ind")}
+lgl_mat <- function(x) {atm_mat(x, "lgl")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a negative-numeric matrix?
 #' @export
-lgc_mat <- function(x) {is_atm_matrix(x, "lgc")}
+neg_mat <- function(x) {atm_mat(x, "neg")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a negative-whole-numeric matrix?
 #' @export
-cnb_mat <- function(x) {is_atm_matrix(x, "cnb")}
+ngw_mat <- function(x) {atm_mat(x, "ngw")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a non-negative-numeric matrix?
 #' @export
-neg_mat <- function(x) {is_atm_matrix(x, "neg")}
+nng_mat <- function(x) {atm_mat(x, "nng")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a non-negative-whole-numeric matrix?
 #' @export
-ngw_mat <- function(x) {is_atm_matrix(x, "ngw")}
+nnw_mat <- function(x) {atm_mat(x, "nnw")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a non-positive-numeric matrix?
 #' @export
-nng_mat <- function(x) {is_atm_matrix(x, "nng")}
+nps_mat <- function(x) {atm_mat(x, "nps")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a non-positive-whole-numeric matrix?
 #' @export
-nnw_mat <- function(x) {is_atm_matrix(x, "nnw")}
+npw_mat <- function(x) {atm_mat(x, "npw")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a non-sortable matrix?
 #' @export
-nps_mat <- function(x) {is_atm_matrix(x, "nps")}
+nst_mat <- function(x) {atm_mat(x, "nst")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a numeric matrix?
 #' @export
-npw_mat <- function(x) {is_atm_matrix(x, "npw")}
+num_mat <- function(x) {atm_mat(x, "num")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} an odd-numeric matrix?
 #' @export
-nst_mat <- function(x) {is_atm_matrix(x, "nst")}
+odd_mat <- function(x) {atm_mat(x, "odd")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} an ordered-factor matrix?
 #' @export
-num_mat <- function(x) {is_atm_matrix(x, "num")}
+ord_mat <- function(x) {atm_mat(x, "ord")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a percent-numeric matrix?
 #' @export
-odd_mat <- function(x) {is_atm_matrix(x, "odd")}
+pct_mat <- function(x) {atm_mat(x, "pct")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a positive-numeric matrix?
 #' @export
-ord_mat <- function(x) {is_atm_matrix(x, "ord")}
+pos_mat <- function(x) {atm_mat(x, "pos")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a proportion-numeric matrix?
 #' @export
-pct_mat <- function(x) {is_atm_matrix(x, "pct")}
+ppn_mat <- function(x) {atm_mat(x, "ppn")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a positive-whole-numeric matrix?
 #' @export
-pos_mat <- function(x) {is_atm_matrix(x, "pos")}
+psw_mat <- function(x) {atm_mat(x, "psw")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a sortable matrix?
 #' @export
-ppn_mat <- function(x) {is_atm_matrix(x, "ppn")}
+srt_mat <- function(x) {atm_mat(x, "srt")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} a string matrix?
 #' @export
-psw_mat <- function(x) {is_atm_matrix(x, "psw")}
+str_mat <- function(x) {atm_mat(x, "str")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} an unordered-factor matrix?
 #' @export
-srt_mat <- function(x) {is_atm_matrix(x, "srt")}
+uno_mat <- function(x) {atm_mat(x, "uno")}
 
-#' @rdname mmm_mat
+#' @describeIn mmm_mat Is \code{x} whole-numeric matrix?
 #' @export
-str_mat <- function(x) {is_atm_matrix(x, "str")}
-
-#' @rdname mmm_mat
-#' @export
-uno_mat <- function(x) {is_atm_matrix(x, "uno")}
-
-#' @rdname mmm_mat
-#' @export
-whl_mat <- function(x) {is_atm_matrix(x, "whl")}
+whl_mat <- function(x) {atm_mat(x, "whl")}

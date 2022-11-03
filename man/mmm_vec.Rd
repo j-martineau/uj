@@ -3,15 +3,13 @@
 \name{mmm_vec}
 \alias{mmm_vec}
 \alias{mmm_vec_vals}
-\alias{atm_vec}
 \alias{chr_vec}
 \alias{clr_vec}
 \alias{evn_vec}
 \alias{fac_vec}
 \alias{frc_vec}
 \alias{ind_vec}
-\alias{lgc_vec}
-\alias{cnb_vec}
+\alias{lgl_vec}
 \alias{neg_vec}
 \alias{ngw_vec}
 \alias{nng_vec}
@@ -30,11 +28,9 @@
 \alias{str_vec}
 \alias{uno_vec}
 \alias{whl_vec}
-\title{Extended Mode + Atomic vect (mmm + vec)}
+\title{Extended Mode + Atomic vec (mmm + vec)}
 \usage{
 mmm_vec_vals()
-
-atm_vec(x)
 
 chr_vec(x)
 
@@ -48,9 +44,7 @@ frc_vec(x)
 
 ind_vec(x)
 
-lgc_vec(x)
-
-cnb_vec(x)
+lgl_vec(x)
 
 neg_vec(x)
 
@@ -95,12 +89,67 @@ whl_vec(x)
 \code{TRUE} or \code{FALSE}
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_atm_vect}}.
+Get all possible extended mode + atomic vec properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{atm_vec}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{chr_vec}: Is \code{x} a character atomic vec?
+
+\item \code{clr_vec}: Is \code{x} a onechar atomic vec?
+
+\item \code{evn_vec}: Is \code{x} an even-number atomic vec?
+
+\item \code{fac_vec}: Is \code{x} a factor atomic vec?
+
+\item \code{frc_vec}: Is \code{x} a fractional-number atomic vec?
+
+\item \code{ind_vec}: Is \code{x} an indexer atomic vec?
+
+\item \code{lgl_vec}: Is \code{x} a logical atomic vec?
+
+\item \code{neg_vec}: Is \code{x} a negative-number atomic vec?
+
+\item \code{ngw_vec}: Is \code{x} a negative-whole-number atomic vec?
+
+\item \code{nng_vec}: Is \code{x} a non-negative-number atomic vec?
+
+\item \code{nnw_vec}: Is \code{x} a non-negative-whole-number atomic vec?
+
+\item \code{nps_vec}: Is \code{x} a non-positive-number atomic vec?
+
+\item \code{npw_vec}: Is \code{x} a non-positive-whole-number atomic vec?
+
+\item \code{nst_vec}: Is \code{x} a non-sortable atomic vec?
+
+\item \code{num_vec}: Is \code{x} a number atomic vec?
+
+\item \code{odd_vec}: Is \code{x} an odd-number atomic vec?
+
+\item \code{ord_vec}: Is \code{x} an ordered-factor atomic vec?
+
+\item \code{pct_vec}: Is \code{x} a percent-number atomic vec?
+
+\item \code{pos_vec}: Is \code{x} a positive-number atomic vec?
+
+\item \code{ppn_vec}: Is \code{x} a atomic proportion-number vec?
+
+\item \code{psw_vec}: Is \code{x} a positive-whole-number atomic vec?
+
+\item \code{srt_vec}: Is \code{x} a sortable atomic vec?
+
+\item \code{str_vec}: Is \code{x} a string atomic vec?
+
+\item \code{uno_vec}: Is \code{x} a unordered-factor atomic vec?
+
+\item \code{whl_vec}: Is \code{x} a whole-number atomic vec?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -117,6 +166,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -127,7 +178,6 @@ Other props:
 \code{\link{mmm_mvc}},
 \code{\link{mmm_scl}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

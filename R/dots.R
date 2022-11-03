@@ -3,53 +3,21 @@
 #' @title Get named arguments from \code{...} with default values if missing,
 #'   named and unnamed arguments from \code{...}, and names of arguments in
 #'   \code{...}.
-#' @details \strong{\code{dots}}
-#'   \cr Extract one or more arguments from those in \code{...} based on their
-#'   names matching values supplied in \code{names.}. If a supplied name matches
-#'   the name of an arguments in \code{...}, that argument is returned.
+#' @description Extract one or more arguments from those in \code{...} based on
+#'   their names matching values supplied in \code{names.}. If a supplied name
+#'   matches the name of an arguments in \code{...}, that argument is returned.
 #'   Otherwise, the element of \code{defs.} with a matching name is returned.
 #'   \cr\cr
 #'   \code{names.} must be an atomic scalar/vector, and is coerced to character
 #'   mode. The exceptions are \code{NULL} and \code{NA}, which are converted to
-#'   \code{'NULL'} and \code{'NA'}. Any values of \code{names.} that are reserved
-#'   words or non-valid object names are backtick quoted for matching.
+#'   \code{'NULL'} and \code{'NA'}. Any values of \code{names.} that are
+#'   reserved words or non-valid object names are backtick quoted for matching.
 #'   \cr\cr
 #'   \code{defs.} is a named list with default values to return if there is no
 #'   matching argument for a value in \code{names.}.
 #'   \cr\cr
 #'   Each value in \code{names.} must have a matching argument in \code{...} or
 #'   a matching element in \code{defs.}.
-#'   \cr\cr
-#'   \strong{\code{dot}}
-#'   \cr A simplified version for extracting a single named argument from
-#'   \code{...} or, if a matching argument is not found, its default value.
-#'   \cr\cr
-#'   \strong{\code{dot_names}}
-#'   \cr If \code{names.} is \code{NULL}, the return value is \code{...names()},
-#'   otherwise, \code{names.} i returned. Throws an error in the following
-#'   cases
-#'   \itemize{
-#'     \item \code{0} Arguments are supplied in \code{...}, \code{names.} is not
-#'           \code{NULL} and its length is not equal to the number of arguments
-#'           in \code{...}.
-#'     \item \code{req.} is \code{TRUE}, \code{names.} is \code{NULL}, and none
-#'           of the arguments in \code{...} are named.
-#'     \item \code{names.} is \code{NULL} and either (a) \code{blank.} is
-#'           \code{TRUE} and any argument in \code{...} is either unnamed or its
-#'           name is \code{''} or (b) \code{u.} is \code{TRUE} and multiple
-#'           arguments in \code{...} share a name.
-#'     \item \code{names.} is not \code{NULL} and either (a) \code{blank.} is
-#'           \code{TRUE} and \code{names.} contains \code{''} or (b) \code{u.}
-#'           is \code{TRUE} and \code{names.} contains duplicate values.
-#'   }
-#'   \cr\cr
-#'   \strong{\code{named_args(...)}}
-#'   \cr Extracts named arguments from \code{...} as a named list (does not
-#'   include arguments named with blank strings).
-#'   \cr\cr
-#'   \strong{\code{unnamed_args(...)}}
-#'   \cr Extract unnamed arguments from \code{...} as an unnamed list (includes
-#'   any arguments named with blank strings).
 #' @param ... An arbitrary number of arguments.
 #' @param names. \code{NULL} or an atomic scalar/vector (may include \code{NA})
 #'   values). Is split along the delimiter \code{'|'} to allow for compactness
@@ -82,93 +50,109 @@
 #'   unique.
 #' @export
 dots <- function(names., defs., ...) {
-  x  <- list(...)
-  VN <- xvec(names.)
-  VX <- length(x) > 0
-  E  <- NULL
-  if (!VN) {E <- c(E, "\n  * [names.] must be a non-NA atomic scalar or vector.")}
-  if (!VX) {E <- c(E, "\n  * [...] must contain at least one argument.")}
-  if (xdef(E)) {stop(E)}
-  x <- list(...)                                                                 # extract {...} as a list of arguments
-  NamesX <- names(x); NamesD <- names(defs.)                                     # names of args in {...} and elements of {defs.}
+  x.  <- list(...)
+  vn. <- ivec(names.)
+  vx. <- length(x.) > 0
+  err.  <- NULL
+  if (!vn.) {err. <- c(err., "\n • [names.] must be a non-NA atomic scalar or vector.")}
+  if (!vx.) {err. <- c(err., "\n • [...] must contain at least one argument.")}
+  if (idef(err.)) {stop(err.)}
+  lx. <- names(x.); ld. <- names(defs.)                                          # names of args in {...} and elements of {defs.}
   names. <- ss(as.character(av(names.)))                                         # atomize {names.}, convert to character, and split along {'|'}
   names.[is.na(names.)] <- 'NA'                                                  # change {NA}s to a {'NA'}
-  InX <- names. %in% NamesX                                                      # whether each value of {names.} is in the names of args in {...}
-  InD <- names. %in% NamesD                                                      # whether each value of {names.} is in the names of {defs.}
-  VN  <- all(InX | InD)                                                          # validity check (does every value of {names.} have a match?)
-  if (!VN) {stop("\n  * Values in [names.] must match elements of [...] or of [defs.].")} # error if validity check failed
-  N <- length(names.)                                                            # number of arguments to match
-  R <- rep.int(list(NULL), N)                                                    # initialize the results as a list of {NULL} elements
-  for (i in 1:N) {                                                               # for each element of {names.}
-    Name <- names.[[i]]                                                          # > get the name to be matched
-    if (InX[i]) {R[[i]] <-    x[[which(NamesX == Name)]]}                        # > if it matches an argument in {...}, store that argument
-    else        {R[[i]] <- defs.[[which(NamesD == Name)]]}                       # > otherwise, store the matching element of {defs.}
+  inx. <- names. %in% lx.                                                        # whether each value of {names.} is in the names of args in {...}
+  ind. <- names. %in% ld.                                                        # whether each value of {names.} is in the names of {defs.}
+  vn.  <- all(inx. | ind.)                                                       # validity check (does every value of {names.} have a match?)
+  if (!vn) {stop("\n • Values in [names.] must match elements of [...] or of [defs.].")} # error if validity check failed
+  n. <- length(names.)                                                           # number of arguments to match
+  out. <- rep.int(list(NULL), n.)                                                # initialize the results as a list of {NULL} elements
+  for (i. in 1:n.) {                                                             # for each element of {names.}
+    name. <- names.[[i.]]                                                        # > get the name to be matched
+    if (inx.[i.]) {out.[[i.]] <-    x.[[which(lx. == name.)]]}                   # > if it matches an argument in {...}, store that argument
+    else          {out.[[i.]] <- defs.[[which(ld. == name.)]]}                   # > otherwise, store the matching element of {defs.}
   }
-  if (N == 1) {R <- R[[1]]}                                                      # if only 1 argument was extracted, un-nest it from the results list
-  R
+  if (n. == 1) {out. <- out.[[1]]}                                               # if only 1 argument was extracted, un-nest it from the results list
+  out.
 }
 
-#' @rdname dots
+#' @describeIn dots A simplified version for extracting a single named argument from
+#'   \code{...} or, if a matching argument is not found, its default value.
 #' @export
 dot <- function(name., def., ...) {
   if (!cmp_scl(name.)) {stop("\n  * [name.] must be a non-NA atomic scalar.")}
   dots(name., def., ...)
 }
 
-#' @rdname dots
+#' @describeIn dots If \code{names.} is \code{NULL}, the return value is
+#'   \code{...names()}, otherwise, \code{names.} i returned. Throws an error in
+#'   the following cases:\itemize{
+#'     \item \code{0} Arguments are supplied in \code{...}, \code{names.} is not
+#'           \code{NULL} and its length is not equal to the number of arguments
+#'           in \code{...}.
+#'     \item \code{req.} is \code{TRUE}, \code{names.} is \code{NULL}, and none
+#'           of the arguments in \code{...} are named.
+#'     \item \code{names.} is \code{NULL} and either (a) \code{blank.} is
+#'           \code{TRUE} and any argument in \code{...} is either unnamed or its
+#'           name is \code{''} or (b) \code{u.} is \code{TRUE} and multiple
+#'           arguments in \code{...} share a name.
+#'     \item \code{names.} is not \code{NULL} and either (a) \code{blank.} is
+#'           \code{TRUE} and \code{names.} contains \code{''} or (b) \code{u.}
+#'           is \code{TRUE} and \code{names.} contains duplicate values.       }
 #' @export
 dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
-  x  <- list(...)
-  VX <- length(x) > 0
-  VN <- f0(xnll(subs.), T, xvec(subs.))
-  VR <- isTF(req.)
-  VB <- isTF(blank.)
-  VU <- isTF(u.)
-  E <- NULL
-  if (!VX) {E <- c(E, "\n  * [...] is empty.")}
-  if (!VN) {E <- c(E, "\n  * [subs.] must be NULL or an atomic vector with one value per argument in [...].")}
-  if (!VR) {E <- c(E, "\n  * [req.] must be TRUE or FALSE.")}
-  if (!VB) {E <- c(E, "\n  * [blank.] must be TRUE or FALSE.")}
-  if (!VU) {E <- c(E, "\n  * [u.] must be TRUE or FALSE.")}
-  if (xdef(E)) {stop(E)}
-  NX <- ...length()
-  NN <- length(...names())
-  if (xnll(subs.)) {subs. <- ...names()}                                         # if {subs.} is {NULL}, use the names of arguments in {...}
-  V1 <- NN == NX | xnll(subs.)
-  V2 <- NN == NX | !req.
-  E <- NULL
-  if (!V1) {E <- c(E, "\n  * When [subs.] is not NULL, it must contain one value per argument in [...].")}
-  if (!V2) {E <- c(E, "\n  * When [req. = TRUE], arguments in [...] must be named or [subs.] must contain one value per argument in [...].")}
-  if (xdef(E)) {stop(E)}
+  x.  <- list(...)
+  vx. <- length(x.) > 0
+  vn. <- f0(inll(subs.), T, ivec(subs.))
+  vr. <- isTF(req.)
+  vb. <- isTF(blank.)
+  vu. <- isTF(u.)
+  err. <- NULL
+  if (!vx.) {err. <- c(err., "\n • [...] is empty.")}
+  if (!vn.) {err. <- c(err., "\n • [subs.] must be NULL or an atomic vector with one value per argument in [...].")}
+  if (!vr.) {err. <- c(err., "\n • [req.] must be TRUE or FALSE.")}
+  if (!vb.) {err. <- c(err., "\n • [blank.] must be TRUE or FALSE.")}
+  if (!vu.) {err. <- c(err., "\n • [u.] must be TRUE or FALSE.")}
+  if (idef(err.)) {stop(err.)}
+  nx. <- ...length()
+  nl. <- length(...names())
+  if (inll(subs.)) {subs. <- ...names()}                                         # if {subs.} is {NULL}, use the names of arguments in {...}
+  v1. <- nl. == nx. | inll(subs.)
+  v2. <- nl. == nx. | !req.
+  err. <- NULL
+  if (!v1.) {err. <- c(err., "\n • When [subs.] is not NULL, it must contain one value per argument in [...].")}
+  if (!v2.) {err. <- c(err., "\n • When [req. = TRUE], arguments in [...] must be named or [subs.] must contain one value per argument in [...].")}
+  if (idef(err.)) {stop(err.)}
   subs. <- av(strsplit(as.character(av(subs.)), "|", TRUE))                      # > atomize, convert to character, and split along {'|'}
   subs.[is.na(subs.)] <- 'NA'                                                    # > replace any {NA} values with {'NA'}
-  V1 <- !blank. | notIN("", subs.)                                               # validity of the combination of {subs.} and {blank.}
-  V2 <- !u.  | is_unique(subs.)                                                  # validity of the combination of {subs.} and {u.}
-  E <- NULL
-  if (!V1) {E <- c(E, "\n  * A name is blank but [blank. = FALSE].")}
-  if (!V2) {E <- c(E, "\n  * Names provided are not unique but [u. = TRUE].")}
-  if (xdef(E)) {stop(E)}
+  v1. <- !blank. | notIN("", subs.)                                              # validity of the combination of {subs.} and {blank.}
+  v2. <- !u.  | is_unique(subs.)                                                 # validity of the combination of {subs.} and {u.}
+  err. <- NULL
+  if (!v1.) {err. <- c(err., "\n • A name is blank but [blank. = FALSE].")}
+  if (!v2.) {err. <- c(err., "\n • Names provided are not unique but [u. = TRUE].")}
+  if (idef(err.)) {stop(err.)}
   subs.
 }
 
-#' @rdname dots
+#' @describeIn dots Extracts named arguments from \code{...} as a named list
+#'   (does not include arguments named with blank strings).
 #' @export
 named_dots <- function(...) {
   if (...length() == 0) {return(NULL)}
-  x <- list(...)
-  n <- ...names()
-  i <- !is.na(n)
-  if (any(i)) {x[i]}
+  x. <- list(...)
+  n. <- ...names()
+  i. <- !is.na(n.)
+  if (any(i.)) {x.[i.]}
   else {NULL}
 }
 
-#' @rdname dots
+#' @describeIn dots Extract unnamed arguments from \code{...} as an unnamed list
+#'   (includes any arguments named with blank strings).
 #' @export
 unnamed_dots <- function(...) {
   if (...length() == 0) {return(NULL)}
-  x <- list(...)
-  n <- ...names()
-  i <- is.na(n)
-  if (any(i)) {x[i]}
+  x. <- list(...)
+  n. <- ...names()
+  i. <- is.na(n.)
+  if (any(i.)) {x.[i.]}
   else {NULL}
 }

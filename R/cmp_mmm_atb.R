@@ -1,7 +1,9 @@
 #' @name cmp_mmm_atb
 #' @family props
 #' @title Complete + Extended Mode + Atomic Tibble (cmp + mmm + atb)
-#' @description See \code{\link{mmm}}, and \code{\link{is_cmp_tibble}}.
+#' @description Get all possible complete + extended mode + atomic tibble
+#'   properties.
+#' @details See \code{\link{mmm}}, and \code{\link{is_cmp_tbl}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
@@ -11,114 +13,121 @@ cmp_mmm_atb_vals <- function() {
   x
 }
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete atomic tibble?
 #' @export
-cmp_atm_atb <- function(x) {is_cmp_tibble(x)}
+cmp_atm_atb <- function(x) {cmp_tbl(x)}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete character atomic tibble?
 #' @export
-cmp_chr_atb <- function(x) {is_cmp_tibble(x, "chr")}
+cmp_chr_atb <- function(x) {cmp_tbl(x, "chr")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete onechar atomic tibble?
 #' @export
-cmp_ch1_atb <- function(x) {is_cmp_tibble(x, "ch1")}
+cmp_ch1_atb <- function(x) {cmp_tbl(x, "ch1")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete color atomic tibble?
 #' @export
-cmp_clr_atb <- function(x) {is_cmp_tibble(x, "clr")}
+cmp_clr_atb <- function(x) {cmp_tbl(x, "clr")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete even-numeric atomic tibble?
 #' @export
-cmp_evn_atb <- function(x) {is_cmp_tibble(x, "evn")}
+cmp_evn_atb <- function(x) {cmp_tbl(x, "evn")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete factor atomic tibble?
 #' @export
-cmp_fac_atb <- function(x) {is_cmp_tibble(x, "fac")}
+cmp_fac_atb <- function(x) {cmp_tbl(x, "fac")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete fractional-numeric atomic
+#'   tibble?
 #' @export
-cmp_frc_atb <- function(x) {is_cmp_tibble(x, "frc")}
+cmp_frc_atb <- function(x) {cmp_tbl(x, "frc")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete indexer atomic tibble?
 #' @export
-cmp_ind_atb <- function(x) {is_cmp_tibble(x, "ind")}
+cmp_ind_atb <- function(x) {cmp_tbl(x, "ind")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete logical atomic tibble?
 #' @export
-cmp_lgc_atb <- function(x) {is_cmp_tibble(x, "lgc")}
+cmp_lgl_atb <- function(x) {cmp_tbl(x, "lgl")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete negative-numeric atomic
+#'   tibble?
 #' @export
-cmp_cnb_atb <- function(x) {is_cmp_tibble(x, "cnb")}
+cmp_neg_atb <- function(x) {cmp_tbl(x, "neg")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete negative-whole-numeric atomic
+#'   tibble?
 #' @export
-cmp_neg_atb <- function(x) {is_cmp_tibble(x, "neg")}
+cmp_ngw_atb <- function(x) {cmp_tbl(x, "ngw")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete non-negative-numeric atomic
+#'   tibble?
 #' @export
-cmp_ngw_atb <- function(x) {is_cmp_tibble(x, "ngw")}
+cmp_nng_atb <- function(x) {cmp_tbl(x, "nng")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete non-negative-numeric atomic
+#'   tibble?
 #' @export
-cmp_nng_atb <- function(x) {is_cmp_tibble(x, "nng")}
+cmp_nnw_atb <- function(x) {cmp_tbl(x, "nnw")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete non-positive-numeric atomic
+#'   tibble?
 #' @export
-cmp_nnw_atb <- function(x) {is_cmp_tibble(x, "nnw")}
+cmp_nps_atb <- function(x) {cmp_tbl(x, "nps")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete non-positive-whole-numeric
+#'   atomic tibble?
 #' @export
-cmp_nps_atb <- function(x) {is_cmp_tibble(x, "nps")}
+cmp_npw_atb <- function(x) {cmp_tbl(x, "npw")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete non-sortable atomic tibble?
 #' @export
-cmp_npw_atb <- function(x) {is_cmp_tibble(x, "npw")}
+cmp_nst_atb <- function(x) {cmp_tbl(x, "nst")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete numeric atomic tibble?
 #' @export
-cmp_nst_atb <- function(x) {is_cmp_tibble(x, "nst")}
+cmp_num_atb <- function(x) {cmp_tbl(x, "num")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete odd-numeric atomic tibble?
 #' @export
-cmp_num_atb <- function(x) {is_cmp_tibble(x, "num")}
+cmp_odd_atb <- function(x) {cmp_tbl(x, "odd")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete ordered-factor atomic tibble?
 #' @export
-cmp_odd_atb <- function(x) {is_cmp_tibble(x, "odd")}
+cmp_ord_atb <- function(x) {cmp_tbl(x, "ord")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete percent-numeric atomic tibble?
 #' @export
-cmp_ord_atb <- function(x) {is_cmp_tibble(x, "ord")}
+cmp_pct_atb <- function(x) {cmp_tbl(x, "pct")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete positive-numeric atomic
+#'   tibble?
 #' @export
-cmp_pct_atb <- function(x) {is_cmp_tibble(x, "pct")}
+cmp_pos_atb <- function(x) {cmp_tbl(x, "pos")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete proportion-numeric atomic
+#'   tibble?
 #' @export
-cmp_pos_atb <- function(x) {is_cmp_tibble(x, "pos")}
+cmp_ppn_atb <- function(x) {cmp_tbl(x, "ppn")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete positive-whole-numeric atomic
+#'   tibble?
 #' @export
-cmp_ppn_atb <- function(x) {is_cmp_tibble(x, "ppn")}
+cmp_psw_atb <- function(x) {cmp_tbl(x, "psw")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete sortable atomic tibble?
 #' @export
-cmp_psw_atb <- function(x) {is_cmp_tibble(x, "psw")}
+cmp_srt_atb <- function(x) {cmp_tbl(x, "srt")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete string atomic tibble?
 #' @export
-cmp_srt_atb <- function(x) {is_cmp_tibble(x, "srt")}
+cmp_str_atb <- function(x) {cmp_tbl(x, "str")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete unordered-factor atomic
+#'   tibble?
 #' @export
-cmp_str_atb <- function(x) {is_cmp_tibble(x, "str")}
+cmp_uno_atb <- function(x) {cmp_tbl(x, "uno")}
 
-#' @rdname cmp_mmm_atb
+#' @describeIn cmp_mmm_atb Is \code{x} a complete whole-numeric atomic tibble?
 #' @export
-cmp_uno_atb <- function(x) {is_cmp_tibble(x, "uno")}
-
-#' @rdname cmp_mmm_atb
-#' @export
-cmp_whl_atb <- function(x) {is_cmp_tibble(x, "whl")}
+cmp_whl_atb <- function(x) {cmp_tbl(x, "whl")}

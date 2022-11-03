@@ -3,7 +3,6 @@
 \name{mmm_avt}
 \alias{mmm_avt}
 \alias{mmm_avt_vals}
-\alias{atm_avt}
 \alias{chr_avt}
 \alias{ch1_avt}
 \alias{clr_avt}
@@ -11,8 +10,7 @@
 \alias{fac_avt}
 \alias{frc_avt}
 \alias{ind_avt}
-\alias{lgc_avt}
-\alias{cnb_avt}
+\alias{lgl_avt}
 \alias{neg_avt}
 \alias{ngw_avt}
 \alias{nng_avt}
@@ -35,8 +33,6 @@
 \usage{
 mmm_avt_vals()
 
-atm_avt(x)
-
 chr_avt(x)
 
 ch1_avt(x)
@@ -51,9 +47,7 @@ frc_avt(x)
 
 ind_avt(x)
 
-lgc_avt(x)
-
-cnb_avt(x)
+lgl_avt(x)
 
 neg_avt(x)
 
@@ -98,12 +92,69 @@ whl_avt(x)
 \code{TRUE} or \code{FALSE}
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_atm_vtype}}.
+Get all possible extended mode + atomic vtype properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{atm_vtp}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{chr_avt}: Is \code{x} a character atomic vtype?
+
+\item \code{ch1_avt}: Is \code{x} a onechar atomic vtype?
+
+\item \code{clr_avt}: Is \code{x} a color atomic vtype?
+
+\item \code{evn_avt}: Is \code{x} an even-numeric atomic vtype?
+
+\item \code{fac_avt}: Is \code{x} a factor atomic vtype?
+
+\item \code{frc_avt}: Is \code{x} a fractional-numeric atomic vtype?
+
+\item \code{ind_avt}: Is \code{x} an indexer atomic vtype?
+
+\item \code{lgl_avt}: Is \code{x} a logical atomic vtype?
+
+\item \code{neg_avt}: Is \code{x} a negative-numeric atomic vtype?
+
+\item \code{ngw_avt}: Is \code{x} a non-negative-whole-numeric atomic vtype?
+
+\item \code{nng_avt}: Is \code{x} a non-negative-numeric atomic vtype?
+
+\item \code{nnw_avt}: Is \code{x} a non-negative-whole-numeric atomic vtype?
+
+\item \code{nps_avt}: Is \code{x} a non-positive-numeric atomic vtype?
+
+\item \code{npw_avt}: Is \code{x} a non-positive-whole-numeric atomic vtype?
+
+\item \code{nst_avt}: Is \code{x} a non-sortable atomic atomic vtype?
+
+\item \code{num_avt}: Is \code{x} a numeric atomic vtype?
+
+\item \code{odd_avt}: Is \code{x} an odd-numeric atomic vtype?
+
+\item \code{ord_avt}: Is \code{x} an ordered-factor atomic vtype?
+
+\item \code{pct_avt}: Is \code{x} a percent-numeric atomic vtype?
+
+\item \code{pos_avt}: Is \code{x} a positive-numeric atomic vtype?
+
+\item \code{ppn_avt}: Is \code{x} a proportion-numeric atomic vtype?
+
+\item \code{psw_avt}: Is \code{x} a positive-whole-numeric atomic vtype?
+
+\item \code{srt_avt}: Is \code{x} a sortable atomic atomic vtype?
+
+\item \code{str_avt}: Is \code{x} a string atomic vtype?
+
+\item \code{uno_avt}: Is \code{x} an unordered-factor atomic vtype?
+
+\item \code{whl_avt}: Is \code{x} a whole-numeric atomic vtype?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -120,6 +171,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -130,7 +183,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

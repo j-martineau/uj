@@ -2,6 +2,7 @@
 % Please edit documentation in R/ss.R
 \name{ss}
 \alias{ss}
+\alias{ss1}
 \alias{ssP}
 \alias{ssD}
 \alias{ssB}
@@ -10,44 +11,63 @@
 \alias{ssDB}
 \alias{ssPDB}
 \alias{ch}
+\alias{uch}
+\alias{sstb}
 \title{Split strings and select/check for elements}
 \usage{
-ss(..., d = "|", trm = T, sqz = T, u = F, n = NULL)
+ss(..., d. = "|", trm. = T, sqz. = T, u. = F, n. = NULL)
 
-ssP(..., trm = T, sqz = T, n = NULL, u = F)
+ss1(..., trm. = T, sqz. = T, n. = NULL, u. = F)
 
-ssD(..., trm = T, sqz = T, n = NULL, u = F)
+ssP(..., trm. = T, sqz. = T, n. = NULL, u. = F)
 
-ssB(..., trm = T, sqz = T, n = NULL, u = F)
+ssD(..., trm. = T, sqz. = T, n. = NULL, u. = F)
 
-ssPD(..., trm = T, sqz = T, n = NULL, u = F)
+ssB(..., trm. = T, sqz. = T, n. = NULL, u. = F)
 
-ssPB(..., trm = T, sqz = T, n = NULL, u = F)
+ssPD(..., trm. = T, sqz. = T, n. = NULL, u. = F)
 
-ssDB(..., trm = T, sqz = T, n = NULL, u = F)
+ssPB(..., trm. = T, sqz. = T, n. = NULL, u. = F)
 
-ssPDB(..., trm = T, sqz = T, n = NULL, u = F)
+ssDB(..., trm. = T, sqz. = T, n. = NULL, u. = F)
 
-ch(..., trm = T, sqz = T, n = NULL, u = F)
+ssPDB(..., trm. = T, sqz. = T, n. = NULL, u. = F)
+
+ch(..., trm. = T, sqz. = T, n. = NULL, u. = F)
+
+uch(..., trm. = T, sqz. = T, n. = NULL)
+
+sstb(x., d., name. = "string", parts. = "part")
 }
 \arguments{
 \item{...}{An arbitrary number of objects to be split
 (\code{\link[=a]{atomized}} before splitting).}
 
-\item{d}{A character vect of delimiters.}
+\item{d.}{A character vect of delimiters.}
 
-\item{trm}{Logical scalar indicating whether to trim whitespace from each
+\item{trm.}{Logical scalar indicating whether to trim whitespace from each
 element of the result.}
 
-\item{sqz}{Logical scalar indicating whether to squeeze the result by
+\item{sqz.}{Logical scalar indicating whether to squeeze the result by
 removing either empty strings (for \code{ss(.)} functions) or characters
 that are neither letters, digits, nor spaces (for \code{ch(.)}).}
 
-\item{u}{Logical scalar indicating whether to reduce the result to unique
+\item{u.}{Logical scalar indicating whether to reduce the result to unique
 values.}
 
-\item{n}{An optional integer scalar giving the number of the split or
+\item{n.}{An optional integer scalar giving the number of the split or
 character to extract.}
+
+\item{x.}{Character scalar or vector of string(s) to be split.}
+
+\item{name.}{Character scalar name of the variable to hold the original
+strings.}
+
+\item{s.}{Character scalar delimiter for splitting strings.}
+
+\item{part.}{Character scalar or character vector with as many elements as
+each string will be split into for naming each variable containing a part
+of each string.}
 }
 \value{
 A character vector (when \code{vals = NULL}) or a logical vector
@@ -58,65 +78,76 @@ Split strings and select/check for elements
 }
 \details{
 \strong{\code{ss}} splits strings using the delimiter(s) in
-\code{d} following these sequential steps:
-\enumerate{
+\code{d.} following these sequential steps:\enumerate{
 \item Reduce \code{...} to an atomic vector containing the constituent
 atomic elements of each argument in \code{...}.
 \item Convert the result to mode character.
 \item Replace each element of the result with that element's constituent
-parts as delimited by \code{d}, producting a potentially longer
+parts as delimited by \code{d.}, producting a potentially longer
 character vector.
-\item If \code{n} is not \code{NULL}, extracts the \code{n}-th
+\item If \code{n.} is not \code{NULL}, extracts the \code{n.}-th
 elements(s) from the result.
-\item If \code{trm} is \code{TRUE}, trims whitespace (i.e., spaces, tabs,
-newlines) from both ends of each element of the result.
-\item If \code{sqz} is \code{TRUE}, removes blank strings elements
+\item If \code{trm.} is \code{TRUE}, trims whitespace (i.e., spaces,
+tabs, newlines) from both ends of each element of the result.
+\item If \code{sqz.} is \code{TRUE}, removes blank strings elements
 (i.e., \code{""}) from the result.
-\item If \code{u} is \code{TRUE}, reduces the result to unique values.
-}
-\cr\cr
+\item If \code{u.} is \code{TRUE}, reduces the result to unique values. }
 \strong{\code{ch}} splits strings into their constituent characters
-following these sequential steps:
-\enumerate{
+following these sequential steps:\enumerate{
 \item Reduce \code{...} to an atomic vector containing the constituent
 atomic elements of each argument in \code{...}.
 \item Convert the result to mode character.
 \item Replace each element of the result with a character vector of that
 element's constituent characters, producing a potentially longer
 character vector.
-\item If \code{trm} is \code{TRUE}, trims whitespace (i.e., spaces, tabs,
-newlines) from both ends of each element of the result.
-\item If \code{sqz} is \code{TRUE}, removes characters that are neither
+\item If \code{trm.} is \code{TRUE}, trims white space (i.e., spaces,
+tabs, newlines) from both ends of each element of the result.
+\item If \code{sqz.} is \code{TRUE}, removes characters that are neither
 letters, digits, nor spaces from the result.
-\item If \code{n} is not \code{NULL}, extracts the \code{n}-th
+\item If \code{n.} is not \code{NULL}, extracts the \code{n.}-th
 elements(s) from the result.
-\item If \code{u} is \code{TRUE}, reduces the result to unique values.
-}
+\item If \code{u.} is \code{TRUE}, reduces the result to unique values. }
 \strong{Extensions}
 \cr Functions are extended for specific delimiters, signified by the
-following extension characters:
-\cr\tabular{lll}{
-\strong{Character}\tab\strong{Name}\tab\strong{Delimiter Invoked}
-\cr\code{'P'}     \tab Pipe        \tab \code{"|"}
-\cr\code{'D'}     \tab Dot         \tab \code{"."}
-\cr\code{'B'}     \tab Broken pipe \tab \code{"¦"}
-  }
-\strong{\code{ssP}, \code{ssD}, and \code{ssB}}
-\cr Split strings using, respectively, the delimiters \code{'|'},
-\code{'.'}, and \code{'¦'}.
-\cr\cr
-\strong{\code{ssPD}, \code{ssPB}, \code{ssDB}}
-\cr split strings using, respectively, the following pairs of delimiters:
-\code{c('|', '.')}, \code{c('|', '¦')}, and \code{c('.', '¦')}.
-\cr\cr
-\strong{\code{ssPDB}}
-\cr Splits strings using the delimiters \code{c('|', '.', '¦')}.
+following suffixes on function names:\tabular{lll}{
+SUFFIX    \tab SUFFIX      \tab DELIMITER                             \cr
+CHARACTER \tab NAME        \tab INVOKED                               \cr
+\code{'1'}\tab Space       \tab \code{" "}                            \cr
+\code{'P'}\tab Pipe        \tab \code{"|"}                            \cr
+\code{'D'}\tab Dot         \tab \code{"."}                            \cr
+\code{'B'}\tab Broken pipe \tab \code{"¦"}                              }
 }
+\section{Functions}{
+\itemize{
+\item \code{ss1}: Split strings using a pipe (\code{'|'}) delimiter.
+
+\item \code{ssP}: Split strings using a pipe (\code{'|'}) delimiter.
+
+\item \code{ssD}: Split strings using a dot/period (\code{'.'}) delimiter.
+
+\item \code{ssB}: Split strings using a broken pipe (\code{'¦'}) delimiter.
+
+\item \code{ssPD}: Split a string using pipe and dot delimiters.
+
+\item \code{ssPB}: Split a string using pipe and broken pipe delimiters.
+
+\item \code{ssDB}: Split a string using dot and broken pipe delimiters.
+
+\item \code{ssPDB}: Split a string using pipe, dot, and broken pipe delimiters.
+
+\item \code{ch}: Split a string into constituent characters.
+
+\item \code{uch}: Split a string into unique constituent characters.
+
+\item \code{sstb}: Split strings and place results in a tibble, including
+original values
+}}
+
 \seealso{
 Other strings: 
-\code{\link{Oxford}},
 \code{\link{delim}},
 \code{\link{ipat}()},
+\code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{spacing}},
 \code{\link{tocase}()},

@@ -4,13 +4,13 @@
 \alias{comparable}
 \title{Are objects comparable?}
 \usage{
-comparable(..., recycle = T)
+comparable(..., recycle. = T)
 }
 \arguments{
 \item{...}{An arbitrary number of arguments to be checked for comparability
 with each other.}
 
-\item{recycle}{A logical scalar indicating whether arguments in \code{...}
+\item{recycle.}{A logical scalar indicating whether arguments in \code{...}
 must be recyclable to be comparable.}
 }
 \value{
@@ -28,7 +28,6 @@ levels (in the same order).
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -44,6 +43,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -55,7 +56,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

@@ -1,7 +1,9 @@
 #' @name cmp_mmm_mvc
 #' @family props
 #' @title Complete + Extended Mode + Atomic Mvect (cmp + mmm + mvc)
-#' @description See \code{\link{mmm}}, and \code{\link{is_cmp_mvect}}.
+#' @description Get all possible complete + extended mode + atomic mvect
+#'   properties.
+#' @details See \code{\link{mmm}}, and \code{\link{cmp_mvc}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
@@ -11,114 +13,118 @@ cmp_mmm_mvc_vals <- function() {
   x
 }
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete atomic mvect?
 #' @export
-cmp_atm_mvc <- function(x) {is_cmp_mvect(x)}
+cmp_atm_mvc <- function(x) {cmp_mvc(x) & iatm(x)}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete character atomic mvect?
 #' @export
-cmp_chr_mvc <- function(x) {is_cmp_mvect(x, "chr")}
+cmp_chr_mvc <- function(x) {cmp_mvc(x, "chr")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete onechar atomic mvect?
 #' @export
-cmp_ch1_mvc <- function(x) {is_cmp_mvect(x, "ch1")}
+cmp_ch1_mvc <- function(x) {cmp_mvc(x, "ch1")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete color atomic mvect?
 #' @export
-cmp_clr_mvc <- function(x) {is_cmp_mvect(x, "clr")}
+cmp_clr_mvc <- function(x) {cmp_mvc(x, "clr")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete even-number atomic mvect?
 #' @export
-cmp_evn_mvc <- function(x) {is_cmp_mvect(x, "evn")}
+cmp_evn_mvc <- function(x) {cmp_mvc(x, "evn")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete factor atomic mvect?
 #' @export
-cmp_fac_mvc <- function(x) {is_cmp_mvect(x, "fac")}
+cmp_fac_mvc <- function(x) {cmp_mvc(x, "fac")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete fractional-number atomic
+#'   mvect?
 #' @export
-cmp_frc_mvc <- function(x) {is_cmp_mvect(x, "frc")}
+cmp_frc_mvc <- function(x) {cmp_mvc(x, "frc")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete indexer atomic mvect?
 #' @export
-cmp_ind_mvc <- function(x) {is_cmp_mvect(x, "ind")}
+cmp_ind_mvc <- function(x) {cmp_mvc(x, "ind")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete logical atomic mvect?
 #' @export
-cmp_lgc_mvc <- function(x) {is_cmp_mvect(x, "lgc")}
+cmp_lgl_mvc <- function(x) {cmp_mvc(x, "lgl")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete negative-number atomic mvect?
 #' @export
-cmp_cnb_mvc <- function(x) {is_cmp_mvect(x, "cnb")}
+cmp_neg_mvc <- function(x) {cmp_mvc(x, "neg")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete negative-whole-number atomic
+#'   mvect?
 #' @export
-cmp_neg_mvc <- function(x) {is_cmp_mvect(x, "neg")}
+cmp_ngw_mvc <- function(x) {cmp_mvc(x, "ngw")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete non-negative-number atomic
+#'   mvect?
 #' @export
-cmp_ngw_mvc <- function(x) {is_cmp_mvect(x, "ngw")}
+cmp_nng_mvc <- function(x) {cmp_mvc(x, "nng")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete non-negative-whole-number
+#'   atomic mvect?
 #' @export
-cmp_nng_mvc <- function(x) {is_cmp_mvect(x, "nng")}
+cmp_nnw_mvc <- function(x) {cmp_mvc(x, "nnw")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete non-positive-number atomic
+#'   mvect?
 #' @export
-cmp_nnw_mvc <- function(x) {is_cmp_mvect(x, "nnw")}
+cmp_nps_mvc <- function(x) {cmp_mvc(x, "nps")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete non-positive-whole-number
+#'   atomic mvect?
 #' @export
-cmp_nps_mvc <- function(x) {is_cmp_mvect(x, "nps")}
+cmp_npw_mvc <- function(x) {cmp_mvc(x, "npw")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete non-sortable atomic mvect?
 #' @export
-cmp_npw_mvc <- function(x) {is_cmp_mvect(x, "npw")}
+cmp_nst_mvc <- function(x) {cmp_mvc(x, "nst")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete number atomic mvect?
 #' @export
-cmp_nst_mvc <- function(x) {is_cmp_mvect(x, "nst")}
+cmp_num_mvc <- function(x) {cmp_mvc(x, "num")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete odd-number atomic mvect?
 #' @export
-cmp_num_mvc <- function(x) {is_cmp_mvect(x, "num")}
+cmp_odd_mvc <- function(x) {cmp_mvc(x, "odd")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete ordered-factor atomic mvect?
 #' @export
-cmp_odd_mvc <- function(x) {is_cmp_mvect(x, "odd")}
+cmp_ord_mvc <- function(x) {cmp_mvc(x, "ord")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete percent-number atomic mvect?
 #' @export
-cmp_ord_mvc <- function(x) {is_cmp_mvect(x, "ord")}
+cmp_pct_mvc <- function(x) {cmp_mvc(x, "pct")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete positive-number atomic mvect?
 #' @export
-cmp_pct_mvc <- function(x) {is_cmp_mvect(x, "pct")}
+cmp_pos_mvc <- function(x) {cmp_mvc(x, "pos")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete proportion-number atomic
+#'   mvect?
 #' @export
-cmp_pos_mvc <- function(x) {is_cmp_mvect(x, "pos")}
+cmp_ppn_mvc <- function(x) {cmp_mvc(x, "ppn")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete positive-whole-number atomic
+#'   mvect?
 #' @export
-cmp_ppn_mvc <- function(x) {is_cmp_mvect(x, "ppn")}
+cmp_psw_mvc <- function(x) {cmp_mvc(x, "psw")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete sortable atomic mvect?
 #' @export
-cmp_psw_mvc <- function(x) {is_cmp_mvect(x, "psw")}
+cmp_srt_mvc <- function(x) {cmp_mvc(x, "srt")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete string atomic mvect?
 #' @export
-cmp_srt_mvc <- function(x) {is_cmp_mvect(x, "srt")}
+cmp_str_mvc <- function(x) {cmp_mvc(x, "str")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete unordered-factor atomic mvect?
 #' @export
-cmp_str_mvc <- function(x) {is_cmp_mvect(x, "str")}
+cmp_uno_mvc <- function(x) {cmp_mvc(x, "uno")}
 
-#' @rdname cmp_mmm_mvc
+#' @describeIn cmp_mmm_mvc Is \code{x} a complete whole-number atomic mvect?
 #' @export
-cmp_uno_mvc <- function(x) {is_cmp_mvect(x, "uno")}
-
-#' @rdname cmp_mmm_mvc
-#' @export
-cmp_whl_mvc <- function(x) {is_cmp_mvect(x, "whl")}
+cmp_whl_mvc <- function(x) {cmp_mvc(x, "whl")}

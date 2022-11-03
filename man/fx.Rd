@@ -4,7 +4,7 @@
 \alias{fx}
 \alias{f0}
 \alias{f1}
-\title{Fork}
+\title{Fork:Extended Functionality for \code{\link[base]{ifelse}}}
 \usage{
 f0(test, yes, no)
 
@@ -40,28 +40,25 @@ an atomic scalar in \code{c(TRUE, FALSE, NA)}.}
 An object.
 }
 \description{
-Extended Functionality for \code{\link[base]{ifelse}}
+If \code{test = TRUE}, returns \code{yes}. If \code{test} is
+anything else, returns \code{no}.
 }
-\details{
-\strong{\code{f0}}
-\cr If \code{test = TRUE}, returns \code{yes}. If \code{test} is anything
-else, returns \code{no}.
-\cr\cr
-\strong{\code{f1}}
-\cr If \code{test = TRUE}, returns \code{yes}. If \code{test = FALSE},
-returns \code{no}. If \code{test = NA} and \code{na = 'err'}, throws an
-error, otherwise returns \code{na}. If \code{test} is anything else and
-\code{err = 'err'}, throws an error, otherwise returns \code{err}.
-\cr\cr
-\strong{\code{fx}}
-\cr Evaluates \code{test} (which must be a logical scalar or vector
-containing only no \code{NA} values) and returns an object of the same
+\section{Functions}{
+\itemize{
+\item \code{f1}: If \code{test = TRUE}, returns \code{yes}. If \code{test =
+  FALSE}, returns \code{no}. If \code{test = NA} and \code{na = 'err'},
+throws an error, otherwise returns \code{na}. If \code{test} is anything
+else and \code{err = 'err'}, throws an error, otherwise returns \code{err}.
+
+\item \code{fx}: Evaluates \code{test} (which must be a logical scalar or
+vector containing no \code{NA} values) and returns an object of the same
 dimension as \code{test} where \code{TRUE} values are exchanged for the
 associated value of \code{yes} and \code{FALSE} values are exchanged for
 the associated value of \code{no}. \code{yes} and \code{no} must be
 recyclable with \code{test}. \code{yes} and \code{no} must also be
 \link[=compatible]{compatible} with each other.
-}
+}}
+
 \seealso{
 Other meta: 
 \code{\link{as_xxx}},

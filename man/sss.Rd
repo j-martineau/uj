@@ -2,84 +2,99 @@
 % Please edit documentation in R/sss.R
 \name{sss}
 \alias{sss}
+\alias{icmp}
+\alias{imss}
+\alias{inas}
+\alias{ioks}
+\alias{iprt}
 \alias{sss_vals}
-\alias{xcmp}
-\alias{xmss}
-\alias{xnas}
-\alias{xoks}
-\alias{xprt}
-\alias{is_sss}
+\alias{isss}
 \title{State of an object}
 \usage{
+sss(x.)
+
+icmp(x.)
+
+imss(x.)
+
+inas(x.)
+
+ioks(x.)
+
+iprt(x.)
+
 sss_vals()
 
-xcmp(x)
-
-xmss(x)
-
-xnas(x)
-
-xoks(x)
-
-xprt(x)
-
-sss(x)
-
-is_sss(x, xxx, ...)
+isss(x., xxx., ...)
 }
 \arguments{
-\item{x}{An object.}
+\item{x.}{An object.}
 
-\item{xxx}{A character scalar containing one or more values from
+\item{xxx.}{A character scalar containing one or more values from
 \code{sss_vals()} separated by pipes.}
 
 \item{...}{Additional arguments to \code{\link{meets}} containing value and
 element/row/column count restrictions.}
 }
 \value{
-\code{sss_vals()} returns a character vector. \code{sss(x)}
+\code{sss_vals()} returns a character vector. \code{sss(x.)}
 returns a character scalar or \code{NULL}. All others return either
 \code{TRUE} or \code{FALSE}.
 }
 \description{
+Get a character scalar containing all state properties from
+\code{sss_vals()} that is applicable to \code{x.}, if defined. If not
+defined, return \code{NULL}.
+}
+\details{
 An object's state (of completeness) is defined for non-empty
 atomic tibbles, non-empty atomic lists, non-empty atomic vectors, and
 non-empty atomic arrays. For all others, state is undefined and returned as
 \code{NULL}. The following table summarizes valid state properties.
 \tabular{lll}{
-\emph{Value}\tab\emph{Name}        \tab\emph{Characteristics}
-\cr\code{'cmp'}\tab complete       \tab non-empty, atomic, no
-\code{NA} values.
-\cr\code{'mss'}\tab missing        \tab non-empty, atomic, only
-\code{NA} values.
-\cr\code{'prt'}\tab partial        \tab non-empty, atomic, both
-\code{NA} and non-\code{NA} values.
-\cr\code{'nas'}\tab\code{NA} scalar\tab atomic \code{NA} scalar.
-\cr\code{'oks'}\tab\code{OK} scalar\tab atomic non-\code{NA} scalar
+STATE       \tab STATE           \tab CHARACTERISTICS                 \cr
+PROPERTY    \tab PROPERTY        \tab OF QUALIFYING                   \cr
+VALUE       \tab NAME            \tab OBJECTS                         \cr
+\code{'cmp'}\tab complete        \tab non-empty, atomic, no \code{NA}
+values                          \cr
+\code{'mss'}\tab missing         \tab non-empty, atomic, only \code{NA}
+values                          \cr
+\code{'prt'}\tab partial         \tab non-empty, atomic, both \code{NA}
+and non-\code{NA} values        \cr
+\code{'nas'}\tab\code{NA} scalar \tab atomic \code{NA} scalar         \cr
+\code{'oks'}\tab\code{OK} scalar \tab atomic non-\code{NA} scalar       }
 }
-}
-\details{
-\strong{\code{sss_vals}}
-\cr Gets all valid state properties.
-\cr\cr
-\strong{\code{sss}}
-\cr Gets a character scalar containing all state properties from
-\code{sss_vals()} that is applicable to \code{x}, if defined. If not
-defined, returns \code{NULL}.
-\cr\cr
-\strong{\code{is_sss}}
-\cr Evaluates whether \code{x} has a state property represented in
-\code{xxx}.
-\cr\cr
-\strong{Additional Arguments in \code{...}}
-\cr Submitting additional arguments to \code{is_sss} via \code{...}
+\section{Functions}{
+\itemize{
+\item \code{icmp}: Is \code{x.} complete (atomic, of length 1 or greater, and
+containing no \code{NA} values)?
+
+\item \code{imss}: Is \code{x.} a missing object (atomic, of length 1 or
+greater, and containing only \code{NA} values)?
+
+\item \code{inas}: Is \code{x.} an atomic scalar \code{NA} value?
+
+\item \code{ioks}: Is \code{x.} an atomic scalar non-\code{NA} value?
+
+\item \code{iprt}: Is \code{x.} an atomic object with some \code{NA} and some
+non-\code{NA} values?
+
+\item \code{sss_vals}: Get a character vector of all possible state property values.
+
+\item \code{isss}: Evaluate whether \code{x.} has a state property represented
+in \code{xxx.}.
+}}
+
+\section{Additional Arguments in \code{...}}{
+
+Submitting additional arguments to \code{is_sss} via \code{...}
 allows for checking not just the state but whether length, number of rows,
 number of columns, and element values meet flexible criteria.
 }
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -96,6 +111,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -107,7 +124,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{ttt}()},
 \code{\link{xxx}()}
 }

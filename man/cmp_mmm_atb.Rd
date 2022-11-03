@@ -11,8 +11,7 @@
 \alias{cmp_fac_atb}
 \alias{cmp_frc_atb}
 \alias{cmp_ind_atb}
-\alias{cmp_lgc_atb}
-\alias{cmp_cnb_atb}
+\alias{cmp_lgl_atb}
 \alias{cmp_neg_atb}
 \alias{cmp_ngw_atb}
 \alias{cmp_nng_atb}
@@ -51,9 +50,7 @@ cmp_frc_atb(x)
 
 cmp_ind_atb(x)
 
-cmp_lgc_atb(x)
-
-cmp_cnb_atb(x)
+cmp_lgl_atb(x)
 
 cmp_neg_atb(x)
 
@@ -98,12 +95,83 @@ cmp_whl_atb(x)
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_cmp_tibble}}.
+Get all possible complete + extended mode + atomic tibble
+properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{is_cmp_tbl}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{cmp_atm_atb}: Is \code{x} a complete atomic tibble?
+
+\item \code{cmp_chr_atb}: Is \code{x} a complete character atomic tibble?
+
+\item \code{cmp_ch1_atb}: Is \code{x} a complete onechar atomic tibble?
+
+\item \code{cmp_clr_atb}: Is \code{x} a complete color atomic tibble?
+
+\item \code{cmp_evn_atb}: Is \code{x} a complete even-numeric atomic tibble?
+
+\item \code{cmp_fac_atb}: Is \code{x} a complete factor atomic tibble?
+
+\item \code{cmp_frc_atb}: Is \code{x} a complete fractional-numeric atomic
+tibble?
+
+\item \code{cmp_ind_atb}: Is \code{x} a complete indexer atomic tibble?
+
+\item \code{cmp_lgl_atb}: Is \code{x} a complete logical atomic tibble?
+
+\item \code{cmp_neg_atb}: Is \code{x} a complete negative-numeric atomic
+tibble?
+
+\item \code{cmp_ngw_atb}: Is \code{x} a complete negative-whole-numeric atomic
+tibble?
+
+\item \code{cmp_nng_atb}: Is \code{x} a complete non-negative-numeric atomic
+tibble?
+
+\item \code{cmp_nnw_atb}: Is \code{x} a complete non-negative-numeric atomic
+tibble?
+
+\item \code{cmp_nps_atb}: Is \code{x} a complete non-positive-numeric atomic
+tibble?
+
+\item \code{cmp_npw_atb}: Is \code{x} a complete non-positive-whole-numeric
+atomic tibble?
+
+\item \code{cmp_nst_atb}: Is \code{x} a complete non-sortable atomic tibble?
+
+\item \code{cmp_num_atb}: Is \code{x} a complete numeric atomic tibble?
+
+\item \code{cmp_odd_atb}: Is \code{x} a complete odd-numeric atomic tibble?
+
+\item \code{cmp_ord_atb}: Is \code{x} a complete ordered-factor atomic tibble?
+
+\item \code{cmp_pct_atb}: Is \code{x} a complete percent-numeric atomic tibble?
+
+\item \code{cmp_pos_atb}: Is \code{x} a complete positive-numeric atomic
+tibble?
+
+\item \code{cmp_ppn_atb}: Is \code{x} a complete proportion-numeric atomic
+tibble?
+
+\item \code{cmp_psw_atb}: Is \code{x} a complete positive-whole-numeric atomic
+tibble?
+
+\item \code{cmp_srt_atb}: Is \code{x} a complete sortable atomic tibble?
+
+\item \code{cmp_str_atb}: Is \code{x} a complete string atomic tibble?
+
+\item \code{cmp_uno_atb}: Is \code{x} a complete unordered-factor atomic
+tibble?
+
+\item \code{cmp_whl_atb}: Is \code{x} a complete whole-numeric atomic tibble?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_avl}},
@@ -119,6 +187,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -130,7 +200,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

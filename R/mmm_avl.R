@@ -1,7 +1,8 @@
 #' @name mmm_avl
 #' @family props
 #' @title Extended Mode + Atomic vlist (mmm + avl)
-#' @description See \code{\link{mmm}}, and \code{\link{is_atm_vlist}}.
+#' @description Get all possible extended mode + atomic vlist properties.
+#' @details See \code{\link{mmm}}, and \code{\link{atm_vls}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
@@ -11,114 +12,106 @@ mmm_avl_vals <- function() {
   x
 }
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a character atomic vlist?
 #' @export
-atm_avl <- function(x) {is_atm_vlist(x)}
+chr_avl <- function(x) {atm_vls(x, "chr")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a onechar atomic vlist?
 #' @export
-chr_avl <- function(x) {is_atm_vlist(x, "chr")}
+ch1_avl <- function(x) {atm_vls(x, "ch1")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a color atomic vlist?
 #' @export
-ch1_avl <- function(x) {is_atm_vlist(x, "ch1")}
+clr_avl <- function(x) {atm_vls(x, "clr")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} an even-numeric atomic vlist?
 #' @export
-clr_avl <- function(x) {is_atm_vlist(x, "clr")}
+evn_avl <- function(x) {atm_vls(x, "evn")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a factor atomic vlist?
 #' @export
-evn_avl <- function(x) {is_atm_vlist(x, "evn")}
+fac_avl <- function(x) {atm_vls(x, "fac")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a fractional-numeric atomic vlist?
 #' @export
-fac_avl <- function(x) {is_atm_vlist(x, "fac")}
+frc_avl <- function(x) {atm_vls(x, "frc")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} an indexer atomic vlist?
 #' @export
-frc_avl <- function(x) {is_atm_vlist(x, "frc")}
+ind_avl <- function(x) {atm_vls(x, "ind")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a logical atomic vlist?
 #' @export
-ind_avl <- function(x) {is_atm_vlist(x, "ind")}
+lgl_avl <- function(x) {atm_vls(x, "lgl")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a negative-numeric atomic vlist?
 #' @export
-lgc_avl <- function(x) {is_atm_vlist(x, "lgc")}
+neg_avl <- function(x) {atm_vls(x, "neg")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a negative-whole-numeric atomic vlist?
 #' @export
-cnb_avl <- function(x) {is_atm_vlist(x, "cnb")}
+ngw_avl <- function(x) {atm_vls(x, "ngw")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a non-negative-numeric atomic vlist?
 #' @export
-neg_avl <- function(x) {is_atm_vlist(x, "neg")}
+nng_avl <- function(x) {atm_vls(x, "nng")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a non-negative-whole-numeric atomic vlist?
 #' @export
-ngw_avl <- function(x) {is_atm_vlist(x, "ngw")}
+nnw_avl <- function(x) {atm_vls(x, "nnw")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a non-positive-numeric atomic vlist?
 #' @export
-nng_avl <- function(x) {is_atm_vlist(x, "nng")}
+nps_avl <- function(x) {atm_vls(x, "nps")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a non-positive-whole-numeric atomic vlist?
 #' @export
-nnw_avl <- function(x) {is_atm_vlist(x, "nnw")}
+npw_avl <- function(x) {atm_vls(x, "npw")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a non-sortable atomic vlist?
 #' @export
-nps_avl <- function(x) {is_atm_vlist(x, "nps")}
+nst_avl <- function(x) {atm_vls(x, "nst")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a numeric atomic vlist?
 #' @export
-npw_avl <- function(x) {is_atm_vlist(x, "npw")}
+num_avl <- function(x) {atm_vls(x, "num")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} an odd-numeric atomic vlist?
 #' @export
-nst_avl <- function(x) {is_atm_vlist(x, "nst")}
+odd_avl <- function(x) {atm_vls(x, "odd")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} an ordered-factor atomic vlist?
 #' @export
-num_avl <- function(x) {is_atm_vlist(x, "num")}
+ord_avl <- function(x) {atm_vls(x, "ord")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a percent-numeric atomic vlist?
 #' @export
-odd_avl <- function(x) {is_atm_vlist(x, "odd")}
+pct_avl <- function(x) {atm_vls(x, "pct")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a positive-numeric atomic vlist?
 #' @export
-ord_avl <- function(x) {is_atm_vlist(x, "ord")}
+pos_avl <- function(x) {atm_vls(x, "pos")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a proportion-numeric atomic vlist?
 #' @export
-pct_avl <- function(x) {is_atm_vlist(x, "pct")}
+ppn_avl <- function(x) {atm_vls(x, "ppn")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a positive-whole-numeric atomic vlist?
 #' @export
-pos_avl <- function(x) {is_atm_vlist(x, "pos")}
+psw_avl <- function(x) {atm_vls(x, "psw")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a sortable atomic vlist?
 #' @export
-ppn_avl <- function(x) {is_atm_vlist(x, "ppn")}
+srt_avl <- function(x) {atm_vls(x, "srt")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a string atomic vlist?
 #' @export
-psw_avl <- function(x) {is_atm_vlist(x, "psw")}
+str_avl <- function(x) {atm_vls(x, "str")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} an unordered-factor atomic vlist?
 #' @export
-srt_avl <- function(x) {is_atm_vlist(x, "srt")}
+uno_avl <- function(x) {atm_vls(x, "uno")}
 
-#' @rdname mmm_avl
+#' @describeIn mmm_avl Is \code{x} a whole-numeric atomic vlist?
 #' @export
-str_avl <- function(x) {is_atm_vlist(x, "str")}
-
-#' @rdname mmm_avl
-#' @export
-uno_avl <- function(x) {is_atm_vlist(x, "uno")}
-
-#' @rdname mmm_avl
-#' @export
-whl_avl <- function(x) {is_atm_vlist(x, "whl")}
+whl_avl <- function(x) {atm_vls(x, "whl")}

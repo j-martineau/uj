@@ -11,8 +11,7 @@
 \alias{cmp_fac_avl}
 \alias{cmp_frc_avl}
 \alias{cmp_ind_avl}
-\alias{cmp_lgc_avl}
-\alias{cmp_cnb_avl}
+\alias{cmp_lgl_avl}
 \alias{cmp_neg_avl}
 \alias{cmp_ngw_avl}
 \alias{cmp_nng_avl}
@@ -51,9 +50,7 @@ cmp_frc_avl(x)
 
 cmp_ind_avl(x)
 
-cmp_lgc_avl(x)
-
-cmp_cnb_avl(x)
+cmp_lgl_avl(x)
 
 cmp_neg_avl(x)
 
@@ -98,12 +95,80 @@ cmp_whl_avl(x)
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_cmp_vlist}}.
+Get all possible complete + extended mode + atomic vlist
+properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{cmp_vls}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{cmp_atm_avl}: Is \code{x} a complete atomic vlist?
+
+\item \code{cmp_chr_avl}: Is \code{x} a complete character atomic vlist?
+
+\item \code{cmp_ch1_avl}: Is \code{x} a complete onechar atomic vlist?
+
+\item \code{cmp_clr_avl}: Is \code{x} a complete color atomic vlist?
+
+\item \code{cmp_evn_avl}: Is \code{x} a complete even-numbered atomic vlist?
+
+\item \code{cmp_fac_avl}: Is \code{x} a complete factor atomic vlist?
+
+\item \code{cmp_frc_avl}: Is \code{x} a complete fractional-numbered atomic
+vlist?
+
+\item \code{cmp_ind_avl}: Is \code{x} a complete indexer atomic vlist?
+
+\item \code{cmp_lgl_avl}: Is \code{x} a complete logical atomic vlist?
+
+\item \code{cmp_neg_avl}: Is \code{x} a complete negative-number atomic vlist?
+
+\item \code{cmp_ngw_avl}: Is \code{x} a complete negative-whole-number atomic
+vlist?
+
+\item \code{cmp_nng_avl}: Is \code{x} a complete non-negative-number atomic
+vlist?
+
+\item \code{cmp_nnw_avl}: Is \code{x} a complete non-negative-whole-number
+atomic vlist?
+
+\item \code{cmp_nps_avl}: Is \code{x} a complete non-positive-numbered atomic
+vlist?
+
+\item \code{cmp_npw_avl}: Is \code{x} a complete non-positive-number atomic
+vlist?
+
+\item \code{cmp_nst_avl}: Is \code{x} a complete non-sortable atomic vlist?
+
+\item \code{cmp_num_avl}: Is \code{x} a complete number atomic vlist?
+
+\item \code{cmp_odd_avl}: Is \code{x} a complete odd-number atomic vlist?
+
+\item \code{cmp_ord_avl}: Is \code{x} a complete ordered-factor atomic vlist?
+
+\item \code{cmp_pct_avl}: Is \code{x} a complete percent-number atomic vlist?
+
+\item \code{cmp_pos_avl}: Is \code{x} a complete positive-number atomic vlist?
+
+\item \code{cmp_ppn_avl}: Is \code{x} a complete proportion-number atomic
+vlist?
+
+\item \code{cmp_psw_avl}: Is \code{x} a complete positive-whole-number atomic
+vlist?
+
+\item \code{cmp_srt_avl}: Is \code{x} a complete sortable atomic vlist?
+
+\item \code{cmp_str_avl}: Is \code{x} a complete string atomic vlist?
+
+\item \code{cmp_uno_avl}: Is \code{x} a complete unordered-factor atomic vlist?
+
+\item \code{cmp_whl_avl}: Is \code{x} a complete whole-number atomic vlist?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -119,6 +184,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -130,7 +197,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

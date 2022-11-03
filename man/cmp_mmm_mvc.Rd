@@ -11,8 +11,7 @@
 \alias{cmp_fac_mvc}
 \alias{cmp_frc_mvc}
 \alias{cmp_ind_mvc}
-\alias{cmp_lgc_mvc}
-\alias{cmp_cnb_mvc}
+\alias{cmp_lgl_mvc}
 \alias{cmp_neg_mvc}
 \alias{cmp_ngw_mvc}
 \alias{cmp_nng_mvc}
@@ -51,9 +50,7 @@ cmp_frc_mvc(x)
 
 cmp_ind_mvc(x)
 
-cmp_lgc_mvc(x)
-
-cmp_cnb_mvc(x)
+cmp_lgl_mvc(x)
 
 cmp_neg_mvc(x)
 
@@ -98,12 +95,80 @@ cmp_whl_mvc(x)
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_cmp_mvect}}.
+Get all possible complete + extended mode + atomic mvect
+properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{cmp_mvc}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{cmp_atm_mvc}: Is \code{x} a complete atomic mvect?
+
+\item \code{cmp_chr_mvc}: Is \code{x} a complete character atomic mvect?
+
+\item \code{cmp_ch1_mvc}: Is \code{x} a complete onechar atomic mvect?
+
+\item \code{cmp_clr_mvc}: Is \code{x} a complete color atomic mvect?
+
+\item \code{cmp_evn_mvc}: Is \code{x} a complete even-number atomic mvect?
+
+\item \code{cmp_fac_mvc}: Is \code{x} a complete factor atomic mvect?
+
+\item \code{cmp_frc_mvc}: Is \code{x} a complete fractional-number atomic
+mvect?
+
+\item \code{cmp_ind_mvc}: Is \code{x} a complete indexer atomic mvect?
+
+\item \code{cmp_lgl_mvc}: Is \code{x} a complete logical atomic mvect?
+
+\item \code{cmp_neg_mvc}: Is \code{x} a complete negative-number atomic mvect?
+
+\item \code{cmp_ngw_mvc}: Is \code{x} a complete negative-whole-number atomic
+mvect?
+
+\item \code{cmp_nng_mvc}: Is \code{x} a complete non-negative-number atomic
+mvect?
+
+\item \code{cmp_nnw_mvc}: Is \code{x} a complete non-negative-whole-number
+atomic mvect?
+
+\item \code{cmp_nps_mvc}: Is \code{x} a complete non-positive-number atomic
+mvect?
+
+\item \code{cmp_npw_mvc}: Is \code{x} a complete non-positive-whole-number
+atomic mvect?
+
+\item \code{cmp_nst_mvc}: Is \code{x} a complete non-sortable atomic mvect?
+
+\item \code{cmp_num_mvc}: Is \code{x} a complete number atomic mvect?
+
+\item \code{cmp_odd_mvc}: Is \code{x} a complete odd-number atomic mvect?
+
+\item \code{cmp_ord_mvc}: Is \code{x} a complete ordered-factor atomic mvect?
+
+\item \code{cmp_pct_mvc}: Is \code{x} a complete percent-number atomic mvect?
+
+\item \code{cmp_pos_mvc}: Is \code{x} a complete positive-number atomic mvect?
+
+\item \code{cmp_ppn_mvc}: Is \code{x} a complete proportion-number atomic
+mvect?
+
+\item \code{cmp_psw_mvc}: Is \code{x} a complete positive-whole-number atomic
+mvect?
+
+\item \code{cmp_srt_mvc}: Is \code{x} a complete sortable atomic mvect?
+
+\item \code{cmp_str_mvc}: Is \code{x} a complete string atomic mvect?
+
+\item \code{cmp_uno_mvc}: Is \code{x} a complete unordered-factor atomic mvect?
+
+\item \code{cmp_whl_mvc}: Is \code{x} a complete whole-number atomic mvect?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -119,6 +184,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -130,7 +197,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

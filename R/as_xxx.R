@@ -1,36 +1,57 @@
 #' @name as_xxx
 #' @family meta
 #' @title Extended \code{as} Property (xxx) Functions
-#' @details \strong{\code{as_color}}
-#'   \cr Coerce a valid ℝ color representation to hexadecimal RGB
+#' @description Coerce a valid ℝ color representation to hexadecimal RGB
 #'   character representation.
-#'   \cr\cr
-#'   \strong{\code{as_fun}}
-#'   \cr Return \code{x} if it is a function, otherwise, search for a function
-#'   with the name contained in \code{x} and return that function.
 #' @param x An object
 #' @param na \code{TRUE} or \code{FALSE} indicating whether \code{NA} values
 #'   qualify as missing color representations.
+#' @param levs Character vector giving ordered factor levels.
 #' @export
-as_color <- function(x, na = F) {
-  E <- NULL
-  if (!xchr(x)) {E <- c(E, "\n  * [x] is not of mode character.")}
-  if (!isTF(na)) {E <- c(E, "\n  * [na] must be TRUE or FALSE.")}
-  if (isF(na) & any(is.na(x))) {E <- c(E, "\n  * [x] contains NA values but [na = FALSE].")}
-  if (xdef(E)) {stop(E)}
+as_clr <- function(x, na = F) {
+  err <- NULL
+  if (!ichr(x )) {err <- c(err, "\n • [x] is not of mode character.")}
+  if (!isTF(na)) {err <- c(err, "\n • [na] must be TRUE or FALSE.")}
+  if (isF(na) & any(is.na(x))) {err <- c(err, "\n • [x] contains NA values but [na = FALSE].")}
+  if (idef(err)) {stop(err)}
   if (any(!is.na(x))) {
-    y <- tryCatch(col2rgb(x[!is.na(x)], T), error = function(e) e, finally = NULL)
-    if (isERR(y)) {E <- c(E, "\n  * [x] does not contain only valid color values.")}
-    else {y <- y / 255}
-    y <- rgb(y[1, ], y[2, ], y[3, ], y[4, ])
-    x[!is.na(x)] <- y
+    out <- tryCatch(col2rgb(x[!is.na(x)], T), error = function(e) e, finally = NULL)
+    if (isERR(out)) {err <- c(err, "\n • [x] does not contain only valid color values.")}
+    else {out <- out / 255}
+    out <- rgb(out[1, ], out[2, ], out[3, ], out[4, ])
+    x[!is.na(x)] <- out
   }
   x
 }
 
-#' @rdname as_xxx
+#' @describeIn as_xxx Return \code{x} if it is a function, otherwise, search for
+#'   a function with the name contained in \code{x} and return that function.
 #' @export
 as_fun <- function(x) {
-  if (!xfun(x)) {stop("\n  * [x] is neither a function object nor the name of a function.")}
+  if (!ifun(x)) {stop("\n • [x] is neither a function object nor the name of a function.")}
   f0(is.function(x), x, match.fun(x))
 }
+
+#' @describeIn as_xxx \code{as.character} wrapper.
+#' @export
+as_chr <- base::as.character
+
+#' @describeIn as_xxx \code{as.integer} wrapper.
+#' @export
+as_int <- base::as.integer
+
+#' @describeIn as_xxx \code{as.numeric} wrapper.
+#' @export
+as_num <- base::as.numeric
+
+#' @describeIn as_xxx \code{as.logical} wrapper.
+#' @export
+as_lgl <- base::as.logical
+
+#' @describeIn as_xxx Coerce to ordered factor.
+#' @export
+as_ord <- function(x, levs) {factor(av(x), levels = levs, ordered = T)}
+
+#' @describeIn as_xxx Coerce to unordered factor.
+#' @export
+as_uno <- function(x, levs) {factor(av(x), levels = levs, ordered = F)}

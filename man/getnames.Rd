@@ -28,16 +28,17 @@ vectors.
 \description{
 Get element, row, and/or column names
 }
-\details{
-\strong{\code{enames}}
-\cr Gets element names of an atomic or list vector.
-\cr\cr
-strong{\code{rnames, cnames}}
-\cr Gets row and column names, respectively, of a tibble or matrix.
-\cr \cr
-\strong{\code{rcnames}}
-\cr Get row and column names of a tibble or matrix in a 2-element list.
-}
+\section{Functions}{
+\itemize{
+\item \code{enames}: Get element names.
+
+\item \code{rnames}: Get row names.
+
+\item \code{cnames}: Get column names.
+
+\item \code{rcnames}: Get row and column names (in a 2-element list).
+}}
+
 \seealso{
 Other naming: 
 \code{\link{named}()}

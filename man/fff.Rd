@@ -2,41 +2,44 @@
 % Please edit documentation in R/fff.R
 \name{fff}
 \alias{fff}
+\alias{iemp}
+\alias{ipnt}
+\alias{ilin}
+\alias{irow}
+\alias{icol}
+\alias{irct}
+\alias{isqr}
+\alias{isld}
 \alias{fff_vals}
-\alias{xemp}
-\alias{xpnt}
-\alias{xlin}
-\alias{xrow}
-\alias{xcol}
-\alias{xrct}
-\alias{xsqr}
-\alias{xsld}
-\alias{is_fff}
+\alias{ifff}
 \title{Form (fff) Property Family}
 \usage{
+fff(x.)
+
+iemp(x.)
+
+ipnt(x.)
+
+ilin(x.)
+
+irow(x.)
+
+icol(x.)
+
+irct(x.)
+
+isqr(x.)
+
+isld(x.)
+
 fff_vals()
 
-xemp(x)
-
-xpnt(x)
-
-xlin(x)
-
-xrow(x)
-
-xcol(x)
-
-xrct(x)
-
-xsqr(x)
-
-xsld(x)
-
-fff(x)
-
-is_fff(x, xxx, ...)
+ifff(x., xxx., ...)
 }
 \arguments{
+\item{...}{Additional arguments to \code{\link{meets}} containing value and
+element/row/column count restrictions.}
+
 \item{x}{An object.}
 
 \item{xxx}{A character scalar containing one or more values from
@@ -44,59 +47,67 @@ is_fff(x, xxx, ...)
 Combinations of forms can be specified by separating them with
 underscores. Separating forms or combinations of forms with pipes will
 result in a value of \code{TRUE} if any of them applies to \code{x}.}
-
-\item{...}{Additional arguments to \code{\link{meets}} containing value and
-element/row/column count restrictions.}
 }
 \value{
 \code{fff_vals} and \code{fff} return a character vector. All
 others return either \code{TRUE} or \code{FALSE}.
 }
 \description{
-An object's form (fff) properties have to do with the number of
-\link[=ddd]{defined dimensions} and/or \link[=eee]{effective dimensions}
-plus some additional restrictions.
-\tabular{lll}{
-\emph{Value}\tab\emph{Name}\tab\emph{Requirements}
-\cr\code{'emp'}\tab empty      \tab non-\code{NULL}, length = 0.
-\cr\code{'pop'}\tab populated  \tab length > 0
-\cr\code{'pnt'}\tab point      \tab containing 1 element (for tibbles
-this means \code{1 × 1} in
-dimension).
-\cr\code{'lin'}\tab linear     \tab effectively 1-dimensional.
-\cr\code{'row'}\tab 1-row      \tab row matrix or tibble.
-\cr\code{'col'}\tab 1-column   \tab column matrix or tibbles.
-\cr\code{'rct'}\tab rectangular\tab matrix or tibble with multiple
-rows and multiple columns.
-\cr\code{'sqr'}\tab square     \tab square atomic matrix.
-\cr\code{'sld'}\tab solid      \tab effectively hyper-dimensional.
-}
+Gets a vector of form properties from \code{fff_vals()} that
+are applicable to \code{x.}.
 }
 \details{
-\strong{\code{fff_vals}}
-\cr Gets all valid form properties.
-\cr\cr
-\strong{\code{fff}}
-\cr Gets a vector of form properties from \code{fff_vals()} that are
-applicable to \code{x}.
-\cr\cr
-\strong{\code{is_fff}}
-\cr Evaluates whether any property in \code{xxx} is a form property
-applicable to \code{x}).
-\cr\cr
-\strong{\code{xfff}}
-\cr Evaluates whether \code{x} has the form property represented by
-\code{fff}.
-\cr\cr
-\strong{Additional Arguments in \code{...}}
-\cr Submitting additional arguments to \code{is_fff} via \code{...}
-allows for checking not just the form but whether length, number of rows,
+An object's form (fff) properties have to do with the number of
+\link[=ddd]{defined dimensions} and/or \link[=eee]{effective dimensions}
+plus some additional restrictions:\tabular{lll}{
+FUNDAMENTAL \tab FUNDAMENTAL \tab FUNDAMENTAL                         \cr
+TYPE VALUE  \tab TYPE NAME   \tab TYPE DEFINITION                     \cr
+\code{'emp'}\tab empty       \tab non-\code{NULL}, length = 0.        \cr
+\code{'pop'}\tab populated   \tab length > 0.                         \cr
+\code{'pnt'}\tab point       \tab containing 1 element (includes tibbles
+of dimension \code{1 × 1}).         \cr
+\code{'lin'}\tab linear      \tab effectively 1-dimensional.          \cr
+\code{'row'}\tab 1-row       \tab row matrix or tibble.               \cr
+\code{'col'}\tab 1-column    \tab column matrix or tibbles.           \cr
+\code{'rct'}\tab rectangular \tab matrix or tibble with multiple rows and
+multiple columns.                   \cr
+\code{'sqr'}\tab square      \tab square atomic matrix.               \cr
+\code{'sld'}\tab solid       \tab effectively hyper-dimensional.        }
+}
+\section{Functions}{
+\itemize{
+\item \code{iemp}: Evaluates whether \code{x} is empty.
+
+\item \code{ipnt}: Evaluates whether \code{x} is a point.
+
+\item \code{ilin}: Evaluates whether \code{x} is linear.
+
+\item \code{irow}: Evaluates whether \code{x} is a row object.
+
+\item \code{icol}: Evaluates whether \code{x} is a column object.
+
+\item \code{irct}: Evaluates whether \code{x.} is a rectangular object.
+
+\item \code{isqr}: Evaluates whether \code{x.} is a square object.
+
+\item \code{isld}: Evaluates whether \code{x.} is a solid object.
+
+\item \code{fff_vals}: Get a list of all possible form property values.
+
+\item \code{ifff}: Evaluates whether any property in \code{xxx} is a form
+property applicable to \code{x.} (subject to any additional restrictions
+in \code{...}).
+}}
+
+\section{Submitting additional arguments to \code{ifff} via \code{...}}{
+
+Allows for checking not just the form but whether length, number of rows,
 number of columns, and element values meet flexible criteria.
 }
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -112,6 +123,8 @@ Other props:
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -123,7 +136,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

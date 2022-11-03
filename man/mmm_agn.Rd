@@ -3,7 +3,6 @@
 \name{mmm_agn}
 \alias{mmm_agn}
 \alias{mmm_agn_vals}
-\alias{atm_agn}
 \alias{chr_agn}
 \alias{ch1_agn}
 \alias{clr_agn}
@@ -11,8 +10,7 @@
 \alias{fac_agn}
 \alias{frc_agn}
 \alias{ind_agn}
-\alias{lgc_agn}
-\alias{cnb_agn}
+\alias{lgl_agn}
 \alias{neg_agn}
 \alias{ngw_agn}
 \alias{nng_agn}
@@ -35,8 +33,6 @@
 \usage{
 mmm_agn_vals()
 
-atm_agn(x)
-
 chr_agn(x)
 
 ch1_agn(x)
@@ -51,9 +47,7 @@ frc_agn(x)
 
 ind_agn(x)
 
-lgc_agn(x)
-
-cnb_agn(x)
+lgl_agn(x)
 
 neg_agn(x)
 
@@ -98,12 +92,69 @@ whl_agn(x)
 \code{TRUE} or \code{FALSE}
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_atm_generic}}.
+Get all possible extended mode + atomic generic properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{atm_gen}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{chr_agn}: Is \code{x} a character atomic generic?
+
+\item \code{ch1_agn}: Is \code{x} a onechar atomic generic?
+
+\item \code{clr_agn}: Is \code{x} a color atomic
+
+\item \code{evn_agn}: Is \code{x} an even-numeric atomic generic?
+
+\item \code{fac_agn}: Is \code{x} a factor atomic generic?
+
+\item \code{frc_agn}: Is \code{x} a fractional-numeric atomic generic?
+
+\item \code{ind_agn}: Is \code{x} an indexer atomic generic?
+
+\item \code{lgl_agn}: Is \code{x} a logical atomic generic?
+
+\item \code{neg_agn}: Is \code{x} a negative-numeric atomic generic?
+
+\item \code{ngw_agn}: Is \code{x} a negative-whole-numeric atomic generic?
+
+\item \code{nng_agn}: Is \code{x} a non-negative-numeric atomic generic?
+
+\item \code{nnw_agn}: Is \code{x} a non-negative-whole-numeric atomic generic?
+
+\item \code{nps_agn}: Is \code{x} a non-positive-numeric atomic generic?
+
+\item \code{npw_agn}: Is \code{x} a non-positive-whole-numeric atomic generic?
+
+\item \code{nst_agn}: Is \code{x} a non-sortable atomic generic?
+
+\item \code{num_agn}: Is \code{x} a numeric atomic generic?
+
+\item \code{odd_agn}: Is \code{x} an odd-numeric atomic generic?
+
+\item \code{ord_agn}: Is \code{x} an ordered-factor atomic generic?
+
+\item \code{pct_agn}: Is \code{x} a percent-numeric atomic generic?
+
+\item \code{pos_agn}: Is \code{x} a positive-numeric atomic generic?
+
+\item \code{ppn_agn}: Is \code{x} a proportion-numeric atomic generic?
+
+\item \code{psw_agn}: Is \code{x} a positive-whole-numeric atomic generic?
+
+\item \code{srt_agn}: Is \code{x} a sortable atomic generic?
+
+\item \code{str_agn}: Is \code{x} a string atomic generic?
+
+\item \code{uno_agn}: Is \code{x} an unordered-factor atomic generic?
+
+\item \code{whl_agn}: Is \code{x} a whole-numeric atomic generic?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -120,6 +171,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_arr}},
 \code{\link{mmm_atb}},
@@ -130,7 +183,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

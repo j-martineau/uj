@@ -3,7 +3,6 @@
 \name{mmm_arr}
 \alias{mmm_arr}
 \alias{mmm_arr_vals}
-\alias{atm_arr}
 \alias{chr_arr}
 \alias{ch1_arr}
 \alias{clr_arr}
@@ -11,7 +10,7 @@
 \alias{fac_arr}
 \alias{frc_arr}
 \alias{ind_arr}
-\alias{lgc_arr}
+\alias{lgl_arr}
 \alias{neg_arr}
 \alias{ngw_arr}
 \alias{nng_arr}
@@ -34,8 +33,6 @@
 \usage{
 mmm_arr_vals()
 
-atm_arr(x)
-
 chr_arr(x)
 
 ch1_arr(x)
@@ -50,7 +47,7 @@ frc_arr(x)
 
 ind_arr(x)
 
-lgc_arr(x)
+lgl_arr(x)
 
 neg_arr(x)
 
@@ -95,12 +92,69 @@ whl_arr(x)
 \code{TRUE} or \code{FALSE}
 }
 \description{
-See \code{\link{mmm}} and \code{\link{is_atm_array}}.
+Get all possible extended mode + array properties.
 }
+\details{
+See \code{\link{mmm}} and \code{\link{is_atm_arr}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{chr_arr}: Is \code{x} a character atomic array?
+
+\item \code{ch1_arr}: Is \code{x} a onechar atomic array?
+
+\item \code{clr_arr}: Is \code{x} a color atomic array?
+
+\item \code{evn_arr}: Is \code{x} an even-numeric atomic array?
+
+\item \code{fac_arr}: Is \code{x} a factor atomic array?
+
+\item \code{frc_arr}: Is \code{x} a fractional-numeric atomic array?
+
+\item \code{ind_arr}: Is \code{x} an indexer atomic array?
+
+\item \code{lgl_arr}: Is \code{x} a logical atomic array?
+
+\item \code{neg_arr}: Is \code{x} a negative-numeric atomic array?
+
+\item \code{ngw_arr}: Is \code{x} a negative-whole-numeric atomic array?
+
+\item \code{nng_arr}: Is \code{x} a non-negative-numeric atomic array?
+
+\item \code{nnw_arr}: Is \code{x} a non-negative-whole atomic array?
+
+\item \code{nps_arr}: Is \code{x} a non-positive-numeric atomic array?
+
+\item \code{npw_arr}: Is \code{x} a non-positive-whole-numeric atomic array?
+
+\item \code{nst_arr}: Is \code{x} a non-sortable atomic array?
+
+\item \code{num_arr}: Is \code{x} a numeric atomic array?
+
+\item \code{odd_arr}: Is \code{x} an odd-numeric atomic array?
+
+\item \code{ord_arr}: Is \code{x} an ordered-factor atomic array?
+
+\item \code{pct_arr}: Is \code{x} a percent-numeric atomic array?
+
+\item \code{pos_arr}: Is \code{x} a positive-numeric atomic array?
+
+\item \code{psw_arr}: Is \code{x} a positive-whole-numeric atomic array?
+
+\item \code{ppn_arr}: Is \code{x} a proportion-numeric atomic array?
+
+\item \code{srt_arr}: Is \code{x} a sortable atomic array?
+
+\item \code{str_arr}: Is \code{x} a string atomic array?
+
+\item \code{uno_arr}: Is \code{x} a unordered-factor atomic array?
+
+\item \code{whl_arr}: Is \code{x} a whole-numeric atomic array?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -117,6 +171,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_atb}},
@@ -127,7 +183,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

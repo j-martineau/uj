@@ -2,46 +2,46 @@
 % Please edit documentation in R/ttt.R
 \name{ttt}
 \alias{ttt}
+\alias{iatm}
+\alias{idef}
+\alias{ifun}
+\alias{inil}
+\alias{inll}
+\alias{ipop}
+\alias{ircr}
 \alias{ttt_vals}
-\alias{xnll}
-\alias{xdef}
-\alias{xnil}
-\alias{xpop}
-\alias{xatm}
-\alias{xfun}
-\alias{xrcr}
-\alias{is_ttt}
+\alias{ittt}
 \title{Fundamental Type (ttt) Property Family}
 \usage{
+ttt(x.)
+
+iatm(x.)
+
+idef(x.)
+
+ifun(x.)
+
+inil(x.)
+
+inll(x.)
+
+ipop(x.)
+
+ircr(x.)
+
 ttt_vals()
 
-xnll(x)
-
-xdef(x)
-
-xnil(x)
-
-xpop(x)
-
-xatm(x)
-
-xfun(x)
-
-xrcr(x)
-
-ttt(x)
-
-is_ttt(x, xxx, ...)
+ittt(x., xxx., ...)
 }
 \arguments{
-\item{x}{An object.}
+\item{x.}{An object.}
 
-\item{xxx}{A character scalar containing one or more values from
+\item{xxx.}{A character scalar containing one or more values from
 \code{ttt_vals()} separated by pipes and/or underscores ("."). Combinations
 of fundamental types can be specified by separating them with underscores.
 Separating fundamental types or combinations of fundamental types with
 pipes will result in a value of \code{TRUE} if any of them applies to
-\code{x}.}
+\code{x.}.}
 
 \item{...}{Additional arguments to \code{\link{meets}} containing value and
 element/row/column count restrictions.}
@@ -51,47 +51,60 @@ element/row/column count restrictions.}
 vector. All others return either \code{TRUE} or \code{FALSE}.
 }
 \description{
+Get a character vector of all fundamental type properties
+applicable to \code{x.}.
+}
+\details{
 An object's fundamental type (ttt) is defined by its most
 basic structural properties as described in the following table:
 \tabular{lll}{
-\emph{Value}   \tab\emph{Name}    \tab\emph{Requirements}
-\cr\code{'nll'}\tab null          \tab\code{NULL}.
-\cr\code{'def'}\tab defined       \tab not \code{NULL}.
-\cr\code{'nil'}\tab nil-length    \tab length is 0 (includes \code{NULL}).
-\cr\code{'pop'}\tab populated     \tab length is > 0.
-\cr\code{'fun'}\tab function ref  \tab function object or character scalar
-containing a function name.
-\cr\code{'atm'}\tab atomic        \tab atomic.
-\cr\code{'rcr'}\tab recursive     \tab list-like (tibble, lists, or objects
-containing an element that
-is not an atomic scalar).
+FUNDAMENTAL \tab FUNDAMENTAL \tab CHARACTERISTICS OF                  \cr
+TYPE VALUE  \tab TYPE NAME   \tab QUALIFYING OBJECTS                  \cr
+\code{'nll'}\tab null        \tab \code{NULL}                         \cr
+\code{'def'}\tab defined     \tab not \code{NULL}                     \cr
+\code{'nil'}\tab nil-length  \tab length is 0 (includes \code{NULL})  \cr
+\code{'pop'}\tab populated   \tab length is > 0                       \cr
+\code{'fun'}\tab function ref\tab function object or character scalar
+containing a function name.         \cr
+\code{'atm'}\tab atomic      \tab atomic                              \cr
+\code{'rcr'}\tab recursive   \tab list-like (tibble, lists, or objects
+containing an element that is not an
+atomic scalar)                        }
 }
-}
-\details{
-\strong{\code{ttt_vals}}
-\cr Gets all valid fundamental type property values.
-\cr\cr
-\strong{\code{ttt}}
-\cr Gets a vector of fundamental properties from \code{ttt_vals()} that are
-applicable to \code{x}.
-\cr\cr
-\strong{\code{is_ttt}}
-\cr Evaluates whether \code{xxx} contains any fundamental type property (or
-combination of fundamental type properties) applicable to \code{x}.
-\cr\cr
-\strong{\code{xttt}}
-\cr All other functions evaluate whether \code{x} has the fundamental type
-property represented by \code{ttt}.
-\cr\cr
-\strong{Additional Arguments in \code{...}}
-\cr Submitting additional arguments to \code{is_ttt} via \code{...} allows
+\section{Functions}{
+\itemize{
+\item \code{iatm}: Is \code{x.} atomic (regardless of length)?
+
+\item \code{idef}: Is \code{x.} defined (non-\code{NULL})?
+
+\item \code{ifun}: Is \code{x.} a function or a function name?
+
+\item \code{inil}: Is \code{x.} nil (of length 0)?
+
+\item \code{inll}: Is \code{x.} \code{NULL}
+
+\item \code{ipop}: Is \code{x.} populated (of length > 0)?
+
+\item \code{ircr}: Is \code{x.} recursive?
+
+\item \code{ttt_vals}: Get a character vector of all possible fundamental type
+property values.
+
+\item \code{ittt}: Determine whether \code{x.} is of the fundamental type(s)
+contained in \code{xxx.} subject to the additional specifications in
+\code{...}.
+}}
+
+\section{Additional Arguments in \code{...}}{
+
+Submitting additional arguments to \code{is_ttt} via \code{...} allows
 for checking not just the fundamental but whether length, number of rows,
 number of columns, and element values meet flexible criteria.
 }
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -108,6 +121,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -119,7 +134,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{xxx}()}
 }

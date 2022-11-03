@@ -25,18 +25,18 @@
 #'   of \code{def.}.
 #' @export
 case <- function(name., ..., names. = NULL, def. = "err") {
-  VN1 <- xscl(name.)
-  VXN <- ...length() > 0
-  VN2 <- f0(xnll(names.), T, f0(!xvec(names.), F, length(names.) == ...length()))
-  E <- NULL
-  if (!VN1) {E <- c(E, "\n  * [name.] must be a non-NA atomic scalar.")}
-  if (!VXN) {E <- c(E, "\n  * [...] is empty.")}
-  if (!VN2) {E <- c(E, "\n  * [names.] must be NULL or an atomic vector of length equal to ...length()")}
-  if (xdef(E)) {stop(E)}
-  names. <- dot_names(..., names. = names., REQ = T, BL = F, U = T)              # get {names.} supplied for arguments in {...}
-  i <- which(names. == name.)                                                    # index any matches
-  I <- length(i) == 1                                                            # whether there is a match
-  E <- isEQ(def., 'err')
-  if (E & !I) {stop("\n  * [name.] does not match any argument in [...].")}
-  f0(I, ...elt(i), def.)                                                         # return the matching elements of {...}, if any, otherwise, return {DEF}
+  vn1. <- iscl(name.)
+  vxn. <- ...length() > 0
+  vn2. <- f0(inll(names.), T, f0(!ivec(names.), F, length(names.) == ...length()))
+  err. <- NULL
+  if (!vn1.) {err. <- c(err., "\n • [name.] must be a non-NA atomic scalar.")}
+  if (!vxn.) {err. <- c(err., "\n • [...] is empty.")}
+  if (!vn2.) {err. <- c(err., "\n • [names.] must be NULL or an atomic vector of length equal to ...length()")}
+  if (idef(err.)) {stop(err.)}
+  names. <- dot_names(..., names. = names., req. = T, bl. = F, u. = T)           # get {names.} supplied for arguments in {...}
+  i. <- which(names. == name.)                                                   # index any matches
+  i1. <- length(i.) == 1                                                         # whether there is a match
+  err. <- isEQ(def., 'err')
+  if (err. & !i1.) {stop("\n • [name.] does not match any argument in [...].")}
+  f0(i1., ...elt(i.), def.)                                                      # return the matching elements of {...}, if any, otherwise, return {DEF}
 }

@@ -1,7 +1,9 @@
 #' @name cmp_mmm_avt
 #' @family props
 #' @title Complete + Extended Mode + Atomic Vtype (cmp + mmm + avt)
-#' @description See \code{\link{mmm}}, and \code{\link{is_cmp_vtype}}.
+#' @details See \code{\link{mmm}}, and \code{\link{cmp_vtp}}.
+#' @description Get all possible complete + extended mode + atomic vtype
+#'   properties.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
@@ -11,114 +13,119 @@ cmp_mmm_avt_vals <- function() {
   x
 }
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete atomic vtype?
 #' @export
-cmp_atm_avt <- function(x) {is_cmp_vtype(x)}
+cmp_atm_avt <- function(x) {cmp_vtp(x) & iatm(x)}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete character atomic vtype?
 #' @export
-cmp_chr_avt <- function(x) {is_cmp_vtype(x, "chr")}
+cmp_chr_avt <- function(x) {cmp_vtp(x, "chr")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete onechar atomic vtype?
 #' @export
-cmp_ch1_avt <- function(x) {is_cmp_vtype(x, "ch1")}
+cmp_ch1_avt <- function(x) {cmp_vtp(x, "ch1")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete color atomic vtype?
 #' @export
-cmp_clr_avt <- function(x) {is_cmp_vtype(x, "clr")}
+cmp_clr_avt <- function(x) {cmp_vtp(x, "clr")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete even-number atomic vtype?
 #' @export
-cmp_evn_avt <- function(x) {is_cmp_vtype(x, "evn")}
+cmp_evn_avt <- function(x) {cmp_vtp(x, "evn")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete factor atomic vtype?
 #' @export
-cmp_fac_avt <- function(x) {is_cmp_vtype(x, "fac")}
+cmp_fac_avt <- function(x) {cmp_vtp(x, "fac")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete fractional-number atomic
+#'   vtype?
 #' @export
-cmp_frc_avt <- function(x) {is_cmp_vtype(x, "frc")}
+cmp_frc_avt <- function(x) {cmp_vtp(x, "frc")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete indexer atomic vtype?
 #' @export
-cmp_ind_avt <- function(x) {is_cmp_vtype(x, "ind")}
+cmp_ind_avt <- function(x) {cmp_vtp(x, "ind")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete logical atomic vtype?
 #' @export
-cmp_lgc_avt <- function(x) {is_cmp_vtype(x, "lgc")}
+cmp_lgl_avt <- function(x) {cmp_vtp(x, "lgl")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete negative-number atomic vtype?
 #' @export
-cmp_cnb_avt <- function(x) {is_cmp_vtype(x, "cnb")}
+cmp_neg_avt <- function(x) {cmp_vtp(x, "neg")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete negative-whole-number atomic
+#'   vtype?
 #' @export
-cmp_neg_avt <- function(x) {is_cmp_vtype(x, "neg")}
+cmp_ngw_avt <- function(x) {cmp_vtp(x, "ngw")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete non-negative-number atomic
+#'   vtype?
 #' @export
-cmp_ngw_avt <- function(x) {is_cmp_vtype(x, "ngw")}
+cmp_nng_avt <- function(x) {cmp_vtp(x, "nng")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete non-negative-whole-number
+#'   atomic vtype?
 #' @export
-cmp_nng_avt <- function(x) {is_cmp_vtype(x, "nng")}
+cmp_nnw_avt <- function(x) {cmp_vtp(x, "nnw")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete non-positive-number atomic
+#'   vtype?
 #' @export
-cmp_nnw_avt <- function(x) {is_cmp_vtype(x, "nnw")}
+cmp_nps_avt <- function(x) {cmp_vtp(x, "nps")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete non-positive-whole-number
+#'   atomic vtype?
 #' @export
-cmp_nps_avt <- function(x) {is_cmp_vtype(x, "nps")}
+cmp_npw_avt <- function(x) {cmp_vtp(x, "npw")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete non-sortable atomic vtype?
 #' @export
-cmp_npw_avt <- function(x) {is_cmp_vtype(x, "npw")}
+cmp_nst_avt <- function(x) {cmp_vtp(x, "nst")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete number atomic vtype?
 #' @export
-cmp_nst_avt <- function(x) {is_cmp_vtype(x, "nst")}
+cmp_num_avt <- function(x) {cmp_vtp(x, "num")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete odd-number atomic vtype?
 #' @export
-cmp_num_avt <- function(x) {is_cmp_vtype(x, "num")}
+cmp_odd_avt <- function(x) {cmp_vtp(x, "odd")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete ordered-factor atomic vtype?
 #' @export
-cmp_odd_avt <- function(x) {is_cmp_vtype(x, "odd")}
+cmp_ord_avt <- function(x) {cmp_vtp(x, "ord")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete percentage-number atomic
+#'   vtype?
 #' @export
-cmp_ord_avt <- function(x) {is_cmp_vtype(x, "ord")}
+cmp_pct_avt <- function(x) {cmp_vtp(x, "pct")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete positive-number atomic vtype?
 #' @export
-cmp_pct_avt <- function(x) {is_cmp_vtype(x, "pct")}
+cmp_pos_avt <- function(x) {cmp_vtp(x, "pos")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete proportional-number atomic
+#'   vtype?
 #' @export
-cmp_pos_avt <- function(x) {is_cmp_vtype(x, "pos")}
+cmp_ppn_avt <- function(x) {cmp_vtp(x, "ppn")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete positive-whole-number atomic
+#'   vtype?
 #' @export
-cmp_ppn_avt <- function(x) {is_cmp_vtype(x, "ppn")}
+cmp_psw_avt <- function(x) {cmp_vtp(x, "psw")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete sortable atomic vtype?
 #' @export
-cmp_psw_avt <- function(x) {is_cmp_vtype(x, "psw")}
+cmp_srt_avt <- function(x) {cmp_vtp(x, "srt")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete string atomic vtype?
 #' @export
-cmp_srt_avt <- function(x) {is_cmp_vtype(x, "srt")}
+cmp_str_avt <- function(x) {cmp_vtp(x, "str")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete unordered-factor atomic vtype?
 #' @export
-cmp_str_avt <- function(x) {is_cmp_vtype(x, "str")}
+cmp_uno_avt <- function(x) {cmp_vtp(x, "uno")}
 
-#' @rdname cmp_mmm_avt
+#' @describeIn cmp_mmm_avt Is \code{x} a complete whole-numbered atomic vtype?
 #' @export
-cmp_uno_avt <- function(x) {is_cmp_vtype(x, "uno")}
-
-#' @rdname cmp_mmm_avt
-#' @export
-cmp_whl_avt <- function(x) {is_cmp_vtype(x, "whl")}
+cmp_whl_avt <- function(x) {cmp_vtp(x, "whl")}

@@ -1,7 +1,8 @@
 #' @name cmp_mmm
 #' @family props
 #' @title Complete + Extended Mode (cmp + mmm)
-#' @description See \code{\link{xcmp}}, and \code{\link{xmmm}}.
+#' @description Get all possible complete + extended mode properties.
+#' @details See \code{\link{xcmp}}, and \code{\link{xmmm}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
@@ -11,114 +12,115 @@ cmp_mmm_vals <- function() {
   x
 }
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete atomic generic?
 #' @export
-cmp_atm <- function(x) {is_cmp_generic(x)}
+cmp_atm <- function(x) {is_atm(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete character atomic generic?
 #' @export
-cmp_chr <- function(x) {is_cmp_generic(x, "chr")}
+cmp_chr <- function(x) {is_chr(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete onechar atomic generic?
 #' @export
-cmp_ch1 <- function(x) {is_cmp_generic(x, "ch1")}
+cmp_ch1 <- function(x) {is_ch1(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete color atomic generic?
 #' @export
-cmp_clr <- function(x) {is_cmp_generic(x, "clr")}
+cmp_clr <- function(x) {is_clr(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete even-numeric atomic generic?
 #' @export
-cmp_evn <- function(x) {is_cmp_generic(x, "evn")}
+cmp_evn <- function(x) {if (!is_num(x)) {F} else {all(x / 2 == round(x / 2))}}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete factor atomic generic?
 #' @export
-cmp_fac <- function(x) {is_cmp_generic(x, "fac")}
+cmp_fac <- function(x) {is_fac(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete fractional-numeric atomic generic?
 #' @export
-cmp_frc <- function(x) {is_cmp_generic(x, "frc")}
+cmp_frc <- function(x) {is_frc(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete indexer atomic generic?
 #' @export
-cmp_ind <- function(x) {is_cmp_generic(x, "ind")}
+cmp_ind <- function(x) {is_ind(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete logical atomic generic?
 #' @export
-cmp_lgc <- function(x) {is_cmp_generic(x, "lgc")}
+cmp_lgl <- function(x) {is_lgl(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete negative-numeric atomic generic?
 #' @export
-cmp_cnb <- function(x) {is_cmp_generic(x, "cnb")}
+cmp_neg <- function(x) {is_neg(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete negative-whole-numeric atomic
+#'   generic?
 #' @export
-cmp_neg <- function(x) {is_cmp_generic(x, "neg")}
+cmp_ngw <- function(x) {is_ngw(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete non-negative-numeric atomic
+#'   generic?
 #' @export
-cmp_ngw <- function(x) {is_cmp_generic(x, "ngw")}
+cmp_nng <- function(x) {is_nng(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete non-negative-whole-numeric atomic
+#'   generic?
 #' @export
-cmp_nng <- function(x) {is_cmp_generic(x, "nng")}
+cmp_nnw <- function(x) {is_nnw(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete non-negative-whole atomic generic?
 #' @export
-cmp_nnw <- function(x) {is_cmp_generic(x, "nnw")}
+cmp_nps <- function(x) {is_nps(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete non-positive-numeric atomic
+#'   generic?
 #' @export
-cmp_nps <- function(x) {is_cmp_generic(x, "nps")}
+cmp_npw <- function(x) {is_npw(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete non-sortable atomic generic?
 #' @export
-cmp_npw <- function(x) {is_cmp_generic(x, "npw")}
+cmp_nst <- function(x) {is_nst(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete numeric atomic generic?
 #' @export
-cmp_nst <- function(x) {is_cmp_generic(x, "nst")}
+cmp_num <- function(x) {is_num(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete odd-numeric atomic generic?
 #' @export
-cmp_num <- function(x) {is_cmp_generic(x, "num")}
+cmp_odd <- function(x) {is_odd(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete ordered-factor atomic generic?
 #' @export
-cmp_odd <- function(x) {is_cmp_generic(x, "odd")}
+cmp_ord <- function(x) {is_ord(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete percent-numeric atomic generic?
 #' @export
-cmp_ord <- function(x) {is_cmp_generic(x, "ord")}
+cmp_pct <- function(x) {is_pct(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete positive-numeric atomic generic?
 #' @export
-cmp_pct <- function(x) {is_cmp_generic(x, "pct")}
+cmp_pos <- function(x) {is_pos(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete proportion-numeric atomic generic?
 #' @export
-cmp_pos <- function(x) {is_cmp_generic(x, "pos")}
+cmp_ppn <- function(x) {is_ppn(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete positive-whole-numeric atomic
+#'   generic?
 #' @export
-cmp_ppn <- function(x) {is_cmp_generic(x, "ppn")}
+cmp_psw <- function(x) {is_psw(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete sortable atomic generic?
 #' @export
-cmp_psw <- function(x) {is_cmp_generic(x, "psw")}
+cmp_srt <- function(x) {is_srt(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete string atomic generic?
 #' @export
-cmp_srt <- function(x) {is_cmp_generic(x, "srt")}
+cmp_str <- function(x) {is_str(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete unordered-factor atomic generic?
 #' @export
-cmp_str <- function(x) {is_cmp_generic(x, "str")}
+cmp_uno <- function(x) {is_uno(x)}
 
-#' @rdname cmp_mmm
+#' @describeIn cmp_mmm Is \code{x} a complete whole-numeric atomic generic?
 #' @export
-cmp_uno <- function(x) {is_cmp_generic(x, "uno")}
-
-#' @rdname cmp_mmm
-#' @export
-cmp_whl <- function(x) {is_cmp_generic(x, "whl")}
+cmp_whl <- function(x) {is_whl(x)}

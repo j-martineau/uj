@@ -3,7 +3,6 @@
 \name{mmm_scl}
 \alias{mmm_scl}
 \alias{mmm_scl_vals}
-\alias{atm_scl}
 \alias{chr_scl}
 \alias{ch1_scl}
 \alias{clr_scl}
@@ -11,8 +10,7 @@
 \alias{fac_scl}
 \alias{frc_scl}
 \alias{ind_scl}
-\alias{lgc_scl}
-\alias{cnb_scl}
+\alias{lgl_scl}
 \alias{neg_scl}
 \alias{ngw_scl}
 \alias{nng_scl}
@@ -35,8 +33,6 @@
 \usage{
 mmm_scl_vals()
 
-atm_scl(x)
-
 chr_scl(x)
 
 ch1_scl(x)
@@ -51,9 +47,7 @@ frc_scl(x)
 
 ind_scl(x)
 
-lgc_scl(x)
-
-cnb_scl(x)
+lgl_scl(x)
 
 neg_scl(x)
 
@@ -98,12 +92,69 @@ whl_scl(x)
 \code{TRUE} or \code{FALSE}
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_atm_scalar}}.
+Get all possible extended mode + atomic scalar properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{atm_scl}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{chr_scl}: Is \code{x} a character scalar?
+
+\item \code{ch1_scl}: Is \code{x} a onechar scalar?
+
+\item \code{clr_scl}: Is \code{x} a color scalar?
+
+\item \code{evn_scl}: Is \code{x} an even-numeric scalar?
+
+\item \code{fac_scl}: Is \code{x} a factor scalar?
+
+\item \code{frc_scl}: Is \code{x} a fractional-numeric scalar?
+
+\item \code{ind_scl}: Is \code{x} an indexer scalar?
+
+\item \code{lgl_scl}: Is \code{x} a logical scalar?
+
+\item \code{neg_scl}: Is \code{x} a negative-numeric scalar?
+
+\item \code{ngw_scl}: Is \code{x} a negative-whole-numeric scalar?
+
+\item \code{nng_scl}: Is \code{x} a non-negative-numeric scalar?
+
+\item \code{nnw_scl}: Is \code{x} an non-negative-whole-numeric scalar?
+
+\item \code{nps_scl}: Is \code{x} a non-positive-numeric scalar?
+
+\item \code{npw_scl}: Is \code{x} a non-positive-whole-numeric scalar?
+
+\item \code{nst_scl}: Is \code{x} a non-sortable scalar?
+
+\item \code{num_scl}: Is \code{x} a numeric scalar?
+
+\item \code{odd_scl}: Is \code{x} an odd-numeric scalar?
+
+\item \code{ord_scl}: Is \code{x} an ordered-factor scalar?
+
+\item \code{pct_scl}: Is \code{x} a percent-numeric scalar?
+
+\item \code{pos_scl}: Is \code{x} a positive-numeric scalar?
+
+\item \code{ppn_scl}: Is \code{x} a proportion-numeric scalar?
+
+\item \code{psw_scl}: Is \code{x} a positive-whole-numeric scalar?
+
+\item \code{srt_scl}: Is \code{x} a sortable scalar?
+
+\item \code{chr_str}: Is \code{x} a string scalar?
+
+\item \code{uno_scl}: Is \code{x} an unordered-factor scalar?
+
+\item \code{whl_scl}: Is \code{x} a whole-numeric scalar?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -120,6 +171,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -130,7 +183,6 @@ Other props:
 \code{\link{mmm_mvc}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

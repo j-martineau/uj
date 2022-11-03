@@ -9,20 +9,20 @@
 \alias{named.}
 \title{Are elements of an object named?}
 \usage{
-named(x, dim. = 0, u. = T, blank. = F)
+named(x., dim. = 0, u. = T, blank. = F)
 
-enamed(x, u. = T, blank. = F)
+enamed(x., u. = T, blank. = F)
 
-rnamed(x, u. = T, blank. = F)
+rnamed(x., u. = T, blank. = F)
 
-cnamed(x, u. = T, blank. = F)
+cnamed(x., u. = T, blank. = F)
 
-rcnamed(x, u. = T, blank. = F)
+rcnamed(x., u. = T, blank. = F)
 
 named.(..., u. = T, blank. = F)
 }
 \arguments{
-\item{x}{Argument to be inspected for names.}
+\item{x.}{Argument to be inspected for names.}
 
 \item{dim.}{Dimension \code{0} for elements (of atomic or list vectors only),
 \code{1} for rows of matrices or tibbles, \code{2} for columns of matrices
@@ -39,20 +39,23 @@ allowed as names.}
 Logical scalar.
 }
 \description{
-Are elements of an object named?
+Determine whether an objects elements, rows, and/or columns are
+named, accounting for whether names must be unique, whether the object may
+contain empty elements, and whether names may be blank strings ("").
 }
-\details{
-\strong{\code{named}}
-\cr Determine whether an objects elements, rows, and/or columns are named,
-accounting for whether names must be unique, whether the object may contain
-empty elements, and whether names may be blank strings ("").
-\cr\cr
-\strong{\code{rnamed,cnamed,rcnamed}}
-\cr Convenience functions to specify rows, columns, or both.
-\cr\cr
-\strong{\code{named.}}
-\cr Determine whether all arguments in \code{...} are named.
-}
+\section{Functions}{
+\itemize{
+\item \code{enamed}: Are elements of \code{x} named?
+
+\item \code{rnamed}: Are rows of \code{x} named?
+
+\item \code{cnamed}: Are columns of \code{x} named?
+
+\item \code{rcnamed}: Are both rows and columns of \code{x} named?
+
+\item \code{named.}: Are all \code{...} arguments named?
+}}
+
 \seealso{
 Other naming: 
 \code{\link{getnames}()}

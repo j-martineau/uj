@@ -5,51 +5,50 @@
 \alias{each}
 \alias{reps_each}
 \alias{each_reps}
-\title{Replication}
+\title{Extended functionality for \code{\link[base:rep]{base::rep}}.}
 \usage{
-reps(..., r = 1)
+reps(..., r. = 1)
 
-each(..., e = 1)
+each(..., e. = 1)
 
-reps_each(..., r = 1, e = 1)
+reps_each(..., r. = 1, e. = 1)
 
-each_reps(..., e = 1, r = 1)
+each_reps(..., e. = 1, r. = 1)
 }
 \arguments{
 \item{...}{One or more atomic vectors to be replicated, reduced to unique
 values, or reduced to unique duplicated values.}
 
-\item{r}{An integer scalar giving the number of replications of entire
+\item{r.}{An integer scalar giving the number of replications of entire
 vectors.}
 
-\item{e}{An integer scalar giving the number of times each value is to be
+\item{e.}{An integer scalar giving the number of times each value is to be
 replicated in place before replication of the entire vector.}
 }
 \value{
 An atomic vector.
 }
 \description{
-Extended functionality for \code{\link[base:rep]{base::rep}}.
+\code{\link[=a]{atomize}} \code{...} and concatenate \code{r}
+copies of the resulting vector. For example, \code{reps(0:1, 9, r = 2)}
+gives the result \code{c(0, 1, 9, 0, 1, 9)}.
 }
-\details{
-\strong{\code{reps}}
-\cr \code{\link[=a]{atomizes}} \code{...} and concatenates \code{r} copies
-of the resulting vector. For example, \code{reps(0:1, 9, r = 2)} gives the
-result \code{c(0, 1, 9, 0, 1, 9)}.
-\cr\cr
-\strong{\code{each}}
-\cr \code{\link[=a.]{atomizes}} \code{...} and creates \code{e} copies of
-each element of the resulting vector in place. For example, \code{each(0:1,
-  9, e = 2)} gives the result \code{c(0, 0, 1, 1, 9, 9)}.
-\cr\cr
-\strong{\code{reps_each} and \code{each_reps}}
-\cr Call \code{reps} then \code{each} and vice versa, respectively.
-}
+\section{Functions}{
+\itemize{
+\item \code{each}: \code{\link[=a.]{atomize}} \code{...} and create \code{e}
+copies of each element of the resulting vector in place. For example,
+\code{each(0:1, 9, e = 2)} gives the result \code{c(0, 0, 1, 1, 9, 9)}.
+
+\item \code{reps_each}: Call \code{reps} then \code{each}.
+
+\item \code{each_reps}: Call \code{each} then \code{reps}.
+}}
+
 \examples{
-reps(0:4, 5:9, r = 2)
-each(0:4, 5:9, r = 2)
-reps_each(0:4, 5:9, r = 2, e = 2)
-each_reps(0:4, 5:9, e = 2, r = 2)
+reps(0:4, 5:9, r. = 2)
+each(0:4, 5:9, r. = 2)
+reps_each(0:4, 5:9, r. = 2, e. = 2)
+each_reps(0:4, 5:9, e. = 2, r. = 2)
 }
 \seealso{
 Other values: 

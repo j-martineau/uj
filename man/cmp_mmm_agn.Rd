@@ -11,8 +11,7 @@
 \alias{cmp_fac_agn}
 \alias{cmp_frc_agn}
 \alias{cmp_ind_agn}
-\alias{cmp_lgc_agn}
-\alias{cmp_cnb_agn}
+\alias{cmp_lgl_agn}
 \alias{cmp_neg_agn}
 \alias{cmp_ngw_agn}
 \alias{cmp_nng_agn}
@@ -51,9 +50,7 @@ cmp_frc_agn(x)
 
 cmp_ind_agn(x)
 
-cmp_lgc_agn(x)
-
-cmp_cnb_agn(x)
+cmp_lgl_agn(x)
 
 cmp_neg_agn(x)
 
@@ -98,12 +95,72 @@ cmp_whl_agn(x)
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_cmp_generic}}.
+Get all possible complete + extended mode + atomic generic
+properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{cmp_gen}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{cmp_atm_agn}: Is \code{x} a complete atomic generic?
+
+\item \code{cmp_chr_agn}: Is \code{x} a complete character atomic generic?
+
+\item \code{cmp_ch1_agn}: Is \code{x} a complete onechar atomic generic?
+
+\item \code{cmp_clr_agn}: Is \code{x} a complete color atomic generic?
+
+\item \code{cmp_evn_agn}: Is \code{x} a complete even-numeric atomic generic?
+
+\item \code{cmp_fac_agn}: Is \code{x} a complete factor atomic generic?
+
+\item \code{cmp_frc_agn}: Is \code{x} a complete fractional-numeric atomic generic?
+
+\item \code{cmp_ind_agn}: Is \code{x} a complete indexer atomic generic?
+
+\item \code{cmp_lgl_agn}: Is \code{x} a complete logical atomic generic?
+
+\item \code{cmp_neg_agn}: Is \code{x} a complete negative-numeric atomic generic?
+
+\item \code{cmp_ngw_agn}: Is \code{x} a complete negative-whole-numeric atomic generic?
+
+\item \code{cmp_nng_agn}: Is \code{x} a complete non-negative-numeric atomic generic?
+
+\item \code{cmp_nnw_agn}: Is \code{x} a complete non-negative-whole-numeric atomic generic?
+
+\item \code{cmp_nps_agn}: Is \code{x} a complete non-positive-numeric atomic generic?
+
+\item \code{cmp_npw_agn}: Is \code{x} a complete non-positive-whole-numeric atomic generic?
+
+\item \code{cmp_nst_agn}: Is \code{x} a complete non-sortable atomic generic?
+
+\item \code{cmp_num_agn}: Is \code{x} a complete numeric atomic generic?
+
+\item \code{cmp_odd_agn}: Is \code{x} a complete odd-numeric atomic generic?
+
+\item \code{cmp_ord_agn}: Is \code{x} a complete ordered-factor atomic generic?
+
+\item \code{cmp_pct_agn}: Is \code{x} a complete percent-numeric atomic generic?
+
+\item \code{cmp_pos_agn}: Is \code{x} a complete positive-numeric atomic generic?
+
+\item \code{cmp_ppn_agn}: Is \code{x} a complete proportion-numeric atomic generic?
+
+\item \code{cmp_psw_agn}: Is \code{x} a complete positive-whole-numeric atomic generic?
+
+\item \code{cmp_srt_agn}: Is \code{x} a complete sortable atomic generic?
+
+\item \code{cmp_str_agn}: Is \code{x} a complete string atomic generic?
+
+\item \code{cmp_uno_agn}: Is \code{x} a complete unordered-factor atomic generic?
+
+\item \code{cmp_whl_agn}: Is \code{x} a complete whole-numeric atomic generic?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
 \code{\link{cmp_mmm_avl}},
@@ -119,6 +176,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -130,7 +189,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

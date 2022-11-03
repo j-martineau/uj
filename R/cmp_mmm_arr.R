@@ -1,7 +1,8 @@
 #' @name cmp_mmm_arr
 #' @family props
 #' @title Complete + Extended Mode + Atomic Array (cmp + mmm + arr)
-#' @description See \code{\link{mmm}}, and \code{\link{is_cmp_array}}.
+#' @description Get all possible complete + extended mode + array properties.
+#' @details See \code{\link{mmm}}, and \code{\link{cmp_arr}}.
 #' @param x An object
 #' @return \code{TRUE} or \code{FALSE}
 #' @export
@@ -11,114 +12,118 @@ cmp_mmm_arr_vals <- function() {
   x
 }
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete atomic array?
 #' @export
-cmp_atm_arr <- function(x) {is_cmp_array(x)}
+cmp_atm_arr <- function(x) {cmp_arr(x) & icmp(x)}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete character atomic array?
 #' @export
-cmp_chr_arr <- function(x) {is_cmp_array(x, "chr")}
+cmp_chr_arr <- function(x) {cmp_arr(x, "chr")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete onechar atomic array?
 #' @export
-cmp_ch1_arr <- function(x) {is_cmp_array(x, "ch1")}
+cmp_ch1_arr <- function(x) {cmp_arr(x, "ch1")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete color atomic array?
 #' @export
-cmp_clr_arr <- function(x) {is_cmp_array(x, "clr")}
+cmp_clr_arr <- function(x) {cmp_arr(x, "clr")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete even-numeric atomic array?
 #' @export
-cmp_evn_arr <- function(x) {is_cmp_array(x, "evn")}
+cmp_evn_arr <- function(x) {cmp_arr(x, "evn")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete factor atomic array?
 #' @export
-cmp_fac_arr <- function(x) {is_cmp_array(x, "fac")}
+cmp_fac_arr <- function(x) {cmp_arr(x, "fac")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete fractional-numeric atomic
+#'   array?
 #' @export
-cmp_frc_arr <- function(x) {is_cmp_array(x, "frc")}
+cmp_frc_arr <- function(x) {cmp_arr(x, "frc")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete indexer atomic array?
 #' @export
-cmp_ind_arr <- function(x) {is_cmp_array(x, "ind")}
+cmp_ind_arr <- function(x) {cmp_arr(x, "ind")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete logical atomic array?
 #' @export
-cmp_lgc_arr <- function(x) {is_cmp_array(x, "lgc")}
+cmp_lgl_arr <- function(x) {cmp_arr(x, "lgl")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete negative-numeric atomic array?
 #' @export
-cmp_cnb_arr <- function(x) {is_cmp_array(x, "cnb")}
+cmp_neg_arr <- function(x) {cmp_arr(x, "neg")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete negative-whole-numeric atomic
+#'   array?
 #' @export
-cmp_neg_arr <- function(x) {is_cmp_array(x, "neg")}
+cmp_ngw_arr <- function(x) {cmp_arr(x, "ngw")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete non-negative-numeric atomic
+#'   array?
 #' @export
-cmp_ngw_arr <- function(x) {is_cmp_array(x, "ngw")}
+cmp_nng_arr <- function(x) {cmp_arr(x, "nng")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete non-negative-whole-numeric
+#'   atomic array?
 #' @export
-cmp_nng_arr <- function(x) {is_cmp_array(x, "nng")}
+cmp_nnw_arr <- function(x) {cmp_arr(x, "nnw")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete non-positive-numeric atomic
+#'   array?
 #' @export
-cmp_nnw_arr <- function(x) {is_cmp_array(x, "nnw")}
+cmp_nps_arr <- function(x) {cmp_arr(x, "nps")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete non-positive-whole-numeric
+#'   atomic array?
 #' @export
-cmp_nps_arr <- function(x) {is_cmp_array(x, "nps")}
+cmp_npw_arr <- function(x) {cmp_arr(x, "npw")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete non-sortable atomic array?
 #' @export
-cmp_npw_arr <- function(x) {is_cmp_array(x, "npw")}
+cmp_nst_arr <- function(x) {cmp_arr(x, "nst")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete numeric atomic array?
 #' @export
-cmp_nst_arr <- function(x) {is_cmp_array(x, "nst")}
+cmp_num_arr <- function(x) {cmp_arr(x, "num")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete odd-numeric atomic array?
 #' @export
-cmp_num_arr <- function(x) {is_cmp_array(x, "num")}
+cmp_odd_arr <- function(x) {cmp_arr(x, "odd")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete ordered-factor atomic array?
 #' @export
-cmp_odd_arr <- function(x) {is_cmp_array(x, "odd")}
+cmp_ord_arr <- function(x) {cmp_arr(x, "ord")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete percent-numeric atomic array?
 #' @export
-cmp_ord_arr <- function(x) {is_cmp_array(x, "ord")}
+cmp_pct_arr <- function(x) {cmp_arr(x, "pct")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete positive-numeric atomic array?
 #' @export
-cmp_pct_arr <- function(x) {is_cmp_array(x, "pct")}
+cmp_pos_arr <- function(x) {cmp_arr(x, "pos")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete proportion-numeric atomic
+#'   array?
 #' @export
-cmp_pos_arr <- function(x) {is_cmp_array(x, "pos")}
+cmp_ppn_arr <- function(x) {cmp_arr(x, "ppn")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete positive-whole-numeric atomic
+#'   array?
 #' @export
-cmp_ppn_arr <- function(x) {is_cmp_array(x, "ppn")}
+cmp_psw_arr <- function(x) {cmp_arr(x, "psw")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete sortable atomic array?
 #' @export
-cmp_psw_arr <- function(x) {is_cmp_array(x, "psw")}
+cmp_srt_arr <- function(x) {cmp_arr(x, "srt")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete string atomic array?
 #' @export
-cmp_srt_arr <- function(x) {is_cmp_array(x, "srt")}
+cmp_str_arr <- function(x) {cmp_arr(x, "str")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete unordered-factor atomic array?
 #' @export
-cmp_str_arr <- function(x) {is_cmp_array(x, "str")}
+cmp_uno_arr <- function(x) {cmp_arr(x, "uno")}
 
-#' @rdname cmp_mmm_arr
+#' @describeIn cmp_mmm_arr Is \code{x} a complete whole-numeric atomic array?
 #' @export
-cmp_uno_arr <- function(x) {is_cmp_array(x, "uno")}
-
-#' @rdname cmp_mmm_arr
-#' @export
-cmp_whl_arr <- function(x) {is_cmp_array(x, "whl")}
+cmp_whl_arr <- function(x) {cmp_arr(x, "whl")}

@@ -3,25 +3,12 @@
 #' @title Convert String Case
 #' @description Convert strings to lower, upper, sentence, and title cases
 #'   (supplements \code{tolower} and \code{toupper}).
-#' @description \strong{\code{tocase}}
-#'   \cr Converts to the case specified in \code{case}.
-#'   \cr\cr
-#'   \strong{\code{tosentence, sc}}
-#'   \cr Converts to sentence case via \code{\link[stringr]{str_to_sentence}}.
-#'   \cr\cr
-#'   \strong{\code{totitle, tc}}
-#'   \cr Converts to sentence case via \code{\link[stringr]{str_to_title}}.
-#'   \cr\cr
-#'   \strong{\code{lc}}
-#'   \cr Converts to lower case via \code{\link[base]{tolower}}.
-#'   \cr\cr
-#'   \strong{\code{uc}}
-#'   \cr Converts to upper case via \code{\link[base]{toupper}}.
+#' @description Convert to the case specified in \code{case}.
 #' @param ... An arbitrary number of atomic arguments to be processed.
-#' @param case \code{'l'}, \code{'s'}, \code{'t'}, or \code{'u'} to indicate
+#' @param case. \code{'l'}, \code{'s'}, \code{'t'}, or \code{'u'} to indicate
 #'   lower, sentence, title, or upper case. Case insensitive.
-#' @param a .\code{TRUE} or \code{FALSE} indicating whether to
-#'   \link[=a.]{atomize} \code{...} before processing.
+#' @param a. \code{TRUE} or \code{FALSE} indicating whether to
+#'   \link[=av]{atomize} \code{...} before processing.
 #' @examples
 #' TestTitle    <- "This is a Title"
 #' TestSentence <- "This is a sentence."
@@ -39,63 +26,68 @@
 #' scase(TestTitle, TestSentence, TestWords, TestSet, case = "T")
 #' scase(TestVector, case = "UPPER")
 #' @export
-tocase <- function(case, ..., a. = T) {
-  x <- list(...)
-  N <- length(x)
-  AA <- all(sapply(x), xchr)
-  AT <- all(sapply(x), chr_atb)
-  AL <- all(sapply(x), chr_avl)
-  if (N > 0) {L <- lengths(x)} else {L <- 1}
-  VC <- isIN(case, c("l", "s", "t", "u"))
-  VX <- f0(N == 0, F, f0(any(lengths(x) == 0), F,
-        f0(all(sapply(x, is.atomic)), T, AA | AT | AL)))
-  VA <- isTF(a.)
-  E <- NULL
-  if (!VC) {E <- c(E, "\n  * [case] must be 'l', 's', 't', or 'u'.")}
-  if (!VX) {E <- c(E, "\n  * [...] must be contain non-empty character objects, character tibbles, or character vlists.")}
-  if (!VA) {E <- c(E, "\n  * [a.] must be TRUE or FALSE.")}
-  if (xdef(E)) {stop(E)}
-  if (isT(a.)) {x <- list(av(...))} else {x <- list(...)}
-  for (i in 1:length(x)) {
-    X <- x[[i]]
-    if (xchr(X)) {
-      if      (case == "l") {X <- tolower(X)}
-      else if (case == "u") {X <- toupper(X)}
-      else if (case == "t") {X <- stringr::str_to_title(X)}
-      else if (case == "s") {X <- stringr::str_to_sentence(X)}
+tocase <- function(case., ..., a. = T) {
+  x. <- list(...)
+  n. <- length(x.)
+  ac. <- all(sapply(x.), ichr)
+  at. <- all(sapply(x.), chr_atb)
+  al. <- all(sapply(x.), chr_avl)
+  if (n. > 0) {ns. <- lengths(x.)} else {ns. <- 1}
+  vc. <- isIN(case., c("l", "s", "t", "u"))
+  vd. <- f0(n. == 0, F,
+            f0(any(lengths(x.) == 0), F,
+               f0(all(sapply(x., is.atomic)), T, ac. | at. | al.)))
+  va. <- isTF(a.)
+  err. <- NULL
+  if (!vc.) {err. <- c(err., "\n • [case.] must be 'l', 's', 't', or 'u'.")}
+  if (!vd.) {err. <- c(err., "\n • [...] must be contain non-empty character objects, character tibbles, or character vlists.")}
+  if (!va.) {err. <- c(err., "\n • [a.] must be TRUE or FALSE.")}
+  if (idef(err.)) {stop(err.)}
+  if (isT(a.)) {x. <- list(av(...))} else {x. <- list(...)}
+  for (i. in 1:length(x.)) {
+    xi. <- x.[[i.]]
+    if (ichr(xi.)) {
+      if      (case. == "l") {xi. <- tolower(xi.)}
+      else if (case. == "u") {xi. <- toupper(xi.)}
+      else if (case. == "t") {xi. <- stringr::str_to_title(xi.)}
+      else if (case. == "s") {xi. <- stringr::str_to_sentence(xi.)}
     }
     else {
-      if      (case == "l") {X <- apply(X, 2, tolower)}
-      else if (case == "u") {X <- apply(X, 2, toupper)}
-      else if (case == "t") {X <- apply(X, 2, stringr::str_to_title)}
-      else if (case == "s") {X <- apply(X, 2, stringr::str_to_sentence)}
+      if      (case. == "l") {xi. <- apply(xi., 2, tolower)}
+      else if (case. == "u") {xi. <- apply(xi., 2, toupper)}
+      else if (case. == "t") {xi. <- apply(xi., 2, stringr::str_to_title)}
+      else if (case. == "s") {xi. <- apply(xi., 2, stringr::str_to_sentence)}
     }
-    x[[i]] <- X
+    x.[[i.]] <- xi.
   }
-  if (length(x) == 1) {x <- x[[1]]}
-  x
+  if (length(x.) == 1) {x. <- x.[[1]]}
+  x.
 }
 
-#' @rdname tocase
+#' @describeIn tocase Convert to sentence case via
+#'   \code{\link[stringr]{str_to_sentence}}.
 #' @export
 tosentence <- function(..., a. = T) {tocase("s", ..., a. = a.)}
 
-#' @rdname tocase
+#' @describeIn tocase Convert to sentence case via
+#'   \code{\link[stringr]{str_to_title}}.
 #' @export
 totitle <- function(..., a. = T) {tocase("t", ..., a. = a.)}
 
-#' @rdname tocase
+#' @describeIn tocase Converts to lower case via \code{\link[base]{tolower}}.
 #' @export
 lc <- function(..., a. = T) {tocase("l", ..., a. = a.)}
 
-#' @rdname tocase
+#' @describeIn tocase Convert to sentence case via
+#'   \code{\link[stringr]{str_to_sentence}}.
 #' @export
 sc <- function(..., a. = T) {tocase("s", ..., a. = a.)}
 
-#' @rdname tocase
+#' @describeIn tocase Convert to title case via
+#'   \code{\link[stringr]{str_to_title}}.
 #' @export
 tc <- function(..., a. = T) {tocase("t", ..., a. = a.)}
 
-#' @rdname tocase
+#' @describeIn tocase Converts to upper case via \code{\link[base]{tolower}}.
 #' @export
 uc <- function(..., a. = T) {tocase("u", ..., a. = a.)}

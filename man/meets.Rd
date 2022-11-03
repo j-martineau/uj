@@ -4,10 +4,10 @@
 \alias{meets}
 \title{Does an object meet count and/or value restrictions}
 \usage{
-meets(x, ...)
+meets(x., ...)
 }
 \arguments{
-\item{x}{An object.}
+\item{x.}{An object.}
 
 \item{...}{Additional restrictive arguments. See details.}
 }
@@ -15,7 +15,7 @@ meets(x, ...)
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-Checks whether \code{x} meets a variety of count and value
+Checks whether \code{x.} meets a variety of count and value
 restrictions supplied through \code{...}.
 }
 \details{
@@ -23,28 +23,27 @@ Additional restrictive arguments are optional. When no additional
 arguments are supplied \code{TRUE} is returned. Possible arguments are as
 follows:
 \tabular{ll}{
-\code{n}   \tab The set of valid lengths/numbers of elements.
-\cr\code{nr}  \tab The set of valid numbers of rows.
-\cr\code{nc}  \tab The set of valid numbers of columns.
-\cr\code{min} \tab The minimum valid length/number of element.
-\cr\code{minr}\tab The minimum valid number of rows.
-\cr\code{minc}\tab The minimum valid number of columns.
-\cr\code{max} \tab The maximum valid length/number of element.
-\cr\code{maxr}\tab The maximum valid number of rows.
-\cr\code{maxc}\tab The maximum valid number of columns.
-\cr\code{vals}\tab The set of valid values.
-\cr\code{lt}  \tab The value all values of \code{x} must be less than.
-\cr\code{le}  \tab The value all values of \code{x} must be less than or
-equal to.
-\cr\code{ge}  \tab The value all values of \code{x} must be less than or
-equal to.
-\cr\code{gt}  \tab The value all values of \code{x} must be greater than.
-}
+NAME        \tab WHAT IT SPECIFIES                                    \cr
+\code{n}    \tab The set of valid lengths/numbers of elements         \cr
+\code{nr}   \tab The set of valid numbers of rows                     \cr
+\code{nc}   \tab The set of valid numbers of columns                  \cr
+\code{min}  \tab The minimum valid length/number of element           \cr
+\code{minr} \tab The minimum valid number of rows                     \cr
+\code{minc} \tab The minimum valid number of columns                  \cr
+\code{max}  \tab The maximum valid length/number of element           \cr
+\code{maxr} \tab The maximum valid number of rows                     \cr
+\code{maxc} \tab The maximum valid number of columns                  \cr
+\code{vals} \tab The set of valid values                              \cr
+\code{lt}   \tab The value all values of \code{x.} must be less than  \cr
+\code{le}   \tab The value all values of \code{x.} must be less than or
+equal to                                             \cr
+\code{ge}   \tab The value all values of \code{x.} must be less than or
+equal to                                             \cr
+\code{gt}   \tab The value all values of \code{x.} must be greater than }
 }
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -61,6 +60,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
 \code{\link{mmm_atb}},
@@ -71,7 +72,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

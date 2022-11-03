@@ -5,11 +5,11 @@
 #' @return Character scalar
 #' @export
 os <- function() {
-  Type <- .Platform$OS.type
-  Name <- Sys.info()["sysname"]
-  if      (Type == "windows") {return("win" )}
-  else if (Name == "Darwin" ) {return("mac" )}
-  else if (Type == "unix"   ) {return("unix")}
+  type <- .Platform$OS.type
+  name <- Sys.info()["sysname"]
+  if      (type == "windows") {return("win" )}
+  else if (name == "Darwin" ) {return("mac" )}
+  else if (type == "unix"   ) {return("unix")}
   stop("In function {os}:\n",
     "Unknown operating system. Common operating systems\n",
     "are identified in the following ways:             \n",
@@ -19,6 +19,6 @@ os <- function() {
     "            & Sys.info()['sysname'] == 'Darwin'   \n",
     "--------------------------------------------------\n",
     "However, in this case, the values are:            \n",
-    "  .Platform$OS.type      == '", Type, "'          \n",
-    "  Sys.info()['sysname']  == '", Name, "'          \n")
+    "  .Platform$OS.type      == '", type, "'          \n",
+    "  Sys.info()['sysname']  == '", name, "'          \n")
 }

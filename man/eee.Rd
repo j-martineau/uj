@@ -2,37 +2,40 @@
 % Please edit documentation in R/eee.R
 \name{eee}
 \alias{eee}
+\alias{neee}
+\alias{ie0D}
+\alias{ie1D}
+\alias{ie2D}
+\alias{ieHD}
+\alias{ieUD}
 \alias{eee_vals}
-\alias{xe0D}
-\alias{xe1D}
-\alias{xe2D}
-\alias{xeHD}
-\alias{xeUD}
-\alias{is_eee}
+\alias{ieee}
 \title{Effective Dimensionality (eee) Property Family}
 \usage{
+eee(x.)
+
+neee(x.)
+
+ie0D(x.)
+
+ie1D(x.)
+
+ie2D(x.)
+
+ieHD(x.)
+
+ieUD(x.)
+
 eee_vals()
 
-xe0D(x)
-
-xe1D(x)
-
-xe2D(x)
-
-xeHD(x)
-
-xeUD(x)
-
-eee(x)
-
-is_eee(x, xxx, ...)
+ieee(x., xxx., ...)
 }
 \arguments{
-\item{x}{An object.}
+\item{x.}{An object.}
 
-\item{xxx}{A character scalar containing one or more values from
-\code{eee_vals()} separated by pipes and/or underscores ("."). Combinations
-of effective dimensionality  properties can be specified by separating them
+\item{xxx.}{A character scalar containing one or more values from
+\code{eee_vals()} separated by pipes and/or underscores. Combinations of
+effective dimensionality  properties can be specified by separating them
 with underscores. Separating effective dimensionality properties or
 combinations of effective dimensionality properties with pipes will result
 in a value of \code{TRUE} if any of them applies to \code{x}.}
@@ -42,70 +45,81 @@ element/row/column count restrictions.}
 }
 \value{
 \code{eee_vals} and \code{eee} return a character scalar or
-vector of effective dimensionality property values. \code{eee(x)} returns
+vector of effective dimensionality property values. \code{eee(x.)} returns
 \code{NaN} or a non-negative whole-number scalar. All others return either
 \code{TRUE} or \code{FALSE}.
 }
 \description{
+Get a character scalar effective dimensionality property
+applicable to \code{x.}.
+}
+\details{
 Effective dimensionality of a non-empty object is defined as
 the number of dimensions with multiple indexed positions. Effective
 dimensionality is undefined for empty objects. The following table
 describes values of effective dimensionality, property names assigned to
-them, and a definition of those values.
-\tabular{llll}{
-\emph{Effective Dim}\tab\emph{Value}
-\tab\emph{Name}\tab\emph{Qualifying Objects}
-\cr\code{NaN}\tab\code{'eUD'}\tab effectively dimensionally undefined.
-\tab\code{NULL} or of length 0.
-\cr\code{0}  \tab\code{'e0D'}\tab effectively \code{0}-D
-\tab vector of length 1, vlist of length 1, array of length
-1, or code{1 × 1} tibble.
-\cr\code{1}  \tab\code{'e1D'}\tab effectively \code{1}-D
-\tab vector or length 2 or more, vlist of length 2 or more
-or non-empty array with multiple index positions in
-only \code{1} dimension.
-\cr\code{2}  \tab\code{'e2D'}\tab Effectively \code{2}-D
-\tab tibble with multiple rows and multiple columns,
-matrix with multiple rows and multiple columns,-
-non-empty array with multiple index positions in
-only \code{2} dimensions.
-\cr\code{≥ 3}\tab\code{'eHD'}\tab Effectively hyper-D
-\tab non-empty array with multiple index positions in at
-least 3 dimensions.
+them, and a definition of those values.\tabular{llll}{
+NUMBER OF  \tab EFFECTIVE      \tab EFFECTIVE      \tab CHARACTERISTICS\cr
+EFFECTIVE  \tab DIMENSIONALITY \tab DIMENSIONALITY \tab OF QUALIFYING  \cr
+DIMENSIONS \tab PROPERTY VALUE \tab PROPERTY NAME  \tab OBJECTS        \cr
+\code{NaN} \tab \code{'eUD'}   \tab effectively dimensionally undefined
+\tab \code{NULL} or length 0.           \cr
+\code{0}   \tab \code{'e0D'}   \tab effectively \code{0}-dimensional
+\tab vector of length 1, vlist of length 1,
+array of length 1, or code{1 × 1}
+tibble.                            \cr
+\code{1}   \tab \code{'e1D'}   \tab effectively \code{1}-dimensional
+\tab vector or vlist of length 2+ or
+non-empty array with multiple index
+positions in \code{1} dimension.   \cr
+\code{2}   \tab \code{'e2D'}   \tab effectively \code{2}-dimensional
+\tab tibble with multiple rows and multiple
+columns, matrix with multiple rows and
+multiple columns, non-empty array with
+multiple index positions in only
+\code{2} dimensions.               \cr
+\code{≥ 3} \tab\code{'eHD'}    \tab effectively hyper-dimensional
+\tab non-empty array with multiple index
+positions in at least 3 dimensions.  }
 }
-}
-\details{
-\strong{\code{eee_vals}}
-\cr Gets all valid effective dimensionality property values.
-\cr\cr
-\strong{\code{neee}}
-\cr Gets the \strong{number} of effective dimensions of \code{x} (i.e., not
-a character scalar value from \code{eee_vals()}.
-\cr\cr
-\strong{\code{eee}}
-\cr Returns the name of the effective dimensionality property from
-\code{eee_vals()} applicable to \code{x}.
-\cr\cr
-\strong{\code{is_eee}}
-\cr Evaluates whether any (combination) property in \code{xxx} is an
-effective dimensionality property applicable to \code{x}
-\cr\cr
-\strong{\code{xeUD}, \code{xe0D}, \code{xe1D}, \code{xe2D}, and
-\code{xeHD}}
-\cr Evaluate whether the effective dimensionality of \code{x} is,
-respectively, \code{NaN} (undefined), \code{0}, \code{1}, \code{2}, and
+\section{Functions}{
+\itemize{
+\item \code{neee}: Gets the \strong{number} of effective dimensions of \code{x.}
+(i.e., not a character scalar value from \code{eee_vals()}.
+
+\item \code{ie0D}: Evaluate whether the effective dimensionality of \code{x.} is
+\code{0}.
+
+\item \code{ie1D}: Evaluate whether the effective dimensionality of \code{x.} is
+\code{1}.
+
+\item \code{ie2D}: Evaluate whether the effective dimensionality of \code{x.} is
+\code{2}.
+
+\item \code{ieHD}: Evaluate whether the effective dimensionality of \code{x.} is
 \code{3+}.
-\cr\cr
-\strong{Additional Arguments in \code{...}}
-\cr Submitting additional arguments to \code{is_eee} via \code{...} allows
+
+\item \code{ieUD}: Evaluate whether the effective dimensionality of \code{x.} is
+undefined, or \code{NaN}.
+
+\item \code{eee_vals}: Get a character vector of all possible essential
+dimensionality property values.
+
+\item \code{ieee}: Evaluates whether any (combination) property in \code{xxx.} is
+an effective dimensionality property applicable to \code{x.}
+}}
+
+\section{Additional Arguments in \code{...}}{
+
+Submitting additional arguments to \code{is_eee} via \code{...} allows
 for checking not just the effective dimensionality but also whether length,
 number of rows, number of columns, and element values meet flexible
 criteria.
 }
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -121,6 +135,8 @@ Other props:
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -132,7 +148,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}

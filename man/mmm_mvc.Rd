@@ -3,7 +3,6 @@
 \name{mmm_mvc}
 \alias{mmm_mvc}
 \alias{mmm_mvc_vals}
-\alias{atm_mvc}
 \alias{chr_mvc}
 \alias{ch1_mvc}
 \alias{clr_mvc}
@@ -11,8 +10,7 @@
 \alias{fac_mvc}
 \alias{frc_mvc}
 \alias{ind_mvc}
-\alias{lgc_mvc}
-\alias{cnb_mvc}
+\alias{lgl_mvc}
 \alias{neg_mvc}
 \alias{ngw_mvc}
 \alias{nng_mvc}
@@ -35,8 +33,6 @@
 \usage{
 mmm_mvc_vals()
 
-atm_mvc(x)
-
 chr_mvc(x)
 
 ch1_mvc(x)
@@ -51,9 +47,7 @@ frc_mvc(x)
 
 ind_mvc(x)
 
-lgc_mvc(x)
-
-cnb_mvc(x)
+lgl_mvc(x)
 
 neg_mvc(x)
 
@@ -98,12 +92,69 @@ whl_mvc(x)
 \code{TRUE} or \code{FALSE}
 }
 \description{
-See \code{\link{mmm}}, and \code{\link{is_atm_mvect}}.
+Get all possible extended mode + atomic mvect properties.
 }
+\details{
+See \code{\link{mmm}}, and \code{\link{atm_mvc}}.
+}
+\section{Functions}{
+\itemize{
+\item \code{chr_mvc}: Is \code{x} a character mvect?
+
+\item \code{ch1_mvc}: Is \code{x} a onechar mvect?
+
+\item \code{clr_mvc}: Is \code{x} a color mvect?
+
+\item \code{evn_mvc}: Is \code{x} an even-numeric mvect?
+
+\item \code{fac_mvc}: Is \code{x} a factor mvect?
+
+\item \code{frc_mvc}: Is \code{x} a fractional-numeric mvect?
+
+\item \code{ind_mvc}: Is \code{x} an indexer mvect?
+
+\item \code{lgl_mvc}: Is \code{x} a logical mvect?
+
+\item \code{neg_mvc}: Is \code{x} a negative-numeric mvect?
+
+\item \code{ngw_mvc}: Is \code{x} a negative-whole-numeric mvect?
+
+\item \code{nng_mvc}: Is \code{x} a non-negative-numeric mvect?
+
+\item \code{nnw_mvc}: Is \code{x} a non-negative-whole-numeric mvect?
+
+\item \code{nps_mvc}: Is \code{x} a non-positive-numeric mvect?
+
+\item \code{npw_mvc}: Is \code{x} a non-positive-whole-numeric mvect?
+
+\item \code{nst_mvc}: Is \code{x} a non-sortable atomic mvect?
+
+\item \code{num_mvc}: Is \code{x} a numeric mvect?
+
+\item \code{odd_mvc}: Is \code{x} an odd-numeric mvect?
+
+\item \code{ord_mvc}: Is \code{x} an ordered-factor mvect?
+
+\item \code{pct_mvc}: Is \code{x} a percent-numeric mvect?
+
+\item \code{pos_mvc}: Is \code{x} a positive-numeric mvect?
+
+\item \code{ppn_mvc}: Is \code{x} a proportion-numeric mvect?
+
+\item \code{psw_mvc}: Is \code{x} a positive-whole-numeric mvect?
+
+\item \code{srt_mvc}: Is \code{x} a sortable atomic mvect?
+
+\item \code{str_mvc}: Is \code{x} a string mvect?
+
+\item \code{uno_mvc}: Is \code{x} an unordered-factor mvect?
+
+\item \code{whl_mvc}: Is \code{x} a whole-numeric mvect?
+}}
+
 \seealso{
 Other props: 
 \code{\link{ccc}()},
-\code{\link{cmp_ccc}},
 \code{\link{cmp_mmm_agn}},
 \code{\link{cmp_mmm_arr}},
 \code{\link{cmp_mmm_atb}},
@@ -120,6 +171,8 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{fff}()},
+\code{\link{is_failsafe}},
+\code{\link{is_xxx}},
 \code{\link{meets}()},
 \code{\link{mmm_agn}},
 \code{\link{mmm_arr}},
@@ -130,7 +183,6 @@ Other props:
 \code{\link{mmm_scl}},
 \code{\link{mmm_vec}},
 \code{\link{mmm}()},
-\code{\link{pop_xxx}},
 \code{\link{sss}()},
 \code{\link{ttt}()},
 \code{\link{xxx}()}
