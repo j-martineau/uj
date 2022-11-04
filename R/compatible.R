@@ -1,21 +1,16 @@
-#' @name compatible
+#' @name compatible_uj
 #' @family props
 #' @title Are objects compatible?
-#' @description Determines whether modes of all arguments in \code{...} are
-#'   compatible, meaning that all are character, logical, numeric, ordered
-#'   factor with the same set of levels (in the same order), or unordered factor
-#'   with the same set of levels (in any order).
-#' @details Compatibility means that arguments are either (a) all numeric,
+#' @description Compatibility means that arguments are either (a) all numeric,
 #'   (b) all character, (c) all logical, (d) all unordered factor with the same
 #'   levels, or (e) ordered factor with the same levels in the same order.
 #'   \cr\cr
-#'   \emph{For \link[=is_atm_tbl]{atomic tibbles}} (applicable function is
-#'   \code{compatible_atbs}): Arguments are compatible for row binding if they
-#'   have identical column names and their respective columns are of compatible
-#'   modes. Arguments are compatible for column binding if they have the same
-#'   number of rows.
+#'   \emph{For atomic tabulars} (\code{\link{iatb}}): Arguments are compatible
+#'   for row binding if they have identical column names and their respective
+#'   columns are of compatible modes. Arguments are compatible for column
+#'   binding if they have the same number of rows.
 #'   \cr\cr
-#'   \emph{For atomic matrices} (\code{compatible_mats}): Arguments are
+#'   \emph{For atomic matrices}: Arguments are
 #'   compatible for column vs. row binding if their modes are compatible and
 #'   they have, respectively the same number of rows vs. columns.
 #' @param ... An arbitrary number of arguments to be checked for compatibility
@@ -54,6 +49,13 @@
 #' compatible(NumZero, NumSeven, NumDigits, recycle = F)
 #' compatible(list(letters), LETTERS, as.character(0:9))
 #' @export
+compatible_uj <- function() {help("compatible_uj", package = "uj")}
+
+#' @describeIn compatible_uj Determines whether modes of all arguments in
+#'   \code{...} are compatible, meaning that all are character, logical,
+#'   numeric, ordered factor with the same set of levels (in the same order), or
+#'   unordered factor with the same set of levels (in any order).
+#' @export
 compatible <- function(..., recyclable. = TRUE) {
   x. <- list(...)                                                                # arguments in [...] as a list
   n. <- length(x.)
@@ -81,7 +83,8 @@ compatible <- function(..., recyclable. = TRUE) {
   T
 }
 
-#' @describeIn compatible Are all matrices in \code{...} compatible for binding?
+#' @describeIn compatible_uj Are all matrices in \code{...} compatible for
+#'   binding?
 #' @export
 compatible_mats <- function(..., bind. = "c") {
   x. <- list(...)
@@ -103,7 +106,7 @@ compatible_mats <- function(..., bind. = "c") {
   T
 }
 
-#' @describeIn compatible Are all atomic tibbles in \code{...} compatible for
+#' @describeIn compatible_uj Are all atomic tibbles in \code{...} compatible for
 #'   binding?
 #' @export
 compatible_atbs <- function(..., bind. = "c") {

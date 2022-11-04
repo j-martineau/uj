@@ -1,28 +1,23 @@
-#' @title Get one or more character scalar constants.
-#' @family constants
-#' @param ... unquoted, comma-separated list of the names of constants to
-#'   return. If multiple constants are specified, they are coerced into a single
-#'   atomic vector result. If no constants are specified (i.e., \code{v()}), a
-#'   tibble is returned giving
-#' @return An atomic vector of length 1 or greater.
-#' @export
-v <- function(...) {
-  x. <- as.character(match.call())
-  x. <- x.[2:length(x.)]
-  av(uj::.chr.scl.constants[x., "value"])
-}
-
-#' @title Get non-scalar or non-character constants.
+#' @name constants_uj
+#' @title Character scalar and atomic vector constants.
 #' @family constants
 #' @param ... unquoted, comma-separated list of the names of constants to
 #'   return. If multiple constants are specified, they are coerced into a single
 #'   atomic vector result.
 #' @return An atomic vector of length 1 or greater.
 #' @export
-l <- function(...) {                                                               # BODY
-  x. <- as.character(match.call())                                                 # : get the function call elements as a vector
-  x. <- x.[2:length(x.)]                                                           # : remove the name of the function
-  y. <- list(                                                                      # : a named list of all possible return values
+constants_uj <- function() {help("constants_uj", package = "uj")}
+
+#' @describeIn constants_uj Get a tibble containing all character scalar
+#'   constants of package \code{uj}.
+#' @export
+scl_constants <- function() {uj::.chr.scl.constants}
+
+#' @describeIn constants_uj Get a tibble containing all vector constants of
+#'   package \code{uj}.
+#' @export
+vec_constants <- function() {
+  list(                                                                            # : a named list of all possible return values
     pt     = ggplot::.pt  ,                                                        # : | the size of a single point (ggplot constant)',
     L      = NA           ,                                                        # : | logical NA
     R      = NA_real_     ,                                                        # : | real-valued NA
@@ -48,5 +43,20 @@ l <- function(...) {                                                            
     labels = c(letters, LETTERS, 0:9, ".", " ", ",", "-", "(", ")"),               # : | valid for plotting labels
     vowels = c("a", "e", "i", "o", "u", "A", "E", "I", "O", "U")                   # : | English vowels
   )                                                                                # : END
-  av(y.[x.])                                                                       # : extract the specified elements and convert to a single atomic vector
+}
+
+#' @describeIn constants_uj Get one or more character scalar constants.
+#' @export
+v <- function(...) {
+  x. <- as.character(match.call())
+  x. <- x.[2:length(x.)]
+  av(uj::.chr.scl.constants[x., "value"])
+}
+
+#' @describeIn constants_uj Get one or more vector constants.
+#' @export
+l <- function(...) {                                                               # BODY
+  x. <- as.character(match.call())                                                 # : get the function call elements as a vector
+  x. <- x.[2:length(x.)]                                                           # : remove the name of the function
+  av(vec_constants[x.])                                                            # : extract the specified elements and convert to a single atomic vector
 }                                                                                  # END

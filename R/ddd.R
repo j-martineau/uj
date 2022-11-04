@@ -1,9 +1,7 @@
-#' @name ddd
+#' @name ddd_uj
 #' @family props
 #' @title Defined Dimensionality (ddd) Property Family
-#' @description Gets a vector of all defined dimensionality properties from
-#'   \code{ddd_vals()} that are applicable to \code{x.}.
-#' @details An object's defined dimensionality (def. dim.) is the number of
+#' @description An object's defined dimensionality (def. dim.) is the number of
 #'   dimensions on which its components can be indexed. The following table
 #'   gives levels of defined dimensionality, property values assigned to levels
 #'   of defined dimensionality, property names, and a definition of each value
@@ -35,41 +33,49 @@
 #'   \code{ddd_vals} and \code{ddd} return a character scalar or vector. All
 #'   others return either \code{TRUE} or \code{FALSE}.
 #' @export
+ddd_uj <- function() {help("ddd_uj", package = "uj")}
+
+#' @describeIn ddd_uj Gets a vector of all defined dimensionality properties
+#'   from \code{ddd_vals()} that are applicable to \code{x.}.
+#' @export
 ddd <- function(x.) {
   d. <- f0(inll(x.), 0, f0(is.vector(x.), 1, length(dim(x.))))
   f0(d. == 0, 'd0D', f0(d. == 1, 'd1D',
   f0(d. == 2, 'd2D', f0(d. >= 3, 'dHD', NULL))))
 }
 
-#' @describeIn ddd Gets the \strong{number} of defined dimensions of \code{x.}
-#'   (i.e., not a character scalar defined dimensionality property from
-#'   \code{ddd_vals}).
+#' @describeIn ddd_uj Gets the \strong{number} of defined dimensions of
+#'   \code{x.} (i.e., not a character scalar defined dimensionality property
+#'   from \code{ddd_vals}).
 #' @export
 nddd <- function(x.) {f0(inll(x.), 0, f0(is.vector(x.), 1, length(dim(x.))))}
 
-#' @describeIn ddd Evaluate whether \code{x.} has \code{0} defined dimensions.
+#' @describeIn ddd_uj Evaluate whether \code{x.} has \code{0} defined
+#'   dimensions.
 #' @export
 id0D <- function(x.) {nddd(x.) == 0}
 
-#' @describeIn ddd Evaluate whether \code{x.} has \code{1} defined dimension.
+#' @describeIn ddd_uj Evaluate whether \code{x.} has \code{1} defined dimension.
 #' @export
 id1D <- function(x.) {nddd(x.) == 1}
 
-#' @describeIn ddd Evaluate whether \code{x.} has \code{2} defined dimensions.
+#' @describeIn ddd_uj Evaluate whether \code{x.} has \code{2} defined
+#'   dimensions.
 #' @export
 id2D <- function(x.) {nddd(x.) == 2}
 
-#' @describeIn ddd Evaluate whether \code{x.} has \code{3+} defined dimensions.
+#' @describeIn ddd_uj Evaluate whether \code{x.} has \code{3+} defined
+#'   dimensions.
 #' @export
 idHD <- function(x.) {nddd(x.) > 2}
 
-#' @describeIn ddd Get a character vector of all possible defined dimensionality
-#'   property values.
+#' @describeIn ddd_uj Get a character vector of all possible defined
+#'   dimensionality property values.
 #' @export
 ddd_vals <- function() {x. <- c('d0D', 'd1D', 'd2D', 'dHD'); names(x.) <- rep.int("ddd", length(x.)); x.}
 
-#' @describeIn ddd Evaluates whether at least one of the defined dimensionality
-#'   properties in \code{xxx.} is applicable to \code{x.}.
+#' @describeIn ddd_uj Evaluates whether at least one of the defined
+#'   dimensionality properties in \code{xxx.} is applicable to \code{x.}.
 #' @export
 iddd <- function(x., xxx., ...) {
   if (!cmp_chr_scl(xxx.)) {stop("\n • [xxx.] must be a complete character scalar.")}

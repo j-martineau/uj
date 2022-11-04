@@ -1,8 +1,6 @@
-#' @name meets
+#' @name meets_uj
 #' @family props
 #' @title Does an object meet count and/or value restrictions
-#' @description Checks whether \code{x.} meets a variety of count and value
-#'   restrictions supplied through \code{...}.
 #' @param x. An object.
 #' @param ... Additional restrictive arguments. See details.
 #' @details Additional restrictive arguments are optional. When no additional
@@ -28,6 +26,10 @@
 #'     \code{gt}   \tab The value all values of \code{x.} must be greater than }
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
+meets_uj <- function() {help("meets_uj", package = "uj")}
+
+#' @describeIn meets_uj Checks whether \code{x.} meets a variety of count and
+#'   value restrictions supplied through \code{...}.
 meets <- function(x., ...) {
   if (...length() == 0) {return(T)}
   vars. <- 'n.nr.nc.min.minr.minc.max.maxr.maxc.vals.lt.le.le.ge.gt'

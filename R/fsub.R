@@ -1,9 +1,15 @@
+#' @name fsub_uj
 #' @title Fixed-value string substitution
+#' @family strings
 #' @param x Atomic character object.
 #' @param pats Character vect containing string patterns to be replaced.
 #' @param subs Character vect containing replacement strings.
-#' @details Recycles \code{pats} and \code{subs}
 #' @return Atomic character object.
+#' @export
+fsub_uj <- function() {help("fsub_uj", package = "uj")}
+
+#' @describeIn fsub_uj Replace strings in \code{pats} with corresponding
+#'   (possibly recycled) strings in \code{subs}.
 #' @export
 fsub <- function(x, pats, subs) {
   bank_funs(cmp_chr_gen, x = x)

@@ -1,16 +1,19 @@
-#' @name ipat
+#' @name ipat_uj
 #' @family strings
 #' @title Simplified string indexing for fixed patterns
-#' @description Logically indexes character vector elements containing a pattern
-#'   as \code{TRUE} or \code{FALSE}.
-#' @details Always atomizes \code{...} via \code{a(...)} to create a single
+#' @details Always atomizes \code{...} via \code{av(...)} to create a single
 #'   character vector to search for a fixed pattern.
 #' @param x A character vector.
-#' @param pattern A fixed (not regular expression) character scalar pattern to
+#' @param pat A fixed (not regular expression) character scalar pattern to
 #'   search for in the atomic vector resulting from collapsing all elements of
 #'   every argument supplied via \code{...}.
 #' @return A logical vector (\code{ipat}), an empty or numeric vector
 #'   (\code{wpat, npat, ppat}), or a list of numeric vectors (\code{ppats}).
+#' @export
+ipat_uj <- function() {help("ipat_uj", package = "uj")}
+
+#' @describeIn ipat_uj Logically indexes character vector elements containing a
+#'   pattern as \code{TRUE} or \code{FALSE}.
 #' @export
 ipat <- function(x, pat) {
   vx <- cmp_chr_vec(x)
@@ -22,8 +25,8 @@ ipat <- function(x, pat) {
   grepl(pat, x, fixed = T)                                                       # logically index each atomic element of [x] containing pat
 }
 
-#' @describeIn ipat Numerically indexes character vector elements containing a
-#'   pattern as integer element numbers.
+#' @describeIn ipat_uj Numerically indexes character vector elements containing
+#'   a pattern as integer element numbers.
 #' @export
 wpat <- function(x, pat) {
   vx <- cmp_chr_vec(x)
@@ -35,8 +38,8 @@ wpat <- function(x, pat) {
   grep(pat, x, fixed = T)                                                        # numerically index each atomic element of [x] containing pat
 }
 
-#' @describeIn ipat Counts the number of times a pattern appears in each element
-#'   of a character vector.
+#' @describeIn ipat_uj Counts the number of times a pattern appears in each
+#'   element of a character vector.
 #' @export
 npat <- function(x, pat) {
   vx <- cmp_chr_vec(x)
@@ -48,8 +51,8 @@ npat <- function(x, pat) {
   lengths(gregexpr(pat, x, fixed = T))                                           # count the number of times each atomic element of [x] containing pat
 }
 
-#' @describeIn ipat Identifies the position of \emph{the first} character of the
-#'   first instance of a pattern in each element of a character vector.
+#' @describeIn ipat_uj Identifies the position of \emph{the first} character of
+#'   the first instance of a pattern in each element of a character vector.
 #' @export
 ppat <- function(x, pat) {
   vx <- cmp_chr_vec(x)
@@ -64,7 +67,7 @@ ppat <- function(x, pat) {
   return(out)
 }
 
-#' @describeIn ipat Identifies the position of the first character of
+#' @describeIn ipat_uj Identifies the position of the first character of
 #'   \emph{every} instance of a pattern in each element of a character vector.
 #' @export
 ppats <- function(x, pat) {

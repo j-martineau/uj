@@ -1,7 +1,7 @@
-#' @name ss
+#' @name ss_uj
 #' @family strings
 #' @title Split strings and select/check for elements
-#' @details \strong{\code{ss}} splits strings using the delimiter(s) in
+#' @description \strong{\code{ss}} splits strings using the delimiter(s) in
 #'   \code{d.} following these sequential steps:\enumerate{
 #'     \item Reduce \code{...} to an atomic vector containing the constituent
 #'           atomic elements of each argument in \code{...}.
@@ -62,6 +62,10 @@
 #' @return A character vector (when \code{vals = NULL}) or a logical vector
 #'   (when \code{vals} is not \code{NULL}).
 #' @export
+ss_uj <- function() {help("ss_uj", package = "uj")}
+
+#' @describeIn ss_uj Flexible fixed-string string splitting function.
+#' @export
 ss <- function(..., d. = "|", trm. = T, sqz. = T, u. = F, n. = NULL) {
   vx. <- all(sapply(list(...), ichr))
   vd. <- cmp_chr_vec(d.)
@@ -86,39 +90,39 @@ ss <- function(..., d. = "|", trm. = T, sqz. = T, u. = F, n. = NULL) {
   x.
 }
 
-#' @describeIn ss Split strings using a pipe (\code{'|'}) delimiter.
+#' @describeIn ss_uj Split strings using a pipe (\code{'|'}) delimiter.
 #' @export
 ss1 <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = " ", trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss Split strings using a pipe (\code{'|'}) delimiter.
+#' @describeIn ss_uj Split strings using a pipe (\code{'|'}) delimiter.
 #' @export
 ssP <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = "|", trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss Split strings using a dot/period (\code{'.'}) delimiter.
+#' @describeIn ss_uj Split strings using a dot/period (\code{'.'}) delimiter.
 #' @export
 ssD <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = ".", trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss Split strings using a broken pipe (\code{'¦'}) delimiter.
+#' @describeIn ss_uj Split strings using a broken pipe (\code{'¦'}) delimiter.
 #' @export
 ssB <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = "¦", trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss Split a string using pipe and dot delimiters.
+#' @describeIn ss_uj Split a string using pipe and dot delimiters.
 #' @export
 ssPD <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = c("|", "."), trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss Split a string using pipe and broken pipe delimiters.
+#' @describeIn ss_uj Split a string using pipe and broken pipe delimiters.
 #' @export
 ssPB <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = c("|", "¦"), trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss Split a string using dot and broken pipe delimiters.
+#' @describeIn ss_uj Split a string using dot and broken pipe delimiters.
 #' @export
 ssDB <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = c(".", "¦"), trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss Split a string using pipe, dot, and broken pipe delimiters.
+#' @describeIn ss_uj Split a string using pipe, dot, and broken pipe delimiters.
 #' @export
 ssPDB <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = c("|", ".", "¦"), trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss Split a string into constituent characters.
+#' @describeIn ss_uj Split a string into constituent characters.
 #' @export
 ch <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {
   vd. <- all(sapply(list(...), ichr))
@@ -139,11 +143,11 @@ ch <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {
   x.
 }
 
-#' @describeIn ss Split a string into unique constituent characters.
+#' @describeIn ss_uj Split a string into unique constituent characters.
 #' @export
 uch <- function(..., trm. = T, sqz. = T, n. = NULL) {ch(..., trm. = trm., sqz. = sqz., n. = n., u. = T)}
 
-#' @describeIn ss Split strings and place results in a tibble, including
+#' @describeIn ss_uj Split strings and place results in a tibble, including
 #'   original values
 #' @export
 sstb <- function(x., d., name. = "string", parts. = "part") {                    # BODY

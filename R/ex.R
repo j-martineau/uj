@@ -1,15 +1,13 @@
-#' @name ex
+#' @name ex_uj
 #' @family meta
 #' @title Extract rows, columns, and/or elements
-#' @description Extract specific rows and/or columns of matrices and tibbles
-#'   or extract specific elements of vecs or vlists.
 #' @param x Any valid R object.
 #' @param r A logical or integer vector indexing rows to extract from \code{x}
-#'   of \link[=ddd]{defined dimensionality} 2.
+#'   of defined dimensionality 2 (\code{\link{id2D}}).
 #' @param c A logical or integer vector indexing columns to extract from
-#'   \code{x} of \link[=ddd]{defined dimensionality} 2.
+#'   \code{x} of defined dimensionality 2 (\code{\link{id2D}}).
 #' @param e A logical or integer vector indexing elements to extract from
-#'   \code{x} of \link[=ddd]{defined dimensionality} 1.
+#'   \code{x} of defined dimensionality 1 (\code{\link{id1D}}).
 #' @examples
 #' Mat <- matrix(1:100, nrow = 10)
 #' Dat   <- as.tibble(MATRIX)
@@ -27,6 +25,11 @@
 #' ex(letters, e = iE)
 #' ex(letters, r = iR, c = iC)
 #' @export
+ex_uj <- function() {help("ex_uj", package = "uj")}
+
+#' @describeIn ex_uj Extract specific rows and/or columns of matrices and
+#'   tabulars (\code{\link{itab}}) or extract specific elements of vecs or
+#'   vlists (\code{\link{ivec}} and \code{\link{ivls}}).
 ex <- function(x, r = NULL, c = NULL, e = NULL) {
   vx <- ipop(x)
   vr <- f0(inll(r), T, cmp_psw_vec(r))
@@ -53,7 +56,7 @@ ex <- function(x, r = NULL, c = NULL, e = NULL) {
     x <- x[r, c]
   }
   else {
-    vc <- ivec(x) | iavl(x)
+    vc <- ivec(x) | ivls(x)
     vd <- f0(!vx, T, idef(e))
     vr <- inll(r)
     vc <- inll(c)

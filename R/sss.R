@@ -1,10 +1,7 @@
-#' @name sss
+#' @name sss_uj
 #' @family props
 #' @title State of an object
-#' @description Get a character scalar containing all state properties from
-#'   \code{sss_vals()} that is applicable to \code{x.}, if defined. If not
-#'   defined, return \code{NULL}.
-#' @details An object's state (of completeness) is defined for non-empty
+#' @description An object's state (of completeness) is defined for non-empty
 #'   atomic tibbles, non-empty atomic lists, non-empty atomic vectors, and
 #'   non-empty atomic arrays. For all others, state is undefined and returned as
 #'   \code{NULL}. The following table summarizes valid state properties.
@@ -33,6 +30,12 @@
 #'   returns a character scalar or \code{NULL}. All others return either
 #'   \code{TRUE} or \code{FALSE}.
 #' @export
+sss_uj <- function() {help("sss_uj", package = "uj")}
+
+#' @describeIn sss_uj Get a character scalar containing all state properties
+#'   from \code{sss_vals()} that is applicable to \code{x.}, if defined. If not
+#'   defined, return \code{NULL}.
+#' @export
 sss <- function(x.) {
   ok. <- ipop(x.) & iatm(x.)
   xav. <- av(x.)
@@ -47,35 +50,36 @@ sss <- function(x.) {
     f0.(ok. & len. == 1 & all(ok(x.)), "oks", NULL))
 }
 
-#' @describeIn sss Is \code{x.} complete (atomic, of length 1 or greater, and
+#' @describeIn sss_uj Is \code{x.} complete (atomic, of length 1 or greater, and
 #'   containing no \code{NA} values)?
 #' @export
 icmp <- function(x.) {ipop(x.) & !any(is.na(av(x.)))}
 
-#' @describeIn sss Is \code{x.} a missing object (atomic, of length 1 or
+#' @describeIn sss_uj Is \code{x.} a missing object (atomic, of length 1 or
 #'   greater, and containing only \code{NA} values)?
 #' @export
 imss <- function(x.) {ipop(x.) & any(is.na(av(x.)))}
 
-#' @describeIn sss Is \code{x.} an atomic scalar \code{NA} value?
+#' @describeIn sss_uj Is \code{x.} an atomic scalar \code{NA} value?
 #' @export
 inas <- function(x.) {isNa(x.)}
 
-#' @describeIn sss Is \code{x.} an atomic scalar non-\code{NA} value?
+#' @describeIn sss_uj Is \code{x.} an atomic scalar non-\code{NA} value?
 #' @export
 ioks <- function(x.) {isOk(x.)}
 
-#' @describeIn sss Is \code{x.} an atomic object with some \code{NA} and some
+#' @describeIn sss_uj Is \code{x.} an atomic object with some \code{NA} and some
 #'   non-\code{NA} values?
 #' @export
 iprt <- function(x.) {na. <- is.na(av(x.)); ipop(x.) & any(na.) & any(!na.)}
 
-#' @describeIn sss Get a character vector of all possible state property values.
+#' @describeIn sss_uj Get a character vector of all possible state property
+#'   values.
 #' @export
 sss_vals <- function() {x. <- c('cmp', 'mss', 'nas', 'oks', 'prt'); names(x.) <- rep.int("sss", length(x.)); x.}
 
-#' @describeIn sss Evaluate whether \code{x.} has a state property represented
-#'   in \code{xxx.}.
+#' @describeIn sss_uj Evaluate whether \code{x.} has a state property
+#'   represented in \code{xxx.}.
 #' @export
 isss <- function(x., xxx., ...) {
   if (!cmp_chr_scl(x.)) {stop("\n • [xxx.] must be a complete character scalar.")}

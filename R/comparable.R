@@ -1,16 +1,18 @@
-#' @name comparable
+#' @name comparable_uj
 #' @family props
 #' @title Are objects comparable?
-#' @details Determines whether modes of all arguments in \code{...} are
-#'   comparable (i.e., sortable and compatible with each other), meaning that
-#'   all are character, logical, numeric, or ordered factor with the same set of
-#'   levels (in the same order).
 #' @param ... An arbitrary number of arguments to be checked for comparability
 #'   with each other.
 #' @param recycle. A logical scalar indicating whether arguments in \code{...}
 #'   must be recyclable to be comparable.
 #' @return A logical scalar.
 #' @export
+comparable_uj <- function() {help("comparable_uj")}
+
+#' @describeIn comparable_uj Determines whether modes of all arguments in
+#'   \code{...} are comparable (i.e., sortable and compatible with each other),
+#'   meaning that all are character, logical, numeric, or ordered factor with
+#'   the same set of levels (in the same order).
 comparable <- function(..., recycle. = T) {
   x. <- list(...)                                                                # arguments in [...] as a list
   n. <- length(x.)

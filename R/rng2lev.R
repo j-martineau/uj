@@ -1,6 +1,4 @@
 #' @title Convert sortable values in specific ranges to a specific level
-#' @description Convert values of \code{x} to the \code{n} levels in \code{levs}
-#'   distinguished by the \code{n-1} thresholds in \code{cuts}.
 #' @param x Atomic object of sortable values.
 #' @param cuts Atomic vector of \code{n-1} cuts for \code{n} levels.
 #' @param levs Atomic vector of \code{n} level labels.
@@ -13,10 +11,15 @@
 #' @return Atomic object of the same dimension as \code{x} and the same mode as
 #'   \code{levs}.
 #' @export
+rng2lev_uj <- function() {help("rng2lev", package = "uj")}
+
+#' @describeIn rng2lev_uj Convert values of \code{x} to the \code{n} levels in
+#'   \code{levs} distinguished by the \code{n-1} thresholds in \code{cuts}.
+#' @export
 rng2lev <- function(x, cuts, levs) {
   bank_funs(cmp_num_vec, x = x)
-  bank_funs(cmp_atm_vec, cuts = cuts)
-  bank_funs(cmp_atm_vec, levs = levs)
+  bank_funs(cmp_vec, cuts = cuts)
+  bank_funs(cmp_vec, levs = levs)
   err_check()
   if (!all(sort(cuts) == cuts)) {bank_err("[cuts] must be in increasing order")}
   if (length(unique(cuts)) != length(cuts)) {bank_err("[cuts] contains one or more duplicate values")}

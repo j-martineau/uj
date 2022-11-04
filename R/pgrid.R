@@ -1,18 +1,23 @@
-#' @name pgrid
+#' @name pgrid_uj
 #' @family strings
 #' @title \code{expand.grid} for \code{paste} and \code{paste0}
-#' @description Convert arguments in \code{...} to character, separating them
-#'   into their constituent characters (if \code{ch = T}), add a blank string
-#'   (if \code{add.blank = T}), and create a character vector containing all
-#'   possible combinations of elements in \code{...} pasted together using the
-#'   'paste' \code{p}. The first part of the character scalar in each element of
-#'   the result is from \code{...1}, the second from \code{..2}, and so on.
 #' @param ... Non-empty atomic objects.
 #' @param p. A character scalar to use as the 'paste'.
 #' @param ch. A logical scalar indicating whether to split arguments in
-#'   \code{...} into consituent characters after conversion to mode 'character'.
+#'   \code{...} into constituent characters after conversion to mode
+#'   'character'.
 #' @param add.blank. Whether to add a blank ("") to each argument in \code{...}.
 #' @return A character vector.
+#' @export
+pgrid_uj <- function() {help("pgrid_uj", package = "uj")}
+
+#' @describeIn pgrid_uj Convert arguments in \code{...} to character, separating
+#'   them into their constituent characters (if \code{ch = T}), add a blank
+#'   string (if \code{add.blank = T}), and create a character vector containing
+#'   all possible combinations of elements in \code{...} pasted together using
+#'   the 'paste' \code{p}. The first part of the character scalar in each
+#'   element of the result is from \code{...1}, the second from \code{..2}, and
+#'   so on.
 #' @export
 pgrid <- function(..., p. = " ", ch. = F, add.blank. = F) {
   x. <- list(...)
@@ -41,6 +46,6 @@ pgrid <- function(..., p. = " ", ch. = F, add.blank. = F) {
   av(apply(x., 2, paste, sep = p.))
 }
 
-#' @describeIn pgrid Call \code{pgrid} with \code{p. = ""} (a blank string).
+#' @describeIn pgrid_uj Call \code{pgrid} with \code{p. = ""} (a blank string).
 #' @export
 pgrid0 <- function(..., ch. = F, add.blank. = F) {pgrid(..., p. = "", ch. = ch., add.blank. = add.blank.)}

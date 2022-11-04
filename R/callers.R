@@ -1,10 +1,7 @@
-#' @name callers
+#' @name callers_uj
 #' @family meta
+#' @family code
 #' @title Functions in the Call Stack
-#' @description Gets the names of all calling functions, with the immediate
-#'   calling function in the first position and, if \code{gens.} is not
-#'   \code{NULL}, selects elements from the call stack specified by
-#'   \code{gens.}.
 #' @param gens. The number of generations back in the function call stack to go.
 #' @return \code{callers} and \code{caller} return a character scalar or vector.
 #'   \code{ncallers} returns a non-negative whole-number scalar.
@@ -30,6 +27,13 @@
 #' }
 #' fun.a()
 #' @export
+callers_uj <- function() {help("callers_uj", package = "uj")}
+
+#' @describeIn callers_uj Gets the names of all calling functions, with the
+#'   immediate calling function in the first position and, if \code{gens.} is
+#'   not \code{NULL}, selects elements from the call stack specified by
+#'   \code{gens.}.
+#' @export
 callers <- function(gens. = NULL) {
   if (!inll(gens.) & !cmp_psw_vec(gens.)) {stop("\n • [gens.] must be NULL or a positive whole-number vector.")}
   x. <- rev(as.character(sys.calls()))                                           # get the call stack
@@ -44,10 +48,10 @@ callers <- function(gens. = NULL) {
   x.[gens.]                                                                      # otherwise, if the specified generations exist, return just those gens
 }
 
-#' @describeIn callers Get the immediate calling function.
+#' @describeIn callers_uj Get the immediate calling function.
 #' @export
 caller <- function() {callers(1)}
 
-#' @describeIn callers Get the number of calling functions in the call stack.
+#' @describeIn callers_uj Get the number of calling functions in the call stack.
 #' @export
 ncallers <- function() {length(callers())}

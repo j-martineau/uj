@@ -1,4 +1,4 @@
-#' @name fff
+#' @name fff_uj
 #' @family props
 #' @title Form (fff) Property Family
 #' @description Gets a vector of form properties from \code{fff_vals()} that
@@ -33,6 +33,10 @@
 #' @return \code{fff_vals} and \code{fff} return a character vector. All
 #'   others return either \code{TRUE} or \code{FALSE}.
 #' @export
+fff_uj <- function() {help("fff_uj", "uj")}
+
+#' @describeIn fff_uj Evaluates whether \code{x} is empty.
+#' @export
 fff <- function(x.) {
   nr <- nrow(x.); nc <- ncol(x.); nl <- is.null(x.); rm <- nr > 1; r1 <- nr == 1
   nd <- nddd(x.); ne <- neee(x.); n  <- length( x.); cm <- cn > 1; c1 <- cn == 1
@@ -47,43 +51,43 @@ fff <- function(x.) {
     f0(nd != 2, NULL, f0(rm & eq, 'sqr', NULL)))
 }
 
-#' @describeIn fff Evaluates whether \code{x} is empty.
+#' @describeIn fff_uj Evaluates whether \code{x} is empty.
 #' @export
 iemp <- function(x.) {f0(length(x.) != 0, F, !is.null(x.))}
 
-#' @describeIn fff Evaluates whether \code{x} is a point.
+#' @describeIn fff_uj Evaluates whether \code{x} is a point.
 #' @export
 ipnt <- function(x.) {neee(x.) == 0}
 
-#' @describeIn fff Evaluates whether \code{x} is linear.
+#' @describeIn fff_uj Evaluates whether \code{x} is linear.
 #' @export
 ilin <- function(x.) {neee(x.) == 1}
 
-#' @describeIn fff Evaluates whether \code{x} is a row object.
+#' @describeIn fff_uj Evaluates whether \code{x} is a row object.
 #' @export
 irow <- function(x.) {f0(!nddd(x.) == 2, F, nrow(x.) == 1 & ncol(x.) > 1)}
 
-#' @describeIn fff Evaluates whether \code{x} is a column object.
+#' @describeIn fff_uj Evaluates whether \code{x} is a column object.
 #' @export
 icol <- function(x.) {f0(!nddd(x.) == 2, F, nrow(x.) > 1 & ncol(x.) == 1)}
 
-#' @describeIn fff Evaluates whether \code{x.} is a rectangular object.
+#' @describeIn fff_uj Evaluates whether \code{x.} is a rectangular object.
 #' @export
 irct <- function(x.) {f0(!nddd(x.) == 2, F, nrow(x.) > 1 & ncol(x.) > 1)}
 
-#' @describeIn fff Evaluates whether \code{x.} is a square object.
+#' @describeIn fff_uj Evaluates whether \code{x.} is a square object.
 #' @export
 isqr <- function(x.) {f0(!nddd(x.) == 2, F, nrow(x.) > 1 & ncol(x.) == nrow(x.))}
 
-#' @describeIn fff Evaluates whether \code{x.} is a solid object.
+#' @describeIn fff_uj Evaluates whether \code{x.} is a solid object.
 #' @export
 isld <- function(x.) {neee(x.) > 2}
 
-#' @describeIn fff Get a list of all possible form property values.
+#' @describeIn fff_uj Get a list of all possible form property values.
 #' @export
 fff_vals <- function() {x. <- sort(c('emp', 'pnt', 'lin', 'row', 'col', 'rct', 'sqr', 'sld')); names(x.) <- rep.int("fff", length(x.)); x.}
 
-#' @describeIn fff Evaluates whether any property in \code{xxx} is a form
+#' @describeIn fff_uj Evaluates whether any property in \code{xxx} is a form
 #'   property applicable to \code{x.} (subject to any additional restrictions
 #'   in \code{...}).
 #' @export

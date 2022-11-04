@@ -1,9 +1,7 @@
-#' @name ttt
+#' @name ttt_uj
 #' @family props
-#' @title Fundamental Type (ttt) Property Family
-#' @description Get a character vector of all fundamental type properties
-#'   applicable to \code{x.}.
-#' @details An object's fundamental type (ttt) is defined by its most
+#' @title Fundamental type properties
+#' @description An object's fundamental type (ttt) is defined by its most
 #'   basic structural properties as described in the following table:
 #'   \tabular{lll}{
 #'     FUNDAMENTAL \tab FUNDAMENTAL \tab CHARACTERISTICS OF                  \cr
@@ -34,46 +32,51 @@
 #' @return \code{ttt_vals} and \code{ttt} return a character scalar or
 #'   vector. All others return either \code{TRUE} or \code{FALSE}.
 #' @export
+ttt_uj <- function() {help("ttt_uj", package = "uj")}
+
+#' @describeIn ttt_uj Get a character vector of all fundamental type properties
+#'   applicable to \code{x.}.
+#' @export
 ttt <- function(x.) {
   c(f0( is.atomic( x.), 'atm', NULL ), f0(is.null(         x. ), 'nll', 'def'),
     f0(0 < length( x.), 'pop', 'nil'), f0(is.recursive(    x. ), 'rcr', NULL ),
     f0(is.function(x.), 'fun',         f0(!isERR(match.fun(x.)), 'fun', NULL)))
 }
 
-#' @describeIn ttt Is \code{x.} atomic (regardless of length)?
+#' @describeIn ttt_uj Is \code{x.} atomic (regardless of length)?
 #' @export
 iatm <- function(x.) {is.atomic(x.)}
 
-#' @describeIn ttt Is \code{x.} defined (non-\code{NULL})?
+#' @describeIn ttt_uj Is \code{x.} defined (non-\code{NULL})?
 #' @export
 idef <- function(x.) {!is.null(x.)}
 
-#' @describeIn ttt Is \code{x.} a function or a function name?
+#' @describeIn ttt_uj Is \code{x.} a function or a function name?
 #' @export
 ifun <- function(x.) {if (is.function(x.)) {T} else {!isERR(match.fun(x.))}}
 
-#' @describeIn ttt Is \code{x.} nil (of length 0)?
+#' @describeIn ttt_uj Is \code{x.} nil (of length 0)?
 #' @export
 inil <- function(x.) {length(x.) == 0}
 
-#' @describeIn ttt Is \code{x.} \code{NULL}
+#' @describeIn ttt_uj Is \code{x.} \code{NULL}
 #' @export
 inll <- function(x.) {is.null(x.)}
 
-#' @describeIn ttt Is \code{x.} populated (of length > 0)?
+#' @describeIn ttt_uj Is \code{x.} populated (of length > 0)?
 #' @export
 ipop <- function(x.) {length(x.) > 0}
 
-#' @describeIn ttt Is \code{x.} recursive?
+#' @describeIn ttt_uj Is \code{x.} recursive?
 #' @export
 ircr <- function(x.) {is.recursive(x.)}
 
-#' @describeIn ttt Get a character vector of all possible fundamental type
+#' @describeIn ttt_uj Get a character vector of all possible fundamental type
 #'   property values.
 #' @export
 ttt_vals <- function() {x. <- c('atm', 'nll', 'def', 'fun', 'nil', 'pop', 'rcr'); names(x.) <- rep.int("ttt", length(x.)); x.}
 
-#' @describeIn ttt Determine whether \code{x.} is of the fundamental type(s)
+#' @describeIn ttt_uj Determine whether \code{x.} is of the fundamental type(s)
 #'   contained in \code{xxx.} subject to the additional specifications in
 #'   \code{...}.
 #' @export
@@ -84,5 +87,5 @@ ittt <- function(x., xxx., ...) {
   newxxx. <- unlist(strsplit(combos., ".", fixed = T))
   valid. <- all(newxxx. %in% valid.)
   if (!valid.) {stop("\n • [xxx.] contains a value not in ttt_vals() after splitting [xxx.] along pipes and underscores.")}
-  is_xxx(x., xxx., ...)
+  ixxx(x., xxx., ...)
 }

@@ -1,7 +1,6 @@
-#' @name spacing
+#' @name spacing_uj
 #' @family strings
 #' @title Simple spacing functions
-#' @description Create a string of spaces.
 #' @param ... An arbitrary number of atomic arguments to be processed.
 #' @param n. Whole-number scalar indicating the number of spaces or pad
 #'   characters.
@@ -20,12 +19,16 @@
 #' sqz(c("a ", "b", "c", " ", "d  ", ""))
 #' sqz(trm(c("a ", "b", "c", " ", "d  ", "")))
 #' @export
+spacing_uj <- function() {help("spacing_uj", package = "uj")}
+
+#' @describeIn spacing_uj Create a character vector of \code{n.} spaces.
+#' @export
 spaces <- function(n.) {
   if (!cmp_nnw_scl(n.)) {stop("\n • [n.] must be a positive, whole-number scalar.")}
   paste0(rep(" ", n.), collapse = "")
 }
 
-#' @describeIn spacing Pad a string with leading and/or trailing spaces
+#' @describeIn spacing_uj Pad a string with leading and/or trailing spaces
 #'    using \code{\link[stringr]{pad}}.
 #' @export
 pad <- function(..., n. = 0, s. = "r", p. = " ") {
@@ -42,7 +45,7 @@ pad <- function(..., n. = 0, s. = "r", p. = " ") {
   sapply(av(...), stringr::str_pad, width = n., side = s., pad = p.)
 }
 
-#' @describeIn spacing Trim leading, trailing, and extra internal spaces
+#' @describeIn spacing_uj Trim leading, trailing, and extra internal spaces
 #'   spaces using \code{\link[stringr]{str_squish}}.
 #' @export
 sqz <- function(...) {
@@ -50,7 +53,7 @@ sqz <- function(...) {
   stringr::str_squish(av(...))
 }
 
-#' @describeIn spacing Trim leading and trailing spaces using
+#' @describeIn spacing_uj Trim leading and trailing spaces using
 #'   \code{\link[stringr]{str_trim}}.
 #' @export
 trm <- function(...) {

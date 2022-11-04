@@ -1,9 +1,6 @@
-#' @name reps
-#' @family values
+#' @name reps_uj
+#' @family meta
 #' @title Extended functionality for \code{\link[base:rep]{base::rep}}.
-#' @description \code{\link[=a]{atomize}} \code{...} and concatenate \code{r}
-#'   copies of the resulting vector. For example, \code{reps(0:1, 9, r = 2)}
-#'   gives the result \code{c(0, 1, 9, 0, 1, 9)}.
 #' @param ... One or more atomic vectors to be replicated, reduced to unique
 #'   values, or reduced to unique duplicated values.
 #' @param r. An integer scalar giving the number of replications of entire
@@ -17,6 +14,12 @@
 #' reps_each(0:4, 5:9, r. = 2, e. = 2)
 #' each_reps(0:4, 5:9, e. = 2, r. = 2)
 #' @export
+reps_uj <- function() {help("reps_uj", package = "uj")}
+
+#' @describeIn reps_uj Atomizes \code{...} and concatenate \code{r} copies of
+#'   the resulting vector. For example, \code{reps(0:1, 9, r = 2)} gives the
+#'   result \code{c(0, 1, 9, 0, 1, 9)}.
+#' @export
 reps <- function(..., r. = 1) {
   vd. <- all(sapply(list(...), ivec))
   vr. <- cmp_psw_scl(r.)
@@ -27,9 +30,9 @@ reps <- function(..., r. = 1) {
   rep.int(av(...), r.)
 }
 
-#' @describeIn reps \code{\link[=a.]{atomize}} \code{...} and create \code{e}
-#'   copies of each element of the resulting vector in place. For example,
-#'   \code{each(0:1, 9, e = 2)} gives the result \code{c(0, 0, 1, 1, 9, 9)}.
+#' @describeIn reps_uj Atomizes \code{...} and create \code{e} copies of each
+#'   element of the resulting vector in place. For example, \code{each(0:1, 9, e
+#'   = 2)} gives the result \code{c(0, 0, 1, 1, 9, 9)}.
 #' @export
 each <- function(..., e. = 1) {
   vd. <- all(sapply(list(...), ivec))
@@ -41,7 +44,7 @@ each <- function(..., e. = 1) {
   rep(av(...), each = e.)
 }
 
-#' @describeIn reps Call \code{reps} then \code{each}.
+#' @describeIn reps_uj Call \code{reps} then \code{each}.
 #' @export
 reps_each <- function(..., r. = 1, e. = 1) {
   vd. <- all(sapply(list(...), ivec))
@@ -55,7 +58,7 @@ reps_each <- function(..., r. = 1, e. = 1) {
   rep(rep.int(av(...), r.), each = e.)
 }
 
-#' @describeIn reps Call \code{each} then \code{reps}.
+#' @describeIn reps_uj Call \code{each} then \code{reps}.
 #' @export
 each_reps <- function(..., e. = 1, r. = 1) {
   vd. <- all(sapply(list(...), ivec))

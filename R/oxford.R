@@ -1,9 +1,6 @@
-#' @name ox
+#' @name ox_uj
 #' @family strings
 #' @title Oxford comma separated lists.
-#' @description Oxford separated list with \code{conj.} as the conjunction
-#'   separating the next to last and last elements of the list, with the list
-#'   preceded by the prefix \code{pref.}.
 #' @param ... Any number of arguments coerceable to mode character.
 #' @param pref. A prefix to prepend to the resulting character scalar.
 #' @param conj. The conjunction to use between the next to last and last
@@ -65,6 +62,12 @@
 #' ox_orless(Fruits, n. = 2)
 #' ox_orfewer(Fruits, n. = 2)
 #' @export
+ox_uj <- function() {help("ox_uj", package = "uj")}
+
+#' @describeIn ox_uj Oxford separated list with \code{conj.} as the conjunction
+#'   separating the next to last and last elements of the list, with the list
+#'   preceded by the prefix \code{pref.}.
+#' @export
 ox <- function(..., conj. = "and", pref. = "", quote. = 0) {
   x.  <- list(...)
   vn. <- length(x.) > 0
@@ -101,7 +104,7 @@ ox <- function(..., conj. = "and", pref. = "", quote. = 0) {
   paste0(pref., list., conj., last.)                                             # Put everything together
 }
 
-#' @describeIn ox Oxford-comma-separated list including a numeric
+#' @describeIn ox_uj Oxford-comma-separated list including a numeric
 #'   requirement.
 #' @export
 ox_n <- function(..., conj. = "and", comp. = "", quote. = 0, n. = 1, comp.first. = TRUE) {
@@ -130,98 +133,98 @@ ox_n <- function(..., conj. = "and", comp. = "", quote. = 0, n. = 1, comp.first.
   ox(x., conj. = conj., pref. = pref., quote. = quote.)
 }
 
-#' @describeIn ox Oxford-comma-separated 'and' list.
+#' @describeIn ox_uj Oxford-comma-separated 'and' list.
 #' @export
 ox_and <- function(..., pref. = NULL) {ox(..., pref. = pref., conj. = "and")}
 
-#' @describeIn ox Oxford-comma-separated 'or' list.
+#' @describeIn ox_uj Oxford-comma-separated 'or' list.
 #' @export
 ox_or <- function(..., pref. = NULL) {ox(..., pref. = pref., conj. = "or")}
 
-#' @describeIn ox Oxford-comma-separated 'nor' list.
+#' @describeIn ox_uj Oxford-comma-separated 'nor' list.
 #' @export
 ox_nor <- function(..., pref. = "neither") {ox(..., pref. = pref., conj. = "nor")}
 
-#' @describeIn ox Oxford-comma-separated 'either' list.
+#' @describeIn ox_uj Oxford-comma-separated 'either' list.
 #' @export
 ox_either <- function(...) {ox(..., pref. = "either", conj. = "or")}
 
-#' @describeIn ox Oxford-comma-separated 'neither/nor' list.
+#' @describeIn ox_uj Oxford-comma-separated 'neither/nor' list.
 #' @export
 ox_neither <- function(...) {ox(..., pref. = "neither", conj. = "nor")}
 
-#' @describeIn ox Oxford-comma-separated 'all of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'all of' list.
 #' @export
 ox_all <- function(..., conj. = "and") {ox(..., pref. = "all of", conj. = conj.)}
 
-#' @describeIn ox Oxford-comma-separated 'any of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'any of' list.
 #' @export
 ox_any <- function(..., conj. = "and") {ox(..., pref. = "any of", conj. = conj.)}
 
-#' @describeIn ox Oxford-comma-separated 'all of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'all of' list.
 #' @export
 ox_none <- function(..., conj. = "or") {ox(..., pref. = "none of", conj. = conj.)}
 
-#' @describeIn ox Oxford-comma-separated 'some of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'some of' list.
 #' @export
 ox_some <- function(..., conj. = "and") {ox(..., pref. = "some of", conj. = conj.)}
 
-#' @describeIn ox Oxford-comma-separated 'exactly n of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'exactly n of' list.
 #' @export
 ox_exactly <- function(..., conj. = "or", n. = 1) {ox_n(..., comp. = "exactly", n. = n., conj. = conj.)}
 
-#' @describeIn ox Oxford-comma-separated 'less than n of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'less than n of' list.
 #' @export
 ox_less <- function(..., conj. = "and", n. = 2) {ox_n(..., comp. = "less than", n. = n.)}
 
-#' @describeIn ox Oxford-comma-separated 'more than n of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'more than n of' list.
 #' @export
 ox_more <- function(..., conj. = "and", n. = 1) {ox_n(..., comp. = "more than", n. = n.)}
 
-#' @describeIn ox Oxford-comma-separated 'fewer than n of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'fewer than n of' list.
 #' @export
 ox_fewer <- function(..., conj. = "and", n. = 2) {ox_n(..., comp. = "fewer than", n. = n.)}
 
-#' @describeIn ox Oxford-comma-separated 'greater than n of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'greater than n of' list.
 #' @export
 ox_greater <- function(..., conj. = "and", n. = 2) {ox_n(..., comp. = "greater than", n. = n.)}
 
-#' @describeIn ox Oxford-comma-separated 'at least n of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'at least n of' list.
 #' @export
 ox_atleast <- function(..., conj. = "and", n. = 1) {ox_n(..., comp. = "at least", n. = n.)}
 
-#' @describeIn ox Oxford-comma-separated 'at most n of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'at most n of' list.
 #' @export
 ox_atmost <- function(..., conj. = "and", n. = 1) {ox_n(..., comp. = "at most", n. = n.)}
 
-#' @describeIn ox Oxford-comma-separated 'no greater than n of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'no greater than n of' list.
 #' @export
 ox_nogreater <- function(..., conj. = "and", n. = 1) {ox_n(..., comp. = "no greater than", n. = n.)}
 
-#' @describeIn ox Oxford-comma-separated 'no fewer than n of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'no fewer than n of' list.
 #' @export
 ox_nofewer <- function(..., conj. = "and", n. = 1) {ox_n(..., comp. = "no fewer than", n. = n.)}
 
-#' @describeIn ox Oxford-comma-separated 'no more than n of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'no more than n of' list.
 #' @export
 ox_nomore <- function(..., conj. = "and", n. = 1) {ox_n(..., comp. = "no more than", n. = n.)}
 
-#' @describeIn ox Oxford-comma-separated 'no less than n of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'no less than n of' list.
 #' @export
 ox_noless <- function(..., conj. = "and", n. = 1) {ox_n(..., comp. = "no less than", n. = n.)}
 
-#' @describeIn ox Oxford-comma-separated 'n or more of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'n or more of' list.
 #' @export
 ox_ormore <- function(..., conj. = "and", n. = 1) {ox_n(..., comp. = "or more", n. = n., comp.first. = F)}
 
-#' @describeIn ox Oxford-comma-separated 'n or greater of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'n or greater of' list.
 #' @export
 ox_orgreater <- function(..., conj. = "and", n. = 1) {ox_n(..., comp. = "or greater", n. = n., comp.first. = F)}
 
-#' @describeIn ox Oxford-comma-separated 'n or less of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'n or less of' list.
 #' @export
 ox_orless <- function(..., conj. = "and", n. = 1) {ox_n(..., comp. = "or less", n. = n., comp.first. = F)}
 
-#' @describeIn ox Oxford-comma-separated 'n or fewer of' list.
+#' @describeIn ox_uj Oxford-comma-separated 'n or fewer of' list.
 #' @export
 ox_orfewer <- function(..., conj. = "and", n. = 1) {ox_n(..., comp. = "or fewer", n. = n., comp.first. = F)}

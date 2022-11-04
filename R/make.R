@@ -1,9 +1,7 @@
-#' @name make
+#' @name make_uj
 #' @family meta
-#' @title Extended functionality for creating atomic vectors, atomic matrices,
-#'   atomic tibbles, and atomic or recursive vlists
-#' @description Create an atomic vector.
-#' @details \strong{\code{vec(..., r, en.)}}
+#' @title Extended object creation functionality
+#' @description \strong{\code{vec(..., r, en.)}}
 #'   \cr Creates an atomic vector from the atomic objects in \code{...}
 #'   collapsed into a vector, replicated \code{r.} times, with optional element
 #'   names.
@@ -66,6 +64,10 @@
 #'   (\code{mat.}), or a \link[=is_vlist]{vlist.} All others return the value of
 #'   function they are thin wrappers for.
 #' @export
+make_uj <- function() {help("make_uj", package = "uj")}
+
+#' @describeIn make_uj Create an atomic vector.
+#' @export
 vec <- function(..., r. = 1, vn. = NULL) {
   x. <- av(...)
   if (length(x.) == 0 | isEQ(r., 0)) {x. <- vector()}
@@ -84,11 +86,11 @@ vec <- function(..., r. = 1, vn. = NULL) {
   x.
 }
 
-#' @describeIn make Create a vector of missing/\code{NA} values.
+#' @describeIn make_uj Create a vector of missing/\code{NA} values.
 #' @export
 vec_na <- function(r.) {vec(NA, r. = r.)}
 
-#' @describeIn make Create an atomic matrix.
+#' @describeIn make_uj Create an atomic matrix.
 #' @export
 mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
   av. <- av(...)
@@ -130,14 +132,14 @@ mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
   colnames(x.) <- cn.
 }
 
-#' @describeIn make Create an atomic tibble with zero rows.
+#' @describeIn make_uj Create an atomic tibble with zero rows.
 #' @export
 atb0 <- function(cn.) {
   if (!cmp_chr_vec(cn.)) {stop("\n • [cn.] must be a non-NA character scalar or vector.")}
   run("tibble::tibble(", daw(ss(cn.), " = NA", w. = ", "), ", .rows = 0)")
 }
 
-#' @describeIn make Create an atomic tibble containing only missing values.
+#' @describeIn make_uj Create an atomic tibble containing only missing values.
 #' @export
 atb_na <- function(cn., nr.) {
   vc. <- cmp_chr_vec(cn.)
@@ -150,8 +152,8 @@ atb_na <- function(cn., nr.) {
   run("tibble::tibble(", daw(ss(cn.), " = val.", w. = ", "), ")")
 }
 
-#' @describeIn make Create an atomic tibble from named arguments or from column
-#'   names in \code{cn.}.
+#' @describeIn make_uj Create an atomic tibble from named arguments or from
+#'   column names in \code{cn.}.
 #' @export
 atb <- function(..., cn. = NULL) {
   x. <- list(...)
@@ -161,7 +163,7 @@ atb <- function(..., cn. = NULL) {
   mxn. <- max(ns.)
   v0. <- ...length() > 0
   vns. <- f0(!v0., T, all(lengths(x.) %in% ns.))
-  vxv. <- f0(!v0. | !vns., T, all(sapply(x., xvec)))
+  vxv. <- f0(!v0. | !vns., T, all(sapply(x., ivec)))
   vxr. <- f0(n. == 0, F, f0(any(ns. == 0), F, all(mxn. / ns. == round(mxn. / ns.))))
   vcn. <- f0(inll(cn.), T, f0(!cmp_chr_vec(cn.), F, length(cn.) == n.))
   err. <- NULL
@@ -176,7 +178,7 @@ atb <- function(..., cn. = NULL) {
   x.
 }
 
-#' @describeIn make Create a named vlist from named arguments or from unnamed
+#' @describeIn make_uj Create a named vlist from named arguments or from unnamed
 #'   arguments and element names provided in \code{en.}.
 #' @export
 vls <- function(..., en. = NULL) {
@@ -193,7 +195,7 @@ vls <- function(..., en. = NULL) {
   x.
 }
 
-#' @describeIn make Make a list where element names are derived from the
+#' @describeIn make_uj Make a list where element names are derived from the
 #'   original function call. For example, \code{mkls(letters, LETTERS)} results
 #'   in the same output as \code{list(letters = letters, LETTERS = LETTERS)}
 #' @export
@@ -204,10 +206,10 @@ mkls <- function(...) {
   eval.parent(parse(text = x., n = 1))                                           # and evaluate it in the environment of the calling function
 }
 
-#' @describeIn make Create a diagonal matrix.
+#' @describeIn make_uj Create a diagonal matrix.
 #' @export
 mkdiag <- function(x. = 1, n. = 1) {
-  vx. <- xnum(x.) | xlgl(x.) | xchr(x.)
+  vx. <- inum(x.) | ilgl(x.) | ichr(x.)
   vn. <- cmp_psw_scl(n.)
   vns. <- f0(length(x.) > 1, T, f0(vn., T, n. > 1))
   err. <- NULL
@@ -221,7 +223,7 @@ mkdiag <- function(x. = 1, n. = 1) {
   if (n. > 1) {x. <- rep(x., n.)}
   if (all(is.na(x.))) {x.[is.na(x.)] <- NA_real_}
   l. <- length(x.)
-  blank. <- f0(xnum(x.), 0, f0(xlgl(x.), F, f0(xchr(x.), "", NA)))
+  blank. <- f0(inum(x.), 0, f0(ilgl(x.), F, f0(ichr(x.), "", NA)))
   out. <- matrix(blank., nrow = l., ncol = l.)
   diag(out.) <- x.
   out.

@@ -1,51 +1,31 @@
-#' @name ccc
+#' @name ccc_uj
 #' @family props
-#' @title Extended Class (ccc) Property Family
-#' @description Gets all valid extended class property values.
-#' @details Extended classes are not formally defined as a new classes, but
+#' @title Atomic Extended Class (ccc) Properties
+#' @description Extended classes are not formally defined as a new classes, but
 #'   are dynamically evaluated for characteristics through a call to
-#'   \code{xccc(x.)} where the function name (e.g., 'ccc') is the extended
-#'   class name. \code{TRUE} or \code{FALSE} is always returned, and
-#'   \code{FALSE} is always returned for the \code{NULL} object. In this
-#'   package, the following types of objects are new and are defined as given in
-#'   the following table.\tabular{lll}{
-#'     EXTENDED CLASS \tab EXTENDED CLASS \tab CHARACTERISTICS               \cr
-#'     PROPERTY VALUE \tab PROPERTY NAME  \tab QUALIFYING                    \cr
-#'     \code{'vls'}   \tab vlist          \tab non-data.frame (vector) list  \cr
-#'     \code{'gen'}   \tab generic        \tab any vector, vlist, or array   \cr
-#'     \code{'scl'}   \tab scalar         \tab length-1 generic              \cr
-#'     \code{'mvc'}   \tab multivec       \tab multiple-element vector,
-#'                                        multiple-element vlist, or
-#'                                        multiple-element array with 1
-#'                                        \link[=eee]{effective dimension}   \cr
-#'     \code{'tib'}   \tab tib            \tab \code{\link[tibble]{tibble}},
-#'                                        \code{\link[data.table]{data.table}},
-#'                                        or \code{\link[base]{data.frame}}  \cr
-#'     \code{'vec'}   \tab vec            \tab scalar or mvec                \cr
-#'     \code{'vtp'}   \tab vectype        \tab \code{link[=xemp]{empty}} or
-#'                                        \code{link[=xpop]{populated}} scalar,
-#'                                        vector, or vlist.                    }
-#'   The following table defines extended class using existing ℝ concepts and
-#'   the types just defined above. None of these newly defined types or extended
-#'   classes are formally defined. They are evaluated dynamically for required
-#'   properties. In the table, the first column indicates the structure of an
-#'   object and column headings indicate restrictions on other properties.
+#'   \code{iccc(x.)} where the function name (e.g., 'ccc') is the extended class
+#'   name (see \code{is_ccc} for mode-agnostic extended classes. \code{TRUE} or
+#'   \code{FALSE} is always returned, and \code{FALSE} is always returned for
+#'   the \code{NULL} object.
+#'   \cr\cr
+#'   There are two sets of functions for these extended classes in the form
+#'   \code{atm_ccc} which allows an option to check for extended mode
+#'   (\code{\link{is_mmm}}) or the form \code{iccc} which does not check for
+#'   mode beyond being atomic. The are listed in the table below.
 #'   \tabular{lll}{
-#'     ATOMIC EXTENDED \tab ATOMIC EXTENDED \tab CHARACTERISTICS OF          \cr
-#'     CLASS VALUE     \tab CLASS NAME      \tab QUALIFYING OBJECTS          \cr
-#'     \code{'arr'}    \tab atomic array    \tab non-recursive array         \cr
-#'     \code{'agn'}    \tab atomic generic  \tab non-recursive generic       \cr
-#'     \code{'atb'}    \tab atomic tib      \tab tib containing only atomic
-#'                                               variables                   \cr
-#'     \code{'avl'}    \tab atomic vlist    \tab vlist whose elements are all
-#'                                               atomic                      \cr
-#'     \code{'avt'}    \tab atomic vtype    \tab non-recursive vtype         \cr
-#'     \code{'mat'}    \tab atomic matrix   \tab non-recursive matrix        \cr
-#'     \code{'mvc'}    \tab atomic mvec     \tab non-recursive mvec          \cr
-#'     \code{'scl'}    \tab atomic scalar   \tab non-recurvive scalar        \cr
-#'     \code{'vec'}    \tab atomic vec      \tab non-recursive vec             }
-#' @param x An object.
-#' @param xxx A character scalar containing one or more values from
+#'     ATOMIC   \tab ATM_CCC        \tab ICCC        \cr
+#'     CLASS    \tab FUNCTION       \tab FUNCTION    \cr
+#'     array    \tab \code{atm_arr} \tab \code{iarr} \cr
+#'     generic  \tab \code{atm_gen} \tab \code{igen} \cr
+#'     tabular  \tab \code{atm_tab} \tab \code{itab} \cr
+#'     vlist    \tab \code{atm_vls} \tab \code{ivls} \cr
+#'     vtype    \tab \code{atm_vtp} \tab \code{ivtp} \cr
+#'     matrix   \tab \code{atm_mat} \tab \code{imat} \cr
+#'     multivec \tab \code{atm_mvc} \tab \code{imvc} \cr
+#'     scalar   \tab \code{atm_scl} \tab \code{iscl} \cr
+#'     vec      \tab \code{atm_vec} \tab \code{ivec}   }
+#' @param x. An object.
+#' @param xxx. A character scalar containing one or more values from
 #'   \code{ccc_vals()} separated by pipes and/or underscores. Combinations of
 #'   extended classes can be specified by separating them with underscores.
 #'   Separating extended classes or combinations of extended classes with pipes
@@ -61,50 +41,170 @@
 #'   \code{ccc_vals()} applicable to \code{x.}. All others return either
 #'   \code{TRUE} or \code{FALSE}.
 #' @export
+ccc_uj <- function() {help("ccc_uj", package = "uj")}
+
+#' @describeIn ccc_uj Is \code{x.} an atomic array (optionally checking for
+#'   extended mode)?
+#' @export
+atm_arr <- function(x., xxx. = NULL) {
+  vxxx <- ifelse(is.null(xxx.), T, isIN(xxx., mmm_vals()))
+  if (!vxxx) {stop("\n • [xxx.] must be NULL or a character scalar value from mmm_vals().")}
+  if (!pop_arr(x.)) {F}
+  else if (!is.atomic(x.)) {F}
+  else if (is.null(xxx.)) {T}
+  else {run("i", xxx., "(x.)")}
+}
+
+#' @describeIn ccc_uj Is \code{x.} an atomic tabular (optionally checking for
+#'   extended mode)?
+#' @export
+atm_tab <- function(x., xxx. = NULL) {
+  vxxx <- ifelse(is.null(xxx.), T, isIN(xxx., mmm_vals()))
+  if (!vxxx) {stop("\n • [xxx.] must be NULL or a character scalar value from mmm_vals().")}
+  if (!pop_tbl(x.)) {F}
+  else if (!all(apply(x., 2, is.atomic))) {F}
+  else if (is.null(xxx.)) {T}
+  else {
+    code <- paste0("i", xxx., "(x.[ , ", 1:length(x.), "])")
+    code <- paste0(code, collapse = ", ")
+    code <- paste0("all(", code, ")")
+    run(code)
+}}
+
+#' @describeIn ccc_uj Is \code{x.} an atomic generic (optionally checking for
+#'   extended mode)?
+#' @export
+atm_gen <- function(x., xxx. = NULL) {
+  vxxx <- ifelse(is.null(xxx.), T, isIN(xxx., mmm_vals()))
+  if (!vxxx) {stop("\n • [xxx.] must be NULL or a character scalar value from mmm_vals().")}
+  if (!pop_gen(x.)) {F}
+  else if (!is.atomic(x.)) {F}
+  else if (is.null(xxx.)) {T}
+  else {run("i", xxx., "(x.)")}
+}
+
+#' @describeIn ccc_uj Is \code{x.} an atomic vlist (optionally checking for
+#'   extended mode)?
+#' @export
+atm_vls <- function(x., xxx. = NULL) {
+  vxxx <- ifelse(is.null(xxx.), T, isIN(xxx., mmm_vals()))
+  if (!vxxx) {stop("\n • [xxx.] must be NULL or a character scalar value from mmm_vals().")}
+  if (!pop_vls(x.)) {F}
+  else if (!all(sapply(x., is.atomic))) {F}
+  else if (is.null(xxx.)) {T}
+  else {
+    out <- paste0("i", xxx., "(x.[[", 1:length(x.), "]])")
+    out <- paste0(out, collapse = ", ")
+    run(paste0("all(", out, ")"))
+}}
+
+#' @describeIn ccc_uj Is \code{x.} an atomic vtype (optionally checking for
+#'   extended mode)?
+#' @export
+atm_vtp <- function(x., xxx. = NULL) {
+  vx <- ifelse(is.null(xxx.), T, isIN(xxx., mmm_vals()))
+  if (!vx) {stop("\n • [xxx.] must be NULL or a character scalar value from mmm_vals().")}
+  if (!pop_vtp(x.)) {F}
+  else if (!is.atomic(x.)) {F}
+  else if (is.null(xxx.)) {T}
+  else {run("i", xxx., "(x.)")}
+}
+
+#' @describeIn ccc_uj Is \code{x.} an atomic matrix (optionally checking for
+#'   extended mode)?
+#' @export
+atm_mat <- function(x., xxx. = NULL) {
+  vxxx <- ifelse(is.null(xxx.), T, isIN(xxx., mmm_vals()))
+  if (!vxxx) {stop("\n • [xxx.] must be NULL or a character scalar value from mmm_vals().")}
+  if (!any_mat(x.)) {F}
+  else if (!is.atomic(x.)) {F}
+  else if (is.null(xxx.)) {T}
+  else {run("i", xxx., "(x.)")}
+}
+
+#' @describeIn ccc_uj Is \code{x.} an atomic multivec (optionally checking for
+#'   extended mode)?
+#' @export
+atm_mvc <- function(x., xxx. = NULL) {
+  vxxx <- ifelse(is.null(xxx.), T, isIN(xxx., mmm_vals()))
+  if (!vxxx) {stop("\n • [xxx.] must be NULL or a character scalar value from mmm_vals().")}
+  if (!any_mvc(x.)) {F}
+  else if (!is.atomic(x.)) {F}
+  else if (is.null(mmm)) {T}
+  else {run("i", mmm, "(x.)")}
+}
+
+#' @describeIn ccc_uj Is \code{x.} an atomic scalar (optionally checking for
+#'   extended mode)?
+#' @export
+atm_scl <- function(x., xxx. = NULL) {
+  vxxx <- ifelse(is.null(xxx.), T, isIN(xxx., mmm_vals()))
+  if (!vxxx) {stop("\n • [xxx.] must be NULL or a character scalar value from mmm_vals().")}
+  if (!any_scl(x.)) {F}
+  else if (!is.atomic(x.)) {F}
+  else if (is.null(xxx.)) {T}
+  else {run("i", xxx., "(x.)")}
+}
+
+#' @describeIn ccc_uj Is \code{x.} an atomic vector (optionally checking for
+#'   extended mode)?
+#' @export
+atm_vec <- function(x., xxx. = NULL) {
+  vxxx <- ifelse(is.null(xxx.), T, isIN(xxx., mmm_vals()))
+  if (!vxxx) {stop("\n • [xxx.] must be NULL or a character scalar value from mmm_vals().")}
+  if (!any_vec(x.)) {F}
+  else if (!is.atomic(x.)) {F}
+  else if (is.null(xxx.)) {T}
+  else {run("i", xxx., "(x.)")}
+}
+
+#' @describeIn ccc_uj Get a character vector of all possible atomic extended
+#'   classes.
+#' @export
 ccc_vals <- function() {
-  x. <- c('arr', 'agn', 'atb', 'avl', 'avt', 'mat', 'mvc', 'scl', 'vec')
+  x. <- c('arr', 'gen', 'tab', 'vls', 'vtp', 'mat', 'mvc', 'scl', 'vec')
   names(x.) <- rep.int("ccc", length(x.))
   x.
 }
 
-#' @describeIn ccc Is \code{x.} an atomic array?
+#' @describeIn ccc_uj Is \code{x.} an atomic array?
 #' @export
 iarr <- function(x.) {atm_arr(x.)}
 
-#' @describeIn ccc Is \code{x.} an atomic generic?
+#' @describeIn ccc_uj Is \code{x.} an atomic generic?
 #' @export
-iagn <- function(x.) {atm_gen(x.)}
+igen <- function(x.) {atm_gen(x.)}
 
-#' @describeIn ccc Is \code{x.} an atomic tibble?
+#' @describeIn ccc_uj Is \code{x.} an atomic tibble?
 #' @export
-iatb <- function(x.) {atm_tbl(x.)}
+itab <- function(x.) {atm_tab(x.)}
 
-#' @describeIn ccc Is \code{x.} an atomic vlist?
+#' @describeIn ccc_uj Is \code{x.} an atomic vlist?
 #' @export
-iavl <- function(x.) {atm_vls(x.)}
+ivls <- function(x.) {atm_vls(x.)}
 
-#' @describeIn ccc Is \code{x.} an atomic vtype?
+#' @describeIn ccc_uj Is \code{x.} an atomic vtype?
 #' @export
-iavt <- function(x.) {atm_vtp(x.)}
+ivtp <- function(x.) {atm_vtp(x.)}
 
-#' @describeIn ccc Is \code{x.} an atomic matrix?
+#' @describeIn ccc_uj Is \code{x.} an atomic matrix?
 #' @export
 imat <- function(x.) {atm_mat(x.)}
 
-#' @describeIn ccc Is \code{x.} an atomic mvect?
+#' @describeIn ccc_uj Is \code{x.} an atomic mvect?
 #' @export
 imvc <- function(x.) {atm_mvc(x.)}
 
-#' @describeIn ccc Is \code{x.} an atomic scalar?
+#' @describeIn ccc_uj Is \code{x.} an atomic scalar?
 #' @export
 iscl <- function(x.) {atm_scl(x.)}
 
-#' @describeIn ccc Is \code{x.} an atomic vect?
+#' @describeIn ccc_uj Is \code{x.} an atomic vect?
 #' @export
 ivec <- function(x.) {atm_vec(x.)}
 
-#' @describeIn ccc Gets a vector of properties from \code{ccc_vals()} that are
-#'   applicable to \code{x.}.
+#' @describeIn ccc_uj Gets a vector of properties from \code{ccc_vals()} that
+#'   are applicable to \code{x.}.
 #' @export
 ccc <- function(x.) {
   c(if (atm_arr(x.)) {'arr'} else {NULL},
@@ -118,13 +218,13 @@ ccc <- function(x.) {
     if (atm_vec(x.)) {'vec'} else {NULL})
 }
 
-#' @describeIn ccc Evaluates whether any (combination) property in \code{xxx.} is
-#'   an extended class property applicable to \code{x.}.
+#' @describeIn ccc_uj Evaluates whether any (combination) property in
+#'   \code{xxx.} is an extended class property applicable to \code{x.}.
 #' @export
 iccc <- function(x., xxx., ...) {
   if (!cmp_chr_scl(xxx.)) {stop("\n • [xxx.] must be a non-NA character scalar.")}
   valid. <- ccc_vals()
-  combos. <- av(strsplit(xxx. , "|", fixed = T))
+  combos. <- av(strsplit(xxx., "|", fixed = T))
   newxxx. <- av(strsplit(combos., "_", fixed = T))
   valid. <- all(newxxx. %in% valid.)
   if (!valid.) {stop("\n • [xxx.] contains a value not in ccc_vals(), after splitting [xxx.] on pipes and underscores.")}

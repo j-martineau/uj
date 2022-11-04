@@ -1,79 +1,113 @@
-#' @name dialogs
+#' @name dialogs_uj
+#' @family user_interaction
 #' @title Dialog boxes using package \code{svDialogs}.
 #' @description Launch a dialog box.
 #' @param x. Character scalar message.
 #' @param t. Character scalar type of dialog box (valid values are \code{c('ok',
 #'   'okcancel', 'yesno', 'yesnocancel'}).
 #' @param def. Character scalar default value.
-#' @param dir.type.,doc.type. Character scalar type of directory or document to
-#'   select.
+#' @param type., Character scalar type of directory or document to select.
 #' @param ... Arguments to be atomized and glued together into a message.
 #' @return Character scalar
 #' @export
-msgbox <- function(x., t. = "ok") {svDialogs::dlg_message(x., type = t.)}
+dialogs_uj <- function() {help("dialogs_uj", package = "uj")}
 
-#' @describeIn dialogs Ask user to select a directory/folder.
+#' @describeIn dialogs_uj Collapse \code{...} into a character scalar message to
+#'   the user and launch a simple dialog box to give the message.
+#' @export
+msgbox <- function(..., t. = "ok") {
+  x. <- dw0(av(...))
+  err. <- NULL
+  if (inll(x.)) {err. <- c(err., "\n • No user update message was provided in [...].")}
+  if (!cmp_chr_scl(t.)) {err. <- c(err., "\n • [t.] must be a character scalar in c('ok', 'okcancel', 'yesno', 'yesnocancel').")}
+  if (idef(err.)) {stop(dw0(err.))}
+  svDialogs::dlg_message(x., type = t.)
+  NULL
+}
+
+#' @describeIn dialogs_uj Ask user to select a directory/folder.
 #'   Fail safe feature launches a message dialog box prompting the use to take
 #'   an action in the next dialog box. After user acknowledges, launches the
 #'   directory/folder selection dialog to avoid problems with the prompt not
 #'   showing up on all operating systems.
 #' @export
-dirbox <- function(x. = "Choose a directory", def. = getwd()) {msgbox(da0("In the next dialog box, ", x.)); svDialogs::dlg_dir(default = def., title = x.)}
+dirbox <- function(..., def. = getwd()) {
+  dot. <- dw0(av(...))
+  def. <- dw0(av(def.))
+  if (inll(dot.)) {dot. <- "choose a directory/folder"}
+  err. <- NULL
+  if (!cmp_chr_scl(dot.)) {err. <- c(err., "\n • No message to the user was provided in [...].")}
+  if (!cmp_chr_scl(def.)) {err. <- c(err., "\n • No default directory provided in [def.].")}
+  else if (!dir.exists(def.)) {err. <- c(err., da0("\n • [def. = '", def., "'] is not an existing directory/folder."))}
+  msgbox(da0("In the next dialog box, ", dot.)); svDialogs::dlg_dir(default = def., title = dot.)
+}
 
-#' @describeIn dialogs Ask user to select a document. Fail safe feature launches
-#'   a message dialog box prompting the use to take an action in the next dialog
-#'   box. After user acknowledges, launches the file selection dialog to avoid
-#'   problems with the prompt not showing up on all operating systems.
+#' @describeIn dialogs_uj Ask user to select a document. Fail safe feature
+#'   launches a message dialog box prompting the use to take an action in the
+#'   next dialog box. After user acknowledges, launches the file selection
+#'   dialog to avoid problems with the prompt not showing up on all operating
+#'   systems.
 #' @export
-docbox <- function(x. = "Choose a file") {msgbox(da0("In the next dialog box, ", x.)); svDialogs::dlg_open(title = x.)}
+docbox <- function(...) {
+  dot. <- dw0(av(...))
+  if (inll(dot.)) {dot. <- "choose a document"}
+  err. <- NULL
+  if (!cmp_chr_scl(dot.)) {err. <- c(err., "\n • [...] must be empty or must be collapsible ")}
+  msgbox(da0("In the next dialog box, ", dot.)); svDialogs::dlg_open(title = dot.)
+}
 
-#' @describeIn dialogs Ask user to input a text response.
+#' @describeIn dialogs_uj Ask user to input a text response.
 #' @export
 ansbox <- function(x. = "Enter a value", def. = "") {svDialogs::dlg_input(message = x., default = def.)}
 
-#' @describeIn dialogs Does user respond 'no'?
+#' @describeIn dialogs_uj Does user respond 'no'?
 #' @export
 no <- function(...) {msgbox(daw00(...), t. = "yesno")$res != "yes"}
 
-#' @describeIn dialogs Display a message in a dialog box, returning
+#' @describeIn dialogs_uj Display a message in a dialog box, returning
 #'   the value of the button clicked.
 #' @export
 msg <- function(x., t. = "ok") {msgbox(x., t. = t.)$res}
 
-#' @describeIn dialogs Display a message in a dialog box, asking
+#' @describeIn dialogs_uj Display a message in a dialog box, asking
 #'   user whether to cancel (or continue).
 #' @export
 okx <- function(x.) {x. <- msg(x., "okcancel"); if (x. != "ok") {stop("canceled")}}
 
-#' @describeIn dialogs Ask user to select a directory.
+#' @describeIn dialogs_uj Ask user to select a directory.
 #' @export
-dir <- function(dir.type. = "file") {dirbox(okx(da1("Select a", dir.type., "directory")))$res}
+dir <- function(type. = "file") {dirbox(okx(da1("Select a", type., "directory")))$res}
 
-#' @describeIn dialogs Ask user to select a document.
+#' @describeIn dialogs_uj Ask user to select a document.
 #' @export
-doc <- function(doc.type. = "document") {docbox(okx(da1("Select a", doc.type., "file")))$res}
+doc <- function(type. = "document") {docbox(okx(da1("Select a", type., "file")))$res}
 
-#' @describeIn dialogs Does user respond 'yes'?
+#' @describeIn dialogs_uj Does user respond 'yes'?
 #' @export
 yes <- function(...) {msgbox(daw00(...), "yesno")$res == "yes"}
 
-#' @name ask_user
-#' @title Ask user to input answer or multiple answers to a question.
-#' @description Ask the user for input.
+#' @name ask_uj
+#' @family user_interaction
+#' @title Ask user for typed input.
 #' @param ... Objects to be atomized to create the question.
-#' @param def Character scalar default answer value.
-#' @param cancel Character scalar value to return if user clicks the
+#' @param def. Character scalar default answer value.
+#' @param cancel. Character scalar value to return if user clicks the
 #'   \code{cancel} button. The value \code{cancel = '.stop'} is an indicator
 #'   that an error should be thrown if the user clicks the \code{cancel} button.
-#' @param opts Character vector of options to choose from.
-#' @param what,whats Character scalar describing type of option being presented.
-#' @param more Logical scalar indicating whether there are more options than
+#' @param opts. Character vector of options to choose from.
+#' @param what. Character scalar describing type of option being presented.
+#' @param more. Logical scalar indicating whether there are more options than
 #'   could be presented in a single dialog box that still could be presented.
-#' @param all,none Logical scalars indicating whether the user should be able to
-#'   select all options or none of the options, respectively.
-#' @param per Positive integer scalar indicating the maximum number of options
+#' @param all.,none. Logical scalars indicating whether the user should be able
+#'   to select all options or none of the options, respectively.
+#' @param per. Positive integer scalar indicating the maximum number of options
 #'   to present in a single dialog box interaction.
+#' @param unique. Logical scalar indicating whether new values must be unique.
 #' @return Character scalar.
+#' @export
+ask_uj <- function() {help("ask_uj", package = "uj")}
+
+#' @describeIn ask_uj Ask the user for typed input return as is.
 #' @export
 ask <- function(..., def. = v(blank), cancel. = ".stop") {
   ends. <- reps(v(nl), r. = 3)                                                   # pad front and back with three newlines to make all content appear inside the dialog box
@@ -83,7 +117,7 @@ ask <- function(..., def. = v(blank), cancel. = ".stop") {
   else {ans.}                                                                    # ELSE return the answer
 }
 
-#' @describeIn ask_user Ask user to select a single option from among a list of
+#' @describeIn ask_uj Ask user to select a single option from among a list of
 #'   possible options.
 #' @export
 ask1 <- function(opts., what., more. = F) {
@@ -99,7 +133,7 @@ ask1 <- function(opts., what., more. = F) {
   else {stop("invalid selection")}                                                         # ELSE error
 }
 
-#' @describeIn ask_user Ask user to select a one or more options from among a
+#' @describeIn ask_uj Ask user to select a one or more options from among a
 #'   list of possible options.
 #' @export
 askn <- function(opts., what., all. = T, none. = T, more. = F) {
@@ -133,7 +167,7 @@ askn <- function(opts., what., all. = T, none. = T, more. = F) {
   stop("invalid selection")                                                                # throw error if nothing has yet been returned
 }
 
-#' @describeIn ask_user Ask user to select a one or more options from among a
+#' @describeIn ask_uj Ask user to select a one or more options from among a
 #'   list of possible options, possibly across multiple rounds of interaction.
 #' @export
 asksn <- function(opts., what., per. = 9) {
@@ -154,7 +188,7 @@ asksn <- function(opts., what., per. = 9) {
   out.                                                                               # return value
 }
 
-#' @describeIn ask_user Ask user to select 1 options from among a list of
+#' @describeIn ask_uj Ask user to select 1 options from among a list of
 #'   possible options, possibly across multiple dialog boxes.
 #' @export
 asks1 <- function(opts., what., per. = 9) {
@@ -173,7 +207,7 @@ asks1 <- function(opts., what., per. = 9) {
   out.                                                                           # return value
 }
 
-#' @describeIn ask_user Ask user to enter a space- or comma-separated list of
+#' @describeIn ask_uj Ask user to enter a space- or comma-separated list of
 #'   replacement values for existing values.
 #' @export
 asknew <- function(old., what., unique. = T) {

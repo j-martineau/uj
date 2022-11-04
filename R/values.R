@@ -1,8 +1,6 @@
-#' @name values
+#' @name values_uj
 #' @family meta
-#' @title Calling functions and objects in their immediate environments
-#' @description Check for the existence of an object in the environment of a
-#'   specific calling function.
+#' @title Objects in environments of calling functions
 #' @param name A character scalar giving the name of an object.
 #' @param val A value to place into the object specified by \code{name}.
 #' @param err A logical scalar whether to throw an error if the object specified
@@ -36,6 +34,11 @@
 #' }
 #' fun.a()
 #' @export
+values_uj <- function() {help("values_uj", package = "uj")}
+
+#' @describeIn values_uj Check for the existence of an object in the environment
+#'   of a specific calling function.
+#' @export
 exist <- function(name, err = T, gens = 1) {
   vn <- cmp_chr_scl(name)
   ve <- isTF(err)
@@ -54,7 +57,7 @@ exist <- function(name, err = T, gens = 1) {
   stop("\n • No object named [name = '", name, "'] exists in the environment of the ", targ, "calling function (", call, ").")
 }
 
-#' @describeIn values get the value of an object in the environment of a
+#' @describeIn values_uj get the value of an object in the environment of a
 #'   specific calling function.
 #' @export
 vget <- function(name, err = T, gens = 1) {
@@ -70,7 +73,7 @@ vget <- function(name, err = T, gens = 1) {
   else {get(name, envir = parent.frame(gens + 1), inherits = F)}                 # Otherwise, get the value of the named object and return it.
 }
 
-#' @describeIn values set the value of an object in the environment of a
+#' @describeIn values_uj set the value of an object in the environment of a
 #'   specific calling function.
 #' @export
 vset <- function(name, val, gens = 1) {
@@ -82,3 +85,5 @@ vset <- function(name, val, gens = 1) {
   if (idef(err)) {stop(err)}
   assign(name, val, envir = parent.frame(gens + 1), inherits = F)                # Set the value of the named object in the target functions environment to the specified value
 }
+
+

@@ -1,7 +1,6 @@
+#' @name av_uj
 #' @title Atomize (reduce to atomic values)
 #' @family meta
-#' @description Reduce all arguments in \code{...} to a single atomic vector of
-#'   atomic elements without any additional attributes.
 #' @param ... Arguments to be atomized.
 #' @return A single atomic vector containing all constituent atomic values in
 #'   the full set of arguments supplied in \code{...}.
@@ -14,5 +13,10 @@
 #' av(Both)
 #' av("celery", "beets", "lettuce")
 #' av("celery", "beets", "lettuce")
+#' @export
+av_uj <- function() {help("av_uj", package = "uj")}
+
+#' @describeIn av_uj Reduce all arguments in \code{...} to a single atomic
+#'   vector of atomic elements without any additional attributes.
 #' @export
 av <- function(...) {x. <- as.vector(unlist(list(...), T, F)); attributes(x.) <- NULL; x.}

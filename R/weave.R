@@ -1,50 +1,52 @@
-#' @name weave
+#' @name weave_uj
 #' @family strings
 #' @title Weave inlay values into a string
-#' @description A replacement for \code{sprintf} for basic uses. \code{x.} must
-#'   be a character scalar. All arguments in \code{...} must be atomic scalars
-#'   or 1-dimensional vectors.
 #' @details Inlay escape sequences to specify formatting follow the patterns
 #'   given in the following table with associated meanings of each pattern:
 #'   \tabular{ll}{
-#'     PATTERN          \tab MEANS INSERT ARGUMENT ...                       \cr
-#'     \code{'{@@}'}    \tab ...as is (argument must be scalar).             \cr
-#'     \code{'{@@x}'}   \tab ...after applying formatting switch \code{'x'}. \cr
-#'     \code{'{@@xy}'}  \tab ...after applying formatting switches \code{'x'}
-#'                           and \code{'y'}.                                 \cr
-#'     \code{'{@@xyz}' }\tab ...after applying formatting switches \code{'x'},
+#'     PATTERN           \tab MEANS INSERT ARGUMENT                           \cr
+#'     \code{'{@@}'}     \tab as is (argument must be scalar).                \cr
+#'     \code{'{@@x}'}    \tab after applying formatting switch \code{'x'}.    \cr
+#'     \code{'{@@xy}'}   \tab after applying formatting switches \code{'x'}
+#'                            and \code{'y'}.                                 \cr
+#'     \code{'{@@xyz}'  }\tab after applying formatting switches \code{'x'},
 #'                           \code{'y'}, and \code{'z'}.                       }
 #'   There are three families of switches:\tabular{ll}{
-#'     FAMILY           \tab PURPOSE                                         \cr
-#'     \code{decimals } \tab specify the number of decimal points to include in
-#'                           in formatting numeric arguments                 \cr
-#'     \code{quotes}    \tab types of quotes in which to enclose formatted
-#'                           argument values                                 \cr
-#'     \code{list}      \tab type of list to create in formatting arguments that
-#'                           may have more than one element.                   }
+#'     SWITCH            \tab SWITCH                                         \cr
+#'     FAMILY            \tab PURPOSE                                        \cr
+#'     \code{decimals  } \tab specify the number of decimal points to include in
+#'                            in formatting numeric arguments                \cr
+#'     \code{quotes}     \tab types of quotes in which to enclose formatted
+#'                            argument values                                \cr
+#'     \code{list}       \tab type of list to create in formatting arguments
+#'                            that may have more than one element.             }
 #'   Each escape sequence can contain only 1 switch from each family, but no
 #'   family is required to have a switch in any given escape sequence. In the
 #'   following table, the values switches may take are summarized, giving the
 #'   value, the family it belongs to, and the formatting instructions indicated
 #'   by the switch.\tabular{lll}{
-#'     SWITCH    \tab SWITCH         \tab FORMATTING                         \cr
-#'     VALUE     \tab FAMILY         \tab SPECIFICATION                      \cr
-#'     \code{'0'}\tab\code{decimals }\tab 0 decimal places.                  \cr
-#'     \code{'1'}\tab\code{decimals} \tab 1 decimal place.                   \cr
-#'     \code{'2'}\tab\code{decimals} \tab 2 decimal places.                  \cr
-#'      ...      \tab ...            \tab ...                                \cr
-#'     \code{'8'}\tab\code{decimals} \tab 8 decimal places.                  \cr
-#'     \code{'9'}\tab\code{decimals} \tab 9 decimal places.                  \cr
-#'     \code{'q'}\tab\code{quote}    \tab single straight quotes.            \cr
-#'     \code{'Q'}\tab\code{quote}    \tab double straight quotes.            \cr
-#'     \code{'t'}\tab\code{quote}    \tab single typeset quotes.             \cr
-#'     \code{'T'}\tab\code{quote}    \tab double typeset quotes.             \cr
-#'     \code{'b'}\tab\code{quote}    \tab comma-separated list in braces.    \cr
-#'     \code{'c'}\tab\code{list}     \tab comma-separated concatenation
+#'     SWITCH    \tab SWITCH          \tab FORMATTING                        \cr
+#'     VALUE     \tab FAMILY          \tab SPECIFICATION                     \cr
+#'     \code{'0'}\tab\code{decimals  }\tab 0 decimal places.                 \cr
+#'     \code{'1'}\tab\code{decimals}  \tab 1 decimal place.                  \cr
+#'     \code{'2'}\tab\code{decimals}  \tab 2 decimal places.                 \cr
+#'     \code{'3'}\tab\code{decimals}  \tab 3 decimal places.                 \cr
+#'     \code{'4'}\tab\code{decimals}  \tab 4 decimal places.                 \cr
+#'     \code{'5'}\tab\code{decimals}  \tab 5 decimal places.                 \cr
+#'     \code{'6'}\tab\code{decimals}  \tab 6 decimal places.                 \cr
+#'     \code{'7'}\tab\code{decimals}  \tab 7 decimal places.                 \cr
+#'     \code{'8'}\tab\code{decimals}  \tab 8 decimal places.                 \cr
+#'     \code{'9'}\tab\code{decimals}  \tab 9 decimal places.                 \cr
+#'     \code{'q'}\tab\code{quote}     \tab single straight quotes.           \cr
+#'     \code{'Q'}\tab\code{quote}     \tab double straight quotes.           \cr
+#'     \code{'t'}\tab\code{quote}     \tab single typeset quotes.            \cr
+#'     \code{'T'}\tab\code{quote}     \tab double typeset quotes.            \cr
+#'     \code{'b'}\tab\code{quote}     \tab comma-separated list in braces.   \cr
+#'     \code{'c'}\tab\code{list}      \tab comma-separated concatenation
 #'                                        statement (i.e., \code{'c(...)'}). \cr
-#'     \code{'l'}\tab\code{list}     \tab comma-separated list               \cr
-#'     \code{'p'}\tab\code{list}     \tab comma-separated list in parentheses\cr
-#'     \code{'s'}\tab\code{list}     \tab comma-separated list in square
+#'     \code{'l'}\tab\code{list}      \tab comma-separated list              \cr
+#'     \code{'p'}\tab\code{list}      \tab comma-separated list in parens    \cr
+#'     \code{'s'}\tab\code{list}      \tab comma-separated list in square
 #'                                        brackets                           \cr
 #'     \code{'a'}\tab\code{list}
 #'               \tab\link[=ox_and]{Oxford-comma separated 'and' list}.      \cr
@@ -60,26 +62,26 @@
 #'   the value of an argument to be formatted using the inlay escape sequence,
 #'   and the result of applying the inlay escape sequence's formatting switches
 #'   to the argument.\tabular{lll}{
-#'     ESCAPE          \tab ARGUMENT   \tab RESULTING FORMATTED              \cr
-#'     SEQUENCE        \tab VALUE      \tab CHARACTER SCALAR                 \cr
-#'     \code{'{@@}'}   \tab\code{FALSE}
-#'                         \tab\code{'FALSE'}                                \cr
-#'     \code{'{@@}'}   \tab\code{42}
-#'                         \tab\code{'42'}                                   \cr
-#'     \code{'{@@b}'}  \tab\code{4:7}
-#'                         \tab\code{'{4, 5, 6, 7}'}                         \cr
-#'     \code{'{@@q}'}  \tab\code{'foo::bar'}
-#'                         \tab\code{"'foo::bar'"}                           \cr
-#'     \code{'{@@0}'}  \tab\code{pi}
-#'                         \tab\code{'3'}                                    \cr
-#'     \code{'{@@aQ}'} \tab\code{c('me', 'myself', 'I') }
-#'                         \tab\code{'"me", "myself", and "I"'}              \cr
-#'     \code{'{@@c2}'} \tab\code{c(pi, exp(1), 42)}
-#'                         \tab\code{'c(3.14, 2.62, 42.00)'}                 \cr
-#'     \code{'{@@Q6}'} \tab\code{pi}
-#'                         \tab\code{'"3.141593"'}                           \cr
-#'     \code{'{@@ot3}'}\tab\code{c(pi, exp(1))}
-#'                         \tab\code{'‘3.142’ or ‘2.718’'}                     }
+#'     ESCAPE            \tab ARGUMENT   \tab RESULTING FORMATTED            \cr
+#'     SEQUENCE          \tab VALUE      \tab CHARACTER SCALAR               \cr
+#'     \code{'{@@}'}     \tab\code{FALSE}
+#'                       \tab\code{'FALSE'}                                  \cr
+#'     \code{'{@@}'}     \tab\code{42}
+#'                       \tab\code{'42'}                                     \cr
+#'     \code{'{@@b}'}    \tab\code{4:7}
+#'                       \tab\code{'{4, 5, 6, 7}'}                           \cr
+#'     \code{'{@@q}'}    \tab\code{'foo::bar'}
+#'                       \tab\code{"'foo::bar'"}                             \cr
+#'     \code{'{@@0}'}    \tab\code{pi}
+#'                       \tab\code{'3'}                                      \cr
+#'     \code{'{@@aQ}'}   \tab\code{c('me', 'myself', 'I')  }
+#'                       \tab\code{'"me", "myself", and "I"'}                \cr
+#'     \code{'{@@c2}'}   \tab\code{c(pi, exp(1), 42)}
+#'                       \tab\code{'c(3.14, 2.62, 42.00)'}                   \cr
+#'     \code{'{@@Q6}'}   \tab\code{pi}
+#'                       \tab\code{'"3.141593"'}                             \cr
+#'     \code{'{@@ot3}'  }\tab\code{c(pi, exp(1))}
+#'                       \tab\code{'‘3.142’ or ‘2.718’'}                       }
 #' @param x. Atomic scalar with inlay escape sequences (see details).
 #' @param ... Arbitrary number of atomic scalar/vector arguments to be inserted
 #'   into \code{x.} with formatting specified in inlay escape sequences. The
@@ -88,6 +90,11 @@
 #'   \code{x.} must be equal to the number of arguments in \code{...}.
 #' @return Character scalar.
 #' @export
+weave_uj <- function() {help("weave_uj", package = "uj")}
+
+#' @describeIn weave_uj A replacement for \code{sprintf} for basic uses.
+#'   \code{x.} must be a character scalar. All arguments in \code{...} must be
+#'   atomic scalars or 1-dimensional vectors.
 weave <- function(x., ...) {
   vx. <- cmp_chr_scl(x.)
   vd. <- ...length() > 0
@@ -97,7 +104,7 @@ weave <- function(x., ...) {
   if (!vd.) {err. <- c(err., "\n • [...] is empty.")}
   if (!vl.) {err. <- c(err., "\n • Arguments in [...] must be complete character objects.")}
   if (idef(err.)) {stop(err.)}
-  dots.  <- list(...)                                                            # The arguments to weave into {x}
+  dots. <- list(...)                                                             # The arguments to weave into {x}
   dots_n. <- length(dots.)                                                       # The number of such arguments
   code_pref. <- "[{][@]"                                                         # gregexpr pattern for switch code prefix, i.e., '{@'
   code_suff. <- "[}]"                                                            # gregexpr pattern for switch code suffix, i.e., '}'
@@ -115,10 +122,10 @@ weave <- function(x., ...) {
                           "and number of valid inlay escape sequences in [x.] ")
   all_switches. <- c("a", "b", "c", "l", "o", "p", "s", "q", "Q", "t", "T",      # all valid switch values
                      "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
-  pat0. <- paste0(code_pref.,                               code_suff.)          # 0-switch pattern '{@}'
-  pat1. <- paste0(code_pref., switches.,                     code_suff.)         # 1-switch patterh '{@s}'
-  pat2. <- paste0(code_pref., switches., switches.,           code_suff.)        # 2-switch patterh '{@ss}'
-  pat3. <- paste0(code_pref., switches., switches., switches., code_suff.)       # 3-switch patterh '{@sss}'
+  pat0. <- paste0(code_pref., code_suff.)                                        # 0-switch pattern '{@}'
+  pat1. <- paste0(code_pref., switches., code_suff.)                             # 1-switch pattern '{@s}'
+  pat2. <- paste0(code_pref., switches., switches., code_suff.)                  # 2-switch pattern '{@ss}'
+  pat3. <- paste0(code_pref., switches., switches., switches., code_suff.)       # 3-switch pattern '{@sss}'
   switches0. <- gregexpr(pat0., x.)                                              # results of searching {x} for 0-switch patterns
   switches1. <- gregexpr(pat1., x.)                                              # results of searching {x} for 1-switch patterns
   switches2. <- gregexpr(pat2., x.)                                              # results of searching {x} for 2-switch patterns
@@ -196,7 +203,7 @@ weave <- function(x., ...) {
           else if (ia.) {dot. <- ox_or(dot., join = "and")}
           else if (io.) {dot. <- ox_or(dot.)}
           out. <- c(out., txt., dot.)                                            # >>>> append the plain text and formatted i-th arg to the result
-  } } } }
+  }}}}
   if (idef(err.)) {stop(err.)}
   txt_start. <- code_stop. + 1                                                   # position in {x} of last plain text after the last switch code
   txt_stop.  <- nchar(x.)                                                        # get position of last character in {x}

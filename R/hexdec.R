@@ -1,11 +1,14 @@
-#' @name hexdec
+#' @name hexdec_uj
 #' @family math
 #' @title Convert between integer and hexadecimal
-#' @description Convert from hexadecimal to decimal.
 #' @details Hexademical representation is of mode character and may begin with
 #'   "#".
 #' @param x Vector of positive whole numbers or strings with hexademical number
 #'   representations.
+#' @export
+hexdex_uj <- function() {help("hexdec_uj", package = "uj")}
+
+#' @describeIn hexdec_uj Convert from hexadecimal to decimal.
 #' @export
 todec <- function(x) {
   vx <- F
@@ -43,7 +46,7 @@ todec <- function(x) {
   sapply(lapply(x, ch), convert.)
 }
 
-#' @describeIn hexdec Convert from decimal to hexadecimal.
+#' @describeIn hexdec_uj Convert from decimal to hexadecimal.
 #' @export
 tohex <- function(x) {
   if (!cmp_nnw_vec(x)) {stop("\n • [x] must be non-empty, atomic, and contain only non-negative whole numbers.")}

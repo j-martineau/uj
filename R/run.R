@@ -1,7 +1,7 @@
-#' @name run
+#' @name run_uj
 #' @family meta
-#' @title Evaluate constructed code
-#' @description Code to build and run code.
+#' @family code
+#' @title Build and evaluate code
 #' @param ... Arguments to be pasted into a character scalar command to be run
 #'   (i.e., parsed and evaluated) in the environment where \code{run(...)} was
 #'   called.
@@ -17,5 +17,10 @@
 #' run(CallScalar)
 #' print(CallVector)
 #' print(CallScalar)
+#' @export
+run_uj <- function() {help("run_uj", package = "uj")}
+
+#' @describeIn run_uj Collapses \code{...} into a character scalar and evaluates
+#'   it as code in the calling environment.
 #' @export
 run <- function(...) {eval.parent(parse(text = daw00(...)), n = 1)}

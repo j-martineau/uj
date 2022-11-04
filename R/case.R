@@ -1,12 +1,7 @@
-#' @name case
+#' @name case_uj
 #' @family meta
+#' @family fork
 #' @title Case as an extension of switch
-#' @details Takes a name (i.e., any atomic scalar) and matches that name to the
-#'   name matching an element of \code{...} where matching can be achieved by
-#'   matching the name of an argument in \code{...}. When names are supplied via
-#'   \code{names.}, they substituted for the names of arguments in \code{...}.
-#'   When no match is found and \code{def. = "err"} an error is thrown,
-#'   otherwise, the value of \code{def.} is returned.
 #' @param name. \code{NULL} or an atomic scalar naming an argument in
 #'   \code{...}. \code{NULL} is converted to \code{'NULL'} and \code{NA} is
 #'   converted to \code{'NA'}. Coerced to mode character.
@@ -23,6 +18,15 @@
 #'   is found, an error is thrown.
 #' @return Either the value of an argument selected from \code{...} or the value
 #'   of \code{def.}.
+#' @export
+case_uj <- function() {help("case_uj", package = "uj")}
+
+#' @describeIn case_uj Takes a name (i.e., any atomic scalar) and matches that
+#'   name to the name matching an element of \code{...} where matching can be
+#'   achieved by matching the name of an argument in \code{...}. When names are
+#'   supplied via \code{names.}, they substituted for the names of arguments in
+#'   \code{...}. When no match is found and \code{def. = "err"} an error is
+#'   thrown, otherwise, the value of \code{def.} is returned.
 #' @export
 case <- function(name., ..., names. = NULL, def. = "err") {
   vn1. <- iscl(name.)

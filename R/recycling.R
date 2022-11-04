@@ -1,9 +1,8 @@
-#' @name recycling
+#' @name recycling_uj
 #' @family meta
-#' @title Recycling
-#' @description Check whether the vector of lengths in \code{n.} represents
-#'   recyclable arguments subject to the setting in \code{targ.}.
-#' @param ... Named arguments to be recycled in the calling function.
+#' @title Recycling and recyclability
+#' @param ... Named arguments to be recycled in the environment of the calling
+#'   function.
 #' @param lengths. Vector of lengths to check for recyclability.
 #' @param targ. Target length of recycled arguments.
 #' @param n. For \code{recyclable_n}, the lengths of arguments to be recycled;
@@ -17,6 +16,11 @@
 #'   \code{FALSE}. \code{recycle} returns \code{NULL} as it is called for the
 #'   side effect of recycling arguments in the environment of a parent function.
 #' @export
+recycling_uj <- function() {help("recycling_uj", package = "uj")}
+
+#' @describeIn recycling_uj Check whether the vector of lengths in \code{n.}
+#'   represents recyclable arguments subject to the setting in \code{targ.}.
+#' @export
 recyclable_n <- function(n., targ. = max(n.)) {
   vn. <- cmp_psw_vec(n.)
   vt. <- cmp_psw_scl(targ.)
@@ -28,9 +32,9 @@ recyclable_n <- function(n., targ. = max(n.)) {
   all(out. == round(out.))
 }
 
-#' @describeIn recycling Evaluate whether arguments in \code{...} are recyclable
-#'   subject to settings in the arguments \code{n.}, \code{min.}, \code{max.},
-#'   and \code{targ.}.
+#' @describeIn recycling_uj Evaluate whether arguments in \code{...} are
+#'   recyclable subject to settings in the arguments \code{n.}, \code{min.},
+#'   \code{max.}, and \code{targ.}.
 #' @export
 recyclable <- function(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL, err. = F) {
   vd. <- all(sapply(list(...), ivec))
@@ -65,8 +69,8 @@ recyclable <- function(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL, err.
   out.
 }
 
-#' @describeIn recycling Recycle arguments in \code{...} in the environment of
-#'   the calling function subject to settings in the arguments \code{n.},
+#' @describeIn recycling_uj Recycle arguments in \code{...} in the environment
+#'   of the calling function subject to settings in the arguments \code{n.},
 #'   \code{min.}, \code{max.}, and \code{targ.}.
 #' @export
 recycle <- function(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL) {

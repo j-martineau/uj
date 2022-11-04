@@ -1,4 +1,4 @@
-#' @name tocase
+#' @name tocase_uj
 #' @family strings
 #' @title Convert String Case
 #' @description Convert strings to lower, upper, sentence, and title cases
@@ -8,7 +8,7 @@
 #' @param case. \code{'l'}, \code{'s'}, \code{'t'}, or \code{'u'} to indicate
 #'   lower, sentence, title, or upper case. Case insensitive.
 #' @param a. \code{TRUE} or \code{FALSE} indicating whether to
-#'   \link[=av]{atomize} \code{...} before processing.
+#'   atomize \code{...} before processing.
 #' @examples
 #' TestTitle    <- "This is a Title"
 #' TestSentence <- "This is a sentence."
@@ -26,12 +26,16 @@
 #' scase(TestTitle, TestSentence, TestWords, TestSet, case = "T")
 #' scase(TestVector, case = "UPPER")
 #' @export
+tocase_uj <- function() {help("tocase_uj", package = "j")}
+
+#' @describeIn tocase_uj Convert among lower, upper, sentence, and title case.
+#' @export
 tocase <- function(case., ..., a. = T) {
   x. <- list(...)
   n. <- length(x.)
   ac. <- all(sapply(x.), ichr)
-  at. <- all(sapply(x.), chr_atb)
-  al. <- all(sapply(x.), chr_avl)
+  at. <- all(sapply(x.), chr_tab)
+  al. <- all(sapply(x.), chr_vls)
   if (n. > 0) {ns. <- lengths(x.)} else {ns. <- 1}
   vc. <- isIN(case., c("l", "s", "t", "u"))
   vd. <- f0(n. == 0, F,
@@ -64,30 +68,30 @@ tocase <- function(case., ..., a. = T) {
   x.
 }
 
-#' @describeIn tocase Convert to sentence case via
+#' @describeIn tocase_uj Convert to sentence case via
 #'   \code{\link[stringr]{str_to_sentence}}.
 #' @export
 tosentence <- function(..., a. = T) {tocase("s", ..., a. = a.)}
 
-#' @describeIn tocase Convert to sentence case via
+#' @describeIn tocase_uj Convert to sentence case via
 #'   \code{\link[stringr]{str_to_title}}.
 #' @export
 totitle <- function(..., a. = T) {tocase("t", ..., a. = a.)}
 
-#' @describeIn tocase Converts to lower case via \code{\link[base]{tolower}}.
+#' @describeIn tocase_uj Converts to lower case via \code{\link[base]{tolower}}.
 #' @export
 lc <- function(..., a. = T) {tocase("l", ..., a. = a.)}
 
-#' @describeIn tocase Convert to sentence case via
+#' @describeIn tocase_uj Convert to sentence case via
 #'   \code{\link[stringr]{str_to_sentence}}.
 #' @export
 sc <- function(..., a. = T) {tocase("s", ..., a. = a.)}
 
-#' @describeIn tocase Convert to title case via
+#' @describeIn tocase_uj Convert to title case via
 #'   \code{\link[stringr]{str_to_title}}.
 #' @export
 tc <- function(..., a. = T) {tocase("t", ..., a. = a.)}
 
-#' @describeIn tocase Converts to upper case via \code{\link[base]{tolower}}.
+#' @describeIn tocase_uj Converts to upper case via \code{\link[base]{tolower}}.
 #' @export
 uc <- function(..., a. = T) {tocase("u", ..., a. = a.)}

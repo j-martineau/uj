@@ -1,56 +1,8 @@
-#' @name simple_colors
+#' @name simple_colors_uj
 #' @family colors
 #' @title Simple Color Creation
 #' @description Simple color creation with a wide variety of options (intensity,
 #'   blending, lightening, darkening, opacity)
-#' @details \strong{\code{color}}
-#'   \cr Takes any valid R color representation and lightens, darkens, adds
-#'   opacity levels, and/or gets the complementary color.
-#'   \cr \cr
-#'   \strong{\code{rgba}}
-#'   \cr Creates colors using red (\code{r}), green (\code{g}), blue (\code{b}),
-#'   and alpha (\code{a}) intensities between \code{0} and \code{1}, inclusive.
-#'   \cr \cr
-#'   \strong{\code{hsva}}
-#'   \cr Creates colors using hue (\code{h}), staturation (\code{s}),
-#'   value/brightness (\code{v}), and alpha (\code{a}) intensities between
-#'   \code{0} and \code{1}, inclusive.
-#'   \cr \cr
-#'   \strong{\code{blend}}
-#'   \cr Blends two colors.
-#'   \cr \cr
-#'   \strong{\code{blk}, \code{wht}, and \code{gry}}
-#'   \cr Create variations on black, white, and grey.
-#'   \cr \cr
-#'   \strong{\code{red}, \code{grn}, and \code{blu}}
-#'   \cr Create variations on RGB primary colors red, green, and blue.
-#'   \cr \cr
-#'   \strong{\code{cyn}, \code{mag}, \code{vlt}, and \code{ylw}}
-#'   \cr Create variations on CMYK primary colors cyan, magenta, violet, and
-#'   yellow.
-#'   \cr \cr
-#'   \strong{\code{prp} and \code{orn}}
-#'   \cr Create variations on purple (slightly more blue than with violet) and
-#'   orange.
-#'   \cr \cr
-#'   \strong{\code{blu_grn}, \code{blu_prp}, and \code{blu_vlt}}
-#'   \cr Create variations on traditional blue blends.
-#'   \cr \cr
-#'   \strong{\code{ylw_grn} and \code{ylw_orn}}
-#'   \cr Create variations on traditional yellow blends.
-#'   \cr \cr
-#'   \strong{\code{red_orn}, \code{red_prp}, and \code{red_vlt}}
-#'   \cr Create variations on traditional red blends.
-#'   \cr \cr
-#'   \strong{\code{pal_cb}}
-#'   \cr Get colors from a flexible colorblind palette with 2 to 20 colors.
-#'   Colors 1-10 are bright. Colors 11-20 are 50% darkened versions of colors
-#'   1-10. The difference in brightness is maximized to allow for distinguishing
-#'   bright from darkened versions, but the differences may be insufficient for
-#'   some audiences. Using only colors 1-10 is advisable.
-#'   \cr \cr
-#'   \strong{\code{pal_swatch}}
-#'   \cr Draws swatches for a palette.
 #'   \cr\cr
 #'   The arguments \code{r}, \code{g}, \code{b}, \code{a}, \code{p}, and
 #'   \code{s} are recyclable. Functions returns a vector of colors of length
@@ -103,6 +55,12 @@
 #' @return A character vector of 1 or more hexadecimal RGB + alpha color
 #'   representations in the form \code{'#RRGGBBAA'}.
 #' @export
+simple_colors_uj <- function() {help("simple_colors_uj", package = "uj")}
+
+#' @describeIn simple_colors_uj Takes any valid R color representation and
+#'   lightens, darkens, adds opacity levels, and/or gets the complementary
+#'   color.
+#' @export
 color <- function(x, lighten = 0, darken = 0, a = 1, comp = F) {
   VX <- cmp_clr_vec(x)
   VL <- cmp_ppn_vec(lighten)
@@ -147,8 +105,8 @@ color <- function(x, lighten = 0, darken = 0, a = 1, comp = F) {
   rgb(R, G, B, A)
 }
 
-#' @describeIn simple_colors Create colors from r(ed), g(reen), b(lue), and
-#'   a(alpha) weights in the interval \[0, 1\].
+#' @describeIn simple_colors_uj Create colors from r(ed), g(reen), b(lue), and
+#'   a(lpha) weights in the interval \[0, 1\].
 #' @export
 rgba <- function(r = 1, g = 1, b = 1, a = 1) {
   VR <- cmp_ppn_vec(r)
@@ -170,8 +128,8 @@ rgba <- function(r = 1, g = 1, b = 1, a = 1) {
   rgb(r, g, b, a)
 }
 
-#' @describeIn simple_colors Create colors from h(ue), s(aturation), v(alue),
-#'   and a(alpha) weights in the interval \[0, 1\].
+#' @describeIn simple_colors_uj Create colors from h(ue), s(aturation), v(alue),
+#'   and a(lpha) weights in the interval \[0, 1\].
 #' @export
 hsva <- function(h = 1, s = 1, v = 1, a = 1) {
   VH <- cmp_ppn_vec(h)
@@ -193,7 +151,7 @@ hsva <- function(h = 1, s = 1, v = 1, a = 1) {
   hsv(h, s, v, a)
 }
 
-#' @describeIn simple_colors Blend colors using weights and optional alpha
+#' @describeIn simple_colors_uj Blend colors using weights and optional alpha
 #'   values.
 #' @export
 blend <- function(x, y, wx = 1, wy = 1, a = NA) {
@@ -234,106 +192,109 @@ blend <- function(x, y, wx = 1, wy = 1, a = NA) {
   rgba(R, G, B, A)                                                               # return the blended color in hexadecimal RGBA format
 }
 
-#' @describeIn simple_colors Build red hues by primary color, secondary color,
-#'   and alpha weights.
+#' @describeIn simple_colors_uj Build red hues by primary color, secondary
+#'   color, and alpha weights.
 #' @export
 red <- function(p = 1, s = 0, a = 1) {rgba(p, s, s, a)}
 
-#' @describeIn simple_colors Build green hues by primary color, secondary color,
-#'   and alpha weights.
+#' @describeIn simple_colors_uj Build green hues by primary color, secondary
+#'   color, and alpha weights.
 #' @export
 grn <- function(p = 1, s = 0, a = 1) {rgba(s, p, s, a)}
 
-#' @describeIn simple_colors Build blu hues by primary color, secondary color,
-#'   and alpha weights.
+#' @describeIn simple_colors_uj Build blu hues by primary color, secondary
+#'   color, and alpha weights.
 #' @export
 blu <- function(p = 1, s = 0, a = 1) {rgba(s, s, p, a)}
 
-#' @describeIn simple_colors Build cyan hues by primary color, secondary color,
-#'   and alpha weights.
+#' @describeIn simple_colors_uj Build cyan hues by primary color, secondary
+#'   color, and alpha weights.
 #' @export
 cyn <- function(p = 1, s = 0, a = 1) {rgba(s, p, p, a)}
 
-#' @describeIn simple_colors Build magenta hues by primary color, secondary
+#' @describeIn simple_colors_uj Build magenta hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 mag <- function(p = 1, s = 0, a = 1) {rgba(p, s, p, a)}
 
-#' @describeIn simple_colors Build violet hues by primary color, secondary
+#' @describeIn simple_colors_uj Build violet hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 vlt <- function(p = 1, s = 0, a = 1) {rgba(p, s, p, a)}
 
-#' @describeIn simple_colors Build yellow hues by primary color, secondary
+#' @describeIn simple_colors_uj Build yellow hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 ylw <- function(p = 1, s = 0, a = 1) {rgba(p, p, s, a)}
 
-#' @describeIn simple_colors Build grey hues by primary color  and alpha
+#' @describeIn simple_colors_uj Build grey hues by primary color and alpha
 #'   weights.
 #' @export
 gry <- function(p = 0.5, a = 1) {rgba(p, p, p, a)}
 
-#' @describeIn simple_colors Build black hues by alpha weights.
+#' @describeIn simple_colors_uj Build black hues by alpha weights.
 #' @export
 blk <- function(a = 1) {rgba(0, 0, 0, a)}
 
-#' @describeIn simple_colors Build white hues by alpha weights.
+#' @describeIn simple_colors_uj Build white hues by alpha weights.
 #' @export
 wht <- function(a = 1) {rgba(1, 1, 1, a)}
 
-#' @describeIn simple_colors Build purple hues by primary color, secondary
+#' @describeIn simple_colors_uj Build purple hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 ppl <- function(p = 1, s = 0, a = 1) {blend(red(p, s), blu(p, s), 1, 2, a)}
 
-#' @describeIn simple_colors Build orange hues by primary color, secondary
+#' @describeIn simple_colors_uj Build orange hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 orn <- function(p = 1, s = 0, a = 1) {blend(red(p, s), ylw(p, s), 33, 51, a)}
 
-#' @describeIn simple_colors Build blue-green hues by primary color, secondary
-#'   color, and alpha weights.
+#' @describeIn simple_colors_uj Build blue-green hues by primary color,
+#'   secondary color, and alpha weights.
 #' @export
 blu_grn <- function(p = 1, s = 0, a = 1) {blend(blu(p, s), grn(p, s), a)}
 
-#' @describeIn simple_colors Build blue-purple hues by primary color, secondary
-#'   color, and alpha weights.
+#' @describeIn simple_colors_uj Build blue-purple hues by primary color,
+#'   secondary color, and alpha weights.
 #' @export
 blu_ppl <- function(p = 1, s = 0, a = 1) {blend(blu(p, s), ppl(p, s), a)}
 
-#' @describeIn simple_colors Build blue-violet hues by primary color, secondary
-#'   color, and alpha weights.
+#' @describeIn simple_colors_uj Build blue-violet hues by primary color,
+#'   secondary color, and alpha weights.
 #' @export
 blu_vlt <- function(p = 1, s = 0, a = 1) {blend(blu(p, s), vlt(p, s), a)}
 
-#' @describeIn simple_colors Build yellow-green hues by primary color, secondary
-#'   color, and alpha weights.
+#' @describeIn simple_colors_uj Build yellow-green hues by primary color,
+#'   secondary color, and alpha weights.
 #' @export
 ylw_grn <- function(p = 1, s = 0, a = 1) {blend(ylw(p, s), grn(p, s), a)}
 
-#' @describeIn simple_colors Build yellow-orange hues by primary color,
+#' @describeIn simple_colors_uj Build yellow-orange hues by primary color,
 #'   secondary color, and alpha weights.
 #' @export
 ylw_orn <- function(p = 1, s = 0, a = 1) {blend(ylw(p, s), orn(p, s), a)}
 
-#' @describeIn simple_colors Build red-orange hues by primary color, secondary
-#'   color, and alpha weights.
+#' @describeIn simple_colors_uj Build red-orange hues by primary color,
+#'   secondary color, and alpha weights.
 #' @export
 red_orn <- function(p = 1, s = 0, a = 1) {blend(red(p, s), orn(p, s), a)}
 
-#' @describeIn simple_colors Build red-purple hues by primary color, secondary
-#'   color, and alpha weights.
+#' @describeIn simple_colors_uj Build red-purple hues by primary color,
+#'   secondary color, and alpha weights.
 #' @export
 red_ppl <- function(p = 1, s = 0, a = 1) {blend(red(p, s), ppl(p, s), a)}
 
-#' @describeIn simple_colors Build red-violet hues by primary color, secondary
-#'   color, and alpha weights.
+#' @describeIn simple_colors_uj Build red-violet hues by primary color,
+#'   secondary color, and alpha weights.
 #' @export
 red_vlt <- function(p = 1, s = 0, a = 1) {blend(red(p, s), vlt(p, s), a)}
 
-#' @describeIn simple_colors Retrieve color-blind friendly palettes with number
-#'   of groups, number of colors, and alpha weight.
+#' @describeIn simple_colors_uj Get colors from a flexible colorblind palette
+#'   with 2 to 20 colors. Colors 1-10 are bright. Colors 11-20 are 50% darkened
+#'   versions of colors 1-10. The difference in brightness is maximized to allow
+#'   for distinguishing bright from darkened versions, but the differences may
+#'   be insufficient for some audiences. Using only colors 1-10 is advisable.
 #' @export
 pal_cb <- function(ngroups, ncolors = NULL, a = 1) {
   VG <- cmp_psw_scl(ngroups)
@@ -357,7 +318,7 @@ pal_cb <- function(ngroups, ncolors = NULL, a = 1) {
   scales::alpha(R, a)                                                            # apply the alpha value
 }
 
-#' @describeIn simple_colors Build a palette swatch plot.
+#' @describeIn simple_colors_uj Draws swatches for a palette.
 #' @export
 pal_swatch <- function(x) {
   if (!cmp_clr_vec(x)) {stop("\n • [x] must be a complete character vector containing only valid color values.")}

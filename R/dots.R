@@ -1,23 +1,9 @@
-#' @name dots
-#' @family dot_args
-#' @title Get named arguments from \code{...} with default values if missing,
-#'   named and unnamed arguments from \code{...}, and names of arguments in
-#'   \code{...}.
-#' @description Extract one or more arguments from those in \code{...} based on
-#'   their names matching values supplied in \code{names.}. If a supplied name
-#'   matches the name of an arguments in \code{...}, that argument is returned.
-#'   Otherwise, the element of \code{defs.} with a matching name is returned.
-#'   \cr\cr
-#'   \code{names.} must be an atomic scalar/vector, and is coerced to character
-#'   mode. The exceptions are \code{NULL} and \code{NA}, which are converted to
-#'   \code{'NULL'} and \code{'NA'}. Any values of \code{names.} that are
-#'   reserved words or non-valid object names are backtick quoted for matching.
-#'   \cr\cr
-#'   \code{defs.} is a named list with default values to return if there is no
-#'   matching argument for a value in \code{names.}.
-#'   \cr\cr
-#'   Each value in \code{names.} must have a matching argument in \code{...} or
-#'   a matching element in \code{defs.}.
+#' @name dots_uj
+#' @family meta
+#' @title Manage dot arguments
+#' @description Get named arguments from \code{...} with default values if
+#'   missing, named and unnamed arguments from \code{...}, and names of
+#'   arguments in \code{...}.
 #' @param ... An arbitrary number of arguments.
 #' @param names. \code{NULL} or an atomic scalar/vector (may include \code{NA})
 #'   values). Is split along the delimiter \code{'|'} to allow for compactness
@@ -49,6 +35,25 @@
 #' @param u. \code{TRUE} or \code{FALSE} indicating whether names must be
 #'   unique.
 #' @export
+dots_uj <- function() {help("dots_uj", package = "uj")}
+
+#' @describeIn dots_uj Extract one or more arguments from those in \code{...}
+#'   based on their names matching values supplied in \code{names.}. If a
+#'   supplied name matches the name of an arguments in \code{...}, that argument
+#'   is returned. Otherwise, the element of \code{defs.} with a matching name is
+#'   returned.
+#'   \cr\cr
+#'   \code{names.} must be an atomic scalar/vector, and is coerced to character
+#'   mode. The exceptions are \code{NULL} and \code{NA}, which are converted to
+#'   \code{'NULL'} and \code{'NA'}. Any values of \code{names.} that are
+#'   reserved words or non-valid object names are backtick quoted for matching.
+#'   \cr\cr
+#'   \code{defs.} is a named list with default values to return if there is no
+#'   matching argument for a value in \code{names.}.
+#'   \cr\cr
+#'   Each value in \code{names.} must have a matching argument in \code{...} or
+#'   a matching element in \code{defs.}.
+#' @export
 dots <- function(names., defs., ...) {
   x.  <- list(...)
   vn. <- ivec(names.)
@@ -75,15 +80,16 @@ dots <- function(names., defs., ...) {
   out.
 }
 
-#' @describeIn dots A simplified version for extracting a single named argument from
-#'   \code{...} or, if a matching argument is not found, its default value.
+#' @describeIn dots_uj A simplified version for extracting a single named
+#'   argument from \code{...} or, if a matching argument is not found, its
+#'   default value.
 #' @export
 dot <- function(name., def., ...) {
   if (!cmp_scl(name.)) {stop("\n  * [name.] must be a non-NA atomic scalar.")}
   dots(name., def., ...)
 }
 
-#' @describeIn dots If \code{names.} is \code{NULL}, the return value is
+#' @describeIn dots_uj If \code{names.} is \code{NULL}, the return value is
 #'   \code{...names()}, otherwise, \code{names.} i returned. Throws an error in
 #'   the following cases:\itemize{
 #'     \item \code{0} Arguments are supplied in \code{...}, \code{names.} is not
@@ -133,7 +139,7 @@ dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
   subs.
 }
 
-#' @describeIn dots Extracts named arguments from \code{...} as a named list
+#' @describeIn dots_uj Extracts named arguments from \code{...} as a named list
 #'   (does not include arguments named with blank strings).
 #' @export
 named_dots <- function(...) {
@@ -145,8 +151,8 @@ named_dots <- function(...) {
   else {NULL}
 }
 
-#' @describeIn dots Extract unnamed arguments from \code{...} as an unnamed list
-#'   (includes any arguments named with blank strings).
+#' @describeIn dots_uj Extract unnamed arguments from \code{...} as an unnamed
+#'   list (includes any arguments named with blank strings).
 #' @export
 unnamed_dots <- function(...) {
   if (...length() == 0) {return(NULL)}

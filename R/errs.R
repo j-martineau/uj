@@ -1,4 +1,5 @@
-#' @name errs
+#' @name errs_uj
+#' @family errs
 #' @title Error Management
 #' @description Bank error messages in the immediate environment of a function
 #'   to allow for exhaustive error checking before throwing an exception.
@@ -52,8 +53,9 @@
 #' @return \code{NULL}. Called for the side effect of banking and/or processing
 #'   error messages.
 #' @export
-errs <- NULL
+errs_uj <- function() {help("errs_uj", package = "uj")}
 
+#' helper function for oxford-comma lists.
 oxford_vals. <- function(x.) {
   n. <- length(x.)
   if (n. == 1) {x.}
@@ -61,7 +63,7 @@ oxford_vals. <- function(x.) {
   else {paste0(paste0(x.[1:(n. - 1)], collapse = ", "), ", or ", x.[n.])}
 }
 
-#' @describeIn errs Check for banked error messages in the environment of the
+#' @describeIn errs_uj Check for banked error messages in the environment of the
 #'   function \code{gens.} generations back in the call stack, and if there are
 #'   any, process them, stopping execution. If there are none, take no action.
 #'   Should be called after all error checking has been completed.
@@ -82,8 +84,8 @@ err_check <- function(gens. = 0) {
   NULL
 }
 
-#' @describeIn errs Banks the error message in \code{...} in the environment of
-#'   the function \code{gens.} generations back in the call stack. The error
+#' @describeIn errs_uj Banks the error message in \code{...} in the environment
+#'   of the function \code{gens.} generations back in the call stack. The error
 #'   message is constructed by atomizing and gluing all arguments in \code{...}
 #'   into a character scalar.
 #' @export
@@ -104,7 +106,7 @@ bank_err <- function(..., gens. = 0) {
   NULL
 }
 
-#' @describeIn errs Checks the named arguments in \code{...} for whether they
+#' @describeIn errs_uj Checks the named arguments in \code{...} for whether they
 #'   are atomic scalar \code{TRUE} or atomic scalar \code{FALSE}. If \code{na. =
 #'   TRUE}, also allows atomic scalar \code{NA}. If \code{extras.} contains
 #'   atomic values (logical or not), also allows those values. For each named
@@ -151,12 +153,12 @@ bank_lgl <- function(..., na. = F, extras. = NULL) {
   NULL
 }
 
-#' @describeIn errs For each named argument in \code{...} that is \code{FALSE},
-#'   creates an error message by collapsing the remaining (unnamed) arguments in
-#'   \code{...} into a character scalar, and banks the error message for that
-#'   named argument. The location where the name of a \code{FALSE} named
-#'   argument should occur in the message is indicated by the escape sequence
-#'   \code{'{@@}'}.
+#' @describeIn errs_uj For each named argument in \code{...} that is
+#'   \code{FALSE}, creates an error message by collapsing the remaining
+#'   (unnamed) arguments in \code{...} into a character scalar, and banks the
+#'   error message for that named argument. The location where the name of a
+#'   \code{FALSE} named argument should occur in the message is indicated by the
+#'   escape sequence \code{'{@@}'}.
 #' @export
 bank_not <- function(...) {
   named. <- named_dots(...)
@@ -185,7 +187,7 @@ bank_not <- function(...) {
   NULL
 }
 
-#' @describeIn errs For each named argument in \code{...} that is either
+#' @describeIn errs_uj For each named argument in \code{...} that is either
 #'   \code{NULL} or empty (i.e., of length 0), banks an error message.
 #' @export
 bank_pop <- function(...) {
@@ -207,7 +209,7 @@ bank_pop <- function(...) {
   NULL
 }
 
-#' @describeIn errs \emph{Bank error messages if arguments satisfy a property
+#' @describeIn errs_uj \emph{Bank error messages if arguments satisfy a property
 #'   function.} For each named argument in \code{...}, checks whether it
 #'   satisfies a property function in \code{funs.}, and if not, banks an error
 #'   message. \code{funs.} must be a character scalar containing the names of
@@ -237,8 +239,8 @@ bank_funs <- function(funs., ...) {
   NULL
 }
 
-#' @describeIn errs More flexible but less efficient than \code{bank_funs}. For
-#'   each named argument in \code{...}, banks an error message if it does
+#' @describeIn errs_uj More flexible but less efficient than \code{bank_funs}.
+#'   For each named argument in \code{...}, banks an error message if it does
 #'   satisfy the \link[=is_xxx]{property specification} in \code{xxx.}. If
 #'   \code{na. = TRUE}, arguments may also be atomic scalar \code{NA} values.
 #'   \code{xxx.} must be a character scalar containing one or more property
@@ -272,12 +274,12 @@ bank_xxx <- function(xxx., ..., nas. = F) {
   NULL
 }
 
-#' @describeIn errs Bank errors if atomic scalar arguments do not have one of a
-#'   list of values. For each named atomic scalar argument in \code{...}, checks
-#'   it against the remaining (unnamed) atomic arguments in \code{...} (which do
-#'   not have to be of the same mode), and if the named argument's value does
-#'   not match a value from any unnamed argument in \code{...}, banks an error
-#'   message.
+#' @describeIn errs_uj Bank errors if atomic scalar arguments do not have one of
+#'   a list of values. For each named atomic scalar argument in \code{...},
+#'   checks it against the remaining (unnamed) atomic arguments in \code{...}
+#'   (which do not have to be of the same mode), and if the named argument's
+#'   value does not match a value from any unnamed argument in \code{...}, banks
+#'   an error message.
 #' @export
 bank_vals <- function(...) {
   args.  <- named_dots(...)
@@ -317,7 +319,7 @@ bank_vals <- function(...) {
   NULL
 }
 
-#' @describeIn errs Bank errors if dot arguments do not satisfy a property
+#' @describeIn errs_uj Bank errors if dot arguments do not satisfy a property
 #'   specification, and optionally, if they are not named. Checks if each
 #'   argument in \code{...} satisfies the property specification in \code{prop.}
 #'   and if not, banks an error message. If \code{named. = TRUE}, checks whether
@@ -344,7 +346,7 @@ bank_dots <- function(xxx., ..., named. = F) {
   NULL
 }
 
-#' @describeIn errs Bank errors conditionally on the value of two arguments.
+#' @describeIn errs_uj Bank errors conditionally on the value of two arguments.
 #'   Banks an error if the first named atomic scalar argument in \code{...} has
 #'   a value contained in \code{when.} and the second named atomic scalar
 #'   argument in \code{...} does not contain a value from \code{value}.
@@ -381,7 +383,7 @@ bank_when <- function(whens., values., ...) {
   NULL
 }
 
-#' @describeIn errs Bank errors conditionally on the pattern of properties of
+#' @describeIn errs_uj Bank errors conditionally on the pattern of properties of
 #'   arguments in \code{...} matching none of the specified patterns of
 #'   associated properties in \code{pats.}.
 #' @export
@@ -442,7 +444,7 @@ bank_pats <- function(pats., ...) {
   bank_err(err., gens. = 1)
 }
 
-#' @describeIn errs If calling \code{identity(x)} generates an error, bank an
+#' @describeIn errs_uj If calling \code{identity(x)} generates an error, bank an
 #'   error message.
 #' @export
 bank_fail <- function(x.) {

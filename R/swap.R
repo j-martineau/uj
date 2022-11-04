@@ -1,7 +1,6 @@
-#' @name swap
+#' @name swap_uj
 #' @family meta
 #' @title Swap atomic values.
-#' @description Swaps atomic values.
 #' @param x An atomic object.
 #' @param old Atomic vect of unique values to be replaced.
 #' @param new Atomic vect of replacement values. \code{length(new)} must be in
@@ -9,6 +8,10 @@
 #' @param all \code{TRUE} or \code{FALSE} indicating whether all values of
 #'   \code{x} must be contained in \code{old}.
 #' @return An atomic object of the same dimensions as \code{x}.
+#' @export
+swap_uj <- function() {help("swap_uj", package = "uj")}
+
+#' @describeIn swap_uj Swaps atomic values.
 #' @export
 swap <- function(x, old, new, all = F) {
   vx <- pop_atm(x)
