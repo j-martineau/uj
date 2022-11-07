@@ -1,14 +1,15 @@
-#' @name fsub_uj
+#' @name fsub.
 #' @title Fixed-value string substitution
 #' @family strings
+#' @family extensions
 #' @param x Atomic character object.
 #' @param pats Character vect containing string patterns to be replaced.
 #' @param subs Character vect containing replacement strings.
 #' @return Atomic character object.
 #' @export
-fsub_uj <- function() {help("fsub_uj", package = "uj")}
+fsub. <- function() {help("fsub.", package = "uj")}
 
-#' @describeIn fsub_uj Replace strings in \code{pats} with corresponding
+#' @describeIn fsub. Replace strings in \code{pats} with corresponding
 #'   (possibly recycled) strings in \code{subs}.
 #' @export
 fsub <- function(x, pats, subs) {

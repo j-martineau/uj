@@ -1,90 +1,91 @@
-#' @name stats_uj
+#' @name stats.
 #' @family math
+#' @family extensions
 #' @title Compute stats ignoring NA
 #' @param ... Scalars, vectors, or matrices. Reduced a single vector of atomic
 #'   values for \code{sd0}, \code{min0}, \code{max0}, and \code{mean0}.
-#' @param n. Size of the complete set each subset is drawn from.
+#' @param n. Positive whole-number scalar size of the complete set each subset
+#'   is drawn from.
 #' @param x. Numeric vector or matrix.
 #' @param y. Optional numeric vector of matrix.
 #' @export
-stats_uj <- function() {help("stats_uj", package = "uj")}
+stats. <- function() {help("stats.", package = "uj")}
 
-#' @describeIn stats_uj Standard deviation of non-\code{NA} atomic elements
+#' @describeIn stats. Standard deviation of non-\code{NA} atomic elements
 #'   contained in \code{...} as a whole.
 #' @export
 sd0 <- function(...) {sd(av(...), na.rm = T)}
 
-#' @describeIn stats_uj Correlation of complete cases in \code{x.} and/or
+#' @describeIn stats. Correlation of complete cases in \code{x.} and/or
 #'   \code{y.}.
 #' @export
 cor0 <- function(x., y. = NULL) {cor(x., y., use = "complete.obs")}
 
-#' @describeIn stats_uj Covariance of complete cases in \code{x.} and/or
+#' @describeIn stats. Covariance of complete cases in \code{x.} and/or
 #'   \code{y.}.
 #' @export
 cov0 <- function(x., y. = NULL) {cov(x., y., use = "complete.obs")}
 
-#' @describeIn stats_uj Minimum value of non-\code{NA} atomic elements contained
+#' @describeIn stats. Minimum value of non-\code{NA} atomic elements contained
 #'   in \code{...} as a whole.
 #' @export
 min0 <- function(...) {min(av(...), na.rm = T)}
 
-#' @describeIn stats_uj Maximum value of non-\code{NA} atomic elements contained
+#' @describeIn stats. Maximum value of non-\code{NA} atomic elements contained
 #'   in \code{...} as a whole.
 #' @export
 max0 <- function(...) {max(av(...), na.rm = T)}
 
-#' @describeIn stats_uj Variance of non-\code{NA} atomic elements contained in
+#' @describeIn stats. Variance of non-\code{NA} atomic elements contained in
 #'   \code{...} as a whole.
 #' @export
 var0 <- function(...) {var(av(...), na.rm = T)}
 
-#' @describeIn stats_uj Pairwise minimum values ignoring \code{NA} values.
+#' @describeIn stats. Pairwise minimum values ignoring \code{NA} values.
 #' @export
 pmin0 <- function(...) {pmin(..., na.rm = T)}
 
-#' @describeIn stats_uj Pairwise maximum values ignoring \code{NA} values.
+#' @describeIn stats. Pairwise maximum values ignoring \code{NA} values.
 #' @export
 pmax0 <- function(...) {pmax(..., na.rm = T)}
 
-#' @describeIn stats_uj Mean value of non-\code{NA} atomic elements contained in
+#' @describeIn stats. Mean value of non-\code{NA} atomic elements contained in
 #'   \code{...} as a whole.
 #' @export
 mean0 <- function(...) {mean(av(...), na.rm = T)}
 
-#' @describeIn stats_uj Column standard deviations of \code{x} removing
+#' @describeIn stats. Column standard deviations of \code{x} removing
 #'   non-\code{NA} values separately for each column.
 #' @export
 csds0 <- function(x.) {apply(x., 2, sd, na.rm = T)}
 
-#' @describeIn stats_uj Row standard deviations of \code{x} removing
-#'   non-\code{NA} values separately for each row.
+#' @describeIn stats. Row standard deviations of \code{x} removing non-\code{NA}
+#'   values separately for each row.
 #' @export
 rsds0 <- function(x.) {apply(x., 1, sd, na.rm = T)}
 
-#' @describeIn stats_uj Column sums of \code{x} removing non-\code{NA} values
+#' @describeIn stats. Column sums of \code{x} removing non-\code{NA} values
 #'   separately for each column.
 #' @export
 csums0 <- function(x.) {colSums(x., na.rm = T)}
 
-#' @describeIn stats_uj Row sums of \code{x} removing non-\code{NA} values
+#' @describeIn stats. Row sums of \code{x} removing non-\code{NA} values
 #'   separately for each row.
 #' @export
 rsums0 <- function(x.) {rowSums(x., na.rm = T)}
 
-#' @describeIn stats_uj Column means of \code{x} removing non-\code{NA} values
+#' @describeIn stats. Column means of \code{x} removing non-\code{NA} values
 #'   separately for each column.
 #' @export
 cmeans0 <- function(x.) {colMeans(x., na.rm = T)}
 
-#' @describeIn stats_uj Row means of \code{x} removing non-\code{NA}
-#'   values separately for each row.
+#' @describeIn stats. Row means of \code{x} removing non-\code{NA} values
+#'   separately for each row.
 #' @export
 rmeans0 <- function(x.) {rowMeans(x., na.rm = T)}
 
-#' @describeIn stats_uj Create a list containing elements of indices to create
-#'   all possible combinations of 1 or more elements of an object of size
-#'   \code{n}.
+#' @describeIn stats. Create a list containing elements of indices to create all
+#'   possible combinations of 1 or more elements of an object of size \code{n}.
 #' @export
 sets <- function(n.) {                                                           # : BODY
   x. <- lapply(1:n., function(x) combn(n., x))                                   # : all possible combinations from size 1 to size [n]

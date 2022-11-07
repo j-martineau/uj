@@ -1,5 +1,5 @@
-#' @name dots_uj
-#' @family meta
+#' @name dots.
+#' @family extensions
 #' @title Manage dot arguments
 #' @description Get named arguments from \code{...} with default values if
 #'   missing, named and unnamed arguments from \code{...}, and names of
@@ -35,9 +35,9 @@
 #' @param u. \code{TRUE} or \code{FALSE} indicating whether names must be
 #'   unique.
 #' @export
-dots_uj <- function() {help("dots_uj", package = "uj")}
+dots. <- function() {help("dots.", package = "uj")}
 
-#' @describeIn dots_uj Extract one or more arguments from those in \code{...}
+#' @describeIn dots. Extract one or more arguments from those in \code{...}
 #'   based on their names matching values supplied in \code{names.}. If a
 #'   supplied name matches the name of an arguments in \code{...}, that argument
 #'   is returned. Otherwise, the element of \code{defs.} with a matching name is
@@ -59,7 +59,7 @@ dots <- function(names., defs., ...) {
   vn. <- ivec(names.)
   vx. <- length(x.) > 0
   err.  <- NULL
-  if (!vn.) {err. <- c(err., "\n • [names.] must be a non-NA atomic scalar or vector.")}
+  if (!vn.) {err. <- c(err., "\n • [names.] must be a complete atomic scalar or vec (?cmp_scl, ?cmp_vec).")}
   if (!vx.) {err. <- c(err., "\n • [...] must contain at least one argument.")}
   if (idef(err.)) {stop(err.)}
   lx. <- names(x.); ld. <- names(defs.)                                          # names of args in {...} and elements of {defs.}
@@ -68,7 +68,7 @@ dots <- function(names., defs., ...) {
   inx. <- names. %in% lx.                                                        # whether each value of {names.} is in the names of args in {...}
   ind. <- names. %in% ld.                                                        # whether each value of {names.} is in the names of {defs.}
   vn.  <- all(inx. | ind.)                                                       # validity check (does every value of {names.} have a match?)
-  if (!vn) {stop("\n • Values in [names.] must match elements of [...] or of [defs.].")} # error if validity check failed
+  if (!vn.) {stop("\n • Values in [names.] must match elements of [...] or of [defs.].")} # error if validity check failed
   n. <- length(names.)                                                           # number of arguments to match
   out. <- rep.int(list(NULL), n.)                                                # initialize the results as a list of {NULL} elements
   for (i. in 1:n.) {                                                             # for each element of {names.}
@@ -80,16 +80,16 @@ dots <- function(names., defs., ...) {
   out.
 }
 
-#' @describeIn dots_uj A simplified version for extracting a single named
+#' @describeIn dots. A simplified version for extracting a single named
 #'   argument from \code{...} or, if a matching argument is not found, its
 #'   default value.
 #' @export
 dot <- function(name., def., ...) {
-  if (!cmp_scl(name.)) {stop("\n  * [name.] must be a non-NA atomic scalar.")}
+  if (!cmp_scl(name.)) {stop("\n • [name.] must be a complete atomic scalar (?cmp_scl).")}
   dots(name., def., ...)
 }
 
-#' @describeIn dots_uj If \code{names.} is \code{NULL}, the return value is
+#' @describeIn dots. If \code{names.} is \code{NULL}, the return value is
 #'   \code{...names()}, otherwise, \code{names.} i returned. Throws an error in
 #'   the following cases:\itemize{
 #'     \item \code{0} Arguments are supplied in \code{...}, \code{names.} is not
@@ -131,7 +131,7 @@ dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
   subs. <- av(strsplit(as.character(av(subs.)), "|", TRUE))                      # > atomize, convert to character, and split along {'|'}
   subs.[is.na(subs.)] <- 'NA'                                                    # > replace any {NA} values with {'NA'}
   v1. <- !blank. | notIN("", subs.)                                              # validity of the combination of {subs.} and {blank.}
-  v2. <- !u.  | is_unique(subs.)                                                 # validity of the combination of {subs.} and {u.}
+  v2. <- !u.  | is_unq(subs.)                                                   # validity of the combination of {subs.} and {u.}
   err. <- NULL
   if (!v1.) {err. <- c(err., "\n • A name is blank but [blank. = FALSE].")}
   if (!v2.) {err. <- c(err., "\n • Names provided are not unique but [u. = TRUE].")}
@@ -139,7 +139,7 @@ dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
   subs.
 }
 
-#' @describeIn dots_uj Extracts named arguments from \code{...} as a named list
+#' @describeIn dots. Extracts named arguments from \code{...} as a named list
 #'   (does not include arguments named with blank strings).
 #' @export
 named_dots <- function(...) {
@@ -151,7 +151,7 @@ named_dots <- function(...) {
   else {NULL}
 }
 
-#' @describeIn dots_uj Extract unnamed arguments from \code{...} as an unnamed
+#' @describeIn dots. Extract unnamed arguments from \code{...} as an unnamed
 #'   list (includes any arguments named with blank strings).
 #' @export
 unnamed_dots <- function(...) {

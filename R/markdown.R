@@ -1,4 +1,4 @@
-#' @name markdown_uj
+#' @name markdown.
 #' @family plots
 #' @family colors
 #' @title Build markdown expressions for styled and colored ggtext.
@@ -56,444 +56,444 @@
 #' @param x Character vector of text to be styled.
 #' @return Markdown-styled character vector
 #' @export
-markdown_uj <- function() {help("markdown_uj", package = "uj")}
+markdown. <- function() {help("markdown.", package = "uj")}
 
-#' @describeIn markdown_uj Style text as subscript.
+#' @describeIn markdown. Style text as subscript.
 #' @export
 subs <- function(x) {paste0(v(sub1), x, v(sub2))}
 
-#' @describeIn markdown_uj Style text as superscript.
+#' @describeIn markdown. Style text as superscript.
 #' @export
 sups <- function(x) {paste0(v(sup1), x, v(sup2))}
 
-#' @describeIn markdown_uj Style text as bold and full blue.
+#' @describeIn markdown. Style text as bold and full blue.
 #' @export
 bfblu <- function(x) {paste0(v(bblu), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and light blue.
+#' @describeIn markdown. Style text as bold and light blue.
 #' @export
 blblu <- function(x) {paste0(v(blblu), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and medium blue.
+#' @describeIn markdown. Style text as bold and medium blue.
 #' @export
 bmblu <- function(x) {paste0(v(bmblu), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and dark blue.
+#' @describeIn markdown. Style text as bold and dark blue.
 #' @export
 bdblu <- function(x) {paste0(v(bdblu), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and full cyan.
+#' @describeIn markdown. Style text as bold and full cyan.
 #' @export
 bfcyn <- function(x) {paste0(v(bcyn), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and light cyan.
+#' @describeIn markdown. Style text as bold and light cyan.
 #' @export
 blcyn <- function(x) {paste0(v(blcyn), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and medium cyan.
+#' @describeIn markdown. Style text as bold and medium cyan.
 #' @export
 bmcyn <- function(x) {paste0(v(bmcyn), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and dark cyan.
+#' @describeIn markdown. Style text as bold and dark cyan.
 #' @export
 bdcyn <- function(x) {paste0(v(bdcyn), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and full green.
+#' @describeIn markdown. Style text as bold and full green.
 #' @export
 bfgrn <- function(x) {paste0(v(bgrn), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and light green.
+#' @describeIn markdown. Style text as bold and light green.
 #' @export
 blgrn <- function(x) {paste0(v(blgrn), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and medium green.
+#' @describeIn markdown. Style text as bold and medium green.
 #' @export
 bmgrn <- function(x) {paste0(v(bmgrn), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and dark green.
+#' @describeIn markdown. Style text as bold and dark green.
 #' @export
 bdgrn <- function(x) {paste0(v(bdgrn), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and full magenta.
+#' @describeIn markdown. Style text as bold and full magenta.
 #' @export
 bfmag <- function(x) {paste0(v(bmag), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and light magenta.
+#' @describeIn markdown. Style text as bold and light magenta.
 #' @export
 blmag <- function(x) {paste0(v(blmag), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and medium magenta.
+#' @describeIn markdown. Style text as bold and medium magenta.
 #' @export
 bmmag <- function(x) {paste0(v(bmmag), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and dark magenta.
+#' @describeIn markdown. Style text as bold and dark magenta.
 #' @export
 bdmag <- function(x) {paste0(v(bdmag), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and full orange.
+#' @describeIn markdown. Style text as bold and full orange.
 #' @export
 bforn <- function(x) {paste0(v(born), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and light orange.
+#' @describeIn markdown. Style text as bold and light orange.
 #' @export
 blorn <- function(x) {paste0(v(blorn), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and medium orange.
+#' @describeIn markdown. Style text as bold and medium orange.
 #' @export
 bmorn <- function(x) {paste0(v(bmorn), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and dark orange.
+#' @describeIn markdown. Style text as bold and dark orange.
 #' @export
 bdorn <- function(x) {paste0(v(bdorn), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 10% grey.
+#' @describeIn markdown. Style text as bold and 10% grey.
 #' @export
 bfred <- function(x) {paste0(v(bred), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and light red.
+#' @describeIn markdown. Style text as bold and light red.
 #' @export
 blred <- function(x) {paste0(v(blred), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and medium red.
+#' @describeIn markdown. Style text as bold and medium red.
 #' @export
 bmred <- function(x) {paste0(v(bmred), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and dark red.
+#' @describeIn markdown. Style text as bold and dark red.
 #' @export
 bdred <- function(x) {paste0(v(bdred), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and full violet.
+#' @describeIn markdown. Style text as bold and full violet.
 #' @export
 bfvlt <- function(x) {paste0(v(bvlt), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and light violet.
+#' @describeIn markdown. Style text as bold and light violet.
 #' @export
 blvlt <- function(x) {paste0(v(blvlt), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and medium violet.
+#' @describeIn markdown. Style text as bold and medium violet.
 #' @export
 bmvlt <- function(x) {paste0(v(bmvlt), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and dark violet.
+#' @describeIn markdown. Style text as bold and dark violet.
 #' @export
 bdvlt <- function(x) {paste0(v(bdvlt), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 10% grey.
+#' @describeIn markdown. Style text as bold and 10% grey.
 #' @export
 bfylw <- function(x) {paste0(v(bylw), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and light yellow.
+#' @describeIn markdown. Style text as bold and light yellow.
 #' @export
 blylw <- function(x) {paste0(v(blylw), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and medium yellow.
+#' @describeIn markdown. Style text as bold and medium yellow.
 #' @export
 bmylw <- function(x) {paste0(v(bmylw), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and dark yellow.
+#' @describeIn markdown. Style text as bold and dark yellow.
 #' @export
 bdylw <- function(x) {paste0(v(bdylw), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 10% grey.
+#' @describeIn markdown. Style text as bold and 10% grey.
 #' @export
 bwht <- function(x) {paste0(v(bwht), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 95% grey.
+#' @describeIn markdown. Style text as bold and 95% grey.
 #' @export
 bg95 <- function(x) {paste0(v(bg95), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 90% grey.
+#' @describeIn markdown. Style text as bold and 90% grey.
 #' @export
 bg90 <- function(x) {paste0(v(bg90), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 85% grey.
+#' @describeIn markdown. Style text as bold and 85% grey.
 #' @export
 bg85 <- function(x) {paste0(v(bg85), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 80% grey.
+#' @describeIn markdown. Style text as bold and 80% grey.
 #' @export
 bg80 <- function(x) {paste0(v(bg80), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 70% grey.
+#' @describeIn markdown. Style text as bold and 70% grey.
 #' @export
 bg75 <- function(x) {paste0(v(bg75), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 70% grey.
+#' @describeIn markdown. Style text as bold and 70% grey.
 #' @export
 bg70 <- function(x) {paste0(v(bg70), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 65% grey.
+#' @describeIn markdown. Style text as bold and 65% grey.
 #' @export
 bg65 <- function(x) {paste0(v(bg65), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 60% grey.
+#' @describeIn markdown. Style text as bold and 60% grey.
 #' @export
 bg60 <- function(x) {paste0(v(bg60), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 55% grey.
+#' @describeIn markdown. Style text as bold and 55% grey.
 #' @export
 bg55 <- function(x) {paste0(v(bg55), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 50% grey.
+#' @describeIn markdown. Style text as bold and 50% grey.
 #' @export
 bg50 <- function(x) {paste0(v(bg50), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 45% grey.
+#' @describeIn markdown. Style text as bold and 45% grey.
 #' @export
 bg45 <- function(x) {paste0(v(bg45), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 40% grey.
+#' @describeIn markdown. Style text as bold and 40% grey.
 #' @export
 bg40 <- function(x) {paste0(v(bg40), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 35% grey.
+#' @describeIn markdown. Style text as bold and 35% grey.
 #' @export
 bg35 <- function(x) {paste0(v(bg35), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 30% grey.
+#' @describeIn markdown. Style text as bold and 30% grey.
 #' @export
 bg30 <- function(x) {paste0(v(bg30), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 25% grey.
+#' @describeIn markdown. Style text as bold and 25% grey.
 #' @export
 bg25 <- function(x) {paste0(v(bg25), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 20% grey.
+#' @describeIn markdown. Style text as bold and 20% grey.
 #' @export
 bg20 <- function(x) {paste0(v(bg20), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 15% grey.
+#' @describeIn markdown. Style text as bold and 15% grey.
 #' @export
 bg15 <- function(x) {paste0(v(bg15), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 10% grey.
+#' @describeIn markdown. Style text as bold and 10% grey.
 #' @export
 bg10 <- function(x) {paste0(v(bg10), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and 10% grey.
+#' @describeIn markdown. Style text as bold and 10% grey.
 #' @export
 bg05 <- function(x) {paste0(v(bg05), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and black.
+#' @describeIn markdown. Style text as bold and black.
 #' @export
 bblk <- function(x) {paste0(v(bblk), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as bold and invisible (1/256th opaque).
+#' @describeIn markdown. Style text as bold and invisible (1/256th opaque).
 #' @export
 binv <- function(x) {paste0(v(binv), x, v(bold2))}
 
-#' @describeIn markdown_uj Style text as plain and full blue.
+#' @describeIn markdown. Style text as plain and full blue.
 #' @export
 pfblu <- function(x) {paste0(v(pblu), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and light blue.
+#' @describeIn markdown. Style text as plain and light blue.
 #' @export
 plblu <- function(x) {paste0(v(plblu), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and medium blue.
+#' @describeIn markdown. Style text as plain and medium blue.
 #' @export
 pmblu <- function(x) {paste0(v(pmblu), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and dark blue.
+#' @describeIn markdown. Style text as plain and dark blue.
 #' @export
 pdblu <- function(x) {paste0(v(pdblu), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and full cyan.
+#' @describeIn markdown. Style text as plain and full cyan.
 #' @export
 pfcyn <- function(x) {paste0(v(pcyn), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and light cyan.
+#' @describeIn markdown. Style text as plain and light cyan.
 #' @export
 plcyn <- function(x) {paste0(v(plcyn), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and medium cyan.
+#' @describeIn markdown. Style text as plain and medium cyan.
 #' @export
 pmcyn <- function(x) {paste0(v(pmcyn), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and dark cyan.
+#' @describeIn markdown. Style text as plain and dark cyan.
 #' @export
 pdcyn <- function(x) {paste0(v(pdcyn), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and full green.
+#' @describeIn markdown. Style text as plain and full green.
 #' @export
 pgrn <- function(x) {paste0(v(pgrn), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and light green.
+#' @describeIn markdown. Style text as plain and light green.
 #' @export
 plgrn <- function(x) {paste0(v(plgrn), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and medium green.
+#' @describeIn markdown. Style text as plain and medium green.
 #' @export
 pmgrn <- function(x) {paste0(v(pmgrn), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and dark green.
+#' @describeIn markdown. Style text as plain and dark green.
 #' @export
 pdgrn <- function(x) {paste0(v(pdgrn), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and full magenta.
+#' @describeIn markdown. Style text as plain and full magenta.
 #' @export
 pfmag <- function(x) {paste0(v(pmag), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and light magenta.
+#' @describeIn markdown. Style text as plain and light magenta.
 #' @export
 plmag <- function(x) {paste0(v(plmag), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and medium magenta.
+#' @describeIn markdown. Style text as plain and medium magenta.
 #' @export
 pmmag <- function(x) {paste0(v(pmmag), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and dark magenta.
+#' @describeIn markdown. Style text as plain and dark magenta.
 #' @export
 pdmag <- function(x) {paste0(v(pdmag), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and full orange.
+#' @describeIn markdown. Style text as plain and full orange.
 #' @export
 pforn <- function(x) {paste0(v(porn), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and light orange.
+#' @describeIn markdown. Style text as plain and light orange.
 #' @export
 plorn <- function(x) {paste0(v(plorn), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and medium orange.
+#' @describeIn markdown. Style text as plain and medium orange.
 #' @export
 pmorn <- function(x) {paste0(v(pmorn), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and dark orange.
+#' @describeIn markdown. Style text as plain and dark orange.
 #' @export
 pdorn <- function(x) {paste0(v(pdorn), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 10% grey.
+#' @describeIn markdown. Style text as plain and 10% grey.
 #' @export
 pfred <- function(x) {paste0(v(pred), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and light red.
+#' @describeIn markdown. Style text as plain and light red.
 #' @export
 plred <- function(x) {paste0(v(plred), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and medium red.
+#' @describeIn markdown. Style text as plain and medium red.
 #' @export
 pmred <- function(x) {paste0(v(pmred), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and dark red.
+#' @describeIn markdown. Style text as plain and dark red.
 #' @export
 pdred <- function(x) {paste0(v(pdred), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and full violet.
+#' @describeIn markdown. Style text as plain and full violet.
 #' @export
 pfvlt <- function(x) {paste0(v(pvlt), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and light violet.
+#' @describeIn markdown. Style text as plain and light violet.
 #' @export
 plvlt <- function(x) {paste0(v(plvlt), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and medium violet.
+#' @describeIn markdown. Style text as plain and medium violet.
 #' @export
 pmvlt <- function(x) {paste0(v(pmvlt), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and dark violet.
+#' @describeIn markdown. Style text as plain and dark violet.
 #' @export
 pdvlt <- function(x) {paste0(v(pdvlt), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 10% grey.
+#' @describeIn markdown. Style text as plain and 10% grey.
 #' @export
 pfylw <- function(x) {paste0(v(pylw), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and light yellow.
+#' @describeIn markdown. Style text as plain and light yellow.
 #' @export
 plylw <- function(x) {paste0(v(plylw), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and medium yellow.
+#' @describeIn markdown. Style text as plain and medium yellow.
 #' @export
 pmylw <- function(x) {paste0(v(pmylw), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and dark yellow.
+#' @describeIn markdown. Style text as plain and dark yellow.
 #' @export
 pdylw <- function(x) {paste0(v(pdylw), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 10% grey.
+#' @describeIn markdown. Style text as plain and 10% grey.
 #' @export
 pwht <- function(x) {paste0(v(pwht), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 95% grey.
+#' @describeIn markdown. Style text as plain and 95% grey.
 #' @export
 pg95 <- function(x) {paste0(v(pg95), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 90% grey.
+#' @describeIn markdown. Style text as plain and 90% grey.
 #' @export
 pg90 <- function(x) {paste0(v(pg90), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 85% grey.
+#' @describeIn markdown. Style text as plain and 85% grey.
 #' @export
 pg85 <- function(x) {paste0(v(pg85), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 80% grey.
+#' @describeIn markdown. Style text as plain and 80% grey.
 #' @export
 pg80 <- function(x) {paste0(v(pg80), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 70% grey.
+#' @describeIn markdown. Style text as plain and 70% grey.
 #' @export
 pg75 <- function(x) {paste0(v(pg75), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 70% grey.
+#' @describeIn markdown. Style text as plain and 70% grey.
 #' @export
 pg70 <- function(x) {paste0(v(pg70), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 65% grey.
+#' @describeIn markdown. Style text as plain and 65% grey.
 #' @export
 pg65 <- function(x) {paste0(v(pg65), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 60% grey.
+#' @describeIn markdown. Style text as plain and 60% grey.
 #' @export
 pg60 <- function(x) {paste0(v(pg60), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 55% grey.
+#' @describeIn markdown. Style text as plain and 55% grey.
 #' @export
 pg55 <- function(x) {paste0(v(pg55), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 50% grey.
+#' @describeIn markdown. Style text as plain and 50% grey.
 #' @export
 pg50 <- function(x) {paste0(v(pg50), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 45% grey.
+#' @describeIn markdown. Style text as plain and 45% grey.
 #' @export
 pg45 <- function(x) {paste0(v(pg45), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 40% grey.
+#' @describeIn markdown. Style text as plain and 40% grey.
 #' @export
 pg40 <- function(x) {paste0(v(pg40), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 35% grey.
+#' @describeIn markdown. Style text as plain and 35% grey.
 #' @export
 pg35 <- function(x) {paste0(v(pg35), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 30% grey.
+#' @describeIn markdown. Style text as plain and 30% grey.
 #' @export
 pg30 <- function(x) {paste0(v(pg30), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 25% grey.
+#' @describeIn markdown. Style text as plain and 25% grey.
 #' @export
 pg25 <- function(x) {paste0(v(pg25), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 20% grey.
+#' @describeIn markdown. Style text as plain and 20% grey.
 #' @export
 pg20 <- function(x) {paste0(v(pg20), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 15% grey.
+#' @describeIn markdown. Style text as plain and 15% grey.
 #' @export
 pg15 <- function(x) {paste0(v(pg15), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 10% grey.
+#' @describeIn markdown. Style text as plain and 10% grey.
 #' @export
 pg10 <- function(x) {paste0(v(pg10), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and 10% grey.
+#' @describeIn markdown. Style text as plain and 10% grey.
 #' @export
 pg05 <- function(x) {paste0(v(pg05), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain and black.
+#' @describeIn markdown. Style text as plain and black.
 #' @export
 pblk <- function(x) {paste0(v(pblk), x, v(plain2))}
 
-#' @describeIn markdown_uj Style text as plain invisible (1/256th opaque).
+#' @describeIn markdown. Style text as plain invisible (1/256th opaque).
 #' @export
 pinv <- function(x) {paste0(v(pinv), x, v(plain2))}

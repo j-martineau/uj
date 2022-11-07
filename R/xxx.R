@@ -1,4 +1,4 @@
-#' @name xxx_uj
+#' @name xxx.
 #' @family props
 #' @title All purpose property checking
 #' @description This set of functions provide utilities that bring together
@@ -79,14 +79,14 @@
 #'   \code{xxx_from_combo}, \code{xxx} and \code{xxx_funs} return a character
 #'   vector. All others return \code{TRUE} or \code{FALSE}.
 #' @export
-xxx_uj <- function() {help("xxx_uj", package = "uj")}
+xxx. <- function() {help("xxx.", package = "uj")}
 
-#' @describeIn xxx_uj Get a character vector of all single extended properties
+#' @describeIn xxx. Get a character vector of all single extended properties
 #'   that apply to \code{x.}.
 #' @export
 xxx <- function(x.) {sort(c(sss(x.), ttt(x.), fff(x.), ddd(x.), eee(x.), mmm(x.), ccc(x.)))}
 
-#' @describeIn xxx_uj Evaluates whether any (combination) property in
+#' @describeIn xxx. Evaluates whether any (combination) property in
 #'   \code{xxx.} is applicable to \code{x.}, subject to any additional
 #'   restrictions in \code{...}.
 #' @export
@@ -110,15 +110,15 @@ ixxx <- function(x., xxx., ...) {
   FALSE
 }
 
-#' @describeIn xxx_uj Extract unique property values from \code{xxx.} by
+#' @describeIn xxx. Extract unique property values from \code{xxx.} by
 #'   splitting along pipes (\code{"|"}) and underscores.
 #' @export
 xxx_all <- function(xxx., valid. = xxx_vals()) {
   vx. <- cmp_chr_scl(xxx.)
   vv. <- f0(cmp_chr_vec(valid.), all(valid. %in% xxx_vals()), F)
   err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [xxx.] must be a non-NA character scalar.")}
-  if (!vv.) {err. <- c(err., "\n • [valid.] must be a character vector containing only values from xxx_vals().")}
+  if (!vx.) {err. <- c(err., "\n • [xxx.] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!vv.) {err. <- c(err., "\n • [valid.] must be a complete character vector (?cmp_chr_vec) containing only values from xxx_vals().")}
   if (idef(err.)) {stop(err.)}
   xxx. <- av(strsplit(xxx., "|", fixed = T))
   xxx. <- av(strsplit(xxx., "_", fixed = T))
@@ -129,7 +129,7 @@ xxx_all <- function(xxx., valid. = xxx_vals()) {
   sort(unique(xxx.))
 }
 
-#' @describeIn xxx_uj Get a vector of all possible single property values in all
+#' @describeIn xxx. Get a vector of all possible single property values in all
 #'   property families.
 #' @export
 xxx_vals <- function(atb. = F) {
@@ -140,17 +140,17 @@ xxx_vals <- function(atb. = F) {
   tibble::tibble(family = names(x.), xxx = av(x.))
 }
 
-#' @describeIn xxx_uj Evaluate whether \code{x.} is \code{NULL} or matches one
+#' @describeIn xxx. Evaluate whether \code{x.} is \code{NULL} or matches one
 #'   or more property (combos) specified in \code{xxx.}.
 #' @export
 nll_or <- function(x., xxx., ...) {f0(inll(x.), T, ixxx(x., xxx., ...))}
 
-#' @describeIn xxx_uj Evaluate whether \code{x.} is an atomic scalar \code{NA}
+#' @describeIn xxx. Evaluate whether \code{x.} is an atomic scalar \code{NA}
 #'   or matches one or more property (combos) specified in \code{xxx.}.
 #' @export
 nas_or <- function(x., xxx., ...) {f0(inas(x.), T, ixxx(x., xxx., ...))}
 
-#' @describeIn xxx_uj List all valid property function names.
+#' @describeIn xxx. List all valid property function names.
 #' @export
 xxx_funs <- function(atb. = F) {
   if (!isTF(atb.)) {stop("\n • [atb.] must be TRUE or FALSE.")}
@@ -161,7 +161,7 @@ xxx_funs <- function(atb. = F) {
   tibble::tibble(family = names(x.), property = av(x.))
 }
 
-#' @describeIn xxx_uj Get a tibble with 4 columns: property family (Family),
+#' @describeIn xxx. Get a tibble with 4 columns: property family (Family),
 #'   property value (Value), short property definition (Short), and long
 #'   property definition (Long).
 #' @export
@@ -239,15 +239,15 @@ xxx_table <- function() {
   )
 }
 
-#' @describeIn xxx_uj Evaluate \code{x.} to see if it the name of a property
+#' @describeIn xxx. Evaluate \code{x.} to see if it the name of a property
 #'   function.
 #' @export
 is_xxx_fun <- function(x.) {
-  if (!cmp_chr_scl(x.)) {stop("\n • [x.] must be a non-NA character scalar.")}
+  if (!cmp_chr_scl(x.)) {stop("\n • [x.] must be a complete character scalar (?cmp_chr_scl).")}
   x. %in% xxx_funs()
 }
 
-#' @describeIn xxx_uj Evaluate whether \code{xxx.} is a character scalar of
+#' @describeIn xxx. Evaluate whether \code{xxx.} is a character scalar of
 #'   values from \code{xxx_vals} separated by pipes ('|') and/or underscores.
 #'   Always returns either \code{TRUE} or \code{FALSE}.
 #' @export
@@ -261,25 +261,25 @@ is_valid_xxx <- function(xxx.) {
   all(xxx. %in% xxx_vals())
 }
 
-#' @describeIn xxx_uj Extract each single property value from a property
+#' @describeIn xxx. Extract each single property value from a property
 #'   combination by splitting along underscores.
 #' @export
 xxx_from_combo <- function(xxx., valid. = xxx_vals()) {
   vx. <- cmp_chr_scl(xxx.)
   vv. <- f0(cmp_chr_vec(valid.), all(valid. %in% xxx_vals()), F)
   err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [xxx.] must be a non-NA character scalar.")}
-  if (!vv.) {err. <- c(err., "\n • [valid.] must be a character vector containing only values from xxx_vals().")}
+  if (!vx.) {err. <- c(err., "\n • [xxx.] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!vv.) {err. <- c(err., "\n • [valid.] must be a complete character vec (?cpm_chr_vec) containing only values from xxx_vals().")}
   if (!is.null(err.)) {stop(err.)}
   xxx. <- av(strsplit(xxx., "_", fixed = T))
   xxx. <- trimws(xxx.)
   xxx. <- xxx.[xxx. != ""]
   if (length(xxx.) == 0) {stop("\n • [xxx.] is empty after splitting on pipes and underscores.")}
-  if (!all(xxx. %in% valid.)) {stop("\n • [xxx.] contains a property not in [valid].")}
+  if (!all(xxx. %in% valid.)) {stop("\n • [xxx.] contains a property not in [valid.].")}
   sort(unique(xxx.))
 }
 
-#' @describeIn xxx_uj Extract each property combination from \code{xxx.} by
+#' @describeIn xxx. Extract each property combination from \code{xxx.} by
 #'   splitting along pipes (\code{"|"}).
 #' @export
 combos_from_xxx <- function(xxx., valid. = xxx_vals()) {
@@ -290,7 +290,7 @@ combos_from_xxx <- function(xxx., valid. = xxx_vals()) {
   sort(unique(xxx.))
 }
 
-#' @describeIn xxx_uj Get the tibble from \code{xxx_table()}. If \code{xxx.}
+#' @describeIn xxx. Get the tibble from \code{xxx_table()}. If \code{xxx.}
 #'   contains a single valid property value (no combination values), extracts
 #'   the associated row from the tibble and creates a character scalar with the
 #'   property family, property value, short property definition, and long
@@ -319,7 +319,7 @@ define_xxx <- function(xxx. = NULL, print. = TRUE) {
   NULL
 }
 
-#' @describeIn xxx_uj Take a single property combo (which may be a single
+#' @describeIn xxx. Take a single property combo (which may be a single
 #'   property) and expands it using plain, but concise, language. To get a
 #'   verbose definition of any single property, use \code{define_xxx}.
 #' @export
@@ -350,7 +350,7 @@ define_xxx_combo <- function(xxx.) {
   return(out.)
 }
 
-#' @describeIn xxx_uj Take one or more property combos separated by pipes (each
+#' @describeIn xxx. Take one or more property combos separated by pipes (each
 #'   combo may be a single property) and expands each using plain, but concise,
 #'   language, separating the multiple expansions with \code{'OR'}. To get a
 #'   verbose definition of any single property, use \code{define_xxx}.

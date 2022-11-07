@@ -1,34 +1,34 @@
-#' @name x_uj
-#' @family meta
+#' @name x.
+#' @family extensions
 #' @title Remove various objects or characteristics.
 #' @param x. An object.
 #' @param ... Character vectors containing attribute names or classes to remove.
 #' @return An object (\code{xat} and \code{xcls}) or \code{NULL} (\code{xwarn}
 #'   and \code{xcls}).
 #' @export
-x_uj <- function() {help("x_uj", package = "uj")}
+x. <- function() {help("x.", package = "uj")}
 
-#' @describeIn x_uj Remove from \code{x.} the attributes listed in \code{...}.
+#' @describeIn x. Remove from \code{x.} the attributes named in \code{...}.
 #' @export
 xat <- function(x., ...) {for (a. in av(...)) {attr(x., a.) <- NULL}; x.}
 
-#' @describeIn x_uj Remove all attributes from \code{x.}.
+#' @describeIn x. Remove all attributes from \code{x.}.
 #' @export
-xAT <- function(x.) {attributes(x.) <- NULL; x.}
+xat0 <- function(x.) {attributes(x.) <- NULL; x.}
 
-#' @describeIn x_uj Remove from \code{x.} the classes named in \code{...}.
+#' @describeIn x. Remove from \code{x.} the classes named in \code{...}.
 #' @export
 xcls <- function(x., ...) {class(x.) <- class(x.)[!(class(x.) %in% av(...))]; x.}
 
-#' @describeIn x_uj Purge all warnings.
+#' @describeIn x. Purge all warnings.
 #' @export
 xwarn <- function() {assign("last.warning", NULL, envir = baseenv())}
 
-#' @describeIn x_uj Purge all plots and if optional \code{x.} is provided,
-#'   print it (\code{x.} is intended to be a plot object).
+#' @describeIn x. Purge all plots. Then if optional \code{x.} is provided, print
+#'   it (\code{x.} is intended to be a plot object).
 #' @export
 xplot <- function(x. = NULL) {grDevices::graphics.off(); if (ipop(x.)) {print(x.)}}
 
-#' @describeIn x_uj Clear the console.
+#' @describeIn x. Clear the console.
 #' @export
 xcon <- function() {cat("\014")}

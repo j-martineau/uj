@@ -1,13 +1,13 @@
-#' @name haspat_uj
+#' @name has_pat.
 #' @family strings
-#' @title Whether a string has a substring.
+#' @title Whether a string has (contains) a substring
 #' @param x Character scalar or vector of strings to search.
 #' @param pat Character scalar string to search for.
 #' @return Logical scalar or vector.
 #' @export
-haspat_uj <- function() {help("haspat_uj", package = "uj")}
+has_pat. <- function() {help("has_pat.", package = "uj")}
 
-#' @describeIn haspat_uj Evaluate whether each element of \code{x} contains the
+#' @describeIn has_pat. Evaluate whether each element of \code{x} contains the
 #'   string in \code{pat}.
 #' @export
-haspat <- function(x, pat) {nch(x) != nch(gsub(x, pat, v(blank), fixed = T))}
+has_pat <- function(x, pat) {nch(x) != nch(gsub(x, pat, v(blank), fixed = T))}

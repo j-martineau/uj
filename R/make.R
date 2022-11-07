@@ -1,48 +1,6 @@
-#' @name make_uj
-#' @family meta
+#' @name make.
+#' @family extensions
 #' @title Extended object creation functionality
-#' @description \strong{\code{vec(..., r, en.)}}
-#'   \cr Creates an atomic vector from the atomic objects in \code{...}
-#'   collapsed into a vector, replicated \code{r.} times, with optional element
-#'   names.
-#'   \cr\cr
-#'   \strong{\code{vec_na(r.)}}
-#'   \cr Creates a vector of \code{r.} \code{NA} values.
-#'   \cr\cr
-#'   \strong{\code{mat(..., nr., nc., br., rn., cn.)}}
-#'   \cr Creates an atomic matrix from the atomic elements in \code{...} with
-#'   \code{r.} rows, \code{c.} columns, optionally filling by row, with optional
-#'   row and column names.
-#'   \cr\cr
-#'   \strong{\code{atb0(cn.)}}
-#'   \cr Creates an \link[=is_atm_tibble]{atomic tibble} with 0 rows and columns
-#'   with names from \code{cn.}, which may be pipe delimited.
-#'   \cr\cr
-#'   \strong{\code{atb_na(cn., nr.)}}
-#'   \cr Creates an \link[=is_atm_tibble]{atomic tibble} with \code{nr.} rows
-#'   and columns with names from \code{cn.} (which may be pipe delimited). All
-#'   cells of the resulting tibble are populated with \code{NA}.
-#'   \cr\cr
-#'   \strong{\code{atb(..., rn., cn.)}}
-#'   \cr Creates an \link[=is_atm_tibble]{atomic tibble} from the atomic vect
-#'   arguments in \code{...} with optional row names, plus optional column names
-#'   to replace any names of arguments in \code{...}.
-#'   \cr\cr
-#'   \strong{\code{vls(..., en. = NULL)}}
-#'   \cr Creates a \link[=is_vlist]{vlist} from the arguments in \code{...} with
-#'   optional element names to replace any names of arguments in \code{...}.
-#'   \cr\cr
-#'   \strong{\code{mkvls(...)}}
-#'   \cr Creates a named vlist by taking the original call and parsing arguments
-#'   to get element names. Allows for more concise code such as
-#'   \code{mkvls(letters, LETTERS)} giving the same result as \code{list(letters
-#'   = letters, LETTERS = LETTERS)}.
-#'   \cr\cr
-#'   \strong{\code{mkdiag(x. = 1, n. = 1)}}
-#'   \cr Creates a square, atomic diagonal matrix. For numeric \code{x.},
-#'   off-diagonals are \code{0}. For logical \code{x.}, off diagonals are
-#'   \code{FALSE}. For character \code{x.}, off diagonals are blank strings
-#'   (\code{""}). For all others, off diagonals are \code{NA}.
 #' @param ... Objects to placed in an atomic vect, atomic matrix, atomic tibble,
 #'   vlist, or square atomic diagonal matrix.
 #' @param vn. Optional character vector of names to apply to vector or list
@@ -64,18 +22,20 @@
 #'   (\code{mat.}), or a \link[=is_vlist]{vlist.} All others return the value of
 #'   function they are thin wrappers for.
 #' @export
-make_uj <- function() {help("make_uj", package = "uj")}
+make. <- function() {help("make.", package = "uj")}
 
-#' @describeIn make_uj Create an atomic vector.
+#' @describeIn make. Creates an atomic vector from the atomic objects in
+#'   \code{...} collapsed into a vector, replicated \code{r.} times, with
+#'   optional element names.
 #' @export
 vec <- function(..., r. = 1, vn. = NULL) {
   x. <- av(...)
   if (length(x.) == 0 | isEQ(r., 0)) {x. <- vector()}
   vr. <- cmp_nnw_scl(r.)
-  vvn. <- f0(inll(vn.), T, cmp_chr_vec(vn.))
+  vvn. <- f0(inll(vn.), T, chr_vec(vn.))
   err. <- NULL
-  if (!vr.) {err. <- c(err., "\n • [r.] must be a non-negative, whole-number scalar.")}
-  if (!vvn.) {err. <- c(err., "\n • [en.] must be NULL or a character scalar/vector.")}
+  if (!vr.) {err. <- c(err., "\n • [r.] must be a non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vvn.) {err. <- c(err., "\n • [en.] must be NULL or a character vec (?chr_vec).")}
   if (idef(err.)) {stop(err.)}
   if (r. > 1) {x. <- rep.int(x., r.)}
   if (idef(vn.)) {
@@ -86,11 +46,13 @@ vec <- function(..., r. = 1, vn. = NULL) {
   x.
 }
 
-#' @describeIn make_uj Create a vector of missing/\code{NA} values.
+#' @describeIn make. Creates a vector of \code{r.} \code{NA} values.
 #' @export
 vec_na <- function(r.) {vec(NA, r. = r.)}
 
-#' @describeIn make_uj Create an atomic matrix.
+#' @describeIn make. Creates an atomic matrix from the atomic elements in
+#'   \code{...} with \code{r.} rows, \code{c.} columns, optionally filling by
+#'   row, with optional row and column names.
 #' @export
 mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
   av. <- av(...)
@@ -101,8 +63,8 @@ mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
   vrn. <- f0(inll(rn.), T, cmp_chr_vec(rn.))
   vcn. <- f0(inll(cn.), T, cmp_chr_vec(cn.))
   err. <- NULL
-  if (!vnr.) {err. <- c(err., "\n • [nr.] must be NULL or a non-negative, whole number scalar.")}
-  if (!vnc.) {err. <- c(err., "\n • [nc.] must be NULL or a non-negative, whole number scalar.")}
+  if (!vnr.) {err. <- c(err., "\n • [nr.] must be NULL or a non-negative whole number scalar (?cmp_nnw_scl).")}
+  if (!vnc.) {err. <- c(err., "\n • [nc.] must be NULL or a non-negative whole number scalar (?cmp_nnw_scl).")}
   if (!vbr.) {err. <- c(err., "\n • [br.] must be TRUE or FALSE.")}
   if (idef(err.)) {stop(err.)}
   if      (is.null(nr.) & is.null(nc.)) {nr0. <- 1  ; nc0. <- length(av.)      }
@@ -132,30 +94,34 @@ mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
   colnames(x.) <- cn.
 }
 
-#' @describeIn make_uj Create an atomic tibble with zero rows.
+#' @describeIn make. Creates an  with 0 rows and columns
+#'   with names from \code{cn.}, which may be pipe delimited.
 #' @export
-atb0 <- function(cn.) {
-  if (!cmp_chr_vec(cn.)) {stop("\n • [cn.] must be a non-NA character scalar or vector.")}
+dtf0 <- function(cn.) {
+  if (!cmp_chr_vec(cn.)) {stop("\n • [cn.] must be a complete character vector (?cmp_chr_vec).")}
   run("tibble::tibble(", daw(ss(cn.), " = NA", w. = ", "), ", .rows = 0)")
 }
 
-#' @describeIn make_uj Create an atomic tibble containing only missing values.
+#' @describeIn make. Creates an \link[idtf]{atomic dtf} with \code{nr.} rows and
+#'   columns with names from \code{cn.} (which may be pipe delimited). All cells
+#'   of the resulting tibble are populated with \code{NA}. values.
 #' @export
-atb_na <- function(cn., nr.) {
+dtf_na <- function(cn., nr.) {
   vc. <- cmp_chr_vec(cn.)
   vn. <- cmp_psw_scl(nr.)
   err. <- NULL
-  if (!vc.) {err. <- c(err., "\n • [cn.] must be a non-NA character scalar or vector.")}
-  if (!vn.) {err. <- c(err., "\n • [nr.] must be NULL or a positive, whole number scalar.")}
+  if (!vc.) {err. <- c(err., "\n • [cn.] must be a complete character vector (?cmp_chr_vec).")}
+  if (!vn.) {err. <- c(err., "\n • [nr.] must be NULL or a positive whole number scalar (?cmp_psw_scl).")}
   if (!inll(err.)) {stop(err.)}
   val. <- rep.int(NA, nr.)
   run("tibble::tibble(", daw(ss(cn.), " = val.", w. = ", "), ")")
 }
 
-#' @describeIn make_uj Create an atomic tibble from named arguments or from
-#'   column names in \code{cn.}.
+#' @describeIn make. Creates an \link[idtf]{atomic dtf} from the
+#'   \link[ivec]{atomic vec} arguments in \code{...} with optional row names,
+#'   plus optional column names to replace any names of arguments in \code{...}.
 #' @export
-atb <- function(..., cn. = NULL) {
+dtf <- function(..., cn. = NULL) {
   x. <- list(...)
   cn. <- f0(cmp_chr_vec(cn.), ss(cn.), cn.)
   n. <- length(x.)
@@ -169,17 +135,18 @@ atb <- function(..., cn. = NULL) {
   err. <- NULL
   if (!v0.) {err. <- c(err., "\n • [...] is empty.")}
   if (!vns.) {err. <- c(err., "\n • [...] contains an empty argument.")}
-  if (!vxv.) {err. <- c(err., "\n • Arguments in [...] must be atomic vects.")}
+  if (!vxv.) {err. <- c(err., "\n • Arguments in [...] must be atomic vecs (?ivec).")}
   if (!vxr.) {err. <- c(err., "\n • Arguments in [...] are not recyclable .")}
   if (!vcn.) {err. <- c(err., "\n • [cn.] must be NULL or match the number of arguments in [...].")}
   if (idef(err.)) {stop(err.)}
-  x. <- tibble::tibble(...)
+  x. <- tb(...)
   if (idef(cn.)) {colnames(x.) <- cn.}
   x.
 }
 
-#' @describeIn make_uj Create a named vlist from named arguments or from unnamed
-#'   arguments and element names provided in \code{en.}.
+#' @describeIn make. Creates a \link[is_vls]{vlist} from the arguments in
+#'   \code{...} with optional element names to replace any names of arguments in
+#'   \code{...}.
 #' @export
 vls <- function(..., en. = NULL) {
   x. <- list(...)
@@ -195,18 +162,22 @@ vls <- function(..., en. = NULL) {
   x.
 }
 
-#' @describeIn make_uj Make a list where element names are derived from the
-#'   original function call. For example, \code{mkls(letters, LETTERS)} results
-#'   in the same output as \code{list(letters = letters, LETTERS = LETTERS)}
+#' @describeIn make. Creates a named vlist by taking the original call and
+#'   parsing arguments to get element names. Allows for more concise code such
+#'   as \code{mkvls(letters, LETTERS)} giving the same result as
+#'   \code{list(letters = letters, LETTERS = LETTERS)}.
 #' @export
-mkls <- function(...) {
+mkvls <- function(...) {
   x. <- as_chr(match.call())                                                     # get a function call object and convert to character
   x. <- x.[2:nx(x.)]                                                             # remove the function call leaving the variables as named in the calling function
   x. <- dw0("list(", glst(peq(x., x.)), ")")                                     # create the call [list(<var1> = <var1>, <var2> = <var2>, ...)]
   eval.parent(parse(text = x., n = 1))                                           # and evaluate it in the environment of the calling function
 }
 
-#' @describeIn make_uj Create a diagonal matrix.
+#' @describeIn make. Creates a square atomic diagonal matrix. For numeric
+#'   \code{x.}, off-diagonals are \code{0}. For logical \code{x.}, off diagonals
+#'   are \code{FALSE}. For character \code{x.}, off diagonals are blank strings
+#'   (\code{""}). For all others, off diagonals are \code{NA}.
 #' @export
 mkdiag <- function(x. = 1, n. = 1) {
   vx. <- inum(x.) | ilgl(x.) | ichr(x.)
@@ -214,7 +185,7 @@ mkdiag <- function(x. = 1, n. = 1) {
   vns. <- f0(length(x.) > 1, T, f0(vn., T, n. > 1))
   err. <- NULL
   if (!vx.) {err. <- c(err., "\n • [x.] must be an numeric, logical, or character.")}
-  if (!vn.) {err. <- c(err., "\n • [n.] must a positive, whole-number scalar.")}
+  if (!vn.) {err. <- c(err., "\n • [n.] must a positive whole-number scalar (?cmp_psw_scl).")}
   if (!vns.) {err. <- c(err., "\n • Neither [length(x.)] nor [n.] is greater than 1.")}
   if (idef(err.)) {stop(err.)}
   nr. <- nrow(x.); nc. <- ncol(x.)

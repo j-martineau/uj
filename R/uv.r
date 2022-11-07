@@ -1,4 +1,4 @@
-#' @name uv_uj
+#' @name uv.
 #' @title Reduce ... to a vector of unique atomic values
 #' @description Atomizes \code{...}, reducing the set of arguments to a single
 #'   vector of unique constituent atomic values.
@@ -7,12 +7,12 @@
 #' @return An atomic vector.
 #' @examples uv(0:5, 5:10, 10:15, 15:20)
 #' @export
-uv_uj <- function() {help("uv_uj", package = "uj")}
+uv. <- function() {help("uv.", package = "uj")}
 
-#' @rdname uv_uj
+#' @rdname uv.
 #' @export
 uv <- function(...) {unique(av(...))}
 
-#' @rdname uv_uj
+#' @rdname uv.
 #' @export
 uav <- uv

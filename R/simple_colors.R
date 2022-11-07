@@ -1,6 +1,6 @@
-#' @name simple_colors_uj
+#' @name simple_colors.
 #' @family colors
-#' @title Simple Color Creation
+#' @title Simple color creation
 #' @description Simple color creation with a wide variety of options (intensity,
 #'   blending, lightening, darkening, opacity)
 #'   \cr\cr
@@ -43,7 +43,7 @@
 #'   giving intensities of red, blue, and green from the RGB color space.
 #'   Recycled with each other and \code{a}.
 #' @param h,s,v Numeric vectors of values in the range \code{[0, 1]} giving hue,
-#'   saturation, and value/brightness from the HSV colorspace. Recycled with
+#'   saturation, and value/brightness from the HSV color space. Recycled with
 #'   each other and \code{a}.
 #' @param a A numeric vector of 1 or more alpha level in the range \code{[0, 1]}
 #'   (0 = transparent, 0.5 = translucent, 1 = opaque). \code{NA} values in
@@ -55,9 +55,9 @@
 #' @return A character vector of 1 or more hexadecimal RGB + alpha color
 #'   representations in the form \code{'#RRGGBBAA'}.
 #' @export
-simple_colors_uj <- function() {help("simple_colors_uj", package = "uj")}
+simple_colors. <- function() {help("simple_colors.", package = "uj")}
 
-#' @describeIn simple_colors_uj Takes any valid R color representation and
+#' @describeIn simple_colors. Takes any valid R color representation and
 #'   lightens, darkens, adds opacity levels, and/or gets the complementary
 #'   color.
 #' @export
@@ -74,12 +74,12 @@ color <- function(x, lighten = 0, darken = 0, a = 1, comp = F) {
   }
   else {VR <- T}
   E <- NULL
-  if (!VX) {E <- c(E, "\n • [x] must be a complete character vector of color values.")}
-  if (!VL) {E <- c(E, "\n • [lighten] must be a complete proportion vector (in the interval [0, 1]).")}
-  if (!VD) {E <- c(E, "\n • [darken] must be a complete proportion vector (in the interval [0, 1]).")}
-  if (!VA) {E <- c(E, "\n • [a] must be a complete proportion vector (in the interval [0, 1]).")}
+  if (!VX) {E <- c(E, "\n • [x] must be a complete color vec (?cmp_clr_vec) [i.e., containing only valid character-mode color values].")}
+  if (!VL) {E <- c(E, "\n • [lighten] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
+  if (!VD) {E <- c(E, "\n • [darken] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
+  if (!VA) {E <- c(E, "\n • [a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
   if (!VC) {E <- c(E, "\n • [comp] must be TRUE or FALSE.")}
-  if (!VR) {E <- c(E, "\n • [x], [lighten], [darken], and [a] are not recyclable.")}
+  if (!VR) {E <- c(E, "\n • [x], [lighten], [darken], and [a] are not recyclable (?recyclable).")}
   if (idef(E)) {stop(E)}
   if (R[1] > 1) {x       <- rep.int(x      , R[1])}
   if (R[2] > 1) {lighten <- rep.int(lighten, R[2])}
@@ -105,7 +105,7 @@ color <- function(x, lighten = 0, darken = 0, a = 1, comp = F) {
   rgb(R, G, B, A)
 }
 
-#' @describeIn simple_colors_uj Create colors from r(ed), g(reen), b(lue), and
+#' @describeIn simple_colors. Create colors from r(ed), g(reen), b(lue), and
 #'   a(lpha) weights in the interval \[0, 1\].
 #' @export
 rgba <- function(r = 1, g = 1, b = 1, a = 1) {
@@ -119,16 +119,16 @@ rgba <- function(r = 1, g = 1, b = 1, a = 1) {
   }
   else {VN <- T}
   E <- NULL
-  if (!VR) {E <- c(E, "\n • [r] must be a complete proportion vector (in the interval [0, 1]).")}
-  if (!VG) {E <- c(E, "\n • [g] must be a complete proportion vector (in the interval [0, 1]).")}
-  if (!VB) {E <- c(E, "\n • [b] must be a complete proportion vector (in the interval [0, 1]).")}
-  if (!VA) {E <- c(E, "\n • [a] must be a complete proportion vector (in the interval [0, 1]).")}
-  if (!VN) {E <- c(E, "\n • [r], [g], [b], and [a] are not recyclable.")}
+  if (!VR) {E <- c(E, "\n • [r] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
+  if (!VG) {E <- c(E, "\n • [g] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
+  if (!VB) {E <- c(E, "\n • [b] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
+  if (!VA) {E <- c(E, "\n • [a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
+  if (!VN) {E <- c(E, "\n • [r], [g], [b], and [a] are not recyclable (?recyclable).")}
   if (idef(E)) {stop(E)}
   rgb(r, g, b, a)
 }
 
-#' @describeIn simple_colors_uj Create colors from h(ue), s(aturation), v(alue),
+#' @describeIn simple_colors. Create colors from h(ue), s(aturation), v(alue),
 #'   and a(lpha) weights in the interval \[0, 1\].
 #' @export
 hsva <- function(h = 1, s = 1, v = 1, a = 1) {
@@ -142,16 +142,16 @@ hsva <- function(h = 1, s = 1, v = 1, a = 1) {
   }
   else {VN <- T}
   E <- NULL
-  if (!VH) {E <- c(E, "\n • [h] must be a complete proportion vector (in the interval [0, 1]).")}
-  if (!VS) {E <- c(E, "\n • [s] must be a complete proportion vector (in the interval [0, 1]).")}
-  if (!VV) {E <- c(E, "\n • [v] must be a complete proportion vector (in the interval [0, 1]).")}
-  if (!VA) {E <- c(E, "\n • [a] must be a complete proportion vector (in the interval [0, 1]).")}
-  if (!VN) {E <- c(E, "\n • [h], [s], [v], and [a] are not recyclable.")}
+  if (!VH) {E <- c(E, "\n • [h] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
+  if (!VS) {E <- c(E, "\n • [s] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
+  if (!VV) {E <- c(E, "\n • [v] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
+  if (!VA) {E <- c(E, "\n • [a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
+  if (!VN) {E <- c(E, "\n • [h], [s], [v], and [a] are not recyclable (?recyclable).")}
   if (idef(E)) {stop(E)}
   hsv(h, s, v, a)
 }
 
-#' @describeIn simple_colors_uj Blend colors using weights and optional alpha
+#' @describeIn simple_colors. Blend colors using weights and optional alpha
 #'   values.
 #' @export
 blend <- function(x, y, wx = 1, wy = 1, a = NA) {
@@ -165,11 +165,11 @@ blend <- function(x, y, wx = 1, wy = 1, a = NA) {
   }
   else {VRC <- T}
   E <- NULL
-  if (!VXX) {E <- c(E, "\n • [x] must be a complete proportion vector (in the interval [0, 1]).")}
-  if (!VYY) {E <- c(E, "\n • [y] must be a complete proportion vector (in the interval [0, 1]).")}
-  if (!VWX) {E <- c(E, "\n • [wx] must be a complete positive numeric vector.")}
-  if (!VWY) {E <- c(E, "\n • [wy] must be a complete positive numeric vector.")}
-  if (!VRC) {E <- c(E, "\n • [x], [y], [wx], and [wy] are not recyclable.")}
+  if (!VXX) {E <- c(E, "\n • [x] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
+  if (!VYY) {E <- c(E, "\n • [y] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].")}
+  if (!VWX) {E <- c(E, "\n • [wx] must be a complete positive numeric vec (?cmp_pos_vec).")}
+  if (!VWY) {E <- c(E, "\n • [wy] must be a complete positive numeric vec (?cmp_pos_vec).")}
+  if (!VRC) {E <- c(E, "\n • [x], [y], [wx], and [wy] are not recyclable (?recyclable).")}
   if (idef(E)) {stop(E)}
   x  <- as_clr(x)                                                                # convert x and y to hexadecimal RGBA
   y  <- as_clr(y)
@@ -192,106 +192,106 @@ blend <- function(x, y, wx = 1, wy = 1, a = NA) {
   rgba(R, G, B, A)                                                               # return the blended color in hexadecimal RGBA format
 }
 
-#' @describeIn simple_colors_uj Build red hues by primary color, secondary
+#' @describeIn simple_colors. Build red hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 red <- function(p = 1, s = 0, a = 1) {rgba(p, s, s, a)}
 
-#' @describeIn simple_colors_uj Build green hues by primary color, secondary
+#' @describeIn simple_colors. Build green hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 grn <- function(p = 1, s = 0, a = 1) {rgba(s, p, s, a)}
 
-#' @describeIn simple_colors_uj Build blu hues by primary color, secondary
+#' @describeIn simple_colors. Build blu hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 blu <- function(p = 1, s = 0, a = 1) {rgba(s, s, p, a)}
 
-#' @describeIn simple_colors_uj Build cyan hues by primary color, secondary
+#' @describeIn simple_colors. Build cyan hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 cyn <- function(p = 1, s = 0, a = 1) {rgba(s, p, p, a)}
 
-#' @describeIn simple_colors_uj Build magenta hues by primary color, secondary
+#' @describeIn simple_colors. Build magenta hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 mag <- function(p = 1, s = 0, a = 1) {rgba(p, s, p, a)}
 
-#' @describeIn simple_colors_uj Build violet hues by primary color, secondary
+#' @describeIn simple_colors. Build violet hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 vlt <- function(p = 1, s = 0, a = 1) {rgba(p, s, p, a)}
 
-#' @describeIn simple_colors_uj Build yellow hues by primary color, secondary
+#' @describeIn simple_colors. Build yellow hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 ylw <- function(p = 1, s = 0, a = 1) {rgba(p, p, s, a)}
 
-#' @describeIn simple_colors_uj Build grey hues by primary color and alpha
+#' @describeIn simple_colors. Build grey hues by primary color and alpha
 #'   weights.
 #' @export
 gry <- function(p = 0.5, a = 1) {rgba(p, p, p, a)}
 
-#' @describeIn simple_colors_uj Build black hues by alpha weights.
+#' @describeIn simple_colors. Build black hues by alpha weights.
 #' @export
 blk <- function(a = 1) {rgba(0, 0, 0, a)}
 
-#' @describeIn simple_colors_uj Build white hues by alpha weights.
+#' @describeIn simple_colors. Build white hues by alpha weights.
 #' @export
 wht <- function(a = 1) {rgba(1, 1, 1, a)}
 
-#' @describeIn simple_colors_uj Build purple hues by primary color, secondary
+#' @describeIn simple_colors. Build purple hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 ppl <- function(p = 1, s = 0, a = 1) {blend(red(p, s), blu(p, s), 1, 2, a)}
 
-#' @describeIn simple_colors_uj Build orange hues by primary color, secondary
+#' @describeIn simple_colors. Build orange hues by primary color, secondary
 #'   color, and alpha weights.
 #' @export
 orn <- function(p = 1, s = 0, a = 1) {blend(red(p, s), ylw(p, s), 33, 51, a)}
 
-#' @describeIn simple_colors_uj Build blue-green hues by primary color,
+#' @describeIn simple_colors. Build blue-green hues by primary color,
 #'   secondary color, and alpha weights.
 #' @export
 blu_grn <- function(p = 1, s = 0, a = 1) {blend(blu(p, s), grn(p, s), a)}
 
-#' @describeIn simple_colors_uj Build blue-purple hues by primary color,
+#' @describeIn simple_colors. Build blue-purple hues by primary color,
 #'   secondary color, and alpha weights.
 #' @export
 blu_ppl <- function(p = 1, s = 0, a = 1) {blend(blu(p, s), ppl(p, s), a)}
 
-#' @describeIn simple_colors_uj Build blue-violet hues by primary color,
+#' @describeIn simple_colors. Build blue-violet hues by primary color,
 #'   secondary color, and alpha weights.
 #' @export
 blu_vlt <- function(p = 1, s = 0, a = 1) {blend(blu(p, s), vlt(p, s), a)}
 
-#' @describeIn simple_colors_uj Build yellow-green hues by primary color,
+#' @describeIn simple_colors. Build yellow-green hues by primary color,
 #'   secondary color, and alpha weights.
 #' @export
 ylw_grn <- function(p = 1, s = 0, a = 1) {blend(ylw(p, s), grn(p, s), a)}
 
-#' @describeIn simple_colors_uj Build yellow-orange hues by primary color,
+#' @describeIn simple_colors. Build yellow-orange hues by primary color,
 #'   secondary color, and alpha weights.
 #' @export
 ylw_orn <- function(p = 1, s = 0, a = 1) {blend(ylw(p, s), orn(p, s), a)}
 
-#' @describeIn simple_colors_uj Build red-orange hues by primary color,
+#' @describeIn simple_colors. Build red-orange hues by primary color,
 #'   secondary color, and alpha weights.
 #' @export
 red_orn <- function(p = 1, s = 0, a = 1) {blend(red(p, s), orn(p, s), a)}
 
-#' @describeIn simple_colors_uj Build red-purple hues by primary color,
+#' @describeIn simple_colors. Build red-purple hues by primary color,
 #'   secondary color, and alpha weights.
 #' @export
 red_ppl <- function(p = 1, s = 0, a = 1) {blend(red(p, s), ppl(p, s), a)}
 
-#' @describeIn simple_colors_uj Build red-violet hues by primary color,
+#' @describeIn simple_colors. Build red-violet hues by primary color,
 #'   secondary color, and alpha weights.
 #' @export
 red_vlt <- function(p = 1, s = 0, a = 1) {blend(red(p, s), vlt(p, s), a)}
 
-#' @describeIn simple_colors_uj Get colors from a flexible colorblind palette
-#'   with 2 to 20 colors. Colors 1-10 are bright. Colors 11-20 are 50% darkened
+#' @describeIn simple_colors. Get colors from a flexible colorblind palette with
+#'   2 to 20 colors. Colors 1-10 are bright. Colors 11-20 are 50% darkened
 #'   versions of colors 1-10. The difference in brightness is maximized to allow
 #'   for distinguishing bright from darkened versions, but the differences may
 #'   be insufficient for some audiences. Using only colors 1-10 is advisable.
@@ -301,9 +301,9 @@ pal_cb <- function(ngroups, ncolors = NULL, a = 1) {
   VC <- f0(inll(ncolors), T, cmp_psw_scl)
   VA <- cmp_ppn_scl(a)
   E <- NULL
-  if (!VG) {E <- c(E, "\n • [ngroups] must be a positive whole-number scalar.")}
-  if (!VC) {E <- c(E, "\n • [ncolors] must be NULL or a positive whole-number scalar.")}
-  if (!VA) {E <- c(E, "\n • [a] must be a proportion scalar (in the interval [0, 1]).")}
+  if (!VG) {E <- c(E, "\n • [ngroups] must be a positive whole-number scalar (?cmp_psw_scl).")}
+  if (!VC) {E <- c(E, "\n • [ncolors] must be NULL or a positive whole-number scalar (?cmp_psw_scl).")}
+  if (!VA) {E <- c(E, "\n • [a] must be a proportion scalar (?cmp_ppn_scl). That is, in the interval [0, 1].")}
   if (idef(E)) {stop(E)}
   R <- c("#4E79A7", "#F28E2B", "#E15759", "#76B7B2", "#59A14F",                  # bright colors
          "#EDC948", "#B07AA1", "#FF9DA7", "#9C755F", "#BAB0AC",
@@ -318,10 +318,10 @@ pal_cb <- function(ngroups, ncolors = NULL, a = 1) {
   scales::alpha(R, a)                                                            # apply the alpha value
 }
 
-#' @describeIn simple_colors_uj Draws swatches for a palette.
+#' @describeIn simple_colors. Draws swatches for a palette.
 #' @export
 pal_swatch <- function(x) {
-  if (!cmp_clr_vec(x)) {stop("\n • [x] must be a complete character vector containing only valid color values.")}
+  if (!cmp_clr_vec(x)) {stop("\n • [x] must be a complete color vec (?cmp_clr_vec) [i.e., containing only valid character-mode color values].")}
   as_clr(x)                                                                      # convert [x] to hexadecimal RGBA format
   Options <- par()                                                               # bank current graphical parameters
   par(mar  = c(0, 0, 0, 0),                                                      # set margins to zero (entire window is the plot region)

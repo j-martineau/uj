@@ -1,28 +1,27 @@
-#' @name xb_uj
-#' @family meta
+#' @name xb.
+#' @family extensions
 #' @title Error-checked row and column binding
-#' @description Requires all arguments in \code{...} to be either (a) compatible
-#'   atomic matrices or (b) compatible atomic tabulars (see
-#'   \code{\link{compatible}}).
-#' @details If \code{bind. = NA}, \code{xb} attempts to row bind and column bind
-#'   arguments in \code{...}. If both are successful, processes an error
-#'   indicating ambiguous dimension for binding. If neither is successful,
-#'   processes an associated error. Otherwise, returns the result that was
-#'   successful.
+#' @description Requires all arguments in \code{...} to be either (a)
+#'   \code{\link{compatible}} atomic matrices or (b) \code{\link{compatible}}
+#'   \code{link[idts]{atomic dfs}}. If \code{bind. = NA}, \code{xb} attempts to
+#'   row bind and column bind arguments in \code{...}. If both are successful,
+#'   processes an error indicating ambiguous dimension for binding. If neither
+#'   is successful, processes an associated error. Otherwise, returns the result
+#'   that was successful.
 #' @param bind. \code{'r'} to indicate row binding, \code{'c'} to indicate
 #'   column, or \code{NA} to identify whether either row or column binding is
 #'   successful and return whichever was successful.
 #' @param ...,x.,y. Either atomic matrices compatible for binding or atomic
-#'   tabulars compatible for binding (see \code{\link{compatible}}).
-#' @return An atomic tabular or an atomic matrix.
+#'   dtfs compatible for binding (see \code{\link{compatible}}).
+#' @return An \code{\link[idtf]{atomic dtf}} or an atomic matrix.
 #' @export
-xb_uj <- function() {help("xb_uj", package = "uj")}
+xb. <- function() {help("xb.", package = "uj")}
 
-#' @describeIn xb_uj Column bind an arbitrary number of matrices or data frames.
+#' @describeIn xb. Column bind an arbitrary number of matrices or data frames.
 #' @export
 xb <- function(..., bind. = NA) {
   vn. <- ...length() > 1
-  vt. <- f0(!vn., T, allply(list(...), itab))
+  vt. <- f0(!vn., T, allply(list(...), idtf))
   vm. <- f0(!vn., T, allply(list(...), imat))
   vx. <- vt. | vm.
   vb. <- isNa(bind.) | isIN(bind., c("r", "c"))
@@ -56,10 +55,10 @@ xb <- function(..., bind. = NA) {
   }
 }
 
-#' @describeIn xb_uj Column bind an arbitrary number of matrices or data frames.
+#' @describeIn xb. Column bind an arbitrary number of matrices or data frames.
 #' @export
 cb <- function(...) {xb(..., bind. = "c")}
 
-#' @describeIn xb_uj Row bind an arbitrary number of matrices or data frames.
+#' @describeIn xb. Row bind an arbitrary number of matrices or data frames.
 #' @export
 rb <- function(...) {xb(..., bind. = "r")}

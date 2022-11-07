@@ -1,4 +1,4 @@
-#' @name hexdec_uj
+#' @name hexdec.
 #' @family math
 #' @title Convert between integer and hexadecimal
 #' @details Hexademical representation is of mode character and may begin with
@@ -6,9 +6,9 @@
 #' @param x Vector of positive whole numbers or strings with hexademical number
 #'   representations.
 #' @export
-hexdex_uj <- function() {help("hexdec_uj", package = "uj")}
+hexdec. <- function() {help("hexdec.", package = "uj")}
 
-#' @describeIn hexdec_uj Convert from hexadecimal to decimal.
+#' @describeIn hexdec. Convert from hexadecimal to decimal.
 #' @export
 todec <- function(x) {
   vx <- F
@@ -23,7 +23,7 @@ todec <- function(x) {
     }
   }
   err <- NULL
-  if (!vx) {err <- c(err, "\n • [x] must be of mode character, have at least one value, have no NA values, and contain only the characters in '#0123456789ABCDEFabcdef'.")}
+  if (!vx) {err <- c(err, "\n • [x] must be of mode character, have at least one value, contain no NA values, and contain only the characters in '#0123456789ABCDEFabcdef'.")}
   if (!vp) {err <- c(err, "\n • If pound signs ('#') are used, they must be the first character of any element of [x] in which they are used.")}
   if (!ve) {err <- c(err, "\n • After removing pound signs ('#'), one or more elements of [x] is a blank string.")}
   if (idef(err)) {stop(err)}
@@ -46,9 +46,9 @@ todec <- function(x) {
   sapply(lapply(x, ch), convert.)
 }
 
-#' @describeIn hexdec_uj Convert from decimal to hexadecimal.
+#' @describeIn hexdec. Convert from decimal to hexadecimal.
 #' @export
 tohex <- function(x) {
-  if (!cmp_nnw_vec(x)) {stop("\n • [x] must be non-empty, atomic, and contain only non-negative whole numbers.")}
+  if (!cmp_nnw_vec(x)) {stop("\n • [x] must be complete, non-negative whole-number vec (?cmp_nnw_vec).")}
   paste0("#", toupper(as.character.hexmode(x)))
 }

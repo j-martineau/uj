@@ -1,5 +1,6 @@
+#' @name rng2lev.
 #' @title Convert sortable values in specific ranges to a specific level
-#' @param x Atomic object of sortable values.
+#' @param x Atomic object of \link[isrt]{sortable} values.
 #' @param cuts Atomic vector of \code{n-1} cuts for \code{n} levels.
 #' @param levs Atomic vector of \code{n} level labels.
 #' @details When values of \code{x} are equal to a value of \code{cuts},
@@ -11,9 +12,9 @@
 #' @return Atomic object of the same dimension as \code{x} and the same mode as
 #'   \code{levs}.
 #' @export
-rng2lev_uj <- function() {help("rng2lev", package = "uj")}
+rng2lev. <- function() {help("rng2lev.", package = "uj")}
 
-#' @describeIn rng2lev_uj Convert values of \code{x} to the \code{n} levels in
+#' @describeIn rng2lev. Convert values of \code{x} to the \code{n} levels in
 #'   \code{levs} distinguished by the \code{n-1} thresholds in \code{cuts}.
 #' @export
 rng2lev <- function(x, cuts, levs) {

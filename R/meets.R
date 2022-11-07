@@ -1,4 +1,4 @@
-#' @name meets_uj
+#' @name meets.
 #' @family props
 #' @title Does an object meet count and/or value restrictions
 #' @param x. An object.
@@ -7,28 +7,28 @@
 #'   arguments are supplied \code{TRUE} is returned. Possible arguments are as
 #'   follows:
 #'   \tabular{ll}{
-#'     NAME        \tab WHAT IT SPECIFIES                                    \cr
-#'     \code{n}    \tab The set of valid lengths/numbers of elements         \cr
-#'     \code{nr}   \tab The set of valid numbers of rows                     \cr
-#'     \code{nc}   \tab The set of valid numbers of columns                  \cr
-#'     \code{min}  \tab The minimum valid length/number of element           \cr
-#'     \code{minr} \tab The minimum valid number of rows                     \cr
-#'     \code{minc} \tab The minimum valid number of columns                  \cr
-#'     \code{max}  \tab The maximum valid length/number of element           \cr
-#'     \code{maxr} \tab The maximum valid number of rows                     \cr
-#'     \code{maxc} \tab The maximum valid number of columns                  \cr
-#'     \code{vals} \tab The set of valid values                              \cr
-#'     \code{lt}   \tab The value all values of \code{x.} must be less than  \cr
-#'     \code{le}   \tab The value all values of \code{x.} must be less than or
+#'     NAME         \tab WHAT IT SPECIFIES                                   \cr
+#'     \code{n}     \tab The set of valid lengths/numbers of elements        \cr
+#'     \code{nr}    \tab The set of valid numbers of rows                    \cr
+#'     \code{nc}    \tab The set of valid numbers of columns                 \cr
+#'     \code{min}   \tab The minimum valid length/number of element          \cr
+#'     \code{minr}  \tab The minimum valid number of rows                    \cr
+#'     \code{minc}  \tab The minimum valid number of columns                 \cr
+#'     \code{max}   \tab The maximum valid length/number of element          \cr
+#'     \code{maxr}  \tab The maximum valid number of rows                    \cr
+#'     \code{maxc}  \tab The maximum valid number of columns                 \cr
+#'     \code{vals}  \tab The set of valid values                             \cr
+#'     \code{lt}    \tab The value all values of \code{x.} must be less than \cr
+#'     \code{le}    \tab The value all values of \code{x.} must be less than or
+#'                       equal to                                            \cr
+#'     \code{ge}    \tab The value all values of \code{x.} must be less than or
 #'                      equal to                                             \cr
-#'     \code{ge}   \tab The value all values of \code{x.} must be less than or
-#'                      equal to                                             \cr
-#'     \code{gt}   \tab The value all values of \code{x.} must be greater than }
+#'     \code{gt}    \tab The value all values of \code{x.} must be greater than}
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
-meets_uj <- function() {help("meets_uj", package = "uj")}
+meets. <- function() {help("meets.", package = "uj")}
 
-#' @describeIn meets_uj Checks whether \code{x.} meets a variety of count and
+#' @describeIn meets. Checks whether \code{x.} meets a variety of count and
 #'   value restrictions supplied through \code{...}.
 meets <- function(x., ...) {
   if (...length() == 0) {return(T)}
@@ -36,7 +36,7 @@ meets <- function(x., ...) {
   vars. <- av(strsplit(vars., ".", T))
   dots. <- list(...)
   labs. <- names(dots.)
-  vd. <- f0(is_unique(labs.), all(labs. %in% vars.), F)
+  vd. <- f0(is_unq(labs.), all(labs. %in% vars.), F)
   if (!vd.) {stop("\n • Arguments in [...] must be uniquely named with names in c('n', 'min', 'max', 'nr', 'minr', 'maxr', 'nc', 'minc', 'maxc', 'vals', 'lt', 'le', 'ge', 'gt').")}
   lt   <- dots.$lt; min  <- dots.$min ; max  <- dots.$max ; n  <- dots.$n
   le   <- dots.$le; minr <- dots.$minr; maxr <- dots.$maxr; nr <- dots.$nr
@@ -64,21 +64,21 @@ meets <- function(x., ...) {
   vge2. <- f0(inll(ge) | !vge., T, comparable(x., ge))
   vgt2. <- f0(inll(gt) | !vgt., T, comparable(x., gt))
   err. <- NULL
-  if (!vn.  ) {err. <- c(err., "\n • [n] must be NULL or a complete, non-negative, whole-number vector")}
-  if (!vnr. ) {err. <- c(err., "\n • [nr] must be NULL or a complete, non-negative, whole-number vector")}
-  if (!vnc. ) {err. <- c(err., "\n • [nc] must be NULL or a complete, non-negative, whole-number vector")}
-  if (!vmn. ) {err. <- c(err., "\n • [min] must be NULL or a complete, non-negative, whole-number scalar.")}
-  if (!vmx. ) {err. <- c(err., "\n • [max] must be NULL or a complete, non-negative, whole-number scalar.")}
-  if (!vmnr.) {err. <- c(err., "\n • [minr] must be NULL or a complete, non-negative, whole-number scalar.")}
-  if (!vmxr.) {err. <- c(err., "\n • [maxr] must be NULL or a complete, non-negative, whole-number scalar.")}
-  if (!vmnc.) {err. <- c(err., "\n • [minc] must be NULL or a complete, non-negative, whole-number scalar.")}
-  if (!vmxc.) {err. <- c(err., "\n • [maxc] must be NULL or a complete, non-negative, whole-number scalar.")}
-  if (!v2d. ) {err. <- c(err., "\n • [nr], [minr], [maxr], [nc], [minc], and [maxc] must be NULL when [x.] is not a matrix or tibble.")}
-  if (!vv.  ) {err. <- c(err., "\n • [vals] must be NULL or a complete, atomic object.")}
-  if (!vlt. ) {err. <- c(err., "\n • [lt] must be NULL or a complete, sortable atomic scalar.")}
-  if (!vle. ) {err. <- c(err., "\n • [le] must be NULL or a complete, sortable atomic scalar.")}
-  if (!vge. ) {err. <- c(err., "\n • [ge] must be NULL or a complete, sortable atomic scalar.")}
-  if (!vgt. ) {err. <- c(err., "\n • [gt] must be NULL or a complete, sortable atomic scalar.")}
+  if (!vn.  ) {err. <- c(err., "\n • [n] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!vnr. ) {err. <- c(err., "\n • [nr] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!vnc. ) {err. <- c(err., "\n • [nc] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!vmn. ) {err. <- c(err., "\n • [min] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmx. ) {err. <- c(err., "\n • [max] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmnr.) {err. <- c(err., "\n • [minr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmxr.) {err. <- c(err., "\n • [maxr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmnc.) {err. <- c(err., "\n • [minc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmxc.) {err. <- c(err., "\n • [maxc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!v2d. ) {err. <- c(err., "\n • [nr], [minr], [maxr], [nc], [minc], and [maxc] must be NULL when [x.] is not a matrix or tabular (?is_tab).")}
+  if (!vv.  ) {err. <- c(err., "\n • [vals] must be NULL or a complete atomic object (?cmp).")}
+  if (!vlt. ) {err. <- c(err., "\n • [lt] must be NULL or a complete sortable atomic scalar (?cmp_scl).")}
+  if (!vle. ) {err. <- c(err., "\n • [le] must be NULL or a complete sortable atomic scalar (?cmp_scl).")}
+  if (!vge. ) {err. <- c(err., "\n • [ge] must be NULL or a complete sortable atomic scalar (?cmp_scl).")}
+  if (!vgt. ) {err. <- c(err., "\n • [gt] must be NULL or a complete sortable atomic scalar (?cmp_scl).")}
   if (!vv2. ) {err. <- c(err., "\n • Modes of [x.] and [vals] are not compatible.")}
   if (!vlt2.) {err. <- c(err., "\n • Modes of [x.] and [lt] are not comparable.")}
   if (!vle2.) {err. <- c(err., "\n • Modes of [x.] and [le] are not comparable.")}

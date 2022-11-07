@@ -1,5 +1,7 @@
-#' @name logicals_uj
-#' @family meta
+#' @name logicals.
+#' @family logicals
+#' @family extensions
+#' @family logicals
 #' @title Extended, error-checked logicals
 #' @param x. A logical object for all functions other than \code{is_in},
 #'   \code{not_in}, \code{has}, and \code{lacks}. Otherwise, an atomic object.
@@ -30,9 +32,8 @@
 #'   'some', 'all')} indicating no aggregation
 #' @return A logical scalar (any function), vector (\code{}), matrix, or array.
 #' @export
-logicals_uj <- function() {help("logicals_uj", package = "uj")}
+logicals. <- function() {help("logicals.", package = "uj")}
 
-#' validate an argument.
 validate_lgl <- function(x., xxx. = 'lgl', gens. = 0, last. = F) {
   VX <- eval(parse(text = paste0(xxx, "(x)")))
   if (!VX) {bank_err("[x.] must be ", define_xxx_combo(xxx.), ".", gens. = gens. + 1)}
@@ -40,7 +41,7 @@ validate_lgl <- function(x., xxx. = 'lgl', gens. = 0, last. = F) {
   NULL
 }
 
-#' @describeIn logicals_uj Wrapper for \code{!x} with error checking.
+#' @describeIn logicals. Wrapper for \code{!x} with error checking.
 #' @export
 not <- function(x., na. = 'err') {
   vn. <- f0(isLG(na.), T, isEQ(na., 'err'))
@@ -51,7 +52,7 @@ not <- function(x., na. = 'err') {
   !x.
 }
 
-#' @describeIn logicals_uj Wrapper for \code{x & y} with error checking.
+#' @describeIn logicals. Wrapper for \code{x & y} with error checking.
 #' @export
 and <- function(x., y., na. = 'err') {
   vn. <- f0(isLG(na.), T, isEQ(na., 'err'))
@@ -66,7 +67,7 @@ and <- function(x., y., na. = 'err') {
   x. & y.
 }
 
-#' @describeIn logicals_uj Wrapper for \code{x | y} with error checking.
+#' @describeIn logicals. Wrapper for \code{x | y} with error checking.
 #' @export
 or <- function(x., y., na. = 'err') {
   vn. <- f0(isLG(na.), T, isEQ(na., 'err'))
@@ -81,7 +82,7 @@ or <- function(x., y., na. = 'err') {
   x. | y.
 }
 
-#' @describeIn logicals_uj Returns \code{FALSE} as soon as a second \code{TRUE}
+#' @describeIn logicals. Returns \code{FALSE} as soon as a second \code{TRUE}
 #'   argument is encountered. Otherwise, after evaluating all arguments
 #'   evaluates whether the number of \code{TRUE} arguments is 1.
 #' @export
@@ -98,7 +99,7 @@ one <- function(x., y., na. = 'err') {
   xor(x., y.)
 }
 
-#' @describeIn logicals_uj Tests \code{x} and returns either \code{TRUE} or
+#' @describeIn logicals. Tests \code{x} and returns either \code{TRUE} or
 #'   \code{FALSE}. If \code{x.} is not a logical scalar, throw an error if
 #'   \code{err. = 'err'}; otherwise return the value of \code{err.}. Returns the
 #'   value of \code{na.} if the value of \code{x} is \code{NA}.
@@ -117,7 +118,7 @@ TEST <- function(x., na. = FALSE, err. = NA) {
   else                         {x.}
 }
 
-#' @describeIn logicals_uj Returns \code{TRUE} as soon as a \code{TRUE} argument
+#' @describeIn logicals. Returns \code{TRUE} as soon as a \code{TRUE} argument
 #'   is encountered. If none are encountered, return \code{FALSE}.
 #' @export
 ANY <- function(..., err. = NA) {
@@ -134,7 +135,7 @@ ANY <- function(..., err. = NA) {
   F
 }
 
-#' @describeIn logicals_uj Returns \code{FALSE} as soon as a \code{FALSE}
+#' @describeIn logicals. Returns \code{FALSE} as soon as a \code{FALSE}
 #'   argument is encountered. If none are encountered, return \code{TRUE}.
 #' @export
 ALL <- function(..., err. = NA) {
@@ -151,7 +152,7 @@ ALL <- function(..., err. = NA) {
   T
 }
 
-#' @describeIn logicals_uj Returns \code{FALSE} as soon as a \code{TRUE}
+#' @describeIn logicals. Returns \code{FALSE} as soon as a \code{TRUE}
 #'   argument is encountered. If none are encountered, return \code{TRUE}.
 #' @export
 NOR <- function(..., err. = NA) {
@@ -168,7 +169,7 @@ NOR <- function(..., err. = NA) {
   T
 }
 
-#' @describeIn logicals_uj Generalized \code{xor} with error checking.
+#' @describeIn logicals. Generalized \code{xor} with error checking.
 #' @export
 ONE <- function(..., err. = NA) {
   n. <- 0
@@ -186,7 +187,7 @@ ONE <- function(..., err. = NA) {
   (n. == 1)
 }
 
-#' @describeIn logicals_uj Returns \code{TRUE} as soon as a second \code{TRUE}
+#' @describeIn logicals. Returns \code{TRUE} as soon as a second \code{TRUE}
 #'   argument is encountered. Otherwise, after evaluating all arguments, check
 #'   whether the number of \code{TRUE} arguments is 1.
 #' @export
@@ -206,7 +207,7 @@ TWO <- function(..., err. = NA) {
   F
 }
 
-#' @describeIn logicals_uj Tests an arbitrary number of arguments with a wide
+#' @describeIn logicals. Tests an arbitrary number of arguments with a wide
 #'   array of options.
 #' @export
 tests <- function(..., na. = F, a. = F, not. = F, across. = NA, within. = NA) {
@@ -227,7 +228,7 @@ tests <- function(..., na. = F, a. = F, not. = F, across. = NA, within. = NA) {
   if (!vnt.) {err. <- c(err., "\n • [not.] must be TRUE or FALSE.")}
   if (!vac.) {err. <- c(err., "\n • [across.] must be NA, 'nor', 'one', 'any', 'two', 'all'.")}
   if (!vwi.) {err. <- c(err., "\n • [within.] must be NA, 'nor', 'one', 'any', 'two', 'all'.")}
-  if (!vr. ) {err. <- c(err., "\n • Arguments in [...] are not recyclable.")}
+  if (!vr. ) {err. <- c(err., "\n • Arguments in [...] are not recyclable (?recyclable).")}
   if (idef(err.)) {stop(err.)}
   for (i. in 1:n.) {                                                             # for each argument
     x.[[i.]][is.na(x.[[i.]])] <- na.                                             # > replace any NA values with [na]
@@ -258,11 +259,11 @@ tests <- function(..., na. = F, a. = F, not. = F, across. = NA, within. = NA) {
   if (isOk(across.) | isOk(within.)) {as.vector(x.)} else {x.}                   # return the result
 }
 
-#' @describeIn logicals_uj Indexes \code{TRUE} or \code{FALSE} values.
+#' @describeIn logicals. Indexes \code{TRUE} or \code{FALSE} values.
 #' @export
 w <- function(..., not. = F, na. = F, a. = F) {tests(..., not. = not., na. = na., a. = a.)}
 
-#' @describeIn logicals_uj Check for across and/or within argument counts of
+#' @describeIn logicals. Check for across and/or within argument counts of
 #'   \code{TRUE} or \code{FALSE} values equal to zero.
 #' @export
 nors <- function(..., na. = F, a. = F, across. = T, within. = F) {
@@ -277,7 +278,7 @@ nors <- function(..., na. = F, a. = F, across. = T, within. = F) {
   tests(..., na. = na., a. = a., across. = across., within. = within.)
 }
 
-#' @describeIn logicals_uj Check for across and/or within argument counts of
+#' @describeIn logicals. Check for across and/or within argument counts of
 #'   \code{TRUE} or \code{FALSE} values equal to one or more.
 #' @export
 anys <- function(..., na. = F, a. = F, across. = T, within. = F) {
@@ -292,7 +293,7 @@ anys <- function(..., na. = F, a. = F, across. = T, within. = F) {
   tests(..., na. = na., a = a., across. = across., within. = within.)
 }
 
-#' @describeIn logicals_uj Check for across and/or within argument counts of
+#' @describeIn logicals. Check for across and/or within argument counts of
 #'   \code{TRUE} or \code{FALSE} values equal to the number of elements.
 #' @export
 alls <- function(..., na. = F, a. = F, across. = T, within. = F) {
@@ -307,7 +308,7 @@ alls <- function(..., na. = F, a. = F, across. = T, within. = F) {
   tests(..., na. = na., a. = a., across. = across., within. = within.)
 }
 
-#' @describeIn logicals_uj Check for across and/or within argument counts of
+#' @describeIn logicals. Check for across and/or within argument counts of
 #'   \code{TRUE} or \code{FALSE} values equal to one.
 #' @export
 ones <- function(..., na. = F, a. = F, across. = T, within. = F) {
@@ -322,7 +323,7 @@ ones <- function(..., na. = F, a. = F, across. = T, within. = F) {
   tests(..., na. = na., a. = a., across. = across., within. = within.)
 }
 
-#' @describeIn logicals_uj Check for across and/or within argument counts of
+#' @describeIn logicals. Check for across and/or within argument counts of
 #'   \code{TRUE} or \code{FALSE} values equal to two ore more.
 #' @export
 twos <- function(..., na. = F, a. = F, across. = T, within. = F) {
@@ -337,7 +338,7 @@ twos <- function(..., na. = F, a. = F, across. = T, within. = F) {
   tests(..., na. = na., a. = a., across. = across., within. = within.)
 }
 
-#' @describeIn logicals_uj Whether elements of \code{x} are contained in
+#' @describeIn logicals. Whether elements of \code{x} are contained in
 #'   \code{y}.
 #' @export
 is_in <- function(x., y., not. = F, na. = F, agg. = NA) {
@@ -349,17 +350,17 @@ is_in <- function(x., y., not. = F, na. = F, agg. = NA) {
   vag. <- isIN(agg., types.)
   vxy. <- f0(!vx. | !vy., T, compatible(x., y.))
   err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [x] must be a populated atomic vector.")}
-  if (!vy.) {err. <- c(err., "\n • [y] must be a populated atomic vector.")}
+  if (!vx.) {err. <- c(err., "\n • [x] must be a populated atomic vec (?pop_vec).")}
+  if (!vy.) {err. <- c(err., "\n • [y] must be a populated atomic vec (?pop_vec).")}
   if (!vnt.) {err. <- c(err., "\n • [not.] must be TRUE or FALSE.")}
   if (!vna.) {err. <- c(err., "\n • [na.] must be TRUE or FALSE.")}
   if (!vag.) {err. <- c(err., "\n • [agg.] must be NA, 'nor', 'one', 'any', 'two', or 'all'.")}
-  if (!vxy.) {err. <- c(err., "\n • [x] and [y] are not fo compatible modes.")}
+  if (!vxy.) {err. <- c(err., "\n • [x] and [y] are not pf compatible modes.")}
   if (idef(err.)) {stop(err.)}
-  out. <- x. %in% y.                                                             # get the initial result
-  out.[x.[is.na(x.)]] <- na.                                                     # replace any NA values with [na.]
-  n. <- length(which(out.))                                                      # get the number of TRUE values
-  if      (agg. == "nor") {!any(out.)}                                           # apply the appropriate aggregation, if any
+  out. <- x. %in% y.
+  out.[x.[is.na(x.)]] <- na.
+  n. <- length(which(out.))
+  if      (agg. == "nor") {!any(out.)}
   else if (agg. == "any") {any(out.)}
   else if (agg. == "all") {all(out.)}
   else if (agg. == "one") {n. == 1}
@@ -367,15 +368,15 @@ is_in <- function(x., y., not. = F, na. = F, agg. = NA) {
   else {out.}
 }
 
-#' @describeIn logicals_uj Whether elements of \code{x.} are not contained in
+#' @describeIn logicals. Whether elements of \code{x.} are not contained in
 #'   \code{y.}.
 #' @export
 not_in <- function(x., y., na. = F, agg. = NA) {!is_in(x., y., T, na., agg.)}
 
-#' @describeIn logicals_uj Whether \code{x.} has/contains elements of \code{y.}.
+#' @describeIn logicals. Whether \code{x.} has/contains elements of \code{y.}.
 #' @export
 has <- function(x., y., na. = T, agg. = NA) {is_in(y., x., F, na., agg.)}
 
-#' @describeIn logicals_uj Whether \code{x.} lacks elements of \code{y.}.
+#' @describeIn logicals. Whether \code{x.} lacks elements of \code{y.}.
 #' @export
 lacks <- function(x., y., na. = T, agg. = NA) {!is_in(y., x., T, na., agg.)}

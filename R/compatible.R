@@ -1,18 +1,18 @@
-#' @name compatible_uj
+#' @name compatible.
 #' @family props
 #' @title Are objects compatible?
 #' @description Compatibility means that arguments are either (a) all numeric,
 #'   (b) all character, (c) all logical, (d) all unordered factor with the same
 #'   levels, or (e) ordered factor with the same levels in the same order.
 #'   \cr\cr
-#'   \emph{For atomic tabulars} (\code{\link{iatb}}): Arguments are compatible
-#'   for row binding if they have identical column names and their respective
-#'   columns are of compatible modes. Arguments are compatible for column
-#'   binding if they have the same number of rows.
+#'   \emph{For \link[idtf]{atomic dtfs}}: Arguments are compatible for row
+#'   binding if they have identical column names and their respective columns
+#'   are of compatible modes. Arguments are compatible for column binding if
+#'   they have the same number of rows.
 #'   \cr\cr
-#'   \emph{For atomic matrices}: Arguments are
-#'   compatible for column vs. row binding if their modes are compatible and
-#'   they have, respectively the same number of rows vs. columns.
+#'   \emph{For atomic matrices}: Arguments are compatible for column vs. row
+#'   binding if their modes are compatible and they have, respectively the same
+#'   number of rows vs. columns.
 #' @param ... An arbitrary number of arguments to be checked for compatibility
 #'   with each other.
 #' @param recyclable. A logical scalar indicating whether arguments in
@@ -49,9 +49,9 @@
 #' compatible(NumZero, NumSeven, NumDigits, recycle = F)
 #' compatible(list(letters), LETTERS, as.character(0:9))
 #' @export
-compatible_uj <- function() {help("compatible_uj", package = "uj")}
+compatible. <- function() {help("compatible.", package = "uj")}
 
-#' @describeIn compatible_uj Determines whether modes of all arguments in
+#' @describeIn compatible. Determines whether modes of all arguments in
 #'   \code{...} are compatible, meaning that all are character, logical,
 #'   numeric, ordered factor with the same set of levels (in the same order), or
 #'   unordered factor with the same set of levels (in any order).
@@ -83,7 +83,7 @@ compatible <- function(..., recyclable. = TRUE) {
   T
 }
 
-#' @describeIn compatible_uj Are all matrices in \code{...} compatible for
+#' @describeIn compatible. Are all matrices in \code{...} compatible for
 #'   binding?
 #' @export
 compatible_mats <- function(..., bind. = "c") {
@@ -92,7 +92,7 @@ compatible_mats <- function(..., bind. = "c") {
   vx. <- f0(n. < 2, F,  all(sapply(x., imat)))
   vb. <- f0(!cmp_ch1_scl(bind.), F, bind. %in% c("c", "r"))
   err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [...] must multiple (and only) atomic matrices.")}
+  if (!vx.) {err. <- c(err., "\n • [...] must contain multiple (and only) atomic matrices (?imat).")}
   if (!vb.) {err. <- c(err., "\n • [bind.] must be 'c' or 'r'.")}
   if (idef(err.)) {stop(err.)}
   r. <- bind. == "r"                                                             # row bind?
@@ -106,16 +106,16 @@ compatible_mats <- function(..., bind. = "c") {
   T
 }
 
-#' @describeIn compatible_uj Are all atomic tibbles in \code{...} compatible for
+#' @describeIn compatible. Are all atomic tibbles in \code{...} compatible for
 #'   binding?
 #' @export
 compatible_atbs <- function(..., bind. = "c") {
   x. <- list(...)
   n. <- length(x.)
-  vx. <- f0(n. < 2, F,  all(sapply(x., iatb)))
+  vx. <- f0(n. < 2, F,  all(sapply(x., idtf)))
   vb. <- f0(!cmp_ch1_scl(bind.), F, bind. %in% c("c", "r"))
   err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [...] must multiple (and only) atomic tibbles.")}
+  if (!vx.) {err. <- c(err., "\n • [...] must contain multiple (and only) atomic dtfs (?idtf)")}
   if (!vb.) {err. <- c(err., "\n • [bind.] must be 'c' or 'r'.")}
   if (idef(err.)) {stop(err.)}
   r. <- bind. == "r"                                                             # row bind?

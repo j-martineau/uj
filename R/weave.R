@@ -1,4 +1,4 @@
-#' @name weave_uj
+#' @name weave.
 #' @family strings
 #' @title Weave inlay values into a string
 #' @details Inlay escape sequences to specify formatting follow the patterns
@@ -90,9 +90,9 @@
 #'   \code{x.} must be equal to the number of arguments in \code{...}.
 #' @return Character scalar.
 #' @export
-weave_uj <- function() {help("weave_uj", package = "uj")}
+weave. <- function() {help("weave.", package = "uj")}
 
-#' @describeIn weave_uj A replacement for \code{sprintf} for basic uses.
+#' @describeIn weave. A replacement for \code{sprintf} for basic uses.
 #'   \code{x.} must be a character scalar. All arguments in \code{...} must be
 #'   atomic scalars or 1-dimensional vectors.
 weave <- function(x., ...) {
@@ -100,9 +100,9 @@ weave <- function(x., ...) {
   vd. <- ...length() > 0
   vl. <- f0(vd., all(sapply(list(...), cmp_vec)), F)
   err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [x.] must be a non-NA character scalar.")}
+  if (!vx.) {err. <- c(err., "\n • [x.] must be a complate character scalar (?cmp_chr_scl).")}
   if (!vd.) {err. <- c(err., "\n • [...] is empty.")}
-  if (!vl.) {err. <- c(err., "\n • Arguments in [...] must be complete character objects.")}
+  if (!vl.) {err. <- c(err., "\n • Arguments in [...] must be complete character objects (?cmp_chr).")}
   if (idef(err.)) {stop(err.)}
   dots. <- list(...)                                                             # The arguments to weave into {x}
   dots_n. <- length(dots.)                                                       # The number of such arguments

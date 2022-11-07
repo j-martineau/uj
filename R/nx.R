@@ -1,5 +1,5 @@
-#' @name n_uj
-#' @family meta
+#' @name nx.
+#' @family extensions
 #' @title Dedicated counting functions
 #' @param x. A non-negative whole-number object.
 #' @param ... One or more arguments to be examined for counts.
@@ -54,9 +54,9 @@
 #' nch(letters, "a string")
 #' nch(letters, "a string", a. = T)
 #' @export
-nx_uj <- function() {help("n_uj", package = "uj")}
+nx. <- function() {help("nx.", package = "uj")}
 
-#' @describeIn n_uj Check for specific counts, minimum counts, maximum counts,
+#' @describeIn nx. Check for specific counts, minimum counts, maximum counts,
 #'   and equal counts. Returns counts themselves if no checks are specified.
 #' @export
 n_is <- function(x., n. = NULL, min. = NULL, max. = NULL, eq. = F) {
@@ -67,9 +67,9 @@ n_is <- function(x., n. = NULL, min. = NULL, max. = NULL, eq. = F) {
   vmx. <- f0(inll(max.), T, cmp_nnw_scl(max.))
   err. <- NULL
   if (!vx. ) {err. <- c(err., "\n • [x.] must contain only non-negative whole numbers.")}
-  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vect.")}
-  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar.")}
-  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar.")}
+  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
   if (!veq.) {err. <- c(err., "\n • [eq.] must be TRUE or FALSE.")}
   if (idef(err.)) {stop(err.)}
   if (length(c(n., min., max.)) == 0 & !eq.) {return(x.)}                        # if no restrictions are specified, return the raw counts
@@ -80,7 +80,7 @@ n_is <- function(x., n. = NULL, min. = NULL, max. = NULL, eq. = F) {
   (vn. & vmn. & vmx. & veq.)                                                     # whether all argument length restrictions are met
 }
 
-#' @describeIn n_uj Length of arguments.
+#' @describeIn nx. Length of arguments.
 #' @export
 nx <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, a. = F, na. = F, vals. = NULL, lt. = NULL, le. = NULL, ge. = NULL, gt. = NULL) {
   x. <- list(...); av. <- av(x.)                                                     # extract ... args and an atomized version
@@ -128,23 +128,23 @@ nx <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, a. = F, na. = 
   n_is(x., n. = n., min. = min., max. = max., eq. = eq.)                          # and check them against any length restrictions
 }
 
-#' @describeIn n_uj Lengths of \code{...} arguments.
+#' @describeIn nx. Lengths of \code{...} arguments.
 #' @export
 ns <- function(..., n. = NULL, min. = NULL, max. = NULL, na. = F, vals. = NULL, lt. = NULL, le. = NULL, ge. = NULL, gt. = NULL) {nx(..., n. = n., min. = min., max. = max., na. = na., a. = F, vals. = vals., lt. = lt., le. = le., ge. = ge., gt. = gt.)}
 
-#' @describeIn n_uj Minimum length of any \code{...} argument.
+#' @describeIn nx. Minimum length of any \code{...} argument.
 #' @export
 nmin <- function(..., na. = F, vals. = NULL, lt. = NULL, le. = NULL, ge. = NULL, gt. = NULL) {min(nx(..., na. = na., a. = F, vals. = vals., lt. = lt., le. = le., ge. = ge., gt. = gt.))}
 
-#' @describeIn n_uj Maximum length of any \code{...} argument.
+#' @describeIn nx. Maximum length of any \code{...} argument.
 #' @export
 nmax <- function(..., na. = F, vals. = NULL, lt. = NULL, le. = NULL, ge. = NULL, gt. = NULL) {max(nx(..., na. = na., a. = F, vals. = vals., lt. = lt., le. = le., ge. = ge., gt. = gt.))}
 
-#' @describeIn n_uj Whether all \code{...} arguments have the same length.
+#' @describeIn nx. Whether all \code{...} arguments have the same length.
 #' @export
 nsame <- function(..., min. = NULL, max. = NULL, na. = F, vals. = NULL, lt. = NULL, le. = NULL, ge. = NULL, gt. = NULL) {nx(..., min. = min., max. = max., eq. = T, na. = na., a. = F, vals. = vals., lt. = lt., le. = le., ge. = ge., gt. = gt.)}
 
-#' @describeIn n_uj Number of \code{TRUE} elements.
+#' @describeIn nx. Number of \code{TRUE} elements.
 #' @export
 nw <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = T) {
   x. <- list(...)
@@ -159,9 +159,9 @@ nw <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = 
   vxx. <- f0(!isF(na.), T, !any(is.na(av.)))
   err. <- NULL
   if (!vd. ) {err. <- c(err., "\n • [...] must contain only non-empty logical objects.")}
-  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vect.")}
-  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar.")}
-  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar.")}
+  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
   if (!veq.) {err. <- c(err., "\n • [eq.] must be TRUE or FALSE.")}
   if (!va. ) {err. <- c(err., "\n • [a.] must be TRUE or FALSE.")}
   if (!vna.) {err. <- c(err., "\n • [na.] must be TRUE or FALSE.")}
@@ -172,11 +172,11 @@ nw <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = 
   n_is(x., n., min., max., eq.)
 }
 
-#' @describeIn n_uj Number of \code{TRUE} elements.
+#' @describeIn nx. Number of \code{TRUE} elements.
 #' @export
 nt <- nw
 
-#' @describeIn n_uj Number of \code{FALSE} elements.
+#' @describeIn nx. Number of \code{FALSE} elements.
 #' @export
 nf <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = T) {
   x. <- list(...)
@@ -191,9 +191,9 @@ nf <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = 
   vxx. <- f0(!isF(na.), T, !any(is.na(av.)))
   err. <- NULL
   if (!vd. ) {err. <- c(err., "\n • [...] must contain only non-empty logical objects.")}
-  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vect.")}
-  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar.")}
-  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar.")}
+  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
   if (!veq.) {err. <- c(err., "\n • [eq.] must be TRUE or FALSE.")}
   if (!va. ) {err. <- c(err., "\n • [a.] must be TRUE or FALSE.")}
   if (!vna.) {err. <- c(err., "\n • [na.] must be TRUE or FALSE.")}
@@ -204,7 +204,7 @@ nf <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = 
   n_is(x., n., min., max., eq.)
 }
 
-#' @describeIn n_uj Number of unique elements.
+#' @describeIn nx. Number of unique elements.
 #' @export
 nu <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = T) {
   x. <- list(...)
@@ -219,9 +219,9 @@ nu <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = 
   vxx. <- f0(!isF(na.), T, !any(is.na(av.)))
   err. <- NULL
   if (!vd. ) {err. <- c(err., "\n • [...] must contain only non-empty atomic objects.")}
-  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vect.")}
-  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar.")}
-  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar.")}
+  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
   if (!veq.) {err. <- c(err., "\n • [eq.] must be TRUE or FALSE.")}
   if (!va. ) {err. <- c(err., "\n • [a.] must be TRUE or FALSE.")}
   if (!vna.) {err. <- c(err., "\n • [na.] must be TRUE or FALSE.")}
@@ -232,7 +232,7 @@ nu <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = 
   n_is(x., n., min., max., eq.)
 }
 
-#' @describeIn n_uj Number of rows.
+#' @describeIn nx. Number of rows.
 #' @export
 nr <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F) {
   x. <- list(...)
@@ -242,17 +242,17 @@ nr <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F) {
   vmx. <- f0(inll(max.), T, cmp_nnw_scl(max.))
   veq. <- isTF(eq.)
   err. <- NULL
-  if (!vd.) {err. <- c(err., "\n • [...] must contain only matrices or data.frames.")}
-  if (!vn.) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vect.")}
-  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar.")}
-  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar.")}
+  if (!vd.) {err. <- c(err., "\n • [...] must contain only matrices or dtfs (?is_dtf).")}
+  if (!vn.) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
   if (!veq.) {err. <- c(err., "\n • [eq.] must be TRUE or FALSE.")}
   if (idef(err.)) {stop(err.)}
   x. <- sapply(x., nrow)
   n_is(x., n., min., max., eq.)
 }
 
-#' @describeIn n_uj Number of columns.
+#' @describeIn nx. Number of columns.
 #' @export
 nc <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F) {
   x. <- list(...)
@@ -262,17 +262,17 @@ nc <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F) {
   vmx. <- f0(inll(max.), T, cmp_nnw_scl(max.))
   veq. <- isTF(eq.)
   err. <- NULL
-  if (!vd.) {err. <- c(err., "\n • [...] must contain only matrices or data.frames.")}
-  if (!vn.) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vect.")}
-  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar.")}
-  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar.")}
+  if (!vd.) {err. <- c(err., "\n • [...] must contain only matrices or dtfs (?is_dtf)")}
+  if (!vn.) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
   if (!veq.) {err. <- c(err., "\n • [eq.] must be TRUE or FALSE.")}
   if (idef(err.)) {stop(err.)}
   x. <- sapply(x., ncol)
   n_is(x., n., min., max., eq.)
 }
 
-#' @describeIn n_uj Number of characters in each element.
+#' @describeIn nx. Number of characters in each element.
 #'   argument.
 #' @export
 nch <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = T) {
@@ -288,9 +288,9 @@ nch <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. =
   vxx. <- f0(!isF(na.), T, !any(is.na(av.)))
   err. <- NULL
   if (!vd. ) {err. <- c(err., "\n • [...] must contain only non-empty atomic objects.")}
-  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vect.")}
-  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar.")}
-  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar.")}
+  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
   if (!veq.) {err. <- c(err., "\n • [eq.] must be TRUE or FALSE.")}
   if (!va. ) {err. <- c(err., "\n • [a.] must be TRUE or FALSE.")}
   if (!vna.) {err. <- c(err., "\n • [na.] must be TRUE or FALSE.")}
@@ -301,7 +301,7 @@ nch <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. =
   n_is(x., n., min., max., eq.)
 }
 
-#' @describeIn n_uj Number of \code{NA} values.
+#' @describeIn nx. Number of \code{NA} values.
 #' @export
 nna <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, a. = T) {
   x. <- list(...)
@@ -314,9 +314,9 @@ nna <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, a. = T) {
   va. <- isTF(a.)
   err. <- NULL
   if (!vd. ) {err. <- c(err., "\n • [...] must contain only non-empty atomic objects.")}
-  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vect.")}
-  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar.")}
-  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar.")}
+  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
   if (!veq.) {err. <- c(err., "\n • [eq.] must be TRUE or FALSE.")}
   if (!va. ) {err. <- c(err., "\n • [a.] must be TRUE or FALSE.")}
   if (idef(err.)) {stop(err.)}
@@ -325,7 +325,7 @@ nna <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, a. = T) {
   n_is(x., n., min., max., eq.)
 }
 
-#' @describeIn n_uj Number of non-\code{NA} values.
+#' @describeIn nx. Number of non-\code{NA} values.
 #' @export
 nok <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, a. = T) {
   x. <- list(...)
@@ -338,9 +338,9 @@ nok <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, a. = T) {
   va. <- isTF(a.)
   err. <- NULL
   if (!vd. ) {err. <- c(err., "\n • [...] must contain only non-empty atomic objects.")}
-  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vect.")}
-  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar.")}
-  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar.")}
+  if (!vn. ) {err. <- c(err., "\n • [n.] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!vmn.) {err. <- c(err., "\n • [min.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!vmx.) {err. <- c(err., "\n • [max.] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
   if (!veq.) {err. <- c(err., "\n • [eq.] must be TRUE or FALSE.")}
   if (!va. ) {err. <- c(err., "\n • [a.] must be TRUE or FALSE.")}
   if (idef(err.)) {stop(err.)}
@@ -349,62 +349,62 @@ nok <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, a. = T) {
   n_is(x., n., min., max., eq.)
 }
 
-#' @describeIn n_uj Number of atomic elements.
+#' @describeIn nx. Number of atomic elements.
 #' @export
 nat <- function(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, a. = T) {nx(..., n. = n., min. = min., max. = max., eq. = eq., a. = T)}
 
-#' @describeIn n_uj Is the number of elements 0?
+#' @describeIn nx. Is the number of elements 0?
 #' @export
 n0 <- function(..., na. = F, a. = T) {nx(..., n. = 0, na. = na., a. = a.)}
 
-#' @describeIn n_uj Is the number of elements 1?
+#' @describeIn nx. Is the number of elements 1?
 #' @export
 n1 <- function(..., na. = F, a. = T) {nx(..., n. = 1, na. = na., a. = a.)}
 
-#' @describeIn n_uj Is the number of elements 2?
+#' @describeIn nx. Is the number of elements 2?
 #' @export
 n2 <- function(..., na. = F, a. = T) {nx(..., n. = 2, na. = na., a. = a.)}
 
-#' @describeIn n_uj Is the number of elements 3?
+#' @describeIn nx. Is the number of elements 3?
 #' @export
 n3 <- function(..., na. = F, a. = T) {nx(..., n. = 3, na. = na., a. = a.)}
 
-#' @describeIn n_uj Is the number of elements 1 or gerater?
+#' @describeIn nx. Is the number of elements 1 or gerater?
 #' @export
 n1p <- function(..., na. = F, eq. = T, a. = T) {nx(..., min. = 1, na. = na., a. = a.)}
 
-#' @describeIn n_uj Is the number of elements 2 or greater?
+#' @describeIn nx. Is the number of elements 2 or greater?
 #' @export
 n2p <- function(..., na. = F, eq. = T, a. = T) {nx(..., min. = 2, na. = na., a. = a.)}
 
-#' @describeIn n_uj Is the number of elements 3 or greater?
+#' @describeIn nx. Is the number of elements 3 or greater?
 #' @export
 n3p <- function(..., na. = F, eq. = T, a. = T) {nx(..., min. = 3, na. = na., a. = a.)}
 
-#' @describeIn n_uj Is the number of dot arguments 0?
+#' @describeIn nx. Is the number of dot arguments 0?
 #' @export
 nd0 <- function(...) {...length() == 0}
 
-#' @describeIn n_uj Is the number of dot arguments 1?
+#' @describeIn nx. Is the number of dot arguments 1?
 #' @export
 nd1 <- function(...) {...length() == 1}
 
-#' @describeIn n_uj Is the number of dot arguments 2?
+#' @describeIn nx. Is the number of dot arguments 2?
 #' @export
 nd2 <- function(...) {...length() == 2}
 
-#' @describeIn n_uj Is the number of dot arguments 2?
+#' @describeIn nx. Is the number of dot arguments 2?
 #' @export
 nd3 <- function(...) {...length() == 3}
 
-#' @describeIn n_uj Is the number of dot arguments 1 or greater?
+#' @describeIn nx. Is the number of dot arguments 1 or greater?
 #' @export
 nd1p <- function(...) {...length() >= 1}
 
-#' @describeIn n_uj Is the number of dot arguments 2 or greater?
+#' @describeIn nx. Is the number of dot arguments 2 or greater?
 #' @export
 nd2p <- function(...) {...length() >= 2}
 
-#' @describeIn n_uj Is the number of dot arguments 3 or greater?
+#' @describeIn nx. Is the number of dot arguments 3 or greater?
 #' @export
 nd3p <- function(...) {...length() >= 3}

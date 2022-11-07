@@ -1,5 +1,6 @@
-#' @name values_uj
-#' @family meta
+#' @name values.
+#' @family extensions
+#' @family environments
 #' @title Objects in environments of calling functions
 #' @param name A character scalar giving the name of an object.
 #' @param val A value to place into the object specified by \code{name}.
@@ -34,9 +35,9 @@
 #' }
 #' fun.a()
 #' @export
-values_uj <- function() {help("values_uj", package = "uj")}
+values. <- function() {help("values.", package = "uj")}
 
-#' @describeIn values_uj Check for the existence of an object in the environment
+#' @describeIn values. Check for the existence of an object in the environment
 #'   of a specific calling function.
 #' @export
 exist <- function(name, err = T, gens = 1) {
@@ -44,20 +45,20 @@ exist <- function(name, err = T, gens = 1) {
   ve <- isTF(err)
   vg <- cmp_psw_scl(gens)
   err <- NULL
-  if (!vn) {err <- c(err, "\n • [name] must be a non-NA character scalar.")}
+  if (!vn) {err <- c(err, "\n • [name] must be a complete character scalar (?cmp_chr_scl).")}
   if (!ve) {err <- c(err, "\n • [err] must be TRUE or FALSE.")}
-  if (!vg) {err <- c(err, "\n • [gens] must be a positive whole number scalar.")}
+  if (!vg) {err <- c(err, "\n • [gens] must be a positive whole number scalar (?cmp_psw_scl).")}
   if (idef(err)) {stop(err)}
-  env <- parent.frame(gens + 1)                                                  # Get the environment of the requested generation in the call stack
-  if (exists(name, env, inherits = F)) {return(T)}                               # If an object with the specified name exists in the specified environment, return T
-  if (!err) {return(F)}                                                          # If an error should not immediately be thrown, return F
+  env <- parent.frame(gens + 1)
+  if (exists(name, env, inherits = F)) {return(T)}
+  if (!err) {return(F)}
   if (gens > 1) {targ <- c("target function (", callers(gens + 1), ") ", gens, " generations back from the ")}
   else {targ <- ""}
-  call <- callers(1)                                                             # Get the name of the immediate calling function
+  call <- callers(1)
   stop("\n • No object named [name = '", name, "'] exists in the environment of the ", targ, "calling function (", call, ").")
 }
 
-#' @describeIn values_uj get the value of an object in the environment of a
+#' @describeIn values. get the value of an object in the environment of a
 #'   specific calling function.
 #' @export
 vget <- function(name, err = T, gens = 1) {
@@ -65,25 +66,23 @@ vget <- function(name, err = T, gens = 1) {
   ve <- isTF(err)
   vg <- cmp_psw_scl(gens)
   err <- NULL
-  if (!vn) {err <- c(err, "\n • [name] must be a non-NA character scalar.")}
+  if (!vn) {err <- c(err, "\n • [name] must be a complete character scalar (?cmp_chr_scl).")}
   if (!ve) {err <- c(err, "\n • [err] must be TRUE or FALSE.")}
-  if (!vg) {err <- c(err, "\n • [gens] must be a positive whole number scalar.")}
+  if (!vg) {err <- c(err, "\n • [gens] must be a positive whole number scalar (?cmp_psw_scl).")}
   if (idef(err)) {stop(err)}
-  if (!exist(name, err, gens)) {NULL}                                            # If the named object does not exist in the target function, return NULL
-  else {get(name, envir = parent.frame(gens + 1), inherits = F)}                 # Otherwise, get the value of the named object and return it.
+  if (!exist(name, err, gens)) {NULL}
+  else {get(name, envir = parent.frame(gens + 1), inherits = F)}
 }
 
-#' @describeIn values_uj set the value of an object in the environment of a
+#' @describeIn values. set the value of an object in the environment of a
 #'   specific calling function.
 #' @export
 vset <- function(name, val, gens = 1) {
   vn <- cmp_chr_scl(name)
   vg <- cmp_psw_scl(gens)
   err <- NULL
-  if (!vn) {err <- c(err, "\n • [name] must be a non-NA character scalar.")}
-  if (!vg) {err <- c(err, "\n • [gens] must be a positive whole number scalar.")}
+  if (!vn) {err <- c(err, "\n • [name] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!vg) {err <- c(err, "\n • [gens] must be a positive whole number scalar (?cmp_psw_scl).")}
   if (idef(err)) {stop(err)}
-  assign(name, val, envir = parent.frame(gens + 1), inherits = F)                # Set the value of the named object in the target functions environment to the specified value
+  assign(name, val, envir = parent.frame(gens + 1), inherits = F)
 }
-
-

@@ -1,6 +1,7 @@
-#' @name pgrid_uj
+#' @name pgrid.
 #' @family strings
-#' @title \code{expand.grid} for \code{paste} and \code{paste0}
+#' @title \code{\link[base]{expand.grid}} for \code{\link[base]{paste}} and
+#'   \code{\link[base]{paste0}}
 #' @param ... Non-empty atomic objects.
 #' @param p. A character scalar to use as the 'paste'.
 #' @param ch. A logical scalar indicating whether to split arguments in
@@ -9,9 +10,9 @@
 #' @param add.blank. Whether to add a blank ("") to each argument in \code{...}.
 #' @return A character vector.
 #' @export
-pgrid_uj <- function() {help("pgrid_uj", package = "uj")}
+pgrid. <- function() {help("pgrid.", package = "uj")}
 
-#' @describeIn pgrid_uj Convert arguments in \code{...} to character, separating
+#' @describeIn pgrid. Convert arguments in \code{...} to character, separating
 #'   them into their constituent characters (if \code{ch = T}), add a blank
 #'   string (if \code{add.blank = T}), and create a character vector containing
 #'   all possible combinations of elements in \code{...} pasted together using
@@ -46,6 +47,6 @@ pgrid <- function(..., p. = " ", ch. = F, add.blank. = F) {
   av(apply(x., 2, paste, sep = p.))
 }
 
-#' @describeIn pgrid_uj Call \code{pgrid} with \code{p. = ""} (a blank string).
+#' @describeIn pgrid. Call \code{pgrid} with \code{p. = ""} (a blank string).
 #' @export
 pgrid0 <- function(..., ch. = F, add.blank. = F) {pgrid(..., p. = "", ch. = ch., add.blank. = add.blank.)}

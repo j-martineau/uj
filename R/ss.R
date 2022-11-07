@@ -1,4 +1,4 @@
-#' @name ss_uj
+#' @name ss.
 #' @family strings
 #' @title Split strings and select/check for elements
 #' @description \strong{\code{ss}} splits strings using the delimiter(s) in
@@ -34,14 +34,14 @@
 #'   \strong{Extensions}
 #'   \cr Functions are extended for specific delimiters, signified by the
 #'   following suffixes on function names:\tabular{lll}{
-#'     SUFFIX    \tab SUFFIX      \tab DELIMITER                             \cr
-#'     CHARACTER \tab NAME        \tab INVOKED                               \cr
-#'     \code{'1'}\tab Space       \tab \code{" "}                            \cr
-#'     \code{'P'}\tab Pipe        \tab \code{"|"}                            \cr
-#'     \code{'D'}\tab Dot         \tab \code{"."}                            \cr
-#'     \code{'B'}\tab Broken pipe \tab \code{"¦"}                              }
-#' @param ... An arbitrary number of objects to be split
-#'   (\code{\link[=a]{atomized}} before splitting).
+#'     SUFFIX     \tab SUFFIX       \tab DELIMITER                           \cr
+#'     CHARACTER  \tab NAME         \tab INVOKED                             \cr
+#'     \code{'1'} \tab Space        \tab \code{" "}                          \cr
+#'     \code{'P'} \tab Pipe         \tab \code{"|"}                          \cr
+#'     \code{'D'} \tab Dot          \tab \code{"."}                          \cr
+#'     \code{'B'} \tab Broken pipe  \tab \code{"¦"}                            }
+#' @param ... An arbitrary number of objects to be (\code{\link[a]{atomized}}
+#'   before splitting).
 #' @param x. Character scalar or vector of string(s) to be split.
 #' @param s. Character scalar delimiter for splitting strings.
 #' @param name. Character scalar name of the variable to hold the original
@@ -53,8 +53,8 @@
 #' @param trm. Logical scalar indicating whether to trim whitespace from each
 #'   element of the result.
 #' @param sqz. Logical scalar indicating whether to squeeze the result by
-#'   removing either empty strings (for \code{ss(.)} functions) or characters
-#'   that are neither letters, digits, nor spaces (for \code{ch(.)}).
+#'   removing either empty strings (for \code{ss} functions) or characters
+#'   that are neither letters, digits, nor spaces (for \code{ch}).
 #' @param n. An optional integer scalar giving the number of the split or
 #'   character to extract.
 #' @param u. Logical scalar indicating whether to reduce the result to unique
@@ -62,9 +62,9 @@
 #' @return A character vector (when \code{vals = NULL}) or a logical vector
 #'   (when \code{vals} is not \code{NULL}).
 #' @export
-ss_uj <- function() {help("ss_uj", package = "uj")}
+ss. <- function() {help("ss.", package = "uj")}
 
-#' @describeIn ss_uj Flexible fixed-string string splitting function.
+#' @describeIn ss. Flexible fixed-string string splitting function.
 #' @export
 ss <- function(..., d. = "|", trm. = T, sqz. = T, u. = F, n. = NULL) {
   vx. <- all(sapply(list(...), ichr))
@@ -74,12 +74,12 @@ ss <- function(..., d. = "|", trm. = T, sqz. = T, u. = F, n. = NULL) {
   vu. <- isTF(u.)
   vn. <- f0(inll(n.), T, cmp_psw_vec(n.))
   err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [...] must contain at least one argument, all of which must be character generics.")}
-  if (!vd.) {err. <- c(err., "\n • [d.] must be a complete character vect.")}
+  if (!vx.) {err. <- c(err., "\n • [...] must contain at least one argument, all of which must be character generics (?chr_gen).")}
+  if (!vd.) {err. <- c(err., "\n • [d.] must be a complete character vec (?cmp_chr_vec).")}
   if (!vt.) {err. <- c(err., "\n • [trm.] must be TRUE or FALSE.")}
   if (!vs.) {err. <- c(err., "\n • [sqz.] must be TRUE or FALSE.")}
   if (!vu.) {err. <- c(err., "\n • [u.] must be TRUE or FALSE.")}
-  if (!vn.) {err. <- c(err., "\n • [n.] must be NULL or a complete, positive, whole-number vect.")}
+  if (!vn.) {err. <- c(err., "\n • [n.] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).")}
   if (idef(err.)) {stop(err.)}
   x. <- av(...)
   for (dd. in d.) {x. <- av(strsplit(as.character(av(x.)), dd., fixed = T))}
@@ -90,39 +90,39 @@ ss <- function(..., d. = "|", trm. = T, sqz. = T, u. = F, n. = NULL) {
   x.
 }
 
-#' @describeIn ss_uj Split strings using a pipe (\code{'|'}) delimiter.
+#' @describeIn ss. Split strings using a pipe (\code{'|'}) delimiter.
 #' @export
 ss1 <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = " ", trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss_uj Split strings using a pipe (\code{'|'}) delimiter.
+#' @describeIn ss. Split strings using a pipe (\code{'|'}) delimiter.
 #' @export
 ssP <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = "|", trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss_uj Split strings using a dot/period (\code{'.'}) delimiter.
+#' @describeIn ss. Split strings using a dot/period (\code{'.'}) delimiter.
 #' @export
 ssD <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = ".", trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss_uj Split strings using a broken pipe (\code{'¦'}) delimiter.
+#' @describeIn ss. Split strings using a broken pipe (\code{'¦'}) delimiter.
 #' @export
 ssB <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = "¦", trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss_uj Split a string using pipe and dot delimiters.
+#' @describeIn ss. Split a string using pipe and dot delimiters.
 #' @export
 ssPD <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = c("|", "."), trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss_uj Split a string using pipe and broken pipe delimiters.
+#' @describeIn ss. Split a string using pipe and broken pipe delimiters.
 #' @export
 ssPB <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = c("|", "¦"), trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss_uj Split a string using dot and broken pipe delimiters.
+#' @describeIn ss. Split a string using dot and broken pipe delimiters.
 #' @export
 ssDB <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = c(".", "¦"), trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss_uj Split a string using pipe, dot, and broken pipe delimiters.
+#' @describeIn ss. Split a string using pipe, dot, and broken pipe delimiters.
 #' @export
 ssPDB <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {ss(..., d. = c("|", ".", "¦"), trm. = trm., sqz. = sqz., n. = NULL, u. = F)}
 
-#' @describeIn ss_uj Split a string into constituent characters.
+#' @describeIn ss. Split a string into constituent characters.
 #' @export
 ch <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {
   vd. <- all(sapply(list(...), ichr))
@@ -131,11 +131,11 @@ ch <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {
   vu. <- isTF(u.)
   vn. <- f0(is.null(n.), T, cmp_psw_vec(n.))
   err. <- NULL
-  if (!vd.) {err. <- c(err., "\n • [...] must contain at least one argument, all of which must be character generics.")}
+  if (!vd.) {err. <- c(err., "\n • [...] must contain at least one argument, all of which must be character generics (?chr_gen).")}
   if (!vt.) {err. <- c(err., "\n • [trm.] must be TRUE or FALSE.")}
   if (!vs.) {err. <- c(err., "\n • [sqz.] must be TRUE or FALSE.")}
   if (!vu.) {err. <- c(err., "\n • [u.] must be TRUE or FALSE.")}
-  if (!vn.) {err. <- c(err., "\n • [n.] must be NULL or a complete, positive, whole-number vect.")}
+  if (!vn.) {err. <- c(err., "\n • [n.] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).")}
   if (idef(err.)) {stop(err.)}
   x. <- ss(av(...), d. = "", trm. = trm., u. = u.)
   if (sqz.) {x. <- x.[x. %in% c(letters, LETTERS, 0:9, " ")]}
@@ -143,11 +143,11 @@ ch <- function(..., trm. = T, sqz. = T, n. = NULL, u. = F) {
   x.
 }
 
-#' @describeIn ss_uj Split a string into unique constituent characters.
+#' @describeIn ss. Split a string into unique constituent characters.
 #' @export
 uch <- function(..., trm. = T, sqz. = T, n. = NULL) {ch(..., trm. = trm., sqz. = sqz., n. = n., u. = T)}
 
-#' @describeIn ss_uj Split strings and place results in a tibble, including
+#' @describeIn ss. Split strings and place results in a tibble, including
 #'   original values
 #' @export
 sstb <- function(x., d., name. = "string", parts. = "part") {                    # BODY

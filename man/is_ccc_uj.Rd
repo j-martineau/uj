@@ -4,7 +4,7 @@
 \alias{is_ccc_uj}
 \alias{is_arr}
 \alias{is_gen}
-\alias{is_tab}
+\alias{is_dtf}
 \alias{is_vls}
 \alias{is_vtp}
 \alias{is_mat}
@@ -19,7 +19,7 @@ is_arr(x)
 
 is_gen(x)
 
-is_tab(x)
+is_dtf(x)
 
 is_vls(x)
 
@@ -40,20 +40,22 @@ are dynamically evaluated for characteristics through a call to
 is always returned, and \code{FALSE} is always returned for the \code{NULL}
 object. In this package, the following types of objects are new and are
 defined as given in the following table.\tabular{lll}{
-EXTENDED CLASS \tab EXTENDED CLASS \tab CHARACTERISTICS               \cr
-PROPERTY VALUE \tab PROPERTY NAME  \tab QUALIFYING                    \cr
-\code{'vls'}   \tab vlist          \tab non-data.frame (vector) list  \cr
-\code{'gen'}   \tab generic        \tab any vector, vlist, or array   \cr
-\code{'scl'}   \tab scalar         \tab length-1 generic              \cr
-\code{'mvc'}   \tab multivec       \tab multiple-element vector,
+EXTENDED CLASS  \tab EXTENDED CLASS  \tab CHARACTERISTICS               \cr
+PROPERTY VALUE  \tab PROPERTY NAME   \tab OBJECTS                       \cr
+\code{'vls'}    \tab vlist           \tab non-data.frame (vector) list  \cr
+\code{'gen'}    \tab generic         \tab any vector, vlist, or array   \cr
+\code{'scl'}    \tab scalar          \tab length-1 generic              \cr
+\code{'mvc'}    \tab multivec        \tab multiple-element vector,
 multiple-element vlist, or
 multiple-element array with 1
-\link[=eee]{effective dimension}   \cr
-\code{'tab'}   \tab tabular        \tab \code{\link[base]{data.frame}}\cr
-\code{'vec'}   \tab vec            \tab scalar or mvec                \cr
-\code{'vtp'}   \tab vtype          \tab \code{link[=xemp]{empty}} or
-\code{link[=xpop]{populated}} scalar,
-vector, or vlist.                    }
+\link[eee]{effective dimension}    \cr
+\code{'dtf'}    \tab dtf             \tab \code{\link[base]{data.frame}}
+or \code{\link[tibble]{tibble}}    \cr
+\code{'vec'}    \tab vec             \tab scalar or multivec            \cr
+\code{'vtp'}    \tab vtype           \tab \code{link[iemp]{empty}} or
+\code{link[ipop]{populated}} scalar,
+vector, or
+\code{\link[is_vls]{vlist}}.         }
 There are additional functions checking for these extended classes, but
 restricted to atomic, specific extended modes, and complete (no \code{NA}
 values) and of specific extended mode defined in \code{\link{'ccc'}},
@@ -61,45 +63,45 @@ values) and of specific extended mode defined in \code{\link{'ccc'}},
 }
 \section{Functions}{
 \itemize{
-\item \code{is_arr}: Is \code{x} any array?
+\item \code{is_arr()}: Is \code{x} any array?
 
-\item \code{is_gen}: Is \code{x} a generic?
+\item \code{is_gen()}: Is \code{x} a generic?
 
-\item \code{is_tab}: Is \code{x} a tabular?
+\item \code{is_dtf()}: Is \code{x} a rdl?
 
-\item \code{is_vls}: Is \code{x} a vlist?
+\item \code{is_vls()}: Is \code{x} a vlist?
 
-\item \code{is_vtp}: Is \code{x} a vtype?
+\item \code{is_vtp()}: Is \code{x} a vtype?
 
-\item \code{is_mat}: Is \code{x} a matrix?
+\item \code{is_mat()}: Is \code{x} a matrix?
 
-\item \code{is_mvc}: Is \code{x} an mvect?
+\item \code{is_mvc()}: Is \code{x} an mvect?
 
-\item \code{is_scl}: Is \code{x} a scalar?
+\item \code{is_scl()}: Is \code{x} a scalar?
 
-\item \code{is_vec}: Is \code{x} a vector?
+\item \code{is_vec()}: Is \code{x} a vector?
+
 }}
-
 \seealso{
 Other props: 
-\code{\link{as_mmm_uj}()},
-\code{\link{ccc_uj}()},
-\code{\link{cmp_ccc_uj}()},
-\code{\link{cmp_mmm_ccc_uj}()},
-\code{\link{cmp_mmm_uj}()},
-\code{\link{comparable_uj}()},
-\code{\link{compatible_uj}()},
-\code{\link{ddd_uj}()},
-\code{\link{eee_uj}()},
-\code{\link{fff_uj}()},
-\code{\link{is_mmm_uj}()},
-\code{\link{meets_uj}()},
-\code{\link{mmm_ccc_uj}()},
-\code{\link{mmm_uj}()},
-\code{\link{sss_uj}()},
-\code{\link{ttt_ccc_uj}()},
-\code{\link{ttt_mmm_uj}()},
-\code{\link{ttt_uj}()},
-\code{\link{xxx_uj}()}
+\code{\link{as_mmm.}()},
+\code{\link{ccc.}()},
+\code{\link{cmp_ccc.}()},
+\code{\link{cmp_mmm.}()},
+\code{\link{cmp_mmm_ccc.}()},
+\code{\link{comparable.}()},
+\code{\link{compatible.}()},
+\code{\link{ddd.}()},
+\code{\link{eee.}()},
+\code{\link{fff.}()},
+\code{\link{is_mmm.}()},
+\code{\link{meets.}()},
+\code{\link{mmm.}()},
+\code{\link{mmm_ccc.}()},
+\code{\link{sss.}()},
+\code{\link{ttt.}()},
+\code{\link{ttt_ccc.}()},
+\code{\link{ttt_mmm.}()},
+\code{\link{xxx.}()}
 }
 \concept{props}

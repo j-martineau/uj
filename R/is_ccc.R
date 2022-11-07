@@ -7,20 +7,22 @@
 #'   is always returned, and \code{FALSE} is always returned for the \code{NULL}
 #'   object. In this package, the following types of objects are new and are
 #'   defined as given in the following table.\tabular{lll}{
-#'     EXTENDED CLASS \tab EXTENDED CLASS \tab CHARACTERISTICS               \cr
-#'     PROPERTY VALUE \tab PROPERTY NAME  \tab QUALIFYING                    \cr
-#'     \code{'vls'}   \tab vlist          \tab non-data.frame (vector) list  \cr
-#'     \code{'gen'}   \tab generic        \tab any vector, vlist, or array   \cr
-#'     \code{'scl'}   \tab scalar         \tab length-1 generic              \cr
-#'     \code{'mvc'}   \tab multivec       \tab multiple-element vector,
+#'   EXTENDED CLASS  \tab EXTENDED CLASS  \tab CHARACTERISTICS               \cr
+#'   PROPERTY VALUE  \tab PROPERTY NAME   \tab OBJECTS                       \cr
+#'   \code{'vls'}    \tab vlist           \tab non-data.frame (vector) list  \cr
+#'   \code{'gen'}    \tab generic         \tab any vector, vlist, or array   \cr
+#'   \code{'scl'}    \tab scalar          \tab length-1 generic              \cr
+#'   \code{'mvc'}    \tab multivec        \tab multiple-element vector,
 #'                                        multiple-element vlist, or
 #'                                        multiple-element array with 1
-#'                                        \link[=eee]{effective dimension}   \cr
-#'     \code{'tab'}   \tab tabular        \tab \code{\link[base]{data.frame}}\cr
-#'     \code{'vec'}   \tab vec            \tab scalar or mvec                \cr
-#'     \code{'vtp'}   \tab vtype          \tab \code{link[=xemp]{empty}} or
-#'                                        \code{link[=xpop]{populated}} scalar,
-#'                                        vector, or vlist.                    }
+#'                                        \link[eee]{effective dimension}    \cr
+#'   \code{'dtf'}    \tab dtf             \tab \code{\link[base]{data.frame}}
+#'                                        or \code{\link[tibble]{tibble}}    \cr
+#'   \code{'vec'}    \tab vec             \tab scalar or multivec            \cr
+#'   \code{'vtp'}    \tab vtype           \tab \code{link[iemp]{empty}} or
+#'                                        \code{link[ipop]{populated}} scalar,
+#'                                        vector, or
+#'                                        \code{\link[is_vls]{vlist}}.         }
 #'   There are additional functions checking for these extended classes, but
 #'   restricted to atomic, specific extended modes, and complete (no \code{NA}
 #'   values) and of specific extended mode defined in \code{\link{'ccc'}},
@@ -36,9 +38,9 @@ is_arr <- function(x) {is.array(x) | is.vector(x)}
 #' @export
 is_gen <- function(x) {is.vector(x) | is.array(x)}
 
-#' @describeIn is_ccc_uj Is \code{x} a tabular?
+#' @describeIn is_ccc_uj Is \code{x} a rdl?
 #' @export
-is_tab <- function(x) {is.data.frame(x)}
+is_dtf <- function(x) {is.data.frame(x)}
 
 #' @describeIn is_ccc_uj Is \code{x} a vlist?
 #' @export

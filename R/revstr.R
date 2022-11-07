@@ -1,15 +1,15 @@
-#' @name revstr_uj
+#' @name rev_str.
 #' @family strings
 #' @title Reverse strings
 #' @param x Character vector.
 #' @return Character vector.
 #' @export
-revstr_uj <- function() {help("revstr_uj", package = "uj")}
+rev_str. <- function() {help("rev_str.", package = "uj")}
 
-#' @describeIn revstr_uj Reverse the order of characters in each element of a
+#' @describeIn rev_str. Reverse the order of characters in each element of a
 #'   character vector.
 #' @export
-revstr <- function(x) {
+rev_str <- function(x) {
   bank_xxx(chr_vec, x = x)
   err_check()
   rs. <- function(x.) {daw00(rev(ch(x.)))}

@@ -1,5 +1,5 @@
-#' @name is_unique_uj
-#' @family meta
+#' @name is_unq.
+#' @family extensions
 #' @title Does an object have only unique atomic values?
 #' @param x An atomic object.
 #' @param a \code{TRUE} or \code{FALSE} indicating whether to reduce \code{x} to
@@ -9,13 +9,13 @@
 #'   allowed.
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
-is_unique_uj <- function() {help("is_unique_uj", package = "uj")}
+is_unq. <- function() {help("is_unq.", package = "uj")}
 
-#' @describeIn is_unique_uj Evaluates whether \code{x} contains only only unique
+#' @describeIn is_unq. Evaluates whether \code{x} contains only only unique
 #'   atomic values, with options for for atomizing before evaluation and for
 #'   handling \code{NA} values.
 #' @export
-is_unique <- function(x, a = T, na = F) {
+is_unq <- function(x, a = T, na = F) {
   if (isTRUE(a)) {x <- unlist(x, T, F)}
   vx  <- is.atomic(x)
   vn  <- length(x) > 0

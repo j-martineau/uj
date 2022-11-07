@@ -1,13 +1,13 @@
-#' @name reclass_uj
+#' @name reclass.
 #' @title Set object class
-#' @family meta
+#' @family extensions
 #' @param x Any object.
 #' @param cls Character vector of classes.
 #' @return An object of class \code{c}.
 #' @export
-reclass_uj <- function() {help("reclass_uj", package = "uj")}
+reclass. <- function() {help("reclass.", package = "uj")}
 
-#' @describeIn reclass_uj Sets class(es) of \code{x} to \code{cls}.
+#' @describeIn reclass. Sets class(es) of \code{x} to \code{cls}.
 #' @export
 reclass <- function(x, cls) {
   err <- NULL

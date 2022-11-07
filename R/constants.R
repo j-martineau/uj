@@ -1,19 +1,19 @@
-#' @name constants_uj
+#' @name constants.
 #' @title Character scalar and atomic vector constants.
-#' @family constants
 #' @param ... unquoted, comma-separated list of the names of constants to
 #'   return. If multiple constants are specified, they are coerced into a single
 #'   atomic vector result.
 #' @return An atomic vector of length 1 or greater.
 #' @export
-constants_uj <- function() {help("constants_uj", package = "uj")}
+constants. <- function() {help("constants.", package = "uj")}
 
-#' @describeIn constants_uj Get a tibble containing all character scalar
-#'   constants of package \code{uj}.
+#' @describeIn constants. Get a \code{\link[idtf]{dtf}} containing all
+#'   character scalar constants of package \code{uj}.
 #' @export
 scl_constants <- function() {uj::.chr.scl.constants}
 
-#' @describeIn constants_uj Get a tibble containing all vector constants of
+#' @describeIn constants. Get a \code{\link[idtf]{dtf}} containing all
+#'   vector constants of
 #'   package \code{uj}.
 #' @export
 vec_constants <- function() {
@@ -45,7 +45,7 @@ vec_constants <- function() {
   )                                                                                # : END
 }
 
-#' @describeIn constants_uj Get one or more character scalar constants.
+#' @describeIn constants. Get one or more character scalar constants.
 #' @export
 v <- function(...) {
   x. <- as.character(match.call())
@@ -53,7 +53,7 @@ v <- function(...) {
   av(uj::.chr.scl.constants[x., "value"])
 }
 
-#' @describeIn constants_uj Get one or more vector constants.
+#' @describeIn constants. Get one or more atomic vector constants.
 #' @export
 l <- function(...) {                                                               # BODY
   x. <- as.character(match.call())                                                 # : get the function call elements as a vector

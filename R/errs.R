@@ -1,4 +1,11 @@
-#' @name errs_uj
+oxford_vals. <- function(x.) {
+  n. <- length(x.)
+  if (n. == 1) {x.}
+  else if (n. == 2) {paste0(x.[1], " or ", x.[2])}
+  else {paste0(paste0(x.[1:(n. - 1)], collapse = ", "), ", or ", x.[n.])}
+}
+
+#' @name errs.
 #' @family errs
 #' @title Error Management
 #' @description Bank error messages in the immediate environment of a function
@@ -53,17 +60,9 @@
 #' @return \code{NULL}. Called for the side effect of banking and/or processing
 #'   error messages.
 #' @export
-errs_uj <- function() {help("errs_uj", package = "uj")}
+errs. <- function() {help("errs.", package = "uj")}
 
-#' helper function for oxford-comma lists.
-oxford_vals. <- function(x.) {
-  n. <- length(x.)
-  if (n. == 1) {x.}
-  else if (n. == 2) {paste0(x.[1], " or ", x.[2])}
-  else {paste0(paste0(x.[1:(n. - 1)], collapse = ", "), ", or ", x.[n.])}
-}
-
-#' @describeIn errs_uj Check for banked error messages in the environment of the
+#' @describeIn errs. Check for banked error messages in the environment of the
 #'   function \code{gens.} generations back in the call stack, and if there are
 #'   any, process them, stopping execution. If there are none, take no action.
 #'   Should be called after all error checking has been completed.
@@ -84,7 +83,7 @@ err_check <- function(gens. = 0) {
   NULL
 }
 
-#' @describeIn errs_uj Banks the error message in \code{...} in the environment
+#' @describeIn errs. Banks the error message in \code{...} in the environment
 #'   of the function \code{gens.} generations back in the call stack. The error
 #'   message is constructed by atomizing and gluing all arguments in \code{...}
 #'   into a character scalar.
@@ -106,7 +105,7 @@ bank_err <- function(..., gens. = 0) {
   NULL
 }
 
-#' @describeIn errs_uj Checks the named arguments in \code{...} for whether they
+#' @describeIn errs. Checks the named arguments in \code{...} for whether they
 #'   are atomic scalar \code{TRUE} or atomic scalar \code{FALSE}. If \code{na. =
 #'   TRUE}, also allows atomic scalar \code{NA}. If \code{extras.} contains
 #'   atomic values (logical or not), also allows those values. For each named
@@ -126,9 +125,9 @@ bank_lgl <- function(..., na. = F, extras. = NULL) {
   err. <- NULL
   if (!v0. ) {err. <- c(err., "\n • [...] is empty.")}
   if (!vl. ) {err. <- c(err., "\n • All arguments in [...] must be named uniquely without using blank strings.")}
-  if (!vlg.) {err. <- c(err., "\n • All arguments in [...] must be non-NA logical scalars.")}
+  if (!vlg.) {err. <- c(err., "\n • All arguments in [...] must be complete logical scalars (?cmp_lgl_scl).")}
   if (!vna.) {err. <- c(err., "\n • [na.] must be TRUE or FALSE.")}
-  if (!ve. ) {err. <- c(err., "\n • [extras.] must be NULL or complete and atomic.")}
+  if (!ve. ) {err. <- c(err., "\n • [extras.] must be NULL or complete and atomic (?icmp).")}
   if (idef(err.)) {stop(err.)}
   ex. <- idef(extras.)
   if (ex.) {
@@ -153,7 +152,7 @@ bank_lgl <- function(..., na. = F, extras. = NULL) {
   NULL
 }
 
-#' @describeIn errs_uj For each named argument in \code{...} that is
+#' @describeIn errs. For each named argument in \code{...} that is
 #'   \code{FALSE}, creates an error message by collapsing the remaining
 #'   (unnamed) arguments in \code{...} into a character scalar, and banks the
 #'   error message for that named argument. The location where the name of a
@@ -176,7 +175,7 @@ bank_not <- function(...) {
   if (!vnn.) {err. <- c(err., "\n • At least one argument in [...] must be named.")}
   if (!vnb.) {err. <- c(err., "\n • At least one argument in [...] must be unnamed.")}
   if (!vnm.) {err. <- c(err., "\n • Named arguments in [...] must be uniquely named (without using a blank string as a name).")}
-  if (!vlg.) {err. <- c(err., "\n • Named arguments in [...] must be non-NA logical scalars.")}
+  if (!vlg.) {err. <- c(err., "\n • Named arguments in [...] must be complete logical scalars (?cmp_lgl_scl).")}
   if (!ver.) {err. <- c(err., "\n • An unnamed argument in [...] must contain the escape sequence '{@}' for inserting the names of named arguments.")}
   if (idef(err.)) {stop(err.)}
   for (i. in 1:length(named.)) {
@@ -187,7 +186,7 @@ bank_not <- function(...) {
   NULL
 }
 
-#' @describeIn errs_uj For each named argument in \code{...} that is either
+#' @describeIn errs. For each named argument in \code{...} that is either
 #'   \code{NULL} or empty (i.e., of length 0), banks an error message.
 #' @export
 bank_pop <- function(...) {
@@ -205,15 +204,15 @@ bank_pop <- function(...) {
   if (!vu.) {err. <- c(err., "\n • All arguments in [...] must be named.")}
   if (!vl.) {err. <- c(err., "\n • Names of arguments in [...] must be unique without using blank strings.")}
   if (idef(err.)) {stop(err.)}
-  for (i. in 1:length(nmd.)) {if (xnil(nmd.[[1]])) {bank_err("[", labs.[i.], "] is NULL or empty.", gens. = 1)}}
+  for (i. in 1:length(nmd.)) {if (inil(nmd.[[1]])) {bank_err("[", labs.[i.], "] is NULL or empty.", gens. = 1)}}
   NULL
 }
 
-#' @describeIn errs_uj \emph{Bank error messages if arguments satisfy a property
+#' @describeIn errs. \emph{Bank error messages if arguments satisfy a property
 #'   function.} For each named argument in \code{...}, checks whether it
 #'   satisfies a property function in \code{funs.}, and if not, banks an error
 #'   message. \code{funs.} must be a character scalar containing the names of
-#'   one or more \link[=xxx_funs]{property functions}, separated by pipes. An
+#'   one or more \link[prop_funs]{property functions}, separated by pipes. An
 #'   argument passes the test if calling any one of the functions results in a
 #'   value of \code{TRUE}.
 #' @export
@@ -228,8 +227,8 @@ bank_funs <- function(funs., ...) {
   err.  <- NULL
   if (!vd.) {err. <- c(err., "\n • [...] is empty.")}
   if (!vl.) {err. <- c(err., "\n • All arguments in [...] must be uniquely named without using blank strings.")}
-  if (!vf.) {err. <- c(err., "\n • After splitting on pipes, [funs] contains a value not found in xxx_funs().")}
-  if (!xnll(err.)) {stop(err.)}
+  if (!vf.) {err. <- c(err., "\n • After splitting on pipes, [funs] contains a value not found in prop_funs().")}
+  if (!inll(err.)) {stop(err.)}
   err. <- paste0("[", labs., "] must be ", define_xxx_combos(funs.))
   for (i. in 1:nd.) {
     v. <- FALSE
@@ -239,7 +238,7 @@ bank_funs <- function(funs., ...) {
   NULL
 }
 
-#' @describeIn errs_uj More flexible but less efficient than \code{bank_funs}.
+#' @describeIn errs. More flexible but less efficient than \code{bank_funs}.
 #'   For each named argument in \code{...}, banks an error message if it does
 #'   satisfy the \link[=is_xxx]{property specification} in \code{xxx.}. If
 #'   \code{na. = TRUE}, arguments may also be atomic scalar \code{NA} values.
@@ -263,18 +262,18 @@ bank_xxx <- function(xxx., ..., nas. = F) {
   if (!vd.) {err. <- c(err., "\n • [...] is empty.")}
   if (!vl.) {err. <- c(err., "\n • All arguments in [...] must be uniquely named without using blank strings.")}
   if (!vn.) {err. <- c(err., "\n • [nas.] must be TRUE or FALSE.")}
-  if (!xnll(err.)) {stop(err.)}
+  if (!inll(err.)) {stop(err.)}
   err. <- paste0("[", labs., "] must be ", define_xxx_combos(xxx.), ".")
   for (i. in 1:nd.) {
     val. <- F
     if (nas.) {val. <- isNa(...elt(i.))}
-    if (!val.) {val. <- is_xxx(...elt(i.), xxx.)}
+    if (!val.) {val. <- ixxx(...elt(i.), xxx.)}
     if (!val.) {bank_err(err.[i.], gens. = 1)}
   }
   NULL
 }
 
-#' @describeIn errs_uj Bank errors if atomic scalar arguments do not have one of
+#' @describeIn errs. Bank errors if atomic scalar arguments do not have one of
 #'   a list of values. For each named atomic scalar argument in \code{...},
 #'   checks it against the remaining (unnamed) atomic arguments in \code{...}
 #'   (which do not have to be of the same mode), and if the named argument's
@@ -319,7 +318,7 @@ bank_vals <- function(...) {
   NULL
 }
 
-#' @describeIn errs_uj Bank errors if dot arguments do not satisfy a property
+#' @describeIn errs. Bank errors if dot arguments do not satisfy a property
 #'   specification, and optionally, if they are not named. Checks if each
 #'   argument in \code{...} satisfies the property specification in \code{prop.}
 #'   and if not, banks an error message. If \code{named. = TRUE}, checks whether
@@ -341,12 +340,12 @@ bank_dots <- function(xxx., ..., named. = F) {
   if (!vn.) {err. <- c(err., "\n • [named.] must be TRUE or FALSE.")}
   if (!vnms.) {err. <- c(err., "\n • When [named. = TRUE], all arguments in [...] must be uniquely named without using blank strings.")}
   if (idef(err.)) {stop(err.)}
-  vd. <- sapply(dots., is_xxx, xxx = xxx.)
+  vd. <- sapply(dots., ixxx, xxx = xxx.)
   if (!vd.) {bank_err("All arguments in [...] must be ", define_xxx_combos(xxx.), ".", gens. = 1)}
   NULL
 }
 
-#' @describeIn errs_uj Bank errors conditionally on the value of two arguments.
+#' @describeIn errs. Bank errors conditionally on the value of two arguments.
 #'   Banks an error if the first named atomic scalar argument in \code{...} has
 #'   a value contained in \code{when.} and the second named atomic scalar
 #'   argument in \code{...} does not contain a value from \code{value}.
@@ -365,9 +364,9 @@ bank_when <- function(whens., values., ...) {
   if (!vv.) {err. <- c(err., "\n • [values.] must be non-empty and atomic.")}
   if (!vd.) {err. <- c(err., "\n • There must be two arguments in [...]")}
   if (!vl.) {err. <- c(err., "\n • Arguments in [...] must be uniquely named without using blank strings.")}
-  if (!v1.) {err. <- c(err., "\n • [whens.] and [..1] are not of compatible modes.")}
-  if (!v2.) {err. <- c(err., "\n • [values.] and [..2] are not of compatible modes.")}
-  if (!vs.) {err. <- c(err., "\n • Both arguments in [...] must be atomic and scalar.")}
+  if (!v1.) {err. <- c(err., "\n • [whens.] and [..1] are not of compatible (?compatible) modes.")}
+  if (!v2.) {err. <- c(err., "\n • [values.] and [..2] are not of compatible (?compatible) modes.")}
+  if (!vs.) {err. <- c(err., "\n • Both arguments in [...] must be atomic and scalar (?iscl).")}
   if (idef(err.)) {stop(err.)}
   labs1. <- paste0("[", labs.[1], "]")
   labs2. <- paste0("[", labs.[2], "]")
@@ -383,7 +382,7 @@ bank_when <- function(whens., values., ...) {
   NULL
 }
 
-#' @describeIn errs_uj Bank errors conditionally on the pattern of properties of
+#' @describeIn errs. Bank errors conditionally on the pattern of properties of
 #'   arguments in \code{...} matching none of the specified patterns of
 #'   associated properties in \code{pats.}.
 #' @export
@@ -394,14 +393,14 @@ bank_pats <- function(pats., ...) {
   ndt. <- length(dots.)
   nbl. <- length(blank.)
   npt. <- length(pats.)
-  avl. <- cmp_chr_avl(pats.)
+  avl. <- cmp_chr_vls(pats.)
   npp. <- f0(avl., lengths(pats.), 0)
   nul. <- length(unique(labs.))
   vpt. <- f0(avl., all(sapply(av(pats.), is_valid_xxx)), F)
   veq. <- all(npp. == ndt.)
   vun. <- ndt. == nul.
   err.  <- NULL
-  if (!avl.   ) {err. <- c(err., "\n • [pats] must be a complate atomic vlist (see is_cmp_vlist).")}
+  if (!avl.   ) {err. <- c(err., "\n • [pats] must be a complate atomic vlist (?cmp_vls).")}
   if (npt. < 2) {err. <- c(err., "\n • The number of patterns in [pats] is less than 2.")}
   if (!vpt.   ) {err. <- c(err., "\n • All values in [pats] must be valid property specification (see is_valid_xxx)")}
   if (ndt. < 2) {err. <- c(err., "\n • The number of arguments in [...] is less than 2.")}
@@ -417,7 +416,7 @@ bank_pats <- function(pats., ...) {
       var. <- labs.[j.]
       xxx. <- pat.[j.]
       nc.[j.] <- max(nc.[j.], nchar(xxx.))
-      if (valid.) {valid. <- valid. & is_xxx(var., xxx.)}
+      if (valid.) {valid. <- valid. & ixxx(var., xxx.)}
     }
     if (valid.) {return(NULL)}
   }
@@ -433,7 +432,7 @@ bank_pats <- function(pats., ...) {
       ipats.[j.] <- jpat.
     }
     lab.  <- pad(paste0("PATTERN ", j.), n. = wd.)
-    ipats <- paste0(c(lab., ipats.), collapse = " | ")
+    ipats. <- paste0(c(lab., ipats.), collapse = " | ")
     pats.[[i.]] <- ipats.
   }
   lab. <- pad("ARGUMENT", n. = wd.)
@@ -444,7 +443,7 @@ bank_pats <- function(pats., ...) {
   bank_err(err., gens. = 1)
 }
 
-#' @describeIn errs_uj If calling \code{identity(x)} generates an error, bank an
+#' @describeIn errs. If calling \code{identity(x)} generates an error, bank an
 #'   error message.
 #' @export
 bank_fail <- function(x.) {

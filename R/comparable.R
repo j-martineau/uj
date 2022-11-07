@@ -1,4 +1,4 @@
-#' @name comparable_uj
+#' @name comparable.
 #' @family props
 #' @title Are objects comparable?
 #' @param ... An arbitrary number of arguments to be checked for comparability
@@ -7,9 +7,9 @@
 #'   must be recyclable to be comparable.
 #' @return A logical scalar.
 #' @export
-comparable_uj <- function() {help("comparable_uj")}
+comparable. <- function() {help("comparable.")}
 
-#' @describeIn comparable_uj Determines whether modes of all arguments in
+#' @describeIn comparable. Determines whether modes of all arguments in
 #'   \code{...} are comparable (i.e., sortable and compatible with each other),
 #'   meaning that all are character, logical, numeric, or ordered factor with
 #'   the same set of levels (in the same order).

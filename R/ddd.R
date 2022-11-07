@@ -1,4 +1,4 @@
-#' @name ddd_uj
+#' @name ddd.
 #' @family props
 #' @title Defined Dimensionality (ddd) Property Family
 #' @description An object's defined dimensionality (def. dim.) is the number of
@@ -6,16 +6,16 @@
 #'   gives levels of defined dimensionality, property values assigned to levels
 #'   of defined dimensionality, property names, and a definition of each value
 #'   of defined dimensionality.\tabular{llll}{
-#'    NUMBER OF  \tab DEF. DIM.  \tab DEF. DIM. \tab TYPES OF                \cr
-#'    DEFINED    \tab PROPERTY   \tab PROPERTY  \tab QUALIFYING              \cr
-#'    DIMENSIONS \tab VALUE      \tab NAME      \tab OBJECTS                 \cr
-#'    \code{0}   \tab\code{'d0D'}\tab of 0-dimensional structure 
+#'   NUMBER OF   \tab DEF. DIM.  \tab DEF. DIM.  \tab TYPES OF               \cr
+#'   DEFINED     \tab PROPERTY   \tab PROPERTY   \tab QUALIFYING             \cr
+#'   DIMENSIONS  \tab VALUE      \tab NAME       \tab OBJECTS                \cr
+#'   \code{0}    \tab\code{'d0D'}\tab of 0-dimensional structure
 #'                               \tab \code{NULL}                            \cr
-#'    \code{1}   \tab\code{'d1D'}\tab of 1-dimensional structure
-#'                               \tab vector, vlist, 1-dimensional array     \cr
-#'    \code{2}   \tab\code{'d2D'}\tab of 2-dimensional structure 
-#'                               \tab tibble or matrix                       \cr
-#'    \code{≥ 3} \tab\code{'dHD'}\tab of hyper-dimensional structure 
+#'   \code{1}    \tab\code{'d1D'}\tab of 1-dimensional structure
+#'                               \tab vector, vlist, 1-dimensional array    \cr
+#'   \code{2}    \tab\code{'d2D'}\tab of 2-dimensional structure
+#'                               \tab \code{\link[is_tab]{tabular}} or matrix\cr
+#'   \code{≥ 3}  \tab\code{'dHD'}\tab of hyper-dimensional structure
 #'                               \tab array with 3+ dimensions.                }
 #'   Submitting additional arguments to \code{is_ddd} via \code{...} allows
 #'   for checking not just the defined dimensionality but whether length, number
@@ -33,9 +33,9 @@
 #'   \code{ddd_vals} and \code{ddd} return a character scalar or vector. All
 #'   others return either \code{TRUE} or \code{FALSE}.
 #' @export
-ddd_uj <- function() {help("ddd_uj", package = "uj")}
+ddd. <- function() {help("ddd.", package = "uj")}
 
-#' @describeIn ddd_uj Gets a vector of all defined dimensionality properties
+#' @describeIn ddd. Gets a vector of all defined dimensionality properties
 #'   from \code{ddd_vals()} that are applicable to \code{x.}.
 #' @export
 ddd <- function(x.) {
@@ -44,37 +44,37 @@ ddd <- function(x.) {
   f0(d. == 2, 'd2D', f0(d. >= 3, 'dHD', NULL))))
 }
 
-#' @describeIn ddd_uj Gets the \strong{number} of defined dimensions of
+#' @describeIn ddd. Gets the \strong{number} of defined dimensions of
 #'   \code{x.} (i.e., not a character scalar defined dimensionality property
 #'   from \code{ddd_vals}).
 #' @export
 nddd <- function(x.) {f0(inll(x.), 0, f0(is.vector(x.), 1, length(dim(x.))))}
 
-#' @describeIn ddd_uj Evaluate whether \code{x.} has \code{0} defined
+#' @describeIn ddd. Evaluate whether \code{x.} has \code{0} defined
 #'   dimensions.
 #' @export
 id0D <- function(x.) {nddd(x.) == 0}
 
-#' @describeIn ddd_uj Evaluate whether \code{x.} has \code{1} defined dimension.
+#' @describeIn ddd. Evaluate whether \code{x.} has \code{1} defined dimension.
 #' @export
 id1D <- function(x.) {nddd(x.) == 1}
 
-#' @describeIn ddd_uj Evaluate whether \code{x.} has \code{2} defined
+#' @describeIn ddd. Evaluate whether \code{x.} has \code{2} defined
 #'   dimensions.
 #' @export
 id2D <- function(x.) {nddd(x.) == 2}
 
-#' @describeIn ddd_uj Evaluate whether \code{x.} has \code{3+} defined
+#' @describeIn ddd. Evaluate whether \code{x.} has \code{3+} defined
 #'   dimensions.
 #' @export
 idHD <- function(x.) {nddd(x.) > 2}
 
-#' @describeIn ddd_uj Get a character vector of all possible defined
+#' @describeIn ddd. Get a character vector of all possible defined
 #'   dimensionality property values.
 #' @export
 ddd_vals <- function() {x. <- c('d0D', 'd1D', 'd2D', 'dHD'); names(x.) <- rep.int("ddd", length(x.)); x.}
 
-#' @describeIn ddd_uj Evaluates whether at least one of the defined
+#' @describeIn ddd. Evaluates whether at least one of the defined
 #'   dimensionality properties in \code{xxx.} is applicable to \code{x.}.
 #' @export
 iddd <- function(x., xxx., ...) {

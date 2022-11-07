@@ -1,6 +1,6 @@
-#' @name mmm_uj
+#' @name mmm.
 #' @family props
-#' @title Extended Mode (mmm) Property Family
+#' @title Extended mode properties
 #' @description Extended modes are defined for non-empty atomic objects. For all
 #'  other objects, the extended mode is \code{NULL}. These are not formally
 #'  defined classes, but are evaluated dynamically based on the current
@@ -8,33 +8,33 @@
 #'  \cr\cr
 #'  Atomic objects that contain only \code{NA} values are of every extended
 #'  mode, as they can be coerced to any mode without introducing new \code{NA}
-#'  values. The following tables gives mmm values, names, and requirements
-#'  \strong{for non-\code{NA} values only}.
+#'  values. The following tables gives extended mode values, names, and
+#'  requirements
 #'  \cr\cr
 #'  \strong{Character Extended Modes}\tabular{lll}{
 #'    EXTENDED    \tab EXTENDED       \tab QUALIFYING                        \cr
-#'    MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
+#'    MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
 #'    \code{'chr'}\tab character      \tab character                         \cr
 #'    \code{'clr'}\tab color          \tab hex color value or color name     \cr
 #'    \code{'ch1'}\tab onechar        \tab single characters                 \cr
 #'    \code{'str'}\tab string         \tab no blank ("") values                }
 #'  \strong{Categorical Extended Modes}\tabular{lll}{
 #'    EXTENDED    \tab EXTENDED       \tab QUALIFYING                        \cr
-#'    MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
+#'    MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
 #'    \code{'fac'}\tab factor         \tab factor                            \cr
 #'    \code{'lgl'}\tab logical        \tab logical                           \cr
 #'    \code{'ord'}\tab ordered        \tab ordered factor                    \cr
 #'    \code{'uno'}\tab unordered      \tab unordered factor                    }
 #'  \strong{Combination Extended Modes}\tabular{lll}{
 #'    EXTENDED    \tab EXTENDED       \tab QUALIFYING                        \cr
-#'    MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
+#'    MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
 #'    \code{'ind'}\tab indexer        \tab logical or positive whole number  \cr
 #'    \code{'srt'}\tab sortable       \tab character, logical, numeric, or
-#'                                        ordered factor                     \cr
-#'    \code{'nst'}\tab nonsortable    \tab atomic, but not sortable            }
+#'                                         ordered factor                    \cr
+#'    \code{'nst'}\tab non-sortable   \tab atomic, but not sortable            }
 #'  \strong{Numeric Extended Modes}\tabular{lll}{
 #'    EXTENDED    \tab EXTENDED       \tab QUALIFYING                        \cr
-#'    MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
+#'    MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
 #'    \code{'num'}\tab numeric        \tab numeric                           \cr
 #'    \code{'frc'}\tab fractional     \tab fractionally valued numeric       \cr
 #'    \code{'pct'}\tab percent        \tab percentage valued (in \[0, 100\]) \cr
@@ -46,10 +46,10 @@
 #'    \code{'whl'}\tab whole          \tab whole number valued               \cr
 #'    \code{'evn'}\tab even           \tab even (whole) number-valued        \cr
 #'    \code{'odd'}\tab odd            \tab odd (whole) number-valued         \cr
-#'    \code{'psw'}\tab positive whole \tab positive whole-number valued      \cr
+#'    \code{'psw'}\tab positive whole \tab positive whole-number valued      \cr
 #'    \code{'nnw'}\tab non-neg whole  \tab non-negative whole-number valued  \cr
 #'    \code{'npw'}\tab non-pos whole  \tab non-positive whole-number valued  \cr
-#'    \code{'ngw'}\tab negative whole \tab negative whole-number valued        }
+#'    \code{'ngw'}\tab negative whole \tab negative whole-number valued        }
 #'  \strong{Additional Arguments in \code{...}}
 #'  \cr Submitting additional arguments to \code{is_mmm} via \code{...} allows
 #'  for checking not just extended mode but whether length, number of rows,
@@ -66,9 +66,9 @@
 #'  \code{NULL}. All others return either \code{TRUE} or \code{FALSE}. See
 #'  details for more information.
 #' @export
-mmm_uj <- function() {help("mmm_uj", package = "uj")}
+mmm. <- function() {help("mmm.", package = "uj")}
 
-#' @describeIn mmm_uj Get a character vector containing every extended mode
+#' @describeIn mmm. Get a character vector containing every extended mode
 #'   property from \code{mmm_vals()} that is applicable to \code{x}.
 #' @export
 mmm <- function(x.) {
@@ -116,7 +116,7 @@ mmm <- function(x.) {
   sort(out.)
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode character?
+#' @describeIn mmm. Is \code{x.} of extended mode character?
 #' @export
 ichr <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -124,7 +124,7 @@ ichr <- function(x.) {
   else {is.character(x.)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode onechar?
+#' @describeIn mmm. Is \code{x.} of extended mode onechar?
 #' @export
 ich1 <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -133,7 +133,7 @@ ich1 <- function(x.) {
   else {all(nchar(x.) %in% c(NA, 1))}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode color?
+#' @describeIn mmm. Is \code{x.} of extended mode color?
 #' @export
 iclr <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -141,7 +141,7 @@ iclr <- function(x.) {
   else {is_clr(x.)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode even-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode even-numeric?
 #' @export
 ievn <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -151,7 +151,7 @@ ievn <- function(x.) {
   F
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode factor?
+#' @describeIn mmm. Is \code{x.} of extended mode factor?
 #' @export
 ifac <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -159,7 +159,7 @@ ifac <- function(x.) {
   else (is.factor(x.))
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode fractional-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode fractional-numeric?
 #' @export
 ifrc <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -168,7 +168,7 @@ ifrc <- function(x.) {
   else {any(x. != round(x.), na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode indexer?
+#' @describeIn mmm. Is \code{x.} of extended mode indexer?
 #' @export
 iind <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -179,7 +179,7 @@ iind <- function(x.) {
   F
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode logical?
+#' @describeIn mmm. Is \code{x.} of extended mode logical?
 #' @export
 ilgl <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -187,7 +187,7 @@ ilgl <- function(x.) {
   else {is.logical(x.)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode negative-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode negative-numeric?
 #' @export
 ineg <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -196,7 +196,7 @@ ineg <- function(x.) {
   else {!any(x. >= 0, na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode negative-whole-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode negative-whole-numeric?
 #' @export
 ingw <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -205,7 +205,7 @@ ingw <- function(x.) {
   else {!any(x. >= 0 | x. != round(x.), na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode non-negative-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode non-negative-numeric?
 #' @export
 inng <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -214,7 +214,7 @@ inng <- function(x.) {
   else {!any(x. < 0, na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode non-negative-whole-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode non-negative-whole-numeric?
 #' @export
 innw <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -223,7 +223,7 @@ innw <- function(x.) {
   else {!any(x. < 0 | x. != round(x.), na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode non-positive-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode non-positive-numeric?
 #' @export
 inps <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -232,7 +232,7 @@ inps <- function(x.) {
   else {!any(x. > 0, na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode non-positive-whole-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode non-positive-whole-numeric?
 #' @export
 inpw <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -241,7 +241,7 @@ inpw <- function(x.) {
   else {!any(x. > 0 | x. != round(x.), na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode non-sortable?
+#' @describeIn mmm. Is \code{x.} of extended mode non-sortable?
 #' @export
 inst <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -249,7 +249,7 @@ inst <- function(x.) {
   else {!any(is.character(x.), is.logical(x.), is.numeric(x.), is.ordered(x.))}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode numeric?
 #' @export
 inum <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -257,7 +257,7 @@ inum <- function(x.) {
   else {is.numeric(x.)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode odd-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode odd-numeric?
 #' @export
 iodd <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -266,7 +266,7 @@ iodd <- function(x.) {
   else {!any((x. + 1) / 2 != round((x. + 1) / 2), na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode ordered factor?
+#' @describeIn mmm. Is \code{x.} of extended mode ordered factor?
 #' @export
 iord <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -274,7 +274,7 @@ iord <- function(x.) {
   else {is.ordered(x.)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode percentage-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode percentage-numeric?
 #' @export
 ipct <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -283,7 +283,7 @@ ipct <- function(x.) {
   else {all(x. >= 0 & x. <= 100, na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode positive-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode positive-numeric?
 #' @export
 ipos <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -292,7 +292,7 @@ ipos <- function(x.) {
   else {!any(x. <= 0, na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode proportion-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode proportion-numeric?
 #' @export
 ippn <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -301,7 +301,7 @@ ippn <- function(x.) {
   else {all(x. >= 0 & x. <= 1, na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode positive-whole-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode positive-whole-numeric?
 #' @export
 ipsw <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -310,7 +310,7 @@ ipsw <- function(x.) {
   else {!any(x. <= 0 | x. != round(x.), na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode sortable?
+#' @describeIn mmm. Is \code{x.} of extended mode sortable?
 #' @export
 isrt <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -318,7 +318,7 @@ isrt <- function(x.) {
   else {any(is.character(x.), is.logical(x.), is.numeric(x.), is.ordered(x.))}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode string?
+#' @describeIn mmm. Is \code{x.} of extended mode string?
 #' @export
 istr <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -327,7 +327,7 @@ istr <- function(x.) {
   else {!any(x. == "", na.rm = T)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode unordered factor?
+#' @describeIn mmm. Is \code{x.} of extended mode unordered factor?
 #' @export
 iuno <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -336,7 +336,7 @@ iuno <- function(x.) {
   else {!is.ordered(x.)}
 }
 
-#' @describeIn mmm_uj Is \code{x.} of extended mode whole-numeric?
+#' @describeIn mmm. Is \code{x.} of extended mode whole-numeric?
 #' @export
 iwhl <- function(x.) {
   if (length(x.) == 0 | !is.atomic(x.)) {F}
@@ -345,7 +345,7 @@ iwhl <- function(x.) {
   else {!any(x. != round(x.), na.rm = T)}
 }
 
-#' @describeIn mmm_uj Get a character vector of all possible extended mode
+#' @describeIn mmm. Get a character vector of all possible extended mode
 #'   values.
 #' @export
 mmm_vals <- function() {
@@ -356,11 +356,11 @@ mmm_vals <- function() {
   x.
 }
 
-#' @describeIn mmm_uj Does \code{x} have the extended mode properties in
+#' @describeIn mmm. Does \code{x} have the extended mode properties in
 #'   \code{xxx.}?
 #' @export
 immm <- function(x., xxx., ...) {
-  if (!cmp_chr_scl(x.)) {stop("\n • [xxx.] must be a non-NA character scalar.")}
+  if (!cmp_chr_scl(x.)) {stop("\n • [xxx.] must be a complete character scalar (?cmp_chr_scl).")}
   valid. <- mmm_vals()
   combos. <- strsplit(xxx., "|", fixed = T)[[1]]
   new. <- strsplit(combos., ".", fixed = T)[[1]]

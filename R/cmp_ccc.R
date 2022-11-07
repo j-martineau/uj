@@ -1,4 +1,4 @@
-#' @name cmp_ccc_uj
+#' @name cmp_ccc.
 #' @family props
 #' @title Complete + atomic extended class properties
 #' @param x. An object.
@@ -18,9 +18,9 @@
 #'   \code{ccc_vals()} applicable to \code{x.}. All others return either
 #'   \code{TRUE} or \code{FALSE}.
 #' @export
-cmp_ccc_uj <- function() {help("cmp_ccc_uj", package = "uj")}
+cmp_ccc. <- function() {help("cmp_ccc.", package = "uj")}
 
-#' @describeIn cmp_ccc_uj Get a character vector of all possible complete +
+#' @describeIn cmp_ccc. Get a character vector of all possible complete +
 #'   atomic extended class properties.
 #' @export
 cmp_ccc_vals <- function() {
@@ -29,39 +29,39 @@ cmp_ccc_vals <- function() {
   x.
 }
 
-#' @describeIn cmp_ccc_uj Is \code{x.} a complete atomic array?
+#' @describeIn cmp_ccc. Is \code{x.} a complete atomic array?
 #' @export
 cmp_arr <- function(x.) {atm_arr(x.) & !any(is.na(av(x.)))}
 
-#' @describeIn cmp_ccc_uj Is \code{x.} a complete atomic generic?
+#' @describeIn cmp_ccc. Is \code{x.} a complete atomic generic?
 #' @export
 cmp_gen <- function(x.) {atm_gen(x.) & !any(is.na(av(x.)))}
 
-#' @describeIn cmp_ccc_uj Is \code{x.} a complete atomic tibble?
+#' @describeIn cmp_ccc. Is \code{x.} a complete \code{\link[itab]{atomic df}}?
 #' @export
-cmp_tab <- function(x.) {atm_tab(x.) & !any(is.na(av(x.)))}
+cmp_dtf <- function(x.) {atm_dtf(x.) & !any(is.na(av(x.)))}
 
-#' @describeIn cmp_ccc_uj Is \code{x.} a complete atomic vlist?
+#' @describeIn cmp_ccc. Is \code{x.} a complete atomic vlist?
 #' @export
 cmp_vls <- function(x.) {atm_vls(x.) & !any(is.na(av(x.)))}
 
-#' @describeIn cmp_ccc_uj Is \code{x.} a complete atomic vtype?
+#' @describeIn cmp_ccc. Is \code{x.} a complete atomic vtype?
 #' @export
 cmp_vtp <- function(x.) {atm_vtp(x.) & !any(is.na(av(x.)))}
 
-#' @describeIn cmp_ccc_uj Is \code{x.} a complete atomic matrix?
+#' @describeIn cmp_ccc. Is \code{x.} a complete atomic matrix?
 #' @export
 cmp_mat <- function(x.) {atm_mat(x.) & !any(is.na(av(x.)))}
 
-#' @describeIn cmp_ccc_uj Is \code{x.} a complete atomic mvect?
+#' @describeIn cmp_ccc. Is \code{x.} a complete atomic mvect?
 #' @export
 cmp_mvc <- function(x.) {atm_mvc(x.) & !any(is.na(av(x.)))}
 
-#' @describeIn cmp_ccc_uj Is \code{x.} a complete atomic scalar?
+#' @describeIn cmp_ccc. Is \code{x.} a complete atomic scalar?
 #' @export
 cmp_scl <- function(x.) {atm_scl(x.) & !any(is.na(av(x.)))}
 
-#' @describeIn cmp_ccc_uj Is \code{x.} a complete atomic vect?
+#' @describeIn cmp_ccc. Is \code{x.} a complete atomic vect?
 #' @export
 cmp_vec <- function(x.) {atm_vec(x.) & !any(is.na(av(x.)))}
 

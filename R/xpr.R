@@ -1,4 +1,4 @@
-#' @name expr_uj
+#' @name xpr.
 #' @family strings
 #' @family code
 #' @title Build and/or evaluate expressions
@@ -6,12 +6,12 @@
 #'   expression.
 #' @return Either a character scalar or the result of calling the expression.
 #' @export
-expr_ux <- function() {help("expr_uj", package = "uj")}
+xpr. <- function() {help("xpr.", package = "uj")}
 
-#' @describeIn expr_uj Build an expression containing bolded text.
+#' @describeIn xpr. Build an expression containing bolded text.
 #' @export
 xbold <- function(...) {daw00("expression(bold(", ..., "))")}
 
-#' @describeIn expr_uj Build an expression and execute the resulting command.
+#' @describeIn xpr. Build an expression and execute the resulting command.
 #' @export
 xrun <- function(...) {run(daw("expression(", ..., ")"))}

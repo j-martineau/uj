@@ -1,4 +1,4 @@
-#' @name as_mmm_uj
+#' @name as_mmm.
 #' @family props
 #' @title Coerce to base mode or extended mode.
 #' @param x An object
@@ -6,10 +6,10 @@
 #'   qualify as missing color representations.
 #' @param levs Character vector giving ordered factor levels.
 #' @export
-as_mmm_uj <- function() {help("as_mmm_uj", package = "uj")}
+as_mmm. <- function() {help("as_mmm.", package = "uj")}
 
-#' @describeIn as_mmm_uj Coerce a valid ℝ color representation to hexadecimal RGB
-#'   character representation.
+#' @describeIn as_mmm. Coerce a valid ℝ color representation to hexadecimal
+#'   RGB character representation.
 #' @export
 as_clr <- function(x, na = F) {
   err <- NULL
@@ -27,34 +27,34 @@ as_clr <- function(x, na = F) {
   x
 }
 
-#' @describeIn as_mmm_uj Return \code{x} if it is a function, otherwise, search for
-#'   a function with the name contained in \code{x} and return that function.
+#' @describeIn as_mmm. Return \code{x} if it is a function, otherwise, search
+#'   for a function named \code{x} and return that function.
 #' @export
 as_fun <- function(x) {
-  if (!ifun(x)) {stop("\n • [x] is neither a function object nor the name of a function.")}
+  if (!ifun(x)) {stop("\n • [x] is neither a function nor a character scalar name of a function.")}
   f0(is.function(x), x, match.fun(x))
 }
 
-#' @describeIn as_mmm_uj \code{as.character} wrapper.
+#' @describeIn as_mmm. \code{as.character} wrapper.
 #' @export
 as_chr <- base::as.character
 
-#' @describeIn as_mmm_uj \code{as.integer} wrapper.
+#' @describeIn as_mmm. \code{as.integer} wrapper.
 #' @export
 as_int <- base::as.integer
 
-#' @describeIn as_mmm_uj \code{as.numeric} wrapper.
+#' @describeIn as_mmm. \code{as.numeric} wrapper.
 #' @export
 as_num <- base::as.numeric
 
-#' @describeIn as_mmm_uj \code{as.logical} wrapper.
+#' @describeIn as_mmm. \code{as.logical} wrapper.
 #' @export
 as_lgl <- base::as.logical
 
-#' @describeIn as_mmm_uj Coerce to ordered factor.
+#' @describeIn as_mmm. Coerce to ordered factor.
 #' @export
 as_ord <- function(x, levs) {factor(av(x), levels = levs, ordered = T)}
 
-#' @describeIn as_mmm_uj Coerce to unordered factor.
+#' @describeIn as_mmm. Coerce to unordered factor.
 #' @export
 as_uno <- function(x, levs) {factor(av(x), levels = levs, ordered = F)}

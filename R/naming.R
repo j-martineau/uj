@@ -1,5 +1,5 @@
-#' @name names_uj
-#' @family meta
+#' @name naming.
+#' @family extensions
 #' @title Get or set element, row, and/or column names.
 #' @param x Vector or vlist for \code{namev} and \code{vn}; matrix or data.frame
 #'   for \code{rn}, \code{namer}, \code{cn}, \code{namec}, \code{namerc}; or any
@@ -21,9 +21,9 @@
 #'   respectively.
 #' @return Character vector or a named/renamed version of \code{x}.
 #' @export
-names_uj <- function() {help("names_uj", package = "uj")}
+naming. <- function() {help("naming.", package = "uj")}
 
-#' @describeIn names_uj Name the elements of a vector.
+#' @describeIn naming. Name the elements of a vector.
 #' @export
 namev <- function(x., v.) {
   bank_funs(imvc, x. = x.)
@@ -33,7 +33,7 @@ namev <- function(x., v.) {
   x.
 }
 
-#' @describeIn names_uj Name the rows of a matrix or data frame.
+#' @describeIn naming. Name the rows of a matrix or data frame.
 #' @export
 namer <- function(x., r.) {
   bank_funs(id2D, x. = x.)
@@ -43,7 +43,7 @@ namer <- function(x., r.) {
   x.
 }
 
-#' @describeIn names_uj Name the columns of a matrix or data frame.
+#' @describeIn naming. Name the columns of a matrix or data frame.
 #' @export
 namec <- function(x., c.) {
   bank_funs(id2D, x. = x.)
@@ -53,7 +53,7 @@ namec <- function(x., c.) {
   x.
 }
 
-#' @describeIn names_uj Create a 1-element list from \code{x} and name that
+#' @describeIn naming. Create a 1-element list from \code{x} and name that
 #'   element with the value of \code{e}
 #' @export
 namel <- function(x., n.) {
@@ -64,11 +64,11 @@ namel <- function(x., n.) {
   x.
 }
 
-#' @describeIn names_uj Name the rows and columns of a matrix or data frame.
+#' @describeIn naming. Name the rows and columns of a matrix or data frame.
 #' @export
 namerc <- function(x., r., c.) {namer(namec(x., c.), r.)}
 
-#' @describeIn names_uj Determine whether an objects elements, rows, and/or
+#' @describeIn naming. Determine whether an objects elements, rows, and/or
 #'   columns are named, accounting for whether names must be unique, whether the
 #'   object may contain empty elements, and whether names may be blank strings
 #'   ("").
@@ -81,9 +81,9 @@ named <- function(x., dim. = 0, u. = T, blank. = F) {
   vu. <- isTF(u.)
   vb. <- isTF(blank.)
   err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [x] must be a vect, populated vlist, matrix, or data.frame.")}
+  if (!vx.) {err. <- c(err., "\n • [x] must be a vector, populated vlist (?pop_vls), matrix, or data.frame.")}
   if (!vd.) {err. <- c(err., "\n • [dim.] must be 0, 1, 2, or 12.")}
-  if (!v1.) {err. <- c(err., "\n • [dim.] must be 0 when [x] is a vector, vlist, or 1D array.")}
+  if (!v1.) {err. <- c(err., "\n • [dim.] must be 0 when [x] is a vector, vlist (?is_vls), or 1D array.")}
   if (!v2.) {err. <- c(err., "\n • [dim.] must be 1, 2, or 12 when [x] is a matrix or data.frame.")}
   if (!vu.) {err. <- c(err., "\n • [u.] must be TRUE or FALSE.")}
   if (!vb.) {err. <- c(err., "\n • [blank.] must be TRUE or FALSE.")}
@@ -111,27 +111,27 @@ named <- function(x., dim. = 0, u. = T, blank. = F) {
   en. & rn. & cn. & eu. & ru. & cu. & eb. & rb. & cb.                            # whether all requirements are met
 }
 
-#' @describeIn names_uj Are elements of \code{x} named?
+#' @describeIn naming. Are elements of \code{x} named?
 #' @export
 enamed <- function(x., u. = T, blank. = F) {named(x., 0, u., blank.)}
 
-#' @describeIn names_uj Are rows of \code{x} named?
+#' @describeIn naming. Are rows of \code{x} named?
 #' @export
 rnamed <- function(x., u. = T, blank. = F) {named(x., 1, u., blank.)}
 
-#' @describeIn names_uj Are columns of \code{x} named?
+#' @describeIn naming. Are columns of \code{x} named?
 #' @export
 cnamed <- function(x., u. = T, blank. = F) {named(x., 2, u., blank.)}
 
-#' @describeIn names_uj Are both rows and columns of \code{x} named?
+#' @describeIn naming. Are both rows and columns of \code{x} named?
 #' @export
 rcnamed <- function(x., u. = T, blank. = F) {named(x., 12, u., blank.)}
 
-#' @describeIn names_uj Are all \code{...} arguments named?
+#' @describeIn naming. Are all \code{...} arguments named?
 #' @export
 named. <- function(..., u. = T, blank. = F) {named(list(...), 0, u., blank.)}
 
-#' @describeIn names_uj Get element, row, and/or column names with optional
+#' @describeIn naming. Get element, row, and/or column names with optional
 #'   restrictions.
 #' @export
 getnames <- function(x., d. = 0, u. = T, err. = F) {
@@ -140,7 +140,7 @@ getnames <- function(x., d. = 0, u. = T, err. = F) {
   vu. <- isTF(u.)
   ve. <- isTF(err.)
   errs. <- NULL
-  if (!vx.) {errs. <- c(errs., "\n • [x.] must be populated.")}
+  if (!vx.) {errs. <- c(errs., "\n • [x.] must be populated (?ipop).")}
   if (!vd.) {errs. <- c(errs., "\n • [d.] must be 0, 1, 2, or 12.")}
   if (!vu.) {errs. <- c(errs., "\n • [u.] must be TRUE or FALSE.")}
   if (!ve.) {errs. <- c(errs., "\n • [err.] must be TRUE or FALSE.")}
@@ -148,37 +148,37 @@ getnames <- function(x., d. = 0, u. = T, err. = F) {
   if (d. == 0) {
     en. <- names(x.)
     if (err. & length(en.) > 0) {stop("\n • elements of [x.] are not named.")}
-    if (u. & !is_unique(en.)) {stop("\n • element names of [x.] are not unique.")}
+    if (u. & !is_unq(en.)) {stop("\n • element names of [x.] are not unique.")}
     return(en.)
   }
-  if (!id2D(x.)) {stop("\n • [x.] must be a matrix or tibble")}
+  if (!id2D(x.)) {stop("\n • [x.] must be a matrix or a dtf (?is_dtf)")}
   if (d. %in% c(1, 12)) {
     rn. <- rownames(x.)
     if (err. & length(rn.) > 0) {stop("\n • row of [x.] are not named.")}
-    if (u. & !is_unique(rn.)) {stop("\n • row names of [x.] are not unique.")}
+    if (u. & !is_unq(rn.)) {stop("\n • row names of [x.] are not unique.")}
     if (d. == 1) {return(rn.)}
   }
   if (d. %in% c(2, 12)) {
     cn. <- colnames(x.)
     if (err. & length(cn.) > 0) {stop("\n • column of [x.] are not named.")}
-    if (u. & !is_unique(cn.)) {stop("\n • column names of [x.] are not unique.")}
+    if (u. & !is_unq(cn.)) {stop("\n • column names of [x.] are not unique.")}
     if (d. == 2) {return(cn.)}
   }
   list(r = rn., c = cn.)
 }
 
-#' @describeIn names_uj Get element names.
+#' @describeIn naming. Get element names.
 #' @export
 en <- function(x., u. = T, err. = F) {getnames(x., 0, u., err.)}
 
-#' @describeIn names_uj Get row names.
+#' @describeIn naming. Get row names.
 #' @export
 rn <- function(x., u. = T, err. = F) {getnames(x., 1, u., err.)}
 
-#' @describeIn names_uj Get column names.
+#' @describeIn naming. Get column names.
 #' @export
 cn <- function(x., u. = T, err. = F) {getnames(x., 2, u., err.)}
 
-#' @describeIn names_uj Get row and column names (in a 2-element list).
+#' @describeIn naming. Get row and column names (in a 2-element list).
 #' @export
-rc <- function(x., u. = T, err. = F) {getnames(x., 12, u., err.)}
+rcn <- function(x., u. = T, err. = F) {getnames(x., 12, u., err.)}

@@ -1,11 +1,11 @@
-#' @name blank_uj
+#' @name blank.
 #' @title Blank strings
-#' @family strings_uj
+#' @family strings
 #' @param x An object
 #' @return Logical scalar
 #' @export
-blank_uj <- function() {help("blank_uj", package = "uj")}
+blank. <- function() {help("blank.", package = "uj")}
 
-#' @describeIn blank_uj Evaluates whether \code{x} is a blank string scalar.
+#' @describeIn blank. Evaluates whether \code{x} is a blank string scalar.
 #' @export
 blank <- function(x) {f0(n1(x) & ichr(x), x == v(blank), F)}

@@ -1,5 +1,6 @@
-#' @name recycling_uj
-#' @family meta
+#' @name recycling.
+#' @family extensions
+#' @family environments
 #' @title Recycling and recyclability
 #' @param ... Named arguments to be recycled in the environment of the calling
 #'   function.
@@ -16,23 +17,23 @@
 #'   \code{FALSE}. \code{recycle} returns \code{NULL} as it is called for the
 #'   side effect of recycling arguments in the environment of a parent function.
 #' @export
-recycling_uj <- function() {help("recycling_uj", package = "uj")}
+recycling. <- function() {help("recycling.", package = "uj")}
 
-#' @describeIn recycling_uj Check whether the vector of lengths in \code{n.}
+#' @describeIn recycling. Check whether the vector of lengths in \code{n.}
 #'   represents recyclable arguments subject to the setting in \code{targ.}.
 #' @export
 recyclable_n <- function(n., targ. = max(n.)) {
   vn. <- cmp_psw_vec(n.)
   vt. <- cmp_psw_scl(targ.)
   err. <- NULL
-  if (!vn.) {err. <- c(err., "\n • [n.] must be a non-NA, positive, whole-number vector.")}
-  if (!vt.) {err. <- c(err., "\n • [targ.] must be a non-NA, positive, whole-number scalar.")}
+  if (!vn.) {err. <- c(err., "\n • [n.] must be a complete positive whole-number vec (?cmp_psw_vec).")}
+  if (!vt.) {err. <- c(err., "\n • [targ.] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
   if (idef(err.)) {stop(err.)}
   out. <- targ. / n.
   all(out. == round(out.))
 }
 
-#' @describeIn recycling_uj Evaluate whether arguments in \code{...} are
+#' @describeIn recycling. Evaluate whether arguments in \code{...} are
 #'   recyclable subject to settings in the arguments \code{n.}, \code{min.},
 #'   \code{max.}, and \code{targ.}.
 #' @export
@@ -46,11 +47,11 @@ recyclable <- function(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL, err.
   vnd. <- ...length() > 0
   errs. <- NULL
   if (!vnd.) {errs. <- c(errs., "\n • [...] is empty.")}
-  if (!vd. ) {errs. <- c(errs., "\n • Arguments in [...] must be atomic vects.")}
-  if (!vn. ) {errs. <- c(errs., "\n • [n.] must be NULL or a non-NA, positive, whole-number vector.")}
-  if (!vmn.) {errs. <- c(errs., "\n • [min.] must be a non-NA, positive, whole-number scalar")}
-  if (!vmx.) {errs. <- c(errs., "\n • [max.] must be null or a non-NA, positive, whole-number scalar")}
-  if (!vt. ) {errs. <- c(errs., "\n • [targ.] must be NULL or a non-NA, positive, whole-number scalar.")}
+  if (!vd. ) {errs. <- c(errs., "\n • Arguments in [...] must be atomic vecs (?ivec).")}
+  if (!vn. ) {errs. <- c(errs., "\n • [n.] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).")}
+  if (!vmn.) {errs. <- c(errs., "\n • [min.] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!vmx.) {errs. <- c(errs., "\n • [max.] must be null or a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!vt. ) {errs. <- c(errs., "\n • [targ.] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
   if (!ve. ) {errs. <- c(errs., "\n • [err.] must be TRUE or FALSE.")}
   if (idef(errs.)) {stop(errs.)}
   x. <- list(...)
@@ -69,8 +70,8 @@ recyclable <- function(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL, err.
   out.
 }
 
-#' @describeIn recycling_uj Recycle arguments in \code{...} in the environment
-#'   of the calling function subject to settings in the arguments \code{n.},
+#' @describeIn recycling. Recycle arguments in \code{...} in the environment of
+#'   the calling function subject to settings in the arguments \code{n.},
 #'   \code{min.}, \code{max.}, and \code{targ.}.
 #' @export
 recycle <- function(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL) {

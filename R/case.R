@@ -1,6 +1,6 @@
-#' @name case_uj
-#' @family meta
-#' @family fork
+#' @name case.
+#' @family extensions
+#' @family forks
 #' @title Case as an extension of switch
 #' @param name. \code{NULL} or an atomic scalar naming an argument in
 #'   \code{...}. \code{NULL} is converted to \code{'NULL'} and \code{NA} is
@@ -19,9 +19,9 @@
 #' @return Either the value of an argument selected from \code{...} or the value
 #'   of \code{def.}.
 #' @export
-case_uj <- function() {help("case_uj", package = "uj")}
+case. <- function() {help("case.", package = "uj")}
 
-#' @describeIn case_uj Takes a name (i.e., any atomic scalar) and matches that
+#' @describeIn case. Takes a name (i.e., any atomic scalar) and matches that
 #'   name to the name matching an element of \code{...} where matching can be
 #'   achieved by matching the name of an argument in \code{...}. When names are
 #'   supplied via \code{names.}, they substituted for the names of arguments in
@@ -33,7 +33,7 @@ case <- function(name., ..., names. = NULL, def. = "err") {
   vxn. <- ...length() > 0
   vn2. <- f0(inll(names.), T, f0(!ivec(names.), F, length(names.) == ...length()))
   err. <- NULL
-  if (!vn1.) {err. <- c(err., "\n • [name.] must be a non-NA atomic scalar.")}
+  if (!vn1.) {err. <- c(err., "\n • [name.] must be a non-NA atomic scalar (?cmp_scl).")}
   if (!vxn.) {err. <- c(err., "\n • [...] is empty.")}
   if (!vn2.) {err. <- c(err., "\n • [names.] must be NULL or an atomic vector of length equal to ...length()")}
   if (idef(err.)) {stop(err.)}

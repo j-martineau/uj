@@ -1,4 +1,4 @@
-#' @name dups_uj
+#' @name dups.
 #' @family values
 #' @title Identify Duplicate Values.
 #' @description Extended functionality for \code{duplicated}.
@@ -16,15 +16,15 @@
 #' idups(c(0:5, 5:10, 10:15, 15:20))
 #' idups(c(0:5, 5:10, 10:15, 15:20), int = T)
 #' @export
-dups_uj <- function() {help("upds_uj", package = "uj")}
+dups. <- function() {help("dups.", package = "uj")}
 
-#' @describeIn dups_uj Atomizes \code{...} (i.e., reduces it to a single atomic
+#' @describeIn dups. Atomizes \code{...} (i.e., reduces it to a single atomic
 #'   vector) and reduces the resulting vector to contain one copy of each
 #'   duplicated element.
 #' @export
 dups <- function(...) {out. <- av(...); unique(out.[duplicated(out.)])}
 
-#' @describeIn dups_uj Indexes all elements of \code{x} that are duplicates of
+#' @describeIn dups. Indexes all elements of \code{x} that are duplicates of
 #'   elements appearing earlier in \code{x}, either as a logical vector of the
 #'   same length as \code{x} (when \code{int = FALSE}) or as an integer vector
 #'   whose length is the same as the number of elements in \code{x} that are

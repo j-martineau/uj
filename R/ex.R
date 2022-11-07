@@ -1,16 +1,16 @@
-#' @name ex_uj
-#' @family meta
+#' @name ex.
+#' @family extensions
 #' @title Extract rows, columns, and/or elements
 #' @param x Any valid R object.
 #' @param r A logical or integer vector indexing rows to extract from \code{x}
-#'   of defined dimensionality 2 (\code{\link{id2D}}).
+#'   of \link[id2D]{defined dimensionality 2}.
 #' @param c A logical or integer vector indexing columns to extract from
-#'   \code{x} of defined dimensionality 2 (\code{\link{id2D}}).
+#'   \code{x} of \link[id2D]{defined dimensionality 2}.
 #' @param e A logical or integer vector indexing elements to extract from
-#'   \code{x} of defined dimensionality 1 (\code{\link{id1D}}).
+#'   \code{x} of \link[id1D]{defined dimensionality 1}.
 #' @examples
 #' Mat <- matrix(1:100, nrow = 10)
-#' Dat   <- as.tibble(MATRIX)
+#' Dat   <- as_tibble(Mat)
 #' iR <- 1:10 %in% 1:5
 #' iC <- 1:10 %in% 6:10
 #' iE <- which(1:26 %in% 1:13)
@@ -25,21 +25,21 @@
 #' ex(letters, e = iE)
 #' ex(letters, r = iR, c = iC)
 #' @export
-ex_uj <- function() {help("ex_uj", package = "uj")}
+ex. <- function() {help("ex.", package = "uj")}
 
-#' @describeIn ex_uj Extract specific rows and/or columns of matrices and
-#'   tabulars (\code{\link{itab}}) or extract specific elements of vecs or
-#'   vlists (\code{\link{ivec}} and \code{\link{ivls}}).
+#' @describeIn ex. Extract specific rows and/or columns of matrices and
+#'   \link[idtf]{dtfs} or extract specific elements of \link[ivec]{vecs} or
+#'   \link[ivls]{vlists}.
 ex <- function(x, r = NULL, c = NULL, e = NULL) {
   vx <- ipop(x)
   vr <- f0(inll(r), T, cmp_psw_vec(r))
   vc <- f0(inll(c), T, cmp_psw_vec(c))
   ve <- f0(inll(e), T, cmp_psw_vec(e))
   err  <- NULL
-  if (!fx) {err <- c(err, "\n • [x] must be populated.")}
-  if (!vr) {err <- c(err, "\n • [r] must be NULL or a positive, whole-number scalar/vector.")}
-  if (!vc) {err <- c(err, "\n • [c] must be NULL or a positive, whole-number scalar/vector.")}
-  if (!ve) {err <- c(err, "\n • [e] must be NULL or a positive, whole-number scalar/vector.")}
+  if (!fx) {err <- c(err, "\n • [x] must be populated (?ipop).")}
+  if (!vr) {err <- c(err, "\n • [r] must be NULL or a positive whole-number scalar/vector (?cmp_psw_scl, ?cmp_psw_vec).")}
+  if (!vc) {err <- c(err, "\n • [c] must be NULL or a positive whole-number scalar/vector (?cmp_psw_scl, ?cmp_psw_vec).")}
+  if (!ve) {err <- c(err, "\n • [e] must be NULL or a positive whole-number scalar/vector (?cmp_psw_scl, ?cmp_psw_vec).")}
   if (idef(err)) {stop(err)}
   if (id2D(x)) {
     ve <- inll(e)
@@ -63,9 +63,9 @@ ex <- function(x, r = NULL, c = NULL, e = NULL) {
     ve <- f0(!vx, T, all(e <= length(x)))
     err <- NULL
     if (!vd) {c(err, "\n • [x] is neither rectangular nor a populated vector or vlist.")}
-    if (!vx) {c(err, "\n • [x] is a populated vector or vlist, but [e = NULL].")}
-    if (!vr) {c(err, "\n • [r] is a populated vector or vlist, but [r] specifies rows to extract.")}
-    if (!vc) {c(err, "\n • [c] is a populated vector or vlist, but [c] specifies columns to extract.")}
+    if (!vx) {c(err, "\n • [x] is a populated vector or vlist (?pop_vec, ?pop_vls), but [e = NULL].")}
+    if (!vr) {c(err, "\n • [r] is a populated vector or vlist (?pop_vec, ?pop_vls), but [r] specifies rows to extract.")}
+    if (!vc) {c(err, "\n • [c] is a populated vector or vlist (?pop_vec, ?pop_vls), but [c] specifies columns to extract.")}
     if (!ve) {c(err, "\n • [e] contains values that do not point to any element of [x].")}
     if (idef(err)) {stop(err)}
     x[e]
