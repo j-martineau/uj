@@ -7,14 +7,15 @@
 #'           atomic elements of each argument in \code{...}.
 #'     \item Convert the result to mode character.
 #'     \item Replace each element of the result with that element's constituent
-#'           parts as delimited by \code{d.}, producting a potentially longer
+#'           parts as delimited by \code{d.}, producing a potentially longer
 #'           character vector.
 #'     \item If \code{n.} is not \code{NULL}, extracts the \code{n.}-th
 #'           elements(s) from the result.
-#'     \item If \code{trm.} is \code{TRUE}, trims whitespace (i.e., spaces,
+#'     \item If \code{trm.} is \code{TRUE}, trims white space (i.e., spaces,
 #'           tabs, newlines) from both ends of each element of the result.
-#'     \item If \code{sqz.} is \code{TRUE}, removes blank strings elements
-#'           (i.e., \code{""}) from the result.
+#'     \item If \code{sqz.} is \code{TRUE}, removes leading and trailing white
+#'           space and replaces any multi-character strings of white-space
+#'           strings inside the result with a single space.
 #'     \item If \code{u.} is \code{TRUE}, reduces the result to unique values. }
 #'   \strong{\code{ch}} splits strings into their constituent characters
 #'   following these sequential steps:\enumerate{
@@ -26,8 +27,9 @@
 #'           character vector.
 #'     \item If \code{trm.} is \code{TRUE}, trims white space (i.e., spaces,
 #'           tabs, newlines) from both ends of each element of the result.
-#'     \item If \code{sqz.} is \code{TRUE}, removes characters that are neither
-#'           letters, digits, nor spaces from the result.
+#'     \item If \code{sqz.} is \code{TRUE}, removes leading and trailing white
+#'           space and replaces any multi-character strings of white-space
+#'           strings inside the result with a single spac\
 #'     \item If \code{n.} is not \code{NULL}, extracts the \code{n.}-th
 #'           elements(s) from the result.
 #'     \item If \code{u.} is \code{TRUE}, reduces the result to unique values. }
