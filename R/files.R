@@ -86,6 +86,7 @@ parent_dirs <- function(path, err = T) {strsplit(parent_path(path, err = err), .
 
 #' @describeIn files. Create sub-directories within an existing directory,
 #'   optionally asking the user to choose an existing directory.
+#' @export
 newdirs <- function(dirs, path = NULL) {
   cancel <- function() {stop("canceled by user.")}                               # FUNCTION to throw an error
   if (inll(path)) {                                                              # IF path is not supplied
