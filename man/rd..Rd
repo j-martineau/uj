@@ -242,11 +242,11 @@ A \code{\link[base]{data.frame}}.
 \description{
 The following table describes wrapper functions for the
 \code{readr} package:\tabular{ll}{
-WRAPPER NAME   \tab READR FUNCTION                                      \cr
-\code{rdclip}  \tab \code{\link[readr]{clipboard}}                      \cr
-\code{rdcsv}   \tab \code{\link[readr]{read_csv}}                       \cr
-\code{rdtsv}   \tab \code{\link[readr]{read_tst}}                       \cr
-\code{rdxsv}   \tab \code{\link[readr]{read_delim}}                       }
+WRAPPER NAME    \tab READR FUNCTION                                     \cr
+\code{rdclip}   \tab \code{\link[readr]{clipboard}}                     \cr
+\code{rdcsv}    \tab \code{\link[readr]{read_csv}}                      \cr
+\code{rdtsv}    \tab \code{\link[readr]{read_tst}}                      \cr
+\code{rdxsv}    \tab \code{\link[readr]{read_delim}}                      }
 File-reading functions also allow for a \code{NULL} value of file to prompt
 the user to choose a file.
 }

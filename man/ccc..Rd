@@ -47,36 +47,37 @@ atm_vec(x, xxx = NULL)
 
 ccc_vals()
 
-iarr(x.)
+iarr(x)
 
-igen(x.)
+igen(x)
 
-idtf(x.)
+idtf(x)
 
-ivls(x.)
+ivls(x)
 
-ivtp(x.)
+ivtp(x)
 
-imat(x.)
+imat(x)
 
-imvc(x.)
+imvc(x)
 
-iscl(x.)
+iscl(x)
 
-ivec(x.)
+ivec(x)
 
-ccc(x.)
+ccc(x)
 
-iccc(x., xxx., ...)
+iccc(x, xxx, ...)
 }
 \arguments{
-\item{x.}{An object.}
+\item{x}{An object.}
 
-\item{xxx.}{A character scalar containing one or more values from
-\code{ccc_vals()} separated by pipes and/or underscores. Combinations of
-extended classes can be specified by separating them with underscores.
-Separating extended classes or combinations of extended classes with pipes
-will result in a value of \code{TRUE} if any of them applies to \code{x.}.}
+\item{xxx}{\code{NULL} or \link[cmp_chr_scl]{complete character scalar}
+containing one or more values from \code{ccc_vals()} separated by pipes
+and/or underscores. Combinations of extended classes can be specified by
+separating them with underscores. Separating extended classes or
+combinations of extended classes with pipes will result in a value of
+\code{TRUE} if any of them applies to \code{x}.}
 
 \item{...}{Additional arguments to \code{\link{meets}} containing value and
 element/row/column count restrictions.}
@@ -85,13 +86,13 @@ element/row/column count restrictions.}
 \code{ccc_vals} returns a character vector containing all valid
 extended class property values. \code{ccc} returns a character scalar
 or vector containing all extended class properties from
-\code{ccc_vals()} applicable to \code{x.}. All others return either
+\code{ccc_vals()} applicable to \code{x}. All others return either
 \code{TRUE} or \code{FALSE}.
 }
 \description{
 Extended classes are not formally defined as a new classes, but
 are dynamically evaluated for characteristics through a call to
-\code{iccc(x.)} where the function name (e.g., 'ccc') is the extended class
+\code{iccc(x)} where the function name (e.g., 'ccc') is the extended class
 name (see \code{is_ccc} for mode-agnostic extended classes. \code{TRUE} or
 \code{FALSE} is always returned, and \code{FALSE} is always returned for
 the \code{NULL} object.
@@ -101,73 +102,73 @@ There are two sets of functions for these extended classes in the form
 (\code{\link{is_mmm}}) or the form \code{iccc} which does not check for
 mode beyond being atomic. The are listed in the table below.
 \tabular{lll}{
-ATOMIC    \tab \strong{atm_ccc  }\tab \strong{iccc}\cr
-CLASS     \tab FUNCTION          \tab FUNCTION     \cr
-array     \tab \code{atm_arr  }  \tab \code{iarr}  \cr
-generic   \tab \code{atm_gen}    \tab \code{igen}  \cr
-dtf       \tab \code{atm_dtf}    \tab \code{idtf}  \cr
-vlist     \tab \code{atm_vls}    \tab \code{ivls}  \cr
-vtype     \tab \code{atm_vtp}    \tab \code{ivtp}  \cr
-matrix    \tab \code{atm_mat}    \tab \code{imat}  \cr
-multivec  \tab \code{atm_mvc}    \tab \code{imvc}  \cr
-scalar    \tab \code{atm_scl}    \tab \code{iscl}  \cr
-vec       \tab \code{atm_vec}    \tab \code{ivec}    }
+ATOMIC     \tab \strong{atm_ccc   }\tab \strong{iccc}\cr
+CLASS      \tab FUNCTION           \tab FUNCTION     \cr
+array      \tab \code{atm_arr   }  \tab \code{iarr}  \cr
+generic    \tab \code{atm_gen}     \tab \code{igen}  \cr
+dtf        \tab \code{atm_dtf}     \tab \code{idtf}  \cr
+vlist      \tab \code{atm_vls}     \tab \code{ivls}  \cr
+vtype      \tab \code{atm_vtp}     \tab \code{ivtp}  \cr
+matrix     \tab \code{atm_mat}     \tab \code{imat}  \cr
+multivec   \tab \code{atm_mvc}     \tab \code{imvc}  \cr
+scalar     \tab \code{atm_scl}     \tab \code{iscl}  \cr
+vec        \tab \code{atm_vec}     \tab \code{ivec}    }
 }
 \section{Functions}{
 \itemize{
-\item \code{atm_arr()}: Is \code{x.} an atomic array (optionally checking
+\item \code{atm_arr()}: Is \code{x} an atomic array (optionally checking
 extended mode)?
 
-\item \code{atm_dtf()}: Is \code{x.} an atomic dtf (optionally checking extended
+\item \code{atm_dtf()}: Is \code{x} an atomic dtf (optionally checking extended
 mode)?
 
-\item \code{atm_gen()}: Is \code{x.} an atomic generic (optionally checking extended
+\item \code{atm_gen()}: Is \code{x} an atomic generic (optionally checking extended
 mode)?
 
-\item \code{atm_vls()}: Is \code{x.} an atomic vlist (optionally checking extended
+\item \code{atm_vls()}: Is \code{x} an atomic vlist (optionally checking extended
 mode)?
 
-\item \code{atm_vtp()}: Is \code{x.} an atomic vtype (optionally checking extended
+\item \code{atm_vtp()}: Is \code{x} an atomic vtype (optionally checking extended
 mode)?
 
-\item \code{atm_mat()}: Is \code{x.} an atomic matrix (optionally checking extended
+\item \code{atm_mat()}: Is \code{x} an atomic matrix (optionally checking extended
 mode)?
 
-\item \code{atm_mvc()}: Is \code{x.} an atomic multivec (optionally checking
+\item \code{atm_mvc()}: Is \code{x} an atomic multivec (optionally checking
 extended mode)?
 
-\item \code{atm_scl()}: Is \code{x.} an atomic scalar (optionally checking extended
+\item \code{atm_scl()}: Is \code{x} an atomic scalar (optionally checking extended
 mode)?
 
-\item \code{atm_vec()}: Is \code{x.} an atomic vec (optionally checking extended
+\item \code{atm_vec()}: Is \code{x} an atomic vec (optionally checking extended
 mode)?
 
 \item \code{ccc_vals()}: Get a character vector of all possible atomic extended
 classes.
 
-\item \code{iarr()}: Is \code{x.} an atomic array?
+\item \code{iarr()}: Is \code{x} an atomic array?
 
-\item \code{igen()}: Is \code{x.} an atomic generic?
+\item \code{igen()}: Is \code{x} an atomic generic?
 
-\item \code{idtf()}: Is \code{x.} an atomic dtf?
+\item \code{idtf()}: Is \code{x} an atomic dtf?
 
-\item \code{ivls()}: Is \code{x.} an atomic vlist?
+\item \code{ivls()}: Is \code{x} an atomic vlist?
 
-\item \code{ivtp()}: Is \code{x.} an atomic vtype?
+\item \code{ivtp()}: Is \code{x} an atomic vtype?
 
-\item \code{imat()}: Is \code{x.} an atomic matrix?
+\item \code{imat()}: Is \code{x} an atomic matrix?
 
-\item \code{imvc()}: Is \code{x.} an atomic multivec?
+\item \code{imvc()}: Is \code{x} an atomic multivec?
 
-\item \code{iscl()}: Is \code{x.} an atomic scalar?
+\item \code{iscl()}: Is \code{x} an atomic scalar?
 
-\item \code{ivec()}: Is \code{x.} an atomic vec?
+\item \code{ivec()}: Is \code{x} an atomic vec?
 
 \item \code{ccc()}: Gets a vector of properties from \code{ccc_vals()} that are
-applicable to \code{x.}.
+applicable to \code{x}.
 
-\item \code{iccc()}: Evaluates whether any (combination) property in \code{xxx.}
-is an extended class property applicable to \code{x.}.
+\item \code{iccc()}: Evaluates whether any (combination) property in \code{xxx}
+is an extended class property applicable to \code{x}.
 
 }}
 \section{Submitting additional arguments to \code{ccc} via \code{...}}{
@@ -187,7 +188,7 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},

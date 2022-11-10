@@ -70,11 +70,11 @@ pt2in(x)
 pt2mm(x)
 }
 \arguments{
-\item{x}{An atomic, numeric object.}
+\item{x}{\link[atm_num]{Atomic, numeric object}.}
 
-\item{old, new}{Character scalars giving old and new units of length. Valid
-values are \code{c('cm', 'in', 'mm', 'pt')} for centimeters, inches,
-millimeters, and points, respectively.}
+\item{old, new}{\link[cmp_chr_scl]{Complete character scalars} giving old and
+new units of length. Valid values are \code{c('cm', 'in', 'mm', 'pt')} for
+centimeters, inches, millimeters, and points, respectively.}
 }
 \value{
 An atomic, numeric object.

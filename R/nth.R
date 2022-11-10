@@ -1,8 +1,8 @@
 #' @name n_th.
 #' @family extensions
 #' @title Extract elements by index position
-#' @param x Vector to extract elements from
-#' @param n Positive integer vector of indexing values to extract.
+#' @param x Vector to extract elements from.
+#' @param n \link[cmp_psw_scl]{Complete positive whole-number scalar}.
 #' @return Subset of \code{x}
 #' @examples
 #' first_n(letters, 5)

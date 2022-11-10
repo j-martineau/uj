@@ -10,19 +10,20 @@ case.()
 case(name., ..., names. = NULL, def. = "err")
 }
 \arguments{
-\item{name.}{\code{NULL} or an atomic scalar naming an argument in
-\code{...}. \code{NULL} is converted to \code{'NULL'} and \code{NA} is
-converted to \code{'NA'}. Coerced to mode character.}
+\item{name.}{\code{NULL} or an \link[atm_scl]{atomic scalar} naming an
+argument in \code{...}. \code{NULL} is converted to \code{'NULL'} and
+\code{NA} is converted to \code{'NA'}. Coerced to mode character.}
 
 \item{...}{Any number of uniquely named arguments to select from to be the
 return value. Selection is based on which element's name equals the value
 of \code{name.}. When there is no match, if \code{def.} is \code{'err'}, an
 error is thrown, otherwise \code{def.} is returned as the default value.}
 
-\item{names.}{Either \code{NULL} or a character scalar/vector. If this
-argument is of mode character, it is split using pipe (\code{'|'})
-delimiters. Its length (after potential splitting) must match the number of
-arguments in \code{...}. Values of \code{names.} must be unique.}
+\item{names.}{Either \code{NULL} or a \link{cmp_scl_vec}{complete character
+  vec}. If this argument is of mode character, it is split using pipe
+(\code{'|'}) delimiters. Its length (after potential splitting) must match
+the number of arguments in \code{...}. Values of \code{names.} must be
+unique.}
 
 \item{def.}{The default value to return if no match is found, unless
 \code{def.} is the character scalar \code{'err'}. In that case, if no match

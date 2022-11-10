@@ -9,19 +9,20 @@
 \usage{
 xb.()
 
-xb(..., bind. = NA)
+xb(..., bind = NA)
 
 cb(...)
 
 rb(...)
 }
 \arguments{
-\item{..., x., y.}{Either atomic matrices compatible for binding or atomic
-dtfs compatible for binding (see \code{\link{compatible}}).}
+\item{...}{Either atomic matrices compatible for binding or atomic dtfs
+compatible for binding (see \code{\link{compatible}}).}
 
-\item{bind.}{\code{'r'} to indicate row binding, \code{'c'} to indicate
-column, or \code{NA} to identify whether either row or column binding is
-successful and return whichever was successful.}
+\item{bind}{\link[ch1_scl]{Onechar scalar} indicating how to bind: \code{'r'}
+for row binding, \code{'c'} for column-binding, \code{NA} to identify
+whether either row or column binding is successful and return whichever was
+successful.}
 }
 \value{
 An \code{\link[idtf]{atomic dtf}} or an atomic matrix.

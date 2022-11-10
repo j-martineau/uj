@@ -13,15 +13,12 @@ todec(x)
 tohex(x)
 }
 \arguments{
-\item{x}{Vector of positive whole numbers or strings with hexademical number
-representations.}
+\item{x}{\link[psw_vec]{Positive whole number vec} or
+\link[chr_vec]{character vec} of hexademical number representations.}
 }
 \description{
-Convert between integer and hexadecimal
-}
-\details{
-Hexademical representation is of mode character and may begin with
-"#".
+Hexademical representation is of mode character and may begin
+with "#".
 }
 \section{Functions}{
 \itemize{

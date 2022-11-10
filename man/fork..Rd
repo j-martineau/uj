@@ -25,24 +25,24 @@ ff1(test, yes, no)
 ffx(test, yes, no)
 }
 \arguments{
-\item{test}{A logical scalar for \code{f0}, \code{ff0}, \code{f1}, and
-\code{ff1}. A logical vector for \code{fx} and \code{ffx}. \code{f0},
-\code{f1}, and \code{f2} can manage \code{NA} values in \code{test}. The
-others do not.}
+\item{test}{\link[cmp_lgl_scl]{Complete logical scalar} for \code{f0},
+\code{ff0}, \code{f1}, and \code{ff1}. \link[cmp_lgl_vec]{Complete logical
+vec} for \code{fx} and \code{ffx}. \code{f0}, \code{f1}, and \code{f2} can
+manage \code{NA} values in \code{test}. The others do not.}
 
 \item{yes}{An object of any type for \code{f0}, \code{ff0}, \code{f1}, and
-\code{ff1}. An atomic scalar or an atomic vector of the same length as
-\code{test} for \code{fx} and \code{ffx}.}
+\code{ff1}. An \link[atm_scl]{atomic scalar} or an \link[atm_vec]{atomic
+vec} of the same length as \code{test} for \code{fx} and \code{ffx}.}
 
 \item{no}{An object of any type for \code{f0}, \code{ff0}, \code{f1}, and
-\code{ff1}. An atomic scalar or an atomic vector of the same length as
-\code{test} for \code{fx} and \code{ffx}. Must be \code{\link{compatible}}
-with \code{yes}.}
+\code{ff1}. An \link[atm_scl]{atomic scalar} or an \link[atm_vec]{atomic
+vec} of the same length as \code{test} for \code{fx} and \code{ffx}. Must
+be \code{\link{compatible}} with \code{yes}.}
 
-\item{na}{An object of any type for \code{f1}. An atomic scalar
-\code{\link{compatible}} with \code{yes} and \code{no} for \code{fx} and
-\code{ffx}, with the additional possibility of \code{na = 'err'} for
-\code{fx} to indicate an error should be thrown if any values in
+\item{na}{An object of any type for \code{f1}. An \link[atm_scl]{atomic
+scalar} \code{\link{compatible}} with \code{yes} and \code{no} for
+\code{fx} and \code{ffx}, with the additional possibility of \code{na =
+  'err'} for \code{fx} to indicate an error should be thrown if any values in
 \code{test} are \code{NA}.}
 
 \item{err}{\code{'err'} or an object to be returned when \code{test} is not

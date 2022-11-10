@@ -13,8 +13,8 @@ comparable(..., recycle. = T)
 \item{...}{An arbitrary number of arguments to be checked for comparability
 with each other.}
 
-\item{recycle.}{A logical scalar indicating whether arguments in \code{...}
-must be recyclable to be comparable.}
+\item{recycle.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating
+whether arguments in \code{...} must be recyclable to be comparable.}
 }
 \value{
 A logical scalar.
@@ -41,7 +41,7 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},

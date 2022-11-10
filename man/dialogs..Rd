@@ -13,84 +13,144 @@
 \alias{choose_dir}
 \alias{choose_doc}
 \alias{yes}
+\alias{ask}
+\alias{ask1}
+\alias{askn}
+\alias{asksn}
+\alias{asks1}
+\alias{asknew}
 \title{Dialog boxes using package \code{svDialogs}.}
 \usage{
 dialogs_uj()
 
-msgbox(..., t. = "ok")
+msgbox(..., t = "ok")
 
-dirbox(..., def. = getwd())
+dirbox(..., def = getwd())
 
 docbox(...)
 
-ansbox(x. = "Enter a value", def. = "")
+ansbox(x = "Enter a value", def = "")
 
 no(...)
 
-msg(x., t. = "ok")
+msg(x, t = "ok")
 
-okx(x.)
+okx(x)
 
-choose_dir(type. = "file")
+choose_dir(type = "file")
 
-choose_doc(type. = "document")
+choose_doc(type = "document")
 
 yes(...)
+
+ask(..., def = v(blank), cancel = ".stop")
+
+ask1(opts, what, more = F)
+
+askn(opts, what, all = T, none = T, more = F)
+
+asksn(opts, what, per = 9)
+
+asks1(opts, what, per = 9)
+
+asknew(old., what, unq = T)
 }
 \arguments{
-\item{...}{Arguments to be atomized and glued together into a message.}
+\item{...}{Objects to be atomized to create the question.}
 
-\item{t.}{Character scalar type of dialog box (valid values are \code{c('ok',
-'okcancel', 'yesno', 'yesnocancel'}).}
+\item{t}{\link[cmp_chr_scl]{Complete character scalar} type of dialog box
+(valid values are \code{c('ok', 'okcancel', 'yesno', 'yesnocancel'}).}
 
-\item{def.}{Character scalar default value.}
+\item{def}{\link[cmp_chr_scl]{Complete character scalar} default value.}
 
-\item{x.}{Character scalar message.}
+\item{type, }{\link[cmp_chr_scl]{Complete character scalar} type of directory
+or document to select}
 
-\item{type., }{Character scalar type of directory or document to select.}
+\item{cancel}{\link[cmp_chr_scl]{Complete character scalar} value to return
+if user clicks the \code{cancel} button The value \code{cancel = '.stop'}
+is an indicator that an error should be thrown if the user clicks the
+\code{cancel} button.}
+
+\item{opts}{Character vector of options to choose from.}
+
+\item{what}{\link[cmp_chr_scl]{Complete character scalar} describing type of
+option being presented.}
+
+\item{more}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+there are more options than could be presented in a single dialog box that
+still could be presented.}
+
+\item{all, none}{\link[cmp_lgl_scl]{Complete logical scalars} indicating
+whether the user should be able to select all options or none of the
+options, respectively.}
+
+\item{per}{\link[cmp_psw_scl]{Complete positive whole-number scalar}
+indicating the maximum number of options to present in a single dialog box
+interaction.}
+
+\item{unq}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether new
+values must be unique.}
+
+\item{x.}{\link[cmp_chr_scl]{Complete character scalar} message.}
 }
 \value{
-Character scalar
+\link[cmp_chr_scl]{Complete character scalar}
 }
 \description{
-Launch a dialog box.
+Launch a dialog box
 }
 \section{Functions}{
 \itemize{
-\item \code{msgbox()}: Collapse \code{...} into a character scalar message to
-the user and launch a simple dialog box to give the message.
+\item \code{msgbox()}: Collapse \code{...} into a character scalar message and
+launch a simple dialog box to give the message.
 
-\item \code{dirbox()}: Ask user to select a directory/folder.
-Fail safe feature launches a message dialog box prompting the use to take
-an action in the next dialog box. After user acknowledges, launches the
-directory/folder selection dialog to avoid problems with the prompt not
-showing up on all operating systems.
+\item \code{dirbox()}: Collapse {...} into a character scalar prompt. Ask user
+to select a directory/folder. Fail safe feature launches a message dialog
+box prompting the use to take an action in the next dialog box After user
+acknowledges, launches the directory/folder selection dialog to avoid
+problems with the prompt not showing up on all operating systems.
 
-\item \code{docbox()}: Ask user to select a document. Fail safe feature
-launches a message dialog box prompting the use to take an action in the
-next dialog box. After user acknowledges, launches the file selection
-dialog to avoid problems with the prompt not showing up on all operating
-systems.
+\item \code{docbox()}: Collapse \code{...} into a character scalar prompt. Ask
+user to select a document Fail safe feature launches a message dialog box
+prompting the use to take an action in the next dialog box After user
+acknowledges, launches the file selection dialog to avoid problems with the
+prompt not showing up on all operating systems.
 
 \item \code{ansbox()}: Ask user to input a text response.
 
-\item \code{no()}: Does user respond 'no'?
+\item \code{no()}: Does user select the 'no' button (rather than 'yes') in
+response to the prompt?
 
 \item \code{msg()}: Display a message in a dialog box, returning
 the value of the button clicked.
 
-\item \code{okx()}: Display a message in a dialog box, asking
-user whether to cancel (or continue).
+\item \code{okx()}: Does user select the 'ok' (rather than 'cancel') button
+in response to the prompt?
 
 \item \code{choose_dir()}: Ask user to select a directory.
 
-\item \code{choose_doc()}: Ask user to select a document.
+\item \code{choose_doc()}: Ask user to select a document
 
-\item \code{yes()}: Does user respond 'yes'?
+\item \code{yes()}: Does user select the 'yes' button (rather than 'no') in
+response to the prompt?
+
+\item \code{ask()}: Ask the user for typed input to be returned without
+further processing.
+
+\item \code{ask1()}: Ask user to select a single option from among a list of
+possible options.
+
+\item \code{askn()}: Ask user to select a one or more options from among a
+list of possible options.
+
+\item \code{asksn()}: Ask user to select a one or more options from among a
+list of possible options, possibly across multiple rounds of interaction
+
+\item \code{asks1()}: Ask user to select 1 options from among a list of
+possible options, possibly across multiple dialog boxes.
+
+\item \code{asknew()}: Ask user to enter a space- or comma-separated list of
+replacement values for existing values.
 
 }}
-\seealso{
-Other dialogs: 
-\code{\link{ask.}()}
-}
 \concept{dialogs}

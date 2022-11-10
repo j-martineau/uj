@@ -4,15 +4,21 @@
 #' @title Recycling and recyclability
 #' @param ... Named arguments to be recycled in the environment of the calling
 #'   function.
-#' @param lengths. Vector of lengths to check for recyclability.
-#' @param targ. Target length of recycled arguments.
-#' @param n. For \code{recyclable_n}, the lengths of arguments to be recycled;
-#'   for \code{recyclable} and \code{recycle}, \code{NULL} or the set of valid
-#'   recycled argument lengths.
-#' @param min. \code{NULL} or the minimum valid recycled argument length.
-#' @param max. \code{NULL} or the maximum valid recycled argument length.
-#' @param err. \code{TRUE} or \code{FALSE} indicating whether to throw an error
-#'   if the arguments in \code{...} are not recyclable.
+#' @param lengths. \link[cmp_psw_vec]{Complete positive whole-number vec} of
+#'   lengths to check for recyclability.
+#' @param targ. \link[cmp_psw_scl]{Complete positive whole-number scalar} giving
+#'   the target length of recycled arguments.
+#' @param n. For \code{recyclable_n}, a \link[cmp_psw_vec]{complete positive
+#'   whole-number vec} giving the lengths of arguments to be recycled; for
+#'   \code{recyclable} and \code{recycle}, either \code{NULL} or a
+#'   \link[cmp_psw_vec]{complete positive whole-number vec} giving the set of
+#'   valid recycled argument lengths.
+#' @param min. \code{NULL} or \link[cmp_psw_scl]{complete positive whole-number
+#'   scalar} giving the minimum valid recycled argument length.
+#' @param max. \code{NULL} or \link[cmp_psw_scl]{complete positive whole-number
+#'   scalar} giving the maximum valid recycled argument length.
+#' @param err. \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+#'   throw an error if the arguments in \code{...} are not recyclable.
 #' @return \code{recyclable_n} and \code{recyclable} return \code{TRUE} or
 #'   \code{FALSE}. \code{recycle} returns \code{NULL} as it is called for the
 #'   side effect of recycling arguments in the environment of a parent function.

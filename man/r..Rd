@@ -5,43 +5,43 @@
 \alias{r}
 \alias{e}
 \alias{re}
-\title{Extension of \code{\link[base:rep]{base::rep}}.}
+\title{Extension of \code{base::rep}.}
 \usage{
 r.()
 
-r(r., ...)
+r(r, ...)
 
-e(e., ...)
+e(e, ...)
 
-re(r., e., ...)
+re(r, e, ...)
 }
 \arguments{
-\item{r.}{An integer scalar giving the number of replications of entire
-vectors.}
+\item{r}{giving the number of replications of entire vectors.}
 
 \item{...}{One or more atomic vectors to be replicated, reduced to unique
 values, or reduced to unique duplicated values.}
 
-\item{e.}{An integer scalar giving the number of times each value is to be
-replicated in place before replication of the entire vector.}
+\item{e}{\link[cmp_psw_scl]{Complete positive whole-number scalar} giving the
+number of times each value is to be replicated in place before replication
+of the entire vector.}
 }
 \value{
 An atomic vector.
 }
 \description{
-Extension of \code{\link[base:rep]{base::rep}}.
+Extension of \code{base::rep}.
 }
 \section{Functions}{
 \itemize{
-\item \code{r()}: Atomizes \code{...} and concatenates \code{r.} copies of the
-resulting vector. For example, \code{r(2, 0:1, 9)} returns \code{c(0, 1, 9,
+\item \code{r()}: Atomizes \code{...} and concatenates \code{r} copies of the
+resulting vector For example, \code{r(2, 0:1, 9)} returns \code{c(0, 1, 9,
   0, 1, 9)}.
 
 \item \code{e()}: Atomizes \code{...} and replaces each element of the resulting
 vector with \code{e.} copies of itself. For example, \code{e(3, 0:1, 9)}
 returns \code{c(0, 0, 0, 1, 1, 1, 9, 9, 9)}.
 
-\item \code{re()}: Atomizes \code{...}, creates \code{r.} copies of the resulting
+\item \code{re()}: Atomizes \code{...}, creates \code{r} copies of the resulting
 vector, then replaces each element of that resulting vector with \code{e.}
 copies of itself. For example, \code{re(2, 3, 0:1, 9)} returns \code{c(0,
   0, 0, 1, 1, 1, 9, 9, 9, 0, 0, 0, 1, 1, 1, 9, 9, 9)}. NOTE: There is no

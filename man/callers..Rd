@@ -9,15 +9,15 @@
 \usage{
 callers.()
 
-callers(gens. = NULL)
+callers(gens = NULL)
 
 caller()
 
 ncallers()
 }
 \arguments{
-\item{gens.}{Positive whole-number vec giving the number(s) of generations
-back in the function call stack to go.}
+\item{gens}{\link[cmp_psw_vec]{Complete positive whole-number vec} giving the
+number(s) of generations back in the function call stack to go.}
 }
 \value{
 \code{callers} and \code{caller} return a character scalar or vector.

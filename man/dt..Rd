@@ -61,12 +61,14 @@ dtwide(
 \item{x}{An R object (\code{dtas}, \code{dtis}, and \code{dtie}). A
 \code{\link[data.table]{data.table}} for all other functions.}
 
-\item{say}{Logical scalar indicating whether to notify user of starting a
-potentially time-consuming process (i.e., converting to data.table, joining
-two large data.tables, and reshaping from long to wide).}
+\item{say}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+notify user of starting a potentially time-consuming process (i.e.,
+converting to data.table, joining two large data.tables, and reshaping from
+long to wide).}
 
-\item{ir, ic}{Logical or numeric indices or variables naming rows and columns
-of \code{x}, respectively.}
+\item{ir, ic}{\link[cmp_ind_vec]{Complete indexer vecs} or
+\link[cmp_chr_vec]{complete character vecs} identifying rows and columns of
+\code{x}, respectively.}
 
 \item{by}{A vector of shared column names in \code{x} and \code{y} to merge on.
 This defaults to the shared key columns between the two tables.
@@ -133,11 +135,11 @@ A \code{\link[data.table]{data.table}}.
 \description{
 The following table describes thin wraps in this group of
 functions:\tabular{ll}{
-WRAPPER         \tab FUNCTION                                           \cr
-\code{dtas}     \tab \code{\link[data.table]{as.data.table}}            \cr
-\code{dtis}     \tab \code{\link[data.table]{is.data.table}}            \cr
-\code{dtmerge}  \tab \code{\link[data.table]{merge}}                    \cr
-\code{dtwide}   \tab \code{\link[data.table]{dcast}}                      }
+WRAPPER          \tab FUNCTION                                          \cr
+\code{dtas}      \tab \code{\link[data.table]{as.data.table}}           \cr
+\code{dtis}      \tab \code{\link[data.table]{is.data.table}}           \cr
+\code{dtmerge}   \tab \code{\link[data.table]{merge}}                   \cr
+\code{dtwide}    \tab \code{\link[data.table]{dcast}}                     }
 Functionality is stripped down significantly for these wraps.
 \cr\cr
 There are a few additional wrappers that combine multiple \code{data.table}
@@ -145,18 +147,18 @@ operations or that address extraction of data from a data.table without
 using the non-standard \code{data.table} indexing functions. The are
 described in the table below.
 \tabular{ll}{
-WRAPPER        \tab FUNCTIONALITY                                       \cr
-\code{dtie}    \tab If \code{x} is already a data table, return it as is,
-otherwise, convert it to a data.table.              \cr
-\code{dtcols}  \tab Select columns from a data.table without non-standard
+WRAPPER         \tab FUNCTIONALITY                                      \cr
+\code{dtie}     \tab If \code{x} is already a data table, return it as is,
+otherwise, convert it to a data.table.             \cr
+\code{dtcols}   \tab Select columns from a data.table without non-standard
 data.table indexing functions (i.e.,
-\code{x[ , ..var]}).                                \cr
-\code{dtrows}  \tab Select rows from a data.table with similar syntax as
+\code{x[ , ..var]}).                               \cr
+\code{dtrows}   \tab Select rows from a data.table with similar syntax as
 \code{dtcols} (not strictly necessary as there is no
-special data.table syntax for extracting rows).     \cr
-\code{dtsub}   \tab Select a sub-table from a data.table without using
+special data.table syntax for extracting rows).    \cr
+\code{dtsub}    \tab Select a sub-table from a data.table without using
 non-standard data.table indexing functions (i.e.,
-\code{x[row.var, ..col.var]}).                        }
+\code{x[row.var, ..col.var]}).                       }
 }
 \details{
 \code{as.data.table} is a generic function with many methods, and other packages can supply further methods.

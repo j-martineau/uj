@@ -10,7 +10,7 @@ max_nch.()
 max_nch(x)
 }
 \arguments{
-\item{x}{Atomic character object.}
+\item{x}{\link[atm_chr]{Atomic character object}.}
 }
 \value{
 Integer scalar.

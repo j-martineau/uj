@@ -10,14 +10,15 @@ charn.()
 charn(x, n)
 }
 \arguments{
-\item{x}{Atomic character object.}
+\item{x}{\link[ichr]{Atomic character object}.}
 
-\item{n}{Positive whole-number scalar or positive whole-number atomic object
-of the same dimensions as \code{x}.}
+\item{n}{\link[cmp_psw_scl]{Complete positive whole-number scalar} or
+\link{cmp_psw}{complete positive whole-number atomic object} of the same
+dimensions as \code{x}.}
 }
 \value{
-\code{link[=ch1]{onechar}} atomic object of the same dimension as
-\code{x}.
+\code{link[cmp_ch1]{Complete onechar}} atomic object of the same
+dimension as \code{x}.
 }
 \description{
 Extract a single character

@@ -80,46 +80,52 @@ red_ppl(p = 1, s = 0, a = 1)
 
 red_vlt(p = 1, s = 0, a = 1)
 
-pal_cb(ngroups, ncolors = NULL, a = 1)
+pal_cb(ng, nc = NULL, a = 1)
 
 pal_swatch(x)
 }
 \arguments{
-\item{x}{Vector containing valid ℝ color representations. Recycled with
-\code{y}, \code{lighten}, \code{darken}, \code{comp}, \code{a}, \code{p},
-\code{s}, \code{wx}, and \code{wy} where these are valid arguments.}
+\item{x}{\link[is_vec]{Vec} containing valid ℝ color representations.
+Recycled with \code{y}, \code{lighten}, \code{darken}, \code{comp},
+\code{a}, \code{p}, \code{s}, \code{wx}, and \code{wy} where these are
+valid arguments.}
 
-\item{lighten}{A vector of proportions by which to lighten the colors given
-in \code{x} toward white.}
+\item{lighten}{\link[cmp_ppn_vec]{Complete proportion-valued numeric vec} of
+proportions by which to lighten the colors given in \code{x} toward white.}
 
-\item{darken}{A vector of proportions by which to darken the colors given in
-\code{x} toward black.}
+\item{darken}{\link[cmp_ppn_vec]{Complete proportion-valued numeric vec} of
+proportions by which to darken the colors given in \code{x} toward black.}
 
-\item{a}{A numeric vector of 1 or more alpha level in the range \code{[0, 1]}
-(0 = transparent, 0.5 = translucent, 1 = opaque). \code{NA} values in
-\code{a} are only applicable with \code{color(.)} and \code{blend(.)}) to
-indicate keeping existing alpha values.}
+\item{a}{\link{cmp_ppn_vec}{Complete proportion-valued numeric vec} of 1 or
+more alpha levels (0 = transparent, 0.5 = translucent, 1 = opaque).
+\code{NA} values in \code{a} are only applicable with \code{color(.)} and
+\code{blend(.)}) to indicate keeping existing alpha values.}
 
-\item{comp}{A logical vector indicating whether to return complementary
-colors.}
+\item{comp}{\link[cmp_lgl_vec]{Complete logical vec} indicating whether to
+return complementary colors.}
 
-\item{r, g, b}{Numeric vectors of values in the range \code{[0, 1]}
+\item{r, g, b}{\link[cmp_ppn_vec]{Complete proportion-valued numeric vecs}
 giving intensities of red, blue, and green from the RGB color space.
 Recycled with each other and \code{a}.}
 
-\item{h, s, v}{Numeric vectors of values in the range \code{[0, 1]} giving hue,
-saturation, and value/brightness from the HSV color space. Recycled with
-each other and \code{a}.}
+\item{h, s, v}{\link[cmp_ppn_vec]{Complete proportion-valued numeric vecs}
+giving hue, saturation, and value/brightness from the HSV color space.
+Recycled with each other and \code{a}.}
 
-\item{y}{Vector containing valid ℝ color representations.}
+\item{y}{\link[is_vec]{Vec} containing valid ℝ color representations.}
 
-\item{wx, wy}{Weight to apply to \code{x} and \code{y} in color blending.}
+\item{wx, wy}{\link[cmp_pos_vec]{Complete positive-valued numeric vectors}
+giving weights to apply to \code{x} and \code{y} in color blending.}
 
-\item{p, s}{Numeric vectors of 1 or more primary and secondary color
-intensities (respectively) in the range \code{[0, 1]}.}
+\item{p, s}{\link[cmp_ppn_vec]{Complete poportion-valued numeric vecs} of 1 or
+more primary and secondary color intensities (respectively) in the range
+\code{[0, 1]}.}
 
-\item{na}{Logical scalar indicating whether \code{NA} counts as a valid color
-alpha level.}
+\item{nc, ng}{\link[cmp_psw_scl]{Complete positive-valued whole-numnber
+scalars} giving the number of colors and groups, respectively.}
+
+\item{na}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+\code{NA} counts as a valid color alpha level.}
 }
 \value{
 A character vector of 1 or more hexadecimal RGB + alpha color
@@ -127,37 +133,27 @@ representations in the form \code{'#RRGGBBAA'}.
 }
 \description{
 Simple color creation with a wide variety of options (intensity,
-blending, lightening, darkening, opacity)
-\cr\cr
-The arguments \code{r}, \code{g}, \code{b}, \code{a}, \code{p}, and
-\code{s} are recyclable. Functions returns a vector of colors of length
-equal to the length of the longest vector passed in as an parameter.
-Parameters are recycled until they are as long as they longest parameter.
-An error is thrown if each parameter's length is not a whole-number divisor
-of the length of the maximum-length parameter.
-\cr \cr
-Red, green, and blue colors that make up a color are primary (\code{p}).
-Those that do not are secondary (\code{s}) and function in the following
-manner:
-\tabular{ll}{
-\code{p = 1, s = 0}\tab The most intense color
-\cr\code{p > s > 0}   \tab A lighter, muted color
-\cr\code{p < 1}       \tab A darker color
-\cr\code{p = s}       \tab A grey color
-}
-Treating \code{s} as primary and \code{p} as secondary creates complemtary
-colors in the following manner:
-\tabular{ll}{
-\code{s = 1, p = 0}\tab The most intense complementary color
-\cr\code{s > p > 0}   \tab A lighter, muted complementary color
-\cr\code{s < 1}       \tab A darker color
-}
+blending, lightening, darkening, opacity) \cr\cr The arguments \code{r},
+\code{g}, \code{b}, \code{a}, \code{p}, and \code{s} are recyclable.
+Functions returns a vector of colors of length equal to the length of the
+longest vector passed in as an parameter. Parameters are recycled until
+they are as long as they longest parameter. An error is thrown if each
+parameter's length is not a whole-number divisor of the length of the
+maximum-length parameter. \cr \cr Red, green, and blue colors that make up
+a color are primary (\code{p}). Those that do not are secondary (\code{s})
+and function in the following manner:\tabular{ll}{ ARGUMENT VALUES
+\tab RESULTING COLOR                              \cr
+\code{p = 1, s = 0   }\tab The most intense color.                      \cr
+\code{p > s > 0}      \tab A lighter, muted color.                      \cr
+\code{s < p < 1}      \tab A darker color.                              \cr
+\code{s = 1, p = 0   }\tab The most intense \emph{complementary} color. \cr
+\code{s > p > 0}      \tab A lighter, muted \emph{complementary} color. \cr
+\code{p < s < 1}      \tab A darker \emph{complementary} color.           }
 }
 \section{Functions}{
 \itemize{
-\item \code{color()}: Takes any valid R color representation and
-lightens, darkens, adds opacity levels, and/or gets the complementary
-color.
+\item \code{color()}: Takes any valid color representation and lightens,
+darkens, adds opacity levels, and/or gets the complementary color.
 
 \item \code{rgba()}: Create colors from r(ed), g(reen), b(lue), and
 a(lpha) weights in the interval [0, 1].

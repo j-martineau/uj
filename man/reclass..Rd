@@ -12,10 +12,10 @@ reclass(x, cls)
 \arguments{
 \item{x}{Any object.}
 
-\item{cls}{Character vector of classes.}
+\item{cls}{\link[cmp_chr_vec]{Complete character vec} of classes to apply.}
 }
 \value{
-An object of class \code{c}.
+An object of class \code{cls}.
 }
 \description{
 Set object class

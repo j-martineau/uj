@@ -25,7 +25,8 @@ pal_edots(n)
 pal_sdots(n)
 }
 \arguments{
-\item{n}{Number of unique values to return.}
+\item{n}{\link[cmp_psw_scl]{Complete positive whole-number scalar} indicating
+the number of unique values to return.}
 }
 \value{
 Character vector

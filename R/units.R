@@ -1,9 +1,9 @@
 #' @name u2u.
 #' @title Convert among plotting units
-#' @param x An atomic, numeric object.
-#' @param old,new Character scalars giving old and new units of length. Valid
-#'   values are \code{c('cm', 'in', 'mm', 'pt')} for centimeters, inches,
-#'   millimeters, and points, respectively.
+#' @param x \link[atm_num]{Atomic, numeric object}.
+#' @param old,new \link[cmp_chr_scl]{Complete character scalars} giving old and
+#'   new units of length. Valid values are \code{c('cm', 'in', 'mm', 'pt')} for
+#'   centimeters, inches, millimeters, and points, respectively.
 #' @return An atomic, numeric object.
 #' @export
 u2u. <- function() {help("u2u.", package = "uj")}

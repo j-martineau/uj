@@ -5,10 +5,11 @@
 #'   (supplements \code{tolower} and \code{toupper}).
 #' @description Convert to the case specified in \code{case}.
 #' @param ... An arbitrary number of atomic arguments to be processed.
-#' @param case. \code{'l'}, \code{'s'}, \code{'t'}, or \code{'u'} to indicate
-#'   lower, sentence, title, or upper case. Case insensitive.
-#' @param a. \code{TRUE} or \code{FALSE} indicating whether to
-#'   atomize \code{...} before processing.
+#' @param case. \link[cmp_ch1_scl]{Complete onechar scalar}: \code{'l'},
+#'   \code{'s'}, \code{'t'}, or \code{'u'} to indicate lower, sentence, title,
+#'   or upper case, respectively. Case insensitive.
+#' @param a. \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+#'  \link[a]{atomize} \code{...} before processing.
 #' @examples
 #' TestTitle    <- "This is a Title"
 #' TestSentence <- "This is a sentence."
@@ -31,41 +32,41 @@ tocase. <- function() {help("tocase.", package = "j")}
 #' @describeIn tocase. Convert among lower, upper, sentence, and title case.
 #' @export
 tocase <- function(case., ..., a. = T) {
-  x. <- list(...)
-  n. <- length(x.)
-  ac. <- all(sapply(x.), ichr)
-  at. <- all(sapply(x.), chr_tab)
-  al. <- all(sapply(x.), chr_vls)
-  if (n. > 0) {ns. <- lengths(x.)} else {ns. <- 1}
-  vc. <- isIN(case., c("l", "s", "t", "u"))
-  vd. <- f0(n. == 0, F,
+  x <- list(...)
+  n <- length(x.)
+  ac <- all(sapply(x.), ichr)
+  at <- all(sapply(x.), chr_dtf)
+  al <- all(sapply(x.), chr_vls)
+  if (n > 0) {ns <- lengths(x)} else {ns <- 1}
+  vc <- isIN(case., c("l", "s", "t", "u"))
+  vd <- f0(n == 0, F,
             f0(any(lengths(x.) == 0), F,
-               f0(all(sapply(x., is.atomic)), T, ac. | at. | al.)))
-  va. <- isTF(a.)
-  err. <- NULL
-  if (!vc.) {err. <- c(err., "\n • [case.] must be either 'l', 's', 't', or 'u'.")}
-  if (!vd.) {err. <- c(err., "\n • [...] must be contain non-empty character objects (?ichr), character dtfs (?chr_dtf), or character vlists (?chr_vls).")}
-  if (!va.) {err. <- c(err., "\n • [a.] must be TRUE or FALSE.")}
-  if (idef(err.)) {stop(err.)}
-  if (isT(a.)) {x. <- list(av(...))} else {x. <- list(...)}
-  for (i. in 1:length(x.)) {
-    xi. <- x.[[i.]]
-    if (ichr(xi.)) {
-      if      (case. == "l") {xi. <- tolower(xi.)}
-      else if (case. == "u") {xi. <- toupper(xi.)}
-      else if (case. == "t") {xi. <- stringr::str_to_title(xi.)}
-      else if (case. == "s") {xi. <- stringr::str_to_sentence(xi.)}
+               f0(all(sapply(x., is.atomic)), T, ac | at | al)))
+  va <- isTF(a.)
+  err <- NULL
+  if (!vc) {err <- c(err, "\n • [case.] must be either 'l', 's', 't', or 'u'.")}
+  if (!vd) {err <- c(err, "\n • [...] must be contain non-empty character objects (?ichr), character dtfs (?chr_dtf), or character vlists (?chr_vls).")}
+  if (!va) {err <- c(err, "\n • [a.] must be TRUE or FALSE.")}
+  if (idef(err)) {stop(err)}
+  if (isT(a.)) {x <- list(av(...))} else {x <- list(...)}
+  for (i in 1:length(x)) {
+    xi <- x[[i]]
+    if (ichr(xi)) {
+      if      (case. == "l") {xi <- tolower(xi)}
+      else if (case. == "u") {xi <- toupper(xi)}
+      else if (case. == "t") {xi <- stringr::str_to_title(xi)}
+      else if (case. == "s") {xi <- stringr::str_to_sentence(xi)}
     }
     else {
-      if      (case. == "l") {xi. <- apply(xi., 2, tolower)}
-      else if (case. == "u") {xi. <- apply(xi., 2, toupper)}
-      else if (case. == "t") {xi. <- apply(xi., 2, stringr::str_to_title)}
-      else if (case. == "s") {xi. <- apply(xi., 2, stringr::str_to_sentence)}
+      if      (case. == "l") {xi <- apply(xi, 2, tolower)}
+      else if (case. == "u") {xi <- apply(xi, 2, toupper)}
+      else if (case. == "t") {xi <- apply(xi, 2, stringr::str_to_title)}
+      else if (case. == "s") {xi <- apply(xi, 2, stringr::str_to_sentence)}
     }
-    x.[[i.]] <- xi.
+    x[[i]] <- xi
   }
-  if (length(x.) == 1) {x. <- x.[[1]]}
-  x.
+  if (length(x) == 1) {x <- x[[1]]}
+  x
 }
 
 #' @describeIn tocase. Convert to sentence case via

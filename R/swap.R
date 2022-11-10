@@ -2,11 +2,11 @@
 #' @family extensions
 #' @title Swap atomic values.
 #' @param x An atomic object.
-#' @param old Atomic vect of unique values to be replaced.
-#' @param new Atomic vect of replacement values. \code{length(new)} must be in
+#' @param old,new \link[atm_vec]{Atomic vecs} of unique values to be replaced
+#'   and replacement values, respectively. \code{length(new)} must be in
 #'   \code{c(1, length(old))}.
-#' @param all \code{TRUE} or \code{FALSE} indicating whether all values of
-#'   \code{x} must be contained in \code{old}.
+#' @param all link[cmp_lgl_scl]{Complete logical scalar} indicating whether all
+#'   values of \code{x} must be contained in \code{old}.
 #' @return An atomic object of the same dimensions as \code{x}.
 #' @export
 swap. <- function() {help("swap.", package = "uj")}

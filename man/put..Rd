@@ -21,12 +21,12 @@ matrix, or data.frame.}
 
 \item{v}{Vector of replacement values.}
 
-\item{e}{Logical vector, integer vector, or integer scalar indexing
+\item{e}{\link[cmp_ind_vec]{Complete indexer vec} or
+\link[cmp_psw_scl]{complete positive whole-number scalar} indexing
 element(s) to replace.}
 
-\item{r}{Logical vector or integer scalar indexing row to replace.}
-
-\item{c}{Logical vector or integer scalar indexing column to replace.}
+\item{r, c}{\link[cmp_ind_scl]{Complete indexer scalar} indicating row or
+column to replace, respectively.}
 }
 \value{
 An object of the same dimension as \code{x}.

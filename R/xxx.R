@@ -2,79 +2,80 @@
 #' @family props
 #' @title All purpose property checking
 #' @description This set of functions provide utilities that bring together
-#'   seven families of properties defined in this package as follows:
-#'   \tabular{ll}{
-#'     PROPERTY          \tab PROPERTY                 \cr
-#'     FAMILY            \tab TYPE                     \cr
-#'     \code{\link{ttt}} \tab fundamental type         \cr
-#'     \code{\link{sss}} \tab state of completeness    \cr
-#'     \code{\link{ddd}} \tab defined dimensionality   \cr
-#'     \code{\link{eee}} \tab effective dimensionality \cr
-#'     \code{\link{fff}} \tab form                     \cr
-#'     \code{\link{mmm}} \tab extended mode            \cr
-#'     \code{\link{ccc}} \tab extended class           \cr
-#'     \code{xxx}        \tab any property family        }
-#'   There are associated property functions in the following forms:
-#'   \tabular{lll}{
-#'     FORM               \tab PROPERTY TYPE  \tab FUNCTION PURPOSE          \cr
-#'     \code{ippp}        \tab \code{ppp} = any property value
-#'                        \tab check an object for property \code{ppp}       \cr
-#'     \code{ttt_ccc}     \tab \code{ttt} = a fundamental type property value,
+#'   seven families of properties defined in this package:\tabular{ll}{
+#'   PROPERTY          \tab PROPERTY                                         \cr
+#'   FAMILY            \tab TYPE                                             \cr
+#'   \code{\link{ttt}} \tab Fundamental type                                 \cr
+#'   \code{\link{sss}} \tab State of completeness                            \cr
+#'   \code{\link{ddd}} \tab Defined dimensionality                           \cr
+#'   \code{\link{eee}} \tab Effective dimensionality                         \cr
+#'   \code{\link{fff}} \tab Form                                             \cr
+#'   \code{\link{mmm}} \tab Extended mode                                    \cr
+#'   \code{\link{ccc}} \tab Extended class                                   \cr
+#'   \code{xxx}        \tab Any property family                                }
+#'   Associated property functions take the following forms:\tabular{lll}{
+#'   FUNCTIONAL           \tab PROPERTY    \tab FUNCTION \cr
+#'   FORM                 \tab TYPE        \tab PURPOSE  \cr
+#'   \code{ippp}          \tab \code{ppp} = any property value
+#'                        \tab Check an object for property \code{ppp}.      \cr
+#'   \code{ttt_ccc}       \tab \code{ttt} = a fundamental type property value,
 #'                             \code{ccc} = an extended class property value
-#'                        \tab check an object for a combination of fundamental
+#'                        \tab Check an object for a combination of fundamental
 #'                             type and extended class.                      \cr
-#'     \code{mmm_ccc}     \tab \code{mmm} = an extended mode property value,
+#'   \code{mmm_ccc}       \tab \code{mmm} = an extended mode property value,
 #'                             \code{ccc} = an extended class property value
-#'                        \tab check an object for a combination of extended
+#'                        \tab Check an object for a combination of extended
 #'                             mode and extended class.                      \cr
-#'     \code{cmp_mmm_ccc} \tab \code{cmp} = a complete object (i.e., a populated
+#'   \code{cmp_mmm_ccc}   \tab \code{cmp} = a complete object (i.e., a populated
 #'                             object containing no \code{NA} values),
 #'                             \code{mmm} = an extended mode property value,
 #'                             \code{ccc} = an extended class property value
-#'                        \tab check an object for completeness, extended mode,
+#'                        \tab Check an object for completeness, extended mode,
 #'                             and extended class simultaneously.            \cr
-#'     \code{ppp_vals}    \tab \code{ppp} = the name of a property family
-#'                        \tab get a character vector of all possible single
-#'                             property values.                              \cr
-#'     \code{ppp}         \tab \code{ppp} = name of a property family
-#'                        \tab get a character vector of all properties from the
+#'   \code{ppp_vals}      \tab \code{ppp} = the name of a property family
+#'                        \tab Get a character vector of all possible single
+#'                             fundamental type + extended class property
+#'                             values.                                       \cr
+#'   \code{ppp}           \tab \code{ppp} = name of a property family
+#'                        \tab Get a character vector of all properties from the
 #'                             specified family that apply to an object.     \cr
-#'     \code{is_ppp}      \tab \code{ppp} = name of a property family
-#'                        \tab evaluate whether an object has one or more
+#'   \code{is_ppp}        \tab \code{ppp} = name of a property family
+#'                        \tab Evaluate whether an object has one or more
 #'                             properties within the specified property family
 #'                             as well as whether it meets additional
 #'                             restrictions as specified in \code{...}.        }
-#'
-#' @param atb. \code{TRUE} or \code{FALSE} indicating whether to return the
-#'   result as a tibble with column 1 containing property values and
-#'   column 2 containing the property families.
-#' @param x. An object.
-#' @param xxx. A character scalar containing one or more values from
-#'   \code{xxx_vals()} separated by pipes and/or underscores. Combinations of
-#'   properties can be specified by separating them with underscores. Separating
-#'   properties or combinations of properties with pipes will result in a value
-#'   of \code{TRUE} if any of them applies to \code{x.}.
-#' @param valid. A character vector containing all properties considered valid.
+#' @param as.tb \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+#'   to return the result as a tibble with column 1 containing property values
+#'   and column 2 containing the property families.
+#' @param x An ℝ object.
+#' @param xxx \link[chr_scl]{Character scalar} containing one or more values
+#'   from \code{xxx_vals()} separated by pipes and/or underscores. Combinations
+#'   of properties can be specified by separating them with underscores.
+#'   Separating properties or combinations of properties with pipes will result
+#'   in a value of \code{TRUE} if any of them applies to \code{x}.
+#' @param valid \link[chr_vec]{Character vec} containing all properties
+#'   considered valid.
+#' @param print \link[lgl_scl]{Logical scalar} indicating whether to print the
+#'   property definition to the console.
 #' @param ... Additional arguments to \code{\link{meets}} containing value and
 #'   element/row/column count restrictions.
-#' @section Additional arguments in \code{...}:
-#'   \cr These arguments are optional. Possible arguments are as follows:
-#'   \tabular{ll}{
-#'     ARGUMENT   \tab USE AND MEANING                                       \cr
-#'     \code{n}   \tab set of valid lengths/numbers of elements.             \cr
-#'     \code{nr}  \tab set of valid numbers of rows.                         \cr
-#'     \code{nc}  \tab set of valid numbers of columns.                      \cr
-#'     \code{min} \tab minimum valid length/number of elements.              \cr
-#'     \code{minr}\tab minimum valid number of rows.                         \cr
-#'     \code{minc}\tab minimum valid number of columns.                      \cr
-#'     \code{max} \tab maximum valid length/number of element.               \cr
-#'     \code{maxr}\tab maximum valid number of rows.                         \cr
-#'     \code{maxc}\tab maximum valid number of columns.                      \cr
-#'     \code{vals}\tab set of valid values.                                  \cr
-#'     \code{lt}  \tab value elements of \code{x.} must be less than.        \cr
-#'     \code{le}  \tab upper bound (≤) on elements of \code{x.}              \cr
-#'     \code{ge}  \tab lower bound (≥) on elements of \code{x.}              \cr
-#'     \code{gt}  \tab value elements of \code{x.} must be greater than.       }
+#' @section Additional arguments in \code{...}: \cr The arguments in the
+#'   following table are optional:\tabular{ll}{
+#'   ARGUMENT    \tab USE AND MEANING                                        \cr
+#'   \code{n}    \tab Set of valid lengths/numbers of elements.              \cr
+#'   \code{nr}   \tab Set of valid numbers of rows.                          \cr
+#'   \code{nc}   \tab Set of valid numbers of columns.                       \cr
+#'   \code{min}  \tab Minimum valid length/number of elements.               \cr
+#'   \code{minr} \tab Minimum valid number of rows.                          \cr
+#'   \code{minc} \tab Minimum valid number of columns.                       \cr
+#'   \code{max}  \tab Maximum valid length/number of element.                \cr
+#'   \code{maxr} \tab Maximum valid number of rows.                          \cr
+#'   \code{maxc} \tab Maximum valid number of columns.                       \cr
+#'   \code{vals} \tab Set of valid values.                                   \cr
+#'   \code{lt}   \tab Value elements of \code{x} must be less than.          \cr
+#'   \code{le}   \tab Upper bound (≤) on elements of \code{x}                \cr
+#'   \code{ge}   \tab Lower bound (≥) on elements of \code{x}                \cr
+#'   \code{gt}   \tab Value elements of \code{x} must be greater than.         }
 #' @return \code{xxx_vals}, \code{xxx_all}, \code{combos_from_xxx},
 #'   \code{xxx_from_combo}, \code{xxx} and \code{xxx_funs} return a character
 #'   vector. All others return \code{TRUE} or \code{FALSE}.
@@ -82,83 +83,83 @@
 xxx. <- function() {help("xxx.", package = "uj")}
 
 #' @describeIn xxx. Get a character vector of all single extended properties
-#'   that apply to \code{x.}.
+#'   that apply to \code{x}.
 #' @export
-xxx <- function(x.) {sort(c(sss(x.), ttt(x.), fff(x.), ddd(x.), eee(x.), mmm(x.), ccc(x.)))}
+xxx <- function(x) {sort(c(sss(x), ttt(x), fff(x), ddd(x), eee(x), mmm(x), ccc(x)))}
 
 #' @describeIn xxx. Evaluates whether any (combination) property in
-#'   \code{xxx.} is applicable to \code{x.}, subject to any additional
+#'   \code{xxx} is applicable to \code{x}, subject to any additional
 #'   restrictions in \code{...}.
 #' @export
-ixxx <- function(x., xxx., ...) {
-  if (!is_valid_xxx(xxx.)) {stop("\n • [xxx.] must be a character scalar with one or more values from xxx_vals() after separating [xxx.] by pipes and/or underscores.")}
-  if (!meets(x., ...)) {return(F)}
-  singles. <- xxx_vals()
-  combos. <- combos_from_xxx(xxx.)
-  for (combo. in combos.) {
-    is. <- combo. %in% singles.
-    ic. <- is_xxx_fun(combo.)
-    if (!is. & !ic.) {
-      new. <- xxx_from_combo(combo.)
-      good.  <- TRUE
-      for (xxx. in new.) {if (good.) {good. <- good. & eval(parse(text = paste0("x", xxx., "(x)")))}}
+ixxx <- function(x, xxx, ...) {
+  if (!is_valid_xxx(xxx)) {stop("\n • [xxx] must be a character scalar with one or more values from xxx_vals() after separating [xxx] by pipes and/or underscores.")}
+  if (!meets(x, ...)) {return(F)}
+  singles <- xxx_vals()
+  combos <- combos_from_xxx(xxx)
+  for (combo in combos) {
+    iin <- combo %in% singles
+    ic <- is_xxx_fun(combo)
+    if (!is & !ic) {
+      new <- xxx_from_combo(combo)
+      good <- TRUE
+      for (xxx in new) {if (good) {good <- good & eval(parse(text = paste0("x", xxx, "(x)")))}}
     }
-    else if (is.) {good. <- eval(parse(text = paste0("x", combo., "(x)")))}
-    else {good. <- eval(parse(text = paste0(combo., "(x)")))}
-    if (good.) {return(TRUE)}
+    else if (iin) {good <- eval(parse(text = paste0("x", combo, "(x)")))}
+    else {good <- eval(parse(text = paste0(combo, "(x)")))}
+    if (good) {return(TRUE)}
   }
   FALSE
 }
 
-#' @describeIn xxx. Extract unique property values from \code{xxx.} by
+#' @describeIn xxx. Extract unique property values from \code{xxx} by
 #'   splitting along pipes (\code{"|"}) and underscores.
 #' @export
-xxx_all <- function(xxx., valid. = xxx_vals()) {
-  vx. <- cmp_chr_scl(xxx.)
-  vv. <- f0(cmp_chr_vec(valid.), all(valid. %in% xxx_vals()), F)
-  err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [xxx.] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!vv.) {err. <- c(err., "\n • [valid.] must be a complete character vector (?cmp_chr_vec) containing only values from xxx_vals().")}
-  if (idef(err.)) {stop(err.)}
-  xxx. <- av(strsplit(xxx., "|", fixed = T))
-  xxx. <- av(strsplit(xxx., "_", fixed = T))
-  xxx. <- trimws(xxx.)
-  xxx. <- xxx.[xxx. != ""]
-  if (length(xxx.) == 0) {stop("\n • [xxx.] is empty after splitting on pipes and underscores.")}
-  if (!all(xxx. %in% valid.)) {stop("\n • [xxx.] contains a property not in [valid.].")}
-  sort(unique(xxx.))
+xxx_all <- function(xxx, valid = xxx_vals()) {
+  vx <- cmp_chr_scl(xxx)
+  vv <- f0(cmp_chr_vec(valid), all(valid %in% xxx_vals()), F)
+  err <- NULL
+  if (!vx) {err <- c(err, "\n • [xxx] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!vv) {err <- c(err, "\n • [valid] must be a complete character vector (?cmp_chr_vec) containing only values from xxx_vals().")}
+  if (idef(err)) {stop(err)}
+  xxx <- av(strsplit(xxx, "|", fixed = T))
+  xxx <- av(strsplit(xxx, "_", fixed = T))
+  xxx <- trimws(xxx)
+  xxx <- xxx[xxx != ""]
+  if (length(xxx) == 0) {stop("\n • [xxx] is empty after splitting on pipes and underscores.")}
+  if (!all(xxx %in% valid)) {stop("\n • [xxx] contains a property not in [valid].")}
+  sort(unique(xxx))
 }
 
 #' @describeIn xxx. Get a vector of all possible single property values in all
 #'   property families.
 #' @export
-xxx_vals <- function(atb. = F) {
-  if (!isTF(atb.)) {stop("\n • [atb.] must be TRUE or FALSE.", call. = F)}
-  x. <- c(sss_vals(), ddd_vals(), eee_vals(), ttt_vals(), fff_vals(), ccc_vals(), mmm_vals())
-  x. <- x.[order(paste0(names(x.), "_", x.))]
-  if (!atb.) {return(x.)}
-  tibble::tibble(family = names(x.), xxx = av(x.))
+xxx_vals <- function(as.tb = F) {
+  if (!isTF(as.tb)) {stop("\n • [as.tb] must be TRUE or FALSE.", call. = F)}
+  x <- c(sss_vals(), ddd_vals(), eee_vals(), ttt_vals(), fff_vals(), ccc_vals(), mmm_vals())
+  x <- x.[order(paste0(names(x), "_", x))]
+  if (!as.tb) {return(x)}
+  tibble::tibble(family = names(x), xxx = av(x))
 }
 
-#' @describeIn xxx. Evaluate whether \code{x.} is \code{NULL} or matches one
-#'   or more property (combos) specified in \code{xxx.}.
+#' @describeIn xxx. Evaluate whether \code{x} is \code{NULL} or matches one
+#'   or more property (combos) specified in \code{xxx}.
 #' @export
-nll_or <- function(x., xxx., ...) {f0(inll(x.), T, ixxx(x., xxx., ...))}
+nll_or <- function(x, xxx, ...) {f0(inll(x), T, ixxx(x, xxx, ...))}
 
-#' @describeIn xxx. Evaluate whether \code{x.} is an atomic scalar \code{NA}
-#'   or matches one or more property (combos) specified in \code{xxx.}.
+#' @describeIn xxx. Evaluate whether \code{x} is an atomic scalar \code{NA}
+#'   or matches one or more property (combos) specified in \code{xxx}.
 #' @export
-nas_or <- function(x., xxx., ...) {f0(inas(x.), T, ixxx(x., xxx., ...))}
+nas_or <- function(x, xxx, ...) {f0(inas(x), T, ixxx(x., xxx, ...))}
 
 #' @describeIn xxx. List all valid property function names.
 #' @export
-xxx_funs <- function(atb. = F) {
-  if (!isTF(atb.)) {stop("\n • [atb.] must be TRUE or FALSE.")}
-  x. <- c(paste0("x", xxx_vals()), cmp_mmm_vals(), cmp_mmm_ccc_vals(),
-                  cmp_ccc_vals() , mmm_ccc_vals(), ttt_ccc_vals()    )
-  x. <- x.[order(paste0(names(x.), "_", av(x.)))]
-  if (!atb.) {return(x.)}
-  tibble::tibble(family = names(x.), property = av(x.))
+xxx_funs <- function(as.tb = F) {
+  if (!isTF(as.tb)) {stop("\n • [as.tb] must be TRUE or FALSE.")}
+  x <- c(paste0("x", xxx_vals()), cmp_mmm_vals(), cmp_mmm_ccc_vals(),
+                 cmp_ccc_vals() , mmm_ccc_vals(), ttt_ccc_vals()    )
+  x <- x[order(paste0(names(x), "_", av(x)))]
+  if (!as.tb) {return(x)}
+  tibble::tibble(family = names(x), property = av(x))
 }
 
 #' @describeIn xxx. Get a tibble with 4 columns: property family (Family),
@@ -239,83 +240,83 @@ xxx_table <- function() {
   )
 }
 
-#' @describeIn xxx. Evaluate \code{x.} to see if it the name of a property
+#' @describeIn xxx. Evaluate \code{x} to see if it the name of a property
 #'   function.
 #' @export
-is_xxx_fun <- function(x.) {
-  if (!cmp_chr_scl(x.)) {stop("\n • [x.] must be a complete character scalar (?cmp_chr_scl).")}
-  x. %in% xxx_funs()
+is_xxx_fun <- function(x) {
+  if (!cmp_chr_scl(x)) {stop("\n • [x] must be a complete character scalar (?cmp_chr_scl).")}
+  x %in% xxx_funs()
 }
 
-#' @describeIn xxx. Evaluate whether \code{xxx.} is a character scalar of
+#' @describeIn xxx. Evaluate whether \code{xxx} is a character scalar of
 #'   values from \code{xxx_vals} separated by pipes ('|') and/or underscores.
 #'   Always returns either \code{TRUE} or \code{FALSE}.
 #' @export
-is_valid_xxx <- function(xxx.) {
-  if (!cmp_chr_scl(xxx.)) {return(FALSE)}
-  xxx. <- av(strsplit(xxx., "_", TRUE))
-  xxx. <- av(strsplit(xxx., "|", TRUE))
-  xxx. <- trimws(xxx.)
-  xxx. <- xxx.[xxx. != ""]
-  if (length(xxx.) == 0) {return(FALSE)}
-  all(xxx. %in% xxx_vals())
+is_valid_xxx <- function(xxx) {
+  if (!cmp_chr_scl(xxx)) {return(FALSE)}
+  xxx <- av(strsplit(xxx, "_", TRUE))
+  xxx <- av(strsplit(xxx, "|", TRUE))
+  xxx <- trimws(xxx)
+  xxx <- xxx[xxx != ""]
+  if (length(xxx) == 0) {return(FALSE)}
+  all(xxx %in% xxx_vals())
 }
 
 #' @describeIn xxx. Extract each single property value from a property
 #'   combination by splitting along underscores.
 #' @export
-xxx_from_combo <- function(xxx., valid. = xxx_vals()) {
-  vx. <- cmp_chr_scl(xxx.)
-  vv. <- f0(cmp_chr_vec(valid.), all(valid. %in% xxx_vals()), F)
-  err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [xxx.] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!vv.) {err. <- c(err., "\n • [valid.] must be a complete character vec (?cpm_chr_vec) containing only values from xxx_vals().")}
-  if (!is.null(err.)) {stop(err.)}
-  xxx. <- av(strsplit(xxx., "_", fixed = T))
-  xxx. <- trimws(xxx.)
-  xxx. <- xxx.[xxx. != ""]
-  if (length(xxx.) == 0) {stop("\n • [xxx.] is empty after splitting on pipes and underscores.")}
-  if (!all(xxx. %in% valid.)) {stop("\n • [xxx.] contains a property not in [valid.].")}
-  sort(unique(xxx.))
+xxx_from_combo <- function(xxx, valid = xxx_vals()) {
+  vx <- cmp_chr_scl(xxx)
+  vv <- f0(cmp_chr_vec(valid), all(valid %in% xxx_vals()), F)
+  err <- NULL
+  if (!vx) {err <- c(err, "\n • [xxx] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!vv) {err <- c(err, "\n • [valid] must be a complete character vec (?cpm_chr_vec) containing only values from xxx_vals().")}
+  if (!is.null(err)) {stop(err)}
+  xxx <- av(strsplit(xxx, "_", fixed = T))
+  xxx <- trimws(xxx)
+  xxx <- xxx[xxx != ""]
+  if (length(xxx) == 0) {stop("\n • [xxx] is empty after splitting on pipes and underscores.")}
+  if (!all(xxx %in% valid)) {stop("\n • [xxx] contains a property not in [valid].")}
+  sort(unique(xxx))
 }
 
-#' @describeIn xxx. Extract each property combination from \code{xxx.} by
+#' @describeIn xxx. Extract each property combination from \code{xxx} by
 #'   splitting along pipes (\code{"|"}).
 #' @export
-combos_from_xxx <- function(xxx., valid. = xxx_vals()) {
-  xxx_all(xxx., valid.)
-  xxx. <- av(strsplit(xxx., "|", fixed = T))
-  xxx. <- trimws(xxx.)
-  xxx. <- xxx.[xxx. != ""]
-  sort(unique(xxx.))
+combos_from_xxx <- function(xxx, valid = xxx_vals()) {
+  xxx_all(xxx, valid)
+  xxx <- av(strsplit(xxx, "|", fixed = T))
+  xxx <- trimws(xxx)
+  xxx <- xxx[xxx != ""]
+  sort(unique(xxx))
 }
 
-#' @describeIn xxx. Get the tibble from \code{xxx_table()}. If \code{xxx.}
+#' @describeIn xxx. Get the tibble from \code{xxx_table()}. If \code{xxx}
 #'   contains a single valid property value (no combination values), extracts
 #'   the associated row from the tibble and creates a character scalar with the
 #'   property family, property value, short property definition, and long
-#'   property definition. If \code{print. = TRUE}, prints the result (either the
+#'   property definition. If \code{print = TRUE}, prints the result (either the
 #'   tibble or the extracted row) to the console, otherwise, returns the result.
 #' @export
-define_xxx <- function(xxx. = NULL, print. = TRUE) {
-  err. <- NULL
-  if (!f0(inll(xxx.), T, is_valid_xxx(xxx.))) {err. <- c(err., "\n [xxx.] must be NULL or a single valid property.")}
-  if (!isTF(print.)) {err. <- c(err., "\n • [print.] must be TRUE or FALSE.")}
-  if (idef(err.)) {stop(err.)}
-  if (!is.null(xxx.)) {xxx. <- xxx_all(xxx.)}
-  if (length(xxx.) > 1) {stop("\n • [xxx.] contains more than 1 property.")}
-  out. <- xxx_table()
-  if (idef(xxx.)) {
-    fam. <- av(out.[out.$value == xxx., 1])
-    abb. <- av(out.[out.$Value == xxx., 3])
-    lab. <- av(out.[out.$Value == xxx., 4])
-    out. <- paste0("\nFamily: '", fam., "'" ,
-                   "\nValue : '", xxx., "'" ,
-                   "\nShort : " , abb.,
-                   "\nLong  : " , lab., ".\n\n")
+define_xxx <- function(xxx = NULL, print = TRUE) {
+  err <- NULL
+  if (!f0(inll(xxx), T, is_valid_xxx(xxx))) {err <- c(err, "\n [xxx] must be NULL or a single valid property.")}
+  if (!isTF(print)) {err <- c(err, "\n • [print] must be TRUE or FALSE.")}
+  if (idef(err)) {stop(err)}
+  if (!is.null(xxx)) {xxx <- xxx_all(xxx)}
+  if (length(xxx) > 1) {stop("\n • [xxx] contains more than 1 property.")}
+  out <- xxx_table()
+  if (idef(xxx)) {
+    fam <- av(out[out$value == xxx, 1])
+    abb <- av(out[out$Value == xxx, 3])
+    lab <- av(out[out$Value == xxx, 4])
+    out <- paste0("\nFamily: '", fam, "'" ,
+                  "\nValue : '", xxx, "'" ,
+                  "\nShort : " , abb,
+                  "\nLong  : " , lab, ".\n\n")
   }
-  if (!print.) {return(out.)}
-  if (tibble::is_tibble(out.)) {print(out., n = nrow(out.))} else {cat(out.)}
+  if (!print) {return(out)}
+  if (tibble::is_tibble(out)) {print(out, n = nrow(out))} else {cat(out)}
   NULL
 }
 
@@ -323,31 +324,31 @@ define_xxx <- function(xxx. = NULL, print. = TRUE) {
 #'   property) and expands it using plain, but concise, language. To get a
 #'   verbose definition of any single property, use \code{define_xxx}.
 #' @export
-define_xxx_combo <- function(xxx.) {
-  if (!is_valid_xxx(xxx.)) {stop("\n • [xxx.] is not a valid property combination.")}
-  if (length(combos_from_xxx(xxx.)) != 1) {stop("\n • [xxx.] contains more than 1 property combination.")}
-  xxx. <- combos_from_xxx(xxx.)
-  tbl. <- xxx_table()
-  fam. <- as.vector(tbl.$Family)
-  val. <- as.vector(tbl.$Value )
-  abb. <- as.vector(tbl.$Short )
-  ccc. <- abb.[val. %in% xxx. & fam. == "ccc"]
-  ddd. <- abb.[val. %in% xxx. & fam. == "ddd"]
-  eee. <- abb.[val. %in% xxx. & fam. == "eee"]
-  fff. <- abb.[val. %in% xxx. & fam. == "fff"]
-  mmm. <- abb.[val. %in% xxx. & fam. == "mmm"]
-  sss. <- abb.[val. %in% xxx. & fam. == "sss"]
-  ttt. <- abb.[val. %in% xxx. & fam. == "ttt"]
-  obj. <- length(ccc.) == 0
-  out. <- paste0(c(ccc., ddd., eee., fff., mmm., sss., ttt.), collapse = ", ")
-  out. <- av(strsplit(out., ", ", TRUE))
-  out. <- out.[!duplicated(out.)]
-  out. <- paste0(out., collapse = ", ")
-  if (obj.) {out. <- paste0(out., " object")}
-  if (substr(out., 1, 1) %in% c("a", "e", "i", "o", "u")) {pre. <- "an "}
-  else {pre. <- "a "}
-  out. <- paste0(pre., out.)
-  return(out.)
+define_xxx_combo <- function(xxx) {
+  if (!is_valid_xxx(xxx)) {stop("\n • [xxx] is not a valid property combination.")}
+  if (length(combos_from_xxx(xxx)) != 1) {stop("\n • [xxx] contains more than 1 property combination.")}
+  xxx <- combos_from_xxx(xxx)
+  tbl <- xxx_table()
+  fam <- as.vector(tbl$Family)
+  val <- as.vector(tbl$Value )
+  abb <- as.vector(tbl$Short )
+  ccc <- abb[val %in% xxx & fam == "ccc"]
+  ddd <- abb[val %in% xxx & fam == "ddd"]
+  eee <- abb[val %in% xxx & fam == "eee"]
+  fff <- abb[val %in% xxx & fam == "fff"]
+  mmm <- abb[val %in% xxx & fam == "mmm"]
+  sss <- abb[val %in% xxx & fam == "sss"]
+  ttt <- abb[val %in% xxx & fam == "ttt"]
+  obj <- length(ccc) == 0
+  out <- paste0(c(ccc, ddd, eee, fff, mmm, sss, ttt), collapse = ", ")
+  out <- av(strsplit(out, ", ", TRUE))
+  out <- out[!duplicated(out)]
+  out <- paste0(out, collapse = ", ")
+  if (obj) {out <- paste0(out, " object")}
+  if (substr(out, 1, 1) %in% c("a", "e", "i", "o", "u")) {pre <- "an "}
+  else {pre <- "a "}
+  out <- paste0(pre, out)
+  return(out)
 }
 
 #' @describeIn xxx. Take one or more property combos separated by pipes (each
@@ -355,9 +356,9 @@ define_xxx_combo <- function(xxx.) {
 #'   language, separating the multiple expansions with \code{'OR'}. To get a
 #'   verbose definition of any single property, use \code{define_xxx}.
 #' @export
-define_xxx_combos <- function(xxx.) {
-  if (!is_valid_xxx(xxx.)) {stop("\n • [xxx.] is not a valid property specification.")}
-  xxx. <- combos_from_xxx(xxx.)
-  for (i. in 1:length(xxx.)) {xxx.[i.] <- define_xxx_combo(xxx.[i.])}
-  return(paste0(xxx., collapse = " OR "))
+define_xxx_combos <- function(xxx) {
+  if (!is_valid_xxx(xxx)) {stop("\n • [xxx] is not a valid property specification.")}
+  xxx <- combos_from_xxx(xxx)
+  for (i in 1:length(xxx)) {xxx[i] <- define_xxx_combo(xxx[i])}
+  return(paste0(xxx, collapse = " OR "))
 }

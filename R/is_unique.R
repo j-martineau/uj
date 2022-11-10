@@ -2,11 +2,11 @@
 #' @family extensions
 #' @title Does an object have only unique atomic values?
 #' @param x An atomic object.
-#' @param a \code{TRUE} or \code{FALSE} indicating whether to reduce \code{x} to
-#'   an atomic vector containing all of its atomic values. When \code{FALSE} and
-#'   \code{x} is not atomic, throws an error.
-#' @param na \code{TRUE} or \code{FALSE} indicating whether \code{NA} values are
-#'   allowed.
+#' @param a \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+#'   reduce \code{x} to an atomic vector containing all of its atomic values.
+#'   When \code{FALSE} and \code{x} is not atomic, throws an error.
+#' @param na \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+#'   \code{NA} values are allowed.
 #' @return \code{TRUE} or \code{FALSE}.
 #' @export
 is_unq. <- function() {help("is_unq.", package = "uj")}

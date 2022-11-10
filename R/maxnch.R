@@ -1,7 +1,7 @@
 #' @name max_nch.
 #' @title Length of longest string
 #' @family strings
-#' @param x Atomic character object.
+#' @param x \link[atm_chr]{Atomic character object}.
 #' @return Integer scalar.
 #' @export
 max_nch. <- function() {help("max_nch.", package = "uj")}

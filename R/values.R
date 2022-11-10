@@ -2,11 +2,14 @@
 #' @family extensions
 #' @family environments
 #' @title Objects in environments of calling functions
-#' @param name A character scalar giving the name of an object.
+#' @param name \link[cmp_chr_scl]{Complete character scalar} giving the name of
+#'   an object.
 #' @param val A value to place into the object specified by \code{name}.
-#' @param err A logical scalar whether to throw an error if the object specified
-#'   by \code{name} does not exist (i.e., rather than returning \code{FALSE}).
-#' @param gens The number of generations back in the function call stack to go.
+#' @param err \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+#'   throw an error if the object specified by \code{name} does not exist (i.e.,
+#'   rather than returning \code{FALSE}).
+#' @param gens \link[cmp_psw_scl]{Complete positive whole-number scalar} giving
+#'   the number of generations back in the function call stack to go.
 #' @return \code{exist} returns a logical scalar indicating whether an object
 #'   named \code{name} exists in the environment of the calling function
 #'   \code{gens} generations back. \code{vget} returns the value of an object

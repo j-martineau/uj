@@ -18,34 +18,34 @@
 \usage{
 errs.()
 
-err_check(gens. = 0)
+err_check(gens = 0)
 
-bank_err(..., gens. = 0)
+bank_err(..., gens = 0)
 
-bank_lgl(..., na. = F, extras. = NULL)
+bank_lgl(..., nas = F, extras = NULL)
 
 bank_not(...)
 
 bank_pop(...)
 
-bank_funs(funs., ...)
+bank_funs(funs, ...)
 
-bank_xxx(xxx., ..., nas. = F)
+bank_xxx(xxx, ..., nas = F)
 
 bank_vals(...)
 
-bank_dots(xxx., ..., named. = F)
+bank_dots(xxx, ..., named. = F)
 
 bank_when(whens., values., ...)
 
-bank_pats(pats., ...)
+bank_pats(pats, ...)
 
-bank_fail(x.)
+bank_fail(x)
 }
 \arguments{
-\item{gens.}{A non-negative whole-number scalar indicating the number of
-generations back in the call stack in which to bank and/or check for error
-messages.}
+\item{gens}{\link[cmp_nnw_scl]{Complete non-negative whole-number scalar}
+indicating the number of generations back in the call stack in which to
+bank and/or check for error messages.}
 
 \item{...}{For \code{bank_err}, an arbitrary number of atomic arguments that
 when collapsed into a character scalar form an error message.
@@ -71,31 +71,35 @@ checked.
 For \code{bank_when}, two named atomic scalar arguments to be error
 checked.}
 
-\item{extras.}{\code{NUlL} or an complete atomic object containing additional
-atomic values that qualify as valid.}
+\item{nas}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+atomic scalar \code{NA} values qualify.}
 
-\item{funs.}{A character scalar containing a
-\link[=xxx_funs]{property function} name or multiple property function
+\item{extras}{\code{NUlL} or an \link[icmp]{complete atomic object}
+containing additional atomic values that qualify as valid.}
+
+\item{funs}{\link[cmp_chr_scl]{Complete character scalar} containing a
+\link[xxx_funs]{property function} name or multiple property function
 names separated by pipes, which are used to check if named arguments in
 code{...} satisfy the property specification in any of the function names.}
 
-\item{xxx.}{A character scalar containing one or more property combos
-(combos are created by separating one or more \link[=xxx_vals]{property
-values} with underscores. Multiple combos are separated by pipes.}
+\item{xxx}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+more property combos (combos are created by separating one or more
+\link[xxx_vals]{property values} with underscores. Multiple combos are
+separated by pipes.}
 
-\item{nas.}{\code{TRUE} or \code{FALSE} indicating whether atomic scalar
-\code{NA} values qualify.}
+\item{whens., values.}{\link[ipop]{Populated atomic objects}.}
 
-\item{named.}{\code{TRUE} or \code{FALSE} indicating whether arguments in
-\code{...} must be uniquely named without using blank strings.}
+\item{pats}{\link[ivls]{Atomic vlist} containing multiple elements, each
+of which must be a complete character mvect of the same length as the
+number of arguments in \code{...}. Each element gives a pattern of valid
+properties for the argument in \code{...} in the form of one property
+specification per argument in \code{...} in the same order of those
+arguments.}
 
-\item{pats.}{An atomic vlist containing multiple elements, each of which must
-be a complete character mvect of the same length as the number of arguments
-in \code{...}. Each element gives a pattern of valid properties for the
-argument in \code{...} in the form of one property specification per
-argument in \code{...} in the same order of those arguments.}
+\item{x}{An ℝ object.}
 
-\item{when., value.}{Non-empty atomic objects.}
+\item{named}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+arguments in \code{...} must be uniquely named without using blank strings.}
 }
 \value{
 \code{NULL}. Called for the side effect of banking and/or processing
@@ -110,18 +114,18 @@ completion of all error checks.
 \section{Functions}{
 \itemize{
 \item \code{err_check()}: Check for banked error messages in the environment of the
-function \code{gens.} generations back in the call stack, and if there are
+function \code{gens} generations back in the call stack, and if there are
 any, process them, stopping execution. If there are none, take no action.
 Should be called after all error checking has been completed.
 
 \item \code{bank_err()}: Banks the error message in \code{...} in the environment
-of the function \code{gens.} generations back in the call stack. The error
+of the function \code{gens} generations back in the call stack. The error
 message is constructed by atomizing and gluing all arguments in \code{...}
 into a character scalar.
 
 \item \code{bank_lgl()}: Checks the named arguments in \code{...} for whether they
-are atomic scalar \code{TRUE} or atomic scalar \code{FALSE}. If \code{na. =
-  TRUE}, also allows atomic scalar \code{NA}. If \code{extras.} contains
+are atomic scalar \code{TRUE} or atomic scalar \code{FALSE}. If \code{na =
+  TRUE}, also allows atomic scalar \code{NA}. If \code{extras} contains
 atomic values (logical or not), also allows those values. For each named
 argument that does not meet the requirements, banks an error.
 
@@ -145,9 +149,9 @@ value of \code{TRUE}.
 
 \item \code{bank_xxx()}: More flexible but less efficient than \code{bank_funs}.
 For each named argument in \code{...}, banks an error message if it does
-satisfy the \link[=is_xxx]{property specification} in \code{xxx.}. If
-\code{na. = TRUE}, arguments may also be atomic scalar \code{NA} values.
-\code{xxx.} must be a character scalar containing one or more property
+satisfy the \link[ixxx]{property specification} in \code{xxx}. If
+\code{na = TRUE}, arguments may also be atomic scalar \code{NA} values.
+\code{xxx} must be a character scalar containing one or more property
 combos. Property combos are created by separating multiple properties from
 \code{\link{xxx_all()}}. A property combo may be a single property.
 Multiple property combos are separated from each other using pipes. An
@@ -169,8 +173,8 @@ all arguments in \code{...} are named, and if not banks an error message.
 
 \item \code{bank_when()}: Bank errors conditionally on the value of two arguments.
 Banks an error if the first named atomic scalar argument in \code{...} has
-a value contained in \code{when.} and the second named atomic scalar
-argument in \code{...} does not contain a value from \code{value}.
+a value contained in \code{whens.} and the second named atomic scalar
+argument in \code{...} does not contain a value from \code{values.}.
 
 \item \code{bank_pats()}: Bank errors conditionally on the pattern of properties of
 arguments in \code{...} matching none of the specified patterns of

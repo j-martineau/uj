@@ -19,10 +19,11 @@ compatible_atbs(..., bind. = "c")
 \item{...}{An arbitrary number of arguments to be checked for compatibility
 with each other.}
 
-\item{recyclable.}{A logical scalar indicating whether arguments in
-\code{...} must be recyclable to be compatible_}
+\item{recyclable.}{\link[cmp_lgl_scl]{Complete logical scalar }indicating
+whether arguments in \code{...} must be recyclable to be compatible_}
 
-\item{bind.}{\code{'c'} or \code{'r'} for column vs. row binding.}
+\item{bind.}{\link[cmp_chr_scl]{Complete character scalar} indicating how to
+bind: \code{'c'} or \code{'r'} for column vs. row binding, respectively.}
 }
 \value{
 A logical scalar.
@@ -96,7 +97,7 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},

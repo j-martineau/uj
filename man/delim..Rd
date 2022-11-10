@@ -230,13 +230,13 @@
 \usage{
 delim.()
 
-da(a., ...)
+da(a, ...)
 
-dw(w., ...)
+dw(w, ...)
 
-daw(a., w., ...)
+daw(a, w, ...)
 
-dwa(w., a., ...)
+dwa(w, a, ...)
 
 da0(...)
 
@@ -679,8 +679,8 @@ dwaTS(...)
 dwaTT(...)
 }
 \arguments{
-\item{a., w.}{Character scalar across delimiter vs. within delimiter,
-respectively. Defaults to a blank string (i.e., \code{""}).}
+\item{a, w}{\link[chr_scl]{Character scalar} across delimiter vs. within
+delimiter, respectively. Defaults to a blank string (i.e., \code{""}).}
 
 \item{...}{An arbitrary number of atomic vector arguments to be delimited.
 Argument in \code{...} must be recyclable for \code{da}, \code{daw},
@@ -715,18 +715,18 @@ equivalent to \code{paste(sapply(list(...), paste0, collapse = delim.w),
 \strong{Extensions}
 \cr Functions are extended for specific delimiters, signified by the
 following extension characters:\tabular{lll}{
-EXTENSION \tab EXTENSION         \tab DELIMITER  \cr
-CHARACTER \tab NAME              \tab INVOKED    \cr
-\code{'0'}\tab blank             \tab\code{""}   \cr
-\code{'1'}\tab space             \tab\code{" "}  \cr
-\code{'B'}\tab broken pipe       \tab\code{"¦"}  \cr
-\code{'C'}\tab colon             \tab\code{":"}  \cr
-\code{'D'}\tab dot               \tab\code{"."}  \cr
-\code{'G'}\tab grammatical comma \tab\code{", "} \cr
-\code{'P'}\tab pipe              \tab\code{"|"}  \cr
-\code{'Q'}\tab (back)-quote      \tab\code{"`"}  \cr
-\code{'S'}\tab simple comma      \tab\code{","}  \cr
-\code{'T'}\tab tilde             \tab\code{"~"}    }
+EXTENSION   \tab EXTENSION         \tab DELIMITER  \cr
+CHARACTER   \tab NAME              \tab INVOKED    \cr
+\code{'0'}  \tab Blank             \tab\code{""}   \cr
+\code{'1'}  \tab Space             \tab\code{" "}  \cr
+\code{'B'}  \tab Broken pipe       \tab\code{"¦"}  \cr
+\code{'C'}  \tab Colon             \tab\code{":"}  \cr
+\code{'D'}  \tab Dot               \tab\code{"."}  \cr
+\code{'G'}  \tab Grammatical comma \tab\code{", "} \cr
+\code{'P'}  \tab Pipe              \tab\code{"|"}  \cr
+\code{'Q'}  \tab (Back)-quote      \tab\code{"`"}  \cr
+\code{'S'}  \tab Simple comma      \tab\code{","}  \cr
+\code{'T'}  \tab Tilde             \tab\code{"~"}    }
 \strong{\code{daA}}
 \cr Delimits across using the extension character A.
 \cr\cr
@@ -743,24 +743,24 @@ using the extension character A.
 }
 \section{Functions}{
 \itemize{
-\item \code{da()}: Delimit across vectors in \code{...} using \code{a.}
+\item \code{da()}: Delimit across vectors in \code{...} using \code{a}
 resulting in a character vector of \code{max(lengths(list(...)))}
-\code{a.}-delimited strings.
+\code{a}-delimited strings.
 
-\item \code{dw()}: Delimit within vectors in \code{...} using \code{w.},
+\item \code{dw()}: Delimit within vectors in \code{...} using \code{w},
 resulting in a character vector of \code{\link[base]{...length()}}
-\code{w.}-separated strings.
+\code{w}-separated strings.
 
-\item \code{daw()}: Delimit across vectors in \code{...} using \code{a.},
-then delimit within using \code{w.}, resulting in a character-scalar string
-containing \code{max(lengths(list(...)))} \code{a.}-delimited substrings,
-each of which contains \code{\link[base]{...length()}} \code{w.}-delimited
+\item \code{daw()}: Delimit across vectors in \code{...} using \code{a},
+then delimit within using \code{w}, resulting in a character-scalar string
+containing \code{max(lengths(list(...)))} \code{a}-delimited substrings,
+each of which contains \code{\link[base]{...length()}} \code{w}-delimited
 subsubstrings.
 
-\item \code{dwa()}: Delimit within vectors in \code{...} using \code{w.},
-then delimit across using \code{a.}, resulting in a character-scalar string
-containing \code{\link[base]{...length()}} \code{w.}-delimited substrings,
-each of which contains \code{max(length(list(...)))} \code{a.}-delimited
+\item \code{dwa()}: Delimit within vectors in \code{...} using \code{w},
+then delimit across using \code{a}, resulting in a character-scalar string
+containing \code{\link[base]{...length()}} \code{w}-delimited substrings,
+each of which contains \code{max(length(list(...)))} \code{a}-delimited
 subsubstrings.
 
 \item \code{da0()}: Delimit across vectors in \code{...} using blanks.

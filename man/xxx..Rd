@@ -21,53 +21,57 @@
 \usage{
 xxx.()
 
-xxx(x.)
+xxx(x)
 
-ixxx(x., xxx., ...)
+ixxx(x, xxx, ...)
 
-xxx_all(xxx., valid. = xxx_vals())
+xxx_all(xxx, valid = xxx_vals())
 
-xxx_vals(atb. = F)
+xxx_vals(as.tb = F)
 
-nll_or(x., xxx., ...)
+nll_or(x, xxx, ...)
 
-nas_or(x., xxx., ...)
+nas_or(x, xxx, ...)
 
-xxx_funs(atb. = F)
+xxx_funs(as.tb = F)
 
 xxx_table()
 
-is_xxx_fun(x.)
+is_xxx_fun(x)
 
-is_valid_xxx(xxx.)
+is_valid_xxx(xxx)
 
-xxx_from_combo(xxx., valid. = xxx_vals())
+xxx_from_combo(xxx, valid = xxx_vals())
 
-combos_from_xxx(xxx., valid. = xxx_vals())
+combos_from_xxx(xxx, valid = xxx_vals())
 
-define_xxx(xxx. = NULL, print. = TRUE)
+define_xxx(xxx = NULL, print = TRUE)
 
-define_xxx_combo(xxx.)
+define_xxx_combo(xxx)
 
-define_xxx_combos(xxx.)
+define_xxx_combos(xxx)
 }
 \arguments{
-\item{x.}{An object.}
+\item{x}{An ℝ object.}
 
-\item{xxx.}{A character scalar containing one or more values from
-\code{xxx_vals()} separated by pipes and/or underscores. Combinations of
-properties can be specified by separating them with underscores. Separating
-properties or combinations of properties with pipes will result in a value
-of \code{TRUE} if any of them applies to \code{x.}.}
+\item{xxx}{\link[chr_scl]{Character scalar} containing one or more values
+from \code{xxx_vals()} separated by pipes and/or underscores. Combinations
+of properties can be specified by separating them with underscores.
+Separating properties or combinations of properties with pipes will result
+in a value of \code{TRUE} if any of them applies to \code{x}.}
 
 \item{...}{Additional arguments to \code{\link{meets}} containing value and
 element/row/column count restrictions.}
 
-\item{valid.}{A character vector containing all properties considered valid.}
+\item{valid}{\link[chr_vec]{Character vec} containing all properties
+considered valid.}
 
-\item{atb.}{\code{TRUE} or \code{FALSE} indicating whether to return the
-result as a tibble with column 1 containing property values and
-column 2 containing the property families.}
+\item{as.tb}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+to return the result as a tibble with column 1 containing property values
+and column 2 containing the property families.}
+
+\item{print}{\link[lgl_scl]{Logical scalar} indicating whether to print the
+property definition to the console.}
 }
 \value{
 \code{xxx_vals}, \code{xxx_all}, \code{combos_from_xxx},
@@ -76,45 +80,45 @@ vector. All others return \code{TRUE} or \code{FALSE}.
 }
 \description{
 This set of functions provide utilities that bring together
-seven families of properties defined in this package as follows:
-\tabular{ll}{
-PROPERTY          \tab PROPERTY                 \cr
-FAMILY            \tab TYPE                     \cr
-\code{\link{ttt}} \tab fundamental type         \cr
-\code{\link{sss}} \tab state of completeness    \cr
-\code{\link{ddd}} \tab defined dimensionality   \cr
-\code{\link{eee}} \tab effective dimensionality \cr
-\code{\link{fff}} \tab form                     \cr
-\code{\link{mmm}} \tab extended mode            \cr
-\code{\link{ccc}} \tab extended class           \cr
-\code{xxx}        \tab any property family        }
-There are associated property functions in the following forms:
-\tabular{lll}{
-FORM               \tab PROPERTY TYPE  \tab FUNCTION PURPOSE          \cr
-\code{ippp}        \tab \code{ppp} = any property value
-\tab check an object for property \code{ppp}       \cr
-\code{ttt_ccc}     \tab \code{ttt} = a fundamental type property value,
+seven families of properties defined in this package:\tabular{ll}{
+PROPERTY          \tab PROPERTY                                         \cr
+FAMILY            \tab TYPE                                             \cr
+\code{\link{ttt}} \tab Fundamental type                                 \cr
+\code{\link{sss}} \tab State of completeness                            \cr
+\code{\link{ddd}} \tab Defined dimensionality                           \cr
+\code{\link{eee}} \tab Effective dimensionality                         \cr
+\code{\link{fff}} \tab Form                                             \cr
+\code{\link{mmm}} \tab Extended mode                                    \cr
+\code{\link{ccc}} \tab Extended class                                   \cr
+\code{xxx}        \tab Any property family                                }
+Associated property functions take the following forms:\tabular{lll}{
+FUNCTIONAL           \tab PROPERTY    \tab FUNCTION \cr
+FORM                 \tab TYPE        \tab PURPOSE  \cr
+\code{ippp}          \tab \code{ppp} = any property value
+\tab Check an object for property \code{ppp}.      \cr
+\code{ttt_ccc}       \tab \code{ttt} = a fundamental type property value,
 \code{ccc} = an extended class property value
-\tab check an object for a combination of fundamental
+\tab Check an object for a combination of fundamental
 type and extended class.                      \cr
-\code{mmm_ccc}     \tab \code{mmm} = an extended mode property value,
+\code{mmm_ccc}       \tab \code{mmm} = an extended mode property value,
 \code{ccc} = an extended class property value
-\tab check an object for a combination of extended
+\tab Check an object for a combination of extended
 mode and extended class.                      \cr
-\code{cmp_mmm_ccc} \tab \code{cmp} = a complete object (i.e., a populated
+\code{cmp_mmm_ccc}   \tab \code{cmp} = a complete object (i.e., a populated
 object containing no \code{NA} values),
 \code{mmm} = an extended mode property value,
 \code{ccc} = an extended class property value
-\tab check an object for completeness, extended mode,
+\tab Check an object for completeness, extended mode,
 and extended class simultaneously.            \cr
-\code{ppp_vals}    \tab \code{ppp} = the name of a property family
-\tab get a character vector of all possible single
-property values.                              \cr
-\code{ppp}         \tab \code{ppp} = name of a property family
-\tab get a character vector of all properties from the
+\code{ppp_vals}      \tab \code{ppp} = the name of a property family
+\tab Get a character vector of all possible single
+fundamental type + extended class property
+values.                                       \cr
+\code{ppp}           \tab \code{ppp} = name of a property family
+\tab Get a character vector of all properties from the
 specified family that apply to an object.     \cr
-\code{is_ppp}      \tab \code{ppp} = name of a property family
-\tab evaluate whether an object has one or more
+\code{is_ppp}        \tab \code{ppp} = name of a property family
+\tab Evaluate whether an object has one or more
 properties within the specified property family
 as well as whether it meets additional
 restrictions as specified in \code{...}.        }
@@ -122,23 +126,23 @@ restrictions as specified in \code{...}.        }
 \section{Functions}{
 \itemize{
 \item \code{xxx()}: Get a character vector of all single extended properties
-that apply to \code{x.}.
+that apply to \code{x}.
 
 \item \code{ixxx()}: Evaluates whether any (combination) property in
-\code{xxx.} is applicable to \code{x.}, subject to any additional
+\code{xxx} is applicable to \code{x}, subject to any additional
 restrictions in \code{...}.
 
-\item \code{xxx_all()}: Extract unique property values from \code{xxx.} by
+\item \code{xxx_all()}: Extract unique property values from \code{xxx} by
 splitting along pipes (\code{"|"}) and underscores.
 
 \item \code{xxx_vals()}: Get a vector of all possible single property values in all
 property families.
 
-\item \code{nll_or()}: Evaluate whether \code{x.} is \code{NULL} or matches one
-or more property (combos) specified in \code{xxx.}.
+\item \code{nll_or()}: Evaluate whether \code{x} is \code{NULL} or matches one
+or more property (combos) specified in \code{xxx}.
 
-\item \code{nas_or()}: Evaluate whether \code{x.} is an atomic scalar \code{NA}
-or matches one or more property (combos) specified in \code{xxx.}.
+\item \code{nas_or()}: Evaluate whether \code{x} is an atomic scalar \code{NA}
+or matches one or more property (combos) specified in \code{xxx}.
 
 \item \code{xxx_funs()}: List all valid property function names.
 
@@ -146,24 +150,24 @@ or matches one or more property (combos) specified in \code{xxx.}.
 property value (Value), short property definition (Short), and long
 property definition (Long).
 
-\item \code{is_xxx_fun()}: Evaluate \code{x.} to see if it the name of a property
+\item \code{is_xxx_fun()}: Evaluate \code{x} to see if it the name of a property
 function.
 
-\item \code{is_valid_xxx()}: Evaluate whether \code{xxx.} is a character scalar of
+\item \code{is_valid_xxx()}: Evaluate whether \code{xxx} is a character scalar of
 values from \code{xxx_vals} separated by pipes ('|') and/or underscores.
 Always returns either \code{TRUE} or \code{FALSE}.
 
 \item \code{xxx_from_combo()}: Extract each single property value from a property
 combination by splitting along underscores.
 
-\item \code{combos_from_xxx()}: Extract each property combination from \code{xxx.} by
+\item \code{combos_from_xxx()}: Extract each property combination from \code{xxx} by
 splitting along pipes (\code{"|"}).
 
-\item \code{define_xxx()}: Get the tibble from \code{xxx_table()}. If \code{xxx.}
+\item \code{define_xxx()}: Get the tibble from \code{xxx_table()}. If \code{xxx}
 contains a single valid property value (no combination values), extracts
 the associated row from the tibble and creates a character scalar with the
 property family, property value, short property definition, and long
-property definition. If \code{print. = TRUE}, prints the result (either the
+property definition. If \code{print = TRUE}, prints the result (either the
 tibble or the extracted row) to the console, otherwise, returns the result.
 
 \item \code{define_xxx_combo()}: Take a single property combo (which may be a single
@@ -177,24 +181,23 @@ verbose definition of any single property, use \code{define_xxx}.
 
 }}
 \section{Additional arguments in \code{...}}{
-
-\cr These arguments are optional. Possible arguments are as follows:
-\tabular{ll}{
-ARGUMENT   \tab USE AND MEANING                                       \cr
-\code{n}   \tab set of valid lengths/numbers of elements.             \cr
-\code{nr}  \tab set of valid numbers of rows.                         \cr
-\code{nc}  \tab set of valid numbers of columns.                      \cr
-\code{min} \tab minimum valid length/number of elements.              \cr
-\code{minr}\tab minimum valid number of rows.                         \cr
-\code{minc}\tab minimum valid number of columns.                      \cr
-\code{max} \tab maximum valid length/number of element.               \cr
-\code{maxr}\tab maximum valid number of rows.                         \cr
-\code{maxc}\tab maximum valid number of columns.                      \cr
-\code{vals}\tab set of valid values.                                  \cr
-\code{lt}  \tab value elements of \code{x.} must be less than.        \cr
-\code{le}  \tab upper bound (≤) on elements of \code{x.}              \cr
-\code{ge}  \tab lower bound (≥) on elements of \code{x.}              \cr
-\code{gt}  \tab value elements of \code{x.} must be greater than.       }
+ \cr The arguments in the
+following table are optional:\tabular{ll}{
+ARGUMENT    \tab USE AND MEANING                                        \cr
+\code{n}    \tab Set of valid lengths/numbers of elements.              \cr
+\code{nr}   \tab Set of valid numbers of rows.                          \cr
+\code{nc}   \tab Set of valid numbers of columns.                       \cr
+\code{min}  \tab Minimum valid length/number of elements.               \cr
+\code{minr} \tab Minimum valid number of rows.                          \cr
+\code{minc} \tab Minimum valid number of columns.                       \cr
+\code{max}  \tab Maximum valid length/number of element.                \cr
+\code{maxr} \tab Maximum valid number of rows.                          \cr
+\code{maxc} \tab Maximum valid number of columns.                       \cr
+\code{vals} \tab Set of valid values.                                   \cr
+\code{lt}   \tab Value elements of \code{x} must be less than.          \cr
+\code{le}   \tab Upper bound (≤) on elements of \code{x}                \cr
+\code{ge}   \tab Lower bound (≥) on elements of \code{x}                \cr
+\code{gt}   \tab Value elements of \code{x} must be greater than.         }
 }
 
 \seealso{
@@ -209,7 +212,7 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},

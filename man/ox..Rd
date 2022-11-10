@@ -32,73 +32,74 @@
 \usage{
 ox.()
 
-ox(..., conj. = "and", pref. = "", quote. = 0)
+ox(..., conj = "and", pref = "", quote = 0)
 
-ox_n(..., conj. = "and", comp. = "", quote. = 0, n. = 1, comp.first. = TRUE)
+ox_n(..., conj = "and", comp = "", quote = 0, n = 1, comp.first = TRUE)
 
-ox_and(..., pref. = NULL)
+ox_and(..., pref = NULL)
 
-ox_or(..., pref. = NULL)
+ox_or(..., pref = NULL)
 
-ox_nor(..., pref. = "neither")
+ox_nor(..., pref = "neither")
 
 ox_either(...)
 
 ox_neither(...)
 
-ox_all(..., conj. = "and")
+ox_all(..., conj = "and")
 
-ox_any(..., conj. = "and")
+ox_any(..., conj = "and")
 
-ox_none(..., conj. = "or")
+ox_none(..., conj = "or")
 
-ox_some(..., conj. = "and")
+ox_some(..., conj = "and")
 
-ox_exactly(..., conj. = "or", n. = 1)
+ox_exactly(..., conj = "or", n = 1)
 
-ox_less(..., conj. = "and", n. = 2)
+ox_less(..., conj = "and", n = 2)
 
-ox_more(..., conj. = "and", n. = 1)
+ox_more(..., conj = "and", n = 1)
 
-ox_fewer(..., conj. = "and", n. = 2)
+ox_fewer(..., conj = "and", n = 2)
 
-ox_greater(..., conj. = "and", n. = 2)
+ox_greater(..., conj = "and", n = 2)
 
-ox_atleast(..., conj. = "and", n. = 1)
+ox_atleast(..., conj = "and", n = 1)
 
-ox_atmost(..., conj. = "and", n. = 1)
+ox_atmost(..., conj = "and", n = 1)
 
-ox_nogreater(..., conj. = "and", n. = 1)
+ox_nogreater(..., conj = "and", n = 1)
 
-ox_nofewer(..., conj. = "and", n. = 1)
+ox_nofewer(..., conj = "and", n = 1)
 
-ox_nomore(..., conj. = "and", n. = 1)
+ox_nomore(..., conj = "and", n = 1)
 
-ox_noless(..., conj. = "and", n. = 1)
+ox_noless(..., conj = "and", n = 1)
 
-ox_ormore(..., conj. = "and", n. = 1)
+ox_ormore(..., conj = "and", n = 1)
 
-ox_orgreater(..., conj. = "and", n. = 1)
+ox_orgreater(..., conj = "and", n = 1)
 
-ox_orless(..., conj. = "and", n. = 1)
+ox_orless(..., conj = "and", n = 1)
 
-ox_orfewer(..., conj. = "and", n. = 1)
+ox_orfewer(..., conj = "and", n = 1)
 }
 \arguments{
 \item{...}{Any number of arguments coerceable to mode character.}
 
-\item{conj.}{The conjunction to use between the next to last and last
+\item{conj}{The conjunction to use between the next to last and last
 elements of the list. See details.}
 
-\item{pref.}{A prefix to prepend to the resulting character scalar.}
+\item{pref}{A prefix to prepend to the resulting character scalar.}
 
-\item{comp.}{A character scalar used for comparing to \code{n.}, such as
-\code{'at least'} or \code{'or fewer'}.}
+\item{comp}{\link[cmp_chr_scl]{Complete character scalar} used for comparing
+to \code{n}, such as \code{'at least'} or \code{'or fewer'}.}
 
-\item{n.}{A integer scalar.}
+\item{n}{\link[cmp_psw_scl]{Complete positive whole-number scalar}.}
 
-\item{comp.first.}{A logical scalar used to determine whether \code{comp.} is
-placed in front of \code{n.} rather than after \code{n.}..}
+\item{comp.first}{\link[cmp_lgl_scl]{Complete logical scalar} used to
+determine whether \code{comp} is placed in front of \code{n} rather than
+after \code{n}..}
 }
 \value{
 A character scalar containing all atomic elements of \code{...}
@@ -109,9 +110,9 @@ Oxford comma separated lists.
 }
 \section{Functions}{
 \itemize{
-\item \code{ox()}: Oxford separated list with \code{conj.} as the conjunction
+\item \code{ox()}: Oxford separated list with \code{conj} as the conjunction
 separating the next to last and last elements of the list, with the list
-preceded by the prefix \code{pref.}.
+preceded by the prefix \code{pref}.
 
 \item \code{ox_n()}: Oxford-comma-separated list including a numeric requirement.
 
@@ -170,17 +171,17 @@ Fruits <- c("apples", "bananas", "oranges")
 ox(Fruits)
 ox("apples", "bananas", "orange")
 ox_or(Fruits)
-ox_or(Fruits, pref. = "neither")
-ox_nor(Fruits, pref. = "")
-ox_nor(Fruits, pref. = NULL)
+ox_or(Fruits, pref = "neither")
+ox_nor(Fruits, pref = "")
+ox_nor(Fruits, pref = NULL)
 
 ox(Fruits)
-ox(Fruits, conj. = "or")
-ox(Fruits, conj. = "nor")
+ox(Fruits, conj = "or")
+ox(Fruits, conj = "nor")
 
-ox(Fruits, pref. = "", conj. = "nor")
-ox(Fruits, pref. = "either", conj. = "or")
-ox(Fruits, pref. = "all of", conj. = "and")
+ox(Fruits, pref = "", conj = "nor")
+ox(Fruits, pref = "either", conj = "or")
+ox(Fruits, pref = "all of", conj = "and")
 
 ox_either(Fruits)
 ox_either("apples", "bananas", "oranges")
@@ -194,25 +195,25 @@ ox_all("apples", "bananas", "oranges")
 ox_none(Fruits)
 ox_none("apples", "bananas", "oranges")
 
-ox_n(Fruits, n. = 1)
-ox_n(Fruits, conj. = "and", n. = 2, comp. = "from among")
-ox_n(Fruits, conj. = "and", n. = 2, comp. = "at least", comp.first. = TRUE)
+ox_n(Fruits, n = 1)
+ox_n(Fruits, conj = "and", n = 2, comp = "from among")
+ox_n(Fruits, conj = "and", n = 2, comp = "at least", comp.first = TRUE)
 
-ox_exactly(Fruits, n. = 2)
-ox_less(Fruits, n. = 2)
-ox_more(Fruits, n. = 2)
-ox_fewer(Fruits, n. = 2)
-ox_greater(Fruits, n. = 2)
-ox_atleast(Fruits, n. = 2)
-ox_atmost(Fruits, n. = 2)
-ox_nogreater(Fruits, n. = 2)
-ox_nofewer(Fruits, n. = 2)
-ox_nomore(Fruits, n. = 2)
-ox_noless(Fruits, n. = 2)
-ox_ormore(Fruits, n. = 2)
-ox_orgreater(Fruits, n. = 2)
-ox_orless(Fruits, n. = 2)
-ox_orfewer(Fruits, n. = 2)
+ox_exactly(Fruits, n = 2)
+ox_less(Fruits, n = 2)
+ox_more(Fruits, n = 2)
+ox_fewer(Fruits, n = 2)
+ox_greater(Fruits, n = 2)
+ox_atleast(Fruits, n = 2)
+ox_atmost(Fruits, n = 2)
+ox_nogreater(Fruits, n = 2)
+ox_nofewer(Fruits, n = 2)
+ox_nomore(Fruits, n = 2)
+ox_noless(Fruits, n = 2)
+ox_ormore(Fruits, n = 2)
+ox_orgreater(Fruits, n = 2)
+ox_orless(Fruits, n = 2)
+ox_orfewer(Fruits, n = 2)
 }
 \seealso{
 Other strings: 

@@ -12,7 +12,7 @@
 \alias{cmp_mvc}
 \alias{cmp_scl}
 \alias{cmp_vec}
-\title{Complete + atomic extended class properties}
+\title{Complete plus atomic extended class properties}
 \usage{
 cmp_ccc.()
 
@@ -26,7 +26,7 @@ cmp_dtf(x)
 
 cmp_vls(x)
 
-cmp_vtp(x.)
+cmp_vtp(x)
 
 cmp_mat(x)
 
@@ -37,55 +37,56 @@ cmp_scl(x)
 cmp_vec(x)
 }
 \arguments{
-\item{x.}{An object.}
-
-\item{xxx.}{A character scalar containing one or more values from
-\code{ccc_vals()} separated by pipes and/or underscores. Combinations of
-extended classes can be specified by separating them with underscores.
-Separating extended classes or combinations of extended classes with pipes
-will result in a value of \code{TRUE} if any of them applies to \code{x.}.}
-
-\item{...}{Additional arguments to \code{\link{meets}} containing value and
-element/row/column count restrictions.}
+\item{x}{An object.}
 }
 \value{
 \code{ccc_vals} returns a character vector containing all valid
-extended class property values. \code{ccc} returns a character scalar
-or vector containing all extended class properties from
-\code{ccc_vals()} applicable to \code{x.}. All others return either
-\code{TRUE} or \code{FALSE}.
+extended class property values. \code{ccc} returns a character scalar or
+vector containing all extended class properties from \code{ccc_vals()}
+applicable to \code{x}. All others return either \code{TRUE} or
+\code{FALSE}.
 }
 \description{
-Complete + atomic extended class properties
+Combinations of \link[icmp]{completeness} and
+\link[ccc]{extended class}.
 }
 \section{Functions}{
 \itemize{
-\item \code{cmp_ccc_vals()}: Get a character vector of all possible complete +
+\item \code{cmp_ccc_vals()}: Get a character vector of all possible completeness plus
 atomic extended class properties.
 
-\item \code{cmp_arr()}: Is \code{x.} a complete atomic array?
+\item \code{cmp_arr()}: Is \code{x} a \link[icmp]{complete} \link[iarr]{atomic
+array}?
 
-\item \code{cmp_gen()}: Is \code{x.} a complete atomic generic?
+\item \code{cmp_gen()}: Is \code{x} a \link[icmp]{complete} \link[igen]{atomic
+generic}?
 
-\item \code{cmp_dtf()}: Is \code{x.} a complete \code{\link[itab]{atomic df}}?
+\item \code{cmp_dtf()}: Is \code{x} a \link[icmp]{complete} \link[idtf]{atomic
+dtf}?
 
-\item \code{cmp_vls()}: Is \code{x.} a complete atomic vlist?
+\item \code{cmp_vls()}: Is \code{x} a \link[icmp]{complete} \link[ivls]{atomic
+vlist}?
 
-\item \code{cmp_vtp()}: Is \code{x.} a complete atomic vtype?
+\item \code{cmp_vtp()}: Is \code{x} a \link[icmp]{complete} \link[ivtp]{atomic
+vtype}?
 
-\item \code{cmp_mat()}: Is \code{x.} a complete atomic matrix?
+\item \code{cmp_mat()}: Is \code{x} a \link[icmp]{complete} \link[imat]{atomic
+matrix}?
 
-\item \code{cmp_mvc()}: Is \code{x.} a complete atomic mvect?
+\item \code{cmp_mvc()}: Is \code{x} a \link[icmp]{complete} \link[imvc]{atomic
+multivec}?
 
-\item \code{cmp_scl()}: Is \code{x.} a complete atomic scalar?
+\item \code{cmp_scl()}: Is \code{x} a \link[icmp]{complete} \link[iscl]{atomic
+scalar}?
 
-\item \code{cmp_vec()}: Is \code{x.} a complete atomic vect?
+\item \code{cmp_vec()}: Is \code{x} a \link[icmp]{complete} \link[ivec]{atomic
+vec}?
 
 }}
 \section{Submitting additional arguments to \code{ccc} via \code{...}}{
-
-Allows for checking not just the ccc but whether length, number of rows,
-number of columns, and element values meet flexible criteria.
+ Allows
+for checking not just the extended class but whether length, number of
+rows, number of columns, and element values meet flexible criteria.
 }
 
 \seealso{
@@ -99,7 +100,7 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},

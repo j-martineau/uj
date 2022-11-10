@@ -3,13 +3,13 @@
 #' @title Wraps of functions from package \code{dplyr}.
 #' @description The following table describes the wraps this group of functions
 #'   covers:\tabular{ll}{
-#'     WRAPPER        \tab FUNCTION                                          \cr
-#'     \code{dpagg}   \tab \code{\link[dplyr]{summarize}}                    \cr
-#'     \code{dpall}   \tab \code{\link[dplyr]{all_of}}                       \cr
-#'     \code{dpjoin}  \tab \code{\link[dplyr]{left_join}}                    \cr
-#'     \code{dplab}   \tab \code{\link[dplyr]{rename}}                       \cr
-#'     \code{dpn}     \tab \code{\link[dplyr]{n}}                            \cr
-#'     \code{dpmod}   \tab \code{\link[dplyr]{mutate}}                         }
+#'   WRAPPER         \tab FUNCTION                                           \cr
+#'   \code{dpagg}    \tab \code{\link[dplyr]{summarize}}                     \cr
+#'   \code{dpall}    \tab \code{\link[dplyr]{all_of}}                        \cr
+#'   \code{dpjoin}   \tab \code{\link[dplyr]{left_join}}                     \cr
+#'   \code{dplab}    \tab \code{\link[dplyr]{rename}}                        \cr
+#'   \code{dpn}      \tab \code{\link[dplyr]{n}}                             \cr
+#'   \code{dpmod}    \tab \code{\link[dplyr]{mutate}}                          }
 #'   The function \code{dpgrp} wraps  \code{\link[dplyr]{group_by}}, but with
 #'   limited functionality. The \code{...} argument of is replaced by a
 #'   character vector naming grouping variables in the \code{keys} argument. The

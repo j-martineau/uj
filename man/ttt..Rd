@@ -16,35 +16,35 @@
 \usage{
 ttt.()
 
-ttt(x.)
+ttt(x)
 
-iatm(x.)
+iatm(x)
 
-idef(x.)
+idef(x)
 
-ifun(x.)
+ifun(x)
 
-inil(x.)
+inil(x)
 
-inll(x.)
+inll(x)
 
-ipop(x.)
+ipop(x)
 
-ircr(x.)
+ircr(x)
 
 ttt_vals()
 
-ittt(x., xxx., ...)
+ittt(x, xxx, ...)
 }
 \arguments{
-\item{x.}{An object.}
+\item{x}{An object.}
 
-\item{xxx.}{A character scalar containing one or more values from
-\code{ttt_vals()} separated by pipes and/or underscores ("."). Combinations
-of fundamental types can be specified by separating them with underscores.
-Separating fundamental types or combinations of fundamental types with
-pipes will result in a value of \code{TRUE} if any of them applies to
-\code{x.}.}
+\item{xxx}{\link[cmp_chr_scl]{Complete character scalar }containing one or
+more values from \code{ttt_vals()} separated by pipes and/or underscores
+("."). Combinations of fundamental types can be specified by separating
+them with underscores. Separating fundamental types or combinations of
+fundamental types with pipes will result in a value of \code{TRUE} if any
+of them applies to \code{x}.}
 
 \item{...}{Additional arguments to \code{\link{meets}} containing value and
 element/row/column count restrictions.}
@@ -57,44 +57,44 @@ vector. All others return either \code{TRUE} or \code{FALSE}.
 An object's fundamental type (ttt) is defined by its most
 basic structural properties as described in the following table:
 \tabular{lll}{
-FUNDAMENTAL  \tab FUNDAMENTAL  \tab CHARACTERISTICS OF                  \cr
-TYPE VALUE   \tab TYPE NAME    \tab QUALIFYING OBJECTS                  \cr
-\code{'nll'} \tab null         \tab \code{NULL}                         \cr
-\code{'def'} \tab defined      \tab not \code{NULL}                     \cr
-\code{'nil'} \tab nil-length   \tab length is 0 (includes \code{NULL})  \cr
-\code{'pop'} \tab populated    \tab length is > 0                       \cr
-\code{'fun'} \tab function ref \tab function object or character scalar
-containing a function name.         \cr
-\code{'atm'} \tab atomic       \tab atomic                              \cr
-\code{'rcr'} \tab recursive    \tab list-like
-(\code{\link[is_tab]{tabular}},
+FUNDAMENTAL   \tab FUNDAMENTAL   \tab CHARACTERISTICS OF                \cr
+TYPE VALUE    \tab TYPE NAME     \tab QUALIFYING OBJECTS                \cr
+\code{'nll'}\tab null        \tab \code{NULL}                           \cr
+\code{'def'}\tab defined     \tab Not \code{NULL}                       \cr
+\code{'nil'}\tab nil-length  \tab Length is 0 (includes \code{NULL})    \cr
+\code{'pop'}\tab populated   \tab Length is > 0                         \cr
+\code{'fun'}\tab function reference
+\tab Function object or character scalar
+containing a function name            \cr
+\code{'atm'}\tab atomic      \tab atomic                                \cr
+\code{'rcr'}\tab recursive   \tab List-like (\code{\link[is_dtf]{dtf}},
 lists, or objects containing an element
-that is not an atomic scalar)         }
+that is not an atomic scalar)           }
 }
 \section{Functions}{
 \itemize{
 \item \code{ttt()}: Get a character vector of all fundamental type properties
-applicable to \code{x.}.
+applicable to \code{x}.
 
-\item \code{iatm()}: Is \code{x.} atomic (regardless of length)?
+\item \code{iatm()}: Is \code{x} atomic (regardless of length)?
 
-\item \code{idef()}: Is \code{x.} defined (non-\code{NULL})?
+\item \code{idef()}: Is \code{x} defined (non-\code{NULL})?
 
-\item \code{ifun()}: Is \code{x.} a function or a function name?
+\item \code{ifun()}: Is \code{x} a function or a function name?
 
-\item \code{inil()}: Is \code{x.} nil (of length 0)?
+\item \code{inil()}: Is \code{x} nil (of length 0)?
 
-\item \code{inll()}: Is \code{x.} \code{NULL}
+\item \code{inll()}: Is \code{x} \code{NULL}
 
-\item \code{ipop()}: Is \code{x.} populated (of length > 0)?
+\item \code{ipop()}: Is \code{x} populated (of length > 0)?
 
-\item \code{ircr()}: Is \code{x.} recursive?
+\item \code{ircr()}: Is \code{x} recursive?
 
 \item \code{ttt_vals()}: Get a character vector of all possible fundamental type
 property values.
 
-\item \code{ittt()}: Determine whether \code{x.} is of the fundamental type(s)
-contained in \code{xxx.} subject to the additional specifications in
+\item \code{ittt()}: Determine whether \code{x} is of the fundamental type(s)
+contained in \code{xxx} subject to the additional specifications in
 \code{...}.
 
 }}
@@ -117,7 +117,7 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},

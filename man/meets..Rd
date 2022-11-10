@@ -3,14 +3,14 @@
 \name{meets.}
 \alias{meets.}
 \alias{meets}
-\title{Does an object meet count and/or value restrictions}
+\title{Does an object meet count and/or value restrictions?}
 \usage{
 meets.()
 
-meets(x., ...)
+meets(x, ...)
 }
 \arguments{
-\item{x.}{An object.}
+\item{x}{An object.}
 
 \item{...}{Additional restrictive arguments. See details.}
 }
@@ -18,30 +18,29 @@ meets(x., ...)
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-Does an object meet count and/or value restrictions
+Does an object meet count and/or value restrictions?
 }
 \details{
 Additional restrictive arguments are optional. When no additional
 arguments are supplied \code{TRUE} is returned. Possible arguments are as
-follows:
-\tabular{ll}{
-NAME         \tab WHAT IT SPECIFIES                                   \cr
-\code{n}     \tab The set of valid lengths/numbers of elements        \cr
-\code{nr}    \tab The set of valid numbers of rows                    \cr
-\code{nc}    \tab The set of valid numbers of columns                 \cr
-\code{min}   \tab The minimum valid length/number of element          \cr
-\code{minr}  \tab The minimum valid number of rows                    \cr
-\code{minc}  \tab The minimum valid number of columns                 \cr
-\code{max}   \tab The maximum valid length/number of element          \cr
-\code{maxr}  \tab The maximum valid number of rows                    \cr
-\code{maxc}  \tab The maximum valid number of columns                 \cr
-\code{vals}  \tab The set of valid values                             \cr
-\code{lt}    \tab The value all values of \code{x.} must be less than \cr
-\code{le}    \tab The value all values of \code{x.} must be less than or
-equal to                                            \cr
-\code{ge}    \tab The value all values of \code{x.} must be less than or
+follows:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                    \cr
+\code{n}      \tab The set of valid lengths/numbers of elements         \cr
+\code{nr}     \tab The set of valid numbers of rows                     \cr
+\code{nc}     \tab The set of valid numbers of columns                  \cr
+\code{min}    \tab The minimum valid length/number of element           \cr
+\code{minr}   \tab The minimum valid number of rows                     \cr
+\code{minc}   \tab The minimum valid number of columns                  \cr
+\code{max}    \tab The maximum valid length/number of element           \cr
+\code{maxr}   \tab The maximum valid number of rows                     \cr
+\code{maxc}   \tab The maximum valid number of columns                  \cr
+\code{vals}   \tab The set of valid values                              \cr
+\code{lt}     \tab The value all values of \code{x.} must be less than  \cr
+\code{le}     \tab The value all values of \code{x.} must be less than or
 equal to                                             \cr
-\code{gt}    \tab The value all values of \code{x.} must be greater than}
+\code{ge}     \tab The value all values of \code{x.} must be less than or
+equal to                                             \cr
+\code{gt}     \tab The value all values of \code{x.} must be greater than }
 }
 \section{Functions}{
 \itemize{
@@ -61,7 +60,7 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{mmm.}()},
 \code{\link{mmm_ccc.}()},

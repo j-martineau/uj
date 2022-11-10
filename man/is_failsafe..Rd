@@ -70,138 +70,138 @@
 \usage{
 is_failsafe.()
 
-isIN(x., ...)
+isIN(x, ...)
 
-isID(x., y.)
+isID(x, y)
 
-isEQ(x., y.)
+isEQ(x, y)
 
-isT(x.)
+isT(x)
 
-isF(x.)
+isF(x)
 
-isNa(x.)
+isNa(x)
 
-isOk(x.)
+isOk(x)
 
-isTF(x.)
+isTF(x)
 
-isLG(x.)
+isLG(x)
 
-isBL(x.)
+isBL(x)
 
-notIN(x., ...)
+notIN(x, ...)
 
-notID(x., y.)
+notID(x, y)
 
-notEQ(x., y.)
+notEQ(x, y)
 
-notBL(x.)
+notBL(x)
 
-norIN(x., ...)
+norIN(x, ...)
 
-norID(x., y.)
+norID(x, y)
 
-norEQ(x., y.)
+norEQ(x, y)
 
-norT(x.)
+norT(x)
 
-norF(x.)
+norF(x)
 
-norNa(x.)
+norNa(x)
 
-norOk(x.)
+norOk(x)
 
-norTF(x.)
+norTF(x)
 
-norLG(x.)
+norLG(x)
 
-norBL(x.)
+norBL(x)
 
-anyIN(x., ...)
+anyIN(x, ...)
 
-anyID(x., y.)
+anyID(x, y)
 
-anyEQ(x., y.)
+anyEQ(x, y)
 
-anyT(x.)
+anyT(x)
 
-anyF(x.)
+anyF(x)
 
-anyNa(x.)
+anyNa(x)
 
-anyOk(x.)
+anyOk(x)
 
-anyTF(x.)
+anyTF(x)
 
-anyLG(x.)
+anyLG(x)
 
-anyBL(x.)
+anyBL(x)
 
-allIN(x., ...)
+allIN(x, ...)
 
-allID(x., y.)
+allID(x, y)
 
-allEQ(x., y.)
+allEQ(x, y)
 
-allT(x.)
+allT(x)
 
-allF(x.)
+allF(x)
 
-allNa(x.)
+allNa(x)
 
-allOk(x.)
+allOk(x)
 
-allTF(x.)
+allTF(x)
 
-allLG(x.)
+allLG(x)
 
-allBL(x.)
+allBL(x)
 
-oneIN(x., ...)
+oneIN(x, ...)
 
-oneID(x., y.)
+oneID(x, y)
 
-oneEQ(x., y.)
+oneEQ(x, y)
 
-oneT(x.)
+oneT(x)
 
-oneF(x.)
+oneF(x)
 
-oneNa(x.)
+oneNa(x)
 
-oneOk(x.)
+oneOk(x)
 
-oneTF(x.)
+oneTF(x)
 
-oneLG(x.)
+oneLG(x)
 
-oneBL(x.)
+oneBL(x)
 
-twoIN(x., ...)
+twoIN(x, ...)
 
-twoID(x., y.)
+twoID(x, y)
 
-twoEQ(x., y.)
+twoEQ(x, y)
 
-twoT(x.)
+twoT(x)
 
-twoF(x.)
+twoF(x)
 
-twoNa(x.)
+twoNa(x)
 
-twoOk(x.)
+twoOk(x)
 
-twoTF(x.)
+twoTF(x)
 
-twoLG(x.)
+twoLG(x)
 
-twoBL(x.)
+twoBL(x)
 }
 \arguments{
-\item{x., y.}{any object.}
+\item{x, y}{Any object.}
 
-\item{...}{objects to check for containing \code{x.}.}
+\item{...}{Objects to check for containing \code{x}.}
 }
 \value{
 \code{TRUE} or \code{FALSE}.
@@ -216,173 +216,173 @@ does not itself produce an error.
 }
 \section{Functions}{
 \itemize{
-\item \code{isIN()}: Is \code{x.} in the collective set of atomized values
+\item \code{isIN()}: Is \code{x} in the collective set of atomized values
 from \code{...}?
 
-\item \code{isID()}: Are \code{x.} and \code{y.} identical?
+\item \code{isID()}: Are \code{x} and \code{y} identical?
 
-\item \code{isEQ()}: Are \code{x.} and \code{y.} atomic and setequal?
+\item \code{isEQ()}: Are \code{x} and \code{y} atomic and setequal?
 
-\item \code{isT()}: Is \code{x.} scalar \code{TRUE}?
+\item \code{isT()}: Is \code{x} scalar \code{TRUE}?
 
-\item \code{isF()}: Is \code{x.} scalar \code{FALSE}?
+\item \code{isF()}: Is \code{x} scalar \code{FALSE}?
 
-\item \code{isNa()}: Is \code{x.} scalar \code{NA}?
+\item \code{isNa()}: Is \code{x} scalar \code{NA}?
 
-\item \code{isOk()}: Is \code{x.} atomic, scalar, and non-\code{NA}?
+\item \code{isOk()}: Is \code{x} atomic, scalar, and non-\code{NA}?
 
-\item \code{isTF()}: Is \code{x.} either scalar \code{TRUE} or scalar
+\item \code{isTF()}: Is \code{x} either scalar \code{TRUE} or scalar
 \code{FALSE}?
 
-\item \code{isLG()}: Is \code{x.} scalar logical (\code{TRUE},
+\item \code{isLG()}: Is \code{x} scalar logical (\code{TRUE},
 \code{FALSE} or \code{NA})?
 
-\item \code{isBL()}: Is \code{x.} a scalar blank string?
+\item \code{isBL()}: Is \code{x} a scalar blank string?
 
-\item \code{notIN()}: Is \code{x.} atomic, of length 1, and not contained
+\item \code{notIN()}: Is \code{x} atomic, of length 1, and not contained
 in any argument in \code{...}?
 
 \item \code{notID()}: Thin wrapper for \code{!identical}.
 
-\item \code{notEQ()}: Is \code{x.} not atomic, \code{y.} not atomic, or
+\item \code{notEQ()}: Is \code{x} not atomic, \code{y} not atomic, or
 are they not setequal?
 
-\item \code{notBL()}: Is \code{x.} not a scalar blank string?
+\item \code{notBL()}: Is \code{x} not a scalar blank string?
 
-\item \code{norIN()}: Are no elements of \code{x.} in the collective
+\item \code{norIN()}: Are no elements of \code{x} in the collective
 atomized values from \code{...}?
 
-\item \code{norID()}: Are no elements of \code{x.} identical to \code{y.}?
+\item \code{norID()}: Are no elements of \code{x} identical to \code{y}?
 
-\item \code{norEQ()}: Are no elements of \code{x.} identical to \code{y.}?
+\item \code{norEQ()}: Are no elements of \code{x} identical to \code{y}?
 
-\item \code{norT()}: Are no elements of \code{x.} scalar \code{TRUE}?
+\item \code{norT()}: Are no elements of \code{x} scalar \code{TRUE}?
 
-\item \code{norF()}: Are no elements of \code{x.} scalar \code{FALSE}?
+\item \code{norF()}: Are no elements of \code{x} scalar \code{FALSE}?
 
-\item \code{norNa()}: Are no elements of \code{x.} scalar \code{NA}?
+\item \code{norNa()}: Are no elements of \code{x} scalar \code{NA}?
 
-\item \code{norOk()}: Are no elements of \code{x.} scalar non-\code{NA}?
+\item \code{norOk()}: Are no elements of \code{x} scalar non-\code{NA}?
 
-\item \code{norTF()}: Are no elements of \code{x.} either scalar
+\item \code{norTF()}: Are no elements of \code{x} either scalar
 \code{TRUE} or scalar \code{FALSE}?
 
-\item \code{norLG()}: Are no elements of \code{x.} scalar logical
+\item \code{norLG()}: Are no elements of \code{x} scalar logical
 (\code{NA}, \code{TRUE}, or \code{FALSE})?
 
-\item \code{norBL()}: Are no elements of \code{x.} blank string scalars?
+\item \code{norBL()}: Are no elements of \code{x} blank string scalars?
 
-\item \code{anyIN()}: Are any elements of \code{x.} in the collective
+\item \code{anyIN()}: Are any elements of \code{x} in the collective
 atomized values from \code{...}?
 
-\item \code{anyID()}: Are any elements of \code{x.} identical to
-\code{y.}?
+\item \code{anyID()}: Are any elements of \code{x} identical to
+\code{y}?
 
-\item \code{anyEQ()}: Are any elements of \code{x.} set-equal to
-\code{y.}?
+\item \code{anyEQ()}: Are any elements of \code{x} set-equal to
+\code{y}?
 
-\item \code{anyT()}: Are any elements of \code{x.} scalar \code{TRUE}?
+\item \code{anyT()}: Are any elements of \code{x} scalar \code{TRUE}?
 
-\item \code{anyF()}: Are any elements of \code{x.} scalar \code{FALSE}?
+\item \code{anyF()}: Are any elements of \code{x} scalar \code{FALSE}?
 
-\item \code{anyNa()}: Are any elements of \code{x.} scalar, atomic, and
+\item \code{anyNa()}: Are any elements of \code{x} scalar, atomic, and
 \code{NA}?
 
-\item \code{anyOk()}: Are any elements of \code{x.} scalar, atomic, and
+\item \code{anyOk()}: Are any elements of \code{x} scalar, atomic, and
 non-\code{NA}?
 
-\item \code{anyTF()}: Are no elements of \code{x.} scalar \code{TRUE} or
+\item \code{anyTF()}: Are no elements of \code{x} scalar \code{TRUE} or
 scalar \code{FALSE}?
 
-\item \code{anyLG()}: Are any elements of \code{x.} scalar logical
+\item \code{anyLG()}: Are any elements of \code{x} scalar logical
 (\code{TRUE}, \code{FALSE}, or \code{NA})?
 
-\item \code{anyBL()}: Are any elements of \code{x.} scalar blank strings?
+\item \code{anyBL()}: Are any elements of \code{x} scalar blank strings?
 
-\item \code{allIN()}: Are all elements of \code{x.} in the collective set
+\item \code{allIN()}: Are all elements of \code{x} in the collective set
 of atomized values from \code{...}?
 
-\item \code{allID()}: Are all elements of \code{x.} identical to
-\code{y.}?
+\item \code{allID()}: Are all elements of \code{x} identical to
+\code{y}?
 
-\item \code{allEQ()}: Are all elements of \code{x.} set-equal to
-\code{y.}?
+\item \code{allEQ()}: Are all elements of \code{x} set-equal to
+\code{y}?
 
-\item \code{allT()}: Are all elements of \code{x.} scalar \code{TRUE}?
+\item \code{allT()}: Are all elements of \code{x} scalar \code{TRUE}?
 
-\item \code{allF()}: Are all elements of \code{x.} scalar \code{FALSE}?
+\item \code{allF()}: Are all elements of \code{x} scalar \code{FALSE}?
 
-\item \code{allNa()}: Are all elements of \code{x.} scalar \code{NA}?
+\item \code{allNa()}: Are all elements of \code{x} scalar \code{NA}?
 
-\item \code{allOk()}: Are all elements of \code{x.} scalar, atomic, and
+\item \code{allOk()}: Are all elements of \code{x} scalar, atomic, and
 non-\code{NA}?
 
-\item \code{allTF()}: Are all elements of \code{x.} scalar \code{TRUE}
+\item \code{allTF()}: Are all elements of \code{x} scalar \code{TRUE}
 or scalar \code{FALSE}?
 
-\item \code{allLG()}: Are all elements of \code{x.} scalar logical
+\item \code{allLG()}: Are all elements of \code{x} scalar logical
 (\code{TRUE}, \code{FALSE}, or \code{NA})?
 
-\item \code{allBL()}: Are all elements of \code{x.} scalar blank strings?
+\item \code{allBL()}: Are all elements of \code{x} scalar blank strings?
 
-\item \code{oneIN()}: Is exactly one element of \code{x.} in the
+\item \code{oneIN()}: Is exactly one element of \code{x} in the
 collective set of atomized values from \code{...}?
 
-\item \code{oneID()}: Is exactly one element of \code{x.} identical to
-\code{y.}?
+\item \code{oneID()}: Is exactly one element of \code{x} identical to
+\code{y}?
 
-\item \code{oneEQ()}: Is exactly one element of \code{x.} set-equal to
-\code{y.}?
+\item \code{oneEQ()}: Is exactly one element of \code{x} set-equal to
+\code{y}?
 
-\item \code{oneT()}: Is exactly one element of \code{x.} scalar
+\item \code{oneT()}: Is exactly one element of \code{x} scalar
 \code{TRUE}?
 
-\item \code{oneF()}: Is exactly one element of \code{x.} scalar
+\item \code{oneF()}: Is exactly one element of \code{x} scalar
 \code{FALSE}?
 
-\item \code{oneNa()}: Is exactly one element of \code{x.} scalar
+\item \code{oneNa()}: Is exactly one element of \code{x} scalar
 \code{NA}?
 
-\item \code{oneOk()}: Is exactly one element of \code{x.} scalar, atomic,
+\item \code{oneOk()}: Is exactly one element of \code{x} scalar, atomic,
 and non-\code{NA}?
 
-\item \code{oneTF()}: Is exactly one element of \code{x.} scalar
+\item \code{oneTF()}: Is exactly one element of \code{x} scalar
 \code{TRUE} or scalar \code{FALSE}?
 
-\item \code{oneLG()}: Is exactly one element of \code{x.} scalar logical
+\item \code{oneLG()}: Is exactly one element of \code{x} scalar logical
 (\code{TRUE}, \code{FALSE}, or \code{NA})?
 
-\item \code{oneBL()}: Is exactly one element of \code{x.} a scalar blank
+\item \code{oneBL()}: Is exactly one element of \code{x} a scalar blank
 string?
 
-\item \code{twoIN()}: Are two or more elements of \code{x.} in the
+\item \code{twoIN()}: Are two or more elements of \code{x} in the
 collective set of atomized values from \code{...}?
 
-\item \code{twoID()}: Are two or more elements of \code{x.} identical to
-\code{y.}?
+\item \code{twoID()}: Are two or more elements of \code{x} identical to
+\code{y}?
 
-\item \code{twoEQ()}: Are two or more elements of \code{x.} set-equal to
-\code{y.}?
+\item \code{twoEQ()}: Are two or more elements of \code{x} set-equal to
+\code{y}?
 
-\item \code{twoT()}: Are two or more elements of \code{x.} scalar
+\item \code{twoT()}: Are two or more elements of \code{x} scalar
 \code{TRUE}?
 
-\item \code{twoF()}: Are two or more elements of \code{x.} scalar
+\item \code{twoF()}: Are two or more elements of \code{x} scalar
 \code{FALSE}?
 
-\item \code{twoNa()}: Are two or more elements of \code{x.} scalar
+\item \code{twoNa()}: Are two or more elements of \code{x} scalar
 \code{NA}?
 
-\item \code{twoOk()}: Are two or more elements of \code{x.} scalar,
+\item \code{twoOk()}: Are two or more elements of \code{x} scalar,
 atomic, and non-\code{NA}?
 
-\item \code{twoTF()}: Are two or more elements of \code{x.} scalar
+\item \code{twoTF()}: Are two or more elements of \code{x} scalar
 \code{TRUE} or scalar \code{FALSE}?
 
-\item \code{twoLG()}: Are two or more elements of \code{x.} scalar logical
+\item \code{twoLG()}: Are two or more elements of \code{x} scalar logical
 (\code{TRUE}, \code{FALSE} or \code{NA})?
 
-\item \code{twoBL()}: Are two or more elements of \code{x.} scalar blank
+\item \code{twoBL()}: Are two or more elements of \code{x} scalar blank
 strings?
 
 }}

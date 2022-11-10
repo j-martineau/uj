@@ -16,12 +16,15 @@ vget(name, err = T, gens = 1)
 vset(name, val, gens = 1)
 }
 \arguments{
-\item{name}{A character scalar giving the name of an object.}
+\item{name}{\link[cmp_chr_scl]{Complete character scalar} giving the name of
+an object.}
 
-\item{err}{A logical scalar whether to throw an error if the object specified
-by \code{name} does not exist (i.e., rather than returning \code{FALSE}).}
+\item{err}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+throw an error if the object specified by \code{name} does not exist (i.e.,
+rather than returning \code{FALSE}).}
 
-\item{gens}{The number of generations back in the function call stack to go.}
+\item{gens}{\link[cmp_psw_scl]{Complete positive whole-number scalar} giving
+the number of generations back in the function call stack to go.}
 
 \item{val}{A value to place into the object specified by \code{name}.}
 }

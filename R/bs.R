@@ -3,12 +3,12 @@
 #' @title Wraps of functions from package \code{base}.
 #' @description The following table describes thin wraps in this group of
 #'   functions:\tabular{ll}{
-#'   WRAPPER       \tab FUNCTION                                             \cr
+#'   WRAPPER       \tab FUNCTION                                             \cr
 #'   \code{up}     \tab \code{\link[base]{ceiling}}                          \cr
 #'   \code{dn}     \tab \code{\link[base]{floor}}                            \cr
 #'   \code{spf}    \tab \code{\link[base]{sprintf}}                          \cr
 #'   \code{mid}    \tab \code{\link[base]{substr}}                           \cr
-#'   \code{levs}   \tab \code{\link[base]{levels}}                             }
+#'   \code{levs}   \tab \code{\link[base]{levels}}                             }
 #' @param x A numeric object (\code{up} and \code{down}), a character object
 #'   (\code{spf}), or an unordered or ordered factor object (\code{levs}).
 #' @return A numeric object (\code{up} and \code{dn}) or a character object

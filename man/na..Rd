@@ -27,8 +27,8 @@ rm_na(x)
 \arguments{
 \item{x}{The argument to be inspected/managed.}
 
-\item{s}{Atomic scalar to replace \code{NA} values. Mode must be
-\code{\link{compatible}} with \code{x}.}
+\item{s}{\link[atm_scl]{Atomic scalar} to replace \code{NA} values. Mode must
+be \code{\link{compatible}} with \code{x}.}
 }
 \value{
 An atomic scalar, an atomic vector, an atomic array, an

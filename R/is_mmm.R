@@ -4,48 +4,49 @@
 #' @description This family of functions adds missing value and emptiness checks
 #'   and defines new dynamically-evaluated modes. The full set of extended modes
 #'   is given in the following tables.
-#'  \strong{Character Extended Modes}\tabular{lll}{
-#'    EXTENDED    \tab EXTENDED       \tab QUALIFYING                        \cr
-#'    MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
-#'    \code{'chr'}\tab character      \tab character                         \cr
-#'    \code{'clr'}\tab color          \tab hex color value or color name     \cr
-#'    \code{'ch1'}\tab onechar        \tab single characters                 \cr
-#'    \code{'str'}\tab string         \tab no blank ("") values                }
-#'  \strong{Categorical Extended Modes}\tabular{lll}{
-#'    EXTENDED    \tab EXTENDED       \tab QUALIFYING                        \cr
-#'    MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
-#'    \code{'fac'}\tab factor         \tab factor                            \cr
-#'    \code{'lgl'}\tab logical        \tab logical                           \cr
-#'    \code{'ord'}\tab ordered        \tab ordered factor                    \cr
-#'    \code{'uno'}\tab unordered      \tab unordered factor                    }
-#'  \strong{Combination Extended Modes}\tabular{lll}{
-#'    EXTENDED    \tab EXTENDED       \tab QUALIFYING                        \cr
-#'    MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
-#'    \code{'ind'}\tab indexer        \tab logical or positive whole number  \cr
-#'    \code{'srt'}\tab sortable       \tab character, logical, numeric, or
-#'                                        ordered factor                     \cr
-#'    \code{'nst'}\tab non-sortable    tab atomic, but not sortable            }
-#'  \strong{Numeric Extended Modes}\tabular{lll}{
-#'    EXTENDED    \tab EXTENDED       \tab QUALIFYING                        \cr
-#'    MODE VALUE  \tab MODE NAME      \tab CHARACTERISTICS                   \cr
-#'    \code{'num'}\tab numeric        \tab numeric                           \cr
-#'    \code{'frc'}\tab fractional     \tab fractionally valued numeric       \cr
-#'    \code{'pct'}\tab percent        \tab percentage valued (in \[0, 100\]) \cr
-#'    \code{'ppn'}\tab proportion     \tab proportion valued (in \[0, 1\])   \cr
-#'    \code{'pos'}\tab positive       \tab positive valued numeric           \cr
-#'    \code{'nng'}\tab non-negative   \tab non-negative valued numeric       \cr
-#'    \code{'nps'}\tab non-positive   \tab non-positive valued numeric       \cr
-#'    \code{'neg'}\tab negative       \tab negative valued numeric           \cr
-#'    \code{'whl'}\tab whole          \tab whole number valued               \cr
-#'    \code{'evn'}\tab even           \tab even (whole) number-valued        \cr
-#'    \code{'odd'}\tab odd            \tab odd (whole) number-valued         \cr
-#'    \code{'psw'}\tab positive whole \tab positive whole-number valued      \cr
-#'    \code{'nnw'}\tab non-neg whole  \tab non-negative whole-number valued  \cr
-#'    \code{'npw'}\tab non-pos whole  \tab non-positive whole-number valued  \cr
-#'    \code{'ngw'}\tab negative whole \tab negative whole-number valued        }
+#'   \strong{Character Extended Modes}\tabular{lll}{
+#'   EXTENDED    \tab EXTENDED       \tab QUALIFYING                         \cr
+#'   MODE VALUE   \tab MODE NAME     \tab CHARACTERISTICS                    \cr
+#'   \code{'chr'}\tab Character      \tab Character.                         \cr
+#'   \code{'clr'}\tab Xolor          \tab Hex color value or color name.     \cr
+#'   \code{'ch1'}\tab Onechar        \tab Single characters.                 \cr
+#'   \code{'str'}\tab String         \tab No blank ("") strings                }
+#'   \strong{Categorical Extended Modes}\tabular{lll}{
+#'   EXTENDED    \tab EXTENDED       \tab QUALIFYING                         \cr
+#'   MODE VALUE   \tab MODE NAME     \tab CHARACTERISTICS                    \cr
+#'   \code{'fac'}\tab Factor         \tab Factor.                            \cr
+#'   \code{'lgl'}\tab Logical        \tab Logical.                           \cr
+#'   \code{'ord'}\tab Ordered        \tab Ordered factor.                    \cr
+#'   \code{'uno'}\tab Unordered      \tab Unordered factor.                    }
+#'   \strong{Combination Extended Modes}\tabular{lll}{
+#'   EXTENDED    \tab EXTENDED       \tab QUALIFYING                         \cr
+#'   MODE VALUE   \tab MODE NAME     \tab CHARACTERISTICS                    \cr
+#'   \code{'ind'}\tab Indexer        \tab Logical or positive whole number.  \cr
+#'   \code{'srt'}\tab Sortable       \tab Character, logical, numeric, or
+#'                                        ordered factor.                    \cr
+#'   \code{'nst'}\tab non-sortable   \tab Atomic, but not sortable.            }
+#'   \strong{Numeric Extended Modes}\tabular{lll}{
+#'   EXTENDED    \tab EXTENDED       \tab QUALIFYING                         \cr
+#'   MODE VALUE   \tab MODE NAME     \tab CHARACTERISTICS                    \cr
+#'   \code{'num'}\tab Numeric        \tab Numeric.                           \cr
+#'   \code{'frc'}\tab Fractional     \tab Fractionally numeric.              \cr
+#'   \code{'pct'}\tab Percent        \tab Percentage (in \[0, 100\]).        \cr
+#'   \code{'ppn'}\tab Proportion     \tab Proportion (in \[0, 1\]).          \cr
+#'   \code{'pos'}\tab Positive       \tab Positive numeric.                  \cr
+#'   \code{'nng'}\tab Non-negative   \tab Non-negative numeric.              \cr
+#'   \code{'nps'}\tab Non-positive   \tab Non-positive numeric.             \cr
+#'   \code{'neg'}\tab Negative       \tab Negative numeric.                  \cr
+#'   \code{'whl'}\tab Whole          \tab Whole number.                      \cr
+#'   \code{'evn'}\tab Even           \tab Even (whole) number.               \cr
+#'   \code{'odd'}\tab Odd            \tab Odd (whole) number.                \cr
+#'   \code{'psw'}\tab Positive whole \tab Positive whole-number.             \cr
+#'   \code{'nnw'}\tab Non-neg whole  \tab Non-negative whole-number.         \cr
+#'   \code{'npw'}\tab Non-pos whole  \tab Non-positive whole-number.          \cr
+#'   \code{'ngw'}\tab Negative whole \tab Negative whole-number.                 }
 #' @param x An object to check for properties.
-#' @param na,emp Logical scalars indicating whether \code{NA} values are allowed
-#'   and whether empty atomic objects qualify, respectively.
+#' @param na,emp \link[cmp_lgl_scl]{Complete logical scalars} indicating whether
+#'   \code{NA} values are allowed and whether empty atomic objects qualify,
+#'   respectively.
 #' @return Logical scalar
 #' @export
 is_mmm. <- function() {help("is_mmm.", package = "uj")}

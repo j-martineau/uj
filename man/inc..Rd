@@ -13,14 +13,13 @@ inc(x, i = 1, na = F)
 dec(x, d = 1, na = F)
 }
 \arguments{
-\item{x}{Any atomic numeric object.}
+\item{x}{\link[atm_num]{Atomic numeric} object.}
 
-\item{i}{A numeric scalar giving the value by which to increment.}
+\item{i, d}{\link[cmp_num_scl]{Copmlete numeric scalar} giving the value by
+which to increment or decrement, respectively.}
 
-\item{na}{A logical scalar indicating whether to throw an error if any values
-of \code{x} are \code{NA}.}
-
-\item{d}{A numeric scalar giving the value by which to decrement.}
+\item{na}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+throw an error if any values of \code{x} are \code{NA}.}
 }
 \value{
 \code{x} or \code{list(...)}, but with each element incremented or

@@ -36,23 +36,23 @@
 \usage{
 mkstr.()
 
-geq(x., ...)
+geq(x, ...)
 
-geq0(x., ...)
+geq0(x, ...)
 
 gcat(...)
 
-gelt(x., ...)
+gelt(x, ...)
 
-gfun(x., ...)
+gfun(x, ...)
 
 glst(...)
 
-gform(x., ...)
+gform(x, ...)
 
 gtick(...)
 
-gwrap(l., r., ...)
+gwrap(l, r, ...)
 
 gbrace(...)
 
@@ -68,21 +68,21 @@ gbracket(...)
 
 pcat(...)
 
-peq(x., ...)
+peq(x, ...)
 
-peq0(x., ...)
+peq0(x, ...)
 
-pelt(x., ...)
+pelt(x, ...)
 
-pfun(x., ...)
+pfun(x, ...)
 
 plst(...)
 
-pform(x., ...)
+pform(x, ...)
 
 ptick(...)
 
-pwrap(l., r., ...)
+pwrap(l, r, ...)
 
 pbrace(...)
 
@@ -97,13 +97,13 @@ pquote2(...)
 pbracket(...)
 }
 \arguments{
-\item{x.}{An object containing atomic values (atomized).}
+\item{x}{An object containing atomic values (atomized).}
 
 \item{...}{An arbitrary number of objects to be atomized into a single atomic
 vector.}
 
-\item{l., r.}{Character scalars giving left and right side enclosures for
-\code{...} after atomization (see \code{\link{av.}}).}
+\item{l, r}{\link[cmp_chr_scl]{Complete character scalars} giving left and
+right side enclosures for \code{...} after \link[a]{atomization}.}
 }
 \value{
 Character vector
@@ -114,7 +114,7 @@ Specialized string building functions
 \section{Functions}{
 \itemize{
 \item \code{geq()}: Build a space-padded equality statements of atomized and
-glued values of \code{x.} and \code{...} (e.g., \code{geq(c('x', 'y', 'z'),
+glued values of \code{x} and \code{...} (e.g., \code{geq(c('x', 'y', 'z'),
   0, 1, 2)} produces \code{'xyz = 012'}).
 
 \item \code{geq0()}: Build an unpadded equality statements of atomized and
@@ -126,11 +126,11 @@ glued values of \code{...} (e.g., \code{gcat(c('x', 'y', 'z'), 0, 1, 2)}
 produces \code{'c(xyz012)'}).
 
 \item \code{gelt()}: Build an element extraction concatenation statement from
-atomized and glued values of \code{x.} and \code{...} (e.g.,
+atomized and glued values of \code{x} and \code{...} (e.g.,
 \code{gelt(c('x', 'y', 'z'), 0, 1, 2)} produces \code{'xyz[012]'}).
 
 \item \code{gfun()}: Build a function call from atomized and glued values of
-\code{x.} and \code{...} (e.g., \code{gfun(c('x', 'y', 'z'), 0, 1, 2)}
+\code{x} and \code{...} (e.g., \code{gfun(c('x', 'y', 'z'), 0, 1, 2)}
 produces \code{'xyz(012)'}).
 
 \item \code{glst()}: Build a comma-separated list from atomized and glued
@@ -138,7 +138,7 @@ values of \code{...} (e.g., \code{glst(c('x', 'y', 'z'), 0, 1, 2)} produces
 \code{'x, y, z, 0, 1, 2'}).
 
 \item \code{gform()}: Build a model formula of additive terms from atomized and
-glued values of \code{x.} and \code{...} (e.g., \code{gform(c('x', 'y',
+glued values of \code{x} and \code{...} (e.g., \code{gform(c('x', 'y',
   'z'), 0, 1, 2)} produces \code{'xyz ~ 012'}).
 
 \item \code{gtick()}: Build a backtick-quoted value from atomized and glued

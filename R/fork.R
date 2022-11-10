@@ -18,21 +18,21 @@
 #'   if \code{test} contains any \code{NA} values or a return value to replace
 #'   \code{NA} values. \code{ffx}'s return value is unpredictable when
 #'   \code{test} contains \code{NA} values.
-#' @param test A logical scalar for \code{f0}, \code{ff0}, \code{f1}, and
-#'   \code{ff1}. A logical vector for \code{fx} and \code{ffx}. \code{f0},
-#'   \code{f1}, and \code{f2} can manage \code{NA} values in \code{test}. The
-#'   others do not.
+#' @param test \link[cmp_lgl_scl]{Complete logical scalar} for \code{f0},
+#'   \code{ff0}, \code{f1}, and \code{ff1}. \link[cmp_lgl_vec]{Complete logical
+#'   vec} for \code{fx} and \code{ffx}. \code{f0}, \code{f1}, and \code{f2} can
+#'   manage \code{NA} values in \code{test}. The others do not.
 #' @param yes An object of any type for \code{f0}, \code{ff0}, \code{f1}, and
-#'   \code{ff1}. An atomic scalar or an atomic vector of the same length as
-#'   \code{test} for \code{fx} and \code{ffx}.
+#'   \code{ff1}. An \link[atm_scl]{atomic scalar} or an \link[atm_vec]{atomic
+#'   vec} of the same length as \code{test} for \code{fx} and \code{ffx}.
 #' @param no An object of any type for \code{f0}, \code{ff0}, \code{f1}, and
-#'   \code{ff1}. An atomic scalar or an atomic vector of the same length as
-#'   \code{test} for \code{fx} and \code{ffx}. Must be \code{\link{compatible}}
-#'   with \code{yes}.
-#' @param na An object of any type for \code{f1}. An atomic scalar
-#'   \code{\link{compatible}} with \code{yes} and \code{no} for \code{fx} and
-#'   \code{ffx}, with the additional possibility of \code{na = 'err'} for
-#'   \code{fx} to indicate an error should be thrown if any values in
+#'   \code{ff1}. An \link[atm_scl]{atomic scalar} or an \link[atm_vec]{atomic
+#'   vec} of the same length as \code{test} for \code{fx} and \code{ffx}. Must
+#'   be \code{\link{compatible}} with \code{yes}.
+#' @param na An object of any type for \code{f1}. An \link[atm_scl]{atomic
+#'   scalar} \code{\link{compatible}} with \code{yes} and \code{no} for
+#'   \code{fx} and \code{ffx}, with the additional possibility of \code{na =
+#'   'err'} for \code{fx} to indicate an error should be thrown if any values in
 #'   \code{test} are \code{NA}.
 #' @param err \code{'err'} or an object to be returned when \code{test} is not
 #'   an atomic scalar in \code{c(TRUE, FALSE, NA)}.
@@ -42,6 +42,7 @@ fork. <- function() {help("fork.", package = "uj")}
 
 #' @describeIn fork. If \code{test = TRUE}, returns \code{yes}. If \code{test}
 #'   is anything else, returns \code{no}.
+#' @export
 f0 <- function(test, yes, no) {if (isTRUE(test)) {yes} else {no}}
 
 #' @describeIn fork. If \code{test = TRUE}, returns \code{yes}. If
@@ -55,9 +56,8 @@ f1 <- function(test, yes, no, na = no, err = no) {
   err  <- !isLG(test); err.err <- isID(err, 'err')
   test <- failsafe(test)
   f0(isTRUE(test) , yes, f0(isFALSE(test) , no ,
-                            f0(nas & !err.na, na , f0(err & !err.err, err,
-                                                      f0(nas, stop("\n • [test] must be atomic, scalar, and TRUE, FALSE, or NA."),
-                                                         stop("\n • [test] must be atomic, scalar and TRUE or FALSE."  ))))))
+                         f0(nas & !err.na, na , f0(err & !err.err, err,
+                                                f0(nas, stop("\n • [test] must be atomic, scalar, and TRUE, FALSE, or NA."), stop("\n • [test] must be atomic, scalar and TRUE or FALSE."  ))))))
 }
 
 #' @describeIn fork. Evaluates \code{test} (which must be a logical scalar or
@@ -86,8 +86,7 @@ fx <- function(test, yes, no, na = 'err') {
            f0(vn, NULL, "\n • [no] must be of length 1 or a vector of the same length as [test]."),
            f0(va, NULL, "\n • [na] must be an atomic scalar."),
            f0(vx, NULL, "\n • [na = 'err'] but [test] contains NA values."),
-           f0(vc, NULL, f0(ia, "\n • [yes], [no], and [na] must be of compatible (?compatible) modes.",
-                           "\n • [yes] and [no] must be of compatible (?compatible) modes.")))
+           f0(vc, NULL, f0(ia, "\n • [yes], [no], and [na] must be of compatible (?compatible) modes.", "\n • [yes] and [no] must be of compatible (?compatible) modes.")))
   if (idef(err)) {stop(err)}
   if (ny == 1) {yes <- rep.int(yes, nt)}
   if (nn == 1) {no  <- rep.int(no , nt)}

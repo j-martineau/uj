@@ -22,44 +22,40 @@ named_dots(...)
 unnamed_dots(...)
 }
 \arguments{
-\item{names.}{\code{NULL} or an atomic scalar/vector (may include \code{NA})
-values). Is split along the delimiter \code{'|'} to allow for compactness
-in submitting multiple names. \code{NULL} will match an argument in
-\code{...} or element of \code{defs.} with the name \code{'NULL'}.
-\code{NA} values will match an argument in \code{...} or an element of
-\code{defs.} with the name \code{'NA'}.}
+\item{names.}{\code{NULL} or \link[cmp_vec]{complete atomic vec} (may include
+\code{NA}) values). Is split along the delimiter \code{'|'} to allow for
+compactness in submitting multiple names. \code{NULL} will match an
+argument in \code{...} or element of \code{defs.} with the name
+\code{'NULL'}. \code{NA} values will match an argument in \code{...} or an
+element of \code{defs.} with the name \code{'NA'}.}
 
-\item{defs.}{List of default objects/values to return if the specified
-arguments are not in \code{...}. Elements of \code{defs.} must be uniquely
-named. If \code{defs.} is a tibble, columns with matching names are
-returned.}
+\item{defs.}{Named \link[is_vls]{vlist} of default objects/values to return
+if the specified arguments are not in \code{...}. Elements of \code{defs.}
+must be uniquely named. If \code{defs.} is a tibble, columns with matching
+names are returned.}
 
 \item{...}{An arbitrary number of arguments.}
 
-\item{name.}{\code{NULL} or an atomic scalar. \code{NULL} is replaced with
-\code{'NULL'} and \code{NA} is replaced with \code{'NA'}.}
+\item{name.}{\code{NULL} or \link[cmp_scl]{complete atomic scalar}.
+\code{NULL} is replaced with \code{'NULL'} and \code{NA} is replaced with
+\code{'NA'}.}
 
 \item{def.}{Default object/value to return if a specified argument is not in
 \code{...}. Can be, but does not need to be, a list.}
 
-\item{subs.}{Either \code{NULL} or a character scalar/vector. If it is a
-character scalar/vector, it is split using pipes \code{'|'} as a delimiter.
-If there are no pipes contained in \code{names.}, it remains unchanged.
-When this argument is not \code{NULL}, it is substituted for the names of
+\item{subs.}{\code{NULL} or \link[cmp_chr_vec]{complete character vec}. If
+not \code{NULL}, it is split using pipes \code{'|'} as a delimiter. If
+there are no pipes contained in \code{names.}, it remains unchanged. When
+this argument is not \code{NULL}, it is substituted for the names of
 arguments in \code{...}; thus, after splitting, its length must equal the
 number of arguments in \code{...}. For example, the value \code{names. =
   c("one", "two", "three|four|five")} indicates that there should be five
 arguments in \code{...} and the vector \code{c('one', 'two', 'three',
   'four', 'five')} is substituted for their names.}
 
-\item{req.}{\code{TRUE} or \code{FALSE} indicating whether names are
-required.}
-
-\item{blank.}{\code{TRUE} or \code{FALSE} indicating whether blank names are
-allowed.}
-
-\item{u.}{\code{TRUE} or \code{FALSE} indicating whether names must be
-unique.}
+\item{req., blank., u.}{\link[cmp_lgl_scl]{Complete logical scalars} indicating
+whether names are required, bwhether lank names are allowed, and whether
+names must be unique.}
 }
 \description{
 Get named arguments from \code{...} with default values if

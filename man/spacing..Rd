@@ -10,7 +10,7 @@
 \usage{
 spacing.()
 
-spaces(n.)
+spaces(n)
 
 pad(..., n. = 0, s. = "r", p. = " ")
 
@@ -19,15 +19,19 @@ sqz(...)
 trm(...)
 }
 \arguments{
-\item{n.}{Positive whole-number scalar indicating the number of spaces or pad
-characters.}
+\item{n}{\link[cmp_psw_scl]{Complete positive whole-number scalar} indicating
+the number of spaces.}
 
 \item{...}{An arbitrary number of atomic arguments to be processed.}
 
-\item{s.}{Character scalar "side" padded ("l", "r", or "b" for left, right,
-or both).}
+\item{n.}{\link[cmp_psw_scl]{Complete positive whole-number scalar}
+indicating the number of pad characters.}
 
-\item{p.}{Character scalar containing a single character used to pad strings.}
+\item{s.}{\link[cmp_ch1_scl]{Complete onechar scalar} indicate side(s) to
+pad: "l", "r", or "b" for left, right, or both, respectively.}
+
+\item{p.}{\link[cmp_ch1_scl]{Complete onechar scalar} containing a single
+character used to pad strings.}
 }
 \description{
 Simple spacing functions

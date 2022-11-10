@@ -12,12 +12,12 @@ is_unq(x, a = T, na = F)
 \arguments{
 \item{x}{An atomic object.}
 
-\item{a}{\code{TRUE} or \code{FALSE} indicating whether to reduce \code{x} to
-an atomic vector containing all of its atomic values. When \code{FALSE} and
-\code{x} is not atomic, throws an error.}
+\item{a}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+reduce \code{x} to an atomic vector containing all of its atomic values.
+When \code{FALSE} and \code{x} is not atomic, throws an error.}
 
-\item{na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are
-allowed.}
+\item{na}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+\code{NA} values are allowed.}
 }
 \value{
 \code{TRUE} or \code{FALSE}.

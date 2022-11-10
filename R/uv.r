@@ -1,7 +1,7 @@
 #' @name uv.
-#' @title Reduce ... to a vector of unique atomic values
-#' @description Atomizes \code{...}, reducing the set of arguments to a single
-#'   vector of unique constituent atomic values.
+#' @title Reduce \code{...} to a vector of unique atomic values
+#' @description \link[av]{Atomizes} \code{...}, reducing the set of arguments to
+#'   a single vector of unique constituent atomic values.
 #' @param ... One or more objects to be reduced to a single atomic vector and
 #'   then further reduced to unique atomic values.
 #' @return An atomic vector.

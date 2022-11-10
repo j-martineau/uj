@@ -13,70 +13,69 @@
 \alias{isld}
 \alias{fff_vals}
 \alias{ifff}
-\title{Form (fff) Property Family}
+\title{Object form properties}
 \usage{
 fff.()
 
-fff(x.)
+fff(x)
 
-iemp(x.)
+iemp(x)
 
-ipnt(x.)
+ipnt(x)
 
-ilin(x.)
+ilin(x)
 
-irow(x.)
+irow(x)
 
-icol(x.)
+icol(x)
 
-irct(x.)
+irct(x)
 
-isqr(x.)
+isqr(x)
 
-isld(x.)
+isld(x)
 
 fff_vals()
 
-ifff(x., xxx., ...)
+ifff(x, xxx, ...)
 }
 \arguments{
-\item{...}{Additional arguments to \code{\link{meets}} containing value and
-element/row/column count restrictions.}
-
 \item{x}{An object.}
 
-\item{xxx}{A character scalar containing one or more values from
-\code{fff_vals()} separated by pipes and/or underscores (".").
-Combinations of forms can be specified by separating them with
+\item{xxx}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+more values from \code{fff_vals()} separated by pipes and/or underscores
+("."). Combinations of forms can be specified by separating them with
 underscores. Separating forms or combinations of forms with pipes will
 result in a value of \code{TRUE} if any of them applies to \code{x}.}
+
+\item{...}{Additional arguments to \code{\link{meets}} containing value and
+element/row/column count restrictions.}
 }
 \value{
 \code{fff_vals} and \code{fff} return a character vector. All
 others return either \code{TRUE} or \code{FALSE}.
 }
 \description{
-Gets a vector of form properties from \code{fff_vals()} that
-are applicable to \code{x.}. An object's form (fff) properties have to do
-with the number of \link[ddd]{defined dimensions} and/or
-\link[eee]{effective dimensions} plus some additional
-restrictions:\tabular{lll}{
-FUNDAMENTAL  \tab FUNDAMENTAL  \tab FUNDAMENTAL                         \cr
-TYPE VALUE   \tab TYPE NAME    \tab TYPE DEFINITION                     \cr
-\code{'emp'} \tab empty        \tab non-\code{NULL}, length = 0.        \cr
-\code{'pop'} \tab populated    \tab length > 0.                         \cr
-\code{'pnt'} \tab point        \tab containing 1 element (includes dtfs
+Gets a vector of form properties from \code{fff_vals()} that are
+applicable to \code{x}. An object's form properties have to do with the
+number of \link[ddd]{defined dimensions} and/or \link[eee]{effective
+dimensions} plus some additional restrictions:\tabular{lll}{
+FUNDAMENTAL   \tab FUNDAMENTAL   \tab FUNDAMENTAL                       \cr
+TYPE VALUE    \tab TYPE NAME     \tab TYPE DEFINITION                   \cr
+\code{'emp'}\tab empty         \tab Non-\code{NULL}, length = 0.        \cr
+\code{'pop'}\tab populated     \tab Length > 0.                         \cr
+\code{'pnt'}\tab point         \tab Containing 1 element (includes dtfs
 of dimension \code{1 × 1}).         \cr
-\code{'lin'} \tab linear       \tab effectively 1-dimensional.          \cr
-\code{'row'} \tab 1-row        \tab row matrix or row
+\code{'lin'}\tab linear        \tab Effectively 1-dimensional.          \cr
+\code{'row'}\tab 1-row         \tab Row matrix or row
 \code{\link[is_dtf]{dtf}}.          \cr
-\code{'col'} \tab 1-column     \tab column matrix or column
+\code{'col'}\tab 1-column      \tab Column matrix or column
 \code{\link[is_dtf]{dtf}}.          \cr
-\code{'rct'} \tab rectangular  \tab matrix or \code{\link[is_dtf]{dtf}}
+\code{'rct'}\tab rectangular   \tab Matrix or \code{\link[is_dtf]{dtf}}
 with multiple rows and multiple
 columns.                            \cr
-\code{'sqr'} \tab square       \tab square atomic matrix.               \cr
-\code{'sld'} \tab solid        \tab effectively hyper-dimensional (having
+\code{'sqr'}\tab square        \tab Square atomic matrix                \cr
+\code{'sld'}\tab solid         \tab Effectively hyper-dimensional (having
 indexing positions in 3+ dimensions). }
 }
 \section{Functions}{
@@ -93,16 +92,16 @@ indexing positions in 3+ dimensions). }
 
 \item \code{icol()}: Evaluates whether \code{x} is a column object.
 
-\item \code{irct()}: Evaluates whether \code{x.} is a rectangular object.
+\item \code{irct()}: Evaluates whether \code{x} is a rectangular object.
 
-\item \code{isqr()}: Evaluates whether \code{x.} is a square object.
+\item \code{isqr()}: Evaluates whether \code{x} is a square object.
 
-\item \code{isld()}: Evaluates whether \code{x.} is a solid object.
+\item \code{isld()}: Evaluates whether \code{x} is a solid object.
 
 \item \code{fff_vals()}: Get a list of all possible form property values.
 
 \item \code{ifff()}: Evaluates whether any property in \code{xxx} is a form
-property applicable to \code{x.} (subject to any additional restrictions
+property applicable to \code{x} (subject to any additional restrictions
 in \code{...}).
 
 }}
@@ -123,7 +122,7 @@ Other props:
 \code{\link{compatible.}()},
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},

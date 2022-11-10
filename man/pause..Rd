@@ -10,7 +10,8 @@ pause.()
 pause(x = 1e-07)
 }
 \arguments{
-\item{x}{Numeric scalar indicating the number of seconds to pause.}
+\item{x}{\link[cmp_num_scl]{Complete mumeric scalar} indicating the number of
+seconds to pause.}
 }
 \value{
 \code{NULL} (called for side effect).

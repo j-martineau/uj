@@ -1,7 +1,7 @@
 #' @name rev_str.
 #' @family strings
 #' @title Reverse strings
-#' @param x Character vector.
+#' @param x \link[chr_vec]{Character vec}.
 #' @return Character vector.
 #' @export
 rev_str. <- function() {help("rev_str.", package = "uj")}
@@ -13,5 +13,5 @@ rev_str <- function(x) {
   bank_xxx(chr_vec, x = x)
   err_check()
   rs. <- function(x.) {daw00(rev(ch(x.)))}
-  mvcply(x, rs.)
+  vecply(x, rs.)
 }

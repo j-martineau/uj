@@ -22,11 +22,11 @@ ppat(x, pat)
 ppats(x, pat)
 }
 \arguments{
-\item{x}{A character vector.}
+\item{x}{\link[chr_vec]{Character vector}.}
 
-\item{pat}{A fixed (not regular expression) character scalar pattern to
-search for in the atomic vector resulting from collapsing all elements of
-every argument supplied via \code{...}.}
+\item{pat}{A fixed (not regular expression) \link[cmp_chr_scl]{complete
+character scalar} pattern to search for in the atomic vector resulting from
+collapsing all elements of every argument supplied via \code{...}.}
 }
 \value{
 A logical vector (\code{ipat}), an empty or numeric vector
@@ -36,8 +36,8 @@ A logical vector (\code{ipat}), an empty or numeric vector
 Simplified string indexing for fixed patterns
 }
 \details{
-Always atomizes \code{...} via \code{av(...)} to create a single
-character vector to search for a fixed pattern.
+Always \link[a]{atomizes} \code{...} via \code{av(...)} to create a
+single character vector to search for a fixed pattern.
 }
 \section{Functions}{
 \itemize{

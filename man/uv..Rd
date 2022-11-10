@@ -4,7 +4,7 @@
 \alias{uv.}
 \alias{uv}
 \alias{uav}
-\title{Reduce ... to a vector of unique atomic values}
+\title{Reduce \code{...} to a vector of unique atomic values}
 \usage{
 uv.()
 
@@ -20,8 +20,8 @@ then further reduced to unique atomic values.}
 An atomic vector.
 }
 \description{
-Atomizes \code{...}, reducing the set of arguments to a single
-vector of unique constituent atomic values.
+\link[av]{Atomizes} \code{...}, reducing the set of arguments to
+a single vector of unique constituent atomic values.
 }
 \examples{
 uv(0:5, 5:10, 10:15, 15:20)

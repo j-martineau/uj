@@ -4,10 +4,11 @@
 #' @param x Object into which values will be placed. May be a vector, list,
 #'   matrix, or data.frame.
 #' @param v Vector of replacement values.
-#' @param e Logical vector, integer vector, or integer scalar indexing
+#' @param e \link[cmp_ind_vec]{Complete indexer vec} or
+#'   \link[cmp_psw_scl]{complete positive whole-number scalar} indexing
 #'   element(s) to replace.
-#' @param r Logical vector or integer scalar indexing row to replace.
-#' @param c Logical vector or integer scalar indexing column to replace.
+#' @param r,c \link[cmp_ind_scl]{Complete indexer scalar} indicating row or
+#'   column to replace, respectively.
 #' @return An object of the same dimension as \code{x}.
 #' @export
 put. <- function() {help("put.", package = "uj")}

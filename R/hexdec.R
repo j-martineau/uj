@@ -1,10 +1,10 @@
 #' @name hexdec.
 #' @family math
 #' @title Convert between integer and hexadecimal
-#' @details Hexademical representation is of mode character and may begin with
-#'   "#".
-#' @param x Vector of positive whole numbers or strings with hexademical number
-#'   representations.
+#' @description Hexademical representation is of mode character and may begin
+#'   with "#".
+#' @param x \link[psw_vec]{Positive whole number vec} or
+#'   \link[chr_vec]{character vec} of hexademical number representations.
 #' @export
 hexdec. <- function() {help("hexdec.", package = "uj")}
 

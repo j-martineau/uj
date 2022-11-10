@@ -2,8 +2,8 @@
 #' @title Set object class
 #' @family extensions
 #' @param x Any object.
-#' @param cls Character vector of classes.
-#' @return An object of class \code{c}.
+#' @param cls \link[cmp_chr_vec]{Complete character vec} of classes to apply.
+#' @return An object of class \code{cls}.
 #' @export
 reclass. <- function() {help("reclass.", package = "uj")}
 

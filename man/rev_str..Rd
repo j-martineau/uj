@@ -10,7 +10,7 @@ rev_str.()
 rev_str(x)
 }
 \arguments{
-\item{x}{Character vector.}
+\item{x}{\link[chr_vec]{Character vec}.}
 }
 \value{
 Character vector.

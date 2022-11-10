@@ -15,9 +15,10 @@
 #'   number of rows vs. columns.
 #' @param ... An arbitrary number of arguments to be checked for compatibility
 #'   with each other.
-#' @param recyclable. A logical scalar indicating whether arguments in
-#'   \code{...} must be recyclable to be compatible_
-#' @param bind. \code{'c'} or \code{'r'} for column vs. row binding.
+#' @param recyclable. \link[cmp_lgl_scl]{Complete logical scalar }indicating
+#'   whether arguments in \code{...} must be recyclable to be compatible_
+#' @param bind. \link[cmp_chr_scl]{Complete character scalar} indicating how to
+#'   bind: \code{'c'} or \code{'r'} for column vs. row binding, respectively.
 #' @return A logical scalar.
 #' @examples
 #' N0 <- 0
@@ -57,29 +58,29 @@ compatible. <- function() {help("compatible.", package = "uj")}
 #'   unordered factor with the same set of levels (in any order).
 #' @export
 compatible <- function(..., recyclable. = TRUE) {
-  x. <- list(...)                                                                # arguments in [...] as a list
-  n. <- length(x.)
-  vx. <- n. >= 2
-  vr. <- isTF(recyclable.)
-  err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [...] must contain multiple arguments.")}
-  if (!vr.) {err. <- c(err., "\n • [recyclable.] must be TRUE or FALSE.")}
-  if (idef(err.)) {stop(err.)}
+  x <- list(...)                                                                # arguments in [...] as a list
+  n <- length(x)
+  vx <- n >= 2
+  vr <- isTF(recyclable.)
+  err <- NULL
+  if (!vx) {err <- c(err, "\n • [...] must contain multiple arguments.")}
+  if (!vr) {err <- c(err, "\n • [recyclable.] must be TRUE or FALSE.")}
+  if (idef(err)) {stop(err)}
   if (recyclable.) {
-    out. <- unique(lengths(x.))                                                  # unique set of argument length
-    out. <- max(out.) / out.                                                     # number of replications needed for recycling
-    if (any(out. != round(out.))) {return(F)}                                    # if arguments must be recyclable and any rep is fractional, not comparable
+    out <- unique(lengths(x))                                                    # unique set of argument length
+    out <- max(out) / out                                                        # number of replications needed for recycling
+    if (any(out != round(out))) {return(F)}                                      # if arguments must be recyclable and any rep is fractional, not comparable
   }
-  chr. <- all(sapply(x., is.character))
-  lgl. <- all(sapply(x., is.logical  ))
-  num. <- all(sapply(x., is.numeric  ))
-  ord. <- all(sapply(x., is.ordered  ))
-  uno. <- all(sapply(x., is.factor   )) & !any(sapply(x., is.ordered))
-  if ( chr. |  lgl. | num.) {return(T)}
-  if (!ord. & !uno.       ) {return(F)}
-  levs. <- sapply(x., levels)
-  if (ord.) {for (i. in 2:n.) {if (!identical(levs.[[i.]], levs.[[i. - 1]])) {return(F)}}}
-  if (uno.) {for (i. in 2:n.) {if (!setequal( levs.[[i.]], levs.[[i. - 1]])) {return(F)}}}
+  chr <- all(sapply(x, is.character))
+  lgl <- all(sapply(x, is.logical  ))
+  num <- all(sapply(x, is.numeric  ))
+  ord <- all(sapply(x, is.ordered  ))
+  uno <- all(sapply(x, is.factor   )) & !any(sapply(x, is.ordered))
+  if ( chr |  lgl | num) {return(T)}
+  if (!ord & !uno       ) {return(F)}
+  levs <- sapply(x, levels)
+  if (ord) {for (i in 2:n) {if (!identical(levs[[i]], levs[[i - 1]])) {return(F)}}}
+  if (uno) {for (i in 2:n) {if (!setequal( levs[[i]], levs[[i - 1]])) {return(F)}}}
   T
 }
 
@@ -87,21 +88,21 @@ compatible <- function(..., recyclable. = TRUE) {
 #'   binding?
 #' @export
 compatible_mats <- function(..., bind. = "c") {
-  x. <- list(...)
-  n. <- length(x.)
-  vx. <- f0(n. < 2, F,  all(sapply(x., imat)))
-  vb. <- f0(!cmp_ch1_scl(bind.), F, bind. %in% c("c", "r"))
-  err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [...] must contain multiple (and only) atomic matrices (?imat).")}
-  if (!vb.) {err. <- c(err., "\n • [bind.] must be 'c' or 'r'.")}
-  if (idef(err.)) {stop(err.)}
-  r. <- bind. == "r"                                                             # row bind?
-  c. <- bind. == "c"                                                             # col bind?
-  for (i. in 2:n.) {                                                             # for [...elt(2)] and above
-    y. <- x.[[i.]]; z. <- x.[[i. - 1]]                                           # > extract it and the previous argument
-    if (r. & ncol(y.) != ncol(z.)) {return(F)}                                   # > if row binding, but number of columns differ, not compatible
-    if (c. & nrow(y.) != nrow(z.)) {return(F)}                                   # > if column binding, but number of rows differ, not compatible
-    if (!compatible(y., z.)) {return(F)}                                         # > if args are not mode-compatible, not compatible
+  x <- list(...)
+  n <- length(x)
+  vx <- f0(n < 2, F,  all(sapply(x, imat)))
+  vb <- f0(!cmp_ch1_scl(bind.), F, bind. %in% c("c", "r"))
+  err <- NULL
+  if (!vx) {err <- c(err, "\n • [...] must contain multiple (and only) atomic matrices (?imat).")}
+  if (!vb) {err <- c(err, "\n • [bind.] must be 'c' or 'r'.")}
+  if (idef(err)) {stop(err)}
+  r <- bind. == "r"                                                              # row bind?
+  c <- bind. == "c"                                                              # col bind?
+  for (i in 2:n) {                                                               # for [...elt(2)] and above
+    y <- x[[i]]; z <- x[[i - 1]]                                                 # > extract it and the previous argument
+    if (r & ncol(y) != ncol(z)) {return(F)}                                      # > if row binding, but number of columns differ, not compatible
+    if (c & nrow(y) != nrow(z)) {return(F)}                                      # > if column binding, but number of rows differ, not compatible
+    if (!compatible(y, z)) {return(F)}                                           # > if args are not mode-compatible, not compatible
   }
   T
 }
@@ -110,22 +111,22 @@ compatible_mats <- function(..., bind. = "c") {
 #'   binding?
 #' @export
 compatible_atbs <- function(..., bind. = "c") {
-  x. <- list(...)
-  n. <- length(x.)
-  vx. <- f0(n. < 2, F,  all(sapply(x., idtf)))
-  vb. <- f0(!cmp_ch1_scl(bind.), F, bind. %in% c("c", "r"))
-  err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [...] must contain multiple (and only) atomic dtfs (?idtf)")}
-  if (!vb.) {err. <- c(err., "\n • [bind.] must be 'c' or 'r'.")}
-  if (idef(err.)) {stop(err.)}
-  r. <- bind. == "r"                                                             # row bind?
-  c. <- bind. == "c"                                                             # col bind?
-  for (i. in 2:n.) {                                                             # for [...elt(2)] and above
-    y. <- x.[[i.]]; z. <- x.[[i. - 1]]                                           # > extract it and the previous argument
-    if (r. & ncol(y.) != ncol(z.)) {return(F)}                                   # > if row binding, but number of columns differ, not compatible
-    if (c. & nrow(y.) != nrow(z.)) {return(F)}                                   # > if column binding, but number of rows differ, not compatible
-    if (r. & !identical(colnames(y.), colnames(z.))) {return(F)}                 # > if col names must match but they do not, not compatible
-    for (j. in 1:ncol(y.)) {if (!compatible(y.[[j.]], z.[[j.]])) {return(F)}}    # > if args are not mode-compatible, not compatible
+  x <- list(...)
+  n <- length(x.)
+  vx <- f0(n < 2, F,  all(sapply(x, idtf)))
+  vb <- f0(!cmp_ch1_scl(bind.), F, bind. %in% c("c", "r"))
+  err <- NULL
+  if (!vx) {err <- c(err, "\n • [...] must contain multiple (and only) atomic dtfs (?idtf)")}
+  if (!vb) {err <- c(err, "\n • [bind.] must be 'c' or 'r'.")}
+  if (idef(err)) {stop(err)}
+  r <- bind. == "r"                                                              # row bind?
+  c <- bind. == "c"                                                              # col bind?
+  for (i in 2:n) {                                                               # for [...elt(2)] and above
+    y <- x[[i]]; z <- x[[i - 1]]                                                 # > extract it and the previous argument
+    if (r & ncol(y) != ncol(z)) {return(F)}                                      # > if row binding, but number of columns differ, not compatible
+    if (c & nrow(y) != nrow(z)) {return(F)}                                      # > if column binding, but number of rows differ, not compatible
+    if (r & !identical(colnames(y), colnames(z))) {return(F)}                    # > if col names must match but they do not, not compatible
+    for (j in 1:ncol(y)) {if (!compatible(y[[j]], z[[j]])) {return(F)}}          # > if args are not mode-compatible, not compatible
   }
   T
 }

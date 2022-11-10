@@ -57,7 +57,7 @@
 \alias{rcr_vec}
 \alias{rcr_vls}
 \alias{rcr_vtp}
-\title{Extended class + fundamental type properties}
+\title{Fundamental type plus extended class properties}
 \usage{
 ttt_ccc.()
 
@@ -174,154 +174,139 @@ rcr_vtp(x)
 \arguments{
 \item{x}{An object.}
 
-\item{xxx}{Optional character scalar naming an extended mode from
-\code{\link{mmm_vals}()}.}
+\item{xxx}{Optional \link[cmp_chr_scl]{Complete character scalar} naming an
+extended mode from \code{\link{mmm_vals}()}.}
 }
 \value{
 Logical scalar.
 }
 \description{
-Extended class + fundamental type properties
+Combinations of \link[ttt]{fundamental type} and
+\link[ccc]{extended class}.
 }
 \section{Functions}{
 \itemize{
 \item \code{ttt_ccc_vals()}: Get a character vector of all possible fundamental
 type plus extended class properties.
 
-\item \code{any_arr()}: Is \code{x} an array of any type (\code{\link{iarr}})?
+\item \code{any_arr()}: Is \code{x} an \link[is_arr]{array of any type}?
 
-\item \code{any_gen()}: Is \code{x} any type of generic (\code{\link{igen}})?
+\item \code{any_gen()}: Is \code{x} a \link[is_gen]{generic of any type}?
 
-\item \code{any_mat()}: Is \code{x} a matrix of any type (\code{\link{imat}})?
+\item \code{any_mat()}: Is \code{x} a \link[is_mat]{matrix of any type}?
 
-\item \code{any_mvc()}: Is \code{x} an mvect of any type (\code{\link{imvc}})?
+\item \code{any_mvc()}: Is \code{x} a \link[is_mvc]{multivec of any type}?
 
-\item \code{any_scl()}: Is \code{x} is any type of scalar (\code{\link{iscl}})?
+\item \code{any_scl()}: Is \code{x} a \link[is_scl]{scalar of any type}?
 
-\item \code{any_dtf()}: Is \code{x} any type of dtf (\code{\link{idtf}})?
+\item \code{any_dtf()}: Is \code{x} a \link[is_dft]{dtf of any type}?
 
-\item \code{any_vec()}: Is \code{x} any type of vec (\code{\link{ivec}})?
+\item \code{any_vec()}: Is \code{x} a \link[is_vec]{vec of any type}?
 
-\item \code{any_vls()}: Is \code{x} any type of vlist (\code{\link{ivls}})?
+\item \code{any_vls()}: Is \code{x} a \link[is_vls]{vlist of any type}?
 
-\item \code{any_vtp()}: Is \code{x} any type of vtype (\code{\link{ivtp}})?
+\item \code{any_vtp()}: Is \code{x} a \link[is_vtp]{vtype of any type}?
 
-\item \code{atm_arr()}: Is \code{x} an atomic array?
+\item \code{atm_arr()}: Is \code{x} an \link[iatm]{atomic} \link[iarr]{array}?
 
-\item \code{atm_gen()}: Is \code{x} an atomic generic (\code{\link{igen}})?
+\item \code{atm_gen()}: Is \code{x} an \link[iatm]{atomic} \link[igen]{generic}?
 
-\item \code{atm_mat()}: Is \code{x} an atomic matrix?
+\item \code{atm_mat()}: Is \code{x} an \link[iatm]{atomic} \link[imat]{matrix}?
 
-\item \code{atm_mvc()}: Is \code{x} an atomic mvect (\code{\link{imvc}})?
+\item \code{atm_mvc()}: Is \code{x} an \link[iatm]{atomic}
+\link[imvc]{multivec}?
 
-\item \code{atm_scl()}: Is \code{x} is an atomic scalar (\code{\link{iscl}})?
+\item \code{atm_scl()}: Is \code{x} an \link[iatm]{atomic} \link[iscl]{scalar}?
 
-\item \code{atm_dtf()}: Is \code{x} an atomic dtf (\code{\link{idtf}})?
+\item \code{atm_dtf()}: Is \code{x} an \link[iatm]{atomic} \link[idtf]{dtf}?
 
-\item \code{atm_vec()}: Is \code{x} an atomic vec (\code{\link{ivec}})?
+\item \code{atm_vec()}: Is \code{x} an \link[iatm]{atomic} \link[ivec]{vec}?
 
-\item \code{atm_vls()}: Is \code{x} an atomic vlist (\code{\link{ivls}})?
+\item \code{atm_vls()}: Is \code{x} an \link[iatm]{atomic} \link[ivls]{vlist}?
 
-\item \code{atm_vtp()}: Is \code{x} an atomic vtype (\code{\link{ivtp}})?
+\item \code{atm_vtp()}: Is \code{x} an \link[iatm]{atomic} \link[ivtp]{vtype}?
 
-\item \code{pop_arr()}: Is \code{x} a populated (\code{\link{ipop}}) array?
+\item \code{pop_arr()}: Is \code{x} a \link[ipop]{populated} \link[iarr]{array}?
 
-\item \code{pop_gen()}: Is \code{x} a populated (\code{\link{ipop}}) generic?
+\item \code{pop_gen()}: Is \code{x} a \link[ipop]{populated}
+\link[igen]{generic}?
 
-\item \code{pop_mat()}: Is \code{x} a populated (\code{\link{ipop}}) matrix?
+\item \code{pop_mat()}: Is \code{x} a \link[ipop]{populated}
+\link[imat]{matrix}?
 
-\item \code{pop_mvc()}: Is \code{x} a populated (\code{\link{ipop}}) multivec?
+\item \code{pop_mvc()}: Is \code{x} a \link[ipop]{populated}
+\link[imvc]{multivec}?
 
-\item \code{pop_scl()}: Is \code{x} a populated (\code{\link{ipop}}) scalar?
+\item \code{pop_scl()}: Is \code{x} a \link[ipop]{populated}
+\link[iscl]{scalar}?
 
-\item \code{pop_dtf()}: Is \code{x} a populated (\code{\link{ipop}}) dtf?
+\item \code{pop_dtf()}: Is \code{x} a \link[ipop]{populated} \link[idtf]{dtf}?
 
-\item \code{pop_vec()}: Is \code{x} a populated (\code{\link{ipop}}) vec?
+\item \code{pop_vec()}: Is \code{x} a \link[ipop]{populated} \link[ivec]{vec}?
 
-\item \code{pop_vls()}: Is \code{x} a populated (\code{\link{ipop}}) vlist?
+\item \code{pop_vls()}: Is \code{x} a \link[ipop]{populated} \link[ivls]{vlist}?
 
-\item \code{pop_vtp()}: Is \code{x} a populated (\code{\link{ipop}}) vtype?
+\item \code{pop_vtp()}: Is \code{x} a \link[ipop]{populated} \link[ivtp]{vtype}?
 
-\item \code{cmp_arr()}: Is \code{x} a complete array? (\code{\link{icmp}},
-\code{\link{iarr}})
+\item \code{cmp_arr()}: Is \code{x} a \link[icmp]{complete} \link[iarr]{array}?
 
-\item \code{cmp_gen()}: Is \code{x} a complete generic? (\code{\link{icmp}},
-\code{\link{igen}})
+\item \code{cmp_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[igen]{generic}?
 
-\item \code{cmp_mat()}: Is \code{x} a complete matrix? (\code{\link{icmp}},
-\code{\link{imat}})
+\item \code{cmp_mat()}: Is \code{x} a \link[icmp]{complete} \link[imat]{matrix}?
 
-\item \code{cmp_mvc()}: Is \code{x} a complete multivec? (\code{\link{icmp}},
-\code{\link{imvc}})
+\item \code{cmp_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[imvc]{multivec}?
 
-\item \code{cmp_scl()}: Is \code{x} a complete scalar? (\code{\link{icmp}},
-\code{\link{iscl}})
+\item \code{cmp_scl()}: Is \code{x} a \link[icmp]{complete} \link[iscl]{scalar}?
 
-\item \code{cmp_dtf()}: Is \code{x} a complete dtf? (\code{\link{icmp}},
-\code{\link{idtf}})
+\item \code{cmp_dtf()}: Is \code{x} a \link[icmp]{complete} \link[idtf]{dtf}?
 
-\item \code{cmp_vec()}: Is \code{x} a complete vector? (\code{\link{icmp}},
-\code{\link{ivec}})
+\item \code{cmp_vec()}: Is \code{x} a \link[icmp]{complete} \link[ivec]{vec}?
 
-\item \code{cmp_vls()}: Is \code{x} a complete vlist? (\code{\link{icmp}},
-\code{\link{ivls}})
+\item \code{cmp_vls()}: Is \code{x} a \link[icmp]{complete} \link[ivls]{vlist}?
 
-\item \code{cmp_avt()}: Is \code{x} a complete vtype? (\code{\link{icmp}},
-\code{\link{ivtp}})
+\item \code{cmp_avt()}: Is \code{x} a \link[icmp]{complete} \link[ivtp]{vtype}?
 
-\item \code{emp_arr()}: Is \code{x} an empty array? (\code{\link{iemp}},
-\code{\link{iarr}})
+\item \code{emp_arr()}: Is \code{x} an \link[iemp]{empty} \link[iarr]{array}?
 
-\item \code{emp_gen()}: Is \code{x} an empty generic? (\code{\link{iemp}},
-\code{\link{igen}})
+\item \code{emp_gen()}: Is \code{x} an \link[iemp]{empty} \link[igen]{generic}?
 
-\item \code{emp_mat()}: Is \code{x} an empty matrix? (\code{\link{iemp}},
-\code{\link{imat}})
+\item \code{emp_mat()}: Is \code{x} an \link[iemp]{empty} \link[imat]{matrix}?
 
-\item \code{emp_mvc()}: Is \code{x} an empty multivec? (\code{\link{iemp}},
-\code{\link{imvc}})
+\item \code{emp_mvc()}: Is \code{x} an \link[iemp]{empty} \link[imvc]{multivec}?
 
-\item \code{emp_scl()}: Is \code{x} an empty scalar? (\code{\link{iemp}},
-\code{\link{iscl}})
+\item \code{emp_scl()}: Is \code{x} an \link[iemp]{empty} \link[iscl]{scalar}?
 
-\item \code{emp_dtf()}: Is \code{x} an empty dtf? (\code{\link{iemp}},
-\code{\link{idtf}})
+\item \code{emp_dtf()}: Is \code{x} an \link[iemp]{empty} \link[idtf]{dtf}?
 
-\item \code{emp_vec()}: Is \code{x} an empty vector? (\code{\link{iemp}},
-\code{\link{ivec}})
+\item \code{emp_vec()}: Is \code{x} an \link[iemp]{empty} \link[ivec]{vec}?
 
-\item \code{emp_vls()}: Is \code{x} an empty vlist? (\code{\link{iemp}},
-\code{\link{ivls}})
+\item \code{emp_vls()}: Is \code{x} an \link[iemp]{empty} \link[ivls]{vlist}?
 
-\item \code{emp_avt()}: Is \code{x} an empty vtype? (\code{\link{iemp}},
-\code{\link{ivtp}})
+\item \code{emp_avt()}: Is \code{x} an \link[iemp]{empty} \link[ivtp]{vtype}?
 
-\item \code{rcr_arr()}: Is \code{x} a recursive array? (\code{\link{ircr}},
-\code{\link{iarr}})
+\item \code{rcr_arr()}: Is \code{x} a \link[ircr]{recursive} \link[iarr]{array}?
 
-\item \code{rcr_gen()}: Is \code{x} a recursive generic? (\code{\link{ircr}},
-\code{\link{igen}})
+\item \code{rcr_gen()}: Is \code{x} a \link[ircr]{recursive}
+\link[igen]{generic}?
 
-\item \code{rcr_mat()}: Is \code{x} a recursive matrix? (\code{\link{ircr}},
-\code{\link{imat}})
+\item \code{rcr_mat()}: Is \code{x} a \link[ircr]{recursive}
+\link[imat]{matrix}?
 
-\item \code{rcr_mvc()}: Is \code{x} a recursive multivec? (\code{\link{ircr}},
-\code{\link{imvc}})
+\item \code{rcr_mvc()}: Is \code{x} a \link[ircr]{recursive}
+\link[imvc]{multivec}?
 
-\item \code{rcr_scl()}: Is \code{x} a recursive scalar? (\code{\link{ircr}},
-\code{\link{iscl}})
+\item \code{rcr_scl()}: Is \code{x} a \link[ircr]{recursive}
+\link[iscl]{scalar}?
 
-\item \code{rcr_dtf()}: Is \code{x} a recursive dtf? (\code{\link{ircr}},
-\code{\link{idtf}})
+\item \code{rcr_dtf()}: Is \code{x} a \link[ircr]{recursive} \link[idtf]{dtf}?
 
-\item \code{rcr_vec()}: Is \code{x} a recursive vector? (\code{\link{ircr}},
-\code{\link{ivec}})
+\item \code{rcr_vec()}: Is \code{x} a \link[ircr]{recursive} \link[ivec]{vec}?
 
-\item \code{rcr_vls()}: Is \code{x} a recursive vlist? (\code{\link{ircr}},
-\code{\link{ivls}})
+\item \code{rcr_vls()}: Is \code{x} a \link[ircr]{recursive} \link[ivls]{vlist}?
 
-\item \code{rcr_vtp()}: Is \code{x} a recursive vtype? (\code{\link{ircr}},
-\code{\link{ivtp}})
+\item \code{rcr_vtp()}: Is \code{x} a \link[ircr]{recursive} \link[ivtp]{vtype}?
 
 }}
 \seealso{
@@ -336,7 +321,7 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},

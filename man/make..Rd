@@ -3,19 +3,22 @@
 \name{make.}
 \alias{make.}
 \alias{vec}
+\alias{vec.}
 \alias{vec_na}
 \alias{mat}
 \alias{dtf0}
 \alias{dtf_na}
 \alias{dtf}
 \alias{vls}
-\alias{mkvls}
-\alias{mkdiag}
+\alias{vls.}
+\alias{diag.}
 \title{Extended object creation functionality}
 \usage{
 make.()
 
 vec(..., r. = 1, vn. = NULL)
+
+vec.(...)
 
 vec_na(r.)
 
@@ -29,51 +32,57 @@ dtf(..., cn. = NULL)
 
 vls(..., en. = NULL)
 
-mkvls(...)
+vls.(...)
 
-mkdiag(x. = 1, n. = 1)
+diag.(x. = 1, r. = 1)
 }
 \arguments{
-\item{...}{Objects to placed in an atomic vect, atomic matrix, atomic tibble,
+\item{...}{Objects to placed in an atomic vect, atomic matrix, atomic dtf,
 vlist, or square atomic diagonal matrix.}
 
-\item{r.}{Number of replications.}
+\item{r.}{\link[cmp_psw_scl]{Complete positive whole-number scalar} giving
+number of replications.}
 
-\item{vn.}{Optional character vector of names to apply to vector or list
-elements. May be pipe-delimited in character vector.}
+\item{vn.}{Optional \link[cmp_chr_vec]{complete character vec} of names to
+apply to vector or list elements. May be pipe-delimited.}
 
-\item{nr.}{Number of rows.}
+\item{nr.}{\link[cmp_psw_scl]{Complete positive whole-number scalar} giving
+number of rows.}
 
-\item{nc.}{Number of columns.}
+\item{nc.}{\link[cmp_psw_scl]{Complete positive whole-number scalar} giving
+number of columns.}
 
-\item{br.}{Whether to fill matrices by row.}
+\item{br.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+fill matrices by row.}
 
-\item{rn.}{Optional character vector of names to apply to rows of a matrix or
-tibble. May be pipe-delimited in character vector.}
+\item{rn.}{Optional \link[cmp_chr_vec]{complete character vec} of names to
+apply to rows of a matrix or dtf May be pipe-delimited.}
 
-\item{cn.}{Optional character vector of names to apply to columns of a matrix
-or tibble. May be pipe-delimited in character vector. For tibbles, this
-argument can be used only if the arguments in \code{...} are not named.}
+\item{cn.}{Optional \link[cmp_chr_vec]{complete character vec} of names to
+apply to columns of a matrix or dtf May be pipe-delimited. For tibbles,
+this argument can be used only if the arguments in \code{...} are not
+named.}
 
-\item{x.}{An numeric, logical, or character object of length 1 or greater.}
-
-\item{n.}{A positive whole number indicating the number of replications of
-\code{x}.}
+\item{x.}{A numeric, logical, or character object of length 1 or greater.}
 }
 \value{
-An \link[=is_atm_tibble]{atomic tibble}, an
-\link[=is_atm_vect]{atomic vect}, an \link[=is_atm_matrix]{atomic matrix}
-(\code{mat.}), or a \link[=is_vlist]{vlist.} All others return the value of
-function they are thin wrappers for.
+An \link[=idtf]{atomic dtf}, an \link[=vec]{atomic vect}, an
+\link[=imat]{atomic matrix}, or a \link[=is_vls]{vlist.} All others return
+the value of function they are thin wrappers for.
 }
 \description{
 Extended object creation functionality
 }
 \section{Functions}{
 \itemize{
-\item \code{vec()}: Creates an atomic vector from the atomic objects in
-\code{...} collapsed into a vector, replicated \code{r.} times, with
-optional element names.
+\item \code{vec()}: Creates an atomic vec from the atomic objects in \code{...}
+collapsed into a vector, replicated \code{r.} times, with optional element
+names.
+
+\item \code{vec.()}: Creates a named atomic vec by taking the original call
+and parsing arguments to get element names. Allows for more concise code
+such as \code{vec.(a, b)} giving the same result as \code{list(a = a, b =
+  b)}.
 
 \item \code{vec_na()}: Creates a vector of \code{r.} \code{NA} values.
 
@@ -96,12 +105,12 @@ plus optional column names to replace any names of arguments in \code{...}.
 \code{...} with optional element names to replace any names of arguments in
 \code{...}.
 
-\item \code{mkvls()}: Creates a named vlist by taking the original call and
+\item \code{vls.()}: Creates a named vlist by taking the original call and
 parsing arguments to get element names. Allows for more concise code such
 as \code{mkvls(letters, LETTERS)} giving the same result as
 \code{list(letters = letters, LETTERS = LETTERS)}.
 
-\item \code{mkdiag()}: Creates a square atomic diagonal matrix. For numeric
+\item \code{diag.()}: Creates a square atomic diagonal matrix. For numeric
 \code{x.}, off-diagonals are \code{0}. For logical \code{x.}, off diagonals
 are \code{FALSE}. For character \code{x.}, off diagonals are blank strings
 (\code{""}). For all others, off diagonals are \code{NA}.

@@ -19,44 +19,44 @@
 \usage{
 ply.()
 
-ply(x., fun., dim., ..., proc. = NULL)
+ply(x, fun, dim, ..., proc. = NULL)
 
-norply(x., fun., dim., ..., proc. = NULL)
+norply(x, fun, dim, ..., proc. = NULL)
 
-anyply(x., fun., dim., ..., proc. = NULL)
+anyply(x, fun, dim, ..., proc. = NULL)
 
-allply(x., fun., dim., ..., proc. = NULL)
+allply(x, fun, dim, ..., proc. = NULL)
 
-oneply(x., fun., dim., ..., proc. = NULL)
+oneply(x, fun, dim, ..., proc. = NULL)
 
-twoply(x., fun., dim., ..., proc. = NULL)
+twoply(x, fun, dim, ..., proc. = NULL)
 
-atmply(x., fun., ..., proc. = NULL)
+atmply(x, fun, ..., proc. = NULL)
 
-mvcply(x., fun., ..., proc. = NULL)
+mvcply(x, fun, ..., proc. = NULL)
 
-vecply(x., fun., ..., proc. = NULL)
+vecply(x, fun, ..., proc. = NULL)
 
-rowply(x., fun., ..., proc. = NULL)
+rowply(x, fun, ..., proc. = NULL)
 
-colply(x., fun., ..., proc. = NULL)
+colply(x, fun, ..., proc. = NULL)
 
-dimply(x., fun., ..., proc. = NULL)
+dimply(x, fun, ..., proc. = NULL)
 
-vlsply(x., fun., ..., proc. = NULL)
+vlsply(x, fun, ..., proc. = NULL)
 }
 \arguments{
-\item{x.}{An object to apply \code{fun.} to.}
+\item{x}{An object to apply \code{fun} to.}
 
-\item{fun.}{A function or name of a function to apply to \code{x.}.}
+\item{fun}{Function or name of a function to apply to \code{x}.}
 
-\item{dim.}{A non-negative whole number vector giving the dimension(s) of
-\code{x.} to apply the function \code{fun.} to (\code{0} indicates applying
-to elements of an object, where for arrays, and tibbles, this means
-applying to every cell).}
+\item{dim}{\link[cmp_nnw_vec]{Complete non-negative whole-number vec} giving
+the dimension(s) of \code{x} to apply the function \code{fun} to (\code{0}
+indicates applying to elements of an object, where for arrays, and tibbles,
+this means applying to every cell).}
 
 \item{...}{An arbitrary number of additional arguments to be passed to the
-function \code{fun.}.}
+function \code{fun}.}
 
 \item{proc.}{\code{NULL} or a list of named elements with processing
 instructions. See section \strong{The \code{proc.} Argument}.}
@@ -69,43 +69,43 @@ Generalized \code{apply(.)} with a wide range of options.
 \item \code{ply()}: Generalized \code{apply(.)} function.
 
 \item \code{norply()}: Are there \strong{zero} \code{TRUE} values in the result
-of applying \code{fun.}? Assumes that applying \code{fun.} results in
+of applying \code{fun}? Assumes that applying \code{fun} results in
 logical values.
 
 \item \code{anyply()}: Are there \strong{any} \code{TRUE} values in the result of
-applying \code{fun.}? Assumes that applying \code{fun.} results in logical
+applying \code{fun}? Assumes that applying \code{fun} results in logical
 values.
 
 \item \code{allply()}: Are there \strong{only} \code{TRUE} values in the result
-of applying \code{fun.}? Assumes that applying \code{fun.} results in
+of applying \code{fun}? Assumes that applying \code{fun} results in
 logical values.
 
 \item \code{oneply()}: Is there exactly \strong{one} \code{TRUE} values in the
-result of applying \code{fun.}? Assumes that applying \code{fun.} results
+result of applying \code{fun}? Assumes that applying \code{fun} results
 in logical values.
 
 \item \code{twoply()}: Are there \strong{two or more} \code{TRUE} values in the
-result of applying \code{fun.}? Assumes that applying \code{fun.} results
+result of applying \code{fun}? Assumes that applying \code{fun} results
 in logical values.
 
-\item \code{atmply()}: Atomize \code{x} and apply \code{fun.} to the resulting
+\item \code{atmply()}: Atomize \code{x} and apply \code{fun} to the resulting
 atomic vector.
 
-\item \code{mvcply()}: Apply \code{fun.} to each element of \code{x.}, assumed to
+\item \code{mvcply()}: Apply \code{fun} to each element of \code{x}, assumed to
 be an \link[atm_mvc]{atomic mvect}.
 
-\item \code{vecply()}: Apply \code{FUN} to each element of \code{x.}, assumed to
+\item \code{vecply()}: Apply \code{FUN} to each element of \code{x}, assumed to
 be an \link[atm_vec]{atomic vect}.
 
-\item \code{rowply()}: Apply \code{fun.} to each row of \code{x.}, assumed to be
+\item \code{rowply()}: Apply \code{fun} to each row of \code{x}, assumed to be
 a matrix or \link[is_dtf]{dtf}.
 
-\item \code{colply()}: Apply \code{fun.} to each column of \code{x.}, assumed to
+\item \code{colply()}: Apply \code{fun} to each column of \code{x}, assumed to
 be a matrix or \link[is_dtf]{dtf}.
 
-\item \code{dimply()}: Apply \code{fun.} across all dimensions of \code{x.}.
+\item \code{dimply()}: Apply \code{fun} across all dimensions of \code{x}.
 
-\item \code{vlsply()}: Apply \code{fun.} to each element of \code{x.}, assumed to
+\item \code{vlsply()}: Apply \code{fun} to each element of \code{x}, assumed to
 be a \link[is_vls]{vlist}.
 
 }}
@@ -113,25 +113,27 @@ be a \link[is_vls]{vlist}.
  When not \code{NULL}, the \code{proc.}
 argument can be a list with up to seven optional named elements, which give
 processing instructions as follows: \tabular{ll}{
-NAME‑VALUE PAIR     \tab PROCESSING INSTRUCTION                         \cr
-\code{s = TRUE}     \tab link[base:simplify2array]{Simplify} the result.\cr
-\code{a1 = TRUE}    \tab link[a]{Atomize} \code{x} first.               \cr
-\code{a2 = TRUE}    \tab link[a]{Atomize} the result.                   \cr
-\code{na = TRUE}    \tab Replace resulting \code{NA}s with \code{TRUE}. \cr
-\code{na = FALSE}   \tab Replace resulting \code{NA}s with \code{FALSE}.\cr
-\code{na = 'err'}   \tab Throw error if result contains any \code{NA}s. \cr
-\code{agg = 'nor'  }\tab Does result contain zero \code{TRUE} values?   \cr
-\code{agg = 'any'}  \tab Does result contain any \code{TRUE} values?    \cr
-\code{agg = 'all'}  \tab Does result contain only \code{TRUE} values?   \cr
-\code{agg = 'one'}  \tab Does result contain exactly one \code{TRUE}
-value?                                         \cr
-\code{agg = 'two'}  \tab Does result contain two+ \code{TRUE} values.   \cr
-\code{arg = xxx}    \tab Inspect \code{x.} for properties specified in the
-character vector represented by \code{xxx.} and
-throw an error if they are not met.            \cr
-\code{out = xxx}    \tab Inspect the result for properties specified in the
-character vector represented by \code{xxx.} and
-throw an error if they are not met.              }
+NAME‑VALUE PAIR      \tab PROCESSING INSTRUCTION                        \cr
+\code{s = TRUE}      \tab link[base:simplify2array]{Simplify} the
+result.\cr
+\code{a1 = TRUE}     \tab link[a]{Atomize} \code{x} first.              \cr
+\code{a2 = TRUE}     \tab link[a]{Atomize} the result.                  \cr
+\code{na = TRUE}     \tab Replace resulting \code{NA}s with \code{TRUE}.\cr
+\code{na = FALSE}    \tab Replace resulting \code{NA}s with
+\code{FALSE}.                                 \cr
+\code{na = 'err'}    \tab Throw error if result contains any \code{NA}s.\cr
+\code{agg = 'nor'   }\tab Does result contain zero \code{TRUE} values?  \cr
+\code{agg = 'any'}   \tab Does result contain any \code{TRUE} values?   \cr
+\code{agg = 'all'}   \tab Does result contain only \code{TRUE} values?  \cr
+\code{agg = 'one'}   \tab Does result contain exactly one \code{TRUE}
+value?                                        \cr
+\code{agg = 'two'}   \tab Does result contain two+ \code{TRUE} values.  \cr
+\code{arg = xxx}     \tab Inspect \code{x} for properties specified in the
+character vector represented by \code{xxx} and
+throw an error if they are not met.           \cr
+\code{out = xxx}     \tab Inspect the result for properties specified in
+the character vector represented by \code{xxx}
+and throw an error if they are not met.         }
 }
 
 \seealso{

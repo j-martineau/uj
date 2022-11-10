@@ -10,15 +10,16 @@ dups.()
 
 dups(...)
 
-idups(x., int. = F)
+idups(x, int = F)
 }
 \arguments{
 \item{...}{One or more atomic vectors to be evaluated for duplicated values.}
 
-\item{x}{An atomic vector.}
+\item{x}{\link[atm_vec]{Atomic vec}.}
 
-\item{int}{A logical scalar indicating whether to return a logical vector
-(when \code{int = FALSE}) or an integer vector (when \code{int = TRUE}).}
+\item{int}{\link[cmp_atm_scl]{Complete logical scalar} indicating whether to
+return a logical vector (when \code{int = FALSE}) or an integer vector
+(when \code{int = TRUE}).}
 }
 \value{
 An atomic vector containing 1 copy of each duplicated element

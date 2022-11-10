@@ -16,8 +16,8 @@ existing alpha values are preserved.}
 \description{
 The following table describes wrapper functions for the
 \code{scalse} package:\tabular{ll}{
-WRAPPER NAME  \tab READR FUNCTION                                       \cr
-\code{sca}    \tab \code{\link[scales]{alpha}}                            }
+WRAPPER NAME   \tab READR FUNCTION                                      \cr
+\code{sca}     \tab \code{\link[scales]{alpha}}                           }
 }
 \section{Functions}{
 \itemize{

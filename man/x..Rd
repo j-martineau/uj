@@ -12,22 +12,23 @@
 \usage{
 x.()
 
-xat(x., ...)
+xat(x, ...)
 
-xat0(x.)
+xat0(x)
 
-xcls(x., ...)
+xcls(x, ...)
 
 xwarn()
 
-xplot(x. = NULL)
+xplot(x = NULL)
 
 xcon()
 }
 \arguments{
-\item{x.}{An object.}
+\item{x}{An object.}
 
-\item{...}{Character vectors containing attribute names or classes to remove.}
+\item{...}{One or more \link[cmp_chr_vec]{complete character vecs} containing
+names of attributes or classes to remove.}
 }
 \value{
 An object (\code{xat} and \code{xcls}) or \code{NULL} (\code{xwarn}

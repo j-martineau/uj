@@ -237,7 +237,7 @@
 \alias{whl_mvc}
 \alias{whl_scl}
 \alias{whl_vec}
-\title{Extended mode + extended class properties}
+\title{Extended mode plus extended class properties}
 \usage{
 mmm_ccc.()
 
@@ -712,908 +712,649 @@ whl_scl(x)
 whl_vec(x)
 }
 \arguments{
-\item{x}{An object.}
+\item{x}{An ℝ object.}
 }
 \value{
 A logical scalar.
 }
 \description{
-Evaluate whether an object is of a specific combination of
-extended mode (\code{\link{mmm}}) and extended class (\code{\link{ccc}}).
+Combinations of \link[mmm]{extended mode} and
+\link[ccc]{extended class}.
 }
 \section{Functions}{
 \itemize{
-\item \code{mmm_ccc_vals()}: Get a character vector of all possible extended mode +
-extended class properties.
+\item \code{mmm_ccc_vals()}: Get a character vector of all possible extended mode
+plus extended class properties.
 
-\item \code{ch1_arr()}: Is \code{x} a onechar array? (\code{\link{ich1}},
-\code{\link{iarr}})
+\item \code{ch1_arr()}: Is \code{x} a \link[ich1]{onechar} \link[iarr]{array}?
 
-\item \code{ch1_gen()}: Is \code{x} a onechar generic? (\code{\link{ich1}},
-\code{\link{iagn}})
+\item \code{ch1_gen()}: Is \code{x} a \link[ich1]{onechar} \link[igen]{generic}?
 
-\item \code{ch1_dtf()}: Is \code{x} a onechar dtf? (\code{\link{ich1}},
-\code{\link{idtf}})
+\item \code{ch1_dtf()}: Is \code{x} a \link[ich1]{onechar} \link[idtf]{dtf}?
 
-\item \code{ch1_vls()}: Is \code{x} a onechar vlist? (\code{\link{ich1}},
-\code{\link{iavl}})
+\item \code{ch1_vls()}: Is \code{x} a \link[ich1]{onechar} \link[ivls]{vlist}?
 
-\item \code{ch1_vtp()}: Is \code{x} a onechar vtype? (\code{\link{ich1}},
-\code{\link{iavt}})
+\item \code{ch1_vtp()}: Is \code{x} a \link[ich1]{onechar} \link[ivtp]{vtype}?
 
-\item \code{ch1_mat()}: Is \code{x} a onechar matrix? (\code{\link{ich1}},
-\code{\link{imat}})
+\item \code{ch1_mat()}: Is \code{x} a \link[ich1]{onechar} \link[imat]{matrix}?
 
-\item \code{ch1_mvc()}: Is \code{x} a onechar multivec? (\code{\link{ich1}},
-\code{\link{imvc}})
+\item \code{ch1_mvc()}: Is \code{x} a \link[ich1]{onechar}
+\link[imvc]{multivec}?
 
-\item \code{ch1_scl()}: Is \code{x} a onechar scalar? (\code{\link{ich1}},
-\code{\link{iscl}})
+\item \code{ch1_scl()}: Is \code{x} a \link[ich1]{onechar} \link[iscl]{scalar}?
 
-\item \code{ch1_vec()}: Is \code{x} a onechar vector? (\code{\link{ich1}},
-\code{\link{ivec}})
+\item \code{ch1_vec()}: Is \code{x} a \link[ich1]{onechar} \link[ivec]{vec}?
 
-\item \code{chr_arr()}: Is \code{x} a character array? (\code{\link{ichr}},
-\code{\link{iarr}})
+\item \code{chr_arr()}: Is \code{x} a \link[ichr]{character} \link[iarr]{array}?
 
-\item \code{chr_gen()}: Is \code{x} a character generic? (\code{\link{ichr}},
-\code{\link{iagn}})
+\item \code{chr_gen()}: Is \code{x} a \link[ichr]{character}
+\link[igen]{generic}?
 
-\item \code{chr_dtf()}: Is \code{x} a character dtf? (\code{\link{ichr}},
-\code{\link{idtf}})
+\item \code{chr_dtf()}: Is \code{x} a \link[ichr]{character} \link[idtf]{dtf}?
 
-\item \code{chr_vls()}: Is \code{x} a character vlist? (\code{\link{ichr}},
-\code{\link{iavl}})
+\item \code{chr_vls()}: Is \code{x} a \link[ichr]{character}
+\link[ivls]{vlist}?
 
-\item \code{chr_vtp()}: Is \code{x} a character vtype? (\code{\link{ichr}},
-\code{\link{iavt}})
+\item \code{chr_vtp()}: Is \code{x} a \link[ichr]{character} \link[ivtp]{vtype}?
 
-\item \code{chr_mat()}: Is \code{x} a character matrix? (\code{\link{ichr}},
-\code{\link{imat}})
+\item \code{chr_mat()}: Is \code{x} a \link[ichr]{character}
+\link[imat]{matrix}?
 
-\item \code{chr_mvc()}: Is \code{x} a character multivec? (\code{\link{ichr}},
-\code{\link{imvc}})
+\item \code{chr_mvc()}: Is \code{x} a \link[ichr]{character}
+\link[imvc]{multivec}?
 
-\item \code{chr_scl()}: Is \code{x} a character scalar? (\code{\link{ichr}},
-\code{\link{iscl}})
+\item \code{chr_scl()}: Is \code{x} a \link[ichr]{character}
+\link[iscl]{scalar}?
 
-\item \code{chr_vec()}: Is \code{x} a character vector? (\code{\link{ichr}},
-\code{\link{ivec}})
+\item \code{chr_vec()}: Is \code{x} a \link[ichr]{character} \link[ivec]{vec}?
 
-\item \code{clr_arr()}: Is \code{x} a color array? (\code{\link{iclr}},
-\code{\link{iarr}})
+\item \code{clr_arr()}: Is \code{x} a \link[iclr]{color} \link[iarr]{array}?
 
-\item \code{clr_gen()}: Is \code{x} a color generic? (\code{\link{iclr}},
-\code{\link{igen}})
+\item \code{clr_gen()}: Is \code{x} a \link[iclr]{color} \link[igen]{generic}?
 
-\item \code{clr_dtf()}: Is \code{x} a color dtf? (\code{\link{iclr}},
-\code{\link{idtf}})
+\item \code{clr_dtf()}: Is \code{x} a \link[iclr]{color} \link[idtf]{dtf}?
 
-\item \code{clr_vls()}: Is \code{x} a color vlist? (\code{\link{iclr}},
-\code{\link{iavl}})
+\item \code{clr_vls()}: Is \code{x} a \link[iclr]{color} \link[ivls]{vlist}?
 
-\item \code{clr_vtp()}: Is \code{x} a color vtype? (\code{\link{iclr}},
-\code{\link{iavt}})
+\item \code{clr_vtp()}: Is \code{x} a \link[iclr]{color} \link[ivtp]{vtype}?
 
-\item \code{clr_mat()}: Is \code{x} a color matrix? (\code{\link{iclr}},
-\code{\link{imat}})
+\item \code{clr_mat()}: Is \code{x} a \link[iclr]{color} \link[imat]{matrix}?
 
-\item \code{clr_mvc()}: Is \code{x} a color multivec? (\code{\link{iclr}},
-\code{\link{imvc}})
+\item \code{clr_mvc()}: Is \code{x} a \link[iclr]{color} \link[imvc]{multivec}?
 
-\item \code{clr_scl()}: Is \code{x} a color scalar? (\code{\link{iclr}},
-\code{\link{iscl}})
+\item \code{clr_scl()}: Is \code{x} a \link[iclr]{color} \link[iscl]{scalar}?
 
-\item \code{clr_vec()}: Is \code{x} a color vector? (\code{\link{iclr}},
-\code{\link{ivec}})
+\item \code{clr_vec()}: Is \code{x} a \link[iclr]{color} \link[ivec]{vec}?
 
-\item \code{evn_arr()}: Is \code{x} an even-valued whole-number array?
-(\code{\link{ievn}}, \code{\link{iarr}})
+\item \code{evn_arr()}: Is \code{x} an \link[ievn]{even-valued whole-number}
+\link[iarr]{array}?
 
-\item \code{evn_gen()}: Is \code{x} an even-valued whole-number generic?
-(\code{\link{ievn}}, \code{\link{iagn}})
+\item \code{evn_gen()}: Is \code{x} an \link[ievn]{even-valued whole-number}
+\link[igen]{generic}?
 
-\item \code{evn_dtf()}: Is \code{x} an even-valued whole-number dtf?
-(\code{\link{ievn}}, \code{\link{idtf}})
+\item \code{evn_dtf()}: Is \code{x} an \link[ievn]{even-valued whole-number}
+\link[idtf]{dtf}?
 
-\item \code{evn_vls()}: Is \code{x} an even-valued whole-number vlist?
-(\code{\link{ievn}}, \code{\link{iavl}})
+\item \code{evn_vls()}: Is \code{x} an \link[ievn]{even-valued whole-number}
+\link[ivls]{vlist}?
 
-\item \code{evn_vtp()}: Is \code{x} an even-valued
-whole-number vtype?
-(\code{\link{ievn}}, \code{\link{iavt}})
+\item \code{evn_vtp()}: Is \code{x} an \link[ievn]{even-valued whole-number}
+\link[ivtp]{vtype}?
 
-\item \code{evn_mat()}: Is \code{x} an even-valued
-whole-number matrix?
-(\code{\link{ievn}}, \code{\link{imat}})
+\item \code{evn_mat()}: Is \code{x} an \link[ievn]{even-valued whole-number}
+\link[imat]{matrix}?
 
-\item \code{evn_mvc()}: Is \code{x} an even-valued
-whole-number multivec?
-(\code{\link{ievn}}, \code{\link{imvc}})
+\item \code{evn_mvc()}: Is \code{x} an \link[ievn]{even-valued whole-number}
+\link[imvc]{multivec}?
 
-\item \code{evn_scl()}: Is \code{x} an even-valued whole-number scalar?
-(\code{\link{ievn}}, \code{\link{iscl}})
+\item \code{evn_scl()}: Is \code{x} an \link[ievn]{even-valued whole-number}
+\link[iscl]{scalar}?
 
-\item \code{evn_vec()}: Is \code{x} an even-valued whole-number vector?
-(\code{\link{ievn}}, \code{\link{ivec}})
+\item \code{evn_vec()}: Is \code{x} an \link[ievn]{even-valued whole-number}
+\link[ivec]{vec}?
 
-\item \code{fac_arr()}: Is \code{x} a factor array? (\code{\link{ifac}},
-\code{\link{iarr}})
+\item \code{fac_arr()}: Is \code{x} a \link[ifac]{factor} \link[iarr]{array}?
 
-\item \code{fac_gen()}: Is \code{x} a factor generic? (\code{\link{ifac}},
-\code{\link{iagn}})
+\item \code{fac_gen()}: Is \code{x} a \link[ifac]{factor} \link[igen]{generic}?
 
-\item \code{fac_dtf()}: Is \code{x} a factor dtf? (\code{\link{ifac}},
-\code{\link{idtf}})
+\item \code{fac_dtf()}: Is \code{x} a \link[ifac]{factor} \link[idtf]{dtf}?
 
-\item \code{fac_vls()}: Is \code{x} a factor vlist? (\code{\link{ifac}},
-\code{\link{iavl}})
+\item \code{fac_vls()}: Is \code{x} a \link[ifac]{factor} \link[ivls]{vlist}?
 
-\item \code{fac_vtp()}: Is \code{x} a factor vtype? (\code{\link{ifac}},
-\code{\link{iavt}})
+\item \code{fac_vtp()}: Is \code{x} a \link[ifac]{factor} \link[ivtp]{vtype}?
 
-\item \code{fac_mat()}: Is \code{x} a factor matrix? (\code{\link{ifac}},
-\code{\link{imat}})
+\item \code{fac_mat()}: Is \code{x} a \link[ifac]{factor} \link[imat]{matrix}?
 
-\item \code{fac_mvc()}: Is \code{x} a factor multivec? (\code{\link{ifac}},
-\code{\link{imvc}})
+\item \code{fac_mvc()}: Is \code{x} a \link[ifac]{factor} \link[imvc]{multivec}?
 
-\item \code{fac_scl()}: Is \code{x} a factor scalar? (\code{\link{ifac}},
-\code{\link{iscl}})
+\item \code{fac_scl()}: Is \code{x} a \link[ifac]{factor} \link[iscl]{scalar}?
 
-\item \code{fac_vec()}: Is \code{x} a factor vector? (\code{\link{ifac}},
-\code{\link{ivec}})
+\item \code{fac_vec()}: Is \code{x} a \link[ifac]{factor} \link[ivec]{vec}?
 
-\item \code{frc_arr()}: Is \code{x} a fractional-valued numeric array?
-(\code{\link{ifrc}}, \code{\link{iarr}})
+\item \code{frc_arr()}: Is \code{x} a \link[ifrc]{fractional-valued numeric}
+\link[iarr]{array}?
 
-\item \code{frc_gen()}: Is \code{x} a fractional-valued numeric generic?
-(\code{\link{ifrc}}, \code{\link{iagn}})
+\item \code{frc_gen()}: Is \code{x} a \link[ifrc]{fractional-valued numeric}
+\link[igen]{generic}?
 
-\item \code{frc_dtf()}: Is \code{x} a fractional-valued numeric dtf?
-(\code{\link{ifrc}}, \code{\link{idtf}})
+\item \code{frc_dtf()}: Is \code{x} a \link[ifrc]{fractional-valued numeric}
+\link[idtf]{dtf}?
 
-\item \code{frc_vls()}: Is \code{x} a fractional-valued numeric vlist?
-(\code{\link{ifrc}}, \code{\link{iavl}})
+\item \code{frc_vls()}: Is \code{x} a \link[ifrc]{fractional-valued numeric}
+\link[ivls]{vlist}?
 
-\item \code{frc_vtp()}: Is \code{x} a fractional-valued numeric vtype?
-(\code{\link{ifrc}}, \code{\link{iavt}})
+\item \code{frc_vtp()}: Is \code{x} a \link[ifrc]{fractional-valued numeric}
+\link[ivtp]{vtype}?
 
-\item \code{frc_mat()}: Is \code{x} a fractional-valued
-numeric matrix?
-(\code{\link{ifrc}}, \code{\link{imat}})
+\item \code{frc_mat()}: Is \code{x} a \link[ifrc]{fractional-valued numeric}
+\link[imat]{matrix}?
 
-\item \code{frc_mvc()}: Is \code{x} a fractional-valued
-numeric multivec?
-(\code{\link{ifrc}}, \code{\link{imvc}})
+\item \code{frc_mvc()}: Is \code{x} a \link[ifrc]{fractional-valued numeric}
+\link[imvc]{multivec}?
 
-\item \code{frc_scl()}: Is \code{x} a fractional-valued
-numeric scalar?
-(\code{\link{ifrc}}, \code{\link{iscl}})
+\item \code{frc_scl()}: Is \code{x} a \link[ifrc]{fractional-valued numeric}
+\link[iscl]{scalar}?
 
-\item \code{frc_vec()}: Is \code{x} a fractional-valued
-numeric vector?
-(\code{\link{ifrc}}, \code{\link{ivec}})
+\item \code{frc_vec()}: Is \code{x} a \link[ifrc]{fractional-valued numeric}
+\link[ivec]{vec}?
 
-\item \code{ind_arr()}: Is \code{x} an indexer
-array?
-(\code{\link{iind}}, \code{\link{iarr}})
+\item \code{ind_arr()}: Is \code{x} an \link[iind]{indexer} \link[iarr]{array}?
 
-\item \code{ind_gen()}: Is \code{x} an indexer
-generic?
-(\code{\link{iind}}, \code{\link{iagn}})
+\item \code{ind_gen()}: Is \code{x} an \link[iind]{indexer}
+\link[igen]{generic}?
 
-\item \code{ind_dtf()}: Is \code{x} an indexer
-dtf?
-(\code{\link{iind}}, \code{\link{idtf}})
+\item \code{ind_dtf()}: Is \code{x} an \link[iind]{indexer} \link[idtf]{dtf}?
 
-\item \code{ind_vls()}: Is \code{x} an indexer
-vlist?
-(\code{\link{iind}}, \code{\link{iavl}})
+\item \code{ind_vls()}: Is \code{x} an \link[iind]{indexer} \link[ivls]{vlist}?
 
-\item \code{ind_vtp()}: Is \code{x} an indexer
-vtype?
-(\code{\link{iind}}, \code{\link{iavt}})
+\item \code{ind_vtp()}: Is \code{x} an \link[iind]{indexer} \link[ivtp]{vtype}?
 
-\item \code{ind_mat()}: Is \code{x} an indexer
-matrix?
-(\code{\link{iind}}, \code{\link{imat}})
+\item \code{ind_mat()}: Is \code{x} an \link[iind]{indexer} \link[imat]{matrix}?
 
-\item \code{ind_mvc()}: Is \code{x} an indexer
-multivec?
-(\code{\link{iind}}, \code{\link{imvc}})
+\item \code{ind_mvc()}: Is \code{x} an \link[iind]{indexer}
+\link[imvc]{multivec}?
 
-\item \code{ind_scl()}: Is \code{x} an indexer
-scalar?
-(\code{\link{iind}}, \code{\link{iscl}})
+\item \code{ind_scl()}: Is \code{x} an \link[iind]{indexer}
+\link[iscl]{scalar}?
 
-\item \code{ind_vec()}: Is \code{x} an indexer
-vector?
-(\code{\link{iind}}, \code{\link{ivec}})
+\item \code{ind_vec()}: Is \code{x} an \link[iind]{indexer} \link[ivec]{vec}?
 
-\item \code{lgl_arr()}: Is \code{x} a logical
-array?
-(\code{\link{ilgl}}, \code{\link{iarr}})
+\item \code{lgl_arr()}: Is \code{x} a \link[ilgl]{logical} \link[iarr]{array}?
 
-\item \code{lgl_gen()}: Is \code{x} a logical
-generic?
-(\code{\link{ilgl}}, \code{\link{iagn}})
+\item \code{lgl_gen()}: Is \code{x} a \link[ilgl]{logical} \link[igen]{generic}?
 
-\item \code{lgl_dtf()}: Is \code{x} a logical
-dtf?
-(\code{\link{ilgl}}, \code{\link{idtf}})
+\item \code{lgl_dtf()}: Is \code{x} a \link[ilgl]{logical} \link[idtf]{dtf}?
 
-\item \code{lgl_vls()}: Is \code{x} a logical
-vlist?
-(\code{\link{ilgl}}, \code{\link{iavl}})
+\item \code{lgl_vls()}: Is \code{x} a \link[ilgl]{logical} \link[ivls]{vlist}?
 
-\item \code{lgl_vtp()}: Is \code{x} a logical
-vtype?
-(\code{\link{ilgl}}, \code{\link{iavt}})
+\item \code{lgl_vtp()}: Is \code{x} a \link[ilgl]{logical} \link[ivtp]{vtype}?
 
-\item \code{lgl_mat()}: Is \code{x} a logical
-matrix?
-(\code{\link{ilgl}}, \code{\link{imat}})
+\item \code{lgl_mat()}: Is \code{x} a \link[ilgl]{logical} \link[imat]{matrix}?
 
-\item \code{lgl_mvc()}: Is \code{x} a logical
-multivec?
-(\code{\link{ilgl}}, \code{\link{imvc}})
+\item \code{lgl_mvc()}: Is \code{x} a \link[ilgl]{logical}
+\link[imvc]{multivec}?
 
-\item \code{lgl_scl()}: Is \code{x} a logical
-scalar?
-(\code{\link{ilgl}}, \code{\link{iscl}})
+\item \code{lgl_scl()}: Is \code{x} a \link[ilgl]{logical} \link[iscl]{scalar}?
 
-\item \code{lgl_vec()}: Is \code{x} a logical
-vector?
-(\code{\link{ilgl}}, \code{\link{ivec}})
+\item \code{lgl_vec()}: Is \code{x} a \link[ilgl]{logical} \link[ivec]{vec}?
 
-\item \code{neg_arr()}: Is \code{x} a negative-valued
-numeric array?
-(\code{\link{ineg}}, \code{\link{iarr}})
+\item \code{neg_arr()}: Is \code{x} a \link[ineg]{negative-valued numeric}
+\link[iarr]{array}?
 
-\item \code{neg_gen()}: Is \code{x} a negative-valued
-numeric generic?
-(\code{\link{ineg}}, \code{\link{iagn}})
+\item \code{neg_gen()}: Is \code{x} a \link[ineg]{negative-valued numeric}
+\link[igen]{generic}?
 
-\item \code{neg_dtf()}: Is \code{x} a negative-valued
-numeric dtf?
-(\code{\link{ineg}}, \code{\link{idtf}})
+\item \code{neg_dtf()}: Is \code{x} a \link[ineg]{negative-valued numeric}
+\link[idtf]{dtf}?
 
-\item \code{neg_vls()}: Is \code{x} a negative-valued
-numeric vlist?
-(\code{\link{ineg}}, \code{\link{iavl}})
+\item \code{neg_vls()}: Is \code{x} a \link[ineg]{negative-valued numeric}
+\link[ivls]{vlist}?
 
-\item \code{neg_vtp()}: Is \code{x} a negative-valued
-numeric vtype?
-(\code{\link{ineg}}, \code{\link{iavt}})
+\item \code{neg_vtp()}: Is \code{x} a \link[ineg]{negative-valued numeric}
+\link[ivtp]{vtype}?
 
-\item \code{neg_mat()}: Is \code{x} a negative-valued
-numeric matrix?
-(\code{\link{ineg}}, \code{\link{imat}})
+\item \code{neg_mat()}: Is \code{x} a \link[ineg]{negative-valued numeric}
+\link[imat]{matrix}?
 
-\item \code{neg_mvc()}: Is \code{x} a negative-valued
-numeric multivec?
-(\code{\link{ineg}}, \code{\link{imvc}})
+\item \code{neg_mvc()}: Is \code{x} a \link[ineg]{negative-valued numeric}
+\link[imvc]{multivec}?
 
-\item \code{neg_scl()}: Is \code{x} a negative-valued
-numeric scalar?
-(\code{\link{ineg}}, \code{\link{iscl}})
+\item \code{neg_scl()}: Is \code{x} a \link[ineg]{negative-valued numeric}
+\link[iscl]{scalar}?
 
-\item \code{neg_vec()}: Is \code{x} a negative-valued
-numeric vector?
-(\code{\link{ineg}}, \code{\link{ivec}})
+\item \code{neg_vec()}: Is \code{x} a \link[ineg]{negative-valued numeric}
+\link[ivec]{vec}?
 
-\item \code{ngw_arr()}: Is \code{x} a negative-valued
-whole-number array?
-(\code{\link{ingw}}, \code{\link{iarr}})
+\item \code{ngw_arr()}: Is \code{x} a \link[ngw]{negative-valued whole-number}
+\link[iarr]{array}?
 
-\item \code{ngw_gen()}: Is \code{x} a negative-valued
-whole-number generic?
-(\code{\link{ingw}}, \code{\link{iagn}})
+\item \code{ngw_gen()}: Is \code{x} a \link[ngw]{negative-valued whole-number}
+\link[igen]{generic}?
 
-\item \code{ngw_dtf()}: Is \code{x} a negative-valued
-whole-number dtf?
-(\code{\link{ingw}}, \code{\link{idtf}})
+\item \code{ngw_dtf()}: Is \code{x} a \link[ngw]{negative-valued whole-number}
+\link[idtf]{dtf}?
 
-\item \code{ngw_vls()}: Is \code{x} a negative-valued
-whole-number vlist?
-(\code{\link{ingw}}, \code{\link{iavl}})
+\item \code{ngw_vls()}: Is \code{x} a \link[ngw]{negative-valued whole-number}
+\link[ivls]{vlist}?
 
-\item \code{ngw_vtp()}: Is \code{x} a negative-valued
-whole-number vtype?
-(\code{\link{ingw}}, \code{\link{iavt}})
+\item \code{ngw_vtp()}: Is \code{x} a \link[ngw]{negative-valued whole-number}
+\link[ivtp]{vtype}?
 
-\item \code{ngw_mat()}: Is \code{x} a negative-valued
-whole-number matrix?
-(\code{\link{ingw}}, \code{\link{imat}})
+\item \code{ngw_mat()}: Is \code{x} a \link[ngw]{negative-valued whole-number}
+\link[imat]{matrix}?
 
-\item \code{ngw_mvc()}: Is \code{x} a negative-valued
-whole-number multivec?
-(\code{\link{ingw}}, \code{\link{imvc}})
+\item \code{ngw_mvc()}: Is \code{x} a \link[ngw]{negative-valued whole-number}
+\link[imvc]{multivec}?
 
-\item \code{ngw_scl()}: Is \code{x} a negative-valued
-whole-number scalar?
-(\code{\link{ingw}}, \code{\link{iscl}})
+\item \code{ngw_scl()}: Is \code{x} a \link[ngw]{negative-valued whole-number}
+\link[iscl]{scalar}?
 
-\item \code{ngw_vec()}: Is \code{x} a negative-valued
-whole-number vector?
-(\code{\link{ingw}}, \code{\link{ivec}})
+\item \code{ngw_vec()}: Is \code{x} a \link[ngw]{negative-valued whole-number}
+\link[ivec]{vec}?
 
-\item \code{nng_arr()}: Is \code{x} a non-negative-valued
-numeric array?
-(\code{\link{inng}}, \code{\link{iarr}})
+\item \code{nng_arr()}: Is \code{x} a \link[nng]{non-negative-valued numeric}
+\link[iarr]{array}?
 
-\item \code{nng_gen()}: Is \code{x} a non-negative-valued
-numeric generic?
-(\code{\link{inng}}, \code{\link{iagn}})
+\item \code{nng_gen()}: Is \code{x} a \link[nng]{non-negative-valued numeric}
+\link[igen]{generic}?
 
-\item \code{nng_dtf()}: Is \code{x} a non-negative-valued
-numeric dtf?
-(\code{\link{inng}}, \code{\link{idtf}})
+\item \code{nng_dtf()}: Is \code{x} a \link[nng]{non-negative-valued numeric}
+\link[idtf]{dtf}?
 
-\item \code{nng_vls()}: Is \code{x} a non-negative-valued
-numeric vlist?
-(\code{\link{inng}}, \code{\link{iavl}})
+\item \code{nng_vls()}: Is \code{x} a \link[nng]{non-negative-valued numeric}
+\link[ivls]{vlist}?
 
-\item \code{nng_vtp()}: Is \code{x} a non-negative-valued
-numeric vtype?
-(\code{\link{inng}}, \code{\link{iavt}})
+\item \code{nng_vtp()}: Is \code{x} a \link[nng]{non-negative-valued numeric}
+\link[ivtp]{vtype}?
 
-\item \code{nng_mat()}: Is \code{x} a non-negative-valued
-numeric matrix?
-(\code{\link{inng}}, \code{\link{imat}})
+\item \code{nng_mat()}: Is \code{x} a \link[nng]{non-negative-valued numeric}
+\link[imat]{matrix}?
 
-\item \code{nng_mvc()}: Is \code{x} a non-negative-valued
-numeric multivec?
-(\code{\link{inng}}, \code{\link{imvc}})
+\item \code{nng_mvc()}: Is \code{x} a \link[nng]{non-negative-valued numeric}
+\link[imvc]{multivec}?
 
-\item \code{nng_scl()}: Is \code{x} a non-negative-valued
-numeric scalar?
-(\code{\link{inng}}, \code{\link{iscl}})
+\item \code{nng_scl()}: Is \code{x} a \link[nng]{non-negative-valued numeric}
+\link[iscl]{scalar}?
 
-\item \code{nng_vec()}: Is \code{x} a non-negative-valued
-numeric vector?
-(\code{\link{inng}}, \code{\link{ivec}})
+\item \code{nng_vec()}: Is \code{x} a \link[nng]{non-negative-valued numeric}
+\link[ivec]{vec}?
 
-\item \code{nnw_arr()}: Is \code{x} a non-negative-valued
-whole-number array?
-(\code{\link{innw}}, \code{\link{iarr}})
+\item \code{nnw_arr()}: Is \code{x} a
+\link[nnw]{non-negative-valued whole-number} \link[iarr]{array}?
 
-\item \code{nnw_gen()}: Is \code{x} a non-negative-valued
-whole-number generic?
-(\code{\link{innw}}, \code{\link{iagn}})
+\item \code{nnw_gen()}: Is \code{x} a
+\link[nnw]{non-negative-valued whole-number} \link[igen]{generic}?
 
-\item \code{nnw_dtf()}: Is \code{x} a non-negative-valued
-whole-number dtf?
-(\code{\link{innw}}, \code{\link{idtf}})
+\item \code{nnw_dtf()}: Is \code{x} a
+\link[nnw]{non-negative-valued whole-number} \link[idtf]{dtf}?
 
-\item \code{nnw_vls()}: Is \code{x} a non-negative-valued
-whole-number vlist?
-(\code{\link{innw}}, \code{\link{iavl}})
+\item \code{nnw_vls()}: Is \code{x} a
+\link[nnw]{non-negative-valued whole-number} \link[ivls]{vlist}?
 
-\item \code{nnw_vtp()}: Is \code{x} a non-negative-valued
-whole-number vtype?
-(\code{\link{innw}}, \code{\link{iavt}})
+\item \code{nnw_vtp()}: Is \code{x} a
+\link[nnw]{non-negative-valued whole-number} \link[ivtp]{vtype}?
 
-\item \code{nnw_mat()}: Is \code{x} a non-negative-valued
-whole-number matrix?
-(\code{\link{innw}}, \code{\link{imat}})
+\item \code{nnw_mat()}: Is \code{x} a
+\link[nnw]{non-negative-valued whole-number} \link[imat]{matrix}?
 
-\item \code{nnw_mvc()}: Is \code{x} a non-negative-valued
-whole-number multivec?
-(\code{\link{innw}}, \code{\link{imvc}})
+\item \code{nnw_mvc()}: Is \code{x} a
+\link[nnw]{non-negative-valued whole-number} \link[imvc]{multivec}?
 
-\item \code{nnw_scl()}: Is \code{x} a non-negative-valued
-whole-number scalar?
-(\code{\link{innw}}, \code{\link{iscl}})
+\item \code{nnw_scl()}: Is \code{x} a
+\link[nnw]{non-negative-valued whole-number} \link[iscl]{scalar}?
 
-\item \code{nnw_vec()}: Is \code{x} a non-negative-valued
-whole-number vector?
-(\code{\link{innw}}, \code{\link{ivec}})
+\item \code{nnw_vec()}: Is \code{x} a
+\link[nnw]{non-negative-valued whole-number} \link[ivec]{vec}?
 
-\item \code{nps_arr()}: Is \code{x} a non-positive-valued
-numeric array?
-(\code{\link{inps}}, \code{\link{iarr}})
+\item \code{nps_arr()}: Is \code{x} a \link[nps]{non-positive-valued numeric}
+\link[iarr]{array}?
 
-\item \code{nps_gen()}: Is \code{x} a non-positive-valued
-numeric generic?
-(\code{\link{inps}}, \code{\link{iagn}})
+\item \code{nps_gen()}: Is \code{x} a \link[nps]{non-positive-valued numeric}
+\link[igen]{generic}?
 
-\item \code{nps_dtf()}: Is \code{x} a non-positive-valued
-numeric dtf?
-(\code{\link{inps}}, \code{\link{idtf}})
+\item \code{nps_dtf()}: Is \code{x} a \link[nps]{non-positive-valued numeric}
+\link[idtf]{dtf}?
 
-\item \code{nps_vls()}: Is \code{x} a non-positive-valued
-numeric vlist?
-(\code{\link{inps}}, \code{\link{iavl}})
+\item \code{nps_vls()}: Is \code{x} a \link[nps]{non-positive-valued numeric}
+\link[ivls]{vlist}?
 
-\item \code{nps_vtp()}: Is \code{x} a non-positive-valued
-numeric vtype?
-(\code{\link{inps}}, \code{\link{iavt}})
+\item \code{nps_vtp()}: Is \code{x} a \link[nps]{non-positive-valued numeric}
+\link[ivtp]{vtype}?
 
-\item \code{nps_mat()}: Is \code{x} a non-positive-valued
-numeric matrix?
-(\code{\link{inps}}, \code{\link{imat}})
+\item \code{nps_mat()}: Is \code{x} a \link[nps]{non-positive-valued numeric}
+\link[imat]{matrix}?
 
-\item \code{nps_mvc()}: Is \code{x} a non-positive-valued
-numeric multivec?
-(\code{\link{inps}}, \code{\link{imvc}})
+\item \code{nps_mvc()}: Is \code{x} a \link[nps]{non-positive-valued numeric}
+\link[imvc]{multivec}?
 
-\item \code{nps_scl()}: Is \code{x} a non-positive-valued
-numeric scalar?
-(\code{\link{inps}}, \code{\link{iscl}})
+\item \code{nps_scl()}: Is \code{x} a \link[nps]{non-positive-valued numeric}
+\link[iscl]{scalar}?
 
-\item \code{nps_vec()}: Is \code{x} a non-positive-valued
-numeric vector?
-(\code{\link{inps}}, \code{\link{ivec}})
+\item \code{nps_vec()}: Is \code{x} a \link[nps]{non-positive-valued numeric}
+\link[ivec]{vec}?
 
-\item \code{npw_arr()}: Is \code{x} a non-positive-valued
-whole-number array?
-(\code{\link{inpw}}, \code{\link{iarr}})
+\item \code{npw_arr()}: Is \code{x} a
+\link[npw]{non-positive-valued whole-number} \link[iarr]{array}?
 
-\item \code{npw_gen()}: Is \code{x} a non-positive-valued
-whole-number generic?
-(\code{\link{inpw}}, \code{\link{iagn}})
+\item \code{npw_gen()}: Is \code{x} a
+\link[npw]{non-positive-valued whole-number} \link[igen]{generic}?
 
-\item \code{npw_dtf()}: Is \code{x} a non-positive-valued
-whole-number dtf?
-(\code{\link{inpw}}, \code{\link{idtf}})
+\item \code{npw_dtf()}: Is \code{x} a
+\link[npw]{non-positive-valued whole-number} \link[idtf]{dtf}?
 
-\item \code{npw_vls()}: Is \code{x} a non-positive-valued
-whole-number vlist?
-(\code{\link{inpw}}, \code{\link{iavl}})
+\item \code{npw_vls()}: Is \code{x} a
+\link[npw]{non-positive-valued whole-number} \link[ivls]{vlist}?
 
-\item \code{npw_vtp()}: Is \code{x} a non-positive-valued
-whole-number vtype?
-(\code{\link{inpw}}, \code{\link{iavt}})
+\item \code{npw_vtp()}: Is \code{x} a
+\link[npw]{non-positive-valued whole-number} \link[ivtp]{vtype}?
 
-\item \code{npw_mat()}: Is \code{x} a non-positive-valued
-whole-number matrix?
-(\code{\link{inpw}}, \code{\link{imat}})
+\item \code{npw_mat()}: Is \code{x} a
+\link[npw]{non-positive-valued whole-number} \link[imat]{matrix}?
 
-\item \code{npw_mvc()}: Is \code{x} a non-positive-valued
-whole-number multivec?
-(\code{\link{inpw}}, \code{\link{imvc}})
+\item \code{npw_mvc()}: Is \code{x} a
+\link[npw]{non-positive-valued whole-number} \link[imvc]{multivec}?
 
-\item \code{npw_scl()}: Is \code{x} a non-positive-valued
-whole-number scalar?
-(\code{\link{inpw}}, \code{\link{iscl}})
+\item \code{npw_scl()}: Is \code{x} a
+\link[npw]{non-positive-valued whole-number} \link[iscl]{scalar}?
 
-\item \code{npw_vec()}: Is \code{x} a non-positive-valued
-whole-number vector?
-(\code{\link{inpw}}, \code{\link{ivec}})
+\item \code{npw_vec()}: Is \code{x} a
+\link[npw]{non-positive-valued whole-number} \link[ivec]{vec}?
 
-\item \code{nst_arr()}: Is \code{x} a non-sortable
-array?
-(\code{\link{inst}}, \code{\link{iarr}})
+\item \code{nst_arr()}: Is \code{x} a \link[nst]{non-sortable}
+\link[iarr]{array}?
 
-\item \code{nst_gen()}: Is \code{x} a non-sortable
-generic?
-(\code{\link{inst}}, \code{\link{iagn}})
+\item \code{nst_gen()}: Is \code{x} a \link[nst]{non-sortable}
+\link[igen]{generic}?
 
-\item \code{nst_dtf()}: Is \code{x} a non-sortable
-dtf?
-(\code{\link{inst}}, \code{\link{idtf}})
+\item \code{nst_dtf()}: Is \code{x} a \link[nst]{non-sortable}
+\link[idtf]{dtf}?
 
-\item \code{nst_vls()}: Is \code{x} a non-sortable
-vlist?
-(\code{\link{inst}}, \code{\link{iavl}})
+\item \code{nst_vls()}: Is \code{x} a \link[nst]{non-sortable}
+\link[ivls]{vlist}?
 
-\item \code{nst_vtp()}: Is \code{x} a non-sortable
-vtype?
-(\code{\link{inst}}, \code{\link{iavt}})
+\item \code{nst_vtp()}: Is \code{x} a \link[nst]{non-sortable}
+\link[ivtp]{vtype}?
 
-\item \code{nst_mat()}: Is \code{x} a non-sortable
-matrix?
-(\code{\link{inst}}, \code{\link{imat}})
+\item \code{nst_mat()}: Is \code{x} a \link[nst]{non-sortable}
+\link[imat]{matrix}?
 
-\item \code{nst_mvc()}: Is \code{x} a non-sortable
-multivec?
-(\code{\link{inst}}, \code{\link{imvc}})
+\item \code{nst_mvc()}: Is \code{x} a \link[nst]{non-sortable}
+\link[imvc]{multivec}?
 
-\item \code{nst_scl()}: Is \code{x} a non-sortable
-scalar?
-(\code{\link{inst}}, \code{\link{iscl}})
+\item \code{nst_scl()}: Is \code{x} a \link[nst]{non-sortable}
+\link[iscl]{scalar}?
 
-\item \code{nst_vec()}: Is \code{x} a non-sortable
-vector?
-(\code{\link{inst}}, \code{\link{ivec}})
+\item \code{nst_vec()}: Is \code{x} a \link[nst]{non-sortable} \link[ivec]{vec}?
 
-\item \code{num_arr()}: Is \code{x} a numeric
-array?
-(\code{\link{inum}}, \code{\link{iarr}})
+\item \code{num_arr()}: Is \code{x} a \link[num]{numeric} \link[iarr]{array}?
 
-\item \code{num_gen()}: Is \code{x} a numeric
-generic?
-(\code{\link{inum}}, \code{\link{iagn}})
+\item \code{num_gen()}: Is \code{x} a \link[num]{numeric} \link[igen]{generic}?
 
-\item \code{num_dtf()}: Is \code{x} a numeric
-dtf?
-(\code{\link{inum}}, \code{\link{idtf}})
+\item \code{num_dtf()}: Is \code{x} a \link[num]{numeric} \link[idtf]{dtf}?
 
-\item \code{num_vls()}: Is \code{x} a numeric
-vlist?
-(\code{\link{inum}}, \code{\link{iavl}})
+\item \code{num_vls()}: Is \code{x} a \link[num]{numeric} \link[ivls]{vlist}?
 
-\item \code{num_vtp()}: Is \code{x} a numeric
-vtype?
-(\code{\link{inum}}, \code{\link{iavt}})
+\item \code{num_vtp()}: Is \code{x} a \link[num]{numeric} \link[ivtp]{vtype}?
 
-\item \code{num_mat()}: Is \code{x} a numeric
-matrix?
-(\code{\link{inum}}, \code{\link{imat}})
+\item \code{num_mat()}: Is \code{x} a \link[num]{numeric} \link[imat]{matrix}?
 
-\item \code{num_mvc()}: Is \code{x} a numeric
-multivec?
-(\code{\link{inum}}, \code{\link{imvc}})
+\item \code{num_mvc()}: Is \code{x} a \link[num]{numeric} \link[imvc]{multivec}?
 
-\item \code{num_scl()}: Is \code{x} a numeric
-scalar?
-(\code{\link{inum}}, \code{\link{iscl}})
+\item \code{num_scl()}: Is \code{x} a \link[num]{numeric} \link[iscl]{scalar}?
 
-\item \code{num_vec()}: Is \code{x} a numeric
-vector?
-(\code{\link{inum}}, \code{\link{ivec}})
+\item \code{num_vec()}: Is \code{x} a \link[num]{numeric} \link[ivec]{vec}?
 
-\item \code{odd_arr()}: Is \code{x} an odd-valued
-whole-number array?
-(\code{\link{iodd}}, \code{\link{iarr}})
+\item \code{odd_arr()}: Is \code{x} an \link[odd]{odd-valued whole-number}
+\link[iarr]{array}?
 
-\item \code{odd_gen()}: Is \code{x} an odd-valued
-whole-number generic?
-(\code{\link{iodd}}, \code{\link{iagn}})
+\item \code{odd_gen()}: Is \code{x} an \link[odd]{odd-valued whole-number}
+\link[igen]{generic}?
 
-\item \code{odd_dtf()}: Is \code{x} an odd-valued
-whole-number dtf?
-(\code{\link{iodd}}, \code{\link{idtf}})
+\item \code{odd_dtf()}: Is \code{x} an \link[odd]{odd-valued whole-number}
+\link[idtf]{dtf}?
 
-\item \code{odd_vls()}: Is \code{x} an odd-valued
-whole-number vlist?
-(\code{\link{iodd}}, \code{\link{iavl}})
+\item \code{odd_vls()}: Is \code{x} an \link[odd]{odd-valued whole-number}
+\link[ivls]{vlist}?
 
-\item \code{odd_vtp()}: Is \code{x} an odd-valued
-whole-number vtype?
-(\code{\link{iodd}}, \code{\link{iavt}})
+\item \code{odd_vtp()}: Is \code{x} an \link[odd]{odd-valued whole-number}
+\link[ivtp]{vtype}?
 
-\item \code{odd_mat()}: Is \code{x} an odd-valued
-whole-number matrix?
-(\code{\link{iodd}}, \code{\link{imat}})
+\item \code{odd_mat()}: Is \code{x} an \link[odd]{odd-valued whole-number}
+\link[imat]{matrix}?
 
-\item \code{odd_mvc()}: Is \code{x} an odd-valued
-whole-number multivec?
-(\code{\link{iodd}}, \code{\link{imvc}})
+\item \code{odd_mvc()}: Is \code{x} an \link[odd]{odd-valued whole-number}
+\link[imvc]{multivec}?
 
-\item \code{odd_scl()}: Is \code{x} an odd-valued
-whole-number scalar?
-(\code{\link{iodd}}, \code{\link{iscl}})
+\item \code{odd_scl()}: Is \code{x} an \link[odd]{odd-valued whole-number}
+\link[iscl]{scalar}?
 
-\item \code{odd_vec()}: Is \code{x} an odd-valued
-whole-number vector?
-(\code{\link{iodd}}, \code{\link{ivec}})
+\item \code{odd_vec()}: Is \code{x} an \link[odd]{odd-valued whole-number}
+\link[ivec]{vec}?
 
-\item \code{ord_arr()}: Is \code{x} an ordered-factor
-array?
-(\code{\link{iord}}, \code{\link{iarr}})
+\item \code{ord_arr()}: Is \code{x} an \link[ord]{ordered-factor}
+\link[iarr]{array}?
 
-\item \code{ord_gen()}: Is \code{x} an ordered-factor
-generic?
-(\code{\link{iord}}, \code{\link{iagn}})
+\item \code{ord_gen()}: Is \code{x} an \link[ord]{ordered-factor}
+\link[igen]{generic}?
 
-\item \code{ord_dtf()}: Is \code{x} an ordered-factor
-dtf?
-(\code{\link{iord}}, \code{\link{idtf}})
+\item \code{ord_dtf()}: Is \code{x} an \link[ord]{ordered-factor}
+\link[idtf]{dtf}?
 
-\item \code{ord_vls()}: Is \code{x} an ordered-factor
-vlist?
-(\code{\link{iord}}, \code{\link{iavl}})
+\item \code{ord_vls()}: Is \code{x} an \link[ord]{ordered-factor}
+\link[ivls]{vlist}?
 
-\item \code{ord_vtp()}: Is \code{x} an ordered-factor
-vtype?
-(\code{\link{iord}}, \code{\link{iavt}})
+\item \code{ord_vtp()}: Is \code{x} an \link[ord]{ordered-factor}
+\link[ivtp]{vtype}?
 
-\item \code{ord_mat()}: Is \code{x} an ordered-factor
-matrix?
-(\code{\link{iord}}, \code{\link{imat}})
+\item \code{ord_mat()}: Is \code{x} an \link[ord]{ordered-factor}
+\link[imat]{matrix}?
 
-\item \code{ord_mvc()}: Is \code{x} an ordered-factor
-multivec?
-(\code{\link{iord}}, \code{\link{imvc}})
+\item \code{ord_mvc()}: Is \code{x} an \link[ord]{ordered-factor}
+\link[imvc]{multivec}?
 
-\item \code{ord_scl()}: Is \code{x} an ordered-factor
-scalar?
-(\code{\link{iord}}, \code{\link{iscl}})
+\item \code{ord_scl()}: Is \code{x} an \link[ord]{ordered-factor}
+\link[iscl]{scalar}?
 
-\item \code{ord_vec()}: Is \code{x} an ordered-factor
-vector?
-(\code{\link{iord}}, \code{\link{ivec}})
+\item \code{ord_vec()}: Is \code{x} an \link[ord]{ordered-factor}
+\link[ivec]{vec}?
 
-\item \code{pct_arr()}: Is \code{x} a percent-valued
-(0-100) numeric array?
-(\code{\link{ipct}}, \code{\link{iarr}})
+\item \code{pct_arr()}: Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
+\link[iarr]{array}?
 
-\item \code{pct_gen()}: Is \code{x} a percent-valued
-(0-100) numeric generic?
-(\code{\link{ipct}}, \code{\link{iagn}})
+\item \code{pct_gen()}: Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
+\link[igen]{generic}?
 
-\item \code{pct_dtf()}: Is \code{x} a percent-valued
-(0-100) numeric dtf?
-(\code{\link{ipct}}, \code{\link{idtf}})
+\item \code{pct_dtf()}: Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
+\link[idtf]{dtf}?
 
-\item \code{pct_vls()}: Is \code{x} a percent-valued
-(0-100) numeric vlist?
-(\code{\link{ipct}}, \code{\link{iavl}})
+\item \code{pct_vls()}: Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
+\link[ivls]{vlist}?
 
-\item \code{pct_vtp()}: Is \code{x} a percent-valued
-(0-100) numeric vtype?
-(\code{\link{ipct}}, \code{\link{iavt}})
+\item \code{pct_vtp()}: Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
+\link[ivtp]{vtype}?
 
-\item \code{pct_mat()}: Is \code{x} a percent-valued
-(0-100) numeric matrix?
-(\code{\link{ipct}}, \code{\link{imat}})
+\item \code{pct_mat()}: Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
+\link[imat]{matrix}?
 
-\item \code{pct_mvc()}: Is \code{x} a percent-valued
-(0-100) numeric multivec?
-(\code{\link{ipct}}, \code{\link{imvc}})
+\item \code{pct_mvc()}: Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
+\link[imvc]{multivec}?
 
-\item \code{pct_scl()}: Is \code{x} a percent-valued
-(0-100) numeric scalar?
-(\code{\link{ipct}}, \code{\link{iscl}})
+\item \code{pct_scl()}: Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
+\link[iscl]{scalar}?
 
-\item \code{pct_vec()}: Is \code{x} a percent-valued
-(0-100) numeric vector?
-(\code{\link{ipct}}, \code{\link{ivec}})
+\item \code{pct_vec()}: Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
+\link[ivec]{vec}?
 
-\item \code{pos_arr()}: Is \code{x} a positive-valued
-numeric array?
-(\code{\link{ipos}}, \code{\link{iarr}})
+\item \code{pos_arr()}: Is \code{x} a \link[pos]{positive-valued numeric}
+\link[iarr]{array}?
 
-\item \code{pos_gen()}: Is \code{x} a positive-valued
-numeric generic?
-(\code{\link{ipos}}, \code{\link{iagn}})
+\item \code{pos_gen()}: Is \code{x} a \link[pos]{positive-valued numeric}
+\link[igen]{generic}?
 
-\item \code{pos_dtf()}: Is \code{x} a positive-valued
-numeric dtf?
-(\code{\link{ipos}}, \code{\link{idtf}})
+\item \code{pos_dtf()}: Is \code{x} a \link[pos]{positive-valued numeric}
+\link[idtf]{dtf}?
 
-\item \code{pos_vls()}: Is \code{x} a positive-valued
-numeric vlist?
-(\code{\link{ipos}}, \code{\link{iavl}})
+\item \code{pos_vls()}: Is \code{x} a \link[pos]{positive-valued numeric}
+\link[ivls]{vlist}?
 
-\item \code{pos_vtp()}: Is \code{x} a positive-valued
-numeric vtype?
-(\code{\link{ipos}}, \code{\link{iavt}})
+\item \code{pos_vtp()}: Is \code{x} a \link[pos]{positive-valued numeric}
+\link[ivtp]{vtype}?
 
-\item \code{pos_mat()}: Is \code{x} a positive-valued
-numeric matrix?
-(\code{\link{ipos}}, \code{\link{imat}})
+\item \code{pos_mat()}: Is \code{x} a \link[pos]{positive-valued numeric}
+\link[imat]{matrix}?
 
-\item \code{pos_mvc()}: Is \code{x} a positive-valued
-numeric multivec?
-(\code{\link{ipos}}, \code{\link{imvc}})
+\item \code{pos_mvc()}: Is \code{x} a \link[pos]{positive-valued numeric}
+\link[imvc]{multivec}?
 
-\item \code{pos_scl()}: Is \code{x} a positive-valued
-numeric scalar?
-(\code{\link{ipos}}, \code{\link{iscl}})
+\item \code{pos_scl()}: Is \code{x} a \link[pos]{positive-valued numeric}
+\link[iscl]{scalar}?
 
-\item \code{pos_vec()}: Is \code{x} a positive-valued
-numeric vector?
-(\code{\link{ipos}}, \code{\link{ivec}})
+\item \code{pos_vec()}: Is \code{x} a \link[pos]{positive-valued numeric}
+\link[ivec]{vec}?
 
-\item \code{ppn_arr()}: Is \code{x} a proportion-valued
-(0-1) numeric array?
-(\code{\link{ippn}}, \code{\link{iarr}})
+\item \code{ppn_arr()}: Is \code{x} a
+\link[ppn]{proportion-valued (0-1) numeric} \link[iarr]{array}?
 
-\item \code{ppn_gen()}: Is \code{x} a proportion-valued
-(0-1) numeric generic?
-(\code{\link{ippn}}, \code{\link{iagn}})
+\item \code{ppn_gen()}: Is \code{x} a
+\link[ppn]{proportion-valued (0-1) numeric} \link[igen]{generic}?
 
-\item \code{ppn_dtf()}: Is \code{x} a proportion-valued
-(0-1) numeric dtf?
-(\code{\link{ippn}}, \code{\link{idtf}})
+\item \code{ppn_dtf()}: Is \code{x} a
+\link[ppn]{proportion-valued (0-1) numeric} \link[idtf]{dtf}?
 
-\item \code{ppn_vls()}: Is \code{x} a proportion-valued
-(0-1) numeric vlist?
-(\code{\link{ippn}}, \code{\link{iavl}})
+\item \code{ppn_vls()}: Is \code{x} a
+\link[ppn]{proportion-valued (0-1) numeric} \link[ivls]{vlist}?
 
-\item \code{ppn_vtp()}: Is \code{x} a proportion-valued
-(0-1) numeric vtype?
-(\code{\link{ippn}}, \code{\link{iavt}})
+\item \code{ppn_vtp()}: Is \code{x} a
+\link[ppn]{proportion-valued (0-1) numeric} \link[ivtp]{vtype}?
 
-\item \code{ppn_mat()}: Is \code{x} a proportion-valued
-(0-1) numeric matrix?
-(\code{\link{ippn}}, \code{\link{imat}})
+\item \code{ppn_mat()}: Is \code{x} a
+\link[ppn]{proportion-valued (0-1) numeric} \link[imat]{matrix}?
 
-\item \code{ppn_mvc()}: Is \code{x} a proportion-valued
-(0-1) numeric multivec?
-(\code{\link{ippn}}, \code{\link{imvc}})
+\item \code{ppn_mvc()}: Is \code{x} a
+\link[ppn]{proportion-valued (0-1) numeric} \link[imvc]{multivec}?
 
-\item \code{ppn_scl()}: Is \code{x} a proportion-valued
-(0-1) numeric scalar?
-(\code{\link{ippn}}, \code{\link{iscl}})
+\item \code{ppn_scl()}: Is \code{x} a
+\link[ppn]{proportion-valued (0-1) numeric} \link[iscl]{scalar}?
 
-\item \code{ppn_vec()}: Is \code{x} a proportion-valued
-(0-1) numeric vector?
-(\code{\link{ippn}}, \code{\link{ivec}})
+\item \code{ppn_vec()}: Is \code{x} a
+\link[ppn]{proportion-valued (0-1) numeric} \link[ivec]{vec}?
 
-\item \code{psw_arr()}: Is \code{x} a positive-valued
-whole-number array?
-(\code{\link{ipsw}}, \code{\link{iarr}})
+\item \code{psw_arr()}: Is \code{x} a \link[pos]{positive-valued whole-number}
+\link[iarr]{array}?
 
-\item \code{psw_gen()}: Is \code{x} a positive-valued
-whole-number generic?
-(\code{\link{ipsw}}, \code{\link{iagn}})
+\item \code{psw_gen()}: Is \code{x} a \link[pos]{positive-valued whole-number}
+\link[igen]{generic}?
 
-\item \code{psw_dtf()}: Is \code{x} a positive-valued
-whole-number dtf?
-(\code{\link{ipsw}}, \code{\link{idtf}})
+\item \code{psw_dtf()}: Is \code{x} a \link[pos]{positive-valued whole-number}
+\link[idtf]{dtf}?
 
-\item \code{psw_vls()}: Is \code{x} a positive-valued
-whole-number vlist?
-(\code{\link{ipsw}}, \code{\link{iavl}})
+\item \code{psw_vls()}: Is \code{x} a \link[pos]{positive-valued whole-number}
+\link[ivls]{vlist}?
 
-\item \code{psw_vtp()}: Is \code{x} a positive-valued
-whole-number vtype?
-(\code{\link{ipsw}}, \code{\link{iavt}})
+\item \code{psw_vtp()}: Is \code{x} a \link[pos]{positive-valued whole-number}
+\link[ivtp]{vtype}?
 
-\item \code{psw_mat()}: Is \code{x} a positive-valued
-whole-number matrix?
-(\code{\link{ipsw}}, \code{\link{imat}})
+\item \code{psw_mat()}: Is \code{x} a \link[pos]{positive-valued whole-number}
+\link[imat]{matrix}?
 
-\item \code{psw_mvc()}: Is \code{x} a positive-valued
-whole-number multivec?
-(\code{\link{ipsw}}, \code{\link{imvc}})
+\item \code{psw_mvc()}: Is \code{x} a \link[pos]{positive-valued whole-number}
+\link[imvc]{multivec}?
 
-\item \code{psw_scl()}: Is \code{x} a positive-valued
-whole-number scalar?
-(\code{\link{ipsw}}, \code{\link{iscl}})
+\item \code{psw_scl()}: Is \code{x} a \link[pos]{positive-valued whole-number}
+\link[iscl]{scalar}?
 
-\item \code{psw_vec()}: Is \code{x} a positive-valued
-whole-number vector?
-(\code{\link{ipsw}}, \code{\link{ivec}})
+\item \code{psw_vec()}: Is \code{x} a \link[pos]{positive-valued whole-number}
+\link[ivec]{vec}?
 
-\item \code{srt_arr()}: Is \code{x} a sortable
-array?
-(\code{\link{isrt}}, \code{\link{iarr}})
+\item \code{srt_arr()}: Is \code{x} a \link[srt]{sortable} \link[iarr]{array}?
 
-\item \code{srt_gen()}: Is \code{x} a sortable
-generic?
-(\code{\link{isrt}}, \code{\link{iagn}})
+\item \code{srt_gen()}: Is \code{x} a \link[srt]{sortable} \link[igen]{generic}?
 
-\item \code{srt_dtf()}: Is \code{x} a sortable
-dtf?
-(\code{\link{isrt}}, \code{\link{idtf}})
+\item \code{srt_dtf()}: Is \code{x} a \link[srt]{sortable} \link[idtf]{dtf}?
 
-\item \code{srt_vls()}: Is \code{x} a sortable
-vlist?
-(\code{\link{isrt}}, \code{\link{iavl}})
+\item \code{srt_vls()}: Is \code{x} a \link[srt]{sortable} \link[ivls]{vlist}?
 
-\item \code{srt_vtp()}: Is \code{x} a sortable
-vtype?
-(\code{\link{isrt}}, \code{\link{iavt}})
+\item \code{srt_vtp()}: Is \code{x} a \link[srt]{sortable} \link[ivtp]{vtype}?
 
-\item \code{srt_mat()}: Is \code{x} a sortable
-matrix?
-(\code{\link{isrt}}, \code{\link{imat}})
+\item \code{srt_mat()}: Is \code{x} a \link[srt]{sortable} \link[imat]{matrix}?
 
-\item \code{srt_mvc()}: Is \code{x} a sortable
-multivec?
-(\code{\link{isrt}}, \code{\link{imvc}})
+\item \code{srt_mvc()}: Is \code{x} a \link[srt]{sortable}
+\link[imvc]{multivec}?
 
-\item \code{srt_scl()}: Is \code{x} a sortable
-scalar?
-(\code{\link{isrt}}, \code{\link{iscl}})
+\item \code{srt_scl()}: Is \code{x} a \link[srt]{sortable} \link[iscl]{scalar}?
 
-\item \code{srt_vec()}: Is \code{x} a sortable
-vector?
-(\code{\link{isrt}}, \code{\link{ivec}})
+\item \code{srt_vec()}: Is \code{x} a \link[srt]{sortable} \link[ivec]{vec}?
 
-\item \code{str_arr()}: Is \code{x} a string
-array?
-(\code{\link{istr}}, \code{\link{iarr}})
+\item \code{str_arr()}: Is \code{x} a \link[str]{string} \link[iarr]{array}?
 
-\item \code{str_gen()}: Is \code{x} a string
-generic?
-(\code{\link{istr}}, \code{\link{iagn}})
+\item \code{str_gen()}: Is \code{x} a \link[str]{string} \link[igen]{generic}?
 
-\item \code{str_dtf()}: Is \code{x} a string
-dtf?
-(\code{\link{istr}}, \code{\link{idtf}})
+\item \code{str_dtf()}: Is \code{x} a \link[str]{string} \link[idtf]{dtf}?
 
-\item \code{str_vls()}: Is \code{x} a string
-vlist?
-(\code{\link{istr}}, \code{\link{iavl}})
+\item \code{str_vls()}: Is \code{x} a \link[str]{string} \link[ivls]{vlist}?
 
-\item \code{str_vtp()}: Is \code{x} a string
-vtype?
-(\code{\link{istr}}, \code{\link{iavt}})
+\item \code{str_vtp()}: Is \code{x} a \link[str]{string} \link[ivtp]{vtype}?
 
-\item \code{str_mat()}: Is \code{x} a string
-matrix?
-(\code{\link{istr}}, \code{\link{imat}})
+\item \code{str_mat()}: Is \code{x} a \link[str]{string} \link[imat]{matrix}?
 
-\item \code{str_mvc()}: Is \code{x} a string
-multivec?
-(\code{\link{istr}}, \code{\link{imvc}})
+\item \code{str_mvc()}: Is \code{x} a \link[str]{string} \link[imvc]{multivec}?
 
-\item \code{str_scl()}: Is \code{x} a string
-scalar?
-(\code{\link{istr}}, \code{\link{iscl}})
+\item \code{str_scl()}: Is \code{x} a \link[str]{string} \link[iscl]{scalar}?
 
-\item \code{str_vec()}: Is \code{x} a string
-vector?
-(\code{\link{istr}}, \code{\link{ivec}})
+\item \code{str_vec()}: Is \code{x} a \link[str]{string} \link[ivec]{vec}?
 
-\item \code{uno_arr()}: Is \code{x} an unordered-factor
-array?
-(\code{\link{iuno}}, \code{\link{iarr}})
+\item \code{uno_arr()}: Is \code{x} an \link[uno]{unordered-factor}
+\link[iarr]{array}?
 
-\item \code{uno_gen()}: Is \code{x} an unordered-factor
-generic?
-(\code{\link{iuno}}, \code{\link{iagn}})
+\item \code{uno_gen()}: Is \code{x} an \link[uno]{unordered-factor}
+\link[igen]{generic}?
 
-\item \code{uno_dtf()}: Is \code{x} an unordered-factor
-dtf?
-(\code{\link{iuno}}, \code{\link{idtf}})
+\item \code{uno_dtf()}: Is \code{x} an \link[uno]{unordered-factor}
+\link[idtf]{dtf}?
 
-\item \code{uno_vls()}: Is \code{x} an unordered-factor
-vlist?
-(\code{\link{iuno}}, \code{\link{iavl}})
+\item \code{uno_vls()}: Is \code{x} an \link[uno]{unordered-factor}
+\link[ivls]{vlist}?
 
-\item \code{uno_vtp()}: Is \code{x} an unordered-factor
-vtype?
-(\code{\link{iuno}}, \code{\link{iavt}})
+\item \code{uno_vtp()}: Is \code{x} an \link[uno]{unordered-factor}
+\link[ivtp]{vtype}?
 
-\item \code{uno_mat()}: Is \code{x} an unordered-factor
-matrix?
-(\code{\link{iuno}}, \code{\link{imat}})
+\item \code{uno_mat()}: Is \code{x} an \link[uno]{unordered-factor}
+\link[imat]{matrix}?
 
-\item \code{uno_mvc()}: Is \code{x} an unordered-factor
-multivec?
-(\code{\link{iuno}}, \code{\link{imvc}})
+\item \code{uno_mvc()}: Is \code{x} an \link[uno]{unordered-factor}
+\link[imvc]{multivec}?
 
-\item \code{uno_scl()}: Is \code{x} an unordered-factor
-scalar?
-(\code{\link{iuno}}, \code{\link{iscl}})
+\item \code{uno_scl()}: Is \code{x} an \link[uno]{unordered-factor}
+\link[iscl]{scalar}?
 
-\item \code{uno_vec()}: Is \code{x} an unordered-factor
-vector?
-(\code{\link{iuno}}, \code{\link{ivec}})
+\item \code{uno_vec()}: Is \code{x} an \link[uno]{unordered-factor}
+\link[ivec]{vec}?
 
-\item \code{whl_arr()}: Is \code{x} a whole-number
-array?
-(\code{\link{iwhl}}, \code{\link{iarr}})
+\item \code{whl_arr()}: Is \code{x} a \link[whl]{whole-number}
+\link[iarr]{array}?
 
-\item \code{whl_gen()}: Is \code{x} a whole-number
-generic?
-(\code{\link{iwhl}}, \code{\link{iagn}})
+\item \code{whl_gen()}: Is \code{x} a \link[whl]{whole-number}
+\link[igen]{generic}?
 
-\item \code{whl_dtf()}: Is \code{x} a whole-number
-dtf?
-(\code{\link{iwhl}}, \code{\link{idtf}})
+\item \code{whl_dtf()}: Is \code{x} a \link[whl]{whole-number}
+\link[idtf]{dtf}?
 
-\item \code{whl_vls()}: Is \code{x} a whole-number
-vlist?
-(\code{\link{iwhl}}, \code{\link{iavl}})
+\item \code{whl_vls()}: Is \code{x} a \link[whl]{whole-number}
+\link[ivls]{vlist}?
 
-\item \code{whl_vtp()}: Is \code{x} a whole-number
-vtype?
-(\code{\link{iwhl}}, \code{\link{iavt}})
+\item \code{whl_vtp()}: Is \code{x} a \link[whl]{whole-number}
+\link[ivtp]{vtype}?
 
-\item \code{whl_mat()}: Is \code{x} a whole-number
-matrix?
-(\code{\link{iwhl}}, \code{\link{imat}})
+\item \code{whl_mat()}: Is \code{x} a \link[whl]{whole-number}
+\link[imat]{matrix}?
 
-\item \code{whl_mvc()}: Is \code{x} a whole-number
-multivec?
-(\code{\link{iwhl}}, \code{\link{imvc}})
+\item \code{whl_mvc()}: Is \code{x} a \link[whl]{whole-number}
+\link[imvc]{multivec}?
 
-\item \code{whl_scl()}: Is \code{x} a whole-number
-scalar?
-(\code{\link{iwhl}}, \code{\link{iscl}})
+\item \code{whl_scl()}: Is \code{x} a \link[whl]{whole-number}
+\link[iscl]{scalar}?
 
-\item \code{whl_vec()}: Is \code{x} a whole-number
-vector?
-(\code{\link{iwhl}}, \code{\link{ivec}})
+\item \code{whl_vec()}: Is \code{x} a \link[whl]{whole-number} \link[ivec]{vec}?
 
 }}
 \seealso{
@@ -1628,7 +1369,7 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},

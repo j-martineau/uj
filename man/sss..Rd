@@ -14,33 +14,33 @@
 \usage{
 sss.()
 
-sss(x.)
+sss(x)
 
-icmp(x.)
+icmp(x)
 
-imss(x.)
+imss(x)
 
-inas(x.)
+inas(x)
 
-ioks(x.)
+ioks(x)
 
-iprt(x.)
+iprt(x)
 
 sss_vals()
 
-isss(x., xxx., ...)
+isss(x, xxx, ...)
 }
 \arguments{
-\item{x.}{An object.}
+\item{x}{An object.}
 
-\item{xxx.}{A character scalar containing one or more values from
-\code{sss_vals()} separated by pipes.}
+\item{xxx}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+more values from \code{sss_vals()} separated by pipes.}
 
 \item{...}{Additional arguments to \code{\link{meets}} containing value and
 element/row/column count restrictions.}
 }
 \value{
-\code{sss_vals()} returns a character vector. \code{sss(x.)}
+\code{sss_vals()} returns a character vector. \code{sss(x)}
 returns a character scalar or \code{NULL}. All others return either
 \code{TRUE} or \code{FALSE}.
 }
@@ -50,42 +50,41 @@ atomic tibbles, non-empty atomic lists, non-empty atomic vectors, and
 non-empty atomic arrays. For all others, state is undefined and returned as
 \code{NULL}. The following table summarizes valid state properties.
 \tabular{lll}{
-STATE       \tab STATE            \tab CHARACTERISTICS                \cr
-PROPERTY    \tab PROPERTY         \tab OF QUALIFYING                  \cr
-VALUE       \tab NAME             \tab OBJECTS                        \cr
-\code{'cmp'}\tab complete         \tab non-empty, atomic, no \code{NA}
-values                         \cr
-\code{'mss'}\tab missing          \tab non-empty, atomic, only \code{NA}
-values                         \cr
-\code{'prt'}\tab partial          \tab non-empty, atomic, both \code{NA}
-and non-\code{NA} values       \cr
-\code{'nas'}\tab\code{NA} scalar  \tab atomic \code{NA} scalar        \cr
-\code{'oks'}\tab\code{OK} scalar  \tab atomic non-\code{NA} scalar      }
+STATE       \tab STATE      \tab CHARACTERISTICS                        \cr
+PROPERTY    \tab PROPERTY   \tab OF QUALIFYING                          \cr
+VALUE       \tab NAME       \tab OBJECTS                                \cr
+\code{'cmp'}\tab Complete   \tab Non-empty, atomic, no \code{NA} values.\cr
+\code{'mss'}\tab Missing    \tab Non-empty, atomic, only \code{NA}
+values.                                \cr
+\code{'prt'}\tab Partial    \tab Non-empty, atomic, both \code{NA} and
+non-\code{NA} values.                  \cr
+\code{'nas'}\tab NA scalar  \tab Atomic \code{NA} scalar.               \cr
+\code{'oks'}\tab OK scalar  \tab Atomic non-\code{NA} scalar .            }
 }
 \section{Functions}{
 \itemize{
 \item \code{sss()}: Get a character scalar containing all state properties
-from \code{sss_vals()} that is applicable to \code{x.}, if defined. If not
+from \code{sss_vals()} that is applicable to \code{x}, if defined. If not
 defined, return \code{NULL}.
 
-\item \code{icmp()}: Is \code{x.} complete (atomic, of length 1 or greater, and
+\item \code{icmp()}: Is \code{x} complete (atomic, of length 1 or greater, and
 containing no \code{NA} values)?
 
-\item \code{imss()}: Is \code{x.} a missing object (atomic, of length 1 or
+\item \code{imss()}: Is \code{x} a missing object (atomic, of length 1 or
 greater, and containing only \code{NA} values)?
 
-\item \code{inas()}: Is \code{x.} an atomic scalar \code{NA} value?
+\item \code{inas()}: Is \code{x} an atomic scalar \code{NA} value?
 
-\item \code{ioks()}: Is \code{x.} an atomic scalar non-\code{NA} value?
+\item \code{ioks()}: Is \code{x} an atomic scalar non-\code{NA} value?
 
-\item \code{iprt()}: Is \code{x.} an atomic object with some \code{NA} and some
+\item \code{iprt()}: Is \code{x} an atomic object with some \code{NA} and some
 non-\code{NA} values?
 
 \item \code{sss_vals()}: Get a character vector of all possible state property
 values.
 
-\item \code{isss()}: Evaluate whether \code{x.} has a state property represented
-in \code{xxx.}.
+\item \code{isss()}: Evaluate whether \code{x} has a state property represented
+in \code{xxx}.
 
 }}
 \section{Additional Arguments in \code{...}}{
@@ -107,7 +106,7 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},

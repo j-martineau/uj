@@ -33,10 +33,10 @@ as_uno(x, levs)
 \arguments{
 \item{x}{An object}
 
-\item{na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values
-qualify as missing color representations.}
+\item{na}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+\code{NA} values qualify as missing color representations.}
 
-\item{levs}{Character vector giving ordered factor levels.}
+\item{levs}{\link[cmp_vec]{Complete atomic vec} giving factor levels.}
 }
 \description{
 Coerce to base mode or extended mode.
@@ -73,7 +73,7 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},

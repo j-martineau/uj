@@ -28,13 +28,14 @@ tc(..., a. = T)
 uc(..., a. = T)
 }
 \arguments{
-\item{case.}{\code{'l'}, \code{'s'}, \code{'t'}, or \code{'u'} to indicate
-lower, sentence, title, or upper case. Case insensitive.}
+\item{case.}{\link[cmp_ch1_scl]{Complete onechar scalar}: \code{'l'},
+\code{'s'}, \code{'t'}, or \code{'u'} to indicate lower, sentence, title,
+or upper case, respectively. Case insensitive.}
 
 \item{...}{An arbitrary number of atomic arguments to be processed.}
 
-\item{a.}{\code{TRUE} or \code{FALSE} indicating whether to
-atomize \code{...} before processing.}
+\item{a.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+\link[a]{atomize} \code{...} before processing.}
 }
 \description{
 Convert strings to lower, upper, sentence, and title cases

@@ -1,8 +1,9 @@
 #' @name has_pat.
 #' @family strings
 #' @title Whether a string has (contains) a substring
-#' @param x Character scalar or vector of strings to search.
-#' @param pat Character scalar string to search for.
+#' @param x \link[chr_vec]{Character vec} of strings to search.
+#' @param pat \link[cmp_chr_scl]{Complete character scalar} string to search
+#'   for.
 #' @return Logical scalar or vector.
 #' @export
 has_pat. <- function() {help("has_pat.", package = "uj")}

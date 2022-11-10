@@ -337,7 +337,7 @@ pblk(x)
 pinv(x)
 }
 \arguments{
-\item{x}{Character vector of text to be styled.}
+\item{x}{A \link[cmp_chr_vec]{character vector} of text to be styled.}
 }
 \value{
 Markdown-styled character vector
@@ -350,52 +350,52 @@ Style text as subscript, superscript, bold color, and plain
 color. The following markdown styling function names do not follow the
 conventions described later:
 \tabular{lll}{
-TEXT STYLING   \tab REPRESENTATION\tab NOTE                           \cr
-subscript      \tab \code{subs}   \tab —                              \cr
-superscript    \tab \code{subs}   \tab —                              \cr
-bold black     \tab \code{bblk}   \tab —                              \cr
-bold white     \tab \code{bwht}   \tab —                              \cr
-bold invisible \tab \code{binv}   \tab 1/256th opaque white           \cr
-plain black    \tab \code{pblk}   \tab —                              \cr
-plain white    \tab \code{pwht}   \tab —                              \cr
-plain invisible\tab \code{pinv}   \tab 1/256th opaque white             }
+TEXT STYLING      \tab REPRESENTATION   \tab NOTE                     \cr
+subscript         \tab \code{subs}      \tab —                        \cr
+superscript       \tab \code{subs}      \tab —                        \cr
+bold black        \tab \code{bblk}      \tab —                        \cr
+bold white        \tab \code{bwht}      \tab —                        \cr
+bold invisible    \tab \code{binv}      \tab 1/256th opaque white.    \cr
+plain black       \tab \code{pblk}      \tab —                        \cr
+plain white       \tab \code{pwht}      \tab —                        \cr
+plain invisible   \tab \code{pinv}      \tab 1/256th opaque white.      }
 For all other markdown styling functions, conventions are as
 follows:\tabular{lll}{
-CONVENTION   \tab VALUE    \tab TEXT STYLING                          \cr
-1st character\tab\code{p}  \tab plain.                                \cr
-1st character\tab\code{b}  \tab bold.                                 \cr
-2nd character\tab\code{f}  \tab full intensity version of color.      \cr
-2nd character\tab\code{l}  \tab light version of color.               \cr
-2nd character\tab\code{m}  \tab medium version of color.              \cr
-2nd character\tab\code{d}  \tab dark version of color.                \cr
-2nd character\tab\code{g}  \tab greyscale.                            \cr
-suffix       \tab\code{blu}\tab blue.                                 \cr
-suffix       \tab\code{cyn}\tab cyan.                                 \cr
-suffix       \tab\code{grn}\tab green.                                \cr
-suffix       \tab\code{mag}\tab magenta.                              \cr
-suffix       \tab\code{orn}\tab orange.                               \cr
-suffix       \tab\code{red}\tab red.                                  \cr
-suffix       \tab\code{vlt}\tab violet.                               \cr
-suffix       \tab\code{ylw}\tab yellow.                               \cr
-suffix       \tab\code{05} \tab 5\% of the way from black to white     \cr
-suffix       \tab\code{10} \tab 10\% of the way from black to white    \cr
-suffix       \tab\code{15} \tab 15\% of the way from black to white    \cr
-suffix       \tab\code{20} \tab 20\% of the way from black to white    \cr
-suffix       \tab\code{25} \tab 25\% of the way from black to white    \cr
-suffix       \tab\code{30} \tab 30\% of the way from black to white    \cr
-suffix       \tab\code{35} \tab 35\% of the way from black to white    \cr
-suffix       \tab\code{40} \tab 40\% of the way from black to white    \cr
-suffix       \tab\code{45} \tab 45\% of the way from black to white    \cr
-suffix       \tab\code{50} \tab 50\% of the way from black to white    \cr
-suffix       \tab\code{55} \tab 55\% of the way from black to white    \cr
-suffix       \tab\code{60} \tab 60\% of the way from black to white    \cr
-suffix       \tab\code{65} \tab 65\% of the way from black to white    \cr
-suffix       \tab\code{70} \tab 70\% of the way from black to white    \cr
-suffix       \tab\code{75} \tab 75\% of the way from black to white    \cr
-suffix       \tab\code{80} \tab 80\% of the way from black to white    \cr
-suffix       \tab\code{85} \tab 85\% of the way from black to white    \cr
-suffix       \tab\code{90} \tab 90\% of the way from black to white    \cr
-suffix       \tab\code{95} \tab 95\% of the way from black to white      }
+CONVENTION      \tab VALUE   \tab TEXT STYLING                        \cr
+1st character   \tab\code{p}  \tab Plain.                             \cr
+1st character   \tab\code{b}  \tab Bold.                              \cr
+2nd character   \tab\code{f}  \tab Full intensity version of color.   \cr
+2nd character   \tab\code{l}  \tab Light version of color.            \cr
+2nd character   \tab\code{m}  \tab Medium version of color.           \cr
+2nd character   \tab\code{d}  \tab Dark version of color.             \cr
+2nd character   \tab\code{g}  \tab Greyscale.                         \cr
+suffix          \tab\code{blu}\tab Blue.                              \cr
+suffix          \tab\code{cyn}\tab Cyan.                              \cr
+suffix          \tab\code{grn}\tab Green.                             \cr
+suffix          \tab\code{mag}\tab Magenta.                           \cr
+suffix          \tab\code{orn}\tab Orange.                            \cr
+suffix          \tab\code{red}\tab Red.                               \cr
+suffix          \tab\code{vlt}\tab Violet.                            \cr
+suffix          \tab\code{ylw}\tab Yellow.                            \cr
+suffix          \tab\code{05} \tab 5\% of the way from black to white. \cr
+suffix          \tab\code{10} \tab 10\% of the way from black to white.\cr
+suffix          \tab\code{15} \tab 15\% of the way from black to white.\cr
+suffix          \tab\code{20} \tab 20\% of the way from black to white.\cr
+suffix          \tab\code{25} \tab 25\% of the way from black to white.\cr
+suffix          \tab\code{30} \tab 30\% of the way from black to white.\cr
+suffix          \tab\code{35} \tab 35\% of the way from black to white.\cr
+suffix          \tab\code{40} \tab 40\% of the way from black to white.\cr
+suffix          \tab\code{45} \tab 45\% of the way from black to white.\cr
+suffix          \tab\code{50} \tab 50\% of the way from black to white.\cr
+suffix          \tab\code{55} \tab 55\% of the way from black to white.\cr
+suffix          \tab\code{60} \tab 60\% of the way from black to white.\cr
+suffix          \tab\code{65} \tab 65\% of the way from black to white.\cr
+suffix          \tab\code{70} \tab 70\% of the way from black to white.\cr
+suffix          \tab\code{75} \tab 75\% of the way from black to white.\cr
+suffix          \tab\code{80} \tab 80\% of the way from black to white.\cr
+suffix          \tab\code{85} \tab 85\% of the way from black to white.\cr
+suffix          \tab\code{90} \tab 90\% of the way from black to white.\cr
+suffix          \tab\code{95} \tab 95\% of the way from black to white.  }
 }
 \section{Functions}{
 \itemize{

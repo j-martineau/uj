@@ -1,12 +1,12 @@
 #' @name ipat.
 #' @family strings
 #' @title Simplified string indexing for fixed patterns
-#' @details Always atomizes \code{...} via \code{av(...)} to create a single
-#'   character vector to search for a fixed pattern.
-#' @param x A character vector.
-#' @param pat A fixed (not regular expression) character scalar pattern to
-#'   search for in the atomic vector resulting from collapsing all elements of
-#'   every argument supplied via \code{...}.
+#' @details Always \link[a]{atomizes} \code{...} via \code{av(...)} to create a
+#'   single character vector to search for a fixed pattern.
+#' @param x \link[chr_vec]{Character vector}.
+#' @param pat A fixed (not regular expression) \link[cmp_chr_scl]{complete
+#'   character scalar} pattern to search for in the atomic vector resulting from
+#'   collapsing all elements of every argument supplied via \code{...}.
 #' @return A logical vector (\code{ipat}), an empty or numeric vector
 #'   (\code{wpat, npat, ppat}), or a list of numeric vectors (\code{ppats}).
 #' @export

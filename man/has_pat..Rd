@@ -10,9 +10,10 @@ has_pat.()
 has_pat(x, pat)
 }
 \arguments{
-\item{x}{Character scalar or vector of strings to search.}
+\item{x}{\link[chr_vec]{Character vec} of strings to search.}
 
-\item{pat}{Character scalar string to search for.}
+\item{pat}{\link[cmp_chr_scl]{Complete character scalar} string to search
+for.}
 }
 \value{
 Logical scalar or vector.

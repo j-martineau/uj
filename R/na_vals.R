@@ -4,8 +4,8 @@
 #' @description All functions in this group take objects of atomic mode,
 #'   \link[idtf]{atomic dtfs}, or \link[ivls]{atomic vlists}.
 #' @param x The argument to be inspected/managed.
-#' @param s Atomic scalar to replace \code{NA} values. Mode must be
-#'   \code{\link{compatible}} with \code{x}.
+#' @param s \link[atm_scl]{Atomic scalar} to replace \code{NA} values. Mode must
+#'   be \code{\link{compatible}} with \code{x}.
 #' @return An atomic scalar, an atomic vector, an atomic array, an
 #'   \link[idtf]{atomic dtf}, or an \link[ivls]{atomic vlist}.
 #' @export

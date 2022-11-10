@@ -4,8 +4,7 @@
 \alias{pgrid.}
 \alias{pgrid}
 \alias{pgrid0}
-\title{\code{\link[base]{expand.grid}} for \code{\link[base]{paste}} and
-\code{\link[base]{paste0}}}
+\title{\code{expand.grid} for \code{paste} and \code{paste0}}
 \usage{
 pgrid.()
 
@@ -16,20 +15,21 @@ pgrid0(..., ch. = F, add.blank. = F)
 \arguments{
 \item{...}{Non-empty atomic objects.}
 
-\item{p.}{A character scalar to use as the 'paste'.}
+\item{p.}{\link[cmp_chr_scl]{Complete character scalar} to use as the
+'paste'.}
 
-\item{ch.}{A logical scalar indicating whether to split arguments in
-\code{...} into constituent characters after conversion to mode
-'character'.}
+\item{ch.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+split arguments in \code{...} into constituent characters after conversion
+to mode 'character'.}
 
-\item{add.blank.}{Whether to add a blank ("") to each argument in \code{...}.}
+\item{add.blank.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating
+whether to add a blank ("") to each argument in \code{...}.}
 }
 \value{
 A character vector.
 }
 \description{
-\code{\link[base]{expand.grid}} for \code{\link[base]{paste}} and
-\code{\link[base]{paste0}}
+\code{expand.grid} for \code{paste} and \code{paste0}
 }
 \section{Functions}{
 \itemize{

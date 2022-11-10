@@ -20,16 +20,9 @@ A single atomic vector containing all constituent atomic values in
 the full set of arguments supplied in \code{...}.
 }
 \description{
-Atomize to a vector of atomic values
+Reduce all arguments in \code{...} to a single atomic vector of
+atomic elements without any additional attributes.
 }
-\section{Functions}{
-\itemize{
-\item \code{a()}: Reduce all arguments in \code{...} to a single atomic
-vector of atomic elements without any additional attributes.
-
-\item \code{av()}: Clone of \code{a} named to indicate (a)tomic (v)alues.
-
-}}
 \examples{
 Fruits <- c("apples" , "bananas", "oranges")
 Digits <- c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)

@@ -15,33 +15,36 @@
 \usage{
 files.()
 
-is_path(..., err. = F)
+is_path(..., err = F)
 
 as_path(...)
 
-object_path(path., err. = T)
+object_path(path, err = T)
 
-parent_path(path., err. = T)
+parent_path(path, err = T)
 
-object_name(path., err. = T)
+object_name(path, err = T)
 
-parent_name(path., err. = T)
+parent_name(path, err = T)
 
-object_dirs(path., err. = T)
+object_dirs(path, err = T)
 
-parent_dirs(path., err. = T)
+parent_dirs(path, err = T)
 
-newdirs(dirs., path. = NULL)
+newdirs(dirs, path = NULL)
 }
 \arguments{
 \item{...}{Atomic arguments pasted to create}
 
-\item{err.}{Logical scalar indicating whether an error should be thrown if
-\code{...} is not a valid object path when collapsed to a character scalar.}
+\item{err}{\link[cmp_atm_scl]{Complete logical scalar} indicating whether an
+error should be thrown if \code{...} is not a valid object path when
+collapsed to a character scalar.}
 
-\item{path.}{Character scalar path to either a directory or a file.}
+\item{path}{\link[cmp_chr_scl]{Complete character scalar} path to either a
+directory or a file.}
 
-\item{dirs.}{Character vector of new sub-directory names.}
+\item{dirs}{\link[cmp_chr_vec]{Complete character vec} of new sub-directory
+names.}
 }
 \value{
 \strong{\code{is_path}}: A logical scalar. \strong{\code{object_path,
@@ -53,7 +56,7 @@ Evaluate and manipulate paths to files or folders on disk.
 }
 \details{
 In most cases, if (optionally) specified, functions throw an error
-if \code{...} does not resolve to a valid object path.
+if \code{...} does not resolve to a valid object path
 }
 \section{Functions}{
 \itemize{
@@ -77,7 +80,7 @@ character scalar just the name of the object, discarding the path to its
 parent.
 
 \item \code{parent_name()}: Call \code{parent_path} and extracts from the resulting
-character scalar just the name of last folder in the path.
+character scalar just the name of last folder in the path
 
 \item \code{object_dirs()}: Call \code{object_path} and splits the resulting
 character scalar into a character vector containing the name of the root

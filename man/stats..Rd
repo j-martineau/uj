@@ -24,9 +24,9 @@ stats.()
 
 sd0(...)
 
-cor0(x., y. = NULL)
+cor0(x, y = NULL)
 
-cov0(x., y. = NULL)
+cov0(x, y = NULL)
 
 min0(...)
 
@@ -40,30 +40,32 @@ pmax0(...)
 
 mean0(...)
 
-csds0(x.)
+csds0(x)
 
-rsds0(x.)
+rsds0(x)
 
-csums0(x.)
+csums0(x)
 
-rsums0(x.)
+rsums0(x)
 
-cmeans0(x.)
+cmeans0(x)
 
-rmeans0(x.)
+rmeans0(x)
 
-sets(n.)
+sets(n)
 }
 \arguments{
 \item{...}{Scalars, vectors, or matrices. Reduced a single vector of atomic
 values for \code{sd0}, \code{min0}, \code{max0}, and \code{mean0}.}
 
-\item{x.}{Numeric vector or matrix.}
+\item{x}{\link[cmp_num_vec]{Complete numeric vec} or
+\link[cmp_num_mat]{complete numeric matrix}.}
 
-\item{y.}{Optional numeric vector of matrix.}
+\item{y}{Optional \link[cmp_num_vec]{complete numeric vec} or
+\link[cmp_num_mat]{complete numeric matrix}.}
 
-\item{n.}{Positive whole-number scalar size of the complete set each subset
-is drawn from.}
+\item{n}{Positive whole-number scalar size of the complete set each subset is
+drawn from.}
 }
 \description{
 Compute stats ignoring NA

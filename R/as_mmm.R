@@ -2,9 +2,9 @@
 #' @family props
 #' @title Coerce to base mode or extended mode.
 #' @param x An object
-#' @param na \code{TRUE} or \code{FALSE} indicating whether \code{NA} values
-#'   qualify as missing color representations.
-#' @param levs Character vector giving ordered factor levels.
+#' @param na \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+#'   \code{NA} values qualify as missing color representations.
+#' @param levs \link[cmp_vec]{Complete atomic vec} giving factor levels.
 #' @export
 as_mmm. <- function() {help("as_mmm.", package = "uj")}
 
@@ -13,7 +13,7 @@ as_mmm. <- function() {help("as_mmm.", package = "uj")}
 #' @export
 as_clr <- function(x, na = F) {
   err <- NULL
-  if (!ichr(x )) {err <- c(err, "\n • [x] is not of mode character.")}
+  if (!ichr(x)) {err <- c(err, "\n • [x] is not of mode character.")}
   if (!isTF(na)) {err <- c(err, "\n • [na] must be TRUE or FALSE.")}
   if (isF(na) & any(is.na(x))) {err <- c(err, "\n • [x] contains NA values but [na = FALSE].")}
   if (idef(err)) {stop(err)}

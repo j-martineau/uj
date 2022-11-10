@@ -36,101 +36,85 @@
 \usage{
 nx.()
 
-n_is(x., n. = NULL, min. = NULL, max. = NULL, eq. = F)
+n_is(x, n = NULL, min = NULL, max = NULL, eq = F)
 
 nx(
   ...,
-  n. = NULL,
-  min. = NULL,
-  max. = NULL,
-  eq. = F,
-  a. = F,
-  na. = F,
-  vals. = NULL,
-  lt. = NULL,
-  le. = NULL,
-  ge. = NULL,
-  gt. = NULL
+  n = NULL,
+  min = NULL,
+  max = NULL,
+  eq = F,
+  a = F,
+  na = F,
+  vals = NULL,
+  lt = NULL,
+  le = NULL,
+  ge = NULL,
+  gt = NULL
 )
 
 ns(
   ...,
-  n. = NULL,
-  min. = NULL,
-  max. = NULL,
-  na. = F,
-  vals. = NULL,
-  lt. = NULL,
-  le. = NULL,
-  ge. = NULL,
-  gt. = NULL
+  n = NULL,
+  min = NULL,
+  max = NULL,
+  na = F,
+  vals = NULL,
+  lt = NULL,
+  le = NULL,
+  ge = NULL,
+  gt = NULL
 )
 
-nmin(
-  ...,
-  na. = F,
-  vals. = NULL,
-  lt. = NULL,
-  le. = NULL,
-  ge. = NULL,
-  gt. = NULL
-)
+nmin(..., na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL)
 
-nmax(
-  ...,
-  na. = F,
-  vals. = NULL,
-  lt. = NULL,
-  le. = NULL,
-  ge. = NULL,
-  gt. = NULL
-)
+nmax(..., na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL)
 
 nsame(
   ...,
-  min. = NULL,
-  max. = NULL,
-  na. = F,
-  vals. = NULL,
-  lt. = NULL,
-  le. = NULL,
-  ge. = NULL,
-  gt. = NULL
+  min = NULL,
+  max = NULL,
+  na = F,
+  vals = NULL,
+  lt = NULL,
+  le = NULL,
+  ge = NULL,
+  gt = NULL
 )
 
-nw(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = T)
+nw(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T)
 
-nt(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = T)
+nt(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T)
 
-nf(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = T)
+nf(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T)
 
-nu(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = T)
+nu(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T)
 
-nr(..., n. = NULL, min. = NULL, max. = NULL, eq. = F)
+nr(..., n = NULL, min = NULL, max = NULL, eq = F)
 
-nc(..., n. = NULL, min. = NULL, max. = NULL, eq. = F)
+nc(..., n = NULL, min = NULL, max = NULL, eq = F)
 
-nch(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, na. = F, a. = T)
+nch(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T)
 
-nna(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, a. = T)
+nna(..., n = NULL, min = NULL, max = NULL, eq = F, a = T)
 
-nok(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, a. = T)
+nok(..., n = NULL, min = NULL, max = NULL, eq = F, a = T)
 
-nat(..., n. = NULL, min. = NULL, max. = NULL, eq. = F, a. = T)
+nat(..., n = NULL, min = NULL, max = NULL, eq = F, a = T)
 
-n0(..., na. = F, a. = T)
+n0(..., na = F, a = T)
 
-n1(..., na. = F, a. = T)
+n1(..., na = F, a = T)
 
-n2(..., na. = F, a. = T)
+n2(..., na = F, a = T)
 
-n3(..., na. = F, a. = T)
+n3(..., na = F, a = T)
 
-n1p(..., na. = F, eq. = T, a. = T)
+n1p(..., na = F, eq = T, a = T)
 
-n2p(..., na. = F, eq. = T, a. = T)
+n2p(..., na = F, eq = T, a = T)
 
-n3p(..., na. = F, eq. = T, a. = T)
+n3p(..., na = F, eq = T, a = T)
 
 nd0(...)
 
@@ -147,27 +131,29 @@ nd2p(...)
 nd3p(...)
 }
 \arguments{
-\item{x.}{A non-negative whole-number object.}
+\item{x}{\link[innw]{Non-negative whole-number} object.}
 
-\item{n.}{Optional non-negative whole-number vector of valid element, row, or
-column counts.}
+\item{n}{Optional \link[cmp_nnw_vec]{complete non-negative whole-number vect}
+of valid element, row, or column counts.}
 
-\item{min., max.}{Optional non-negative whole-number scalars giving minimum
-and maximum valid element, row, or column counts.}
+\item{min, max}{Optional \link[cmp_nnw_scl]{complete non-negative whole-number
+scalars} giving minimum and maximum valid element, row, or column counts.}
 
-\item{eq., na., a.}{Logical scalars indicating, respectively, whether all
-counts must be equal, whether \code{NA} values are allowed, and whether to
-atomize \code{...} to create a single atomic vector before processing. If
-\code{a} is \code{FALSE}, each argument in \code{...} is processed
-separately.}
+\item{eq, na, a}{\link[cmp_lgl_scl]{Complete logical scalars} indicating,
+respectively, whether all counts must be equal, whether \code{NA} values
+are allowed, and whether to atomize \code{...} to create a single atomic
+vector before processing. If \code{a} is \code{FALSE}, each argument in
+\code{...} is processed separately.}
 
 \item{...}{One or more arguments to be examined for counts.}
 
-\item{vals.}{Optional atomic vector indicating specific values to be counted.}
+\item{vals}{Optional \link[is_vec]{atomic vec} indicating specific values to
+be counted.}
 
-\item{lt., le., .ge., gt.}{Optional atomic scalars indicating specific values
-elements of arguments in \code{...} must be less than, less than or equal
-to, greater than or equal to, or greater than, respectively, to be counted.}
+\item{lt, le, .ge, gt}{Optional \link[cmp_scl]{complete atomic scalars}
+indicating specific values elements of arguments in \code{...} must be less
+than, less than or equal to, greater than or equal to, or greater than,
+respectively, to be counted.}
 }
 \value{
 An integer or logical scalar or vector.
@@ -242,15 +228,15 @@ argument.
 }}
 \examples{
 N <- 0:15
-n_is(N, n. = 0:5)
-n_is(N, min. = 3, max. = 12)
-n_is(N, eq. = T)
-n_is(rep(0, 3), eq. = T)
+n_is(N, n = 0:5)
+n_is(N, min = 3, max = 12)
+n_is(N, eq = T)
+n_is(rep(0, 3), eq = T)
 nx(letters, LETTERS, 0:9, NULL)
-nx(letters, LETTERS, 0:9, vals. = letters)
-nx(letters, LETTERS, vals. = letters)
-nx(letters, LETTERS, le. = "M", ge. = "m")
-nx(letters, LETTERS, lt. = "M", gt. = "m")
+nx(letters, LETTERS, 0:9, vals = letters)
+nx(letters, LETTERS, vals = letters)
+nx(letters, LETTERS, le = "M", ge = "m")
+nx(letters, LETTERS, lt = "M", gt = "m")
 n0(letters, LETTERS, TRUE, 0:1, 0:2, 0:9)
 n1(letters, LETTERS, TRUE, 0:1, 0:2, 0:9)
 n1p(letters, LETTERS, TRUE, 0:1, 0:2, 0:9)
@@ -259,23 +245,23 @@ nmin(letters, LETTERS, 0:9)
 nmax(letters, LETTERS, 0:9)
 nsame(letters, LETTERS, 0:9)
 nsame(letters, LETTERS)
-nsame(letters, LETTERS, lt. = "M", gt. = "m")
-nmin(letters, LETTERS, 0:9, min. = 11)
-nmax(letters, LETTERS, 0:9, max. = 11)
-nsame(letters, LETTERS, 0:9, min. = 11, max. = 25)
+nsame(letters, LETTERS, lt = "M", gt = "m")
+nmin(letters, LETTERS, 0:9, min = 11)
+nmax(letters, LETTERS, 0:9, max = 11)
+nsame(letters, LETTERS, 0:9, min = 11, max = 25)
 nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49)
-nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, n. = 0:9)
-nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, min. = 9, max. = 19)
-nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, min. = 9, max. = 19, eq. = T)
+nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, n = 0:9)
+nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, min = 9, max = 19)
+nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, min = 9, max = 19, eq = T)
 nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49)
 nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, n = 0:9)
-nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, min. = 9, max. = 19)
-nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, min. = 9, max. = 19, eq. = T)
+nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, min = 9, max = 19)
+nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, min = 9, max = 19, eq = T)
 nr(tibble(letters, LETTERS), matrix(c(letters, LETTERS), nrow = 2))
 nc(tibble(letters, LETTERS), matrix(c(letters, LETTERS), nrow = 2))
-nch(letters, eq. = T)
+nch(letters, eq = T)
 nch(letters, "a string")
-nch(letters, "a string", a. = T)
+nch(letters, "a string", a = T)
 }
 \seealso{
 Other extensions: 

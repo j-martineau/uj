@@ -237,7 +237,7 @@
 \alias{cmp_whl_mvc}
 \alias{cmp_whl_scl}
 \alias{cmp_whl_vec}
-\title{Complete + extended mode + extended class properties}
+\title{Completeness plus extended mode plus extended class properties}
 \usage{
 cmp_mmm_ccc.()
 
@@ -712,933 +712,722 @@ cmp_whl_scl(x)
 cmp_whl_vec(x)
 }
 \arguments{
-\item{x}{An object}
+\item{x}{An ℝ object.}
 }
 \value{
 \code{TRUE} or \code{FALSE} except for \code{cmp_mmm_ccc_vals}, which
 returns a character vector.
 }
 \description{
-Check whether an object is complete, of a specific extended
-mode, and of a specific extended class. See \code{\link{icmp}}, and
-\code{\link{immm}}.
+Combinations of \link[icmp]{completeness}, \link[mmm]{extended
+mode}, and \link[ccc]{extended class}.
 }
 \section{Functions}{
 \itemize{
-\item \code{cmp_mmm_ccc_vals()}: Get a character vector of all possible complete +
-extended mode + extended class properties.
+\item \code{cmp_mmm_ccc_vals()}: Get a character vector of all possible completeness
+plus extended mode plus extended class properties.
 
-\item \code{cmp_ch1_arr()}: Is \code{x} a complete onechar array?
-(\code{\link{icmp}}, \code{\link{ich1}}, \code{\link{iarr}})
+\item \code{cmp_ch1_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[ich1]{onechar} \link[iarr]{array}?
 
-\item \code{cmp_ch1_gen()}: Is \code{x} a complete onechar generic?
-(\code{\link{icmp}}, \code{\link{ich1}}, \code{\link{igen}})
+\item \code{cmp_ch1_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[ich1]{onechar} \link[igen]{generic}?
 
-\item \code{cmp_ch1_dtf()}: Is \code{x} a complete onechar dtf?
-(\code{\link{icmp}}, \code{\link{ich1}}, \code{\link{idtf}})
+\item \code{cmp_ch1_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[ich1]{onechar} \link[idtf]{dtf}?
 
-\item \code{cmp_ch1_vls()}: Is \code{x} a complete onechar vlist?
-(\code{\link{icmp}}, \code{\link{ich1}}, \code{\link{ivls}})
+\item \code{cmp_ch1_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[ich1]{onechar} \link[ivls]{vlist}?
 
-\item \code{cmp_ch1_vtp()}: Is \code{x} a complete onechar
-vtype?
-(\code{\link{icmp}}, \code{\link{ich1}}, \code{\link{ivtp}})
+\item \code{cmp_ch1_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[ich1]{onechar} \link[ivtp]{vtype}?
 
-\item \code{cmp_ch1_mat()}: Is \code{x} a complete onechar matrix?
-(\code{\link{icmp}}, \code{\link{ich1}}, \code{\link{imat}})
+\item \code{cmp_ch1_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[ich1]{onechar} \link[imat]{matrix}?
 
-\item \code{cmp_ch1_mvc()}: Is \code{x} a complete onechar mvector?
-(\code{\link{icmp}}, \code{\link{ich1}}, \code{\link{imvc}})
+\item \code{cmp_ch1_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[ich1]{onechar} \link[imvc]{multivec}?
 
-\item \code{cmp_ch1_scl()}: Is \code{x} a complete onechar scalar?
-(\code{\link{icmp}}, \code{\link{ich1}}, \code{\link{iscl}})
+\item \code{cmp_ch1_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[ich1]{onechar} \link[iscl]{scalar}?
 
-\item \code{cmp_ch1_vec()}: Is \code{x} a complete onechar vector?
-(\code{\link{icmp}}, \code{\link{ich1}}, \code{\link{ivec}})
+\item \code{cmp_ch1_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[ich1]{onechar} \link[ivec]{vec}?
 
-\item \code{cmp_chr_arr()}: Is \code{x} a complete character array?
-(\code{\link{icmp}}, \code{\link{ichr}}, \code{\link{iarr}})
+\item \code{cmp_chr_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[ichr]{character} \link[iarr]{array}?
 
-\item \code{cmp_chr_gen()}: Is \code{x} a complete character generic?
-(\code{\link{icmp}}, \code{\link{ichr}}, \code{\link{igen}})
+\item \code{cmp_chr_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[ichr]{character} \link[igen]{generic}?
 
-\item \code{cmp_chr_dtf()}: Is \code{x} a complete character dtf?
-(\code{\link{icmp}}, \code{\link{ichr}}, \code{\link{idtf}})
+\item \code{cmp_chr_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[ichr]{character} \link[idtf]{dtf}?
 
-\item \code{cmp_chr_vls()}: Is \code{x} a complete character vlist?
-(\code{\link{icmp}}, \code{\link{ichr}}, \code{\link{ivls}})
+\item \code{cmp_chr_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[ichr]{character} \link[ivls]{vlist}?
 
-\item \code{cmp_chr_vtp()}: Is \code{x} a complete character vtype?
-(\code{\link{icmp}}, \code{\link{ichr}}, \code{\link{ivtp}})
+\item \code{cmp_chr_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[ichr]{character} \link[ivtp]{vtype}?
 
-\item \code{cmp_chr_mat()}: Is \code{x} a complete character matrix?
-(\code{\link{icmp}}, \code{\link{ichr}}, \code{\link{imat}})
+\item \code{cmp_chr_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[ichr]{character} \link[imat]{matrix}?
 
-\item \code{cmp_chr_mvc()}: Is \code{x} a complete character mvector?
-(\code{\link{icmp}}, \code{\link{ichr}}, \code{\link{imvc}})
+\item \code{cmp_chr_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[ichr]{character} \link[imvc]{multivec}?
 
-\item \code{cmp_chr_scl()}: Is \code{x} a complete character
-scalar?
-(\code{\link{icmp}}, \code{\link{ichr}}, \code{\link{iscl}})
+\item \code{cmp_chr_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[ichr]{character} \link[iscl]{scalar}?
 
-\item \code{cmp_chr_vec()}: Is \code{x} a complete character
-vector?
-(\code{\link{icmp}}, \code{\link{ichr}}, \code{\link{ivec}})
+\item \code{cmp_chr_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[ichr]{character} \link[ivec]{vec}?
 
-\item \code{cmp_clr_arr()}: Is \code{x} a complete color
-array?
-(\code{\link{icmp}}, \code{\link{iclr}}, \code{\link{iarr}})
+\item \code{cmp_clr_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[iclr]{color} \link[iarr]{array}?
 
-\item \code{cmp_clr_gen()}: Is \code{x} a complete color
-generic?
-(\code{\link{icmp}}, \code{\link{iclr}}, \code{\link{igen}})
+\item \code{cmp_clr_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[iclr]{color} \link[igen]{generic}?
 
-\item \code{cmp_clr_dtf()}: Is \code{x} a complete color
-dtf?
-(\code{\link{icmp}}, \code{\link{iclr}}, \code{\link{idtf}})
+\item \code{cmp_clr_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[iclr]{color} \link[idtf]{dtf}?
 
-\item \code{cmp_clr_vls()}: Is \code{x} a complete color
-vlist?
-(\code{\link{icmp}}, \code{\link{iclr}}, \code{\link{ivls}})
+\item \code{cmp_clr_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[iclr]{color} \link[ivls]{vlist}?
 
-\item \code{cmp_clr_vtp()}: Is \code{x} a complete color
-vtype?
-(\code{\link{icmp}}, \code{\link{iclr}}, \code{\link{ivtp}})
+\item \code{cmp_clr_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[iclr]{color} \link[ivtp]{vtype}?
 
-\item \code{cmp_clr_mat()}: Is \code{x} a complete color
-matrix?
-(\code{\link{icmp}}, \code{\link{iclr}}, \code{\link{imat}})
+\item \code{cmp_clr_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[iclr]{color} \link[imat]{matrix}?
 
-\item \code{cmp_clr_mvc()}: Is \code{x} a complete color
-mvector?
-(\code{\link{icmp}}, \code{\link{iclr}}, \code{\link{imvc}})
+\item \code{cmp_clr_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[iclr]{color} \link[imvc]{multivec}?
 
-\item \code{cmp_clr_scl()}: Is \code{x} a complete color
-scalar?
-(\code{\link{icmp}}, \code{\link{iclr}}, \code{\link{iscl}})
+\item \code{cmp_clr_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[iclr]{color} \link[iscl]{scalar}?
 
-\item \code{cmp_clr_vec()}: Is \code{x} a complete color
-vector?
-(\code{\link{icmp}}, \code{\link{iclr}}, \code{\link{ivec}})
+\item \code{cmp_clr_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[iclr]{color} \link[ivec]{vec}?
 
-\item \code{cmp_evn_arr()}: Is \code{x} a complete even-valued
-whole-number array?
-(\code{\link{icmp}}, \code{\link{ievn}}, \code{\link{iarr}})
+\item \code{cmp_evn_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[ievn]{even-valued whole-number} \link[iarr]{array}?
 
-\item \code{cmp_evn_gen()}: Is \code{x} a complete even-valued
-whole-number generic?
-(\code{\link{icmp}}, \code{\link{ievn}}, \code{\link{igen}})
-
-\item \code{cmp_evn_dtf()}: Is \code{x} a complete even-valued
-whole-number dtf?
-(\code{\link{icmp}}, \code{\link{ievn}}, \code{\link{idtf}})
-
-\item \code{cmp_evn_vls()}: Is \code{x} a complete even-valued
-whole-number vlist?
-(\code{\link{icmp}}, \code{\link{ievn}}, \code{\link{ivls}})
-
-\item \code{cmp_evn_vtp()}: Is \code{x} a complete even-valued
-whole-number vtype?
-(\code{\link{icmp}}, \code{\link{ievn}}, \code{\link{ivtp}})
-
-\item \code{cmp_evn_mat()}: Is \code{x} a complete even-valued
-whole-number matrix?
-(\code{\link{icmp}}, \code{\link{ievn}}, \code{\link{imat}})
-
-\item \code{cmp_evn_mvc()}: Is \code{x} a complete even-valued
-whole-number mvector?
-(\code{\link{icmp}}, \code{\link{ievn}}, \code{\link{imvc}})
-
-\item \code{cmp_evn_scl()}: Is \code{x} a complete even-valued
-whole-number scalar?
-(\code{\link{icmp}}, \code{\link{ievn}}, \code{\link{iscl}})
-
-\item \code{cmp_evn_vec()}: Is \code{x} a complete even-valued
-whole-number vector?
-(\code{\link{icmp}}, \code{\link{ievn}}, \code{\link{ivec}})
-
-\item \code{cmp_fac_arr()}: Is \code{x} a complete factor
-array?
-(\code{\link{icmp}}, \code{\link{ifac}}, \code{\link{iarr}})
-
-\item \code{cmp_fac_gen()}: Is \code{x} a complete factor
-generic?
-(\code{\link{icmp}}, \code{\link{ifac}}, \code{\link{igen}})
-
-\item \code{cmp_fac_dtf()}: Is \code{x} a complete factor
-dtf?
-(\code{\link{icmp}}, \code{\link{ifac}}, \code{\link{idtf}})
-
-\item \code{cmp_fac_vls()}: Is \code{x} a complete factor
-vlist?
-(\code{\link{icmp}}, \code{\link{ifac}}, \code{\link{ivls}})
-
-\item \code{cmp_fac_vtp()}: Is \code{x} a complete factor
-vtype?
-(\code{\link{icmp}}, \code{\link{ifac}}, \code{\link{ivtp}})
-
-\item \code{cmp_fac_mat()}: Is \code{x} a complete factor
-matrix?
-(\code{\link{icmp}}, \code{\link{ifac}}, \code{\link{imat}})
-
-\item \code{cmp_fac_mvc()}: Is \code{x} a complete factor
-mvector?
-(\code{\link{icmp}}, \code{\link{ifac}}, \code{\link{imvc}})
-
-\item \code{cmp_fac_scl()}: Is \code{x} a complete factor
-scalar?
-(\code{\link{icmp}}, \code{\link{ifac}}, \code{\link{iscl}})
-
-\item \code{cmp_fac_vec()}: Is \code{x} a complete factor
-vector?
-(\code{\link{icmp}}, \code{\link{ifac}}, \code{\link{ivec}})
-
-\item \code{cmp_frc_arr()}: Is \code{x} a complete fractional-valued
-numeric array?
-(\code{\link{icmp}}, \code{\link{ifrc}}, \code{\link{iarr}})
-
-\item \code{cmp_frc_gen()}: Is \code{x} a complete fractional-valued
-numeric generic?
-(\code{\link{icmp}}, \code{\link{ifrc}}, \code{\link{igen}})
-
-\item \code{cmp_frc_dtf()}: Is \code{x} a complete fractional-valued
-numeric dtf?
-(\code{\link{icmp}}, \code{\link{ifrc}}, \code{\link{idtf}})
-
-\item \code{cmp_frc_vls()}: Is \code{x} a complete fractional-valued
-numeric vlist?
-(\code{\link{icmp}}, \code{\link{ifrc}}, \code{\link{ivls}})
-
-\item \code{cmp_frc_vtp()}: Is \code{x} a complete fractional-valued
-numeric vtype?
-(\code{\link{icmp}}, \code{\link{ifrc}}, \code{\link{ivtp}})
-
-\item \code{cmp_frc_mat()}: Is \code{x} a complete fractional-valued
-numeric matrix?
-(\code{\link{icmp}}, \code{\link{ifrc}}, \code{\link{imat}})
-
-\item \code{cmp_frc_mvc()}: Is \code{x} a complete fractional-valued
-numeric mvector?
-(\code{\link{icmp}}, \code{\link{ifrc}}, \code{\link{imvc}})
-
-\item \code{cmp_frc_scl()}: Is \code{x} a complete fractional-valued
-numeric scalar?
-(\code{\link{icmp}}, \code{\link{ifrc}}, \code{\link{iscl}})
-
-\item \code{cmp_frc_vec()}: Is \code{x} a complete fractional-valued
-numeric vector?
-(\code{\link{icmp}}, \code{\link{ifrc}}, \code{\link{ivec}})
-
-\item \code{cmp_ind_arr()}: Is \code{x} a complete indexer
-array?
-(\code{\link{icmp}}, \code{\link{iind}}, \code{\link{iarr}})
-
-\item \code{cmp_ind_gen()}: Is \code{x} a complete indexer
-generic?
-(\code{\link{icmp}}, \code{\link{iind}}, \code{\link{igen}})
-
-\item \code{cmp_ind_dtf()}: Is \code{x} a complete indexer
-dtf?
-(\code{\link{icmp}}, \code{\link{iind}}, \code{\link{idtf}})
-
-\item \code{cmp_ind_vls()}: Is \code{x} a complete indexer
-vlist?
-(\code{\link{icmp}}, \code{\link{iind}}, \code{\link{ivls}})
-
-\item \code{cmp_ind_vtp()}: Is \code{x} a complete indexer
-vtype?
-(\code{\link{icmp}}, \code{\link{iind}}, \code{\link{ivtp}})
-
-\item \code{cmp_ind_mat()}: Is \code{x} a complete indexer
-matrix?
-(\code{\link{icmp}}, \code{\link{iind}}, \code{\link{imat}})
-
-\item \code{cmp_ind_mvc()}: Is \code{x} a complete indexer
-mvector?
-(\code{\link{icmp}}, \code{\link{iind}}, \code{\link{imvc}})
-
-\item \code{cmp_ind_scl()}: Is \code{x} a complete indexer
-scalar?
-(\code{\link{icmp}}, \code{\link{iind}}, \code{\link{iscl}})
-
-\item \code{cmp_ind_vec()}: Is \code{x} a complete indexer
-vector?
-(\code{\link{icmp}}, \code{\link{iind}}, \code{\link{ivec}})
-
-\item \code{cmp_lgl_arr()}: Is \code{x} a complete logical
-array?
-(\code{\link{icmp}}, \code{\link{ilgl}}, \code{\link{iarr}})
-
-\item \code{cmp_lgl_gen()}: Is \code{x} a complete logical
-generic?
-(\code{\link{icmp}}, \code{\link{ilgl}}, \code{\link{igen}})
-
-\item \code{cmp_lgl_dtf()}: Is \code{x} a complete logical
-dtf?
-(\code{\link{icmp}}, \code{\link{ilgl}}, \code{\link{idtf}})
-
-\item \code{cmp_lgl_vls()}: Is \code{x} a complete logical
-vlist?
-(\code{\link{icmp}}, \code{\link{ilgl}}, \code{\link{ivls}})
-
-\item \code{cmp_lgl_vtp()}: Is \code{x} a complete logical
-vtype?
-(\code{\link{icmp}}, \code{\link{ilgl}}, \code{\link{ivtp}})
-
-\item \code{cmp_lgl_mat()}: Is \code{x} a complete logical
-matrix?
-(\code{\link{icmp}}, \code{\link{ilgl}}, \code{\link{imat}})
-
-\item \code{cmp_lgl_mvc()}: Is \code{x} a complete logical
-mvector?
-(\code{\link{icmp}}, \code{\link{ilgl}}, \code{\link{imvc}})
-
-\item \code{cmp_lgl_scl()}: Is \code{x} a complete logical
-scalar?
-(\code{\link{icmp}}, \code{\link{ilgl}}, \code{\link{iscl}})
-
-\item \code{cmp_lgl_vec()}: Is \code{x} a complete logical
-vector?
-(\code{\link{icmp}}, \code{\link{ilgl}}, \code{\link{ivec}})
-
-\item \code{cmp_neg_arr()}: Is \code{x} a complete negative-valued
-numeric array?
-(\code{\link{icmp}}, \code{\link{ineg}}, \code{\link{iarr}})
-
-\item \code{cmp_neg_gen()}: Is \code{x} a complete negative-valued
-numeric generic?
-(\code{\link{icmp}}, \code{\link{ineg}}, \code{\link{igen}})
-
-\item \code{cmp_neg_dtf()}: Is \code{x} a complete negative-valued
-numeric dtf?
-(\code{\link{icmp}}, \code{\link{ineg}}, \code{\link{idtf}})
-
-\item \code{cmp_neg_vls()}: Is \code{x} a complete negative-valued
-numeric vlist?
-(\code{\link{icmp}}, \code{\link{ineg}}, \code{\link{ivls}})
-
-\item \code{cmp_neg_vtp()}: Is \code{x} a complete negative-valued
-numeric vtype?
-(\code{\link{icmp}}, \code{\link{ineg}}, \code{\link{ivtp}})
-
-\item \code{cmp_neg_mat()}: Is \code{x} a complete negative-valued
-numeric matrix?
-(\code{\link{icmp}}, \code{\link{ineg}}, \code{\link{imat}})
-
-\item \code{cmp_neg_mvc()}: Is \code{x} a complete negative-valued
-numeric mvector?
-(\code{\link{icmp}}, \code{\link{ineg}}, \code{\link{imvc}})
-
-\item \code{cmp_neg_scl()}: Is \code{x} a complete negative-valued
-numeric scalar?
-(\code{\link{icmp}}, \code{\link{ineg}}, \code{\link{iscl}})
-
-\item \code{cmp_neg_vec()}: Is \code{x} a complete negative-valued
-numeric vector?
-(\code{\link{icmp}}, \code{\link{ineg}}, \code{\link{ivec}})
-
-\item \code{cmp_ngw_arr()}: Is \code{x} a complete negative-valued
-whole-number array?
-(\code{\link{icmp}}, \code{\link{ingw}}, \code{\link{iarr}})
-
-\item \code{cmp_ngw_gen()}: Is \code{x} a complete negative-valued
-whole-number generic?
-(\code{\link{icmp}}, \code{\link{ingw}}, \code{\link{igen}})
-
-\item \code{cmp_ngw_dtf()}: Is \code{x} a complete negative-valued
-whole-number dtf?
-(\code{\link{icmp}}, \code{\link{ingw}}, \code{\link{idtf}})
-
-\item \code{cmp_ngw_vls()}: Is \code{x} a complete negative-valued
-whole-number vlist?
-(\code{\link{icmp}}, \code{\link{ingw}}, \code{\link{ivls}})
-
-\item \code{cmp_ngw_vtp()}: Is \code{x} a complete negative-valued
-whole-number vtype?
-(\code{\link{icmp}}, \code{\link{ingw}}, \code{\link{ivtp}})
-
-\item \code{cmp_ngw_mat()}: Is \code{x} a complete negative-valued
-whole-number matrix?
-(\code{\link{icmp}}, \code{\link{ingw}}, \code{\link{imat}})
-
-\item \code{cmp_ngw_mvc()}: Is \code{x} a complete negative-valued
-whole-number mvector?
-(\code{\link{icmp}}, \code{\link{ingw}}, \code{\link{imvc}})
-
-\item \code{cmp_ngw_scl()}: Is \code{x} a complete negative-valued
-whole-number scalar?
-(\code{\link{icmp}}, \code{\link{ingw}}, \code{\link{iscl}})
-
-\item \code{cmp_ngw_vec()}: Is \code{x} a complete negative-valued
-whole-number vector?
-(\code{\link{icmp}}, \code{\link{ingw}}, \code{\link{ivec}})
-
-\item \code{cmp_nng_arr()}: Is \code{x} a complete non-negative-valued
-numeric array?
-(\code{\link{icmp}}, \code{\link{inng}}, \code{\link{iarr}})
-
-\item \code{cmp_nng_gen()}: Is \code{x} a complete non-negative-valued
-numeric generic?
-(\code{\link{icmp}}, \code{\link{inng}}, \code{\link{igen}})
-
-\item \code{cmp_nng_dtf()}: Is \code{x} a complete non-negative-valued
-numeric dtf?
-(\code{\link{icmp}}, \code{\link{inng}}, \code{\link{idtf}})
-
-\item \code{cmp_nng_vls()}: Is \code{x} a complete non-negative-valued
-numeric vlist?
-(\code{\link{icmp}}, \code{\link{inng}}, \code{\link{ivls}})
-
-\item \code{cmp_nng_vtp()}: Is \code{x} a complete non-negative-valued
-numeric vtype?
-(\code{\link{icmp}}, \code{\link{inng}}, \code{\link{ivtp}})
-
-\item \code{cmp_nng_mat()}: Is \code{x} a complete non-negative-valued
-numeric matrix?
-(\code{\link{icmp}}, \code{\link{inng}}, \code{\link{imat}})
-
-\item \code{cmp_nng_mvc()}: Is \code{x} a complete non-negative-valued
-numeric mvector?
-(\code{\link{icmp}}, \code{\link{inng}}, \code{\link{imvc}})
-
-\item \code{cmp_nng_scl()}: Is \code{x} a complete non-negative-valued
-numeric scalar?
-(\code{\link{icmp}}, \code{\link{inng}}, \code{\link{iscl}})
-
-\item \code{cmp_nng_vec()}: Is \code{x} a complete non-negative-valued
-numeric vector?
-(\code{\link{icmp}}, \code{\link{inng}}, \code{\link{ivec}})
-
-\item \code{cmp_nnw_arr()}: Is \code{x} a complete non-negative-valued
-whole-number array?
-(\code{\link{icmp}}, \code{\link{innw}}, \code{\link{iarr}})
-
-\item \code{cmp_nnw_gen()}: Is \code{x} a complete non-negative-valued
-whole-number generic?
-(\code{\link{icmp}}, \code{\link{innw}}, \code{\link{igen}})
-
-\item \code{cmp_nnw_dtf()}: Is \code{x} a complete non-negative-valued
-whole-number dtf?
-(\code{\link{icmp}}, \code{\link{innw}}, \code{\link{idtf}})
-
-\item \code{cmp_nnw_vls()}: Is \code{x} a complete non-negative-valued
-whole-number vlist?
-(\code{\link{icmp}}, \code{\link{innw}}, \code{\link{ivls}})
-
-\item \code{cmp_nnw_vtp()}: Is \code{x} a complete non-negative-valued
-whole-number vtype?
-(\code{\link{icmp}}, \code{\link{innw}}, \code{\link{ivtp}})
-
-\item \code{cmp_nnw_mat()}: Is \code{x} a complete non-negative-valued
-whole-number matrix?
-(\code{\link{icmp}}, \code{\link{innw}}, \code{\link{imat}})
-
-\item \code{cmp_nnw_mvc()}: Is \code{x} a complete non-negative-valued
-whole-number mvector?
-(\code{\link{icmp}}, \code{\link{innw}}, \code{\link{imvc}})
-
-\item \code{cmp_nnw_scl()}: Is \code{x} a complete non-negative-valued
-whole-number scalar?
-(\code{\link{icmp}}, \code{\link{innw}}, \code{\link{iscl}})
-
-\item \code{cmp_nnw_vec()}: Is \code{x} a complete non-negative-valued
-whole-number vector?
-(\code{\link{icmp}}, \code{\link{innw}}, \code{\link{ivec}})
-
-\item \code{cmp_nps_arr()}: Is \code{x} a complete non-positive-valued
-numeric array?
-(\code{\link{icmp}}, \code{\link{inps}}, \code{\link{iarr}})
-
-\item \code{cmp_nps_gen()}: Is \code{x} a complete non-positive-valued
-numeric generic?
-(\code{\link{icmp}}, \code{\link{inps}}, \code{\link{igen}})
-
-\item \code{cmp_nps_dtf()}: Is \code{x} a complete non-positive-valued
-numeric dtf?
-(\code{\link{icmp}}, \code{\link{inps}}, \code{\link{idtf}})
-
-\item \code{cmp_nps_vls()}: Is \code{x} a complete non-positive-valued
-numeric vlist?
-(\code{\link{icmp}}, \code{\link{inps}}, \code{\link{ivls}})
-
-\item \code{cmp_nps_vtp()}: Is \code{x} a complete non-positive-valued
-numeric vtype?
-(\code{\link{icmp}}, \code{\link{inps}}, \code{\link{ivtp}})
-
-\item \code{cmp_nps_mat()}: Is \code{x} a complete non-positive-valued
-numeric matrix?
-(\code{\link{icmp}}, \code{\link{inps}}, \code{\link{imat}})
-
-\item \code{cmp_nps_mvc()}: Is \code{x} a complete non-positive-valued
-numeric mvector?
-(\code{\link{icmp}}, \code{\link{inps}}, \code{\link{imvc}})
-
-\item \code{cmp_nps_scl()}: Is \code{x} a complete non-positive-valued
-numeric scalar?
-(\code{\link{icmp}}, \code{\link{inps}}, \code{\link{iscl}})
-
-\item \code{cmp_nps_vec()}: Is \code{x} a complete non-positive-valued
-numeric vector?
-(\code{\link{icmp}}, \code{\link{inps}}, \code{\link{ivec}})
-
-\item \code{cmp_npw_arr()}: Is \code{x} a complete non-positive-valued
-whole-number array?
-(\code{\link{icmp}}, \code{\link{inpw}}, \code{\link{iarr}})
-
-\item \code{cmp_npw_gen()}: Is \code{x} a complete non-positive-valued
-whole-number generic?
-(\code{\link{icmp}}, \code{\link{inpw}}, \code{\link{igen}})
-
-\item \code{cmp_npw_dtf()}: Is \code{x} a complete non-positive-valued
-whole-number dtf?
-(\code{\link{icmp}}, \code{\link{inpw}}, \code{\link{idtf}})
-
-\item \code{cmp_npw_vls()}: Is \code{x} a complete non-positive-valued
-whole-number vlist?
-(\code{\link{icmp}}, \code{\link{inpw}}, \code{\link{ivls}})
-
-\item \code{cmp_npw_vtp()}: Is \code{x} a complete non-positive-valued
-whole-number vtype?
-(\code{\link{icmp}}, \code{\link{inpw}}, \code{\link{ivtp}})
-
-\item \code{cmp_npw_mat()}: Is \code{x} a complete non-positive-valued
-whole-number matrix?
-(\code{\link{icmp}}, \code{\link{inpw}}, \code{\link{imat}})
-
-\item \code{cmp_npw_mvc()}: Is \code{x} a complete non-positive-valued
-whole-number mvector?
-(\code{\link{icmp}}, \code{\link{inpw}}, \code{\link{imvc}})
-
-\item \code{cmp_npw_scl()}: Is \code{x} a complete non-positive-valued
-whole-number scalar?
-(\code{\link{icmp}}, \code{\link{inpw}}, \code{\link{iscl}})
-
-\item \code{cmp_npw_vec()}: Is \code{x} a complete non-positive-valued
-whole-number vector?
-(\code{\link{icmp}}, \code{\link{inpw}}, \code{\link{ivec}})
-
-\item \code{cmp_nst_arr()}: Is \code{x} a complete non-sortable
-array?
-(\code{\link{icmp}}, \code{\link{inst}}, \code{\link{iarr}})
-
-\item \code{cmp_nst_gen()}: Is \code{x} a complete non-sortable
-generic?
-(\code{\link{icmp}}, \code{\link{inst}}, \code{\link{igen}})
-
-\item \code{cmp_nst_dtf()}: Is \code{x} a complete non-sortable
-dtf?
-(\code{\link{icmp}}, \code{\link{inst}}, \code{\link{idtf}})
-
-\item \code{cmp_nst_vls()}: Is \code{x} a complete non-sortable
-vlist?
-(\code{\link{icmp}}, \code{\link{inst}}, \code{\link{ivls}})
-
-\item \code{cmp_nst_vtp()}: Is \code{x} a complete non-sortable
-vtype?
-(\code{\link{icmp}}, \code{\link{inst}}, \code{\link{ivtp}})
-
-\item \code{cmp_nst_mat()}: Is \code{x} a complete non-sortable
-matrix?
-(\code{\link{icmp}}, \code{\link{inst}}, \code{\link{imat}})
-
-\item \code{cmp_nst_mvc()}: Is \code{x} a complete non-sortable
-mvector?
-(\code{\link{icmp}}, \code{\link{inst}}, \code{\link{imvc}})
-
-\item \code{cmp_nst_scl()}: Is \code{x} a complete non-sortable
-scalar?
-(\code{\link{icmp}}, \code{\link{inst}}, \code{\link{iscl}})
-
-\item \code{cmp_nst_vec()}: Is \code{x} a complete non-sortable
-vector?
-(\code{\link{icmp}}, \code{\link{inst}}, \code{\link{ivec}})
-
-\item \code{cmp_num_arr()}: Is \code{x} a complete numeric
-array?
-(\code{\link{icmp}}, \code{\link{inum}}, \code{\link{iarr}})
-
-\item \code{cmp_num_gen()}: Is \code{x} a complete numeric
-generic?
-(\code{\link{icmp}}, \code{\link{inum}}, \code{\link{igen}})
-
-\item \code{cmp_num_dtf()}: Is \code{x} a complete numeric
-dtf?
-(\code{\link{icmp}}, \code{\link{inum}}, \code{\link{idtf}})
-
-\item \code{cmp_num_vls()}: Is \code{x} a complete numeric
-vlist?
-(\code{\link{icmp}}, \code{\link{inum}}, \code{\link{ivls}})
-
-\item \code{cmp_num_vtp()}: Is \code{x} a complete numeric
-vtype?
-(\code{\link{icmp}}, \code{\link{inum}}, \code{\link{ivtp}})
-
-\item \code{cmp_num_mat()}: Is \code{x} a complete numeric
-matrix?
-(\code{\link{icmp}}, \code{\link{inum}}, \code{\link{imat}})
-
-\item \code{cmp_num_mvc()}: Is \code{x} a complete numeric
-mvector?
-(\code{\link{icmp}}, \code{\link{inum}}, \code{\link{imvc}})
-
-\item \code{cmp_num_scl()}: Is \code{x} a complete numeric
-scalar?
-(\code{\link{icmp}}, \code{\link{inum}}, \code{\link{iscl}})
-
-\item \code{cmp_num_vec()}: Is \code{x} a complete numeric
-vector?
-(\code{\link{icmp}}, \code{\link{inum}}, \code{\link{ivec}})
-
-\item \code{cmp_odd_arr()}: Is \code{x} a complete odd-valued
-whole-number array?
-(\code{\link{icmp}}, \code{\link{iodd}}, \code{\link{iarr}})
-
-\item \code{cmp_odd_gen()}: Is \code{x} a complete odd-valued
-whole-number generic?
-(\code{\link{icmp}}, \code{\link{iodd}}, \code{\link{igen}})
-
-\item \code{cmp_odd_dtf()}: Is \code{x} a complete odd-valued
-whole-number dtf?
-(\code{\link{icmp}}, \code{\link{iodd}}, \code{\link{idtf}})
-
-\item \code{cmp_odd_vls()}: Is \code{x} a complete odd-valued
-whole-number vlist?
-(\code{\link{icmp}}, \code{\link{iodd}}, \code{\link{ivls}})
-
-\item \code{cmp_odd_vtp()}: Is \code{x} a complete odd-valued
-whole-number vtype?
-(\code{\link{icmp}}, \code{\link{iodd}}, \code{\link{ivtp}})
-
-\item \code{cmp_odd_mat()}: Is \code{x} a complete odd-valued
-whole-number matrix?
-(\code{\link{icmp}}, \code{\link{iodd}}, \code{\link{imat}})
-
-\item \code{cmp_odd_mvc()}: Is \code{x} a complete odd-valued
-whole-number mvector?
-(\code{\link{icmp}}, \code{\link{iodd}}, \code{\link{imvc}})
-
-\item \code{cmp_odd_scl()}: Is \code{x} a complete odd-valued
-whole-number scalar?
-(\code{\link{icmp}}, \code{\link{iodd}}, \code{\link{iscl}})
-
-\item \code{cmp_odd_vec()}: Is \code{x} a complete odd-valued
-whole-number vector?
-(\code{\link{icmp}}, \code{\link{iodd}}, \code{\link{ivec}})
-
-\item \code{cmp_ord_arr()}: Is \code{x} a complete ordered-factor
-array?
-(\code{\link{icmp}}, \code{\link{iord}}, \code{\link{iarr}})
-
-\item \code{cmp_ord_gen()}: Is \code{x} a complete ordered-factor
-generic?
-(\code{\link{icmp}}, \code{\link{iord}}, \code{\link{igen}})
-
-\item \code{cmp_ord_dtf()}: Is \code{x} a complete ordered-factor
-dtf?
-(\code{\link{icmp}}, \code{\link{iord}}, \code{\link{idtf}})
-
-\item \code{cmp_ord_vls()}: Is \code{x} a complete ordered-factor
-vlist?
-(\code{\link{icmp}}, \code{\link{iord}}, \code{\link{ivls}})
-
-\item \code{cmp_ord_vtp()}: Is \code{x} a complete ordered-factor
-vtype?
-(\code{\link{icmp}}, \code{\link{iord}}, \code{\link{ivtp}})
-
-\item \code{cmp_ord_mat()}: Is \code{x} a complete ordered-factor
-matrix?
-(\code{\link{icmp}}, \code{\link{iord}}, \code{\link{imat}})
-
-\item \code{cmp_ord_mvc()}: Is \code{x} a complete ordered-factor
-mvector?
-(\code{\link{icmp}}, \code{\link{iord}}, \code{\link{imvc}})
-
-\item \code{cmp_ord_scl()}: Is \code{x} a complete ordered-factor
-scalar?
-(\code{\link{icmp}}, \code{\link{iord}}, \code{\link{iscl}})
-
-\item \code{cmp_ord_vec()}: Is \code{x} a complete ordered-factor
-vector?
-(\code{\link{icmp}}, \code{\link{iord}}, \code{\link{ivec}})
-
-\item \code{cmp_pct_arr()}: Is \code{x} a complete percent-valued
-(0-100) numeric array?
-(\code{\link{icmp}}, \code{\link{ipct}}, \code{\link{iarr}})
-
-\item \code{cmp_pct_gen()}: Is \code{x} a complete percent-valued
-(0-100) numeric generic?
-(\code{\link{icmp}}, \code{\link{ipct}}, \code{\link{igen}})
-
-\item \code{cmp_pct_dtf()}: Is \code{x} a complete percent-valued
-(0-100) numeric dtf?
-(\code{\link{icmp}}, \code{\link{ipct}}, \code{\link{idtf}})
-
-\item \code{cmp_pct_vls()}: Is \code{x} a complete percent-valued
-(0-100) numeric vlist?
-(\code{\link{icmp}}, \code{\link{ipct}}, \code{\link{ivls}})
-
-\item \code{cmp_pct_vtp()}: Is \code{x} a complete percent-valued
-(0-100) numeric vtype?
-(\code{\link{icmp}}, \code{\link{ipct}}, \code{\link{ivtp}})
-
-\item \code{cmp_pct_mat()}: Is \code{x} a complete percent-valued
-(0-100) numeric matrix?
-(\code{\link{icmp}}, \code{\link{ipct}}, \code{\link{imat}})
-
-\item \code{cmp_pct_mvc()}: Is \code{x} a complete percent-valued
-(0-100) numeric mvector?
-(\code{\link{icmp}}, \code{\link{ipct}}, \code{\link{imvc}})
-
-\item \code{cmp_pct_scl()}: Is \code{x} a complete percent-valued
-(0-100) numeric scalar?
-(\code{\link{icmp}}, \code{\link{ipct}}, \code{\link{iscl}})
-
-\item \code{cmp_pct_vec()}: Is \code{x} a complete percent-valued
-(0-100) numeric vector?
-(\code{\link{icmp}}, \code{\link{ipct}}, \code{\link{ivec}})
-
-\item \code{cmp_pos_arr()}: Is \code{x} a complete positive-valued
-numeric array?
-(\code{\link{icmp}}, \code{\link{ipos}}, \code{\link{iarr}})
-
-\item \code{cmp_pos_gen()}: Is \code{x} a complete positive-valued
-numeric generic?
-(\code{\link{icmp}}, \code{\link{ipos}}, \code{\link{igen}})
-
-\item \code{cmp_pos_dtf()}: Is \code{x} a complete positive-valued
-numeric dtf?
-(\code{\link{icmp}}, \code{\link{ipos}}, \code{\link{idtf}})
-
-\item \code{cmp_pos_vls()}: Is \code{x} a complete positive-valued
-numeric vlist?
-(\code{\link{icmp}}, \code{\link{ipos}}, \code{\link{ivls}})
-
-\item \code{cmp_pos_vtp()}: Is \code{x} a complete positive-valued
-numeric vtype?
-(\code{\link{icmp}}, \code{\link{ipos}}, \code{\link{ivtp}})
-
-\item \code{cmp_pos_mat()}: Is \code{x} a complete positive-valued
-numeric matrix?
-(\code{\link{icmp}}, \code{\link{ipos}}, \code{\link{imat}})
-
-\item \code{cmp_pos_mvc()}: Is \code{x} a complete positive-valued
-numeric mvector?
-(\code{\link{icmp}}, \code{\link{ipos}}, \code{\link{imvc}})
-
-\item \code{cmp_pos_scl()}: Is \code{x} a complete positive-valued
-numeric scalar?
-(\code{\link{icmp}}, \code{\link{ipos}}, \code{\link{iscl}})
-
-\item \code{cmp_pos_vec()}: Is \code{x} a complete positive-valued
-numeric vector?
-(\code{\link{icmp}}, \code{\link{ipos}}, \code{\link{ivec}})
-
-\item \code{cmp_ppn_arr()}: Is \code{x} a complete proportion-valued
-(0-1) numeric array?
-(\code{\link{icmp}}, \code{\link{ippn}}, \code{\link{iarr}})
-
-\item \code{cmp_ppn_gen()}: Is \code{x} a complete proportion-valued
-(0-1) numeric generic?
-(\code{\link{icmp}}, \code{\link{ippn}}, \code{\link{igen}})
-
-\item \code{cmp_ppn_dtf()}: Is \code{x} a complete proportion-valued
-(0-1) numeric dtf?
-(\code{\link{icmp}}, \code{\link{ippn}}, \code{\link{idtf}})
-
-\item \code{cmp_ppn_vls()}: Is \code{x} a complete proportion-valued
-(0-1) numeric vlist?
-(\code{\link{icmp}}, \code{\link{ippn}}, \code{\link{ivls}})
-
-\item \code{cmp_ppn_vtp()}: Is \code{x} a complete proportion-valued
-(0-1) numeric vtype?
-(\code{\link{icmp}}, \code{\link{ippn}}, \code{\link{ivtp}})
-
-\item \code{cmp_ppn_mat()}: Is \code{x} a complete proportion-valued
-(0-1) numeric matrix?
-(\code{\link{icmp}}, \code{\link{ippn}}, \code{\link{imat}})
-
-\item \code{cmp_ppn_mvc()}: Is \code{x} a complete proportion-valued
-(0-1) numeric mvector?
-(\code{\link{icmp}}, \code{\link{ippn}}, \code{\link{imvc}})
-
-\item \code{cmp_ppn_scl()}: Is \code{x} a complete proportion-valued
-(0-1) numeric scalar?
-(\code{\link{icmp}}, \code{\link{ippn}}, \code{\link{iscl}})
-
-\item \code{cmp_ppn_vec()}: Is \code{x} a complete proportion-valued
-(0-1) numeric vector?
-(\code{\link{icmp}}, \code{\link{ippn}}, \code{\link{ivec}})
-
-\item \code{cmp_psw_arr()}: Is \code{x} a complete positive-valued
-whole-number array?
-(\code{\link{icmp}}, \code{\link{ipsw}}, \code{\link{iarr}})
-
-\item \code{cmp_psw_gen()}: Is \code{x} a complete positive-valued
-whole-number generic?
-(\code{\link{icmp}}, \code{\link{ipsw}}, \code{\link{igen}})
-
-\item \code{cmp_psw_dtf()}: Is \code{x} a complete positive-valued
-whole-number dtf?
-(\code{\link{icmp}}, \code{\link{ipsw}}, \code{\link{idtf}})
-
-\item \code{cmp_psw_vls()}: Is \code{x} a complete positive-valued
-whole-number vlist?
-(\code{\link{icmp}}, \code{\link{ipsw}}, \code{\link{ivls}})
-
-\item \code{cmp_psw_vtp()}: Is \code{x} a complete positive-valued
-whole-number vtype?
-(\code{\link{icmp}}, \code{\link{ipsw}}, \code{\link{ivtp}})
-
-\item \code{cmp_psw_mat()}: Is \code{x} a complete positive-valued
-whole-number matrix?
-(\code{\link{icmp}}, \code{\link{ipsw}}, \code{\link{imat}})
-
-\item \code{cmp_psw_mvc()}: Is \code{x} a complete positive-valued
-whole-number mvector?
-(\code{\link{icmp}}, \code{\link{ipsw}}, \code{\link{imvc}})
-
-\item \code{cmp_psw_scl()}: Is \code{x} a complete positive-valued
-whole-number scalar?
-(\code{\link{icmp}}, \code{\link{ipsw}}, \code{\link{iscl}})
-
-\item \code{cmp_psw_vec()}: Is \code{x} a complete positive-valued
-whole-number vector?
-(\code{\link{icmp}}, \code{\link{ipsw}}, \code{\link{ivec}})
-
-\item \code{cmp_srt_arr()}: Is \code{x} a complete sortable
-array?
-(\code{\link{icmp}}, \code{\link{isrt}}, \code{\link{iarr}})
-
-\item \code{cmp_srt_gen()}: Is \code{x} a complete sortable
-generic?
-(\code{\link{icmp}}, \code{\link{isrt}}, \code{\link{igen}})
-
-\item \code{cmp_srt_dtf()}: Is \code{x} a complete sortable
-dtf?
-(\code{\link{icmp}}, \code{\link{isrt}}, \code{\link{idtf}})
+\item \code{cmp_evn_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[ievn]{even-valued whole-number} \link[igen]{generic}?
 
-\item \code{cmp_srt_vls()}: Is \code{x} a complete sortable
-vlist?
-(\code{\link{icmp}}, \code{\link{isrt}}, \code{\link{ivls}})
+\item \code{cmp_evn_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[ievn]{even-valued whole-number} \link[idtf]{dtf}?
 
-\item \code{cmp_srt_vtp()}: Is \code{x} a complete sortable
-vtype?
-(\code{\link{icmp}}, \code{\link{isrt}}, \code{\link{ivtp}})
+\item \code{cmp_evn_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[ievn]{even-valued whole-number} \link[ivls]{vlist}?
 
-\item \code{cmp_srt_mat()}: Is \code{x} a complete sortable
-matrix?
-(\code{\link{icmp}}, \code{\link{isrt}}, \code{\link{imat}})
+\item \code{cmp_evn_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[ievn]{even-valued whole-number} \link[ivtp]{vtype}?
 
-\item \code{cmp_srt_mvc()}: Is \code{x} a complete sortable
-mvector?
-(\code{\link{icmp}}, \code{\link{isrt}}, \code{\link{imvc}})
+\item \code{cmp_evn_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[ievn]{even-valued whole-number} \link[imat]{matrix}?
 
-\item \code{cmp_srt_scl()}: Is \code{x} a complete sortable
-scalar?
-(\code{\link{icmp}}, \code{\link{isrt}}, \code{\link{iscl}})
+\item \code{cmp_evn_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[ievn]{even-valued whole-number} \link[imvc]{multivec}?
 
-\item \code{cmp_srt_vec()}: Is \code{x} a complete sortable
-vector?
-(\code{\link{icmp}}, \code{\link{isrt}}, \code{\link{ivec}})
+\item \code{cmp_evn_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[ievn]{even-valued whole-number} \link[iscl]{scalar}?
 
-\item \code{cmp_str_arr()}: Is \code{x} a complete string
-array?
-(\code{\link{icmp}}, \code{\link{istr}}, \code{\link{iarr}})
+\item \code{cmp_evn_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[ievn]{even-valued whole-number} \link[ivec]{vec}?
 
-\item \code{cmp_str_gen()}: Is \code{x} a complete string
-generic?
-(\code{\link{icmp}}, \code{\link{istr}}, \code{\link{igen}})
+\item \code{cmp_fac_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[ifac]{factor} \link[iarr]{array}?
 
-\item \code{cmp_str_dtf()}: Is \code{x} a complete string
-dtf?
-(\code{\link{icmp}}, \code{\link{istr}}, \code{\link{idtf}})
+\item \code{cmp_fac_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[ifac]{factor} \link[igen]{generic}?
 
-\item \code{cmp_str_vls()}: Is \code{x} a complete string
-vlist?
-(\code{\link{icmp}}, \code{\link{istr}}, \code{\link{ivls}})
+\item \code{cmp_fac_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[ifac]{factor} \link[idtf]{dtf}?
 
-\item \code{cmp_str_vtp()}: Is \code{x} a complete string
-vtype?
-(\code{\link{icmp}}, \code{\link{istr}}, \code{\link{ivtp}})
+\item \code{cmp_fac_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[ifac]{factor} \link[ivls]{vlist}?
 
-\item \code{cmp_str_mat()}: Is \code{x} a complete string
-matrix?
-(\code{\link{icmp}}, \code{\link{istr}}, \code{\link{imat}})
+\item \code{cmp_fac_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[ifac]{factor} \link[ivtp]{vtype}?
 
-\item \code{cmp_str_mvc()}: Is \code{x} a complete string
-mvector?
-(\code{\link{icmp}}, \code{\link{istr}}, \code{\link{imvc}})
+\item \code{cmp_fac_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[ifac]{factor} \link[imat]{matrix}?
 
-\item \code{cmp_str_scl()}: Is \code{x} a complete string
-scalar?
-(\code{\link{icmp}}, \code{\link{istr}}, \code{\link{iscl}})
+\item \code{cmp_fac_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[ifac]{factor} \link[imvc]{multivec}?
 
-\item \code{cmp_str_vec()}: Is \code{x} a complete string
-vector?
-(\code{\link{icmp}}, \code{\link{istr}}, \code{\link{ivec}})
+\item \code{cmp_fac_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[ifac]{factor} \link[iscl]{scalar}?
 
-\item \code{cmp_uno_arr()}: Is \code{x} a complete unordered-factor
-array?
-(\code{\link{icmp}}, \code{\link{iuno}}, \code{\link{iarr}})
+\item \code{cmp_fac_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[ifac]{factor} \link[ivec]{vec}?
 
-\item \code{cmp_uno_gen()}: Is \code{x} a complete unordered-factor
-generic?
-(\code{\link{icmp}}, \code{\link{iuno}}, \code{\link{igen}})
+\item \code{cmp_frc_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[ifrc]{fractional-valued numeric} \link[iarr]{array}?
 
-\item \code{cmp_uno_dtf()}: Is \code{x} a complete unordered-factor
-dtf?
-(\code{\link{icmp}}, \code{\link{iuno}}, \code{\link{idtf}})
+\item \code{cmp_frc_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[ifrc]{fractional-valued numeric} \link[igen]{generic}?
 
-\item \code{cmp_uno_vls()}: Is \code{x} a complete unordered-factor
-vlist?
-(\code{\link{icmp}}, \code{\link{iuno}}, \code{\link{ivls}})
+\item \code{cmp_frc_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[ifrc]{fractional-valued numeric} \link[idtf]{dtf}?
 
-\item \code{cmp_uno_vtp()}: Is \code{x} a complete unordered-factor
-vtype?
-(\code{\link{icmp}}, \code{\link{iuno}}, \code{\link{ivtp}})
+\item \code{cmp_frc_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[ifrc]{fractional-valued numeric} \link[ivls]{vlist}?
 
-\item \code{cmp_uno_mat()}: Is \code{x} a complete unordered-factor
-matrix?
-(\code{\link{icmp}}, \code{\link{iuno}}, \code{\link{imat}})
+\item \code{cmp_frc_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[ifrc]{fractional-valued numeric} \link[ivtp]{vtype}?
 
-\item \code{cmp_uno_mvc()}: Is \code{x} a complete unordered-factor
-mvector?
-(\code{\link{icmp}}, \code{\link{iuno}}, \code{\link{imvc}})
+\item \code{cmp_frc_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[ifrc]{fractional-valued numeric} \link[imat]{matrix}?
 
-\item \code{cmp_uno_scl()}: Is \code{x} a complete unordered-factor
-scalar?
-(\code{\link{icmp}}, \code{\link{iuno}}, \code{\link{iscl}})
+\item \code{cmp_frc_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[ifrc]{fractional-valued numeric} \link[imvc]{multivec}?
 
-\item \code{cmp_uno_vec()}: Is \code{x} a complete unordered-factor
-vector?
-(\code{\link{icmp}}, \code{\link{iuno}}, \code{\link{ivec}})
+\item \code{cmp_frc_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[ifrc]{fractional-valued numeric} \link[iscl]{scalar}?
 
-\item \code{cmp_whl_arr()}: Is \code{x} a complete whole-number array?
-(\code{\link{icmp}}, \code{\link{iwhl}}, \code{\link{iarr}})
+\item \code{cmp_frc_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[ifrc]{fractional-valued numeric} \link[ivec]{vec}?
 
-\item \code{cmp_whl_gen()}: Is \code{x} a complete whole-number generic?
-(\code{\link{icmp}}, \code{\link{iwhl}}, \code{\link{igen}})
+\item \code{cmp_ind_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[iind]{indexer} \link[iarr]{array}?
 
-\item \code{cmp_whl_dtf()}: Is \code{x} a complete whole-number dtf?
-(\code{\link{icmp}}, \code{\link{iwhl}}, \code{\link{idtf}})
+\item \code{cmp_ind_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[iind]{indexer} \link[igen]{generic}?
 
-\item \code{cmp_whl_vls()}: Is \code{x} a complete whole-number vlist?
-(\code{\link{icmp}}, \code{\link{iwhl}}, \code{\link{ivls}})
+\item \code{cmp_ind_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[iind]{indexer} \link[idtf]{dtf}?
 
-\item \code{cmp_whl_vtp()}: Is \code{x} a complete whole-number vtype?
-(\code{\link{icmp}}, \code{\link{iwhl}}, \code{\link{ivtp}})
+\item \code{cmp_ind_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[iind]{indexer} \link[ivls]{vlist}?
 
-\item \code{cmp_whl_mat()}: Is \code{x} a complete whole-number matrix?
-(\code{\link{icmp}}, \code{\link{iwhl}}, \code{\link{imat}})
+\item \code{cmp_ind_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[iind]{indexer} \link[ivtp]{vtype}?
 
-\item \code{cmp_whl_mvc()}: Is \code{x} a complete whole-number mvector?
-(\code{\link{icmp}}, \code{\link{iwhl}}, \code{\link{imvc}})
+\item \code{cmp_ind_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[iind]{indexer} \link[imat]{matrix}?
 
-\item \code{cmp_whl_scl()}: Is \code{x} a complete whole-number scalar?
-(\code{\link{icmp}}, \code{\link{iwhl}}, \code{\link{iscl}})
+\item \code{cmp_ind_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[iind]{indexer} \link[imvc]{multivec}?
 
-\item \code{cmp_whl_vec()}: Is \code{x} a complete whole-number vector?
-(\code{\link{icmp}}, \code{\link{iwhl}}, \code{\link{ivec}})
+\item \code{cmp_ind_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[iind]{indexer} \link[iscl]{scalar}?
+
+\item \code{cmp_ind_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[iind]{indexer} \link[ivec]{vec}?
+
+\item \code{cmp_lgl_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[ilgl]{logical} \link[iarr]{array}?
+
+\item \code{cmp_lgl_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[ilgl]{logical} \link[igen]{generic}?
+
+\item \code{cmp_lgl_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[ilgl]{logical} \link[idtf]{dtf}?
+
+\item \code{cmp_lgl_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[ilgl]{logical} \link[ivls]{vlist}?
+
+\item \code{cmp_lgl_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[ilgl]{logical} \link[ivtp]{vtype}?
+
+\item \code{cmp_lgl_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[ilgl]{logical} \link[imat]{matrix}?
+
+\item \code{cmp_lgl_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[ilgl]{logical} \link[imvc]{multivec}?
+
+\item \code{cmp_lgl_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[ilgl]{logical} \link[iscl]{scalar}?
+
+\item \code{cmp_lgl_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[ilgl]{logical} \link[ivec]{vec}?
+
+\item \code{cmp_neg_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[ineg]{negative-valued numeric} \link[iarr]{array}?
+
+\item \code{cmp_neg_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[ineg]{negative-valued numeric} \link[igen]{generic}?
+
+\item \code{cmp_neg_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[ineg]{negative-valued numeric} \link[idtf]{dtf}?
+
+\item \code{cmp_neg_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[ineg]{negative-valued numeric} \link[ivls]{vlist}?
+
+\item \code{cmp_neg_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[ineg]{negative-valued numeric} \link[ivtp]{vtype}?
+
+\item \code{cmp_neg_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[ineg]{negative-valued numeric} \link[imat]{matrix}?
+
+\item \code{cmp_neg_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[ineg]{negative-valued numeric} \link[imvc]{multivec}?
+
+\item \code{cmp_neg_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[ineg]{negative-valued numeric} \link[iscl]{scalar}?
+
+\item \code{cmp_neg_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[ineg]{negative-valued numeric} \link[ivec]{vec}?
+
+\item \code{cmp_ngw_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[ingw]{negative-valued whole-number} \link[iarr]{array}?
+
+\item \code{cmp_ngw_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[ingw]{negative-valued whole-number} \link[igen]{generic}?
+
+\item \code{cmp_ngw_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[ingw]{negative-valued whole-number} \link[idtf]{dtf}?
+
+\item \code{cmp_ngw_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[ingw]{negative-valued whole-number} \link[ivls]{vlist}?
+
+\item \code{cmp_ngw_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[ingw]{negative-valued whole-number} \link[ivtp]{vtype}?
+
+\item \code{cmp_ngw_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[ingw]{negative-valued whole-number} \link[imat]{matrix}?
+
+\item \code{cmp_ngw_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[ingw]{negative-valued whole-number} \link[imvc]{multivec}?
+
+\item \code{cmp_ngw_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[ingw]{negative-valued whole-number} \link[iscl]{scalar}?
+
+\item \code{cmp_ngw_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[ingw]{negative-valued whole-number} \link[ivec]{vec}?
+
+\item \code{cmp_nng_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[inng]{non-negative-valued numeric} \link[iarr]{array}?
+
+\item \code{cmp_nng_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[inng]{non-negative-valued numeric} \link[igen]{generic}?
+
+\item \code{cmp_nng_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[inng]{non-negative-valued numeric} \link[idtf]{dtf}?
+
+\item \code{cmp_nng_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[inng]{non-negative-valued numeric} \link[ivls]{vlist}?
+
+\item \code{cmp_nng_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[inng]{non-negative-valued numeric} \link[ivtp]{vtype}?
+
+\item \code{cmp_nng_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[inng]{non-negative-valued numeric} \link[imat]{matrix}?
+
+\item \code{cmp_nng_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[inng]{non-negative-valued numeric} \link[imvc]{multivec}?
+
+\item \code{cmp_nng_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[inng]{non-negative-valued numeric} \link[iscl]{scalar}?
+
+\item \code{cmp_nng_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[inng]{non-negative-valued numeric} \link[ivec]{vec}?
+
+\item \code{cmp_nnw_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[innw]{non-negative-valued whole-number} \link[iarr]{array}?
+
+\item \code{cmp_nnw_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[innw]{non-negative-valued whole-number} \link[igen]{generic}?
+
+\item \code{cmp_nnw_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[innw]{non-negative-valued whole-number} \link[idtf]{dtf}?
+
+\item \code{cmp_nnw_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[innw]{non-negative-valued whole-number} \link[ivls]{vlist}?
+
+\item \code{cmp_nnw_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[innw]{non-negative-valued whole-number} \link[ivtp]{vtype}?
+
+\item \code{cmp_nnw_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[innw]{non-negative-valued whole-number} \link[imat]{matrix}?
+
+\item \code{cmp_nnw_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[innw]{non-negative-valued whole-number} \link[imvc]{multivec}?
+
+\item \code{cmp_nnw_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[innw]{non-negative-valued whole-number} \link[iscl]{scalar}?
+
+\item \code{cmp_nnw_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[innw]{non-negative-valued whole-number} \link[ivec]{vec}?
+
+\item \code{cmp_nps_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[inps]{non-positive-valued numeric} \link[iarr]{array}?
+
+\item \code{cmp_nps_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[inps]{non-positive-valued numeric} \link[igen]{generic}?
+
+\item \code{cmp_nps_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[inps]{non-positive-valued numeric} \link[idtf]{dtf}?
+
+\item \code{cmp_nps_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[inps]{non-positive-valued numeric} \link[ivls]{vlist}?
+
+\item \code{cmp_nps_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[inps]{non-positive-valued numeric} \link[ivtp]{vtype}?
+
+\item \code{cmp_nps_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[inps]{non-positive-valued numeric} \link[imat]{matrix}?
+
+\item \code{cmp_nps_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[inps]{non-positive-valued numeric} \link[imvc]{multivec}?
+
+\item \code{cmp_nps_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[inps]{non-positive-valued numeric} \link[iscl]{scalar}?
+
+\item \code{cmp_nps_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[inps]{non-positive-valued numeric} \link[ivec]{vec}?
+
+\item \code{cmp_npw_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[inpw]{non-positive-valued whole-number} \link[iarr]{array}?
+
+\item \code{cmp_npw_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[inpw]{non-positive-valued whole-number} \link[igen]{generic}?
+
+\item \code{cmp_npw_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[inpw]{non-positive-valued whole-number} \link[idtf]{dtf}?
+
+\item \code{cmp_npw_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[inpw]{non-positive-valued whole-number} \link[ivls]{vlist}?
+
+\item \code{cmp_npw_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[inpw]{non-positive-valued whole-number} \link[ivtp]{vtype}?
+
+\item \code{cmp_npw_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[inpw]{non-positive-valued whole-number} \link[imat]{matrix}?
+
+\item \code{cmp_npw_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[inpw]{non-positive-valued whole-number} \link[imvc]{multivec}?
+
+\item \code{cmp_npw_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[inpw]{non-positive-valued whole-number} \link[iscl]{scalar}?
+
+\item \code{cmp_npw_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[inpw]{non-positive-valued whole-number} \link[ivec]{vec}?
+
+\item \code{cmp_nst_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[inst]{non-sortable} \link[iarr]{array}?
+
+\item \code{cmp_nst_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[inst]{non-sortable} \link[igen]{generic}?
+
+\item \code{cmp_nst_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[inst]{non-sortable} \link[idtf]{dtf}?
+
+\item \code{cmp_nst_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[inst]{non-sortable} \link[ivls]{vlist}?
+
+\item \code{cmp_nst_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[inst]{non-sortable} \link[ivtp]{vtype}?
+
+\item \code{cmp_nst_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[inst]{non-sortable} \link[imat]{matrix}?
+
+\item \code{cmp_nst_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[inst]{non-sortable} \link[imvc]{multivec}?
+
+\item \code{cmp_nst_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[inst]{non-sortable} \link[iscl]{scalar}?
+
+\item \code{cmp_nst_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[inst]{non-sortable} \link[ivec]{vec}?
+
+\item \code{cmp_num_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[inum]{numeric} \link[iarr]{array}?
+
+\item \code{cmp_num_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[inum]{numeric} \link[igen]{generic}?
+
+\item \code{cmp_num_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[inum]{numeric} \link[idtf]{dtf}?
+
+\item \code{cmp_num_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[inum]{numeric} \link[ivls]{vlist}?
+
+\item \code{cmp_num_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[inum]{numeric} \link[ivtp]{vtype}?
+
+\item \code{cmp_num_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[inum]{numeric} \link[imat]{matrix}?
+
+\item \code{cmp_num_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[inum]{numeric} \link[imvc]{multivec}?
+
+\item \code{cmp_num_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[inum]{numeric} \link[iscl]{scalar}?
+
+\item \code{cmp_num_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[inum]{numeric} \link[ivec]{vec}?
+
+\item \code{cmp_odd_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[iodd]{odd-valued whole-number} \link[iarr]{array}?
+
+\item \code{cmp_odd_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[iodd]{odd-valued whole-number} \link[igen]{generic}?
+
+\item \code{cmp_odd_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[iodd]{odd-valued whole-number} \link[idtf]{dtf}?
+
+\item \code{cmp_odd_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[iodd]{odd-valued whole-number} \link[ivls]{vlist}?
+
+\item \code{cmp_odd_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[iodd]{odd-valued whole-number} \link[ivtp]{vtype}?
+
+\item \code{cmp_odd_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[iodd]{odd-valued whole-number} \link[imat]{matrix}?
+
+\item \code{cmp_odd_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[iodd]{odd-valued whole-number} \link[imvc]{multivec}?
+
+\item \code{cmp_odd_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[iodd]{odd-valued whole-number} \link[iscl]{scalar}?
+
+\item \code{cmp_odd_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[iodd]{odd-valued whole-number} \link[ivec]{vec}?
+
+\item \code{cmp_ord_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[iord]{ordered-factor} \link[iarr]{array}?
+
+\item \code{cmp_ord_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[iord]{ordered-factor} \link[igen]{generic}?
+
+\item \code{cmp_ord_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[iord]{ordered-factor} \link[idtf]{dtf}?
+
+\item \code{cmp_ord_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[iord]{ordered-factor} \link[ivls]{vlist}?
+
+\item \code{cmp_ord_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[iord]{ordered-factor} \link[ivtp]{vtype}?
+
+\item \code{cmp_ord_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[iord]{ordered-factor} \link[imat]{matrix}?
+
+\item \code{cmp_ord_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[iord]{ordered-factor} \link[imvc]{multivec}?
+
+\item \code{cmp_ord_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[iord]{ordered-factor} \link[iscl]{scalar}?
+
+\item \code{cmp_ord_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[iord]{ordered-factor} \link[ivec]{vec}?
+
+\item \code{cmp_pct_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[ipct]{percent-valued (0-100) numeric} \link[iarr]{array}?
+
+\item \code{cmp_pct_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[ipct]{percent-valued (0-100) numeric} \link[igen]{generic}?
+
+\item \code{cmp_pct_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[ipct]{percent-valued (0-100) numeric} \link[idtf]{dtf}?
+
+\item \code{cmp_pct_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[ipct]{percent-valued (0-100) numeric} \link[ivls]{vlist}?
+
+\item \code{cmp_pct_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[ipct]{percent-valued (0-100) numeric} \link[ivtp]{vtype}?
+
+\item \code{cmp_pct_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[ipct]{percent-valued (0-100) numeric} \link[imat]{matrix}?
+
+\item \code{cmp_pct_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[ipct]{percent-valued (0-100) numeric} \link[imvc]{multivec}?
+
+\item \code{cmp_pct_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[ipct]{percent-valued (0-100) numeric} \link[iscl]{scalar}?
+
+\item \code{cmp_pct_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[ipct]{percent-valued (0-100) numeric} \link[ivec]{vec}?
+
+\item \code{cmp_pos_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[ipos]{positive-valued numeric} \link[iarr]{array}?
+
+\item \code{cmp_pos_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[ipos]{positive-valued numeric} \link[igen]{generic}?
+
+\item \code{cmp_pos_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[ipos]{positive-valued numeric} \link[idtf]{dtf}?
+
+\item \code{cmp_pos_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[ipos]{positive-valued numeric} \link[ivls]{vlist}?
+
+\item \code{cmp_pos_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[ipos]{positive-valued numeric} \link[ivtp]{vtype}?
+
+\item \code{cmp_pos_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[ipos]{positive-valued numeric} \link[imat]{matrix}?
+
+\item \code{cmp_pos_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[ipos]{positive-valued numeric} \link[imvc]{multivec}?
+
+\item \code{cmp_pos_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[ipos]{positive-valued numeric} \link[iscl]{scalar}?
+
+\item \code{cmp_pos_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[ipos]{positive-valued numeric} \link[ivec]{vec}?
+
+\item \code{cmp_ppn_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[ippn]{proportion-valued (0-1) numeric} \link[iarr]{array}?
+
+\item \code{cmp_ppn_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[ippn]{proportion-valued (0-1) numeric} \link[igen]{generic}?
+
+\item \code{cmp_ppn_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[ippn]{proportion-valued (0-1) numeric} \link[idtf]{dtf}?
+
+\item \code{cmp_ppn_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[ippn]{proportion-valued (0-1) numeric} \link[ivls]{vlist}?
+
+\item \code{cmp_ppn_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[ippn]{proportion-valued (0-1) numeric} \link[ivtp]{vtype}?
+
+\item \code{cmp_ppn_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[ippn]{proportion-valued (0-1) numeric} \link[imat]{matrix}?
+
+\item \code{cmp_ppn_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[ippn]{proportion-valued (0-1) numeric} \link[imvc]{multivec}?
+
+\item \code{cmp_ppn_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[ippn]{proportion-valued (0-1) numeric} \link[iscl]{scalar}?
+
+\item \code{cmp_ppn_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[ippn]{proportion-valued (0-1) numeric} \link[ivec]{vec}?
+
+\item \code{cmp_psw_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[ipsw]{positive-valued whole-number} \link[iarr]{array}?
+
+\item \code{cmp_psw_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[ipsw]{positive-valued whole-number} \link[igen]{generic}?
+
+\item \code{cmp_psw_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[ipsw]{positive-valued whole-number} \link[idtf]{dtf}?
+
+\item \code{cmp_psw_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[ipsw]{positive-valued whole-number} \link[ivls]{vlist}?
+
+\item \code{cmp_psw_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[ipsw]{positive-valued whole-number} \link[ivtp]{vtype}?
+
+\item \code{cmp_psw_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[ipsw]{positive-valued whole-number} \link[imat]{matrix}?
+
+\item \code{cmp_psw_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[ipsw]{positive-valued whole-number} \link[imvc]{multivec}?
+
+\item \code{cmp_psw_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[ipsw]{positive-valued whole-number} \link[iscl]{scalar}?
+
+\item \code{cmp_psw_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[ipsw]{positive-valued whole-number} \link[ivec]{vec}?
+
+\item \code{cmp_srt_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[isrt]{sortable} \link[iarr]{array}?
+
+\item \code{cmp_srt_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[isrt]{sortable} \link[igen]{generic}?
+
+\item \code{cmp_srt_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[isrt]{sortable} \link[idtf]{dtf}?
+
+\item \code{cmp_srt_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[isrt]{sortable} \link[ivls]{vlist}?
+
+\item \code{cmp_srt_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[isrt]{sortable} \link[ivtp]{vtype}?
+
+\item \code{cmp_srt_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[isrt]{sortable} \link[imat]{matrix}?
+
+\item \code{cmp_srt_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[isrt]{sortable} \link[imvc]{multivec}?
+
+\item \code{cmp_srt_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[isrt]{sortable} \link[iscl]{scalar}?
+
+\item \code{cmp_srt_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[isrt]{sortable} \link[ivec]{vec}?
+
+\item \code{cmp_str_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[istr]{string} \link[iarr]{array}?
+
+\item \code{cmp_str_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[istr]{string} \link[igen]{generic}?
+
+\item \code{cmp_str_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[istr]{string} \link[idtf]{dtf}?
+
+\item \code{cmp_str_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[istr]{string} \link[ivls]{vlist}?
+
+\item \code{cmp_str_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[istr]{string} \link[ivtp]{vtype}?
+
+\item \code{cmp_str_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[istr]{string} \link[imat]{matrix}?
+
+\item \code{cmp_str_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[istr]{string} \link[imvc]{multivec}?
+
+\item \code{cmp_str_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[istr]{string} \link[iscl]{scalar}?
+
+\item \code{cmp_str_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[istr]{string} \link[ivec]{vec}?
+
+\item \code{cmp_uno_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[iuno]{unordered-factor} \link[iarr]{array}?
+
+\item \code{cmp_uno_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[iuno]{unordered-factor} \link[igen]{generic}?
+
+\item \code{cmp_uno_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[iuno]{unordered-factor} \link[idtf]{dtf}?
+
+\item \code{cmp_uno_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[iuno]{unordered-factor} \link[ivls]{vlist}?
+
+\item \code{cmp_uno_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[iuno]{unordered-factor} \link[ivtp]{vtype}?
+
+\item \code{cmp_uno_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[iuno]{unordered-factor} \link[imat]{matrix}?
+
+\item \code{cmp_uno_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[iuno]{unordered-factor} \link[imvc]{multivec}?
+
+\item \code{cmp_uno_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[iuno]{unordered-factor} \link[iscl]{scalar}?
+
+\item \code{cmp_uno_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[iuno]{unordered-factor} \link[ivec]{vec}?
+
+\item \code{cmp_whl_arr()}: Is \code{x} a \link[icmp]{complete}
+\link[iwhl]{whole-number} \link[iarr]{array}?
+
+\item \code{cmp_whl_gen()}: Is \code{x} a \link[icmp]{complete}
+\link[iwhl]{whole-number} \link[igen]{generic}?
+
+\item \code{cmp_whl_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[iwhl]{whole-number} \link[idtf]{dtf}?
+
+\item \code{cmp_whl_vls()}: Is \code{x} a \link[icmp]{complete}
+\link[iwhl]{whole-number} \link[ivls]{vlist}?
+
+\item \code{cmp_whl_vtp()}: Is \code{x} a \link[icmp]{complete}
+\link[iwhl]{whole-number} \link[ivtp]{vtype}?
+
+\item \code{cmp_whl_mat()}: Is \code{x} a \link[icmp]{complete}
+\link[iwhl]{whole-number} \link[imat]{matrix}?
+
+\item \code{cmp_whl_mvc()}: Is \code{x} a \link[icmp]{complete}
+\link[iwhl]{whole-number} \link[imvc]{multivec}?
+
+\item \code{cmp_whl_scl()}: Is \code{x} a \link[icmp]{complete}
+\link[iwhl]{whole-number} \link[iscl]{scalar}?
+
+\item \code{cmp_whl_vec()}: Is \code{x} a \link[icmp]{complete}
+\link[iwhl]{whole-number} \link[ivec]{vec}?
 
 }}
 \seealso{
@@ -1652,7 +1441,7 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc_uj}()},
+\code{\link{is_ccc.}()},
 \code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},

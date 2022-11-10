@@ -19,9 +19,9 @@ last_n(x, n)
 n_th_last(x, n)
 }
 \arguments{
-\item{x}{Vector to extract elements from}
+\item{x}{Vector to extract elements from.}
 
-\item{n}{Positive integer vector of indexing values to extract.}
+\item{n}{\link[cmp_psw_scl]{Complete positive whole-number scalar}.}
 }
 \value{
 Subset of \code{x}

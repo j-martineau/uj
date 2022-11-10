@@ -12,13 +12,12 @@ swap(x, old, new, all = F)
 \arguments{
 \item{x}{An atomic object.}
 
-\item{old}{Atomic vect of unique values to be replaced.}
-
-\item{new}{Atomic vect of replacement values. \code{length(new)} must be in
+\item{old, new}{\link[atm_vec]{Atomic vecs} of unique values to be replaced
+and replacement values, respectively. \code{length(new)} must be in
 \code{c(1, length(old))}.}
 
-\item{all}{\code{TRUE} or \code{FALSE} indicating whether all values of
-\code{x} must be contained in \code{old}.}
+\item{all}{link[cmp_lgl_scl]{Complete logical scalar} indicating whether all
+values of \code{x} must be contained in \code{old}.}
 }
 \value{
 An atomic object of the same dimensions as \code{x}.

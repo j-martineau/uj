@@ -3,9 +3,10 @@
 #' @title Identify Duplicate Values.
 #' @description Extended functionality for \code{duplicated}.
 #' @param ... One or more atomic vectors to be evaluated for duplicated values.
-#' @param x An atomic vector.
-#' @param int A logical scalar indicating whether to return a logical vector
-#'   (when \code{int = FALSE}) or an integer vector (when \code{int = TRUE}).
+#' @param x \link[atm_vec]{Atomic vec}.
+#' @param int \link[cmp_atm_scl]{Complete logical scalar} indicating whether to
+#'   return a logical vector (when \code{int = FALSE}) or an integer vector
+#'   (when \code{int = TRUE}).
 #' @return An atomic vector containing 1 copy of each duplicated element
 #'   (\code{dups}), a logical vector indexing elements of \code{x} that are
 #'   duplicates of earlier elements (\code{idups(x, int = FALSE)}), or an
@@ -30,12 +31,12 @@ dups <- function(...) {out. <- av(...); unique(out.[duplicated(out.)])}
 #'   whose length is the same as the number of elements in \code{x} that are
 #'   duplicates of earlier elements (when \code{int = TRUE}).
 #' @export
-idups <- function(x., int. = F) {
-  vx. <- iatm(x.)
-  vi. <- isTF(int.)
-  err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [x.] must be atomic.")}
-  if (!vi.) {err <- c(err., "\n • [int.] must be TRUE or FALSE.")}
-  if (idef(err)) {stop(err.)}
-  f0(int., which(duplicated(x.)), duplicated(x.))
+idups <- function(x, int = F) {
+  vx <- iatm(x)
+  vi <- isTF(int)
+  err <- NULL
+  if (!vx) {err <- c(err, "\n • [x] must be atomic.")}
+  if (!vi) {err <- c(err, "\n • [int] must be TRUE or FALSE.")}
+  if (idef(err)) {stop(err)}
+  f0(int, which(duplicated(x)), duplicated(x))
 }

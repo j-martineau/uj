@@ -2,9 +2,9 @@
 #' @title Fixed-value string substitution
 #' @family strings
 #' @family extensions
-#' @param x Atomic character object.
-#' @param pats Character vect containing string patterns to be replaced.
-#' @param subs Character vect containing replacement strings.
+#' @param x \link[ichr]{Atomic character object}.
+#' @param pats,subs \link[cmp_chr_vec]{Complete character vecs} containing
+#'   patterns to replace and their associated replacement strings.
 #' @return Atomic character object.
 #' @export
 fsub. <- function() {help("fsub.", package = "uj")}

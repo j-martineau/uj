@@ -82,11 +82,11 @@ A tibble.
 \description{
 The following table describes wrapper functions in this group of
 functions:\tabular{ll}{
-WRAPPER       \tab FUNCTION                                             \cr
-\code{tb}     \tab \code{\link[tibble]{tibble}}                         \cr
+WRAPPER       \tab FUNCTION                                             \cr
+\code{tb}     \tab \code{\link[tibble]{tibble}}                         \cr
 \code{trb}    \tab \code{\link[tibble]{tibble_row}}                     \cr
 \code{tbr}    \tab \code{\link[tibble]{tribble}}                        \cr
-\code{tbas}   \tab \code{\link[tibble]{as_tibble}}                        }
+\code{tbas}   \tab \code{\link[tibble]{as_tibble}}                        }
 }
 \section{Functions}{
 \itemize{

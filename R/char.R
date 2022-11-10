@@ -1,11 +1,12 @@
 #' @name charn.
 #' @title Extract a single character
 #' @family strings
-#' @param x Atomic character object.
-#' @param n Positive whole-number scalar or positive whole-number atomic object
-#'   of the same dimensions as \code{x}.
-#' @return \code{link[=ch1]{onechar}} atomic object of the same dimension as
-#'   \code{x}.
+#' @param x \link[ichr]{Atomic character object}.
+#' @param n \link[cmp_psw_scl]{Complete positive whole-number scalar} or
+#'   \link{cmp_psw}{complete positive whole-number atomic object} of the same
+#'   dimensions as \code{x}.
+#' @return \code{link[cmp_ch1]{Complete onechar}} atomic object of the same
+#'   dimension as \code{x}.
 #' @export
 charn. <- function() {help("charn.", package = "uj")}
 

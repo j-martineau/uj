@@ -2,12 +2,12 @@
 #' @family extensions
 #' @title Extract rows, columns, and/or elements
 #' @param x Any valid R object.
-#' @param r A logical or integer vector indexing rows to extract from \code{x}
-#'   of \link[id2D]{defined dimensionality 2}.
-#' @param c A logical or integer vector indexing columns to extract from
-#'   \code{x} of \link[id2D]{defined dimensionality 2}.
-#' @param e A logical or integer vector indexing elements to extract from
-#'   \code{x} of \link[id1D]{defined dimensionality 1}.
+#' @param r \link[cmp_ind_vec]{Complete indexer vec} indicating rows to extract
+#'   from \code{x} of \link[id2D]{defined dimensionality 2}.
+#' @param c \link[cmp_ind_vec]{Complete indexer vec} indicating columns to
+#'   extract from \code{x} of \link[id2D]{defined dimensionality 2}.
+#' @param r \link[cmp_ind_vec]{Complete indexer vec} indicating elements to
+#'   extract from \code{x} of \link[id1D]{defined dimensionality 1}.
 #' @examples
 #' Mat <- matrix(1:100, nrow = 10)
 #' Dat   <- as_tibble(Mat)

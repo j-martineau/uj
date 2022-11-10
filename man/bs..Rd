@@ -36,12 +36,12 @@ A numeric object (\code{up} and \code{dn}) or a character object
 \description{
 The following table describes thin wraps in this group of
 functions:\tabular{ll}{
-WRAPPER       \tab FUNCTION                                             \cr
+WRAPPER       \tab FUNCTION                                             \cr
 \code{up}     \tab \code{\link[base]{ceiling}}                          \cr
 \code{dn}     \tab \code{\link[base]{floor}}                            \cr
 \code{spf}    \tab \code{\link[base]{sprintf}}                          \cr
 \code{mid}    \tab \code{\link[base]{substr}}                           \cr
-\code{levs}   \tab \code{\link[base]{levels}}                             }
+\code{levs}   \tab \code{\link[base]{levels}}                             }
 }
 \details{
 These are generic functions: methods can be defined for them

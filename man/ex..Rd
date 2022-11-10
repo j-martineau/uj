@@ -12,14 +12,11 @@ ex(x, r = NULL, c = NULL, e = NULL)
 \arguments{
 \item{x}{Any valid R object.}
 
-\item{r}{A logical or integer vector indexing rows to extract from \code{x}
-of \link[id2D]{defined dimensionality 2}.}
+\item{r}{\link[cmp_ind_vec]{Complete indexer vec} indicating elements to
+extract from \code{x} of \link[id1D]{defined dimensionality 1}.}
 
-\item{c}{A logical or integer vector indexing columns to extract from
-\code{x} of \link[id2D]{defined dimensionality 2}.}
-
-\item{e}{A logical or integer vector indexing elements to extract from
-\code{x} of \link[id1D]{defined dimensionality 1}.}
+\item{c}{\link[cmp_ind_vec]{Complete indexer vec} indicating columns to
+extract from \code{x} of \link[id2D]{defined dimensionality 2}.}
 }
 \description{
 Extract rows, columns, and/or elements

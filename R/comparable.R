@@ -3,8 +3,8 @@
 #' @title Are objects comparable?
 #' @param ... An arbitrary number of arguments to be checked for comparability
 #'   with each other.
-#' @param recycle. A logical scalar indicating whether arguments in \code{...}
-#'   must be recyclable to be comparable.
+#' @param recycle. \link[cmp_lgl_scl]{Complete logical scalar} indicating
+#'   whether arguments in \code{...} must be recyclable to be comparable.
 #' @return A logical scalar.
 #' @export
 comparable. <- function() {help("comparable.")}

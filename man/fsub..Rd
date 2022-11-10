@@ -10,11 +10,10 @@ fsub.()
 fsub(x, pats, subs)
 }
 \arguments{
-\item{x}{Atomic character object.}
+\item{x}{\link[ichr]{Atomic character object}.}
 
-\item{pats}{Character vect containing string patterns to be replaced.}
-
-\item{subs}{Character vect containing replacement strings.}
+\item{pats, subs}{\link[cmp_chr_vec]{Complete character vecs} containing
+patterns to replace and their associated replacement strings.}
 }
 \value{
 Atomic character object.

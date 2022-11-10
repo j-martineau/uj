@@ -22,67 +22,65 @@
 \usage{
 naming.()
 
-namev(x., v.)
+namev(x, en)
 
-namer(x., r.)
+namer(x, rn)
 
-namec(x., c.)
+namec(x, cn)
 
-namel(x., n.)
+namel(x, ln)
 
-namerc(x., r., c.)
+namerc(x, rn, cn)
 
-named(x., dim. = 0, u. = T, blank. = F)
+named(x, d = 0, u = T, blank = F)
 
-enamed(x., u. = T, blank. = F)
+enamed(x, u = T, blank = F)
 
-rnamed(x., u. = T, blank. = F)
+rnamed(x, u = T, blank = F)
 
-cnamed(x., u. = T, blank. = F)
+cnamed(x, u = T, blank = F)
 
-rcnamed(x., u. = T, blank. = F)
+rcnamed(x, u = T, blank = F)
 
-named.(..., u. = T, blank. = F)
+named.(..., u = T, blank = F)
 
-getnames(x., d. = 0, u. = T, err. = F)
+getnames(x, d = 0, u = T, err = F)
 
-en(x., u. = T, err. = F)
+en(x, u = T, err = F)
 
-rn(x., u. = T, err. = F)
+rn(x, u = T, err = F)
 
-cn(x., u. = T, err. = F)
+cn(x, u = T, err = F)
 
-rcn(x., u. = T, err. = F)
+rcn(x, u = T, err = F)
 }
 \arguments{
-\item{x.}{Argument to be inspected for names or to be named..}
+\item{x}{Vector or list for \code{namev} and \code{vn}; matrix or data.frame
+for \code{rn}, \code{namer}, \code{cn}, \code{namec}, \code{namerc}; or any
+object for \code{namel}.}
 
-\item{v.}{Character vector of element names.}
+\item{en}{\link[cmp_chr_vec]{Complete character vec} of element names.}
 
-\item{r., c.}{Character vectors of element, row, or column names,
-respectively.}
+\item{rn, cn}{\link[cmp_chr_vec]{Complete character vecs} of row or column
+names, respectively.}
 
-\item{n.}{Character scalar element-name.}
+\item{ln}{\link[cmp_chr_scl]{Complete character scalar} element name.}
 
-\item{dim.}{Dimension \code{0} for elements (of atomic or list vectors only),
-\code{1} for rows of matrices or tibbles, \code{2} for columns of matrices
-or tibbles, or \code{12} for rows and columns of matrices or tibbles.}
+\item{d}{\link[cmp_psw_scl]{Complete positive whole-number scalar} giving the
+dimension(s) to name: \code{0} for elements (of atomic or list vectors
+only), \code{1} for rows of matrices or tibbles, \code{2} for columns of
+matrices or dtfs, or \code{12} for rows and columns of matrices or dtfs.}
 
-\item{u.}{Logical scalar indicating whether names must be unique.}
+\item{u}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether names
+must be unique.}
 
-\item{blank.}{Logical scalar indicating whether blank strings (\code{""}) are
-allowed as names.}
+\item{blank}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether blank
+strings (\code{""}) are allowed as names.}
 
 \item{...}{Arbitrary number of arguments to be inspected for names.}
 
-\item{d.}{Integer scalar indicating dimensions to get names for. Valid values
-are \code{c(1, 2, 12)} for row, column, and both.}
-
-\item{err.}{Logical scalar indicating whether names must be non-missing.}
-
-\item{x}{Vector or vlist for \code{namev} and \code{vn}; matrix or data.frame
-for \code{rn}, \code{namer}, \code{cn}, \code{namec}, \code{namerc}; or any
-object for \code{namel}.}
+\item{err}{\link[cmp_lgl_scl]{Complete logical} scalar indicating whether
+names must be non-missing.}
 }
 \value{
 Character vector or a named/renamed version of \code{x}.

@@ -1,5 +1,7 @@
 #' @name a.
 #' @title Atomize to a vector of atomic values
+#' @description Reduce all arguments in \code{...} to a single atomic vector of
+#'   atomic elements without any additional attributes.
 #' @family extensions
 #' @param ... Arguments to be atomized.
 #' @return A single atomic vector containing all constituent atomic values in
@@ -16,11 +18,10 @@
 #' @export
 a. <- function() {help("a.", package = "uj")}
 
-#' @describeIn a. Reduce all arguments in \code{...} to a single atomic
-#'   vector of atomic elements without any additional attributes.
+#' @rdname a.
 #' @export
-a <- function(...) {x. <- as.vector(unlist(list(...), T, F)); attributes(x.) <- NULL; x.}
+a <- function(...) {x <- as.vector(unlist(list(...), T, F)); attributes(x) <- NULL; x}
 
-#' @describeIn a. Clone of \code{a} named to indicate (a)tomic (v)alues.
+#' @rdname a.
 #' @export
-av <- function(...) {x. <- as.vector(unlist(list(...), T, F)); attributes(x.) <- NULL; x.}
+av <- function(...) {x <- as.vector(unlist(list(...), T, F)); attributes(x) <- NULL; x}

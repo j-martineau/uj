@@ -1,13 +1,14 @@
 #' @name pgrid.
 #' @family strings
-#' @title \code{\link[base]{expand.grid}} for \code{\link[base]{paste}} and
-#'   \code{\link[base]{paste0}}
+#' @title \code{expand.grid} for \code{paste} and \code{paste0}
 #' @param ... Non-empty atomic objects.
-#' @param p. A character scalar to use as the 'paste'.
-#' @param ch. A logical scalar indicating whether to split arguments in
-#'   \code{...} into constituent characters after conversion to mode
-#'   'character'.
-#' @param add.blank. Whether to add a blank ("") to each argument in \code{...}.
+#' @param p. \link[cmp_chr_scl]{Complete character scalar} to use as the
+#'   'paste'.
+#' @param ch. \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+#'   split arguments in \code{...} into constituent characters after conversion
+#'   to mode 'character'.
+#' @param add.blank. \link[cmp_lgl_scl]{Complete logical scalar} indicating
+#'   whether to add a blank ("") to each argument in \code{...}.
 #' @return A character vector.
 #' @export
 pgrid. <- function() {help("pgrid.", package = "uj")}

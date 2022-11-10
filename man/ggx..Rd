@@ -20,6 +20,7 @@
 \alias{ggsac}
 \alias{ggscm}
 \alias{ggsdm}
+\alias{ggslm}
 \alias{ggsv}
 \alias{ggsxc}
 \alias{ggsyc}
@@ -191,6 +192,8 @@ ggscm(
 )
 
 ggsdm(..., values, breaks = ggplot2::waiver(), na.value = NA)
+
+ggslm(..., values, breaks = ggplot2::waiver(), na.value = "blank")
 
 ggsv(
   filename,
@@ -661,45 +664,47 @@ quosures or constants.
 \description{
 The following table describes wrapper functions in this group of
 functions:\tabular{ll}{
-WRAPPER         \tab FUNCTION                                           \cr
-( basics )      \tab ( basics )                                         \cr
-\code{ggp}      \tab \code{\link[ggplot2]{ggplot}}                      \cr
-\code{ggaes}    \tab \code{\link[ggplot2]{aes}}                         \cr
-\code{ggmar}    \tab \code{\link[ggplot2]{margin}}                      \cr
-\code{ggexp}    \tab \code{\link[ggplot2]{expansion}}                   \cr
-\code{ggunit}   \tab \code{\link[ggplot2]{unit}}                        \cr
-\code{ggvars}   \tab \code{\link[ggplot2]{vars}}                        \cr
-\code{ggsv}     \tab \code{\link[ggplot2]{ggsave}}                      \cr
-( labels )      \tab ( labels )                                         \cr
-\code{gglab}    \tab \code{\link[ggplot2]{geom_label}}                  \cr
-\code{gglabs}   \tab \code{\link[ggplot2]{labs}}                        \cr
-\code{ggxlab}   \tab \code{\link[ggplot2]{xlab}}                        \cr
-\code{ggylab}   \tab \code{\link[ggplot2]{ylab}}                        \cr
-( geoms )       \tab ( geoms )                                          \cr
-\code{ggdot}    \tab \code{\link[ggplot2]{geom_point}}                  \cr
-\code{gghln}    \tab \code{\link[ggplot2]{geom_hline}}                  \cr
-\code{gglin}    \tab \code{\link[ggplot2]{geom_line}}                   \cr
-\code{ggtxt}    \tab \code{\link[ggplot2]{geom_text}}                   \cr
-\code{ggvln}    \tab \code{\link[ggplot2]{geom_vline}}                  \cr
-( faceting )    \tab ( faceting )                                       \cr
-\code{gggrid}   \tab \code{\link[ggplot2]{facet_grid}}                  \cr
-\code{ggwrap}   \tab \code{\link[ggplot2]{facet_wrap}}                  \cr
-( theme )       \tab ( theme )                                          \cr
-\code{ggthm}    \tab \code{\link[ggplot2]{theme}}                       \cr
-\code{ggtmin}   \tab \code{\link[ggplot2]{theme_minimal}}               \cr
-( elements )    \tab ( elements )                                       \cr
-\code{ggenull}  \tab \code{\link[ggplot2]{element_blank}}               \cr
-\code{ggerct}   \tab \code{\link[ggplot2]{element_rect}}                \cr
-\code{ggetxt}   \tab \code{\link[ggplot2]{element_text}}                \cr
-\code{ggelin}   \tab \code{\link[ggplot2]{element_line}}                \cr
-\code{ggemd}    \tab \code{\link[ggtext]{element_markdown}}             \cr
-( scales )      \tab ( scales )                                         \cr
-\code{ggsac}    \tab \code{\link[ggplot2]{scale_alpha_continuous}}      \cr
-\code{ggscm}    \tab \code{\link[ggplot2]{scale_color_manual}}          \cr
-\code{ggsdm}    \tab \code{\link[ggplot2]{scale_shape_manual}}          \cr
-\code{ggsxc}    \tab \code{\link[ggplot2]{scale_x_continuous}}          \cr
-\code{ggsyc}    \tab \code{\link[ggplot2]{scale_y_continuous}}            }
-The only aliased function from the \code{ggtext} package is \code{ggemd}.
+BASICS           \tab BASICS                                            \cr
+\code{ggp}       \tab \code{\link[ggplot2]{ggplot}}                     \cr
+\code{ggaes}     \tab \code{\link[ggplot2]{aes}}                        \cr
+\code{ggmar}     \tab \code{\link[ggplot2]{margin}}                     \cr
+\code{ggexp}     \tab \code{\link[ggplot2]{expansion}}                  \cr
+\code{ggunit}    \tab \code{\link[ggplot2]{unit}}                       \cr
+\code{ggvars}    \tab \code{\link[ggplot2]{vars}}                       \cr
+\code{ggsv}      \tab \code{\link[ggplot2]{ggsave}}                     \cr
+LABELS           \tab LABELS                                            \cr
+\code{gglab}     \tab \code{\link[ggplot2]{geom_label}}                 \cr
+\code{gglabs}    \tab \code{\link[ggplot2]{labs}}                       \cr
+\code{ggxlab}    \tab \code{\link[ggplot2]{xlab}}                       \cr
+\code{ggylab}    \tab \code{\link[ggplot2]{ylab}}                       \cr
+GEOMS            \tab GEOMS                                             \cr
+\code{ggdot}     \tab \code{\link[ggplot2]{geom_point}}                 \cr
+\code{gghln}     \tab \code{\link[ggplot2]{geom_hline}}                 \cr
+\code{gglin}     \tab \code{\link[ggplot2]{geom_line}}                  \cr
+\code{ggtxt}     \tab \code{\link[ggplot2]{geom_text}}                  \cr
+\code{ggvln}     \tab \code{\link[ggplot2]{geom_vline}}                 \cr
+FACETS           \tab FACETS                                            \cr
+\code{gggrid}    \tab \code{\link[ggplot2]{facet_grid}}                 \cr
+\code{ggwrap}    \tab \code{\link[ggplot2]{facet_wrap}}                 \cr
+THEME            \tab THEME                                             \cr
+\code{ggthm}     \tab \code{\link[ggplot2]{theme}}                      \cr
+\code{ggtmin}    \tab \code{\link[ggplot2]{theme_minimal}}              \cr
+ELEMENTS         \tab ELEMENTS                                          \cr
+\code{ggenull}   \tab \code{\link[ggplot2]{element_blank}}              \cr
+\code{ggerct}    \tab \code{\link[ggplot2]{element_rect}}               \cr
+\code{ggetxt}    \tab \code{\link[ggplot2]{element_text}}               \cr
+\code{ggelin}    \tab \code{\link[ggplot2]{element_line}}               \cr
+\code{ggemd}     \tab \code{\link[ggtext]{element_markdown}}*           \cr
+SCALES           \tab SCALES                                            \cr
+\code{ggsac}     \tab \code{\link[ggplot2]{scale_alpha_continuous}}     \cr
+\code{ggscm}     \tab \code{\link[ggplot2]{scale_color_manual}}         \cr
+\code{ggsdm}     \tab \code{\link[ggplot2]{scale_shape_manual}}         \cr
+\code{ggslm}     \tab \code{\link[ggplot2]{scale_linetype_manual}}      \cr
+\code{ggsxc}     \tab \code{\link[ggplot2]{scale_x_continuous}}         \cr
+\code{ggsyc}     \tab \code{\link[ggplot2]{scale_y_continuous}}           }
+\itemize{
+\item From the \code{ggtext} package.
+}
 }
 \details{
 \code{ggplot()} is used to construct the initial plot object,
@@ -761,6 +766,8 @@ is often the case in complex graphics.
 \item \code{ggscm()}: Thin wrap of \code{\link[ggplot2]{scale_color_manual}}.
 
 \item \code{ggsdm()}: Thin wrap of \code{\link[ggplot2]{scale_shape_manual}}.
+
+\item \code{ggslm()}: Thin wrap of \code{\link[ggplot2]{scale_linetype_manual}}.
 
 \item \code{ggsv()}: Thin wrap of \code{\link[ggplot2]{ggsave}}.
 
@@ -987,6 +994,25 @@ the \code{NA} is removed silently, without warning.
 }
 
 \section{Color Blindness}{
+
+
+Many color palettes derived from RGB combinations (like the "rainbow" color
+palette) are not suitable to support all viewers, especially those with
+color vision deficiencies. Using \code{viridis} type, which is perceptually
+uniform in both colour and black-and-white display is an easy option to
+ensure good perceptive properties of your visulizations.
+The colorspace package offers functionalities
+\itemize{
+\item to generate color palettes with good perceptive properties,
+\item to analyse a given color palette, like emulating color blindness,
+\item and to modify a given color palette for better perceptivity.
+}
+
+For more information on color vision deficiencies and suitable color choices
+see the \href{https://arxiv.org/abs/1903.06490}{paper on the colorspace package}
+and references therein.
+
+
 
 
 Many color palettes derived from RGB combinations (like the "rainbow" color

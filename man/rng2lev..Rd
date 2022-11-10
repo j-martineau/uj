@@ -12,18 +12,15 @@ rng2lev(x, cuts, levs)
 \arguments{
 \item{x}{Atomic object of \link[isrt]{sortable} values.}
 
-\item{cuts}{Atomic vector of \code{n-1} cuts for \code{n} levels.}
+\item{cuts}{\link[atm_vec]{Atomic vec} of \code{n-1} cuts for \code{n} levels.}
 
-\item{levs}{Atomic vector of \code{n} level labels.}
+\item{levs}{\link[atm_vec]{Atomic vec} of \code{n} level labels.}
 }
 \value{
 Atomic object of the same dimension as \code{x} and the same mode as
 \code{levs}.
 }
 \description{
-Convert sortable values in specific ranges to a specific level
-}
-\details{
 When values of \code{x} are equal to a value of \code{cuts},
 assignment to level is dependent on whether the value of \code{cut} is less
 than 0 vs. greater than or equal to 0. For a value of \code{cut} less than

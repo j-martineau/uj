@@ -7,16 +7,17 @@
 \usage{
 weave.()
 
-weave(x., ...)
+weave(x, ...)
 }
 \arguments{
-\item{x.}{Atomic scalar with inlay escape sequences (see details).}
+\item{x}{\link[cmp_chr_scl]{Complete character scalar} with inlay escape
+sequences (see details).}
 
 \item{...}{Arbitrary number of atomic scalar/vector arguments to be inserted
-into \code{x.} with formatting specified in inlay escape sequences. The
+into \code{x} with formatting specified in inlay escape sequences. The
 \code{N}-th argument in \code{...} corresponds to the \code{N}-th inlay
-escape sequence in \code{x.}. The number of inlay escape sequences in
-\code{x.} must be equal to the number of arguments in \code{...}.}
+escape sequence in \code{x}. The number of inlay escape sequences in
+\code{x} must be equal to the number of arguments in \code{...}.}
 }
 \value{
 Character scalar.
@@ -26,56 +27,55 @@ Weave inlay values into a string
 }
 \details{
 Inlay escape sequences to specify formatting follow the patterns
-given in the following table with associated meanings of each pattern:
-\tabular{ll}{
-PATTERN           \tab MEANS INSERT ARGUMENT                           \cr
-\code{'{@}'}     \tab as is (argument must be scalar).                \cr
-\code{'{@x}'}    \tab after applying formatting switch \code{'x'}.    \cr
-\code{'{@xy}'}   \tab after applying formatting switches \code{'x'}
+and meanings given in the following table:\tabular{ll}{
+PATTERN            \tab MEANS INSERT ARGUMENT                           \cr
+\code{'{@}'}      \tab as is (argument must be scalar).                \cr
+\code{'{@x}'}     \tab after applying formatting switch \code{'x'}.    \cr
+\code{'{@xy}'}    \tab after applying formatting switches \code{'x'}
 and \code{'y'}.                                 \cr
-\code{'{@xyz}'  }\tab after applying formatting switches \code{'x'},
+\code{'{@xyz}'   }\tab after applying formatting switches \code{'x'},
 \code{'y'}, and \code{'z'}.                       }
 There are three families of switches:\tabular{ll}{
-SWITCH            \tab SWITCH                                         \cr
-FAMILY            \tab PURPOSE                                        \cr
-\code{decimals  } \tab specify the number of decimal points to include in
+SWITCH             \tab SWITCH                                          \cr
+FAMILY             \tab PURPOSE                                         \cr
+\code{decimals   } \tab specify the number of decimal points to include in
 in formatting numeric arguments                \cr
-\code{quotes}     \tab types of quotes in which to enclose formatted
+\code{quotes}      \tab types of quotes in which to enclose formatted
 argument values                                \cr
-\code{list}       \tab type of list to create in formatting arguments
+\code{list}        \tab type of list to create in formatting arguments
 that may have more than one element.             }
 Each escape sequence can contain only 1 switch from each family, but no
 family is required to have a switch in any given escape sequence. In the
 following table, the values switches may take are summarized, giving the
 value, the family it belongs to, and the formatting instructions indicated
 by the switch.\tabular{lll}{
-SWITCH    \tab SWITCH          \tab FORMATTING                        \cr
-VALUE     \tab FAMILY          \tab SPECIFICATION                     \cr
-\code{'0'}\tab\code{decimals  }\tab 0 decimal places.                 \cr
-\code{'1'}\tab\code{decimals}  \tab 1 decimal place.                  \cr
-\code{'2'}\tab\code{decimals}  \tab 2 decimal places.                 \cr
-\code{'3'}\tab\code{decimals}  \tab 3 decimal places.                 \cr
-\code{'4'}\tab\code{decimals}  \tab 4 decimal places.                 \cr
-\code{'5'}\tab\code{decimals}  \tab 5 decimal places.                 \cr
-\code{'6'}\tab\code{decimals}  \tab 6 decimal places.                 \cr
-\code{'7'}\tab\code{decimals}  \tab 7 decimal places.                 \cr
-\code{'8'}\tab\code{decimals}  \tab 8 decimal places.                 \cr
-\code{'9'}\tab\code{decimals}  \tab 9 decimal places.                 \cr
-\code{'q'}\tab\code{quote}     \tab single straight quotes.           \cr
-\code{'Q'}\tab\code{quote}     \tab double straight quotes.           \cr
-\code{'t'}\tab\code{quote}     \tab single typeset quotes.            \cr
-\code{'T'}\tab\code{quote}     \tab double typeset quotes.            \cr
-\code{'b'}\tab\code{quote}     \tab comma-separated list in braces.   \cr
-\code{'c'}\tab\code{list}      \tab comma-separated concatenation
+SWITCH    \tab SWITCH           \tab FORMATTING                         \cr
+VALUE     \tab FAMILY           \tab SPECIFICATION                      \cr
+\code{'0'}\tab\code{decimals   }\tab 0 decimal places.                  \cr
+\code{'1'}\tab\code{decimals}   \tab 1 decimal place.                   \cr
+\code{'2'}\tab\code{decimals}   \tab 2 decimal places.                  \cr
+\code{'3'}\tab\code{decimals}   \tab 3 decimal places.                  \cr
+\code{'4'}\tab\code{decimals}   \tab 4 decimal places.                  \cr
+\code{'5'}\tab\code{decimals}   \tab 5 decimal places.                  \cr
+\code{'6'}\tab\code{decimals}   \tab 6 decimal places.                  \cr
+\code{'7'}\tab\code{decimals}   \tab 7 decimal places.                  \cr
+\code{'8'}\tab\code{decimals}   \tab 8 decimal places.                  \cr
+\code{'9'}\tab\code{decimals}   \tab 9 decimal places.                  \cr
+\code{'q'}\tab\code{quote}      \tab single straight quotes.            \cr
+\code{'Q'}\tab\code{quote}      \tab double straight quotes.            \cr
+\code{'t'}\tab\code{quote}      \tab single typeset quotes.             \cr
+\code{'T'}\tab\code{quote}      \tab double typeset quotes.             \cr
+\code{'b'}\tab\code{quote}      \tab comma-separated list in braces.    \cr
+\code{'c'}\tab\code{list}       \tab comma-separated concatenation
 statement (i.e., \code{'c(...)'}). \cr
-\code{'l'}\tab\code{list}      \tab comma-separated list              \cr
-\code{'p'}\tab\code{list}      \tab comma-separated list in parens    \cr
-\code{'s'}\tab\code{list}      \tab comma-separated list in square
+\code{'l'}\tab\code{list}       \tab comma-separated list               \cr
+\code{'p'}\tab\code{list}       \tab comma-separated list in parens     \cr
+\code{'s'}\tab\code{list}       \tab comma-separated list in square
 brackets                           \cr
 \code{'a'}\tab\code{list}
-\tab\link[=ox_and]{Oxford-comma separated 'and' list}.      \cr
+\tab\link[=ox_and]{Oxford-comma separated 'and' list}.        \cr
 \code{'o'}\tab\code{list}
-\tab\link[=ox_or]{Oxford-comma separated 'or' list}           }
+\tab\link[=ox_or]{Oxford-comma separated 'or' list}             }
 Switches may be given in any order, and there can only be one switch from
 each family in a given inlay escape sequence. Regardless of order in the
 escape sequence, switches from the \code{decimals} family are processed
@@ -86,31 +86,34 @@ Example are provided in the following table, giving inlay escape sequences,
 the value of an argument to be formatted using the inlay escape sequence,
 and the result of applying the inlay escape sequence's formatting switches
 to the argument.\tabular{lll}{
-ESCAPE            \tab ARGUMENT   \tab RESULTING FORMATTED            \cr
-SEQUENCE          \tab VALUE      \tab CHARACTER SCALAR               \cr
-\code{'{@}'}     \tab\code{FALSE}
-\tab\code{'FALSE'}                                  \cr
-\code{'{@}'}     \tab\code{42}
-\tab\code{'42'}                                     \cr
-\code{'{@b}'}    \tab\code{4:7}
-\tab\code{'{4, 5, 6, 7}'}                           \cr
-\code{'{@q}'}    \tab\code{'foo::bar'}
-\tab\code{"'foo::bar'"}                             \cr
-\code{'{@0}'}    \tab\code{pi}
-\tab\code{'3'}                                      \cr
-\code{'{@aQ}'}   \tab\code{c('me', 'myself', 'I')  }
-                      \tab\code{'"me", "myself", and "I"'}                \cr
-\code{'{@c2}'}   \tab\code{c(pi, exp(1), 42)}
-\tab\code{'c(3.14, 2.62, 42.00)'}                   \cr
-\code{'{@Q6}'}   \tab\code{pi}
-\tab\code{'"3.141593"'}                             \cr
-\code{'{@ot3}'  }\tab\code{c(pi, exp(1))}
-\tab\code{'‘3.142’ or ‘2.718’'}                       }
+ESCAPE             \tab ARGUMENT   
+\tab RESULTING FORMATTED                             \cr
+SEQUENCE           \tab VALUE
+\tab CHARACTER SCALAR                                \cr
+\code{'{@}'}      \tab\code{FALSE}
+\tab\code{'FALSE'}                                   \cr
+\code{'{@}'}      \tab\code{42}
+\tab\code{'42'}                                      \cr
+\code{'{@b}'}     \tab\code{4:7}
+\tab\code{'{4, 5, 6, 7}'}                            \cr
+\code{'{@q}'}     \tab\code{'foo::bar'}
+\tab\code{"'foo::bar'"}                              \cr
+\code{'{@0}'}     \tab\code{pi}
+\tab\code{'3'}                                       \cr
+\code{'{@aQ}'}    \tab\code{c('me', 'myself', 'I')}
+                     \tab\code{'"me", "myself", and "I"'}                 \cr
+\code{'{@c2}'}    \tab\code{c(pi, exp(1), 42)}
+                     \tab\code{'c(3.14, 2.62, 42.00)'}                    \cr
+\code{'{@Q6}'}    \tab\code{pi}
+\tab\code{'"3.141593"'}                              \cr
+\code{'{@ot3}'   }\tab\code{c(pi, exp(1))}
+                     \tab\code{'‘3.142’ or ‘2.718’'}                        }
 }
 \section{Functions}{
 \itemize{
-\item \code{weave()}: A replacement for \code{sprintf} for basic uses.
-\code{x.} must be a character scalar. All arguments in \code{...} must be
+\item \code{weave()}: A streamlined replacement for \code{sprintf} for basic
+uses.
+\code{x} must be a character scalar. All arguments in \code{...} must be
 atomic scalars or 1-dimensional vectors.
 
 }}
