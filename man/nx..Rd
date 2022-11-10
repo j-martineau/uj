@@ -25,6 +25,7 @@
 \alias{n1p}
 \alias{n2p}
 \alias{n3p}
+\alias{nd}
 \alias{nd0}
 \alias{nd1}
 \alias{nd2}
@@ -116,19 +117,21 @@ n2p(..., na = F, eq = T, a = T)
 
 n3p(..., na = F, eq = T, a = T)
 
-nd0(...)
+nd()
 
-nd1(...)
+nd0()
 
-nd2(...)
+nd1()
 
-nd3(...)
+nd2()
 
-nd1p(...)
+nd3()
 
-nd2p(...)
+nd1p()
 
-nd3p(...)
+nd2p()
+
+nd3p()
 }
 \arguments{
 \item{x}{\link[innw]{Non-negative whole-number} object.}
@@ -210,6 +213,8 @@ argument.
 \item \code{n2p()}: Is the number of elements 2 or greater?
 
 \item \code{n3p()}: Is the number of elements 3 or greater?
+
+\item \code{nd()}: Is the number of dot arguments 0?
 
 \item \code{nd0()}: Is the number of dot arguments 0?
 

@@ -385,32 +385,32 @@ n3p <- function(..., na = F, eq = T, a = T) {nx(..., min = 3, na = na, a = a)}
 
 #' @describeIn nx. Is the number of dot arguments 0?
 #' @export
-nd <- function(...) {...length()}
+nd <- function() {eval.parent(...length())}
 
 #' @describeIn nx. Is the number of dot arguments 0?
 #' @export
-nd0 <- function(...) {...length() == 0}
+nd0 <- function() {eval.parent(...length() == 0)}
 
 #' @describeIn nx. Is the number of dot arguments 1?
 #' @export
-nd1 <- function(...) {...length() == 1}
+nd1 <- function() {eval.parent(...length() == 1)}
 
 #' @describeIn nx. Is the number of dot arguments 2?
 #' @export
-nd2 <- function(...) {...length() == 2}
+nd2 <- function() {eval.parent(...length() == 2)}
 
 #' @describeIn nx. Is the number of dot arguments 2?
 #' @export
-nd3 <- function(...) {...length() == 3}
+nd3 <- function() {eval.parent(...length() == 3)}
 
 #' @describeIn nx. Is the number of dot arguments 1 or greater?
 #' @export
-nd1p <- function(...) {...length() >= 1}
+nd1p <- function() {eval.parent(...length() >= 1)}
 
 #' @describeIn nx. Is the number of dot arguments 2 or greater?
 #' @export
-nd2p <- function(...) {...length() >= 2}
+nd2p <- function() {eval.parent(...length() >= 2)}
 
 #' @describeIn nx. Is the number of dot arguments 3 or greater?
 #' @export
-nd3p <- function(...) {...length() >= 3}
+nd3p <- function() {eval.parent(...length() >= 3)}
