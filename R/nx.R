@@ -385,6 +385,10 @@ n3p <- function(..., na = F, eq = T, a = T) {nx(..., min = 3, na = na, a = a)}
 
 #' @describeIn nx. Is the number of dot arguments 0?
 #' @export
+nd <- function(...) {...length()}
+
+#' @describeIn nx. Is the number of dot arguments 0?
+#' @export
 nd0 <- function(...) {...length() == 0}
 
 #' @describeIn nx. Is the number of dot arguments 1?
