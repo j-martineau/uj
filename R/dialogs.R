@@ -81,6 +81,7 @@ ansbox <- function(x = "Enter a value", def = "") {svDialogs::dlg_input(message 
 
 #' @describeIn dialogs. Does user select the 'no' button (rather than 'yes') in
 #'   response to the prompt?
+#' @export
 no <- function(...) {msgbox(daw00(...), t = "yesno")$res != "yes"}
 
 #' @describeIn dialogs. Display a message in a dialog box, returning

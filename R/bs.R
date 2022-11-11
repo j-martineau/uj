@@ -10,11 +10,18 @@
 #'   \code{mid}    \tab \code{\link[base]{substr}}                           \cr
 #'   \code{levs}   \tab \code{\link[base]{levels}}                             }
 #' @param x A numeric object (\code{up} and \code{down}), a character object
-#'   (\code{spf}), or an unordered or ordered factor object (\code{levs}).
+#'   (\code{spf}), an unordered or ordered factor object (\code{levs}), or any object \code{u}
 #' @return A numeric object (\code{up} and \code{dn}) or a character object
 #'   (\code{spf}, \code{mid}, and \code{levs}).
 #' @export
 bs. <- function() {help("bs.", package = "uj")}
+
+#' @describeIn bs. Thin wrapper for \code{\link[base]{unique}}. Differs from
+#'   \code{\link{uv}} in that \code{uv} takes an arbitrary number of parameters
+#'   and \link[a]{atomizes} them before getting unique atomic values.
+#' @inherit base::ceiling
+#' @export
+u <- function(x) {base::unique(x)}
 
 #' @describeIn bs. Round up to nearest integer.
 #' @inherit base::ceiling

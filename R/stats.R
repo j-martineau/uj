@@ -16,6 +16,11 @@ stats. <- function() {help("stats.", package = "uj")}
 #' @describeIn stats. Standard deviation of non-\code{NA} atomic elements
 #'   contained in \code{...} as a whole.
 #' @export
+sum0 <- function(...) {sum(av(...), na.rm = T)}
+
+#' @describeIn stats. Standard deviation of non-\code{NA} atomic elements
+#'   contained in \code{...} as a whole.
+#' @export
 sd0 <- function(...) {sd(av(...), na.rm = T)}
 
 #' @describeIn stats. Correlation of complete cases in \code{x.} and/or
