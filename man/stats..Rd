@@ -2,6 +2,7 @@
 % Please edit documentation in R/stats.R
 \name{stats.}
 \alias{stats.}
+\alias{sum0}
 \alias{sd0}
 \alias{cor0}
 \alias{cov0}
@@ -21,6 +22,8 @@
 \title{Compute stats ignoring NA}
 \usage{
 stats.()
+
+sum0(...)
 
 sd0(...)
 
@@ -72,6 +75,9 @@ Compute stats ignoring NA
 }
 \section{Functions}{
 \itemize{
+\item \code{sum0()}: Standard deviation of non-\code{NA} atomic elements
+contained in \code{...} as a whole.
+
 \item \code{sd0()}: Standard deviation of non-\code{NA} atomic elements
 contained in \code{...} as a whole.
 

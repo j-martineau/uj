@@ -2,6 +2,7 @@
 % Please edit documentation in R/bs.R
 \name{bs.}
 \alias{bs.}
+\alias{u}
 \alias{up}
 \alias{dn}
 \alias{spf}
@@ -10,6 +11,8 @@
 \title{Wraps of functions from package \code{base}.}
 \usage{
 bs.()
+
+u(x)
 
 up(x)
 
@@ -23,7 +26,7 @@ levs(x)
 }
 \arguments{
 \item{x}{A numeric object (\code{up} and \code{down}), a character object
-(\code{spf}), or an unordered or ordered factor object (\code{levs}).}
+(\code{spf}), an unordered or ordered factor object (\code{levs}), or any object \code{u}}
 
 \item{fmt}{a character vector of format strings, each of up to 8192 bytes.}
 
@@ -71,6 +74,10 @@ These are generic functions: methods can be defined for them
 }
 \section{Functions}{
 \itemize{
+\item \code{u()}: Thin wrapper for \code{\link[base]{unique}}. Differs from
+\code{\link{uv}} in that \code{uv} takes an arbitrary number of parameters
+and \link[a]{atomizes} them before getting unique atomic values.
+
 \item \code{up()}: Round up to nearest integer.
 
 \item \code{dn()}: Round down to nearest integer.
