@@ -75,7 +75,8 @@ property definition to the console.}
 }
 \value{
 \code{ppp}, \code{ppp_all}, \code{ppp_vals}, \code{pop_funs},
-\code{ppp_from_combo}, \code{combos_from_ppp}, return a character vector.
+\code{ppp_from_combo}, and \code{combos_from_ppp}, return a character
+vector.
 \cr\cr
 \code{ppp_concise} and \code{alt_ppp_concise} return a character scalar.
 \cr\cr

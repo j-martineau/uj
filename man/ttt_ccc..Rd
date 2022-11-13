@@ -49,37 +49,37 @@ ttt_ccc.()
 
 ttt_ccc_vals()
 
-atm_arr(x, xxx = NULL)
+atm_arr(x, mmm = NULL)
 
-atm_gen(x, xxx = NULL)
+atm_gen(x, mmm = NULL)
 
-atm_mat(x, xxx = NULL)
+atm_mat(x, mmm = NULL)
 
-atm_mvc(x, xxx = NULL)
+atm_mvc(x, mmm = NULL)
 
-atm_scl(x, xxx = NULL)
+atm_scl(x, mmm = NULL)
 
-atm_dtf(x, xxx = NULL)
+atm_dtf(x, mmm = NULL)
 
-atm_vec(x, xxx = NULL)
+atm_vec(x, mmm = NULL)
 
-atm_vls(x, xxx = NULL)
+atm_vls(x, mmm = NULL)
 
-pop_arr(x, xxx = NULL)
+pop_arr(x, mmm = NULL)
 
-pop_gen(x, xxx = NULL)
+pop_gen(x, mmm = NULL)
 
-pop_mat(x, xxx = NULL)
+pop_mat(x, mmm = NULL)
 
-pop_mvc(x, xxx = NULL)
+pop_mvc(x, mmm = NULL)
 
-pop_scl(x, xxx = NULL)
+pop_scl(x, mmm = NULL)
 
-pop_dtf(x, xxx = NULL)
+pop_dtf(x, mmm = NULL)
 
-pop_vec(x, xxx = NULL)
+pop_vec(x, mmm = NULL)
 
-pop_vls(x, xxx = NULL)
+pop_vls(x, mmm = NULL)
 
 cmp_arr(x)
 
@@ -132,7 +132,7 @@ rcr_vls(x)
 \arguments{
 \item{x}{An object.}
 
-\item{xxx}{Optional \link[cmp_chr_scl]{Complete character scalar} naming an
+\item{mmm}{Optional \link[cmp_chr_scl]{Complete character scalar} naming an
 extended mode from \code{\link{mmm_vals}()}.}
 }
 \value{
@@ -158,7 +158,8 @@ type plus extended class properties.
 
 \item \code{atm_scl()}: Is \code{x} an \link[iatm]{atomic} \link[iscl]{scalar}?
 
-\item \code{atm_dtf()}: Is \code{x} an \link[iatm]{atomic} \link[idtf]{dtf}?
+\item \code{atm_dtf()}: Is \code{x} an \link[iatm]{atomic}
+\link[idtf]{data.frame}?
 
 \item \code{atm_vec()}: Is \code{x} an \link[iatm]{atomic} \link[ivec]{vec}?
 
@@ -178,7 +179,8 @@ type plus extended class properties.
 \item \code{pop_scl()}: Is \code{x} a \link[ipop]{populated}
 \link[iscl]{scalar}?
 
-\item \code{pop_dtf()}: Is \code{x} a \link[ipop]{populated} \link[idtf]{dtf}?
+\item \code{pop_dtf()}: Is \code{x} a \link[ipop]{populated}
+\link[idtf]{data.frame}?
 
 \item \code{pop_vec()}: Is \code{x} a \link[ipop]{populated} \link[ivec]{vec}?
 
@@ -196,7 +198,8 @@ type plus extended class properties.
 
 \item \code{cmp_scl()}: Is \code{x} a \link[icmp]{complete} \link[iscl]{scalar}?
 
-\item \code{cmp_dtf()}: Is \code{x} a \link[icmp]{complete} \link[idtf]{dtf}?
+\item \code{cmp_dtf()}: Is \code{x} a \link[icmp]{complete}
+\link[idtf]{data.frame}?
 
 \item \code{cmp_vec()}: Is \code{x} a \link[icmp]{complete} \link[ivec]{vec}?
 
@@ -212,7 +215,8 @@ type plus extended class properties.
 
 \item \code{emp_scl()}: Is \code{x} an \link[iemp]{empty} \link[iscl]{scalar}?
 
-\item \code{emp_dtf()}: Is \code{x} an \link[iemp]{empty} \link[idtf]{dtf}?
+\item \code{emp_dtf()}: Is \code{x} an \link[iemp]{empty}
+\link[idtf]{data.frame}?
 
 \item \code{emp_vec()}: Is \code{x} an \link[iemp]{empty} \link[ivec]{vec}?
 
@@ -232,7 +236,8 @@ type plus extended class properties.
 \item \code{rcr_scl()}: Is \code{x} a \link[ircr]{recursive}
 \link[iscl]{scalar}?
 
-\item \code{rcr_dtf()}: Is \code{x} a \link[ircr]{recursive} \link[idtf]{dtf}?
+\item \code{rcr_dtf()}: Is \code{x} a \link[ircr]{recursive}
+\link[idtf]{data.frame}?
 
 \item \code{rcr_vec()}: Is \code{x} a \link[ircr]{recursive} \link[ivec]{vec}?
 
