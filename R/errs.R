@@ -212,7 +212,7 @@ bank_pop <- function(...) {
 #'   value of \code{TRUE}.
 #' @export
 bank_funs <- function(funs, ...) {
-  if (!uj::cmp_chr_vec(funs)) {funs <- av(strsplit(funs, "|", TRUE))}
+  if (uj::cmp_chr_vec(funs)) {funs <- av(strsplit(funs, "|", TRUE))}
   else {stop(" • [funs] must be a complete character vec (?cmp_chr_vec).")}
   labs <- ...names()
   nd <- ...length()

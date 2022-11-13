@@ -15,7 +15,7 @@ ttt_ccc. <- function() {help("ttt_ccc.", package = "uj")}
 #' @export
 ttt_ccc_vals <- function() {
   join <- function(x) {paste0(av(x), collapse = "_")}
-  sort(av(apply(expand.grid(ttt = ttt_vals(), ccc = ccc_vals()), 2, join)))
+  sort(av(apply(expand.grid(ttt = ttt_vals(), ccc = ccc_vals()), 1, join)))
 }
 
 # atm_ccc ####

@@ -14,7 +14,7 @@ cmp_mmm_ccc. <- function() {help("cmp_mmm_ccc.", package = "uj")}
 #' @export
 cmp_mmm_ccc_vals <- function() {
   join <- function(x) {paste0(av(x), collapse = "_")}
-  out <- av(apply(expand.grid(ttt = ttt_vals(), ccc = ccc_vals()), 2, join))
+  out <- av(apply(expand.grid(ttt = uj::mmm_vals(), ccc = uj::ccc_vals()), 1, join))
   paste0("cmp_", out)
 }
 

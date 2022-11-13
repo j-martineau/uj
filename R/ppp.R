@@ -268,12 +268,11 @@ nas_or <- function(x, ppp, ...) {f0(inas(x), T, ippp(x., ppp, ...))}
 #' @describeIn ppp. List all valid property function names.
 #' @export
 ppp_funs <- function(as.dtf = F) {
-  if (!isTF(as.dtf)) {stop("\n • [as.dtf] must be TRUE or FALSE.")}
-  x <- c(paste0("x", ppp_vals()), cmp_mmm_vals(), cmp_mmm_ccc_vals(),
-         cmp_ccc_vals() , mmm_ccc_vals(), ttt_ccc_vals() , ttt_mmm_vals())
+  if (!uj::isTF(as.dtf)) {stop("\n • [as.dtf] must be TRUE or FALSE.")}
+  x <- c(paste0("i", uj::ppp_vals()), uj::cmp_mmm_vals(), uj::cmp_mmm_ccc_vals(), uj::cmp_ccc_vals(), uj::mmm_ccc_vals(), uj::ttt_ccc_vals(), uj::ttt_mmm_vals())
   x <- x[order(paste0(names(x), "_", av(x)))]
   if (!as.dtf) {return(x)}
-  data.frame::data.frame(family = names(x), property = av(x))
+  tibble::tibble(family = names(x), property = av(x))
 }
 
 #' @describeIn ppp. Get a dtf with 4 columns: property family (Family),

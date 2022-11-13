@@ -13,7 +13,7 @@ ttt_mmm. <- function() {help("ttt_mmm.", package = "uj")}
 #' @export
 ttt_mmm_vals <- function() {
   join <- function(x) {paste0(av(x), collapse = "_")}
-  sort(av(apply(expand.grid(ttt = ttt_vals(), mmm = mmm_vals()), 2, join)))
+  sort(av(apply(expand.grid(ttt = ttt_vals(), mmm = mmm_vals()), 1, join)))
 }
 
 #' @describeIn ttt_mmm. Is \code{x} a \link[ipop]{populated} \link[iatm]{atomic}
