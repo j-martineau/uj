@@ -41,7 +41,7 @@ ok <- function(x) {
       if (all(apply(x, 2, is.atomic))) {
         return(apply(apply(x, 2, is.na), not))
     }}
-    if (any_vls(x)) {if (all(lengths(x) > 0)) {
+    if (ivls(x)) {if (all(lengths(x) > 0)) {
       if (all(sapply(x, is.atomic(x)))) {
         return(all(lapply(lapply(x, is.na), not)))
   }}}}
@@ -63,7 +63,7 @@ sub_na <- function(x, s) {
       if (all(apply(x, 2, compatible, s))) {x[is.na(x)] <- s; return(x)}
       else {stop("\n • [s] is incompatible (?incompatible) with one or more columns of [x].")}
     } else {stop("\n • When [x] is a dtf (?is_dtf), its columns must be atomic.")}
-  } else if (any_vls(x)) {
+  } else if (ivls(x)) {
     if (all(sapply(x, is.atomic))) {
       if (all(sapply(x, compatible, s))) {return(lapply(x, sub_na, s))}
       else {stop("\n • [s] is incompatible (?incompatible) with one or more elements of [x].")}
@@ -98,6 +98,6 @@ rm_na <- function(x) {
     x <- av(x)
     return(x[!is.na(x)])
   }}
-  else if (any_vls(x)) {if (all(sapply(x, is.atomic))) {return(lapply(x, rm_na))}}
+  else if (ivls(x)) {if (all(sapply(x, is.atomic))) {return(lapply(x, rm_na))}}
   stop("\n • [x] must be populated (?ipop) and either an atomic object, an atomic vlist (?ivls), or an atomic dtf (?idtf).")
 }

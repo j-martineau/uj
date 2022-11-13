@@ -13,13 +13,11 @@ fsub. <- function() {help("fsub.", package = "uj")}
 #'   (possibly recycled) strings in \code{subs}.
 #' @export
 fsub <- function(x, pats, subs) {
-  bank_funs(cmp_chr_gen, x = x)
-  bank_funs(cmp_chr_vec, pats = pats, subs = subs)
-  err_check()
-  if (!recyclable_n(c(length(pats), length(subs)))) {
-    bank_err("[pats] and [subs] are not recyclable.")
-    err_check()
-  }
+  err <- f0(cmp_chr_gen(x), NULL, " • [x] must be a complete character generic (?cmp_chr_gen).")
+  if (!cmp_chr_vec(pats)) {err <- c(err, " • [pats] must be a complete character vec (?cmp_chr_vec).")}
+  if (!cmp_chr_vec(subs)) {err <- c(err, " • [subs] must be a complete character vec (?cmp_chr_vec).")}
+  if (!recyclable_n(c(length(pats), length(subs)))) {err <- c(err, "[pats] and [subs] are not recyclable.")}
+  if (idef(err)) {stop(err)}
   recycle(pats = pats, subs = subs)
   for (i in 1:length(pats)) {x <- av(gsub(pats[i], subs[i], x, fixed = T))}
   x

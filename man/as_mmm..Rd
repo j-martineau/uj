@@ -18,13 +18,13 @@ as_clr(x, na = F)
 
 as_fun(x)
 
-as_chr()
+as_chr(x, ...)
 
-as_int()
+as_int(x, ...)
 
-as_num()
+as_num(x, ...)
 
-as_lgl()
+as_lgl(x, ...)
 
 as_ord(x, levs)
 
@@ -73,15 +73,13 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc.}()},
-\code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},
 \code{\link{mmm_ccc.}()},
+\code{\link{ppp.}()},
 \code{\link{sss.}()},
 \code{\link{ttt.}()},
 \code{\link{ttt_ccc.}()},
-\code{\link{ttt_mmm.}()},
-\code{\link{xxx.}()}
+\code{\link{ttt_mmm.}()}
 }
 \concept{props}

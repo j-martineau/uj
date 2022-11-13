@@ -22,7 +22,7 @@ ipat <- function(x, pat) {
   if (!vx) {err <- c(err, "\n • [x] must be a complete character scalar/vec (?cmp_chr_scl, ?cmp_chr_vec).")}
   if (!vp) {err <- c(err, "\n • [pat] must be a complete character scalar (?cmp_chr_scl).")}
   if (idef(err)) {stop(err)}
-  grepl(pat, x, fixed = T)                                                       # logically index each atomic element of [x] containing pat
+  grepl(pat, x, fixed = T)
 }
 
 #' @describeIn ipat. Numerically indexes character vector elements containing
@@ -35,7 +35,7 @@ wpat <- function(x, pat) {
   if (!vx) {err <- c(err, "\n • [x] must be a complete character scalar/vec (?cmp_chr_scl, ?cmp_chr_vec).")}
   if (!vp) {err <- c(err, "\n • [pat] must be a complete character scalar (?cmp_chr_scl).")}
   if (idef(err)) {stop(err)}
-  grep(pat, x, fixed = T)                                                        # numerically index each atomic element of [x] containing pat
+  grep(pat, x, fixed = T)
 }
 
 #' @describeIn ipat. Counts the number of times a pattern appears in each
@@ -48,7 +48,7 @@ npat <- function(x, pat) {
   if (!vx) {err <- c(err, "\n • [x] must be a complete character scalar/vec (?cmp_chr_scl, ?cmp_chr_vec).")}
   if (!vp) {err <- c(err, "\n • [pat] must be a complete character scalar (?cmp_chr_scl).")}
   if (idef(err)) {stop(err)}
-  lengths(gregexpr(pat, x, fixed = T))                                           # count the number of times each atomic element of [x] containing pat
+  lengths(gregexpr(pat, x, fixed = T))
 }
 
 #' @describeIn ipat. Identifies the position of \emph{the first} character of
@@ -61,8 +61,8 @@ ppat <- function(x, pat) {
   if (!vx) {err <- c(err, "\n • [x] must be a complete character scalar/vec (?cmp_chr_scl, ?cmp_chr_vec).")}
   if (!vp) {err <- c(err, "\n • [pat] must be a complete character scalar (?cmp_chr_scl).")}
   if (idef(err)) {stop(err)}
-  out <- regexpr(pat, x, fixed = T)                                              # get the character position of the start of [pat] in each element of [x]
-  out[out == -1] <- NA                                                           # replace -1 with NA to represent no match
+  out <- regexpr(pat, x, fixed = T)
+  out[out == -1] <- NA
   if (all(is.na(out))) {out <- NA}
   return(out)
 }
@@ -77,7 +77,7 @@ ppats <- function(x, pat) {
   if (!vx) {err <- c(err, "\n • [x] must be a complete character scalar/vec (?cmp_chr_scl, ?cmp_chr_vec).")}
   if (!vp) {err <- c(err, "\n • [pat] must be a complete character scalar (?cmp_chr_scl).")}
   if (idef(err)) {stop(err)}
-  out <- gregexpr(pat, x, fixed = T)                                             # get the character position of every instance of [pat] in each element of [x]
-  out[out == -1] <- NA                                                           # replace -1 with NA to represent no match
+  out <- gregexpr(pat, x, fixed = T)
+  out[out == -1] <- NA
   out
 }

@@ -10,8 +10,8 @@ xpr. <- function() {help("xpr.", package = "uj")}
 
 #' @describeIn xpr. Build an expression containing bolded text.
 #' @export
-xbold <- function(...) {daw00("expression(bold(", ..., "))")}
+xbold <- function(...) {paste0(av("expression(bold(", ..., "))"), collapse = "")}
 
 #' @describeIn xpr. Build an expression and execute the resulting command.
 #' @export
-xrun <- function(...) {run(daw("expression(", ..., ")"))}
+xrun <- function(...) {run(paste0(av("expression(", ..., ")"), collapse = ""))}

@@ -56,8 +56,9 @@ f1 <- function(test, yes, no, na = no, err = no) {
   err  <- !isLG(test); err.err <- isID(err, 'err')
   test <- failsafe(test)
   f0(isTRUE(test) , yes, f0(isFALSE(test) , no ,
-                         f0(nas & !err.na, na , f0(err & !err.err, err,
-                                                f0(nas, stop("\n • [test] must be atomic, scalar, and TRUE, FALSE, or NA."), stop("\n • [test] must be atomic, scalar and TRUE or FALSE."  ))))))
+  f0(nas & !err.na, na , f0(err & !err.err, err,
+  f0(nas, stop("\n • [test] must be atomic, scalar, and TRUE, FALSE, or NA."),
+          stop("\n • [test] must be atomic, scalar and TRUE or FALSE."  ))))))
 }
 
 #' @describeIn fork. Evaluates \code{test} (which must be a logical scalar or
@@ -86,7 +87,8 @@ fx <- function(test, yes, no, na = 'err') {
            f0(vn, NULL, "\n • [no] must be of length 1 or a vector of the same length as [test]."),
            f0(va, NULL, "\n • [na] must be an atomic scalar."),
            f0(vx, NULL, "\n • [na = 'err'] but [test] contains NA values."),
-           f0(vc, NULL, f0(ia, "\n • [yes], [no], and [na] must be of compatible (?compatible) modes.", "\n • [yes] and [no] must be of compatible (?compatible) modes.")))
+           f0(vc, NULL, f0(ia, "\n • [yes], [no], and [na] must be of compatible (?compatible) modes.",
+                               "\n • [yes] and [no] must be of compatible (?compatible) modes.")))
   if (idef(err)) {stop(err)}
   if (ny == 1) {yes <- rep.int(yes, nt)}
   if (nn == 1) {no  <- rep.int(no , nt)}

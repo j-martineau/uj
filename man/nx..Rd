@@ -150,10 +150,10 @@ vector before processing. If \code{a} is \code{FALSE}, each argument in
 
 \item{...}{One or more arguments to be examined for counts.}
 
-\item{vals}{Optional \link[is_vec]{atomic vec} indicating specific values to
-be counted.}
+\item{vals}{Optional \link[ivec]{atomic vec} indicating specific values to be
+counted.}
 
-\item{lt, le, .ge, gt}{Optional \link[cmp_scl]{complete atomic scalars}
+\item{lt, le, ge, gt}{Optional \link[cmp_srt_scl]{complete sortable scalars}
 indicating specific values elements of arguments in \code{...} must be less
 than, less than or equal to, greater than or equal to, or greater than,
 respectively, to be counted.}

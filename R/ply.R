@@ -77,15 +77,12 @@ ply <- function(x, fun, dim, ..., proc. = NULL) {
   if (!vdx) {errs <- c(errs, "\n • [dim] contains a value larger than the number of defined dimensions of [x].")}
   if (!vna) {errs <- c(errs, "\n • When supplied, [proc.$na] must be TRUE, FALSE, NA, or 'err'." )}
   if (!vagg) {errs <- c(errs, "\n • When supplied, [proc.$agg] must be 'nor', 'any', 'all', 'one', or 'two'.")}
-  if (!varg) {errs <- c(errs, "\n • When supplied, [proc.$arg] must be a valid property specification as validated by is_valid_props().")}
-  if (!vout) {errs <- c(errs, "\n • When supplied, [proc.$out] must be a valid property specification as validated by is_valid_props().")}
+  if (!varg) {errs <- c(errs, "\n • When supplied, [proc.$arg] must be a valid property specification as validated by is_valid_xxx().")}
+  if (!vout) {errs <- c(errs, "\n • When supplied, [proc.$out] must be a valid property specification as validated by is_valid_xxx().")}
   if (idef(errs)) {stop(errs)}
   if (a1) {x <- av(x)}
   if (idef(arg)) {if (!ixxx(x, arg)) {stop("\n • [x] does not match [proc.$arg = '", arg, "'].")}}
-  if (isEQ(dim, 0)) {
-    nd <- length(dim(x))
-    x <- f0(iarr(x) | tibble::is_tibble(x), apply(x, 1:nd, fun, ...), f0(inll(x) | ivec(x), sapply(x, fun, ...), f0(any_vls(x), lapply(x, fun, ...), x)))
-  }
+  if (isEQ(dim, 0)) {x <- f0(iarr(x) | is.data.frame(x), apply(x, 1:length(dim(x)), fun, ...), f0(inll(x) | ivec(x), sapply(x, fun, ...), f0(any_vls(x), lapply(x, fun, ...), x)))}
   else {x <- apply(x, dim, fun, ...)}
   if (s) {x <- simplify2array(x)}
   if (a2) {x <- av(x)}

@@ -18,14 +18,10 @@ cmp_ccc. <- function() {help("cmp_ccc.", package = "uj")}
 #' @describeIn cmp_ccc. Get a character vector of all possible completeness plus
 #'   atomic extended class properties.
 #' @export
-cmp_ccc_vals <- function() {
-  x <- c('cmp_arr', 'cmp_gen', 'cmp_tab', 'cmp_vls', 'cmp_vtp', 'cmp_mat', 'cmp_mvc', 'cmp_scl', 'cmp_vec')
-  names(x) <- rep.int("ccc", length(x))
-  x
-}
+cmp_ccc_vals <- function() {paste0("cmp_", ccc_vals())}
 
 #' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[iarr]{atomic
-#'   array}?
+#'   array+}?
 #' @export
 cmp_arr <- function(x) {atm_arr(x) & !any(is.na(av(x)))}
 
@@ -35,7 +31,7 @@ cmp_arr <- function(x) {atm_arr(x) & !any(is.na(av(x)))}
 cmp_gen <- function(x) {atm_gen(x) & !any(is.na(av(x)))}
 
 #' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[idtf]{atomic
-#'   dtf}?
+#'   data.frame}?
 #' @export
 cmp_dtf <- function(x) {atm_dtf(x) & !any(is.na(av(x)))}
 
@@ -43,11 +39,6 @@ cmp_dtf <- function(x) {atm_dtf(x) & !any(is.na(av(x)))}
 #'   vlist}?
 #' @export
 cmp_vls <- function(x) {atm_vls(x) & !any(is.na(av(x)))}
-
-#' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[ivtp]{atomic
-#'   vtype}?
-#' @export
-cmp_vtp <- function(x) {atm_vtp(x) & !any(is.na(av(x)))}
 
 #' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[imat]{atomic
 #'   matrix}?
@@ -65,7 +56,6 @@ cmp_mvc <- function(x) {atm_mvc(x) & !any(is.na(av(x)))}
 cmp_scl <- function(x) {atm_scl(x) & !any(is.na(av(x)))}
 
 #' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[ivec]{atomic
-#'   vec}?
+#'   vector+}?
 #' @export
 cmp_vec <- function(x) {atm_vec(x) & !any(is.na(av(x)))}
-

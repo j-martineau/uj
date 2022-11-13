@@ -14,7 +14,7 @@
 #'   limited functionality. The \code{...} argument of is replaced by a
 #'   character vector naming grouping variables in the \code{keys} argument. The
 #'   arguments \code{.add} and \code{.drop} are not used by this wrap.
-#' @return A \code{\link[is_dtf]{dtf}}.
+#' @return A \code{\link[is_dtf]{dtf}} / \code{\link[tibble]{tibble}}.
 #' @export
 dp. <- function() {help("dp.", package = "uj")}
 
@@ -38,7 +38,7 @@ dpall <- function(x) {dplyr::all_of(x)}
 #'  naming grouping variables (\code{keys}).
 #' @param keys A character vector naming grouping variables in \code{x}.
 #' @export
-dpgrp <- function(x, keys) {run("dplyr::group_by(x, ", dw(keys, w. = v(comma)), ")")}
+dpgrp <- function(x, keys) {run("dplyr::group_by(x, ", paste0(keys, collapse = ", "), ")")}
 
 #' @describeIn dp. Thin wrap of \code{\link[dplyr]{left_join}}.
 #' @inherit dplyr::left_join

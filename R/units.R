@@ -11,10 +11,11 @@ u2u. <- function() {help("u2u.", package = "uj")}
 #' @describeIn u2u. Convert units specifying both original and new units.
 #' @export
 u2u <- function(x, old, new) {
-  bank_funs(cmp_num, x = x)
-  bank_vals(old = old, new = new, "cm", "in", "mm", "pt")
-  err_check()
-  x * c(cc = 1, ci = 0.393701, cm = 10, cp = 28.3465, ic = 2.54, ii = 1, im = 25.4, ip = 72, mc = 0.1, mi = 0.0393701, mm = 1, mp = 2.83465, pc = 0.0352778, pi = 0.0138889, pm = 0.352778, pp = 1)[[da0(mid(old, 1, 1), mid(new, 1, 1))]]
+  if (cmp_num(x)) {err <- NULL} else {err <- " • [x] must be a complete numeric object (?cmp_num)."}
+  if (!cmp_chr_scl(old) & !isIN(old, "cm", "in", "mm", "pt")) {err <- c(err, " • [old] must be a character scalar in c('cm', 'in', 'mm', 'pt')")}
+  if (!cmp_chr_scl(new) & !isIN(new, "cm", "in", "mm", "pt")) {err <- c(err, " • [new] must be a character scalar in c('cm', 'in', 'mm', 'pt')")}
+  if (idef(err)) {stop(err)}
+  x * c(cc = 1, ci = 0.393701, cm = 10, cp = 28.3465, ic = 2.54, ii = 1, im = 25.4, ip = 72, mc = 0.1, mi = 0.0393701, mm = 1, mp = 2.83465, pc = 0.0352778, pi = 0.0138889, pm = 0.352778, pp = 1)[[paste0(substr(old, 1, 1), substr(new, 1, 1))]]
 }
 
 #' @describeIn u2u. Convert to centimeter units.

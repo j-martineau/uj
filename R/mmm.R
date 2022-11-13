@@ -2,64 +2,72 @@
 #' @family props
 #' @title Extended mode properties
 #' @description Extended modes are defined for non-empty atomic objects. For all
-#'  other objects, the extended mode is \code{NULL}. These are not formally
-#'  defined classes, but are evaluated dynamically based on the current
-#'  characteristics of an object.
-#'  \cr\cr
-#'  Atomic objects that contain only \code{NA} values are of every extended
-#'  mode, as they can be coerced to any mode without introducing new \code{NA}
-#'  values. The following tables gives extended mode values, names, and
-#'  requirements
-#'  \cr\cr
-#'  \strong{Character Extended Modes}\tabular{lll}{
-#'  EXTENDED    \tab EXTENDED     \tab QUALIFYING                            \cr
-#'  MODE VALUE   \tab MODE NAME   \tab CHARACTERISTICS                       \cr
-#'  \code{'chr'}\tab Character    \tab Character                             \cr
-#'  \code{'clr'}\tab Color        \tab Hex color value or color name         \cr
-#'  \code{'ch1'}\tab Onechar      \tab Single characters                     \cr
-#'  \code{'str'}\tab String       \tab No blank ("") values                    }
-#'  \strong{Categorical Extended Modes}\tabular{lll}{
-#'  EXTENDED     \tab EXTENDED    \tab QUALIFYING                            \cr
-#'  MODE VALUE   \tab MODE NAME   \tab CHARACTERISTICS                       \cr
-#'  \code{'fac'} \tab Factor      \tab Factor                                \cr
-#'  \code{'lgl'} \tab Logical     \tab Logical                               \cr
-#'  \code{'ord'} \tab Ordered     \tab Ordered factor                        \cr
-#'  \code{'uno'} \tab Unordered   \tab Unordered factor                        }
-#'  \strong{Combination Extended Modes}\tabular{lll}{
-#'  EXTENDED     \tab EXTENDED    \tab QUALIFYING                            \cr
-#'  MODE VALUE   \tab MODE NAME   \tab CHARACTERISTICS                       \cr
-#'  \code{'ind'} \tab Indexer     \tab Logical or positive whole number      \cr
-#'  \code{'srt'} \tab Sortable    \tab Character, logical, numeric, or ordered
-#'                                     factor                                \cr
-#'  \code{'nst'}\tab non-sortable \tab Atomic, but not sortable                }
-#'  \strong{Numeric Extended Modes}\tabular{lll}{
-#'  EXTENDED     \tab EXTENDED          \tab QUALIFYING                      \cr
-#'  MODE VALUE   \tab MODE NAME         \tab CHARACTERISTICS                 \cr
-#'  \code{'num'} \tab Numeric           \tab Numeric                         \cr
-#'  \code{'frc'} \tab Fractional        \tab At least one non-\code{NA} value
-#'                                           that is fractional (i.e., not a
-#'                                           whole number)                   \cr
-#'  \code{'pct'} \tab Percent           \tab Percentage-valued numeric (in
-#'                                           \code{[0, 100]})                \cr
-#'  \code{'ppn'} \tab Proportion        \tab Proportion-valued numeric (in
-#'                                           \code{[0, 1]})                  \cr
-#'  \code{'pos'} \tab Positive          \tab Positive numeric                \cr
-#'  \code{'nng'} \tab Non-negative      \tab Non-negative numeric            \cr
-#'  \code{'nps'} \tab Non-positive      \tab Non-positive numeric            \cr
-#'  \code{'neg'} \tab Negative          \tab Negative numeric                \cr
-#'  \code{'whl'} \tab Whole             \tab Whole number                    \cr
-#'  \code{'evn'} \tab Even              \tab Even (whole) number             \cr
-#'  \code{'odd'} \tab Odd               \tab Odd (whole) number              \cr
-#'  \code{'psw'} \tab Positive whole    \tab Positive whole-number           \cr
-#'  \code{'nnw'} \tab Non-negative whole\tab Non-negative whole-number       \cr
-#'  \code{'npw'} \tab Non-positive whole\tab Non-positive whole-number       \cr
-#'  \code{'ngw'} \tab Negative whole    \tab Negative whole-number             }
-#'  \strong{Additional Arguments in \code{...}}
-#'  \cr Submitting additional arguments to \code{is_mmm} via \code{...} allows
-#'  for checking not just extended mode but whether length, number of rows,
-#'  number of columns, and element values meet flexible criteria.
-#' @param x An object.
-#' @param xxx \link[cmp_chr_scl]{Complete character scalar} containing one or
+#' other objects, the extended mode is \code{NULL}. These are not formally
+#' defined classes, but are evaluated dynamically based on the current
+#' characteristics of an object.
+#' \cr\cr
+#' Atomic objects that contain only \code{NA} values are of every extended
+#' mode, as they can be coerced to any mode without introducing new \code{NA}
+#' values. The following tables gives extended mode values, names, and
+#' requirements
+#' \cr\cr
+#' \strong{Character Extended Modes}\tabular{lll}{
+#' EXTENDED     \tab EXTENDED    \tab QUALIFYING                             \cr
+#' MODE VALUE   \tab MODE NAME   \tab CHARACTERISTICS                        \cr
+#' \code{'chr'} \tab Character   \tab Character.                             \cr
+#' \code{'clr'} \tab Color       \tab Hex color value or color name.         \cr
+#' \code{'ch1'} \tab Onechar     \tab Single character values.               \cr
+#' \code{'str'} \tab String      \tab No blank ("") values.                    }
+#' \strong{Categorical Extended Modes}\tabular{lll}{
+#' EXTENDED     \tab EXTENDED    \tab QUALIFYING                             \cr
+#' MODE VALUE   \tab MODE NAME   \tab CHARACTERISTICS                        \cr
+#' \code{'fac'} \tab Factor      \tab Factor.                                \cr
+#' \code{'lgl'} \tab Logical     \tab Logical.                               \cr
+#' \code{'ord'} \tab Ordered     \tab Ordered factor.                        \cr
+#' \code{'uno'} \tab Unordered   \tab Unordered factor.                        }
+#' \strong{Combination Extended Modes}\tabular{lll}{
+#' EXTENDED     \tab EXTENDED    \tab QUALIFYING                             \cr
+#' MODE VALUE   \tab MODE NAME   \tab CHARACTERISTICS                        \cr
+#' \code{'ind'} \tab Indexer     \tab Logical or positive whole number.      \cr
+#' \code{'srt'} \tab Sortable    \tab Character, logical, numeric, or ordered
+#'                                    factor.                                \cr
+#' \code{'nst'} \tab non-sortable \tab Atomic, but not sortable.               }
+#' \strong{Numeric Extended Modes}\tabular{lll}{
+#' EXTENDED     \tab EXTENDED          \tab QUALIFYING                       \cr
+#' MODE VALUE   \tab MODE NAME         \tab CHARACTERISTICS                  \cr
+#' \code{'num'} \tab Numeric           \tab Numeric.                         \cr
+#' \code{'frc'} \tab Fractional        \tab At least one non-\code{NA} value
+#'                                          that is fractional (i.e., not a
+#'                                          whole number).                   \cr
+#' \code{'pct'} \tab Percent           \tab Percentage-valued numeric (in
+#'                                          \code{[0, 100]}).                \cr
+#' \code{'ppn'} \tab Proportion        \tab Proportion-valued numeric (in
+#'                                          \code{[0, 1]}).                  \cr
+#' \code{'pos'} \tab Positive          \tab Positive numeric.                \cr
+#' \code{'nng'} \tab Non-negative      \tab Non-negative numeric.            \cr
+#' \code{'nps'} \tab Non-positive      \tab Non-positive numeric.            \cr
+#' \code{'neg'} \tab Negative          \tab Negative numeric.                \cr
+#' \code{'whl'} \tab Whole             \tab Whole number.                    \cr
+#' \code{'evn'} \tab Even              \tab Even (whole) number.             \cr
+#' \code{'odd'} \tab Odd               \tab Odd (whole) number.              \cr
+#' \code{'psw'} \tab Positive whole    \tab Positive whole-number.           \cr
+#' \code{'nnw'} \tab Non-negative whole\tab Non-negative whole-number.       \cr
+#' \code{'npw'} \tab Non-positive whole\tab Non-positive whole-number.       \cr
+#' \code{'ngw'} \tab Negative whole    \tab Negative whole-number.             }
+#' Functions related to extended mode are described in the following
+#' table:\tabular{ll}{
+#' FUNCTION          \tab WHAT THE                                           \cr
+#' FORMAT            \tab FUNCTION DOES                                      \cr
+#' \code{i•••}       \tab Evaluates whether an object is of the extended mode
+#'                        represented by \code{•••}.                         \cr
+#' \code{mmm}        \tab Gets a character vector containing all extended modes
+#'                        of an object.                                      \cr
+#' \code{immm}       \tab Evaluates an object for a specific extended mode and
+#'                        any additional properties specified in \code{...}. \cr
+#' \code{mmm_vals}   \tab Gets a character vector of all possible extended mode
+#'                        property values.                                     }
+#' @param x An ℝ object.
+#' @param mmm \link[cmp_chr_scl]{Complete character scalar} containing one or
 #'   more values from \code{mmm_vals()} separated by pipes and/or underscores.
 #'   Combinations of extended modes can be specified by separating them with
 #'   underscores. Separating extended modes or combinations of extended modes
@@ -90,7 +98,7 @@ mmm <- function(x) {
   srt <- chr | lgl | num | ord
   nst <- !nst
   out <- c(f.(chr, "chr"), f.(fac, "fac"), f.(lgl, "lgl"), f.(num, "num"), f.(ord, "ord"), f.(uno, "uno"), f.(srt, "srt"), f.(nst, "nst"))
-  if (chr) {out <- c(out, f.(all(nchar(x) == 1), "ch1"), f.(all(is_clr(x)), "clr"), f.(!any(x == ""), "str"))}
+  if (chr) {out <- c(out, f.(all(nchar(x) == 1), "ch1"), f.(all(iclr(x)), "clr"), f.(!any(x == ""), "str"))}
   if (num) {
     whl <- all(x == round(x))
     neg <- all(x <  0)
@@ -122,7 +130,7 @@ ich1 <- function(x) {if (length(x) == 0 | !is.atomic(x)) {F} else if (all(is.na(
 
 #' @describeIn mmm. Is \code{x} of extended mode color?
 #' @export
-iclr <- function(x) {if (length(x) == 0 | !is.atomic(x)) {F} else if (all(is.na(x))) {T} else {is_clr(x)}}
+iclr <- function(x) {if (length(x) == 0 | !is.atomic(x)) {F} else if (all(is.na(x))) {T} else {iclr(x)}}
 
 #' @describeIn mmm. Is \code{x} of extended mode even-numeric?
 #' @export
@@ -219,21 +227,17 @@ iwhl <- function(x) {if (length(x) == 0 | !is.atomic(x)) {F} else if (all(is.na(
 #' @describeIn mmm. Get a character vector of all possible extended mode
 #'   values.
 #' @export
-mmm_vals <- function() {
-  x <- c('ch1', 'chr', 'clr', 'evn', 'fac', 'frc', 'ind', 'lgl', 'neg', 'ngw', 'nng', 'nnw', 'nps', 'npw', 'nst', 'num', 'odd', 'ord', 'pct', 'pos', 'ppn', 'psw', 'srt', 'str', 'uno', 'whl')
-  names(x) <- rep("mmm", length(x))
-  x
-}
+mmm_vals <- function() {c('ch1', 'chr', 'clr', 'evn', 'fac', 'frc', 'ind', 'lgl', 'neg', 'ngw', 'nng', 'nnw', 'nps', 'npw', 'nst', 'num', 'odd', 'ord', 'pct', 'pos', 'ppn', 'psw', 'srt', 'str', 'uno', 'whl')}
 
 #' @describeIn mmm. Does \code{x} have the extended mode properties in
-#'   \code{xxx}?
+#'   \code{mmm}?
 #' @export
-immm <- function(x, xxx, ...) {
-  if (!cmp_chr_scl(x)) {stop("\n • [xxx] must be a complete character scalar (?cmp_chr_scl).")}
+immm <- function(x, mmm, ...) {
+  if (!cmp_chr_scl(x)) {stop("\n • [mmm] must be a complete character scalar (?cmp_chr_scl).")}
   valid <- mmm_vals()
-  combos <- strsplit(xxx, "|", fixed = T)[[1]]
+  combos <- strsplit(mmm, "|", fixed = T)[[1]]
   new <- strsplit(combos, ".", fixed = T)[[1]]
   valid <- all(new %in% valid)
-  if (!valid) {stop("\n • [xxx] contains a value not in mmm_vals(), after splitting [xxx] on pipes and underscores.")}
-  ixxx(x, xxx, ...)
+  if (!valid) {stop("\n • [mmm] contains a value not in mmm_vals(), after splitting [mmm] on pipes and underscores.")}
+  ippp(x, mmm, ...)
 }

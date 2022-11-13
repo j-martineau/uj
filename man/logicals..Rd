@@ -70,14 +70,14 @@ has(x, y, na = T, agg = NA)
 lacks(x, y, na = T, agg = NA)
 }
 \arguments{
-\item{x}{\link[is_lgl]{Logical object} for all functions other than
+\item{x}{\link[ilgl]{Atomic logical object} for all functions other than
 \code{is_in}, \code{not_in}, \code{has}, and \code{lacks}. Otherwise, an
 atomic object.}
 
 \item{na}{\link[cmp_lgl_scl]{Complete logical scalar} indicating what value
 should replace \code{NA} values.}
 
-\item{y}{\link[is_lgl]{Logical object} for all functions other than
+\item{y}{\link[ilgl]{Atomic logical object} for all functions other than
 \code{is_in}, \code{not_in}, \code{has}, and \code{lacks}. Otherwise, an
 atomic object \link[compatible]{compatible} with \code{x}.}
 
@@ -102,9 +102,10 @@ count the total number of \code{TRUE} values rather than the number of
 negate values in arguments supplied in \code{...} before processing.}
 
 \item{across, within}{\link[cmp_chr_scl]{Complete character scalar} in
-\code{c('', 'none', 'one', 'any', 'some', 'all')} indicating no aggregation}
+\code{c('', 'none', 'one', 'any', 'some', 'all')} indicating no across
+or within argument counting of \code{TRUE} values.}
 
-\item{agg}{\link[cmp_chr_scl]{Completre character scalar} in \code{c('nor',
+\item{agg}{\link[cmp_chr_scl]{Complete character scalar} in \code{c('nor',
   'one', 'any', 'two', 'all')} used to specify, respectively, that 0, 1, any,
 2 or more, and all arguments must be \code{TRUE}.}
 }

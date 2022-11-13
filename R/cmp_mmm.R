@@ -12,12 +12,12 @@ cmp_mmm. <- function() {help("cmp_mmm.", package = "uj")}
 #' @describeIn cmp_mmm. Get a character vector of all possible complete +
 #'   extended mode properties
 #' @export
-cmp_mmm_vals <- function() {x <- paste0("", c("cmp", mmm_vals())); names(x) <- rep.int("cmp_mmm", length(x)); x}
+cmp_mmm_vals <- function() {paste0("", c("cmp", mmm_vals()))}
 
 #' @describeIn cmp_mmm. Is \code{x} a \link[icmp]{complete} \link[iatm]{atomic}
 #'   object?
 #' @export
-cmp_atm <- function(x) {is_atm(x)}
+cmp_atm <- function(x) {icmp(x) & iatm(x)}
 
 #' @describeIn cmp_mmm. Is \code{x} a \link[icmp]{complete} \link[ich1]{onechar}
 #'   object?

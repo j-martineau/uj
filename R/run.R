@@ -24,4 +24,4 @@ run. <- function() {help("run.", package = "uj")}
 #' @describeIn run. Collapses \code{...} into a character scalar and evaluates
 #'   it as code in the calling environment.
 #' @export
-run <- function(...) {eval.parent(parse(text = daw00(...)), n = 1)}
+run <- function(...) {eval.parent(parse(text = paste0(av(...), collapse = "")), n = 1)}

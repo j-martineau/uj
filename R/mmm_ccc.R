@@ -2,13 +2,17 @@
 #' @family props
 #' @title Extended mode plus extended class properties
 #' @description Combinations of \link[mmm]{extended mode} and
-#'   \link[ccc]{extended class}.
+#'   \link[ccc]{extended class}. Note that this set of functions defines
+#'   atomic-mode data.frames (\code{mmm_dtf} functions) and atomic-mode vlists
+#'   (\code{mmm_vls} functions). Atomic data frames are data frames without any
+#'   recursive cells. Atomic vlists are vlists that do not themselves contain
+#'   any elements that are recursive.
 #' @param x An ℝ object.
-#' @return A logical scalar.
+#' @return A \link[ilgl]{logical} scalar.
 #' @export
 mmm_ccc. <- function() {help("mmm_ccc.", package = "uj")}
 
-#' @describeIn mmm_ccc. Get a character vector of all possible extended mode
+#' @describeIn mmm_ccc. Get a \link[ichr]{character} vector of all possible extended mode
 #'   plus extended class properties.
 #' @export
 mmm_ccc_vals <- function() {
@@ -17,1100 +21,834 @@ mmm_ccc_vals <- function() {
   sort(x)
 }
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} array?
 #' @export
-ch1_arr <- function(x) {atm_arr(x, 'ch1')}
+ch1_arr <- function(x) {!iarr(x) & ich1(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} array?
 #' @export
-ch1_gen <- function(x) {atm_gen(x, 'ch1')}
+chr_arr <- function(x) {!iarr(x) & ichr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} array?
 #' @export
-ch1_dtf <- function(x) {atm_dtf(x, 'ch1')}
+clr_arr <- function(x) {!iarr(x) & iclr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even whole-number} array?
 #' @export
-ch1_vls <- function(x) {atm_vls(x, 'ch1')}
+evn_arr <- function(x) {!iarr(x) & ievn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x}  \link[ifac]{factor} array?
 #' @export
-ch1_vtp <- function(x) {atm_vtp(x, 'ch1')}
+fac_arr <- function(x) {!iarr(x) & ifac(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional numeric} array?
 #' @export
-ch1_mat <- function(x) {atm_mat(x, 'ch1')}
+frc_arr <- function(x) {!iarr(x) & ifrc(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} array?
 #' @export
-ch1_mvc <- function(x) {atm_mvc(x, 'ch1')}
+ind_arr <- function(x) {!iarr(x) & iind(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} array?
 #' @export
-ch1_scl <- function(x) {atm_scl(x, 'ch1')}
+lgl_arr <- function(x) {!iarr(x) & ilgl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative numeric} array?
 #' @export
-ch1_vec <- function(x) {atm_vec(x, 'ch1')}
+neg_arr <- function(x) {!iarr(x) & ineg(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number} array?
 #' @export
-chr_arr <- function(x) {atm_arr(x, 'chr')}
+ngw_arr <- function(x) {!iarr(x) & ingw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric} array?
 #' @export
-chr_gen <- function(x) {atm_gen(x, 'chr')}
+nng_arr <- function(x) {!iarr(x) & inng(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} array?
 #' @export
-chr_dtf <- function(x) {atm_dtf(x, 'chr')}
+nnw_arr <- function(x) {!iarr(x) & innw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character}
-#'   \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric} array?
 #' @export
-chr_vls <- function(x) {atm_vls(x, 'chr')}
+nps_arr <- function(x) {!iarr(x) & inps(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} array?
 #' @export
-chr_vtp <- function(x) {atm_vtp(x, 'chr')}
+npw_arr <- function(x) {!iarr(x) & inpw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inst]{non-sortable} array?
 #' @export
-chr_mat <- function(x) {atm_mat(x, 'chr')}
+nst_arr <- function(x) {!iarr(x) & inst(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inum]{numeric} array?
 #' @export
-chr_mvc <- function(x) {atm_mvc(x, 'chr')}
+num_arr <- function(x) {!iarr(x) & inum(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iodd]{odd whole-number} array?
 #' @export
-chr_scl <- function(x) {atm_scl(x, 'chr')}
+odd_arr <- function(x) {!iarr(x) & iodd(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iord]{ordered-factor} array?
 #' @export
-chr_vec <- function(x) {atm_vec(x, 'chr')}
+ord_arr <- function(x) {!iarr(x) & iord(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} array?
 #' @export
-clr_arr <- function(x) {atm_arr(x, 'clr')}
+pct_arr <- function(x) {!iarr(x) & ipct(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipos]{positive numeric} array?
 #' @export
-clr_gen <- function(x) {atm_gen(x, 'clr')}
+pos_arr <- function(x) {!iarr(x) & ipos(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} array?
 #' @export
-clr_dtf <- function(x) {atm_dtf(x, 'clr')}
+ppn_arr <- function(x) {!iarr(x) & ippn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} array?
 #' @export
-clr_vls <- function(x) {atm_vls(x, 'clr')}
+psw_arr <- function(x) {!iarr(x) & ipsw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[isrt]{sortable} array?
 #' @export
-clr_vtp <- function(x) {atm_vtp(x, 'clr')}
+srt_arr <- function(x) {!iarr(x) & isrt(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[istr]{string} array?
 #' @export
-clr_mat <- function(x) {atm_mat(x, 'clr')}
+str_arr <- function(x) {!iarr(x) & istr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iuno]{unordered-factor} array?
 #' @export
-clr_mvc <- function(x) {atm_mvc(x, 'clr')}
+uno_arr <- function(x) {!iarr(x) & iuno(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iwhl]{whole-number} array?
 #' @export
-clr_scl <- function(x) {atm_scl(x, 'clr')}
+whl_arr <- function(x) {!iarr(x) & iwhl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} data.frame?
 #' @export
-clr_vec <- function(x) {atm_vec(x, 'clr')}
+ch1_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ich1(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even-valued whole-number}
-#'   \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} data.frame?
 #' @export
-evn_arr <- function(x) {atm_arr(x, 'evn')}
+chr_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ichr(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even-valued whole-number}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} data.frame?
 #' @export
-evn_gen <- function(x) {atm_gen(x, 'evn')}
+clr_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, iclr(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even-valued whole-number}
-#'   \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even whole-number} data.frame?
 #' @export
-evn_dtf <- function(x) {atm_dtf(x, 'evn')}
+evn_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ievn(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even-valued whole-number}
-#'   \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x}  \link[ifac]{factor} data.frame?
 #' @export
-evn_vls <- function(x) {atm_vls(x, 'evn')}
+fac_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ifac(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even-valued whole-number}
-#'   \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional numeric} data.frame?
 #' @export
-evn_vtp <- function(x) {atm_vtp(x, 'evn')}
+frc_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ifrc(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even-valued whole-number}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} data.frame?
 #' @export
-evn_mat <- function(x) {atm_mat(x, 'evn')}
+ind_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, iind(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even-valued whole-number}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} data.frame?
 #' @export
-evn_mvc <- function(x) {atm_mvc(x, 'evn')}
+lgl_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ilgl(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even-valued whole-number}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative numeric} data.frame?
 #' @export
-evn_scl <- function(x) {atm_scl(x, 'evn')}
+neg_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ineg(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even-valued whole-number}
-#'   \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number} data.frame?
 #' @export
-evn_vec <- function(x) {atm_vec(x, 'evn')}
+ngw_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ingw(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifac]{factor} \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric} data.frame?
 #' @export
-fac_arr <- function(x) {atm_arr(x, 'fac')}
+nng_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, inng(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifac]{factor} \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} data.frame?
 #' @export
-fac_gen <- function(x) {atm_gen(x, 'fac')}
+nnw_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, innw(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifac]{factor} \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric} data.frame?
 #' @export
-fac_dtf <- function(x) {atm_dtf(x, 'fac')}
+nps_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, inps(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifac]{factor} \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} data.frame?
 #' @export
-fac_vls <- function(x) {atm_vls(x, 'fac')}
+npw_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, inpw(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifac]{factor} \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inst]{non-sortable} data.frame?
 #' @export
-fac_vtp <- function(x) {atm_vtp(x, 'fac')}
+nst_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, inst(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifac]{factor} \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inum]{numeric} data.frame?
 #' @export
-fac_mat <- function(x) {atm_mat(x, 'fac')}
+num_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, inum(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifac]{factor} \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iodd]{odd whole-number} data.frame?
 #' @export
-fac_mvc <- function(x) {atm_mvc(x, 'fac')}
+odd_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, iodd(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifac]{factor} \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iord]{ordered-factor} data.frame?
 #' @export
-fac_scl <- function(x) {atm_scl(x, 'fac')}
+ord_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, iord(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifac]{factor} \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} data.frame?
 #' @export
-fac_vec <- function(x) {atm_vec(x, 'fac')}
+pct_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ipct(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional-valued numeric}
-#'   \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipos]{positive numeric} data.frame?
 #' @export
-frc_arr <- function(x) {atm_arr(x, 'frc')}
+pos_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ipos(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional-valued numeric}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} data.frame?
 #' @export
-frc_gen <- function(x) {atm_gen(x, 'frc')}
+ppn_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ippn(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional-valued numeric}
-#'   \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} data.frame?
 #' @export
-frc_dtf <- function(x) {atm_dtf(x, 'frc')}
+psw_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ipsw(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional-valued numeric}
-#'   \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[isrt]{sortable} data.frame?
 #' @export
-frc_vls <- function(x) {atm_vls(x, 'frc')}
+srt_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, isrt(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional-valued numeric}
-#'   \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[istr]{string} data.frame?
 #' @export
-frc_vtp <- function(x) {atm_vtp(x, 'frc')}
+str_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, istr(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional-valued numeric}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iuno]{unordered-factor} data.frame?
 #' @export
-frc_mat <- function(x) {atm_mat(x, 'frc')}
+uno_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, iuno(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional-valued numeric}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iwhl]{whole-number} data.frame?
 #' @export
-frc_mvc <- function(x) {atm_mvc(x, 'frc')}
+whl_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, iwhl(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional-valued numeric}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} generic?
 #' @export
-frc_scl <- function(x) {atm_scl(x, 'frc')}
+ch1_gen <- function(x) {!igen(x) & ich1(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional-valued numeric}
-#'   \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} generic?
 #' @export
-frc_vec <- function(x) {atm_vec(x, 'frc')}
+chr_gen <- function(x) {!igen(x) & ichr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} generic?
 #' @export
-ind_arr <- function(x) {atm_arr(x, 'ind')}
+clr_gen <- function(x) {!igen(x) & iclr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even whole-number} generic?
 #' @export
-ind_gen <- function(x) {atm_gen(x, 'ind')}
+evn_gen <- function(x) {!igen(x) & ievn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x}  \link[ifac]{factor} generic?
 #' @export
-ind_dtf <- function(x) {atm_dtf(x, 'ind')}
+fac_gen <- function(x) {!igen(x) & ifac(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional numeric} generic?
 #' @export
-ind_vls <- function(x) {atm_vls(x, 'ind')}
+frc_gen <- function(x) {!igen(x) & ifrc(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} generic?
 #' @export
-ind_vtp <- function(x) {atm_vtp(x, 'ind')}
+ind_gen <- function(x) {!igen(x) & iind(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} generic?
 #' @export
-ind_mat <- function(x) {atm_mat(x, 'ind')}
+lgl_gen <- function(x) {!igen(x) & ilgl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative numeric} generic?
 #' @export
-ind_mvc <- function(x) {atm_mvc(x, 'ind')}
+neg_gen <- function(x) {!igen(x) & ineg(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number} generic?
 #' @export
-ind_scl <- function(x) {atm_scl(x, 'ind')}
+ngw_gen <- function(x) {!igen(x) & ingw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric} generic?
 #' @export
-ind_vec <- function(x) {atm_vec(x, 'ind')}
+nng_gen <- function(x) {!igen(x) & inng(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} generic?
 #' @export
-lgl_arr <- function(x) {atm_arr(x, 'lgl')}
+nnw_gen <- function(x) {!igen(x) & innw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric} generic?
 #' @export
-lgl_gen <- function(x) {atm_gen(x, 'lgl')}
+nps_gen <- function(x) {!igen(x) & inps(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} generic?
 #' @export
-lgl_dtf <- function(x) {atm_dtf(x, 'lgl')}
+npw_gen <- function(x) {!igen(x) & inpw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inst]{non-sortable} generic?
 #' @export
-lgl_vls <- function(x) {atm_vls(x, 'lgl')}
+nst_gen <- function(x) {!igen(x) & inst(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inum]{numeric} generic?
 #' @export
-lgl_vtp <- function(x) {atm_vtp(x, 'lgl')}
+num_gen <- function(x) {!igen(x) & inum(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iodd]{odd whole-number} generic?
 #' @export
-lgl_mat <- function(x) {atm_mat(x, 'lgl')}
+odd_gen <- function(x) {!igen(x) & iodd(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iord]{ordered-factor} generic?
 #' @export
-lgl_mvc <- function(x) {atm_mvc(x, 'lgl')}
+ord_gen <- function(x) {!igen(x) & iord(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} generic?
 #' @export
-lgl_scl <- function(x) {atm_scl(x, 'lgl')}
+pct_gen <- function(x) {!igen(x) & ipct(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipos]{positive numeric} generic?
 #' @export
-lgl_vec <- function(x) {atm_vec(x, 'lgl')}
+pos_gen <- function(x) {!igen(x) & ipos(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative-valued numeric}
-#'   \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} generic?
 #' @export
-neg_arr <- function(x) {atm_arr(x, 'neg')}
+ppn_gen <- function(x) {!igen(x) & ippn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative-valued numeric}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} generic?
 #' @export
-neg_gen <- function(x) {atm_gen(x, 'neg')}
+psw_gen <- function(x) {!igen(x) & ipsw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative-valued numeric}
-#'    \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[isrt]{sortable} generic?
 #' @export
-neg_dtf <- function(x) {atm_dtf(x, 'neg')}
+srt_gen <- function(x) {!igen(x) & isrt(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative-valued numeric}
-#'    \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[istr]{string} generic?
 #' @export
-neg_vls <- function(x) {atm_vls(x, 'neg')}
+str_gen <- function(x) {!igen(x) & istr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative-valued numeric}
-#'   \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iuno]{unordered-factor} generic?
 #' @export
-neg_vtp <- function(x) {atm_vtp(x, 'neg')}
+uno_gen <- function(x) {!igen(x) & iuno(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative-valued numeric}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iwhl]{whole-number} generic?
 #' @export
-neg_mat <- function(x) {atm_mat(x, 'neg')}
+whl_gen <- function(x) {!igen(x) & iwhl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative-valued numeric}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} matrix?
 #' @export
-neg_mvc <- function(x) {atm_mvc(x, 'neg')}
+ch1_mat <- function(x) {!imat(x) & ich1(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative-valued numeric}
-#'    \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} matrix?
 #' @export
-neg_scl <- function(x) {atm_scl(x, 'neg')}
+chr_mat <- function(x) {!imat(x) & ichr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative-valued numeric}
-#'   \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} matrix?
 #' @export
-neg_vec <- function(x) {atm_vec(x, 'neg')}
+clr_mat <- function(x) {!imat(x) & iclr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ngw]{negative-valued whole-number}
-#'    \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even whole-number} matrix?
 #' @export
-ngw_arr <- function(x) {atm_arr(x, 'ngw')}
+evn_mat <- function(x) {!imat(x) & ievn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ngw]{negative-valued whole-number}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x}  \link[ifac]{factor} matrix?
 #' @export
-ngw_gen <- function(x) {atm_gen(x, 'ngw')}
+fac_mat <- function(x) {!imat(x) & ifac(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ngw]{negative-valued whole-number}
-#'   \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional numeric} matrix?
 #' @export
-ngw_dtf <- function(x) {atm_dtf(x, 'ngw')}
+frc_mat <- function(x) {!imat(x) & ifrc(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ngw]{negative-valued whole-number}
-#'   \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} matrix?
 #' @export
-ngw_vls <- function(x) {atm_vls(x, 'ngw')}
+ind_mat <- function(x) {!imat(x) & iind(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ngw]{negative-valued whole-number}
-#'   \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} matrix?
 #' @export
-ngw_vtp <- function(x) {atm_vtp(x, 'ngw')}
+lgl_mat <- function(x) {!imat(x) & ilgl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ngw]{negative-valued whole-number}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative numeric} matrix?
 #' @export
-ngw_mat <- function(x) {atm_mat(x, 'ngw')}
+neg_mat <- function(x) {!imat(x) & ineg(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ngw]{negative-valued whole-number}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number} matrix?
 #' @export
-ngw_mvc <- function(x) {atm_mvc(x, 'ngw')}
+ngw_mat <- function(x) {!imat(x) & ingw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ngw]{negative-valued whole-number}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric} matrix?
 #' @export
-ngw_scl <- function(x) {atm_scl(x, 'ngw')}
+nng_mat <- function(x) {!imat(x) & inng(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ngw]{negative-valued whole-number}
-#'   \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} matrix?
 #' @export
-ngw_vec <- function(x) {atm_vec(x, 'ngw')}
+nnw_mat <- function(x) {!imat(x) & innw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nng]{non-negative-valued numeric}
-#'   \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric} matrix?
 #' @export
-nng_arr <- function(x) {atm_arr(x, 'nng')}
+nps_mat <- function(x) {!imat(x) & inps(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nng]{non-negative-valued numeric}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} matrix?
 #' @export
-nng_gen <- function(x) {atm_gen(x, 'nng')}
+npw_mat <- function(x) {!imat(x) & inpw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nng]{non-negative-valued numeric}
-#'   \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inst]{non-sortable} matrix?
 #' @export
-nng_dtf <- function(x) {atm_dtf(x, 'nng')}
+nst_mat <- function(x) {!imat(x) & inst(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nng]{non-negative-valued numeric}
-#'   \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inum]{numeric} matrix?
 #' @export
-nng_vls <- function(x) {atm_vls(x, 'nng')}
+num_mat <- function(x) {!imat(x) & inum(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nng]{non-negative-valued numeric}
-#'   \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iodd]{odd whole-number} matrix?
 #' @export
-nng_vtp <- function(x) {atm_vtp(x, 'nng')}
+odd_mat <- function(x) {!imat(x) & iodd(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nng]{non-negative-valued numeric}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iord]{ordered-factor} matrix?
 #' @export
-nng_mat <- function(x) {atm_mat(x, 'nng')}
+ord_mat <- function(x) {!imat(x) & iord(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nng]{non-negative-valued numeric}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} matrix?
 #' @export
-nng_mvc <- function(x) {atm_mvc(x, 'nng')}
+pct_mat <- function(x) {!imat(x) & ipct(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nng]{non-negative-valued numeric}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipos]{positive numeric} matrix?
 #' @export
-nng_scl <- function(x) {atm_scl(x, 'nng')}
+pos_mat <- function(x) {!imat(x) & ipos(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nng]{non-negative-valued numeric}
-#'   \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} matrix?
 #' @export
-nng_vec <- function(x) {atm_vec(x, 'nng')}
+ppn_mat <- function(x) {!imat(x) & ippn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[nnw]{non-negative-valued whole-number} \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} matrix?
 #' @export
-nnw_arr <- function(x) {atm_arr(x, 'nnw')}
+psw_mat <- function(x) {!imat(x) & ipsw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[nnw]{non-negative-valued whole-number} \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[isrt]{sortable} matrix?
 #' @export
-nnw_gen <- function(x) {atm_gen(x, 'nnw')}
+srt_mat <- function(x) {!imat(x) & isrt(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[nnw]{non-negative-valued whole-number} \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[istr]{string} matrix?
 #' @export
-nnw_dtf <- function(x) {atm_dtf(x, 'nnw')}
+str_mat <- function(x) {!imat(x) & istr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[nnw]{non-negative-valued whole-number} \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iuno]{unordered-factor} matrix?
 #' @export
-nnw_vls <- function(x) {atm_vls(x, 'nnw')}
+uno_mat <- function(x) {!imat(x) & iuno(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[nnw]{non-negative-valued whole-number} \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iwhl]{whole-number} matrix?
 #' @export
-nnw_vtp <- function(x) {atm_vtp(x, 'nnw')}
+whl_mat <- function(x) {!imat(x) & iwhl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[nnw]{non-negative-valued whole-number} \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} multivec?
 #' @export
-nnw_mat <- function(x) {atm_mat(x, 'nnw')}
+ch1_mvc <- function(x) {!imvc(x) & ich1(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[nnw]{non-negative-valued whole-number} \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} multivec?
 #' @export
-nnw_mvc <- function(x) {atm_mvc(x, 'nnw')}
+chr_mvc <- function(x) {!imvc(x) & ichr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[nnw]{non-negative-valued whole-number} \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} multivec?
 #' @export
-nnw_scl <- function(x) {atm_scl(x, 'nnw')}
+clr_mvc <- function(x) {!imvc(x) & iclr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[nnw]{non-negative-valued whole-number} \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even whole-number} multivec?
 #' @export
-nnw_vec <- function(x) {atm_vec(x, 'nnw')}
+evn_mvc <- function(x) {!imvc(x) & ievn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nps]{non-positive-valued numeric}
-#'   \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x}  \link[ifac]{factor} multivec?
 #' @export
-nps_arr <- function(x) {atm_arr(x, 'nps')}
+fac_mvc <- function(x) {!imvc(x) & ifac(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nps]{non-positive-valued numeric}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional numeric} multivec?
 #' @export
-nps_gen <- function(x) {atm_gen(x, 'nps')}
+frc_mvc <- function(x) {!imvc(x) & ifrc(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nps]{non-positive-valued numeric}
-#'   \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} multivec?
 #' @export
-nps_dtf <- function(x) {atm_dtf(x, 'nps')}
+ind_mvc <- function(x) {!imvc(x) & iind(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nps]{non-positive-valued numeric}
-#'   \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} multivec?
 #' @export
-nps_vls <- function(x) {atm_vls(x, 'nps')}
+lgl_mvc <- function(x) {!imvc(x) & ilgl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nps]{non-positive-valued numeric}
-#'   \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative numeric} multivec?
 #' @export
-nps_vtp <- function(x) {atm_vtp(x, 'nps')}
+neg_mvc <- function(x) {!imvc(x) & ineg(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nps]{non-positive-valued numeric}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number} multivec?
 #' @export
-nps_mat <- function(x) {atm_mat(x, 'nps')}
+ngw_mvc <- function(x) {!imvc(x) & ingw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nps]{non-positive-valued numeric}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric} multivec?
 #' @export
-nps_mvc <- function(x) {atm_mvc(x, 'nps')}
+nng_mvc <- function(x) {!imvc(x) & inng(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nps]{non-positive-valued numeric}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} multivec?
 #' @export
-nps_scl <- function(x) {atm_scl(x, 'nps')}
+nnw_mvc <- function(x) {!imvc(x) & innw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nps]{non-positive-valued numeric}
-#'   \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric} multivec?
 #' @export
-nps_vec <- function(x) {atm_vec(x, 'nps')}
+nps_mvc <- function(x) {!imvc(x) & inps(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[npw]{non-positive-valued whole-number} \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} multivec?
 #' @export
-npw_arr <- function(x) {atm_arr(x, 'npw')}
+npw_mvc <- function(x) {!imvc(x) & inpw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[npw]{non-positive-valued whole-number} \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inst]{non-sortable} multivec?
 #' @export
-npw_gen <- function(x) {atm_gen(x, 'npw')}
+nst_mvc <- function(x) {!imvc(x) & inst(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[npw]{non-positive-valued whole-number} \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inum]{numeric} multivec?
 #' @export
-npw_dtf <- function(x) {atm_dtf(x, 'npw')}
+num_mvc <- function(x) {!imvc(x) & inum(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[npw]{non-positive-valued whole-number} \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iodd]{odd whole-number} multivec?
 #' @export
-npw_vls <- function(x) {atm_vls(x, 'npw')}
+odd_mvc <- function(x) {!imvc(x) & iodd(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[npw]{non-positive-valued whole-number} \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iord]{ordered-factor} multivec?
 #' @export
-npw_vtp <- function(x) {atm_vtp(x, 'npw')}
+ord_mvc <- function(x) {!imvc(x) & iord(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[npw]{non-positive-valued whole-number} \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} multivec?
 #' @export
-npw_mat <- function(x) {atm_mat(x, 'npw')}
+pct_mvc <- function(x) {!imvc(x) & ipct(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[npw]{non-positive-valued whole-number} \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipos]{positive numeric} multivec?
 #' @export
-npw_mvc <- function(x) {atm_mvc(x, 'npw')}
+pos_mvc <- function(x) {!imvc(x) & ipos(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[npw]{non-positive-valued whole-number} \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} multivec?
 #' @export
-npw_scl <- function(x) {atm_scl(x, 'npw')}
+ppn_mvc <- function(x) {!imvc(x) & ippn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[npw]{non-positive-valued whole-number} \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} multivec?
 #' @export
-npw_vec <- function(x) {atm_vec(x, 'npw')}
+psw_mvc <- function(x) {!imvc(x) & ipsw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nst]{non-sortable}
-#'   \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[isrt]{sortable} multivec?
 #' @export
-nst_arr <- function(x) {atm_arr(x, 'nst')}
+srt_mvc <- function(x) {!imvc(x) & isrt(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nst]{non-sortable}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[istr]{string} multivec?
 #' @export
-nst_gen <- function(x) {atm_gen(x, 'nst')}
+str_mvc <- function(x) {!imvc(x) & istr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nst]{non-sortable}
-#'   \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iuno]{unordered-factor} multivec?
 #' @export
-nst_dtf <- function(x) {atm_dtf(x, 'nst')}
+uno_mvc <- function(x) {!imvc(x) & iuno(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nst]{non-sortable}
-#'   \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iwhl]{whole-number} multivec?
 #' @export
-nst_vls <- function(x) {atm_vls(x, 'nst')}
+whl_mvc <- function(x) {!imvc(x) & iwhl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nst]{non-sortable}
-#'   \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} scalr?
 #' @export
-nst_vtp <- function(x) {atm_vtp(x, 'nst')}
+ch1_scl <- function(x) {!iscl(x) & ich1(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nst]{non-sortable}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} scalr?
 #' @export
-nst_mat <- function(x) {atm_mat(x, 'nst')}
+chr_scl <- function(x) {!iscl(x) & ichr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nst]{non-sortable}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} scalr?
 #' @export
-nst_mvc <- function(x) {atm_mvc(x, 'nst')}
+clr_scl <- function(x) {!iscl(x) & iclr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nst]{non-sortable}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even whole-number} scalr?
 #' @export
-nst_scl <- function(x) {atm_scl(x, 'nst')}
+evn_scl <- function(x) {!iscl(x) & ievn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[nst]{non-sortable} \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x}  \link[ifac]{factor} scalr?
 #' @export
-nst_vec <- function(x) {atm_vec(x, 'nst')}
+fac_scl <- function(x) {!iscl(x) & ifac(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[num]{numeric} \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional numeric} scalr?
 #' @export
-num_arr <- function(x) {atm_arr(x, 'num')}
+frc_scl <- function(x) {!iscl(x) & ifrc(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[num]{numeric} \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} scalr?
 #' @export
-num_gen <- function(x) {atm_gen(x, 'num')}
+ind_scl <- function(x) {!iscl(x) & iind(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[num]{numeric} \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} scalr?
 #' @export
-num_dtf <- function(x) {atm_dtf(x, 'num')}
+lgl_scl <- function(x) {!iscl(x) & ilgl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[num]{numeric} \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative numeric} scalr?
 #' @export
-num_vls <- function(x) {atm_vls(x, 'num')}
+neg_scl <- function(x) {!iscl(x) & ineg(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[num]{numeric} \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number} scalr?
 #' @export
-num_vtp <- function(x) {atm_vtp(x, 'num')}
+ngw_scl <- function(x) {!iscl(x) & ingw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[num]{numeric} \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric} scalr?
 #' @export
-num_mat <- function(x) {atm_mat(x, 'num')}
+nng_scl <- function(x) {!iscl(x) & inng(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[num]{numeric} \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} scalr?
 #' @export
-num_mvc <- function(x) {atm_mvc(x, 'num')}
+nnw_scl <- function(x) {!iscl(x) & innw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[num]{numeric} \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric} scalr?
 #' @export
-num_scl <- function(x) {atm_scl(x, 'num')}
+nps_scl <- function(x) {!iscl(x) & inps(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[num]{numeric} \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} scalr?
 #' @export
-num_vec <- function(x) {atm_vec(x, 'num')}
+npw_scl <- function(x) {!iscl(x) & inpw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[odd]{odd-valued whole-number}
-#'   \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inst]{non-sortable} scalr?
 #' @export
-odd_arr <- function(x) {atm_arr(x, 'odd')}
+nst_scl <- function(x) {!iscl(x) & inst(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[odd]{odd-valued whole-number}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inum]{numeric} scalr?
 #' @export
-odd_gen <- function(x) {atm_gen(x, 'odd')}
+num_scl <- function(x) {!iscl(x) & inum(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[odd]{odd-valued whole-number}
-#'   \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iodd]{odd whole-number} scalr?
 #' @export
-odd_dtf <- function(x) {atm_dtf(x, 'odd')}
+odd_scl <- function(x) {!iscl(x) & iodd(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[odd]{odd-valued whole-number}
-#'   \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iord]{ordered-factor} scalr?
 #' @export
-odd_vls <- function(x) {atm_vls(x, 'odd')}
+ord_scl <- function(x) {!iscl(x) & iord(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[odd]{odd-valued whole-number}
-#'   \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} scalr?
 #' @export
-odd_vtp <- function(x) {atm_vtp(x, 'odd')}
+pct_scl <- function(x) {!iscl(x) & ipct(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[odd]{odd-valued whole-number}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipos]{positive numeric} scalr?
 #' @export
-odd_mat <- function(x) {atm_mat(x, 'odd')}
+pos_scl <- function(x) {!iscl(x) & ipos(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[odd]{odd-valued whole-number}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} scalr?
 #' @export
-odd_mvc <- function(x) {atm_mvc(x, 'odd')}
+ppn_scl <- function(x) {!iscl(x) & ippn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[odd]{odd-valued whole-number}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} scalr?
 #' @export
-odd_scl <- function(x) {atm_scl(x, 'odd')}
+psw_scl <- function(x) {!iscl(x) & ipsw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[odd]{odd-valued whole-number}
-#'   \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[isrt]{sortable} scalr?
 #' @export
-odd_vec <- function(x) {atm_vec(x, 'odd')}
+srt_scl <- function(x) {!iscl(x) & isrt(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ord]{ordered-factor}
-#'   \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[istr]{string} scalr?
 #' @export
-ord_arr <- function(x) {atm_arr(x, 'ord')}
+str_scl <- function(x) {!iscl(x) & istr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ord]{ordered-factor}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iuno]{unordered-factor} scalr?
 #' @export
-ord_gen <- function(x) {atm_gen(x, 'ord')}
+uno_scl <- function(x) {!iscl(x) & iuno(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ord]{ordered-factor}
-#'   \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iwhl]{whole-number} scalr?
 #' @export
-ord_dtf <- function(x) {atm_dtf(x, 'ord')}
+whl_scl <- function(x) {!iscl(x) & iwhl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ord]{ordered-factor}
-#'   \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} vec?
 #' @export
-ord_vls <- function(x) {atm_vls(x, 'ord')}
+ch1_vec <- function(x) {!ivec(x) & ich1(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ord]{ordered-factor}
-#'   \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} vec?
 #' @export
-ord_vtp <- function(x) {atm_vtp(x, 'ord')}
+chr_vec <- function(x) {!ivec(x) & ichr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ord]{ordered-factor}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} vec?
 #' @export
-ord_mat <- function(x) {atm_mat(x, 'ord')}
+clr_vec <- function(x) {!ivec(x) & iclr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ord]{ordered-factor}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even whole-number} vec?
 #' @export
-ord_mvc <- function(x) {atm_mvc(x, 'ord')}
+evn_vec <- function(x) {!ivec(x) & ievn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ord]{ordered-factor}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x}  \link[ifac]{factor} vec?
 #' @export
-ord_scl <- function(x) {atm_scl(x, 'ord')}
+fac_vec <- function(x) {!ivec(x) & ifac(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ord]{ordered-factor}
-#'   \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional numeric} vec?
 #' @export
-ord_vec <- function(x) {atm_vec(x, 'ord')}
+frc_vec <- function(x) {!ivec(x) & ifrc(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
-#'   \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} vec?
 #' @export
-pct_arr <- function(x) {atm_arr(x, 'pct')}
+ind_vec <- function(x) {!ivec(x) & iind(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} vec?
 #' @export
-pct_gen <- function(x) {atm_gen(x, 'pct')}
+lgl_vec <- function(x) {!ivec(x) & ilgl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
-#'   \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative numeric} vec?
 #' @export
-pct_dtf <- function(x) {atm_dtf(x, 'pct')}
+neg_vec <- function(x) {!ivec(x) & ineg(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
-#'   \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number} vec?
 #' @export
-pct_vls <- function(x) {atm_vls(x, 'pct')}
+ngw_vec <- function(x) {!ivec(x) & ingw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
-#'   \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric} vec?
 #' @export
-pct_vtp <- function(x) {atm_vtp(x, 'pct')}
+nng_vec <- function(x) {!ivec(x) & inng(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} vec?
 #' @export
-pct_mat <- function(x) {atm_mat(x, 'pct')}
+nnw_vec <- function(x) {!ivec(x) & innw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric} vec?
 #' @export
-pct_mvc <- function(x) {atm_mvc(x, 'pct')}
+nps_vec <- function(x) {!ivec(x) & inps(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} vec?
 #' @export
-pct_scl <- function(x) {atm_scl(x, 'pct')}
+npw_vec <- function(x) {!ivec(x) & inpw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pct]{percent-valued (0-100) numeric}
-#'   \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inst]{non-sortable} vec?
 #' @export
-pct_vec <- function(x) {atm_vec(x, 'pct')}
+nst_vec <- function(x) {!ivec(x) & inst(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued numeric}
-#'   \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inum]{numeric} vec?
 #' @export
-pos_arr <- function(x) {atm_arr(x, 'pos')}
+num_vec <- function(x) {!ivec(x) & inum(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued numeric}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iodd]{odd whole-number} vec?
 #' @export
-pos_gen <- function(x) {atm_gen(x, 'pos')}
+odd_vec <- function(x) {!ivec(x) & iodd(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued numeric}
-#'   \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iord]{ordered-factor} vec?
 #' @export
-pos_dtf <- function(x) {atm_dtf(x, 'pos')}
+ord_vec <- function(x) {!ivec(x) & iord(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued numeric}
-#'   \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} vec?
 #' @export
-pos_vls <- function(x) {atm_vls(x, 'pos')}
+pct_vec <- function(x) {!ivec(x) & ipct(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued numeric}
-#'   \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipos]{positive numeric} vec?
 #' @export
-pos_vtp <- function(x) {atm_vtp(x, 'pos')}
+pos_vec <- function(x) {!ivec(x) & ipos(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued numeric}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} vec?
 #' @export
-pos_mat <- function(x) {atm_mat(x, 'pos')}
+ppn_vec <- function(x) {!ivec(x) & ippn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued numeric}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} vec?
 #' @export
-pos_mvc <- function(x) {atm_mvc(x, 'pos')}
+psw_vec <- function(x) {!ivec(x) & ipsw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued numeric}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[isrt]{sortable} vec?
 #' @export
-pos_scl <- function(x) {atm_scl(x, 'pos')}
+srt_vec <- function(x) {!ivec(x) & isrt(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued numeric}
-#'   \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[istr]{string} vec?
 #' @export
-pos_vec <- function(x) {atm_vec(x, 'pos')}
+str_vec <- function(x) {!ivec(x) & istr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[ppn]{proportion-valued (0-1) numeric} \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iuno]{unordered-factor} vec?
 #' @export
-ppn_arr <- function(x) {atm_arr(x, 'ppn')}
+uno_vec <- function(x) {!ivec(x) & iuno(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[ppn]{proportion-valued (0-1) numeric} \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iwhl]{whole-number} vec?
 #' @export
-ppn_gen <- function(x) {atm_gen(x, 'ppn')}
+whl_vec <- function(x) {!ivec(x) & iwhl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[ppn]{proportion-valued (0-1) numeric} \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} vlist?
 #' @export
-ppn_dtf <- function(x) {atm_dtf(x, 'ppn')}
+ch1_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ich1))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[ppn]{proportion-valued (0-1) numeric} \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} vlist?
 #' @export
-ppn_vls <- function(x) {atm_vls(x, 'ppn')}
+chr_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ichr))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[ppn]{proportion-valued (0-1) numeric} \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} vlist?
 #' @export
-ppn_vtp <- function(x) {atm_vtp(x, 'ppn')}
+clr_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, iclr))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[ppn]{proportion-valued (0-1) numeric} \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even whole-number} vlist?
 #' @export
-ppn_mat <- function(x) {atm_mat(x, 'ppn')}
+evn_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ievn))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[ppn]{proportion-valued (0-1) numeric} \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x}  \link[ifac]{factor} vlist?
 #' @export
-ppn_mvc <- function(x) {atm_mvc(x, 'ppn')}
+fac_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ifac))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[ppn]{proportion-valued (0-1) numeric} \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional numeric} vlist?
 #' @export
-ppn_scl <- function(x) {atm_scl(x, 'ppn')}
+frc_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ifrc))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a
-#'   \link[ppn]{proportion-valued (0-1) numeric} \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} vlist?
 #' @export
-ppn_vec <- function(x) {atm_vec(x, 'ppn')}
+ind_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, iind))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued whole-number}
-#'   \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} vlist?
 #' @export
-psw_arr <- function(x) {atm_arr(x, 'psw')}
+lgl_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ilgl))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued whole-number}
-#'   \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative numeric} vlist?
 #' @export
-psw_gen <- function(x) {atm_gen(x, 'psw')}
+neg_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ineg))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued whole-number}
-#'   \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number} vlist?
 #' @export
-psw_dtf <- function(x) {atm_dtf(x, 'psw')}
+ngw_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ingw))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued whole-number}
-#'   \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric} vlist?
 #' @export
-psw_vls <- function(x) {atm_vls(x, 'psw')}
+nng_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, inng))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued whole-number}
-#'   \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} vlist?
 #' @export
-psw_vtp <- function(x) {atm_vtp(x, 'psw')}
+nnw_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, innw))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued whole-number}
-#'   \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric} vlist?
 #' @export
-psw_mat <- function(x) {atm_mat(x, 'psw')}
+nps_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, inps))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued whole-number}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} vlist?
 #' @export
-psw_mvc <- function(x) {atm_mvc(x, 'psw')}
+npw_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, inpw))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued whole-number}
-#'   \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inst]{non-sortable} vlist?
 #' @export
-psw_scl <- function(x) {atm_scl(x, 'psw')}
+nst_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, inst))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[pos]{positive-valued whole-number}
-#'   \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inum]{numeric} vlist?
 #' @export
-psw_vec <- function(x) {atm_vec(x, 'psw')}
+num_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, inum))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[srt]{sortable} \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iodd]{odd whole-number} vlist?
 #' @export
-srt_arr <- function(x) {atm_arr(x, 'srt')}
+odd_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, iodd))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[srt]{sortable} \link[igen]{generic}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iord]{ordered-factor} vlist?
 #' @export
-srt_gen <- function(x) {atm_gen(x, 'srt')}
+ord_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, iord))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[srt]{sortable} \link[idtf]{dtf}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} vlist?
 #' @export
-srt_dtf <- function(x) {atm_dtf(x, 'srt')}
+pct_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ipct))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[srt]{sortable} \link[ivls]{vlist}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipos]{positive numeric} vlist?
 #' @export
-srt_vls <- function(x) {atm_vls(x, 'srt')}
+pos_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ipos))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[srt]{sortable} \link[ivtp]{vtype}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} vlist?
 #' @export
-srt_vtp <- function(x) {atm_vtp(x, 'srt')}
+ppn_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ippn))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[srt]{sortable} \link[imat]{matrix}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} vlist?
 #' @export
-srt_mat <- function(x) {atm_mat(x, 'srt')}
+psw_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ipsw))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[srt]{sortable}
-#'   \link[imvc]{multivec}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[isrt]{sortable} vlist?
 #' @export
-srt_mvc <- function(x) {atm_mvc(x, 'srt')}
+srt_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, isrt))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[srt]{sortable} \link[iscl]{scalar}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[istr]{string} vlist?
 #' @export
-srt_scl <- function(x) {atm_scl(x, 'srt')}
+str_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, istr))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[srt]{sortable} \link[ivec]{vec}?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iuno]{unordered-factor} vlist?
 #' @export
-srt_vec <- function(x) {atm_vec(x, 'srt')}
+uno_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, iuno))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[str]{string} \link[iarr]{array}?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iwhl]{whole-number} vlist?
 #' @export
-str_arr <- function(x) {atm_arr(x, 'str')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[str]{string} \link[igen]{generic}?
-#' @export
-str_gen <- function(x) {atm_gen(x, 'str')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[str]{string} \link[idtf]{dtf}?
-#' @export
-str_dtf <- function(x) {atm_dtf(x, 'str')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[str]{string} \link[ivls]{vlist}?
-#' @export
-str_vls <- function(x) {atm_vls(x, 'str')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[str]{string} \link[ivtp]{vtype}?
-#' @export
-str_vtp <- function(x) {atm_vtp(x, 'str')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[str]{string} \link[imat]{matrix}?
-#' @export
-str_mat <- function(x) {atm_mat(x, 'str')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[str]{string} \link[imvc]{multivec}?
-#' @export
-str_mvc <- function(x) {atm_mvc(x, 'str')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[str]{string} \link[iscl]{scalar}?
-#' @export
-str_scl <- function(x) {atm_scl(x, 'str')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[str]{string} \link[ivec]{vec}?
-#' @export
-str_vec <- function(x) {atm_vec(x, 'str')}
-
-#' @describeIn mmm_ccc. Is \code{x} an \link[uno]{unordered-factor}
-#'   \link[iarr]{array}?
-#' @export
-uno_arr <- function(x) {atm_arr(x, 'uno')}
-
-#' @describeIn mmm_ccc. Is \code{x} an \link[uno]{unordered-factor}
-#'   \link[igen]{generic}?
-#' @export
-uno_gen <- function(x) {atm_gen(x, 'uno')}
-
-#' @describeIn mmm_ccc. Is \code{x} an \link[uno]{unordered-factor}
-#'   \link[idtf]{dtf}?
-#' @export
-uno_dtf <- function(x) {atm_dtf(x, 'uno')}
-
-#' @describeIn mmm_ccc. Is \code{x} an \link[uno]{unordered-factor}
-#'   \link[ivls]{vlist}?
-#' @export
-uno_vls <- function(x) {atm_vls(x, 'uno')}
-
-#' @describeIn mmm_ccc. Is \code{x} an \link[uno]{unordered-factor}
-#'   \link[ivtp]{vtype}?
-#' @export
-uno_vtp <- function(x) {atm_vtp(x, 'uno')}
-
-#' @describeIn mmm_ccc. Is \code{x} an \link[uno]{unordered-factor}
-#'   \link[imat]{matrix}?
-#' @export
-uno_mat <- function(x) {atm_mat(x, 'uno')}
-
-#' @describeIn mmm_ccc. Is \code{x} an \link[uno]{unordered-factor}
-#'   \link[imvc]{multivec}?
-#' @export
-uno_mvc <- function(x) {atm_mvc(x, 'uno')}
-
-#' @describeIn mmm_ccc. Is \code{x} an \link[uno]{unordered-factor}
-#'   \link[iscl]{scalar}?
-#' @export
-uno_scl <- function(x) {atm_scl(x, 'uno')}
-
-#' @describeIn mmm_ccc. Is \code{x} an \link[uno]{unordered-factor}
-#'   \link[ivec]{vec}?
-#' @export
-uno_vec <- function(x) {atm_vec(x, 'uno')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[whl]{whole-number}
-#'   \link[iarr]{array}?
-#' @export
-whl_arr <- function(x) {atm_arr(x, 'whl')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[whl]{whole-number}
-#'   \link[igen]{generic}?
-#' @export
-whl_gen <- function(x) {atm_gen(x, 'whl')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[whl]{whole-number}
-#'   \link[idtf]{dtf}?
-#' @export
-whl_dtf <- function(x) {atm_dtf(x, 'whl')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[whl]{whole-number}
-#'   \link[ivls]{vlist}?
-#' @export
-whl_vls <- function(x) {atm_vls(x, 'whl')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[whl]{whole-number}
-#'   \link[ivtp]{vtype}?
-#' @export
-whl_vtp <- function(x) {atm_vtp(x, 'whl')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[whl]{whole-number}
-#'   \link[imat]{matrix}?
-#' @export
-whl_mat <- function(x) {atm_mat(x, 'whl')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[whl]{whole-number}
-#'   \link[imvc]{multivec}?
-#' @export
-whl_mvc <- function(x) {atm_mvc(x, 'whl')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[whl]{whole-number}
-#'   \link[iscl]{scalar}?
-#' @export
-whl_scl <- function(x) {atm_scl(x, 'whl')}
-
-#' @describeIn mmm_ccc. Is \code{x} a \link[whl]{whole-number} \link[ivec]{vec}?
-#' @export
-whl_vec <- function(x) {atm_vec(x, 'whl')}
+whl_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, iwhl))}}

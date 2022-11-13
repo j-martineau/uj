@@ -91,12 +91,12 @@ iwhl(x)
 
 mmm_vals()
 
-immm(x, xxx, ...)
+immm(x, mmm, ...)
 }
 \arguments{
-\item{x}{An object.}
+\item{x}{An ℝ object.}
 
-\item{xxx}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+\item{mmm}{\link[cmp_chr_scl]{Complete character scalar} containing one or
 more values from \code{mmm_vals()} separated by pipes and/or underscores.
 Combinations of extended modes can be specified by separating them with
 underscores. Separating extended modes or combinations of extended modes
@@ -123,52 +123,60 @@ values. The following tables gives extended mode values, names, and
 requirements
 \cr\cr
 \strong{Character Extended Modes}\tabular{lll}{
-EXTENDED    \tab EXTENDED     \tab QUALIFYING                            \cr
-MODE VALUE   \tab MODE NAME   \tab CHARACTERISTICS                       \cr
-\code{'chr'}\tab Character    \tab Character                             \cr
-\code{'clr'}\tab Color        \tab Hex color value or color name         \cr
-\code{'ch1'}\tab Onechar      \tab Single characters                     \cr
-\code{'str'}\tab String       \tab No blank ("") values                    }
+EXTENDED     \tab EXTENDED    \tab QUALIFYING                             \cr
+MODE VALUE   \tab MODE NAME   \tab CHARACTERISTICS                        \cr
+\code{'chr'} \tab Character   \tab Character.                             \cr
+\code{'clr'} \tab Color       \tab Hex color value or color name.         \cr
+\code{'ch1'} \tab Onechar     \tab Single character values.               \cr
+\code{'str'} \tab String      \tab No blank ("") values.                    }
 \strong{Categorical Extended Modes}\tabular{lll}{
-EXTENDED     \tab EXTENDED    \tab QUALIFYING                            \cr
-MODE VALUE   \tab MODE NAME   \tab CHARACTERISTICS                       \cr
-\code{'fac'} \tab Factor      \tab Factor                                \cr
-\code{'lgl'} \tab Logical     \tab Logical                               \cr
-\code{'ord'} \tab Ordered     \tab Ordered factor                        \cr
-\code{'uno'} \tab Unordered   \tab Unordered factor                        }
+EXTENDED     \tab EXTENDED    \tab QUALIFYING                             \cr
+MODE VALUE   \tab MODE NAME   \tab CHARACTERISTICS                        \cr
+\code{'fac'} \tab Factor      \tab Factor.                                \cr
+\code{'lgl'} \tab Logical     \tab Logical.                               \cr
+\code{'ord'} \tab Ordered     \tab Ordered factor.                        \cr
+\code{'uno'} \tab Unordered   \tab Unordered factor.                        }
 \strong{Combination Extended Modes}\tabular{lll}{
-EXTENDED     \tab EXTENDED    \tab QUALIFYING                            \cr
-MODE VALUE   \tab MODE NAME   \tab CHARACTERISTICS                       \cr
-\code{'ind'} \tab Indexer     \tab Logical or positive whole number      \cr
+EXTENDED     \tab EXTENDED    \tab QUALIFYING                             \cr
+MODE VALUE   \tab MODE NAME   \tab CHARACTERISTICS                        \cr
+\code{'ind'} \tab Indexer     \tab Logical or positive whole number.      \cr
 \code{'srt'} \tab Sortable    \tab Character, logical, numeric, or ordered
-factor                                \cr
-\code{'nst'}\tab non-sortable \tab Atomic, but not sortable                }
+factor.                                \cr
+\code{'nst'} \tab non-sortable \tab Atomic, but not sortable.               }
 \strong{Numeric Extended Modes}\tabular{lll}{
-EXTENDED     \tab EXTENDED          \tab QUALIFYING                      \cr
-MODE VALUE   \tab MODE NAME         \tab CHARACTERISTICS                 \cr
-\code{'num'} \tab Numeric           \tab Numeric                         \cr
+EXTENDED     \tab EXTENDED          \tab QUALIFYING                       \cr
+MODE VALUE   \tab MODE NAME         \tab CHARACTERISTICS                  \cr
+\code{'num'} \tab Numeric           \tab Numeric.                         \cr
 \code{'frc'} \tab Fractional        \tab At least one non-\code{NA} value
 that is fractional (i.e., not a
-whole number)                   \cr
+whole number).                   \cr
 \code{'pct'} \tab Percent           \tab Percentage-valued numeric (in
-\code{[0, 100]})                \cr
+\code{[0, 100]}).                \cr
 \code{'ppn'} \tab Proportion        \tab Proportion-valued numeric (in
-\code{[0, 1]})                  \cr
-\code{'pos'} \tab Positive          \tab Positive numeric                \cr
-\code{'nng'} \tab Non-negative      \tab Non-negative numeric            \cr
-\code{'nps'} \tab Non-positive      \tab Non-positive numeric            \cr
-\code{'neg'} \tab Negative          \tab Negative numeric                \cr
-\code{'whl'} \tab Whole             \tab Whole number                    \cr
-\code{'evn'} \tab Even              \tab Even (whole) number             \cr
-\code{'odd'} \tab Odd               \tab Odd (whole) number              \cr
-\code{'psw'} \tab Positive whole    \tab Positive whole-number           \cr
-\code{'nnw'} \tab Non-negative whole\tab Non-negative whole-number       \cr
-\code{'npw'} \tab Non-positive whole\tab Non-positive whole-number       \cr
-\code{'ngw'} \tab Negative whole    \tab Negative whole-number             }
-\strong{Additional Arguments in \code{...}}
-\cr Submitting additional arguments to \code{is_mmm} via \code{...} allows
-for checking not just extended mode but whether length, number of rows,
-number of columns, and element values meet flexible criteria.
+\code{[0, 1]}).                  \cr
+\code{'pos'} \tab Positive          \tab Positive numeric.                \cr
+\code{'nng'} \tab Non-negative      \tab Non-negative numeric.            \cr
+\code{'nps'} \tab Non-positive      \tab Non-positive numeric.            \cr
+\code{'neg'} \tab Negative          \tab Negative numeric.                \cr
+\code{'whl'} \tab Whole             \tab Whole number.                    \cr
+\code{'evn'} \tab Even              \tab Even (whole) number.             \cr
+\code{'odd'} \tab Odd               \tab Odd (whole) number.              \cr
+\code{'psw'} \tab Positive whole    \tab Positive whole-number.           \cr
+\code{'nnw'} \tab Non-negative whole\tab Non-negative whole-number.       \cr
+\code{'npw'} \tab Non-positive whole\tab Non-positive whole-number.       \cr
+\code{'ngw'} \tab Negative whole    \tab Negative whole-number.             }
+Functions related to extended mode are described in the following
+table:\tabular{ll}{
+FUNCTION          \tab WHAT THE                                           \cr
+FORMAT            \tab FUNCTION DOES                                      \cr
+\code{i•••}       \tab Evaluates whether an object is of the extended mode
+represented by \code{•••}.                         \cr
+\code{mmm}        \tab Gets a character vector containing all extended modes
+of an object.                                      \cr
+\code{immm}       \tab Evaluates an object for a specific extended mode and
+any additional properties specified in \code{...}. \cr
+\code{mmm_vals}   \tab Gets a character vector of all possible extended mode
+property values.                                     }
 }
 \section{Functions}{
 \itemize{
@@ -231,7 +239,7 @@ property from \code{mmm_vals()} that is applicable to \code{x}.
 values.
 
 \item \code{immm()}: Does \code{x} have the extended mode properties in
-\code{xxx}?
+\code{mmm}?
 
 }}
 \seealso{
@@ -246,14 +254,12 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc.}()},
-\code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm_ccc.}()},
+\code{\link{ppp.}()},
 \code{\link{sss.}()},
 \code{\link{ttt.}()},
 \code{\link{ttt_ccc.}()},
-\code{\link{ttt_mmm.}()},
-\code{\link{xxx.}()}
+\code{\link{ttt_mmm.}()}
 }
 \concept{props}

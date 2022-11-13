@@ -37,19 +37,19 @@ as_fun <- function(x) {
 
 #' @describeIn as_mmm. \code{as.character} wrapper.
 #' @export
-as_chr <- base::as.character
+as_chr <- function(x, ...) {base::as.character(x, ...)}
 
 #' @describeIn as_mmm. \code{as.integer} wrapper.
 #' @export
-as_int <- base::as.integer
+as_int <- function(x, ...) {base::as.integer(x, ...)}
 
 #' @describeIn as_mmm. \code{as.numeric} wrapper.
 #' @export
-as_num <- base::as.numeric
+as_num <- function(x, ...) {base::as.numeric(x, ...)}
 
 #' @describeIn as_mmm. \code{as.logical} wrapper.
 #' @export
-as_lgl <- base::as.logical
+as_lgl <- function(x, ...) {base::as.logical(x, ...)}
 
 #' @describeIn as_mmm. Coerce to ordered factor.
 #' @export

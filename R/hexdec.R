@@ -27,23 +27,22 @@ todec <- function(x) {
   if (!vp) {err <- c(err, "\n • If pound signs ('#') are used, they must be the first character of any element of [x] in which they are used.")}
   if (!ve) {err <- c(err, "\n • After removing pound signs ('#'), one or more elements of [x] is a blank string.")}
   if (idef(err)) {stop(err)}
-  convert. <- function(v.) {                                                     # subfunction to convert a single hex value to decimal.
-    ch. <- strsplit(v., "", T)[[1]]                                              # split the string into characters
-    n. <- length(v.)                                                             # number of hex digits
-    v.[v. %in% c("a", "A")] <- "10"                                              # convert alpha hex digits to decimal in character form
-    v.[v. %in% c("b", "B")] <- "11"
-    v.[v. %in% c("c", "C")] <- "12"
-    v.[v. %in% c("d", "D")] <- "13"
-    v.[v. %in% c("e", "E")] <- "14"
-    v.[v. %in% c("f", "F")] <- "15"
-    v. <- as.integer(v.)                                                         # convert digits to integer
-    pv. <- rev(16 ^ (0:(n. - 1)))                                                # get the hex place value of each position
-    out. <- v. * pv.                                                             # multiply digits by their place values
-    out. <- sum(out.)                                                            # sum the result
-    return(out.)
+  conv <- function(vv) {                                                         # subfunction to convert a single hex value to decimal.
+    cc <- strsplit(vv, "", T)[[1]]                                               # split the string into characters
+    nn <- length(vv)                                                             # number of hex digits
+    vv[vv %in% c("a", "A")] <- "10"                                              # convert alpha hex digits to decimal in character form
+    vv[vv %in% c("b", "B")] <- "11"
+    vv[vv %in% c("c", "C")] <- "12"
+    vv[vv %in% c("d", "D")] <- "13"
+    vv[vv %in% c("e", "E")] <- "14"
+    vv[vv %in% c("f", "F")] <- "15"
+    vv <- as.integer(vv)                                                         # convert digits to integer
+    pp <- rev(16 ^ (0:(nn - 1)))                                                 # get the hex place value of each position
+    yy <- vv * pp                                                                # multiply digits by their place values
+    sum(yy)                                                                      # sum the result
   }
   x <- as.list(x)
-  sapply(lapply(x, ch), convert.)
+  sapply(lapply(x, ch), conv)
 }
 
 #' @describeIn hexdec. Convert from decimal to hexadecimal.

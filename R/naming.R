@@ -26,9 +26,12 @@ naming. <- function() {help("naming.", package = "uj")}
 #' @describeIn naming. Name the elements of a vector.
 #' @export
 namev <- function(x, en) {
-  bank_funs(imvc, x = x)
-  bank_funs(atm_vec, en = en, n = length(x))
-  err_check()
+  vx <- imvc(x)
+  ve <- cmp_vec(en) & length(x) == length(en)
+  err <- NULL
+  if (!vx) {err <- c(err, " • [x] must be an multivec (?imvc).")}
+  if (!ve) {err <- c(err, " • [en] must be a complete atomic vec (?cmp_vec) of the same length as [x].")}
+  if (idef(err)) {stop(err)}
   names(x) <- en
   x
 }
@@ -36,9 +39,12 @@ namev <- function(x, en) {
 #' @describeIn naming. Name the rows of a matrix or data frame.
 #' @export
 namer <- function(x, rn) {
-  bank_funs(id2D, x = x)
-  bank_funs(atm_vec, rn = rn, n = NROW(x))
-  err_check()
+  vx <- idtf(x) | imat(x)
+  vr <- cmp_vec(rn) & nrow(x) == length(rn)
+  err <- NULL
+  if (!vx) {err <- c(err, " • [x] must be a data.frame or a matrix.")}
+  if (!vr) {err <- c(err, " • [rn] must be a complete atomic vec (?cmp_vec) of length equal to the number of rows in [x].")}
+  if (idef(err)) {stop(err)}
   rownames(x) <- rn
   x
 }
@@ -46,9 +52,12 @@ namer <- function(x, rn) {
 #' @describeIn naming. Name the columns of a matrix or data frame.
 #' @export
 namec <- function(x, cn) {
-  bank_funs(id2D, x = x)
-  bank_funs(atm_vec, cn = cn, n = NCOL(x))
-  err_check()
+  vx <- idtf(x) | imat(x)
+  vc <- cmp_vec(cn) & ncol(x) == length(cn)
+  err <- NULL
+  if (!vx) {err <- c(err, " • [x] must be a data.frame or a matrix.")}
+  if (!vc) {err <- c(err, " • [cn] must be a complete atomic vec (?cmp_vec) of length equal to the number of columns in [x].")}
+  if (idef(err)) {stop(err)}
   colnames(x) <- cn
   x
 }
@@ -57,9 +66,7 @@ namec <- function(x, cn) {
 #'   element with the value of \code{e}
 #' @export
 namel <- function(x, ln) {
-  bank_funs(atm_scl, ln = ln)
-  err_check()
-  x <- list(x)
+  if (!cmp_scl(ln)) {stop(" • [ln] must be a complete atomic scalar (?cmp_scl).")}
   names(x) <- ln
   x
 }

@@ -12,7 +12,7 @@ rng2lev(x, cuts, levs)
 \arguments{
 \item{x}{Atomic object of \link[isrt]{sortable} values.}
 
-\item{cuts}{\link[atm_vec]{Atomic vec} of \code{n-1} cuts for \code{n} levels.}
+\item{cuts}{\link[num_vec]{Atomic vec} of \code{n-1} cuts for \code{n} levels.}
 
 \item{levs}{\link[atm_vec]{Atomic vec} of \code{n} level labels.}
 }

@@ -2,7 +2,7 @@
 #' @family math
 #' @title Increment or Decrement a Variable
 #' @param x \link[atm_num]{Atomic numeric} object.
-#' @param i,d \link[cmp_num_scl]{Copmlete numeric scalar} giving the value by
+#' @param i,d \link[cmp_num_scl]{Complete numeric scalar} giving the value by
 #'   which to increment or decrement, respectively.
 #' @param na \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
 #'   throw an error if any values of \code{x} are \code{NA}.

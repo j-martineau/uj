@@ -37,16 +37,16 @@ isld(x)
 
 fff_vals()
 
-ifff(x, xxx, ...)
+ifff(x, fff, ...)
 }
 \arguments{
 \item{x}{An object.}
 
-\item{xxx}{\link[cmp_chr_scl]{Complete character scalar} containing one or
-more values from \code{fff_vals()} separated by pipes and/or underscores
-("."). Combinations of forms can be specified by separating them with
-underscores. Separating forms or combinations of forms with pipes will
-result in a value of \code{TRUE} if any of them applies to \code{x}.}
+\item{fff}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+more values from \code{fff_vals()} separated by pipes and/or underscores.
+Combinations of forms can be specified by separating them with underscores.
+Separating forms or combinations of forms with pipes will result in a value
+of \code{TRUE} if any of them applies to \code{x}.}
 
 \item{...}{Additional arguments to \code{\link{meets}} containing value and
 element/row/column count restrictions.}
@@ -77,6 +77,18 @@ columns.                            \cr
 \code{'sqr'}\tab square        \tab Square atomic matrix                \cr
 \code{'sld'}\tab solid         \tab Effectively hyper-dimensional (having
 indexing positions in 3+ dimensions). }
+Functions related to form properties are described in the following
+table:\tabular{ll}{
+FUNCTION          \tab WHAT THE                                           \cr
+FORMAT            \tab FUNCTION DOES                                      \cr
+\code{i•••}       \tab Evaluates whether an object is of the form represented
+by \code{•••}.                                     \cr
+\code{fff}        \tab Gets a character scalar containing the forms of an
+object.                                            \cr
+\code{ifff}       \tab Evaluates an object for a specific form and any
+additional properties specified in \code{...}.     \cr
+\code{fff_vals}   \tab Gets a character vector of all possible form property
+values.                                             }
 }
 \section{Functions}{
 \itemize{
@@ -100,7 +112,7 @@ indexing positions in 3+ dimensions). }
 
 \item \code{fff_vals()}: Get a list of all possible form property values.
 
-\item \code{ifff()}: Evaluates whether any property in \code{xxx} is a form
+\item \code{ifff()}: Evaluates whether any property in \code{fff} is a form
 property applicable to \code{x} (subject to any additional restrictions
 in \code{...}).
 
@@ -122,15 +134,13 @@ Other props:
 \code{\link{compatible.}()},
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
-\code{\link{is_ccc.}()},
-\code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},
 \code{\link{mmm_ccc.}()},
+\code{\link{ppp.}()},
 \code{\link{sss.}()},
 \code{\link{ttt.}()},
 \code{\link{ttt_ccc.}()},
-\code{\link{ttt_mmm.}()},
-\code{\link{xxx.}()}
+\code{\link{ttt_mmm.}()}
 }
 \concept{props}

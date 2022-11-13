@@ -43,7 +43,7 @@ rdcsv <- function(file = NULL,
 {
   if (inll(file)) {file <- choose_doc("comma separated values text file")}
   if (!cmp_chr_vec(file)) {stop("\n • [file] must be NULL or a complete character vector (?cmp_chr_vec).")}
-  else {file <- dw0(file)}
+  else {file <- paste0(file, collapse = "")}
   if (!file.exists(file)) {stop("\n • the specified file ('", file, "') does not exist.")}
   readr::read_csv(file,
                   col_names = col_names,
@@ -99,7 +99,7 @@ rdxsv <- function(file = NULL,
 {
   if (inll(file)) {file <- choose_doc("delimited text file")}
   if (!cmp_chr_vec(file)) {stop("\n • [file] must be NULL or a complete character vector (?cmp_chr_vec).")}
-  else {file <- dw0(file)}
+  else {file <- paste0(file, collapse = "")}
   if (!file.exists(file)) {stop("\n • the specified file ('", file, "') does not exist.")}
   readr::read_delim(file = file,
                     delim = delim,
@@ -152,7 +152,7 @@ rdtsv <- function(file = NULL,
 {
   if (inll(file)) {file <- choose_doc("tab separated values text file")}
   if (!cmp_chr_vec(file)) {stop("\n • [file] must be NULL or a complete character vector(?cmp_chr_vec).")}
-  else {file <- dw0(file)}
+  else {file <- paste0(file, collapse = "")}
   if (!file.exists(file)) {stop("\n • the specified file ('", file, "') does not exist.")}
   readr::read_tsv(file = file,
                   col_names = col_names,

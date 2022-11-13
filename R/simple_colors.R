@@ -18,11 +18,11 @@
 #'   \code{s = 1, p = 0   }\tab The most intense \emph{complementary} color. \cr
 #'   \code{s > p > 0}      \tab A lighter, muted \emph{complementary} color. \cr
 #'   \code{p < s < 1}      \tab A darker \emph{complementary} color.           }
-#' @param x \link[is_vec]{Vec} containing valid ℝ color representations.
+#' @param x \link[ivec]{Atomic vec} containing valid ℝ color representations.
 #'   Recycled with \code{y}, \code{lighten}, \code{darken}, \code{comp},
 #'   \code{a}, \code{p}, \code{s}, \code{wx}, and \code{wy} where these are
 #'   valid arguments.
-#' @param y \link[is_vec]{Vec} containing valid ℝ color representations.
+#' @param y \link[ivec]{Atomic vec} containing valid ℝ color representations.
 #' @param na \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
 #'   \code{NA} counts as a valid color alpha level.
 #' @param lighten \link[cmp_ppn_vec]{Complete proportion-valued numeric vec} of
@@ -179,7 +179,7 @@ blend <- function(x, y, wx = 1, wy = 1, a = NA) {
   yb <- todec(substr(y, 6, 7)) / 255
   xa <- todec(substr(x, 8, 9)) / 255                                             # convert alpha values of x and y from hexadecimal to decimal proportion
   ya <- todec(substr(y, 8, 9)) / 255
-  r <- max(0, min(1, wx * xr + wy * yr))                                        # weight the red, green, blue, and alpha values of x and y
+  r <- max(0, min(1, wx * xr + wy * yr))                                         # weight the red, green, blue, and alpha values of x and y
   g <- max(0, min(1, wx * xg + wy * yg))
   b <- max(0, min(1, wx * xb + wy * yb))
   a <- max(0, min(1, wx * xa + wy * ya))
@@ -296,9 +296,9 @@ pal_cb <- function(ng, nc = NULL, a = 1) {
   vnc <- f0(inll(nc), T, cmp_psw_scl)
   va <- cmp_ppn_scl(a)
   err <- NULL
-  if (!vng) {err <- c(err, "\n • [ng] must be a positive whole-number scalar (?cmp_psw_scl).")}
-  if (!vnc) {err <- c(err, "\n • [nc] must be NULL or a positive whole-number scalar (?cmp_psw_scl).")}
-  if (!va) {err <- c(err, "\n • [a] must be a proportion scalar (?cmp_ppn_scl). That is, in the interval [0, 1].")}
+  if (!vng) {err <- c(err, "\n • [ng] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!vnc) {err <- c(err, "\n • [nc] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!va) {err <- c(err, "\n • [a] must be a complete proportion scalar (?cmp_ppn_scl). That is, in the interval [0, 1].")}
   if (idef(err)) {stop(err)}
   out <- c("#4E79A7", "#F28E2B", "#E15759", "#76B7B2", "#59A14F", "#EDC948", "#B07AA1", "#FF9DA7", "#9C755F", "#BAB0AC", # bright colors
            "#273D54", "#794716", "#712C2D", "#3B5C59", "#2D5128", "#776524", "#583D51", "#804F54", "#4E3B30", "#5D5856") #d darkened 50%

@@ -7,7 +7,6 @@
 \alias{cmp_gen}
 \alias{cmp_dtf}
 \alias{cmp_vls}
-\alias{cmp_vtp}
 \alias{cmp_mat}
 \alias{cmp_mvc}
 \alias{cmp_scl}
@@ -25,8 +24,6 @@ cmp_gen(x)
 cmp_dtf(x)
 
 cmp_vls(x)
-
-cmp_vtp(x)
 
 cmp_mat(x)
 
@@ -56,19 +53,16 @@ Combinations of \link[icmp]{completeness} and
 atomic extended class properties.
 
 \item \code{cmp_arr()}: Is \code{x} a \link[icmp]{complete} \link[iarr]{atomic
-array}?
+array+}?
 
 \item \code{cmp_gen()}: Is \code{x} a \link[icmp]{complete} \link[igen]{atomic
 generic}?
 
 \item \code{cmp_dtf()}: Is \code{x} a \link[icmp]{complete} \link[idtf]{atomic
-dtf}?
+data.frame}?
 
 \item \code{cmp_vls()}: Is \code{x} a \link[icmp]{complete} \link[ivls]{atomic
 vlist}?
-
-\item \code{cmp_vtp()}: Is \code{x} a \link[icmp]{complete} \link[ivtp]{atomic
-vtype}?
 
 \item \code{cmp_mat()}: Is \code{x} a \link[icmp]{complete} \link[imat]{atomic
 matrix}?
@@ -80,7 +74,7 @@ multivec}?
 scalar}?
 
 \item \code{cmp_vec()}: Is \code{x} a \link[icmp]{complete} \link[ivec]{atomic
-vec}?
+vector+}?
 
 }}
 \section{Submitting additional arguments to \code{ccc} via \code{...}}{
@@ -100,15 +94,13 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc.}()},
-\code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},
 \code{\link{mmm_ccc.}()},
+\code{\link{ppp.}()},
 \code{\link{sss.}()},
 \code{\link{ttt.}()},
 \code{\link{ttt_ccc.}()},
-\code{\link{ttt_mmm.}()},
-\code{\link{xxx.}()}
+\code{\link{ttt_mmm.}()}
 }
 \concept{props}

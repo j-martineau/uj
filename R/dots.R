@@ -104,36 +104,36 @@ dot <- function(name., def., ...) {
 #'           is \code{TRUE} and \code{names.} contains duplicate values.       }
 #' @export
 dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
-  x.  <- list(...)
-  vx. <- length(x.) > 0
-  vn. <- f0(inll(subs.), T, ivec(subs.))
-  vr. <- isTF(req.)
-  vb. <- isTF(blank.)
-  vu. <- isTF(u.)
-  err. <- NULL
-  if (!vx.) {err. <- c(err., "\n • [...] is empty.")}
-  if (!vn.) {err. <- c(err., "\n • [subs.] must be NULL or an atomic vector with one value per argument in [...].")}
-  if (!vr.) {err. <- c(err., "\n • [req.] must be TRUE or FALSE.")}
-  if (!vb.) {err. <- c(err., "\n • [blank.] must be TRUE or FALSE.")}
-  if (!vu.) {err. <- c(err., "\n • [u.] must be TRUE or FALSE.")}
-  if (idef(err.)) {stop(err.)}
-  nx. <- ...length()
-  nl. <- length(...names())
-  if (inll(subs.)) {subs. <- ...names()}                                         # if {subs.} is {NULL}, use the names of arguments in {...}
-  v1. <- nl. == nx. | inll(subs.)
-  v2. <- nl. == nx. | !req.
-  err. <- NULL
-  if (!v1.) {err. <- c(err., "\n • When [subs.] is not NULL, it must contain one value per argument in [...].")}
-  if (!v2.) {err. <- c(err., "\n • When [req. = TRUE], arguments in [...] must be named or [subs.] must contain one value per argument in [...].")}
-  if (idef(err.)) {stop(err.)}
-  subs. <- av(strsplit(as.character(av(subs.)), "|", TRUE))                      # > atomize, convert to character, and split along {'|'}
-  subs.[is.na(subs.)] <- 'NA'                                                    # > replace any {NA} values with {'NA'}
-  v1. <- !blank. | notIN("", subs.)                                              # validity of the combination of {subs.} and {blank.}
-  v2. <- !u.  | is_unq(subs.)                                                   # validity of the combination of {subs.} and {u.}
-  err. <- NULL
-  if (!v1.) {err. <- c(err., "\n • A name is blank but [blank. = FALSE].")}
-  if (!v2.) {err. <- c(err., "\n • Names provided are not unique but [u. = TRUE].")}
-  if (idef(err.)) {stop(err.)}
+  x <- list(...)
+  vx <- length(x) > 0
+  vn <- f0(inll(subs.), T, ivec(subs.))
+  vr <- isTF(req.)
+  vb <- isTF(blank.)
+  vu <- isTF(u.)
+  err <- NULL
+  if (!vx) {err <- c(err, "\n • [...] is empty.")}
+  if (!vn) {err <- c(err, "\n • [subs.] must be NULL or an atomic vector with one value per argument in [...].")}
+  if (!vr) {err <- c(err, "\n • [req.] must be TRUE or FALSE.")}
+  if (!vb) {err <- c(err, "\n • [blank.] must be TRUE or FALSE.")}
+  if (!vu) {err <- c(err, "\n • [u.] must be TRUE or FALSE.")}
+  if (idef(err)) {stop(err)}
+  nx <- ...length()
+  nl <- length(...names())
+  if (inll(subs.)) {subs. <- ...names()}
+  v1 <- nl == nx | inll(subs.)
+  v2 <- nl == nx | !req.
+  err <- NULL
+  if (!v1) {err <- c(err, "\n • When [subs.] is not NULL, it must contain one value per argument in [...].")}
+  if (!v2) {err <- c(err, "\n • When [req. = TRUE], arguments in [...] must be named or [subs.] must contain one value per argument in [...].")}
+  if (idef(err)) {stop(err)}
+  subs. <- av(strsplit(as.character(av(subs.)), "|", fixed = TRUE))
+  subs.[is.na(subs.)] <- 'NA'
+  v1 <- !blank. | notIN("", subs.)
+  v2 <- !u.  | is_unq(subs.)
+  err <- NULL
+  if (!v1) {err <- c(err, "\n • A name is blank but [blank. = FALSE].")}
+  if (!v2) {err <- c(err, "\n • Names provided are not unique but [u. = TRUE].")}
+  if (idef(err)) {stop(err)}
   subs.
 }
 
@@ -142,10 +142,10 @@ dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
 #' @export
 named_dots <- function(...) {
   if (...length() == 0) {return(NULL)}
-  x. <- list(...)
-  n. <- ...names()
-  i. <- !is.na(n.)
-  if (any(i.)) {x.[i.]}
+  x <- list(...)
+  n <- ...names()
+  i <- !is.na(n)
+  if (any(i)) {x[i]}
   else {NULL}
 }
 
@@ -154,9 +154,9 @@ named_dots <- function(...) {
 #' @export
 unnamed_dots <- function(...) {
   if (...length() == 0) {return(NULL)}
-  x. <- list(...)
-  n. <- ...names()
-  i. <- is.na(n.)
-  if (any(i.)) {x.[i.]}
+  x <- list(...)
+  n <- ...names()
+  i <- is.na(n)
+  if (any(i)) {x[i]}
   else {NULL}
 }

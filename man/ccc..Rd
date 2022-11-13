@@ -2,60 +2,26 @@
 % Please edit documentation in R/ccc.R
 \name{ccc.}
 \alias{ccc.}
-\alias{atm_arr}
-\alias{atm_dtf}
-\alias{atm_gen}
-\alias{atm_vls}
-\alias{atm_vtp}
-\alias{atm_mat}
-\alias{atm_mvc}
-\alias{atm_scl}
-\alias{atm_vec}
-\alias{ccc_vals}
 \alias{iarr}
-\alias{igen}
 \alias{idtf}
-\alias{ivls}
-\alias{ivtp}
+\alias{igen}
 \alias{imat}
 \alias{imvc}
 \alias{iscl}
 \alias{ivec}
+\alias{ivls}
+\alias{ccc_vals}
 \alias{ccc}
 \alias{iccc}
-\title{Atomic extended class properties}
+\title{Extended class properties}
 \usage{
 ccc.()
 
-atm_arr(x, xxx = NULL)
-
-atm_dtf(x, xxx = NULL)
-
-atm_gen(x, xxx = NULL)
-
-atm_vls(x, xxx = NULL)
-
-atm_vtp(x, xxx = NULL)
-
-atm_mat(x, xxx = NULL)
-
-atm_mvc(x, xxx = NULL)
-
-atm_scl(x, xxx = NULL)
-
-atm_vec(x, xxx = NULL)
-
-ccc_vals()
-
 iarr(x)
-
-igen(x)
 
 idtf(x)
 
-ivls(x)
-
-ivtp(x)
+igen(x)
 
 imat(x)
 
@@ -65,14 +31,18 @@ iscl(x)
 
 ivec(x)
 
+ivls(x)
+
+ccc_vals()
+
 ccc(x)
 
-iccc(x, xxx, ...)
+iccc(x, ccc, ...)
 }
 \arguments{
 \item{x}{An object.}
 
-\item{xxx}{\code{NULL} or \link[cmp_chr_scl]{complete character scalar}
+\item{ccc}{\code{NULL} or \link[cmp_chr_scl]{complete character scalar}
 containing one or more values from \code{ccc_vals()} separated by pipes
 and/or underscores. Combinations of extended classes can be specified by
 separating them with underscores. Separating extended classes or
@@ -90,84 +60,50 @@ or vector containing all extended class properties from
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-Extended classes are not formally defined as a new classes, but
-are dynamically evaluated for characteristics through a call to
-\code{iccc(x)} where the function name (e.g., 'ccc') is the extended class
-name (see \code{is_ccc} for mode-agnostic extended classes. \code{TRUE} or
-\code{FALSE} is always returned, and \code{FALSE} is always returned for
-the \code{NULL} object.
-\cr\cr
-There are two sets of functions for these extended classes in the form
-\code{atm_ccc} which allows an option to check for extended mode
-(\code{\link{is_mmm}}) or the form \code{iccc} which does not check for
-mode beyond being atomic. The are listed in the table below.
-\tabular{lll}{
-ATOMIC     \tab \strong{atm_ccc   }\tab \strong{iccc}\cr
-CLASS      \tab FUNCTION           \tab FUNCTION     \cr
-array      \tab \code{atm_arr   }  \tab \code{iarr}  \cr
-generic    \tab \code{atm_gen}     \tab \code{igen}  \cr
-dtf        \tab \code{atm_dtf}     \tab \code{idtf}  \cr
-vlist      \tab \code{atm_vls}     \tab \code{ivls}  \cr
-vtype      \tab \code{atm_vtp}     \tab \code{ivtp}  \cr
-matrix     \tab \code{atm_mat}     \tab \code{imat}  \cr
-multivec   \tab \code{atm_mvc}     \tab \code{imvc}  \cr
-scalar     \tab \code{atm_scl}     \tab \code{iscl}  \cr
-vec        \tab \code{atm_vec}     \tab \code{ivec}    }
+Extended classes are not formally defined, but are dynamically
+evaluated. Extended classes come in two varieties: universal and atomic. The
+following two tables define each extended class in universal and atomic form,
+respectively.:\tabular{lll}{
+EXTENDED     \tab PROPERTY     \tab QUALIFYING                            \cr
+CLASS        \tab VALUE        \tab OBJECTS                               \cr
+vlist        \tab \code{'vls'} \tab Vector-list (i.e., not a data.frame). \cr
+data.frame   \tab \code{'dtf'} \tab Data.frame.                           \cr
+generic      \tab \code{'gen'} \tab Vector, array, or vlist.              \cr
+matrix       \tab \code{'mat'} \tab Matrix.                               \cr
+array+       \tab \code{'arr'} \tab Array or vector of any length.        \cr
+scalar       \tab \code{'scl'} \tab Array or vector of any length.        \cr
+vector+      \tab \code{'vec'} \tab Vector of length 1+ or array of length 1+
+with multiple index positions in either 0
+or 1 dimensions.                      \cr
+multivec     \tab \code{'mvc'} \tab Vector of length 2+ or array of length 2+
+with multiple index positions in exactly
+1 dimension.                            }
 }
 \section{Functions}{
 \itemize{
-\item \code{atm_arr()}: Is \code{x} an atomic array (optionally checking
-extended mode)?
+\item \code{iarr()}: Is \code{x} an array+?
 
-\item \code{atm_dtf()}: Is \code{x} an atomic dtf (optionally checking extended
-mode)?
+\item \code{idtf()}: Is \code{x} a data.frame?
 
-\item \code{atm_gen()}: Is \code{x} an atomic generic (optionally checking extended
-mode)?
+\item \code{igen()}: Is \code{x} a generic?
 
-\item \code{atm_vls()}: Is \code{x} an atomic vlist (optionally checking extended
-mode)?
+\item \code{imat()}: Is \code{x} a matrix?
 
-\item \code{atm_vtp()}: Is \code{x} an atomic vtype (optionally checking extended
-mode)?
+\item \code{imvc()}: Is \code{x} a multivec?
 
-\item \code{atm_mat()}: Is \code{x} an atomic matrix (optionally checking extended
-mode)?
+\item \code{iscl()}: Is \code{x} a scalar?
 
-\item \code{atm_mvc()}: Is \code{x} an atomic multivec (optionally checking
-extended mode)?
+\item \code{ivec()}: Is \code{x} a vector+?
 
-\item \code{atm_scl()}: Is \code{x} an atomic scalar (optionally checking extended
-mode)?
-
-\item \code{atm_vec()}: Is \code{x} an atomic vec (optionally checking extended
-mode)?
+\item \code{ivls()}: Is \code{x} a vlist?
 
 \item \code{ccc_vals()}: Get a character vector of all possible atomic extended
 classes.
 
-\item \code{iarr()}: Is \code{x} an atomic array?
-
-\item \code{igen()}: Is \code{x} an atomic generic?
-
-\item \code{idtf()}: Is \code{x} an atomic dtf?
-
-\item \code{ivls()}: Is \code{x} an atomic vlist?
-
-\item \code{ivtp()}: Is \code{x} an atomic vtype?
-
-\item \code{imat()}: Is \code{x} an atomic matrix?
-
-\item \code{imvc()}: Is \code{x} an atomic multivec?
-
-\item \code{iscl()}: Is \code{x} an atomic scalar?
-
-\item \code{ivec()}: Is \code{x} an atomic vec?
-
 \item \code{ccc()}: Gets a vector of properties from \code{ccc_vals()} that are
 applicable to \code{x}.
 
-\item \code{iccc()}: Evaluates whether any (combination) property in \code{xxx}
+\item \code{iccc()}: Evaluates whether any (combination) property in \code{ccc}
 is an extended class property applicable to \code{x}.
 
 }}
@@ -188,15 +124,13 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc.}()},
-\code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},
 \code{\link{mmm_ccc.}()},
+\code{\link{ppp.}()},
 \code{\link{sss.}()},
 \code{\link{ttt.}()},
 \code{\link{ttt_ccc.}()},
-\code{\link{ttt_mmm.}()},
-\code{\link{xxx.}()}
+\code{\link{ttt_mmm.}()}
 }
 \concept{props}

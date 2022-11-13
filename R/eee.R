@@ -31,8 +31,21 @@
 #'   \code{≥ 3}\tab\code{'eHD'}\tab Effectively hyper-dimensional
 #'                             \tab Non-empty array with multiple index
 #'                                  positions in at least 3 dimensions.        }
+#' Functions related to essential dimensionality are described in the following
+#' table:\tabular{ll}{
+#' FUNCTION          \tab WHAT THE                                           \cr
+#' FORMAT            \tab FUNCTION DOES                                      \cr
+#' \code{i•••}       \tab Evaluates whether an object is of the essential
+#'                        dimensionality represented by \code{•••}.          \cr
+#' \code{ddd}        \tab Gets a character scalar containing the essential
+#'                        dimensionality of an object.                       \cr
+#' \code{iddd}       \tab Evaluates an object for a specific essential
+#'                        dimensionality and any additional properties
+#'                        specified in \code{...}.                           \cr
+#' \code{ddd_vals}   \tab Gets a character vector of all possible essential
+#'                        dimensionality property values.                      }
 #' @param x An object.
-#' @param xxx \link[cmp_chr_scl]{Complete character scalar} containing one or
+#' @param eee \link[cmp_chr_scl]{Complete character scalar} containing one or
 #'   more values from \code{eee_vals()} separated by pipes and/or underscores.
 #'   Combinations of effective dimensionality  properties can be specified by
 #'   separating them with underscores. Separating effective dimensionality
@@ -92,17 +105,17 @@ ieUD <- function(x) {identical(eee(x), NaN)}
 #' @describeIn eee. Get a character vector of all possible essential
 #'   dimensionality property values.
 #' @export
-eee_vals <- function() {x <- c('e0D', 'e1D', 'e2D', 'eHD', 'eUD'); names(x) <- rep.int("eee", length(x)); x}
+eee_vals <- function() {c('e0D', 'e1D', 'e2D', 'eHD', 'eUD')}
 
 #' @describeIn eee. Evaluates whether any (combination) property in
-#'   \code{xxx} is an effective dimensionality property applicable to \code{x}
+#'   \code{eee} is an effective dimensionality property applicable to \code{x}
 #' @export
-ieee <- function(x, xxx, ...) {
-  if (!cmp_chr_scl(x)) {stop("\n • [xxx] must be a complete character scalar.")}
+ieee <- function(x, eee, ...) {
+  if (!cmp_chr_scl(x)) {stop("\n • [eee] must be a complete character scalar.")}
   valid <- eee_vals()
-  combos <- strsplit(xxx, "|", fixed = T)[[1]]
-  newxxx <- strsplit(combos, ".", fixed = T)[[1]]
-  valid <- all(newxxx %in% valid)
-  if (!valid) {stop("\n • [xxx] contains a value not in eee_vals(), after splitting [xxx] on pipes and underscores.")}
-  ixxx(x, xxx, ...)
+  combos <- strsplit(eee, "|", fixed = T)[[1]]
+  neweee <- strsplit(combos, ".", fixed = T)[[1]]
+  valid <- all(neweee %in% valid)
+  if (!valid) {stop("\n • [eee] contains a value not in eee_vals(), after splitting [eee] on pipes and underscores.")}
+  ippp(x, eee, ...)
 }

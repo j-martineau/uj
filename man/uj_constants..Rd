@@ -15,7 +15,7 @@ v(...)
 \arguments{
 \item{...}{unquoted, comma-separated list of the names of constants to
 return. If multiple constants are specified, they are coerced into a single
-\link[is_vec]{atomic vector} result.}
+atomic vector result.}
 }
 \value{
 An atomic vector of length 1 or greater.
@@ -25,8 +25,9 @@ Package constants for \code{uj}
 }
 \section{Functions}{
 \itemize{
-\item \code{uj_constants()}: Get a named \link[is_vls]{vlist} containing all
-package \code{uj} constants with an associated attribute describing each.
+\item \code{uj_constants()}: Get a named \link[ivls]{atomic vlist} containing
+all package \code{uj} constants with an associated attribute describing
+each.
 
 \item \code{v()}: Get one or more \code{uj} package constants.
 

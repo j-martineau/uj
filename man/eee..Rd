@@ -31,12 +31,12 @@ ieUD(x)
 
 eee_vals()
 
-ieee(x, xxx, ...)
+ieee(x, eee, ...)
 }
 \arguments{
 \item{x}{An object.}
 
-\item{xxx}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+\item{eee}{\link[cmp_chr_scl]{Complete character scalar} containing one or
 more values from \code{eee_vals()} separated by pipes and/or underscores.
 Combinations of effective dimensionality  properties can be specified by
 separating them with underscores. Separating effective dimensionality
@@ -84,6 +84,19 @@ positions in only \code{2} dimensions.   \cr
 \code{≥ 3}\tab\code{'eHD'}\tab Effectively hyper-dimensional
 \tab Non-empty array with multiple index
 positions in at least 3 dimensions.        }
+Functions related to essential dimensionality are described in the following
+table:\tabular{ll}{
+FUNCTION          \tab WHAT THE                                           \cr
+FORMAT            \tab FUNCTION DOES                                      \cr
+\code{i•••}       \tab Evaluates whether an object is of the essential
+dimensionality represented by \code{•••}.          \cr
+\code{ddd}        \tab Gets a character scalar containing the essential
+dimensionality of an object.                       \cr
+\code{iddd}       \tab Evaluates an object for a specific essential
+dimensionality and any additional properties
+specified in \code{...}.                           \cr
+\code{ddd_vals}   \tab Gets a character vector of all possible essential
+dimensionality property values.                      }
 }
 \section{Functions}{
 \itemize{
@@ -111,7 +124,7 @@ is undefined, or \code{NaN}.
 dimensionality property values.
 
 \item \code{ieee()}: Evaluates whether any (combination) property in
-\code{xxx} is an effective dimensionality property applicable to \code{x}
+\code{eee} is an effective dimensionality property applicable to \code{x}
 
 }}
 \section{Additional Arguments in \code{...}}{
@@ -132,15 +145,13 @@ Other props:
 \code{\link{compatible.}()},
 \code{\link{ddd.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc.}()},
-\code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},
 \code{\link{mmm_ccc.}()},
+\code{\link{ppp.}()},
 \code{\link{sss.}()},
 \code{\link{ttt.}()},
 \code{\link{ttt_ccc.}()},
-\code{\link{ttt_mmm.}()},
-\code{\link{xxx.}()}
+\code{\link{ttt_mmm.}()}
 }
 \concept{props}

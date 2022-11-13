@@ -10,7 +10,7 @@
 \alias{iprt}
 \alias{sss_vals}
 \alias{isss}
-\title{State properties}
+\title{State of completeness properties}
 \usage{
 sss.()
 
@@ -28,12 +28,12 @@ iprt(x)
 
 sss_vals()
 
-isss(x, xxx, ...)
+isss(x, sss, ...)
 }
 \arguments{
 \item{x}{An object.}
 
-\item{xxx}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+\item{sss}{\link[cmp_chr_scl]{Complete character scalar} containing one or
 more values from \code{sss_vals()} separated by pipes.}
 
 \item{...}{Additional arguments to \code{\link{meets}} containing value and
@@ -45,21 +45,33 @@ returns a character scalar or \code{NULL}. All others return either
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-An object's state (of completeness) is defined for non-empty
+An object's state of completeness is defined for non-empty
 atomic tibbles, non-empty atomic lists, non-empty atomic vectors, and
 non-empty atomic arrays. For all others, state is undefined and returned as
 \code{NULL}. The following table summarizes valid state properties.
 \tabular{lll}{
-STATE       \tab STATE      \tab CHARACTERISTICS                        \cr
-PROPERTY    \tab PROPERTY   \tab OF QUALIFYING                          \cr
-VALUE       \tab NAME       \tab OBJECTS                                \cr
-\code{'cmp'}\tab Complete   \tab Non-empty, atomic, no \code{NA} values.\cr
-\code{'mss'}\tab Missing    \tab Non-empty, atomic, only \code{NA}
-values.                                \cr
+STATE       \tab STATE      \tab CHARACTERISTICS                          \cr
+PROPERTY    \tab PROPERTY   \tab OF QUALIFYING                            \cr
+VALUE       \tab NAME       \tab OBJECTS                                  \cr
+\code{'cmp'}\tab Complete   \tab Non-empty, atomic, no \code{NA} values.  \cr
+\code{'mss'}\tab Missing    \tab Non-empty, atomic, only \code{NA} values.\cr
 \code{'prt'}\tab Partial    \tab Non-empty, atomic, both \code{NA} and
-non-\code{NA} values.                  \cr
-\code{'nas'}\tab NA scalar  \tab Atomic \code{NA} scalar.               \cr
-\code{'oks'}\tab OK scalar  \tab Atomic non-\code{NA} scalar .            }
+non-\code{NA} values.                    \cr
+\code{'nas'}\tab NA scalar  \tab Atomic \code{NA} scalar.                 \cr
+\code{'oks'}\tab OK scalar  \tab Atomic non-\code{NA} scalar.               }
+Functions related to state of completeness are described in the following
+table:\tabular{ll}{
+FUNCTION          \tab WHAT THE                                           \cr
+FORMAT            \tab FUNCTION DOES                                      \cr
+\code{i•••}       \tab Evaluates whether an object is of the state of
+completeness represented by \code{•••}.            \cr
+\code{sss}        \tab Gets a character vector containing all state of
+completeness properties of an object.              \cr
+\code{isss}       \tab Evaluates an object for a specific state of
+completeness and any additional properties specified
+in \code{...}.                                     \cr
+\code{sss_vals}   \tab Gets a character vector of all possible state of
+completeness property values.                        }
 }
 \section{Functions}{
 \itemize{
@@ -84,12 +96,12 @@ non-\code{NA} values?
 values.
 
 \item \code{isss()}: Evaluate whether \code{x} has a state property represented
-in \code{xxx}.
+in \code{sss}.
 
 }}
 \section{Additional Arguments in \code{...}}{
 
-Submitting additional arguments to \code{is_sss} via \code{...}
+Submitting additional arguments to \code{isss} via \code{...}
 allows for checking not just the state but whether length, number of rows,
 number of columns, and element values meet flexible criteria.
 }
@@ -106,14 +118,12 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc.}()},
-\code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},
 \code{\link{mmm_ccc.}()},
+\code{\link{ppp.}()},
 \code{\link{ttt.}()},
 \code{\link{ttt_ccc.}()},
-\code{\link{ttt_mmm.}()},
-\code{\link{xxx.}()}
+\code{\link{ttt_mmm.}()}
 }
 \concept{props}

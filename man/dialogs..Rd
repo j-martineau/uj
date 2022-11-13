@@ -25,7 +25,7 @@ dialogs_uj()
 
 msgbox(..., t = "ok")
 
-dirbox(..., def = getwd())
+dirbox(..., d = getwd())
 
 docbox(...)
 
@@ -43,23 +43,25 @@ choose_doc(type = "document")
 
 yes(...)
 
-ask(..., def = v(blank), cancel = ".stop")
+ask(..., def = "", cancel = ".stop")
 
-ask1(opts, what, more = F)
+ask1(opts, what, more = FALSE)
 
-askn(opts, what, all = T, none = T, more = F)
+askn(opts, what, all = TRUE, none = TRUE, more = FALSE)
 
 asksn(opts, what, per = 9)
 
 asks1(opts, what, per = 9)
 
-asknew(old., what, unq = T)
+asknew(old, what, unq = T)
 }
 \arguments{
 \item{...}{Objects to be atomized to create the question.}
 
 \item{t}{\link[cmp_chr_scl]{Complete character scalar} type of dialog box
 (valid values are \code{c('ok', 'okcancel', 'yesno', 'yesnocancel'}).}
+
+\item{d}{\link[cmp_chr_scl]{Complete character scalar} default directory.}
 
 \item{def}{\link[cmp_chr_scl]{Complete character scalar} default value.}
 

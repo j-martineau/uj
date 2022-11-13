@@ -9,30 +9,30 @@
 \usage{
 recycling.()
 
-recyclable_n(n., targ. = max(n.))
+recyclable_n(n, targ = max(n))
 
 recyclable(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL, err. = F)
 
 recycle(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL)
 }
 \arguments{
+\item{...}{Named arguments to be recycled in the environment of the calling
+function.}
+
 \item{n.}{For \code{recyclable_n}, a \link[cmp_psw_vec]{complete positive
 whole-number vec} giving the lengths of arguments to be recycled; for
 \code{recyclable} and \code{recycle}, either \code{NULL} or a
 \link[cmp_psw_vec]{complete positive whole-number vec} giving the set of
 valid recycled argument lengths.}
 
-\item{targ.}{\link[cmp_psw_scl]{Complete positive whole-number scalar} giving
-the target length of recycled arguments.}
-
-\item{...}{Named arguments to be recycled in the environment of the calling
-function.}
-
 \item{min.}{\code{NULL} or \link[cmp_psw_scl]{complete positive whole-number
 scalar} giving the minimum valid recycled argument length.}
 
 \item{max.}{\code{NULL} or \link[cmp_psw_scl]{complete positive whole-number
 scalar} giving the maximum valid recycled argument length.}
+
+\item{targ.}{\link[cmp_psw_scl]{Complete positive whole-number scalar} giving
+the target length of recycled arguments.}
 
 \item{err.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
 throw an error if the arguments in \code{...} are not recyclable.}

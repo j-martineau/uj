@@ -3,15 +3,6 @@
 \name{ttt_ccc.}
 \alias{ttt_ccc.}
 \alias{ttt_ccc_vals}
-\alias{any_arr}
-\alias{any_gen}
-\alias{any_mat}
-\alias{any_mvc}
-\alias{any_scl}
-\alias{any_dtf}
-\alias{any_vec}
-\alias{any_vls}
-\alias{any_vtp}
 \alias{atm_arr}
 \alias{atm_gen}
 \alias{atm_mat}
@@ -20,7 +11,6 @@
 \alias{atm_dtf}
 \alias{atm_vec}
 \alias{atm_vls}
-\alias{atm_vtp}
 \alias{pop_arr}
 \alias{pop_gen}
 \alias{pop_mat}
@@ -29,7 +19,6 @@
 \alias{pop_dtf}
 \alias{pop_vec}
 \alias{pop_vls}
-\alias{pop_vtp}
 \alias{cmp_arr}
 \alias{cmp_gen}
 \alias{cmp_mat}
@@ -38,7 +27,6 @@
 \alias{cmp_dtf}
 \alias{cmp_vec}
 \alias{cmp_vls}
-\alias{cmp_avt}
 \alias{emp_arr}
 \alias{emp_gen}
 \alias{emp_mat}
@@ -47,7 +35,6 @@
 \alias{emp_dtf}
 \alias{emp_vec}
 \alias{emp_vls}
-\alias{emp_avt}
 \alias{rcr_arr}
 \alias{rcr_gen}
 \alias{rcr_mat}
@@ -56,30 +43,11 @@
 \alias{rcr_dtf}
 \alias{rcr_vec}
 \alias{rcr_vls}
-\alias{rcr_vtp}
 \title{Fundamental type plus extended class properties}
 \usage{
 ttt_ccc.()
 
 ttt_ccc_vals()
-
-any_arr(x)
-
-any_gen(x)
-
-any_mat(x)
-
-any_mvc(x)
-
-any_scl(x)
-
-any_dtf(x)
-
-any_vec(x)
-
-any_vls(x)
-
-any_vtp(x)
 
 atm_arr(x, xxx = NULL)
 
@@ -97,8 +65,6 @@ atm_vec(x, xxx = NULL)
 
 atm_vls(x, xxx = NULL)
 
-atm_vtp(x, xxx = NULL)
-
 pop_arr(x, xxx = NULL)
 
 pop_gen(x, xxx = NULL)
@@ -114,8 +80,6 @@ pop_dtf(x, xxx = NULL)
 pop_vec(x, xxx = NULL)
 
 pop_vls(x, xxx = NULL)
-
-pop_vtp(x, xxx = NULL)
 
 cmp_arr(x)
 
@@ -133,8 +97,6 @@ cmp_vec(x)
 
 cmp_vls(x)
 
-cmp_avt(x)
-
 emp_arr(x)
 
 emp_gen(x)
@@ -151,8 +113,6 @@ emp_vec(x)
 
 emp_vls(x)
 
-emp_avt(x)
-
 rcr_arr(x)
 
 rcr_gen(x)
@@ -168,8 +128,6 @@ rcr_dtf(x)
 rcr_vec(x)
 
 rcr_vls(x)
-
-rcr_vtp(x)
 }
 \arguments{
 \item{x}{An object.}
@@ -189,24 +147,6 @@ Combinations of \link[ttt]{fundamental type} and
 \item \code{ttt_ccc_vals()}: Get a character vector of all possible fundamental
 type plus extended class properties.
 
-\item \code{any_arr()}: Is \code{x} an \link[is_arr]{array of any type}?
-
-\item \code{any_gen()}: Is \code{x} a \link[is_gen]{generic of any type}?
-
-\item \code{any_mat()}: Is \code{x} a \link[is_mat]{matrix of any type}?
-
-\item \code{any_mvc()}: Is \code{x} a \link[is_mvc]{multivec of any type}?
-
-\item \code{any_scl()}: Is \code{x} a \link[is_scl]{scalar of any type}?
-
-\item \code{any_dtf()}: Is \code{x} a \link[is_dft]{dtf of any type}?
-
-\item \code{any_vec()}: Is \code{x} a \link[is_vec]{vec of any type}?
-
-\item \code{any_vls()}: Is \code{x} a \link[is_vls]{vlist of any type}?
-
-\item \code{any_vtp()}: Is \code{x} a \link[is_vtp]{vtype of any type}?
-
 \item \code{atm_arr()}: Is \code{x} an \link[iatm]{atomic} \link[iarr]{array}?
 
 \item \code{atm_gen()}: Is \code{x} an \link[iatm]{atomic} \link[igen]{generic}?
@@ -223,8 +163,6 @@ type plus extended class properties.
 \item \code{atm_vec()}: Is \code{x} an \link[iatm]{atomic} \link[ivec]{vec}?
 
 \item \code{atm_vls()}: Is \code{x} an \link[iatm]{atomic} \link[ivls]{vlist}?
-
-\item \code{atm_vtp()}: Is \code{x} an \link[iatm]{atomic} \link[ivtp]{vtype}?
 
 \item \code{pop_arr()}: Is \code{x} a \link[ipop]{populated} \link[iarr]{array}?
 
@@ -246,8 +184,6 @@ type plus extended class properties.
 
 \item \code{pop_vls()}: Is \code{x} a \link[ipop]{populated} \link[ivls]{vlist}?
 
-\item \code{pop_vtp()}: Is \code{x} a \link[ipop]{populated} \link[ivtp]{vtype}?
-
 \item \code{cmp_arr()}: Is \code{x} a \link[icmp]{complete} \link[iarr]{array}?
 
 \item \code{cmp_gen()}: Is \code{x} a \link[icmp]{complete}
@@ -266,8 +202,6 @@ type plus extended class properties.
 
 \item \code{cmp_vls()}: Is \code{x} a \link[icmp]{complete} \link[ivls]{vlist}?
 
-\item \code{cmp_avt()}: Is \code{x} a \link[icmp]{complete} \link[ivtp]{vtype}?
-
 \item \code{emp_arr()}: Is \code{x} an \link[iemp]{empty} \link[iarr]{array}?
 
 \item \code{emp_gen()}: Is \code{x} an \link[iemp]{empty} \link[igen]{generic}?
@@ -283,8 +217,6 @@ type plus extended class properties.
 \item \code{emp_vec()}: Is \code{x} an \link[iemp]{empty} \link[ivec]{vec}?
 
 \item \code{emp_vls()}: Is \code{x} an \link[iemp]{empty} \link[ivls]{vlist}?
-
-\item \code{emp_avt()}: Is \code{x} an \link[iemp]{empty} \link[ivtp]{vtype}?
 
 \item \code{rcr_arr()}: Is \code{x} a \link[ircr]{recursive} \link[iarr]{array}?
 
@@ -306,8 +238,6 @@ type plus extended class properties.
 
 \item \code{rcr_vls()}: Is \code{x} a \link[ircr]{recursive} \link[ivls]{vlist}?
 
-\item \code{rcr_vtp()}: Is \code{x} a \link[ircr]{recursive} \link[ivtp]{vtype}?
-
 }}
 \seealso{
 Other props: 
@@ -321,14 +251,12 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc.}()},
-\code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},
 \code{\link{mmm_ccc.}()},
+\code{\link{ppp.}()},
 \code{\link{sss.}()},
 \code{\link{ttt.}()},
-\code{\link{ttt_mmm.}()},
-\code{\link{xxx.}()}
+\code{\link{ttt_mmm.}()}
 }
 \concept{props}

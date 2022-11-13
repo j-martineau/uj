@@ -32,7 +32,7 @@
 #'   \cr\cr
 #'   For \code{bank_when}, two named atomic scalar arguments to be error
 #'   checked.
-#' @param nas \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+#' @param nas. \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
 #'   atomic scalar \code{NA} values qualify.
 #' @param extras \code{NUlL} or an \link[icmp]{complete atomic object}
 #'   containing additional atomic values that qualify as valid.
@@ -44,7 +44,7 @@
 #'   more property combos (combos are created by separating one or more
 #'   \link[xxx_vals]{property values} with underscores. Multiple combos are
 #'   separated by pipes.
-#' @param named \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+#' @param named. \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
 #'   arguments in \code{...} must be uniquely named without using blank strings.
 #' @param whens.,values. \link[ipop]{Populated atomic objects}.
 #' @param pats \link[ivls]{Atomic vlist} containing multiple elements, each
@@ -207,24 +207,24 @@ bank_pop <- function(...) {
 #'   function.} For each named argument in \code{...}, checks whether it
 #'   satisfies a property function in \code{funs.}, and if not, banks an error
 #'   message. \code{funs.} must be a character scalar containing the names of
-#'   one or more \link[prop_funs]{property functions}, separated by pipes. An
+#'   one or more \link[ppp_funs]{property functions}, separated by pipes. An
 #'   argument passes the test if calling any one of the functions results in a
 #'   value of \code{TRUE}.
 #' @export
 bank_funs <- function(funs, ...) {
-  if (is.character(funs)) {funs <- av(strsplit(funs, "|", TRUE))} else {}
+  if (is.character(funs)) {funs <- av(strsplit(funs, "|", TRUE))} else {stop(" • [funs] must be a character scalar or vector.")}
   labs <- ...names()
   nd <- ...length()
   nl <- length(labs)
   vd <- nd > 0
   vl <- f0(nd != nl, F, !any(labs == "") & isEQ(labs, unique(labs)))
-  vf <- all(sapply(funs, is_xxx_fun))
+  vf <- all(sapply(funs, is_ppp_fun))
   err  <- NULL
   if (!vd) {err <- c(err, "\n • [...] is empty.")}
   if (!vl) {err <- c(err, "\n • All arguments in [...] must be uniquely named without using blank strings.")}
   if (!vf) {err <- c(err, "\n • After splitting on pipes, [funs] contains a value not found in prop_funs().")}
   if (!inll(err)) {stop(err)}
-  err <- paste0("[", labs, "] must be ", define_xxx_combos(funs))
+  err <- paste0("[", labs, "] must be ", alt_ppp_concise(funs))
   for (i in 1:nd) {
     v <- FALSE
     for (fun in funs) {v <- v | eval(parse(text = paste0(fun, "(...elt(i.))")))}
@@ -244,25 +244,25 @@ bank_funs <- function(funs, ...) {
 #'   argument satisfies the property specification if it satisfies any of the
 #'   property combos.
 #' @export
-bank_xxx <- function(xxx, ..., nas = F) {
+bank_xxx <- function(ppp, ..., nas. = F) {
   labs <- ...names()
   nd <- ...length()
   nl <- length(labs)
-  vp <- f0(!cmp_chr_scl(xxx), F, is_valid_xxx(xxx))
+  vp <- f0(!cmp_chr_scl(ppp), F, is_valid_ppp(ppp))
   vd <- nd > 0
   vl <- f0(nd != nl, F, !any(labs == "") & isEQ(labs, unique(labs)))
-  vn <- isTF(nas)
+  vn <- isTF(nas.)
   err <- NULL
-  if (!vp) {err <- c(err, "\n • [xxx.] is not a valid property specification.")}
+  if (!vp) {err <- c(err, "\n • [ppp] is not a valid property specification.")}
   if (!vd) {err <- c(err, "\n • [...] is empty.")}
   if (!vl) {err <- c(err, "\n • All arguments in [...] must be uniquely named without using blank strings.")}
   if (!vn) {err <- c(err, "\n • [nas.] must be TRUE or FALSE.")}
   if (!inll(err)) {stop(err)}
-  err <- paste0("[", labs, "] must be ", define_xxx_combos(xxx), ".")
+  err <- paste0("[", labs, "] must be ", alt_ppp_concise(ppp), ".")
   for (i in 1:nd) {
     val <- F
-    if (nas) {val. <- isNa(...elt(i))}
-    if (!val) {val. <- ixxx(...elt(i), xxx)}
+    if (nas.) {val <- isNa(...elt(i))}
+    if (!val) {val <- ippp(...elt(i), ppp)}
     if (!val) {bank_err(err[i], gens = 1)}
   }
   NULL
@@ -325,23 +325,23 @@ bank_vals <- function(...) {
 #'   and if not, banks an error message. If \code{named. = TRUE}, checks whether
 #'   all arguments in \code{...} are named, and if not banks an error message.
 #' @export
-bank_dots <- function(xxx, ..., named. = F) {
+bank_dots <- function(ppp, ..., named. = F) {
   dots  <- list(...)
-  named. <- named_dots(...)
+  named <- named_dots(...)
   blank <- unnamed_dots(...)
-  labs <- names(named.)
-  vp <- f0(!cmp_chr_scl(xxx), F, is_valid_xxx(xxx))
+  labs <- names(named)
+  vp <- f0(!cmp_chr_scl(ppp), F, is_valid_ppp(ppp))
   v0 <- ...length() > 0
   vn <- isTF(named.)
   vl <- f0(!v0 | !vn, T, f0(!named., T, f0(length(blank) > 0, F, f0(any(names(labs) == ""), F, isEQ(labs, unique(labs))))))
   err <- NULL
-  if (!vp) {err <- c(err, "\n • [xxx] must be a character scalar containing a valid property specification (see is_valid_xxx).")}
+  if (!vp) {err <- c(err, "\n • [ppp] must be a character scalar containing a valid property specification (see is_valid_xxx).")}
   if (!v0) {err <- c(err, "\n • [...] is empty.")}
   if (!vn) {err <- c(err, "\n • [named.] must be TRUE or FALSE.")}
   if (!vl) {err <- c(err, "\n • When [named. = TRUE], all arguments in [...] must be uniquely named without using blank strings.")}
   if (idef(err)) {stop(err)}
-  vd <- sapply(dots, ixxx, xxx = xxx)
-  if (!vd) {bank_err("All arguments in [...] must be ", define_xxx_combos(xxx), ".", gens = 1)}
+  vd <- sapply(dots, ippp, ppp = ppp)
+  if (!vd) {bank_err("All arguments in [...] must be ", alt_ppp_concise(ppp), ".", gens = 1)}
   NULL
 }
 
@@ -393,7 +393,7 @@ bank_when <- function(whens., values., ...) {
 #'   associated properties in \code{pats.}.
 #' @export
 bank_pats <- function(pats, ...) {
-  dots  <- named_dots(...)
+  dots <- named_dots(...)
   blank <- unnamed_dots(...)
   labs <- names(dots)
   ndt <- length(dots)
@@ -402,7 +402,7 @@ bank_pats <- function(pats, ...) {
   avl <- cmp_chr_vls(pats)
   npp <- f0(avl, lengths(pats), 0)
   nul <- length(unique(labs))
-  vpt <- f0(avl, all(sapply(av(pats), is_valid_xxx)), F)
+  vpt <- f0(avl, all(sapply(av(pats), is_valid_ppp)), F)
   veq <- all(npp == ndt)
   vun <- ndt == nul
   err  <- NULL
@@ -422,7 +422,7 @@ bank_pats <- function(pats, ...) {
       var <- labs[j]
       xxx <- pat[j]
       nc[j] <- max(nc[j], nchar(xxx))
-      if (valid) {valid <- valid & ixxx(var, xxx)}
+      if (valid) {valid <- valid & ippp(var, xxx)}
     }
     if (valid) {return(NULL)}
   }

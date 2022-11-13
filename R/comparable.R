@@ -14,24 +14,24 @@ comparable. <- function() {help("comparable.")}
 #'   meaning that all are character, logical, numeric, or ordered factor with
 #'   the same set of levels (in the same order).
 comparable <- function(..., recycle. = T) {
-  x. <- list(...)                                                                # arguments in [...] as a list
-  n. <- length(x.)
-  err. <- NULL
-  if (n. < 2) {err. <- c(err., "\n  * [...] must contain multiple arguments.")}
-  if (!isTF(recycle.)) {err. <- c(err., "\n  * [recycle.] must be TRUE or FALSE.")}
-  if (idef(err.)) {stop(err.)}
+  x <- list(...)
+  n <- length(x.)
+  err <- NULL
+  if (n < 2) {err <- c(err, "\n  * [...] must contain multiple arguments.")}
+  if (!isTF(recycle.)) {err <- c(err, "\n  * [recycle.] must be TRUE or FALSE.")}
+  if (idef(err)) {stop(err)}
   if (recycle.) {
-    nrep. <- unique(lengths(x.))                                                 # unique set of argument length
-    nrep. <- max(nrep.) / nrep.                                                  # number of replications needed for recycling
-    if (any(nrep. != round(nrep.))) {return(F)}                                  # if arguments must be recyclable and any rep is fractional, not comparable
+    nrep <- unique(lengths(x.))
+    nrep <- max(nrep) / nrep
+    if (any(nrep != round(nrep))) {return(F)}
   }
-  chr. <- all(sapply(x., is.character))
-  lgl. <- all(sapply(x., is.logical))
-  num. <- all(sapply(x., is.numeric))
-  ord. <- all(sapply(x., is.ordered))
-  if ( chr. | lgl. | num.) {return(T)}
-  if (!ord.) {return(F)}
-  levs. <- sapply(x., levels)
-  for (i. in 2:n.) {if (!identical(levs.[[i.]], levs.[[i. - 1]])) {return(F)}}
+  chr <- all(sapply(x., is.character))
+  lgl <- all(sapply(x., is.logical))
+  num <- all(sapply(x., is.numeric))
+  ord <- all(sapply(x., is.ordered))
+  if (chr | lgl | num) {return(T)}
+  if (!ord) {return(F)}
+  levs <- sapply(x, levels)
+  for (i in 2:n) {if (!identical(levs[[i]], levs[[i - 1]])) {return(F)}}
   T
 }

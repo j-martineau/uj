@@ -10,7 +10,7 @@ console. <- function() {help("console.", package = "uj")}
 #' @describeIn console. Collapse \code{...} into a character scalar and print
 #'   it to the console.
 #' @export
-say <- function(...) {cat(dw0(...))}
+say <- function(...) {cat(paste0(av(...), collapse = ""))}
 
 #' @describeIn console. Collapse \code{...} into a character scalar, prefix
 #'   and post-fix a newline, and print the result to the console.

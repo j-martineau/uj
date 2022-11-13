@@ -72,14 +72,14 @@ ox. <- function() {help("ox.", package = "uj")}
 ox <- function(..., conj = "and", pref = "", quote = 0) {
   x <- list(...)
   vn <- length(x) > 0
-  vns <- f0(!vn, T, all(lengths(x) > 0))
-  vd <- f0(!vn | !vns, T, icmp(x))
+  vN <- f0(!vn, T, all(lengths(x) > 0))
+  vd <- f0(!vn | !vN, T, icmp(x))
   vc <- cmp_chr_scl(conj)
   vp <- cmp_chr_scl(pref)
   vq <- isIN(quote, 0:2)
   err <- NULL
   if (!vn) {err <- c(err, "\n • [...] is empty.")}
-  if (!vns) {err <- c(err, "\n • An argument in [...] is empty.")}
+  if (!vN) {err <- c(err, "\n • An argument in [...] is empty.")}
   if (!vd) {err <- c(err, "\n • Arguments in [...] must be complete and atomic (?icmp).")}
   if (!vc) {err <- c(err, "\n • [conj] must be a complete character scalar (?cmp_chr_scl).")}
   if (!vp) {err <- c(err, "\n • [pref] must be a complete character scalar (?cmp_chr_scl).")}
@@ -88,11 +88,11 @@ ox <- function(..., conj = "and", pref = "", quote = 0) {
   x <- av(x)
   n <- length(x)
   if (n == 1) {
-    vc. <- conj != 'nor'
-    vp. <- conj != "or" | pref != "either"
+    vc <- conj != 'nor'
+    vp <- conj != "or" | pref != "either"
     err <- NULL
-    if (!vc.) {err <- c(err, "\n • [conj = 'nor'], but [...] contains only 1 atomic element.")}
-    if (!vp.) {err <- c(err, "\n • [conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element.")}
+    if (!vc) {err <- c(err, "\n • [conj = 'nor'], but [...] contains only 1 atomic element.")}
+    if (!vp) {err <- c(err, "\n • [conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element.")}
     if (idef(err)) {stop(err)}
   }
   if (pref != "") {pref <- paste0(pref, " ")}                                    # if pref(ix) is not empty, follow it with a space
@@ -109,9 +109,9 @@ ox <- function(..., conj = "and", pref = "", quote = 0) {
 #' @export
 ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, comp.first = TRUE) {
   x <- list(...)
-  vn0 <- length(x) > 0
-  vns <- f0(!vn0, T, all(lengths(x) > 0))
-  vd <- f0(!vn0 | !vns, T, icmp(x))
+  v0 <- length(x) > 0
+  vN <- f0(!v0, T, all(lengths(x) > 0))
+  vd <- f0(!v0 | !vN, T, icmp(x))
   vj <- cmp_chr_scl(conj)
   vc <- cmp_chr_scl(comp)
   vq <- isIN(quote, 0:2)
@@ -119,8 +119,8 @@ ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, comp.first = TR
   vf <- isTF(comp.first)
   x <- av(x)
   err <- NULL
-  if (!vn0) {err <- c(err, "\n • [...] is empty.")}
-  if (!vns) {err <- c(err, "\n • An argument in [...] is empty.")}
+  if (!v0) {err <- c(err, "\n • [...] is empty.")}
+  if (!vN) {err <- c(err, "\n • An argument in [...] is empty.")}
   if (!vd) {err <- c(err, "\n • Arguments in [...] must be complete and atomic (?icmp).")}
   if (!vj) {err <- c(err, "\n • [conj] must be a complete character scalar (?cmp_chr_scl).")}
   if (!vc) {err <- c(err, "\n • [comp] must be a non-NA character scalar (?cmp_chr_scl).")}
@@ -128,8 +128,7 @@ ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, comp.first = TR
   if (!vn) {err <- c(err, "\n • [n] must be a non-negative whole number scalar (?cmp_nnw_scl).")}
   if (!vf) {err <- c(err, "\n • [comp.first] must be TRUE or FALSE.")}
   if (idef(err)) {stop(err)}
-  pref <- f0(comp == "", paste(n, "of"),
-           f0(comp.first, paste(n, comp, "of"), paste(comp, n, "of")))
+  pref <- f0(comp == "", paste(n, "of"), f0(comp.first, paste(n, comp, "of"), paste(comp, n, "of")))
   ox(x, conj = conj, pref = pref, quote = quote)
 }
 

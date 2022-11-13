@@ -15,7 +15,7 @@ dec(x, d = 1, na = F)
 \arguments{
 \item{x}{\link[atm_num]{Atomic numeric} object.}
 
-\item{i, d}{\link[cmp_num_scl]{Copmlete numeric scalar} giving the value by
+\item{i, d}{\link[cmp_num_scl]{Complete numeric scalar} giving the value by
 which to increment or decrement, respectively.}
 
 \item{na}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to

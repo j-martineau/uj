@@ -2,27 +2,39 @@
 #' @family props
 #' @title Defined dimensionality properties
 #' @description An object's defined dimensionality (def. dim.) is the number of
-#'   dimensions on which its components can be indexed. The following table
-#'   gives levels of defined dimensionality, property values assigned to levels
-#'   of defined dimensionality, property names, and a definition of each value
-#'   of defined dimensionality.\tabular{llll}{
-#'           \tab DEFINED          \tab DEFINED          \tab                \cr
-#'   NUMBER  \tab DIMENSIONALITY   \tab DIMENSIONALITY   \tab CHARACTERISTICS\cr
-#'   OF DEFINED\tab PROPERTY       \tab PROPERTY         \tab OF QUALIFYING  \cr
-#'   DIMENSIONS   \tab VALUE       \tab NAME             \tab OBJECTS        \cr
-#'   \code{0}     \tab\code{'d0D'} \tab 0-dimensional structure
-#'                                 \tab\code{NULL} \cr
-#'   \code{1}     \tab\code{'d1D'} \tab 1-dimensional structure
-#'                                 \tab vector, vlist, 1-dimensional array   \cr
-#'   \code{2}     \tab\code{'d2D'} \tab 2-dimensional structure
-#'                                 \tab \code{\link[is_dtf]{dtf}} or matrix  \cr
-#'   \code{≥ 3}   \tab\code{'dHD'} \tab Hyper-dimensional structure
-#'                                 \tab Array with 3+ dimensions               }
-#'   Submitting additional arguments to \code{is_ddd} via \code{...} allows
-#'   for checking not just the defined dimensionality but whether length, number
-#'   of rows, number of columns, and element values meet flexible criteria.
+#' dimensions on which its components can be indexed. The following table
+#' gives levels of defined dimensionality, property values assigned to levels
+#' of defined dimensionality, property names, and a definition of each value
+#' of defined dimensionality.\tabular{llll}{
+#'           \tab DEFINED          \tab DEFINED          \tab                \cr
+#' NUMBER    \tab DIMENSIONALITY   \tab DIMENSIONALITY   \tab CHARACTERISTICS\cr
+#' OF DEFINED\tab PROPERTY         \tab PROPERTY         \tab OF QUALIFYING  \cr
+#' DIMENSIONS   \tab VALUE         \tab NAME             \tab OBJECTS        \cr
+#' \code{0}     \tab\code{'d0D'}   \tab 0-dimensional structure.
+#'                                 \tab \code{NULL}.                         \cr
+#' \code{1}     \tab\code{'d1D'}   \tab 1-dimensional structure.
+#'                                 \tab Vector, \link[ivls]{vlist},
+#'                                      1-dimensional array.                 \cr
+#' \code{2}     \tab\code{'d2D'}   \tab 2-dimensional structure.
+#'                                 \tab \code{\link[idtf]{data.frame}} or
+#'                                      matrix.                              \cr
+#' \code{≥ 3}   \tab\code{'dHD'}   \tab Hyper-dimensional structure.
+#'                                 \tab Array with 3+ dimensions.              }
+#' Functions related to defined dimensionality are described in the following
+#' table:\tabular{ll}{
+#' FUNCTION          \tab WHAT THE                                           \cr
+#' FORMAT            \tab FUNCTION DOES                                      \cr
+#' \code{i•••}       \tab Evaluates whether an object is of the defined
+#'                        dimensionality represented by \code{•••}.          \cr
+#' \code{ddd}        \tab Gets a character scalar containing the defined
+#'                        dimensionality of an object.                       \cr
+#' \code{iddd}       \tab Evaluates an object for a specific defined
+#'                        dimensionality and any additional properties specified
+#'                        in \code{...}.                                     \cr
+#' \code{ddd_vals}   \tab Gets a character vector of all possible defined
+#'                        dimensionality property values.                      }
 #' @param x An object.
-#' @param xxx \link[cmp_chr_scl]{Complete character scalar} containing one or
+#' @param ddd \link[cmp_chr_scl]{Complete character scalar} containing one or
 #'   more values from \code{ddd_vals()} separated by pipes and/or underscores.
 #'   Combinations of defined dimensionality properties can be specified by
 #'   separating them with underscores. Separating defined dimensionality
@@ -73,17 +85,17 @@ idHD <- function(x) {nddd(x) > 2}
 #' @describeIn ddd. Get a character vector of all possible defined
 #'   dimensionality property values.
 #' @export
-ddd_vals <- function() {x <- c('d0D', 'd1D', 'd2D', 'dHD'); names(x) <- rep.int("ddd", length(x)); x}
+ddd_vals <- function() {c('d0D', 'd1D', 'd2D', 'dHD')}
 
 #' @describeIn ddd. Evaluates whether at least one of the defined
-#'   dimensionality properties in \code{xxx} is applicable to \code{x}.
+#'   dimensionality properties in \code{ddd} is applicable to \code{x}.
 #' @export
-iddd <- function(x, xxx, ...) {
-  if (!cmp_chr_scl(xxx)) {stop("\n • [xxx] must be a complete character scalar.")}
+iddd <- function(x, ddd, ...) {
+  if (!cmp_chr_scl(ddd)) {stop("\n • [ddd] must be a complete character scalar.")}
   valid <- ddd_vals()
-  combos <- strsplit(xxx , "|", fixed = T)[[1]]
-  newxxx <- strsplit(combos, ".", fixed = T)[[1]]
-  valid <- all(newxxx %in% valid)
-  if (!valid) {stop("\n • [xxx] contains a value not in ddd_vals() after splitting [xxx] on pipes and underscores.")}
-  ixxx(x, xxx, ...)
+  combos <- strsplit(ddd , "|", fixed = T)[[1]]
+  newddd <- strsplit(combos, ".", fixed = T)[[1]]
+  valid <- all(newddd %in% valid)
+  if (!valid) {stop("\n • [ddd] contains a value not in ddd_vals() after splitting [ddd] on pipes and underscores.")}
+  ippp(x, ddd, ...)
 }

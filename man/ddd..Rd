@@ -28,12 +28,12 @@ idHD(x)
 
 ddd_vals()
 
-iddd(x, xxx, ...)
+iddd(x, ddd, ...)
 }
 \arguments{
 \item{x}{An object.}
 
-\item{xxx}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+\item{ddd}{\link[cmp_chr_scl]{Complete character scalar} containing one or
 more values from \code{ddd_vals()} separated by pipes and/or underscores.
 Combinations of defined dimensionality properties can be specified by
 separating them with underscores. Separating defined dimensionality
@@ -54,21 +54,33 @@ dimensions on which its components can be indexed. The following table
 gives levels of defined dimensionality, property values assigned to levels
 of defined dimensionality, property names, and a definition of each value
 of defined dimensionality.\tabular{llll}{
-        \tab DEFINED          \tab DEFINED          \tab                \cr
-NUMBER  \tab DIMENSIONALITY   \tab DIMENSIONALITY   \tab CHARACTERISTICS\cr
-OF DEFINED\tab PROPERTY       \tab PROPERTY         \tab OF QUALIFYING  \cr
-DIMENSIONS   \tab VALUE       \tab NAME             \tab OBJECTS        \cr
-\code{0}     \tab\code{'d0D'} \tab 0-dimensional structure
-\tab\code{NULL} \cr
-\code{1}     \tab\code{'d1D'} \tab 1-dimensional structure
-\tab vector, vlist, 1-dimensional array   \cr
-\code{2}     \tab\code{'d2D'} \tab 2-dimensional structure
-\tab \code{\link[is_dtf]{dtf}} or matrix  \cr
-\code{≥ 3}   \tab\code{'dHD'} \tab Hyper-dimensional structure
-\tab Array with 3+ dimensions               }
-Submitting additional arguments to \code{is_ddd} via \code{...} allows
-for checking not just the defined dimensionality but whether length, number
-of rows, number of columns, and element values meet flexible criteria.
+          \tab DEFINED          \tab DEFINED          \tab                \cr
+NUMBER    \tab DIMENSIONALITY   \tab DIMENSIONALITY   \tab CHARACTERISTICS\cr
+OF DEFINED\tab PROPERTY         \tab PROPERTY         \tab OF QUALIFYING  \cr
+DIMENSIONS   \tab VALUE         \tab NAME             \tab OBJECTS        \cr
+\code{0}     \tab\code{'d0D'}   \tab 0-dimensional structure.
+\tab \code{NULL}.                         \cr
+\code{1}     \tab\code{'d1D'}   \tab 1-dimensional structure.
+\tab Vector, \link[ivls]{vlist},
+1-dimensional array.                 \cr
+\code{2}     \tab\code{'d2D'}   \tab 2-dimensional structure.
+\tab \code{\link[idtf]{data.frame}} or
+matrix.                              \cr
+\code{≥ 3}   \tab\code{'dHD'}   \tab Hyper-dimensional structure.
+\tab Array with 3+ dimensions.              }
+Functions related to defined dimensionality are described in the following
+table:\tabular{ll}{
+FUNCTION          \tab WHAT THE                                           \cr
+FORMAT            \tab FUNCTION DOES                                      \cr
+\code{i•••}       \tab Evaluates whether an object is of the defined
+dimensionality represented by \code{•••}.          \cr
+\code{ddd}        \tab Gets a character scalar containing the defined
+dimensionality of an object.                       \cr
+\code{iddd}       \tab Evaluates an object for a specific defined
+dimensionality and any additional properties specified
+in \code{...}.                                     \cr
+\code{ddd_vals}   \tab Gets a character vector of all possible defined
+dimensionality property values.                      }
 }
 \section{Functions}{
 \itemize{
@@ -94,7 +106,7 @@ dimensions.
 dimensionality property values.
 
 \item \code{iddd()}: Evaluates whether at least one of the defined
-dimensionality properties in \code{xxx} is applicable to \code{x}.
+dimensionality properties in \code{ddd} is applicable to \code{x}.
 
 }}
 \seealso{
@@ -108,15 +120,13 @@ Other props:
 \code{\link{compatible.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc.}()},
-\code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},
 \code{\link{mmm_ccc.}()},
+\code{\link{ppp.}()},
 \code{\link{sss.}()},
 \code{\link{ttt.}()},
 \code{\link{ttt_ccc.}()},
-\code{\link{ttt_mmm.}()},
-\code{\link{xxx.}()}
+\code{\link{ttt_mmm.}()}
 }
 \concept{props}

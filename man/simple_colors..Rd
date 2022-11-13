@@ -85,7 +85,7 @@ pal_cb(ng, nc = NULL, a = 1)
 pal_swatch(x)
 }
 \arguments{
-\item{x}{\link[is_vec]{Vec} containing valid ℝ color representations.
+\item{x}{\link[ivec]{Atomic vec} containing valid ℝ color representations.
 Recycled with \code{y}, \code{lighten}, \code{darken}, \code{comp},
 \code{a}, \code{p}, \code{s}, \code{wx}, and \code{wy} where these are
 valid arguments.}
@@ -112,7 +112,7 @@ Recycled with each other and \code{a}.}
 giving hue, saturation, and value/brightness from the HSV color space.
 Recycled with each other and \code{a}.}
 
-\item{y}{\link[is_vec]{Vec} containing valid ℝ color representations.}
+\item{y}{\link[ivec]{Atomic vec} containing valid ℝ color representations.}
 
 \item{wx, wy}{\link[cmp_pos_vec]{Complete positive-valued numeric vectors}
 giving weights to apply to \code{x} and \code{y} in color blending.}

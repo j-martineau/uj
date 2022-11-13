@@ -93,7 +93,7 @@ compatible_mats <- function(..., bind. = "c") {
   vx <- f0(n < 2, F,  all(sapply(x, imat)))
   vb <- f0(!cmp_ch1_scl(bind.), F, bind. %in% c("c", "r"))
   err <- NULL
-  if (!vx) {err <- c(err, "\n • [...] must contain multiple (and only) atomic matrices (?imat).")}
+  if (!vx) {err <- c(err, "\n • [...] must contain multiple (and only) atomic matrices (?atm_mat).")}
   if (!vb) {err <- c(err, "\n • [bind.] must be 'c' or 'r'.")}
   if (idef(err)) {stop(err)}
   r <- bind. == "r"                                                              # row bind?
@@ -110,13 +110,13 @@ compatible_mats <- function(..., bind. = "c") {
 #' @describeIn compatible. Are all atomic tibbles in \code{...} compatible for
 #'   binding?
 #' @export
-compatible_atbs <- function(..., bind. = "c") {
+compatible_dtfs <- function(..., bind. = "c") {
   x <- list(...)
   n <- length(x.)
   vx <- f0(n < 2, F,  all(sapply(x, idtf)))
   vb <- f0(!cmp_ch1_scl(bind.), F, bind. %in% c("c", "r"))
   err <- NULL
-  if (!vx) {err <- c(err, "\n • [...] must contain multiple (and only) atomic dtfs (?idtf)")}
+  if (!vx) {err <- c(err, "\n • [...] must contain multiple (and only) atomic data.frames (?atm_dtf)")}
   if (!vb) {err <- c(err, "\n • [bind.] must be 'c' or 'r'.")}
   if (idef(err)) {stop(err)}
   r <- bind. == "r"                                                              # row bind?

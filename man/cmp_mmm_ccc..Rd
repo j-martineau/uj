@@ -7,7 +7,6 @@
 \alias{cmp_ch1_gen}
 \alias{cmp_ch1_dtf}
 \alias{cmp_ch1_vls}
-\alias{cmp_ch1_vtp}
 \alias{cmp_ch1_mat}
 \alias{cmp_ch1_mvc}
 \alias{cmp_ch1_scl}
@@ -16,7 +15,6 @@
 \alias{cmp_chr_gen}
 \alias{cmp_chr_dtf}
 \alias{cmp_chr_vls}
-\alias{cmp_chr_vtp}
 \alias{cmp_chr_mat}
 \alias{cmp_chr_mvc}
 \alias{cmp_chr_scl}
@@ -25,7 +23,6 @@
 \alias{cmp_clr_gen}
 \alias{cmp_clr_dtf}
 \alias{cmp_clr_vls}
-\alias{cmp_clr_vtp}
 \alias{cmp_clr_mat}
 \alias{cmp_clr_mvc}
 \alias{cmp_clr_scl}
@@ -34,7 +31,6 @@
 \alias{cmp_evn_gen}
 \alias{cmp_evn_dtf}
 \alias{cmp_evn_vls}
-\alias{cmp_evn_vtp}
 \alias{cmp_evn_mat}
 \alias{cmp_evn_mvc}
 \alias{cmp_evn_scl}
@@ -43,7 +39,6 @@
 \alias{cmp_fac_gen}
 \alias{cmp_fac_dtf}
 \alias{cmp_fac_vls}
-\alias{cmp_fac_vtp}
 \alias{cmp_fac_mat}
 \alias{cmp_fac_mvc}
 \alias{cmp_fac_scl}
@@ -52,7 +47,6 @@
 \alias{cmp_frc_gen}
 \alias{cmp_frc_dtf}
 \alias{cmp_frc_vls}
-\alias{cmp_frc_vtp}
 \alias{cmp_frc_mat}
 \alias{cmp_frc_mvc}
 \alias{cmp_frc_scl}
@@ -61,7 +55,6 @@
 \alias{cmp_ind_gen}
 \alias{cmp_ind_dtf}
 \alias{cmp_ind_vls}
-\alias{cmp_ind_vtp}
 \alias{cmp_ind_mat}
 \alias{cmp_ind_mvc}
 \alias{cmp_ind_scl}
@@ -70,7 +63,6 @@
 \alias{cmp_lgl_gen}
 \alias{cmp_lgl_dtf}
 \alias{cmp_lgl_vls}
-\alias{cmp_lgl_vtp}
 \alias{cmp_lgl_mat}
 \alias{cmp_lgl_mvc}
 \alias{cmp_lgl_scl}
@@ -79,7 +71,6 @@
 \alias{cmp_neg_gen}
 \alias{cmp_neg_dtf}
 \alias{cmp_neg_vls}
-\alias{cmp_neg_vtp}
 \alias{cmp_neg_mat}
 \alias{cmp_neg_mvc}
 \alias{cmp_neg_scl}
@@ -88,7 +79,6 @@
 \alias{cmp_ngw_gen}
 \alias{cmp_ngw_dtf}
 \alias{cmp_ngw_vls}
-\alias{cmp_ngw_vtp}
 \alias{cmp_ngw_mat}
 \alias{cmp_ngw_mvc}
 \alias{cmp_ngw_scl}
@@ -97,7 +87,6 @@
 \alias{cmp_nng_gen}
 \alias{cmp_nng_dtf}
 \alias{cmp_nng_vls}
-\alias{cmp_nng_vtp}
 \alias{cmp_nng_mat}
 \alias{cmp_nng_mvc}
 \alias{cmp_nng_scl}
@@ -106,7 +95,6 @@
 \alias{cmp_nnw_gen}
 \alias{cmp_nnw_dtf}
 \alias{cmp_nnw_vls}
-\alias{cmp_nnw_vtp}
 \alias{cmp_nnw_mat}
 \alias{cmp_nnw_mvc}
 \alias{cmp_nnw_scl}
@@ -115,7 +103,6 @@
 \alias{cmp_nps_gen}
 \alias{cmp_nps_dtf}
 \alias{cmp_nps_vls}
-\alias{cmp_nps_vtp}
 \alias{cmp_nps_mat}
 \alias{cmp_nps_mvc}
 \alias{cmp_nps_scl}
@@ -124,7 +111,6 @@
 \alias{cmp_npw_gen}
 \alias{cmp_npw_dtf}
 \alias{cmp_npw_vls}
-\alias{cmp_npw_vtp}
 \alias{cmp_npw_mat}
 \alias{cmp_npw_mvc}
 \alias{cmp_npw_scl}
@@ -133,7 +119,6 @@
 \alias{cmp_nst_gen}
 \alias{cmp_nst_dtf}
 \alias{cmp_nst_vls}
-\alias{cmp_nst_vtp}
 \alias{cmp_nst_mat}
 \alias{cmp_nst_mvc}
 \alias{cmp_nst_scl}
@@ -142,7 +127,6 @@
 \alias{cmp_num_gen}
 \alias{cmp_num_dtf}
 \alias{cmp_num_vls}
-\alias{cmp_num_vtp}
 \alias{cmp_num_mat}
 \alias{cmp_num_mvc}
 \alias{cmp_num_scl}
@@ -151,7 +135,6 @@
 \alias{cmp_odd_gen}
 \alias{cmp_odd_dtf}
 \alias{cmp_odd_vls}
-\alias{cmp_odd_vtp}
 \alias{cmp_odd_mat}
 \alias{cmp_odd_mvc}
 \alias{cmp_odd_scl}
@@ -160,7 +143,6 @@
 \alias{cmp_ord_gen}
 \alias{cmp_ord_dtf}
 \alias{cmp_ord_vls}
-\alias{cmp_ord_vtp}
 \alias{cmp_ord_mat}
 \alias{cmp_ord_mvc}
 \alias{cmp_ord_scl}
@@ -169,7 +151,6 @@
 \alias{cmp_pct_gen}
 \alias{cmp_pct_dtf}
 \alias{cmp_pct_vls}
-\alias{cmp_pct_vtp}
 \alias{cmp_pct_mat}
 \alias{cmp_pct_mvc}
 \alias{cmp_pct_scl}
@@ -178,7 +159,6 @@
 \alias{cmp_pos_gen}
 \alias{cmp_pos_dtf}
 \alias{cmp_pos_vls}
-\alias{cmp_pos_vtp}
 \alias{cmp_pos_mat}
 \alias{cmp_pos_mvc}
 \alias{cmp_pos_scl}
@@ -187,7 +167,6 @@
 \alias{cmp_ppn_gen}
 \alias{cmp_ppn_dtf}
 \alias{cmp_ppn_vls}
-\alias{cmp_ppn_vtp}
 \alias{cmp_ppn_mat}
 \alias{cmp_ppn_mvc}
 \alias{cmp_ppn_scl}
@@ -196,7 +175,6 @@
 \alias{cmp_psw_gen}
 \alias{cmp_psw_dtf}
 \alias{cmp_psw_vls}
-\alias{cmp_psw_vtp}
 \alias{cmp_psw_mat}
 \alias{cmp_psw_mvc}
 \alias{cmp_psw_scl}
@@ -205,7 +183,6 @@
 \alias{cmp_srt_gen}
 \alias{cmp_srt_dtf}
 \alias{cmp_srt_vls}
-\alias{cmp_srt_vtp}
 \alias{cmp_srt_mat}
 \alias{cmp_srt_mvc}
 \alias{cmp_srt_scl}
@@ -214,7 +191,6 @@
 \alias{cmp_str_gen}
 \alias{cmp_str_dtf}
 \alias{cmp_str_vls}
-\alias{cmp_str_vtp}
 \alias{cmp_str_mat}
 \alias{cmp_str_mvc}
 \alias{cmp_str_scl}
@@ -223,7 +199,6 @@
 \alias{cmp_uno_gen}
 \alias{cmp_uno_dtf}
 \alias{cmp_uno_vls}
-\alias{cmp_uno_vtp}
 \alias{cmp_uno_mat}
 \alias{cmp_uno_mvc}
 \alias{cmp_uno_scl}
@@ -232,7 +207,6 @@
 \alias{cmp_whl_gen}
 \alias{cmp_whl_dtf}
 \alias{cmp_whl_vls}
-\alias{cmp_whl_vtp}
 \alias{cmp_whl_mat}
 \alias{cmp_whl_mvc}
 \alias{cmp_whl_scl}
@@ -251,8 +225,6 @@ cmp_ch1_dtf(x)
 
 cmp_ch1_vls(x)
 
-cmp_ch1_vtp(x)
-
 cmp_ch1_mat(x)
 
 cmp_ch1_mvc(x)
@@ -268,8 +240,6 @@ cmp_chr_gen(x)
 cmp_chr_dtf(x)
 
 cmp_chr_vls(x)
-
-cmp_chr_vtp(x)
 
 cmp_chr_mat(x)
 
@@ -287,8 +257,6 @@ cmp_clr_dtf(x)
 
 cmp_clr_vls(x)
 
-cmp_clr_vtp(x)
-
 cmp_clr_mat(x)
 
 cmp_clr_mvc(x)
@@ -304,8 +272,6 @@ cmp_evn_gen(x)
 cmp_evn_dtf(x)
 
 cmp_evn_vls(x)
-
-cmp_evn_vtp(x)
 
 cmp_evn_mat(x)
 
@@ -323,8 +289,6 @@ cmp_fac_dtf(x)
 
 cmp_fac_vls(x)
 
-cmp_fac_vtp(x)
-
 cmp_fac_mat(x)
 
 cmp_fac_mvc(x)
@@ -340,8 +304,6 @@ cmp_frc_gen(x)
 cmp_frc_dtf(x)
 
 cmp_frc_vls(x)
-
-cmp_frc_vtp(x)
 
 cmp_frc_mat(x)
 
@@ -359,8 +321,6 @@ cmp_ind_dtf(x)
 
 cmp_ind_vls(x)
 
-cmp_ind_vtp(x)
-
 cmp_ind_mat(x)
 
 cmp_ind_mvc(x)
@@ -376,8 +336,6 @@ cmp_lgl_gen(x)
 cmp_lgl_dtf(x)
 
 cmp_lgl_vls(x)
-
-cmp_lgl_vtp(x)
 
 cmp_lgl_mat(x)
 
@@ -395,8 +353,6 @@ cmp_neg_dtf(x)
 
 cmp_neg_vls(x)
 
-cmp_neg_vtp(x)
-
 cmp_neg_mat(x)
 
 cmp_neg_mvc(x)
@@ -412,8 +368,6 @@ cmp_ngw_gen(x)
 cmp_ngw_dtf(x)
 
 cmp_ngw_vls(x)
-
-cmp_ngw_vtp(x)
 
 cmp_ngw_mat(x)
 
@@ -431,8 +385,6 @@ cmp_nng_dtf(x)
 
 cmp_nng_vls(x)
 
-cmp_nng_vtp(x)
-
 cmp_nng_mat(x)
 
 cmp_nng_mvc(x)
@@ -448,8 +400,6 @@ cmp_nnw_gen(x)
 cmp_nnw_dtf(x)
 
 cmp_nnw_vls(x)
-
-cmp_nnw_vtp(x)
 
 cmp_nnw_mat(x)
 
@@ -467,8 +417,6 @@ cmp_nps_dtf(x)
 
 cmp_nps_vls(x)
 
-cmp_nps_vtp(x)
-
 cmp_nps_mat(x)
 
 cmp_nps_mvc(x)
@@ -484,8 +432,6 @@ cmp_npw_gen(x)
 cmp_npw_dtf(x)
 
 cmp_npw_vls(x)
-
-cmp_npw_vtp(x)
 
 cmp_npw_mat(x)
 
@@ -503,8 +449,6 @@ cmp_nst_dtf(x)
 
 cmp_nst_vls(x)
 
-cmp_nst_vtp(x)
-
 cmp_nst_mat(x)
 
 cmp_nst_mvc(x)
@@ -520,8 +464,6 @@ cmp_num_gen(x)
 cmp_num_dtf(x)
 
 cmp_num_vls(x)
-
-cmp_num_vtp(x)
 
 cmp_num_mat(x)
 
@@ -539,8 +481,6 @@ cmp_odd_dtf(x)
 
 cmp_odd_vls(x)
 
-cmp_odd_vtp(x)
-
 cmp_odd_mat(x)
 
 cmp_odd_mvc(x)
@@ -556,8 +496,6 @@ cmp_ord_gen(x)
 cmp_ord_dtf(x)
 
 cmp_ord_vls(x)
-
-cmp_ord_vtp(x)
 
 cmp_ord_mat(x)
 
@@ -575,8 +513,6 @@ cmp_pct_dtf(x)
 
 cmp_pct_vls(x)
 
-cmp_pct_vtp(x)
-
 cmp_pct_mat(x)
 
 cmp_pct_mvc(x)
@@ -592,8 +528,6 @@ cmp_pos_gen(x)
 cmp_pos_dtf(x)
 
 cmp_pos_vls(x)
-
-cmp_pos_vtp(x)
 
 cmp_pos_mat(x)
 
@@ -611,8 +545,6 @@ cmp_ppn_dtf(x)
 
 cmp_ppn_vls(x)
 
-cmp_ppn_vtp(x)
-
 cmp_ppn_mat(x)
 
 cmp_ppn_mvc(x)
@@ -628,8 +560,6 @@ cmp_psw_gen(x)
 cmp_psw_dtf(x)
 
 cmp_psw_vls(x)
-
-cmp_psw_vtp(x)
 
 cmp_psw_mat(x)
 
@@ -647,8 +577,6 @@ cmp_srt_dtf(x)
 
 cmp_srt_vls(x)
 
-cmp_srt_vtp(x)
-
 cmp_srt_mat(x)
 
 cmp_srt_mvc(x)
@@ -664,8 +592,6 @@ cmp_str_gen(x)
 cmp_str_dtf(x)
 
 cmp_str_vls(x)
-
-cmp_str_vtp(x)
 
 cmp_str_mat(x)
 
@@ -683,8 +609,6 @@ cmp_uno_dtf(x)
 
 cmp_uno_vls(x)
 
-cmp_uno_vtp(x)
-
 cmp_uno_mat(x)
 
 cmp_uno_mvc(x)
@@ -700,8 +624,6 @@ cmp_whl_gen(x)
 cmp_whl_dtf(x)
 
 cmp_whl_vls(x)
-
-cmp_whl_vtp(x)
 
 cmp_whl_mat(x)
 
@@ -728,19 +650,16 @@ mode}, and \link[ccc]{extended class}.
 plus extended mode plus extended class properties.
 
 \item \code{cmp_ch1_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[ich1]{onechar} \link[iarr]{array}?
+\link[ich1]{onechar} \link[iarr]{array+}?
 
 \item \code{cmp_ch1_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[ich1]{onechar} \link[igen]{generic}?
 
 \item \code{cmp_ch1_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[ich1]{onechar} \link[idtf]{dtf}?
+\link[ich1]{onechar} \link[idtf]{data.frame}?
 
 \item \code{cmp_ch1_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[ich1]{onechar} \link[ivls]{vlist}?
-
-\item \code{cmp_ch1_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[ich1]{onechar} \link[ivtp]{vtype}?
 
 \item \code{cmp_ch1_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[ich1]{onechar} \link[imat]{matrix}?
@@ -752,22 +671,19 @@ plus extended mode plus extended class properties.
 \link[ich1]{onechar} \link[iscl]{scalar}?
 
 \item \code{cmp_ch1_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[ich1]{onechar} \link[ivec]{vec}?
+\link[ich1]{onechar} \link[ivec]{vector+}?
 
 \item \code{cmp_chr_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[ichr]{character} \link[iarr]{array}?
+\link[ichr]{character} \link[iarr]{array+}?
 
 \item \code{cmp_chr_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[ichr]{character} \link[igen]{generic}?
 
 \item \code{cmp_chr_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[ichr]{character} \link[idtf]{dtf}?
+\link[ichr]{character} \link[idtf]{data.frame}?
 
 \item \code{cmp_chr_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[ichr]{character} \link[ivls]{vlist}?
-
-\item \code{cmp_chr_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[ichr]{character} \link[ivtp]{vtype}?
 
 \item \code{cmp_chr_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[ichr]{character} \link[imat]{matrix}?
@@ -779,22 +695,19 @@ plus extended mode plus extended class properties.
 \link[ichr]{character} \link[iscl]{scalar}?
 
 \item \code{cmp_chr_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[ichr]{character} \link[ivec]{vec}?
+\link[ichr]{character} \link[ivec]{vector+}?
 
 \item \code{cmp_clr_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[iclr]{color} \link[iarr]{array}?
+\link[iclr]{color} \link[iarr]{array+}?
 
 \item \code{cmp_clr_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[iclr]{color} \link[igen]{generic}?
 
 \item \code{cmp_clr_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[iclr]{color} \link[idtf]{dtf}?
+\link[iclr]{color} \link[idtf]{data.frame}?
 
 \item \code{cmp_clr_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[iclr]{color} \link[ivls]{vlist}?
-
-\item \code{cmp_clr_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[iclr]{color} \link[ivtp]{vtype}?
 
 \item \code{cmp_clr_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[iclr]{color} \link[imat]{matrix}?
@@ -806,22 +719,19 @@ plus extended mode plus extended class properties.
 \link[iclr]{color} \link[iscl]{scalar}?
 
 \item \code{cmp_clr_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[iclr]{color} \link[ivec]{vec}?
+\link[iclr]{color} \link[ivec]{vector+}?
 
 \item \code{cmp_evn_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[ievn]{even-valued whole-number} \link[iarr]{array}?
+\link[ievn]{even-valued whole-number} \link[iarr]{array+}?
 
 \item \code{cmp_evn_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[ievn]{even-valued whole-number} \link[igen]{generic}?
 
 \item \code{cmp_evn_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[ievn]{even-valued whole-number} \link[idtf]{dtf}?
+\link[ievn]{even-valued whole-number} \link[idtf]{data.frame}?
 
 \item \code{cmp_evn_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[ievn]{even-valued whole-number} \link[ivls]{vlist}?
-
-\item \code{cmp_evn_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[ievn]{even-valued whole-number} \link[ivtp]{vtype}?
 
 \item \code{cmp_evn_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[ievn]{even-valued whole-number} \link[imat]{matrix}?
@@ -833,22 +743,19 @@ plus extended mode plus extended class properties.
 \link[ievn]{even-valued whole-number} \link[iscl]{scalar}?
 
 \item \code{cmp_evn_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[ievn]{even-valued whole-number} \link[ivec]{vec}?
+\link[ievn]{even-valued whole-number} \link[ivec]{vector+}?
 
 \item \code{cmp_fac_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[ifac]{factor} \link[iarr]{array}?
+\link[ifac]{factor} \link[iarr]{array+}?
 
 \item \code{cmp_fac_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[ifac]{factor} \link[igen]{generic}?
 
 \item \code{cmp_fac_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[ifac]{factor} \link[idtf]{dtf}?
+\link[ifac]{factor} \link[idtf]{data.frame}?
 
 \item \code{cmp_fac_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[ifac]{factor} \link[ivls]{vlist}?
-
-\item \code{cmp_fac_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[ifac]{factor} \link[ivtp]{vtype}?
 
 \item \code{cmp_fac_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[ifac]{factor} \link[imat]{matrix}?
@@ -860,22 +767,19 @@ plus extended mode plus extended class properties.
 \link[ifac]{factor} \link[iscl]{scalar}?
 
 \item \code{cmp_fac_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[ifac]{factor} \link[ivec]{vec}?
+\link[ifac]{factor} \link[ivec]{vector+}?
 
 \item \code{cmp_frc_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[ifrc]{fractional-valued numeric} \link[iarr]{array}?
+\link[ifrc]{fractional-valued numeric} \link[iarr]{array+}?
 
 \item \code{cmp_frc_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[ifrc]{fractional-valued numeric} \link[igen]{generic}?
 
 \item \code{cmp_frc_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[ifrc]{fractional-valued numeric} \link[idtf]{dtf}?
+\link[ifrc]{fractional-valued numeric} \link[idtf]{data.frame}?
 
 \item \code{cmp_frc_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[ifrc]{fractional-valued numeric} \link[ivls]{vlist}?
-
-\item \code{cmp_frc_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[ifrc]{fractional-valued numeric} \link[ivtp]{vtype}?
 
 \item \code{cmp_frc_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[ifrc]{fractional-valued numeric} \link[imat]{matrix}?
@@ -887,22 +791,19 @@ plus extended mode plus extended class properties.
 \link[ifrc]{fractional-valued numeric} \link[iscl]{scalar}?
 
 \item \code{cmp_frc_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[ifrc]{fractional-valued numeric} \link[ivec]{vec}?
+\link[ifrc]{fractional-valued numeric} \link[ivec]{vector+}?
 
 \item \code{cmp_ind_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[iind]{indexer} \link[iarr]{array}?
+\link[iind]{indexer} \link[iarr]{array+}?
 
 \item \code{cmp_ind_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[iind]{indexer} \link[igen]{generic}?
 
 \item \code{cmp_ind_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[iind]{indexer} \link[idtf]{dtf}?
+\link[iind]{indexer} \link[idtf]{data.frame}?
 
 \item \code{cmp_ind_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[iind]{indexer} \link[ivls]{vlist}?
-
-\item \code{cmp_ind_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[iind]{indexer} \link[ivtp]{vtype}?
 
 \item \code{cmp_ind_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[iind]{indexer} \link[imat]{matrix}?
@@ -914,22 +815,19 @@ plus extended mode plus extended class properties.
 \link[iind]{indexer} \link[iscl]{scalar}?
 
 \item \code{cmp_ind_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[iind]{indexer} \link[ivec]{vec}?
+\link[iind]{indexer} \link[ivec]{vector+}?
 
 \item \code{cmp_lgl_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[ilgl]{logical} \link[iarr]{array}?
+\link[ilgl]{logical} \link[iarr]{array+}?
 
 \item \code{cmp_lgl_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[ilgl]{logical} \link[igen]{generic}?
 
 \item \code{cmp_lgl_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[ilgl]{logical} \link[idtf]{dtf}?
+\link[ilgl]{logical} \link[idtf]{data.frame}?
 
 \item \code{cmp_lgl_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[ilgl]{logical} \link[ivls]{vlist}?
-
-\item \code{cmp_lgl_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[ilgl]{logical} \link[ivtp]{vtype}?
 
 \item \code{cmp_lgl_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[ilgl]{logical} \link[imat]{matrix}?
@@ -941,22 +839,19 @@ plus extended mode plus extended class properties.
 \link[ilgl]{logical} \link[iscl]{scalar}?
 
 \item \code{cmp_lgl_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[ilgl]{logical} \link[ivec]{vec}?
+\link[ilgl]{logical} \link[ivec]{vector+}?
 
 \item \code{cmp_neg_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[ineg]{negative-valued numeric} \link[iarr]{array}?
+\link[ineg]{negative-valued numeric} \link[iarr]{array+}?
 
 \item \code{cmp_neg_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[ineg]{negative-valued numeric} \link[igen]{generic}?
 
 \item \code{cmp_neg_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[ineg]{negative-valued numeric} \link[idtf]{dtf}?
+\link[ineg]{negative-valued numeric} \link[idtf]{data.frame}?
 
 \item \code{cmp_neg_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[ineg]{negative-valued numeric} \link[ivls]{vlist}?
-
-\item \code{cmp_neg_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[ineg]{negative-valued numeric} \link[ivtp]{vtype}?
 
 \item \code{cmp_neg_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[ineg]{negative-valued numeric} \link[imat]{matrix}?
@@ -968,22 +863,19 @@ plus extended mode plus extended class properties.
 \link[ineg]{negative-valued numeric} \link[iscl]{scalar}?
 
 \item \code{cmp_neg_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[ineg]{negative-valued numeric} \link[ivec]{vec}?
+\link[ineg]{negative-valued numeric} \link[ivec]{vector+}?
 
 \item \code{cmp_ngw_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[ingw]{negative-valued whole-number} \link[iarr]{array}?
+\link[ingw]{negative-valued whole-number} \link[iarr]{array+}?
 
 \item \code{cmp_ngw_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[ingw]{negative-valued whole-number} \link[igen]{generic}?
 
 \item \code{cmp_ngw_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[ingw]{negative-valued whole-number} \link[idtf]{dtf}?
+\link[ingw]{negative-valued whole-number} \link[idtf]{data.frame}?
 
 \item \code{cmp_ngw_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[ingw]{negative-valued whole-number} \link[ivls]{vlist}?
-
-\item \code{cmp_ngw_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[ingw]{negative-valued whole-number} \link[ivtp]{vtype}?
 
 \item \code{cmp_ngw_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[ingw]{negative-valued whole-number} \link[imat]{matrix}?
@@ -995,22 +887,19 @@ plus extended mode plus extended class properties.
 \link[ingw]{negative-valued whole-number} \link[iscl]{scalar}?
 
 \item \code{cmp_ngw_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[ingw]{negative-valued whole-number} \link[ivec]{vec}?
+\link[ingw]{negative-valued whole-number} \link[ivec]{vector+}?
 
 \item \code{cmp_nng_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[inng]{non-negative-valued numeric} \link[iarr]{array}?
+\link[inng]{non-negative-valued numeric} \link[iarr]{array+}?
 
 \item \code{cmp_nng_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[inng]{non-negative-valued numeric} \link[igen]{generic}?
 
 \item \code{cmp_nng_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[inng]{non-negative-valued numeric} \link[idtf]{dtf}?
+\link[inng]{non-negative-valued numeric} \link[idtf]{data.frame}?
 
 \item \code{cmp_nng_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[inng]{non-negative-valued numeric} \link[ivls]{vlist}?
-
-\item \code{cmp_nng_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[inng]{non-negative-valued numeric} \link[ivtp]{vtype}?
 
 \item \code{cmp_nng_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[inng]{non-negative-valued numeric} \link[imat]{matrix}?
@@ -1022,22 +911,19 @@ plus extended mode plus extended class properties.
 \link[inng]{non-negative-valued numeric} \link[iscl]{scalar}?
 
 \item \code{cmp_nng_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[inng]{non-negative-valued numeric} \link[ivec]{vec}?
+\link[inng]{non-negative-valued numeric} \link[ivec]{vector+}?
 
 \item \code{cmp_nnw_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[innw]{non-negative-valued whole-number} \link[iarr]{array}?
+\link[innw]{non-negative-valued whole-number} \link[iarr]{array+}?
 
 \item \code{cmp_nnw_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[innw]{non-negative-valued whole-number} \link[igen]{generic}?
 
 \item \code{cmp_nnw_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[innw]{non-negative-valued whole-number} \link[idtf]{dtf}?
+\link[innw]{non-negative-valued whole-number} \link[idtf]{data.frame}?
 
 \item \code{cmp_nnw_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[innw]{non-negative-valued whole-number} \link[ivls]{vlist}?
-
-\item \code{cmp_nnw_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[innw]{non-negative-valued whole-number} \link[ivtp]{vtype}?
 
 \item \code{cmp_nnw_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[innw]{non-negative-valued whole-number} \link[imat]{matrix}?
@@ -1049,22 +935,19 @@ plus extended mode plus extended class properties.
 \link[innw]{non-negative-valued whole-number} \link[iscl]{scalar}?
 
 \item \code{cmp_nnw_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[innw]{non-negative-valued whole-number} \link[ivec]{vec}?
+\link[innw]{non-negative-valued whole-number} \link[ivec]{vector+}?
 
 \item \code{cmp_nps_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[inps]{non-positive-valued numeric} \link[iarr]{array}?
+\link[inps]{non-positive-valued numeric} \link[iarr]{array+}?
 
 \item \code{cmp_nps_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[inps]{non-positive-valued numeric} \link[igen]{generic}?
 
 \item \code{cmp_nps_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[inps]{non-positive-valued numeric} \link[idtf]{dtf}?
+\link[inps]{non-positive-valued numeric} \link[idtf]{data.frame}?
 
 \item \code{cmp_nps_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[inps]{non-positive-valued numeric} \link[ivls]{vlist}?
-
-\item \code{cmp_nps_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[inps]{non-positive-valued numeric} \link[ivtp]{vtype}?
 
 \item \code{cmp_nps_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[inps]{non-positive-valued numeric} \link[imat]{matrix}?
@@ -1076,22 +959,19 @@ plus extended mode plus extended class properties.
 \link[inps]{non-positive-valued numeric} \link[iscl]{scalar}?
 
 \item \code{cmp_nps_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[inps]{non-positive-valued numeric} \link[ivec]{vec}?
+\link[inps]{non-positive-valued numeric} \link[ivec]{vector+}?
 
 \item \code{cmp_npw_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[inpw]{non-positive-valued whole-number} \link[iarr]{array}?
+\link[inpw]{non-positive-valued whole-number} \link[iarr]{array+}?
 
 \item \code{cmp_npw_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[inpw]{non-positive-valued whole-number} \link[igen]{generic}?
 
 \item \code{cmp_npw_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[inpw]{non-positive-valued whole-number} \link[idtf]{dtf}?
+\link[inpw]{non-positive-valued whole-number} \link[idtf]{data.frame}?
 
 \item \code{cmp_npw_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[inpw]{non-positive-valued whole-number} \link[ivls]{vlist}?
-
-\item \code{cmp_npw_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[inpw]{non-positive-valued whole-number} \link[ivtp]{vtype}?
 
 \item \code{cmp_npw_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[inpw]{non-positive-valued whole-number} \link[imat]{matrix}?
@@ -1103,22 +983,19 @@ plus extended mode plus extended class properties.
 \link[inpw]{non-positive-valued whole-number} \link[iscl]{scalar}?
 
 \item \code{cmp_npw_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[inpw]{non-positive-valued whole-number} \link[ivec]{vec}?
+\link[inpw]{non-positive-valued whole-number} \link[ivec]{vector+}?
 
 \item \code{cmp_nst_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[inst]{non-sortable} \link[iarr]{array}?
+\link[inst]{non-sortable} \link[iarr]{array+}?
 
 \item \code{cmp_nst_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[inst]{non-sortable} \link[igen]{generic}?
 
 \item \code{cmp_nst_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[inst]{non-sortable} \link[idtf]{dtf}?
+\link[inst]{non-sortable} \link[idtf]{data.frame}?
 
 \item \code{cmp_nst_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[inst]{non-sortable} \link[ivls]{vlist}?
-
-\item \code{cmp_nst_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[inst]{non-sortable} \link[ivtp]{vtype}?
 
 \item \code{cmp_nst_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[inst]{non-sortable} \link[imat]{matrix}?
@@ -1130,22 +1007,19 @@ plus extended mode plus extended class properties.
 \link[inst]{non-sortable} \link[iscl]{scalar}?
 
 \item \code{cmp_nst_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[inst]{non-sortable} \link[ivec]{vec}?
+\link[inst]{non-sortable} \link[ivec]{vector+}?
 
 \item \code{cmp_num_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[inum]{numeric} \link[iarr]{array}?
+\link[inum]{numeric} \link[iarr]{array+}?
 
 \item \code{cmp_num_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[inum]{numeric} \link[igen]{generic}?
 
 \item \code{cmp_num_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[inum]{numeric} \link[idtf]{dtf}?
+\link[inum]{numeric} \link[idtf]{data.frame}?
 
 \item \code{cmp_num_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[inum]{numeric} \link[ivls]{vlist}?
-
-\item \code{cmp_num_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[inum]{numeric} \link[ivtp]{vtype}?
 
 \item \code{cmp_num_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[inum]{numeric} \link[imat]{matrix}?
@@ -1157,22 +1031,19 @@ plus extended mode plus extended class properties.
 \link[inum]{numeric} \link[iscl]{scalar}?
 
 \item \code{cmp_num_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[inum]{numeric} \link[ivec]{vec}?
+\link[inum]{numeric} \link[ivec]{vector+}?
 
 \item \code{cmp_odd_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[iodd]{odd-valued whole-number} \link[iarr]{array}?
+\link[iodd]{odd-valued whole-number} \link[iarr]{array+}?
 
 \item \code{cmp_odd_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[iodd]{odd-valued whole-number} \link[igen]{generic}?
 
 \item \code{cmp_odd_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[iodd]{odd-valued whole-number} \link[idtf]{dtf}?
+\link[iodd]{odd-valued whole-number} \link[idtf]{data.frame}?
 
 \item \code{cmp_odd_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[iodd]{odd-valued whole-number} \link[ivls]{vlist}?
-
-\item \code{cmp_odd_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[iodd]{odd-valued whole-number} \link[ivtp]{vtype}?
 
 \item \code{cmp_odd_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[iodd]{odd-valued whole-number} \link[imat]{matrix}?
@@ -1184,22 +1055,19 @@ plus extended mode plus extended class properties.
 \link[iodd]{odd-valued whole-number} \link[iscl]{scalar}?
 
 \item \code{cmp_odd_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[iodd]{odd-valued whole-number} \link[ivec]{vec}?
+\link[iodd]{odd-valued whole-number} \link[ivec]{vector+}?
 
 \item \code{cmp_ord_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[iord]{ordered-factor} \link[iarr]{array}?
+\link[iord]{ordered-factor} \link[iarr]{array+}?
 
 \item \code{cmp_ord_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[iord]{ordered-factor} \link[igen]{generic}?
 
 \item \code{cmp_ord_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[iord]{ordered-factor} \link[idtf]{dtf}?
+\link[iord]{ordered-factor} \link[idtf]{data.frame}?
 
 \item \code{cmp_ord_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[iord]{ordered-factor} \link[ivls]{vlist}?
-
-\item \code{cmp_ord_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[iord]{ordered-factor} \link[ivtp]{vtype}?
 
 \item \code{cmp_ord_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[iord]{ordered-factor} \link[imat]{matrix}?
@@ -1211,22 +1079,19 @@ plus extended mode plus extended class properties.
 \link[iord]{ordered-factor} \link[iscl]{scalar}?
 
 \item \code{cmp_ord_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[iord]{ordered-factor} \link[ivec]{vec}?
+\link[iord]{ordered-factor} \link[ivec]{vector+}?
 
 \item \code{cmp_pct_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[ipct]{percent-valued (0-100) numeric} \link[iarr]{array}?
+\link[ipct]{percent-valued (0-100) numeric} \link[iarr]{array+}?
 
 \item \code{cmp_pct_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[ipct]{percent-valued (0-100) numeric} \link[igen]{generic}?
 
 \item \code{cmp_pct_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[ipct]{percent-valued (0-100) numeric} \link[idtf]{dtf}?
+\link[ipct]{percent-valued (0-100) numeric} \link[idtf]{data.frame}?
 
 \item \code{cmp_pct_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[ipct]{percent-valued (0-100) numeric} \link[ivls]{vlist}?
-
-\item \code{cmp_pct_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[ipct]{percent-valued (0-100) numeric} \link[ivtp]{vtype}?
 
 \item \code{cmp_pct_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[ipct]{percent-valued (0-100) numeric} \link[imat]{matrix}?
@@ -1238,22 +1103,19 @@ plus extended mode plus extended class properties.
 \link[ipct]{percent-valued (0-100) numeric} \link[iscl]{scalar}?
 
 \item \code{cmp_pct_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[ipct]{percent-valued (0-100) numeric} \link[ivec]{vec}?
+\link[ipct]{percent-valued (0-100) numeric} \link[ivec]{vector+}?
 
 \item \code{cmp_pos_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[ipos]{positive-valued numeric} \link[iarr]{array}?
+\link[ipos]{positive-valued numeric} \link[iarr]{array+}?
 
 \item \code{cmp_pos_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[ipos]{positive-valued numeric} \link[igen]{generic}?
 
 \item \code{cmp_pos_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[ipos]{positive-valued numeric} \link[idtf]{dtf}?
+\link[ipos]{positive-valued numeric} \link[idtf]{data.frame}?
 
 \item \code{cmp_pos_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[ipos]{positive-valued numeric} \link[ivls]{vlist}?
-
-\item \code{cmp_pos_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[ipos]{positive-valued numeric} \link[ivtp]{vtype}?
 
 \item \code{cmp_pos_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[ipos]{positive-valued numeric} \link[imat]{matrix}?
@@ -1265,22 +1127,19 @@ plus extended mode plus extended class properties.
 \link[ipos]{positive-valued numeric} \link[iscl]{scalar}?
 
 \item \code{cmp_pos_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[ipos]{positive-valued numeric} \link[ivec]{vec}?
+\link[ipos]{positive-valued numeric} \link[ivec]{vector+}?
 
 \item \code{cmp_ppn_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[ippn]{proportion-valued (0-1) numeric} \link[iarr]{array}?
+\link[ippn]{proportion-valued (0-1) numeric} \link[iarr]{array+}?
 
 \item \code{cmp_ppn_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[ippn]{proportion-valued (0-1) numeric} \link[igen]{generic}?
 
 \item \code{cmp_ppn_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[ippn]{proportion-valued (0-1) numeric} \link[idtf]{dtf}?
+\link[ippn]{proportion-valued (0-1) numeric} \link[idtf]{data.frame}?
 
 \item \code{cmp_ppn_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[ippn]{proportion-valued (0-1) numeric} \link[ivls]{vlist}?
-
-\item \code{cmp_ppn_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[ippn]{proportion-valued (0-1) numeric} \link[ivtp]{vtype}?
 
 \item \code{cmp_ppn_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[ippn]{proportion-valued (0-1) numeric} \link[imat]{matrix}?
@@ -1292,22 +1151,19 @@ plus extended mode plus extended class properties.
 \link[ippn]{proportion-valued (0-1) numeric} \link[iscl]{scalar}?
 
 \item \code{cmp_ppn_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[ippn]{proportion-valued (0-1) numeric} \link[ivec]{vec}?
+\link[ippn]{proportion-valued (0-1) numeric} \link[ivec]{vector+}?
 
 \item \code{cmp_psw_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[ipsw]{positive-valued whole-number} \link[iarr]{array}?
+\link[ipsw]{positive-valued whole-number} \link[iarr]{array+}?
 
 \item \code{cmp_psw_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[ipsw]{positive-valued whole-number} \link[igen]{generic}?
 
 \item \code{cmp_psw_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[ipsw]{positive-valued whole-number} \link[idtf]{dtf}?
+\link[ipsw]{positive-valued whole-number} \link[idtf]{data.frame}?
 
 \item \code{cmp_psw_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[ipsw]{positive-valued whole-number} \link[ivls]{vlist}?
-
-\item \code{cmp_psw_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[ipsw]{positive-valued whole-number} \link[ivtp]{vtype}?
 
 \item \code{cmp_psw_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[ipsw]{positive-valued whole-number} \link[imat]{matrix}?
@@ -1319,22 +1175,19 @@ plus extended mode plus extended class properties.
 \link[ipsw]{positive-valued whole-number} \link[iscl]{scalar}?
 
 \item \code{cmp_psw_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[ipsw]{positive-valued whole-number} \link[ivec]{vec}?
+\link[ipsw]{positive-valued whole-number} \link[ivec]{vector+}?
 
 \item \code{cmp_srt_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[isrt]{sortable} \link[iarr]{array}?
+\link[isrt]{sortable} \link[iarr]{array+}?
 
 \item \code{cmp_srt_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[isrt]{sortable} \link[igen]{generic}?
 
 \item \code{cmp_srt_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[isrt]{sortable} \link[idtf]{dtf}?
+\link[isrt]{sortable} \link[idtf]{data.frame}?
 
 \item \code{cmp_srt_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[isrt]{sortable} \link[ivls]{vlist}?
-
-\item \code{cmp_srt_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[isrt]{sortable} \link[ivtp]{vtype}?
 
 \item \code{cmp_srt_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[isrt]{sortable} \link[imat]{matrix}?
@@ -1346,22 +1199,19 @@ plus extended mode plus extended class properties.
 \link[isrt]{sortable} \link[iscl]{scalar}?
 
 \item \code{cmp_srt_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[isrt]{sortable} \link[ivec]{vec}?
+\link[isrt]{sortable} \link[ivec]{vector+}?
 
 \item \code{cmp_str_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[istr]{string} \link[iarr]{array}?
+\link[istr]{string} \link[iarr]{array+}?
 
 \item \code{cmp_str_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[istr]{string} \link[igen]{generic}?
 
 \item \code{cmp_str_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[istr]{string} \link[idtf]{dtf}?
+\link[istr]{string} \link[idtf]{data.frame}?
 
 \item \code{cmp_str_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[istr]{string} \link[ivls]{vlist}?
-
-\item \code{cmp_str_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[istr]{string} \link[ivtp]{vtype}?
 
 \item \code{cmp_str_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[istr]{string} \link[imat]{matrix}?
@@ -1373,22 +1223,19 @@ plus extended mode plus extended class properties.
 \link[istr]{string} \link[iscl]{scalar}?
 
 \item \code{cmp_str_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[istr]{string} \link[ivec]{vec}?
+\link[istr]{string} \link[ivec]{vector+}?
 
 \item \code{cmp_uno_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[iuno]{unordered-factor} \link[iarr]{array}?
+\link[iuno]{unordered-factor} \link[iarr]{array+}?
 
 \item \code{cmp_uno_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[iuno]{unordered-factor} \link[igen]{generic}?
 
 \item \code{cmp_uno_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[iuno]{unordered-factor} \link[idtf]{dtf}?
+\link[iuno]{unordered-factor} \link[idtf]{data.frame}?
 
 \item \code{cmp_uno_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[iuno]{unordered-factor} \link[ivls]{vlist}?
-
-\item \code{cmp_uno_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[iuno]{unordered-factor} \link[ivtp]{vtype}?
 
 \item \code{cmp_uno_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[iuno]{unordered-factor} \link[imat]{matrix}?
@@ -1400,22 +1247,19 @@ plus extended mode plus extended class properties.
 \link[iuno]{unordered-factor} \link[iscl]{scalar}?
 
 \item \code{cmp_uno_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[iuno]{unordered-factor} \link[ivec]{vec}?
+\link[iuno]{unordered-factor} \link[ivec]{vector+}?
 
 \item \code{cmp_whl_arr()}: Is \code{x} a \link[icmp]{complete}
-\link[iwhl]{whole-number} \link[iarr]{array}?
+\link[iwhl]{whole-number} \link[iarr]{array+}?
 
 \item \code{cmp_whl_gen()}: Is \code{x} a \link[icmp]{complete}
 \link[iwhl]{whole-number} \link[igen]{generic}?
 
 \item \code{cmp_whl_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[iwhl]{whole-number} \link[idtf]{dtf}?
+\link[iwhl]{whole-number} \link[idtf]{data.frame}?
 
 \item \code{cmp_whl_vls()}: Is \code{x} a \link[icmp]{complete}
 \link[iwhl]{whole-number} \link[ivls]{vlist}?
-
-\item \code{cmp_whl_vtp()}: Is \code{x} a \link[icmp]{complete}
-\link[iwhl]{whole-number} \link[ivtp]{vtype}?
 
 \item \code{cmp_whl_mat()}: Is \code{x} a \link[icmp]{complete}
 \link[iwhl]{whole-number} \link[imat]{matrix}?
@@ -1427,7 +1271,7 @@ plus extended mode plus extended class properties.
 \link[iwhl]{whole-number} \link[iscl]{scalar}?
 
 \item \code{cmp_whl_vec()}: Is \code{x} a \link[icmp]{complete}
-\link[iwhl]{whole-number} \link[ivec]{vec}?
+\link[iwhl]{whole-number} \link[ivec]{vector+}?
 
 }}
 \seealso{
@@ -1441,15 +1285,13 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc.}()},
-\code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},
 \code{\link{mmm_ccc.}()},
+\code{\link{ppp.}()},
 \code{\link{sss.}()},
 \code{\link{ttt.}()},
 \code{\link{ttt_ccc.}()},
-\code{\link{ttt_mmm.}()},
-\code{\link{xxx.}()}
+\code{\link{ttt_mmm.}()}
 }
 \concept{props}

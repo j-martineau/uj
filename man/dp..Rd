@@ -107,7 +107,7 @@ Should be a character vector of length 2.}
 output?}
 }
 \value{
-A \code{\link[is_dtf]{dtf}}.
+A \code{\link[is_dtf]{dtf}} / \code{\link[tibble]{tibble}}.
 }
 \description{
 The following table describes the wraps this group of functions

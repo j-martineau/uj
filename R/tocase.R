@@ -33,10 +33,10 @@ tocase. <- function() {help("tocase.", package = "j")}
 #' @export
 tocase <- function(case., ..., a. = T) {
   x <- list(...)
-  n <- length(x.)
-  ac <- all(sapply(x.), ichr)
-  at <- all(sapply(x.), chr_dtf)
-  al <- all(sapply(x.), chr_vls)
+  n <- length(x)
+  ac <- all(sapply(x), ichr)
+  at <- all(sapply(x), chr_dtf)
+  al <- all(sapply(x), chr_vls)
   if (n > 0) {ns <- lengths(x)} else {ns <- 1}
   vc <- isIN(case., c("l", "s", "t", "u"))
   vd <- f0(n == 0, F,
@@ -48,7 +48,7 @@ tocase <- function(case., ..., a. = T) {
   if (!vd) {err <- c(err, "\n • [...] must be contain non-empty character objects (?ichr), character dtfs (?chr_dtf), or character vlists (?chr_vls).")}
   if (!va) {err <- c(err, "\n • [a.] must be TRUE or FALSE.")}
   if (idef(err)) {stop(err)}
-  if (isT(a.)) {x <- list(av(...))} else {x <- list(...)}
+  if (isT(a.)) {x <- list(av(x))}
   for (i in 1:length(x)) {
     xi <- x[[i]]
     if (ichr(xi)) {

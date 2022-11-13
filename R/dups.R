@@ -23,7 +23,7 @@ dups. <- function() {help("dups.", package = "uj")}
 #'   vector) and reduces the resulting vector to contain one copy of each
 #'   duplicated element.
 #' @export
-dups <- function(...) {out. <- av(...); unique(out.[duplicated(out.)])}
+dups <- function(...) {x <- av(...); unique(x[duplicated(x)])}
 
 #' @describeIn dups. Indexes all elements of \code{x} that are duplicates of
 #'   elements appearing earlier in \code{x}, either as a logical vector of the

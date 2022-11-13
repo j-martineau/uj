@@ -11,7 +11,10 @@ ttt_mmm. <- function() {help("ttt_mmm.", package = "uj")}
 #' @describeIn ttt_mmm. Get a character vector of all possible fundamental type
 #'   plus extended class properties.
 #' @export
-ttt_mmm_vals <- function() {av(apply(expand.grid(ttt = ttt_vals(), mmm = mmm_vals()), 2, dw0))}
+ttt_mmm_vals <- function() {
+  join <- function(x) {paste0(av(x), collapse = "_")}
+  sort(av(apply(expand.grid(ttt = ttt_vals(), mmm = mmm_vals()), 2, join)))
+}
 
 #' @describeIn ttt_mmm. Is \code{x} a \link[ipop]{populated} \link[iatm]{atomic}
 #'   object?

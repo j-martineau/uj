@@ -22,12 +22,24 @@
 #'   \code{'sqr'}\tab square        \tab Square atomic matrix                \cr
 #'   \code{'sld'}\tab solid         \tab Effectively hyper-dimensional (having
 #'                                       indexing positions in 3+ dimensions). }
+#' Functions related to form properties are described in the following
+#' table:\tabular{ll}{
+#' FUNCTION          \tab WHAT THE                                           \cr
+#' FORMAT            \tab FUNCTION DOES                                      \cr
+#' \code{i•••}       \tab Evaluates whether an object is of the form represented
+#'                        by \code{•••}.                                     \cr
+#' \code{fff}        \tab Gets a character scalar containing the forms of an
+#'                        object.                                            \cr
+#' \code{ifff}       \tab Evaluates an object for a specific form and any
+#'                        additional properties specified in \code{...}.     \cr
+#' \code{fff_vals}   \tab Gets a character vector of all possible form property
+#'                        values.                                             }
 #' @param x An object.
-#' @param xxx \link[cmp_chr_scl]{Complete character scalar} containing one or
-#'   more values from \code{fff_vals()} separated by pipes and/or underscores
-#'   ("."). Combinations of forms can be specified by separating them with
-#'   underscores. Separating forms or combinations of forms with pipes will
-#'   result in a value of \code{TRUE} if any of them applies to \code{x}.
+#' @param fff \link[cmp_chr_scl]{Complete character scalar} containing one or
+#'   more values from \code{fff_vals()} separated by pipes and/or underscores.
+#'   Combinations of forms can be specified by separating them with underscores.
+#'   Separating forms or combinations of forms with pipes will result in a value
+#'   of \code{TRUE} if any of them applies to \code{x}.
 #' @param ... Additional arguments to \code{\link{meets}} containing value and
 #'   element/row/column count restrictions.
 #' @section Submitting additional arguments to \code{ifff} via \code{...}:
@@ -88,18 +100,18 @@ isld <- function(x) {neee(x) > 2}
 
 #' @describeIn fff. Get a list of all possible form property values.
 #' @export
-fff_vals <- function() {x <- sort(c('emp', 'pnt', 'lin', 'row', 'col', 'rct', 'sqr', 'sld')); names(x) <- rep.int("fff", length(x)); x}
+fff_vals <- function() {c('col', 'emp', 'lin', 'pnt', 'rct', 'row', 'sqr', 'sld')}
 
-#' @describeIn fff. Evaluates whether any property in \code{xxx} is a form
+#' @describeIn fff. Evaluates whether any property in \code{fff} is a form
 #'   property applicable to \code{x} (subject to any additional restrictions
 #'   in \code{...}).
 #' @export
-ifff <- function(x, xxx, ...) {
-  if (!cmp_chr_scl(xxx)) {stop("\n • [xxx] must be a non-NA character scalar.")}
+ifff <- function(x, fff, ...) {
+  if (!cmp_chr_scl(fff)) {stop("\n • [fff] must be a non-NA character scalar.")}
   valid <- fff_vals()
-  combos <- unlist(strsplit(xxx, "|", fixed = T)[[1]], T, F)
-  newxxx <- unlist(strsplit(combos, "_", fixed = T)     , T, F)
-  valid <- all(newxxx %in% valid)
-  if (!valid) {stop("\n • [xxx] contains a value not in fff_vals() (after splitting [xxx] along pipes and underscores).")}
-  ixxx(x, xxx, ...)
+  combos <- unlist(strsplit(fff, "|", fixed = T)[[1]], T, F)
+  newfff <- unlist(strsplit(combos, "_", fixed = T)     , T, F)
+  valid <- all(newfff %in% valid)
+  if (!valid) {stop("\n • [fff] contains a value not in fff_vals() (after splitting [fff] along pipes and underscores).")}
+  ippp(x, fff, ...)
 }

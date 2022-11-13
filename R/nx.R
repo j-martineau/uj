@@ -12,9 +12,9 @@
 #'   are allowed, and whether to atomize \code{...} to create a single atomic
 #'   vector before processing. If \code{a} is \code{FALSE}, each argument in
 #'   \code{...} is processed separately.
-#' @param vals Optional \link[is_vec]{atomic vec} indicating specific values to
-#'   be counted.
-#' @param lt,le,.ge,gt Optional \link[cmp_scl]{complete atomic scalars}
+#' @param vals Optional \link[ivec]{atomic vec} indicating specific values to be
+#'   counted.
+#' @param lt,le,ge,gt Optional \link[cmp_srt_scl]{complete sortable scalars}
 #'   indicating specific values elements of arguments in \code{...} must be less
 #'   than, less than or equal to, greater than or equal to, or greater than,
 #'   respectively, to be counted.
@@ -64,15 +64,15 @@ nx. <- function() {help("nx.", package = "uj")}
 n_is <- function(x, n = NULL, min = NULL, max = NULL, eq = F) {
   vx <- cmp_nnw(x)
   vn <- f0(inll(n), T, cmp_nnw_vec(n))
-  veq <- isTF(eq)
-  vmn <- f0(inll(min), T, cmp_nnw_scl(min))
-  vmx <- f0(inll(max), T, cmp_nnw_scl(max))
+  ve <- isTF(eq)
+  vi <- f0(inll(min), T, cmp_nnw_scl(min))
+  va <- f0(inll(max), T, cmp_nnw_scl(max))
   err <- NULL
   if (!vx) {err <- c(err, "\n • [x] must contain only non-negative whole numbers.")}
   if (!vn) {err <- c(err, "\n • [n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec).")}
-  if (!vmn) {err <- c(err, "\n • [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
-  if (!vmx) {err <- c(err, "\n • [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
-  if (!veq) {err <- c(err, "\n • [eq] must be TRUE or FALSE.")}
+  if (!vi) {err <- c(err, "\n • [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!va) {err <- c(err, "\n • [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!ve) {err <- c(err, "\n • [eq] must be TRUE or FALSE.")}
   if (idef(err)) {stop(err)}
   if (length(c(n, min, max)) == 0 & !eq) {return(x)}                             # if no restrictions are specified, return the raw counts
   vn <- f0(inll(n), T, all(x %in% n))                                            # whether exact argument length restriction is met
@@ -85,7 +85,8 @@ n_is <- function(x, n = NULL, min = NULL, max = NULL, eq = F) {
 #' @describeIn nx. Length of arguments.
 #' @export
 nx <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = F, na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {
-  x <- list(...); av <- av(x)                                                     # extract ... args and an atomized version
+  x <- list(...)
+  av <- av(x)                                                     # extract ... args and an atomized version
   v0 <- ...length() > 0
   va <- isTF(a)
   vn <- f0(inll(n), T, cmp_nnw_vec(n))
@@ -239,7 +240,7 @@ nu <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
 nr <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
   x <- list(...)
   vd <- all(sapply(x, id2D))
-  vn <- f0(inll(n  ), T, cmp_nnw_vec(n  ))
+  vn <- f0(inll(n), T, cmp_nnw_vec(n))
   vmn <- f0(inll(min), T, cmp_nnw_scl(min))
   vmx <- f0(inll(max), T, cmp_nnw_scl(max))
   veq <- isTF(eq)
@@ -259,7 +260,7 @@ nr <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
 nc <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
   x <- list(...)
   vd <- all(sapply(x, id2D))
-  vn <- f0(inll(n), T, cmp_nnw_vec(n  ))
+  vn <- f0(inll(n), T, cmp_nnw_vec(n))
   vmn <- f0(inll(min), T, cmp_nnw_scl(min))
   vmx <- f0(inll(max), T, cmp_nnw_scl(max))
   veq <- isTF(eq)

@@ -11,4 +11,4 @@ strh <- function(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...) 
 
 #' @describeIn gr. Thin wrapper for \code{\link[graphics]{strheight}}
 #' @export
-strw <- function(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...) {graphics::strwitdh(s = s, units = units, cex = cex, font = font, vfont = vfont, ...)}
+strw <- function(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...) {graphics::strwidth(s = s, units = units, cex = cex, font = font, vfont = vfont, ...)}

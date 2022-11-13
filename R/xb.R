@@ -34,23 +34,23 @@ xb <- function(..., bind = NA) {
   infix <- f0(vt, " atomic tibbles in [...] ", " atomic matrices in [...] ")
   if (bind %EQ% "r") {
     suff <- "are incompatible for row binding."
-    if      (vm & !compatible_mats(..., bind. = "r")) {stop("\n • The", infix, suff)}
+    if (vm & !compatible_mats(..., bind. = "r")) {stop("\n • The", infix, suff)}
     else if (vt & !compatible_atbs(..., bind. = "r")) {stop("\n • The", infix, suff)}
     rbind(...)
   }
   else if (bind %EQ% "c") {
     suff <- "are incompatible for column binding."
-    if      (vm & !compatible_mats(..., bind. = "c")) {stop("\n • The", infix, suff)}
+    if (vm & !compatible_mats(..., bind. = "c")) {stop("\n • The", infix, suff)}
     else if (vt & !compatible_atbs(..., bind. = "c")) {stop("\n • The", infix, suff)}
     cbind(...)
   }
   if (isNa(bind)) {
     pref1 <- c("\n  * The", infix, "are incompatible for binding")
     pref2 <- c("\n  * Whether to row or column bind the", infix, "was ambiguous")
-    infix  <- " (i.e., both row and column binding"
+    infix <- " (i.e., both row and column binding"
     tryc <- tryCatch(xb(..., bind = "c"), error = function(e) e, finally = NULL)
     tryr <- tryCatch(xb(..., bind = "r"), error = function(e) e, finally = NULL)
-    if ( isERR(tryc) &  isERR(tryr)) {stop(pref1, infix, "failed)."   )}
+    if (isERR(tryc) &  isERR(tryr)) {stop(pref1, infix, "failed)."   )}
     if (notERR(tryc) & notERR(tryr)) {stop(pref2, infix, "succeeded).")}
     if (notERR(tryc)) {tryc} else {tryr}
   }

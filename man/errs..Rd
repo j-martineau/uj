@@ -30,11 +30,11 @@ bank_pop(...)
 
 bank_funs(funs, ...)
 
-bank_xxx(xxx, ..., nas = F)
+bank_xxx(ppp, ..., nas. = F)
 
 bank_vals(...)
 
-bank_dots(xxx, ..., named. = F)
+bank_dots(ppp, ..., named. = F)
 
 bank_when(whens., values., ...)
 
@@ -71,9 +71,6 @@ checked.
 For \code{bank_when}, two named atomic scalar arguments to be error
 checked.}
 
-\item{nas}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
-atomic scalar \code{NA} values qualify.}
-
 \item{extras}{\code{NUlL} or an \link[icmp]{complete atomic object}
 containing additional atomic values that qualify as valid.}
 
@@ -82,10 +79,11 @@ containing additional atomic values that qualify as valid.}
 names separated by pipes, which are used to check if named arguments in
 code{...} satisfy the property specification in any of the function names.}
 
-\item{xxx}{\link[cmp_chr_scl]{Complete character scalar} containing one or
-more property combos (combos are created by separating one or more
-\link[xxx_vals]{property values} with underscores. Multiple combos are
-separated by pipes.}
+\item{nas.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+atomic scalar \code{NA} values qualify.}
+
+\item{named.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+arguments in \code{...} must be uniquely named without using blank strings.}
 
 \item{whens., values.}{\link[ipop]{Populated atomic objects}.}
 
@@ -98,8 +96,10 @@ arguments.}
 
 \item{x}{An ℝ object.}
 
-\item{named}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
-arguments in \code{...} must be uniquely named without using blank strings.}
+\item{xxx}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+more property combos (combos are created by separating one or more
+\link[xxx_vals]{property values} with underscores. Multiple combos are
+separated by pipes.}
 }
 \value{
 \code{NULL}. Called for the side effect of banking and/or processing
@@ -143,7 +143,7 @@ escape sequence \code{'{@}'}.
 function.} For each named argument in \code{...}, checks whether it
 satisfies a property function in \code{funs.}, and if not, banks an error
 message. \code{funs.} must be a character scalar containing the names of
-one or more \link[prop_funs]{property functions}, separated by pipes. An
+one or more \link[ppp_funs]{property functions}, separated by pipes. An
 argument passes the test if calling any one of the functions results in a
 value of \code{TRUE}.
 

@@ -17,8 +17,21 @@
 #'   \code{'rcr'}\tab recursive   \tab List-like (\code{\link[is_dtf]{dtf}},
 #'                                     lists, or objects containing an element
 #'                                     that is not an atomic scalar)           }
+#' Functions related to fundamental type are described in the following
+#' table:\tabular{ll}{
+#' FUNCTION          \tab WHAT THE                                           \cr
+#' FORMAT            \tab FUNCTION DOES                                      \cr
+#' \code{i•••}       \tab Evaluates whether an object is of the fundamental type
+#'                        completeness represented by \code{•••}.            \cr
+#' \code{ttt}        \tab Gets a character vector containing all fundamental
+#'                        type properties of an object.                      \cr
+#' \code{ittt}       \tab Evaluates an object for a specific fundamental type
+#'                        and any additional properties specified in
+#'                        \code{...}.                                        \cr
+#' \code{ttt_vals}   \tab Gets a character vector of all possible fundamental
+#'                        type property values.                                }
 #' @param x An object.
-#' @param xxx \link[cmp_chr_scl]{Complete character scalar }containing one or
+#' @param ttt \link[cmp_chr_scl]{Complete character scalar }containing one or
 #'   more values from \code{ttt_vals()} separated by pipes and/or underscores
 #'   ("."). Combinations of fundamental types can be specified by separating
 #'   them with underscores. Separating fundamental types or combinations of
@@ -27,7 +40,7 @@
 #' @param ... Additional arguments to \code{\link{meets}} containing value and
 #'   element/row/column count restrictions.
 #' @section Additional Arguments in \code{...}:
-#'   Submitting additional arguments to \code{is_ttt} via \code{...} allows
+#'   Submitting additional arguments to \code{ittt} via \code{...} allows
 #'   for checking not just the fundamental but whether length, number of rows,
 #'   number of columns, and element values meet flexible criteria.
 #' @return \code{ttt_vals} and \code{ttt} return a character scalar or
@@ -38,11 +51,7 @@ ttt. <- function() {help("ttt.", package = "uj")}
 #' @describeIn ttt. Get a character vector of all fundamental type properties
 #'   applicable to \code{x}.
 #' @export
-ttt <- function(x) {
-  c(f0( is.atomic( x), 'atm', NULL ), f0(is.null(         x ), 'nll', 'def'),
-    f0(0 < length( x), 'pop', 'nil'), f0(is.recursive(    x ), 'rcr', NULL ),
-    f0(is.function(x), 'fun',         f0(!isERR(match.fun(x)), 'fun', NULL)))
-}
+ttt <- function(x) {c(f0(is.atomic(x), 'atm', NULL), f0(is.null(x), 'nll', 'def'), f0(0 < length(x), 'pop', 'nil'), f0(is.recursive(x), 'rcr', NULL), f0(is.function(x), 'fun', f0(!isERR(match.fun(x)), 'fun', NULL)))}
 
 #' @describeIn ttt. Is \code{x} atomic (regardless of length)?
 #' @export
@@ -75,18 +84,18 @@ ircr <- function(x) {is.recursive(x)}
 #' @describeIn ttt. Get a character vector of all possible fundamental type
 #'   property values.
 #' @export
-ttt_vals <- function() {x <- c('atm', 'nll', 'def', 'fun', 'nil', 'pop', 'rcr'); names(x) <- rep.int("ttt", length(x)); x}
+ttt_vals <- function() {c('atm', 'def', 'fun', 'nil', 'nll', 'pop', 'rcr')}
 
 #' @describeIn ttt. Determine whether \code{x} is of the fundamental type(s)
-#'   contained in \code{xxx} subject to the additional specifications in
+#'   contained in \code{ttt} subject to the additional specifications in
 #'   \code{...}.
 #' @export
-ittt <- function(x, xxx, ...) {
-  if (!cmp_chr_scl(xxx)) {stop("\n • [xxx] must be a non-NA character scalar.")}
+ittt <- function(x, ttt, ...) {
+  if (!cmp_chr_scl(ttt)) {stop("\n • [ttt] must be a non-NA character scalar.")}
   valid <- ttt_vals()
-  combos <- strsplit(xxx, "|", fixed = T)[[1]]
-  newxxx <- unlist(strsplit(combos, ".", fixed = T))
-  valid <- all(newxxx %in% valid)
-  if (!valid) {stop("\n • [xxx] contains a value not in ttt_vals() after splitting [xxx] along pipes and underscores.")}
-  ixxx(x, xxx, ...)
+  combos <- strsplit(ttt, "|", fixed = T)[[1]]
+  newttt <- unlist(strsplit(combos, ".", fixed = T))
+  valid <- all(newttt %in% valid)
+  if (!valid) {stop("\n • [ttt] contains a value not in ttt_vals() after splitting [ttt] along pipes and underscores.")}
+  ippp(x, ttt, ...)
 }

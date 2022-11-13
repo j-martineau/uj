@@ -34,12 +34,12 @@ ircr(x)
 
 ttt_vals()
 
-ittt(x, xxx, ...)
+ittt(x, ttt, ...)
 }
 \arguments{
 \item{x}{An object.}
 
-\item{xxx}{\link[cmp_chr_scl]{Complete character scalar }containing one or
+\item{ttt}{\link[cmp_chr_scl]{Complete character scalar }containing one or
 more values from \code{ttt_vals()} separated by pipes and/or underscores
 ("."). Combinations of fundamental types can be specified by separating
 them with underscores. Separating fundamental types or combinations of
@@ -70,6 +70,19 @@ containing a function name            \cr
 \code{'rcr'}\tab recursive   \tab List-like (\code{\link[is_dtf]{dtf}},
 lists, or objects containing an element
 that is not an atomic scalar)           }
+Functions related to fundamental type are described in the following
+table:\tabular{ll}{
+FUNCTION          \tab WHAT THE                                           \cr
+FORMAT            \tab FUNCTION DOES                                      \cr
+\code{i•••}       \tab Evaluates whether an object is of the fundamental type
+completeness represented by \code{•••}.            \cr
+\code{ttt}        \tab Gets a character vector containing all fundamental
+type properties of an object.                      \cr
+\code{ittt}       \tab Evaluates an object for a specific fundamental type
+and any additional properties specified in
+\code{...}.                                        \cr
+\code{ttt_vals}   \tab Gets a character vector of all possible fundamental
+type property values.                                }
 }
 \section{Functions}{
 \itemize{
@@ -94,13 +107,13 @@ applicable to \code{x}.
 property values.
 
 \item \code{ittt()}: Determine whether \code{x} is of the fundamental type(s)
-contained in \code{xxx} subject to the additional specifications in
+contained in \code{ttt} subject to the additional specifications in
 \code{...}.
 
 }}
 \section{Additional Arguments in \code{...}}{
 
-Submitting additional arguments to \code{is_ttt} via \code{...} allows
+Submitting additional arguments to \code{ittt} via \code{...} allows
 for checking not just the fundamental but whether length, number of rows,
 number of columns, and element values meet flexible criteria.
 }
@@ -117,14 +130,12 @@ Other props:
 \code{\link{ddd.}()},
 \code{\link{eee.}()},
 \code{\link{fff.}()},
-\code{\link{is_ccc.}()},
-\code{\link{is_mmm.}()},
 \code{\link{meets.}()},
 \code{\link{mmm.}()},
 \code{\link{mmm_ccc.}()},
+\code{\link{ppp.}()},
 \code{\link{sss.}()},
 \code{\link{ttt_ccc.}()},
-\code{\link{ttt_mmm.}()},
-\code{\link{xxx.}()}
+\code{\link{ttt_mmm.}()}
 }
 \concept{props}

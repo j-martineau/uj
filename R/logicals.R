@@ -1,12 +1,14 @@
+.check_ok <- function(x, ppp = 'lgl', last = F) {if (!run(paste0(xxx, "(x)"))) {bank_err("[x] must be ", define_ppp_combo(ppp), ".", gens = 1)}; if (last) {err_check(1)}; NULL}
+
 #' @name logicals.
 #' @family logicals
 #' @family extensions
 #' @family logicals
 #' @title Extended, error-checked logicals
-#' @param x \link[is_lgl]{Logical object} for all functions other than
+#' @param x \link[ilgl]{Atomic logical object} for all functions other than
 #'   \code{is_in}, \code{not_in}, \code{has}, and \code{lacks}. Otherwise, an
 #'   atomic object.
-#' @param y \link[is_lgl]{Logical object} for all functions other than
+#' @param y \link[ilgl]{Atomic logical object} for all functions other than
 #'   \code{is_in}, \code{not_in}, \code{has}, and \code{lacks}. Otherwise, an
 #'   atomic object \link[compatible]{compatible} with \code{x}.
 #' @param na \link[cmp_lgl_scl]{Complete logical scalar} indicating what value
@@ -17,7 +19,7 @@
 #'   \code{err = NA} indicates an error should be thrown if a non-logical value
 #'   is encountered.
 #' @param ... Arbitrary number of \link[lgl_vec]{logical vecs} to be processed.
-#' @param agg \link[cmp_chr_scl]{Completre character scalar} in \code{c('nor',
+#' @param agg \link[cmp_chr_scl]{Complete character scalar} in \code{c('nor',
 #'   'one', 'any', 'two', 'all')} used to specify, respectively, that 0, 1, any,
 #'   2 or more, and all arguments must be \code{TRUE}.
 #' @param a \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
@@ -31,18 +33,18 @@
 #' @param not \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
 #'   negate values in arguments supplied in \code{...} before processing.
 #' @param across,within \link[cmp_chr_scl]{Complete character scalar} in
-#'   \code{c('', 'none', 'one', 'any', 'some', 'all')} indicating no aggregation
+#'   \code{c('', 'none', 'one', 'any', 'some', 'all')} indicating no across
+#'   or within argument counting of \code{TRUE} values.
 #' @export
 logicals. <- function() {help("logicals.", package = "uj")}
 
 #' @describeIn logicals. Wrapper for \code{!x} with error checking.
 #' @export
 not <- function(x, na = 'err') {
-  ok <- function(x., p. = 'lgl', l. = F) {if (!run(paste0(p., "(x)"))) {bank_err("[x] must be ", define_xxx_combo(p.), ".", g. = 1)}; if (l.) {err_check(1)}; NULL}
   vn <- f0(isLG(na), T, isEQ(na, 'err'))
   if (!vn) {stop("\n • [na] must be TRUE, FALSE, NA, or 'err'.")}
   p <- f0(isEQ(na, 'err'), "cmp_lgl", 'lgl')
-  ok(x, p, l. = T)
+  .check_ok(x, p, T)
   if (isTF(na)) {x[is.na(x)] <- na}
   !x
 }
@@ -50,11 +52,11 @@ not <- function(x, na = 'err') {
 #' @describeIn logicals. Wrapper for \code{x & y} with error checking.
 #' @export
 and <- function(x, y, na = 'err') {
-  ok <- function(x., p. = 'lgl', l. = F) {if (!run(paste0(p., "(x)"))) {bank_err("[x] must be ", define_xxx_combo(p.), ".", g. = 1)}; if (l.) {err_check(1)}; NULL}
   vn <- f0(isLG(na), T, isEQ(na, 'err'))
   if (!vn) {stop("\n • [na] must be TRUE, FALSE, NA, or 'err'.")}
   p <- f0(isEQ(na, 'err'), "cmp_lgl", 'lgl')
-  ok(x, p); ok(y, p, l. = T)
+  .check_ok(x, p)
+  .check_ok(y, p, T)
   if (isTF(na)) {x[is.na(x)] <- na; y[is.na(x)] <- na}
   x & y
 }
@@ -62,11 +64,11 @@ and <- function(x, y, na = 'err') {
 #' @describeIn logicals. Wrapper for \code{x | y} with error checking.
 #' @export
 or <- function(x, y, na = 'err') {
-  ok <- function(x., p. = 'lgl', l. = F) {if (!run(paste0(p., "(x)"))) {bank_err("[x] must be ", define_xxx_combo(p.), ".", g. = 1)}; if (l.) {err_check(1)}; NULL}
   vn <- f0(isLG(na), T, isEQ(na, 'err'))
   if (!vn) {stop("\n • [na] must be TRUE, FALSE, NA, or 'err'.")}
   p <- f0(isEQ(na, 'err'), "cmp_lgl", 'lgl')
-  ok(x, p); ok(y, p, l. = T)
+  .check_ok(x, p)
+  .check_ok(y, p, T)
   if (isTF(na)) {x[is.na(x)] <- na; y[is.na(x)] <- na}
   x | y
 }
@@ -76,11 +78,11 @@ or <- function(x, y, na = 'err') {
 #'   evaluates whether the number of \code{TRUE} arguments is 1.
 #' @export
 one <- function(x, y, na = 'err') {
-  ok <- function(x., p. = 'lgl', l. = F) {if (!run(paste0(p., "(x)"))) {bank_err("[x] must be ", define_xxx_combo(p.), ".", g. = 1)}; if (l.) {err_check(1)}; NULL}
   vn <- f0(isLG(na), T, isEQ(na, 'err'))
   if (!vn) {stop("\n • [na] must be TRUE, FALSE, NA, or 'err'.")}
   p <- f0(isEQ(na, 'err'), "cmp_lgl", 'lgl')
-  ok(x, p); ok(y, p, l. = T)
+  .check_ok(x, p)
+  .check_ok(y, p, T)
   if (isTF(na)) {x[is.na(x)] <- na; y[is.na(x)] <- na}
   xor(x, y)
 }
