@@ -129,9 +129,9 @@ Property Functions}.
 \itemize{
 \item \code{ppp()}: Get all single properties that apply to \code{x}.
 
-\item \code{ippp()}: Evaluates whether any (combination) property in
-\code{ppp} is applicable to \code{x}, subject to any additional
-restrictions in \code{...}.
+\item \code{ippp()}: Evaluates whether any (combination) property in \code{ppp}
+is applicable to \code{x}, subject to any additional restrictions in
+\code{...}.
 
 \item \code{ppp_all()}: Extract unique property values from \code{ppp} by splitting
 along pipes (\code{"|"}) and underscores.

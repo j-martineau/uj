@@ -207,12 +207,9 @@ twoBL(x)
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-Failsafe \code{is} functions
-}
-\details{
-Functions that produce a \code{TRUE} or \code{FALSE} result as long
-as identity-evaluating their arguments (i.e., \code{identity(arg_name)})
-does not itself produce an error.
+Functions that produce a \code{TRUE} or \code{FALSE} result as
+long as identity-evaluating their arguments (i.e.,
+\code{identity(arg_name)}) does not itself produce an error.
 }
 \section{Functions}{
 \itemize{
