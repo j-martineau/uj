@@ -30,7 +30,7 @@
 #'   values must be unique.
 #' @return \link[cmp_chr_scl]{Complete character scalar}
 #' @export
-dialogs_uj <- function() {help("dialogs_uj", package = "uj")}
+dialogs. <- function() {help("dialogs.", package = "uj")}
 
 #' @describeIn dialogs. Collapse \code{...} into a character scalar message and
 #'   launch a simple dialog box to give the message.
@@ -40,9 +40,10 @@ msgbox <- function(..., t = "ok") {
   err <- NULL
   if (inll(x)) {err <- c(err, "\n • No user update message was provided in [...].")}
   if (!cmp_chr_scl(t)) {err <- c(err, "\n • [t] must be a character scalar in c('ok', 'okcancel', 'yesno', 'yesnocancel').")}
+  else if (!(uj::isIN(t, "ok", "okcancel", "yesno", "yesnocancel"))) {err <- c(err, "\n • [t] must be a character scalar in c('ok', 'okcancel', 'yesno', 'yesnocancel').")}
   if (idef(err)) {stop(dw0(err))}
-  svDialogs::dlg_message(x, type = t)
-  NULL
+  ans <- svDialogs::dlg_message(x, type = t)
+  if (t == "ok") {NULL} else {ans}
 }
 
 #' @describeIn dialogs. Collapse {...} into a character scalar prompt. Ask user
@@ -85,6 +86,11 @@ ansbox <- function(x = "Enter a value", def = "") {svDialogs::dlg_input(message 
 #' @export
 no <- function(...) {msgbox(paste0(av(...), collapse = ""), t = "yesno")$res != "yes"}
 
+#' @describeIn dialogs. Does user select the 'yes' button (rather than 'no') in
+#'   response to the prompt?
+#' @export
+yes <- function(...) {msgbox(paste0(av(...), collapse = ""), t = "yesno")$res == "yes"}
+
 #' @describeIn dialogs. Display a message in a dialog box, returning
 #'   the value of the button clicked.
 #' @export
@@ -102,11 +108,6 @@ choose_dir <- function(type = "file") {dirbox(okx(da1("Select a", type, "directo
 #' @describeIn dialogs. Ask user to select a document
 #' @export
 choose_doc <- function(type = "document") {docbox(okx(da1("Select a", type, "file")))$res}
-
-#' @describeIn dialogs. Does user select the 'yes' button (rather than 'no') in
-#'   response to the prompt?
-#' @export
-yes <- function(...) {msgbox(paste0(av(...), collapse = ""), "yesno")$res == "yes"}
 
 #' @describeIn dialogs. Ask the user for typed input to be returned without
 #'   further processing.

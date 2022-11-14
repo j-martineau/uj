@@ -212,24 +212,28 @@ bank_pop <- function(...) {
 #'   value of \code{TRUE}.
 #' @export
 bank_funs <- function(funs, ...) {
-  if (uj::cmp_chr_vec(funs)) {funs <- av(strsplit(funs, "|", TRUE))}
+  if (cmp_chr_vec(funs)) {
+    funs <- av(strsplit(funs, "|", TRUE))
+    i <- nchar(funs) == 3
+    funs[i] <- paste0("i", funs[i])
+  }
   else {stop(" • [funs] must be a complete character vec (?cmp_chr_vec).")}
   labs <- ...names()
   nd <- ...length()
   nl <- length(labs)
   vd <- nd > 0
-  vl <- f0(nd != nl, F, !any(labs == "") & uj::isEQ(labs, unique(labs)))
-  vf <- all(sapply(funs, uj::is_ppp_fun))
+  vl <- f0(nd != nl, F, !any(labs == "") & isEQ(labs, unique(labs)))
+  vf <- all(sapply(funs, is_ppp_fun))
   err  <- NULL
   if (!vd) {err <- c(err, "\n • [...] is empty.")}
   if (!vl) {err <- c(err, "\n • All arguments in [...] must be uniquely named without using blank strings.")}
   if (!vf) {err <- c(err, "\n • [funs] contains a function name not found in ppp_funs().")}
   if (!inll(err)) {stop(err)}
-  err <- paste0("[", labs, "] must be ", uj::alt_ppp_concise(funs))
+  err <- paste0("[", labs, "] must be ", alt_ppp_concise(funs))
   for (i in 1:nd) {
-    v <- FALSE
-    for (fun in funs) {v <- v | eval(parse(text = paste0(fun, "(...elt(i.))")))}
-    if (!v) {bank_err(err[i], gens = 1)}
+    ok <- FALSE
+    for (fun in funs) {ok <- ok | eval(parse(text = paste0(fun, "(...elt(i))")))}
+    if (!ok) {bank_err(err[i], gens = 1)}
   }
   NULL
 }

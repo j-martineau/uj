@@ -205,7 +205,7 @@ ppp <- function(x) {sort(c(sss(x), ttt(x), fff(x), ddd(x), eee(x), mmm(x), ccc(x
 #'   restrictions in \code{...}.
 #' @export
 ippp <- function(x, ppp, ...) {
-  if (!is_valid_ppp(ppp)) {stop("\n • [ppp] must be a character scalar with one or more values from ppp_vals() after separating [ppp] by pipes and/or underscores.")}
+  if (!is_valid_ppp(ppp)) {stop("\n • The property specification '", ppp, "' is not a character vector of values from ppp_vals() after splitting pipes and underscores.")}
   if (!meets(x, ...)) {return(F)}
   singles <- ppp_vals()
   combos <- combos_from_ppp(ppp)
@@ -228,6 +228,7 @@ ippp <- function(x, ppp, ...) {
 #'   along pipes (\code{"|"}) and underscores.
 #' @export
 ppp_all <- function(ppp, valid = ppp_vals()) {
+  PPP <- ppp
   vx <- cmp_chr_scl(ppp)
   vv <- f0(cmp_chr_vec(valid), all(valid %in% ppp_vals()), F)
   err <- NULL
@@ -238,8 +239,8 @@ ppp_all <- function(ppp, valid = ppp_vals()) {
   ppp <- av(strsplit(ppp, "_", fixed = T))
   ppp <- trimws(ppp)
   ppp <- ppp[ppp != ""]
-  if (length(ppp) == 0) {stop("\n • [ppp] is empty after splitting on pipes and underscores.")}
-  if (!all(ppp %in% valid)) {stop("\n • [ppp] contains a property not in [valid].")}
+  if (length(ppp) == 0) {stop("\n • The property specifiation '", PPP, "' is empty after splitting on pipes and underscores.")}
+  if (!all(ppp %in% valid)) {stop("\n • The property specification '", PPP, "' contains a property not in c(", paste0(paste0("'", valid, "'"), collapse = ", "), ").")}
   sort(unique(ppp))
 }
 
@@ -268,8 +269,8 @@ nas_or <- function(x, ppp, ...) {f0(inas(x), T, ippp(x., ppp, ...))}
 #' @describeIn ppp. List all valid property function names.
 #' @export
 ppp_funs <- function(as.dtf = F) {
-  if (!uj::isTF(as.dtf)) {stop("\n • [as.dtf] must be TRUE or FALSE.")}
-  x <- c(paste0("i", uj::ppp_vals()), uj::cmp_mmm_vals(), uj::cmp_mmm_ccc_vals(), uj::cmp_ccc_vals(), uj::mmm_ccc_vals(), uj::ttt_ccc_vals(), uj::ttt_mmm_vals())
+  if (!isTF(as.dtf)) {stop("\n • [as.dtf] must be TRUE or FALSE.")}
+  x <- c(paste0("i", ppp_vals()), cmp_mmm_vals(), cmp_mmm_ccc_vals(), cmp_ccc_vals(), mmm_ccc_vals(), ttt_ccc_vals(), ttt_mmm_vals())
   x <- x[order(paste0(names(x), "_", av(x)))]
   if (!as.dtf) {return(x)}
   tibble::tibble(family = names(x), property = av(x))
@@ -365,6 +366,8 @@ is_valid_ppp <- function(ppp) {
   ppp <- av(strsplit(ppp, "|", TRUE))
   ppp <- trimws(ppp)
   ppp <- ppp[ppp != ""]
+  i <- nchar(ppp) == 4 & substr(ppp, 1, 1) == "i"
+  ppp[i] <- substr(ppp[i], 2, 4)
   if (length(ppp) == 0) {return(FALSE)}
   all(ppp %in% ppp_vals())
 }
@@ -373,6 +376,7 @@ is_valid_ppp <- function(ppp) {
 #'   property by splitting along underscores.
 #' @export
 ppp_from_combo <- function(ppp, valid = ppp_vals()) {
+  PPP <- ppp
   vx <- cmp_chr_scl(ppp)
   vv <- f0(cmp_chr_vec(valid), all(valid %in% ppp_vals()), F)
   err <- NULL
@@ -382,8 +386,8 @@ ppp_from_combo <- function(ppp, valid = ppp_vals()) {
   ppp <- av(strsplit(ppp, "_", fixed = T))
   ppp <- trimws(ppp)
   ppp <- ppp[ppp != ""]
-  if (length(ppp) == 0) {stop("\n • [ppp] is empty after splitting on pipes and underscores.")}
-  if (!all(ppp %in% valid)) {stop("\n • [ppp] contains a property not in [valid].")}
+  if (length(ppp) == 0) {stop("\n • The property specification '", PPP, "' is empty after splitting on pipes and underscores.")}
+  if (!all(ppp %in% valid)) {stop("\n • The property specification '", PPP, "' contains a property not in c(", paste0(paste0("'", valid, "'"), collapse = ", "), ").")}
   sort(unique(ppp))
 }
 
@@ -412,7 +416,7 @@ ppp_verbose <- function(ppp = NULL, print = TRUE) {
   if (!isTF(print)) {err <- c(err, "\n • [print] must be TRUE or FALSE.")}
   if (idef(err)) {stop(err)}
   if (!is.null(ppp)) {ppp <- ppp_all(ppp)}
-  if (length(ppp) > 1) {stop("\n • [ppp] contains more than 1 property.")}
+  if (length(ppp) > 1) {stop("\n • '", ppp, "' contains more than 1 property.")}
   out <- ppp_defs()
   if (idef(ppp)) {
     fam <- av(out[out$value == ppp, 1])
@@ -430,8 +434,8 @@ ppp_verbose <- function(ppp = NULL, print = TRUE) {
 #'   verbose definition of any individual property, use \code{ppp_verbose}.
 #' @export
 ppp_concise <- function(ppp) {
-  if (!is_valid_ppp(ppp)) {stop("\n • [ppp] is not a valid property combination.")}
-  if (length(combos_from_ppp(ppp)) != 1) {stop("\n • [ppp] contains more than 1 property combination.")}
+  if (!is_valid_ppp(ppp)) {stop("\n • '", ppp, "' is not a valid property combination.")}
+  if (length(combos_from_ppp(ppp)) != 1) {stop("\n • '", ppp, "' contains more than 1 property combination.")}
   ppp <- combos_from_ppp(ppp)
   tbl <- ppp_defs()
   fam <- av(tbl$Family)
@@ -463,7 +467,7 @@ ppp_concise <- function(ppp) {
 #'   \code{ppp_verbose}.
 #' @export
 alt_ppp_concise <- function(ppp) {
-  if (!is_valid_ppp(ppp)) {stop("\n • [ppp] is not a valid property specification.")}
+  if (!is_valid_ppp(ppp)) {stop("\n • '", ppp, "' is not a valid property specification.")}
   ppp <- combos_from_ppp(ppp)
   for (i in 1:length(ppp)) {ppp[i] <- ppp_concise(ppp[i])}
   return(paste0(ppp, collapse = " OR "))

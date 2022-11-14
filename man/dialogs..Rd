@@ -2,17 +2,16 @@
 % Please edit documentation in R/dialogs.R
 \name{dialogs.}
 \alias{dialogs.}
-\alias{dialogs_uj}
 \alias{msgbox}
 \alias{dirbox}
 \alias{docbox}
 \alias{ansbox}
 \alias{no}
+\alias{yes}
 \alias{msg}
 \alias{okx}
 \alias{choose_dir}
 \alias{choose_doc}
-\alias{yes}
 \alias{ask}
 \alias{ask1}
 \alias{askn}
@@ -21,7 +20,7 @@
 \alias{asknew}
 \title{Dialog boxes using package \code{svDialogs}.}
 \usage{
-dialogs_uj()
+dialogs.()
 
 msgbox(..., t = "ok")
 
@@ -33,6 +32,8 @@ ansbox(x = "Enter a value", def = "")
 
 no(...)
 
+yes(...)
+
 msg(x, t = "ok")
 
 okx(x)
@@ -40,8 +41,6 @@ okx(x)
 choose_dir(type = "file")
 
 choose_doc(type = "document")
-
-yes(...)
 
 ask(..., def = "", cancel = ".stop")
 
@@ -123,6 +122,9 @@ prompt not showing up on all operating systems.
 \item \code{no()}: Does user select the 'no' button (rather than 'yes') in
 response to the prompt?
 
+\item \code{yes()}: Does user select the 'yes' button (rather than 'no') in
+response to the prompt?
+
 \item \code{msg()}: Display a message in a dialog box, returning
 the value of the button clicked.
 
@@ -132,9 +134,6 @@ in response to the prompt?
 \item \code{choose_dir()}: Ask user to select a directory.
 
 \item \code{choose_doc()}: Ask user to select a document
-
-\item \code{yes()}: Does user select the 'yes' button (rather than 'no') in
-response to the prompt?
 
 \item \code{ask()}: Ask the user for typed input to be returned without
 further processing.
