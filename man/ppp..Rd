@@ -52,7 +52,7 @@ ppp_concise(ppp)
 alt_ppp_concise(ppp)
 }
 \arguments{
-\item{x}{An ℝ object.}
+\item{x}{An R object.}
 
 \item{ppp}{\link[chr_scl]{Character scalar} containing one or more values
 from \code{ppp_vals()} separated by pipes and/or underscores. Combinations

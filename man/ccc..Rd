@@ -78,6 +78,19 @@ or 1 dimensions.                      \cr
 multivec     \tab \code{'mvc'} \tab Vector of length 2+ or array of length 2+
 with multiple index positions in exactly
 1 dimension.                            }
+Functions related to extended are described in the following
+table:\tabular{ll}{
+FUNCTION          \tab WHAT THE                                           \cr
+FORMAT            \tab FUNCTION DOES                                      \cr
+\code{i***}       \tab Evaluates whether an object is of the fundamental type
+represented by \code{***}.                         \cr
+\code{ccc}        \tab Gets a character vector containing all fundamental
+type properties of an object.                      \cr
+\code{iccc}       \tab Evaluates an object for a specific fundamental type
+and any additional properties specified in
+\code{...}.                                        \cr
+\code{ccc_vals}   \tab Gets a character vector of all possible fundamental
+type property values.                                }
 }
 \section{Functions}{
 \itemize{

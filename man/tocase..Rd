@@ -87,7 +87,6 @@ Other strings:
 \code{\link{charn.}()},
 \code{\link{delim.}()},
 \code{\link{fsub.}()},
-\code{\link{has_pat.}()},
 \code{\link{ipat.}()},
 \code{\link{max_nch.}()},
 \code{\link{mkstr.}()},

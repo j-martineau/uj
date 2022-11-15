@@ -13,11 +13,11 @@ fsub. <- function() {help("fsub.", package = "uj")}
 #'   (possibly recycled) strings in \code{subs}.
 #' @export
 fsub <- function(x, pats, subs) {
-  err <- f0(cmp_chr_gen(x), NULL, " • [x] must be a complete character generic (?cmp_chr_gen).")
-  if (!cmp_chr_vec(pats)) {err <- c(err, " • [pats] must be a complete character vec (?cmp_chr_vec).")}
-  if (!cmp_chr_vec(subs)) {err <- c(err, " • [subs] must be a complete character vec (?cmp_chr_vec).")}
-  if (!recyclable_n(c(length(pats), length(subs)))) {err <- c(err, "[pats] and [subs] are not recyclable.")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(cmp_chr_gen(x)                             , NULL, " \u2022 [x] must be a complete character generic (?cmp_chr_gen)."),
+            f0(cmp_chr_vec(pats)                          , NULL, " \u2022 [pats] must be a complete character vec (?cmp_chr_vec)."),
+            f0(cmp_chr_vec(subs)                          , NULL, " \u2022 [subs] must be a complete character vec (?cmp_chr_vec)."),
+            f0(recyclable_n(c(length(pats), length(subs))), NULL, "[pats] and [subs] are not recyclable."))
+  if (idef(errs)) {stop(errs)}
   recycle(pats = pats, subs = subs)
   for (i in 1:length(pats)) {x <- av(gsub(pats[i], subs[i], x, fixed = T))}
   x

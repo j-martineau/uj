@@ -35,23 +35,22 @@
 #' table:\tabular{ll}{
 #' FUNCTION          \tab WHAT THE                                           \cr
 #' FORMAT            \tab FUNCTION DOES                                      \cr
-#' \code{i•••}       \tab Evaluates whether an object is of the essential
-#'                        dimensionality represented by \code{•••}.          \cr
-#' \code{ddd}        \tab Gets a character scalar containing the essential
+#' \code{i***}       \tab Evaluates whether an object is of the essential
+#'                        dimensionality represented by \code{***}.          \cr
+#' \code{eee}        \tab Gets a character scalar containing the essential
 #'                        dimensionality of an object.                       \cr
-#' \code{iddd}       \tab Evaluates an object for a specific essential
+#' \code{ieee}       \tab Evaluates an object for a specific essential
 #'                        dimensionality and any additional properties
 #'                        specified in \code{...}.                           \cr
-#' \code{ddd_vals}   \tab Gets a character vector of all possible essential
+#' \code{eee_vals}   \tab Gets a character vector of all possible essential
 #'                        dimensionality property values.                      }
 #' @param x An object.
 #' @param eee \link[cmp_chr_scl]{Complete character scalar} containing one or
 #'   more values from \code{eee_vals()} separated by pipes and/or underscores.
-#'   Combinations of effective dimensionality  properties can be specified by
-#'   separating them with underscores. Separating effective dimensionality
-#'   properties or combinations of effective dimensionality properties with
-#'   pipes will result in a value of \code{TRUE} if any of them applies to
-#'   \code{x}.
+#'   Combinations of effective dimensionality properties can be specified by
+#'   underscore-delimiting them. Pipe-delimiting effective dimensionality
+#'   properties or combinations of effective dimensionality will result in a
+#'   value of \code{TRUE} if any of them applies to \code{x}.
 #' @param ... Additional arguments to \code{\link{meets}} containing value and
 #'   element/row/column count restrictions.
 #' @section Additional Arguments in \code{...}: Submitting additional arguments
@@ -68,8 +67,14 @@ eee. <- function() {help("eee.", package = "uj")}
 #' @describeIn eee. Get the effective dimensionality property of \code{x}
 #' @export
 eee <- function(x) {
-  n <- f0(length(x) == 0, NaN, f0(NROW(x) * NCOL(x) == 1, 0, f0(is.vector(x), 1, length(which(dim(x) > 1)))))
-  f0(is.nan(n), 'eUD', f0(0 == n, 'e0D', f0(1 == n, 'e1D', f0(2 == n, 'e2D', f0(3 <= n, 'eHD', NULL)))))
+  n <- f0(length(x) == 0, NaN,
+          f0(NROW(x) * NCOL(x) == 1, 0,
+             f0(is.vector(x), 1, length(which(dim(x) > 1)))))
+  f0(is.nan(n), 'eUD',
+     f0(0 == n, 'e0D',
+        f0(1 == n, 'e1D',
+           f0(2 == n, 'e2D',
+              f0(3 <= n, 'eHD', NULL)))))
 }
 
 #' @describeIn eee. Gets the \strong{number} of effective dimensions of \code{x}
@@ -111,11 +116,11 @@ eee_vals <- function() {c('e0D', 'e1D', 'e2D', 'eHD', 'eUD')}
 #'   \code{eee} is an effective dimensionality property applicable to \code{x}
 #' @export
 ieee <- function(x, eee, ...) {
-  if (!cmp_chr_scl(x)) {stop("\n • [eee] must be a complete character scalar.")}
-  valid <- eee_vals()
-  combos <- strsplit(eee, "|", fixed = T)[[1]]
-  neweee <- strsplit(combos, ".", fixed = T)[[1]]
-  valid <- all(neweee %in% valid)
-  if (!valid) {stop("\n • [eee] contains a value not in eee_vals(), after splitting [eee] on pipes and underscores.")}
+  if (!cmp_chr_scl(eee)) {stop("\n \u2022 [eee] must be a non-NA character scalar.")}
+  valid.eee <- ttt_vals()
+  eee.combos <- strsplit(eee, "|", fixed = T)[[1]]
+  new.eee <- unlist(strsplit(eee.combos, "_", fixed = T))
+  ok.eee <- all(new.eee %in% valid.eee)
+  if (!ok.eee) {stop("\n \u2022 [eee = '", eee, "'] contains a value not in [sss_vals() = c(", paste0(paste0("'", sss_vals(), "'"), collapse = ", "), ")] after splitting along pipes and underscores.")}
   ippp(x, eee, ...)
 }

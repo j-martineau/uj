@@ -34,20 +34,16 @@ tocase. <- function() {help("tocase.", package = "j")}
 tocase <- function(case., ..., a. = T) {
   x <- list(...)
   n <- length(x)
-  ac <- all(sapply(x), ichr)
-  at <- all(sapply(x), chr_dtf)
-  al <- all(sapply(x), chr_vls)
+  all.chr <- all(sapply(x), ichr)
+  all.dtf <- all(sapply(x), chr_dtf)
+  all.vls <- all(sapply(x), chr_vls)
   if (n > 0) {ns <- lengths(x)} else {ns <- 1}
-  vc <- isIN(case., c("l", "s", "t", "u"))
-  vd <- f0(n == 0, F,
-            f0(any(lengths(x.) == 0), F,
-               f0(all(sapply(x., is.atomic)), T, ac | at | al)))
-  va <- isTF(a.)
-  err <- NULL
-  if (!vc) {err <- c(err, "\n • [case.] must be either 'l', 's', 't', or 'u'.")}
-  if (!vd) {err <- c(err, "\n • [...] must be contain non-empty character objects (?ichr), character dtfs (?chr_dtf), or character vlists (?chr_vls).")}
-  if (!va) {err <- c(err, "\n • [a.] must be TRUE or FALSE.")}
-  if (idef(err)) {stop(err)}
+  ok.case <- isIN(case., c("l", "s", "t", "u"))
+  ok.dots <- f0(n == 0, F, f0(any(lengths(x.) == 0), F, f0(all(sapply(x., is.atomic)), T, all.chr | all.dtf | all.vls)))
+  errs <- c(f0(ok.case , NULL, "\n \u2022 [case.] must be either 'l', 's', 't', or 'u'."),
+            f0(ok.dots , NULL, "\n \u2022 [...] must be contain non-empty character objects (?ichr), character dtfs (?chr_dtf), or character vlists (?chr_vls)."),
+            f0(isTF(a.), NULL, "\n \u2022 [a.] must be TRUE or FALSE."))
+  if (idef(errs)) {stop(errs)}
   if (isT(a.)) {x <- list(av(x))}
   for (i in 1:length(x)) {
     xi <- x[[i]]
@@ -56,8 +52,7 @@ tocase <- function(case., ..., a. = T) {
       else if (case. == "u") {xi <- toupper(xi)}
       else if (case. == "t") {xi <- stringr::str_to_title(xi)}
       else if (case. == "s") {xi <- stringr::str_to_sentence(xi)}
-    }
-    else {
+    } else {
       if      (case. == "l") {xi <- apply(xi, 2, tolower)}
       else if (case. == "u") {xi <- apply(xi, 2, toupper)}
       else if (case. == "t") {xi <- apply(xi, 2, stringr::str_to_title)}

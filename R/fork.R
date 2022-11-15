@@ -52,13 +52,14 @@ f0 <- function(test, yes, no) {if (isTRUE(test)) {yes} else {no}}
 #'   otherwise returns \code{err}.
 #' @export
 f1 <- function(test, yes, no, na = no, err = no) {
-  nas  <-  isNa(test); err.na  <- isID(na , 'err')
-  err  <- !isLG(test); err.err <- isID(err, 'err')
+  nas <- isNa(test)
   test <- failsafe(test)
-  f0(isTRUE(test) , yes, f0(isFALSE(test) , no ,
-  f0(nas & !err.na, na , f0(err & !err.err, err,
-  f0(nas, stop("\n • [test] must be atomic, scalar, and TRUE, FALSE, or NA."),
-          stop("\n • [test] must be atomic, scalar and TRUE or FALSE."  ))))))
+  f0(isTRUE(test), yes,
+     f0(isFALSE(test), no ,
+        f0(nas & !isID(na , 'err'), na ,
+           f0(!isLG(test) & !isID(err, 'err'), err,
+              f0(nas, stop("\n \u2022 [test] must be atomic, scalar, and TRUE, FALSE, or NA."),
+                      stop("\n \u2022 [test] must be atomic, scalar and TRUE or FALSE."  ))))))
 }
 
 #' @describeIn fork. Evaluates \code{test} (which must be a logical scalar or
@@ -70,26 +71,22 @@ f1 <- function(test, yes, no, na = no, err = no) {
 #'   thrown).
 #' @export
 fx <- function(test, yes, no, na = 'err') {
-  nt <- length(test); ny <- length(yes); nn <- length(no)
-  vt <- lgl_vec(test)
-  vy <- f0(!ivec(yes), F, f0(!vt, T, ny %in% c(1, max(1, nt))))
-  vn <- f0(!ivec(no ), F, f0(!vt, T, nn %in% c(1, max(1, nt))))
-  va <- iscl(na)
-  er <- isID(na, 'err')
-  ms <- isNa(na)
-  ia <- er | ms
-  vv <- vt & vy & vn
-  vx <- f0(!er | !vt, T, cmp_lgl_vec(test))
-  vc <- f0(!vv, T, f0(ia, compatible(yes, no), compatible(yes, no, na)))
-  err <- NULL
-  err <- c(f0(vt, NULL, "\n • [test] must be a complete logical scalar/vec (?cmp_lgl_scl, ?cmp_lgl_vec)."),
-           f0(vy, NULL, "\n • [yes] must be of length 1 or a vector of the same length as [test]."),
-           f0(vn, NULL, "\n • [no] must be of length 1 or a vector of the same length as [test]."),
-           f0(va, NULL, "\n • [na] must be an atomic scalar."),
-           f0(vx, NULL, "\n • [na = 'err'] but [test] contains NA values."),
-           f0(vc, NULL, f0(ia, "\n • [yes], [no], and [na] must be of compatible (?compatible) modes.",
-                               "\n • [yes] and [no] must be of compatible (?compatible) modes.")))
-  if (idef(err)) {stop(err)}
+  nt <- length(test)
+  ny <- length(yes)
+  nn <- length(no)
+  ok.test <- lgl_vec(test)
+  ok.yes <- f0(!ivec(yes), F, f0(!ok.test, T, ny %in% c(1, max(1, nt))))
+  ok.no <- f0(!ivec(no), F, f0(!ok.test, T, nn %in% c(1, max(1, nt))))
+  na.err <- isID(na, 'err')
+  inc.na <- na.err | isNa(na)
+  errs <- c(f0(ok.test , NULL, "\n \u2022 [test] must be a complete logical scalar/vec (?cmp_lgl_scl, ?cmp_lgl_vec)."),
+            f0(ok.yes  , NULL, "\n \u2022 [yes] must be of length 1 or a vector of the same length as [test]."),
+            f0(ok.no   , NULL, "\n \u2022 [no] must be of length 1 or a vector of the same length as [test]."),
+            f0(iscl(na), NULL, "\n \u2022 [na] must be an atomic scalar."),
+            f0(f0(!na.err | !ok.test, T, cmp_lgl_vec(test)) , NULL, "\n \u2022 [na = 'err'] but [test] contains NA values."),
+            f0(f0(!ok.test & ok.yes & ok.no, T, f0(inc.na, compatible(yes, no), compatible(yes, no, na))), NULL, f0(inc.na, "\n \u2022 [yes], [no], and [na] must be of compatible (?compatible) modes.",
+                                                                                                                            "\n \u2022 [yes] and [no] must be of compatible (?compatible) modes.")))
+  if (idef(errs)) {stop(errs)}
   if (ny == 1) {yes <- rep.int(yes, nt)}
   if (nn == 1) {no  <- rep.int(no , nt)}
   out <- rep.int(na, nt)

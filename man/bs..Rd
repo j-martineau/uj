@@ -26,7 +26,8 @@ levs(x)
 }
 \arguments{
 \item{x}{A numeric object (\code{up} and \code{down}), a character object
-(\code{spf}), an unordered or ordered factor object (\code{levs}), or any object \code{u}}
+(\code{spf}), an unordered or ordered factor object (\code{levs}), or any
+object \code{u}}
 
 \item{fmt}{a character vector of format strings, each of up to 8192 bytes.}
 

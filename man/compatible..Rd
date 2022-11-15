@@ -19,7 +19,7 @@ compatible_dtfs(..., bind. = "c")
 \item{...}{An arbitrary number of arguments to be checked for compatibility
 with each other.}
 
-\item{recyclable.}{\link[cmp_lgl_scl]{Complete logical scalar }indicating
+\item{recyclable.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating
 whether arguments in \code{...} must be recyclable to be compatible_}
 
 \item{bind.}{\link[cmp_chr_scl]{Complete character scalar} indicating how to
@@ -29,29 +29,27 @@ bind: \code{'c'} or \code{'r'} for column vs. row binding, respectively.}
 A logical scalar.
 }
 \description{
-Compatibility means that arguments are either (a) all numeric,
-(b) all character, (c) all logical, (d) all unordered factor with the same
-levels, or (e) ordered factor with the same levels in the same order.
+Compatibility means that objects or corresponding variables in
+data.frames arguments are either:\itemize{
+\item all numeric
+\item all character
+\item all logical
+\item all unordered factor with the same levels, or
+\item ordered factor with the same levels in the same order.            }
+FOR \link[atm_dtf]{ATOMIC DATA.FRAMES}:
+\cr Arguments are compatible for row binding if they have identical column
+names and their respective columns are of compatible modes as defined
+above. Arguments are compatible for column binding if they have the same
+number of rows.
 \cr\cr
-\emph{For \link[idtf]{atomic dtfs}}: Arguments are compatible for row
-binding if they have identical column names and their respective columns
-are of compatible modes. Arguments are compatible for column binding if
-they have the same number of rows.
-\cr\cr
-\emph{For atomic matrices}: Arguments are compatible for column vs. row
-binding if their modes are compatible and they have, respectively the same
-number of rows vs. columns.
+FOR \link[atm_mat]{ATOMIC MATRICES}:
+\cr Arguments are compatible for
+row binding if their modes are compatible and they have the same number of
+columns. Arguments are compatible for column binding if their modes are
+compatible and they the same number of rows.
 }
 \section{Functions}{
 \itemize{
-\item \code{compatible()}: Determines whether modes of all arguments in
-\code{...} are compatible, meaning that all are character, logical,
-numeric, ordered factor with the same set of levels (in the same order), or
-unordered factor with the same set of levels (in any order).
-
-\item \code{compatible_mats()}: Are all matrices in \code{...} compatible for
-binding?
-
 \item \code{compatible_dtfs()}: Are all atomic tibbles in \code{...} compatible for
 binding?
 

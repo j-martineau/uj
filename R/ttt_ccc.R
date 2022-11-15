@@ -24,7 +24,7 @@ ttt_ccc_vals <- function() {
 #' @export
 atm_arr <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
-  if (!vmmm) {stop("\n • [mmm] must be NULL or a character scalar value from mmm_vals().")}
+  if (!vmmm) {stop("\n \u2022 [mmm] must be NULL or a character scalar value from mmm_vals().")}
   if (!pop_arr(x)) {F} else if (!is.atomic(x)) {F} else if (is.null(mmm)) {T} else {run("i", mmm, "(x)")}
 }
 
@@ -32,7 +32,7 @@ atm_arr <- function(x, mmm = NULL) {
 #' @export
 atm_gen <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
-  if (!vmmm) {stop("\n • [mmm] must be NULL or a character scalar value from mmm_vals().")}
+  if (!vmmm) {stop("\n \u2022 [mmm] must be NULL or a character scalar value from mmm_vals().")}
   if (!pop_gen(x)) {F} else if (!is.atomic(x)) {F} else if (is.null(mmm)) {T} else {run("i", mmm, "(x)")}
 }
 
@@ -40,7 +40,7 @@ atm_gen <- function(x, mmm = NULL) {
 #' @export
 atm_mat <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
-  if (!vmmm) {stop("\n • [mmm] must be NULL or a character scalar value from mmm_vals().")}
+  if (!vmmm) {stop("\n \u2022 [mmm] must be NULL or a character scalar value from mmm_vals().")}
   if (!imat(x)) {F} else if (!is.atomic(x)) {F} else if (is.null(mmm)) {T} else {run("i", mmm, "(x)")}
 }
 
@@ -49,7 +49,7 @@ atm_mat <- function(x, mmm = NULL) {
 #' @export
 atm_mvc <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
-  if (!vmmm) {stop("\n • [mmm] must be NULL or a character scalar value from mmm_vals().")}
+  if (!vmmm) {stop("\n \u2022 [mmm] must be NULL or a character scalar value from mmm_vals().")}
   if (!imvc(x)) {F} else if (!is.atomic(x)) {F} else if (is.null(mmm)) {T} else {run("i", mmm, "(x)")}
 }
 
@@ -57,7 +57,7 @@ atm_mvc <- function(x, mmm = NULL) {
 #' @export
 atm_scl <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
-  if (!vmmm) {stop("\n • [mmm] must be NULL or a character scalar value from mmm_vals().")}
+  if (!vmmm) {stop("\n \u2022 [mmm] must be NULL or a character scalar value from mmm_vals().")}
   if (!iscl(x)) {F} else if (!is.atomic(x)) {F} else if (is.null(mmm)) {T} else {run("i", mmm, "(x)")}
 }
 
@@ -66,20 +66,19 @@ atm_scl <- function(x, mmm = NULL) {
 #' @export
 atm_dtf <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
-  if (!vmmm) {stop("\n • [mmm] must be NULL or a character scalar value from mmm_vals().")}
-  if (nrow(x) * ncol(x) == 0) {F} else if (!all(apply(x, 2, is.atomic))) {F} else if (is.null(mmm)) {T}
-  else {
+  if (!vmmm) {stop("\n \u2022 [mmm] must be NULL or a character scalar value from mmm_vals().")}
+  if (nrow(x) * ncol(x) == 0) {F} else if (!all(apply(x, 2, is.atomic))) {F} else if (is.null(mmm)) {T} else {
     code <- paste0("i", mmm, "(x[ , ", 1:length(x), "])")
     code <- paste0(code, collapse = ", ")
     code <- paste0("all(", code, ")")
     run(code)
-  }}
+}}
 
 #' @describeIn ttt_ccc. Is \code{x} an \link[iatm]{atomic} \link[ivec]{vec}?
 #' @export
 atm_vec <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
-  if (!vmmm) {stop("\n • [mmm] must be NULL or a character scalar value from mmm_vals().")}
+  if (!vmmm) {stop("\n \u2022 [mmm] must be NULL or a character scalar value from mmm_vals().")}
   if (!ivec(x)) {F} else if (!is.atomic(x)) {F} else if (is.null(mmm)) {T} else {run("i", mmm, "(x)")}
 }
 
@@ -87,13 +86,12 @@ atm_vec <- function(x, mmm = NULL) {
 #' @export
 atm_vls <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
-  if (!vmmm) {stop("\n • [mmm] must be NULL or a character scalar value from mmm_vals().")}
-  if (!pop_vls(x)) {F} else if (!all(sapply(x, is.atomic))) {F} else if (is.null(mmm)) {T}
-  else {
+  if (!vmmm) {stop("\n \u2022 [mmm] must be NULL or a character scalar value from mmm_vals().")}
+  if (!pop_vls(x)) {F} else if (!all(sapply(x, is.atomic))) {F} else if (is.null(mmm)) {T} else {
     out <- paste0("i", mmm, "(x[[", 1:length(x), "]])")
     out <- paste0(out, collapse = ", ")
     run(paste0("all(", out, ")"))
-  }}
+}}
 
 # pop_ccc ####
 

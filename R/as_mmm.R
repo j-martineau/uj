@@ -8,18 +8,17 @@
 #' @export
 as_mmm. <- function() {help("as_mmm.", package = "uj")}
 
-#' @describeIn as_mmm. Coerce a valid ℝ color representation to hexadecimal
+#' @describeIn as_mmm. Coerce a valid R color representation to hexadecimal
 #'   RGB character representation.
 #' @export
 as_clr <- function(x, na = F) {
-  err <- NULL
-  if (!ichr(x)) {err <- c(err, "\n • [x] is not of mode character.")}
-  if (!isTF(na)) {err <- c(err, "\n • [na] must be TRUE or FALSE.")}
-  if (isF(na) & any(is.na(x))) {err <- c(err, "\n • [x] contains NA values but [na = FALSE].")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(ichr(x), NULL, "\n \u2022 [x] is not of mode character."),
+            f0(isTF(na), NULL, "\n \u2022 [na] must be TRUE or FALSE."),
+            f0(isF(na) & any(is.na(x)), NULL, "\n \u2022 [x] contains NA values but [na = FALSE]."))
+  if (idef(errs)) {stop(errs)}
   if (any(!is.na(x))) {
     out <- tryCatch(col2rgb(x[!is.na(x)], T), error = function(e) e, finally = NULL)
-    if (isERR(out)) {err <- c(err, "\n • [x] does not contain only valid color values.")}
+    if (isERR(out)) {stop("\n \u2022 [x] does not contain only valid color values.")}
     else {out <- out / 255}
     out <- rgb(out[1, ], out[2, ], out[3, ], out[4, ])
     x[!is.na(x)] <- out
@@ -31,7 +30,7 @@ as_clr <- function(x, na = F) {
 #'   for a function named \code{x} and return that function.
 #' @export
 as_fun <- function(x) {
-  if (!ifun(x)) {stop("\n • [x] is neither a function nor a character scalar name of a function.")}
+  if (!ifun(x)) {stop("\n \u2022 [x] is neither a function nor a character scalar name of a function.")}
   f0(is.function(x), x, match.fun(x))
 }
 

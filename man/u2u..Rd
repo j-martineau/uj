@@ -23,7 +23,7 @@
 \alias{pt2cm}
 \alias{pt2in}
 \alias{pt2mm}
-\title{Convert among plotting units}
+\title{Convert units from among plotting units}
 \usage{
 u2u.()
 
@@ -80,50 +80,51 @@ centimeters, inches, millimeters, and points, respectively.}
 An atomic, numeric object.
 }
 \description{
-Convert among plotting units
+Convert units from among plotting units
 }
 \section{Functions}{
 \itemize{
-\item \code{u2u()}: Convert units specifying both original and new units.
+\item \code{u2u()}: Convert units from units specifying both original and new
+units.
 
-\item \code{u2cm()}: Convert to centimeter units.
+\item \code{u2cm()}: Convert units from to centimeter units.
 
-\item \code{u2in()}: Convert to inch units.
+\item \code{u2in()}: Convert units from to inch units.
 
-\item \code{u2mm()}: Convert to millimeter units.
+\item \code{u2mm()}: Convert units from to millimeter units.
 
-\item \code{u2pt()}: Convert to point units.
+\item \code{u2pt()}: Convert units from to point units.
 
-\item \code{cm2u()}: Convert centimeters to some other units.
+\item \code{cm2u()}: Convert units from centimeters to some other units.
 
-\item \code{in2u()}: Convert inches to some other units.
+\item \code{in2u()}: Convert units from inches to some other units.
 
-\item \code{mm2u()}: Convert millimeters to some other units.
+\item \code{mm2u()}: Convert units from millimeters to some other units.
 
-\item \code{pt2u()}: Convert points to some other units.
+\item \code{pt2u()}: Convert units from points to some other units.
 
-\item \code{cm2in()}: Convert centimeters to inches.
+\item \code{cm2in()}: Convert units from centimeters to inches.
 
-\item \code{cm2mm()}: Convert centimeters to millimeters.
+\item \code{cm2mm()}: Convert units from centimeters to millimeters.
 
-\item \code{cm2pt()}: Convert centimeters to points.
+\item \code{cm2pt()}: Convert units from centimeters to points.
 
-\item \code{in2cm()}: Convert inches to centimeters
+\item \code{in2cm()}: Convert units from inches to centimeters
 
-\item \code{in2mm()}: Convert inches to millimeters.
+\item \code{in2mm()}: Convert units from inches to millimeters.
 
-\item \code{in2pt()}: Convert inches to points.
+\item \code{in2pt()}: Convert units from inches to points.
 
-\item \code{mm2cm()}: Convert millimeters to centimeters.
+\item \code{mm2cm()}: Convert units from millimeters to centimeters.
 
-\item \code{mm2in()}: Convert millimeters to inches.
+\item \code{mm2in()}: Convert units from millimeters to inches.
 
-\item \code{mm2pt()}: Convert millimeters to points.
+\item \code{mm2pt()}: Convert units from millimeters to points.
 
-\item \code{pt2cm()}: Convert points to centimeters.
+\item \code{pt2cm()}: Convert units from points to centimeters.
 
-\item \code{pt2in()}: Convert points to inches.
+\item \code{pt2in()}: Convert units from points to inches.
 
-\item \code{pt2mm()}: Convert points to millimeters.
+\item \code{pt2mm()}: Convert units from points to millimeters.
 
 }}

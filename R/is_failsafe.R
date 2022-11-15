@@ -17,8 +17,8 @@ is_failsafe. <- function() {help("is_failsafe.")}
 #' @export
 isIN <- function(x, ...) {
   if (...length() == 0 | !is.atomic(x) | length(x) != 1) {return(F)}
-  for (i. in 1:...length()) {
-    y <- ...elt(i.)
+  for (i in 1:...length()) {
+    y <- ...elt(i)
     if (is.atomic(y)) {if (compatible(x, y)) {if (x %in% y) {return(T)}}}
   }
   return(F)

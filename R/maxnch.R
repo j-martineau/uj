@@ -10,6 +10,6 @@ max_nch. <- function() {help("max_nch.", package = "uj")}
 #'   \code{x}.
 #' @export
 max_nch <- function(x) {
-  if (!ichr(x)) {stop(" • [x] must be an atomic character object (?ichr).")}
+  if (!ichr(x)) {stop("\n \u2022 [x] must be an atomic character object (?ichr).")}
   max(nch(x))
 }

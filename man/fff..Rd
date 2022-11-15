@@ -58,37 +58,36 @@ others return either \code{TRUE} or \code{FALSE}.
 \description{
 Gets a vector of form properties from \code{fff_vals()} that are
 applicable to \code{x}. An object's form properties have to do with the
-number of \link[ddd]{defined dimensions} and/or \link[eee]{effective
-dimensions} plus some additional restrictions:\tabular{lll}{
+number of \link[ddd]{defined dimensions} and/or \link[fff]{effective
+dimensions} plus some additional restrictions:\tabular{eee}{
 FUNDAMENTAL   \tab FUNDAMENTAL   \tab FUNDAMENTAL                       \cr
 TYPE VALUE    \tab TYPE NAME     \tab TYPE DEFINITION                   \cr
 \code{'emp'}\tab empty         \tab Non-\code{NULL}, length = 0.        \cr
 \code{'pop'}\tab populated     \tab Length > 0.                         \cr
-\code{'pnt'}\tab point         \tab Containing 1 element (includes dtfs
-of dimension \code{1 × 1}).         \cr
+\code{'pnt'}\tab point         \tab Containing 1 element (includes 1-by-1
+data.frames).                       \cr
 \code{'lin'}\tab linear        \tab Effectively 1-dimensional.          \cr
 \code{'row'}\tab 1-row         \tab Row matrix or row
-\code{\link[is_dtf]{dtf}}.          \cr
+\code{\link[idtf]{data.frame}}.     \cr
 \code{'col'}\tab 1-column      \tab Column matrix or column
-\code{\link[is_dtf]{dtf}}.          \cr
-\code{'rct'}\tab rectangular   \tab Matrix or \code{\link[is_dtf]{dtf}}
-with multiple rows and multiple
-columns.                            \cr
+\code{\link[idtf]{data.frame}}.     \cr
+\code{'rct'}\tab rectangular   \tab 2+ by 2+ matrix or
+\code{\link[idtf]{data.frame}}.     \cr
 \code{'sqr'}\tab square        \tab Square atomic matrix                \cr
-\code{'sld'}\tab solid         \tab Effectively hyper-dimensional (having
-indexing positions in 3+ dimensions). }
+\code{'sld'}\tab solid         \tab Array with 2+ index positions in 3+
+dimensions.                           }
 Functions related to form properties are described in the following
 table:\tabular{ll}{
 FUNCTION          \tab WHAT THE                                           \cr
 FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i•••}       \tab Evaluates whether an object is of the form represented
-by \code{•••}.                                     \cr
+\code{i***}       \tab Evaluates whether an object is of the form represented
+by \code{***}.                                     \cr
 \code{fff}        \tab Gets a character scalar containing the forms of an
 object.                                            \cr
 \code{ifff}       \tab Evaluates an object for a specific form and any
 additional properties specified in \code{...}.     \cr
 \code{fff_vals}   \tab Gets a character vector of all possible form property
-values.                                             }
+values.                                              }
 }
 \section{Functions}{
 \itemize{

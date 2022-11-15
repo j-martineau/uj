@@ -32,7 +32,7 @@
 #'         strings inside the result with a single spac\
 #'   \item If \code{n} is not \code{NULL}, extracts the \code{n}-th
 #'         elements(s) from the result.
-#'   \item If \code{u} is \code{TRUE}, reduces the result to unique values.   }
+#'   \item If \code{u} is \code{TRUE}, reduces the result to unique values.    }
 #'   \strong{Extensions}
 #'   \cr Functions are extended for specific delimiters, signified by the
 #'   following suffixes on function names:\tabular{lll}{
@@ -71,20 +71,13 @@ ss. <- function() {help("ss.", package = "uj")}
 #' @describeIn ss. Flexible fixed-string string splitting function.
 #' @export
 ss <- function(d, ..., trm = T, sqz = T, u = F, n = NULL) {
-  vx <- all(sapply(list(...), ichr))
-  vd <- cmp_chr_vec(d)
-  vt <- isTF(trm)
-  vs <- isTF(sqz)
-  vu <- isTF(u)
-  vn <- f0(inll(n), T, cmp_psw_vec(n))
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [...] must contain at least one argument, all of which must be character generics (?chr_gen).")}
-  if (!vd) {err <- c(err, "\n • [d] must be a complete character vec (?cmp_chr_vec).")}
-  if (!vt) {err <- c(err, "\n • [trm] must be TRUE or FALSE.")}
-  if (!vs) {err <- c(err, "\n • [sqz] must be TRUE or FALSE.")}
-  if (!vu) {err <- c(err, "\n • [u] must be TRUE or FALSE.")}
-  if (!vn) {err <- c(err, "\n • [n] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(all(sapply(list(...), ichr))  , NULL, "\n \u2022 [...] must contain at least one argument, all of which must be character generics (?chr_gen)."),
+            f0(cmp_chr_vec(d)                , NULL, "\n \u2022 [d] must be a complete character vec (?cmp_chr_vec)."),
+            f0(isTF(trm)                     , NULL, "\n \u2022 [trm] must be TRUE or FALSE."),
+            f0(isTF(sqz)                     , NULL, "\n \u2022 [sqz] must be TRUE or FALSE."),
+            f0(isTF(u)                       , NULL, "\n \u2022 [u] must be TRUE or FALSE."),
+            f0(f0(inll(n), T, cmp_psw_vec(n)), NULL, "\n \u2022 [n] must be NULL or a complete positive whole-number vec (?cmp_psw_vec)."))
+  if (idef(errs)) {stop(errs)}
   x <- av(...)
   for (dd in d) {x <- av(strsplit(as.character(av(x)), dd, fixed = T))}
   if (trm) {x <- trimws(x)}
@@ -129,18 +122,12 @@ ssPDB <- function(..., trm = T, sqz = T, n = NULL, u = F) {ss(c("|", ".", "¦"),
 #' @describeIn ss. Split a string into constituent characters.
 #' @export
 ch <- function(..., trm = T, sqz = T, n = NULL, u = F) {
-  vd <- all(sapply(list(...), ichr))
-  vt <- isTF(trm)
-  vs <- isTF(sqz)
-  vu <- isTF(u)
-  vn <- f0(is.null(n), T, cmp_psw_vec(n))
-  err <- NULL
-  if (!vd) {err <- c(err, "\n • [...] must contain at least one argument, all of which must be character generics (?chr_gen).")}
-  if (!vt) {err <- c(err, "\n • [trm] must be TRUE or FALSE.")}
-  if (!vs) {err <- c(err, "\n • [sqz] must be TRUE or FALSE.")}
-  if (!vu) {err <- c(err, "\n • [u] must be TRUE or FALSE.")}
-  if (!vn) {err <- c(err, "\n • [n] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(all(sapply(list(...), ichr))     , NULL, "\n \u2022 [...] must contain at least one argument, all of which must be character generics (?chr_gen)."),
+            f0(isTF(trm)                        , NULL, "\n \u2022 [trm] must be TRUE or FALSE."),
+            f0(isTF(sqz)                        , NULL, "\n \u2022 [sqz] must be TRUE or FALSE."),
+            f0(isTF(u)                          , NULL, "\n \u2022 [u] must be TRUE or FALSE."),
+            f0(f0(is.null(n), T, cmp_psw_vec(n)), NULL, "\n \u2022 [n] must be NULL or a complete positive whole-number vec (?cmp_psw_vec)."))
+  if (idef(errs)) {stop(errs)}
   x <- ss("", av(...), trm = trm, u = u)
   if (sqz) {x <- x[x %in% c(letters, LETTERS, 0:9, " ")]}
   if (idef(n)) {x <- x[n]}
@@ -154,9 +141,9 @@ uch <- function(..., trm = T, sqz = T, n = NULL) {ch(..., trm = trm, sqz = sqz, 
 #' @describeIn ss. Split strings and place results in a tibble, including
 #'   original values
 #' @export
-sstb <- function(x, d, name = "string", parts = "part") {                        # BODY
+sstb <- function(x, d, name = "string", parts = "part") {
   ss0 <- function(xx, dd) {ss(dd, xx)}
-  x <- tibble::tibble(x)                                                         # : convert to tibble
+  x <- tibble::tibble(x)
   y <- NULL
   for (xx in x) {}
   y <- t(sapply(x, ss0, dd = d))                                                 # : transpose matrix after applying split string to each value of [x.]

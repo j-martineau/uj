@@ -128,11 +128,11 @@ result.\cr
 \code{agg = 'one'}   \tab Does result contain exactly one \code{TRUE}
 value?                                        \cr
 \code{agg = 'two'}   \tab Does result contain two+ \code{TRUE} values.  \cr
-\code{arg = xxx}     \tab Inspect \code{x} for properties specified in the
-character vector represented by \code{xxx} and
+\code{arg = '***'}   \tab Inspect \code{x} for properties specified in the
+character vector represented by \code{***} and
 throw an error if they are not met.           \cr
-\code{out = xxx}     \tab Inspect the result for properties specified in
-the character vector represented by \code{xxx}
+\code{out = '***'}   \tab Inspect the result for properties specified in
+the character vector represented by \code{***}
 and throw an error if they are not met.         }
 }
 

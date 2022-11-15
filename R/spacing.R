@@ -27,7 +27,7 @@ spacing. <- function() {help("spacing.", package = "uj")}
 #' @describeIn spacing. Create a character vector of \code{n.} spaces.
 #' @export
 spaces <- function(n) {
-  if (!cmp_nnw_scl(n)) {stop("\n • [n] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!cmp_nnw_scl(n)) {stop("\n \u2022 [n] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
   paste0(rep(" ", n), collapse = "")
 }
 
@@ -35,16 +35,11 @@ spaces <- function(n) {
 #'    using \code{\link[stringr]{pad}}.
 #' @export
 pad <- function(..., n. = 0, s. = "r", p. = " ") {
-  vx <- all(sapply(list(...), cmp_chr))
-  vn <- cmp_nnw_scl(n.)
-  vs <- isIN(s., "l", "r", "b")
-  vp <- cmp_ch1_scl(p.)
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [...] must contain at least one argument, and all must be complete character vecs (?cmp_chr_vec).")}
-  if (!vn) {err <- c(err, "\n • [n.] must be a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
-  if (!vs) {err <- c(err, "\n • [s.] must be a complete onechar scalar (?cmp_ch1_scl) in c('r', 'l', 'b').")}
-  if (!vp) {err <- c(err, "\n • [p.] must be a complete onechar scalar (?cmp_ch1_scl).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(all(sapply(list(...), cmp_chr)), NULL, "\n \u2022 [...] must contain at least one argument, and all must be complete character vecs (?cmp_chr_vec)."),
+            f0(cmp_nnw_scl(n.)                , NULL, "\n \u2022 [n.] must be a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+            f0(isIN(s., "l", "r", "b")        , NULL, "\n \u2022 [s.] must be a complete onechar scalar (?cmp_ch1_scl) in c('r', 'l', 'b')."),
+            f0(cmp_ch1_scl(p.)                , NULL, "\n \u2022 [p.] must be a complete onechar scalar (?cmp_ch1_scl)."))
+  if (idef(errs)) {stop(errs)}
   sapply(av(...), stringr::str_pad, width = n., side = s., pad = p.)
 }
 
@@ -52,7 +47,7 @@ pad <- function(..., n. = 0, s. = "r", p. = " ") {
 #'   using \code{\link[stringr]{str_squish}}.
 #' @export
 sqz <- function(...) {
-  if (!all(sapply(list(...), cmp_chr))) {stop("\n • [...] must contain at least one argument, and all must be complete character vecs (?cmp_chr_vec).")}
+  if (!all(sapply(list(...), cmp_chr))) {stop("\n \u2022 [...] must contain at least one argument, and all must be complete character vecs (?cmp_chr_vec).")}
   stringr::str_squish(av(...))
 }
 
@@ -60,6 +55,6 @@ sqz <- function(...) {
 #'   \code{\link[stringr]{str_trim}}.
 #' @export
 trm <- function(...) {
-  if (!all(sapply(list(...), cmp_chr))) {stop("\n • [...] must contain at least one argument, and all must be complete character vecs (?cmp_chr_vec)")}
+  if (!all(sapply(list(...), cmp_chr))) {stop("\n \u2022 [...] must contain at least one argument, and all must be complete character vecs (?cmp_chr_vec)")}
   stringr::str_trim(av(...))
 }

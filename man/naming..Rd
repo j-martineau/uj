@@ -74,8 +74,8 @@ matrices or dtfs, or \code{12} for rows and columns of matrices or dtfs.}
 \item{u}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether names
 must be unique.}
 
-\item{blank}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether blank
-strings (\code{""}) are allowed as names.}
+\item{blank}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+blank strings (\code{""}) are allowed as names.}
 
 \item{...}{Arbitrary number of arguments to be inspected for names.}
 

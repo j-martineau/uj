@@ -53,29 +53,29 @@ dots. <- function() {help("dots.", package = "uj")}
 #'   a matching element in \code{defs.}.
 #' @export
 dots <- function(names., defs., ...) {
-  x.  <- list(...)
-  vn. <- ivec(names.)
-  vx. <- length(x.) > 0
-  err.  <- NULL
-  if (!vn.) {err. <- c(err., "\n • [names.] must be a complete atomic scalar or vec (?cmp_scl, ?cmp_vec).")}
-  if (!vx.) {err. <- c(err., "\n • [...] must contain at least one argument.")}
-  if (idef(err.)) {stop(err.)}
-  lx. <- names(x.); ld. <- names(defs.)                                          # names of args in {...} and elements of {defs.}
-  names. <- ss(as.character(av(names.)))                                         # atomize {names.}, convert to character, and split along {'|'}
+  dots  <- list(...)
+  ok.names <- atm_vec(names.)
+  ok.n <- length(dots) > 0
+  errs <- c(f0(ok.names, NULL, "\n \u2022 [names.] must be a complete atomic vec (?cmp_vec)."),
+            f0(ok.n    , NULL, "\n \u2022 [...] must contain at least one argument."))
+  if (idef(errs)) {stop(errs)}
+  dot.names <- names(dots);
+  def.names <- names(defs.)                                                      # names of args in {...} and elements of {defs.}
+  names. <- ss("|", as.character(av(names.)))                                    # atomize {names.}, convert to character, and split along {'|'}
   names.[is.na(names.)] <- 'NA'                                                  # change {NA}s to a {'NA'}
-  inx. <- names. %in% lx.                                                        # whether each value of {names.} is in the names of args in {...}
-  ind. <- names. %in% ld.                                                        # whether each value of {names.} is in the names of {defs.}
-  vn.  <- all(inx. | ind.)                                                       # validity check (does every value of {names.} have a match?)
-  if (!vn.) {stop("\n • Values in [names.] must match elements of [...] or of [defs.].")} # error if validity check failed
-  n. <- length(names.)                                                           # number of arguments to match
-  out. <- rep.int(list(NULL), n.)                                                # initialize the results as a list of {NULL} elements
-  for (i. in 1:n.) {                                                             # for each element of {names.}
-    name. <- names.[[i.]]                                                        # > get the name to be matched
-    if (inx.[i.]) {out.[[i.]] <-    x.[[which(lx. == name.)]]}                   # > if it matches an argument in {...}, store that argument
-    else          {out.[[i.]] <- defs.[[which(ld. == name.)]]}                   # > otherwise, store the matching element of {defs.}
+  in.dots <- names. %in% dot.names                                               # whether each value of {names.} is in the names of args in {...}
+  in.defs <- names. %in% def.names                                               # whether each value of {names.} is in the names of {defs.}
+  match  <- all(in.dots | in.defs)                                               # validity check (does every value of {names.} have a match?)
+  if (!match) {stop("\n \u2022 Values in [names.] must match elements of [...] or of [defs.].")} # error if validity check failed
+  n.names <- length(names.)                                                      # number of arguments to match
+  out <- rep.int(list(NULL), n.names)                                            # initialize the results as a list of {NULL} elements
+  for (i in 1:n.names) {                                                         # for each element of {names.}
+    name.i <- names.[[i]]                                                        # : get the name to be matched
+    if (in.dots[i]) {out[[i]] <- dots[[ which(dot.names == name.i)]]}            # : if it matches an argument in {...}, store that argument
+    else            {out[[i]] <- defs.[[which(def.names == name.i)]]}            # ; otherwise, store the matching element of {defs.}
   }
-  if (n. == 1) {out. <- out.[[1]]}                                               # if only 1 argument was extracted, un-nest it from the results list
-  out.
+  if (n.names == 1) {out <- out[[1]]}                                            # if only 1 argument was extracted, un-nest it from the results list
+  out
 }
 
 #' @describeIn dots. A simplified version for extracting a single named
@@ -83,7 +83,7 @@ dots <- function(names., defs., ...) {
 #'   default value.
 #' @export
 dot <- function(name., def., ...) {
-  if (!cmp_scl(name.)) {stop("\n • [name.] must be a complete atomic scalar (?cmp_scl).")}
+  if (!cmp_scl(name.)) {stop("\n \u2022 [name.] must be a complete atomic scalar (?cmp_scl).")}
   dots(name., def., ...)
 }
 
@@ -104,36 +104,24 @@ dot <- function(name., def., ...) {
 #'           is \code{TRUE} and \code{names.} contains duplicate values.       }
 #' @export
 dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
-  x <- list(...)
-  vx <- length(x) > 0
-  vn <- f0(inll(subs.), T, ivec(subs.))
-  vr <- isTF(req.)
-  vb <- isTF(blank.)
-  vu <- isTF(u.)
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [...] is empty.")}
-  if (!vn) {err <- c(err, "\n • [subs.] must be NULL or an atomic vector with one value per argument in [...].")}
-  if (!vr) {err <- c(err, "\n • [req.] must be TRUE or FALSE.")}
-  if (!vb) {err <- c(err, "\n • [blank.] must be TRUE or FALSE.")}
-  if (!vu) {err <- c(err, "\n • [u.] must be TRUE or FALSE.")}
-  if (idef(err)) {stop(err)}
-  nx <- ...length()
-  nl <- length(...names())
+  dots <- list(...)
+  errs <- c(f0(length(dots) > 0               , NULL, "\n \u2022 [...] is empty."),
+            f0(f0(inll(subs.), T, ivec(subs.)), NULL, "\n \u2022 [subs.] must be NULL or an atomic vector with one value per argument in [...]."),
+            f0(isTF(req.)                     , NULL, "\n \u2022 [req.] must be TRUE or FALSE."),
+            f0(isTF(blank.)                   , NULL, "\n \u2022 [blank.] must be TRUE or FALSE."),
+            f0(isTF(u.)                       , NULL, "\n \u2022 [u.] must be TRUE or FALSE."))
+  if (idef(errs)) {stop(errs)}
+  n.dots <- ...length()
+  n.names <- length(...names())
   if (inll(subs.)) {subs. <- ...names()}
-  v1 <- nl == nx | inll(subs.)
-  v2 <- nl == nx | !req.
-  err <- NULL
-  if (!v1) {err <- c(err, "\n • When [subs.] is not NULL, it must contain one value per argument in [...].")}
-  if (!v2) {err <- c(err, "\n • When [req. = TRUE], arguments in [...] must be named or [subs.] must contain one value per argument in [...].")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(n.names == n.dots | inll(subs.), NULL, "\n \u2022 When [subs.] is not NULL, it must contain one value per argument in [...]."),
+            f0(n.names == n.dots | !req.      , NULL, "\n \u2022 When [req. = TRUE], arguments in [...] must be named or [subs.] must contain one value per argument in [...]."))
+  if (idef(errs)) {stop(errs)}
   subs. <- av(strsplit(as.character(av(subs.)), "|", fixed = TRUE))
   subs.[is.na(subs.)] <- 'NA'
-  v1 <- !blank. | notIN("", subs.)
-  v2 <- !u.  | is_unq(subs.)
-  err <- NULL
-  if (!v1) {err <- c(err, "\n • A name is blank but [blank. = FALSE].")}
-  if (!v2) {err <- c(err, "\n • Names provided are not unique but [u. = TRUE].")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(!blank. | notIN("", subs.), NULL, "\n \u2022 A name is blank but [blank. = FALSE]."),
+            f0(!u.     | is_unq(subs.)   , NULL, "\n \u2022 Names provided are not unique but [u. = TRUE]."))
+  if (idef(errs)) {stop(errs)}
   subs.
 }
 
@@ -142,11 +130,10 @@ dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
 #' @export
 named_dots <- function(...) {
   if (...length() == 0) {return(NULL)}
-  x <- list(...)
-  n <- ...names()
-  i <- !is.na(n)
-  if (any(i)) {x[i]}
-  else {NULL}
+  dots <- list(...)
+  dot.names <- ...names()
+  ok.names <- !is.na(dot.names)
+  if (any(ok.names)) {dots[ok.names]} else {NULL}
 }
 
 #' @describeIn dots. Extract unnamed arguments from \code{...} as an unnamed
@@ -154,9 +141,8 @@ named_dots <- function(...) {
 #' @export
 unnamed_dots <- function(...) {
   if (...length() == 0) {return(NULL)}
-  x <- list(...)
-  n <- ...names()
-  i <- is.na(n)
-  if (any(i)) {x[i]}
-  else {NULL}
+  dots <- list(...)
+  dot.names <- ...names()
+  na.names <- is.na(dot.names)
+  if (any(na.names)) {dots[na.names]} else {NULL}
 }

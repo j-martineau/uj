@@ -24,8 +24,8 @@
 #' table:\tabular{ll}{
 #' FUNCTION          \tab WHAT THE                                           \cr
 #' FORMAT            \tab FUNCTION DOES                                      \cr
-#' \code{i•••}       \tab Evaluates whether an object is of the defined
-#'                        dimensionality represented by \code{•••}.          \cr
+#' \code{i***}       \tab Evaluates whether an object is of the defined
+#'                        dimensionality represented by \code{***}.          \cr
 #' \code{ddd}        \tab Gets a character scalar containing the defined
 #'                        dimensionality of an object.                       \cr
 #' \code{iddd}       \tab Evaluates an object for a specific defined
@@ -53,8 +53,7 @@ ddd. <- function() {help("ddd.", package = "uj")}
 #' @export
 ddd <- function(x) {
   d <- f0(inll(x), 0, f0(is.vector(x), 1, length(dim(x))))
-  f0(d == 0, 'd0D', f0(d == 1, 'd1D',
-  f0(d == 2, 'd2D', f0(d >= 3, 'dHD', NULL))))
+  f0(d == 0, 'd0D', f0(d == 1, 'd1D', f0(d == 2, 'd2D', f0(d >= 3, 'dHD', NULL))))
 }
 
 #' @describeIn ddd. Gets the \strong{number} of defined dimensions of
@@ -91,11 +90,12 @@ ddd_vals <- function() {c('d0D', 'd1D', 'd2D', 'dHD')}
 #'   dimensionality properties in \code{ddd} is applicable to \code{x}.
 #' @export
 iddd <- function(x, ddd, ...) {
-  if (!cmp_chr_scl(ddd)) {stop("\n • [ddd] must be a complete character scalar.")}
-  valid <- ddd_vals()
-  combos <- strsplit(ddd , "|", fixed = T)[[1]]
-  newddd <- strsplit(combos, ".", fixed = T)[[1]]
-  valid <- all(newddd %in% valid)
-  if (!valid) {stop("\n • [ddd] contains a value not in ddd_vals() after splitting [ddd] on pipes and underscores.")}
+  if (!cmp_chr_scl(ddd)) {stop("\n \u2022 [ddd] must be a non-NA character scalar.")}
+  valid.ddd <- ttt_vals()
+  ddd.combos <- strsplit(ddd, "|", fixed = T)[[1]]
+  new.ddd <- unlist(strsplit(ddd.combos, "_", fixed = T))
+  ok.ddd <- all(new.ddd %in% valid.ddd)
+  if (!ok.ddd) {stop("\n \u2022 [ddd = '", ddd, "'] contains a value not in [sss_vals() = c(", paste0(paste0("'", sss_vals(), "'"), collapse = ", "), ")] after splitting along pipes and underscores.")}
   ippp(x, ddd, ...)
 }
+

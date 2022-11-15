@@ -14,9 +14,8 @@ charn. <- function() {help("charn.", package = "uj")}
 #'   \code{x}.
 #' @export
 charn <- function(x, n) {
-  err <- NULL
-  if (!ichr(x)) {err <- c(err, " • [x] must be an atomic object of mode 'character' (?ichr).")}
-  if (!cmp_psw(n) | !(iscl(n) & identical(x, n))) {err <- c(err, " • [n] must be a complete positive whole-number valued scalar (?cmp_psw_scl) or of the same dimension as [x].")}
-  if (idef(err)) {stop(paste0(err, collapse = "\n"))}
+  errs <- c(f0(ichr(x)                                 , NULL, "\n \u2022 [x] must be an atomic object of mode 'character' (?ichr)."),
+            f0(cmp_psw(n) | (iscl(n) & identical(x, n)), NULL, "\n \u2022 [n] must be a complete positive whole-number valued scalar (?cmp_psw_scl) or of the same dimension as [x]."))
+  if (idef(errs)) {stop(errs)}
   substr(x, n, n)
 }

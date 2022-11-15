@@ -5,8 +5,8 @@
 #'   to allow for exhaustive error checking before throwing an exception.
 #'   Results in a combined, multiple-error message to be reported at the
 #'   completion of all error checks.
-#' @param x An ℝ object.
-#' @param gens \link[cmp_nnw_scl]{Complete non-negative whole-number scalar}
+#' @param x An R object.
+#' @param gens. \link[cmp_nnw_scl]{Complete non-negative whole-number scalar}
 #'   indicating the number of generations back in the call stack in which to
 #'   bank and/or check for error messages.
 #' @param ... For \code{bank_err}, an arbitrary number of atomic arguments that
@@ -47,7 +47,7 @@
 #' @param named. \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
 #'   arguments in \code{...} must be uniquely named without using blank strings.
 #' @param whens.,values. \link[ipop]{Populated atomic objects}.
-#' @param pats \link[ivls]{Atomic vlist} containing multiple elements, each
+#' @param pats. \link[ivls]{Atomic vlist} containing multiple elements, each
 #'   of which must be a complete character mvect of the same length as the
 #'   number of arguments in \code{...}. Each element gives a pattern of valid
 #'   properties for the argument in \code{...} in the form of one property
@@ -63,18 +63,18 @@ errs. <- function() {help("errs.", package = "uj")}
 #'   any, process them, stopping execution. If there are none, take no action.
 #'   Should be called after all error checking has been completed.
 #' @export
-err_check <- function(gens = 0) {
-  vg <- f0(!cmp_nnw_scl(gens), F, gens <= ncallers() - 1)
-  if (!vg) {stop("\n • [gens] doesn't point to a function in the call stack.")}
-  gens <- gens + 1
-  lab <- "._ERR_._BANK_."
-  errs <- exists(lab, envir = parent.frame(gens), inherits = F)
+err_check <- function(gens. = 0) {
+  ok.gens <- f0(!cmp_nnw_scl(gens.), F, gens. <= ncallers() - 1)
+  if (!ok.gens) {stop("\n \u2022 [gens.] doesn't point to a function in the call stack.")}
+  gens. <- gens. + 1
+  bank.name <- "._ERR_._BANK_."
+  errs <- exists(bank.name, envir = parent.frame(gens.), inherits = F)
   if (errs) {
-    func <- callers(gens)
-    bank <- get(lab, envir = parent.frame(gens), inherits = F)
-    bank <- paste0(paste0("\n • ", bank), collapse = "")
-    bank <- paste0("\nIN [", func, "]", bank)
-    stop(bank)
+    fun.name <- callers(gens.)
+    err.bank <- get(bank.name, envir = parent.frame(gens.), inherits = F)
+    err.bank <- paste0(paste0("\n \u2022 ", err.bank), collapse = "")
+    err.bank <- paste0("\nIN [", fun.name, "]", err.bank)
+    stop(err.bank)
   }
   NULL
 }
@@ -84,20 +84,20 @@ err_check <- function(gens = 0) {
 #'   message is constructed by atomizing and gluing all arguments in \code{...}
 #'   into a character scalar.
 #' @export
-bank_err <- function(..., gens = 0) {
-  vg <- f0(!cmp_nnw_scl(gens), F, gens <= ncallers() - 1)
-  if (!vg) {stop("\n * [gens] doesn't point to a function in the call stack.")}
-  gens <- gens + 1
-  name <- "._ERR_._BANK_."
-  gens <- gens + 1
+bank_err <- function(..., gens. = 0) {
+  ok.gens <- f0(!cmp_nnw_scl(gens.), F, gens. <= ncallers() - 1)
+  if (!ok.gens) {stop("\n \u2022 [gens.] doesn't point to a function in the call stack.")}
+  gens. <- gens. + 1
+  bank.name <- "._ERR_._BANK_."
+  gens. <- gens. + 1
   err <- trimws(paste0(as.character(av(...)), collapse = ""), which = "both")
-  ve <- length(err) > 0 & notEQ(err, "")
-  if (!ve) {stop("\n • [...] has no atomic values")}
+  ok.err <- length(err) > 0 & notEQ(err, "")
+  if (!ok.err) {stop("\n \u2022 [...] has no atomic values")}
   err <- gsub("\"", "'", err, fixed = TRUE)
-  if (!exists(name, envir = parent.frame(gens), inherits = F)) {bank <- NULL}
-  else {Bank <- get(name, envir = parent.frame(gens))}
-  Bank <- unique(c(bank, err))
-  assign(name, bank, envir = parent.frame(gens))
+  if (!exists(bank.name, envir = parent.frame(gens.), inherits = F)) {err.bank <- NULL}
+  else {err.bank <- get(bank.name, envir = parent.frame(gens.))}
+  err.bank <- unique(c(err.bank, err))
+  assign(bank.name, err.bank, envir = parent.frame(gens.))
   NULL
 }
 
@@ -107,42 +107,41 @@ bank_err <- function(..., gens = 0) {
 #'   atomic values (logical or not), also allows those values. For each named
 #'   argument that does not meet the requirements, banks an error.
 #' @export
-bank_lgl <- function(..., nas = F, extras = NULL) {
+bank_lgl <- function(..., nas. = F, extras. = NULL) {
   dots  <- named_dots(...)
   labs <- names(dots)
-  nd <- ...length()
-  n <- length(labs)
-  v0 <- ...length() > 0
-  vl <- f0(!v0, T, f0(nd != n, F, f0(any(labs == ""), F, isEQ(labs, unique(labs)))))
-  vlg <- f0(n == 0, T, all(sapply(dots., cmp_lgl_scl)))
-  vna <- isTF(nas)
-  ve <- f0(inll(extras), T, cmp_atm(extras))
-  err <- NULL
-  if (!v0 ) {err <- c(err, "\n • [...] is empty.")}
-  if (!vl ) {err <- c(err, "\n • All arguments in [...] must be named uniquely without using blank strings.")}
-  if (!vlg) {err <- c(err, "\n • All arguments in [...] must be complete logical scalars (?cmp_lgl_scl).")}
-  if (!vna) {err <- c(err, "\n • [nas] must be TRUE or FALSE.")}
-  if (!ve ) {err <- c(err, "\n • [extras] must be NULL or complete and atomic (?icmp).")}
-  if (idef(err)) {stop(err)}
-  ex <- idef(extras)
-  if (ex) {
-    xav <- extras <- av(extras)
-    nex <- length(xav)
-    if (is.character(xav)) {xav <- paste0("\"", xav, "\"")}
-    if      (nex == 1) {xav <- c(", or ", xav)}
-    else if (nex == 2) {xav <- c(", ", xav[1], ", or ", xav[2])}
-    else {xav <- c(", ", paste(xav[1:(nex - 1)], collapse = ", "), ", or ", xav[nex])}
+  n.dots <- ...length()
+  n.labs <- length(labs)
+  ok.0 <- ...length() > 0
+  ok.labs <- f0(!ok.0, T, f0(n.dots != n.labs, F, f0(any(labs == ""), F, isEQ(labs, unique(labs)))))
+  ok.lgl <- f0(n.dots == 0, T, all(sapply(dots., cmp_lgl_scl)))
+  ok.nas <- isTF(nas.)
+  ok.extras <- f0(inll(extras.), T, cmp_atm(extras.))
+  errs <- c(f0(ok.0     , NULL, "\n \u2022 [...] is empty."),
+            f0(ok.labs  , NULL, "\n \u2022 All arguments in [...] must be named uniquely without using blank strings."),
+            f0(ok.lgl   , NULL, "\n \u2022 All arguments in [...] must be complete logical scalars (?cmp_lgl_scl)."),
+            f0(ok.nas   , NULL, "\n \u2022 [nas.] must be TRUE or FALSE."),
+            f0(ok.extras, NULL, "\n \u2022 [extras.] must be NULL or complete and atomic (?icmp)."))
+  if (idef(errs)) {stop(errs)}
+  has.extras <- idef(extras.)
+  if (has.extras) {
+    av.extras <- extras. <- av(extras.)
+    n.extras <- length(av.extras)
+    if (is.character(av.extras)) {av.extras <- paste0("\"", av.extras, "\"")}
+    if      (n.extras == 1) {av.extras <- c(", or ", av.extras)}
+    else if (n.extras == 2) {av.extras <- c(", ", av.extras[1], ", or ", av.extras[2])}
+    else {av.extras <- c(", ", paste(av.extras[1:(n.extras - 1)], collapse = ", "), ", or ", av.extras[n.extras])}
   }
-  else {xav <- ""}
-  xf <- f0(nas | ex, ", FALSE", " or FALSE")
-  xna <- f0(nas, f0(ex, ", NA", ", or NA"), "")
-  xmsg <- c("must be TRUE", xf, xna, xav, ".")
+  else {av.extras <- ""}
+  false.insert <- f0(nas. | has.extras, ", FALSE", " or FALSE")
+  na.insert <- f0(nas., f0(has.extras, ", NA", ", or NA"), "")
+  msg.insert <- c("must be TRUE", false.insert, na.insert, av.extras, ".")
   for (i in 1:nd) {
-    x  <- ...elt(i)
-    vx <- isTF(x)
-    if (!vx & nas) {vx <- isNa(x)}
-    if (!vx & ex) {vx <- isIN(x, ex)}
-    if (!vx) {bank_err("[", labs[i], "] ", xmsg, gens = 1)}
+    dot <- ...elt(i)
+    ok.dot <- isTF(dot)
+    if (!ok.dot & nas.) {ok.dot <- isNa(dot)}
+    if (!ok.dot & has.extras) {vx <- isIN(dot, has.extras)}
+    if (!ok.dot) {bank_err("[", labs[i], "] ", msg.insert, gens = 1)}
   }
   NULL
 }
@@ -166,12 +165,12 @@ bank_not <- function(...) {
   vlg <- f0(length(names) == 0, T, all(sapply(named, cmp_lgl_scl)))
   ver <- any(grepl("{@}", error, fixed = TRUE))
   err <- NULL
-  if (!v0) {err <- c(err, "\n • [...] is empty.")}
-  if (!vnn) {err <- c(err, "\n • At least one argument in [...] must be named.")}
-  if (!vnb) {err <- c(err, "\n • At least one argument in [...] must be unnamed.")}
-  if (!vnm) {err <- c(err, "\n • Named arguments in [...] must be uniquely named (without using a blank string as a name).")}
-  if (!vlg) {err <- c(err, "\n • Named arguments in [...] must be complete logical scalars (?cmp_lgl_scl).")}
-  if (!ver) {err <- c(err, "\n • An unnamed argument in [...] must contain the escape sequence '{@}' for inserting the names of named arguments.")}
+  if (!v0) {err <- c(err, "\n \u2022 [...] is empty.")}
+  if (!vnn) {err <- c(err, "\n \u2022 At least one argument in [...] must be named.")}
+  if (!vnb) {err <- c(err, "\n \u2022 At least one argument in [...] must be unnamed.")}
+  if (!vnm) {err <- c(err, "\n \u2022 Named arguments in [...] must be uniquely named (without using a blank string as a name).")}
+  if (!vlg) {err <- c(err, "\n \u2022 Named arguments in [...] must be complete logical scalars (?cmp_lgl_scl).")}
+  if (!ver) {err <- c(err, "\n \u2022 An unnamed argument in [...] must contain the escape sequence '{@}' for inserting the names of named arguments.")}
   if (idef(err)) {stop(err)}
   for (i in 1:length(named)) {
     if (!named[[1]]) {
@@ -185,21 +184,20 @@ bank_not <- function(...) {
 #'   \code{NULL} or empty (i.e., of length 0), banks an error message.
 #' @export
 bank_pop <- function(...) {
-  nmd <- named_dots(...)
-  und <- unnamed_dots(...)
-  labs <- names(nmd)
-  nd <- ...length()
-  nl <- length(labs)
-  nu <- length(und)
-  vd <- nd > 0
-  vu <- f0(!vd, T, nu == 0)
-  vl <- f0(nd != nl, F, !any(labs == "") & isEQ(labs, unique(labs)))
-  err <- NULL
-  if (!vd) {err <- c(err, "\n • [...] is empty.")}
-  if (!vu) {err <- c(err, "\n • All arguments in [...] must be named.")}
-  if (!vl) {err <- c(err, "\n • Names of arguments in [...] must be unique without using blank strings.")}
-  if (idef(err)) {stop(err)}
-  for (i in 1:length(nmd)) {if (inil(nmd[[1]])) {bank_err("[", labs[i], "] is NULL or empty.", gens = 1)}}
+  named <- named_dots(...)
+  unnamed <- unnamed_dots(...)
+  labs <- names(named)
+  n.dots <- ...length()
+  n.labs <- length(labs)
+  n.unnamed <- length(unnamed)
+  ok.n <- nd > 0
+  ok.unnamed <- f0(!ok.n, T, n.unnamed == 0)
+  ok.named <- f0(n.dots != n.labs, F, !any(labs == "") & isEQ(labs, unique(labs)))
+  errs <- c(f0(ok.n      , NULL, "\n \u2022 [...] is empty."),
+            f0(ok.unnamed, NULL, "\n \u2022 All arguments in [...] must be named."),
+            f0(ok.named  , NULL, "\n \u2022 Names of arguments in [...] must be unique without using blank strings."))
+  if (idef(errs)) {stop(errs)}
+  for (i in 1:length(named)) {if (inil(named[[1]])) {bank_err("[", labs[i], "] is NULL or empty.", gens. = 1)}}
   NULL
 }
 
@@ -211,64 +209,62 @@ bank_pop <- function(...) {
 #'   argument passes the test if calling any one of the functions results in a
 #'   value of \code{TRUE}.
 #' @export
-bank_funs <- function(funs, ...) {
-  if (cmp_chr_vec(funs)) {
-    funs <- av(strsplit(funs, "|", TRUE))
-    i <- nchar(funs) == 3
-    funs[i] <- paste0("i", funs[i])
+bank_funs <- function(funs., ...) {
+  if (cmp_chr_vec(funs.)) {
+    funs. <- av(strsplit(funs., "|", TRUE))
+    len3 <- nchar(funs.) == 3
+    funs.[len3] <- paste0("i", funs.[len3])
   }
-  else {stop(" • [funs] must be a complete character vec (?cmp_chr_vec).")}
+  else {stop(" \u2022 [funs.] must be a complete character vec (?cmp_chr_vec).")}
   labs <- ...names()
-  nd <- ...length()
-  nl <- length(labs)
-  vd <- nd > 0
-  vl <- f0(nd != nl, F, !any(labs == "") & isEQ(labs, unique(labs)))
-  vf <- all(sapply(funs, is_ppp_fun))
-  err  <- NULL
-  if (!vd) {err <- c(err, "\n • [...] is empty.")}
-  if (!vl) {err <- c(err, "\n • All arguments in [...] must be uniquely named without using blank strings.")}
-  if (!vf) {err <- c(err, "\n • [funs] contains a function name not found in ppp_funs().")}
-  if (!inll(err)) {stop(err)}
-  err <- paste0("[", labs, "] must be ", alt_ppp_concise(funs))
-  for (i in 1:nd) {
+  n.dots <- ...length()
+  n.labs <- length(labs)
+  ok.n <- n.dots > 0
+  ok.labs <- f0(n.dots != n.labs, F, !any(n.labs == "") & isEQ(n.labs, unique(n.labs)))
+  ok.funs <- all(sapply(funs., is_ppp_fun))
+  errs <- c(f0(ok.n   , NULL, "\n \u2022 [...] is empty."),
+            f0(ok.labs, NULL, "\n \u2022 All arguments in [...] must be uniquely named without using blank strings."),
+            f0(ok.funs, NULL, "\n \u2022 [funs.] contains a function name not found in ppp_funs()."))
+  if (idef(errs)) {stop(errs)}
+  errs <- paste0("[", labs, "] must be ", alt_ppp_concise(funs.))
+  for (i in 1:n.dots) {
     ok <- FALSE
-    for (fun in funs) {ok <- ok | eval(parse(text = paste0(fun, "(...elt(i))")))}
-    if (!ok) {bank_err(err[i], gens = 1)}
+    for (fun in funs.) {ok <- ok | eval(parse(text = paste0(fun, "(...elt(i))")))}
+    if (!ok) {bank_err(errs[i], gens. = 1)}
   }
   NULL
 }
 
 #' @describeIn errs. More flexible but less efficient than \code{bank_funs}.
 #'   For each named argument in \code{...}, banks an error message if it does
-#'   satisfy the \link[ixxx]{property specification} in \code{xxx}. If
-#'   \code{na = TRUE}, arguments may also be atomic scalar \code{NA} values.
-#'   \code{xxx} must be a character scalar containing one or more property
+#'   satisfy the \link[ippp]{property specification} in \code{ppp}. If
+#'   \code{nas. = TRUE}, arguments may also be atomic scalar \code{NA} values.
+#'   \code{ppp.} must be a character scalar containing one or more property
 #'   combos. Property combos are created by separating multiple properties from
-#'   \code{\link{xxx_all()}}. A property combo may be a single property.
+#'   \code{\link{ppp_all()}}. A property combo may be a single property.
 #'   Multiple property combos are separated from each other using pipes. An
 #'   argument satisfies the property specification if it satisfies any of the
 #'   property combos.
 #' @export
-bank_xxx <- function(ppp, ..., nas. = F) {
+bank_ppp <- function(ppp., ..., nas. = F) {
   labs <- ...names()
-  nd <- ...length()
-  nl <- length(labs)
-  vp <- f0(!cmp_chr_scl(ppp), F, is_valid_ppp(ppp))
-  vd <- nd > 0
-  vl <- f0(nd != nl, F, !any(labs == "") & isEQ(labs, unique(labs)))
-  vn <- isTF(nas.)
-  err <- NULL
-  if (!vp) {err <- c(err, "\n • [ppp] is not a valid property specification.")}
-  if (!vd) {err <- c(err, "\n • [...] is empty.")}
-  if (!vl) {err <- c(err, "\n • All arguments in [...] must be uniquely named without using blank strings.")}
-  if (!vn) {err <- c(err, "\n • [nas.] must be TRUE or FALSE.")}
-  if (!inll(err)) {stop(err)}
-  err <- paste0("[", labs, "] must be ", alt_ppp_concise(ppp), ".")
-  for (i in 1:nd) {
+  n.dots <- ...length()
+  n.labs <- length(labs)
+  ok.ppp <- f0(!cmp_chr_scl(ppp.), F, is_valid_ppp(ppp.))
+  ok.n <- n.dots > 0
+  ok.labs <- f0(n.dots != n.labs, F, !any(labs == "") & isEQ(labs, unique(labs)))
+  ok.nas <- isTF(nas.)
+  errs <- c(f0(ok.ppp , NULL, "\n \u2022 [ppp.] is not a valid property specification."),
+            f0(ok.n   , NULL, "\n \u2022 [...] is empty."),
+            f0(ok.labs, NULL, "\n \u2022 All arguments in [...] must be uniquely named without using blank strings."),
+            f0(ok.nas , NULL, "\n \u2022 [nas.] must be TRUE or FALSE."))
+  if (idef(errs)) {stop(errs)}
+  errs <- paste0("[", labs, "] must be ", alt_ppp_concise(ppp.), ".")
+  for (i in 1:n.dots) {
     val <- F
     if (nas.) {val <- isNa(...elt(i))}
-    if (!val) {val <- ippp(...elt(i), ppp)}
-    if (!val) {bank_err(err[i], gens = 1)}
+    if (!val) {val <- ippp(...elt(i), ppp.)}
+    if (!val) {bank_err(errs[i], gens. = 1)}
   }
   NULL
 }
@@ -290,20 +286,19 @@ bank_vals <- function(...) {
   args <- named_dots(...)
   vals <- unnamed_dots(...)
   labs <- names(args)
-  v0 <- ...length() > 0
-  va <- f0(!v0, T, length(args) > 0)
-  vv <- f0(!v0, T, length(args) > 0)
-  vl <- f0(!v0 | !va, T, !any(labs == "") & isEQ(labs, unique(labs)))
-  vat <- f0(!v0, T, all(sapply(args, pop_atm)))
-  vpop <- f0(!vv, T, all(sapply(vals, pop_atm)))
-  err <- NULL
-  if (v0) {err <- c(err, "\n • [...] is empty.")}
-  if (!va) {err <- c(err, "\n • At least one argument in [...] must be named.")}
-  if (!vv) {err <- c(err, "\n • At least one argument in [...] must be unnamed.")}
-  if (!vl) {err <- c(err, "\n • Named arguments in [...] must be uniquely named without using blank strings.")}
-  if (!vat) {err <- c(err, "\n • Named arguments in [...] must be non-empty and atomic.")}
-  if (!vpop) {err <- c(err, "\n • Unnamed arguments in [...] must be non-empty and atomic.")}
-  if (idef(err)) {stop(err)}
+  ok.0 <- ...length() > 0
+  ok.args <- f0(!ok.0, T, length(args) > 0)
+  ok.vals <- f0(!ok.0, T, length(args) > 0)
+  ok.labs <- f0(!ok.0 | !ok.args, T, !any(labs == "") & isEQ(labs, unique(labs)))
+  ok.atm <- f0(!ok.0, T, all(sapply(args, pop_atm)))
+  ok.pop <- f0(!ok.vals, T, all(sapply(vals, pop_atm)))
+  errs <- c(f0(ok.0   , NULL, "\n \u2022 [...] is empty."),
+            f0(ok.args, NULL, "\n \u2022 At least one argument in [...] must be named."),
+            f0(ok.vals, NULL, "\n \u2022 At least one argument in [...] must be unnamed."),
+            f0(ok.labs, NULL, "\n \u2022 Named arguments in [...] must be uniquely named without using blank strings."),
+            f0(ok.atm , NULL, "\n \u2022 Named arguments in [...] must be non-empty and atomic."),
+            f0(ok.pop , NULL, "\n \u2022 Unnamed arguments in [...] must be non-empty and atomic."))
+  if (idef(errs)) {stop(errs)}
   values <- NULL
   for (val in vals) {
     if (any(is.na(val))) {values <- c(values, 'NA')}
@@ -319,7 +314,7 @@ bank_vals <- function(...) {
     lab <- labs[i]
     valid <- F
     for (j in 1:length(vals)) {if (!valid) {valid <- isIN(arg, vals[[j]])}}
-    if (!valid) {bank_err("[", lab, "] must be ", values, ".", gens = 1)}
+    if (!valid) {bank_err("[", lab, "] must be ", values, ".", gens. = 1)}
   }
   NULL
 }
@@ -330,23 +325,22 @@ bank_vals <- function(...) {
 #'   and if not, banks an error message. If \code{named. = TRUE}, checks whether
 #'   all arguments in \code{...} are named, and if not banks an error message.
 #' @export
-bank_dots <- function(ppp, ..., named. = F) {
+bank_dots <- function(ppp., ..., named. = F) {
   dots  <- list(...)
   named <- named_dots(...)
   blank <- unnamed_dots(...)
   labs <- names(named)
-  vp <- f0(!cmp_chr_scl(ppp), F, is_valid_ppp(ppp))
-  v0 <- ...length() > 0
-  vn <- isTF(named.)
-  vl <- f0(!v0 | !vn, T, f0(!named., T, f0(length(blank) > 0, F, f0(any(names(labs) == ""), F, isEQ(labs, unique(labs))))))
-  err <- NULL
-  if (!vp) {err <- c(err, "\n • [ppp] must be a character scalar containing a valid property specification (see is_valid_xxx).")}
-  if (!v0) {err <- c(err, "\n • [...] is empty.")}
-  if (!vn) {err <- c(err, "\n • [named.] must be TRUE or FALSE.")}
-  if (!vl) {err <- c(err, "\n • When [named. = TRUE], all arguments in [...] must be uniquely named without using blank strings.")}
-  if (idef(err)) {stop(err)}
-  vd <- sapply(dots, ippp, ppp = ppp)
-  if (!vd) {bank_err("All arguments in [...] must be ", alt_ppp_concise(ppp), ".", gens = 1)}
+  ok.ppp <- f0(!cmp_chr_scl(ppp), F, is_valid_ppp(ppp))
+  ok.0 <- ...length() > 0
+  ok.named <- isTF(named.)
+  ok.labs <- f0(!ok.0 | !ok.named, T, f0(!named., T, f0(length(blank) > 0, F, f0(any(names(labs) == ""), F, isEQ(labs, unique(labs))))))
+  errs <- c(f0(ok.ppp  , NULL, "\n \u2022 [ppp.] must be a character scalar containing a valid property specification (?is_valid_ppp)."),
+            f0(ok.0    , NULL, "\n \u2022 [...] is empty."),
+            f0(ok.named, NULL, "\n \u2022 [named.] must be TRUE or FALSE."),
+            f0(ok.labs , NULL, "\n \u2022 When [named. = TRUE], all arguments in [...] must be uniquely named without using blank strings."))
+  if (idef(errs)) {stop(errs)}
+  ok.dots <- sapply(dots, ippp, ppp = ppp.)
+  if (!ok.dots) {bank_err("All arguments in [...] must be ", alt_ppp_concise(ppp.), ".", gens. = 1)}
   NULL
 }
 
@@ -363,32 +357,31 @@ bank_when <- function(whens., values., ...) {
     else {paste0(paste0(xx[1:(nn - 1)], collapse = ", "), ", or ", xx[nn])}
   }
   labs <- ...names()
-  vw <- ipop(whens.) & iatm(whens.)
-  vv <- ipop(values.) & iatm(values.)
-  vd <- ...length() == 2
-  vl <- f0(!vd, T, f0(length(labs) == 2, F, f0(any(labs == ""), F, labs[1] != labs[2])))
-  vs <- iscl(..1) & iscl(..2)
-  v1 <- f0(vw & vs, compatible(whens. , ..1), T)
-  v2 <- f0(vw & vs, compatible(values., ..2), T)
-  err <- NULL
-  if (!vw) {err <- c(err, "\n • [whens.] must be non-empty and atomic.")}
-  if (!vv) {err <- c(err, "\n • [values.] must be non-empty and atomic.")}
-  if (!vd) {err <- c(err, "\n • There must be two arguments in [...]")}
-  if (!vl) {err <- c(err, "\n • Arguments in [...] must be uniquely named without using blank strings.")}
-  if (!v1) {err <- c(err, "\n • [whens.] and [..1] are not of compatible (?compatible) modes.")}
-  if (!v2) {err <- c(err, "\n • [values.] and [..2] are not of compatible (?compatible) modes.")}
-  if (!vs) {err <- c(err, "\n • Both arguments in [...] must be atomic and scalar (?iscl).")}
-  if (idef(err)) {stop(err)}
+  ok.whens <- ipop(whens.) & iatm(whens.)
+  ok.values <- ipop(values.) & iatm(values.)
+  ok.n <- ...length() == 2
+  ok.labs <- f0(!ok.n, T, f0(length(labs) == 2, F, f0(any(labs == ""), F, labs[1] != labs[2])))
+  ok.dots <- iscl(..1) & iscl(..2)
+  ok.whens2 <- f0(ok.whens & ok.values, compatible(whens. , ..1), T)
+  ok.values2 <- f0(ok.whens & ok.values, compatible(values., ..2), T)
+  errs <- c(f0(ok.whens  , NULL, "\n \u2022 [whens.] must be non-empty and atomic."),
+            f0(ok.values , NULL, "\n \u2022 [values.] must be non-empty and atomic."),
+            f0(ok.n      , NULL, "\n \u2022 There must be two arguments in [...]"),
+            f0(ok.labs   , NULL, "\n \u2022 Arguments in [...] must be uniquely named without using blank strings."),
+            f0(ok.whens2 , NULL, "\n \u2022 [whens.] and [..1] are not of compatible (?compatible) modes."),
+            f0(ok.values2, NULL, "\n \u2022 [values.] and [..2] are not of compatible (?compatible) modes."),
+            f0(ok.dots   , NULL, "\n \u2022 Both arguments in [...] must be atomic and scalar (?iscl)."))
+  if (idef(errs)) {stop(errs)}
   labs1 <- paste0("[", labs[1], "]")
   labs2 <- paste0("[", labs[2], "]")
-  w <- ..1
-  v <- ..2
-  if (is.character(w)) {w <- paste0("\"", w, "\"")}
-  if (is.character(v)) {v <- paste0("\"", v, "\"")}
-  if (w %in% whens.) {if (!(v %in% values.)) {
-    w <- oxford_vals(w)
-    v <- oxford_vals(v)
-    bank_err("When ", labs1, " is ", w, ", ", labs2, " must be ", v, ".", gens = 1)
+  when <- ..1
+  value <- ..2
+  if (is.character(when)) {when <- paste0("\"", when, "\"")}
+  if (is.character(value)) {value <- paste0("\"", value, "\"")}
+  if (when %in% whens.) {if (!(value %in% values.)) {
+    when <- oxford_vals(when)
+    value <- oxford_vals(value)
+    bank_err("When ", labs1, " is ", when, ", ", labs2, " must be ", value, ".", gens. = 1)
   }}
   NULL
 }
@@ -397,61 +390,58 @@ bank_when <- function(whens., values., ...) {
 #'   arguments in \code{...} matching none of the specified patterns of
 #'   associated properties in \code{pats.}.
 #' @export
-bank_pats <- function(pats, ...) {
-  dots <- named_dots(...)
+bank_pats <- function(pats., ...) {
+  named <- named_dots(...)
   blank <- unnamed_dots(...)
   labs <- names(dots)
-  ndt <- length(dots)
-  nbl <- length(blank)
-  npt <- length(pats)
-  avl <- cmp_chr_vls(pats)
-  npp <- f0(avl, lengths(pats), 0)
-  nul <- length(unique(labs))
-  vpt <- f0(avl, all(sapply(av(pats), is_valid_ppp)), F)
-  veq <- all(npp == ndt)
-  vun <- ndt == nul
-  err  <- NULL
-  if (!avl) {err <- c(err, "\n • [pats] must be a complate atomic vlist (?cmp_vls).")}
-  if (!vun) {err <- c(err, "\n • Arguments in [...] must be uniquely named.")}
-  if (!veq) {err <- c(err, "\n • Elements of [pats] must have length equal to the number of arguments in [...].")}
-  if (!vpt) {err <- c(err, "\n • All values in [pats] must be valid property specification (see is_valid_xxx)")}
-  if (npt < 2) {err <- c(err, "\n • The number of patterns in [pats] is less than 2.")}
-  if (ndt < 2) {err <- c(err, "\n • The number of arguments in [...] is less than 2.")}
-  if (nbl > 0) {err <- c(err, "\n • All arguments in [...] must be named.")}
-  if (idef(err)) {stop(err)}
-  nc <- rep.int(0, ndt)
-  for (i in 1:npt) {
-    pat <- pats[[i]]
+  n.dots <- length(dots)
+  n.blank <- length(blank)
+  n.pats <- length(pats.)
+  ok.vls <- cmp_chr_vls(pats.)
+  pat.ns <- f0(ok.vls, lengths(pats.), 0)
+  nu.labs <- length(unique(labs))
+  ok.pats <- f0(ok.vls, all(sapply(av(pats.), is_valid_ppp)), F)
+  ok.ns <- all(pat.ns == n.dots)
+  ok.nu <- n.dots == nu.labs
+  errs <- c(f0(ok.vls     , NULL, "\n \u2022 [pats.] must be a complate atomic vlist (?cmp_vls)."),
+            f0(ok.nu      , NULL, "\n \u2022 Arguments in [...] must be uniquely named."),
+            f0(ok.ns      , NULL, "\n \u2022 Elements of [pats.] must have length equal to the number of arguments in [...]."),
+            f0(ok.pats    , NULL, "\n \u2022 All values in [pats.] must be valid property specification (see is_valid_xxx)"),
+            f0(n.pats < 2 , NULL, "\n \u2022 The number of patterns in [pats.] is less than 2."),
+            f0(n.dots < 2 , NULL, "\n \u2022 The number of arguments in [...] is less than 2."),
+            f0(n.blank > 0, NULL, "\n \u2022 All arguments in [...] must be named."))
+  if (idef(errs)) {stop(errs)}
+  nc <- rep.int(0, n.dots)
+  for (i in 1:n.pats) {
+    pat <- pats.[[i]]
     valid <- T
-    for (j in 1:ndt) {
+    for (j in 1:n.dots) {
       var <- labs[j]
-      xxx <- pat[j]
-      nc[j] <- max(nc[j], nchar(xxx))
-      if (valid) {valid <- valid & ippp(var, xxx)}
+      ppp <- pat[j]
+      nc[j] <- max(nc[j], nchar(ppp))
+      if (valid) {valid <- valid & ippp(var, ppp)}
     }
     if (valid) {return(NULL)}
   }
   nc <- nc + 2
-  wd <- nchar(paste0("PATTERN ", npt))
-  for (i in 1:ndt) {
+  width <- nchar(paste0("PATTERN ", n.pats))
+  for (i in 1:n.dots) {
     n <- nc[i]
     labs[i] <- pad(labs[i], n = n)
-    ipats <- pats[[i]]
-    for (j in 1:npt) {
+    ipats <- pats.[[i]]
+    for (j in 1:n.pats) {
       jpat <- ipats[j]
       jpat <- pad(paste0("\"", jpat, "\""), n = n)
       ipats[j] <- jpat
     }
-    lab <- pad(paste0("PATTERN ", j), n = wd)
+    lab <- pad(paste0("PATTERN ", j), n = width)
     ipats <- paste0(c(lab, ipats), collapse = " | ")
-    pats[[i]] <- ipats
+    pats.[[i]] <- ipats
   }
-  lab <- pad("ARGUMENT", n = wd)
+  lab <- pad("ARGUMENT", n = width)
   vars <- paste0(c(lab, labs), collapse = " | ")
-  err <- c("The pattern of values of ", ox_and(paste0("[", labs, "] ")) ,
-           "does not match any of the valid patterns in [pats.], given as",
-           "\n     ", paste0(c(vars, av(pats)), collapse = "\n     ")    )
-  bank_err(err, gens = 1)
+  err <- c("The pattern of values of ", ox_and(paste0("[", labs, "] ")), "does not match any of the valid patterns in [pats.], given as", "\n     ", paste0(c(vars, av(pats.)), collapse = "\n     "))
+  bank_err(err, gens. = 1)
 }
 
 #' @describeIn errs. If calling \code{identity(x)} generates an error, bank an

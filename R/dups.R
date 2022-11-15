@@ -32,11 +32,8 @@ dups <- function(...) {x <- av(...); unique(x[duplicated(x)])}
 #'   duplicates of earlier elements (when \code{int = TRUE}).
 #' @export
 idups <- function(x, int = F) {
-  vx <- iatm(x)
-  vi <- isTF(int)
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [x] must be atomic.")}
-  if (!vi) {err <- c(err, "\n • [int] must be TRUE or FALSE.")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(iatm(x)  , NULL, "\n \u2022 [x] must be atomic."),
+            f0(isTF(int), NULL, "\n \u2022 [int] must be TRUE or FALSE."))
+  if (idef(errs)) {stop(errs)}
   f0(int, which(duplicated(x)), duplicated(x))
 }

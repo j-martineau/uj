@@ -1,5 +1,5 @@
 #' @name u2u.
-#' @title Convert among plotting units
+#' @title Convert units from among plotting units
 #' @param x \link[atm_num]{Atomic, numeric object}.
 #' @param old,new \link[cmp_chr_scl]{Complete character scalars} giving old and
 #'   new units of length. Valid values are \code{c('cm', 'in', 'mm', 'pt')} for
@@ -8,92 +8,98 @@
 #' @export
 u2u. <- function() {help("u2u.", package = "uj")}
 
-#' @describeIn u2u. Convert units specifying both original and new units.
+#' @describeIn u2u. Convert units from units specifying both original and new
+#'  units.
 #' @export
 u2u <- function(x, old, new) {
-  if (cmp_num(x)) {err <- NULL} else {err <- " • [x] must be a complete numeric object (?cmp_num)."}
-  if (!cmp_chr_scl(old) & !isIN(old, "cm", "in", "mm", "pt")) {err <- c(err, " • [old] must be a character scalar in c('cm', 'in', 'mm', 'pt')")}
-  if (!cmp_chr_scl(new) & !isIN(new, "cm", "in", "mm", "pt")) {err <- c(err, " • [new] must be a character scalar in c('cm', 'in', 'mm', 'pt')")}
-  if (idef(err)) {stop(err)}
-  x * c(cc = 1, ci = 0.393701, cm = 10, cp = 28.3465, ic = 2.54, ii = 1, im = 25.4, ip = 72, mc = 0.1, mi = 0.0393701, mm = 1, mp = 2.83465, pc = 0.0352778, pi = 0.0138889, pm = 0.352778, pp = 1)[[paste0(substr(old, 1, 1), substr(new, 1, 1))]]
+  units <- c("cm", "in", "mm", "pt")
+  conv  <- c(cm2cm = 1        , cm2in = 0.393701 , cm2mm = 10      , cm2pt = 28.3465,
+             in2cm = 2.54     , in2in = 1        , in2mm = 25.4    , in2pt = 72     ,
+             mm2cm = 0.1      , mm2in = 0.0393701, mm2mm = 1       , mm2pt = 2.83465,
+             pt2cm = 0.0352778, pt2in = 0.0138889, pt2mm = 0.352778, pt2pt = 1      )
+  errs <- c(f0(cmp_num(x)                          , NULL, " \u2022 [x] must be a complete numeric object (?cmp_num)."),
+            f0(cmp_chr_scl(old) & !isIN(old, units), NULL, " \u2022 [old] must be a character scalar in c('cm', 'in', 'mm', 'pt')."),
+            f0(cmp_chr_scl(new) & !isIN(new, units), NULL, " \u2022 [new] must be a character scalar in c('cm', 'in', 'mm', 'pt')."))
+  if (idef(errs)) {stop(errs)}
+  x * conv[[paste0(old, "2", new)]]
 }
 
-#' @describeIn u2u. Convert to centimeter units.
+#' @describeIn u2u. Convert units from to centimeter units.
 #' @export
 u2cm <- function(x, old) {u2u(x, old, "cm")}
 
-#' @describeIn u2u. Convert to inch units.
+#' @describeIn u2u. Convert units from to inch units.
 #' @export
 u2in <- function(x, old) {u2u(x, old, "in")}
 
-#' @describeIn u2u. Convert to millimeter units.
+#' @describeIn u2u. Convert units from to millimeter units.
 #' @export
 u2mm <- function(x, old) {u2u(x, old, "mm")}
 
-#' @describeIn u2u. Convert to point units.
+#' @describeIn u2u. Convert units from to point units.
 #' @export
 u2pt <- function(x, old) {u2u(x, old, "pt")}
 
-#' @describeIn u2u. Convert centimeters to some other units.
+#' @describeIn u2u. Convert units from centimeters to some other units.
 #' @export
 cm2u <- function(x, new) {u2u(x, "cm", new)}
 
-#' @describeIn u2u. Convert inches to some other units.
+#' @describeIn u2u. Convert units from inches to some other units.
 #' @export
 in2u <- function(x, new) {u2u(x, "in", new)}
 
-#' @describeIn u2u. Convert millimeters to some other units.
+#' @describeIn u2u. Convert units from millimeters to some other units.
 #' @export
 mm2u <- function(x, new) {u2u(x, "mm", new)}
 
-#' @describeIn u2u. Convert points to some other units.
+#' @describeIn u2u. Convert units from points to some other units.
 #' @export
 pt2u <- function(x, new) {u2u(x, "pt", new)}
 
-#' @describeIn u2u. Convert centimeters to inches.
+#' @describeIn u2u. Convert units from centimeters to inches.
 #' @export
 cm2in <- function(x) {u2u(x, "cm", "in")}
 
-#' @describeIn u2u. Convert centimeters to millimeters.
+#' @describeIn u2u. Convert units from centimeters to millimeters.
 #' @export
 cm2mm <- function(x) {u2u(x, "cm", "mm")}
 
-#' @describeIn u2u. Convert centimeters to points.
+#' @describeIn u2u. Convert units from centimeters to points.
 #' @export
 cm2pt <- function(x) {u2u(x, "cm", "pt")}
 
-#' @describeIn u2u. Convert inches to centimeters
+#' @describeIn u2u. Convert units from inches to centimeters
 #' @export
 in2cm <- function(x) {u2u(x, "in", "cm")}
 
-#' @describeIn u2u. Convert inches to millimeters.
+#' @describeIn u2u. Convert units from inches to millimeters.
 #' @export
 in2mm <- function(x) {u2u(x, "in", "mm")}
 
-#' @describeIn u2u. Convert inches to points.
+#' @describeIn u2u. Convert units from inches to points.
 #' @export
 in2pt <- function(x) {u2u(x, "in", "pt")}
 
-#' @describeIn u2u. Convert millimeters to centimeters.
+#' @describeIn u2u. Convert units from millimeters to centimeters.
 #' @export
 mm2cm <- function(x) {u2u(x, "mm", "cm")}
 
-#' @describeIn u2u. Convert millimeters to inches.
+#' @describeIn u2u. Convert units from millimeters to inches.
 #' @export
 mm2in <- function(x) {u2u(x, "mm", "in")}
 
-#' @describeIn u2u. Convert millimeters to points.
+#' @describeIn u2u. Convert units from millimeters to points.
 #' @export
 mm2pt <- function(x) {u2u(x, "mm", "pt")}
 
-#' @describeIn u2u. Convert points to centimeters.
+#' @describeIn u2u. Convert units from points to centimeters.
 #' @export
 pt2cm <- function(x) {u2u(x, "pt", "cm")}
 
-#' @describeIn u2u. Convert points to inches.
+#' @describeIn u2u. Convert units from points to inches.
 #' @export
 pt2in <- function(x) {u2u(x, "pt", "in")}
 
-#' @describeIn u2u. Convert points to millimeters.
+#' @describeIn u2u. Convert units from points to millimeters.
 #' @export
 pt2mm <- function(x) {u2u(x, "pt", "mm")}

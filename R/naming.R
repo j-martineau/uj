@@ -13,8 +13,8 @@
 #'   matrices or dtfs, or \code{12} for rows and columns of matrices or dtfs.
 #' @param u \link[cmp_lgl_scl]{Complete logical scalar} indicating whether names
 #'   must be unique.
-#' @param blank \link[cmp_lgl_scl]{Complete logical scalar} indicating whether blank
-#'   strings (\code{""}) are allowed as names.
+#' @param blank \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+#'   blank strings (\code{""}) are allowed as names.
 #' @param ln \link[cmp_chr_scl]{Complete character scalar} element name.
 #' @param en \link[cmp_chr_vec]{Complete character vec} of element names.
 #' @param rn,cn \link[cmp_chr_vec]{Complete character vecs} of row or column
@@ -26,12 +26,10 @@ naming. <- function() {help("naming.", package = "uj")}
 #' @describeIn naming. Name the elements of a vector.
 #' @export
 namev <- function(x, en) {
-  vx <- imvc(x)
-  ve <- cmp_vec(en) & length(x) == length(en)
-  err <- NULL
-  if (!vx) {err <- c(err, " • [x] must be an multivec (?imvc).")}
-  if (!ve) {err <- c(err, " • [en] must be a complete atomic vec (?cmp_vec) of the same length as [x].")}
-  if (idef(err)) {stop(err)}
+  ok.en <- cmp_vec(en) & length(x) == length(en)
+  errs <- c(f0(imvc(x), NULL, " \u2022 [x] must be an multivec (?imvc)."),
+            f0(ok.en  , NULL, " \u2022 [en] must be a complete atomic vec (?cmp_vec) of the same length as [x]."))
+  if (idef(errs)) {stop(errs)}
   names(x) <- en
   x
 }
@@ -39,12 +37,10 @@ namev <- function(x, en) {
 #' @describeIn naming. Name the rows of a matrix or data frame.
 #' @export
 namer <- function(x, rn) {
-  vx <- idtf(x) | imat(x)
-  vr <- cmp_vec(rn) & nrow(x) == length(rn)
-  err <- NULL
-  if (!vx) {err <- c(err, " • [x] must be a data.frame or a matrix.")}
-  if (!vr) {err <- c(err, " • [rn] must be a complete atomic vec (?cmp_vec) of length equal to the number of rows in [x].")}
-  if (idef(err)) {stop(err)}
+  ok.rn <- cmp_vec(rn) & nrow(x) == nrow(en)
+  errs <- c(f0(imvc(x), NULL, " \u2022 [x] must be an multivec (?imvc)."),
+            f0(ok.rn  , NULL, " \u2022 [rn] must be a complete atomic vec (?cmp_vec) of length equal to the number of rows in [x]."))
+  if (idef(errs)) {stop(errs)}
   rownames(x) <- rn
   x
 }
@@ -52,12 +48,10 @@ namer <- function(x, rn) {
 #' @describeIn naming. Name the columns of a matrix or data frame.
 #' @export
 namec <- function(x, cn) {
-  vx <- idtf(x) | imat(x)
-  vc <- cmp_vec(cn) & ncol(x) == length(cn)
-  err <- NULL
-  if (!vx) {err <- c(err, " • [x] must be a data.frame or a matrix.")}
-  if (!vc) {err <- c(err, " • [cn] must be a complete atomic vec (?cmp_vec) of length equal to the number of columns in [x].")}
-  if (idef(err)) {stop(err)}
+  ok.cn <- cmp_vec(rn) & ncol(x) == ncol(en)
+  errs <- c(f0(imvc(x), NULL, " \u2022 [x] must be an multivec (?imvc)."),
+            f0(ok.cn  , NULL, " \u2022 [cn] must be a complete atomic vec (?cmp_vec) of length equal to the number of columns in [x]."))
+  if (idef(errs)) {stop(errs)}
   colnames(x) <- cn
   x
 }
@@ -66,7 +60,7 @@ namec <- function(x, cn) {
 #'   element with the value of \code{e}
 #' @export
 namel <- function(x, ln) {
-  if (!cmp_scl(ln)) {stop(" • [ln] must be a complete atomic scalar (?cmp_scl).")}
+  if (!cmp_scl(ln)) {stop(" \u2022 [ln] must be a complete atomic scalar (?cmp_scl).")}
   names(x) <- ln
   x
 }
@@ -81,20 +75,17 @@ namerc <- function(x, rn, cn) {namer(namec(x, cn), rn)}
 #'   ("").
 #' @export
 named <- function(x, d = 0, u = T, blank = F) {
-  vx <- ivec(x) | pop_vls(x) | (is.array(x) & length(dim(x)) == 1)
-  vd <- isIN(d, c(0, 1, 2, 12))
-  v1 <- ANY(isEQ(d, 0), id1D(x))
-  v2 <- ANY(isIN(d, c(1, 2, 12)), id2D(x))
-  vu <- isTF(u)
-  vb <- isTF(blank)
-  errn <- NULL
-  if (!vx) {errn <- c(errn, "\n • [x] must be a vector, populated vlist (?pop_vls), matrix, or data.frame.")}
-  if (!vd) {errn <- c(errn, "\n • [d] must be 0, 1, 2, or 12.")}
-  if (!v1) {errn <- c(errn, "\n • [d] must be 0 when [x] is a vector, vlist (?is_vls), or 1D array.")}
-  if (!v2) {errn <- c(errn, "\n • [d] must be 1, 2, or 12 when [x] is a matrix or data.frame.")}
-  if (!vu) {errn <- c(errn, "\n • [u] must be TRUE or FALSE.")}
-  if (!vb) {errn <- c(errn, "\n • [blank] must be TRUE or FALSE.")}
-  if (idef(errn)) {stop(errn)}
+  ok.x <- ivec(x) | pop_vls(x) | (is.array(x) & length(dim(x)) == 1)
+  ok.d <- isIN(d, c(0, 1, 2, 12))
+  ok.d1D <- ANY(isEQ(d, 0), id1D(x))
+  ok.d2D <- ANY(isIN(d, c(1, 2, 12)), id2D(x))
+  errs <- c(f0(ok.x       , NULL, "\n \u2022 [x] must be a vector, populated vlist (?pop_vls), matrix, or data.frame."),
+            f0(ok.d       , NULL, "\n \u2022 [d] must be 0, 1, 2, or 12."),
+            f0(ok.d1D     , NULL, "\n \u2022 [d] must be 0 when [x] is a vector, vlist (?is_vls), or 1D array."),
+            f0(ok.d2D     , NULL, "\n \u2022 [d] must be 1, 2, or 12 when [x] is a matrix or data.frame."),
+            f0(isTF(u)    , NULL, "\n \u2022 [u] must be TRUE or FALSE."),
+            f0(isTF(blank), NULL, "\n \u2022 [blank] must be TRUE or FALSE."))
+  if (idef(errs)) {stop(errs)}
   leOK <- ueOK <- beOK <- lrOK <- urOK <- brOK <- lcOK <- ucOK <- bcOK <- T      # initialize result scalars
   if (length(x) == 0) {return(F)}                                                # length 0 is unnamed by default
   if (d == 0) {                                                                  # if inspecting for element names
@@ -142,33 +133,28 @@ named. <- function(..., u = T, blank = F) {named(list(...), 0, u, blank)}
 #'   restrictions.
 #' @export
 getnames <- function(x, d = 0, u = T, err = F) {
-  vx <- ipop(x)
-  vd <- isIN(d, c(0, 1, 2, 12))
-  vu <- isTF(u)
-  ve <- isTF(err)
-  errs <- NULL
-  if (!vx) {errs <- c(errs., "\n • [x] must be populated (?ipop).")}
-  if (!vd) {errs <- c(errs., "\n • [d] must be 0, 1, 2, or 12.")}
-  if (!vu) {errs <- c(errs., "\n • [u] must be TRUE or FALSE.")}
-  if (!ve) {errs <- c(errs., "\n • [err] must be TRUE or FALSE.")}
+  errs <- c(f0(ipop(x)         , NULL, "\n \u2022 [x] must be populated (?ipop)."),
+            f0(isIN(d, 0:2, 12), NULL, "\n \u2022 [d] must be 0, 1, 2, or 12."),
+            f0(isTF(u)         , NULL   , "\n \u2022 [u] must be TRUE or FALSE."),
+            f0(isTF(err)       , NULL , "\n \u2022 [err] must be TRUE or FALSE."))
   if (idef(errs)) {stop(errs)}
   if (d == 0) {
     en <- names(x)
-    if (err & length(en) > 0) {stop("\n • elements of [x] are not named.")}
-    if (u & !is_unq(en)) {stop("\n • element names of [x] are not unique.")}
+    if (err & length(en) > 0) {stop("\n \u2022 elements of [x] are not named.")}
+    if (u & !is_unq(en))      {stop("\n \u2022 element names of [x] are not unique.")}
     return(en)
   }
-  if (!id2D(x)) {stop("\n • [x] must be a matrix or a dtf (?is_dtf)")}
+  if (!id2D(x)) {stop("\n \u2022 [x] must be a matrix or a dtf (?is_dtf)")}
   if (d %in% c(1, 12)) {
     rn <- rownames(x)
-    if (err & length(rn) > 0) {stop("\n • row of [x] are not named.")}
-    if (u & !is_unq(rn)) {stop("\n • row names of [x] are not unique.")}
+    if (err & length(rn) > 0) {stop("\n \u2022 row of [x] are not named.")}
+    if (u & !is_unq(rn))      {stop("\n \u2022 row names of [x] are not unique.")}
     if (d == 1) {return(rn)}
   }
   if (d %in% c(2, 12)) {
     cn <- colnames(x)
-    if (err & length(cn) > 0) {stop("\n • column of [x] are not named.")}
-    if (u & !is_unq(cn)) {stop("\n • column names of [x] are not unique.")}
+    if (err & length(cn) > 0) {stop("\n \u2022 column of [x] are not named.")}
+    if (u & !is_unq(cn))      {stop("\n \u2022 column names of [x] are not unique.")}
     if (d == 2) {return(cn)}
   }
   list(r = rn, c = cn)

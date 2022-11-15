@@ -74,8 +74,8 @@ Functions related to fundamental type are described in the following
 table:\tabular{ll}{
 FUNCTION          \tab WHAT THE                                           \cr
 FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i•••}       \tab Evaluates whether an object is of the fundamental type
-completeness represented by \code{•••}.            \cr
+\code{i***}       \tab Evaluates whether an object is of the fundamental type
+represented by \code{***}.                         \cr
 \code{ttt}        \tab Gets a character vector containing all fundamental
 type properties of an object.                      \cr
 \code{ittt}       \tab Evaluates an object for a specific fundamental type

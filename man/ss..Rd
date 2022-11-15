@@ -109,7 +109,7 @@ space and replaces any multi-character strings of white-space
 strings inside the result with a single spac\
 \item If \code{n} is not \code{NULL}, extracts the \code{n}-th
 elements(s) from the result.
-\item If \code{u} is \code{TRUE}, reduces the result to unique values.   }
+\item If \code{u} is \code{TRUE}, reduces the result to unique values.    }
 \strong{Extensions}
 \cr Functions are extended for specific delimiters, signified by the
 following suffixes on function names:\tabular{lll}{
@@ -154,7 +154,6 @@ Other strings:
 \code{\link{charn.}()},
 \code{\link{delim.}()},
 \code{\link{fsub.}()},
-\code{\link{has_pat.}()},
 \code{\link{ipat.}()},
 \code{\link{max_nch.}()},
 \code{\link{mkstr.}()},

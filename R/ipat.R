@@ -12,16 +12,23 @@
 #' @export
 ipat. <- function() {help("ipat.", package = "uj")}
 
+#' @describeIn ipat. Evaluate whether each element of \code{x} contains the
+#'   string in \code{pat}.
+#' @export
+has_pat <- function(x, pat) {
+  errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),
+            f0(cmp_chr_scl(pat), NULL, " \u2022 [pat] must be a complete character scalar (?cmp_chr_vec)."))
+  if (idef(errs)) {stop(errs)}
+  nchar(x) != nchar(gsub(x, pat, "", fixed = T))
+}
+
 #' @describeIn ipat. Logically indexes character vector elements containing a
 #'   pattern as \code{TRUE} or \code{FALSE}.
 #' @export
 ipat <- function(x, pat) {
-  vx <- cmp_chr_vec(x)
-  vp <- cmp_chr_scl(pat)
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [x] must be a complete character scalar/vec (?cmp_chr_scl, ?cmp_chr_vec).")}
-  if (!vp) {err <- c(err, "\n • [pat] must be a complete character scalar (?cmp_chr_scl).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),
+            f0(cmp_chr_scl(pat), NULL, " \u2022 [pat] must be a complete character scalar (?cmp_chr_vec)."))
+  if (idef(errs)) {stop(errs)}
   grepl(pat, x, fixed = T)
 }
 
@@ -29,12 +36,9 @@ ipat <- function(x, pat) {
 #'   a pattern as integer element numbers.
 #' @export
 wpat <- function(x, pat) {
-  vx <- cmp_chr_vec(x)
-  vp <- cmp_chr_scl(pat)
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [x] must be a complete character scalar/vec (?cmp_chr_scl, ?cmp_chr_vec).")}
-  if (!vp) {err <- c(err, "\n • [pat] must be a complete character scalar (?cmp_chr_scl).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),
+            f0(cmp_chr_scl(pat), NULL, " \u2022 [pat] must be a complete character scalar (?cmp_chr_vec)."))
+  if (idef(errs)) {stop(errs)}
   grep(pat, x, fixed = T)
 }
 
@@ -42,12 +46,9 @@ wpat <- function(x, pat) {
 #'   element of a character vector.
 #' @export
 npat <- function(x, pat) {
-  vx <- cmp_chr_vec(x)
-  vp <- cmp_chr_scl(pat)
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [x] must be a complete character scalar/vec (?cmp_chr_scl, ?cmp_chr_vec).")}
-  if (!vp) {err <- c(err, "\n • [pat] must be a complete character scalar (?cmp_chr_scl).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),
+            f0(cmp_chr_scl(pat), NULL, " \u2022 [pat] must be a complete character scalar (?cmp_chr_vec)."))
+  if (idef(errs)) {stop(errs)}
   lengths(gregexpr(pat, x, fixed = T))
 }
 
@@ -55,12 +56,9 @@ npat <- function(x, pat) {
 #'   the first instance of a pattern in each element of a character vector.
 #' @export
 ppat <- function(x, pat) {
-  vx <- cmp_chr_vec(x)
-  vp <- cmp_chr_scl(pat)
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [x] must be a complete character scalar/vec (?cmp_chr_scl, ?cmp_chr_vec).")}
-  if (!vp) {err <- c(err, "\n • [pat] must be a complete character scalar (?cmp_chr_scl).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),
+            f0(cmp_chr_scl(pat), NULL, " \u2022 [pat] must be a complete character scalar (?cmp_chr_vec)."))
+  if (idef(errs)) {stop(errs)}
   out <- regexpr(pat, x, fixed = T)
   out[out == -1] <- NA
   if (all(is.na(out))) {out <- NA}
@@ -71,12 +69,9 @@ ppat <- function(x, pat) {
 #'   \emph{every} instance of a pattern in each element of a character vector.
 #' @export
 ppats <- function(x, pat) {
-  vx <- cmp_chr_vec(x)
-  vp <- cmp_chr_scl(pat)
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [x] must be a complete character scalar/vec (?cmp_chr_scl, ?cmp_chr_vec).")}
-  if (!vp) {err <- c(err, "\n • [pat] must be a complete character scalar (?cmp_chr_scl).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),
+            f0(cmp_chr_scl(pat), NULL, " \u2022 [pat] must be a complete character scalar (?cmp_chr_vec)."))
+  if (idef(errs)) {stop(errs)}
   out <- gregexpr(pat, x, fixed = T)
   out[out == -1] <- NA
   out

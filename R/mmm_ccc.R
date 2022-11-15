@@ -7,12 +7,13 @@
 #'   (\code{mmm_vls} functions). Atomic data frames are data frames without any
 #'   recursive cells. Atomic vlists are vlists that do not themselves contain
 #'   any elements that are recursive.
-#' @param x An ℝ object.
+#' @param x An R object.
 #' @return A \link[ilgl]{logical} scalar.
 #' @export
 mmm_ccc. <- function() {help("mmm_ccc.", package = "uj")}
 
-#' @describeIn mmm_ccc. Get a \link[ichr]{character} vector of all possible extended mode
+#' @describeIn mmm_ccc. Get a \link[ichr]{character} vector of all possible
+#'    extended mode
 #'   plus extended class properties.
 #' @export
 mmm_ccc_vals <- function() {
@@ -65,7 +66,8 @@ ngw_arr <- function(x) {iarr(x) & ingw(x)}
 #' @export
 nng_arr <- function(x) {iarr(x) & inng(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} array?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number}
+#'   array?
 #' @export
 nnw_arr <- function(x) {iarr(x) & innw(x)}
 
@@ -73,7 +75,8 @@ nnw_arr <- function(x) {iarr(x) & innw(x)}
 #' @export
 nps_arr <- function(x) {iarr(x) & inps(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} array?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number}
+#'   array?
 #' @export
 npw_arr <- function(x) {iarr(x) & inpw(x)}
 
@@ -93,7 +96,8 @@ odd_arr <- function(x) {iarr(x) & iodd(x)}
 #' @export
 ord_arr <- function(x) {iarr(x) & iord(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} array?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+#'   array?
 #' @export
 pct_arr <- function(x) {iarr(x) & ipct(x)}
 
@@ -101,7 +105,8 @@ pct_arr <- function(x) {iarr(x) & ipct(x)}
 #' @export
 pos_arr <- function(x) {iarr(x) & ipos(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} array?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+#'   array?
 #' @export
 ppn_arr <- function(x) {iarr(x) & ippn(x)}
 
@@ -137,7 +142,8 @@ chr_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all
 #' @export
 clr_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, iclr(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even whole-number} data.frame?
+#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even whole-number}
+#'   data.frame?
 #' @export
 evn_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ievn(x)))}}
 
@@ -145,7 +151,8 @@ evn_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all
 #' @export
 fac_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ifac(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional numeric} data.frame?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional numeric}
+#'   data.frame?
 #' @export
 frc_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ifrc(x)))}}
 
@@ -157,27 +164,33 @@ ind_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all
 #' @export
 lgl_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ilgl(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative numeric} data.frame?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative numeric}
+#'   data.frame?
 #' @export
 neg_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ineg(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number} data.frame?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number}
+#'   data.frame?
 #' @export
 ngw_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ingw(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric} data.frame?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric}
+#'   data.frame?
 #' @export
 nng_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, inng(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} data.frame?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number}
+#'   data.frame?
 #' @export
 nnw_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, innw(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric} data.frame?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric}
+#'   data.frame?
 #' @export
 nps_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, inps(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} data.frame?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number}
+#'   data.frame?
 #' @export
 npw_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, inpw(x)))}}
 
@@ -197,7 +210,8 @@ odd_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all
 #' @export
 ord_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, iord(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} data.frame?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+#'   data.frame?
 #' @export
 pct_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ipct(x)))}}
 
@@ -205,11 +219,13 @@ pct_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all
 #' @export
 pos_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ipos(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} data.frame?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+#'   data.frame?
 #' @export
 ppn_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ippn(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} data.frame?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number}
+#'   data.frame?
 #' @export
 psw_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, ipsw(x)))}}
 
@@ -221,7 +237,8 @@ srt_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all
 #' @export
 str_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, istr(x)))}}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iuno]{unordered-factor} data.frame?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iuno]{unordered-factor}
+#'   data.frame?
 #' @export
 uno_dtf <- function(x) {if (!idtf(x)) {F} else if (length(x) == 0) {T} else {all(apply(x, 2, iuno(x)))}}
 
@@ -273,7 +290,8 @@ ngw_gen <- function(x) {igen(x) & ingw(x)}
 #' @export
 nng_gen <- function(x) {igen(x) & inng(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} generic?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number}
+#'   generic?
 #' @export
 nnw_gen <- function(x) {igen(x) & innw(x)}
 
@@ -281,7 +299,8 @@ nnw_gen <- function(x) {igen(x) & innw(x)}
 #' @export
 nps_gen <- function(x) {igen(x) & inps(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} generic?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number}
+#'   generic?
 #' @export
 npw_gen <- function(x) {igen(x) & inpw(x)}
 
@@ -301,7 +320,8 @@ odd_gen <- function(x) {igen(x) & iodd(x)}
 #' @export
 ord_gen <- function(x) {igen(x) & iord(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} generic?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+#'   generic?
 #' @export
 pct_gen <- function(x) {igen(x) & ipct(x)}
 
@@ -309,11 +329,13 @@ pct_gen <- function(x) {igen(x) & ipct(x)}
 #' @export
 pos_gen <- function(x) {igen(x) & ipos(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} generic?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+#'   generic?
 #' @export
 ppn_gen <- function(x) {igen(x) & ippn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} generic?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number}
+#'   generic?
 #' @export
 psw_gen <- function(x) {igen(x) & ipsw(x)}
 
@@ -377,7 +399,8 @@ ngw_mat <- function(x) {imat(x) & ingw(x)}
 #' @export
 nng_mat <- function(x) {imat(x) & inng(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} matrix?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number}
+#'   matrix?
 #' @export
 nnw_mat <- function(x) {imat(x) & innw(x)}
 
@@ -385,7 +408,8 @@ nnw_mat <- function(x) {imat(x) & innw(x)}
 #' @export
 nps_mat <- function(x) {imat(x) & inps(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} matrix?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number}
+#'   matrix?
 #' @export
 npw_mat <- function(x) {imat(x) & inpw(x)}
 
@@ -405,7 +429,8 @@ odd_mat <- function(x) {imat(x) & iodd(x)}
 #' @export
 ord_mat <- function(x) {imat(x) & iord(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} matrix?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+#'   matrix?
 #' @export
 pct_mat <- function(x) {imat(x) & ipct(x)}
 
@@ -413,7 +438,8 @@ pct_mat <- function(x) {imat(x) & ipct(x)}
 #' @export
 pos_mat <- function(x) {imat(x) & ipos(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} matrix?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+#'   matrix?
 #' @export
 ppn_mat <- function(x) {imat(x) & ippn(x)}
 
@@ -473,23 +499,28 @@ lgl_mvc <- function(x) {imvc(x) & ilgl(x)}
 #' @export
 neg_mvc <- function(x) {imvc(x) & ineg(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number} multivec?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number}
+#'   multivec?
 #' @export
 ngw_mvc <- function(x) {imvc(x) & ingw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric} multivec?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric}
+#'    multivec?
 #' @export
 nng_mvc <- function(x) {imvc(x) & inng(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} multivec?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number}
+#'   multivec?
 #' @export
 nnw_mvc <- function(x) {imvc(x) & innw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric} multivec?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric}
+#'   multivec?
 #' @export
 nps_mvc <- function(x) {imvc(x) & inps(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} multivec?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number}
+#'   multivec?
 #' @export
 npw_mvc <- function(x) {imvc(x) & inpw(x)}
 
@@ -509,7 +540,8 @@ odd_mvc <- function(x) {imvc(x) & iodd(x)}
 #' @export
 ord_mvc <- function(x) {imvc(x) & iord(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} multivec?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+#'   multivec?
 #' @export
 pct_mvc <- function(x) {imvc(x) & ipct(x)}
 
@@ -517,11 +549,13 @@ pct_mvc <- function(x) {imvc(x) & ipct(x)}
 #' @export
 pos_mvc <- function(x) {imvc(x) & ipos(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} multivec?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+#'   multivec?
 #' @export
 ppn_mvc <- function(x) {imvc(x) & ippn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} multivec?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number}
+#'   multivec?
 #' @export
 psw_mvc <- function(x) {imvc(x) & ipsw(x)}
 
@@ -541,107 +575,111 @@ uno_mvc <- function(x) {imvc(x) & iuno(x)}
 #' @export
 whl_mvc <- function(x) {imvc(x) & iwhl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ich1]{onechar} scalar?
 #' @export
 ch1_scl <- function(x) {iscl(x) & ich1(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ichr]{character} scalar?
 #' @export
 chr_scl <- function(x) {iscl(x) & ichr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iclr]{color} scalar?
 #' @export
 clr_scl <- function(x) {iscl(x) & iclr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even whole-number} scalr?
+#' @describeIn mmm_ccc. Is \code{x} an \link[ievn]{even whole-number} scalar?
 #' @export
 evn_scl <- function(x) {iscl(x) & ievn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x}  \link[ifac]{factor} scalr?
+#' @describeIn mmm_ccc. Is \code{x}  \link[ifac]{factor} scalar?
 #' @export
 fac_scl <- function(x) {iscl(x) & ifac(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional numeric} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ifrc]{fractional numeric} scalar?
 #' @export
 frc_scl <- function(x) {iscl(x) & ifrc(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} scalr?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iind]{indexer} scalar?
 #' @export
 ind_scl <- function(x) {iscl(x) & iind(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ilgl]{logical} scalar?
 #' @export
 lgl_scl <- function(x) {iscl(x) & ilgl(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative numeric} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ineg]{negative numeric} scalar?
 #' @export
 neg_scl <- function(x) {iscl(x) & ineg(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ingw]{negative whole-number} scalar?
 #' @export
 ngw_scl <- function(x) {iscl(x) & ingw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inng]{non-negative numeric} scalar?
 #' @export
 nng_scl <- function(x) {iscl(x) & inng(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number}
+#'   scalar?
 #' @export
 nnw_scl <- function(x) {iscl(x) & innw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inps]{non-positive numeric} scalar?
 #' @export
 nps_scl <- function(x) {iscl(x) & inps(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number}
+#'   scalar?
 #' @export
 npw_scl <- function(x) {iscl(x) & inpw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inst]{non-sortable} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inst]{non-sortable} scalar?
 #' @export
 nst_scl <- function(x) {iscl(x) & inst(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inum]{numeric} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inum]{numeric} scalar?
 #' @export
 num_scl <- function(x) {iscl(x) & inum(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iodd]{odd whole-number} scalr?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iodd]{odd whole-number} scalar?
 #' @export
 odd_scl <- function(x) {iscl(x) & iodd(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iord]{ordered-factor} scalr?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iord]{ordered-factor} scalar?
 #' @export
 ord_scl <- function(x) {iscl(x) & iord(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+#'   scalar?
 #' @export
 pct_scl <- function(x) {iscl(x) & ipct(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipos]{positive numeric} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipos]{positive numeric} scalar?
 #' @export
 pos_scl <- function(x) {iscl(x) & ipos(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+#'   scalar?
 #' @export
 ppn_scl <- function(x) {iscl(x) & ippn(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipsw]{positive whole-number} scalar?
 #' @export
 psw_scl <- function(x) {iscl(x) & ipsw(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[isrt]{sortable} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[isrt]{sortable} scalar?
 #' @export
 srt_scl <- function(x) {iscl(x) & isrt(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[istr]{string} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[istr]{string} scalar?
 #' @export
 str_scl <- function(x) {iscl(x) & istr(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} an \link[iuno]{unordered-factor} scalr?
+#' @describeIn mmm_ccc. Is \code{x} an \link[iuno]{unordered-factor} scalar?
 #' @export
 uno_scl <- function(x) {iscl(x) & iuno(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[iwhl]{whole-number} scalr?
+#' @describeIn mmm_ccc. Is \code{x} a \link[iwhl]{whole-number} scalar?
 #' @export
 whl_scl <- function(x) {iscl(x) & iwhl(x)}
 
@@ -689,7 +727,8 @@ ngw_vec <- function(x) {ivec(x) & ingw(x)}
 #' @export
 nng_vec <- function(x) {ivec(x) & inng(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} vec?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number}
+#'   vec?
 #' @export
 nnw_vec <- function(x) {ivec(x) & innw(x)}
 
@@ -697,7 +736,8 @@ nnw_vec <- function(x) {ivec(x) & innw(x)}
 #' @export
 nps_vec <- function(x) {ivec(x) & inps(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} vec?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number}
+#'   vec?
 #' @export
 npw_vec <- function(x) {ivec(x) & inpw(x)}
 
@@ -717,7 +757,8 @@ odd_vec <- function(x) {ivec(x) & iodd(x)}
 #' @export
 ord_vec <- function(x) {ivec(x) & iord(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} vec?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+#'   vec?
 #' @export
 pct_vec <- function(x) {ivec(x) & ipct(x)}
 
@@ -725,7 +766,8 @@ pct_vec <- function(x) {ivec(x) & ipct(x)}
 #' @export
 pos_vec <- function(x) {ivec(x) & ipos(x)}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} vec?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+#'   vec?
 #' @export
 ppn_vec <- function(x) {ivec(x) & ippn(x)}
 
@@ -793,7 +835,8 @@ ngw_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all
 #' @export
 nng_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, inng))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number} vlist?
+#' @describeIn mmm_ccc. Is \code{x} a \link[innw]{non-negative whole-number}
+#'   vlist?
 #' @export
 nnw_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, innw))}}
 
@@ -801,7 +844,8 @@ nnw_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all
 #' @export
 nps_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, inps))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number} vlist?
+#' @describeIn mmm_ccc. Is \code{x} a \link[inpw]{non-positive whole-number}
+#'   vlist?
 #' @export
 npw_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, inpw))}}
 
@@ -821,7 +865,8 @@ odd_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all
 #' @export
 ord_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, iord))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)} vlist?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+#'   vlist?
 #' @export
 pct_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ipct))}}
 
@@ -829,7 +874,8 @@ pct_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all
 #' @export
 pos_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ipos))}}
 
-#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)} vlist?
+#' @describeIn mmm_ccc. Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+#'   vlist?
 #' @export
 ppn_vls <- function(x) {if (!ivls(x)) {F} else if (length(x) == 0) {T} else {all(sapply(x, ippn))}}
 

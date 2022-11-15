@@ -19,8 +19,8 @@
 #' table:\tabular{ll}{
 #' FUNCTION          \tab WHAT THE                                           \cr
 #' FORMAT            \tab FUNCTION DOES                                      \cr
-#' \code{i•••}       \tab Evaluates whether an object is of the state of
-#'                        completeness represented by \code{•••}.            \cr
+#' \code{i***}       \tab Evaluates whether an object is of the state of
+#'                        completeness represented by \code{***}.            \cr
 #' \code{sss}        \tab Gets a character vector containing all state of
 #'                        completeness properties of an object.              \cr
 #' \code{isss}       \tab Evaluates an object for a specific state of
@@ -49,12 +49,14 @@ sss. <- function() {help("sss.", package = "uj")}
 #' @export
 sss <- function(x) {
   ok <- ipop(x) & iatm(x)
-  xav <- av(x)
-  nna <- length(which(na(xav)))
-  nok <- length(which(ok(xav)))
+  av.x <- av(x)
+  n.na <- length(which(na(av.x)))
+  n.ok <- length(which(ok(av.x)))
   len <- length(x)
   if (!ok) {return(NULL)}
-  c(f0(ok & nna == 0 & nok >= 1, "cmp", NULL), f0(ok & nna >= 1 & nok >= 1, "prt", NULL), f0(ok & nna >= 1 & nok == 0, "mss", NULL), f0(ok & len == 1 & all(na(x)), "nas", NULL), f0(ok & len == 1 & all(ok(x)), "oks", NULL))
+  c(f0(ok & n.na == 0 & n.ok >= 1, "cmp", NULL), f0(ok & n.na >= 1 & n.ok >= 1, "prt", NULL),
+    f0(ok & n.na >= 1 & n.ok == 0, "mss", NULL), f0(ok & len == 1 & all(na(x)), "nas", NULL),
+    f0(ok & len == 1 & all(ok(x)), "oks", NULL))
 }
 
 #' @describeIn sss. Is \code{x} complete (atomic, of length 1 or greater, and
@@ -89,13 +91,11 @@ sss_vals <- function() {c('cmp', 'mss', 'nas', 'oks', 'prt')}
 #'   in \code{sss}.
 #' @export
 isss <- function(x, sss, ...) {
-  if (!cmp_chr_scl(x)) {stop("\n • [sss] must be a complete character scalar.")}
-  valid <- sss_vals()
-  new <- av(strsplit(sss , "|", fixed = T))
-  valid <- all(new %in% valid)
-  if (!valid) {stop("\n • [sss] contains a value not in sss_vals(), after splitting [sss] on pipes.")}
-  if (!meets(x, ...)) {return(FALSE)}
-  obs <- sss(x)
-  for (exp in new) {if (exp == obs) {return(TRUE)}}
-  return(FALSE)
+  if (!cmp_chr_scl(sss)) {stop("\n \u2022 [sss] must be a non-NA character scalar.")}
+  valid.sss <- ttt_vals()
+  sss.combos <- strsplit(sss, "|", fixed = T)[[1]]
+  new.sss <- unlist(strsplit(sss.combos, "_", fixed = T))
+  ok.sss <- all(new.sss %in% valid.sss)
+  if (!ok.sss) {stop("\n \u2022 [sss = '", sss, "'] contains a value not in [sss_vals() = c(", paste0(paste0("'", sss_vals(), "'"), collapse = ", "), ")] after splitting along pipes and underscores.")}
+  ippp(x, sss, ...)
 }

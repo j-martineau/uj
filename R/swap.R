@@ -14,27 +14,20 @@ swap. <- function() {help("swap.", package = "uj")}
 #' @describeIn swap. Swaps atomic values.
 #' @export
 swap <- function(x, old, new, all = F) {
-  vx <- pop_atm(x)
-  vo <- ivec(old)
-  vn <- ivec(new)
-  va <- isTF(all)
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [x] must be populated and atomic (?ipop).")}
-  if (!vo) {err <- c(err, "\n • [old] must be populated and atomic (?ipop).")}
-  if (!vn) {err <- c(err, "\n • [new] must be populated and atomic (?ipop).")}
-  if (!va) {err <- c(err, "\n • [all] must be scalar TRUE or scalar FALSE")}
-  if (idef(err)) {stop(err)}
-  vc <- compatible(x, old, new)
-  vo <- is_unq(old)
-  vn <- length(new) %in% c(1, length(old))
-  va <- f0(all, allIN(x, old), T)
-  if (!vc) {err <- c(err, "\n • [x], [old], and [new] are of incompatible modes (?compatible).")}
-  if (!vo) {err <- c(err, "\n • [old] must contain only unique elements.")}
-  if (!vn) {err <- c(err, "\n • [length(new)] must be in [c(1, length(old))].")}
-  if (!va) {err <- c(err, "\n • [all = TRUE] but not all elements of [x] are contained in [old].")}
-  if (idef(err)) {stop(err)}
-  if (length(new) == 1) {new <- rep.int(new, length(old))}
+  errs <- c(f0(pop_atm(x)  , NULL, "\n \u2022 [x] must be populated and atomic (?ipop)."),
+            f0(atm_vec(old), NULL, "\n \u2022 [old] must be populated and atomic (?ipop)."),
+            f0(atm_vec(new), NULL, "\n \u2022 [new] must be populated and atomic (?ipop)."),
+            f0(isTF(all)   , NULL, "\n \u2022 [all] must be scalar TRUE or scalar FALSE"))
+  if (idef(errs)) {stop(errs)}
+  n.old <- length(old)
+  n.new <- length(new)
+  errs <- c(f0(compatible(x, old, new)  , NULL, "\n \u2022 [x], [old], and [new] are of incompatible modes (?compatible)."),
+            f0(is_unq(old)              , NULL, "\n \u2022 [old] must contain only unique elements."),
+            f0(n.new %in% c(1, n.old)   , NULL, "\n \u2022 [length(new)] must be in [c(1, length(old))]."),
+            f0(f0(all, allIN(x, old), T), NULL, "\n \u2022 [all = TRUE] but not all elements of [x] are contained in [old]."))
+  if (idef(errs)) {stop(errs)}
+  if (n.new == 1) {new <- rep.int(new, n.old)}
   if (any(is.na(old))) {x[is.na(x)] <- new[which(is.na(old))]}
-  for (i in 1:length(old)) {x[x == old[i]] <- new[i]}
+  for (i in 1:n.old) {x[x == old[i]] <- new[i]}
   x
 }

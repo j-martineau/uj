@@ -19,6 +19,19 @@
 #' multivec     \tab \code{'mvc'} \tab Vector of length 2+ or array of length 2+
 #'                                     with multiple index positions in exactly
 #'                                     1 dimension.                            }
+#' Functions related to extended are described in the following
+#' table:\tabular{ll}{
+#' FUNCTION          \tab WHAT THE                                           \cr
+#' FORMAT            \tab FUNCTION DOES                                      \cr
+#' \code{i***}       \tab Evaluates whether an object is of the fundamental type
+#'                        represented by \code{***}.                         \cr
+#' \code{ccc}        \tab Gets a character vector containing all fundamental
+#'                        type properties of an object.                      \cr
+#' \code{iccc}       \tab Evaluates an object for a specific fundamental type
+#'                        and any additional properties specified in
+#'                        \code{...}.                                        \cr
+#' \code{ccc_vals}   \tab Gets a character vector of all possible fundamental
+#'                        type property values.                                }
 #' @param x An object.
 #' @param ccc \code{NULL} or \link[cmp_chr_scl]{complete character scalar}
 #'   containing one or more values from \code{ccc_vals()} separated by pipes
@@ -90,11 +103,11 @@ ccc <- function(x) {
 #'   is an extended class property applicable to \code{x}.
 #' @export
 iccc <- function(x, ccc, ...) {
-  if (!cmp_chr_scl(ccc)) {stop("\n • [ccc] must be a complete character scalar (?cmp_chr_scl).")}
-  valid <- ccc_vals()
-  combos <- av(strsplit(ccc, "|", fixed = T))
-  newccc <- av(strsplit(combos, "_", fixed = T))
-  valid <- all(newccc %in% valid)
-  if (!valid) {stop("\n • [ccc] contains a value not in ccc_vals(), after splitting [ccc] on pipes and underscores.")}
+  if (!cmp_chr_scl(ccc)) {stop("\n \u2022 [ccc] must be a non-NA character scalar.")}
+  valid.ccc <- ttt_vals()
+  ccc.combos <- strsplit(ccc, "|", fixed = T)[[1]]
+  new.ccc <- unlist(strsplit(ccc.combos, "_", fixed = T))
+  ok.ccc <- all(new.ccc %in% valid.ccc)
+  if (!ok.ccc) {stop("\n \u2022 [ccc = '", ccc, "'] contains a value not in [sss_vals() = c(", paste0(paste0("'", sss_vals(), "'"), collapse = ", "), ")] after splitting along pipes and underscores.")}
   ippp(x, ccc, ...)
 }

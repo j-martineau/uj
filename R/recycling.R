@@ -29,12 +29,9 @@ recycling. <- function() {help("recycling.", package = "uj")}
 #'   represents recyclable arguments subject to the setting in \code{targ.}.
 #' @export
 recyclable_n <- function(n, targ = max(n)) {
-  vn <- cmp_psw_vec(n)
-  vt <- cmp_psw_scl(targ)
-  err <- NULL
-  if (!vn) {err <- c(err, "\n • [n] must be a complete positive whole-number vec (?cmp_psw_vec).")}
-  if (!vt) {err <- c(err, "\n • [targ] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(cmp_psw_vec(n)   , NULL, "\n \u2022 [n] must be a complete positive whole-number vec (?cmp_psw_vec)."),
+            f0(cmp_psw_scl(targ), NULL, "\n \u2022 [targ] must be a complete positive whole-number scalar (?cmp_psw_scl)."))
+  if (idef(errs)) {stop(errs)}
   out <- targ / n
   all(out == round(out))
 }
@@ -44,35 +41,23 @@ recyclable_n <- function(n, targ = max(n)) {
 #'   \code{max.}, and \code{targ.}.
 #' @export
 recyclable <- function(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL, err. = F) {
-  vx <- all(sapply(list(...), ivec))
-  vn <- f0(inll(n.), T, cmp_psw_vec(n.))
-  vt <- f0(inll(targ.), T, cmp_psw_scl(targ.))
-  ve <- isTF(err.)
-  vi <- cmp_psw_scl(min.)
-  va <- f0(inll(max.), T, cmp_psw_scl(max.))
-  vd <- ...length() > 0
-  errs <- NULL
-  if (!vd) {errs <- c(errs, "\n • [...] is empty.")}
-  if (!vx) {errs <- c(errs, "\n • Arguments in [...] must be atomic vecs (?ivec).")}
-  if (!vn) {errs <- c(errs, "\n • [n.] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).")}
-  if (!vi) {errs <- c(errs, "\n • [min.] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
-  if (!va) {errs <- c(errs, "\n • [max.] must be null or a complete positive whole-number scalar (?cmp_psw_scl).")}
-  if (!vt) {errs <- c(errs, "\n • [targ.] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
-  if (!ve) {errs <- c(errs, "\n • [err.] must be TRUE or FALSE.")}
+  errs <- c(f0(all(sapply(list(...), ivec))    , NULL, "\n \u2022 Arguments in [...] must be atomic vecs (?ivec)."),
+            f0(...length() > 0                 , NULL, "\n \u2022 [...] is empty."),
+            f0(inll(n.) | cmp_psw_vec(n.)      , NULL, "\n \u2022 [n.] must be NULL or a complete positive whole-number vec (?cmp_psw_vec)."),
+            f0(cmp_psw_scl(min.)               , NULL, "\n \u2022 [min.] must be a complete positive whole-number scalar (?cmp_psw_scl)."),
+            f0(inll(max.) | cmp_psw_scl(max.)  , NULL, "\n \u2022 [max.] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl)."),
+            f0(inll(targ.) | cmp_psw_scl(targ.), NULL, "\n \u2022 [targ.] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl)."),
+            f0(isTF(err.)                      , NULL, "\n \u2022 [err.] must be TRUE or FALSE."))
   if (idef(errs)) {stop(errs)}
-  x <- list(...)
-  N <- lengths(x)
-  vN <- f0(inll(n.), T, all(N %in% length(x)))
-  vi <- f0(inll(min.), T, all(N >= min.))
-  va <- f0(inll(max.), T, all(N <= max.))
-  err <- NULL
-  if (!vN) {err <- c(err, "\n • Arguments in [...] must have length in [n.]." )}
-  if (!vi) {err <- c(err, "\n • Arguments in [...] must have length ≥ [min.].")}
-  if (!va) {err <- c(err, "\n • Arguments in [...] must have length ≤ [max.].")}
-  if (idef(err)) {stop(err)}
+  dots <- list(...)
+  ns <- lengths(dots)
+  errs <- c(f0(!err. | f0(inll(n.  ), T, all(ns %in% n.)), NULL, "\n \u2022 Arguments in [...] must have length in [n.]."),
+            f0(!err. | f0(inll(min.), T, all(ns >= min.)), NULL, "\n \u2022 Arguments in [...] must have length ≥ [min.]."),
+            f0(!err. | f0(inll(max.), T, all(ns <= max.)), NULL, "\n \u2022 Arguments in [...] must have length ≤ [max.]."))
+  if (idef(errs)) {stop(errs)}
   if (inll(targ.)) {targ. <- max(n.)}
   out <- recyclable_n(n., targ.)
-  if (err & !out) {stop("\n • Arguments in [...] are not recyclable.")}
+  if (err. & !out) {stop("\n \u2022 Arguments in [...] are not recyclable.")}
   out
 }
 

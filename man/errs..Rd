@@ -8,7 +8,7 @@
 \alias{bank_not}
 \alias{bank_pop}
 \alias{bank_funs}
-\alias{bank_xxx}
+\alias{bank_ppp}
 \alias{bank_vals}
 \alias{bank_dots}
 \alias{bank_when}
@@ -18,32 +18,32 @@
 \usage{
 errs.()
 
-err_check(gens = 0)
+err_check(gens. = 0)
 
-bank_err(..., gens = 0)
+bank_err(..., gens. = 0)
 
-bank_lgl(..., nas = F, extras = NULL)
+bank_lgl(..., nas. = F, extras. = NULL)
 
 bank_not(...)
 
 bank_pop(...)
 
-bank_funs(funs, ...)
+bank_funs(funs., ...)
 
-bank_xxx(ppp, ..., nas. = F)
+bank_ppp(ppp., ..., nas. = F)
 
 bank_vals(...)
 
-bank_dots(ppp, ..., named. = F)
+bank_dots(ppp., ..., named. = F)
 
 bank_when(whens., values., ...)
 
-bank_pats(pats, ...)
+bank_pats(pats., ...)
 
 bank_fail(x)
 }
 \arguments{
-\item{gens}{\link[cmp_nnw_scl]{Complete non-negative whole-number scalar}
+\item{gens.}{\link[cmp_nnw_scl]{Complete non-negative whole-number scalar}
 indicating the number of generations back in the call stack in which to
 bank and/or check for error messages.}
 
@@ -71,14 +71,6 @@ checked.
 For \code{bank_when}, two named atomic scalar arguments to be error
 checked.}
 
-\item{extras}{\code{NUlL} or an \link[icmp]{complete atomic object}
-containing additional atomic values that qualify as valid.}
-
-\item{funs}{\link[cmp_chr_scl]{Complete character scalar} containing a
-\link[xxx_funs]{property function} name or multiple property function
-names separated by pipes, which are used to check if named arguments in
-code{...} satisfy the property specification in any of the function names.}
-
 \item{nas.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
 atomic scalar \code{NA} values qualify.}
 
@@ -87,14 +79,22 @@ arguments in \code{...} must be uniquely named without using blank strings.}
 
 \item{whens., values.}{\link[ipop]{Populated atomic objects}.}
 
-\item{pats}{\link[ivls]{Atomic vlist} containing multiple elements, each
+\item{pats.}{\link[ivls]{Atomic vlist} containing multiple elements, each
 of which must be a complete character mvect of the same length as the
 number of arguments in \code{...}. Each element gives a pattern of valid
 properties for the argument in \code{...} in the form of one property
 specification per argument in \code{...} in the same order of those
 arguments.}
 
-\item{x}{An ℝ object.}
+\item{x}{An R object.}
+
+\item{extras}{\code{NUlL} or an \link[icmp]{complete atomic object}
+containing additional atomic values that qualify as valid.}
+
+\item{funs}{\link[cmp_chr_scl]{Complete character scalar} containing a
+\link[xxx_funs]{property function} name or multiple property function
+names separated by pipes, which are used to check if named arguments in
+code{...} satisfy the property specification in any of the function names.}
 
 \item{xxx}{\link[cmp_chr_scl]{Complete character scalar} containing one or
 more property combos (combos are created by separating one or more
@@ -147,13 +147,13 @@ one or more \link[ppp_funs]{property functions}, separated by pipes. An
 argument passes the test if calling any one of the functions results in a
 value of \code{TRUE}.
 
-\item \code{bank_xxx()}: More flexible but less efficient than \code{bank_funs}.
+\item \code{bank_ppp()}: More flexible but less efficient than \code{bank_funs}.
 For each named argument in \code{...}, banks an error message if it does
-satisfy the \link[ixxx]{property specification} in \code{xxx}. If
-\code{na = TRUE}, arguments may also be atomic scalar \code{NA} values.
-\code{xxx} must be a character scalar containing one or more property
+satisfy the \link[ippp]{property specification} in \code{ppp}. If
+\code{nas. = TRUE}, arguments may also be atomic scalar \code{NA} values.
+\code{ppp.} must be a character scalar containing one or more property
 combos. Property combos are created by separating multiple properties from
-\code{\link{xxx_all()}}. A property combo may be a single property.
+\code{\link{ppp_all()}}. A property combo may be a single property.
 Multiple property combos are separated from each other using pipes. An
 argument satisfies the property specification if it satisfies any of the
 property combos.

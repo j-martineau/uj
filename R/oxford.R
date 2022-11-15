@@ -70,37 +70,24 @@ ox. <- function() {help("ox.", package = "uj")}
 #'   preceded by the prefix \code{pref}.
 #' @export
 ox <- function(..., conj = "and", pref = "", quote = 0) {
-  x <- list(...)
-  vn <- length(x) > 0
-  vN <- f0(!vn, T, all(lengths(x) > 0))
-  vd <- f0(!vn | !vN, T, icmp(x))
-  vc <- cmp_chr_scl(conj)
-  vp <- cmp_chr_scl(pref)
-  vq <- isIN(quote, 0:2)
-  err <- NULL
-  if (!vn) {err <- c(err, "\n • [...] is empty.")}
-  if (!vN) {err <- c(err, "\n • An argument in [...] is empty.")}
-  if (!vd) {err <- c(err, "\n • Arguments in [...] must be complete and atomic (?icmp).")}
-  if (!vc) {err <- c(err, "\n • [conj] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!vp) {err <- c(err, "\n • [pref] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!vq) {err <- c(err, "\n • [quote] must be 0, 1, or 2.")}
-  if (idef(err)) {stop(err)}
-  x <- av(x)
-  n <- length(x)
-  if (n == 1) {
-    vc <- conj != 'nor'
-    vp <- conj != "or" | pref != "either"
-    err <- NULL
-    if (!vc) {err <- c(err, "\n • [conj = 'nor'], but [...] contains only 1 atomic element.")}
-    if (!vp) {err <- c(err, "\n • [conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element.")}
-    if (idef(err)) {stop(err)}
+  vals <- av(...)
+  errs <- c(f0(length(vals) > 0 , NULL, "\n \u2022 [...] is empty."),
+            f0(icmp(vals)       , NULL, "\n \u2022 Arguments in [...] must be complete and atomic (?icmp)."),
+            f0(cmp_chr_scl(conj), NULL, "\n \u2022 [conj] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(cmp_chr_scl(pref), NULL, "\n \u2022 [pref] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(isIN(quote, 0:2) , NULL, "\n \u2022 [quote] must be 0, 1, or 2."))
+  if (idef(errs)) {stop(errs)}
+  n.vals <- length(vals)
+  if (n.vals == 1) {
+    errs <- c(f0(conj != 'nor'                  , NULL, "\n \u2022 [conj = 'nor'], but [...] contains only 1 atomic element."),
+              f0(conj != "or" | pref != "either", NULL, "\n \u2022 [conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element."))
+    if (idef(errs)) {stop(errs)}
   }
   if (pref != "") {pref <- paste0(pref, " ")}                                    # if pref(ix) is not empty, follow it with a space
-  last <- x[n]                                                                   # get the last element of X
-  if (n > 1) {                                                                   # if there is more than one element in the list
-    list <- paste0(x[1:(n - 1)], collapse = ", ")                                # : create a comma separated list with all but the last element of X
-    conj <- paste0(f0(n == 2, " ", ", "), conj, " ")                             # : if there are only 2, no additional comma to conj the last element to the list
-                                                                                 # : if there are only 2, no additional comma to conj the last element to the list
+  last <- vals[n.vals]                                                           # get the last element of X
+  if (n.vals > 1) {                                                              # if there is more than one element in the list
+    list <- paste0(vals[1:(n.vals - 1)], collapse = ", ")                        # : create a comma separated list with all but the last element of X
+    conj <- paste0(f0(n.vals == 2, " ", ", "), conj, " ")                        # : if there are only 2, no additional comma to conj the last element to the list
   } else {list <- conj <- ""}                                                    # ELSE the list of non-last elements and the conj for the last item aren't needed
   paste0(pref, list, conj, last)                                                 # put everything together
 }
@@ -108,28 +95,17 @@ ox <- function(..., conj = "and", pref = "", quote = 0) {
 #' @describeIn ox. Oxford-comma-separated list including a numeric requirement.
 #' @export
 ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, comp.first = TRUE) {
-  x <- list(...)
-  v0 <- length(x) > 0
-  vN <- f0(!v0, T, all(lengths(x) > 0))
-  vd <- f0(!v0 | !vN, T, icmp(x))
-  vj <- cmp_chr_scl(conj)
-  vc <- cmp_chr_scl(comp)
-  vq <- isIN(quote, 0:2)
-  vn <- cmp_nnw_scl(n)
-  vf <- isTF(comp.first)
-  x <- av(x)
-  err <- NULL
-  if (!v0) {err <- c(err, "\n • [...] is empty.")}
-  if (!vN) {err <- c(err, "\n • An argument in [...] is empty.")}
-  if (!vd) {err <- c(err, "\n • Arguments in [...] must be complete and atomic (?icmp).")}
-  if (!vj) {err <- c(err, "\n • [conj] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!vc) {err <- c(err, "\n • [comp] must be a non-NA character scalar (?cmp_chr_scl).")}
-  if (!vq) {err <- c(err, "\n • [quote] must be 0, 1, or 2.")}
-  if (!vn) {err <- c(err, "\n • [n] must be a non-negative whole number scalar (?cmp_nnw_scl).")}
-  if (!vf) {err <- c(err, "\n • [comp.first] must be TRUE or FALSE.")}
-  if (idef(err)) {stop(err)}
+  vals <- av(...)
+  errs <- c(f0(length(vals) > 0 , NULL, "\n \u2022 [...] is empty."),
+            f0(icmp(vals)       , NULL, "\n \u2022 Arguments in [...] must be complete and atomic (?icmp)."),
+            f0(cmp_chr_scl(conj), NULL, "\n \u2022 [conj] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(cmp_chr_scl(comp), NULL, "\n \u2022 [comp] must be a non-NA character scalar (?cmp_chr_scl)."),
+            f0(isIN(quote, 0:2) , NULL, "\n \u2022 [quote] must be 0, 1, or 2."),
+            f0(cmp_nnw_scl(n)   , NULL, "\n \u2022 [n] must be a non-negative whole number scalar (?cmp_nnw_scl)."),
+            f0(isTF(comp.first) , NULL, "\n \u2022 [comp.first] must be TRUE or FALSE."))
+  if (idef(errs)) {stop(errs)}
   pref <- f0(comp == "", paste(n, "of"), f0(comp.first, paste(n, comp, "of"), paste(comp, n, "of")))
-  ox(x, conj = conj, pref = pref, quote = quote)
+  ox(vals, conj = conj, pref = pref, quote = quote)
 }
 
 #' @describeIn ox. Oxford-comma-separated 'and' list.

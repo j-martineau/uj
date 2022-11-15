@@ -94,7 +94,7 @@ mmm_vals()
 immm(x, mmm, ...)
 }
 \arguments{
-\item{x}{An ℝ object.}
+\item{x}{An R object.}
 
 \item{mmm}{\link[cmp_chr_scl]{Complete character scalar} containing one or
 more values from \code{mmm_vals()} separated by pipes and/or underscores.
@@ -169,8 +169,8 @@ Functions related to extended mode are described in the following
 table:\tabular{ll}{
 FUNCTION          \tab WHAT THE                                           \cr
 FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i•••}       \tab Evaluates whether an object is of the extended mode
-represented by \code{•••}.                         \cr
+\code{i***}       \tab Evaluates whether an object is of the extended mode
+represented by \code{***}.                         \cr
 \code{mmm}        \tab Gets a character vector containing all extended modes
 of an object.                                      \cr
 \code{immm}       \tab Evaluates an object for a specific extended mode and
@@ -239,7 +239,7 @@ property from \code{mmm_vals()} that is applicable to \code{x}.
 values.
 
 \item \code{immm()}: Does \code{x} have the extended mode properties in
-\code{mmm}?
+\code{mmm} subject to any additional restrictions in \code{...}?
 
 }}
 \seealso{

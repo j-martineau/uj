@@ -44,35 +44,27 @@ values. <- function() {help("values.", package = "uj")}
 #'   of a specific calling function.
 #' @export
 exist <- function(name, err = T, gens = 1) {
-  vn <- cmp_chr_scl(name)
-  ve <- isTF(err)
-  vg <- cmp_psw_scl(gens)
-  err <- NULL
-  if (!vn) {err <- c(err, "\n • [name] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!ve) {err <- c(err, "\n • [err] must be TRUE or FALSE.")}
-  if (!vg) {err <- c(err, "\n • [gens] must be a positive whole number scalar (?cmp_psw_scl).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(cmp_chr_scl(name), NULL, "\n \u2022 [name] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(isTF(err)        , NULL, "\n \u2022 [err] must be TRUE or FALSE."),
+            f0(cmp_psw_scl(gens), NULL, "\n \u2022 [gens] must be a positive whole number scalar (?cmp_psw_scl)."))
+  if (idef(errs)) {stop(errs)}
   env <- parent.frame(gens + 1)
   if (exists(name, env, inherits = F)) {return(T)}
   if (!err) {return(F)}
   if (gens > 1) {targ <- c("target function (", callers(gens + 1), ") ", gens, " generations back from the ")}
   else {targ <- ""}
   call <- callers(1)
-  stop("\n • No object named [name = '", name, "'] exists in the environment of the ", targ, "calling function (", call, ").")
+  stop("\n \u2022 No object named [name = '", name, "'] exists in the environment of the ", targ, "calling function (", call, ").")
 }
 
 #' @describeIn values. get the value of an object in the environment of a
 #'   specific calling function.
 #' @export
 vget <- function(name, err = T, gens = 1) {
-  vn <- cmp_chr_scl(name)
-  ve <- isTF(err)
-  vg <- cmp_psw_scl(gens)
-  err <- NULL
-  if (!vn) {err <- c(err, "\n • [name] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!ve) {err <- c(err, "\n • [err] must be TRUE or FALSE.")}
-  if (!vg) {err <- c(err, "\n • [gens] must be a positive whole number scalar (?cmp_psw_scl).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(cmp_chr_scl(name), NULL, "\n \u2022 [name] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(isTF(err)        , NULL, "\n \u2022 [err] must be TRUE or FALSE."),
+            f0(cmp_psw_scl(gens), NULL, "\n \u2022 [gens] must be a positive whole number scalar (?cmp_psw_scl)."))
+  if (idef(errs)) {stop(errs)}
   if (!exist(name, err, gens)) {NULL}
   else {get(name, envir = parent.frame(gens + 1), inherits = F)}
 }
@@ -81,11 +73,8 @@ vget <- function(name, err = T, gens = 1) {
 #'   specific calling function.
 #' @export
 vset <- function(name, val, gens = 1) {
-  vn <- cmp_chr_scl(name)
-  vg <- cmp_psw_scl(gens)
-  err <- NULL
-  if (!vn) {err <- c(err, "\n • [name] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!vg) {err <- c(err, "\n • [gens] must be a positive whole number scalar (?cmp_psw_scl).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(cmp_chr_scl(name), NULL, "\n \u2022 [name] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(cmp_psw_scl(gens), NULL, "\n \u2022 [gens] must be a positive whole number scalar (?cmp_psw_scl)."))
+  if (idef(errs)) {stop(errs)}
   assign(name, val, envir = parent.frame(gens + 1), inherits = F)
 }

@@ -19,14 +19,10 @@ na. <- function() {help("na.", package = "uj")}
 na <- function(x) {
   if (length(x) > 0) {
     if (is.atomic(x)) {return(is.na(x))}
-    else if (is.data.frame(x)) {
-      if (all(apply(x, 2, is.atomic))) {return(apply(x, 2, is.na))}
-    }
-    if (any_vls(x)) {
-      if (all(lengths(x) > 0)) {
-        if (all(sapply(x, is.atomic(x)))) {return(all(lapply(x, is.na)))}
-  }}}
-  stop("\n • [x] must be populated (?ipop) and atomic, a populated atomic vlist (?ivls), or a populated atomic tabular (?itab).")
+    else if (is.data.frame(x)) {if (all(apply(x, 2, is.atomic))) {return(apply(x, 2, is.na))}}
+    if (ivls(x)) {if (all(lengths(x) > 0)) {if (all(sapply(x, is.atomic(x)))) {return(all(lapply(x, is.na)))}}}
+  }
+  stop("\n \u2022 [x] must be populated (?ipop) and atomic, a populated atomic vlist (?ivls), or a populated atomic tabular (?itab).")
 }
 
 #' @describeIn na. Index non-\code{NA} values of \code{x}. Returns an object
@@ -37,15 +33,10 @@ na <- function(x) {
 ok <- function(x) {
   if (length(x) > 0) {
     if (is.atomic(x)) {return(!is.na(x))}
-    else if (is.data.frame(x)) {
-      if (all(apply(x, 2, is.atomic))) {
-        return(apply(apply(x, 2, is.na), not))
-    }}
-    if (ivls(x)) {if (all(lengths(x) > 0)) {
-      if (all(sapply(x, is.atomic(x)))) {
-        return(all(lapply(lapply(x, is.na), not)))
-  }}}}
-  stop("\n • [x] must be populated (?ipop) and atomic, a populated atomic vlist (?ivls), or a populated atomic tabular (?itab).")
+    else if (is.data.frame(x)) {if (all(apply(x, 2, is.atomic))) {return(apply(apply(x, 2, is.na), not))}}
+    if (ivls(x)) {if (all(lengths(x) > 0)) {if (all(sapply(x, is.atomic(x)))) {return(all(lapply(lapply(x, is.na), not)))}}}
+  }
+  stop("\n \u2022 [x] must be populated (?ipop) and atomic, a populated atomic vlist (?ivls), or a populated atomic tabular (?itab).")
 }
 
 #' @describeIn na. Substitute \code{s} for \code{NA} values of \code{x}.
@@ -57,18 +48,18 @@ sub_na <- function(x, s) {
   if (length(x) == 0) {return(x)}
   if (is.atomic(x)) {
     if (compatible(x, s)) {x[is.na(x)] <- s; return(x)}
-    else {stop("\n • [x] and [s] are of incompatible modes (?compatible).")}
+    else {stop("\n \u2022 [x] and [s] are of incompatible modes (?compatible).")}
   } else if (is.data.frame(x)) {
     if (all(apply(x, 2, is.atomic))) {
       if (all(apply(x, 2, compatible, s))) {x[is.na(x)] <- s; return(x)}
-      else {stop("\n • [s] is incompatible (?incompatible) with one or more columns of [x].")}
-    } else {stop("\n • When [x] is a dtf (?is_dtf), its columns must be atomic.")}
-  } else if (ivls(x)) {
+      else {stop("\n \u2022 [s] is incompatible (?incompatible) with one or more columns of [x].")}
+    } else {stop("\n \u2022 When [x] is a dtf (?is_dtf), its columns must be atomic.")}
+  } else if (atm_vls(x)) {
     if (all(sapply(x, is.atomic))) {
       if (all(sapply(x, compatible, s))) {return(lapply(x, sub_na, s))}
-      else {stop("\n • [s] is incompatible (?incompatible) with one or more elements of [x].")}
-    } else {stop("\n • When [x] is a vlist (?is_vls), its elements must be atomic.")}
-  } else {stop("\n • [x] must be an atomic vlist (?ivls), atomic dtf (?idtf), or some other atomic object.")}
+      else {stop("\n \u2022 [s] is incompatible (?incompatible) with one or more elements of [x].")}
+    } else {stop("\n \u2022 When [x] is a vlist (?is_vls), its elements must be atomic.")}
+  } else {stop("\n \u2022 [x] must be an atomic vlist (?atm_vls), atomic dtf (?idtf), or some other atomic object.")}
 }
 
 #' @describeIn na. Is \code{x} an \code{NA} scalar? Returns \code{TRUE} or
@@ -98,6 +89,6 @@ rm_na <- function(x) {
     x <- av(x)
     return(x[!is.na(x)])
   }}
-  else if (ivls(x)) {if (all(sapply(x, is.atomic))) {return(lapply(x, rm_na))}}
-  stop("\n • [x] must be populated (?ipop) and either an atomic object, an atomic vlist (?ivls), or an atomic dtf (?idtf).")
+  else if (atm_vls(x)) {if (all(sapply(x, is.atomic))) {return(lapply(x, rm_na))}}
+  stop("\n \u2022 [x] must be populated (?ipop) and either an atomic object, an atomic vlist (?atm_vls), or an atomic dtf (?atm_dtf).")
 }

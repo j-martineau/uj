@@ -58,15 +58,15 @@
 #' table:\tabular{ll}{
 #' FUNCTION          \tab WHAT THE                                           \cr
 #' FORMAT            \tab FUNCTION DOES                                      \cr
-#' \code{i•••}       \tab Evaluates whether an object is of the extended mode
-#'                        represented by \code{•••}.                         \cr
+#' \code{i***}       \tab Evaluates whether an object is of the extended mode
+#'                        represented by \code{***}.                         \cr
 #' \code{mmm}        \tab Gets a character vector containing all extended modes
 #'                        of an object.                                      \cr
 #' \code{immm}       \tab Evaluates an object for a specific extended mode and
 #'                        any additional properties specified in \code{...}. \cr
 #' \code{mmm_vals}   \tab Gets a character vector of all possible extended mode
 #'                        property values.                                     }
-#' @param x An ℝ object.
+#' @param x An R object.
 #' @param mmm \link[cmp_chr_scl]{Complete character scalar} containing one or
 #'   more values from \code{mmm_vals()} separated by pipes and/or underscores.
 #'   Combinations of extended modes can be specified by separating them with
@@ -230,14 +230,14 @@ iwhl <- function(x) {if (length(x) == 0 | !is.atomic(x)) {F} else if (all(is.na(
 mmm_vals <- function() {c('ch1', 'chr', 'clr', 'evn', 'fac', 'frc', 'ind', 'lgl', 'neg', 'ngw', 'nng', 'nnw', 'nps', 'npw', 'nst', 'num', 'odd', 'ord', 'pct', 'pos', 'ppn', 'psw', 'srt', 'str', 'uno', 'whl')}
 
 #' @describeIn mmm. Does \code{x} have the extended mode properties in
-#'   \code{mmm}?
+#'   \code{mmm} subject to any additional restrictions in \code{...}?
 #' @export
 immm <- function(x, mmm, ...) {
-  if (!cmp_chr_scl(x)) {stop("\n • [mmm] must be a complete character scalar (?cmp_chr_scl).")}
-  valid <- mmm_vals()
-  combos <- strsplit(mmm, "|", fixed = T)[[1]]
-  new <- strsplit(combos, ".", fixed = T)[[1]]
-  valid <- all(new %in% valid)
-  if (!valid) {stop("\n • [mmm] contains a value not in mmm_vals(), after splitting [mmm] on pipes and underscores.")}
+  if (!cmp_chr_scl(mmm)) {stop("\n \u2022 [mmm] must be a non-NA character scalar.")}
+  valid.mmm <- ttt_vals()
+  mmm.combos <- strsplit(mmm, "|", fixed = T)[[1]]
+  new.mmm <- unlist(strsplit(mmm.combos, "_", fixed = T))
+  ok.mmm <- all(new.mmm %in% valid.mmm)
+  if (!ok.mmm) {stop("\n \u2022 [mmm = '", mmm, "'] contains a value not in [sss_vals() = c(", paste0(paste0("'", sss_vals(), "'"), collapse = ", "), ")] after splitting along pipes and underscores.")}
   ippp(x, mmm, ...)
 }

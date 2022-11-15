@@ -1,7 +1,7 @@
 #' @name x.
 #' @family extensions
 #' @title Remove various objects or characteristics.
-#' @param x An object.
+#' @param x An R object.
 #' @param ... One or more \link[cmp_chr_vec]{complete character vecs} containing
 #'   names of attributes or classes to remove.
 #' @return An object (\code{xat} and \code{xcls}) or \code{NULL} (\code{xwarn}

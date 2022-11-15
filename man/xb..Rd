@@ -16,8 +16,8 @@ cb(...)
 rb(...)
 }
 \arguments{
-\item{...}{Either atomic matrices compatible for binding or atomic dtfs
-compatible for binding (see \code{\link{compatible}}).}
+\item{...}{Multiple \code{\link{compatible}} atomic matrices or multiple
+compatible \link[idtf]{atomic data.frames}.}
 
 \item{bind}{\link[ch1_scl]{Onechar scalar} indicating how to bind: \code{'r'}
 for row binding, \code{'c'} for column-binding, \code{NA} to identify
@@ -28,17 +28,17 @@ successful.}
 An \code{\link[idtf]{atomic dtf}} or an atomic matrix.
 }
 \description{
-Requires all arguments in \code{...} to be either (a)
-\code{\link{compatible}} atomic matrices or (b) \code{\link{compatible}}
-\code{link[idts]{atomic dfs}}. If \code{bind. = NA}, \code{xb} attempts to
-row bind and column bind arguments in \code{...}. If both are successful,
-processes an error indicating ambiguous dimension for binding. If neither
-is successful, processes an associated error. Otherwise, returns the result
-that was successful.
+Row and/or column binds arguments in \code{...}. Requires all
+arguments in \code{...} to be \code{\link{compatible}} atomic matrices or
+\link[idtf]{atomic data.frames}.
 }
 \section{Functions}{
 \itemize{
-\item \code{xb()}: Column bind an arbitrary number of matrices or data frames.
+\item \code{xb()}: Column or row bind arguments in \code{...}. If \code{bind =
+  NA}, \code{xb} attempts to both row and column bind arguments in
+\code{...}. If both are successful, processes an error indicating ambiguous
+dimension for binding. If neither is successful, processes an associated
+error. Otherwise, returns the result that was successful.
 
 \item \code{cb()}: Column bind an arbitrary number of matrices or data frames.
 

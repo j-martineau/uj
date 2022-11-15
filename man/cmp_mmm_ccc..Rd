@@ -634,7 +634,7 @@ cmp_whl_scl(x)
 cmp_whl_vec(x)
 }
 \arguments{
-\item{x}{An ℝ object.}
+\item{x}{An R object.}
 }
 \value{
 \code{TRUE} or \code{FALSE} except for \code{cmp_mmm_ccc_vals}, which

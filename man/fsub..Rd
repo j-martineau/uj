@@ -32,7 +32,6 @@ Other strings:
 \code{\link{blank.}()},
 \code{\link{charn.}()},
 \code{\link{delim.}()},
-\code{\link{has_pat.}()},
 \code{\link{ipat.}()},
 \code{\link{max_nch.}()},
 \code{\link{mkstr.}()},

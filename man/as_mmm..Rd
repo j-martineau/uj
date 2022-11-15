@@ -43,7 +43,7 @@ Coerce to base mode or extended mode.
 }
 \section{Functions}{
 \itemize{
-\item \code{as_clr()}: Coerce a valid ℝ color representation to hexadecimal
+\item \code{as_clr()}: Coerce a valid R color representation to hexadecimal
 RGB character representation.
 
 \item \code{as_fun()}: Return \code{x} if it is a function, otherwise, search

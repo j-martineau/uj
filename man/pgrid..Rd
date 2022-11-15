@@ -8,9 +8,9 @@
 \usage{
 pgrid.()
 
-pgrid(..., p. = " ", ch. = F, add.blank. = F)
+pgrid(..., p. = " ", ch. = F, blank. = F, na.err. = T)
 
-pgrid0(..., ch. = F, add.blank. = F)
+pgrid0(..., ch. = F, blank. = F, na.err. = T)
 }
 \arguments{
 \item{...}{Non-empty atomic objects.}
@@ -18,12 +18,11 @@ pgrid0(..., ch. = F, add.blank. = F)
 \item{p.}{\link[cmp_chr_scl]{Complete character scalar} to use as the
 'paste'.}
 
-\item{ch.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
-split arguments in \code{...} into constituent characters after conversion
-to mode 'character'.}
-
-\item{add.blank.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating
-whether to add a blank ("") to each argument in \code{...}.}
+\item{ch., blank., na.err.}{\link[cmp_lgl_scl]{Complete logical scalars}
+indicating, respectively, whether to split arguments in \code{...} into
+constituent characters after conversion to mode 'character', whether to add
+a blank string element to each argument in \code{...}, and whether to throw
+an error if an argument in \code{...} contains an \code{NA} value.}
 }
 \value{
 A character vector.
@@ -50,7 +49,6 @@ Other strings:
 \code{\link{charn.}()},
 \code{\link{delim.}()},
 \code{\link{fsub.}()},
-\code{\link{has_pat.}()},
 \code{\link{ipat.}()},
 \code{\link{max_nch.}()},
 \code{\link{mkstr.}()},

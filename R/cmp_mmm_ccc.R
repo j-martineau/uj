@@ -3,7 +3,7 @@
 #' @title Completeness plus extended mode plus extended class properties
 #' @description Combinations of \link[icmp]{completeness}, \link[mmm]{extended
 #'   mode}, and \link[ccc]{extended class}.
-#' @param x An ℝ object.
+#' @param x An R object.
 #' @return \code{TRUE} or \code{FALSE} except for \code{cmp_mmm_ccc_vals}, which
 #'   returns a character vector.
 #' @export
@@ -14,7 +14,7 @@ cmp_mmm_ccc. <- function() {help("cmp_mmm_ccc.", package = "uj")}
 #' @export
 cmp_mmm_ccc_vals <- function() {
   join <- function(x) {paste0(av(x), collapse = "_")}
-  out <- av(apply(expand.grid(ttt = uj::mmm_vals(), ccc = uj::ccc_vals()), 1, join))
+  out <- av(apply(expand.grid(mmm = mmm_vals(), ccc = ccc_vals()), 1, join))
   paste0("cmp_", out)
 }
 

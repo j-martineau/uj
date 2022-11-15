@@ -33,16 +33,13 @@ make. <- function() {help("make.", package = "uj")}
 vec <- function(..., r. = 1, vn. = NULL) {
   x <- av(...)
   if (length(x) == 0 | isEQ(r., 0)) {x <- vector()}
-  vr <- cmp_nnw_scl(r.)
-  vn <- f0(inll(vn.), T, cmp_chr_vec(vn.))
-  err <- NULL
-  if (!vr) {err <- c(err, "\n • [r.] must be a non-negative whole-number scalar (?cmp_nnw_scl).")}
-  if (!vn) {err <- c(err, "\n • [vn.] must be NULL or a complete character vec (?cmp_chr_vec).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(cmp_nnw_scl(r.), NULL, "\n \u2022 [r.] must be a non-negative whole-number scalar (?cmp_nnw_scl)."),
+            f0(inll(vn.) | cmp_chr_vec(vn.), NULL, "\n \u2022 [vn.] must be NULL or a complete character vec (?cmp_chr_vec)." ))
+  if (idef(errs)) {stop(errs)}
   if (r. > 1) {x <- rep.int(x, r.)}
   if (idef(vn.)) {
     vn. <- ssP(vn.)
-    if (length(x) != length(vn.)) {stop("\n • [vn.] must be the same length as the resulting vector.")}
+    if (length(x) != length(vn.)) {stop("\n \u2022 [vn.] must be the same length as the vector resulting from atomizing (?av) [...].")}
     names(x) <- vn.
   }
   x
@@ -73,38 +70,36 @@ vec_na <- function(r.) {vec(NA, r. = r.)}
 mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
   av <- av(...)
   if (length(av) == 0) {x <- NA} else {x <- av}
-  vnr <- f0(inll(nr.), T, cmp_nnw_scl(nr.))
-  vnc <- f0(inll(nc.), T, cmp_nnw_scl(nc.))
-  vbr <- isTF(br.)
-  vrn <- f0(inll(rn.), T, cmp_chr_vec(rn.))
-  vcn <- f0(inll(cn.), T, cmp_chr_vec(cn.))
-  err <- NULL
-  if (!vnr) {err <- c(err, "\n • [nr.] must be NULL or a non-negative whole number scalar (?cmp_nnw_scl).")}
-  if (!vnc) {err <- c(err, "\n • [nc.] must be NULL or a non-negative whole number scalar (?cmp_nnw_scl).")}
-  if (!vbr) {err <- c(err, "\n • [br.] must be TRUE or FALSE.")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(inll(nr.) | cmp_nnw_scl(nr.), NULL, "\n \u2022 [nr.] must be NULL or a non-negative whole number scalar (?cmp_nnw_scl)."),
+            f0(inll(nc.) | cmp_nnw_scl(nc.), NULL, "\n \u2022 [nc.] must be NULL or a non-negative whole number scalar (?cmp_nnw_scl)."),
+            f0(isTF(br.)                   , NULL, "\n \u2022 [br.] must be TRUE or FALSE."),
+            f0(inll(rn.) | cmp_chr_vec(rn.), NULL, "\n \u2022 [rn.] must be NULL or a complete character vector (?cmp_chr_vec)."),
+            f0(inll(cn.) | cmp_chr_vec(cn.), NULL, "\n \u2022 [cn.] must be NULL or a complete character vector (?cmp_chr_vec)."))
+  if (idef(errs)) {stop(errs)}
   if  (is.null(nr.) & is.null(nc.)) {nr0 <- 1; nc0 <- length(av)}
   else if (is.null(nr.)) {nc0 <- nc.; nr0 <- length(av) / nc.}
   else if (is.null(nc.)) {nr0 <- nr.; nc0 <- length(av) / nr.}
   rn. <- av(strsplit(rn., "|", fixed = T))
   cn. <- av(strsplit(cn., "|", fixed = T))
-  vrc <- round(nr0) == nr0 & round(nc0) == nc0 & nr0 * nc0 == length(av)
-  vrn <- f0(inll(rn.), T, f0(!vrc, T, length(rn.) == nr0))
-  vcn <- f0(inll(cn.), T, f0(!vrc, T, length(cn.) == nc0))
-  if (vrn & vcn) {
+  ok.ns <- round(nr0) == nr0 & round(nc0) == nc0 & nr0 * nc0 == length(av)
+  ok.rn <- f0(inll(rn.), T, f0(!ok.ns, T, length(rn.) == nr0))
+  ok.cn <- f0(inll(cn.), T, f0(!ok.ns, T, length(cn.) == nc0))
+  if (ok.rn & ok.cn) {
     nt <- nr. * nc.
-    if (nt > 0) {vrp <- (nt / length(x)) == round(nt / length(x))}
-    else {vrp <- length(x) == 0}
+    if (nt > 0) {ok.reps <- (nt / length(x)) == round(nt / length(x))}
+    else {ok.reps <- length(x) == 0}
   }
-  else {vrp <- T}
-  if (!vrc) {
-    if (inll(nr.)) {err <- c(err, "\n • [nc.] is not a divisor of length(av(...))." )}
-    else if (inll(nc.)) {err <- c(err, "\n • [nr.] is not a divisor of length(av(...))." )}
-    else {err <- c(err, "\n • [nr. * nc.] does not equal length(av(...)).")}
-  }
-  if (!vrn) {err <- c(err, "\n • [rn.] must be NULL or a complete vect of length equal to the number of resulting rows.")}
-  if (!vcn) {err <- c(err, "\n • [cn.] must be NULL or a complete vect of length equal to the number of resulting columns.")}
-  if (idef(err)) {stop(err)}
+  else {ok.reps <- T}
+  errs <- NULL
+  if (!ok.ns) {
+    errs <- c(f0(inll(nr.), NULL, "\n \u2022 [nc.] is not a divisor of length(av(...))." ),
+              f0(inll(nc.), NULL, "\n \u2022 [nr.] is not a divisor of length(av(...))." ),
+              f0(idef(nr.) & idef(nc.), NULL, "\n \u2022 [nr. * nc.] does not equal length(av(...))."))
+  } else {errs <- NULL}
+  errs <- c(errs,
+            f0(ok.rn, NULL, "\n \u2022 [rn.] must be NULL or a complete vect of length equal to the number of resulting rows."),
+            f0(ok.cn, NULL, "\n \u2022 [cn.] must be NULL or a complete vect of length equal to the number of resulting columns."))
+  if (idef(errs)) {stop(errs)}
   x <- matrix(av, nrow = nr., ncol = nc., byrow = br.)
   rownames(x) <- rn.
   colnames(x) <- cn.
@@ -115,7 +110,7 @@ mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
 #'   with names from \code{cn.}, which may be pipe delimited.
 #' @export
 dtf0 <- function(cn) {
-  if (!cmp_chr_vec(cn)) {stop("\n • [cn] must be a complete character vector (?cmp_chr_vec).")}
+  if (!cmp_chr_vec(cn)) {stop("\n \u2022 [cn] must be a complete character vector (?cmp_chr_vec).")}
   cn <- av(strsplit(cn, "|", fixed = T))
   cmd <- paste0("tibble::tibble(", paste0(paste0(cn, " = NA"), collapse = ", "), ", .rows = 0")
   run(cmd)
@@ -126,12 +121,9 @@ dtf0 <- function(cn) {
 #'   of the resulting tibble are populated with \code{NA}. values.
 #' @export
 dtf_na <- function(cn, nr) {
-  vc <- cmp_chr_vec(cn)
-  vn <- cmp_psw_scl(nr)
-  err <- NULL
-  if (!vc) {err <- c(err, "\n • [cn] must be a complete character vector (?cmp_chr_vec).")}
-  if (!vn) {err <- c(err, "\n • [nr] must be NULL or a positive whole number scalar (?cmp_psw_scl).")}
-  if (!inll(err)) {stop(err)}
+  errs <- c(f0(cmp_chr_vec(cn), NULL, "\n \u2022 [cn] must be a complete character vector (?cmp_chr_vec)."),
+            f0(cmp_psw_scl(nr), NULL, "\n \u2022 [nr] must be NULL or a positive whole number scalar (?cmp_psw_scl)."))
+  if (idef(errs)) {stop(errs)}
   val <- rep.int(NA, nr)
   cn <- av(strsplit(cn, "|", fixed = T))
   cmd <- paste0("tibble::tibble(", paste0(paste0(cn, " = val"), collapse = ", "), ")")
@@ -143,26 +135,25 @@ dtf_na <- function(cn, nr) {
 #'   plus optional column names to replace any names of arguments in \code{...}.
 #' @export
 dtf <- function(..., cn. = NULL) {
-  x <- list(...)
   cn. <- f0(cmp_chr_vec(cn.), ss(cn.), cn.)
-  n <- length(x)
-  ns <- lengths(x)
-  mxn <- max(ns)
-  v0 <- ...length() > 0
-  vns <- f0(!v0, T, all(lengths(x.) %in% ns))
-  vxv <- f0(!v0 | !vns, T, all(sapply(x., ivec)))
-  vxr <- f0(n == 0, F, f0(any(n == 0), F, all(mxn / ns == round(mxn / ns))))
-  vcn <- f0(inll(cn.), T, f0(!cmp_chr_vec(cn.), F, length(cn.) == n))
-  err <- NULL
-  if (!v0) {err <- c(err, "\n • [...] is empty.")}
-  if (!vns) {err <- c(err, "\n • [...] contains an empty argument.")}
-  if (!vxv) {err <- c(err, "\n • Arguments in [...] must be atomic vecs (?ivec).")}
-  if (!vxr) {err <- c(err, "\n • Arguments in [...] are not recyclable .")}
-  if (!vcn) {err <- c(err, "\n • [cn.] must be NULL or match the number of arguments in [...].")}
-  if (idef(err)) {stop(err)}
-  x <- tibble::tibble(...)
-  if (idef(cn.)) {colnames(x) <- cn.}
-  x
+  dots <- list(...)
+  n.dots <- length(dots)
+  dot.ns <- lengths(dots)
+  max.n <- max(dot.ns)
+  ok.0 <- n.dots > 0
+  ok.ns <- f0(!ok.0, T, all(dot.ns > 0))
+  ok.vec <- f0(!ok.0 | !ok.ns, T, all(sapply(dots, ivec)))
+  ok.reps <- f0(n.dots == 0, F, f0(any(n.dots == 0), F, all(max.n / dot.ns == round(max.n / dot.ns))))
+  ok.cn <- f0(inll(cn.), T, f0(!cmp_chr_vec(cn.), F, length(cn.) == n.dots))
+  errs <- c(f0(ok.0   , NULL, "\n \u2022 [...] is empty."),
+            f0(ok.ns  , NULL, "\n \u2022 [...] contains an empty argument."),
+            f0(ok.vec , NULL, "\n \u2022 Arguments in [...] must be atomic vecs (?ivec)."),
+            f0(ok.reps, NULL, "\n \u2022 Arguments in [...] are not recyclable ."),
+            f0(ok.cn  , NULL, "\n \u2022 [cn.] must be NULL or match the number of arguments in [...]."))
+  if (idef(errs)) {stop(errs)}
+  out <- tibble::tibble(...)
+  if (idef(cn.)) {colnames(out) <- cn.}
+  out
 }
 
 #' @describeIn make. Creates an atomic \link[ivls]{vlist} from the arguments in
@@ -170,17 +161,15 @@ dtf <- function(..., cn. = NULL) {
 #'   \code{...}.
 #' @export
 vls <- function(..., en. = NULL) {
-  x <- list(...)
   en. <- f0(cmp_chr_vec(en.), av(strsplit(en., "|", fixed = T)), en.)
-  n <- length(x)
-  v0 <- ...length() > 0
-  vn <- f0(inll(en.), T, f0(!cmp_chr_vec(en.), F, length(en.) == n))
-  err <- NULL
-  if (!v0) {err <- c(err, "\n • [...] is empty.")}
-  if (!vn) {err <- c(err, "\n • [en.] must be NULL or match the number of arguments in [...].")}
-  if (idef(err)) {stop(err)}
-  if (idef(en.)) {names(x) <- en.}
-  x
+  dots <- list(...)
+  n.dots <- length(dots)
+  ok.en <- f0(inll(en.), T, f0(!cmp_chr_vec(en.), F, length(en.) == n.dots))
+  errs <- c(f0(n.dots > 0, NULL, "\n \u2022 [...] is empty."),
+            f0(ok.en     , NULL, "\n \u2022 [en.] must be NULL or match the number of arguments in [...]."))
+  if (idef(errs)) {stop(errs)}
+  if (idef(en.)) {names(dots) <- en.}
+  dots
 }
 
 #' @describeIn make. Creates a named \link[ivls]{atomic vlist} by taking the
@@ -201,15 +190,15 @@ vls. <- function(...) {
 #'   (\code{""}). For all others, off diagonals are \code{NA}.
 #' @export
 diag. <- function(x = 1, r = 1) {
-  vx <- inum(x) | ilgl(x) | ichr(x)
-  vr <- cmp_psw_scl(r)
-  vR <- f0(length(x) > 1, T, f0(vr, T, r > 1))
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [x] must be an numeric, logical, or character.")}
-  if (!vr) {err <- c(err, "\n • [r] must a positive whole-number scalar (?cmp_psw_scl).")}
-  if (!vR) {err <- c(err, "\n • Neither [length(x)] nor [r] is greater than 1.")}
-  if (idef(err)) {stop(err)}
-  nr <- nrow(x); nc <- ncol(x)
+  ok.x <- inum(x) | ilgl(x) | ichr(x)
+  ok.r <- cmp_psw_scl(r)
+  ok.ge1 <- f0(length(x) > 1, T, f0(ok.r, T, r > 1))
+  errs <- c(f0(ok.x  , NULL, "\n \u2022 [x] must be an numeric, logical, or character."),
+            f0(ok.r  , NULL, "\n \u2022 [r] must a positive whole-number scalar (?cmp_psw_scl)."),
+            f0(ok.ge1, NULL, "\n \u2022 Neither [length(x)] nor [r] is greater than 1."))
+  if (idef(errs)) {stop(errs)}
+  nr <- nrow(x)
+  nc <- ncol(x)
   if (is.matrix(x)) {if (nr > 0 & nr == nc) {x <- diag(x, nr, nc)}}
   x <- av(x)
   if (r > 1) {x <- rep(x, r)}

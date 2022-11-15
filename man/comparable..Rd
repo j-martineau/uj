@@ -20,16 +20,11 @@ whether arguments in \code{...} must be recyclable to be comparable.}
 A logical scalar.
 }
 \description{
-Are objects comparable?
+Determines whether modes of all arguments in \code{...} are
+comparable (i.e., sortable and compatible with each other), meaning that
+the are either all character, all logical, all numeric, or all ordered
+factor with the same set of levels (in the same order).
 }
-\section{Functions}{
-\itemize{
-\item \code{comparable()}: Determines whether modes of all arguments in
-\code{...} are comparable (i.e., sortable and compatible with each other),
-meaning that all are character, logical, numeric, or ordered factor with
-the same set of levels (in the same order).
-
-}}
 \seealso{
 Other props: 
 \code{\link{as_mmm.}()},

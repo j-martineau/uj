@@ -21,8 +21,8 @@
 #' table:\tabular{ll}{
 #' FUNCTION          \tab WHAT THE                                           \cr
 #' FORMAT            \tab FUNCTION DOES                                      \cr
-#' \code{i•••}       \tab Evaluates whether an object is of the fundamental type
-#'                        completeness represented by \code{•••}.            \cr
+#' \code{i***}       \tab Evaluates whether an object is of the fundamental type
+#'                        represented by \code{***}.                         \cr
 #' \code{ttt}        \tab Gets a character vector containing all fundamental
 #'                        type properties of an object.                      \cr
 #' \code{ittt}       \tab Evaluates an object for a specific fundamental type
@@ -51,7 +51,13 @@ ttt. <- function() {help("ttt.", package = "uj")}
 #' @describeIn ttt. Get a character vector of all fundamental type properties
 #'   applicable to \code{x}.
 #' @export
-ttt <- function(x) {c(f0(is.atomic(x), 'atm', NULL), f0(is.null(x), 'nll', 'def'), f0(0 < length(x), 'pop', 'nil'), f0(is.recursive(x), 'rcr', NULL), f0(is.function(x), 'fun', f0(!isERR(match.fun(x)), 'fun', NULL)))}
+ttt <- function(x) {
+  c(f0(   is.atomic(x), 'atm', NULL ),
+    f0(     is.null(x), 'nll', 'def'),
+    f0(  0 < length(x), 'pop', 'nil'),
+    f0(is.recursive(x), 'rcr', NULL ),
+    f0( is.function(x), 'fun', f0(!isERR(match.fun(x)), 'fun', NULL)))
+}
 
 #' @describeIn ttt. Is \code{x} atomic (regardless of length)?
 #' @export
@@ -91,11 +97,11 @@ ttt_vals <- function() {c('atm', 'def', 'fun', 'nil', 'nll', 'pop', 'rcr')}
 #'   \code{...}.
 #' @export
 ittt <- function(x, ttt, ...) {
-  if (!cmp_chr_scl(ttt)) {stop("\n • [ttt] must be a non-NA character scalar.")}
-  valid <- ttt_vals()
-  combos <- strsplit(ttt, "|", fixed = T)[[1]]
-  newttt <- unlist(strsplit(combos, ".", fixed = T))
-  valid <- all(newttt %in% valid)
-  if (!valid) {stop("\n • [ttt] contains a value not in ttt_vals() after splitting [ttt] along pipes and underscores.")}
+  if (!cmp_chr_scl(ttt)) {stop("\n \u2022 [ttt] must be a non-NA character scalar.")}
+  valid.ttt <- ttt_vals()
+  ttt.combos <- strsplit(ttt, "|", fixed = T)[[1]]
+  new.ttt <- unlist(strsplit(ttt.combos, "_", fixed = T))
+  ok.ttt <- all(new.ttt %in% valid.ttt)
+  if (!ok.ttt) {stop("\n \u2022 [ttt = '", ttt, "'] contains a value not in [ttt_vals() = c(", paste0(paste0("'", ttt_vals(), "'"), collapse = ", "), ")] after splitting along pipes and underscores.")}
   ippp(x, ttt, ...)
 }

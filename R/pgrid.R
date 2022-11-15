@@ -4,11 +4,11 @@
 #' @param ... Non-empty atomic objects.
 #' @param p. \link[cmp_chr_scl]{Complete character scalar} to use as the
 #'   'paste'.
-#' @param ch. \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
-#'   split arguments in \code{...} into constituent characters after conversion
-#'   to mode 'character'.
-#' @param add.blank. \link[cmp_lgl_scl]{Complete logical scalar} indicating
-#'   whether to add a blank ("") to each argument in \code{...}.
+#' @param ch.,blank.,na.err. \link[cmp_lgl_scl]{Complete logical scalars}
+#'   indicating, respectively, whether to split arguments in \code{...} into
+#'   constituent characters after conversion to mode 'character', whether to add
+#'   a blank string element to each argument in \code{...}, and whether to throw
+#'   an error if an argument in \code{...} contains an \code{NA} value.
 #' @return A character vector.
 #' @export
 pgrid. <- function() {help("pgrid.", package = "uj")}
@@ -21,33 +21,24 @@ pgrid. <- function() {help("pgrid.", package = "uj")}
 #'   element of the result is from \code{...1}, the second from \code{..2}, and
 #'   so on.
 #' @export
-pgrid <- function(..., p. = " ", ch. = F, add.blank. = F) {
-  x <- list(...)
-  vn <- length(x.) > 0
-  vN <- f0(vn, all(lengths(x.) > 0), T)
-  vd <- f0(vn & vN, all(sapply(x, is.atomic)), T)
-  vp <- cmp_chr_scl(p.)
-  vc <- isTF(ch.)
-  va <- isTF(add.blank.)
-  err <- NULL
-  if (!vn) {err <- c(err, "\n • [...] is empty.")}
-  if (!vN) {err <- c(err, "\n • [...] contains an empty element.")}
-  if (!vd) {err <- c(err, "\n • Arguments in [...] must be atomic.")}
-  if (!vp) {err <- c(err, "\n • [p.] must be a character scalar.")}
-  if (!vc) {err <- c(err, "\n • [ch.] must be TRUE or FALSE.")}
-  if (!va) {err <- c(err, "\n • [add.blank.] must be TRUE or FALSE.")}
-  if (idef(err)) {stop(err)}
-  x <- sapply(x, as.character)
-  x <- sapply(x, unlist, T, F)
-  if (ch.) {x <- sapply(x, ch)}
-  if (add.blank.) {x <- sapply(x, c, "")}
-  call <- paste0("x[[", 1:length(x), "]]")
+pgrid <- function(..., p. = " ", ch. = F, blank. = F, na.err. = T) {
+  dots <- list(...)
+  errs <- c(f0(length(dots) > 0                     , NULL, "\n \u2022 [...] is empty."),
+            f0(all(sapply(dots, cmp_vec))           , NULL, "\n \u2022 All arguments in [...] must be complete atomic vecs."),
+            f0(all(sapply(dots, length) > 0)        , NULL, "\n \u2022 [...] contains an empty element."),
+            f0(cmp_chr_scl(p.)                      , NULL, "\n \u2022 [p.] must be a complete character scalar."),
+            f0(isTF(ch.)                            , NULL, "\n \u2022 [ch.] must be TRUE or FALSE."),
+            f0(isTF(blank.)                         , NULL, "\n \u2022 [blank.] must be TRUE or FALSE."),
+            f0(isTF(na.err.)                        , NULL, "\n \u2022 [na.err.] must be TRUE or FALSE."),
+            f0(!isT(na.err.) | !any(is.na(av(dots))), NULL, "\n \u2022 Arguments in [...] may not contain [NA] values when [na.err. = TRUE]."))
+  if (idef(errs)) {stop(errs)}
+  call <- paste0("dots[[", 1:length(dots), "]]")
   call <- paste0(call, collapse = ", ")
   call <- paste0("expand.grid(", call, ", stringsAsFactors = F)")
-  x <- run(call)
-  av(apply(x, 2, paste, sep = p.))
+  out <- run(call)
+  av(apply(out, 2, paste, sep = p.))
 }
 
 #' @describeIn pgrid. Call \code{pgrid} with \code{p. = ""} (a blank string).
 #' @export
-pgrid0 <- function(..., ch. = F, add.blank. = F) {pgrid(..., p. = "", ch. = ch., add.blank. = add.blank.)}
+pgrid0 <- function(..., ch. = F, blank. = F, na.err. = T) {pgrid(..., p. = "", ch. = ch., blank. = blank., na.err. = na.err.)}

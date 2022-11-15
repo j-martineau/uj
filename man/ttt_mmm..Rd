@@ -334,7 +334,7 @@ rcr_uno(x)
 rcr_whl(x)
 }
 \arguments{
-\item{x}{An ℝ object.}
+\item{x}{An R object.}
 }
 \value{
 Logical scalar.

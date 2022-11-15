@@ -1,4 +1,11 @@
-.check_ok <- function(x, ppp = 'lgl', last = F) {if (!run(paste0(xxx, "(x)"))) {bank_err("[x] must be ", define_ppp_combo(ppp), ".", gens = 1)}; if (last) {err_check(1)}; NULL}
+.conform <- function(...) {
+  x <- list(...)
+  ns <- lengths(x)
+  if (all(sapply(x, atm_vec))) {all(ns %in% c(1, max(ns)))}
+  else if (all(sapply(x, is.atomic))) {length(unique(sapply(lapply(x, dim), paste0, collapse = "."))) == 1}
+}
+
+.cmp_lgl <- function(...) {all(sapply(list(...), cmp_lgl))}
 
 #' @name logicals.
 #' @family logicals
@@ -41,10 +48,9 @@ logicals. <- function() {help("logicals.", package = "uj")}
 #' @describeIn logicals. Wrapper for \code{!x} with error checking.
 #' @export
 not <- function(x, na = 'err') {
-  vn <- f0(isLG(na), T, isEQ(na, 'err'))
-  if (!vn) {stop("\n • [na] must be TRUE, FALSE, NA, or 'err'.")}
-  p <- f0(isEQ(na, 'err'), "cmp_lgl", 'lgl')
-  .check_ok(x, p, T)
+  errs <- c(f0(cmp_lgl(x), NULL, "\n \u2022 [x] must be a complete logical object (?cmp_lgl)."),
+            f0(isLG(na) | isEQ(na, 'err'), NULL, "\n \u2022 [na] must be TRUE, FALSE, NA, or 'err'."))
+  if (idef(errs)) {stop(errs)}
   if (isTF(na)) {x[is.na(x)] <- na}
   !x
 }
@@ -52,11 +58,11 @@ not <- function(x, na = 'err') {
 #' @describeIn logicals. Wrapper for \code{x & y} with error checking.
 #' @export
 and <- function(x, y, na = 'err') {
-  vn <- f0(isLG(na), T, isEQ(na, 'err'))
-  if (!vn) {stop("\n • [na] must be TRUE, FALSE, NA, or 'err'.")}
-  p <- f0(isEQ(na, 'err'), "cmp_lgl", 'lgl')
-  .check_ok(x, p)
-  .check_ok(y, p, T)
+  errs <- c(f0(cmp_lgl(x), NULL, "\n \u2022 [x] must be a complete logical object (?cmp_lgl)."),
+            f0(cmp_lgl(y), NULL, "\n \u2022 [y] must be a complete logical object (?cmp_lgl)."),
+            f0(.conform(x, y), NULL, "\n \u2022 [x] and y must be conformable."),
+            f0(isLG(na) | isEQ(na, 'err'), NULL, "\n \u2022 [na] must be TRUE, FALSE, NA, or 'err'."))
+  if (idef(errs)) {stop(errs)}
   if (isTF(na)) {x[is.na(x)] <- na; y[is.na(x)] <- na}
   x & y
 }
@@ -64,11 +70,11 @@ and <- function(x, y, na = 'err') {
 #' @describeIn logicals. Wrapper for \code{x | y} with error checking.
 #' @export
 or <- function(x, y, na = 'err') {
-  vn <- f0(isLG(na), T, isEQ(na, 'err'))
-  if (!vn) {stop("\n • [na] must be TRUE, FALSE, NA, or 'err'.")}
-  p <- f0(isEQ(na, 'err'), "cmp_lgl", 'lgl')
-  .check_ok(x, p)
-  .check_ok(y, p, T)
+  errs <- c(f0(cmp_lgl(x), NULL, "\n \u2022 [x] must be a complete logical object (?cmp_lgl)."),
+            f0(cmp_lgl(y), NULL, "\n \u2022 [y] must be a complete logical object (?cmp_lgl)."),
+            f0(.conform(x, y), NULL, "\n \u2022 [x] and y must be conformable."),
+            f0(isLG(na) | isEQ(na, 'err'), NULL, "\n \u2022 [na] must be TRUE, FALSE, NA, or 'err'."))
+  if (idef(errs)) {stop(errs)}
   if (isTF(na)) {x[is.na(x)] <- na; y[is.na(x)] <- na}
   x | y
 }
@@ -78,11 +84,11 @@ or <- function(x, y, na = 'err') {
 #'   evaluates whether the number of \code{TRUE} arguments is 1.
 #' @export
 one <- function(x, y, na = 'err') {
-  vn <- f0(isLG(na), T, isEQ(na, 'err'))
-  if (!vn) {stop("\n • [na] must be TRUE, FALSE, NA, or 'err'.")}
-  p <- f0(isEQ(na, 'err'), "cmp_lgl", 'lgl')
-  .check_ok(x, p)
-  .check_ok(y, p, T)
+  errs <- c(f0(cmp_lgl(x), NULL, "\n \u2022 [x] must be a complete logical object (?cmp_lgl)."),
+            f0(cmp_lgl(y), NULL, "\n \u2022 [y] must be a complete logical object (?cmp_lgl)."),
+            f0(.conform(x, y), NULL, "\n \u2022 [x] and y must be conformable."),
+            f0(isLG(na) | isEQ(na, 'err'), NULL, "\n \u2022 [na] must be TRUE, FALSE, NA, or 'err'."))
+  if (idef(errs)) {stop(errs)}
   if (isTF(na)) {x[is.na(x)] <- na; y[is.na(x)] <- na}
   xor(x, y)
 }
@@ -93,27 +99,26 @@ one <- function(x, y, na = 'err') {
 #'   value of \code{na} if the value of \code{x} is \code{NA}.
 #' @export
 TEST <- function(x, na = FALSE, err = NA) {
-  vn <- isTF(na)
-  ve <- f0(isLG(err), T, isEQ(err, 'err'))
-  err <- NULL
-  if (!vn) {err <- c(err, "\n • [na] must be TRUE or FALSE.")}
-  if (!ve) {err <- c(err, "\n • [err] must be TRUE, FALSE, NA, or 'err'.")}
-  if (idef(err)) {stop(err)}
-  vx <- lgl_scl(x)
-  if (!vx & !isLG(err)) {stop("\n • [x] is not a logical scalar.")} else if (!vx) {err} else if (is.na(x)) {na} else {x}
+  errs <- c(f0(isTF(na), NULL, "\n \u2022 [na] must be TRUE or FALSE."),
+            f0(isLG(err) | isEQ(err, 'err'), NULL, "\n \u2022 [err] must be TRUE, FALSE, NA, or 'err'."))
+  if (idef(errs)) {stop(errs)}
+  if (!lgl_scl(x) & !isLG(err)) {stop("\n \u2022 [x] is not a logical scalar.")} else if (!lgl_scl(x)) {err} else if (is.na(x)) {na} else {x}
 }
 
 #' @describeIn logicals. Returns \code{TRUE} as soon as a \code{TRUE} argument
 #'   is encountered. If none are encountered, return \code{FALSE}.
 #' @export
 ANY <- function(..., err = NA) {
-  if (!isLG(err)) {stop("\n • [err] must be TRUE, FALSE, or na")}
+  errs <- c(f0(.cmp_lgl(...), NULL, "\n \u2022 All arguments in [...] must be complete logical objects (?cmp_lgl)."),
+            f0(.conform(...), NULL, "\n \u2022 All arguments in [...] must be conformable."),
+            f0(isLG(err) | isEQ(err, 'na'), NULL, "\n \u2022 [err] must be TRUE, FALSE, NA, or 'na'."))
+  if (idef(errs)) {stop(errs)}
   for (i in 1:...length()) {
     x <- tryCatch(...elt(i) == T, error = function(e) NA, finally = NULL)
     vx <- cmp_lgl_scl(x)
     if (!vx) {
       if (isTF(err)) {x <- err}
-      else {stop("\n • [..", i, "] did not resolve to TRUE or FALSE.")}
+      else {stop("\n \u2022 [..", i, "] did not resolve to TRUE or FALSE.")}
     }
     if (x) {return(T)}
   }
@@ -124,11 +129,14 @@ ANY <- function(..., err = NA) {
 #'   argument is encountered. If none are encountered, return \code{TRUE}.
 #' @export
 ALL <- function(..., err = NA) {
-  if (!isLG(err)) {stop("\n • [err] must be TRUE, FALSE, or na")}
+  errs <- c(f0(.cmp_lgl(...), NULL, "\n \u2022 All arguments in [...] must be complete logical objects (?cmp_lgl)."),
+            f0(.conform(...), NULL, "\n \u2022 All arguments in [...] must be conformable."),
+            f0(isLG(err) | isEQ(err, 'na'), NULL, "\n \u2022 [err] must be TRUE, FALSE, NA, or 'na'."))
+  if (idef(errs)) {stop(errs)}
   for (i in 1:...length()) {
     x <- tryCatch(...elt(i) == T, error = function(e) NA, finally = NULL)
     vx <- cmp_lgl_scl(x)
-    if (!vx) {if (isTF(err)) {x <- err} else {stop("\n • [..", i, "] did not resolve to TRUE or FALSE.")}}
+    if (!vx) {if (isTF(err)) {x <- err} else {stop("\n \u2022 [..", i, "] did not resolve to TRUE or FALSE.")}}
     if (!x) {return(F)}
   }
   T
@@ -138,13 +146,16 @@ ALL <- function(..., err = NA) {
 #'   argument is encountered. If none are encountered, return \code{TRUE}.
 #' @export
 NOR <- function(..., err = NA) {
-  if (!isLG(err)) {stop("\n • [err] must be TRUE, FALSE, or na")}
+  errs <- c(f0(.cmp_lgl(...), NULL, "\n \u2022 All arguments in [...] must be complete logical objects (?cmp_lgl)."),
+            f0(.conform(...), NULL, "\n \u2022 All arguments in [...] must be conformable."),
+            f0(isLG(err) | isEQ(err, 'na'), NULL, "\n \u2022 [err] must be TRUE, FALSE, NA, or 'na'."))
+  if (idef(errs)) {stop(errs)}
   for (i in 1:...length()) {
     x <- tryCatch(...elt(i) == T, error = function(e) NA, finally = NULL)
     vx <- cmp_lgl_scl(x)
     if (!vx) {
       if (isTF(err)) {x <- err}
-      else {stop("\n • [..", i, "] did not resolve to TRUE or FALSE.")}
+      else {stop("\n \u2022 [..", i, "] did not resolve to TRUE or FALSE.")}
     }
     if (x) {return(F)}
   }
@@ -154,14 +165,17 @@ NOR <- function(..., err = NA) {
 #' @describeIn logicals. Generalized \code{xor} with error checking.
 #' @export
 ONE <- function(..., err = NA) {
+  errs <- c(f0(.cmp_lgl(...), NULL, "\n \u2022 All arguments in [...] must be complete logical objects (?cmp_lgl)."),
+            f0(.conform(...), NULL, "\n \u2022 All arguments in [...] must be conformable."),
+            f0(isLG(err) | isEQ(err, 'na'), NULL, "\n \u2022 [err] must be TRUE, FALSE, NA, or 'na'."))
+  if (idef(errs)) {stop(errs)}
   n <- 0
-  if (!isLG(err)) {stop("\n • [err] must be TRUE, FALSE, or na")}
   for (i in 1:...length()) {
     x <- tryCatch(...elt(i) == T, error = function(e) NA, finally = NULL)
     vx <- cmp_lgl_scl(x)
     if (!vx) {
       if (isTF(err)) {x <- err}
-      else {stop("\n • [..", i, "] did not resolve to TRUE or FALSE.")}
+      else {stop("\n \u2022 [..", i, "] did not resolve to TRUE or FALSE.")}
     }
     if (x) {n <- n + 1}
     if (n > 1) {return(F)}
@@ -174,14 +188,17 @@ ONE <- function(..., err = NA) {
 #'   whether the number of \code{TRUE} arguments is 1.
 #' @export
 TWO <- function(..., err = NA) {
+  errs <- c(f0(.cmp_lgl(...), NULL, "\n \u2022 All arguments in [...] must be complete logical objects (?cmp_lgl)."),
+            f0(.conform(...), NULL, "\n \u2022 All arguments in [...] must be conformable."),
+            f0(isLG(err) | isEQ(err, 'na'), NULL, "\n \u2022 [err] must be TRUE, FALSE, NA, or 'na'."))
+  if (idef(errs)) {stop(errs)}
   n <- 0
-  if (!isLG(err)) {stop("\n • [err] must be TRUE, FALSE, or na")}
   for (i in 1:...length()) {
     x <- tryCatch(...elt(i) == T, error = function(e.) NA, finally = NULL)
     vx <- cmp_lgl_scl(x)
     if (!vx) {
       if (isTF(err)) {x <- err}
-      else {stop("\n • [..", i, "] did not resolve to TRUE or FALSE.")}
+      else {stop("\n \u2022 [..", i, "] did not resolve to TRUE or FALSE.")}
     }
     if (x) {n <- n + 1}
     if (n > 1) {return(T)}
@@ -198,20 +215,15 @@ tests <- function(..., na = F, a = F, not = F, across = NA, within = NA) {
   n <- length(x)                                                                 # number of args in {...}
   ns <- f0(n == 0, NULL, lengths(x))                                             # lengths of args in {...}
   aw <- list(c(NA, 'nor', 'one', 'any', 'two', 'all'))                           # possible values of {across} and {within}
-  vna <- isTF(na)
-  va <- isTF(a)
-  vnt <- isTF(not)
-  vac <- isIN(across, aw)
-  vwi <- isIN(within, aw)
-  vr <- f0(n < 2, T, all(round(max(ns) / ns) == max(ns) / ns))                   # whether arguments are recyclable
-  err <- NULL
-  if (!vna) {err <- c(err, "\n • [na] must be TRUE or FALSE.")}
-  if (!va ) {err <- c(err, "\n • [a] must be TRUE or FALSE.")}
-  if (!vnt) {err <- c(err, "\n • [not] must be TRUE or FALSE.")}
-  if (!vac) {err <- c(err, "\n • [across] must be NA, 'nor', 'one', 'any', 'two', 'all'.")}
-  if (!vwi) {err <- c(err, "\n • [within] must be NA, 'nor', 'one', 'any', 'two', 'all'.")}
-  if (!vr ) {err <- c(err, "\n • Arguments in [...] are not recyclable (?recyclable).")}
-  if (idef(err)) {stop(err)}
+  ok.reps <- f0(n < 2, T, all(round(max(ns) / ns) == max(ns) / ns))              # whether arguments are recyclable
+  errs <- c(f0(isTF(na)        , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
+            f0(isTF(a)         , NULL, "\n \u2022 [a] must be TRUE or FALSE."),
+            f0(isTF(not)       , NULL, "\n \u2022 [not] must be TRUE or FALSE."),
+            f0(isIN(across, aw), NULL, "\n \u2022 [across] must be NA, 'nor', 'one', 'any', 'two', 'all'."),
+            f0(isIN(within, aw), NULL, "\n \u2022 [within] must be NA, 'nor', 'one', 'any', 'two', 'all'."),
+            f0(ok.reps         , NULL, "\n \u2022 Arguments in [...] are not recyclable (?recyclable)."))
+
+  if (idef(errs)) {stop(errs)}
   for (i in 1:n) {                                                               # for each argument
     x[[i]][is.na(x[[i]])] <- na                                                  # > replace any NA values with [na]
     if (not) {x[[i]] <- !x[[i]]}                                                 # > and negative if specified in [not]
@@ -243,12 +255,9 @@ w <- function(..., not = F, na = F, a = F) {tests(..., not = not, na = na, a = a
 #'   \code{TRUE} or \code{FALSE} values equal to zero.
 #' @export
 nors <- function(..., na = F, a = F, across = T, within = F) {
-  va <- isTF(across)
-  vw <- isTF(within)
-  err <- NULL
-  if (!va) {err <- c(err, "\n • [across] must be TRUE or FALSE.")}
-  if (!vw) {err <- c(err, "\n • [within] must be TRUE or FALSE.")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(isTF(across), NULL, "\n \u2022 [across] must be TRUE or FALSE."),
+            f0(isTF(within), NULL, "\n \u2022 [within] must be TRUE or FALSE."))
+  if (idef(errs)) {stop(errs)}
   if (isT(across)) {across <- "not"} else {across <- NA}
   if (isT(within)) {within <- "not"} else {within <- NA}
   tests(..., na = na, a = a, across = across, within = within)
@@ -258,12 +267,9 @@ nors <- function(..., na = F, a = F, across = T, within = F) {
 #'   \code{TRUE} or \code{FALSE} values equal to one or more.
 #' @export
 anys <- function(..., na = F, a = F, across = T, within = F) {
-  va <- isTF(across)
-  vw <- isTF(within)
-  err <- NULL
-  if (!va) {err <- c(err, "\n • [across] must be TRUE or FALSE.")}
-  if (!vw) {err <- c(err, "\n • [within] must be TRUE or FALSE.")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(isTF(across), NULL, "\n \u2022 [across] must be TRUE or FALSE."),
+            f0(isTF(within), NULL, "\n \u2022 [within] must be TRUE or FALSE."))
+  if (idef(errs)) {stop(errs)}
   if (isT(across)) {across <- "any"} else {across <- NA}
   if (isT(within)) {within <- "any"} else {within <- NA}
   tests(..., na = na, a = a, across = across, within = within)
@@ -273,12 +279,9 @@ anys <- function(..., na = F, a = F, across = T, within = F) {
 #'   \code{TRUE} or \code{FALSE} values equal to the number of elements.
 #' @export
 alls <- function(..., na = F, a = F, across = T, within = F) {
-  va <- isTF(across)
-  vw <- isTF(within)
-  err <- NULL
-  if (!va) {err <- c(err, "\n • [across] must be TRUE or FALSE.")}
-  if (!vw) {err <- c(err, "\n • [within] must be TRUE or FALSE.")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(isTF(across), NULL, "\n \u2022 [across] must be TRUE or FALSE."),
+            f0(isTF(within), NULL, "\n \u2022 [within] must be TRUE or FALSE."))
+  if (idef(errs)) {stop(errs)}
   if (isT(across)) {across <- "all"} else {across <- NA}
   if (isT(within)) {within <- "all"} else {within <- NA}
   tests(..., na = na, a = a, across = across, within = within)
@@ -288,12 +291,9 @@ alls <- function(..., na = F, a = F, across = T, within = F) {
 #'   \code{TRUE} or \code{FALSE} values equal to one.
 #' @export
 ones <- function(..., na = F, a = F, across = T, within = F) {
-  va <- isTF(across)
-  vw <- isTF(within)
-  err <- NULL
-  if (!va) {err <- c(err, "\n • [across] must be TRUE or FALSE.")}
-  if (!vw) {err <- c(err, "\n • [within] must be TRUE or FALSE.")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(isTF(across), NULL, "\n \u2022 [across] must be TRUE or FALSE."),
+            f0(isTF(within), NULL, "\n \u2022 [within] must be TRUE or FALSE."))
+  if (idef(errs)) {stop(errs)}
   if (isT(across)) {across <- "one"} else {across <- NA}
   if (isT(within)) {within <- "one"} else {within <- NA}
   tests(..., na = na, a = a, across = across, within = within)
@@ -303,12 +303,9 @@ ones <- function(..., na = F, a = F, across = T, within = F) {
 #'   \code{TRUE} or \code{FALSE} values equal to two ore more.
 #' @export
 twos <- function(..., na = F, a = F, across = T, within = F) {
-  va <- isTF(across)
-  vw <- isTF(within)
-  err <- NULL
-  if (!va) {err <- c(err, "\n • [across] must be TRUE or FALSE.")}
-  if (!vw) {err <- c(err, "\n • [within] must be TRUE or FALSE.")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(isTF(across), NULL, "\n \u2022 [across] must be TRUE or FALSE."),
+            f0(isTF(within), NULL, "\n \u2022 [within] must be TRUE or FALSE."))
+  if (idef(errs)) {stop(errs)}
   if (isT(across)) {across <- "two"} else {across <- NA}
   if (isT(within)) {within <- "two"} else {within <- NA}
   tests(..., na = na, a = a, across = across, within = within)
@@ -319,29 +316,24 @@ twos <- function(..., na = F, a = F, across = T, within = F) {
 #' @export
 is_in <- function(x, y, not = F, na = F, agg = NA) {
   types <- c(NA, 'nor', 'one', 'any', 'two', 'all')
-  vx <- ivec(x)
-  vy <- ivec(y)
-  vnt <- isTF(not)
-  vna <- isTF(na)
-  vag <- isIN(agg, types)
-  vxy <- f0(!vx | !vy, T, compatible(x, y))
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [x] must be a populated atomic vec (?pop_vec).")}
-  if (!vy) {err <- c(err, "\n • [y] must be a populated atomic vec (?pop_vec).")}
-  if (!vnt) {err <- c(err, "\n • [not] must be TRUE or FALSE.")}
-  if (!vna) {err <- c(err, "\n • [na] must be TRUE or FALSE.")}
-  if (!vag) {err <- c(err, "\n • [agg] must be NA, 'nor', 'one', 'any', 'two', or 'all'.")}
-  if (!vxy) {err <- c(err, "\n • [x] and [y] are not pf compatible modes.")}
-  if (idef(err)) {stop(err)}
+  ok.x <- pop_vec(x) & atm_vec(x)
+  ok.y <- pop_vec(y) & atm_vec(y)
+  ok.xy <- f0(!ok.x | !ok.y, T, compatible(x, y))
+  errs <- c(f0(ok.x, NULL, "\n \u2022 [x] must be a populated atomic vec (?pop_vec)."),
+            f0(ok.y, NULL, "\n \u2022 [y] must be a populated atomic vec (?pop_vec)."),
+            f0(isTF(not), NULL, "\n \u2022 [not] must be TRUE or FALSE."),
+            f0(isTF(na), NULL, "\n \u2022 [na] must be TRUE or FALSE."),
+            f0(isIN(agg, types), NULL, "\n \u2022 [agg] must be NA, 'nor', 'one', 'any', 'two', or 'all'."),
+            f0(ok.xy, NULL, "\n \u2022 [x] and [y] are not pf compatible modes."))
+  if (idef(errs)) {stop(errs)}
   out <- x %in% y
   out[x[is.na(x)]] <- na
   n <- length(which(out))
-  if      (agg == "nor") {!any(out)}
-  else if (agg == "any") {any(out)}
-  else if (agg == "all") {all(out)}
-  else if (agg == "one") {n == 1}
-  else if (agg == "two") {n >= 2}
-  else {out}
+  f0(agg == "nor", !any(out),
+     f0(agg == "any", any(out),
+        f0(agg == "all", all(out),
+           f0(agg == "one", n == 1,
+              f0(agg == "two", n >= 2, out)))))
 }
 
 #' @describeIn logicals. Whether elements of \code{x} are not contained in

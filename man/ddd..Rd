@@ -72,8 +72,8 @@ Functions related to defined dimensionality are described in the following
 table:\tabular{ll}{
 FUNCTION          \tab WHAT THE                                           \cr
 FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i•••}       \tab Evaluates whether an object is of the defined
-dimensionality represented by \code{•••}.          \cr
+\code{i***}       \tab Evaluates whether an object is of the defined
+dimensionality represented by \code{***}.          \cr
 \code{ddd}        \tab Gets a character scalar containing the defined
 dimensionality of an object.                       \cr
 \code{iddd}       \tab Evaluates an object for a specific defined

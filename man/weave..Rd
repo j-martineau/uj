@@ -23,16 +23,13 @@ escape sequence in \code{x}. The number of inlay escape sequences in
 Character scalar.
 }
 \description{
-Weave inlay values into a string
-}
-\details{
 Inlay escape sequences to specify formatting follow the patterns
 and meanings given in the following table:\tabular{ll}{
 PATTERN            \tab MEANS INSERT ARGUMENT                           \cr
 \code{'{@}'}      \tab as is (argument must be scalar).                \cr
 \code{'{@x}'}     \tab after applying formatting switch \code{'x'}.    \cr
 \code{'{@xy}'}    \tab after applying formatting switches \code{'x'}
-and \code{'y'}.                                 \cr
+and \code{'y'}.                                \cr
 \code{'{@xyz}'   }\tab after applying formatting switches \code{'x'},
 \code{'y'}, and \code{'z'}.                       }
 There are three families of switches:\tabular{ll}{
@@ -86,10 +83,8 @@ Example are provided in the following table, giving inlay escape sequences,
 the value of an argument to be formatted using the inlay escape sequence,
 and the result of applying the inlay escape sequence's formatting switches
 to the argument.\tabular{lll}{
-ESCAPE             \tab ARGUMENT   
-\tab RESULTING FORMATTED                             \cr
-SEQUENCE           \tab VALUE
-\tab CHARACTER SCALAR                                \cr
+ESCAPE             \tab ARGUMENT    \tab RESULTING FORMATTED            \cr
+SEQUENCE           \tab VALUE       \tab CHARACTER SCALAR               \cr
 \code{'{@}'}      \tab\code{FALSE}
 \tab\code{'FALSE'}                                   \cr
 \code{'{@}'}      \tab\code{42}
@@ -123,7 +118,6 @@ Other strings:
 \code{\link{charn.}()},
 \code{\link{delim.}()},
 \code{\link{fsub.}()},
-\code{\link{has_pat.}()},
 \code{\link{ipat.}()},
 \code{\link{max_nch.}()},
 \code{\link{mkstr.}()},

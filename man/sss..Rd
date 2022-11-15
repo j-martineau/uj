@@ -63,8 +63,8 @@ Functions related to state of completeness are described in the following
 table:\tabular{ll}{
 FUNCTION          \tab WHAT THE                                           \cr
 FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i•••}       \tab Evaluates whether an object is of the state of
-completeness represented by \code{•••}.            \cr
+\code{i***}       \tab Evaluates whether an object is of the state of
+completeness represented by \code{***}.            \cr
 \code{sss}        \tab Gets a character vector containing all state of
 completeness properties of an object.              \cr
 \code{isss}       \tab Evaluates an object for a specific state of

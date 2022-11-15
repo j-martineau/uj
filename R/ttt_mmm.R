@@ -3,7 +3,7 @@
 #' @title Fundamental type plus extended mode properties
 #' @description Combinations of \link[ttt]{fundamental type} and
 #'   \link[mmm]{extended mode} properties.
-#' @param x An ℝ object.
+#' @param x An R object.
 #' @return Logical scalar.
 #' @export
 ttt_mmm. <- function() {help("ttt_mmm.", package = "uj")}

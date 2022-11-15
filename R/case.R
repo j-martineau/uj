@@ -30,18 +30,15 @@ case. <- function() {help("case.", package = "uj")}
 #'   thrown, otherwise, the value of \code{def.} is returned.
 #' @export
 case <- function(name., ..., names. = NULL, def. = "err") {
-  vn1 <- iscl(name.)
-  vxn <- ...length() > 0
-  vn2 <- f0(inll(names.), T, f0(!ivec(names.), F, length(names.) == ...length()))
-  err <- NULL
-  if (!vn1) {err <- c(err, "\n • [name.] must be a non-NA atomic scalar (?cmp_scl).")}
-  if (!vxn) {err <- c(err, "\n • [...] is empty.")}
-  if (!vn2) {err <- c(err, "\n • [names.] must be NULL or an atomic vector of length equal to ...length()")}
-  if (idef(err)) {stop(err)}
+  ok.names <- f0(inll(names.), T, f0(!ivec(names.), F, length(names.) == ...length()))
+  errs <- c(f0(iscl(name.),     NULL, "\n \u2022 [name.] must be a non-NA atomic scalar (?cmp_scl)."),
+            f0(...length() > 0, NULL, "\n \u2022 [...] is empty."),
+            f0(ok.names,        NULL, "\n \u2022 [names.] must be NULL or an atomic vector of length equal to ...length()"))
+  if (idef(errs)) {stop(errs)}
   names. <- dot_names(..., names. = names., req. = T, bl. = F, u. = T)           # get {names.} supplied for arguments in {...}
   i <- which(names. == name.)                                                    # index any matches
   i1 <- length(i) == 1                                                           # whether there is a match
   err <- isEQ(def., 'err')
-  if (err & !i1) {stop("\n • [name.] does not match any argument in [...].")}
+  if (err & !i1) {stop("\n \u2022 [name.] does not match any argument in [...].")}
   f0(i1, ...elt(i), def.)                                                        # return the matching elements of {...}, if any, otherwise, return {DEF}
 }

@@ -3,37 +3,36 @@
 #' @title Object form properties
 #' @description Gets a vector of form properties from \code{fff_vals()} that are
 #'   applicable to \code{x}. An object's form properties have to do with the
-#'   number of \link[ddd]{defined dimensions} and/or \link[eee]{effective
-#'   dimensions} plus some additional restrictions:\tabular{lll}{
+#'   number of \link[ddd]{defined dimensions} and/or \link[fff]{effective
+#'   dimensions} plus some additional restrictions:\tabular{eee}{
 #'   FUNDAMENTAL   \tab FUNDAMENTAL   \tab FUNDAMENTAL                       \cr
 #'   TYPE VALUE    \tab TYPE NAME     \tab TYPE DEFINITION                   \cr
 #'   \code{'emp'}\tab empty         \tab Non-\code{NULL}, length = 0.        \cr
 #'   \code{'pop'}\tab populated     \tab Length > 0.                         \cr
-#'   \code{'pnt'}\tab point         \tab Containing 1 element (includes dtfs
-#'                                       of dimension \code{1 × 1}).         \cr
+#'   \code{'pnt'}\tab point         \tab Containing 1 element (includes 1-by-1
+#'                                       data.frames).                       \cr
 #'   \code{'lin'}\tab linear        \tab Effectively 1-dimensional.          \cr
 #'   \code{'row'}\tab 1-row         \tab Row matrix or row
-#'                                       \code{\link[is_dtf]{dtf}}.          \cr
+#'                                       \code{\link[idtf]{data.frame}}.     \cr
 #'   \code{'col'}\tab 1-column      \tab Column matrix or column
-#'                                       \code{\link[is_dtf]{dtf}}.          \cr
-#'   \code{'rct'}\tab rectangular   \tab Matrix or \code{\link[is_dtf]{dtf}}
-#'                                       with multiple rows and multiple
-#'                                       columns.                            \cr
+#'                                       \code{\link[idtf]{data.frame}}.     \cr
+#'   \code{'rct'}\tab rectangular   \tab 2+ by 2+ matrix or
+#'                                       \code{\link[idtf]{data.frame}}.     \cr
 #'   \code{'sqr'}\tab square        \tab Square atomic matrix                \cr
-#'   \code{'sld'}\tab solid         \tab Effectively hyper-dimensional (having
-#'                                       indexing positions in 3+ dimensions). }
+#'   \code{'sld'}\tab solid         \tab Array with 2+ index positions in 3+
+#'                                       dimensions.                           }
 #' Functions related to form properties are described in the following
 #' table:\tabular{ll}{
 #' FUNCTION          \tab WHAT THE                                           \cr
 #' FORMAT            \tab FUNCTION DOES                                      \cr
-#' \code{i•••}       \tab Evaluates whether an object is of the form represented
-#'                        by \code{•••}.                                     \cr
+#' \code{i***}       \tab Evaluates whether an object is of the form represented
+#'                        by \code{***}.                                     \cr
 #' \code{fff}        \tab Gets a character scalar containing the forms of an
 #'                        object.                                            \cr
 #' \code{ifff}       \tab Evaluates an object for a specific form and any
 #'                        additional properties specified in \code{...}.     \cr
 #' \code{fff_vals}   \tab Gets a character vector of all possible form property
-#'                        values.                                             }
+#'                        values.                                              }
 #' @param x An object.
 #' @param fff \link[cmp_chr_scl]{Complete character scalar} containing one or
 #'   more values from \code{fff_vals()} separated by pipes and/or underscores.
@@ -107,11 +106,11 @@ fff_vals <- function() {c('col', 'emp', 'lin', 'pnt', 'rct', 'row', 'sqr', 'sld'
 #'   in \code{...}).
 #' @export
 ifff <- function(x, fff, ...) {
-  if (!cmp_chr_scl(fff)) {stop("\n • [fff] must be a non-NA character scalar.")}
-  valid <- fff_vals()
-  combos <- unlist(strsplit(fff, "|", fixed = T)[[1]], T, F)
-  newfff <- unlist(strsplit(combos, "_", fixed = T)     , T, F)
-  valid <- all(newfff %in% valid)
-  if (!valid) {stop("\n • [fff] contains a value not in fff_vals() (after splitting [fff] along pipes and underscores).")}
+  if (!cmp_chr_scl(fff)) {stop("\n \u2022 [fff] must be a non-NA character scalar.")}
+  valid.fff <- ttt_vals()
+  fff.combos <- strsplit(fff, "|", fixed = T)[[1]]
+  new.fff <- unlist(strsplit(fff.combos, "_", fixed = T))
+  ok.fff <- all(new.fff %in% valid.fff)
+  if (!ok.fff) {stop("\n \u2022 [fff = '", fff, "'] contains a value not in [sss_vals() = c(", paste0(paste0("'", sss_vals(), "'"), collapse = ", "), ")] after splitting along pipes and underscores.")}
   ippp(x, fff, ...)
 }

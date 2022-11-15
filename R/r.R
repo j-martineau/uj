@@ -21,12 +21,9 @@ r. <- function() {help("r.", package = "uj")}
 #'   0, 1, 9)}.
 #' @export
 r <- function(r, ...) {
-  vd <- all(sapply(list(...), ivec))
-  vr <- cmp_psw_scl(r)
-  err <- NULL
-  if (!vd) {err <- c(err, "\n • Arguments in [...] must be atomic vecs (?ivec).")}
-  if (!vr) {err <- c(err, "\n • [r] must be a positive whole-number scalar (?cmp_psw_scl).")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(all(sapply(list(...), ivec)), NULL, "\n \u2022 Arguments in [...] must be atomic vecs (?ivec)."),
+            f0(cmp_psw_scl(r)              , NULL, "\n \u2022 [r] must be a positive whole-number scalar (?cmp_psw_scl)."))
+  if (idef(errs)) {stop(errs)}
   rep.int(av(...), r)
 }
 
@@ -35,12 +32,9 @@ r <- function(r, ...) {
 #'   returns \code{c(0, 0, 0, 1, 1, 1, 9, 9, 9)}.
 #' @export
 e <- function(e, ...) {
-  vd <- all(sapply(list(...), ivec))
-  ve <- cmp_psw_scl(e)
-  err <- NULL
-  if (!vd) {err <- c(err, "\n • Arguments in [...] must be atomic vecs (?ivec).")}
-  if (!ve) {err <- c(err, "\n • [e] must be a positive whole-number scalar (?cmp_psw_scl)")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(all(sapply(list(...), ivec)), NULL, "\n \u2022 Arguments in [...] must be atomic vecs (?ivec)."),
+            f0(cmp_psw_scl(e)              , NULL, "\n \u2022 [e] must be a positive whole-number scalar (?cmp_psw_scl)."))
+  if (idef(errs)) {stop(errs)}
   rep(av(...), each = e)
 }
 
@@ -52,13 +46,9 @@ e <- function(e, ...) {
 #'   same result.
 #' @export
 re <- function(r, e, ...) {
-  vd <- all(sapply(list(...), ivec))
-  ve <- cmp_psw_scl(e)
-  vr <- cmp_psw_scl(r)
-  err <- NULL
-  if (!vd) {err <- c(err, "\n • Arguments in [...] must be atomic vecs (?ivec).")}
-  if (!ve) {err <- c(err, "\n • [e] must be a positive whole-number scalar (?cmp_psw_scl)")}
-  if (!vr) {err <- c(err, "\n • [r] must be a positive whole-number scalar (?cmp_psw_scl)")}
-  if (idef(err)) {stop(err)}
+  errs <- c(f0(all(sapply(list(...), ivec)), NULL, "\n \u2022 Arguments in [...] must be atomic vecs (?ivec)."),
+            f0(cmp_psw_scl(r)              , NULL, "\n \u2022 [r] must be a positive whole-number scalar (?cmp_psw_scl)."),
+            f0(cmp_psw_scl(e)              , NULL, "\n \u2022 [e] must be a positive whole-number scalar (?cmp_psw_scl)."))
+  if (idef(errs)) {stop(errs)}
   rep(av(...), times = r, each = e)
 }

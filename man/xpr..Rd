@@ -4,7 +4,7 @@
 \alias{xpr.}
 \alias{xbold}
 \alias{xrun}
-\title{Build and/or evaluate expressions}
+\title{Build and/or Evaluate Expressions}
 \usage{
 xpr.()
 
@@ -13,20 +13,22 @@ xbold(...)
 xrun(...)
 }
 \arguments{
-\item{...}{An arbitrary number of objects atomized and glued to create the
-expression.}
+\item{...}{An arbitrary number of objects atomized into a vector and then
+collapsed to create an expression.}
 }
 \value{
 Either a character scalar or the result of calling the expression.
 }
 \description{
-Build and/or evaluate expressions
+Build and/or Evaluate Expressions
 }
 \section{Functions}{
 \itemize{
-\item \code{xbold()}: Build an expression containing bolded text.
+\item \code{xbold()}: Build an expression bolding the character scalar produced
+by collapsing \code{...}.
 
-\item \code{xrun()}: Build an expression and execute the resulting command.
+\item \code{xrun()}: Build an expression from the character scalar produced by
+collapsing \code{...} and then execute the resulting command.
 
 }}
 \seealso{
@@ -35,7 +37,6 @@ Other strings:
 \code{\link{charn.}()},
 \code{\link{delim.}()},
 \code{\link{fsub.}()},
-\code{\link{has_pat.}()},
 \code{\link{ipat.}()},
 \code{\link{max_nch.}()},
 \code{\link{mkstr.}()},

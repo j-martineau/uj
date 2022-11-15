@@ -6,22 +6,22 @@
 #'   and a combination of delimiting within and across arguments, in any order.
 #'   Also offers convenience functions for specific delimiters.
 #'   \cr\cr
-#'   \strong{\code{da(a., ...)}}
+#'   \strong{\code{da(a, ...)}}
 #'   \cr Delimits across corresponding elements of arguments in \code{...}.
-#'   \code{da(delim, ...)} is identical to \code{paste(..., sep = delim)}.
+#'   \code{da(a, ...)} is identical to \code{paste(..., sep = a)}.
 #'   \cr\cr
-#'   \strong{\code{dw(w., ...)}}
-#'   \cr Delimits within arguments in \code{...}. \code{dw(delim, ...)} is
-#'   equivalent to calling \code{sapply(list(...), paste0, collapse = delim)}.
+#'   \strong{\code{dw(w, ...)}}
+#'   \cr Delimits within arguments in \code{...}. \code{dw(w, ...)} is
+#'   equivalent to calling \code{sapply(list(...), paste0, collapse = w)}.
 #'   \cr\cr
-#'   \strong{\code{daw(a., w., ...)}}
-#'   \cr Delimits across then within. \code{daw(delim.a, delimn.w, ...)} is
-#'   identical to \code{paste(..., sep = delim.a, collapse = delim.w)}
+#'   \strong{\code{daw(a, w, ...)}}
+#'   \cr Delimits across then within. \code{daw(a, w, ...)} is
+#'   identical to \code{paste(..., sep = a, collapse = w)}
 #'   \cr\cr
-#'   \strong{\code{dwa(w., a., ...)}}
-#'   \cr Delimits within then across. \code{dwa(delim.w, delim.a, ...)} is
-#'   equivalent to \code{paste(sapply(list(...), paste0, collapse = delim.w),
-#'   sep = delim.a)}.
+#'   \strong{\code{dwa(w, a, ...)}}
+#'   \cr Delimits within then across. \code{dwa(w, a, ...)} is
+#'   equivalent to \code{paste(sapply(list(...), paste0, collapse = w),
+#'   sep = a)}.
 #'   \cr\cr
 #'   \strong{Extensions}
 #'   \cr Functions are extended for specific delimiters, signified by the
@@ -64,21 +64,19 @@ delim. <- function() {help("delim.", package = "uj")}
 #'   \code{a}-delimited strings.
 #' @export
 da <- function(a, ...) {
-  x <- list(...)
-  n <- length(x)
-  ns <- lengths(x)
-  vn <- n > 0
-  vns <- f0(!vn, T, all(ns > 0))
-  vx <- f0(!vn | !vns, T, all(sapply(x, ivec)))
-  vr <- f0(!vx, T, all(round(max(ns) / ns) == max(ns) / ns))
-  vd <- cmp_chr_scl(a)
-  err  <- NULL
-  if (!vn ) {err <- c(err, "\n • [...] is empty.")}
-  if (!vns) {err <- c(err, "\n • [...] contains an empty element.")}
-  if (!vx ) {err <- c(err, "\n • Arguments in [...] must be populated atomic vecs (?pop_vec).")}
-  if (!vr ) {err <- c(err, "\n • Arguments in [...] are not recyclable (?recyclable).")}
-  if (!vd ) {err <- c(err, "\n • [a] must be a complete character scalar (?cmp_chr_scl).")}
-  if (idef(err)) {stop(err)}
+  dots <- list(...)
+  n.dots <- length(dots)
+  dot.ns <- lengths(dots)
+  ok.n <- n.dots > 0
+  ok.ns <- f0(!ok.n, T, all(dot.ns > 0))
+  ok.dots <- f0(!ok.n | !ok.ns, T, all(sapply(dots, atm_vec)))
+  ok.reps <- f0(!ok.dots, T, all(round(max(dot.ns) / dot.ns) == max(dot.ns) / dot.ns))
+  errs <- c(f0(cmp_chr_scl(a), NULL, "\n \u2022 [a] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(ok.n          , NULL, "\n \u2022 [...] is empty."),
+            f0(ok.ns         , NULL, "\n \u2022 [...] contains an empty element."),
+            f0(ok.dots       , NULL, "\n \u2022 Arguments in [...] must be populated atomic vecs (?pop_vec)."),
+            f0(ok.reps       , NULL, "\n \u2022 Arguments in [...] are not recyclable (?recyclable)."))
+  if (idef(errs)) {stop(errs)}
   paste(..., sep = a)
 }
 
@@ -87,19 +85,17 @@ da <- function(a, ...) {
 #'   \code{w}-separated strings.
 #' @export
 dw <- function(w, ...) {
-  x <- list(...)
-  n <- length(x)
-  ns <- lengths(x)
-  vn <- n > 0
-  vN <- f0(!vn, T, all(ns > 0))
-  vx <- f0(!vn | !vN, T, all(sapply(x, ivec)))
-  vd <- cmp_chr_scl(w)
-  err <- NULL
-  if (!vn) {err <- c(err, "\n • [...] is empty.")}
-  if (!vN) {err <- c(err, "\n • [...] contains an empty element.")}
-  if (!vx) {err <- c(err, "\n • Arguments in [...] must be populated atomic vecs (?pop_vec).")}
-  if (!vd) {err <- c(err, "\n • [w] must be a complete character scalar (?cmp_chr_scl).")}
-  if (idef(err)) {stop(err)}
+  dots <- list(...)
+  n.dots <- length(dots)
+  dot.ns <- lengths(dots)
+  ok.n <- n.dots > 0
+  ok.ns <- f0(!ok.n, F, all(dot.ns > 0))
+  ok.dots <- f0(!ok.n | !ok.ns, F, all(sapply(dots, atm_vec)))
+  errs <- c(f0(cmp_chr_scl(w), NULL, "\n \u2022 [w] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(ok.n          , NULL, "\n \u2022 [...] is empty."),
+            f0(ok.ns         , NULL, "\n \u2022 [...] contains an empty element."),
+            f0(ok.dots       , NULL, "\n \u2022 Arguments in [...] must be populated atomic vecs (?pop_vec)."))
+  if (idef(errs)) {stop(errs)}
   sapply(list(...), paste0, collapse = w)
 }
 
@@ -110,23 +106,20 @@ dw <- function(w, ...) {
 #'   subsubstrings.
 #' @export
 daw <- function(a, w, ...) {
-  x <- list(...)
-  n <- length(x)
-  ns <- lengths(x)
-  vn <- n > 0
-  vN <- f0(!vn, T, all(ns > 0))
-  vx <- f0(!vn | !vN, T, all(sapply(x, ivec)))
-  vr <- f0(!vx, T, all(round(max(ns) / ns) == max(ns) / ns))
-  va <- cmp_chr_scl(a)
-  vw <- cmp_chr_scl(w)
-  err <- NULL
-  if (!vn) {err <- c(err, "\n • [...] is empty.")}
-  if (!vN) {err <- c(err, "\n • [...] contains an empty element.")}
-  if (!vx) {err <- c(err, "\n • Arguments in [...] must be populated atomic vecs (?pop_vec).")}
-  if (!vr) {err <- c(err, "\n • Arguments in [...] are not recyclable (?recyclable).")}
-  if (!va) {err <- c(err, "\n • [a] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!vw) {err <- c(err, "\n • [w] must be a complete character scalar (?cmp_chr_scl).")}
-  if (idef(err)) {stop(err)}
+  dots <- list(...)
+  n.dots <- length(dots)
+  dot.ns <- lengths(dots)
+  ok.n <- n.dots > 0
+  ok.ns <- f0(!ok.n, T, all(dot.ns > 0))
+  ok.dots <- f0(!ok.n | !ok.dots, T, all(sapply(dots, ivec)))
+  ok.reps <- f0(!ok.dots, T, all(round(max(dot.ns) / dot.ns) == max(dot.ns) / dot.ns))
+  errs <- c(f0(cmp_chr_scl(a), NULL, "\n \u2022 [a] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(cmp_chr_scl(w), NULL, "\n \u2022 [w] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(ok.n          , NULL, "\n \u2022 [...] is empty."),
+            f0(ok.ns         , NULL, "\n \u2022 An argument in [...] is of length 0."),
+            f0(ok.dots       , NULL, "\n \u2022 Arguments in [...] must be populated atomic vecs (?pop_vec)."),
+            f0(ok.reps       , NULL, "\n \u2022 Arguments in [...] are not recyclable (?recyclable)."))
+  if (idef(errs)) {stop(errs)}
   paste0(paste(..., sep = a), collapse = w)
 }
 
@@ -136,21 +129,18 @@ daw <- function(a, w, ...) {
 #'   each of which contains \code{max(length(list(...)))} \code{a}-delimited
 #'   subsubstrings.
 dwa <- function(w, a, ...) {
-  x  <- list(...)
-  n  <- length(x)
-  ns  <- lengths(x)
-  vn <- n > 0
-  vN <- f0(!vn, T, all(ns > 0))
-  vx <- f0(!vn | !vN, T, all(sapply(x, ivec)))
-  vw <- cmp_chr_scl(w)
-  va <- cmp_chr_scl(a)
-  err <- NULL
-  if (!vn) {err <- c(err, "\n • [...] is empty.")}
-  if (!vN) {err <- c(err, "\n • [...] contains an empty element.")}
-  if (!vx) {err <- c(err, "\n • Arguments in [...] must be populated atomic vecs (?pop_vec).")}
-  if (!vw) {err <- c(err, "\n • [w] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!va) {err <- c(err, "\n • [a] must be a complete character scalar (?cmp_chr_scl).")}
-  if (idef(err)) {stop(err)}
+  dots  <- list(...)
+  n.dots  <- length(dots)
+  dot.ns  <- lengths(dots)
+  ok.n <- n.dots > 0
+  ok.ns <- f0(!ok.n, T, all(dot.ns > 0))
+  ok.dots <- f0(!ok.n | !ok.ns, T, all(sapply(dots, ivec)))
+  errs <- c(f0(cmp_chr_scl(w), NULL, "\n \u2022 [w] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(cmp_chr_scl(a), NULL, "\n \u2022 [a] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(ok.n          , NULL, "\n \u2022 [...] is empty."),
+            f0(ok.ns         , NULL, "\n \u2022 [...] contains an empty element."),
+            f0(ok.dots       , NULL, "\n \u2022 Arguments in [...] must be populated atomic vecs (?pop_vec)."))
+  if (idef(errs)) {stop(errs)}
   paste(sapply(list(...), paste0, collapse = w), sep = a)
 }
 

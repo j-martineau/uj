@@ -14,31 +14,23 @@ inc. <- function() {help("inc.", package = "uj")}
 #' @describeIn inc. Increments \code{x} by \code{i}.
 #' @export
 inc <- function(x, i = 1, na = F) {
-  vx <- f0(inum(x), T, f0(num_dtf(x), T, num_vls(x)))
-  vi <- cmp_num_scl(i)
-  vn <- isTF(na)
-  vv <- f0(!vx | !isF(na), T, !any(is.na(av(x))))
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [x] must be populated numeric object (?pop_num), a numeric dtf (?num_dtf), or a numeric vlist (?num_vls).")}
-  if (!vi) {err <- c(err, "\n • [i] must be a complete numeric scalar (?cmp_num_scl).")}
-  if (!vn) {err <- c(err, "\n • [na] must be TRUE or FALSE.")}
-  if (!vv) {err <- c(err, "\n • [x] contains NA values but [na = FALSE].")}
-  if (idef(err)) {stop(err)}
+  ok.x <- f0(inum(x), T, f0(num_dtf(x), T, num_vls(x)))
+  errs <- c(f0(ok.x                                       , NULL, "\n \u2022 [x] must be populated numeric object (?pop_num), a numeric dtf (?num_dtf), or a numeric vlist (?num_vls)."),
+            f0(cmp_num_scl(i)                             , NULL, "\n \u2022 [i] must be a complete numeric scalar (?cmp_num_scl)."),
+            f0(isTF(na)                                   , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
+            f0(f0(!ok.x | !isF(na), T, !any(is.na(av(x)))), NULL, "\n \u2022 [x] contains NA values but [na = FALSE]."))
+  if (idef(errs)) {stop(errs)}
   x + i
 }
 
 #' @describeIn inc. Decrements \code{x} by \code{d}.
 #' @export
 dec <- function(x, d = 1, na = F) {
-  vx <- f0(inum(x), T, f0(num_dtf(x), T, num_vls(x)))
-  vd <- cmp_num_scl(d)
-  vn <- isTF(na)
-  vv <- f0(!vx | !isF(na), T, !any(is.na(av(x))))
-  err <- NULL
-  if (!vx) {err <- c(err, "\n • [x] must be populated numeric object (?pop_num), a numeric df (?num_dtf), or a numeric vlist (?num_vls).")}
-  if (!vd) {err <- c(err, "\n • [d] must be a complete numeric scalar (?cmp_num_scl).")}
-  if (!vn) {err <- c(err, "\n • [na] must be TRUE or FALSE.")}
-  if (!vv) {err <- c(err, "\n • [x] contains NA values but [na = FALSE].")}
-  if (idef(err)) {stop(err)}
+  ok.x <- f0(inum(x), T, f0(num_dtf(x), T, num_vls(x)))
+  errs <- c(f0(ok.x                                       , NULL, "\n \u2022 [x] must be populated numeric object (?pop_num), a numeric dtf (?num_dtf), or a numeric vlist (?num_vls)."),
+            f0(cmp_num_scl(d)                             , NULL, "\n \u2022 [d] must be a complete numeric scalar (?cmp_num_scl)."),
+            f0(isTF(na)                                   , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
+            f0(f0(!ok.x | !isF(na), T, !any(is.na(av(x)))), NULL, "\n \u2022 [x] contains NA values but [na = FALSE]."))
+  if (idef(errs)) {stop(errs)}
   x - d
 }

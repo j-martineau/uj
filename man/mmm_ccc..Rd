@@ -634,7 +634,7 @@ uno_vls(x)
 whl_vls(x)
 }
 \arguments{
-\item{x}{An ℝ object.}
+\item{x}{An R object.}
 }
 \value{
 A \link[ilgl]{logical} scalar.
@@ -649,7 +649,8 @@ any elements that are recursive.
 }
 \section{Functions}{
 \itemize{
-\item \code{mmm_ccc_vals()}: Get a \link[ichr]{character} vector of all possible extended mode
+\item \code{mmm_ccc_vals()}: Get a \link[ichr]{character} vector of all possible
+extended mode
 plus extended class properties.
 
 \item \code{ch1_arr()}: Is \code{x} a \link[ich1]{onechar} array?
@@ -674,11 +675,13 @@ plus extended class properties.
 
 \item \code{nng_arr()}: Is \code{x} a \link[inng]{non-negative numeric} array?
 
-\item \code{nnw_arr()}: Is \code{x} a \link[innw]{non-negative whole-number} array?
+\item \code{nnw_arr()}: Is \code{x} a \link[innw]{non-negative whole-number}
+array?
 
 \item \code{nps_arr()}: Is \code{x} a \link[inps]{non-positive numeric} array?
 
-\item \code{npw_arr()}: Is \code{x} a \link[inpw]{non-positive whole-number} array?
+\item \code{npw_arr()}: Is \code{x} a \link[inpw]{non-positive whole-number}
+array?
 
 \item \code{nst_arr()}: Is \code{x} a \link[inst]{non-sortable} array?
 
@@ -688,11 +691,13 @@ plus extended class properties.
 
 \item \code{ord_arr()}: Is \code{x} an \link[iord]{ordered-factor} array?
 
-\item \code{pct_arr()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)} array?
+\item \code{pct_arr()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+array?
 
 \item \code{pos_arr()}: Is \code{x} a \link[ipos]{positive numeric} array?
 
-\item \code{ppn_arr()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)} array?
+\item \code{ppn_arr()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+array?
 
 \item \code{psw_arr()}: Is \code{x} a \link[ipsw]{positive whole-number} array?
 
@@ -710,27 +715,35 @@ plus extended class properties.
 
 \item \code{clr_dtf()}: Is \code{x} a \link[iclr]{color} data.frame?
 
-\item \code{evn_dtf()}: Is \code{x} an \link[ievn]{even whole-number} data.frame?
+\item \code{evn_dtf()}: Is \code{x} an \link[ievn]{even whole-number}
+data.frame?
 
 \item \code{fac_dtf()}: Is \code{x}  \link[ifac]{factor} data.frame?
 
-\item \code{frc_dtf()}: Is \code{x} a \link[ifrc]{fractional numeric} data.frame?
+\item \code{frc_dtf()}: Is \code{x} a \link[ifrc]{fractional numeric}
+data.frame?
 
 \item \code{ind_dtf()}: Is \code{x} an \link[iind]{indexer} data.frame?
 
 \item \code{lgl_dtf()}: Is \code{x} a \link[ilgl]{logical} data.frame?
 
-\item \code{neg_dtf()}: Is \code{x} a \link[ineg]{negative numeric} data.frame?
+\item \code{neg_dtf()}: Is \code{x} a \link[ineg]{negative numeric}
+data.frame?
 
-\item \code{ngw_dtf()}: Is \code{x} a \link[ingw]{negative whole-number} data.frame?
+\item \code{ngw_dtf()}: Is \code{x} a \link[ingw]{negative whole-number}
+data.frame?
 
-\item \code{nng_dtf()}: Is \code{x} a \link[inng]{non-negative numeric} data.frame?
+\item \code{nng_dtf()}: Is \code{x} a \link[inng]{non-negative numeric}
+data.frame?
 
-\item \code{nnw_dtf()}: Is \code{x} a \link[innw]{non-negative whole-number} data.frame?
+\item \code{nnw_dtf()}: Is \code{x} a \link[innw]{non-negative whole-number}
+data.frame?
 
-\item \code{nps_dtf()}: Is \code{x} a \link[inps]{non-positive numeric} data.frame?
+\item \code{nps_dtf()}: Is \code{x} a \link[inps]{non-positive numeric}
+data.frame?
 
-\item \code{npw_dtf()}: Is \code{x} a \link[inpw]{non-positive whole-number} data.frame?
+\item \code{npw_dtf()}: Is \code{x} a \link[inpw]{non-positive whole-number}
+data.frame?
 
 \item \code{nst_dtf()}: Is \code{x} a \link[inst]{non-sortable} data.frame?
 
@@ -740,19 +753,23 @@ plus extended class properties.
 
 \item \code{ord_dtf()}: Is \code{x} an \link[iord]{ordered-factor} data.frame?
 
-\item \code{pct_dtf()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)} data.frame?
+\item \code{pct_dtf()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+data.frame?
 
 \item \code{pos_dtf()}: Is \code{x} a \link[ipos]{positive numeric} data.frame?
 
-\item \code{ppn_dtf()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)} data.frame?
+\item \code{ppn_dtf()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+data.frame?
 
-\item \code{psw_dtf()}: Is \code{x} a \link[ipsw]{positive whole-number} data.frame?
+\item \code{psw_dtf()}: Is \code{x} a \link[ipsw]{positive whole-number}
+data.frame?
 
 \item \code{srt_dtf()}: Is \code{x} a \link[isrt]{sortable} data.frame?
 
 \item \code{str_dtf()}: Is \code{x} a \link[istr]{string} data.frame?
 
-\item \code{uno_dtf()}: Is \code{x} an \link[iuno]{unordered-factor} data.frame?
+\item \code{uno_dtf()}: Is \code{x} an \link[iuno]{unordered-factor}
+data.frame?
 
 \item \code{whl_dtf()}: Is \code{x} a \link[iwhl]{whole-number} data.frame?
 
@@ -778,11 +795,13 @@ plus extended class properties.
 
 \item \code{nng_gen()}: Is \code{x} a \link[inng]{non-negative numeric} generic?
 
-\item \code{nnw_gen()}: Is \code{x} a \link[innw]{non-negative whole-number} generic?
+\item \code{nnw_gen()}: Is \code{x} a \link[innw]{non-negative whole-number}
+generic?
 
 \item \code{nps_gen()}: Is \code{x} a \link[inps]{non-positive numeric} generic?
 
-\item \code{npw_gen()}: Is \code{x} a \link[inpw]{non-positive whole-number} generic?
+\item \code{npw_gen()}: Is \code{x} a \link[inpw]{non-positive whole-number}
+generic?
 
 \item \code{nst_gen()}: Is \code{x} a \link[inst]{non-sortable} generic?
 
@@ -792,13 +811,16 @@ plus extended class properties.
 
 \item \code{ord_gen()}: Is \code{x} an \link[iord]{ordered-factor} generic?
 
-\item \code{pct_gen()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)} generic?
+\item \code{pct_gen()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+generic?
 
 \item \code{pos_gen()}: Is \code{x} a \link[ipos]{positive numeric} generic?
 
-\item \code{ppn_gen()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)} generic?
+\item \code{ppn_gen()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+generic?
 
-\item \code{psw_gen()}: Is \code{x} a \link[ipsw]{positive whole-number} generic?
+\item \code{psw_gen()}: Is \code{x} a \link[ipsw]{positive whole-number}
+generic?
 
 \item \code{srt_gen()}: Is \code{x} a \link[isrt]{sortable} generic?
 
@@ -830,11 +852,13 @@ plus extended class properties.
 
 \item \code{nng_mat()}: Is \code{x} a \link[inng]{non-negative numeric} matrix?
 
-\item \code{nnw_mat()}: Is \code{x} a \link[innw]{non-negative whole-number} matrix?
+\item \code{nnw_mat()}: Is \code{x} a \link[innw]{non-negative whole-number}
+matrix?
 
 \item \code{nps_mat()}: Is \code{x} a \link[inps]{non-positive numeric} matrix?
 
-\item \code{npw_mat()}: Is \code{x} a \link[inpw]{non-positive whole-number} matrix?
+\item \code{npw_mat()}: Is \code{x} a \link[inpw]{non-positive whole-number}
+matrix?
 
 \item \code{nst_mat()}: Is \code{x} a \link[inst]{non-sortable} matrix?
 
@@ -844,11 +868,13 @@ plus extended class properties.
 
 \item \code{ord_mat()}: Is \code{x} an \link[iord]{ordered-factor} matrix?
 
-\item \code{pct_mat()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)} matrix?
+\item \code{pct_mat()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+matrix?
 
 \item \code{pos_mat()}: Is \code{x} a \link[ipos]{positive numeric} matrix?
 
-\item \code{ppn_mat()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)} matrix?
+\item \code{ppn_mat()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+matrix?
 
 \item \code{psw_mat()}: Is \code{x} a \link[ipsw]{positive whole-number} matrix?
 
@@ -878,15 +904,20 @@ plus extended class properties.
 
 \item \code{neg_mvc()}: Is \code{x} a \link[ineg]{negative numeric} multivec?
 
-\item \code{ngw_mvc()}: Is \code{x} a \link[ingw]{negative whole-number} multivec?
+\item \code{ngw_mvc()}: Is \code{x} a \link[ingw]{negative whole-number}
+multivec?
 
-\item \code{nng_mvc()}: Is \code{x} a \link[inng]{non-negative numeric} multivec?
+\item \code{nng_mvc()}: Is \code{x} a \link[inng]{non-negative numeric}
+multivec?
 
-\item \code{nnw_mvc()}: Is \code{x} a \link[innw]{non-negative whole-number} multivec?
+\item \code{nnw_mvc()}: Is \code{x} a \link[innw]{non-negative whole-number}
+multivec?
 
-\item \code{nps_mvc()}: Is \code{x} a \link[inps]{non-positive numeric} multivec?
+\item \code{nps_mvc()}: Is \code{x} a \link[inps]{non-positive numeric}
+multivec?
 
-\item \code{npw_mvc()}: Is \code{x} a \link[inpw]{non-positive whole-number} multivec?
+\item \code{npw_mvc()}: Is \code{x} a \link[inpw]{non-positive whole-number}
+multivec?
 
 \item \code{nst_mvc()}: Is \code{x} a \link[inst]{non-sortable} multivec?
 
@@ -896,13 +927,16 @@ plus extended class properties.
 
 \item \code{ord_mvc()}: Is \code{x} an \link[iord]{ordered-factor} multivec?
 
-\item \code{pct_mvc()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)} multivec?
+\item \code{pct_mvc()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+multivec?
 
 \item \code{pos_mvc()}: Is \code{x} a \link[ipos]{positive numeric} multivec?
 
-\item \code{ppn_mvc()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)} multivec?
+\item \code{ppn_mvc()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+multivec?
 
-\item \code{psw_mvc()}: Is \code{x} a \link[ipsw]{positive whole-number} multivec?
+\item \code{psw_mvc()}: Is \code{x} a \link[ipsw]{positive whole-number}
+multivec?
 
 \item \code{srt_mvc()}: Is \code{x} a \link[isrt]{sortable} multivec?
 
@@ -912,57 +946,61 @@ plus extended class properties.
 
 \item \code{whl_mvc()}: Is \code{x} a \link[iwhl]{whole-number} multivec?
 
-\item \code{ch1_scl()}: Is \code{x} a \link[ich1]{onechar} scalr?
+\item \code{ch1_scl()}: Is \code{x} a \link[ich1]{onechar} scalar?
 
-\item \code{chr_scl()}: Is \code{x} a \link[ichr]{character} scalr?
+\item \code{chr_scl()}: Is \code{x} a \link[ichr]{character} scalar?
 
-\item \code{clr_scl()}: Is \code{x} a \link[iclr]{color} scalr?
+\item \code{clr_scl()}: Is \code{x} a \link[iclr]{color} scalar?
 
-\item \code{evn_scl()}: Is \code{x} an \link[ievn]{even whole-number} scalr?
+\item \code{evn_scl()}: Is \code{x} an \link[ievn]{even whole-number} scalar?
 
-\item \code{fac_scl()}: Is \code{x}  \link[ifac]{factor} scalr?
+\item \code{fac_scl()}: Is \code{x}  \link[ifac]{factor} scalar?
 
-\item \code{frc_scl()}: Is \code{x} a \link[ifrc]{fractional numeric} scalr?
+\item \code{frc_scl()}: Is \code{x} a \link[ifrc]{fractional numeric} scalar?
 
-\item \code{ind_scl()}: Is \code{x} an \link[iind]{indexer} scalr?
+\item \code{ind_scl()}: Is \code{x} an \link[iind]{indexer} scalar?
 
-\item \code{lgl_scl()}: Is \code{x} a \link[ilgl]{logical} scalr?
+\item \code{lgl_scl()}: Is \code{x} a \link[ilgl]{logical} scalar?
 
-\item \code{neg_scl()}: Is \code{x} a \link[ineg]{negative numeric} scalr?
+\item \code{neg_scl()}: Is \code{x} a \link[ineg]{negative numeric} scalar?
 
-\item \code{ngw_scl()}: Is \code{x} a \link[ingw]{negative whole-number} scalr?
+\item \code{ngw_scl()}: Is \code{x} a \link[ingw]{negative whole-number} scalar?
 
-\item \code{nng_scl()}: Is \code{x} a \link[inng]{non-negative numeric} scalr?
+\item \code{nng_scl()}: Is \code{x} a \link[inng]{non-negative numeric} scalar?
 
-\item \code{nnw_scl()}: Is \code{x} a \link[innw]{non-negative whole-number} scalr?
+\item \code{nnw_scl()}: Is \code{x} a \link[innw]{non-negative whole-number}
+scalar?
 
-\item \code{nps_scl()}: Is \code{x} a \link[inps]{non-positive numeric} scalr?
+\item \code{nps_scl()}: Is \code{x} a \link[inps]{non-positive numeric} scalar?
 
-\item \code{npw_scl()}: Is \code{x} a \link[inpw]{non-positive whole-number} scalr?
+\item \code{npw_scl()}: Is \code{x} a \link[inpw]{non-positive whole-number}
+scalar?
 
-\item \code{nst_scl()}: Is \code{x} a \link[inst]{non-sortable} scalr?
+\item \code{nst_scl()}: Is \code{x} a \link[inst]{non-sortable} scalar?
 
-\item \code{num_scl()}: Is \code{x} a \link[inum]{numeric} scalr?
+\item \code{num_scl()}: Is \code{x} a \link[inum]{numeric} scalar?
 
-\item \code{odd_scl()}: Is \code{x} an \link[iodd]{odd whole-number} scalr?
+\item \code{odd_scl()}: Is \code{x} an \link[iodd]{odd whole-number} scalar?
 
-\item \code{ord_scl()}: Is \code{x} an \link[iord]{ordered-factor} scalr?
+\item \code{ord_scl()}: Is \code{x} an \link[iord]{ordered-factor} scalar?
 
-\item \code{pct_scl()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)} scalr?
+\item \code{pct_scl()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+scalar?
 
-\item \code{pos_scl()}: Is \code{x} a \link[ipos]{positive numeric} scalr?
+\item \code{pos_scl()}: Is \code{x} a \link[ipos]{positive numeric} scalar?
 
-\item \code{ppn_scl()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)} scalr?
+\item \code{ppn_scl()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+scalar?
 
-\item \code{psw_scl()}: Is \code{x} a \link[ipsw]{positive whole-number} scalr?
+\item \code{psw_scl()}: Is \code{x} a \link[ipsw]{positive whole-number} scalar?
 
-\item \code{srt_scl()}: Is \code{x} a \link[isrt]{sortable} scalr?
+\item \code{srt_scl()}: Is \code{x} a \link[isrt]{sortable} scalar?
 
-\item \code{str_scl()}: Is \code{x} a \link[istr]{string} scalr?
+\item \code{str_scl()}: Is \code{x} a \link[istr]{string} scalar?
 
-\item \code{uno_scl()}: Is \code{x} an \link[iuno]{unordered-factor} scalr?
+\item \code{uno_scl()}: Is \code{x} an \link[iuno]{unordered-factor} scalar?
 
-\item \code{whl_scl()}: Is \code{x} a \link[iwhl]{whole-number} scalr?
+\item \code{whl_scl()}: Is \code{x} a \link[iwhl]{whole-number} scalar?
 
 \item \code{ch1_vec()}: Is \code{x} a \link[ich1]{onechar} vec?
 
@@ -986,11 +1024,13 @@ plus extended class properties.
 
 \item \code{nng_vec()}: Is \code{x} a \link[inng]{non-negative numeric} vec?
 
-\item \code{nnw_vec()}: Is \code{x} a \link[innw]{non-negative whole-number} vec?
+\item \code{nnw_vec()}: Is \code{x} a \link[innw]{non-negative whole-number}
+vec?
 
 \item \code{nps_vec()}: Is \code{x} a \link[inps]{non-positive numeric} vec?
 
-\item \code{npw_vec()}: Is \code{x} a \link[inpw]{non-positive whole-number} vec?
+\item \code{npw_vec()}: Is \code{x} a \link[inpw]{non-positive whole-number}
+vec?
 
 \item \code{nst_vec()}: Is \code{x} a \link[inst]{non-sortable} vec?
 
@@ -1000,11 +1040,13 @@ plus extended class properties.
 
 \item \code{ord_vec()}: Is \code{x} an \link[iord]{ordered-factor} vec?
 
-\item \code{pct_vec()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)} vec?
+\item \code{pct_vec()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+vec?
 
 \item \code{pos_vec()}: Is \code{x} a \link[ipos]{positive numeric} vec?
 
-\item \code{ppn_vec()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)} vec?
+\item \code{ppn_vec()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+vec?
 
 \item \code{psw_vec()}: Is \code{x} a \link[ipsw]{positive whole-number} vec?
 
@@ -1038,11 +1080,13 @@ plus extended class properties.
 
 \item \code{nng_vls()}: Is \code{x} a \link[inng]{non-negative numeric} vlist?
 
-\item \code{nnw_vls()}: Is \code{x} a \link[innw]{non-negative whole-number} vlist?
+\item \code{nnw_vls()}: Is \code{x} a \link[innw]{non-negative whole-number}
+vlist?
 
 \item \code{nps_vls()}: Is \code{x} a \link[inps]{non-positive numeric} vlist?
 
-\item \code{npw_vls()}: Is \code{x} a \link[inpw]{non-positive whole-number} vlist?
+\item \code{npw_vls()}: Is \code{x} a \link[inpw]{non-positive whole-number}
+vlist?
 
 \item \code{nst_vls()}: Is \code{x} a \link[inst]{non-sortable} vlist?
 
@@ -1052,11 +1096,13 @@ plus extended class properties.
 
 \item \code{ord_vls()}: Is \code{x} an \link[iord]{ordered-factor} vlist?
 
-\item \code{pct_vls()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)} vlist?
+\item \code{pct_vls()}: Is \code{x} a \link[ipct]{percentage numeric (0-100)}
+vlist?
 
 \item \code{pos_vls()}: Is \code{x} a \link[ipos]{positive numeric} vlist?
 
-\item \code{ppn_vls()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)} vlist?
+\item \code{ppn_vls()}: Is \code{x} a \link[ippn]{proportional numeric (0-1)}
+vlist?
 
 \item \code{psw_vls()}: Is \code{x} a \link[ipsw]{positive whole-number} vlist?
 

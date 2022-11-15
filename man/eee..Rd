@@ -38,11 +38,10 @@ ieee(x, eee, ...)
 
 \item{eee}{\link[cmp_chr_scl]{Complete character scalar} containing one or
 more values from \code{eee_vals()} separated by pipes and/or underscores.
-Combinations of effective dimensionality  properties can be specified by
-separating them with underscores. Separating effective dimensionality
-properties or combinations of effective dimensionality properties with
-pipes will result in a value of \code{TRUE} if any of them applies to
-\code{x}.}
+Combinations of effective dimensionality properties can be specified by
+underscore-delimiting them. Pipe-delimiting effective dimensionality
+properties or combinations of effective dimensionality will result in a
+value of \code{TRUE} if any of them applies to \code{x}.}
 
 \item{...}{Additional arguments to \code{\link{meets}} containing value and
 element/row/column count restrictions.}
@@ -88,14 +87,14 @@ Functions related to essential dimensionality are described in the following
 table:\tabular{ll}{
 FUNCTION          \tab WHAT THE                                           \cr
 FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i•••}       \tab Evaluates whether an object is of the essential
-dimensionality represented by \code{•••}.          \cr
-\code{ddd}        \tab Gets a character scalar containing the essential
+\code{i***}       \tab Evaluates whether an object is of the essential
+dimensionality represented by \code{***}.          \cr
+\code{eee}        \tab Gets a character scalar containing the essential
 dimensionality of an object.                       \cr
-\code{iddd}       \tab Evaluates an object for a specific essential
+\code{ieee}       \tab Evaluates an object for a specific essential
 dimensionality and any additional properties
 specified in \code{...}.                           \cr
-\code{ddd_vals}   \tab Gets a character vector of all possible essential
+\code{eee_vals}   \tab Gets a character vector of all possible essential
 dimensionality property values.                      }
 }
 \section{Functions}{

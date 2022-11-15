@@ -2,6 +2,7 @@
 % Please edit documentation in R/ipat.R
 \name{ipat.}
 \alias{ipat.}
+\alias{has_pat}
 \alias{ipat}
 \alias{wpat}
 \alias{npat}
@@ -10,6 +11,8 @@
 \title{Simplified string indexing for fixed patterns}
 \usage{
 ipat.()
+
+has_pat(x, pat)
 
 ipat(x, pat)
 
@@ -41,6 +44,9 @@ single character vector to search for a fixed pattern.
 }
 \section{Functions}{
 \itemize{
+\item \code{has_pat()}: Evaluate whether each element of \code{x} contains the
+string in \code{pat}.
+
 \item \code{ipat()}: Logically indexes character vector elements containing a
 pattern as \code{TRUE} or \code{FALSE}.
 
@@ -63,7 +69,6 @@ Other strings:
 \code{\link{charn.}()},
 \code{\link{delim.}()},
 \code{\link{fsub.}()},
-\code{\link{has_pat.}()},
 \code{\link{max_nch.}()},
 \code{\link{mkstr.}()},
 \code{\link{ox.}()},

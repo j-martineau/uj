@@ -22,23 +22,20 @@ files. <- function() {help("files.", package = "uj")}
 #'   object (file or folder) when arguments in \code{...} are collapsed into a
 #'   character scalar.
 is_path <- function(..., err = F) {
-  x  <- list(...)
-  vn <- length(x) > 0
-  vns <- f0(!vn, T, all(lengths(x) > 0))
-  vx <- f0(!vn | !vns, T, all(sapply(x, cmp_chr)))
-  ve <- isTF(err)
-  errs <- NULL
-  if (!vn) {errs <- c(errs, "\n • [...] is empty.")}
-  if (!vns) {errs <- c(errs, "\n • An argument in [...] is empty.")}
-  if (!vx) {errs <- c(errs, "\n • Arguments in [...] must be complete character scalars/vecs (?cmp_chr_scl, ?cmp_chr_vec).")}
-  if (!ve) {errs <- c(errs, "\n • [err] must be TRUE or FALSE.")}
+  x <- list(...)
+  ok.n <- length(x) == 0
+  ok.ns <- f0(!ok.n, T, all(lengths(x) > 0))
+  errs <- c(f0(ok.n                                        , NULL, "\n \u2022 [...] is empty."),
+            f0(ok.ns                                       , NULL, "\n \u2022 An argument in [...] is empty."),
+            f0(f0(ok.n | ok.ns, T, all(sapply(x, cmp_chr))), NULL, "\n \u2022 Arguments in [...] must be complete character scalars/vecs (?cmp_chr_scl, ?cmp_chr_vec)."),
+            f0(isTF(err)                                   , NULL, "\n \u2022 [err] must be TRUE or FALSE."))
   if (idef(errs)) {stop(errs)}
   path <- file.path(...)
   exists <- file.exists(path)                                                    # whether the file exists
   if (exists) {return(T)}                                                        # if the resulting file already exists, return T
   out <- isERR(file.create(path, showWarnings = F))                              # can such a file be created?
   if (out) {file.remove(path)}                                                   # remove any newly created file
-  if (!out & err) {stop("\n • [...] doesn't resolve to a valid file/folder path after collapsing.")}
+  if (!out & err) {stop("\n \u2022 [...] doesn't resolve to a valid file/folder path after collapsing.")}
   out
 }
 
@@ -90,7 +87,7 @@ parent_dirs <- function(path, err = T) {strsplit(parent_path(path, err = err), .
 newdirs <- function(dirs, path = NULL) {
   cancel <- function() {stop("canceled by user.")}                               # FUNCTION to throw an error
   if (inll(path)) {                                                              # IF path is not supplied
-    msgbox("In the next dialog, select a folder to create new sub-folders in.")  # : notify user of what to do next (title doesn't always appear in next box)
+    msgbox("In the next dialog, choose a folder to create new sub-folders in.")  # : notify user of what to do next (title doesn't always appear in next box)
     path <- dirbox(x = "Choose a folder to create new sub-folders in:")$res      # : ask user to select a directory
   }                                                                              # END
   if (inll(path)) {cancel()} else if (!file.exists(path)) {cancel()}             # IF path is still NULL > error ELSE if it doesn't exist > error
