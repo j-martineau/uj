@@ -57,45 +57,46 @@ asknew(old, what, unq = T)
 \arguments{
 \item{...}{Objects to be atomized to create the question.}
 
-\item{t}{\link[cmp_chr_scl]{Complete character scalar} type of dialog box
+\item{t}{\link[=cmp_chr_scl]{Complete character scalar} type of dialog box
 (valid values are \code{c('ok', 'okcancel', 'yesno', 'yesnocancel'}).}
 
-\item{d}{\link[cmp_chr_scl]{Complete character scalar} default directory.}
+\item{d}{\link[=cmp_chr_scl]{Complete character scalar} default directory.}
 
-\item{def}{\link[cmp_chr_scl]{Complete character scalar} default value.}
+\item{x}{\link[=cmp_chr_scl]{Complete character scalar} message.}
 
-\item{type, }{\link[cmp_chr_scl]{Complete character scalar} type of directory
+\item{def}{\link[=cmp_chr_scl]{Complete character scalar} default value.}
+
+\item{type, }{\link[=cmp_chr_scl]{Complete character scalar} type of directory
 or document to select}
 
-\item{cancel}{\link[cmp_chr_scl]{Complete character scalar} value to return
+\item{cancel}{\link[=cmp_chr_scl]{Complete character scalar} value to return
 if user clicks the \code{cancel} button The value \code{cancel = '.stop'}
 is an indicator that an error should be thrown if the user clicks the
 \code{cancel} button.}
 
-\item{opts}{Character vector of options to choose from.}
+\item{opts}{\link[=cmp_chr_vec]{Complete character vector} of options to
+choose from.}
 
-\item{what}{\link[cmp_chr_scl]{Complete character scalar} describing type of
+\item{what}{\link[=cmp_chr_scl]{Complete character scalar} describing type of
 option being presented.}
 
 \item{more}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
 there are more options than could be presented in a single dialog box that
 still could be presented.}
 
-\item{all, none}{\link[cmp_lgl_scl]{Complete logical scalars} indicating
+\item{all, none}{\link[=cmp_lgl_scl]{Complete logical scalars} indicating
 whether the user should be able to select all options or none of the
 options, respectively.}
 
-\item{per}{\link[cmp_psw_scl]{Complete positive whole-number scalar}
+\item{per}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}
 indicating the maximum number of options to present in a single dialog box
 interaction.}
 
-\item{unq}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether new
-values must be unique.}
-
-\item{x.}{\link[cmp_chr_scl]{Complete character scalar} message.}
+\item{unq}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
+new values must be unique.}
 }
 \value{
-\link[cmp_chr_scl]{Complete character scalar}
+\link[=cmp_chr_scl]{Complete character scalar}
 }
 \description{
 Launch a dialog box

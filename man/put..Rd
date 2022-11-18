@@ -16,36 +16,30 @@ putr(x, v, r)
 putc(x, v, c)
 }
 \arguments{
-\item{x}{Object into which values will be placed. May be a vector, list,
-matrix, or data.frame.}
+\item{x}{Object into which values will be placed. May be a \code{\link{vec}},
+\code{\link[ivls]{vlist}}, matrix, or data.frame.}
 
-\item{v}{Vector of replacement values.}
+\item{v}{A vector of replacement values.}
 
-\item{e}{\link[cmp_ind_vec]{Complete indexer vec} or
-\link[cmp_psw_scl]{complete positive whole-number scalar} indexing
+\item{e}{A \link[=cmp_ind_vec]{complete indexer vec} or
+\link[=cmp_psw_scl]{complete positive whole-number scalar} indexing
 element(s) to replace.}
 
-\item{r, c}{\link[cmp_ind_scl]{Complete indexer scalar} indicating row or
+\item{r, c}{A \link[=cmp_ind_scl]{complete indexer scalar} indicating row or
 column to replace, respectively.}
 }
 \value{
 An object of the same dimension as \code{x}.
 }
 \description{
-Put values into objects
+\tabular{ll}{
+\code{put}    \tab Put values in \code{v} into \code{e}-indexed elements of
+the vector or \code{\link[=ivls]{vlist}} \code{x}.   \cr
+\code{putr}   \tab Put the vector \code{v} into the \code{r}-indexed row of
+the matrix or data frame \code{x}.                   \cr
+\code{putc}   \tab Put the vector \code{v} into the \code{c}-indexed of the
+matrix or data frame \code{x}.                         }
 }
-\section{Functions}{
-\itemize{
-\item \code{put()}: Put values in \code{v} into \code{e}-indexed elements of
-the vector or list \code{x}.
-
-\item \code{putr()}: Put the vector \code{v} into the \code{r}-indexed row of
-the matrix or data frame \code{x}.
-
-\item \code{putc()}: Put the vector \code{v} into the \code{c}-indexed of the
-matrix or data frame \code{x}.
-
-}}
 \seealso{
 Other extensions: 
 \code{\link{a.}()},

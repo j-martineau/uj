@@ -31,29 +31,34 @@ ddd_vals()
 iddd(x, ddd, ...)
 }
 \arguments{
-\item{x}{An object.}
+\item{x}{An R object.}
 
-\item{ddd}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+\item{ddd}{A \link[=cmp_chr_scl]{complete character scalar} containing one or
 more values from \code{ddd_vals()} separated by pipes and/or underscores.
 Combinations of defined dimensionality properties can be specified by
 separating them with underscores. Separating defined dimensionality
 properties or combinations of defined dimensionality properties with pipes
 will result in a value of \code{TRUE} if any of them applies to \code{x}.}
 
-\item{...}{Additional arguments to \code{\link{meets}} containing value and
-element/row/column count restrictions.}
+\item{...}{
+  Arguments passed on to \code{\link[=meets.]{meets.}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \value{
-\code{nddd} returns a non-negative whole-number scalar.
-\code{ddd_vals} and \code{ddd} return a character scalar or vector. All
-others return either \code{TRUE} or \code{FALSE}.
+\tabular{lll}{
+\code{nddd}                   \tab  \tab A non-negative whole-number
+scalar.                        \cr
+\code{ddd_vals} and \code{ddd}\tab  \tab A character scalar or vector.  \cr
+\code{iddd} and \code{i[ddd]} \tab  \tab A logical scalar.                }
 }
 \description{
-An object's defined dimensionality (def. dim.) is the number of
-dimensions on which its components can be indexed. The following table
-gives levels of defined dimensionality, property values assigned to levels
-of defined dimensionality, property names, and a definition of each value
-of defined dimensionality.\tabular{llll}{
+An object's defined dimensionality is the number of dimensions
+on which its components can be indexed. The following table gives levels of
+defined dimensionality, property values assigned to levels of defined
+dimensionality, property names, and a definition of each value of defined
+dimensionality.\tabular{llll}{
           \tab DEFINED          \tab DEFINED          \tab                \cr
 NUMBER    \tab DIMENSIONALITY   \tab DIMENSIONALITY   \tab CHARACTERISTICS\cr
 OF DEFINED\tab PROPERTY         \tab PROPERTY         \tab OF QUALIFYING  \cr
@@ -61,19 +66,18 @@ DIMENSIONS   \tab VALUE         \tab NAME             \tab OBJECTS        \cr
 \code{0}     \tab\code{'d0D'}   \tab 0-dimensional structure.
 \tab \code{NULL}.                         \cr
 \code{1}     \tab\code{'d1D'}   \tab 1-dimensional structure.
-\tab Vector, \link[ivls]{vlist},
+\tab Vector, \link[=ivls]{vlist},
 1-dimensional array.                 \cr
 \code{2}     \tab\code{'d2D'}   \tab 2-dimensional structure.
-\tab \code{\link[idtf]{data.frame}} or
-matrix.                              \cr
+\tab data.frame or matrix.                \cr
 \code{≥ 3}   \tab\code{'dHD'}   \tab Hyper-dimensional structure.
 \tab Array with 3+ dimensions.              }
 Functions related to defined dimensionality are described in the following
 table:\tabular{ll}{
 FUNCTION          \tab WHAT THE                                           \cr
 FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i***}       \tab Evaluates whether an object is of the defined
-dimensionality represented by \code{***}.          \cr
+\code{i[ddd]}     \tab Evaluates whether an object is of the defined
+dimensionality represented by \code{[ddd]}.        \cr
 \code{ddd}        \tab Gets a character scalar containing the defined
 dimensionality of an object.                       \cr
 \code{iddd}       \tab Evaluates an object for a specific defined
@@ -82,33 +86,32 @@ in \code{...}.                                     \cr
 \code{ddd_vals}   \tab Gets a character vector of all possible defined
 dimensionality property values.                      }
 }
-\section{Functions}{
-\itemize{
-\item \code{ddd()}: Gets a vector of all defined dimensionality properties
-from \code{ddd_vals()} that are applicable to \code{x}.
+\section{Specifying Additional Property Requirements}{
 
-\item \code{nddd()}: Gets the \strong{number} of defined dimensions of
-\code{x} (i.e., not a character scalar defined dimensionality property
-from \code{ddd_vals}).
+Specifying additional requirements in \code{...} is optional. The full set
+of recognized arguments names are defined in the following table along with
+the properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                    \cr
+\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
+\code{nr}     \tab Vec of valid numbers of rows.                        \cr
+\code{nc}     \tab Vec of valid numbers of columns.                     \cr
+\code{min}    \tab Scalar minimum valid length/number of element.       \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
+\code{minc}   \tab Scalar minimum valid number of columns.              \cr
+\code{max}    \tab Scalar maximum valid length/number of element.       \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
+\code{vals}   \tab Vec of valid values.                                 \cr
+\code{lt}     \tab Scalar value all values of \code{x} must be less
+than.                                                \cr
+\code{le}     \tab Scalar value all values of \code{x} must be less than or
+equal to.                                            \cr
+\code{ge}     \tab Scalar value all values of \code{x} must be greater than
+or equal to.                                         \cr
+\code{gt}     \tab Scalar value all values of \code{x} must be greater
+than.                                                  }
+}
 
-\item \code{id0D()}: Evaluate whether \code{x} has \code{0} defined
-dimensions.
-
-\item \code{id1D()}: Evaluate whether \code{x} has \code{1} defined dimension.
-
-\item \code{id2D()}: Evaluate whether \code{x} has \code{2} defined
-dimensions.
-
-\item \code{idHD()}: Evaluate whether \code{x} has \code{3+} defined
-dimensions.
-
-\item \code{ddd_vals()}: Get a character vector of all possible defined
-dimensionality property values.
-
-\item \code{iddd()}: Evaluates whether at least one of the defined
-dimensionality properties in \code{ddd} is applicable to \code{x}.
-
-}}
 \seealso{
 Other props: 
 \code{\link{as_mmm.}()},

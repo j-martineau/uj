@@ -19,49 +19,47 @@ recycle(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL)
 \item{...}{Named arguments to be recycled in the environment of the calling
 function.}
 
-\item{n.}{For \code{recyclable_n}, a \link[cmp_psw_vec]{complete positive
+\item{n.}{For \code{recyclable_n}, a \link[=cmp_psw_vec]{complete positive
 whole-number vec} giving the lengths of arguments to be recycled; for
 \code{recyclable} and \code{recycle}, either \code{NULL} or a
-\link[cmp_psw_vec]{complete positive whole-number vec} giving the set of
+\link[=cmp_psw_vec]{complete positive whole-number vec} giving the set of
 valid recycled argument lengths.}
 
-\item{min.}{\code{NULL} or \link[cmp_psw_scl]{complete positive whole-number
+\item{min.}{\code{NULL} or \link[=cmp_psw_scl]{complete positive whole-number
 scalar} giving the minimum valid recycled argument length.}
 
-\item{max.}{\code{NULL} or \link[cmp_psw_scl]{complete positive whole-number
+\item{max.}{\code{NULL} or \link[=cmp_psw_scl]{complete positive whole-number
 scalar} giving the maximum valid recycled argument length.}
 
-\item{targ.}{\link[cmp_psw_scl]{Complete positive whole-number scalar} giving
-the target length of recycled arguments.}
+\item{targ.}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}
+giving the target length of recycled arguments.}
 
-\item{err.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
-throw an error if the arguments in \code{...} are not recyclable.}
+\item{err.}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
+to throw an error if the arguments in \code{...} are not recyclable.}
 
-\item{lengths.}{\link[cmp_psw_vec]{Complete positive whole-number vec} of
+\item{lengths.}{\link[=cmp_psw_vec]{Complete positive whole-number vec} of
 lengths to check for recyclability.}
 }
 \value{
-\code{recyclable_n} and \code{recyclable} return \code{TRUE} or
-\code{FALSE}. \code{recycle} returns \code{NULL} as it is called for the
-side effect of recycling arguments in the environment of a parent function.
+\tabular{ll}{
+\code{recyclable_n}   \tab Logical scalar                               \cr
+\code{recyclable}     \tab Logical scalar                               \cr
+\code{recycle}        \tab \code{NULL} (called for side effect).          }
 }
 \description{
-Recycling and recyclability
+\tabular{ll}{
+\code{recyclable_n}   \tab Checks whether the vector of lengths in
+\code{n.} represents recyclable arguments
+subject to the setting in \code{targ.}.      \cr
+\code{recyclable}     \tab Evaluates whether arguments in \code{...} are
+recyclable subject to settings in the arguments
+\code{n.}, \code{min.}, \code{max.}, and
+\code{targ.}.                                \cr
+\code{recycle}        \tab Recycle arguments in \code{...} in the
+environment of the calling function subject to
+settings in the arguments \code{n.},
+\code{min.}, \code{max.}, and \code{targ.}.    }
 }
-\section{Functions}{
-\itemize{
-\item \code{recyclable_n()}: Check whether the vector of lengths in \code{n.}
-represents recyclable arguments subject to the setting in \code{targ.}.
-
-\item \code{recyclable()}: Evaluate whether arguments in \code{...} are
-recyclable subject to settings in the arguments \code{n.}, \code{min.},
-\code{max.}, and \code{targ.}.
-
-\item \code{recycle()}: Recycle arguments in \code{...} in the environment of
-the calling function subject to settings in the arguments \code{n.},
-\code{min.}, \code{max.}, and \code{targ.}.
-
-}}
 \seealso{
 Other extensions: 
 \code{\link{a.}()},

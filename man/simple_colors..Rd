@@ -85,46 +85,47 @@ pal_cb(ng, nc = NULL, a = 1)
 pal_swatch(x)
 }
 \arguments{
-\item{x}{\link[ivec]{Atomic vec} containing valid R color representations.
-Recycled with \code{y}, \code{lighten}, \code{darken}, \code{comp},
-\code{a}, \code{p}, \code{s}, \code{wx}, and \code{wy} where these are
-valid arguments.}
+\item{x}{\link[=atm_vec]{Atomic vec} containing valid R color
+representations. Recycled with \code{y}, \code{lighten}, \code{darken},
+\code{comp}, \code{a}, \code{p}, \code{s}, \code{wx}, and \code{wy} where
+these are valid arguments.}
 
-\item{lighten}{\link[cmp_ppn_vec]{Complete proportion-valued numeric vec} of
+\item{lighten}{\link[=cmp_ppn_vec]{Complete proportion numeric vec} of
 proportions by which to lighten the colors given in \code{x} toward white.}
 
-\item{darken}{\link[cmp_ppn_vec]{Complete proportion-valued numeric vec} of
+\item{darken}{\link[=cmp_ppn_vec]{Complete proportion numeric vec} of
 proportions by which to darken the colors given in \code{x} toward black.}
 
-\item{a}{\link{cmp_ppn_vec}{Complete proportion-valued numeric vec} of 1 or
-more alpha levels (0 = transparent, 0.5 = translucent, 1 = opaque).
-\code{NA} values in \code{a} are only applicable with \code{color(.)} and
+\item{a}{\link[=cmp_ppn_vec]{Complete proportion numeric vec} of 1 or more
+alpha levels (0 = transparent, 0.5 = translucent, 1 = opaque). \code{NA}
+values in \code{a} are only applicable with \code{color(.)} and
 \code{blend(.)}) to indicate keeping existing alpha values.}
 
-\item{comp}{\link[cmp_lgl_vec]{Complete logical vec} indicating whether to
+\item{comp}{\link[=cmp_lgl_vec]{Complete logical vec} indicating whether to
 return complementary colors.}
 
-\item{r, g, b}{\link[cmp_ppn_vec]{Complete proportion-valued numeric vecs}
-giving intensities of red, blue, and green from the RGB color space.
-Recycled with each other and \code{a}.}
+\item{r, g, b}{\link[=cmp_ppn_vec]{Complete proportion numeric vecs} giving
+intensities of red, blue, and green from the RGB color space. Recycled with
+each other and \code{a}.}
 
-\item{h, s, v}{\link[cmp_ppn_vec]{Complete proportion-valued numeric vecs}
-giving hue, saturation, and value/brightness from the HSV color space.
-Recycled with each other and \code{a}.}
+\item{h, s, v}{\link[=cmp_ppn_vec]{Complete proportion numeric vecs} giving
+hue, saturation, and value/brightness from the HSV color space. Recycled
+with each other and \code{a}.}
 
-\item{y}{\link[ivec]{Atomic vec} containing valid R color representations.}
+\item{y}{\link[=atm_vec]{Atomic vec} containing valid R color
+representations.}
 
-\item{wx, wy}{\link[cmp_pos_vec]{Complete positive-valued numeric vectors}
+\item{wx, wy}{\link[=cmp_pos_vec]{Complete positive numeric vectors}
 giving weights to apply to \code{x} and \code{y} in color blending.}
 
-\item{p, s}{\link[cmp_ppn_vec]{Complete poportion-valued numeric vecs} of 1 or
+\item{p, s}{\link[=cmp_ppn_vec]{Complete poportion numeric vecs} of 1 or
 more primary and secondary color intensities (respectively) in the range
 \code{[0, 1]}.}
 
-\item{nc, ng}{\link[cmp_psw_scl]{Complete positive-valued whole-numnber
-scalars} giving the number of colors and groups, respectively.}
+\item{nc, ng}{\link[=cmp_psw_scl]{Complete positive whole-number scalars}
+giving the number of colors and groups, respectively.}
 
-\item{na}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+\item{na}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
 \code{NA} counts as a valid color alpha level.}
 }
 \value{
@@ -141,8 +142,8 @@ they are as long as they longest parameter. An error is thrown if each
 parameter's length is not a whole-number divisor of the length of the
 maximum-length parameter. \cr \cr Red, green, and blue colors that make up
 a color are primary (\code{p}). Those that do not are secondary (\code{s})
-and function in the following manner:\tabular{ll}{ ARGUMENT VALUES
-\tab RESULTING COLOR                              \cr
+and function in the following manner:\tabular{ll}{
+ARGUMENT VALUES       \tab RESULTING COLOR                              \cr
 \code{p = 1, s = 0   }\tab The most intense color.                      \cr
 \code{p > s > 0}      \tab A lighter, muted color.                      \cr
 \code{s < p < 1}      \tab A darker color.                              \cr

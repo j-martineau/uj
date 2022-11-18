@@ -6,10 +6,10 @@
 #'   values for \code{sd0}, \code{min0}, \code{max0}, and \code{mean0}.
 #' @param n Positive whole-number scalar size of the complete set each subset is
 #'   drawn from.
-#' @param x \link[cmp_num_vec]{Complete numeric vec} or
-#'   \link[cmp_num_mat]{complete numeric matrix}.
-#' @param y Optional \link[cmp_num_vec]{complete numeric vec} or
-#'   \link[cmp_num_mat]{complete numeric matrix}.
+#' @param x \link[=cmp_num_vec]{Complete numeric vec} or
+#'   \link[=cmp_num_mat]{complete numeric matrix}.
+#' @param y Optional \link[=cmp_num_vec]{complete numeric vec} or
+#'   \link[=cmp_num_mat]{complete numeric matrix}.
 #' @export
 stats. <- function() {help("stats.", package = "uj")}
 

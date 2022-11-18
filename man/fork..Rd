@@ -25,21 +25,21 @@ ff1(test, yes, no)
 ffx(test, yes, no)
 }
 \arguments{
-\item{test}{\link[cmp_lgl_scl]{Complete logical scalar} for \code{f0},
-\code{ff0}, \code{f1}, and \code{ff1}. \link[cmp_lgl_vec]{Complete logical
+\item{test}{\link[=cmp_lgl_scl]{Complete logical scalar} for \code{f0},
+\code{ff0}, \code{f1}, and \code{ff1}. \link[=cmp_lgl_vec]{Complete logical
 vec} for \code{fx} and \code{ffx}. \code{f0}, \code{f1}, and \code{f2} can
 manage \code{NA} values in \code{test}. The others do not.}
 
 \item{yes}{An object of any type for \code{f0}, \code{ff0}, \code{f1}, and
-\code{ff1}. An \link[atm_scl]{atomic scalar} or an \link[atm_vec]{atomic
-vec} of the same length as \code{test} for \code{fx} and \code{ffx}.}
+\code{ff1}. An \link[=atm_scl]{atomic scalar} or an \link[=atm_vec]{atomic
+vector+} of the same length as \code{test} for \code{fx} and \code{ffx}.}
 
 \item{no}{An object of any type for \code{f0}, \code{ff0}, \code{f1}, and
 \code{ff1}. An \link[atm_scl]{atomic scalar} or an \link[atm_vec]{atomic
 vec} of the same length as \code{test} for \code{fx} and \code{ffx}. Must
 be \code{\link{compatible}} with \code{yes}.}
 
-\item{na}{An object of any type for \code{f1}. An \link[atm_scl]{atomic
+\item{na}{An object of any type for \code{f1}. An \link[=atm_scl]{atomic
 scalar} \code{\link{compatible}} with \code{yes} and \code{no} for
 \code{fx} and \code{ffx}, with the additional possibility of \code{na =
   'err'} for \code{fx} to indicate an error should be thrown if any values in
@@ -49,7 +49,7 @@ scalar} \code{\link{compatible}} with \code{yes} and \code{no} for
 an atomic scalar in \code{c(TRUE, FALSE, NA)}.}
 }
 \value{
-An object.
+An R object.
 }
 \description{
 Robust extended functionality for \code{\link[base]{ifelse}}.

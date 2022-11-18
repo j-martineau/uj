@@ -19,14 +19,9 @@ called.}
 environment where \code{run(...)} was called.
 }
 \description{
-Build and evaluate code
-}
-\section{Functions}{
-\itemize{
-\item \code{run()}: Collapses \code{...} into a character scalar and evaluates
+Collapses \code{...} into a character scalar and evaluates
 it as code in the calling environment.
-
-}}
+}
 \examples{
 Join <- ""
 CallVector <- c("paste0(", 0:3, ", collapse = Join)")
@@ -39,9 +34,6 @@ print(CallVector)
 print(CallScalar)
 }
 \seealso{
-Other code: 
-\code{\link{xpr.}()}
-
 Other extensions: 
 \code{\link{a.}()},
 \code{\link{binfuns.}()},

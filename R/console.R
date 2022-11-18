@@ -85,8 +85,7 @@
 #' @export
 console. <- function() {help("console.", package = "uj")}
 
-#' @describeIn console. Collapse \code{...} into a character scalar and print
-#'   it to the console.
+#' @rdname console.
 #' @export
 say <- function(..., lev = NA) {
   msg <- paste(av(...), collapse = "")
@@ -106,12 +105,10 @@ say <- function(..., lev = NA) {
   NULL
 }
 
-#' @describeIn console. Collapse \code{...} into a character scalar, prefix
-#'   and post-fix a newline, and print the result to the console.
+#' @rdname console.
 #' @export
 cat0 <- function(...) {say("\n", ..., "\n")}
 
-#' @describeIn console. Print \code{'Hit [enter] or [return] to continue'}
-#'   to the console, and pause execution until user hits one of those keys.
+#' @rdname console.
 #' @export
 continue <- function() {readline("Hit [enter] or [return] to continue")}

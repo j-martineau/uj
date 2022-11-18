@@ -1,1287 +1,1028 @@
+# @title Evaluate arguments of the [delim.] family of functions
+# @param args A vlist containing the element [dots = list(...)], the element [d
+#   = d], and possibly containing the element [D = D].
+# @param a Whether the name of the calling function starts with [da].
+# @return Either NULL or a character vector of argument property errors.
+.delim_errs <- function(args, a) {
+  ns <- lengths(args$dots)
+  two <- "D" %in% names(args)
+  dots <- ...length() > 0
+  pops <- f0(!dots, T, all(ns > 0))
+  ccsd <- cmp_chr_scl(args$d)
+  ccsD <- f0(!two, T, cmp_chr_scl(args$D))
+  atms <- f0(!ccsd, T, all(sapply(args$dots, atm_vec)))
+  recs  <- f0(a | !pops, T, recyclable_n(max(ns) / ns))
+  c(f0(dots, NULL, "\n \u2022 [...] is empty."),
+    f0(pops, NULL, "\n \u2022 An argument in [...] is of length 0."),
+    f0(ccsd, NULL, "\n \u2022 [d] must be a complete character scalar (?cmp_chr_scl)."),
+    f0(ccsD, NULL, "\n \u2022 [D] must be a complete character scalar (?cmp_chr_scl)."),
+    f0(atms, NULL, "\n \u2022 Arguments in [...] must be atomic vecs (?pop_vec)."),
+    f0(recs, NULL, "\n \u2022 Arguments in [...] are not of recyclable lengths (?recyclable)."))
+}
+
 #' @name delim.
 #' @family strings
-#' @title Delimit strings
+#' @title Error-Checked String Delimiting (variations on a theme of
+#'   \code{paste}).
 #' @description Simplifies and extends \code{paste} and \code{paste0}, allowing
 #'   for 'delimiting across' and 'delimiting within' arguments in \code{...},
 #'   and a combination of delimiting within and across arguments, in any order.
 #'   Also offers convenience functions for specific delimiters.
 #'   \cr\cr
-#'   \strong{\code{da(a, ...)}}
-#'   \cr Delimits across corresponding elements of arguments in \code{...}.
-#'   \code{da(a, ...)} is identical to \code{paste(..., sep = a)}.
+#'   \strong{\code{da(d, ...)}}
+#'   \cr Delimits across corresponding elements of arguments in \code{...} using
+#'   the delimiter \code{d}. Thus, \code{da("|", 1:3, 4:6)} produces
+#'   \code{c('1|4', '2|5', '3|6')}, which is also the result of calling
+#'   \code{paste(1:3, 4:6, sep = '|')}.
 #'   \cr\cr
-#'   \strong{\code{dw(w, ...)}}
-#'   \cr Delimits within arguments in \code{...}. \code{dw(w, ...)} is
-#'   equivalent to calling \code{sapply(list(...), paste0, collapse = w)}.
+#'   \strong{\code{dw(d, ...)}}
+#'   \cr Delimits within arguments in \code{...} using the delimiter \code{d}.
+#'   Thus, \code{dw(":", 1:3, 4:6)} produces \code{c('1:2:3', '4:5:6')}, which
+#'   is also the result of calling \code{sapply(list(1:3, 4:6), paste0, collapse
+#'   = "|"}).
 #'   \cr\cr
-#'   \strong{\code{daw(a, w, ...)}}
-#'   \cr Delimits across then within. \code{daw(a, w, ...)} is
-#'   identical to \code{paste(..., sep = a, collapse = w)}
+#'   \strong{\code{daw(d, D, ...)}}
+#'   \cr Delimits across arguments in \code{...} using the first delimiter
+#'   \code{d}, then delimits within the resulting vector using the delimiter
+#'   \code{D}. Thus, \code{daw('|', ':', 1:3, 4:6)} produces
+#'   \code{'1|4:2|5:3:6'}, which is also the result of calling \code{paste(1:3,
+#'   4:6, sep = '|', collapse = ':')}.
 #'   \cr\cr
-#'   \strong{\code{dwa(w, a, ...)}}
-#'   \cr Delimits within then across. \code{dwa(w, a, ...)} is
-#'   equivalent to \code{paste(sapply(list(...), paste0, collapse = w),
-#'   sep = a)}.
+#'   \strong{\code{dww(d, D, ...)}}
+#'   \cr Delimits within arguments in \code{...} using the delimiter \code{d},
+#'   then delimits within the resulting vector using the delimiter \code{D}.
+#'   Thus, \code{dww(':', '|', 1:3, 4:6)} produces \code{'1:2:3|4:5:6'}, which
+#'   is also the result of calling \code{paste0(sapply(list(1:3, 4:6), paste0,
+#'   collapse = ":"), collapse = "|")}.
 #'   \cr\cr
-#'   \strong{Extensions}
-#'   \cr Functions are extended for specific delimiters, signified by the
-#'   following extension characters:\tabular{lll}{
-#'   EXTENSION   \tab EXTENSION         \tab DELIMITER  \cr
-#'   CHARACTER   \tab NAME              \tab INVOKED    \cr
-#'   \code{'0'}  \tab Blank             \tab\code{""}   \cr
-#'   \code{'1'}  \tab Space             \tab\code{" "}  \cr
-#'   \code{'B'}  \tab Broken pipe       \tab\code{"¦"}  \cr
-#'   \code{'C'}  \tab Colon             \tab\code{":"}  \cr
-#'   \code{'D'}  \tab Dot               \tab\code{"."}  \cr
-#'   \code{'G'}  \tab Grammatical comma \tab\code{", "} \cr
-#'   \code{'P'}  \tab Pipe              \tab\code{"|"}  \cr
-#'   \code{'Q'}  \tab (Back)-quote      \tab\code{"`"}  \cr
-#'   \code{'S'}  \tab Simple comma      \tab\code{","}  \cr
-#'   \code{'T'}  \tab Tilde             \tab\code{"~"}    }
-#'   \strong{\code{daA}}
-#'   \cr Delimits across using the extension character A.
+#'   \strong{Delimiter-Specific Extension Functions}
+#'   \cr Delimiter-specific functions are available for convenience for common
+#'   delimiters and for any combination of two common delimiters. Common
+#'   delimiters and their extension characters are shown in the following
+#'   table:\tabular{lll}{
+#'     EXTENSION   \tab EXTENSION             \tab DELIMITER                 \cr
+#'     CHARACTER   \tab DESCRIPTION           \tab INVOKED                   \cr
+#'     \code{'0'}  \tab Blank                 \tab\code{""}                  \cr
+#'     \code{'1'}  \tab Space                 \tab\code{" "}                 \cr
+#'     \code{'B'}  \tab Broken pipe           \tab\code{"¦"}                 \cr
+#'     \code{'C'}  \tab Colon                 \tab\code{":"}                 \cr
+#'     \code{'D'}  \tab Dot                   \tab\code{"."}                 \cr
+#'     \code{'G'}  \tab Grammatical comma*    \tab\code{", "}                \cr
+#'     \code{'P'}  \tab Pipe                  \tab\code{"|"}                 \cr
+#'     \code{'Q'}  \tab Back quote (back tick)\tab\code{"`"}                 \cr
+#'     \code{'S'}  \tab Simple comma^         \tab\code{","}                 \cr
+#'     \code{'T'}  \tab Tilde                 \tab\code{"~"}                   }
+#'   NOTE: 'Grammatical comma' vs. 'simple comma' indicates whether the function
+#'   produces grammatical comma-separated lists vs. simple comma-separated
+#'   values (e.g., \code{'1, 2, 3'} vs. \code{'1,2,3'}).
 #'   \cr\cr
-#'   \strong{\code{dwW}}
-#'   \cr Delimits within using the extension character W.
+#'   \strong{Extension Functions \code{da[d]}}
+#'   \cr Delimits across arguments in \code{...} using the delimiter invoked by
+#'   the extension character \code{[d]}. Thus, \code{daP(1:3, 4:6)} produces
+#'   \code{c('1|4', '2|5', '3|6')}, which is also the result of calling
+#'   \code{paste(1:3, 4:6, sep = '|')}.
 #'   \cr\cr
-#'   \strong{\code{dawAW}}
-#'   \cr Delimits across using the extension character A then delimits within
-#'   using the extension character W.
+#'   \strong{Extension Functions \code{dw[d]}}
+#'   \cr Delimits within arguments in \code{...} using the delimiter invoked by
+#'   the extension character \code{[d]}. Thus, \code{dwC(1:3, 4:6)} produces
+#'   \code{c('1:2:3', '4:5:6')}, which is also the result of calling
+#'   \code{sapply(list(1:3, 4:6), paste0, collapse = ":")}.
 #'   \cr\cr
-#'   \strong{\code{dwaWA}}
-#'   \cr Delimits within using the extension character W then delimits across
-#'   using the extension character A.
+#'   \strong{Extension Functions \code{daw[d][D]}}
+#'   \cr Delimits across arguments in \code{...} using the delimiter invoked by
+#'   the extension character \code{[d]} and then delimits within the resulting
+#'   vector using the delimiter invoked by the extension character \code{[D]}.
+#'   Thus, \code{dawPC(1:3, 4:6)} produces \code{'1|4:2|5:3|6'}, which is also
+#'   the result of calling \code{paste(1:3, 4:6, sep = "|", collapse = ":")}.
+#'   \cr\cr
+#'   \strong{Extension Functions \code{dww[d][D]}}
+#'   \cr Delimits within using the delimiter invoked by the extension
+#'   character \code{[d]} and then delimits within the resulting vector using
+#'   the delimiter invoked by the extension character \code{[D]}. Thus,
+#'   \code{dwwCP(1:3, 4:6)} produces \code{'1:2:3|4:5:6'}, which is also the
+#'   result of calling \code{paste0(sapply(list(1:3, 4:6), paste0, collapse =
+#'   ":"), collapse = "|")}.
 #' @param ... An arbitrary number of atomic vector arguments to be delimited.
-#'   Argument in \code{...} must be recyclable for \code{da}, \code{daw},
-#'   \code{daA}, and \code{dawAW}.
-#' @param a,w \link[chr_scl]{Character scalar} across delimiter vs. within
-#'   delimiter, respectively. Defaults to a blank string (i.e., \code{""}).
-#' @return a character-scalar, character vector, or list of character vectors.
+#'   Argument in \code{...} must be recyclable for functions that delimit across
+#'   arguments in \code{...} as the first or only step (i.e., functions with
+#'   names beginning with \code{da}).
+#' @param d,D \link[=chr_scl]{Character scalar} delimiters.
+#' @return \tabular{lll}{
+#'   \code{da}, \code{dw}, \code{da[d]}, and \code{dw[d]}
+#'        \tab    \tab A character vector.                                   \cr
+#'   \code{daw}, \code{dww}, \code{daw[d][D]}, and code{dww[d][D]}
+#'        \tab    \tab A character scalar.                                     }
+#' @export
 delim. <- function() {help("delim.", package = "uj")}
 
-#' @describeIn delim. Delimit across vectors in \code{...} using \code{a}
-#'   resulting in a character vector of \code{max(lengths(list(...)))}
-#'   \code{a}-delimited strings.
+#' @rdname delim.
 #' @export
-da <- function(a, ...) {
-  dots <- list(...)
-  n.dots <- length(dots)
-  dot.ns <- lengths(dots)
-  ok.n <- n.dots > 0
-  ok.ns <- f0(!ok.n, T, all(dot.ns > 0))
-  ok.dots <- f0(!ok.n | !ok.ns, T, all(sapply(dots, atm_vec)))
-  ok.reps <- f0(!ok.dots, T, all(round(max(dot.ns) / dot.ns) == max(dot.ns) / dot.ns))
-  errs <- c(f0(cmp_chr_scl(a), NULL, "\n \u2022 [a] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(ok.n          , NULL, "\n \u2022 [...] is empty."),
-            f0(ok.ns         , NULL, "\n \u2022 [...] contains an empty element."),
-            f0(ok.dots       , NULL, "\n \u2022 Arguments in [...] must be populated atomic vecs (?pop_vec)."),
-            f0(ok.reps       , NULL, "\n \u2022 Arguments in [...] are not recyclable (?recyclable)."))
+da <- function(d, ...) {
+  errs <- .delim_errs(list(d = d, dots = list(...)), TRUE)
   if (idef(errs)) {stop(errs)}
-  paste(..., sep = a)
+  paste(..., sep = d)
 }
 
-#' @describeIn delim. Delimit within vectors in \code{...} using \code{w},
-#'   resulting in a character vector of \code{\link[base]{...length()}}
-#'   \code{w}-separated strings.
+#' @rdname delim.
 #' @export
-dw <- function(w, ...) {
-  dots <- list(...)
-  n.dots <- length(dots)
-  dot.ns <- lengths(dots)
-  ok.n <- n.dots > 0
-  ok.ns <- f0(!ok.n, F, all(dot.ns > 0))
-  ok.dots <- f0(!ok.n | !ok.ns, F, all(sapply(dots, atm_vec)))
-  errs <- c(f0(cmp_chr_scl(w), NULL, "\n \u2022 [w] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(ok.n          , NULL, "\n \u2022 [...] is empty."),
-            f0(ok.ns         , NULL, "\n \u2022 [...] contains an empty element."),
-            f0(ok.dots       , NULL, "\n \u2022 Arguments in [...] must be populated atomic vecs (?pop_vec)."))
+dw <- function(d, ...) {
+  errs <- .delim_errs(list(d = d, dots = list(...)), FALSE)
   if (idef(errs)) {stop(errs)}
-  sapply(list(...), paste0, collapse = w)
+  sapply(list(...), paste0, collapse = d)
 }
 
-#' @describeIn delim. Delimit across vectors in \code{...} using \code{a},
-#'   then delimit within using \code{w}, resulting in a character-scalar string
-#'   containing \code{max(lengths(list(...)))} \code{a}-delimited substrings,
-#'   each of which contains \code{\link[base]{...length()}} \code{w}-delimited
-#'   subsubstrings.
+#' @rdname delim.
 #' @export
-daw <- function(a, w, ...) {
-  dots <- list(...)
-  n.dots <- length(dots)
-  dot.ns <- lengths(dots)
-  ok.n <- n.dots > 0
-  ok.ns <- f0(!ok.n, T, all(dot.ns > 0))
-  ok.dots <- f0(!ok.n | !ok.dots, T, all(sapply(dots, ivec)))
-  ok.reps <- f0(!ok.dots, T, all(round(max(dot.ns) / dot.ns) == max(dot.ns) / dot.ns))
-  errs <- c(f0(cmp_chr_scl(a), NULL, "\n \u2022 [a] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(cmp_chr_scl(w), NULL, "\n \u2022 [w] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(ok.n          , NULL, "\n \u2022 [...] is empty."),
-            f0(ok.ns         , NULL, "\n \u2022 An argument in [...] is of length 0."),
-            f0(ok.dots       , NULL, "\n \u2022 Arguments in [...] must be populated atomic vecs (?pop_vec)."),
-            f0(ok.reps       , NULL, "\n \u2022 Arguments in [...] are not recyclable (?recyclable)."))
+daw <- function(d, D, ...) {
+  errs <- .delim_errs(list(d = d, D = D, dots = list(...)), TRUE)
   if (idef(errs)) {stop(errs)}
-  paste0(paste(..., sep = a), collapse = w)
+  paste0(paste(..., sep = d), collapse = D)
 }
 
-#' @describeIn delim. Delimit within vectors in \code{...} using \code{w},
-#'   then delimit across using \code{a}, resulting in a character-scalar string
-#'   containing \code{\link[base]{...length()}} \code{w}-delimited substrings,
-#'   each of which contains \code{max(length(list(...)))} \code{a}-delimited
-#'   subsubstrings.
-dwa <- function(w, a, ...) {
-  dots  <- list(...)
-  n.dots  <- length(dots)
-  dot.ns  <- lengths(dots)
-  ok.n <- n.dots > 0
-  ok.ns <- f0(!ok.n, T, all(dot.ns > 0))
-  ok.dots <- f0(!ok.n | !ok.ns, T, all(sapply(dots, ivec)))
-  errs <- c(f0(cmp_chr_scl(w), NULL, "\n \u2022 [w] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(cmp_chr_scl(a), NULL, "\n \u2022 [a] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(ok.n          , NULL, "\n \u2022 [...] is empty."),
-            f0(ok.ns         , NULL, "\n \u2022 [...] contains an empty element."),
-            f0(ok.dots       , NULL, "\n \u2022 Arguments in [...] must be populated atomic vecs (?pop_vec)."))
+#' @rdname delim.
+#' @export
+dww <- function(d, D, ...) {
+  errs <- .delim_errs(list(d = d, D = D, dots = list(...)), FALSE)
   if (idef(errs)) {stop(errs)}
-  paste(sapply(list(...), paste0, collapse = w), sep = a)
+  paste(sapply(list(...), paste0, collapse = d), sep = D)
 }
 
-#' @describeIn delim. Delimit across vectors in \code{...} using blanks.
+#' @rdname delim.
 #' @export
 da0 <- function(...) {da('', ...)}
 
-#' @describeIn delim. Delimit across vectors in \code{...} using spaces.
+#' @rdname delim.
 #' @export
 da1 <- function(...) {da(' ', ...)}
 
-#' @describeIn delim. Delimit across vectors in \code{...} using broken-pipes.
+#' @rdname delim.
 #' @export
 daB <- function(...) {da('¦', ...)}
 
-#' @describeIn delim. Delimit across vectors in \code{...} using colons.
+#' @rdname delim.
 #' @export
 daC <- function(...) {da(':', ...)}
 
-#' @describeIn delim. Delimit across vectors in \code{...} using dots/periods.
+#' @rdname delim.
 #' @export
 daD <- function(...) {da('.', ...)}
 
-#' @describeIn delim. Delimit across vectors in \code{...} using grammatical
-#'   commas.
+#' @rdname delim.
 #' @export
 daG <- function(...) {da(', ', ...)}
 
-#' @describeIn delim. Delimit across vectors in \code{...} using pipes.
+#' @rdname delim.
 #' @export
 daP <- function(...) {da('|', ...)}
 
-#' @describeIn delim. Delimit across vectors in \code{...} using
-#'   (back)-quotes.
+#' @rdname delim.
 #' @export
 daQ <- function(...) {da('`', ...)}
 
-#' @describeIn delim. Delimit across vectors in \code{...} using simple
-#'   commas.
+#' @rdname delim.
 #' @export
 daS <- function(...) {da(',', ...)}
 
-#' @describeIn delim. Delimit across vectors in \code{...} using tildes.
+#' @rdname delim.
 #' @export
 daT <- function(...) {da('~', ...)}
 
-#' @describeIn delim. Delimit within vectors in \code{...} using blanks.
+#' @rdname delim.
 #' @export
 dw0 <- function(...) {dw('', ...)}
 
-#' @describeIn delim. Delimit within vectors in \code{...} using spaces.
+#' @rdname delim.
 #' @export
 dw1 <- function(...) {dw(' ', ...)}
 
-#' @describeIn delim. Delimit within vectors in \code{...} using broken-pipes.
+#' @rdname delim.
 #' @export
 dwB <- function(...) {dw('¦', ...)}
 
-#' @describeIn delim. Delimit within vectors in \code{...} using colons.
+#' @rdname delim.
 #' @export
 dwC <- function(...) {dw(':', ...)}
 
-#' @describeIn delim. Delimit within vectors in \code{...} using dots/periods.
+#' @rdname delim.
 #' @export
 dwD <- function(...) {dw('.', ...)}
 
-#' @describeIn delim. Delimit within vectors in \code{...} using grammatical
-#'   commas.
+#' @rdname delim.
 #' @export
 dwG <- function(...) {dw(', ', ...)}
 
-#' @describeIn delim. Delimit within vectors in \code{...} using pipes.
+#' @rdname delim.
 #' @export
 dwP <- function(...) {dw('|', ...)}
 
-#' @describeIn delim. Delimit within vectors in \code{...} using
-#'   (back)-quotes.
+#' @rdname delim.
 #' @export
 dwQ <- function(...) {dw('`', ...)}
 
-#' @describeIn delim. Delimit within vectors in \code{...} using simple
-#'   commas.
+#' @rdname delim.
 #' @export
 dwS <- function(...) {dw(',', ...)}
 
-#' @describeIn delim. Delimit within vectors in \code{...} using tildes.
+#' @rdname delim.
 #' @export
 dwT <- function(...) {dw('~', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{blanks}.
+#' @rdname delim.
 #' @export
 daw00 <- function(...) {daw('', '', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{blanks} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
 daw01 <- function(...) {daw('', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{blanks} then \emph{broken-pipes}, respectively.
+#' @rdname delim.
 #' @export
 daw0B <- function(...) {daw('', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{blanks} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
 daw0C <- function(...) {daw('', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{blanks} then \emph{dots/periods}, respectively.
+#' @rdname delim.
 #' @export
 daw0D <- function(...) {daw('', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{blanks} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
 daw0G <- function(...) {daw('', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{blanks} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
 daw0P <- function(...) {daw('', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{blanks} then \emph{(back)-quotes}, respectively.
+#' @rdname delim.
 #' @export
 daw0Q <- function(...) {daw('', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{blanks} then \emph{simple commas}, respectively.
+#' @rdname delim.
 #' @export
 daw0S <- function(...) {daw('', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{blanks} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
 daw0T <- function(...) {daw('', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{spaces} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
 daw10 <- function(...) {daw(' ', '', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{spaces}.
+#' @rdname delim.
 #' @export
 daw11 <- function(...) {daw(' ', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{spaces} then \emph{broken-pipes}, respectively.
+#' @rdname delim.
 #' @export
 daw1B <- function(...) {daw(' ', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{spaces} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
 daw1C <- function(...) {daw(' ', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{spaces} then \emph{dots/periods}, respectively.
+#' @rdname delim.
 #' @export
 daw1D <- function(...) {daw(' ', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{spaces} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
 daw1G <- function(...) {daw(' ', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{spaces} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
 daw1P <- function(...) {daw(' ', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{spaces} then \emph{(back)-quotes}, respectively.
+#' @rdname delim.
 #' @export
 daw1Q <- function(...) {daw(' ', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{spaces} then \emph{simple commas}, respectively.
+#' @rdname delim.
 #' @export
 daw1S <- function(...) {daw(' ', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{spaces} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
 daw1T <- function(...) {daw(' ', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
 dawB0 <- function(...) {daw('¦', '', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
 dawB1 <- function(...) {daw('¦', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{broken-pipes}.
+#' @rdname delim.
 #' @export
 dawBB <- function(...) {daw('¦', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
 dawBC <- function(...) {daw('¦', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{dots/periods},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawBD <- function(...) {daw('¦', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawBG <- function(...) {daw('¦', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
 dawBP <- function(...) {daw('¦', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{(back)-quotes},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawBQ <- function(...) {daw('¦', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{simple commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawBS <- function(...) {daw('¦', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
 dawBT <- function(...) {daw('¦', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{colons} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
 dawC0 <- function(...) {daw(':', '', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{colons} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
 dawC1 <- function(...) {daw(':', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{colons} then \emph{broken-pipes}, respectively.
+#' @rdname delim.
 #' @export
 dawCB <- function(...) {daw(':', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{colons}.
+#' @rdname delim.
 #' @export
 dawCC <- function(...) {daw(':', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{colons} then \emph{dots/periods}, respectively.
+#' @rdname delim.
 #' @export
 dawCD <- function(...) {daw(':', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{colons} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawCG <- function(...) {daw(':', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{colons} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
 dawCP <- function(...) {daw(':', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{colons} then \emph{(back)-quotes}, respectively.
+#' @rdname delim.
 #' @export
 dawCQ <- function(...) {daw(':', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{colons} then \emph{simple commas}, respectively.
+#' @rdname delim.
 #' @export
 dawCS <- function(...) {daw(':', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{colons} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
 dawCT <- function(...) {daw(':', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
 dawD0 <- function(...) {daw('.', '', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
 dawD1 <- function(...) {daw('.', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{broken-pipes},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawDB <- function(...) {daw('.', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
 dawDC <- function(...) {daw('.', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{dots/periods}.
+#' @rdname delim.
 #' @export
 dawDD <- function(...) {daw('.', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawDG <- function(...) {daw('.', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
 dawDP <- function(...) {daw('.', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{(back)-quotes},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawDQ <- function(...) {daw('.', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{simple commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawDS <- function(...) {daw('.', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
 dawDT <- function(...) {daw('.', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{blanks},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawG0 <- function(...) {daw(', ', '', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{spaces},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawG1 <- function(...) {daw(', ', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{broken-pipes},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawGB <- function(...) {daw(', ', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{colons},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawGC <- function(...) {daw(', ', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{dots/periods},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawGD <- function(...) {daw(', ', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{grammatical commas}.
+#' @rdname delim.
 #' @export
 dawGG <- function(...) {daw(', ', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
 dawGP <- function(...) {daw(', ', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{(back)-quotes},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawGQ <- function(...) {daw(', ', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{simple commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawGS <- function(...) {daw(', ', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{tildes},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawGT <- function(...) {daw(', ', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{pipes} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
 dawP0 <- function(...) {daw('|', '', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{pipes} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
 dawP1 <- function(...) {daw('|', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{pipes} then \emph{broken-pipes}, respectively.
+#' @rdname delim.
 #' @export
 dawPB <- function(...) {daw('|', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{pipes} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
 dawPC <- function(...) {daw('|', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{pipes} then \emph{dots/periods}, respectively.
+#' @rdname delim.
 #' @export
 dawPD <- function(...) {daw('|', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{pipes} then \emph{grammatical commas}, respectively.
+#' @rdname delim.
 #' @export
 dawPG <- function(...) {daw('|', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{pipes}.
+#' @rdname delim.
 #' @export
 dawPP <- function(...) {daw('|', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{pipes} then \emph{(back)-quotes}, respectively.
+#' @rdname delim.
 #' @export
 dawPQ <- function(...) {daw('|', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{pipes} then \emph{simple commas}, respectively.
+#' @rdname delim.
 #' @export
 dawPS <- function(...) {daw('|', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{pipes} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
 dawPT <- function(...) {daw('|', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
 dawQ0 <- function(...) {daw('`', '', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
 dawQ1 <- function(...) {daw('`', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{broken-pipes},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawQB <- function(...) {daw('`', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
 dawQC <- function(...) {daw('`', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{dots/periods},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawQD <- function(...) {daw('`', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawQG <- function(...) {daw('`', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
 dawQP <- function(...) {daw('`', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{(back)-quotes}.
+#' @rdname delim.
 #' @export
 dawQQ <- function(...) {daw('`', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{simple commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawQS <- function(...) {daw('`', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
 dawQT <- function(...) {daw('`', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
 dawS0 <- function(...) {daw(',', '', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
 dawS1 <- function(...) {daw(',', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{broken-pipes},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawSB <- function(...) {daw(',', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
 dawSC <- function(...) {daw(',', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{dots/periods},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawSD <- function(...) {daw(',', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawSG <- function(...) {daw(',', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
 dawSP <- function(...) {daw(',', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{(back)-quotes},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawSQ <- function(...) {daw(',', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{simple commas}.
+#' @rdname delim.
 #' @export
 dawSS <- function(...) {daw(',', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
 dawST <- function(...) {daw(',', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{tildes} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
 dawT0 <- function(...) {daw('~', '', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{tildes} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
 dawT1 <- function(...) {daw('~', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{tildes} then \emph{broken-pipes}, respectively.
+#' @rdname delim.
 #' @export
 dawTB <- function(...) {daw('~', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{tildes} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
 dawTC <- function(...) {daw('~', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{tildes} then \emph{dots/periods}, respectively.
+#' @rdname delim.
 #' @export
 dawTD <- function(...) {daw('~', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{tildes} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
 dawTG <- function(...) {daw('~', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{tildes} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
 dawTP <- function(...) {daw('~', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{tildes} then \emph{(back)-quotes}, respectively.
+#' @rdname delim.
 #' @export
 dawTQ <- function(...) {daw('~', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{tildes} then \emph{simple commas}, respectively.
+#' @rdname delim.
 #' @export
 dawTS <- function(...) {daw('~', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{across} then \emph{within} vectors in
-#'   \code{...} using \emph{tildes}.
+#' @rdname delim.
 #' @export
 dawTT <- function(...) {daw('~', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{blanks}.
+#' @rdname delim.
 #' @export
-dwa00 <- function(...) {dwa('', '', ...)}
+dww00 <- function(...) {dww('', '', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{blanks} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
-dwa01 <- function(...) {dwa('', ' ', ...)}
+dww01 <- function(...) {dww('', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{blanks} then \emph{broken-pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwa0B <- function(...) {dwa('', '¦', ...)}
+dww0B <- function(...) {dww('', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{blanks} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
-dwa0C <- function(...) {dwa('', ':', ...)}
+dww0C <- function(...) {dww('', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{blanks} then \emph{dots/periods}, respectively.
+#' @rdname delim.
 #' @export
-dwa0D <- function(...) {dwa('', '.', ...)}
+dww0D <- function(...) {dww('', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{blanks} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwa0G <- function(...) {dwa('', ', ', ...)}
+dww0G <- function(...) {dww('', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{blanks} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwa0P <- function(...) {dwa('', '|', ...)}
+dww0P <- function(...) {dww('', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{blanks} then \emph{(back)-quotes}, respectively.
+#' @rdname delim.
 #' @export
-dwa0Q <- function(...) {dwa('', '`', ...)}
+dww0Q <- function(...) {dww('', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{blanks} then \emph{simple commas}, respectively.
+#' @rdname delim.
 #' @export
-dwa0S <- function(...) {dwa('', ',', ...)}
+dww0S <- function(...) {dww('', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{blanks} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
-dwa0T <- function(...) {dwa('', '~', ...)}
+dww0T <- function(...) {dww('', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{spaces} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
-dwa10 <- function(...) {dwa(' ', '', ...)}
+dww10 <- function(...) {dww(' ', '', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{spaces}.
+#' @rdname delim.
 #' @export
-dwa11 <- function(...) {dwa(' ', ' ', ...)}
+dww11 <- function(...) {dww(' ', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{spaces} then \emph{broken-pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwa1B <- function(...) {dwa(' ', '¦', ...)}
+dww1B <- function(...) {dww(' ', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{spaces} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
-dwa1C <- function(...) {dwa(' ', ':', ...)}
+dww1C <- function(...) {dww(' ', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{spaces} then \emph{dots/periods}, respectively.
+#' @rdname delim.
 #' @export
-dwa1D <- function(...) {dwa(' ', '.', ...)}
+dww1D <- function(...) {dww(' ', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{spaces} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwa1G <- function(...) {dwa(' ', ', ', ...)}
+dww1G <- function(...) {dww(' ', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{spaces} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwa1P <- function(...) {dwa(' ', '|', ...)}
+dww1P <- function(...) {dww(' ', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{spaces} then \emph{(back)-quotes}, respectively.
+#' @rdname delim.
 #' @export
-dwa1Q <- function(...) {dwa(' ', '`', ...)}
+dww1Q <- function(...) {dww(' ', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{spaces} then \emph{simple commas}, respectively.
+#' @rdname delim.
 #' @export
-dwa1S <- function(...) {dwa(' ', ',', ...)}
+dww1S <- function(...) {dww(' ', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{spaces} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
-dwa1T <- function(...) {dwa(' ', '~', ...)}
+dww1T <- function(...) {dww(' ', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
-dwaB0 <- function(...) {dwa('¦', '', ...)}
+dwwB0 <- function(...) {dww('¦', '', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
-dwaB1 <- function(...) {dwa('¦', ' ', ...)}
+dwwB1 <- function(...) {dww('¦', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{broken-pipes}.
+#' @rdname delim.
 #' @export
-dwaBB <- function(...) {dwa('¦', '¦', ...)}
+dwwBB <- function(...) {dww('¦', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
-dwaBC <- function(...) {dwa('¦', ':', ...)}
+dwwBC <- function(...) {dww('¦', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{dots/periods},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaBD <- function(...) {dwa('¦', '.', ...)}
+dwwBD <- function(...) {dww('¦', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaBG <- function(...) {dwa('¦', ', ', ...)}
+dwwBG <- function(...) {dww('¦', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwaBP <- function(...) {dwa('¦', '|', ...)}
+dwwBP <- function(...) {dww('¦', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{(back)-quotes},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaBQ <- function(...) {dwa('¦', '`', ...)}
+dwwBQ <- function(...) {dww('¦', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{simple commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaBS <- function(...) {dwa('¦', ',', ...)}
+dwwBS <- function(...) {dww('¦', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{broken-pipes} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
-dwaBT <- function(...) {dwa('¦', '~', ...)}
+dwwBT <- function(...) {dww('¦', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{colons} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
-dwaC0 <- function(...) {dwa(':', '', ...)}
+dwwC0 <- function(...) {dww(':', '', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{colons} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
-dwaC1 <- function(...) {dwa(':', ' ', ...)}
+dwwC1 <- function(...) {dww(':', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{colons} then \emph{broken-pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwaCB <- function(...) {dwa(':', '¦', ...)}
+dwwCB <- function(...) {dww(':', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{colons}.
+#' @rdname delim.
 #' @export
-dwaCC <- function(...) {dwa(':', ':', ...)}
+dwwCC <- function(...) {dww(':', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{colons} then \emph{dots/periods}, respectively.
+#' @rdname delim.
 #' @export
-dwaCD <- function(...) {dwa(':', '.', ...)}
+dwwCD <- function(...) {dww(':', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{colons} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaCG <- function(...) {dwa(':', ', ', ...)}
+dwwCG <- function(...) {dww(':', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{colons} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwaCP <- function(...) {dwa(':', '|', ...)}
+dwwCP <- function(...) {dww(':', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{colons} then \emph{(back)-quotes}, respectively.
+#' @rdname delim.
 #' @export
-dwaCQ <- function(...) {dwa(':', '`', ...)}
+dwwCQ <- function(...) {dww(':', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{colons} then \emph{simple commas}, respectively.
+#' @rdname delim.
 #' @export
-dwaCS <- function(...) {dwa(':', ',', ...)}
+dwwCS <- function(...) {dww(':', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{colons} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
-dwaCT <- function(...) {dwa(':', '~', ...)}
+dwwCT <- function(...) {dww(':', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
-dwaD0 <- function(...) {dwa('.', '', ...)}
+dwwD0 <- function(...) {dww('.', '', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
-dwaD1 <- function(...) {dwa('.', ' ', ...)}
+dwwD1 <- function(...) {dww('.', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{broken-pipes},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaDB <- function(...) {dwa('.', '¦', ...)}
+dwwDB <- function(...) {dww('.', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
-dwaDC <- function(...) {dwa('.', ':', ...)}
+dwwDC <- function(...) {dww('.', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{dots/periods}.
+#' @rdname delim.
 #' @export
-dwaDD <- function(...) {dwa('.', '.', ...)}
+dwwDD <- function(...) {dww('.', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaDG <- function(...) {dwa('.', ', ', ...)}
+dwwDG <- function(...) {dww('.', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwaDP <- function(...) {dwa('.', '|', ...)}
+dwwDP <- function(...) {dww('.', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{(back)-quotes},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaDQ <- function(...) {dwa('.', '`', ...)}
+dwwDQ <- function(...) {dww('.', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{simple commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaDS <- function(...) {dwa('.', ',', ...)}
+dwwDS <- function(...) {dww('.', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{dots/periods} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
-dwaDT <- function(...) {dwa('.', '~', ...)}
+dwwDT <- function(...) {dww('.', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{blanks},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaG0 <- function(...) {dwa(', ', '', ...)}
+dwwG0 <- function(...) {dww(', ', '', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{spaces},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaG1 <- function(...) {dwa(', ', ' ', ...)}
+dwwG1 <- function(...) {dww(', ', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{broken-pipes},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaGB <- function(...) {dwa(', ', '¦', ...)}
+dwwGB <- function(...) {dww(', ', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{colons},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaGC <- function(...) {dwa(', ', ':', ...)}
+dwwGC <- function(...) {dww(', ', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{dots/periods},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaGD <- function(...) {dwa(', ', '.', ...)}
+dwwGD <- function(...) {dww(', ', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{grammatical commas}.
+#' @rdname delim.
 #' @export
-dwaGG <- function(...) {dwa(', ', ', ', ...)}
+dwwGG <- function(...) {dww(', ', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwaGP <- function(...) {dwa(', ', '|', ...)}
+dwwGP <- function(...) {dww(', ', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{(back)-quotes},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaGQ <- function(...) {dwa(', ', '`', ...)}
+dwwGQ <- function(...) {dww(', ', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{simple commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaGS <- function(...) {dwa(', ', ',', ...)}
+dwwGS <- function(...) {dww(', ', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{grammatical commas} then \emph{tildes},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaGT <- function(...) {dwa(', ', '~', ...)}
+dwwGT <- function(...) {dww(', ', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{pipes} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
-dwaP0 <- function(...) {dwa('|', '', ...)}
+dwwP0 <- function(...) {dww('|', '', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{pipes} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
-dwaP1 <- function(...) {dwa('|', ' ', ...)}
+dwwP1 <- function(...) {dww('|', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{pipes} then \emph{broken-pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwaPB <- function(...) {dwa('|', '¦', ...)}
+dwwPB <- function(...) {dww('|', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{pipes} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
-dwaPC <- function(...) {dwa('|', ':', ...)}
+dwwPC <- function(...) {dww('|', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{pipes} then \emph{dots/periods}, respectively.
+#' @rdname delim.
 #' @export
-dwaPD <- function(...) {dwa('|', '.', ...)}
+dwwPD <- function(...) {dww('|', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{pipes} then \emph{grammatical commas}, respectively.
+#' @rdname delim.
 #' @export
-dwaPG <- function(...) {dwa('|', ', ', ...)}
+dwwPG <- function(...) {dww('|', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{pipes}.
+#' @rdname delim.
 #' @export
-dwaPP <- function(...) {dwa('|', '|', ...)}
+dwwPP <- function(...) {dww('|', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{pipes} then \emph{(back)-quotes}, respectively.
+#' @rdname delim.
 #' @export
-dwaPQ <- function(...) {dwa('|', '`', ...)}
+dwwPQ <- function(...) {dww('|', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{pipes} then \emph{simple commas}, respectively.
+#' @rdname delim.
 #' @export
-dwaPS <- function(...) {dwa('|', ',', ...)}
+dwwPS <- function(...) {dww('|', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{pipes} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
-dwaPT <- function(...) {dwa('|', '~', ...)}
+dwwPT <- function(...) {dww('|', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
-dwaQ0 <- function(...) {dwa('`', '', ...)}
+dwwQ0 <- function(...) {dww('`', '', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
-dwaQ1 <- function(...) {dwa('`', ' ', ...)}
+dwwQ1 <- function(...) {dww('`', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{broken-pipes},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaQB <- function(...) {dwa('`', '¦', ...)}
+dwwQB <- function(...) {dww('`', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
-dwaQC <- function(...) {dwa('`', ':', ...)}
+dwwQC <- function(...) {dww('`', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{dots/periods},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaQD <- function(...) {dwa('`', '.', ...)}
+dwwQD <- function(...) {dww('`', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaQG <- function(...) {dwa('`', ', ', ...)}
+dwwQG <- function(...) {dww('`', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwaQP <- function(...) {dwa('`', '|', ...)}
+dwwQP <- function(...) {dww('`', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{(back)-quotes}.
+#' @rdname delim.
 #' @export
-dwaQQ <- function(...) {dwa('`', '`', ...)}
+dwwQQ <- function(...) {dww('`', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{simple commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaQS <- function(...) {dwa('`', ',', ...)}
+dwwQS <- function(...) {dww('`', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{(back)-quotes} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
-dwaQT <- function(...) {dwa('`', '~', ...)}
+dwwQT <- function(...) {dww('`', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
-dwaS0 <- function(...) {dwa(',', '', ...)}
+dwwS0 <- function(...) {dww(',', '', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
-dwaS1 <- function(...) {dwa(',', ' ', ...)}
+dwwS1 <- function(...) {dww(',', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{broken-pipes},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaSB <- function(...) {dwa(',', '¦', ...)}
+dwwSB <- function(...) {dww(',', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
-dwaSC <- function(...) {dwa(',', ':', ...)}
+dwwSC <- function(...) {dww(',', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{dots/periods},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaSD <- function(...) {dwa(',', '.', ...)}
+dwwSD <- function(...) {dww(',', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaSG <- function(...) {dwa(',', ', ', ...)}
+dwwSG <- function(...) {dww(',', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwaSP <- function(...) {dwa(',', '|', ...)}
+dwwSP <- function(...) {dww(',', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{(back)-quotes},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaSQ <- function(...) {dwa(',', '`', ...)}
+dwwSQ <- function(...) {dww(',', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{simple commas}.
+#' @rdname delim.
 #' @export
-dwaSS <- function(...) {dwa(',', ',', ...)}
+dwwSS <- function(...) {dww(',', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{simple commas} then \emph{tildes}, respectively.
+#' @rdname delim.
 #' @export
-dwaST <- function(...) {dwa(',', '~', ...)}
+dwwST <- function(...) {dww(',', '~', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{tildes} then \emph{blanks}, respectively.
+#' @rdname delim.
 #' @export
-dwaT0 <- function(...) {dwa('~', '', ...)}
+dwwT0 <- function(...) {dww('~', '', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{tildes} then \emph{spaces}, respectively.
+#' @rdname delim.
 #' @export
-dwaT1 <- function(...) {dwa('~', ' ', ...)}
+dwwT1 <- function(...) {dww('~', ' ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{tildes} then \emph{broken-pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwaTB <- function(...) {dwa('~', '¦', ...)}
+dwwTB <- function(...) {dww('~', '¦', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{tildes} then \emph{colons}, respectively.
+#' @rdname delim.
 #' @export
-dwaTC <- function(...) {dwa('~', ':', ...)}
+dwwTC <- function(...) {dww('~', ':', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{tildes} then \emph{dots/periods}, respectively.
+#' @rdname delim.
 #' @export
-dwaTD <- function(...) {dwa('~', '.', ...)}
+dwwTD <- function(...) {dww('~', '.', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{tildes} then \emph{grammatical commas},
-#'   respectively.
+#' @rdname delim.
 #' @export
-dwaTG <- function(...) {dwa('~', ', ', ...)}
+dwwTG <- function(...) {dww('~', ', ', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{tildes} then \emph{pipes}, respectively.
+#' @rdname delim.
 #' @export
-dwaTP <- function(...) {dwa('~', '|', ...)}
+dwwTP <- function(...) {dww('~', '|', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{tildes} then \emph{(back)-quotes}, respectively.
+#' @rdname delim.
 #' @export
-dwaTQ <- function(...) {dwa('~', '`', ...)}
+dwwTQ <- function(...) {dww('~', '`', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{tildes} then \emph{simple commas}, respectively.
+#' @rdname delim.
 #' @export
-dwaTS <- function(...) {dwa('~', ',', ...)}
+dwwTS <- function(...) {dww('~', ',', ...)}
 
-#' @describeIn delim. Delimit \emph{within} then \emph{across} vectors in
-#'   \code{...} using \emph{tildes}.
+#' @rdname delim.
 #' @export
-dwaTT <- function(...) {dwa('~', '~', ...)}
+dwwTT <- function(...) {dww('~', '~', ...)}

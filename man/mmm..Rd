@@ -96,20 +96,24 @@ immm(x, mmm, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{mmm}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+\item{mmm}{\link[=cmp_chr_scl]{Complete character scalar} containing one or
 more values from \code{mmm_vals()} separated by pipes and/or underscores.
 Combinations of extended modes can be specified by separating them with
 underscores. Separating extended modes or combinations of extended modes
 with pipes will result in a value of \code{TRUE} if any of them applies to
 \code{x}.}
 
-\item{...}{Additional arguments to \code{\link{meets}} containing value and
-element/row/column count restrictions.}
+\item{...}{
+  Arguments passed on to \code{\link[=meets.]{meets.}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \value{
-\code{mmm_vals} and \code{mmm} returns a character vector or
-\code{NULL}. All others return either \code{TRUE} or \code{FALSE}. See
-details for more information.
+\tabular{lll}{
+\code{mmm_vals} and \code{mmm} \tab   \tab A character vector or
+\code{NULL}.                 \cr
+\code{immm} and \code{i[mmm]}  \tab   \tab A logical scalar.              }
 }
 \description{
 Extended modes are defined for non-empty atomic objects. For all
@@ -150,9 +154,9 @@ MODE VALUE   \tab MODE NAME         \tab CHARACTERISTICS                
 \code{'frc'} \tab Fractional        \tab At least one non-\code{NA} value
 that is fractional (i.e., not a
 whole number).                   \cr
-\code{'pct'} \tab Percent           \tab Percentage-valued numeric (in
+\code{'pct'} \tab Percent           \tab Percentage numeric (in
 \code{[0, 100]}).                \cr
-\code{'ppn'} \tab Proportion        \tab Proportion-valued numeric (in
+\code{'ppn'} \tab Proportion        \tab Proportion numeric (in
 \code{[0, 1]}).                  \cr
 \code{'pos'} \tab Positive          \tab Positive numeric.                \cr
 \code{'nng'} \tab Non-negative      \tab Non-negative numeric.            \cr
@@ -169,8 +173,8 @@ Functions related to extended mode are described in the following
 table:\tabular{ll}{
 FUNCTION          \tab WHAT THE                                           \cr
 FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i***}       \tab Evaluates whether an object is of the extended mode
-represented by \code{***}.                         \cr
+\code{i[mmm]}     \tab Evaluates whether an object is of the extended mode
+represented by \code{[mmm]}.                       \cr
 \code{mmm}        \tab Gets a character vector containing all extended modes
 of an object.                                      \cr
 \code{immm}       \tab Evaluates an object for a specific extended mode and
@@ -242,6 +246,32 @@ values.
 \code{mmm} subject to any additional restrictions in \code{...}?
 
 }}
+\section{Specifying Additional Property Requirements}{
+
+Specifying additional requirements in \code{...} is optional. The full set
+of recognized arguments names are defined in the following table along with
+the properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                    \cr
+\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
+\code{nr}     \tab Vec of valid numbers of rows.                        \cr
+\code{nc}     \tab Vec of valid numbers of columns.                     \cr
+\code{min}    \tab Scalar minimum valid length/number of element.       \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
+\code{minc}   \tab Scalar minimum valid number of columns.              \cr
+\code{max}    \tab Scalar maximum valid length/number of element.       \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
+\code{vals}   \tab Vec of valid values.                                 \cr
+\code{lt}     \tab Scalar value all values of \code{x} must be less
+than.                                                \cr
+\code{le}     \tab Scalar value all values of \code{x} must be less than or
+equal to.                                            \cr
+\code{ge}     \tab Scalar value all values of \code{x} must be greater than
+or equal to.                                         \cr
+\code{gt}     \tab Scalar value all values of \code{x} must be greater
+than.                                                  }
+}
+
 \seealso{
 Other props: 
 \code{\link{as_mmm.}()},

@@ -1,17 +1,26 @@
 #' @name dups.
 #' @family values
 #' @title Identify Duplicate Values.
-#' @description Extended functionality for \code{duplicated}.
+#' @description Extended functionality for \code{duplicated}.\tabular{ll}{
+#'   \code{dups}    \tab Atomizes \code{...} (i.e., reduces it to a single
+#'                       atomic vector) and reduces the resulting vector to
+#'                       contain one copy of each duplicated element.        \cr
+#'   \code{idups}   \tab Indexes all elements of \code{x} that are duplicates of
+#'                       elements appearing earlier in \code{x}, either as a
+#'                       logical vector of the same length as \code{x} (when
+#'                       \code{int = FALSE}) or as an integer vector whose
+#'                       length is the same as the number of elements in
+#'                       \code{x} that are duplicates of earlier elements (when
+#'                       \code{int = TRUE}).                                   }
 #' @param ... One or more atomic vectors to be evaluated for duplicated values.
-#' @param x \link[atm_vec]{Atomic vec}.
-#' @param int \link[cmp_atm_scl]{Complete logical scalar} indicating whether to
-#'   return a logical vector (when \code{int = FALSE}) or an integer vector
-#'   (when \code{int = TRUE}).
-#' @return An atomic vector containing 1 copy of each duplicated element
-#'   (\code{dups}), a logical vector indexing elements of \code{x} that are
-#'   duplicates of earlier elements (\code{idups(x, int = FALSE)}), or an
-#'   integer vector indexing elements of \code{x} that are duplicates of earlier
-#'   elements (\code{idups(x, int = TRUE)}).
+#' @param x \link[=atm_vec]{Atomic vec}.
+#' @param int A non-\code{NA} logical scalar indicating whether to return a
+#'   logical vector (\code{int = FALSE}) or an integer vector (\code{int =
+#'   TRUE}).
+#' @return \tabular{ll}{
+#'   \code{dups}    \tab An atomic vector.                                   \cr
+#'   \code{idups}   \tab A logical vector (when \code{int = FALSE}); an integer
+#'                       vector (when \code{int = TRUE}).                      }
 #' @examples
 #' dups(0:5, 5:10, 10:15, 15:20)
 #' idups(c(0:5, 5:10, 10:15, 15:20))
@@ -19,20 +28,14 @@
 #' @export
 dups. <- function() {help("dups.", package = "uj")}
 
-#' @describeIn dups. Atomizes \code{...} (i.e., reduces it to a single atomic
-#'   vector) and reduces the resulting vector to contain one copy of each
-#'   duplicated element.
+#' @rdname dups.
 #' @export
 dups <- function(...) {x <- av(...); unique(x[duplicated(x)])}
 
-#' @describeIn dups. Indexes all elements of \code{x} that are duplicates of
-#'   elements appearing earlier in \code{x}, either as a logical vector of the
-#'   same length as \code{x} (when \code{int = FALSE}) or as an integer vector
-#'   whose length is the same as the number of elements in \code{x} that are
-#'   duplicates of earlier elements (when \code{int = TRUE}).
+#' @rdname dups.
 #' @export
 idups <- function(x, int = F) {
-  errs <- c(f0(iatm(x)  , NULL, "\n \u2022 [x] must be atomic."),
+  errs <- c(f0(atm_vec(x), NULL, "\n \u2022 [x] must be an atomic vec (?atm_vec)."),
             f0(isTF(int), NULL, "\n \u2022 [int] must be TRUE or FALSE."))
   if (idef(errs)) {stop(errs)}
   f0(int, which(duplicated(x)), duplicated(x))

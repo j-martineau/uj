@@ -108,15 +108,3 @@ Will result in a console with these contents:
   L1B_another_random_message
 }\if{html}{\out{</div>}}
 }
-\section{Functions}{
-\itemize{
-\item \code{say()}: Collapse \code{...} into a character scalar and print
-it to the console.
-
-\item \code{cat0()}: Collapse \code{...} into a character scalar, prefix
-and post-fix a newline, and print the result to the console.
-
-\item \code{continue()}: Print \code{'Hit [enter] or [return] to continue'}
-to the console, and pause execution until user hits one of those keys.
-
-}}

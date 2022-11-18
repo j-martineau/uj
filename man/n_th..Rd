@@ -19,33 +19,28 @@ last_n(x, n)
 n_th_last(x, n)
 }
 \arguments{
-\item{x}{Vector to extract elements from.}
+\item{x}{A \link[=pop_vec]{populated vector} to extract elements from.}
 
-\item{n}{\link[cmp_psw_scl]{Complete positive whole-number scalar}.}
+\item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar}.}
 }
 \value{
-Subset of \code{x}
+\tabular{lll}{
+\code{n_th}, \code{n_th_last}\tab   \tab A (possibly scalar) vector.    \cr
+\code{first_n}, \code{last_n}\tab   \tab A scalar vector.                 }
 }
 \description{
-Extract elements by index position
+\tabular{ll}{
+\code{n_th}        \tab Gets the \code{n}-th element(s) of a vector.    \cr
+\code{first_n}     \tab Gets the first \code{n} elements of a vector.   \cr
+\code{last_n}      \tab Gets the last \code{n} elements of a vector.    \cr
+\code{n_th_last}   \tab Gets the \code{n}-th from last element(s) of a
+vector.                                           }
 }
-\section{Functions}{
-\itemize{
-\item \code{n_th()}: Get the \code{n}-th element(s) of a vector (from the
-front).
-
-\item \code{first_n()}: Get the first \code{n} elements of a vector.
-
-\item \code{last_n()}: Get the last \code{n} elements of a vector.
-
-\item \code{n_th_last()}: Get the \code{n}-th from last element(s).
-
-}}
 \examples{
 first_n(letters, 5)
 last_n(letters, 5)
-enth(letters, 5)
-enth_last(letters, )
+n_th(letters, 5)
+n_th(letters, )
 }
 \seealso{
 Other extensions: 

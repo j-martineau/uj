@@ -307,15 +307,20 @@ If not specified, must be supplied in each layer added to the plot.}
 
 \item{...}{Other arguments passed on to methods. Not currently used.}
 
-\item{environment}{DEPRECATED. Used prior to tidy evaluation.}
+\item{environment}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Used prior to tidy
+evaluation.}
 
 \item{x}{A single number specifying size relative to parent element.}
 
 \item{stat}{The statistical transformation to use on the data for this
-layer, as a string.}
+layer, either as a \code{ggproto} \code{Geom} subclass or as a string naming the
+stat stripped of the \code{stat_} prefix (e.g. \code{"count"} rather than
+\code{"stat_count"})}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
@@ -333,7 +338,7 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{colour, color}{Line/border colour. Color is an alias for colour.}
 
-\item{size}{Line/border size in mm; text size in pts.}
+\item{size}{text size in pts.}
 
 \item{linetype}{Line type. An integer (0:8), a name (blank, solid,
 dashed, dotted, dotdash, longdash, twodash), or a string with
@@ -358,8 +363,7 @@ calculating final element state.}
 
 \item{box.colour, box.color}{Line color of the enclosing box (if different from the text color)}
 
-\item{linewidth}{Line width of the enclosing box (measured in mm, just like \code{size} in
-\code{\link[ggplot2:element]{ggplot2::element_line()}}).}
+\item{linewidth}{Line/border size in mm.}
 
 \item{hjust}{Horizontal justification (in \eqn{[0, 1]})}
 
@@ -577,6 +581,7 @@ number of breaks given by the transformation.}
 \item \code{waiver()} for the default labels computed by the
 transformation object
 \item A character vector giving labels (must be same length as \code{breaks})
+\item An expression vector (must be the same length as breaks). See ?plotmath for details.
 \item A function that takes the breaks as input and returns labels
 as output. Also accepts rlang \link[rlang:as_function]{lambda} function
 notation.
@@ -798,11 +803,11 @@ is often the case in complex graphics.
 
 
 
-\code{aes()} is a \link[rlang:nse-defuse]{quoting function}. This means that
+\code{aes()} is a \link[rlang:topic-defuse]{quoting function}. This means that
 its inputs are quoted to be evaluated in the context of the
 data. This makes it easy to work with variables from the data frame
 because you can name those directly. The flip side is that you have
-to use \link[rlang:nse-force]{quasiquotation} to program with
+to use \link[rlang:topic-inject]{quasiquotation} to program with
 \code{aes()}. See a tidy evaluation tutorial such as the \href{https://dplyr.tidyverse.org/articles/programming.html}{dplyr programming vignette}
 to learn more about these techniques.
 
@@ -851,9 +856,9 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 
 
 
-These geoms are drawn using with \code{\link[ggplot2:geom_line]{geom_line()}} so support the
+These geoms are drawn using \code{\link[ggplot2:geom_line]{geom_line()}} so they support the
 same aesthetics: \code{alpha}, \code{colour}, \code{linetype} and
-\code{size}. They also each have aesthetics that control the position of
+\code{linewidth}. They also each have aesthetics that control the position of
 the line:
 \itemize{
 \item \code{geom_vline()}: \code{xintercept}
@@ -893,7 +898,7 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 \item \code{colour}
 \item \code{group}
 \item \code{linetype}
-\item \code{size}
+\item \code{linewidth}
 }
 Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 
@@ -921,9 +926,9 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 
 
 
-These geoms are drawn using with \code{\link[ggplot2:geom_line]{geom_line()}} so support the
+These geoms are drawn using \code{\link[ggplot2:geom_line]{geom_line()}} so they support the
 same aesthetics: \code{alpha}, \code{colour}, \code{linetype} and
-\code{size}. They also each have aesthetics that control the position of
+\code{linewidth}. They also each have aesthetics that control the position of
 the line:
 \itemize{
 \item \code{geom_vline()}: \code{xintercept}
@@ -1068,6 +1073,7 @@ examples section.
 \examples{
 # Generate some sample data, then compute mean and standard deviation
 # in each group
+set.seed(1)
 df <- data.frame(
   gp = factor(rep(letters[1:3], each = 10)),
   y = rnorm(30)

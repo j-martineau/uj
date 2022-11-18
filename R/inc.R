@@ -1,17 +1,19 @@
 #' @name inc.
 #' @family math
 #' @title Increment or Decrement a Variable
-#' @param x \link[atm_num]{Atomic numeric} object.
-#' @param i,d \link[cmp_num_scl]{Complete numeric scalar} giving the value by
+#' @description \tabular{ll}{
+#'   \code{inc}   \tab Increments \code{x} by the value in \code{i}.         \cr
+#'   \code{dec}   \tab Decrements \code{x} by the value in \code{d}.           }
+#' @param x \link[=atm_num]{Atomic numeric} object.
+#' @param i,d \link[=cmp_num_scl]{Complete numeric scalar} giving the value by
 #'   which to increment or decrement, respectively.
-#' @param na \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+#' @param na \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
 #'   throw an error if any values of \code{x} are \code{NA}.
-#' @return \code{x} or \code{list(...)}, but with each element incremented or
-#'   decremented.
+#' @return An atomic numeric object of the same dimension as \code{x}.
 #' @export
 inc. <- function() {help("inc.", package = "uj")}
 
-#' @describeIn inc. Increments \code{x} by \code{i}.
+#' @rdname inc.
 #' @export
 inc <- function(x, i = 1, na = F) {
   ok.x <- f0(inum(x), T, f0(num_dtf(x), T, num_vls(x)))
@@ -23,7 +25,7 @@ inc <- function(x, i = 1, na = F) {
   x + i
 }
 
-#' @describeIn inc. Decrements \code{x} by \code{d}.
+#' @rdname inc.
 #' @export
 dec <- function(x, d = 1, na = F) {
   ok.x <- f0(inum(x), T, f0(num_dtf(x), T, num_vls(x)))

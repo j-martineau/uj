@@ -47,39 +47,39 @@ bank_fail(x)
 indicating the number of generations back in the call stack in which to
 bank and/or check for error messages.}
 
-\item{...}{For \code{bank_err}, an arbitrary number of atomic arguments that
-when collapsed into a character scalar form an error message.
+\item{...}{\code{bank_err}
+\cr An arbitrary number of atomic arguments that when collapsed into a
+character scalar form an error message.
 \cr\cr
-For \code{bank_lgl}, \code{bank_pop}, \code{bank_funs}, \code{bank_prop},
-and \code{bank_pats}, an arbitrary number of named arguments to be error
-checked.
+\code{bank_lgl}, \code{bank_pop}, \code{bank_funs}, \code{bank_prop},
+and \code{bank_pats}
+\cr An arbitrary number of named arguments to be error checked.
 \cr\cr
-For \code{bank_not} both an arbitrary number of named logical scalar
-arguments to be checked for \code{TRUE}-ness and an arbitrary number of
-unnamed atomic arguments that when collapsed form an error message.
+\code{bank_not}
+\cr An arbitrary number of named logical scalar arguments to be checked for
+\code{TRUE}-ness plus an arbitrary number of unnamed atomic arguments that
+when collapsed form an error message.
 \cr\cr
-For \code{bank_vals}, an arbitrary number of named atomic scalar arguments
-and an arbitrary number of unamed atomic arguments holding valid values of
-the named arguments.
+\code{bank_vals}
+\cr An arbitrary number of named atomic scalar arguments and an arbitrary
+number of unnamed atomic arguments holding valid values of the named
+arguments.
 \cr\cr
-For \code{bank_dots}, an arbitrary number of named or unnamed arguments to
-be error checked.
+\code{bank_dots}
+\cr An arbitrary number of named or unnamed arguments to be error checked.
 \cr\cr
-For \code{bank_when}, two named atomic scalar arguments to be error
-checked.
-\cr\cr
-For \code{bank_when}, two named atomic scalar arguments to be error
-checked.}
+\code{bank_when}
+\cr Two named atomic scalar arguments to be error checked.}
 
-\item{nas.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+\item{nas.}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
 atomic scalar \code{NA} values qualify.}
 
-\item{named.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+\item{named.}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
 arguments in \code{...} must be uniquely named without using blank strings.}
 
-\item{whens., values.}{\link[ipop]{Populated atomic objects}.}
+\item{whens., values.}{\link[=ipop]{Populated atomic objects}.}
 
-\item{pats.}{\link[ivls]{Atomic vlist} containing multiple elements, each
+\item{pats.}{\link[=ivls]{Atomic vlist} containing multiple elements, each
 of which must be a complete character mvect of the same length as the
 number of arguments in \code{...}. Each element gives a pattern of valid
 properties for the argument in \code{...} in the form of one property
@@ -88,17 +88,17 @@ arguments.}
 
 \item{x}{An R object.}
 
-\item{extras}{\code{NUlL} or an \link[icmp]{complete atomic object}
+\item{extras}{\code{NUlL} or an \link[=icmp]{complete atomic object}
 containing additional atomic values that qualify as valid.}
 
-\item{funs}{\link[cmp_chr_scl]{Complete character scalar} containing a
-\link[xxx_funs]{property function} name or multiple property function
+\item{funs}{\link[=cmp_chr_scl]{Complete character scalar} containing a
+\link[=ppp_funs]{property function} name or multiple property function
 names separated by pipes, which are used to check if named arguments in
 code{...} satisfy the property specification in any of the function names.}
 
-\item{xxx}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+\item{ppp}{\link[=cmp_chr_scl]{Complete character scalar} containing one or
 more property combos (combos are created by separating one or more
-\link[xxx_vals]{property values} with underscores. Multiple combos are
+\link[=ppp_vals]{property values} with underscores. Multiple combos are
 separated by pipes.}
 }
 \value{
@@ -109,81 +109,100 @@ error messages.
 Bank error messages in the immediate environment of a function
 to allow for exhaustive error checking before throwing an exception.
 Results in a combined, multiple-error message to be reported at the
-completion of all error checks.
+completion of all error checks. See details for explanations of each
+function in this family.
 }
-\section{Functions}{
-\itemize{
-\item \code{err_check()}: Check for banked error messages in the environment of the
-function \code{gens} generations back in the call stack, and if there are
-any, process them, stopping execution. If there are none, take no action.
-Should be called after all error checking has been completed.
-
-\item \code{bank_err()}: Banks the error message in \code{...} in the environment
-of the function \code{gens} generations back in the call stack. The error
-message is constructed by atomizing and gluing all arguments in \code{...}
-into a character scalar.
-
-\item \code{bank_lgl()}: Checks the named arguments in \code{...} for whether they
-are atomic scalar \code{TRUE} or atomic scalar \code{FALSE}. If \code{na =
-  TRUE}, also allows atomic scalar \code{NA}. If \code{extras} contains
-atomic values (logical or not), also allows those values. For each named
-argument that does not meet the requirements, banks an error.
-
-\item \code{bank_not()}: For each named argument in \code{...} that is
-\code{FALSE}, creates an error message by collapsing the remaining
-(unnamed) arguments in \code{...} into a character scalar, and banks the
-error message for that named argument. The location where the name of a
-\code{FALSE} named argument should occur in the message is indicated by the
-escape sequence \code{'{@}'}.
-
-\item \code{bank_pop()}: For each named argument in \code{...} that is either
-\code{NULL} or empty (i.e., of length 0), banks an error message.
-
-\item \code{bank_funs()}: \emph{Bank error messages if arguments satisfy a property
-function.} For each named argument in \code{...}, checks whether it
-satisfies a property function in \code{funs.}, and if not, banks an error
-message. \code{funs.} must be a character scalar containing the names of
-one or more \link[ppp_funs]{property functions}, separated by pipes. An
+\details{
+\strong{err_check}
+\cr \emph{process any banked error messages}
+\cr Check for banked error messages in the environment of the function
+\code{gens} generations back in the call stack, and if there are any,
+process them, stopping execution. If there are none, take no action. Should
+be called after all error checking has been completed.
+\cr\cr
+\strong{bank_err}
+\cr \emph{bank an arbitrary error message}
+\cr Banks the error message in \code{...} in the environment of the
+function \code{gens} generations back in the call stack. The error message
+is constructed by \link[=av]{atomizing} and collapsing all arguments in
+\code{...} into a character scalar.
+\cr\cr
+\strong{bank_lgl}
+\cr \emph{check for logical scalar args}
+\cr Checks the named arguments in \code{...} for whether they are atomic
+scalar \code{TRUE} or atomic scalar \code{FALSE}. If \code{na = TRUE}, also
+allows atomic scalar \code{NA}. If \code{extras} contains atomic values
+(logical or not), also allows those values. For each named argument that
+does not meet the requirements, banks an error.
+\cr\cr
+\strong{bank_not}
+\cr \emph{bank errors for \code{FALSE} args}
+\cr For each named argument in \code{...} that is \code{FALSE}, creates an
+error message by collapsing unnamed arguments in \code{...} into a
+character scalar message template, and banks the error message for that
+named argument. The location where the name of a \code{FALSE} named
+argument should occur in the message is indicated by the escape sequence
+\code{'{@}'}.
+\cr\cr
+\strong{bank_pop}
+\cr \emph{bank errors for non-populated args}
+\cr For each named argument in \code{...} that is either \code{NULL} or
+empty (i.e., of length 0), banks an error message.
+\cr\cr
+\strong{bank_funs}
+\cr \emph{bank errors for args not passing property-checking functions}
+\cr For each named argument in \code{...}, checks whether it satisfies any
+one of the property functions named in \code{funs.}, and if not, banks an
+error message. \code{funs.} must be a character scalar containing the names
+of one or more \link[ppp_funs]{property functions}, separated by pipes. An
 argument passes the test if calling any one of the functions results in a
 value of \code{TRUE}.
-
-\item \code{bank_ppp()}: More flexible but less efficient than \code{bank_funs}.
-For each named argument in \code{...}, banks an error message if it does
-satisfy the \link[ippp]{property specification} in \code{ppp}. If
-\code{nas. = TRUE}, arguments may also be atomic scalar \code{NA} values.
-\code{ppp.} must be a character scalar containing one or more property
-combos. Property combos are created by separating multiple properties from
-\code{\link{ppp_all()}}. A property combo may be a single property.
-Multiple property combos are separated from each other using pipes. An
-argument satisfies the property specification if it satisfies any of the
-property combos.
-
-\item \code{bank_vals()}: Bank errors if atomic scalar arguments do not have one of
-a list of values. For each named atomic scalar argument in \code{...},
-checks it against the remaining (unnamed) atomic arguments in \code{...}
-(which do not have to be of the same mode), and if the named argument's
-value does not match a value from any unnamed argument in \code{...}, banks
-an error message.
-
-\item \code{bank_dots()}: Bank errors if dot arguments do not satisfy a property
-specification, and optionally, if they are not named. Checks if each
-argument in \code{...} satisfies the property specification in \code{prop.}
-and if not, banks an error message. If \code{named. = TRUE}, checks whether
-all arguments in \code{...} are named, and if not banks an error message.
-
-\item \code{bank_when()}: Bank errors conditionally on the value of two arguments.
-Banks an error if the first named atomic scalar argument in \code{...} has
-a value contained in \code{whens.} and the second named atomic scalar
-argument in \code{...} does not contain a value from \code{values.}.
-
-\item \code{bank_pats()}: Bank errors conditionally on the pattern of properties of
-arguments in \code{...} matching none of the specified patterns of
-associated properties in \code{pats.}.
-
-\item \code{bank_fail()}: If calling \code{identity(x)} generates an error, bank an
-error message.
-
-}}
+\cr\cr
+\strong{bank_ppp}
+\cr \emph{bank errors for args not passing arbitrary property checks}
+\cr More flexible but less efficient than \code{bank_funs}. For each named
+argument in \code{...}, banks an error message if it does satisfy the
+\link[ippp]{property specification} in \code{ppp}. If \code{nas. = TRUE},
+arguments may also be atomic scalar \code{NA} values. \code{ppp.} must be a
+character scalar containing one or more property combos. Property combos
+are created by separating multiple properties from \code{\link{ppp_all()}}.
+A property combo may be a single property. Multiple property combos are
+separated from each other using pipes. An argument satisfies the property
+specification if it satisfies any of the property combos.
+\cr\cr
+\strong{bank_vals}
+\cr \emph{bank errors for args with out-of-bounds values}
+\cr Bank errors if atomic scalar arguments do not have one of a list of
+values. For each named atomic scalar argument in \code{...}, checks it
+against the remaining (unnamed) atomic arguments in \code{...} (which do
+not have to be of the same mode), and if the named argument's value does
+not match a value from any unnamed argument in \code{...}, banks an error
+message.
+\cr\cr
+\strong{bank_dots}
+\cr \emph{bank errors for \code{...} args}
+\cr Bank errors if dot arguments do not satisfy a property specification,
+and optionally, if they are not named. Checks if each argument in
+\code{...} satisfies the property specification in \code{prop.} and if not,
+banks an error message. If \code{named. = TRUE}, checks whether all
+arguments in \code{...} are named, and if not banks an error message.
+\cr\cr
+\strong{bank_when}
+\cr \emph{bank errors for one arg conditional on the value of another}
+\cr Bank errors conditionally on the value of two arguments. Banks an error
+if the first named atomic scalar argument in \code{...} has a value
+contained in \code{whens.} and the second named atomic scalar argument in
+\code{...} does not contain a value from \code{values.}.
+\cr\cr
+\strong{bank_pats}
+\cr \emph{bank errors for args not matching any patterns of properties}
+\cr Bank errors conditionally on the pattern of properties of arguments in
+\code{...} matching none of the specified patterns of associated properties
+in \code{pats.}.
+\cr\cr
+\strong{bank_fail}
+\cr \emph{bank errors for args producing an error when evaluated}.
+}
 \seealso{
 Other errs: 
 \code{\link{failsafe.}()}

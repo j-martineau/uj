@@ -2,8 +2,8 @@
 #' @family strings
 #' @title Specialized string building functions
 #' @param x An object containing atomic values (atomized).
-#' @param l,r \link[cmp_chr_scl]{Complete character scalars} giving left and
-#'   right side enclosures for \code{...} after \link[a]{atomization}.
+#' @param l,r \link[=cmp_chr_scl]{Complete character scalars} giving left and
+#'   right side enclosures for \code{...} after \link[=a]{atomization}.
 #' @param ... An arbitrary number of objects to be atomized into a single atomic
 #'   vector.
 #' @return Character vector

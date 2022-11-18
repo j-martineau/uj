@@ -2,52 +2,51 @@
 % Please edit documentation in R/meets.R
 \name{meets.}
 \alias{meets.}
-\alias{meets}
 \title{Does an object meet count and/or value restrictions?}
 \usage{
 meets.()
-
-meets(x, ...)
 }
 \arguments{
 \item{x}{An object.}
 
-\item{...}{Additional restrictive arguments. See details.}
+\item{...}{Optional named arguments specifying (additional) property
+requirements for \code{x} in terms of element values and/or
+element/row/column counts. See the \emph{Specifying Additional Property
+Requirements} section.}
 }
 \value{
-\code{TRUE} or \code{FALSE}.
+A logical scalar.
 }
 \description{
-Does an object meet count and/or value restrictions?
+Count and value restrictions are provided in \code{...}. If none
+are provided
 }
-\details{
-Additional restrictive arguments are optional. When no additional
-arguments are supplied \code{TRUE} is returned. Possible arguments are as
-follows:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                    \cr
-\code{n}      \tab The set of valid lengths/numbers of elements         \cr
-\code{nr}     \tab The set of valid numbers of rows                     \cr
-\code{nc}     \tab The set of valid numbers of columns                  \cr
-\code{min}    \tab The minimum valid length/number of element           \cr
-\code{minr}   \tab The minimum valid number of rows                     \cr
-\code{minc}   \tab The minimum valid number of columns                  \cr
-\code{max}    \tab The maximum valid length/number of element           \cr
-\code{maxr}   \tab The maximum valid number of rows                     \cr
-\code{maxc}   \tab The maximum valid number of columns                  \cr
-\code{vals}   \tab The set of valid values                              \cr
-\code{lt}     \tab The value all values of \code{x.} must be less than  \cr
-\code{le}     \tab The value all values of \code{x.} must be less than or
-equal to                                             \cr
-\code{ge}     \tab The value all values of \code{x.} must be less than or
-equal to                                             \cr
-\code{gt}     \tab The value all values of \code{x.} must be greater than }
-}
-\section{Functions}{
-\itemize{
-\item \code{meets()}: Checks whether \code{x.} meets a variety of count and
-value restrictions supplied through \code{...}.
+\section{Specifying Additional Property Requirements}{
 
-}}
+Specifying additional requirements in \code{...} is optional. The full set
+of recognized arguments names are defined in the following table along with
+the properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                    \cr
+\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
+\code{nr}     \tab Vec of valid numbers of rows.                        \cr
+\code{nc}     \tab Vec of valid numbers of columns.                     \cr
+\code{min}    \tab Scalar minimum valid length/number of element.       \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
+\code{minc}   \tab Scalar minimum valid number of columns.              \cr
+\code{max}    \tab Scalar maximum valid length/number of element.       \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
+\code{vals}   \tab Vec of valid values.                                 \cr
+\code{lt}     \tab Scalar value all values of \code{x} must be less
+than.                                                \cr
+\code{le}     \tab Scalar value all values of \code{x} must be less than or
+equal to.                                            \cr
+\code{ge}     \tab Scalar value all values of \code{x} must be greater than
+or equal to.                                         \cr
+\code{gt}     \tab Scalar value all values of \code{x} must be greater
+than.                                                  }
+}
+
 \seealso{
 Other props: 
 \code{\link{as_mmm.}()},

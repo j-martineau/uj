@@ -12,22 +12,16 @@ ex(x, r = NULL, c = NULL, e = NULL)
 \arguments{
 \item{x}{Any valid R object.}
 
-\item{r}{\link[cmp_ind_vec]{Complete indexer vec} indicating elements to
-extract from \code{x} of \link[id1D]{defined dimensionality 1}.}
+\item{r}{\link[=cmp_ind_vec]{Complete indexer vec} indicating elements to
+extract from \code{x} of \link[=id1D]{defined dimensionality 1}.}
 
-\item{c}{\link[cmp_ind_vec]{Complete indexer vec} indicating columns to
-extract from \code{x} of \link[id2D]{defined dimensionality 2}.}
+\item{c}{\link[=cmp_ind_vec]{Complete indexer vec} indicating columns to
+extract from \code{x} of \link[=id2D]{defined dimensionality 2}.}
 }
 \description{
-Extract rows, columns, and/or elements
+ex. Extract rows and/or columns of \link[=id2D]{two-dimensional
+objects} or elements of \link[=ie1D]{effectively one-dimensional objects}.
 }
-\section{Functions}{
-\itemize{
-\item \code{ex()}: Extract specific rows and/or columns of matrices and
-\link[idtf]{dtfs} or extract specific elements of \link[ivec]{vecs} or
-\link[ivls]{vlists}.
-
-}}
 \examples{
 Mat <- matrix(1:100, nrow = 10)
 Dat   <- as_tibble(Mat)

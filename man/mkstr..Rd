@@ -102,8 +102,8 @@ pbracket(...)
 \item{...}{An arbitrary number of objects to be atomized into a single atomic
 vector.}
 
-\item{l, r}{\link[cmp_chr_scl]{Complete character scalars} giving left and
-right side enclosures for \code{...} after \link[a]{atomization}.}
+\item{l, r}{\link[=cmp_chr_scl]{Complete character scalars} giving left and
+right side enclosures for \code{...} after \link[=a]{atomization}.}
 }
 \value{
 Character vector
@@ -244,7 +244,6 @@ Other strings:
 \code{\link{spacing.}()},
 \code{\link{ss.}()},
 \code{\link{tocase.}()},
-\code{\link{weave.}()},
-\code{\link{xpr.}()}
+\code{\link{weave.}()}
 }
 \concept{strings}

@@ -39,9 +39,9 @@
 #' \code{'frc'} \tab Fractional        \tab At least one non-\code{NA} value
 #'                                          that is fractional (i.e., not a
 #'                                          whole number).                   \cr
-#' \code{'pct'} \tab Percent           \tab Percentage-valued numeric (in
+#' \code{'pct'} \tab Percent           \tab Percentage numeric (in
 #'                                          \code{[0, 100]}).                \cr
-#' \code{'ppn'} \tab Proportion        \tab Proportion-valued numeric (in
+#' \code{'ppn'} \tab Proportion        \tab Proportion numeric (in
 #'                                          \code{[0, 1]}).                  \cr
 #' \code{'pos'} \tab Positive          \tab Positive numeric.                \cr
 #' \code{'nng'} \tab Non-negative      \tab Non-negative numeric.            \cr
@@ -58,8 +58,8 @@
 #' table:\tabular{ll}{
 #' FUNCTION          \tab WHAT THE                                           \cr
 #' FORMAT            \tab FUNCTION DOES                                      \cr
-#' \code{i***}       \tab Evaluates whether an object is of the extended mode
-#'                        represented by \code{***}.                         \cr
+#' \code{i[mmm]}     \tab Evaluates whether an object is of the extended mode
+#'                        represented by \code{[mmm]}.                       \cr
 #' \code{mmm}        \tab Gets a character vector containing all extended modes
 #'                        of an object.                                      \cr
 #' \code{immm}       \tab Evaluates an object for a specific extended mode and
@@ -67,17 +67,18 @@
 #' \code{mmm_vals}   \tab Gets a character vector of all possible extended mode
 #'                        property values.                                     }
 #' @param x An R object.
-#' @param mmm \link[cmp_chr_scl]{Complete character scalar} containing one or
+#' @param mmm \link[=cmp_chr_scl]{Complete character scalar} containing one or
 #'   more values from \code{mmm_vals()} separated by pipes and/or underscores.
 #'   Combinations of extended modes can be specified by separating them with
 #'   underscores. Separating extended modes or combinations of extended modes
 #'   with pipes will result in a value of \code{TRUE} if any of them applies to
 #'   \code{x}.
-#' @param ... Additional arguments to \code{\link{meets}} containing value and
-#'   element/row/column count restrictions.
-#' @return \code{mmm_vals} and \code{mmm} returns a character vector or
-#'  \code{NULL}. All others return either \code{TRUE} or \code{FALSE}. See
-#'  details for more information.
+#' @inheritDotParams meets.
+#' @inheritSection meets. Specifying Additional Property Requirements
+#' @return \tabular{lll}{
+#'   \code{mmm_vals} and \code{mmm} \tab   \tab A character vector or
+#'                                              \code{NULL}.                 \cr
+#'   \code{immm} and \code{i[mmm]}  \tab   \tab A logical scalar.              }
 #' @export
 mmm. <- function() {help("mmm.", package = "uj")}
 
@@ -237,7 +238,6 @@ immm <- function(x, mmm, ...) {
   valid.mmm <- ttt_vals()
   mmm.combos <- strsplit(mmm, "|", fixed = T)[[1]]
   new.mmm <- unlist(strsplit(mmm.combos, "_", fixed = T))
-  ok.mmm <- all(new.mmm %in% valid.mmm)
-  if (!ok.mmm) {stop("\n \u2022 [mmm = '", mmm, "'] contains a value not in [sss_vals() = c(", paste0(paste0("'", sss_vals(), "'"), collapse = ", "), ")] after splitting along pipes and underscores.")}
+  if (!all(new.mmm %in% valid.mmm)) {stop("\n \u2022 [mmm = '", mmm, "'] specifies an 'extended mode' property not in [uj::mmm_vals() = c(", paste0(paste0("'", mmm_vals(), "'"), collapse = ", "), ")].")}
   ippp(x, mmm, ...)
 }

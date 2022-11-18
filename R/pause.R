@@ -1,12 +1,13 @@
 #' @name pause.
 #' @family extensions
 #' @title Pause execution.
-#' @param x \link[cmp_num_scl]{Complete mumeric scalar} indicating the number of
-#'   seconds to pause.
-#' @return \code{NULL} (called for side effect).
+#' @description Pause for \code{x} seconds, then resume execution.
+#' @param x A \link[=cmp_num_scl]{complete mumeric scalar} indicating the number
+#'   of seconds to pause.
+#' @return \code{NULL} (called for its side effect).
 #' @export
 pause. <- function() {help("pause.", package = "uj")}
 
-#' @describeIn pause. Pause for \code{x} seconds, then resume execution.
+#' @rdname pause.
 #' @export
 pause <- function(x = 0.0000001) {Sys.sleep(x)}

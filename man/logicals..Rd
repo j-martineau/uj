@@ -70,42 +70,43 @@ has(x, y, na = T, agg = NA)
 lacks(x, y, na = T, agg = NA)
 }
 \arguments{
-\item{x}{\link[ilgl]{Atomic logical object} for all functions other than
+\item{x}{\link[=atm_lgl]{Atomic logical object} for all functions other than
 \code{is_in}, \code{not_in}, \code{has}, and \code{lacks}. Otherwise, an
 atomic object.}
 
-\item{na}{\link[cmp_lgl_scl]{Complete logical scalar} indicating what value
-should replace \code{NA} values.}
+\item{na}{A non-\code{NA} logical scalar indicating what value should replace
+\code{NA} values.}
 
-\item{y}{\link[ilgl]{Atomic logical object} for all functions other than
+\item{y}{\link[=atm_lgl]{Atomic logical object} for all functions other than
 \code{is_in}, \code{not_in}, \code{has}, and \code{lacks}. Otherwise, an
-atomic object \link[compatible]{compatible} with \code{x}.}
+atomic object \link[=compatible]{compatible} with \code{x}.}
 
-\item{err}{\link[lgl_scl]{Logical scalar}. \code{err = TRUE}, indicates
+\item{err}{A non-\code{NA} logical scalar. \code{err = TRUE}, indicates
 \code{TRUE} should be substituted for non-logical values, \code{err =
   FALSE} indicates \code{FALSE} should be substituted for non-logical values,
 \code{err = NA} indicates an error should be thrown if a non-logical value
 is encountered.}
 
-\item{...}{Arbitrary number of \link[lgl_vec]{logical vecs} to be processed.}
+\item{...}{An arbitrary number of \link[=lgl_vec]{logical vecs} to be
+processed.}
 
-\item{a}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
-atomize \code{...} before processing. This creates a single atomic vector
-of all atomic elements contained in all arguments in \code{...} and
-effectively changes the behavior of \code{or} to \code{any}, \code{and} to
-\code{all}, \code{not} to \code{!any}, and \code{some} and \code{most} to
-count the total number of \code{TRUE} values rather than the number of
-\code{TRUE} values in the same location of recycled arguments from
-\code{...} (but with error checking and flexible \code{NA} value handling.)}
+\item{a}{A non-\code{NA} logical scalar indicating whether to atomize
+\code{...} before processing. This creates a single atomic vector of all
+atomic elements contained in all arguments in \code{...} and effectively
+changes the behavior of \code{or} to \code{any}, \code{and} to \code{all},
+\code{not} to \code{!any}, and \code{some} and \code{most} to count the
+total number of \code{TRUE} values rather than the number of \code{TRUE}
+values in the same location of recycled arguments from \code{...} (but with
+error checking and flexible \code{NA} value handling.)}
 
-\item{not}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
-negate values in arguments supplied in \code{...} before processing.}
+\item{not}{A non-\code{NA} logical scalar indicating whether to negate values
+in arguments supplied in \code{...} before processing.}
 
-\item{across, within}{\link[cmp_chr_scl]{Complete character scalar} in
-\code{c('', 'none', 'one', 'any', 'some', 'all')} indicating no across
-or within argument counting of \code{TRUE} values.}
+\item{across, within}{\link[=cmp_chr_scl]{Complete character scalars} in
+\code{c('', 'none', 'one', 'any', 'some', 'all')} indicating no across or
+within argument counting of \code{TRUE} values.}
 
-\item{agg}{\link[cmp_chr_scl]{Complete character scalar} in \code{c('nor',
+\item{agg}{\link[=cmp_chr_scl]{Complete character scalar} in \code{c('nor',
   'one', 'any', 'two', 'all')} used to specify, respectively, that 0, 1, any,
 2 or more, and all arguments must be \code{TRUE}.}
 }

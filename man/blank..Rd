@@ -16,13 +16,9 @@ blank(x)
 Logical scalar
 }
 \description{
-Blank strings
+Evaluates whether \code{x} is a blank string scalar (i.e.,
+\code{""}).
 }
-\section{Functions}{
-\itemize{
-\item \code{blank()}: Evaluates whether \code{x} is a blank string scalar.
-
-}}
 \seealso{
 Other strings: 
 \code{\link{charn.}()},
@@ -37,7 +33,6 @@ Other strings:
 \code{\link{spacing.}()},
 \code{\link{ss.}()},
 \code{\link{tocase.}()},
-\code{\link{weave.}()},
-\code{\link{xpr.}()}
+\code{\link{weave.}()}
 }
 \concept{strings}

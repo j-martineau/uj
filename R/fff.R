@@ -3,8 +3,8 @@
 #' @title Object form properties
 #' @description Gets a vector of form properties from \code{fff_vals()} that are
 #'   applicable to \code{x}. An object's form properties have to do with the
-#'   number of \link[ddd]{defined dimensions} and/or \link[fff]{effective
-#'   dimensions} plus some additional restrictions:\tabular{eee}{
+#'   number of \link[=ddd]{defined dimensions} and/or \link[=eee]{effective
+#'   dimensions} plus some additional restrictions:\tabular{lll}{
 #'   FUNDAMENTAL   \tab FUNDAMENTAL   \tab FUNDAMENTAL                       \cr
 #'   TYPE VALUE    \tab TYPE NAME     \tab TYPE DEFINITION                   \cr
 #'   \code{'emp'}\tab empty         \tab Non-\code{NULL}, length = 0.        \cr
@@ -12,44 +12,39 @@
 #'   \code{'pnt'}\tab point         \tab Containing 1 element (includes 1-by-1
 #'                                       data.frames).                       \cr
 #'   \code{'lin'}\tab linear        \tab Effectively 1-dimensional.          \cr
-#'   \code{'row'}\tab 1-row         \tab Row matrix or row
-#'                                       \code{\link[idtf]{data.frame}}.     \cr
-#'   \code{'col'}\tab 1-column      \tab Column matrix or column
-#'                                       \code{\link[idtf]{data.frame}}.     \cr
-#'   \code{'rct'}\tab rectangular   \tab 2+ by 2+ matrix or
-#'                                       \code{\link[idtf]{data.frame}}.     \cr
-#'   \code{'sqr'}\tab square        \tab Square atomic matrix                \cr
+#'   \code{'row'}\tab 1-row         \tab Row matrix or row data.frame.       \cr
+#'   \code{'col'}\tab 1-column      \tab Column matrix or column data.frame. \cr
+#'   \code{'rct'}\tab rectangular   \tab 2+ by 2+ matrix or data.frame  .    \cr
+#'   \code{'sqr'}\tab square        \tab Square atomic matrix.               \cr
 #'   \code{'sld'}\tab solid         \tab Array with 2+ index positions in 3+
 #'                                       dimensions.                           }
-#' Functions related to form properties are described in the following
-#' table:\tabular{ll}{
-#' FUNCTION          \tab WHAT THE                                           \cr
-#' FORMAT            \tab FUNCTION DOES                                      \cr
-#' \code{i***}       \tab Evaluates whether an object is of the form represented
-#'                        by \code{***}.                                     \cr
-#' \code{fff}        \tab Gets a character scalar containing the forms of an
-#'                        object.                                            \cr
-#' \code{ifff}       \tab Evaluates an object for a specific form and any
-#'                        additional properties specified in \code{...}.     \cr
-#' \code{fff_vals}   \tab Gets a character vector of all possible form property
-#'                        values.                                              }
+#'   Functions related to form properties are described in the following
+#'   table:\tabular{ll}{
+#'   FUNCTION          \tab WHAT THE                                         \cr
+#'   FORMAT            \tab FUNCTION DOES                                    \cr
+#'   \code{i[fff]}       \tab Evaluates whether an object is of the form
+#'                          represented by \code{***}.                       \cr
+#'   \code{fff}        \tab Gets a character scalar containing the forms of an
+#'                          object.                                          \cr
+#'   \code{ifff}       \tab Evaluates an object for a specific form and any
+#'                          additional properties specified in \code{...}.   \cr
+#'   \code{fff_vals}   \tab Gets a character vector of all possible form
+#'                          property values.                                   }
 #' @param x An object.
-#' @param fff \link[cmp_chr_scl]{Complete character scalar} containing one or
+#' @param fff \link[=cmp_chr_scl]{Complete character scalar} containing one or
 #'   more values from \code{fff_vals()} separated by pipes and/or underscores.
 #'   Combinations of forms can be specified by separating them with underscores.
 #'   Separating forms or combinations of forms with pipes will result in a value
 #'   of \code{TRUE} if any of them applies to \code{x}.
-#' @param ... Additional arguments to \code{\link{meets}} containing value and
-#'   element/row/column count restrictions.
-#' @section Submitting additional arguments to \code{ifff} via \code{...}:
-#'   Allows for checking not just the form but whether length, number of rows,
-#'   number of columns, and element values meet flexible criteria.
-#' @return \code{fff_vals} and \code{fff} return a character vector. All
-#'   others return either \code{TRUE} or \code{FALSE}.
+#' @inheritDotParams meets.
+#' @inheritSection meets. Specifying Additional Property Requirements
+#' @return \tabular{lll}{
+#'   \code{fff_vals} and \code{fff}\tab  \tab A character vector.            \cr
+#'   \code{ifff} and \code{i[fff]} \tab  \tab A logical scalar.                }
 #' @export
 fff. <- function() {help("fff.", "uj")}
 
-#' @describeIn fff. Evaluates whether \code{x} is empty.
+#' @rdname fff.
 #' @export
 fff <- function(x) {
   nr <- nrow(x); nc <- ncol(x); nl <- is.null(x); rm <- nr > 1; r1 <- nr == 1
@@ -65,52 +60,49 @@ fff <- function(x) {
     f0(nd != 2, NULL, f0(rm & eq, 'sqr', NULL)))
 }
 
-#' @describeIn fff. Evaluates whether \code{x} is empty.
+#' @rdname fff.
 #' @export
 iemp <- function(x) {f0(length(x) != 0, F, !is.null(x))}
 
-#' @describeIn fff. Evaluates whether \code{x} is a point.
+#' @rdname fff.
 #' @export
 ipnt <- function(x) {neee(x) == 0}
 
-#' @describeIn fff. Evaluates whether \code{x} is linear.
+#' @rdname fff.
 #' @export
 ilin <- function(x) {neee(x) == 1}
 
-#' @describeIn fff. Evaluates whether \code{x} is a row object.
+#' @rdname fff.
 #' @export
 irow <- function(x) {f0(!nddd(x) == 2, F, nrow(x) == 1 & ncol(x) > 1)}
 
-#' @describeIn fff. Evaluates whether \code{x} is a column object.
+#' @rdname fff.
 #' @export
 icol <- function(x) {f0(!nddd(x) == 2, F, nrow(x) > 1 & ncol(x) == 1)}
 
-#' @describeIn fff. Evaluates whether \code{x} is a rectangular object.
+#' @rdname fff.
 #' @export
 irct <- function(x) {f0(!nddd(x) == 2, F, nrow(x) > 1 & ncol(x) > 1)}
 
-#' @describeIn fff. Evaluates whether \code{x} is a square object.
+#' @rdname fff.
 #' @export
 isqr <- function(x) {f0(!nddd(x) == 2, F, nrow(x) > 1 & ncol(x) == nrow(x))}
 
-#' @describeIn fff. Evaluates whether \code{x} is a solid object.
+#' @rdname fff.
 #' @export
 isld <- function(x) {neee(x) > 2}
 
-#' @describeIn fff. Get a list of all possible form property values.
+#' @rdname fff.
 #' @export
 fff_vals <- function() {c('col', 'emp', 'lin', 'pnt', 'rct', 'row', 'sqr', 'sld')}
 
-#' @describeIn fff. Evaluates whether any property in \code{fff} is a form
-#'   property applicable to \code{x} (subject to any additional restrictions
-#'   in \code{...}).
+#' @rdname fff.
 #' @export
 ifff <- function(x, fff, ...) {
   if (!cmp_chr_scl(fff)) {stop("\n \u2022 [fff] must be a non-NA character scalar.")}
   valid.fff <- ttt_vals()
   fff.combos <- strsplit(fff, "|", fixed = T)[[1]]
   new.fff <- unlist(strsplit(fff.combos, "_", fixed = T))
-  ok.fff <- all(new.fff %in% valid.fff)
-  if (!ok.fff) {stop("\n \u2022 [fff = '", fff, "'] contains a value not in [sss_vals() = c(", paste0(paste0("'", sss_vals(), "'"), collapse = ", "), ")] after splitting along pipes and underscores.")}
+  if (!all(new.fff %in% valid.fff)) {stop("\n \u2022 [fff = '", fff, "'] specifies a 'form' property not in [uj::fff_vals() = c(", paste0(paste0("'", fff_vals(), "'"), collapse = ", "), ")].")}
   ippp(x, fff, ...)
 }

@@ -46,9 +46,10 @@
 #'   \code{'dtf_rct'}.
 #'   \cr\cr
 #'   How functions are related to property families and property specifications
-#'   is explained in the sections entitled \strong{Universal Property
-#'   Functions}, \strong{Individual Property Functions}, and \strong{Combination
-#'   Property Functions}.
+#'   is explained in the sections entitled \itemize{
+#'     \item Universal Property Functions
+#'     \item Individual Property Functions
+#'     \item Combination Property Functions}
 #' @section Universal Property Functions: Property functions addressing
 #'   \emph{all} property families are the following: \tabular{ll}{
 #'     FUNCTION                 \tab WHAT THE                                \cr
@@ -87,7 +88,7 @@
 #'                                   properties of all property families.    \cr
 #'     \code{is_ppp_fun}        \tab Evaluates whether a character scalar is the
 #'                                   name of a property function (those listed
-#'                                   by \code{ppp_funs}).                    \cr
+#'                                   by \code{\link{ppp_funs}}).             \cr
 #'     \code{is_valid_ppp}      \tab Evaluates a character scalar property
 #'                                   specification for validity (i.e., does it
 #'                                   contain only single properties, valid
@@ -112,110 +113,95 @@
 #'   single property family take the following forms where \code{xxx} is a
 #'   placeholder for an individual property and \code{zzz} is a placeholder for
 #'   a property family: \tabular{ll}{
-#'   FUNCTION          \tab WHAT THE                                         \cr
-#'   NAME FORMAT       \tab FUNCTION DOES                                    \cr
-#'   \code{xxx}        \tab Get properties from the property family represented
-#'                          by \code{xxx} applicable to an object.           \cr
-#'   \code{izzz}       \tab Evaluate whether an object has one or more specific
-#'                          properties from the property family represented by
-#'                          \code{zzz}, subject to any additional restrictions
-#'                          supplied in \code{...}.                          \cr
-#'   \code{zzz_vals}   \tab Get all properties in the property family
-#'                          represented by \code{zzz}.                         }
+#'   FUNCTION            \tab WHAT THE                                       \cr
+#'   NAME FORMAT         \tab FUNCTION DOES                                  \cr
+#'   \code{[fff]}        \tab Get properties from the property family
+#'                            represented by \code{[fff]} applicable to an
+#'                            object.                                        \cr
+#'   \code{[ppp]}        \tab Evaluate whether an object has the specific
+#'                            property represented by \code{[ppp]}.          \cr
+#'   \code{i[fff]}       \tab Evaluate whether an object has one or more
+#'                            specific properties from the property family
+#'                            represented by \code{[fff]}, subject to any
+#'                            additional restrictions supplied in \code{...}.\cr
+#'   \code{[fff]_vals}   \tab Get all properties in the property family
+#'                            represented by \code{[fff]}.                     }
 #' @section Combination Property Functions: Property functions associated with a
 #'   single property family take the following forms where \code{ccc},
 #'   \code{mmm}, and \code{ttt} are placeholders for properties from extended
 #'   class, extended mode, and fundamental type property families:\tabular{ll}{
 #'   FUNCTION      \tab WHAT THE                                             \cr
 #'   NAME FORMAT   \tab FUNCTION DOES                                        \cr
-#'   \code{\link[mmm_ccc.]{mmm_ccc}}
+#'   \code{\link{[mmm]_[ccc]}}
 #'     \tab Evaluate whether an object is of the extended mode represented by
-#'          \code{mmm} and of the extended class represented by \code{ccc}.  \cr
-#'   \code{\link[ttt_ccc.]{ttt_ccc}}
+#'          \code{[mmm]} and of the extended class represented by
+#'          \code{[ccc]}.                                                    \cr
+#'   \code{\link{[ttt]_[ccc]}}
 #'     \tab Evaluate whether an object is of the fundamental type represented by
-#'          \code{ttt} and of the extended class represented by \code{ccc}.  \cr
-#'   \code{\link[ttt_mmm.]{ttt_mmm}}
+#'          \code{[ttt]} and of the extended class represented by
+#'          \code{[ccc]}.                                                    \cr
+#'   \code{\link{[ttt]_[mmm]}}
 #'     \tab Evaluate whether an object is of the fundamental type represented by
-#'          \code{ttt} and of the extended mode represented by \code{mmm}.   \cr
-#'   \code{\link[cmp_ccc.]{cmp_ccc}}
+#'          \code{[ttt]} and of the extended mode represented by
+#'          \code{[mmm]}.                                                    \cr
+#'   \code{\link{cmp_[ccc]}}
 #'     \tab Evaluate whether an object is complete (non-empty, atomic,
 #'          containing no \code{NA} values). and is of the extended class
-#'          represented by \code{ccc}.                                       \cr
-#'   \code{\link[cmp_mmm.]{cmp_mmm}}
+#'          represented by \code{[ccc]}.                                     \cr
+#'   \code{\link{cmp_[mmm]}}
 #'     \tab Evaluate whether an object is complete (implying non-empty and
-#'          atomic) and is of the extended mode represented by \code{mmm}.   \cr
-#'   \code{\link[cmp_mmm_ccc.]{cmp_mmm_ccc}}
+#'          atomic) and is of the extended mode represented by \code{[mmm]}. \cr
+#'   \code{\link{cmp_[mmm]_[ccc]}}
 #'     \tab Evaluate whether an object is complete (implying non-empty and
-#'          atomic), is of the extended mode represented by \code{mmm}, and is
-#'          of the extended class represented by \code{ccc}.                 \cr
+#'          atomic), is of the extended mode represented by \code{[mmm]}, and is
+#'          of the extended class represented by \code{[ccc]}.               \cr
 #'   \code{\link{mmm_ccc_vals}}
 #'     \tab Get all combined extended mode + extended class properties.      \cr
 #'   \code{\link{ttt_ccc_vals}}
 #'     \tab Get all combined fundamental type + extended class properties.   \cr
 #'   \code{\link{ttt_mmm_vals}}
-#'     \tab Get combined fundamental type and extended mode properties.      \cr
+#'     \tab Get combined fundamental type + extended mode properties.        \cr
 #'   \code{\link{cmp_ccc_vals}}
-#'     \tab Get all combined completeness
-#'          and extended class properties.                                   \cr
+#'     \tab Get all combined completeness + extended class properties.       \cr
 #'   \code{\link{cmp_mmm_vals}}
 #'     \tab Get all combined completeness + extended mode properties.        \cr
 #'   \code{\link{cmp_mmm_ccc_vals}}   
 #'     \tab Get all combined completeness + extended mode + extended class
 #'          properties.                                                        }
-#' @section Additional arguments in \code{...}: Arguments in the following table
-#'   are optional. If used, they indicate additional property
-#'   restrictions:\tabular{ll}{
-#'     ARGUMENT    \tab USE AND MEANING                                      \cr
-#'     \code{n}    \tab Set of valid lengths/numbers of elements.            \cr
-#'     \code{nr}   \tab Set of valid numbers of rows.                        \cr
-#'     \code{nc}   \tab Set of valid numbers of columns.                     \cr
-#'     \code{min}  \tab Minimum valid length/number of elements.             \cr
-#'     \code{minr} \tab Minimum valid number of rows.                        \cr
-#'     \code{minc} \tab Minimum valid number of columns.                     \cr
-#'     \code{max}  \tab Maximum valid length/number of element.              \cr
-#'     \code{maxr} \tab Maximum valid number of rows.                        \cr
-#'     \code{maxc} \tab Maximum valid number of columns.                     \cr
-#'     \code{vals} \tab Set of valid values.                                 \cr
-#'     \code{lt}   \tab Exclusive upper bound (x <) on elements of \code{x}. \cr
-#'     \code{le}   \tab Inclusive upper bound (x ≤) on elements of \code{x}. \cr
-#'     \code{ge}   \tab Inclusive lower bound (x ≥) on elements of \code{x}. \cr
-#'     \code{gt}   \tab Exclusive lower bound (x >) on elements of \code{x}.   }
-#' @param as.dtf \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
-#'   to return the result as a dtf with column 1 containing property values
-#'   and column 2 containing the property families.
+#' @param as.dtf \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
+#'   to return the result as a dtf with column 1 containing property values and
+#'   column 2 containing the property families.
 #' @param x An R object.
-#' @param ppp \link[chr_scl]{Character scalar} containing one or more values
-#'   from \code{ppp_vals()} separated by pipes and/or underscores. Combinations
-#'   of properties can be specified by separating them with underscores.
-#'   Separating properties or combinations of properties with pipes will result
-#'   in a value of \code{TRUE} if any of them applies to \code{x}.
-#' @param valid \link[chr_vec]{Character vec} containing all properties
-#'   considered valid.
-#' @param print \link[lgl_scl]{Logical scalar} indicating whether to print the
-#'   property definition to the console.
-#' @param ... Additional arguments to \code{\link{meets}} containing value and
-#'   element/row/column count restrictions.
-#' @return \code{ppp}, \code{ppp_all}, \code{ppp_vals}, \code{pop_funs},
-#'   \code{ppp_from_combo}, and \code{combos_from_ppp}, return a character
-#'   vector.
-#'   \cr\cr
-#'   \code{ppp_concise} and \code{alt_ppp_concise} return a character scalar.
-#'   \cr\cr
-#'   \code{ippp}, \code{nll_or}, \code{nas_or}, \code{is_ppp_fun}, and
-#'   \code{is_valid_ppp} return a logical scalar.
+#' @param ppp \link[=cmp_chr_scl]{Complete character scalar} containing one or
+#'   more values from \code{ppp_vals()} separated by pipes and/or underscores.
+#'   Combinations of properties can be specified by separating them with
+#'   underscores. Separating properties or combinations of properties with pipes
+#'   will result in a value of \code{TRUE} if any of them applies to \code{x}.
+#' @param valid \link[=cmp_chr_vec]{Complete character vec} containing all
+#'   properties considered valid.
+#' @param print \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
+#'   to print the property definition to the console.
+#' @inheritDotParams meets.
+#' @inheritSection meets. Specifying Additional Property Requirements
+#' @return \tabular{lll}{
+#'   \code{ppp}, \code{ppp_all}, \code{ppp_vals}, \code{pop_funs},
+#'   \code{ppp_from_combo}, \code{combos_from_ppp}
+#'         \tab   \tab A character vector.                                   \cr
+#'   \code{ppp_concise}, \code{alt_ppp_concise}
+#'         \tab   \tab A character scalar.                                   \cr
+#'   All others
+#'         \tab   \tab A logical scalar.                                       }
 #' @export
 ppp. <- function() {help("ppp.", package = "uj")}
 
-#' @describeIn ppp. Get all single properties that apply to \code{x}.
+#' @rdname ppp.
 #' @export
 ppp <- function(x) {sort(c(sss(x), ttt(x), fff(x), ddd(x), eee(x), mmm(x), ccc(x)))}
 
-#' @describeIn ppp. Evaluates whether any (combination) property in \code{ppp}
-#'   is applicable to \code{x}, subject to any additional restrictions in
-#'   \code{...}.
+#' @rdname ppp.
 #' @export
 ippp <- function(x, ppp, ...) {
-  if (!is_valid_ppp(ppp)) {stop("\n \u2022 [ppp = '", ppp, "'] is not a pipe and/or underscore delimited character vector of values from [ppp_vals() = c(", paste0(paste0("'", ppp_vals(), "'") , collapse = ", "), ").")}
+  if (!is_valid_ppp(ppp)) {stop("\n \u2022 [ppp = '", ppp, "'] specifies a property not in [uj::ppp_vals() = c(", paste0(paste0("'", ppp_vals(), "'") , collapse = ", "), ")].")}
   if (!meets(x, ...)) {return(F)}
   ppp.singles <- ppp_vals()
   ppp.combos <- combos_from_ppp(ppp)
@@ -235,8 +221,7 @@ ippp <- function(x, ppp, ...) {
   FALSE
 }
 
-#' @describeIn ppp. Extract unique property values from \code{ppp} by splitting
-#'   along pipes (\code{"|"}) and underscores.
+#' @rdname ppp.
 #' @export
 ppp_all <- function(ppp, valid = ppp_vals()) {
   ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% ppp_vals()), F)
@@ -248,12 +233,11 @@ ppp_all <- function(ppp, valid = ppp_vals()) {
   ppp.singles <- ppp.singles[ppp.singles != ""]
   ppp.singles <- .drop_iprefix(ppp.singles)
   if (length(ppp.singles) == 0) {stop("\n \u2022 The property specification [ppp = '", ppp, "'] is empty after splitting on pipes and underscores.")}
-  if (!all(ppp %in% valid)) {stop("\n \u2022 The property specification [ppp = '", ppp, "'] contains a property not in [ppp_vals() = c(", paste0(paste0("'", valid, "'"), collapse = ", "), ")].")}
+  if (!all(ppp.singles %in% valid)) {stop("\n \u2022 The property specification [ppp = '", ppp, "'] contains a property not in [ppp_vals() = c(", paste0(paste0("'", valid, "'"), collapse = ", "), ")].")}
   sort(unique(ppp))
 }
 
-#' @describeIn ppp. Get a vector of all possible single property values in all
-#'   property families.
+#' @rdname ppp.
 #' @export
 ppp_vals <- function(as.dtf = F) {
   if (!isTF(as.dtf)) {stop("\n \u2022 [as.dtf] must be TRUE or FALSE.", call. = F)}
@@ -271,18 +255,15 @@ ppp_vals <- function(as.dtf = F) {
   tibble::tibble(family = fam[ord], ppp = val[ord])
 }
 
-#' @describeIn ppp. Evaluate whether \code{x} is \code{NULL} or matches one
-#'   or more property (combos) specified in \code{ppp}.
+#' @rdname ppp.
 #' @export
 nll_or <- function(x, ppp, ...) {f0(inll(x), T, ippp(x, ppp, ...))}
 
-#' @describeIn ppp. Evaluate whether \code{x} is an atomic scalar \code{NA}
-#'   or matches one or more property (combos) specified in \code{ppp}.
-#' @return Logical scalar.
+#' @rdname ppp.
 #' @export
 nas_or <- function(x, ppp, ...) {f0(inas(x), T, ippp(x., ppp, ...))}
 
-#' @describeIn ppp. List all valid property function names.
+#' @rdname ppp.
 #' @export
 ppp_funs <- function(as.dtf = F) {
   if (!isTF(as.dtf)) {stop("\n \u2022 [as.dtf] must be TRUE or FALSE.")}
@@ -297,7 +278,7 @@ ppp_funs <- function(as.dtf = F) {
   tc_fun <- ttt_ccc_vals(); tc_fam <- rep("ttt_ccc", length(tc_fun)); tc_lab <- paste0("2_", tc_fam, "_", tc_fun)
   tm_fun <- ttt_mmm_vals(); tm_fam <- rep("ttt_mmm", length(tm_fun)); tm_lab <- paste0("2_", tm_fam, "_", tm_fun)
   cc_fun <- cmp_ccc_vals(); cc_fam <- rep("cmp_ccc", length(cc_fun)); cc_lab <- paste0("3_", cc_fam, "_", cc_fun)
-  cmc_fun <- cmp_mmm_ccc_vals(); cmc_fam <- rep("cmp_mmm_ccc", length(cmc_fun)); cmc_lab <- c("4_", cmc_fam, "_", cmc_fun)
+  cmc_fun <- cmp_mmm_ccc_vals(); cmc_fam <- rep("cmp_mmm_ccc", length(cmc_fun)); cmc_lab <- paste0("4_", cmc_fam, "_", cmc_fun)
   fun <- c(c_fun, d_fun, e_fun, f_fun, m_fun, s_fun, t_fun, mc_fun, tc_fun, tm_fun, cc_fun, cmc_fun)
   fam <- c(c_fam, d_fam, e_fam, f_fam, m_fam, s_fam, t_fam, mc_fam, tc_fam, tm_fam, cc_fam, cmc_fam)
   ord <- order(c(c_lab, d_lab, e_lab, f_lab, m_lab, s_lab, t_lab, mc_lab, tc_lab, tm_lab, cc_lab, cmc_lab))
@@ -305,9 +286,7 @@ ppp_funs <- function(as.dtf = F) {
   tibble::tibble(family = fam[ord], fun = fun[ord])
 }
 
-#' @describeIn ppp. Get a dtf with 4 columns: property family (Family),
-#'   property value (Value), short property definition (Short), and long
-#'   property definition (Long).
+#' @rdname ppp.
 #' @export
 ppp_defs <- function() {
   tibble::tribble(
@@ -377,17 +356,14 @@ ppp_defs <- function() {
   )
 }
 
-#' @describeIn ppp. Evaluate \code{x} to see if it the name of a property
-#'   function.
+#' @rdname ppp.
 #' @export
 is_ppp_fun <- function(x) {
   if (!cmp_chr_scl(x)) {stop("\n \u2022 [x] must be a complete character scalar (?cmp_chr_scl).")}
   x %in% ppp_funs()
 }
 
-#' @describeIn ppp. Evaluate whether \code{ppp} is a character scalar of
-#'   values from \code{ppp_vals} separated by pipes ('|') and/or underscores.
-#'   Always returns either \code{TRUE} or \code{FALSE}.
+#' @rdname ppp.
 #' @export
 is_valid_ppp <- function(ppp) {
   if (!cmp_chr_scl(ppp)) {return(FALSE)}
@@ -400,8 +376,7 @@ is_valid_ppp <- function(ppp) {
   all(ppp %in% ppp_vals())
 }
 
-#' @describeIn ppp. Extract each single property value from a single combination
-#'   property by splitting along underscores.
+#' @rdname ppp.
 #' @export
 ppp_from_combo <- function(ppp, valid = ppp_vals()) {
   ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% ppp_vals()), F)
@@ -417,8 +392,7 @@ ppp_from_combo <- function(ppp, valid = ppp_vals()) {
   sort(unique(out))
 }
 
-#' @describeIn ppp. Extract each property combination from \code{ppp} by
-#'   splitting along pipes (\code{"|"}).
+#' @rdname ppp.
 #' @export
 combos_from_ppp <- function(ppp, valid = ppp_vals()) {
   ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% ppp_vals()), F)
@@ -433,13 +407,7 @@ combos_from_ppp <- function(ppp, valid = ppp_vals()) {
   sort(unique(out))
 }
 
-#' @describeIn ppp. Get the data.frame from \code{ppp_defs()}. If \code{ppp}
-#'   contains a single valid property value (no combination values), extracts
-#'   the associated row from the data.frame and creates a character scalar with
-#'   the property family, property value, short property definition, and long
-#'   property definition. If \code{print = TRUE}, prints the result (either the
-#'   data.frame itself or the extracted row) to the console, otherwise, returns
-#'   the result.
+#' @rdname ppp.
 #' @export
 ppp_verbose <- function(ppp = NULL, print = TRUE) {
   errs <- c(f0(inll(ppp) | is_valid_ppp(ppp), NULL, "\n \u2022 [ppp] must be NULL or a scalar valid property specification."),
@@ -460,9 +428,7 @@ ppp_verbose <- function(ppp = NULL, print = TRUE) {
   NULL
 }
 
-#' @describeIn ppp. Take an individual or combination/conjunctive property
-#'   specification and expand it using plain, but concise, language. To get a
-#'   verbose definition of any individual property, use \code{ppp_verbose}.
+#' @rdname ppp.
 #' @export
 ppp_concise <- function(ppp) {
   if (!is_valid_ppp(ppp)) {stop("\n \u2022 [ppp = '", ppp, "'] is not a valid property combination.")}
@@ -491,11 +457,7 @@ ppp_concise <- function(ppp) {
   return(out)
 }
 
-#' @describeIn ppp. Take one or more property combos separated by pipes (each
-#'   combo may be a individual property) and expands each using plain, but
-#'   concise, language, separating the multiple expansions with \code{'OR'}. To
-#'   get a verbose definition of any individual property, use
-#'   \code{ppp_verbose}.
+#' @rdname ppp.
 #' @export
 alt_ppp_concise <- function(ppp) {
   if (!is_valid_ppp(ppp)) {stop("\n \u2022 '", ppp, "' is not a valid property specification.")}

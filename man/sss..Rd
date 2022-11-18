@@ -33,21 +33,27 @@ isss(x, sss, ...)
 \arguments{
 \item{x}{An object.}
 
-\item{sss}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+\item{sss}{\link[=cmp_chr_scl]{Complete character scalar} containing one or
 more values from \code{sss_vals()} separated by pipes.}
 
-\item{...}{Additional arguments to \code{\link{meets}} containing value and
-element/row/column count restrictions.}
+\item{...}{
+  Arguments passed on to \code{\link[=meets.]{meets.}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \value{
-\code{sss_vals()} returns a character vector. \code{sss(x)}
-returns a character scalar or \code{NULL}. All others return either
-\code{TRUE} or \code{FALSE}.
+\tabular{lll}{
+\code{sss_vals()}            \tab   \tab A character vector.            \cr
+\code{sss(x)}                \tab   \tab A character scalar or
+\code{NULL}.                   \cr
+\code{isss} and \code{i[sss]}\tab   \tab A logical scalar.                }
 }
 \description{
-An object's state of completeness is defined for non-empty
-atomic tibbles, non-empty atomic lists, non-empty atomic vectors, and
-non-empty atomic arrays. For all others, state is undefined and returned as
+An object's state of completeness is defined for
+\link[=ipop]{populated} \link[=atm_dtf]{atomic data.frame}, populated
+\link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated
+atomic arrays. For all others, state is undefined and returned as
 \code{NULL}. The following table summarizes valid state properties.
 \tabular{lll}{
 STATE       \tab STATE      \tab CHARACTERISTICS                          \cr
@@ -63,8 +69,8 @@ Functions related to state of completeness are described in the following
 table:\tabular{ll}{
 FUNCTION          \tab WHAT THE                                           \cr
 FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i***}       \tab Evaluates whether an object is of the state of
-completeness represented by \code{***}.            \cr
+\code{i[sss]}     \tab Evaluates whether an object is of the state of
+completeness represented by \code{[sss]}.          \cr
 \code{sss}        \tab Gets a character vector containing all state of
 completeness properties of an object.              \cr
 \code{isss}       \tab Evaluates an object for a specific state of
@@ -73,37 +79,30 @@ in \code{...}.                                     \cr
 \code{sss_vals}   \tab Gets a character vector of all possible state of
 completeness property values.                        }
 }
-\section{Functions}{
-\itemize{
-\item \code{sss()}: Get a character scalar containing all state properties
-from \code{sss_vals()} that is applicable to \code{x}, if defined. If not
-defined, return \code{NULL}.
+\section{Specifying Additional Property Requirements}{
 
-\item \code{icmp()}: Is \code{x} complete (atomic, of length 1 or greater, and
-containing no \code{NA} values)?
-
-\item \code{imss()}: Is \code{x} a missing object (atomic, of length 1 or
-greater, and containing only \code{NA} values)?
-
-\item \code{inas()}: Is \code{x} an atomic scalar \code{NA} value?
-
-\item \code{ioks()}: Is \code{x} an atomic scalar non-\code{NA} value?
-
-\item \code{iprt()}: Is \code{x} an atomic object with some \code{NA} and some
-non-\code{NA} values?
-
-\item \code{sss_vals()}: Get a character vector of all possible state property
-values.
-
-\item \code{isss()}: Evaluate whether \code{x} has a state property represented
-in \code{sss}.
-
-}}
-\section{Additional Arguments in \code{...}}{
-
-Submitting additional arguments to \code{isss} via \code{...}
-allows for checking not just the state but whether length, number of rows,
-number of columns, and element values meet flexible criteria.
+Specifying additional requirements in \code{...} is optional. The full set
+of recognized arguments names are defined in the following table along with
+the properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                    \cr
+\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
+\code{nr}     \tab Vec of valid numbers of rows.                        \cr
+\code{nc}     \tab Vec of valid numbers of columns.                     \cr
+\code{min}    \tab Scalar minimum valid length/number of element.       \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
+\code{minc}   \tab Scalar minimum valid number of columns.              \cr
+\code{max}    \tab Scalar maximum valid length/number of element.       \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
+\code{vals}   \tab Vec of valid values.                                 \cr
+\code{lt}     \tab Scalar value all values of \code{x} must be less
+than.                                                \cr
+\code{le}     \tab Scalar value all values of \code{x} must be less than or
+equal to.                                            \cr
+\code{ge}     \tab Scalar value all values of \code{x} must be greater than
+or equal to.                                         \cr
+\code{gt}     \tab Scalar value all values of \code{x} must be greater
+than.                                                  }
 }
 
 \seealso{

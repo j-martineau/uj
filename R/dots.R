@@ -5,16 +5,16 @@
 #'   missing, named and unnamed arguments from \code{...}, and names of
 #'   arguments in \code{...}.
 #' @param ... An arbitrary number of arguments.
-#' @param names. \code{NULL} or \link[cmp_vec]{complete atomic vec} (may include
-#'   \code{NA}) values). Is split along the delimiter \code{'|'} to allow for
-#'   compactness in submitting multiple names. \code{NULL} will match an
-#'   argument in \code{...} or element of \code{defs.} with the name
+#' @param names. \code{NULL} or \link[=cmp_vec]{complete atomic vec} (may
+#'   include \code{NA}) values). Is split along the delimiter \code{'|'} to
+#'   allow for compactness in submitting multiple names. \code{NULL} will match
+#'   an argument in \code{...} or element of \code{defs.} with the name
 #'   \code{'NULL'}. \code{NA} values will match an argument in \code{...} or an
 #'   element of \code{defs.} with the name \code{'NA'}.
-#' @param name. \code{NULL} or \link[cmp_scl]{complete atomic scalar}.
+#' @param name. \code{NULL} or \link[=cmp_scl]{complete atomic scalar}.
 #'   \code{NULL} is replaced with \code{'NULL'} and \code{NA} is replaced with
 #'   \code{'NA'}.
-#' @param subs. \code{NULL} or \link[cmp_chr_vec]{complete character vec}. If
+#' @param subs. \code{NULL} or \link[=cmp_chr_vec]{complete character vec}. If
 #'   not \code{NULL}, it is split using pipes \code{'|'} as a delimiter. If
 #'   there are no pipes contained in \code{names.}, it remains unchanged. When
 #'   this argument is not \code{NULL}, it is substituted for the names of
@@ -23,15 +23,15 @@
 #'   c("one", "two", "three|four|five")} indicates that there should be five
 #'   arguments in \code{...} and the vector \code{c('one', 'two', 'three',
 #'   'four', 'five')} is substituted for their names.
-#' @param defs. Named \link[is_vls]{vlist} of default objects/values to return
-#'   if the specified arguments are not in \code{...}. Elements of \code{defs.}
+#' @param defs. Named \link[=ivls]{vlist} of default objects/values to return if
+#'   the specified arguments are not in \code{...}. Elements of \code{defs.}
 #'   must be uniquely named. If \code{defs.} is a tibble, columns with matching
 #'   names are returned.
 #' @param def. Default object/value to return if a specified argument is not in
 #'   \code{...}. Can be, but does not need to be, a list.
-#' @param req.,blank.,u. \link[cmp_lgl_scl]{Complete logical scalars} indicating
-#'   whether names are required, bwhether lank names are allowed, and whether
-#'   names must be unique.
+#' @param req.,blank.,u. \link[=cmp_lgl_scl]{Complete logical scalars}
+#'   indicating whether names are required, whether lank names are allowed, and
+#'   whether names must be unique.
 #' @export
 dots. <- function() {help("dots.", package = "uj")}
 

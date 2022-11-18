@@ -8,23 +8,22 @@
 #'     \item all logical
 #'     \item all unordered factor with the same levels, or
 #'     \item ordered factor with the same levels in the same order.            }
-#'   FOR \link[atm_dtf]{ATOMIC DATA.FRAMES}:
+#'   FOR \link[=atm_dtf]{ATOMIC DATA.FRAMES}:
 #'   \cr Arguments are compatible for row binding if they have identical column
 #'   names and their respective columns are of compatible modes as defined
 #'   above. Arguments are compatible for column binding if they have the same
 #'   number of rows.
 #'   \cr\cr
-#'   FOR \link[atm_mat]{ATOMIC MATRICES}:
-#'   \cr Arguments are compatible for
-#'   row binding if their modes are compatible and they have the same number of
-#'   columns. Arguments are compatible for column binding if their modes are
-#'   compatible and they the same number of rows.
+#'   FOR \link[=atm_mat]{ATOMIC MATRICES}:
+#' \cr Arguments are compatible for row binding if their modes are compatible
+#' and they have the same number of columns. Arguments are compatible for column
+#' binding if their modes are compatible and they the same number of rows.
 #' @param ... An arbitrary number of arguments to be checked for compatibility
 #'   with each other.
-#' @param recyclable. \link[cmp_lgl_scl]{Complete logical scalar} indicating
-#'   whether arguments in \code{...} must be recyclable to be compatible_
-#' @param bind. \link[cmp_chr_scl]{Complete character scalar} indicating how to
-#'   bind: \code{'c'} or \code{'r'} for column vs. row binding, respectively.
+#' @param recyclable. A non-\code{NA} logical scalar indicating whether
+#'   arguments in \code{...} must be recyclable to be compatible_
+#' @param bind. A \link[=cmp_chr_scl]{Complete character scalar} indicating how
+#'   to bind: \code{'c'} or \code{'r'} for column vs. row binding, respectively.
 #' @return A logical scalar.
 #' @examples
 #' N0 <- 0
@@ -102,8 +101,7 @@ compatible_mats <- function(..., bind. = "c") {
   T
 }
 
-#' @describeIn compatible. Are all atomic tibbles in \code{...} compatible for
-#'   binding?
+#' @rdname compatible.
 #' @export
 compatible_dtfs <- function(..., bind. = "c") {
   dots <- list(...)

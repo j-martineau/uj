@@ -3,6 +3,32 @@
 \name{ttt_mmm.}
 \alias{ttt_mmm.}
 \alias{ttt_mmm_vals}
+\alias{atm_ch1}
+\alias{atm_chr}
+\alias{atm_clr}
+\alias{atm_evn}
+\alias{atm_fac}
+\alias{atm_frc}
+\alias{atm_ind}
+\alias{atm_lgl}
+\alias{atm_neg}
+\alias{atm_ngw}
+\alias{atm_nng}
+\alias{atm_nnw}
+\alias{atm_nps}
+\alias{atm_npw}
+\alias{atm_nst}
+\alias{atm_num}
+\alias{atm_odd}
+\alias{atm_ord}
+\alias{atm_pct}
+\alias{atm_pos}
+\alias{atm_ppn}
+\alias{atm_psw}
+\alias{atm_srt}
+\alias{atm_str}
+\alias{atm_uno}
+\alias{atm_whl}
 \alias{pop_atm}
 \alias{pop_ch1}
 \alias{pop_chr}
@@ -84,38 +110,63 @@
 \alias{emp_str}
 \alias{emp_uno}
 \alias{emp_whl}
-\alias{rcr_atm}
-\alias{rcr_ch1}
-\alias{rcr_chr}
-\alias{rcr_clr}
-\alias{rcr_evn}
-\alias{rcr_fac}
-\alias{rcr_frc}
-\alias{rcr_ind}
-\alias{rcr_lgl}
-\alias{rcr_neg}
-\alias{rcr_ngw}
-\alias{rcr_nng}
-\alias{rcr_nnw}
-\alias{rcr_nps}
-\alias{rcr_npw}
-\alias{rcr_nst}
-\alias{rcr_num}
-\alias{rcr_odd}
-\alias{rcr_ord}
-\alias{rcr_pct}
-\alias{rcr_pos}
-\alias{rcr_ppn}
-\alias{rcr_psw}
-\alias{rcr_srt}
-\alias{rcr_str}
-\alias{rcr_uno}
-\alias{rcr_whl}
-\title{Fundamental type plus extended mode properties}
+\title{Fundamental Type + Extended Mode Properties}
 \usage{
 ttt_mmm.()
 
 ttt_mmm_vals()
+
+atm_ch1(x)
+
+atm_chr(x)
+
+atm_clr(x)
+
+atm_evn(x)
+
+atm_fac(x)
+
+atm_frc(x)
+
+atm_ind(x)
+
+atm_lgl(x)
+
+atm_neg(x)
+
+atm_ngw(x)
+
+atm_nng(x)
+
+atm_nnw(x)
+
+atm_nps(x)
+
+atm_npw(x)
+
+atm_nst(x)
+
+atm_num(x)
+
+atm_odd(x)
+
+atm_ord(x)
+
+atm_pct(x)
+
+atm_pos(x)
+
+atm_ppn(x)
+
+atm_psw(x)
+
+atm_srt(x)
+
+atm_str(x)
+
+atm_uno(x)
+
+atm_whl(x)
 
 pop_atm(x)
 
@@ -278,401 +329,26 @@ emp_str(x)
 emp_uno(x)
 
 emp_whl(x)
-
-rcr_atm(x)
-
-rcr_ch1(x)
-
-rcr_chr(x)
-
-rcr_clr(x)
-
-rcr_evn(x)
-
-rcr_fac(x)
-
-rcr_frc(x)
-
-rcr_ind(x)
-
-rcr_lgl(x)
-
-rcr_neg(x)
-
-rcr_ngw(x)
-
-rcr_nng(x)
-
-rcr_nnw(x)
-
-rcr_nps(x)
-
-rcr_npw(x)
-
-rcr_nst(x)
-
-rcr_num(x)
-
-rcr_odd(x)
-
-rcr_ord(x)
-
-rcr_pct(x)
-
-rcr_pos(x)
-
-rcr_ppn(x)
-
-rcr_psw(x)
-
-rcr_srt(x)
-
-rcr_str(x)
-
-rcr_uno(x)
-
-rcr_whl(x)
 }
 \arguments{
 \item{x}{An R object.}
 }
 \value{
-Logical scalar.
+\tabular{ll}{
+\code{ttt_mmm_vals}   \tab A character vector.                          \cr
+\code{[ttt]_[mmm]}    \tab A logical scalar.                              }
 }
 \description{
-Combinations of \link[ttt]{fundamental type} and
-\link[mmm]{extended mode} properties.
+\tabular{ll}{
+\code{ttt_mmm_vals}   \tab Gets a character vector of all possible
+\link[=ttt]{fundamental type} +
+\link[=mmm]{extended mode} properties.       \cr
+\code{[ttt]_[mmm]}    \tab Evaluates whether \code{x} is of the
+\link[=ttt]{fundamental type} represented by the
+placeholder \code{[ttt]} and of the
+\link[=mmm]{extended mode} represented by the
+placeholder \code{[mmm]}.                      }
 }
-\section{Functions}{
-\itemize{
-\item \code{ttt_mmm_vals()}: Get a character vector of all possible fundamental type
-plus extended class properties.
-
-\item \code{pop_atm()}: Is \code{x} a \link[ipop]{populated} \link[iatm]{atomic}
-object?
-
-\item \code{pop_ch1()}: Is \code{x} a \link[ipop]{populated}
-\link[ich1]{onechar} object?
-
-\item \code{pop_chr()}: Is \code{x} a \link[ipop]{populated}
-\link[ichr]{character} object?
-
-\item \code{pop_clr()}: Is \code{x} a \link[ipop]{populated} \link[iclr]{color}
-object?
-
-\item \code{pop_evn()}: Is \code{x} a \link[ipop]{populated}
-\link[ievn]{even-valued whole-number} object?
-
-\item \code{pop_fac()}: Is \code{x} a \link[ipop]{populated} \link[ifac]{factor}
-object?
-
-\item \code{pop_frc()}: Is \code{x} a \link[ipop]{populated}
-\link[ifrc]{fractional-valued numeric} object?
-
-\item \code{pop_ind()}: Is \code{x} a \link[ipop]{populated}
-\link[iind]{indexer} object?
-
-\item \code{pop_lgl()}: Is \code{x} a \link[ipop]{populated}
-\link[ilgl]{logical} object?
-
-\item \code{pop_neg()}: Is \code{x} a \link[ipop]{populated}
-\link[ineg]{negative-valued mumeric} object?
-
-\item \code{pop_ngw()}: Is \code{x} a \link[ipop]{populated}
-\link[ingw]{negative-valued whole-number} object?
-
-\item \code{pop_nng()}: Is \code{x} a \link[ipop]{populated}
-\link[inng]{non-negative-valued numeric} object?
-
-\item \code{pop_nnw()}: Is \code{x} a \link[ipop]{populated}
-\link[innw]{non-negative-valued whole-number} object?
-
-\item \code{pop_nps()}: Is \code{x} a \link[ipop]{populated}
-\link[inps]{non-positive-valued numeric object} object?
-
-\item \code{pop_npw()}: Is \code{x} a \link[ipop]{populated}
-\link[inpw]{non-positive-valued whole-number} object?
-
-\item \code{pop_nst()}: Is \code{x} a \link[ipop]{populated}
-\link[inst]{non-sortable} object?
-
-\item \code{pop_num()}: Is \code{x} a \link[ipop]{populated}
-\link[inum]{numeric} object?
-
-\item \code{pop_odd()}: Is \code{x} a \link[ipop]{populated}
-\link[iodd]{odd-valued whole-number} object?
-
-\item \code{pop_ord()}: Is \code{x} a \link[ipop]{populated}
-\link[iord]{ordered-factor} object?
-
-\item \code{pop_pct()}: Is \code{x} a \link[ipop]{populated}
-\link[ipct]{percent-valued (0-100) numeric} object?
-
-\item \code{pop_pos()}: Is \code{x} a \link[ipop]{populated}
-\link[ipos]{positive-valued numeric object} object?
-
-\item \code{pop_ppn()}: Is \code{x} a \link[ipop]{populated}
-\link[ippn]{proportion-valued (0-1) numeric} object?
-
-\item \code{pop_psw()}: Is \code{x} a \link[ipop]{populated}
-\link[ipsw]{positive-valued whole-number} object?
-
-\item \code{pop_srt()}: Is \code{x} a \link[ipop]{populated}
-\link[isrt]{sortable} object?
-
-\item \code{pop_str()}: Is \code{x} a \link[ipop]{populated} \link[istr]{string}
-object?
-
-\item \code{pop_uno()}: Is \code{x} a \link[ipop]{populated}
-\link[iuno]{unordered-factor} object?
-
-\item \code{pop_whl()}: Is \code{x} a \link[ipop]{populated}
-\link[iwhl]{whole-number} object?
-
-\item \code{cmp_atm()}: Is \code{x} a \link[icmp]{complete} \link[iatm]{atomic}
-object?
-
-\item \code{cmp_ch1()}: Is \code{x} a \link[icmp]{complete} \link[ich1]{onechar}
-object?
-
-\item \code{cmp_chr()}: Is \code{x} a \link[icmp]{complete}
-\link[ichr]{character} object?
-
-\item \code{cmp_clr()}: Is \code{x} a \link[icmp]{complete} \link[iclr]{color}
-object?
-
-\item \code{cmp_evn()}: Is \code{x} a \link[icmp]{complete}
-\link[ievn]{even-valued whole-number} object?
-
-\item \code{cmp_fac()}: Is \code{x} a \link[icmp]{complete} \link[ifac]{factor}
-object?
-
-\item \code{cmp_frc()}: Is \code{x} a \link[icmp]{complete}
-\link[ifrc]{fractional-valued numeric} object?
-
-\item \code{cmp_ind()}: Is \code{x} a \link[icmp]{complete} \link[iind]{indexer}
-object?
-
-\item \code{cmp_lgl()}: Is \code{x} a \link[icmp]{complete} \link[ilgl]{logical}
-object?
-
-\item \code{cmp_neg()}: Is \code{x} a \link[icmp]{complete}
-\link[ineg]{negative-valued mumeric} object?
-
-\item \code{cmp_ngw()}: Is \code{x} a \link[icmp]{complete}
-\link[ingw]{negative-valued whole-number} object?
-
-\item \code{cmp_nng()}: Is \code{x} a \link[icmp]{complete}
-\link[inng]{non-negative-valued numeric} object?
-
-\item \code{cmp_nnw()}: Is \code{x} a \link[icmp]{complete}
-\link[innw]{non-negative-valued whole-number} object?
-
-\item \code{cmp_nps()}: Is \code{x} a \link[icmp]{complete}
-\link[inps]{non-positive-valued numeric object} object?
-
-\item \code{cmp_npw()}: Is \code{x} a \link[icmp]{complete}
-\link[inpw]{non-positive-valued whole-number} object?
-
-\item \code{cmp_nst()}: Is \code{x} a \link[icmp]{complete}
-\link[inst]{non-sortable} object?
-
-\item \code{cmp_num()}: Is \code{x} a \link[icmp]{complete} \link[inum]{numeric}
-object?
-
-\item \code{cmp_odd()}: Is \code{x} a \link[icmp]{complete}
-\link[iodd]{odd-valued whole-number} object?
-
-\item \code{cmp_ord()}: Is \code{x} a \link[icmp]{complete}
-\link[iord]{ordered-factor} object?
-
-\item \code{cmp_pct()}: Is \code{x} a \link[icmp]{complete}
-\link[ipct]{percent-valued (0-100) numeric} object?
-
-\item \code{cmp_pos()}: Is \code{x} a \link[icmp]{complete}
-\link[ipos]{positive-valued numeric object} object?
-
-\item \code{cmp_ppn()}: Is \code{x} a \link[icmp]{complete}
-\link[ippn]{proportion-valued (0-1) numeric} object?
-
-\item \code{cmp_psw()}: Is \code{x} a \link[icmp]{complete}
-\link[ipsw]{positive-valued whole-number} object?
-
-\item \code{cmp_srt()}: Is \code{x} a \link[icmp]{complete}
-\link[isrt]{sortable} object?
-
-\item \code{cmp_str()}: Is \code{x} a \link[icmp]{complete} \link[istr]{string}
-object?
-
-\item \code{cmp_uno()}: Is \code{x} a \link[icmp]{complete}
-\link[iuno]{unordered-factor} object?
-
-\item \code{cmp_whl()}: Is \code{x} a \link[icmp]{complete}
-\link[iwhl]{whole-number} object?
-
-\item \code{emp_atm()}: Is \code{x} an \link[iemp]{empty}
-\link[iatm]{atomic} object?
-
-\item \code{emp_ch1()}: Is \code{x} an \link[iemp]{empty}
-\link[ich1]{onechar} object?
-
-\item \code{emp_chr()}: Is \code{x} an \link[iemp]{empty}
-\link[ichr]{character} object?
-
-\item \code{emp_clr()}: Is \code{x} an \link[iemp]{empty}
-\link[iclr]{color} object?
-
-\item \code{emp_evn()}: Is \code{x} an \link[iemp]{empty}
-\link[ievn]{even-valued whole-number} object?
-
-\item \code{emp_fac()}: Is \code{x} an \link[iemp]{empty}
-\link[ifac]{factor} object?
-
-\item \code{emp_frc()}: Is \code{x} an \link[iemp]{empty}
-\link[ifrc]{fractional-valued numeric} object?
-
-\item \code{emp_ind()}: Is \code{x} an \link[iemp]{empty}
-\link[iind]{indexer} object?
-
-\item \code{emp_lgl()}: Is \code{x} an \link[iemp]{empty}
-\link[ilgl]{logical} object?
-
-\item \code{emp_neg()}: Is \code{x} an \link[iemp]{empty}
-\link[ineg]{negative-valued mumeric} object?
-
-\item \code{emp_ngw()}: Is \code{x} an \link[iemp]{empty}
-\link[ingw]{negative-valued whole-number} object?
-
-\item \code{emp_nng()}: Is \code{x} an \link[iemp]{empty}
-\link[inng]{non-negative-valued numeric} object?
-
-\item \code{emp_nnw()}: Is \code{x} an \link[iemp]{empty}
-\link[innw]{non-negative-valued whole-number} object?
-
-\item \code{emp_nps()}: Is \code{x} an \link[iemp]{empty}
-\link[inps]{non-positive-valued numeric object} object?
-
-\item \code{emp_npw()}: Is \code{x} an \link[iemp]{empty}
-\link[inpw]{non-positive-valued whole-number} object?
-
-\item \code{emp_nst()}: Is \code{x} an \link[iemp]{empty}
-\link[inst]{non-sortable} object?
-
-\item \code{emp_num()}: Is \code{x} an \link[iemp]{empty}
-\link[inum]{numeric} object?
-
-\item \code{emp_odd()}: Is \code{x} an \link[iemp]{empty}
-\link[iodd]{odd-valued whole-number} object?
-
-\item \code{emp_ord()}: Is \code{x} an \link[iemp]{empty}
-\link[iord]{ordered-factor} object?
-
-\item \code{emp_pct()}: Is \code{x} an \link[iemp]{empty}
-\link[ipct]{percent-valued (0-100) numeric} object?
-
-\item \code{emp_pos()}: Is \code{x} an \link[iemp]{empty}
-\link[ipos]{positive-valued numeric object} object?
-
-\item \code{emp_ppn()}: Is \code{x} an \link[iemp]{empty}
-\link[ippn]{proportion-valued (0-1) numeric} object?
-
-\item \code{emp_psw()}: Is \code{x} an \link[iemp]{empty}
-\link[ipsw]{positive-valued whole-number} object?
-
-\item \code{emp_srt()}: Is \code{x} an \link[iemp]{empty}
-\link[isrt]{sortable} object?
-
-\item \code{emp_str()}: Is \code{x} an \link[iemp]{empty}
-\link[istr]{string} object?
-
-\item \code{emp_uno()}: Is \code{x} an \link[iemp]{empty}
-\link[iuno]{unordered-factor} object?
-
-\item \code{emp_whl()}: Is \code{x} an \link[iemp]{empty}
-\link[iwhl]{whole-number} object?
-
-\item \code{rcr_atm()}: Is \code{x} a \link[ircr]{recursive}
-\link[iatm]{atomic} object?
-
-\item \code{rcr_ch1()}: Is \code{x} a \link[ircr]{recursive}
-\link[ich1]{onechar} object?
-
-\item \code{rcr_chr()}: Is \code{x} a \link[ircr]{recursive}
-\link[ichr]{character} object?
-
-\item \code{rcr_clr()}: Is \code{x} a \link[ircr]{recursive}
-\link[iclr]{color} object?
-
-\item \code{rcr_evn()}: Is \code{x} a \link[ircr]{recursive}
-\link[ievn]{even-valued whole-number} object?
-
-\item \code{rcr_fac()}: Is \code{x} a \link[ircr]{recursive}
-\link[ifac]{factor} object?
-
-\item \code{rcr_frc()}: Is \code{x} a \link[ircr]{recursive}
-\link[ifrc]{fractional-valued numeric} object?
-
-\item \code{rcr_ind()}: Is \code{x} a \link[ircr]{recursive}
-\link[iind]{indexer} object?
-
-\item \code{rcr_lgl()}: Is \code{x} a \link[ircr]{recursive}
-\link[ilgl]{logical} object?
-
-\item \code{rcr_neg()}: Is \code{x} a \link[ircr]{recursive}
-\link[ineg]{negative-valued mumeric} object?
-
-\item \code{rcr_ngw()}: Is \code{x} a \link[ircr]{recursive}
-\link[ingw]{negative-valued whole-number} object?
-
-\item \code{rcr_nng()}: Is \code{x} a \link[ircr]{recursive}
-\link[inng]{non-negative-valued numeric} object?
-
-\item \code{rcr_nnw()}: Is \code{x} a \link[ircr]{recursive}
-\link[innw]{non-negative-valued whole-number} object?
-
-\item \code{rcr_nps()}: Is \code{x} a \link[ircr]{recursive}
-\link[inps]{non-positive-valued numeric object} object?
-
-\item \code{rcr_npw()}: Is \code{x} a \link[ircr]{recursive}
-\link[inpw]{non-positive-valued whole-number} object?
-
-\item \code{rcr_nst()}: Is \code{x} a \link[ircr]{recursive}
-\link[inst]{non-sortable} object?
-
-\item \code{rcr_num()}: Is \code{x} a \link[ircr]{recursive}
-\link[inum]{numeric} object?
-
-\item \code{rcr_odd()}: Is \code{x} a \link[ircr]{recursive}
-\link[iodd]{odd-valued whole-number} object?
-
-\item \code{rcr_ord()}: Is \code{x} a \link[ircr]{recursive}
-\link[iord]{ordered-factor} object?
-
-\item \code{rcr_pct()}: Is \code{x} a \link[ircr]{recursive}
-\link[ipct]{percent-valued (0-100) numeric} object?
-
-\item \code{rcr_pos()}: Is \code{x} a \link[ircr]{recursive}
-\link[ipos]{positive-valued numeric object} object?
-
-\item \code{rcr_ppn()}: Is \code{x} a \link[ircr]{recursive}
-\link[ippn]{proportion-valued (0-1) numeric} object?
-
-\item \code{rcr_psw()}: Is \code{x} a \link[ircr]{recursive}
-\link[ipsw]{positive-valued whole-number} object?
-
-\item \code{rcr_srt()}: Is \code{x} a \link[ircr]{recursive}
-\link[isrt]{sortable} object?
-
-\item \code{rcr_str()}: Is \code{x} a \link[ircr]{recursive} \link[istr]{string}
-object?
-
-\item \code{rcr_uno()}: Is \code{x} a \link[ircr]{recursive}
-\link[iuno]{unordered-factor} object?
-
-\item \code{rcr_whl()}: Is \code{x} a \link[ircr]{recursive}
-\link[iwhl]{whole-number} object?
-
-}}
 \seealso{
 Other props: 
 \code{\link{as_mmm.}()},

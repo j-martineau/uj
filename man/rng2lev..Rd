@@ -10,18 +10,21 @@ rng2lev.()
 rng2lev(x, cuts, levs)
 }
 \arguments{
-\item{x}{Atomic object of \link[isrt]{sortable} values.}
+\item{x}{Atomic object of \link[=isrt]{sortable} values.}
 
-\item{cuts}{\link[num_vec]{Atomic vec} of \code{n-1} cuts for \code{n}
+\item{cuts}{\link[=num_vec]{Atomic vec} of \code{n-1} cuts for \code{n}
 levels.}
 
-\item{levs}{\link[atm_vec]{Atomic vec} of \code{n} level labels.}
+\item{levs}{\link[=atm_vec]{Atomic vec} of \code{n} level labels.}
 }
 \value{
 Atomic object of the same dimension as \code{x} and the same mode as
 \code{levs}.
 }
 \description{
+rng2lev. Convert values of \code{x} to the \code{n} levels in
+\code{levs} distinguished by the \code{n-1} thresholds in \code{cuts}.
+
 When values of \code{x} are equal to a value of \code{cuts},
 assignment to level is dependent on whether the value of \code{cut} is less
 than 0 vs. greater than or equal to 0. For a value of \code{cut} less than
@@ -29,9 +32,3 @@ than 0 vs. greater than or equal to 0. For a value of \code{cut} less than
 value of \code{cuts}. Otherwise, the level assigned is the upper of the
 levels distinguished by that value of \code{cuts}.
 }
-\section{Functions}{
-\itemize{
-\item \code{rng2lev()}: Convert values of \code{x} to the \code{n} levels in
-\code{levs} distinguished by the \code{n-1} thresholds in \code{cuts}.
-
-}}

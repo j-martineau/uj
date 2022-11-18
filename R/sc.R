@@ -1,10 +1,6 @@
 #' @name sc.
 #' @family wraps
 #' @title Wraps of functions from package \code{sca;es}.
-#' @description The following table describes wrapper functions for the
-#'   \code{scalse} package:\tabular{ll}{
-#'   WRAPPER NAME   \tab READR FUNCTION                                      \cr
-#'   \code{sca}     \tab \code{\link[scales]{alpha}}                           }
 #' @export
 sc. <- function() {help("sc.", package = "uj")}
 

@@ -10,20 +10,15 @@ max_nch.()
 max_nch(x)
 }
 \arguments{
-\item{x}{\link[ichr]{Atomic character object}.}
+\item{x}{\link[=atm_chr]{Atomic character object}.}
 }
 \value{
 Integer scalar.
 }
 \description{
-Length of longest string
-}
-\section{Functions}{
-\itemize{
-\item \code{max_nch()}: Gets the number of characters in the longest string in
+Gets the number of characters in the longest string in
 \code{x}.
-
-}}
+}
 \seealso{
 Other strings: 
 \code{\link{blank.}()},
@@ -38,7 +33,6 @@ Other strings:
 \code{\link{spacing.}()},
 \code{\link{ss.}()},
 \code{\link{tocase.}()},
-\code{\link{weave.}()},
-\code{\link{xpr.}()}
+\code{\link{weave.}()}
 }
 \concept{strings}

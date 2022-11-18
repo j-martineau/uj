@@ -7,9 +7,9 @@
 #' @export
 uj_constants. <- function() {help("uj_constants.", package = "uj")}
 
-#' @describeIn uj_constants. Get a named \link[ivls]{atomic vlist} containing
-#'   all package \code{uj} constants with an associated attribute describing
-#'   each.
+#' @describeIn uj_constants. Get a named \link[=atm_vls]{atomic vlist}
+#'   containing all package \code{uj} constants with an associated attribute
+#'   describing each.
 #' @export
 uj_constants <- function() {
   labs <- c(
@@ -124,7 +124,7 @@ uj_constants <- function() {
     "markdown plain hex medium cyan open", "markdown plain hex medium green open", "markdown plain hex medium magenta open", "markdown plain hex medium orange open",
     "markdown plain hex medium red open", "markdown plain hex medium yellow open", "markdown plain hex dark blue open", "markdown plain hex dark cyan open",
     "markdown plain hex dark green open", "markdown plain hex dark magenta open", "markdown plain hex dark orange open", "markdown plain hex dark red open",
-    "markdown plain hex dark yellow open", "the size of a single point (ggplot constant)", "logical NA", "real-valued NA", "integer NA", "character NA", "almost one", "almost zero",
+    "markdown plain hex dark yellow open", "the size of a single point (ggplot constant)", "logical NA", "real valued NA", "integer NA", "character NA", "almost one", "almost zero",
     "lower-case letters", "upper-case letters", "standard color palette (dark red, dark blue, dark magenta, black, dark orange, full red, full blue, full magenta, grey40, full orange)",
     "standard line type palette", "standard line-based dot shapes palette", "standard fillable dot shapes palette", "standard empty (outlined) dot shapes palette",
     "standard solid dot shapes palette", "digits as character", "English letters", "valid for element names names (includes underscore)", "valid for element names names (excludes underscore)",

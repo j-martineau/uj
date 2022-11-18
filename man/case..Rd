@@ -10,7 +10,7 @@ case.()
 case(name., ..., names. = NULL, def. = "err")
 }
 \arguments{
-\item{name.}{\code{NULL} or an \link[atm_scl]{atomic scalar} naming an
+\item{name.}{\code{NULL} or an \link[=atm_scl]{atomic scalar} naming an
 argument in \code{...}. \code{NULL} is converted to \code{'NULL'} and
 \code{NA} is converted to \code{'NA'}. Coerced to mode character.}
 
@@ -19,8 +19,8 @@ return value. Selection is based on which element's name equals the value
 of \code{name.}. When there is no match, if \code{def.} is \code{'err'}, an
 error is thrown, otherwise \code{def.} is returned as the default value.}
 
-\item{names.}{Either \code{NULL} or a \link{cmp_scl_vec}{complete character
-  vec}. If this argument is of mode character, it is split using pipe
+\item{names.}{Either \code{NULL} or a \link[=cmp_scl_vec]{complete character
+vec}. If this argument is of mode character, it is split using pipe
 (\code{'|'}) delimiters. Its length (after potential splitting) must match
 the number of arguments in \code{...}. Values of \code{names.} must be
 unique.}
@@ -34,18 +34,13 @@ Either the value of an argument selected from \code{...} or the value
 of \code{def.}.
 }
 \description{
-Case as an extension of switch
-}
-\section{Functions}{
-\itemize{
-\item \code{case()}: Takes a name (i.e., any atomic scalar) and matches that
+case. Takes a name (i.e., any atomic scalar) and matches that
 name to the name matching an element of \code{...} where matching can be
 achieved by matching the name of an argument in \code{...}. When names are
 supplied via \code{names.}, they substituted for the names of arguments in
 \code{...}. When no match is found and \code{def. = "err"} an error is
 thrown, otherwise, the value of \code{def.} is returned.
-
-}}
+}
 \seealso{
 Other extensions: 
 \code{\link{a.}()},

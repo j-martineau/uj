@@ -59,27 +59,28 @@ rcn(x, u = T, err = F)
 for \code{rn}, \code{namer}, \code{cn}, \code{namec}, \code{namerc}; or any
 object for \code{namel}.}
 
-\item{en}{\link[cmp_chr_vec]{Complete character vec} of element names.}
+\item{en}{\link[=cmp_chr_vec]{Complete character vec} of element names.}
 
-\item{rn, cn}{\link[cmp_chr_vec]{Complete character vecs} of row or column
+\item{rn, cn}{\link[=cmp_chr_vec]{Complete character vecs} of row or column
 names, respectively.}
 
-\item{ln}{\link[cmp_chr_scl]{Complete character scalar} element name.}
+\item{ln}{\link[=cmp_chr_scl]{Complete character scalar} element name.}
 
-\item{d}{\link[cmp_psw_scl]{Complete positive whole-number scalar} giving the
-dimension(s) to name: \code{0} for elements (of atomic or list vectors
+\item{d}{\link[=cmp_psw_scl]{Complete positive whole-number scalar} giving
+the dimension(s) to name: \code{0} for elements (of atomic or list vectors
 only), \code{1} for rows of matrices or tibbles, \code{2} for columns of
-matrices or dtfs, or \code{12} for rows and columns of matrices or dtfs.}
+matrices or data.frames, or \code{12} for rows and columns of matrices or
+data.frames.}
 
-\item{u}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether names
-must be unique.}
+\item{u}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
+names must be unique.}
 
-\item{blank}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+\item{blank}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
 blank strings (\code{""}) are allowed as names.}
 
 \item{...}{Arbitrary number of arguments to be inspected for names.}
 
-\item{err}{\link[cmp_lgl_scl]{Complete logical} scalar indicating whether
+\item{err}{\link[=cmp_lgl_scl]{Complete logical} scalar indicating whether
 names must be non-missing.}
 }
 \value{

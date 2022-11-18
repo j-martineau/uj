@@ -10,25 +10,19 @@ charn.()
 charn(x, n)
 }
 \arguments{
-\item{x}{\link[ichr]{Atomic character object}.}
+\item{x}{\link[=ichr]{Atomic character object}.}
 
-\item{n}{\link[cmp_psw_scl]{Complete positive whole-number scalar} or
+\item{n}{\link[=cmp_psw_scl]{Complete positive whole-number scalar} or
 \link{cmp_psw}{complete positive whole-number atomic object} of the same
 dimensions as \code{x}.}
 }
 \value{
-\code{link[cmp_ch1]{Complete onechar}} atomic object of the same
+\code{link[=cmp_ch1]{Complete onechar}} atomic object of the same
 dimension as \code{x}.
 }
 \description{
-Extract a single character
+Get the \code{n}-th character of each element of \code{x}.
 }
-\section{Functions}{
-\itemize{
-\item \code{charn()}: Get the \code{n}-th character of each element of
-\code{x}.
-
-}}
 \seealso{
 Other strings: 
 \code{\link{blank.}()},
@@ -43,7 +37,6 @@ Other strings:
 \code{\link{spacing.}()},
 \code{\link{ss.}()},
 \code{\link{tocase.}()},
-\code{\link{weave.}()},
-\code{\link{xpr.}()}
+\code{\link{weave.}()}
 }
 \concept{strings}

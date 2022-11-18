@@ -5,10 +5,10 @@
 #' @param pref A prefix to prepend to the resulting character scalar.
 #' @param conj The conjunction to use between the next to last and last
 #'   elements of the list. See details.
-#' @param n \link[cmp_psw_scl]{Complete positive whole-number scalar}.
-#' @param comp \link[cmp_chr_scl]{Complete character scalar} used for comparing
+#' @param n \link[=cmp_psw_scl]{Complete positive whole-number scalar}.
+#' @param comp \link[=cmp_chr_scl]{Complete character scalar} used for comparing
 #'   to \code{n}, such as \code{'at least'} or \code{'or fewer'}.
-#' @param comp.first \link[cmp_lgl_scl]{Complete logical scalar} used to
+#' @param comp.first \link[=cmp_lgl_scl]{Complete logical scalar} used to
 #'   determine whether \code{comp} is placed in front of \code{n} rather than
 #'   after \code{n}..
 #' @return A character scalar containing all atomic elements of \code{...}

@@ -10,20 +10,15 @@ rev_str.()
 rev_str(x)
 }
 \arguments{
-\item{x}{\link[cmp_chr_vec]{Complete character vec}.}
+\item{x}{A \link[=cmp_chr_vec]{complete character vec}.}
 }
 \value{
 Character vector.
 }
 \description{
-Reverse strings
+Reverse the order of characters in each element of a character
+vector.
 }
-\section{Functions}{
-\itemize{
-\item \code{rev_str()}: Reverse the order of characters in each element of a
-character vector.
-
-}}
 \seealso{
 Other strings: 
 \code{\link{blank.}()},
@@ -38,7 +33,6 @@ Other strings:
 \code{\link{spacing.}()},
 \code{\link{ss.}()},
 \code{\link{tocase.}()},
-\code{\link{weave.}()},
-\code{\link{xpr.}()}
+\code{\link{weave.}()}
 }
 \concept{strings}

@@ -18,25 +18,25 @@
 #'   if \code{test} contains any \code{NA} values or a return value to replace
 #'   \code{NA} values. \code{ffx}'s return value is unpredictable when
 #'   \code{test} contains \code{NA} values.
-#' @param test \link[cmp_lgl_scl]{Complete logical scalar} for \code{f0},
-#'   \code{ff0}, \code{f1}, and \code{ff1}. \link[cmp_lgl_vec]{Complete logical
+#' @param test \link[=cmp_lgl_scl]{Complete logical scalar} for \code{f0},
+#'   \code{ff0}, \code{f1}, and \code{ff1}. \link[=cmp_lgl_vec]{Complete logical
 #'   vec} for \code{fx} and \code{ffx}. \code{f0}, \code{f1}, and \code{f2} can
 #'   manage \code{NA} values in \code{test}. The others do not.
 #' @param yes An object of any type for \code{f0}, \code{ff0}, \code{f1}, and
-#'   \code{ff1}. An \link[atm_scl]{atomic scalar} or an \link[atm_vec]{atomic
-#'   vec} of the same length as \code{test} for \code{fx} and \code{ffx}.
+#'   \code{ff1}. An \link[=atm_scl]{atomic scalar} or an \link[=atm_vec]{atomic
+#'   vector+} of the same length as \code{test} for \code{fx} and \code{ffx}.
 #' @param no An object of any type for \code{f0}, \code{ff0}, \code{f1}, and
 #'   \code{ff1}. An \link[atm_scl]{atomic scalar} or an \link[atm_vec]{atomic
 #'   vec} of the same length as \code{test} for \code{fx} and \code{ffx}. Must
 #'   be \code{\link{compatible}} with \code{yes}.
-#' @param na An object of any type for \code{f1}. An \link[atm_scl]{atomic
+#' @param na An object of any type for \code{f1}. An \link[=atm_scl]{atomic
 #'   scalar} \code{\link{compatible}} with \code{yes} and \code{no} for
 #'   \code{fx} and \code{ffx}, with the additional possibility of \code{na =
 #'   'err'} for \code{fx} to indicate an error should be thrown if any values in
 #'   \code{test} are \code{NA}.
 #' @param err \code{'err'} or an object to be returned when \code{test} is not
 #'   an atomic scalar in \code{c(TRUE, FALSE, NA)}.
-#' @return An object.
+#' @return An R object.
 #' @export
 fork. <- function() {help("fork.", package = "uj")}
 

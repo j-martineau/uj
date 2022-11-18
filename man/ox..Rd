@@ -92,12 +92,12 @@ elements of the list. See details.}
 
 \item{pref}{A prefix to prepend to the resulting character scalar.}
 
-\item{comp}{\link[cmp_chr_scl]{Complete character scalar} used for comparing
+\item{comp}{\link[=cmp_chr_scl]{Complete character scalar} used for comparing
 to \code{n}, such as \code{'at least'} or \code{'or fewer'}.}
 
-\item{n}{\link[cmp_psw_scl]{Complete positive whole-number scalar}.}
+\item{n}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}.}
 
-\item{comp.first}{\link[cmp_lgl_scl]{Complete logical scalar} used to
+\item{comp.first}{\link[=cmp_lgl_scl]{Complete logical scalar} used to
 determine whether \code{comp} is placed in front of \code{n} rather than
 after \code{n}..}
 }
@@ -229,7 +229,6 @@ Other strings:
 \code{\link{spacing.}()},
 \code{\link{ss.}()},
 \code{\link{tocase.}()},
-\code{\link{weave.}()},
-\code{\link{xpr.}()}
+\code{\link{weave.}()}
 }
 \concept{strings}

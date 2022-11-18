@@ -2,19 +2,47 @@
 #' @family extensions
 #' @title Manage \code{NA} and non-\code{NA} values
 #' @description All functions in this group take objects of atomic mode,
-#'   \link[idtf]{atomic dtfs}, or \link[ivls]{atomic vlists}.
+#'   \link[=atm_dtf]{atomic dtfs}, or \link[=atm_vls]{atomic vlists}.
+#'   \cr\cr
+#'   \code{na}
+#'   \cr Indexes \code{NA} values of \code{x}.
+#'   \cr\cr
+#'   \code{ok}
+#'   \cr Indexes non-\code{NA} values of \code{x}.
+#'   \cr\cr
+#'   \code{nas}
+#'   \cr Evaluates whether \code{x} an \code{NA} scalar.
+#'   \cr\cr
+#'   \code{oks}
+#'   \cr Evaluates whether \code{x} a non-\code{NA} scalar.
+#'   \cr\cr
+#'   \code{rm_na}
+#'   \cr Removes \code{NA} values of \code{x}. If there are no \code{NA} values
+#'   in \code{x}, this function returns \code{x} unchanged. \strong{However}, if
+#'   there are \code{NA} values in \code{x}, by removing \code{NA} values from
+#'   \code{x}, this function changes the dimensions of and/or class of \code{x}.
+#'   If \code{x} is an array or an \code{\link[atm_dtf]{atomic data.frame}}, its
+#'   class is reduced to an atomic vector sans \code{NA} values. If \code{x} is
+#'   an \code{\link[=atm_vls]{atomic vlist}}, any elements with \code{NA} values
+#'   are reduced to atomic vectors sans their \code{NA} values.
+#'   \cr\cr
+#'   \code{sub_na}
+#'   \cr Substitutes \code{s} for \code{NA} values of \code{x}. Modes of
+#'   \code{x} and \code{s} must be compatible (\code{\link{=compatible}}).
 #' @param x The argument to be inspected/managed.
-#' @param s \link[atm_scl]{Atomic scalar} to replace \code{NA} values. Mode must
+#' @param s \link[=atm_scl]{Atomic scalar} to replace \code{NA} values. Mode must
 #'   be \code{\link{compatible}} with \code{x}.
-#' @return An atomic scalar, an atomic vector, an atomic array, an
-#'   \link[idtf]{atomic dtf}, or an \link[ivls]{atomic vlist}.
+#' @return\tabular{lll}{
+#'  \code{na} and \code{ok}  \tab   \tab A logical object of the same dimension
+#'                                       as \code{x}.                        \cr
+#'  \code{nas} and \code{oks}\tab   \tab A logical scalar.                   \cr
+#'  \code{rm_na}             \tab   \tab Either an atomic vector or \code{x}.\cr
+#'  \code{sub_na}            \tab   \tab \code{x} with \code{NA} values
+#'                                        replaced.                            }
 #' @export
 na. <- function() {help("na.", package = "uj")}
 
-#' @describeIn na. Index \code{NA} values of \code{x}. Returns an object with
-#'   the same dimensions as \code{x} where all atomic values are replaced by
-#'   either \code{TRUE} or \code{FALSE} indicating whether the original atomic
-#'   value was \code{NA}.
+#' @rdname na.
 #' @export
 na <- function(x) {
   if (length(x) > 0) {
@@ -25,10 +53,7 @@ na <- function(x) {
   stop("\n \u2022 [x] must be populated (?ipop) and atomic, a populated atomic vlist (?ivls), or a populated atomic tabular (?itab).")
 }
 
-#' @describeIn na. Index non-\code{NA} values of \code{x}. Returns an object
-#'   with the same dimensions as \code{x} where all atomic values are replaced
-#'   by either \code{TRUE} or \code{FALSE} indicating whether the original
-#'   atomic value was OK (i.e., not \code{NA}).
+#' @rdname na.
 #' @export
 ok <- function(x) {
   if (length(x) > 0) {
@@ -39,10 +64,7 @@ ok <- function(x) {
   stop("\n \u2022 [x] must be populated (?ipop) and atomic, a populated atomic vlist (?ivls), or a populated atomic tabular (?itab).")
 }
 
-#' @describeIn na. Substitute \code{s} for \code{NA} values of \code{x}.
-#'   Returns an object with the same dimensions as \code{x} where all \code{NA}
-#'   values are replaced by \code{s}. Note that the modes of \code{x} and
-#'   \code{s} must be compatible (\code{\link{compatible}}).
+#' @rdname na.
 #' @export
 sub_na <- function(x, s) {
   if (length(x) == 0) {return(x)}
@@ -62,25 +84,15 @@ sub_na <- function(x, s) {
   } else {stop("\n \u2022 [x] must be an atomic vlist (?atm_vls), atomic dtf (?idtf), or some other atomic object.")}
 }
 
-#' @describeIn na. Is \code{x} an \code{NA} scalar? Returns \code{TRUE} or
-#'   \code{FALSE} according to whether \code{x} is an \code{NA} scalar.
+#' @rdname na.
 #' @export
 nas <- function(x) {if (n1(x) & iatm(x)) {is.na(x)} else {F}}
 
-#' @describeIn na. Is \code{x} a non-\code{NA} scalar? Returns \code{TRUE} or
-#'   \code{FALSE} according to whether \code{x} is a non-\code{NA} scalar.
+#' @rdname na.
 #' @export
 oks <- function(x) {if (n1(x) & iatm(x)) {!is.na(x)} else {F}}
 
-#' @describeIn na. Remove \code{NA} values of \code{x}. If there are no
-#'   \code{NA} values in \code{x}, this function returns \code{x} unchanged.
-#'   \strong{However}, if there are \code{NA} values in \code{x}, by removing
-#'   \code{NA} values from \code{x}, this function changes the dimensions of
-#'   and/or class of \code{x}. If \code{x} is an array or an
-#'   \code{\link[itab]{atomic tabular}}, its class is reduced to an atomic
-#'   vector sans \code{NA} values. If \code{x} is an \code{\link[ivls]{atomic
-#'   vlist}}, any elements with \code{NA} values are reduced to atomic vectors
-#'   sans their \code{NA} values.
+#' @rdname na.
 #' @export
 rm_na <- function(x) {
   if (is.atomic(x)) {return(x[!is.na(x)])}

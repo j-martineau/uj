@@ -31,37 +31,122 @@ as_ord(x, levs)
 as_uno(x, levs)
 }
 \arguments{
-\item{x}{An object}
+\item{x}{For \code{as_clr}, an object of mode character; for \code{as_fun}, a
+character scalar function name or a function object; for \code{as_ord} and
+\code{as_uno}, an atomic object; and for all others, any R object.}
 
-\item{na}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+\item{na}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
 \code{NA} values qualify as missing color representations.}
 
-\item{levs}{\link[cmp_vec]{Complete atomic vec} giving factor levels.}
+\item{...}{Further arguments passed to or from other methods.}
+
+\item{levs}{\link[=cmp_vec]{Complete atomic vec} giving factor levels.}
+}
+\value{
+\tabular{lll}{
+\code{as_clr}, \code{as_chr}\tab   \tab An object of mode
+\code{'character'}.              \cr
+\code{as_fun}\tab  \tab A function object.                               \cr
+\code{as_int}\tab  \tab An object of mode \code{'integer'}.              \cr
+\code{as_num}\tab  \tab An object of mode \code{'numeric'}.              \cr
+\code{as_lgl}\tab  \tab An object of mode \code{'logical'}.              \cr
+\code{as_ord}\tab  \tab An object of mode \code{'ordered'} (factor).     \cr
+\code{as_uno}\tab  \tab An object of \link[=mmm]{extended mode} \code{'uno'}
+(unordered factor).                                }
 }
 \description{
-Coerce to base mode or extended mode.
+\tabular{ll}{
+\code{as_clr}   \tab Coerce a valid R color representation of mode character
+to hexadecimal RGB character representation.        \cr
+\code{as_fun}   \tab Return \code{x} if it is a function, otherwise, search
+for a function named \code{x} and return it.        \cr
+\code{as_chr}   \tab Thin wrapper of \code{\link[base]{as.character}}.   \cr
+\code{as_int}   \tab Thin wrapper of \code{\link[base]{as.integer}}.     \cr
+\code{as_num}   \tab Thin wrapper of \code{\link[base]{as.numeric}}.     \cr
+\code{as_lgl}   \tab Thin wrapper of \code{\link[base]{as.logical}}.     \cr
+\code{as_ord}   \tab Wrapper for \code{factor(x, levels = levs,
+                      ordered = TRUE)}.                                   \cr
+\code{as_uno}   \tab Wrapper for \code{factor(x, levels = levs,
+                      ordered = FALSE)}.                                    }
 }
-\section{Functions}{
-\itemize{
-\item \code{as_clr()}: Coerce a valid R color representation to hexadecimal
-RGB character representation.
+\details{
+\code{as.character} and \code{is.character} are generic: you can
+  write methods to handle specific classes of objects,
+  see \link[base]{InternalMethods}.  Further, for \code{as.character} the
+  default method calls \code{\link[base]{as.vector}}, so dispatch is first on
+  methods for \code{as.character} and then for methods for \code{as.vector}.
 
-\item \code{as_fun()}: Return \code{x} if it is a function, otherwise, search
-for a function named \code{x} and return that function.
+  \code{as.character} represents real and complex numbers to 15 significant
+  digits (technically the compiler's setting of the ISO C constant
+  \code{DBL_DIG}, which will be 15 on machines supporting IEC60559
+  arithmetic according to the C99 standard).  This ensures that all the
+  digits in the result will be reliable (and not the result of
+  representation error), but does mean that conversion to character and
+  back to numeric may change the number.  If you want to convert numbers
+  to character with the maximum possible precision, use
+  \code{\link[base]{format}}.
+}
+\note{
+\code{as.character} breaks lines in language objects at 500
+  characters, and inserts newlines.  Prior to 2.15.0 lines were
+  truncated.
+}
+\section{Warning}{
 
-\item \code{as_chr()}: \code{as.character} wrapper.
+  If \code{x} is a \code{\link[base]{factor}}, \code{as.numeric} will return
+  the underlying numeric (integer) representation, which is often
+  meaningless as it may not correspond to the \code{factor}
+  \code{\link[base]{levels}}, see the \sQuote{Warning} section in
+  \code{\link[base]{factor}} (and the 2nd example below).
 
-\item \code{as_int()}: \code{as.integer} wrapper.
+}
 
-\item \code{as_num()}: \code{as.numeric} wrapper.
+\section{S4 methods}{
 
-\item \code{as_lgl()}: \code{as.logical} wrapper.
+  \code{as.numeric} and \code{is.numeric} are internally S4 generic and
+  so methods can be set for them \emph{via} \code{setMethod}.
 
-\item \code{as_ord()}: Coerce to ordered factor.
+  To ensure that \code{as.numeric} and \code{as.double}
+  remain identical, S4 methods can only be set for \code{as.numeric}.
 
-\item \code{as_uno()}: Coerce to unordered factor.
+}
 
-}}
+\section{Note on names}{
+
+  It is a historical anomaly that \R has two names for its
+  floating-point vectors, \code{\link[base]{double}} and \code{\link[base]{numeric}}
+  (and formerly had \code{real}).
+
+  \code{double} is the name of the \link[base]{type}.
+  \code{numeric} is the name of the \link[base]{mode} and also of the implicit
+  \link[base]{class}.  As an S4 formal class, use \code{"numeric"}.
+
+  The potential confusion is that \R has used \emph{\link[base]{mode}}
+  \code{"numeric"} to mean \sQuote{double or integer}, which conflicts
+  with the S4 usage.  Thus \code{is.numeric} tests the mode, not the
+  class, but \code{as.numeric} (which is identical to \code{as.double})
+  coerces to the class.
+
+}
+
+\examples{
+form <- y ~ a + b + c
+as.character(form)  ## length 3
+deparse(form)       ## like the input
+
+a0 <- 11/999          # has a repeating decimal representation
+(a1 <- as.character(a0))
+format(a0, digits = 16) # shows one more digit
+a2 <- as.numeric(a1)
+a2 - a0               # normally around -1e-17
+as.character(a2)      # normally different from a1
+print(c(a0, a2), digits = 16)
+}
+\references{
+Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
+  \emph{The New S Language}.
+  Wadsworth & Brooks/Cole.
+}
 \seealso{
 Other props: 
 \code{\link{ccc.}()},

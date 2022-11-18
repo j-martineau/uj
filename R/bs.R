@@ -1,19 +1,13 @@
 #' @name bs.
 #' @family wraps
-#' @title Wraps of functions from package \code{base}.
-#' @description The following table describes thin wraps in this group of
-#'   functions:\tabular{ll}{
-#'   WRAPPER       \tab FUNCTION                                             \cr
+#' @title Thin Wraps of Base Package Functions
+#' @description \tabular{ll}{
+#'   \code{u}      \tab \code{\link[base]{unique}}                           \cr
 #'   \code{up}     \tab \code{\link[base]{ceiling}}                          \cr
 #'   \code{dn}     \tab \code{\link[base]{floor}}                            \cr
-#'   \code{spf}    \tab \code{\link[base]{sprintf}}                          \cr
 #'   \code{mid}    \tab \code{\link[base]{substr}}                           \cr
+#'   \code{spf}    \tab \code{\link[base]{sprintf}}                          \cr
 #'   \code{levs}   \tab \code{\link[base]{levels}}                             }
-#' @param x A numeric object (\code{up} and \code{down}), a character object
-#'   (\code{spf}), an unordered or ordered factor object (\code{levs}), or any
-#'   object \code{u}
-#' @return A numeric object (\code{up} and \code{dn}) or a character object
-#'   (\code{spf}, \code{mid}, and \code{levs}).
 #' @export
 bs. <- function() {help("bs.", package = "uj")}
 
@@ -24,25 +18,25 @@ bs. <- function() {help("bs.", package = "uj")}
 #' @export
 u <- function(x) {base::unique(x)}
 
-#' @describeIn bs. Round up to nearest integer.
-#' @inherit base::ceiling
-#' @export
-up <- function(x) {base::ceiling(x)}
-
 #' @describeIn bs. Round down to nearest integer.
 #' @inherit base::floor
 #' @export
 dn <- function(x) {base::floor(x)}
 
-#' @describeIn bs. Format inlays into strings.
-#' @inherit base::sprintf
+#' @describeIn bs. Round up to nearest integer.
+#' @inherit base::ceiling
 #' @export
-spf <- function(fmt, ...) {base::sprintf(fmt, ...)}
+up <- function(x) {base::ceiling(x)}
 
 #' @describeIn bs. Extract substring(s).
 #' @inherit base::substr
 #' @export
 mid <- function(x, start, stop) {base::substr(x, start, stop)}
+
+#' @describeIn bs. Format inlays into strings.
+#' @inherit base::sprintf
+#' @export
+spf <- function(fmt, ...) {base::sprintf(fmt, ...)}
 
 #' @describeIn bs. Get levels of an unordered factor or ordered factor object.
 #' @inherit base::levels

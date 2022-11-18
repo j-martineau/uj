@@ -1,34 +1,35 @@
 #' @name make.
 #' @family extensions
 #' @title Extended object creation functionality
-#' @param ... Objects to placed in an atomic vect, atomic matrix, atomic dtf,
-#'   vlist, or square atomic diagonal matrix.
-#' @param vn. Optional \link[cmp_chr_vec]{complete character vec} of names to
+#' @param ... Objects to placed in an atomic vector+, atomic matrix, atomic
+#'   data.frame, vlist, or square atomic diagonal matrix.
+#' @param vn. Optional \link[-cmp_chr_vec]{complete character vec} of names to
 #'   apply to vector or list elements. May be pipe-delimited.
-#' @param cn,cn. Optional \link[cmp_chr_vec]{complete character vec} of names to
-#'   apply to columns of a matrix or dtf May be pipe-delimited. For tibbles,
+#' @param cn,cn. Optional \link[=cmp_chr_vec]{complete character vec} of names
+#'   to apply to columns of a matrix or dtf May be pipe-delimited. For tibbles,
 #'   this argument can be used only if the arguments in \code{...} are not
 #'   named.
-#' @param rn. Optional \link[cmp_chr_vec]{complete character vec} of names to
+#' @param rn. Optional \link[=cmp_chr_vec]{complete character vec} of names to
 #'   apply to rows of a matrix or dtf May be pipe-delimited.
-#' @param r,r. \link[cmp_psw_scl]{Complete positive whole-number scalar} giving
+#' @param r,r. \link[=cmp_psw_scl]{Complete positive whole-number scalar} giving
 #'   number of replications.
-#' @param nr,nr. \link[cmp_psw_scl]{Complete positive whole-number scalar} giving
-#'   number of rows.
-#' @param nc,nc. \link[cmp_psw_scl]{Complete positive whole-number scalar}
+#' @param nr,nr. \link[=cmp_psw_scl]{Complete positive whole-number scalar}
+#'   giving number of rows.
+#' @param nc,nc. \link[=cmp_psw_scl]{Complete positive whole-number scalar}
 #'   giving number of columns.
-#' @param br. \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+#' @param br. \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
 #'   fill matrices by row.
 #' @param x A numeric, logical, or character object of length 1 or greater.
-#' @return An \link[=idtf]{atomic dtf}, an \link[ivec]{atomic vect}, an
-#'   \link[imat]{atomic matrix}, or a \link[is_vls]{atomic vlist}. All others
-#'   return the value of the function they are thin wrappers for.
+#' @return An \link[=atm_dtf]{atomic dta.frame}, an \link[=atm_vec]{atomic
+#'   vector+}, an \link[=atm_mat]{atomic matrix}, or a \link[=atm_vls]{atomic
+#'   vlist}. All others return the value of the function they are thin wrappers
+#'   for.
 #' @export
 make. <- function() {help("make.", package = "uj")}
 
-#' @describeIn make. Creates an atomic vec from the atomic objects in \code{...}
-#'   collapsed into a vector, replicated \code{r.} times, with optional element
-#'   names.
+#' @describeIn make. Creates an atomic vector from the atomic objects in
+#'   \code{...} collapsed into a vector, replicated \code{r.} times, with
+#'   optional element names.
 #' @export
 vec <- function(..., r. = 1, vn. = NULL) {
   x <- av(...)
@@ -156,7 +157,7 @@ dtf <- function(..., cn. = NULL) {
   out
 }
 
-#' @describeIn make. Creates an atomic \link[ivls]{vlist} from the arguments in
+#' @describeIn make. Creates an atomic \link[=ivls]{vlist} from the arguments in
 #'   \code{...} with optional element names to replace any names of arguments in
 #'   \code{...}.
 #' @export

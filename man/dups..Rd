@@ -15,35 +15,31 @@ idups(x, int = F)
 \arguments{
 \item{...}{One or more atomic vectors to be evaluated for duplicated values.}
 
-\item{x}{\link[atm_vec]{Atomic vec}.}
+\item{x}{\link[=atm_vec]{Atomic vec}.}
 
-\item{int}{\link[cmp_atm_scl]{Complete logical scalar} indicating whether to
-return a logical vector (when \code{int = FALSE}) or an integer vector
-(when \code{int = TRUE}).}
+\item{int}{A non-\code{NA} logical scalar indicating whether to return a
+logical vector (\code{int = FALSE}) or an integer vector (\code{int =
+  TRUE}).}
 }
 \value{
-An atomic vector containing 1 copy of each duplicated element
-(\code{dups}), a logical vector indexing elements of \code{x} that are
-duplicates of earlier elements (\code{idups(x, int = FALSE)}), or an
-integer vector indexing elements of \code{x} that are duplicates of earlier
-elements (\code{idups(x, int = TRUE)}).
+\tabular{ll}{
+\code{dups}    \tab An atomic vector.                                   \cr
+\code{idups}   \tab A logical vector (when \code{int = FALSE}); an integer
+vector (when \code{int = TRUE}).                      }
 }
 \description{
-Extended functionality for \code{duplicated}.
+Extended functionality for \code{duplicated}.\tabular{ll}{
+\code{dups}    \tab Atomizes \code{...} (i.e., reduces it to a single
+atomic vector) and reduces the resulting vector to
+contain one copy of each duplicated element.        \cr
+\code{idups}   \tab Indexes all elements of \code{x} that are duplicates of
+elements appearing earlier in \code{x}, either as a
+logical vector of the same length as \code{x} (when
+\code{int = FALSE}) or as an integer vector whose
+length is the same as the number of elements in
+\code{x} that are duplicates of earlier elements (when
+\code{int = TRUE}).                                   }
 }
-\section{Functions}{
-\itemize{
-\item \code{dups()}: Atomizes \code{...} (i.e., reduces it to a single atomic
-vector) and reduces the resulting vector to contain one copy of each
-duplicated element.
-
-\item \code{idups()}: Indexes all elements of \code{x} that are duplicates of
-elements appearing earlier in \code{x}, either as a logical vector of the
-same length as \code{x} (when \code{int = FALSE}) or as an integer vector
-whose length is the same as the number of elements in \code{x} that are
-duplicates of earlier elements (when \code{int = TRUE}).
-
-}}
 \examples{
 dups(0:5, 5:10, 10:15, 15:20)
 idups(c(0:5, 5:10, 10:15, 15:20))

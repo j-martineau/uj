@@ -37,33 +37,27 @@ or upper case, respectively. Case insensitive.}
 \item{a.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
 \link[a]{atomize} \code{...} before processing.}
 }
+\value{
+An atomic character object or a \link[=chr_vls]{character vlist}.
+}
 \description{
-Convert strings to lower, upper, sentence, and title cases
-(supplements \code{tolower} and \code{toupper}).
+\tabular{ll}{
+\code{tocase}
+\tab Convert among lower, upper, sentence, and title case based on
+the case specified in \code{case}.                            \cr
+\code{lc}
+\tab Converts to lower case via \code{\link[base]{tolower}}.       \cr
+\code{uc}
+\tab Converts to upper case via \code{\link[base]{to upper}}.      \cr
+\code{tosentence}, \code{sc}   
+\tab Convert to sentence case via
+\code{\link[stringr]{str_to_sentence}}.                       \cr
+\code{totitle}, \code{tc}
+\tab Convert to sentence case via
+\code{\link[stringr]{str_to_title}}.                            }
 
 Convert to the case specified in \code{case}.
 }
-\section{Functions}{
-\itemize{
-\item \code{tocase()}: Convert among lower, upper, sentence, and title case.
-
-\item \code{tosentence()}: Convert to sentence case via
-\code{\link[stringr]{str_to_sentence}}.
-
-\item \code{totitle()}: Convert to sentence case via
-\code{\link[stringr]{str_to_title}}.
-
-\item \code{lc()}: Converts to lower case via \code{\link[base]{tolower}}.
-
-\item \code{sc()}: Convert to sentence case via
-\code{\link[stringr]{str_to_sentence}}.
-
-\item \code{tc()}: Convert to title case via
-\code{\link[stringr]{str_to_title}}.
-
-\item \code{uc()}: Converts to upper case via \code{\link[base]{tolower}}.
-
-}}
 \examples{
 TestTitle    <- "This is a Title"
 TestSentence <- "This is a sentence."
@@ -95,7 +89,6 @@ Other strings:
 \code{\link{rev_str.}()},
 \code{\link{spacing.}()},
 \code{\link{ss.}()},
-\code{\link{weave.}()},
-\code{\link{xpr.}()}
+\code{\link{weave.}()}
 }
 \concept{strings}

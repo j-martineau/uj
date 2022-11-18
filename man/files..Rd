@@ -36,66 +36,69 @@ newdirs(dirs, path = NULL)
 \arguments{
 \item{...}{Atomic arguments pasted to create}
 
-\item{err}{\link[cmp_atm_scl]{Complete logical scalar} indicating whether an
+\item{err}{\link[=cmp_atm_scl]{Complete logical scalar} indicating whether an
 error should be thrown if \code{...} is not a valid object path when
 collapsed to a character scalar.}
 
-\item{path}{\link[cmp_chr_scl]{Complete character scalar} path to either a
+\item{path}{\link[=cmp_chr_scl]{Complete character scalar} path to either a
 directory or a file.}
 
-\item{dirs}{\link[cmp_chr_vec]{Complete character vec} of new sub-directory
+\item{dirs}{\link[=cmp_chr_vec]{Complete character vec} of new sub-directory
 names.}
 }
 \value{
-\strong{\code{is_path}}: A logical scalar. \strong{\code{object_path,
-  folder_path, object_name, folder_name}}: A character scalar.
-\strong{\code{object_dirs, folder_dirs}}: A character vector.
+\tabular{lll}{
+\code{is_path}
+\tab   \tab A logical scalar.                                      \cr
+\code{object_path}, \code{folder_path}, \code{object_name}, and
+\code{folder_name}
+\tab   \tab A character scalar.                                    \cr
+\code{object_dirs} and \code{folder_dirs}
+\tab   \tab A character vector.                                      }
 }
 \description{
-Evaluate and manipulate paths to files or folders on disk.
+\tabular{ll}{
+\code{is_path}       \tab Checks whether \code{...} resolves to a valid
+path for an object (file or folder) when
+arguments in \code{...} are collapsed into a
+character scalar.                             \cr
+\code{as_path}       \tab Collapses \code{...} into a path using the
+current platform file path separator
+(\code{.Platform$file.sep}).                  \cr
+\code{object_path}   \tab Collapses \code{...} into a character scalar and
+expands the path to the object indicated by the
+result to account for relative paths.         \cr
+\code{parent_path}   \tab Calls \code{object_path} and extracts from the
+resulting character scalar just the path to the
+parent folder of the object specified by
+\code{...} (i.e., discarding the name of the
+object itself).                               \cr
+\code{object_name}   \tab Calls \code{object_path} and extracts from the
+resulting character scalar just the name of the
+object, discarding the path to its parent.    \cr
+\code{parent_name}   \tab Call \code{parent_path} and extracts from the
+resulting character scalar just the name of last
+folder in the path                            \cr
+\code{object_dirs}   \tab Calls \code{object_path} and splits the resulting
+character scalar into a character vector
+containing the name of the root folder, the names
+of any intermediate folders, the name of the
+parent folder of the object, and the name of the
+object.                                       \cr
+\code{parent_dirs}   \tab Calls \code{folder_path} and splits the resulting
+character scalar into a character vector
+containing the name of the root folder, the
+names of any intermediate folders, and the name
+of the parent folder of the object specified by
+\code{...}.                                   \cr
+\code{new_dirs}      \tab Creates sub-directories within an existing
+directory, optionally asking the user to choose
+that existing directory.                        }
 }
 \details{
 In most cases, if (optionally) specified, functions throw an error
-if \code{...} does not resolve to a valid object path
+if \code{...} does not resolve to a valid object path.
 }
-\section{Functions}{
-\itemize{
-\item \code{is_path()}: Check whether \code{...} resolves to a valid path for an
-object (file or folder) when arguments in \code{...} are collapsed into a
-character scalar.
-
-\item \code{as_path()}: Collapse \code{...} into a path using the current
-platform file path separator (\code{.Platform$file.sep}).
-
-\item \code{object_path()}: Collapse \code{...} into a character scalar and expands
-the path to the object indicated by the result to account for relative
-paths.
-
-\item \code{parent_path()}: Call \code{object_path} and extracts from the resulting
-character scalar just the path to the parent folder of the object specified
-by \code{...} (i.e., discarding the name of the object itself).
-
-\item \code{object_name()}: Calls \code{object_path} and extracts from the resulting
-character scalar just the name of the object, discarding the path to its
-parent.
-
-\item \code{parent_name()}: Call \code{parent_path} and extracts from the resulting
-character scalar just the name of last folder in the path
-
-\item \code{object_dirs()}: Call \code{object_path} and splits the resulting
-character scalar into a character vector containing the name of the root
-folder, the names of any intermediate folders, the name of the parent
-folder of the object, and the name of the object.
-
-\item \code{parent_dirs()}: Call \code{folder_path} and splits the resulting
-character scalar into a character vector containing the name of the root
-folder, the names of any intermediate folders, and the name of the parent
-folder of the object specified by \code{...}.
-
-\item \code{newdirs()}: Create sub-directories within an existing directory,
-optionally asking the user to choose an existing directory.
-
-}}
 \seealso{
 Other extensions: 
 \code{\link{a.}()},

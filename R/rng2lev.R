@@ -1,9 +1,11 @@
 #' @name rng2lev.
 #' @title Convert sortable values in specific ranges to a specific level
-#' @param x Atomic object of \link[isrt]{sortable} values.
-#' @param cuts \link[num_vec]{Atomic vec} of \code{n-1} cuts for \code{n}
+#' @description rng2lev. Convert values of \code{x} to the \code{n} levels in
+#'   \code{levs} distinguished by the \code{n-1} thresholds in \code{cuts}.
+#' @param x Atomic object of \link[=isrt]{sortable} values.
+#' @param cuts \link[=num_vec]{Atomic vec} of \code{n-1} cuts for \code{n}
 #'   levels.
-#' @param levs \link[atm_vec]{Atomic vec} of \code{n} level labels.
+#' @param levs \link[=atm_vec]{Atomic vec} of \code{n} level labels.
 #' @description When values of \code{x} are equal to a value of \code{cuts},
 #'   assignment to level is dependent on whether the value of \code{cut} is less
 #'   than 0 vs. greater than or equal to 0. For a value of \code{cut} less than
@@ -15,8 +17,7 @@
 #' @export
 rng2lev. <- function() {help("rng2lev.", package = "uj")}
 
-#' @describeIn rng2lev. Convert values of \code{x} to the \code{n} levels in
-#'   \code{levs} distinguished by the \code{n-1} thresholds in \code{cuts}.
+#' @rdname rng2lev.
 #' @export
 rng2lev <- function(x, cuts, levs) {
   errs <- c(f0(isrt(x)          , NULL, " \u2022 [x] must be an atomic sortable object (?isrt)."),

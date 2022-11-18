@@ -1,14 +1,30 @@
 #' @name hexdec.
 #' @family math
-#' @title Convert between integer and hexadecimal
-#' @description Hexademical representation is of mode character and may begin
-#'   with "#".
-#' @param x \link[psw_vec]{Positive whole number vec} or
-#'   \link[chr_vec]{character vec} of hexademical number representations.
+#' @title Convert Non-Negative Whole Numbers between Decimal and Hexadecimal
+#' @description \tabular{ll}{
+#'   \code{todec}   \tab Converts hexadecimal \link[=cmp_chr]{complete character
+#'                       object} \code{x} from hexadecimal to decimal. \code{x}
+#'                       may be formatted as either \code{'hhh...'} or
+#'                       \code{'#hhh...'} where \code{h} is a placeholder for a
+#'                       hexidecimal digit in either upper or lower case.    \cr
+#'   \code{tohex}   \tab Converts \link[=cmp_psw]{complete positive
+#'                       whole-number} \code{x} to hexadecimal formatted as
+#'                       \code{'#HHH...'} where \code{H} is a placeholder for an
+#'                       uppercase hexadecimal digit.                                   }
+#' @param x A \link[=cmp_nnw]{complete non-negative whole-number object} or a
+#'   \link[=cmp_chr]{complete character vec} containing only non-negative
+#'   whole-number hexademical values.
+#' @return \tabular{ll}{
+#'   \code{todec}   \tab A \link[=cmp_nnw]{complete non-negative whole-number
+#'                       object}                                             \cr
+#'   \code{tohex}   \tab A \link[=cmp_chr]{complete character object} containing
+#'                       non-negative whole-number hexadecimal values in the
+#'                       format \code{'#HHH...'} where \code{H} is a placeholder
+#'                       for an uppercase hexadecimal digit.                   }
 #' @export
 hexdec. <- function() {help("hexdec.", package = "uj")}
 
-#' @describeIn hexdec. Convert from hexadecimal to decimal.
+#' @rdname hexdec.
 #' @export
 todec <- function(x) {
   ok.x <- F
@@ -43,7 +59,7 @@ todec <- function(x) {
   sapply(lapply(x, ch), conv)
 }
 
-#' @describeIn hexdec. Convert from decimal to hexadecimal.
+#' @rdname hexdec.
 #' @export
 tohex <- function(x) {
   if (!cmp_nnw_vec(x)) {stop("\n \u2022 [x] must be complete, non-negative whole-number vec (?cmp_nnw_vec).")}

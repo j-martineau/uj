@@ -11,14 +11,12 @@
 #'   \code{dpn}      \tab \code{\link[dplyr]{n}}                             \cr
 #'   \code{dpmod}    \tab \code{\link[dplyr]{mutate}}                          }
 #'   The function \code{dpgrp} wraps  \code{\link[dplyr]{group_by}}, but with
-#'   limited functionality. The \code{...} argument of is replaced by a
-#'   character vector naming grouping variables in the \code{keys} argument. The
-#'   arguments \code{.add} and \code{.drop} are not used by this wrap.
-#' @return A \code{\link[is_dtf]{dtf}} / \code{\link[tibble]{tibble}}.
+#'   limited functionality as explained in the \emph{Functions} section.
+#' @return A data.frame.
 #' @export
 dp. <- function() {help("dp.", package = "uj")}
 
-#' @describeIn dp. Thin wrap of \code{\link[dplyr]{summarize}}.
+#' @describeIn dp. Thin wrap aggregation with \code{\link[dplyr]{summarize}}.
 #' @inherit dplyr::summarize
 #' @export
 dpagg <- function(.data, ..., .groups = NULL) {dplyr::summarize(.data, ..., .groups = .groups)}

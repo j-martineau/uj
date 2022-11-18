@@ -2,16 +2,16 @@
 #' @family extensions
 #' @title Swap atomic values.
 #' @param x An atomic object.
-#' @param old,new \link[atm_vec]{Atomic vecs} of unique values to be replaced
+#' @param old,new \link[=atm_vec]{Atomic vecs} of unique values to be replaced
 #'   and replacement values, respectively. \code{length(new)} must be in
 #'   \code{c(1, length(old))}.
-#' @param all link[cmp_lgl_scl]{Complete logical scalar} indicating whether all
+#' @param all link[=cmp_lgl_scl]{Complete logical scalar} indicating whether all
 #'   values of \code{x} must be contained in \code{old}.
 #' @return An atomic object of the same dimensions as \code{x}.
 #' @export
 swap. <- function() {help("swap.", package = "uj")}
 
-#' @describeIn swap. Swaps atomic values.
+#' @rdname swap.
 #' @export
 swap <- function(x, old, new, all = F) {
   errs <- c(f0(pop_atm(x)  , NULL, "\n \u2022 [x] must be populated and atomic (?ipop)."),

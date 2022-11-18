@@ -1,6 +1,6 @@
 #' @name ply.
 #' @family extensions
-#' @title Variations on \code{apply} functions.
+#' @title Variations on \code{apply} Functions.
 #' @description Generalized \code{apply(.)} with a wide range of options.
 #' @section The \code{proc.} Argument: When not \code{NULL}, the \code{proc.}
 #'   argument can be a list with up to seven optional named elements, which give
@@ -8,8 +8,8 @@
 #'   NAME‑VALUE PAIR      \tab PROCESSING INSTRUCTION                        \cr
 #'   \code{s = TRUE}      \tab link[base:simplify2array]{Simplify} the
 #'                             result.\cr
-#'   \code{a1 = TRUE}     \tab link[a]{Atomize} \code{x} first.              \cr
-#'   \code{a2 = TRUE}     \tab link[a]{Atomize} the result.                  \cr
+#'   \code{a1 = TRUE}     \tab link[=a]{Atomize} \code{x} first.             \cr
+#'   \code{a2 = TRUE}     \tab link[=a]{Atomize} the result.                 \cr
 #'   \code{na = TRUE}     \tab Replace resulting \code{NA}s with \code{TRUE}.\cr
 #'   \code{na = FALSE}    \tab Replace resulting \code{NA}s with
 #'                             \code{FALSE}.                                 \cr
@@ -28,7 +28,7 @@
 #'                             and throw an error if they are not met.         }
 #' @param x An object to apply \code{fun} to.
 #' @param fun Function or name of a function to apply to \code{x}.
-#' @param dim \link[cmp_nnw_vec]{Complete non-negative whole-number vec} giving
+#' @param dim \link[=cmp_nnw_vec]{Complete non-negative whole-number vec} giving
 #'   the dimension(s) of \code{x} to apply the function \code{fun} to (\code{0}
 #'   indicates applying to elements of an object, where for arrays, and tibbles,
 #'   this means applying to every cell).
@@ -89,11 +89,7 @@ ply <- function(x, fun, dim, ..., proc. = NULL) {
               f0(!err | !any(is.na(x)), NULL, "\n \u2022 Applying [fun] produced NA values, but [proc.$na = 'err']."))
     if (idef(errs)) {stop(errs)}
     if (!err) {x[is.na(x)] <- na}
-    x <- f0(agg == "nor", norT(x),
-            f0(agg == "any", anyT(x),
-               f0(agg == "all", allT(x),
-                  f0(agg == "one", oneT(x),
-                     f0(agg == "two", twoT(x), x)))))
+    x <- f0(agg == "nor", norT(x), f0(agg == "any", anyT(x), f0(agg == "all", allT(x), f0(agg == "one", oneT(x), f0(agg == "two", twoT(x), x)))))
   }
   x
 }

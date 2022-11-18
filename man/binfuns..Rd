@@ -3,40 +3,40 @@
 \name{binfuns.}
 \alias{binfuns.}
 \alias{\%IS\%}
-\alias{\%!IS\%}
+\alias{\%ISNT\%}
 \alias{\%EQ\%}
-\alias{\%!EQ\%}
+\alias{\%NEQ\%}
 \alias{\%AND\%}
 \alias{\%OR\%}
-\alias{\%!\%}
-\alias{\%1\%}
+\alias{\%NOT\%}
+\alias{\%ONE\%}
 \alias{\%IN\%}
-\alias{\%!IN\%}
+\alias{\%OUT\%}
 \alias{\%HAS\%}
 \alias{\%LACKS\%}
-\title{Binary functions returning scalar \code{TRUE} or \code{FALSE}.}
+\title{Scalar Result Failsafe Binary Logical Functions}
 \usage{
 binfuns.()
 
 x \%IS\% y
 
-x \%!IS\% y
+x \%ISNT\% y
 
 x \%EQ\% y
 
-x \%!EQ\% y
+x \%NEQ\% y
 
 x \%AND\% y
 
 x \%OR\% y
 
-x \%!\% y
+x \%NOT\% y
 
-x \%1\% y
+x \%ONE\% y
 
 x \%IN\% y
 
-x \%!IN\% y
+x \%OUT\% y
 
 x \%HAS\% y
 
@@ -45,55 +45,48 @@ x \%LACKS\% y
 \arguments{
 \item{x, y}{Any objects.}
 }
-\description{
-Binary functions returning scalar \code{TRUE} or \code{FALSE}.
+\value{
+A logical scalar.
 }
-\section{Functions}{
-\itemize{
-\item \code{x \%IS\% y}: Evaluates whether \code{x} and \code{y} are
-identical.
-
-\item \code{x \%!IS\% y}: Evaluates whether \code{x} and \code{y} are not
-identical.
-
-\item \code{x \%EQ\% y}: Evaluates whether \code{x} and \code{y} are setequal.
-If \code{x} and \code{y} are not compatible, returns \code{FALSE}.
-
-\item \code{x \%!EQ\% y}: Evaluates whether \code{x} and \code{y} are not
-setequal. If \code{x} and \code{y} are not compatible, returns \code{TRUE}.
-
-\item \code{x \%AND\% y}: Evaluates whether \code{x} and \code{y} are both
-\code{TRUE} (that is, a scalar \code{TRUE} value).
-
-\item \code{x \%OR\% y}: Evaluates whether \code{x} and/or \code{y} is
-\code{TRUE}.
-
-\item \code{x \%!\% y}: Evaluates whether \code{x} and \code{y} are both
-\code{FALSE} (that is, a scalar \code{FALSE} value).
-
-\item \code{x \%1\% y}: Evaluates whether one of \code{x} or \code{y} is
-\code{TRUE}.
-
-\item \code{x \%IN\% y}: Evaluates whether atomic scalar \code{x} is contained
-in atomic object \code{y}. If \code{x} is not atomic scalar, \code{y} is
-not atomic, or \code{x} and \code{y} are not compatible, returns
-\code{FALSE}.
-
-\item \code{x \%!IN\% y}: Evaluates whether atomic scalar \code{x} is contained
-in atomic object \code{y}. If \code{x} is not atomic scalar, \code{y} is
-not atomic, or \code{x} and \code{y} are not compatible, returns
-\code{FALSE}.
-
-\item \code{x \%HAS\% y}: Evaluates whether atomic object \code{x} contains
-atomic scalar \code{y}. If \code{x} is not atomic, \code{y} is not atomic
-scalar, or \code{x} and \code{y} are not compatible, returns \code{FALSE}.
-
-\item \code{x \%LACKS\% y}: Evaluates whether atomic object \code{x} lacks (does
-not contain) atomic scalar \code{y}. If \code{x} is not atomic, \code{y} is
-not atomic scalar, or \code{x} and \code{y} are not compatible, returns
-\code{TRUE}.
-
-}}
+\description{
+\tabular{ll}{
+\code{\%IS\%}          \tab Evaluates whether \code{x} and \code{y} are
+\code{\link[base]{identical}}.            \cr
+\code{\%ISNT\%}        \tab Evaluates whether \code{x} and \code{y} are
+NOT \code{\link[base]{identical}}.        \cr
+\code{\%EQ\%} (a)      \tab Evaluates whether \code{x} and \code{y} are
+\code{\link[base]{setequal}}.             \cr
+\code{\%NEQ\%} (a)     \tab Evaluates whether \code{x} and \code{y} are
+NOT \code{\link[base]{setequal}}.         \cr
+\code{\%AND\%}         \tab Evaluates whether \code{x} and \code{y} are
+both scalar \code{TRUE}.                  \cr
+\code{\%OR\%}          \tab Evaluates whether \code{x} or \code{y} is
+scalar \code{TRUE} or both.               \cr
+\code{\%NOR\%}         \tab Evaluates whether \code{x} and \code{y} are
+both scalar \code{FALSE}.                 \cr
+\code{\%ONE\%}         \tab Evaluates whether
+\link[=base:xor]{either \code{x} or \code{y}}
+is scalar \code{TRUE}, but not both.      \cr
+\code{\%IN\%} (b)      \tab Evaluates whether atomic scalar \code{x} is
+an element in atomic object \code{y}.     \cr
+\code{\%OUT\%} (b)     \tab Evaluates whether atomic scalar \code{x} is
+NOT an element in atomic object \code{y}. \cr
+\code{\%HAS\%} (c)     \tab Evaluates whether atomic object \code{x}
+contains atomic scalar \code{y}.          \cr
+\code{\%LACKS\%} (c)   \tab Evaluates whether atomic object \code{x}
+lacks (does not contain) atomic scalar
+\code{y}.                                   }
+(a) If \code{x} and \code{y} are not \code{\link{compatible}}, \code{\%EQ\%}
+and \code{\%NEQ\%} return \code{FALSE} and \code{TRUE}, respectively.
+\cr\cr
+(b) If \code{x} is not atomic, \code{y} is not atomic scalar, or \code{x} and
+\code{y} are not \code{\link{compatible}}, \code{\%IN\%} and \code{\%OUT\%}
+return \code{FALSE} and \code{TRUE}, respectively.
+\cr\cr
+(c) If \code{x} is not atomic scalar, \code{y} is not atomic, or \code{x} and
+\code{y} are not \code{\link{compatible}}, \code{\%HAS\%} and
+\code{\%LACKS\%} return \code{FALSE} and \code{TRUE}, respectively.
+}
 \seealso{
 Other extensions: 
 \code{\link{a.}()},
@@ -129,6 +122,11 @@ Other extensions:
 Other logicals: 
 \code{\link{is_failsafe.}()},
 \code{\link{logicals.}()}
+
+Other failsafe: 
+\code{\link{failsafe.}()},
+\code{\link{is_failsafe.}()}
 }
 \concept{extensions}
+\concept{failsafe}
 \concept{logicals}

@@ -5,19 +5,20 @@
 #'   for \code{rn}, \code{namer}, \code{cn}, \code{namec}, \code{namerc}; or any
 #'   object for \code{namel}.
 #' @param ... Arbitrary number of arguments to be inspected for names.
-#' @param err \link[cmp_lgl_scl]{Complete logical} scalar indicating whether
+#' @param err \link[=cmp_lgl_scl]{Complete logical} scalar indicating whether
 #'   names must be non-missing.
-#' @param d \link[cmp_psw_scl]{Complete positive whole-number scalar} giving the
-#'   dimension(s) to name: \code{0} for elements (of atomic or list vectors
+#' @param d \link[=cmp_psw_scl]{Complete positive whole-number scalar} giving
+#'   the dimension(s) to name: \code{0} for elements (of atomic or list vectors
 #'   only), \code{1} for rows of matrices or tibbles, \code{2} for columns of
-#'   matrices or dtfs, or \code{12} for rows and columns of matrices or dtfs.
-#' @param u \link[cmp_lgl_scl]{Complete logical scalar} indicating whether names
-#'   must be unique.
-#' @param blank \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+#'   matrices or data.frames, or \code{12} for rows and columns of matrices or
+#'   data.frames.
+#' @param u \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
+#'   names must be unique.
+#' @param blank \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
 #'   blank strings (\code{""}) are allowed as names.
-#' @param ln \link[cmp_chr_scl]{Complete character scalar} element name.
-#' @param en \link[cmp_chr_vec]{Complete character vec} of element names.
-#' @param rn,cn \link[cmp_chr_vec]{Complete character vecs} of row or column
+#' @param ln \link[=cmp_chr_scl]{Complete character scalar} element name.
+#' @param en \link[=cmp_chr_vec]{Complete character vec} of element names.
+#' @param rn,cn \link[=cmp_chr_vec]{Complete character vecs} of row or column
 #'   names, respectively.
 #' @return Character vector or a named/renamed version of \code{x}.
 #' @export
@@ -135,8 +136,8 @@ named. <- function(..., u = T, blank = F) {named(list(...), 0, u, blank)}
 getnames <- function(x, d = 0, u = T, err = F) {
   errs <- c(f0(ipop(x)         , NULL, "\n \u2022 [x] must be populated (?ipop)."),
             f0(isIN(d, 0:2, 12), NULL, "\n \u2022 [d] must be 0, 1, 2, or 12."),
-            f0(isTF(u)         , NULL   , "\n \u2022 [u] must be TRUE or FALSE."),
-            f0(isTF(err)       , NULL , "\n \u2022 [err] must be TRUE or FALSE."))
+            f0(isTF(u)         , NULL, "\n \u2022 [u] must be TRUE or FALSE."),
+            f0(isTF(err)       , NULL, "\n \u2022 [err] must be TRUE or FALSE."))
   if (idef(errs)) {stop(errs)}
   if (d == 0) {
     en <- names(x)

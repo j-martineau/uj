@@ -12,11 +12,11 @@ swap(x, old, new, all = F)
 \arguments{
 \item{x}{An atomic object.}
 
-\item{old, new}{\link[atm_vec]{Atomic vecs} of unique values to be replaced
+\item{old, new}{\link[=atm_vec]{Atomic vecs} of unique values to be replaced
 and replacement values, respectively. \code{length(new)} must be in
 \code{c(1, length(old))}.}
 
-\item{all}{link[cmp_lgl_scl]{Complete logical scalar} indicating whether all
+\item{all}{link[=cmp_lgl_scl]{Complete logical scalar} indicating whether all
 values of \code{x} must be contained in \code{old}.}
 }
 \value{
@@ -25,11 +25,6 @@ An atomic object of the same dimensions as \code{x}.
 \description{
 Swap atomic values.
 }
-\section{Functions}{
-\itemize{
-\item \code{swap()}: Swaps atomic values.
-
-}}
 \seealso{
 Other extensions: 
 \code{\link{a.}()},

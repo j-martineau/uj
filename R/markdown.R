@@ -53,7 +53,7 @@
 #'     suffix          \tab\code{85} \tab 85% of the way from black to white.\cr
 #'     suffix          \tab\code{90} \tab 90% of the way from black to white.\cr
 #'     suffix          \tab\code{95} \tab 95% of the way from black to white.  }
-#' @param x A \link[cmp_chr_vec]{character vector} of text to be styled.
+#' @param x A \link[=cmp_chr_vec]{character vector} of text to be styled.
 #' @return Markdown-styled character vector
 #' @export
 markdown. <- function() {help("markdown.", package = "uj")}

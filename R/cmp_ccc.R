@@ -1,61 +1,53 @@
 #' @name cmp_ccc.
 #' @family props
-#' @title Complete plus atomic extended class properties
-#' @description Combinations of \link[icmp]{completeness} and
-#'   \link[ccc]{extended class}.
-#' @param x An object.
-#' @section Submitting additional arguments to \code{ccc} via \code{...}: Allows
-#'   for checking not just the extended class but whether length, number of
-#'   rows, number of columns, and element values meet flexible criteria.
-#' @return \code{ccc_vals} returns a character vector containing all valid
-#'   extended class property values. \code{ccc} returns a character scalar or
-#'   vector containing all extended class properties from \code{ccc_vals()}
-#'   applicable to \code{x}. All others return either \code{TRUE} or
-#'   \code{FALSE}.
+#' @title Completeness + (atomic) Extended Class Properties
+#' @description \tabular{ll}{
+#'   \code{cmp_ccc_vals}   \tab Gets a character vector of all possible
+#'                              \link[=icmp]{completeness} + atomic
+#'                              \link[=ccc]{extended class} properties.      \cr
+#'   \code{cmp_[ccc]}      \tab Evaluates whether \code{x} is
+#'                              \link[=icmp]{complete} and of the atomic
+#'                              \link[=ccc]{extended class} represented by the
+#'                              placeholder \code{[ccc]}.                      }
+#' @param x An R object.
+#' @return \tabular{ll}{
+#'   \code{cmp_mmm_vals}   \tab A character vector.                          \cr
+#'   \code{cmp_[ccc]}      \tab A logical scalar.                              }
 #' @export
 cmp_ccc. <- function() {help("cmp_ccc.", package = "uj")}
 
-#' @describeIn cmp_ccc. Get a character vector of all possible completeness plus
-#'   atomic extended class properties.
+#' @rdname cmp_ccc.
 #' @export
 cmp_ccc_vals <- function() {paste0("cmp_", ccc_vals())}
 
-#' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[iarr]{atomic
-#'   array+}?
+#' @rdname cmp_ccc.
 #' @export
 cmp_arr <- function(x) {atm_arr(x) & !any(is.na(av(x)))}
 
-#' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[igen]{atomic
-#'   generic}?
+#' @rdname cmp_ccc.
 #' @export
 cmp_gen <- function(x) {atm_gen(x) & !any(is.na(av(x)))}
 
-#' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[idtf]{atomic
-#'   data.frame}?
+#' @rdname cmp_ccc.
 #' @export
 cmp_dtf <- function(x) {atm_dtf(x) & !any(is.na(av(x)))}
 
-#' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[ivls]{atomic
-#'   vlist}?
+#' @rdname cmp_ccc.
 #' @export
 cmp_vls <- function(x) {atm_vls(x) & !any(is.na(av(x)))}
 
-#' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[imat]{atomic
-#'   matrix}?
+#' @rdname cmp_ccc.
 #' @export
 cmp_mat <- function(x) {atm_mat(x) & !any(is.na(av(x)))}
 
-#' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[imvc]{atomic
-#'   multivec}?
+#' @rdname cmp_ccc.
 #' @export
 cmp_mvc <- function(x) {atm_mvc(x) & !any(is.na(av(x)))}
 
-#' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[iscl]{atomic
-#'   scalar}?
+#' @rdname cmp_ccc.
 #' @export
 cmp_scl <- function(x) {atm_scl(x) & !any(is.na(av(x)))}
 
-#' @describeIn cmp_ccc. Is \code{x} a \link[icmp]{complete} \link[ivec]{atomic
-#'   vector+}?
+#' @rdname cmp_ccc.
 #' @export
 cmp_vec <- function(x) {atm_vec(x) & !any(is.na(av(x)))}

@@ -199,7 +199,7 @@ twoLG(x)
 twoBL(x)
 }
 \arguments{
-\item{x, y}{Any object.}
+\item{x, y}{Any R object.}
 
 \item{...}{Objects to check for containing \code{x}.}
 }
@@ -416,6 +416,7 @@ Other extensions:
 \code{\link{xb.}()}
 
 Other failsafe: 
+\code{\link{binfuns.}()},
 \code{\link{failsafe.}()}
 
 Other logicals: 

@@ -4,21 +4,21 @@
 #' @description Inlay escape sequences to specify formatting follow the patterns
 #'   and meanings given in the following table:\tabular{ll}{
 #'   PATTERN            \tab MEANS INSERT ARGUMENT                           \cr
-#'   \code{'{@@}'}      \tab as is (argument must be scalar).                \cr
-#'   \code{'{@@x}'}     \tab after applying formatting switch \code{'x'}.    \cr
-#'   \code{'{@@xy}'}    \tab after applying formatting switches \code{'x'}
-#'                            and \code{'y'}.                                \cr
-#'   \code{'{@@xyz}'   }\tab after applying formatting switches \code{'x'},
+#'   \code{'{@@}'}      \tab As is (argument must be scalar).                \cr
+#'   \code{'{@@x}'}     \tab After applying formatting switch \code{'x'}.    \cr
+#'   \code{'{@@xy}'}    \tab After applying formatting switches \code{'x'}
+#'                           and \code{'y'}.                                 \cr
+#'   \code{'{@@xyz}'   }\tab After applying formatting switches \code{'x'},
 #'                           \code{'y'}, and \code{'z'}.                       }
 #'   There are three families of switches:\tabular{ll}{
 #'   SWITCH             \tab SWITCH                                          \cr
 #'   FAMILY             \tab PURPOSE                                         \cr
-#'   \code{decimals   } \tab specify the number of decimal points to include in
-#'                            in formatting numeric arguments                \cr
-#'   \code{quotes}      \tab types of quotes in which to enclose formatted
-#'                            argument values                                \cr
-#'   \code{list}        \tab type of list to create in formatting arguments
-#'                            that may have more than one element.             }
+#'   \code{decimals   } \tab Specify the number of decimal points to include in
+#'                           in formatting numeric arguments.                \cr
+#'   \code{quotes}      \tab Types of quotes in which to enclose formatted
+#'                           argument values.                                \cr
+#'   \code{list}        \tab Type of list to create in formatting arguments
+#'                           that may have more than one element.              }
 #'   Each escape sequence can contain only 1 switch from each family, but no
 #'   family is required to have a switch in any given escape sequence. In the
 #'   following table, the values switches may take are summarized, giving the
@@ -36,21 +36,21 @@
 #'   \code{'7'}\tab\code{decimals}   \tab 7 decimal places.                  \cr
 #'   \code{'8'}\tab\code{decimals}   \tab 8 decimal places.                  \cr
 #'   \code{'9'}\tab\code{decimals}   \tab 9 decimal places.                  \cr
-#'   \code{'q'}\tab\code{quote}      \tab single straight quotes.            \cr
-#'   \code{'Q'}\tab\code{quote}      \tab double straight quotes.            \cr
-#'   \code{'t'}\tab\code{quote}      \tab single typeset quotes.             \cr
-#'   \code{'T'}\tab\code{quote}      \tab double typeset quotes.             \cr
-#'   \code{'b'}\tab\code{quote}      \tab comma-separated list in braces.    \cr
-#'   \code{'c'}\tab\code{list}       \tab comma-separated concatenation
+#'   \code{'q'}\tab\code{quote}      \tab Single straight quotes.            \cr
+#'   \code{'Q'}\tab\code{quote}      \tab Double straight quotes.            \cr
+#'   \code{'t'}\tab\code{quote}      \tab Single typeset quotes.             \cr
+#'   \code{'T'}\tab\code{quote}      \tab Double typeset quotes.             \cr
+#'   \code{'b'}\tab\code{quote}      \tab Comma-separated list in braces.    \cr
+#'   \code{'c'}\tab\code{list}       \tab Comma-separated concatenation
 #'                                        statement (i.e., \code{'c(...)'}). \cr
-#'   \code{'l'}\tab\code{list}       \tab comma-separated list               \cr
-#'   \code{'p'}\tab\code{list}       \tab comma-separated list in parens     \cr
-#'   \code{'s'}\tab\code{list}       \tab comma-separated list in square
-#'                                        brackets                           \cr
+#'   \code{'l'}\tab\code{list}       \tab Comma-separated list.              \cr
+#'   \code{'p'}\tab\code{list}       \tab Comma-separated list in parens.    \cr
+#'   \code{'s'}\tab\code{list}       \tab Comma-separated list in square
+#'                                        brackets.                          \cr
 #'   \code{'a'}\tab\code{list}
 #'             \tab\link[=ox_and]{Oxford-comma separated 'and' list}.        \cr
 #'   \code{'o'}\tab\code{list}
-#'             \tab\link[=ox_or]{Oxford-comma separated 'or' list}             }
+#'             \tab\link[=ox_or]{Oxford-comma separated 'or' list}.            }
 #'   Switches may be given in any order, and there can only be one switch from
 #'   each family in a given inlay escape sequence. Regardless of order in the
 #'   escape sequence, switches from the \code{decimals} family are processed
@@ -81,21 +81,19 @@
 #'                      \tab\code{'"3.141593"'}                              \cr
 #'   \code{'{@@ot3}'   }\tab\code{c(pi, exp(1))}
 #'                      \tab\code{'‘3.142’ or ‘2.718’'}                        }
-#' @param x \link[cmp_chr_scl]{Complete character scalar} with inlay escape
+#' @param x \link[=cmp_chr_scl]{Complete character scalar} with inlay escape
 #'   sequences (see details).
 #' @param ... Arbitrary number of atomic scalar/vector arguments to be inserted
 #'   into \code{x} with formatting specified in inlay escape sequences. The
 #'   \code{N}-th argument in \code{...} corresponds to the \code{N}-th inlay
 #'   escape sequence in \code{x}. The number of inlay escape sequences in
 #'   \code{x} must be equal to the number of arguments in \code{...}.
-#' @return Character scalar.
+#' @return A character scalar.
 #' @export
 weave. <- function() {help("weave.", package = "uj")}
 
-#' @describeIn weave. A streamlined replacement for \code{sprintf} for basic
-#'   uses.
-#'   \code{x} must be a character scalar. All arguments in \code{...} must be
-#'   atomic scalars or 1-dimensional vectors.
+#' @rdname weave.
+#' @export
 weave <- function(x, ...) {
   ok.dots <- ...length() > 0
   ok.props <- f0(ok.dots, all(sapply(list(...), cmp_vec)), F)

@@ -13,28 +13,22 @@ inc(x, i = 1, na = F)
 dec(x, d = 1, na = F)
 }
 \arguments{
-\item{x}{\link[atm_num]{Atomic numeric} object.}
+\item{x}{\link[=atm_num]{Atomic numeric} object.}
 
-\item{i, d}{\link[cmp_num_scl]{Complete numeric scalar} giving the value by
+\item{i, d}{\link[=cmp_num_scl]{Complete numeric scalar} giving the value by
 which to increment or decrement, respectively.}
 
-\item{na}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+\item{na}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
 throw an error if any values of \code{x} are \code{NA}.}
 }
 \value{
-\code{x} or \code{list(...)}, but with each element incremented or
-decremented.
+An atomic numeric object of the same dimension as \code{x}.
 }
 \description{
-Increment or Decrement a Variable
+\tabular{ll}{
+\code{inc}   \tab Increments \code{x} by the value in \code{i}.         \cr
+\code{dec}   \tab Decrements \code{x} by the value in \code{d}.           }
 }
-\section{Functions}{
-\itemize{
-\item \code{inc()}: Increments \code{x} by \code{i}.
-
-\item \code{dec()}: Decrements \code{x} by \code{d}.
-
-}}
 \seealso{
 Other math: 
 \code{\link{hexdec.}()},

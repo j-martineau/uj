@@ -1,34 +1,40 @@
 #' @name meets.
 #' @family props
 #' @title Does an object meet count and/or value restrictions?
+#' @description Count and value restrictions are provided in \code{...}. If none
+#'   are provided
 #' @param x An object.
-#' @param ... Additional restrictive arguments. See details.
-#' @details Additional restrictive arguments are optional. When no additional
-#'   arguments are supplied \code{TRUE} is returned. Possible arguments are as
-#'   follows:\tabular{ll}{
+#' @param ... Optional named arguments specifying (additional) property
+#'   requirements for \code{x} in terms of element values and/or
+#'   element/row/column counts. See the \emph{Specifying Additional Property
+#'   Requirements} section.
+#' @section Specifying Additional Property Requirements:
+#'   Specifying additional requirements in \code{...} is optional. The full set
+#'   of recognized arguments names are defined in the following table along with
+#'   the properties each specifies:\tabular{ll}{
 #'   NAME          \tab WHAT IT SPECIFIES                                    \cr
-#'   \code{n}      \tab The set of valid lengths/numbers of elements         \cr
-#'   \code{nr}     \tab The set of valid numbers of rows                     \cr
-#'   \code{nc}     \tab The set of valid numbers of columns                  \cr
-#'   \code{min}    \tab The minimum valid length/number of element           \cr
-#'   \code{minr}   \tab The minimum valid number of rows                     \cr
-#'   \code{minc}   \tab The minimum valid number of columns                  \cr
-#'   \code{max}    \tab The maximum valid length/number of element           \cr
-#'   \code{maxr}   \tab The maximum valid number of rows                     \cr
-#'   \code{maxc}   \tab The maximum valid number of columns                  \cr
-#'   \code{vals}   \tab The set of valid values                              \cr
-#'   \code{lt}     \tab The value all values of \code{x.} must be less than  \cr
-#'   \code{le}     \tab The value all values of \code{x.} must be less than or
-#'                      equal to                                             \cr
-#'   \code{ge}     \tab The value all values of \code{x.} must be less than or
-#'                      equal to                                             \cr
-#'   \code{gt}     \tab The value all values of \code{x.} must be greater than }
-#' @return \code{TRUE} or \code{FALSE}.
+#'   \code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
+#'   \code{nr}     \tab Vec of valid numbers of rows.                        \cr
+#'   \code{nc}     \tab Vec of valid numbers of columns.                     \cr
+#'   \code{min}    \tab Scalar minimum valid length/number of element.       \cr
+#'   \code{minr}   \tab Scalar minimum valid number of rows.                 \cr
+#'   \code{minc}   \tab Scalar minimum valid number of columns.              \cr
+#'   \code{max}    \tab Scalar maximum valid length/number of element.       \cr
+#'   \code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
+#'   \code{maxc}   \tab Scalar maximum valid number of columns.              \cr
+#'   \code{vals}   \tab Vec of valid values.                                 \cr
+#'   \code{lt}     \tab Scalar value all values of \code{x} must be less
+#'                      than.                                                \cr
+#'   \code{le}     \tab Scalar value all values of \code{x} must be less than or
+#'                      equal to.                                            \cr
+#'   \code{ge}     \tab Scalar value all values of \code{x} must be greater than
+#'                      or equal to.                                         \cr
+#'   \code{gt}     \tab Scalar value all values of \code{x} must be greater
+#'                      than.                                                  }
+#' @return A logical scalar.
 #' @export
 meets. <- function() {help("meets.", package = "uj")}
 
-#' @describeIn meets. Checks whether \code{x.} meets a variety of count and
-#'   value restrictions supplied through \code{...}.
 meets <- function(x, ...) {
   if (...length() == 0) {return(T)}
   vars <- 'n.nr.nc.min.minr.minc.max.maxr.maxc.vals.lt.le.le.ge.gt'
@@ -54,7 +60,7 @@ meets <- function(x, ...) {
             f0(nll_or(minc, 'cmp_nnw_scl')                               , NULL, "\n \u2022 [minc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(nll_or(max , 'cmp_nnw_scl')                               , NULL, "\n \u2022 [max] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(nll_or(maxr, 'cmp_nnw_scl')                               , NULL, "\n \u2022 [maxr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(nll_or(maxc, 'cmp_nnw_scl')                               , NULL,  "\n \u2022 [maxc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+            f0(nll_or(maxc, 'cmp_nnw_scl')                               , NULL, "\n \u2022 [maxc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(ok.vals                                                   , NULL, "\n \u2022 [vals] must be NULL or a complete atomic object (?cmp)."),
             f0(ok.lt                                                     , NULL, "\n \u2022 [lt] must be NULL or a complete sortable atomic scalar (?cmp_scl)."),
             f0(ok.le                                                     , NULL, "\n \u2022 [le] must be NULL or a complete sortable atomic scalar (?cmp_scl)."),

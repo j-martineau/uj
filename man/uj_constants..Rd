@@ -25,9 +25,9 @@ Package constants for \code{uj}
 }
 \section{Functions}{
 \itemize{
-\item \code{uj_constants()}: Get a named \link[ivls]{atomic vlist} containing
-all package \code{uj} constants with an associated attribute describing
-each.
+\item \code{uj_constants()}: Get a named \link[=atm_vls]{atomic vlist}
+containing all package \code{uj} constants with an associated attribute
+describing each.
 
 \item \code{v()}: Get one or more \code{uj} package constants.
 

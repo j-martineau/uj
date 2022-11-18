@@ -61,11 +61,11 @@ sets(n)
 \item{...}{Scalars, vectors, or matrices. Reduced a single vector of atomic
 values for \code{sd0}, \code{min0}, \code{max0}, and \code{mean0}.}
 
-\item{x}{\link[cmp_num_vec]{Complete numeric vec} or
-\link[cmp_num_mat]{complete numeric matrix}.}
+\item{x}{\link[=cmp_num_vec]{Complete numeric vec} or
+\link[=cmp_num_mat]{complete numeric matrix}.}
 
-\item{y}{Optional \link[cmp_num_vec]{complete numeric vec} or
-\link[cmp_num_mat]{complete numeric matrix}.}
+\item{y}{Optional \link[=cmp_num_vec]{complete numeric vec} or
+\link[=cmp_num_mat]{complete numeric matrix}.}
 
 \item{n}{Positive whole-number scalar size of the complete set each subset is
 drawn from.}

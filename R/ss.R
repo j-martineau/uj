@@ -42,29 +42,29 @@
 #'   \code{'P'}  \tab Pipe          \tab \code{"|"}                          \cr
 #'   \code{'D'}  \tab Dot           \tab \code{"."}                          \cr
 #'   \code{'B'}  \tab Broken pipe   \tab \code{"¦"}                            }
-#' @param ... An arbitrary number of objects to be \link[a]{atomized}
-#'   before splitting.
-#' @param x \link[chr_vec]{character vec} of
-#'   string(s) to be split.
-#' @param name \link[cmp_scl_scl]{Complete character scalar} name of the
+#' @param ... An arbitrary number of objects to be \link[=av]{atomized} before
+#'   splitting.
+#' @param x \link[=chr_vec]{character vec} of string(s) to be split.
+#' @param name \link[=cmp_scl_scl]{Complete character scalar} name of the
 #'   variable to hold the original strings.
-#' @param part \link[cmp_chr_vec]{Complete character vec}
-#'   with as many elements as each string will be split into for naming
-#'   variables containing a part of each string.
-#' @param d \link[cmp_chr_vec]{Complete character vec} delimiter or
-#'   delimiters to use in splitting strings.
-#' @param trm \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+#' @param part \link[=cmp_chr_vec]{Complete character vec} with as many elements
+#'   as each string will be split into for naming variables containing a part of
+#'   each string.
+#' @param d \link[=cmp_chr_vec]{Complete character vec} delimiter or delimiters
+#'   to use in splitting strings.
+#' @param trm \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
 #'   trim white space from each side of each element of the result.
-#' @param sqz link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+#' @param sqz link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
 #'   squeeze the result by removing either empty strings (for \code{ss}
 #'   functions) or characters that are neither letters, digits, nor spaces (for
 #'   \code{ch}).
-#' @param n An optional \link[cmp_psw_scl]{complete positive-valued whole-number
+#' @param n An optional \link[=cmp_psw_scl]{complete positive whole-number
 #'   scalar} specifying an element to be extracted from the result.
-#' @param u \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+#' @param u \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
 #'   reduce the result to unique values.
-#' @return Either a \link[chr_vec]{character vector}, a \link{chr_vls}{character
-#'   vlist}, or a \link[chr_dtf]{character dtf}.
+#' @return Either a \link[=chr_vec]{character vector}, a
+#'   \link[=chr_vls]{character vlist}, or a \link[=chr_dtf]{character
+#'   data.frame}.
 #' @export
 ss. <- function() {help("ss.", package = "uj")}
 

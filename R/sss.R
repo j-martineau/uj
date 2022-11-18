@@ -1,10 +1,11 @@
 #' @name sss.
 #' @family props
 #' @title State of completeness properties
-#' @description An object's state of completeness is defined for non-empty
-#' atomic tibbles, non-empty atomic lists, non-empty atomic vectors, and
-#' non-empty atomic arrays. For all others, state is undefined and returned as
-#' \code{NULL}. The following table summarizes valid state properties.
+#' @description An object's state of completeness is defined for
+#'   \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frame}, populated
+#'   \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated
+#'   atomic arrays. For all others, state is undefined and returned as
+#'   \code{NULL}. The following table summarizes valid state properties.
 #' \tabular{lll}{
 #' STATE       \tab STATE      \tab CHARACTERISTICS                          \cr
 #' PROPERTY    \tab PROPERTY   \tab OF QUALIFYING                            \cr
@@ -19,8 +20,8 @@
 #' table:\tabular{ll}{
 #' FUNCTION          \tab WHAT THE                                           \cr
 #' FORMAT            \tab FUNCTION DOES                                      \cr
-#' \code{i***}       \tab Evaluates whether an object is of the state of
-#'                        completeness represented by \code{***}.            \cr
+#' \code{i[sss]}     \tab Evaluates whether an object is of the state of
+#'                        completeness represented by \code{[sss]}.          \cr
 #' \code{sss}        \tab Gets a character vector containing all state of
 #'                        completeness properties of an object.              \cr
 #' \code{isss}       \tab Evaluates an object for a specific state of
@@ -29,23 +30,19 @@
 #' \code{sss_vals}   \tab Gets a character vector of all possible state of
 #'                        completeness property values.                        }
 #' @param x An object.
-#' @param sss \link[cmp_chr_scl]{Complete character scalar} containing one or
+#' @param sss \link[=cmp_chr_scl]{Complete character scalar} containing one or
 #'   more values from \code{sss_vals()} separated by pipes.
-#' @param ... Additional arguments to \code{\link{meets}} containing value and
-#'   element/row/column count restrictions.
-#' @section Additional Arguments in \code{...}:
-#'   Submitting additional arguments to \code{isss} via \code{...}
-#'   allows for checking not just the state but whether length, number of rows,
-#'   number of columns, and element values meet flexible criteria.
-#' @return \code{sss_vals()} returns a character vector. \code{sss(x)}
-#'   returns a character scalar or \code{NULL}. All others return either
-#'   \code{TRUE} or \code{FALSE}.
+#' @inheritDotParams meets.
+#' @inheritSection meets. Specifying Additional Property Requirements
+#' @return \tabular{lll}{
+#'   \code{sss_vals()}            \tab   \tab A character vector.            \cr
+#'   \code{sss(x)}                \tab   \tab A character scalar or
+#'                                            \code{NULL}.                   \cr
+#'   \code{isss} and \code{i[sss]}\tab   \tab A logical scalar.                }
 #' @export
 sss. <- function() {help("sss.", package = "uj")}
 
-#' @describeIn sss. Get a character scalar containing all state properties
-#'   from \code{sss_vals()} that is applicable to \code{x}, if defined. If not
-#'   defined, return \code{NULL}.
+#' @rdname sss.
 #' @export
 sss <- function(x) {
   ok <- ipop(x) & iatm(x)
@@ -59,43 +56,37 @@ sss <- function(x) {
     f0(ok & len == 1 & all(ok(x)), "oks", NULL))
 }
 
-#' @describeIn sss. Is \code{x} complete (atomic, of length 1 or greater, and
-#'   containing no \code{NA} values)?
+#' @rdname sss.
 #' @export
 icmp <- function(x) {ipop(x) & !any(is.na(av(x)))}
 
-#' @describeIn sss. Is \code{x} a missing object (atomic, of length 1 or
-#'   greater, and containing only \code{NA} values)?
+#' @rdname sss.
 #' @export
 imss <- function(x) {ipop(x) & any(is.na(av(x)))}
 
-#' @describeIn sss. Is \code{x} an atomic scalar \code{NA} value?
+#' @rdname sss.
 #' @export
 inas <- function(x) {isNa(x)}
 
-#' @describeIn sss. Is \code{x} an atomic scalar non-\code{NA} value?
+#' @rdname sss.
 #' @export
 ioks <- function(x) {isOk(x)}
 
-#' @describeIn sss. Is \code{x} an atomic object with some \code{NA} and some
-#'   non-\code{NA} values?
+#' @rdname sss.
 #' @export
 iprt <- function(x) {na <- is.na(av(x)); ipop(x) & any(na) & any(!na)}
 
-#' @describeIn sss. Get a character vector of all possible state property
-#'   values.
+#' @rdname sss.
 #' @export
 sss_vals <- function() {c('cmp', 'mss', 'nas', 'oks', 'prt')}
 
-#' @describeIn sss. Evaluate whether \code{x} has a state property represented
-#'   in \code{sss}.
+#' @rdname sss.
 #' @export
 isss <- function(x, sss, ...) {
   if (!cmp_chr_scl(sss)) {stop("\n \u2022 [sss] must be a non-NA character scalar.")}
   valid.sss <- ttt_vals()
   sss.combos <- strsplit(sss, "|", fixed = T)[[1]]
   new.sss <- unlist(strsplit(sss.combos, "_", fixed = T))
-  ok.sss <- all(new.sss %in% valid.sss)
-  if (!ok.sss) {stop("\n \u2022 [sss = '", sss, "'] contains a value not in [sss_vals() = c(", paste0(paste0("'", sss_vals(), "'"), collapse = ", "), ")] after splitting along pipes and underscores.")}
+  if (!all(new.sss %in% valid.sss)) {stop("\n \u2022 [sss = '", sss, "'] specifies a 'state of completeness' property not in [uj::sss_vals() = c(", paste0(paste0("'", sss_vals(), "'"), collapse = ", "), ")].")}
   ippp(x, sss, ...)
 }

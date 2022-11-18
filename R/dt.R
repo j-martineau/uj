@@ -29,10 +29,10 @@
 #'                        \code{x[row.var, ..col.var]}).                       }
 #' @param x An R object (\code{dtas}, \code{dtis}, and \code{dtie}). A
 #'   \code{\link[data.table]{data.table}} for all other functions.
-#' @param ir,ic \link[cmp_ind_vec]{Complete indexer vecs} or
-#'   \link[cmp_chr_vec]{complete character vecs} identifying rows and columns of
-#'   \code{x}, respectively.
-#' @param say \link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+#' @param ir,ic \link[=cmp_ind_vec]{Complete indexer vecs} or
+#'   \link[=cmp_chr_vec]{complete character vecs} identifying rows and columns
+#'   of \code{x}, respectively.
+#' @param say \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
 #'   notify user of starting a potentially time-consuming process (i.e.,
 #'   converting to data.table, joining two large data.tables, and reshaping from
 #'   long to wide).

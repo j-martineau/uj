@@ -337,7 +337,7 @@ pblk(x)
 pinv(x)
 }
 \arguments{
-\item{x}{A \link[cmp_chr_vec]{character vector} of text to be styled.}
+\item{x}{A \link[=cmp_chr_vec]{character vector} of text to be styled.}
 }
 \value{
 Markdown-styled character vector

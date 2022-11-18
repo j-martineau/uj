@@ -1,17 +1,17 @@
 #' @name charn.
 #' @title Extract a single character
+#' @description Get the \code{n}-th character of each element of \code{x}.
 #' @family strings
-#' @param x \link[ichr]{Atomic character object}.
-#' @param n \link[cmp_psw_scl]{Complete positive whole-number scalar} or
+#' @param x \link[=ichr]{Atomic character object}.
+#' @param n \link[=cmp_psw_scl]{Complete positive whole-number scalar} or
 #'   \link{cmp_psw}{complete positive whole-number atomic object} of the same
 #'   dimensions as \code{x}.
-#' @return \code{link[cmp_ch1]{Complete onechar}} atomic object of the same
+#' @return \code{link[=cmp_ch1]{Complete onechar}} atomic object of the same
 #'   dimension as \code{x}.
 #' @export
 charn. <- function() {help("charn.", package = "uj")}
 
-#' @describeIn charn. Get the \code{n}-th character of each element of
-#'   \code{x}.
+#' @rdname charn.
 #' @export
 charn <- function(x, n) {
   errs <- c(f0(ichr(x)                                 , NULL, "\n \u2022 [x] must be an atomic object of mode 'character' (?ichr)."),

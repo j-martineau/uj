@@ -1,15 +1,40 @@
 #' @name as_mmm.
 #' @family props
 #' @title Coerce to base mode or extended mode.
-#' @param x An object
-#' @param na \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
+#' @description \tabular{ll}{
+#'  \code{as_clr}   \tab Coerce a valid R color representation of mode character
+#'                       to hexadecimal RGB character representation.        \cr
+#'  \code{as_fun}   \tab Return \code{x} if it is a function, otherwise, search
+#'                       for a function named \code{x} and return it.        \cr
+#'  \code{as_chr}   \tab Thin wrapper of \code{\link[base]{as.character}}.   \cr
+#'  \code{as_int}   \tab Thin wrapper of \code{\link[base]{as.integer}}.     \cr
+#'  \code{as_num}   \tab Thin wrapper of \code{\link[base]{as.numeric}}.     \cr
+#'  \code{as_lgl}   \tab Thin wrapper of \code{\link[base]{as.logical}}.     \cr
+#'  \code{as_ord}   \tab Wrapper for \code{factor(x, levels = levs,
+#'                       ordered = TRUE)}.                                   \cr
+#'  \code{as_uno}   \tab Wrapper for \code{factor(x, levels = levs,
+#'                       ordered = FALSE)}.                                    }
+#' @param x For \code{as_clr}, an object of mode character; for \code{as_fun}, a
+#'   character scalar function name or a function object; for \code{as_ord} and
+#'   \code{as_uno}, an atomic object; and for all others, any R object.
+#' @param na \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
 #'   \code{NA} values qualify as missing color representations.
-#' @param levs \link[cmp_vec]{Complete atomic vec} giving factor levels.
+#' @param levs \link[=cmp_vec]{Complete atomic vec} giving factor levels.
+#' @param ... Further arguments passed to or from other methods.
+#' @return \tabular{lll}{
+#'  \code{as_clr}, \code{as_chr}\tab   \tab An object of mode
+#'                                          \code{'character'}.              \cr
+#'  \code{as_fun}\tab  \tab A function object.                               \cr
+#'  \code{as_int}\tab  \tab An object of mode \code{'integer'}.              \cr
+#'  \code{as_num}\tab  \tab An object of mode \code{'numeric'}.              \cr
+#'  \code{as_lgl}\tab  \tab An object of mode \code{'logical'}.              \cr
+#'  \code{as_ord}\tab  \tab An object of mode \code{'ordered'} (factor).     \cr
+#'  \code{as_uno}\tab  \tab An object of \link[=mmm]{extended mode} \code{'uno'}
+#'                          (unordered factor).                                }
 #' @export
 as_mmm. <- function() {help("as_mmm.", package = "uj")}
 
-#' @describeIn as_mmm. Coerce a valid R color representation to hexadecimal
-#'   RGB character representation.
+#' @rdname as_mmm.
 #' @export
 as_clr <- function(x, na = F) {
   errs <- c(f0(ichr(x), NULL, "\n \u2022 [x] is not of mode character."),
@@ -26,34 +51,37 @@ as_clr <- function(x, na = F) {
   x
 }
 
-#' @describeIn as_mmm. Return \code{x} if it is a function, otherwise, search
-#'   for a function named \code{x} and return that function.
+#' @rdname as_mmm.
 #' @export
 as_fun <- function(x) {
   if (!ifun(x)) {stop("\n \u2022 [x] is neither a function nor a character scalar name of a function.")}
   f0(is.function(x), x, match.fun(x))
 }
 
-#' @describeIn as_mmm. \code{as.character} wrapper.
+#' @rdname as_mmm.
+#' @inherit base::as.character
 #' @export
 as_chr <- function(x, ...) {base::as.character(x, ...)}
 
-#' @describeIn as_mmm. \code{as.integer} wrapper.
+#' @rdname as_mmm.
+#' @inherit base::as.integer
 #' @export
 as_int <- function(x, ...) {base::as.integer(x, ...)}
 
-#' @describeIn as_mmm. \code{as.numeric} wrapper.
+#' @rdname as_mmm.
+#' @inherit base::as.numeric
 #' @export
 as_num <- function(x, ...) {base::as.numeric(x, ...)}
 
-#' @describeIn as_mmm. \code{as.logical} wrapper.
+#' @rdname as_mmm.
+#' @inherit base::as.logical
 #' @export
 as_lgl <- function(x, ...) {base::as.logical(x, ...)}
 
-#' @describeIn as_mmm. Coerce to ordered factor.
+#' @rdname as_mmm.
 #' @export
-as_ord <- function(x, levs) {factor(av(x), levels = levs, ordered = T)}
+as_ord <- function(x, levs) {factor(x, levels = levs, ordered = T)}
 
-#' @describeIn as_mmm. Coerce to unordered factor.
+#' @rdname as_mmm.
 #' @export
-as_uno <- function(x, levs) {factor(av(x), levels = levs, ordered = F)}
+as_uno <- function(x, levs) {factor(x, levels = levs, ordered = F)}

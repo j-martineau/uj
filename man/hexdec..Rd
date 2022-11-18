@@ -4,7 +4,7 @@
 \alias{hexdec.}
 \alias{todec}
 \alias{tohex}
-\title{Convert between integer and hexadecimal}
+\title{Convert Non-Negative Whole Numbers between Decimal and Hexadecimal}
 \usage{
 hexdec.()
 
@@ -13,20 +13,31 @@ todec(x)
 tohex(x)
 }
 \arguments{
-\item{x}{\link[psw_vec]{Positive whole number vec} or
-\link[chr_vec]{character vec} of hexademical number representations.}
+\item{x}{A \link[=cmp_nnw]{complete non-negative whole-number object} or a
+\link[=cmp_chr]{complete character vec} containing only non-negative
+whole-number hexademical values.}
+}
+\value{
+\tabular{ll}{
+\code{todec}   \tab A \link[=cmp_nnw]{complete non-negative whole-number
+object}                                             \cr
+\code{tohex}   \tab A \link[=cmp_chr]{complete character object} containing
+non-negative whole-number hexadecimal values in the
+format \code{'#HHH...'} where \code{H} is a placeholder
+for an uppercase hexadecimal digit.                   }
 }
 \description{
-Hexademical representation is of mode character and may begin
-with "#".
+\tabular{ll}{
+\code{todec}   \tab Converts hexadecimal \link[=cmp_chr]{complete character
+object} \code{x} from hexadecimal to decimal. \code{x}
+may be formatted as either \code{'hhh...'} or
+\code{'#hhh...'} where \code{h} is a placeholder for a
+hexidecimal digit in either upper or lower case.    \cr
+\code{tohex}   \tab Converts \link[=cmp_psw]{complete positive
+whole-number} \code{x} to hexadecimal formatted as
+\code{'#HHH...'} where \code{H} is a placeholder for an
+uppercase hexadecimal digit.                                   }
 }
-\section{Functions}{
-\itemize{
-\item \code{todec()}: Convert from hexadecimal to decimal.
-
-\item \code{tohex()}: Convert from decimal to hexadecimal.
-
-}}
 \seealso{
 Other math: 
 \code{\link{inc.}()},

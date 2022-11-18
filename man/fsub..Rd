@@ -10,23 +10,18 @@ fsub.()
 fsub(x, pats, subs)
 }
 \arguments{
-\item{x}{\link[ichr]{Atomic character object}.}
+\item{x}{\link[=atm_chr]{Atomic character object}.}
 
-\item{pats, subs}{\link[cmp_chr_vec]{Complete character vecs} containing
+\item{pats, subs}{\link[=cmp_chr_vec]{Complete character vecs} containing
 patterns to replace and their associated replacement strings.}
 }
 \value{
 Atomic character object.
 }
 \description{
-Fixed-value string substitution
+Replace strings in \code{pats} with corresponding (possibly
+recycled) strings in \code{subs}.
 }
-\section{Functions}{
-\itemize{
-\item \code{fsub()}: Replace strings in \code{pats} with corresponding
-(possibly recycled) strings in \code{subs}.
-
-}}
 \seealso{
 Other strings: 
 \code{\link{blank.}()},
@@ -41,8 +36,7 @@ Other strings:
 \code{\link{spacing.}()},
 \code{\link{ss.}()},
 \code{\link{tocase.}()},
-\code{\link{weave.}()},
-\code{\link{xpr.}()}
+\code{\link{weave.}()}
 
 Other extensions: 
 \code{\link{a.}()},

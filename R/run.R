@@ -3,6 +3,8 @@
 #' @family extensions
 #' @family environments
 #' @title Build and evaluate code
+#' @description Collapses \code{...} into a character scalar and evaluates
+#'   it as code in the calling environment.
 #' @param ... Arguments to be pasted into a character scalar command to be run
 #'   (i.e., parsed and evaluated) in the environment where \code{run(...)} was
 #'   called.
@@ -21,7 +23,6 @@
 #' @export
 run. <- function() {help("run.", package = "uj")}
 
-#' @describeIn run. Collapses \code{...} into a character scalar and evaluates
-#'   it as code in the calling environment.
+#' @rdname run.
 #' @export
 run <- function(...) {eval.parent(parse(text = paste0(av(...), collapse = "")), n = 1)}

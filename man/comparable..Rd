@@ -13,7 +13,7 @@ comparable(..., recycle. = T)
 \item{...}{An arbitrary number of arguments to be checked for comparability
 with each other.}
 
-\item{recycle.}{\link[cmp_lgl_scl]{Complete logical scalar} indicating
+\item{recycle.}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating
 whether arguments in \code{...} must be recyclable to be comparable.}
 }
 \value{

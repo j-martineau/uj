@@ -6,7 +6,7 @@
 \alias{pad}
 \alias{sqz}
 \alias{trm}
-\title{Simple spacing functions}
+\title{Error-Checked \code{stringr}-Based Spacing Functions}
 \usage{
 spacing.()
 
@@ -19,37 +19,35 @@ sqz(...)
 trm(...)
 }
 \arguments{
-\item{n}{\link[cmp_psw_scl]{Complete positive whole-number scalar} indicating
-the number of spaces.}
+\item{n}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}
+indicating the number of spaces.}
 
 \item{...}{An arbitrary number of atomic arguments to be processed.}
 
-\item{n.}{\link[cmp_psw_scl]{Complete positive whole-number scalar}
+\item{n.}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}
 indicating the number of pad characters.}
 
-\item{s.}{\link[cmp_ch1_scl]{Complete onechar scalar} indicate side(s) to
+\item{s.}{\link[=cmp_ch1_scl]{Complete onechar scalar} indicate side(s) to
 pad: "l", "r", or "b" for left, right, or both, respectively.}
 
-\item{p.}{\link[cmp_ch1_scl]{Complete onechar scalar} containing a single
+\item{p.}{\link[=cmp_ch1_scl]{Complete onechar scalar} containing a single
 character used to pad strings.}
 }
-\description{
-Simple spacing functions
+\value{
+\tabular{lll}{
+\code{spaces}                     \tab   \tab A character scalar.       \cr
+\code{pad}, \code{trm}, \code{sqz}\tab   \tab A character object.         }
 }
-\section{Functions}{
-\itemize{
-\item \code{spaces()}: Create a character vector of \code{n.} spaces.
-
-\item \code{pad()}: Pad a string with leading and/or trailing spaces
-using \code{\link[stringr]{pad}}.
-
-\item \code{sqz()}: Trim leading, trailing, and extra internal spaces
-using \code{\link[stringr]{str_squish}}.
-
-\item \code{trm()}: Trim leading and trailing spaces using
-\code{\link[stringr]{str_trim}}.
-
-}}
+\description{
+\tabular{ll}{
+\code{spaces}   \tab Create a character vector of \code{n} spaces.      \cr
+\code{pad}      \tab Pad a string with leading and/or trailing spaces using
+\code{\link[stringr]{pad}}.                        \cr
+\code{sqz}      \tab Trim leading, trailing, and extra internal spaces
+using \code{\link[stringr]{str_squish}}.           \cr
+\code{trm}      \tab Trim leading and trailing spaces using
+\code{\link[stringr]{str_trim}}.                     }
+}
 \examples{
 spaces(0)
 spaces(4)
@@ -76,7 +74,6 @@ Other strings:
 \code{\link{rev_str.}()},
 \code{\link{ss.}()},
 \code{\link{tocase.}()},
-\code{\link{weave.}()},
-\code{\link{xpr.}()}
+\code{\link{weave.}()}
 }
 \concept{strings}

@@ -23,30 +23,29 @@ msgERR(x)
 function where the initial call was made.}
 }
 \value{
-\code{failsafe} returns either \code{x} or an object of class
-\code{'simpleError'}. \code{isERR, notERR} returns a logical scalar.
-\code{msgERR} returns either \code{NULL} or a character scalar.
+\tabular{lll}{
+\code{failsafe}            \tab   \tab Either \code{x}, an object of class
+\code{'error'}, or an object of class
+\code{'simpleError'}.             \cr
+\code{isERR}, \code{notERR}\tab   \tab A logical scalar.                \cr
+\code{msgERR}              \tab   \tab Either \code{NULL} or a character
+scalar.                            }
 }
 \description{
-Evaluate objects, flag any errors
+\tabular{ll}{
+\code{failsafe}   \tab Attempts to call \code{identity(x)}. If an error is
+produced in doing so, returns an object of class
+\code{'error'} or of class \code{'simpleError'}. If
+an error is not generated, returns the safely
+evaluated value of \code{x}.                     \cr
+\code{isERR}      \tab Evaluates whether calling \code{identity(x)}
+produced an error.                               \cr
+\code{notERR}     \tab Evaluates whether calling \code{identity(x)} did not
+produce an error.                                \cr
+\code{msgERR}     \tab Gets any error message associated with calling
+\code{identity(x)}. If there is none, returns
+\code{NULL}.                                       }
 }
-\section{Functions}{
-\itemize{
-\item \code{failsafe()}: Attempts to call \code{identity(x)}. If an error is
-produced in doing so, returns an object of class \code{'error'} or of class
-\code{'simpleError'}. If an error is not generated, returns the safely
-evaluated value of \code{x}.
-
-\item \code{isERR()}: Evaluates whether calling \code{identity(x)} produced
-an error.
-
-\item \code{notERR()}: Evaluates whether calling \code{identity(x)} did not
-produce an error.
-
-\item \code{msgERR()}: Gets any error message associated with calling
-\code{identity(x)}. If there is none, returns \code{NULL}.
-
-}}
 \seealso{
 Other extensions: 
 \code{\link{a.}()},
@@ -83,6 +82,7 @@ Other errs:
 \code{\link{errs.}()}
 
 Other failsafe: 
+\code{\link{binfuns.}()},
 \code{\link{is_failsafe.}()}
 }
 \concept{errs}

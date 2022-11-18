@@ -30,7 +30,7 @@
 \alias{cmp_str}
 \alias{cmp_uno}
 \alias{cmp_whl}
-\title{Complete plus extended mode properties}
+\title{Completeness + Extended Mode Properties}
 \usage{
 cmp_mmm.()
 
@@ -91,103 +91,23 @@ cmp_uno(x)
 cmp_whl(x)
 }
 \arguments{
-\item{x}{An object}
+\item{x}{An R object.}
 }
 \value{
-\code{TRUE} or \code{FALSE} except for \code{cmp_mmm_vals}, which
-returns a character vector.
+\tabular{ll}{
+\code{cmp_mmm_vals}   \tab A character vector.                          \cr
+\code{cmp_[mmm]}      \tab A logical scalar.                              }
 }
 \description{
-Combinations of \link[icmp]{completeness} and
-\link[mmm]{extended mode}.
+\tabular{ll}{
+\code{cmp_mmm_vals}   \tab Gets a character vector of all possible
+\link[=icmp]{completeness} +
+\link[=mmm]{extended mode} properties.       \cr
+\code{cmp_[mmm]}      \tab Evaluates whether \code{x} is
+\link[=icmp]{complete} and of the
+\link[=mmm]{extended mode} represented by the
+placeholder \code{[mmm]}.                      }
 }
-\section{Functions}{
-\itemize{
-\item \code{cmp_mmm_vals()}: Get a character vector of all possible complete +
-extended mode properties
-
-\item \code{cmp_atm()}: Is \code{x} a \link[icmp]{complete} \link[iatm]{atomic}
-object?
-
-\item \code{cmp_ch1()}: Is \code{x} a \link[icmp]{complete} \link[ich1]{onechar}
-object?
-
-\item \code{cmp_chr()}: Is \code{x} a \link[icmp]{complete}
-\link[ichr]{character} object?
-
-\item \code{cmp_clr()}: Is \code{x} a \link[icmp]{complete} \link[iclr]{color}
-object?
-
-\item \code{cmp_evn()}: Is \code{x} a \link[icmp]{complete}
-\link[ievn]{even-valued whole-number} object?
-
-\item \code{cmp_fac()}: Is \code{x} a \link[icmp]{complete} \link[ifac]{factor}
-object?
-
-\item \code{cmp_frc()}: Is \code{x} a \link[icmp]{complete}
-\link[ifrc]{fractional-valued numeric} object?
-
-\item \code{cmp_ind()}: Is \code{x} a \link[icmp]{complete} \link[iind]{indexer}
-object?
-
-\item \code{cmp_lgl()}: Is \code{x} a \link[icmp]{complete} \link[ilgl]{logical}
-object?
-
-\item \code{cmp_neg()}: Is \code{x} a \link[icmp]{complete}
-\link[ineg]{negative-valued numeric} object?
-
-\item \code{cmp_ngw()}: Is \code{x} a \link[icmp]{complete}
-\link[ingw]{negative-valued whole-number} object?
-
-\item \code{cmp_nng()}: Is \code{x} a \link[icmp]{complete}
-\link[inng]{non-negative-valued numeric} object?
-
-\item \code{cmp_nnw()}: Is \code{x} a \link[icmp]{complete}
-\link[innw]{non-negative-valued whole-number} object?
-
-\item \code{cmp_nps()}: Is \code{x} a \link[icmp]{complete}
-\link[inps]{non-positive-valued numeric} object?
-
-\item \code{cmp_npw()}: Is \code{x} a \link[icmp]{complete}
-\link[inpw]{non-positive-valued whole-number} object?
-
-\item \code{cmp_nst()}: Is \code{x} a \link[icmp]{complete}
-\link[inst]{non-sortable} object?
-
-\item \code{cmp_num()}: Is \code{x} a \link[icmp]{complete} \link[inum]{numeric}
-object?
-
-\item \code{cmp_odd()}: Is \code{x} a \link[icmp]{complete}
-\link[iodd]{odd-valued whole-number} object?
-
-\item \code{cmp_ord()}: Is \code{x} a \link[icmp]{complete}
-\link[iord]{ordered-factor} object?
-
-\item \code{cmp_pct()}: Is \code{x} a \link[icmp]{complete}
-\link[ipct]{percent-valued (0-100) numeric} object?
-
-\item \code{cmp_pos()}: Is \code{x} a \link[icmp]{complete}
-\link[ipos]{positive-valued numeric} object?
-
-\item \code{cmp_ppn()}: Is \code{x} a \link[icmp]{complete}
-\link[ippn]{proportion-valued (0-1) numeric} object?
-
-\item \code{cmp_psw()}: Is \code{x} a \link[icmp]{complete}
-\link[ipos]{positive-valued whole-number} object?
-
-\item \code{cmp_srt()}: Is \code{x} a \link[icmp]{complete}
-\link[isrt]{sortable} object?
-
-\item \code{cmp_str()}: Is \code{x} a \link[icmp]{complete} \link[istr]{string}
-object?
-
-\item \code{cmp_uno()}: Is \code{x} a \link[icmp]{complete}
-\link[iuno]{unordered-factor} object?
-
-\item \code{cmp_whl()}: Is \code{x} a \link[icmp]{complete}
-\link[iwhl]{whole-number} object?
-
-}}
 \seealso{
 Other props: 
 \code{\link{as_mmm.}()},

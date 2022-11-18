@@ -11,7 +11,7 @@
 \alias{cmp_mvc}
 \alias{cmp_scl}
 \alias{cmp_vec}
-\title{Complete plus atomic extended class properties}
+\title{Completeness + (atomic) Extended Class Properties}
 \usage{
 cmp_ccc.()
 
@@ -34,55 +34,23 @@ cmp_scl(x)
 cmp_vec(x)
 }
 \arguments{
-\item{x}{An object.}
+\item{x}{An R object.}
 }
 \value{
-\code{ccc_vals} returns a character vector containing all valid
-extended class property values. \code{ccc} returns a character scalar or
-vector containing all extended class properties from \code{ccc_vals()}
-applicable to \code{x}. All others return either \code{TRUE} or
-\code{FALSE}.
+\tabular{ll}{
+\code{cmp_mmm_vals}   \tab A character vector.                          \cr
+\code{cmp_[ccc]}      \tab A logical scalar.                              }
 }
 \description{
-Combinations of \link[icmp]{completeness} and
-\link[ccc]{extended class}.
+\tabular{ll}{
+\code{cmp_ccc_vals}   \tab Gets a character vector of all possible
+\link[=icmp]{completeness} + atomic
+\link[=ccc]{extended class} properties.      \cr
+\code{cmp_[ccc]}      \tab Evaluates whether \code{x} is
+\link[=icmp]{complete} and of the atomic
+\link[=ccc]{extended class} represented by the
+placeholder \code{[ccc]}.                      }
 }
-\section{Functions}{
-\itemize{
-\item \code{cmp_ccc_vals()}: Get a character vector of all possible completeness plus
-atomic extended class properties.
-
-\item \code{cmp_arr()}: Is \code{x} a \link[icmp]{complete} \link[iarr]{atomic
-array+}?
-
-\item \code{cmp_gen()}: Is \code{x} a \link[icmp]{complete} \link[igen]{atomic
-generic}?
-
-\item \code{cmp_dtf()}: Is \code{x} a \link[icmp]{complete} \link[idtf]{atomic
-data.frame}?
-
-\item \code{cmp_vls()}: Is \code{x} a \link[icmp]{complete} \link[ivls]{atomic
-vlist}?
-
-\item \code{cmp_mat()}: Is \code{x} a \link[icmp]{complete} \link[imat]{atomic
-matrix}?
-
-\item \code{cmp_mvc()}: Is \code{x} a \link[icmp]{complete} \link[imvc]{atomic
-multivec}?
-
-\item \code{cmp_scl()}: Is \code{x} a \link[icmp]{complete} \link[iscl]{atomic
-scalar}?
-
-\item \code{cmp_vec()}: Is \code{x} a \link[icmp]{complete} \link[ivec]{atomic
-vector+}?
-
-}}
-\section{Submitting additional arguments to \code{ccc} via \code{...}}{
- Allows
-for checking not just the extended class but whether length, number of
-rows, number of columns, and element values meet flexible criteria.
-}
-
 \seealso{
 Other props: 
 \code{\link{as_mmm.}()},

@@ -85,9 +85,9 @@ rdtsv(
 )
 }
 \arguments{
-\item{file}{Either a character scalar or vector that resolves to a file path
-or \code{NULL} (in which case the user is asked to select a file using a
-system dialog box.}
+\item{file}{Either \code{NULL} or a \link[=chr_vec]{character vector} that
+resolves to a file path. When \code{file = NULL} the user is asked to
+select a file using a system dialog box.}
 
 \item{col_names}{Either \code{TRUE}, \code{FALSE} or a character vector
 of column names.
@@ -237,7 +237,7 @@ i.e. If this option is \code{TRUE}, the value \verb{""""} represents
 a single quote, \verb{\\"}.}
 }
 \value{
-A \code{\link[base]{data.frame}}.
+A data.frame.
 }
 \description{
 The following table describes wrapper functions for the

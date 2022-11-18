@@ -23,91 +23,77 @@
 #' table:\tabular{ll}{
 #' FUNCTION          \tab WHAT THE                                           \cr
 #' FORMAT            \tab FUNCTION DOES                                      \cr
-#' \code{i***}       \tab Evaluates whether an object is of the fundamental type
-#'                        represented by \code{***}.                         \cr
-#' \code{ccc}        \tab Gets a character vector containing all fundamental
-#'                        type properties of an object.                      \cr
-#' \code{iccc}       \tab Evaluates an object for a specific fundamental type
-#'                        and any additional properties specified in
-#'                        \code{...}.                                        \cr
-#' \code{ccc_vals}   \tab Gets a character vector of all possible fundamental
+#' \code{i[ccc]}       \tab Evaluates whether an object is of the extended class
+#'                        represented by \code{[ccc]}.                       \cr
+#' \code{ccc}        \tab Gets a character vector containing all extended class
+#'                        properties of an object.                           \cr
+#' \code{iccc}       \tab Evaluates an object for a specific extended class and
+#'                        any additional properties specified in \code{...}. \cr
+#' \code{ccc_vals}   \tab Gets a character vector of all possible extended class
 #'                        type property values.                                }
 #' @param x An object.
-#' @param ccc \code{NULL} or \link[cmp_chr_scl]{complete character scalar}
+#' @param ccc \code{NULL} or \link[=cmp_chr_scl]{complete character scalar}
 #'   containing one or more values from \code{ccc_vals()} separated by pipes
 #'   and/or underscores. Combinations of extended classes can be specified by
 #'   separating them with underscores. Separating extended classes or
 #'   combinations of extended classes with pipes will result in a value of
 #'   \code{TRUE} if any of them applies to \code{x}.
-#' @param ... Additional arguments to \code{\link{meets}} containing value and
-#'   element/row/column count restrictions.
-#' @section Submitting additional arguments to \code{ccc} via \code{...}:
-#'   Allows for checking not just the ccc but whether length, number of rows,
-#'   number of columns, and element values meet flexible criteria.
-#' @return \code{ccc_vals} returns a character vector containing all valid
-#'   extended class property values. \code{ccc} returns a character scalar
-#'   or vector containing all extended class properties from
-#'   \code{ccc_vals()} applicable to \code{x}. All others return either
-#'   \code{TRUE} or \code{FALSE}.
+#' @inheritDotParams meets.
+#' @inheritSection meets. Specifying Additional Property Requirements
+#' @return \tabular{lll}{
+#'   \code{ccc_vals}              \tab   \tab A character vector.            \cr
+#'   \code{ccc}                   \tab   \tab A character scalar or vector.  \cr
+#'   \code{iccc} and \code{i[ccc]}\tab   \tab A logical scalar.                }
 #' @export
 ccc. <- function() {help("ccc.", package = "uj")}
 
-#' @describeIn ccc. Is \code{x} an array+?
+#' @rdname ccc.
 #' @export
 iarr <- function(x) {is.array(x) | is.vector(x)}
 
-#' @describeIn ccc. Is \code{x} a data.frame?
+#' @rdname ccc.
 #' @export
 idtf <- function(x) {is.data.frame(x)}
 
-#' @describeIn ccc. Is \code{x} a generic?
+#' @rdname ccc.
 #' @export
 igen <- function(x) {is.vector(x) | is.array(x) | (is.list(x) & !is.data.frame(x))}
 
-#' @describeIn ccc. Is \code{x} a matrix?
+#' @rdname ccc.
 #' @export
 imat <- function(x) {is.matrix(x)}
 
-#' @describeIn ccc. Is \code{x} a multivec?
+#' @rdname ccc.
 #' @export
 imvc <- function(x) {length(x) > 1 & (is.vector(x) | (is.array(x) & length(which(dim(x) > 1)) == 1))}
 
-#' @describeIn ccc. Is \code{x} a scalar?
+#' @rdname ccc.
 #' @export
 iscl <- function(x) {length(x) == 1 & (is.array(x) | is.vector(x))}
 
-#' @describeIn ccc. Is \code{x} a vector+?
+#' @rdname ccc.
 #' @export
 ivec <- function(x) {length(x) > 0 & (is.vector(x) | (is.array(x) & length(which(dim(x) > 1)) <= 1))}
 
-#' @describeIn ccc. Is \code{x} a vlist?
+#' @rdname ccc.
 #' @export
 ivls <- function(x) {is.list(x) & !is.data.frame(x)}
 
-#' @describeIn ccc. Get a character vector of all possible atomic extended
-#'   classes.
+#' @rdname ccc.
 #' @export
 ccc_vals <- function() {c('arr', 'dtf', 'gen', 'mat', 'mvc', 'scl', 'vec', 'vls')}
 
-#' @describeIn ccc. Gets a vector of properties from \code{ccc_vals()} that are
-#'   applicable to \code{x}.
+#' @rdname ccc.
 #' @export
-ccc <- function(x) {
-  c(if (iarr(x)) {'arr'} else {NULL}, if (idtf(x)) {'dtf'} else {NULL},
-    if (igen(x)) {'gen'} else {NULL}, if (imat(x)) {'mat'} else {NULL},
-    if (imvc(x)) {'mvc'} else {NULL}, if (iscl(x)) {'scl'} else {NULL},
-    if (ivec(x)) {'vec'} else {NULL}, if (ivls(x)) {'vls'} else {NULL})
-}
+ccc <- function(x) {c(f0(iarr(x), 'arr', NULL), f0(idtf(x), 'dtf', NULL), f0(igen(x), 'gen', NULL), f0(imat(x), 'mat', NULL), f0(imvc(x), 'mvc', NULL), f0(iscl(x), 'scl', NULL), f0(ivec(x), 'vec', NULL), f0(ivls(x), 'vls', NULL))}
 
-#' @describeIn ccc. Evaluates whether any (combination) property in \code{ccc}
-#'   is an extended class property applicable to \code{x}.
+#' @rdname ccc.
 #' @export
 iccc <- function(x, ccc, ...) {
   if (!cmp_chr_scl(ccc)) {stop("\n \u2022 [ccc] must be a non-NA character scalar.")}
   valid.ccc <- ttt_vals()
   ccc.combos <- strsplit(ccc, "|", fixed = T)[[1]]
   new.ccc <- unlist(strsplit(ccc.combos, "_", fixed = T))
-  ok.ccc <- all(new.ccc %in% valid.ccc)
-  if (!ok.ccc) {stop("\n \u2022 [ccc = '", ccc, "'] contains a value not in [sss_vals() = c(", paste0(paste0("'", sss_vals(), "'"), collapse = ", "), ")] after splitting along pipes and underscores.")}
+  if (!all(new.ccc %in% valid.ccc)) {stop("\n \u2022 [ccc = '", ccc, "'] specifies an 'extended class' property not in [uj::ccc_vals() = c(", paste0(paste0("'", ccc_vals(), "'"), collapse = ", "), ")].")}
   ippp(x, ccc, ...)
 }

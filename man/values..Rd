@@ -16,41 +16,36 @@ vget(name, err = T, gens = 1)
 vset(name, val, gens = 1)
 }
 \arguments{
-\item{name}{\link[cmp_chr_scl]{Complete character scalar} giving the name of
+\item{name}{\link[=cmp_chr_scl]{Complete character scalar} giving the name of
 an object.}
 
-\item{err}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+\item{err}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
 throw an error if the object specified by \code{name} does not exist (i.e.,
 rather than returning \code{FALSE}).}
 
-\item{gens}{\link[cmp_psw_scl]{Complete positive whole-number scalar} giving
+\item{gens}{\link[=cmp_psw_scl]{Complete positive whole-number scalar} giving
 the number of generations back in the function call stack to go.}
 
 \item{val}{A value to place into the object specified by \code{name}.}
 }
 \value{
-\code{exist} returns a logical scalar indicating whether an object
-named \code{name} exists in the environment of the calling function
-\code{gens} generations back. \code{vget} returns the value of an object
-named \code{name} in the function \code{gens} generations back. \code{vset}
-sets the value of an object named \code{name} in the function \code{gens}
-generations back to the value \code{val}.
+\tabular{ll}{
+\code{exist}   \tab A logical scalar.                                   \cr
+\code{vget}    \tab An R object                                         \cr
+\code{vset}    \tab \code{NULL} (called for its side effect).             }
 }
 \description{
-Objects in environments of calling functions
+\tabular{ll}{
+\code{exist}   \tab Checks for the existence of an object in the
+environment of the calling function \code{gens}
+generations back in the call stack.                 \cr
+\code{vget}    \tab Gets the value of an object in the environment of the
+calling function \code{gens} generations back in the
+call stack.                                         \cr
+\code{vset}    \tab Sets the value of an object in the environment of the
+calling function \code{gens} generations back in the
+call stack.                                           }
 }
-\section{Functions}{
-\itemize{
-\item \code{exist()}: Check for the existence of an object in the environment
-of a specific calling function.
-
-\item \code{vget()}: get the value of an object in the environment of a
-specific calling function.
-
-\item \code{vset()}: set the value of an object in the environment of a
-specific calling function.
-
-}}
 \examples{
 fun.a <- function() {A <- 0; fun.b()}
 fun.b <- function() {B <- 1; fun.c()}

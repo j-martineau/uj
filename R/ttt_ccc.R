@@ -1,17 +1,23 @@
 #' @name ttt_ccc.
 #' @family props
-#' @title Fundamental type plus extended class properties
-#' @description Combinations of \link[ttt]{fundamental type} and
-#'   \link[ccc]{extended class}.
-#' @param x An object.
-#' @param mmm Optional \link[cmp_chr_scl]{Complete character scalar} naming an
-#'   extended mode from \code{\link{mmm_vals}()}.
-#' @return Logical scalar.
+#' @title Fundamental Type + Extended Class Properties
+#' @description \tabular{ll}{
+#'   \code{ttt_ccc_vals}   \tab Gets a character vector of all possible
+#'                              \link[=ttt]{fundamental type} +
+#'                              \link[=ccc]{extended class} properties.      \cr
+#'   \code{[ttt]_[ccc]}    \tab Evaluates whether \code{x} is of the
+#'                              \link[=ttt]{fundamental type} represented by the
+#'                              placeholder \code{[ttt]} and of the
+#'                              \link[=ccc]{extended class} represented by the
+#'                              placeholder \code{[ccc]}.                      }
+#' @param x An R object.
+#' @return \tabular{ll}{
+#'   \code{ttt_ccc_vals}   \tab A character vector.                          \cr
+#'   \code{[ttt]_[ccc]}    \tab A logical scalar.                              }
 #' @export
 ttt_ccc. <- function() {help("ttt_ccc.", package = "uj")}
 
-#' @describeIn ttt_ccc. Get a character vector of all possible fundamental
-#'   type plus extended class properties.
+#' @rdname ttt_ccc.
 #' @export
 ttt_ccc_vals <- function() {
   join <- function(x) {paste0(av(x), collapse = "_")}
@@ -20,7 +26,7 @@ ttt_ccc_vals <- function() {
 
 # atm_ccc ####
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iatm]{atomic} \link[iarr]{array}?
+#' @rdname ttt_ccc.
 #' @export
 atm_arr <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
@@ -28,7 +34,7 @@ atm_arr <- function(x, mmm = NULL) {
   if (!pop_arr(x)) {F} else if (!is.atomic(x)) {F} else if (is.null(mmm)) {T} else {run("i", mmm, "(x)")}
 }
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iatm]{atomic} \link[igen]{generic}?
+#' @rdname ttt_ccc.
 #' @export
 atm_gen <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
@@ -36,7 +42,7 @@ atm_gen <- function(x, mmm = NULL) {
   if (!pop_gen(x)) {F} else if (!is.atomic(x)) {F} else if (is.null(mmm)) {T} else {run("i", mmm, "(x)")}
 }
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iatm]{atomic} \link[imat]{matrix}?
+#' @rdname ttt_ccc.
 #' @export
 atm_mat <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
@@ -44,8 +50,7 @@ atm_mat <- function(x, mmm = NULL) {
   if (!imat(x)) {F} else if (!is.atomic(x)) {F} else if (is.null(mmm)) {T} else {run("i", mmm, "(x)")}
 }
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iatm]{atomic}
-#'   \link[imvc]{multivec}?
+#' @rdname ttt_ccc.
 #' @export
 atm_mvc <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
@@ -53,7 +58,7 @@ atm_mvc <- function(x, mmm = NULL) {
   if (!imvc(x)) {F} else if (!is.atomic(x)) {F} else if (is.null(mmm)) {T} else {run("i", mmm, "(x)")}
 }
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iatm]{atomic} \link[iscl]{scalar}?
+#' @rdname ttt_ccc.
 #' @export
 atm_scl <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
@@ -61,8 +66,7 @@ atm_scl <- function(x, mmm = NULL) {
   if (!iscl(x)) {F} else if (!is.atomic(x)) {F} else if (is.null(mmm)) {T} else {run("i", mmm, "(x)")}
 }
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iatm]{atomic}
-#' \link[idtf]{data.frame}?
+#' @rdname ttt_ccc.
 #' @export
 atm_dtf <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
@@ -74,7 +78,7 @@ atm_dtf <- function(x, mmm = NULL) {
     run(code)
 }}
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iatm]{atomic} \link[ivec]{vec}?
+#' @rdname ttt_ccc.
 #' @export
 atm_vec <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
@@ -82,7 +86,7 @@ atm_vec <- function(x, mmm = NULL) {
   if (!ivec(x)) {F} else if (!is.atomic(x)) {F} else if (is.null(mmm)) {T} else {run("i", mmm, "(x)")}
 }
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iatm]{atomic} \link[ivls]{vlist}?
+#' @rdname ttt_ccc.
 #' @export
 atm_vls <- function(x, mmm = NULL) {
   vmmm <- ifelse(is.null(mmm), T, isIN(mmm, mmm_vals()))
@@ -95,150 +99,136 @@ atm_vls <- function(x, mmm = NULL) {
 
 # pop_ccc ####
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ipop]{populated} \link[iarr]{array}?
+#' @rdname ttt_ccc.
 #' @export
 pop_arr <- function(x, mmm = NULL) {length(x) > 0 & f0(inll(mmm), iarr(x), atm_arr(x, mmm))}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ipop]{populated}
-#'   \link[igen]{generic}?
+#' @rdname ttt_ccc.
 #' @export
 pop_gen <- function(x, mmm = NULL) {length(x) > 0 & f0(inll(mmm), igen(x), atm_gen(x, mmm))}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ipop]{populated}
-#'   \link[imat]{matrix}?
+#' @rdname ttt_ccc.
 #' @export
 pop_mat <- function(x, mmm = NULL) {length(x) > 0 & f0(inll(mmm), imat(x), atm_mat(x, mmm))}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ipop]{populated}
-#'   \link[imvc]{multivec}?
+#' @rdname ttt_ccc.
 #' @export
 pop_mvc <- function(x, mmm = NULL) {length(x) > 0 & f0(inll(mmm), imvc(x), atm_mvc(x, mmm))}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ipop]{populated}
-#'   \link[iscl]{scalar}?
+#' @rdname ttt_ccc.
 #' @export
 pop_scl <- function(x, mmm = NULL) {length(x) > 0 & f0(inll(mmm), iscl(x), atm_scl(x, mmm))}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ipop]{populated}
-#' \link[idtf]{data.frame}?
+#' @rdname ttt_ccc.
 #' @export
 pop_dtf <- function(x, mmm = NULL) {length(x) > 0 & f0(inll(mmm), idtf(x), atm_dtf(x, mmm))}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ipop]{populated} \link[ivec]{vec}?
+#' @rdname ttt_ccc.
 #' @export
 pop_vec <- function(x, mmm = NULL) {length(x) > 0 & f0(inll(mmm), ivec(x), atm_vec(x, mmm))}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ipop]{populated} \link[ivls]{vlist}?
+#' @rdname ttt_ccc.
 #' @export
 pop_vls <- function(x, mmm = NULL) {length(x) > 0 & f0(inll(mmm), ivls(x), atm_vls(x, mmm))}
 
 # cmp_ccc ####
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[icmp]{complete} \link[iarr]{array}?
+#' @rdname ttt_ccc.
 #' @export
 cmp_arr <- function(x) {icmp(x) & iarr(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[icmp]{complete}
-#'   \link[igen]{generic}?
+#' @rdname ttt_ccc.
 #' @export
 cmp_gen <- function(x) {icmp(x) & igen(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[icmp]{complete} \link[imat]{matrix}?
+#' @rdname ttt_ccc.
 #' @export
 cmp_mat <- function(x) {icmp(x) & imat(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[icmp]{complete}
-#'   \link[imvc]{multivec}?
+#' @rdname ttt_ccc.
 #' @export
 cmp_mvc <- function(x) {icmp(x) & imvc(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[icmp]{complete} \link[iscl]{scalar}?
+#' @rdname ttt_ccc.
 #' @export
 cmp_scl <- function(x) {icmp(x) & iscl(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[icmp]{complete}
-#' \link[idtf]{data.frame}?
+#' @rdname ttt_ccc.
 #' @export
 cmp_dtf <- function(x) {icmp(x) & idtf(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[icmp]{complete} \link[ivec]{vec}?
+#' @rdname ttt_ccc.
 #' @export
 cmp_vec <- function(x) {icmp(x) & ivec(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[icmp]{complete} \link[ivls]{vlist}?
+#' @rdname ttt_ccc.
 #' @export
 cmp_vls <- function(x) {icmp(x) & ivls(x)}
 
 # emp_ccc ####
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iemp]{empty} \link[iarr]{array}?
+#' @rdname ttt_ccc.
 #' @export
 emp_arr <- function(x) {iemp(x) & iarr(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iemp]{empty} \link[igen]{generic}?
+#' @rdname ttt_ccc.
 #' @export
 emp_gen <- function(x) {iemp(x) & igen(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iemp]{empty} \link[imat]{matrix}?
+#' @rdname ttt_ccc.
 #' @export
 emp_mat <- function(x) {iemp(x) & imat(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iemp]{empty} \link[imvc]{multivec}?
+#' @rdname ttt_ccc.
 #' @export
 emp_mvc <- function(x) {iemp(x) & imvc(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iemp]{empty} \link[iscl]{scalar}?
+#' @rdname ttt_ccc.
 #' @export
 emp_scl <- function(x) {iemp(x) & iscl(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iemp]{empty}
-#' \link[idtf]{data.frame}?
+#' @rdname ttt_ccc.
 #' @export
 emp_dtf <- function(x) {iemp(x) & idtf(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iemp]{empty} \link[ivec]{vec}?
+#' @rdname ttt_ccc.
 #' @export
 emp_vec <- function(x) {iemp(x) & ivec(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} an \link[iemp]{empty} \link[ivls]{vlist}?
+#' @rdname ttt_ccc.
 #' @export
 emp_vls <- function(x) {iemp(x) & ivls(x)}
 
 # rcr_ccc ####
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ircr]{recursive} \link[iarr]{array}?
+#' @rdname ttt_ccc.
 #' @export
 rcr_arr <- function(x) {ircr(x) & iarr(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ircr]{recursive}
-#'   \link[igen]{generic}?
+#' @rdname ttt_ccc.
 #' @export
 rcr_gen <- function(x) {ircr(x) & igen(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ircr]{recursive}
-#'   \link[imat]{matrix}?
+#' @rdname ttt_ccc.
 #' @export
 rcr_mat <- function(x) {ircr(x) & imat(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ircr]{recursive}
-#'   \link[imvc]{multivec}?
+#' @rdname ttt_ccc.
 #' @export
 rcr_mvc <- function(x) {ircr(x) & imvc(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ircr]{recursive}
-#'   \link[iscl]{scalar}?
+#' @rdname ttt_ccc.
 #' @export
 rcr_scl <- function(x) {ircr(x) & iscl(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ircr]{recursive}
-#' \link[idtf]{data.frame}?
+#' @rdname ttt_ccc.
 #' @export
 rcr_dtf <- function(x) {ircr(x) & idtf(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ircr]{recursive} \link[ivec]{vec}?
+#' @rdname ttt_ccc.
 #' @export
 rcr_vec <- function(x) {ircr(x) & ivec(x)}
 
-#' @describeIn ttt_ccc. Is \code{x} a \link[ircr]{recursive} \link[ivls]{vlist}?
+#' @rdname ttt_ccc.
 #' @export
 rcr_vls <- function(x) {ircr(x) & ivls(x)}

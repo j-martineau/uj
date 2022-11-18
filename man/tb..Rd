@@ -85,26 +85,13 @@ A tibble.
 \description{
 The following table describes wrapper functions in this group of
 functions:\tabular{ll}{
-WRAPPER       \tab FUNCTION                                             \cr
+WRAPPER       \tab TIBBLE FUNCTION                                      \cr
 \code{tb}     \tab \code{\link[tibble]{tibble}}                         \cr
 \code{trb}    \tab \code{\link[tibble]{tibble_row}}                     \cr
 \code{tbr}    \tab \code{\link[tibble]{tribble}}                        \cr
 \code{tbas}   \tab \code{\link[tibble]{as_tibble}}                      \cr
 \code{tbis}   \tab \code{\link[tibble]{is_tibble}}                        }
 }
-\section{Functions}{
-\itemize{
-\item \code{tb()}: Create a tibble.
-
-\item \code{trb()}: Create a tribble.
-
-\item \code{tbr()}: Create a row tibble.
-
-\item \code{tbas()}: Coerce an object to tibble.
-
-\item \code{tbis()}: Is an object a tibble?
-
-}}
 \section{Row names}{
 
 

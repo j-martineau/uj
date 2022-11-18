@@ -54,36 +54,37 @@ alt_ppp_concise(ppp)
 \arguments{
 \item{x}{An R object.}
 
-\item{ppp}{\link[chr_scl]{Character scalar} containing one or more values
-from \code{ppp_vals()} separated by pipes and/or underscores. Combinations
-of properties can be specified by separating them with underscores.
-Separating properties or combinations of properties with pipes will result
-in a value of \code{TRUE} if any of them applies to \code{x}.}
+\item{ppp}{\link[=cmp_chr_scl]{Complete character scalar} containing one or
+more values from \code{ppp_vals()} separated by pipes and/or underscores.
+Combinations of properties can be specified by separating them with
+underscores. Separating properties or combinations of properties with pipes
+will result in a value of \code{TRUE} if any of them applies to \code{x}.}
 
-\item{...}{Additional arguments to \code{\link{meets}} containing value and
-element/row/column count restrictions.}
+\item{...}{
+  Arguments passed on to \code{\link[=meets.]{meets.}}
+  \describe{
+    \item{\code{}}{}
+  }}
 
-\item{valid}{\link[chr_vec]{Character vec} containing all properties
-considered valid.}
+\item{valid}{\link[=cmp_chr_vec]{Complete character vec} containing all
+properties considered valid.}
 
-\item{as.dtf}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
-to return the result as a dtf with column 1 containing property values
-and column 2 containing the property families.}
+\item{as.dtf}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
+to return the result as a dtf with column 1 containing property values and
+column 2 containing the property families.}
 
-\item{print}{\link[lgl_scl]{Logical scalar} indicating whether to print the
-property definition to the console.}
+\item{print}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
+to print the property definition to the console.}
 }
 \value{
+\tabular{lll}{
 \code{ppp}, \code{ppp_all}, \code{ppp_vals}, \code{pop_funs},
-\code{ppp_from_combo}, and \code{combos_from_ppp}, return a character
-vector.
-\cr\cr
-\code{ppp_concise} and \code{alt_ppp_concise} return a character scalar.
-\cr\cr
-\code{ippp}, \code{nll_or}, \code{nas_or}, \code{is_ppp_fun}, and
-\code{is_valid_ppp} return a logical scalar.
-
-Logical scalar.
+\code{ppp_from_combo}, \code{combos_from_ppp}
+\tab   \tab A character vector.                                   \cr
+\code{ppp_concise}, \code{alt_ppp_concise}
+\tab   \tab A character scalar.                                   \cr
+All others
+\tab   \tab A logical scalar.                                       }
 }
 \description{
 This set of functions provide utilities that bring together
@@ -121,68 +122,11 @@ object with property \code{'ord'}, by an object with the combined property
 \code{'dtf_rct'}.
 \cr\cr
 How functions are related to property families and property specifications
-is explained in the sections entitled \strong{Universal Property
-Functions}, \strong{Individual Property Functions}, and \strong{Combination
-Property Functions}.
+is explained in the sections entitled \itemize{
+\item Universal Property Functions
+\item Individual Property Functions
+\item Combination Property Functions}
 }
-\section{Functions}{
-\itemize{
-\item \code{ppp()}: Get all single properties that apply to \code{x}.
-
-\item \code{ippp()}: Evaluates whether any (combination) property in \code{ppp}
-is applicable to \code{x}, subject to any additional restrictions in
-\code{...}.
-
-\item \code{ppp_all()}: Extract unique property values from \code{ppp} by splitting
-along pipes (\code{"|"}) and underscores.
-
-\item \code{ppp_vals()}: Get a vector of all possible single property values in all
-property families.
-
-\item \code{nll_or()}: Evaluate whether \code{x} is \code{NULL} or matches one
-or more property (combos) specified in \code{ppp}.
-
-\item \code{nas_or()}: Evaluate whether \code{x} is an atomic scalar \code{NA}
-or matches one or more property (combos) specified in \code{ppp}.
-
-\item \code{ppp_funs()}: List all valid property function names.
-
-\item \code{ppp_defs()}: Get a dtf with 4 columns: property family (Family),
-property value (Value), short property definition (Short), and long
-property definition (Long).
-
-\item \code{is_ppp_fun()}: Evaluate \code{x} to see if it the name of a property
-function.
-
-\item \code{is_valid_ppp()}: Evaluate whether \code{ppp} is a character scalar of
-values from \code{ppp_vals} separated by pipes ('|') and/or underscores.
-Always returns either \code{TRUE} or \code{FALSE}.
-
-\item \code{ppp_from_combo()}: Extract each single property value from a single combination
-property by splitting along underscores.
-
-\item \code{combos_from_ppp()}: Extract each property combination from \code{ppp} by
-splitting along pipes (\code{"|"}).
-
-\item \code{ppp_verbose()}: Get the data.frame from \code{ppp_defs()}. If \code{ppp}
-contains a single valid property value (no combination values), extracts
-the associated row from the data.frame and creates a character scalar with
-the property family, property value, short property definition, and long
-property definition. If \code{print = TRUE}, prints the result (either the
-data.frame itself or the extracted row) to the console, otherwise, returns
-the result.
-
-\item \code{ppp_concise()}: Take an individual or combination/conjunctive property
-specification and expand it using plain, but concise, language. To get a
-verbose definition of any individual property, use \code{ppp_verbose}.
-
-\item \code{alt_ppp_concise()}: Take one or more property combos separated by pipes (each
-combo may be a individual property) and expands each using plain, but
-concise, language, separating the multiple expansions with \code{'OR'}. To
-get a verbose definition of any individual property, use
-\code{ppp_verbose}.
-
-}}
 \section{Universal Property Functions}{
  Property functions addressing
 \emph{all} property families are the following: \tabular{ll}{
@@ -222,7 +166,7 @@ additional restrictions.                \cr
 properties of all property families.    \cr
 \code{is_ppp_fun}        \tab Evaluates whether a character scalar is the
 name of a property function (those listed
-by \code{ppp_funs}).                    \cr
+by \code{\link{ppp_funs}}).             \cr
 \code{is_valid_ppp}      \tab Evaluates a character scalar property
 specification for validity (i.e., does it
 contain only single properties, valid
@@ -250,16 +194,19 @@ specification.                            }
 single property family take the following forms where \code{xxx} is a
 placeholder for an individual property and \code{zzz} is a placeholder for
 a property family: \tabular{ll}{
-FUNCTION          \tab WHAT THE                                         \cr
-NAME FORMAT       \tab FUNCTION DOES                                    \cr
-\code{xxx}        \tab Get properties from the property family represented
-by \code{xxx} applicable to an object.           \cr
-\code{izzz}       \tab Evaluate whether an object has one or more specific
-properties from the property family represented by
-\code{zzz}, subject to any additional restrictions
-supplied in \code{...}.                          \cr
-\code{zzz_vals}   \tab Get all properties in the property family
-represented by \code{zzz}.                         }
+FUNCTION            \tab WHAT THE                                       \cr
+NAME FORMAT         \tab FUNCTION DOES                                  \cr
+\code{[fff]}        \tab Get properties from the property family
+represented by \code{[fff]} applicable to an
+object.                                        \cr
+\code{[ppp]}        \tab Evaluate whether an object has the specific
+property represented by \code{[ppp]}.          \cr
+\code{i[fff]}       \tab Evaluate whether an object has one or more
+specific properties from the property family
+represented by \code{[fff]}, subject to any
+additional restrictions supplied in \code{...}.\cr
+\code{[fff]_vals}   \tab Get all properties in the property family
+represented by \code{[fff]}.                     }
 }
 
 \section{Combination Property Functions}{
@@ -269,35 +216,37 @@ single property family take the following forms where \code{ccc},
 class, extended mode, and fundamental type property families:\tabular{ll}{
 FUNCTION      \tab WHAT THE                                             \cr
 NAME FORMAT   \tab FUNCTION DOES                                        \cr
-\code{\link[mmm_ccc.]{mmm_ccc}}
+\code{\link{[mmm]_[ccc]}}
 \tab Evaluate whether an object is of the extended mode represented by
-\code{mmm} and of the extended class represented by \code{ccc}.  \cr
-\code{\link[ttt_ccc.]{ttt_ccc}}
+\code{[mmm]} and of the extended class represented by
+\code{[ccc]}.                                                    \cr
+\code{\link{[ttt]_[ccc]}}
 \tab Evaluate whether an object is of the fundamental type represented by
-\code{ttt} and of the extended class represented by \code{ccc}.  \cr
-\code{\link[ttt_mmm.]{ttt_mmm}}
+\code{[ttt]} and of the extended class represented by
+\code{[ccc]}.                                                    \cr
+\code{\link{[ttt]_[mmm]}}
 \tab Evaluate whether an object is of the fundamental type represented by
-\code{ttt} and of the extended mode represented by \code{mmm}.   \cr
-\code{\link[cmp_ccc.]{cmp_ccc}}
+\code{[ttt]} and of the extended mode represented by
+\code{[mmm]}.                                                    \cr
+\code{\link{cmp_[ccc]}}
 \tab Evaluate whether an object is complete (non-empty, atomic,
 containing no \code{NA} values). and is of the extended class
-represented by \code{ccc}.                                       \cr
-\code{\link[cmp_mmm.]{cmp_mmm}}
+represented by \code{[ccc]}.                                     \cr
+\code{\link{cmp_[mmm]}}
 \tab Evaluate whether an object is complete (implying non-empty and
-atomic) and is of the extended mode represented by \code{mmm}.   \cr
-\code{\link[cmp_mmm_ccc.]{cmp_mmm_ccc}}
+atomic) and is of the extended mode represented by \code{[mmm]}. \cr
+\code{\link{cmp_[mmm]_[ccc]}}
 \tab Evaluate whether an object is complete (implying non-empty and
-atomic), is of the extended mode represented by \code{mmm}, and is
-of the extended class represented by \code{ccc}.                 \cr
+atomic), is of the extended mode represented by \code{[mmm]}, and is
+of the extended class represented by \code{[ccc]}.               \cr
 \code{\link{mmm_ccc_vals}}
 \tab Get all combined extended mode + extended class properties.      \cr
 \code{\link{ttt_ccc_vals}}
 \tab Get all combined fundamental type + extended class properties.   \cr
 \code{\link{ttt_mmm_vals}}
-\tab Get combined fundamental type and extended mode properties.      \cr
+\tab Get combined fundamental type + extended mode properties.        \cr
 \code{\link{cmp_ccc_vals}}
-\tab Get all combined completeness
-and extended class properties.                                   \cr
+\tab Get all combined completeness + extended class properties.       \cr
 \code{\link{cmp_mmm_vals}}
 \tab Get all combined completeness + extended mode properties.        \cr
 \code{\link{cmp_mmm_ccc_vals}}   
@@ -305,25 +254,30 @@ and extended class properties.                                   \cr
 properties.                                                        }
 }
 
-\section{Additional arguments in \code{...}}{
- Arguments in the following table
-are optional. If used, they indicate additional property
-restrictions:\tabular{ll}{
-ARGUMENT    \tab USE AND MEANING                                      \cr
-\code{n}    \tab Set of valid lengths/numbers of elements.            \cr
-\code{nr}   \tab Set of valid numbers of rows.                        \cr
-\code{nc}   \tab Set of valid numbers of columns.                     \cr
-\code{min}  \tab Minimum valid length/number of elements.             \cr
-\code{minr} \tab Minimum valid number of rows.                        \cr
-\code{minc} \tab Minimum valid number of columns.                     \cr
-\code{max}  \tab Maximum valid length/number of element.              \cr
-\code{maxr} \tab Maximum valid number of rows.                        \cr
-\code{maxc} \tab Maximum valid number of columns.                     \cr
-\code{vals} \tab Set of valid values.                                 \cr
-\code{lt}   \tab Exclusive upper bound (x <) on elements of \code{x}. \cr
-\code{le}   \tab Inclusive upper bound (x ≤) on elements of \code{x}. \cr
-\code{ge}   \tab Inclusive lower bound (x ≥) on elements of \code{x}. \cr
-\code{gt}   \tab Exclusive lower bound (x >) on elements of \code{x}.   }
+\section{Specifying Additional Property Requirements}{
+
+Specifying additional requirements in \code{...} is optional. The full set
+of recognized arguments names are defined in the following table along with
+the properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                    \cr
+\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
+\code{nr}     \tab Vec of valid numbers of rows.                        \cr
+\code{nc}     \tab Vec of valid numbers of columns.                     \cr
+\code{min}    \tab Scalar minimum valid length/number of element.       \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
+\code{minc}   \tab Scalar minimum valid number of columns.              \cr
+\code{max}    \tab Scalar maximum valid length/number of element.       \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
+\code{vals}   \tab Vec of valid values.                                 \cr
+\code{lt}     \tab Scalar value all values of \code{x} must be less
+than.                                                \cr
+\code{le}     \tab Scalar value all values of \code{x} must be less than or
+equal to.                                            \cr
+\code{ge}     \tab Scalar value all values of \code{x} must be greater than
+or equal to.                                         \cr
+\code{gt}     \tab Scalar value all values of \code{x} must be greater
+than.                                                  }
 }
 
 \seealso{

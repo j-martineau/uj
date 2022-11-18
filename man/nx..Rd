@@ -134,26 +134,27 @@ nd2p()
 nd3p()
 }
 \arguments{
-\item{x}{\link[innw]{Non-negative whole-number} object.}
+\item{x}{\link[=innw]{non-negative whole-number} object.}
 
-\item{n}{Optional \link[cmp_nnw_vec]{complete non-negative whole-number vect}
-of valid element, row, or column counts.}
+\item{n}{Optional \link[=cmp_nnw_vec]{complete non-negative whole-number
+vec} of valid element, row, or column counts.}
 
-\item{min, max}{Optional \link[cmp_nnw_scl]{complete non-negative whole-number
-scalars} giving minimum and maximum valid element, row, or column counts.}
+\item{min, max}{Optional \link[=cmp_nnw_scl]{complete non-negative
+whole-number scalars} giving minimum and maximum valid element, row, or
+column counts.}
 
-\item{eq, na, a}{\link[cmp_lgl_scl]{Complete logical scalars} indicating,
-respectively, whether all counts must be equal, whether \code{NA} values
-are allowed, and whether to atomize \code{...} to create a single atomic
-vector before processing. If \code{a} is \code{FALSE}, each argument in
-\code{...} is processed separately.}
+\item{eq, na, a}{Non-\code{NA} scalars indicating, respectively, whether all
+counts must be equal, whether \code{NA} values are allowed, and whether to
+atomize \code{...} to create a single atomic vector before processing. If
+\code{a} is \code{FALSE}, each argument in \code{...} is processed
+separately.}
 
 \item{...}{One or more arguments to be examined for counts.}
 
-\item{vals}{Optional \link[ivec]{atomic vec} indicating specific values to be
-counted.}
+\item{vals}{Optional \link[=atm_vec]{atomic vec} indicating specific values
+to be counted.}
 
-\item{lt, le, ge, gt}{Optional \link[cmp_srt_scl]{complete sortable scalars}
+\item{lt, le, ge, gt}{Optional \link[=cmp_srt_scl]{complete sortable scalars}
 indicating specific values elements of arguments in \code{...} must be less
 than, less than or equal to, greater than or equal to, or greater than,
 respectively, to be counted.}

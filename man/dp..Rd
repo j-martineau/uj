@@ -107,7 +107,7 @@ Should be a character vector of length 2.}
 output?}
 }
 \value{
-A \code{\link[is_dtf]{dtf}} / \code{\link[tibble]{tibble}}.
+A data.frame.
 }
 \description{
 The following table describes the wraps this group of functions
@@ -120,13 +120,11 @@ WRAPPER         \tab FUNCTION                                           \cr
 \code{dpn}      \tab \code{\link[dplyr]{n}}                             \cr
 \code{dpmod}    \tab \code{\link[dplyr]{mutate}}                          }
 The function \code{dpgrp} wraps  \code{\link[dplyr]{group_by}}, but with
-limited functionality. The \code{...} argument of is replaced by a
-character vector naming grouping variables in the \code{keys} argument. The
-arguments \code{.add} and \code{.drop} are not used by this wrap.
+limited functionality as explained in the \emph{Functions} section.
 }
 \section{Functions}{
 \itemize{
-\item \code{dpagg()}: Thin wrap of \code{\link[dplyr]{summarize}}.
+\item \code{dpagg()}: Thin wrap aggregation with \code{\link[dplyr]{summarize}}.
 
 \item \code{dpn()}: Thin wrap of \code{\link[dplyr]{n}}.
 

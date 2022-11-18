@@ -20,30 +20,27 @@ ncallers()
 number(s) of generations back in the function call stack to go.}
 }
 \value{
-\code{callers} and \code{caller} return a character scalar or vector.
-\code{ncallers} returns a non-negative whole-number scalar.
+\tabular{ll}{
+\code{ncallers}   \tab Integer scalar.                                  \cr
+\code{callers}    \tab Character vector.                                \cr
+\code{caller}     \tab Character scalar.                                  }
 }
 \description{
-Functions in the Call Stack
+\tabular{ll}{
+\code{ncallers}   \tab Gets the number of functions in the call stack.  \cr
+\code{callers}    \tab Gets names of all calling functions, with the
+immediate calling function in the first position
+and, if \code{gens.} is not \code{NULL}, selects the
+\code{gens.}-th element(s) from the call stack.  \cr
+\code{caller}     \tab Gets the name of the immediate calling function.   }
 }
-\section{Functions}{
-\itemize{
-\item \code{callers()}: Gets names of all calling functions, with the immediate
-calling function in the first position and, if \code{gens.} is not
-\code{NULL}, selects the \code{gens.}-th element(s) from the call stack.
-
-\item \code{caller()}: Get the immediate calling function.
-
-\item \code{ncallers()}: Get the number of calling functions in the call stack.
-
-}}
 \examples{
 fun.a <- function() {A <- 0; fun.b()}
 fun.b <- function() {B <- 1; fun.c()}
 fun.c <- function() {
-  cat("\n callstack(): " , paste0("'", callstack(), "'"))
-  cat("\n caller(1)  : '", caller(1), "'")
-  cat("\n caller(2)  : '", caller(2), "'")
+  cat("\n callers(): " , paste0("'", callers(), "'"))
+  cat("\n callers(1)  : '", callers(1), "'")
+  cat("\n callers(2)  : '", callers(2), "'")
   cat("\n exist('A', err = F, gens = 1): ", exist('A', err = F, gens = 1))
   cat("\n exist('A', err = F, gens = 2): ", exist('A', err = F, gens = 2))
   cat("\n exist('B', err = F, gens = 1): ", exist('B', err = F, gens = 1))

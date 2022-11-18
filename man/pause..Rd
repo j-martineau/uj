@@ -10,20 +10,15 @@ pause.()
 pause(x = 1e-07)
 }
 \arguments{
-\item{x}{\link[cmp_num_scl]{Complete mumeric scalar} indicating the number of
-seconds to pause.}
+\item{x}{A \link[=cmp_num_scl]{complete mumeric scalar} indicating the number
+of seconds to pause.}
 }
 \value{
-\code{NULL} (called for side effect).
+\code{NULL} (called for its side effect).
 }
 \description{
-Pause execution.
+Pause for \code{x} seconds, then resume execution.
 }
-\section{Functions}{
-\itemize{
-\item \code{pause()}: Pause for \code{x} seconds, then resume execution.
-
-}}
 \seealso{
 Other extensions: 
 \code{\link{a.}()},

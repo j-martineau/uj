@@ -1,13 +1,15 @@
 #' @name ex.
 #' @family extensions
+#' @description ex. Extract rows and/or columns of \link[=id2D]{two-dimensional
+#'   objects} or elements of \link[=ie1D]{effectively one-dimensional objects}.
 #' @title Extract rows, columns, and/or elements
 #' @param x Any valid R object.
-#' @param r \link[cmp_ind_vec]{Complete indexer vec} indicating rows to extract
-#'   from \code{x} of \link[id2D]{defined dimensionality 2}.
-#' @param c \link[cmp_ind_vec]{Complete indexer vec} indicating columns to
-#'   extract from \code{x} of \link[id2D]{defined dimensionality 2}.
-#' @param r \link[cmp_ind_vec]{Complete indexer vec} indicating elements to
-#'   extract from \code{x} of \link[id1D]{defined dimensionality 1}.
+#' @param r \link[=cmp_ind_vec]{Complete indexer vec} indicating rows to extract
+#'   from \code{x} of \link[=id2D]{defined dimensionality 2}.
+#' @param c \link[=cmp_ind_vec]{Complete indexer vec} indicating columns to
+#'   extract from \code{x} of \link[=id2D]{defined dimensionality 2}.
+#' @param r \link[=cmp_ind_vec]{Complete indexer vec} indicating elements to
+#'   extract from \code{x} of \link[=id1D]{defined dimensionality 1}.
 #' @examples
 #' Mat <- matrix(1:100, nrow = 10)
 #' Dat   <- as_tibble(Mat)
@@ -27,9 +29,8 @@
 #' @export
 ex. <- function() {help("ex.", package = "uj")}
 
-#' @describeIn ex. Extract specific rows and/or columns of matrices and
-#'   \link[idtf]{dtfs} or extract specific elements of \link[ivec]{vecs} or
-#'   \link[ivls]{vlists}.
+#' @rdname ex.
+#' @export
 ex <- function(x, r = NULL, c = NULL, e = NULL) {
   errs <- c(f0(ipop(x)                 , NULL, "\n \u2022 [x] must be populated (?ipop)."),
             f0(inll(r) | cmp_psw_vec(r), NULL, "\n \u2022 [r] must be NULL or a positive whole-number scalar/vector (?cmp_psw_scl, ?cmp_psw_vec)."),

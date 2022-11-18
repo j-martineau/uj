@@ -10,10 +10,10 @@
 #'   \code{rdxsv}    \tab \code{\link[readr]{read_delim}}                      }
 #'   File-reading functions also allow for a \code{NULL} value of file to prompt
 #'   the user to choose a file.
-#' @param file Either a character scalar or vector that resolves to a file path
-#'   or \code{NULL} (in which case the user is asked to select a file using a
-#'   system dialog box.
-#' @return A \code{\link[base]{data.frame}}.
+#' @param file Either \code{NULL} or a \link[=chr_vec]{character vector} that
+#'   resolves to a file path. When \code{file = NULL} the user is asked to
+#'   select a file using a system dialog box.
+#' @return A data.frame.
 #' @export
 rd. <- function() {help("rd.", package = "uj")}
 

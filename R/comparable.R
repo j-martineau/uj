@@ -7,13 +7,14 @@
 #'   factor with the same set of levels (in the same order).
 #' @param ... An arbitrary number of arguments to be checked for comparability
 #'   with each other.
-#' @param recycle. \link[cmp_lgl_scl]{Complete logical scalar} indicating
+#' @param recycle. \link[=cmp_lgl_scl]{Complete logical scalar} indicating
 #'   whether arguments in \code{...} must be recyclable to be comparable.
 #' @return A logical scalar.
 #' @export
 comparable. <- function() {help("comparable.")}
 
 #' @rdname comparable.
+#' @export
 comparable <- function(..., recycle. = T) {
   x <- list(...)
   n <- length(x)

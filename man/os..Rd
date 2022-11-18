@@ -3,7 +3,7 @@
 \name{os.}
 \alias{os.}
 \alias{os}
-\title{Identify the current operating system}
+\title{Identify the current operating system.}
 \usage{
 os.()
 
@@ -13,13 +13,8 @@ os()
 Character scalar
 }
 \description{
-Identify the current operating system
+Identifies the operating system as 'win', 'mac', or 'unix'.
 }
-\section{Functions}{
-\itemize{
-\item \code{os()}: Identifies the operating system as 'win', 'mac', or 'unix'.
-
-}}
 \seealso{
 Other extensions: 
 \code{\link{a.}()},

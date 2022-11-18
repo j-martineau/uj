@@ -39,19 +39,24 @@ ittt(x, ttt, ...)
 \arguments{
 \item{x}{An object.}
 
-\item{ttt}{\link[cmp_chr_scl]{Complete character scalar }containing one or
+\item{ttt}{\link[=cmp_chr_scl]{Complete character scalar }containing one or
 more values from \code{ttt_vals()} separated by pipes and/or underscores
 ("."). Combinations of fundamental types can be specified by separating
 them with underscores. Separating fundamental types or combinations of
 fundamental types with pipes will result in a value of \code{TRUE} if any
 of them applies to \code{x}.}
 
-\item{...}{Additional arguments to \code{\link{meets}} containing value and
-element/row/column count restrictions.}
+\item{...}{
+  Arguments passed on to \code{\link[=meets.]{meets.}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \value{
-\code{ttt_vals} and \code{ttt} return a character scalar or
-vector. All others return either \code{TRUE} or \code{FALSE}.
+\tabular{lll}{
+\code{ttt}                   \tab   \tab A character vector.            \cr
+\code{ttt_vals}              \tab   \tab A character vector.            \cr
+\code{ittt} and \code{i[ttt]}\tab   \tab A logical scalar.                }
 }
 \description{
 An object's fundamental type (ttt) is defined by its most
@@ -59,63 +64,55 @@ basic structural properties as described in the following table:
 \tabular{lll}{
 FUNDAMENTAL   \tab FUNDAMENTAL   \tab CHARACTERISTICS OF                \cr
 TYPE VALUE    \tab TYPE NAME     \tab QUALIFYING OBJECTS                \cr
-\code{'nll'}\tab null        \tab \code{NULL}                           \cr
-\code{'def'}\tab defined     \tab Not \code{NULL}                       \cr
-\code{'nil'}\tab nil-length  \tab Length is 0 (includes \code{NULL})    \cr
-\code{'pop'}\tab populated   \tab Length is > 0                         \cr
+\code{'nll'}\tab null        \tab \code{NULL}.                          \cr
+\code{'def'}\tab defined     \tab Not \code{NULL}.                      \cr
+\code{'nil'}\tab nil-length  \tab Length is 0 (includes \code{NULL}).   \cr
+\code{'pop'}\tab populated   \tab Length is > 0.                        \cr
 \code{'fun'}\tab function reference
 \tab Function object or character scalar
-containing a function name            \cr
-\code{'atm'}\tab atomic      \tab atomic                                \cr
-\code{'rcr'}\tab recursive   \tab List-like (\code{\link[is_dtf]{dtf}},
-lists, or objects containing an element
-that is not an atomic scalar)           }
+containing a function name.           \cr
+\code{'atm'}\tab atomic      \tab Atomic.                               \cr
+\code{'rcr'}\tab recursive   \tab List-like (data.frames, lists, or other
+objects containing an element is not an
+atomic scalar).                         }
 Functions related to fundamental type are described in the following
 table:\tabular{ll}{
-FUNCTION          \tab WHAT THE                                           \cr
-FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i***}       \tab Evaluates whether an object is of the fundamental type
-represented by \code{***}.                         \cr
+FUNCTION          \tab WHAT THE                                         \cr
+FORMAT            \tab FUNCTION DOES                                    \cr
+\code{i[ttt]}     \tab Evaluates whether an object is of the fundamental
+type represented by the placeholder \code{[ttt]}.\cr
 \code{ttt}        \tab Gets a character vector containing all fundamental
-type properties of an object.                      \cr
-\code{ittt}       \tab Evaluates an object for a specific fundamental type
-and any additional properties specified in
-\code{...}.                                        \cr
+type properties of an object.                    \cr
+\code{ittt}       \tab Evaluates an object for a fundamental type
+\code{ttt} and any additional properties specified
+in \code{...}.                                   \cr
 \code{ttt_vals}   \tab Gets a character vector of all possible fundamental
-type property values.                                }
+type property values.                              }
 }
-\section{Functions}{
-\itemize{
-\item \code{ttt()}: Get a character vector of all fundamental type properties
-applicable to \code{x}.
+\section{Specifying Additional Property Requirements}{
 
-\item \code{iatm()}: Is \code{x} atomic (regardless of length)?
-
-\item \code{idef()}: Is \code{x} defined (non-\code{NULL})?
-
-\item \code{ifun()}: Is \code{x} a function or a function name?
-
-\item \code{inil()}: Is \code{x} nil (of length 0)?
-
-\item \code{inll()}: Is \code{x} \code{NULL}
-
-\item \code{ipop()}: Is \code{x} populated (of length > 0)?
-
-\item \code{ircr()}: Is \code{x} recursive?
-
-\item \code{ttt_vals()}: Get a character vector of all possible fundamental type
-property values.
-
-\item \code{ittt()}: Determine whether \code{x} is of the fundamental type(s)
-contained in \code{ttt} subject to the additional specifications in
-\code{...}.
-
-}}
-\section{Additional Arguments in \code{...}}{
-
-Submitting additional arguments to \code{ittt} via \code{...} allows
-for checking not just the fundamental but whether length, number of rows,
-number of columns, and element values meet flexible criteria.
+Specifying additional requirements in \code{...} is optional. The full set
+of recognized arguments names are defined in the following table along with
+the properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                    \cr
+\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
+\code{nr}     \tab Vec of valid numbers of rows.                        \cr
+\code{nc}     \tab Vec of valid numbers of columns.                     \cr
+\code{min}    \tab Scalar minimum valid length/number of element.       \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
+\code{minc}   \tab Scalar minimum valid number of columns.              \cr
+\code{max}    \tab Scalar maximum valid length/number of element.       \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
+\code{vals}   \tab Vec of valid values.                                 \cr
+\code{lt}     \tab Scalar value all values of \code{x} must be less
+than.                                                \cr
+\code{le}     \tab Scalar value all values of \code{x} must be less than or
+equal to.                                            \cr
+\code{ge}     \tab Scalar value all values of \code{x} must be greater than
+or equal to.                                         \cr
+\code{gt}     \tab Scalar value all values of \code{x} must be greater
+than.                                                  }
 }
 
 \seealso{

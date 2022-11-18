@@ -15,7 +15,7 @@
 \alias{colply}
 \alias{dimply}
 \alias{vlsply}
-\title{Variations on \code{apply} functions.}
+\title{Variations on \code{apply} Functions.}
 \usage{
 ply.()
 
@@ -50,7 +50,7 @@ vlsply(x, fun, ..., proc. = NULL)
 
 \item{fun}{Function or name of a function to apply to \code{x}.}
 
-\item{dim}{\link[cmp_nnw_vec]{Complete non-negative whole-number vec} giving
+\item{dim}{\link[=cmp_nnw_vec]{Complete non-negative whole-number vec} giving
 the dimension(s) of \code{x} to apply the function \code{fun} to (\code{0}
 indicates applying to elements of an object, where for arrays, and tibbles,
 this means applying to every cell).}
@@ -116,8 +116,8 @@ processing instructions as follows: \tabular{ll}{
 NAME‑VALUE PAIR      \tab PROCESSING INSTRUCTION                        \cr
 \code{s = TRUE}      \tab link[base:simplify2array]{Simplify} the
 result.\cr
-\code{a1 = TRUE}     \tab link[a]{Atomize} \code{x} first.              \cr
-\code{a2 = TRUE}     \tab link[a]{Atomize} the result.                  \cr
+\code{a1 = TRUE}     \tab link[=a]{Atomize} \code{x} first.             \cr
+\code{a2 = TRUE}     \tab link[=a]{Atomize} the result.                 \cr
 \code{na = TRUE}     \tab Replace resulting \code{NA}s with \code{TRUE}.\cr
 \code{na = FALSE}    \tab Replace resulting \code{NA}s with
 \code{FALSE}.                                 \cr

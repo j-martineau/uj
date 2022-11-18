@@ -1,24 +1,31 @@
 #' @name xb.
 #' @family extensions
 #' @title Error-checked row and column binding
-#' @description Row and/or column binds arguments in \code{...}. Requires all
-#'   arguments in \code{...} to be \code{\link{compatible}} atomic matrices or
-#'   \link[idtf]{atomic data.frames}.
-#' @param bind \link[ch1_scl]{Onechar scalar} indicating how to bind: \code{'r'}
-#'   for row binding, \code{'c'} for column-binding, \code{NA} to identify
-#'   whether either row or column binding is successful and return whichever was
-#'   successful.
+#' @description \tabular{ll}{
+#'   \code{xb.}   \tab Column or row bind or \link[=atm_dtf]{atomic data.frames}
+#'                     in \code{...}. If \code{bind = NA}, \code{xb} attempts to
+#'                     both row and column bind arguments in \code{...}. If both
+#'                     are successful, processes an error indicating ambiguous
+#'                     dimension for binding. If neither is successful,
+#'                     processes an associated error. Otherwise, returns the
+#'                     result that was successful.                           \cr
+#'   \code{cb}    \tab Column bind an arbitrary number of atomic matrices or
+#'                     \link[=atm_dtf]{atomic data.frames}.                  \cr
+#'   \code{rb}    \tab Row bind an arbitrary number of atomic matrices or
+#'                     \link[=atm_dtf]{atomic data.frames}.                    }
+#'   Requires all arguments in \code{...} to be \code{\link{compatible}} atomic
+#'   matrices or \link[=atm_dtf]{atomic data.frames}.
+#' @param bind \link[=ch1_scl]{Onechar scalar} indicating how to bind:
+#'   \code{'r'} for row binding, \code{'c'} for column-binding, \code{NA} to
+#'   identify whether either row or column binding is successful and return
+#'   whichever was successful.
 #' @param ... Multiple \code{\link{compatible}} atomic matrices or multiple
-#'   compatible \link[idtf]{atomic data.frames}.
-#' @return An \code{\link[idtf]{atomic dtf}} or an atomic matrix.
+#'   compatible \link[=atm_dtf]{atomic data.frames}.
+#' @return An \link[=atm_dtf]{atomic data.frame} or an atomic matrix.
 #' @export
 xb. <- function() {help("xb.", package = "uj")}
 
-#' @describeIn xb. Column or row bind arguments in \code{...}. If \code{bind =
-#'   NA}, \code{xb} attempts to both row and column bind arguments in
-#'   \code{...}. If both are successful, processes an error indicating ambiguous
-#'   dimension for binding. If neither is successful, processes an associated
-#'   error. Otherwise, returns the result that was successful.
+#' @rdname xb.
 #' @export
 xb <- function(..., bind = NA) {
   ok.dots <- ...length() > 1
@@ -56,10 +63,10 @@ xb <- function(..., bind = NA) {
   }
 }
 
-#' @describeIn xb. Column bind an arbitrary number of matrices or data frames.
+#' @rdname xb.
 #' @export
 cb <- function(...) {xb(..., bind = "c")}
 
-#' @describeIn xb. Row bind an arbitrary number of matrices or data frames.
+#' @rdname xb.
 #' @export
 rb <- function(...) {xb(..., bind = "r")}

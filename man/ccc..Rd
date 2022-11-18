@@ -42,22 +42,24 @@ iccc(x, ccc, ...)
 \arguments{
 \item{x}{An object.}
 
-\item{ccc}{\code{NULL} or \link[cmp_chr_scl]{complete character scalar}
+\item{ccc}{\code{NULL} or \link[=cmp_chr_scl]{complete character scalar}
 containing one or more values from \code{ccc_vals()} separated by pipes
 and/or underscores. Combinations of extended classes can be specified by
 separating them with underscores. Separating extended classes or
 combinations of extended classes with pipes will result in a value of
 \code{TRUE} if any of them applies to \code{x}.}
 
-\item{...}{Additional arguments to \code{\link{meets}} containing value and
-element/row/column count restrictions.}
+\item{...}{
+  Arguments passed on to \code{\link[=meets.]{meets.}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \value{
-\code{ccc_vals} returns a character vector containing all valid
-extended class property values. \code{ccc} returns a character scalar
-or vector containing all extended class properties from
-\code{ccc_vals()} applicable to \code{x}. All others return either
-\code{TRUE} or \code{FALSE}.
+\tabular{lll}{
+\code{ccc_vals}              \tab   \tab A character vector.            \cr
+\code{ccc}                   \tab   \tab A character scalar or vector.  \cr
+\code{iccc} and \code{i[ccc]}\tab   \tab A logical scalar.                }
 }
 \description{
 Extended classes are not formally defined, but are dynamically
@@ -82,48 +84,39 @@ Functions related to extended are described in the following
 table:\tabular{ll}{
 FUNCTION          \tab WHAT THE                                           \cr
 FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i***}       \tab Evaluates whether an object is of the fundamental type
-represented by \code{***}.                         \cr
-\code{ccc}        \tab Gets a character vector containing all fundamental
-type properties of an object.                      \cr
-\code{iccc}       \tab Evaluates an object for a specific fundamental type
-and any additional properties specified in
-\code{...}.                                        \cr
-\code{ccc_vals}   \tab Gets a character vector of all possible fundamental
+\code{i[ccc]}       \tab Evaluates whether an object is of the extended class
+represented by \code{[ccc]}.                       \cr
+\code{ccc}        \tab Gets a character vector containing all extended class
+properties of an object.                           \cr
+\code{iccc}       \tab Evaluates an object for a specific extended class and
+any additional properties specified in \code{...}. \cr
+\code{ccc_vals}   \tab Gets a character vector of all possible extended class
 type property values.                                }
 }
-\section{Functions}{
-\itemize{
-\item \code{iarr()}: Is \code{x} an array+?
+\section{Specifying Additional Property Requirements}{
 
-\item \code{idtf()}: Is \code{x} a data.frame?
-
-\item \code{igen()}: Is \code{x} a generic?
-
-\item \code{imat()}: Is \code{x} a matrix?
-
-\item \code{imvc()}: Is \code{x} a multivec?
-
-\item \code{iscl()}: Is \code{x} a scalar?
-
-\item \code{ivec()}: Is \code{x} a vector+?
-
-\item \code{ivls()}: Is \code{x} a vlist?
-
-\item \code{ccc_vals()}: Get a character vector of all possible atomic extended
-classes.
-
-\item \code{ccc()}: Gets a vector of properties from \code{ccc_vals()} that are
-applicable to \code{x}.
-
-\item \code{iccc()}: Evaluates whether any (combination) property in \code{ccc}
-is an extended class property applicable to \code{x}.
-
-}}
-\section{Submitting additional arguments to \code{ccc} via \code{...}}{
-
-Allows for checking not just the ccc but whether length, number of rows,
-number of columns, and element values meet flexible criteria.
+Specifying additional requirements in \code{...} is optional. The full set
+of recognized arguments names are defined in the following table along with
+the properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                    \cr
+\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
+\code{nr}     \tab Vec of valid numbers of rows.                        \cr
+\code{nc}     \tab Vec of valid numbers of columns.                     \cr
+\code{min}    \tab Scalar minimum valid length/number of element.       \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
+\code{minc}   \tab Scalar minimum valid number of columns.              \cr
+\code{max}    \tab Scalar maximum valid length/number of element.       \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
+\code{vals}   \tab Vec of valid values.                                 \cr
+\code{lt}     \tab Scalar value all values of \code{x} must be less
+than.                                                \cr
+\code{le}     \tab Scalar value all values of \code{x} must be less than or
+equal to.                                            \cr
+\code{ge}     \tab Scalar value all values of \code{x} must be greater than
+or equal to.                                         \cr
+\code{gt}     \tab Scalar value all values of \code{x} must be greater
+than.                                                  }
 }
 
 \seealso{

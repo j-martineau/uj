@@ -12,7 +12,7 @@ reclass(x, cls)
 \arguments{
 \item{x}{Any object.}
 
-\item{cls}{\link[cmp_chr_vec]{Complete character vec} of classes to apply.}
+\item{cls}{\link[=cmp_chr_vec]{Complete character vec} of classes to apply.}
 }
 \value{
 An object of class \code{cls}.
@@ -20,11 +20,6 @@ An object of class \code{cls}.
 \description{
 Set object class
 }
-\section{Functions}{
-\itemize{
-\item \code{reclass()}: Sets class(es) of \code{x} to \code{cls}.
-
-}}
 \seealso{
 Other extensions: 
 \code{\link{a.}()},

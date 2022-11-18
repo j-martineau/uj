@@ -36,21 +36,25 @@ ieee(x, eee, ...)
 \arguments{
 \item{x}{An object.}
 
-\item{eee}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+\item{eee}{\link[=cmp_chr_scl]{Complete character scalar} containing one or
 more values from \code{eee_vals()} separated by pipes and/or underscores.
 Combinations of effective dimensionality properties can be specified by
 underscore-delimiting them. Pipe-delimiting effective dimensionality
 properties or combinations of effective dimensionality will result in a
 value of \code{TRUE} if any of them applies to \code{x}.}
 
-\item{...}{Additional arguments to \code{\link{meets}} containing value and
-element/row/column count restrictions.}
+\item{...}{
+  Arguments passed on to \code{\link[=meets.]{meets.}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \value{
-\code{eee_vals} and \code{eee} return a character scalar or vector of
-effective dimensionality property values. \code{eee(x)} returns \code{NaN}
-or a non-negative whole-number scalar. All others return either \code{TRUE}
-or \code{FALSE}.
+\tabular{lll}{
+\code{eee_vals} and \code{eee}\tab   \tab A character scalar or vector. \cr
+\code{neee(x)}                \tab   \tab \code{NaN} or a non-negative
+whole-number scalar.          \cr
+\code{ieee} and \code{i[eee]} \tab   \tab A logical scalar.               }
 }
 \description{
 Effective dimensionality of a non-empty object is defined as
@@ -68,69 +72,59 @@ DIMENSIONS   \tab PROPERTY VALUE   \tab PROPERTY NAME   
 \tab \code{NULL} or of length 0.              \cr
 \code{0}  \tab\code{'e0D'}\tab Effectively \code{0}-dimensional
 \tab Vector of length 1, vlist of length 1, array
-of length 1, or code{1 × 1}
-\code{\link[is_dtf]{dtf}}.               \cr
+of length 1, or code{1 × 1} data.frame   \cr
 \code{1}  \tab\code{'e1D'}\tab Effectively \code{1}-dimensional
 \tab Vector or vlist of length 2+ or
 non-empty array with multiple index
 positions in \code{1} dimension.         \cr
 \code{2}  \tab\code{'e2D'}\tab Effectively \code{2}-dimensional
-\tab A \code{\link[is_dtf]{dtf}} with
-multiple rows and multiple columns, matrix
-with multiple rows and multiple columns,
-non-empty array with multiple index
-positions in only \code{2} dimensions.   \cr
+\tab Data frames or matrices with multiple rows
+and multiple columns and non-empty arrays
+with multiple index positions in exactly
+\code{2} dimensions.                     \cr
 \code{≥ 3}\tab\code{'eHD'}\tab Effectively hyper-dimensional
 \tab Non-empty array with multiple index
 positions in at least 3 dimensions.        }
-Functions related to essential dimensionality are described in the following
+Functions related to effective dimensionality are described in the following
 table:\tabular{ll}{
 FUNCTION          \tab WHAT THE                                           \cr
 FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i***}       \tab Evaluates whether an object is of the essential
-dimensionality represented by \code{***}.          \cr
-\code{eee}        \tab Gets a character scalar containing the essential
+\code{i[eee]}     \tab Evaluates whether an object is of the effective
+dimensionality represented by \code{[eee]}.        \cr
+\code{eee}        \tab Gets a character scalar containing the effective
 dimensionality of an object.                       \cr
-\code{ieee}       \tab Evaluates an object for a specific essential
+\code{ieee}       \tab Evaluates an object for a specific effective
 dimensionality and any additional properties
 specified in \code{...}.                           \cr
-\code{eee_vals}   \tab Gets a character vector of all possible essential
+\code{neee}       \tab Gets a whole-number scalar giving the number of
+effective dimensions.                              \cr
+\code{eee_vals}   \tab Gets a character vector of all possible effective
 dimensionality property values.                      }
 }
-\section{Functions}{
-\itemize{
-\item \code{eee()}: Get the effective dimensionality property of \code{x}
+\section{Specifying Additional Property Requirements}{
 
-\item \code{neee()}: Gets the \strong{number} of effective dimensions of \code{x}
-(i.e., not a character scalar value from \code{eee_vals()}.
-
-\item \code{ie0D()}: Evaluate whether the effective dimensionality of \code{x}
-is \code{0}.
-
-\item \code{ie1D()}: Evaluate whether the effective dimensionality of \code{x}
-is \code{1}.
-
-\item \code{ie2D()}: Evaluate whether the effective dimensionality of \code{x}
-is \code{2}.
-
-\item \code{ieHD()}: Evaluate whether the effective dimensionality of \code{x}
-is \code{3+}.
-
-\item \code{ieUD()}: Evaluate whether the effective dimensionality of \code{x}
-is undefined, or \code{NaN}.
-
-\item \code{eee_vals()}: Get a character vector of all possible essential
-dimensionality property values.
-
-\item \code{ieee()}: Evaluates whether any (combination) property in
-\code{eee} is an effective dimensionality property applicable to \code{x}
-
-}}
-\section{Additional Arguments in \code{...}}{
- Submitting additional arguments
-to \code{is_eee} via \code{...} allows for checking not just the effective
-dimensionality but also whether length, number of rows, number of columns,
-and element values meet flexible criteria.
+Specifying additional requirements in \code{...} is optional. The full set
+of recognized arguments names are defined in the following table along with
+the properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                    \cr
+\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
+\code{nr}     \tab Vec of valid numbers of rows.                        \cr
+\code{nc}     \tab Vec of valid numbers of columns.                     \cr
+\code{min}    \tab Scalar minimum valid length/number of element.       \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
+\code{minc}   \tab Scalar minimum valid number of columns.              \cr
+\code{max}    \tab Scalar maximum valid length/number of element.       \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
+\code{vals}   \tab Vec of valid values.                                 \cr
+\code{lt}     \tab Scalar value all values of \code{x} must be less
+than.                                                \cr
+\code{le}     \tab Scalar value all values of \code{x} must be less than or
+equal to.                                            \cr
+\code{ge}     \tab Scalar value all values of \code{x} must be greater than
+or equal to.                                         \cr
+\code{gt}     \tab Scalar value all values of \code{x} must be greater
+than.                                                  }
 }
 
 \seealso{

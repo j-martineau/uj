@@ -2,33 +2,34 @@
 #' @family dialogs
 #' @title Dialog boxes using package \code{svDialogs}.
 #' @description Launch a dialog box
-#' @param x. \link[cmp_chr_scl]{Complete character scalar} message.
-#' @param d \link[cmp_chr_scl]{Complete character scalar} default directory.
-#' @param t \link[cmp_chr_scl]{Complete character scalar} type of dialog box
+#' @param x \link[=cmp_chr_scl]{Complete character scalar} message.
+#' @param d \link[=cmp_chr_scl]{Complete character scalar} default directory.
+#' @param t \link[=cmp_chr_scl]{Complete character scalar} type of dialog box
 #'   (valid values are \code{c('ok', 'okcancel', 'yesno', 'yesnocancel'}).
-#' @param def \link[cmp_chr_scl]{Complete character scalar} default value.
-#' @param type, \link[cmp_chr_scl]{Complete character scalar} type of directory
+#' @param def \link[=cmp_chr_scl]{Complete character scalar} default value.
+#' @param type, \link[=cmp_chr_scl]{Complete character scalar} type of directory
 #'   or document to select
 #' @param ... Objects to be atomized to create the question.
-#' @param cancel \link[cmp_chr_scl]{Complete character scalar} value to return
+#' @param cancel \link[=cmp_chr_scl]{Complete character scalar} value to return
 #'   if user clicks the \code{cancel} button The value \code{cancel = '.stop'}
 #'   is an indicator that an error should be thrown if the user clicks the
 #'   \code{cancel} button.
-#' @param opts Character vector of options to choose from.
-#' @param what \link[cmp_chr_scl]{Complete character scalar} describing type of
+#' @param opts \link[=cmp_chr_vec]{Complete character vector} of options to
+#'   choose from.
+#' @param what \link[=cmp_chr_scl]{Complete character scalar} describing type of
 #'   option being presented.
 #' @param more \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
 #'   there are more options than could be presented in a single dialog box that
 #'   still could be presented.
-#' @param all,none \link[cmp_lgl_scl]{Complete logical scalars} indicating
+#' @param all,none \link[=cmp_lgl_scl]{Complete logical scalars} indicating
 #'   whether the user should be able to select all options or none of the
 #'   options, respectively.
-#' @param per \link[cmp_psw_scl]{Complete positive whole-number scalar}
+#' @param per \link[=cmp_psw_scl]{Complete positive whole-number scalar}
 #'   indicating the maximum number of options to present in a single dialog box
 #'   interaction.
-#' @param unq \link[cmp_lgl_scl]{Complete logical scalar} indicating whether new
-#'   values must be unique.
-#' @return \link[cmp_chr_scl]{Complete character scalar}
+#' @param unq \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
+#'   new values must be unique.
+#' @return \link[=cmp_chr_scl]{Complete character scalar}
 #' @export
 dialogs. <- function() {help("dialogs.", package = "uj")}
 
@@ -42,7 +43,7 @@ msgbox <- function(..., t = "ok") {
             f0(cmp_chr_scl(t), NULL, "\n \u2022 [t] must be a character scalar in c('ok', 'okcancel', 'yesno', 'yesnocancel')."),
             f0(isIN(t, vals) , NULL, "\n \u2022 [t] must be a character scalar in c('ok', 'okcancel', 'yesno', 'yesnocancel')."))
   if (idef(errs)) {stop(errs)}
-  ans <- svDialogs::dlg_message(x, type = t)
+  ans <- svDialogs::dlg_message(msg, type = t)
   if (t == "ok") {NULL} else {ans}
 }
 

@@ -5,7 +5,7 @@
 \alias{da}
 \alias{dw}
 \alias{daw}
-\alias{dwa}
+\alias{dww}
 \alias{da0}
 \alias{da1}
 \alias{daB}
@@ -126,117 +126,118 @@
 \alias{dawTQ}
 \alias{dawTS}
 \alias{dawTT}
-\alias{dwa00}
-\alias{dwa01}
-\alias{dwa0B}
-\alias{dwa0C}
-\alias{dwa0D}
-\alias{dwa0G}
-\alias{dwa0P}
-\alias{dwa0Q}
-\alias{dwa0S}
-\alias{dwa0T}
-\alias{dwa10}
-\alias{dwa11}
-\alias{dwa1B}
-\alias{dwa1C}
-\alias{dwa1D}
-\alias{dwa1G}
-\alias{dwa1P}
-\alias{dwa1Q}
-\alias{dwa1S}
-\alias{dwa1T}
-\alias{dwaB0}
-\alias{dwaB1}
-\alias{dwaBB}
-\alias{dwaBC}
-\alias{dwaBD}
-\alias{dwaBG}
-\alias{dwaBP}
-\alias{dwaBQ}
-\alias{dwaBS}
-\alias{dwaBT}
-\alias{dwaC0}
-\alias{dwaC1}
-\alias{dwaCB}
-\alias{dwaCC}
-\alias{dwaCD}
-\alias{dwaCG}
-\alias{dwaCP}
-\alias{dwaCQ}
-\alias{dwaCS}
-\alias{dwaCT}
-\alias{dwaD0}
-\alias{dwaD1}
-\alias{dwaDB}
-\alias{dwaDC}
-\alias{dwaDD}
-\alias{dwaDG}
-\alias{dwaDP}
-\alias{dwaDQ}
-\alias{dwaDS}
-\alias{dwaDT}
-\alias{dwaG0}
-\alias{dwaG1}
-\alias{dwaGB}
-\alias{dwaGC}
-\alias{dwaGD}
-\alias{dwaGG}
-\alias{dwaGP}
-\alias{dwaGQ}
-\alias{dwaGS}
-\alias{dwaGT}
-\alias{dwaP0}
-\alias{dwaP1}
-\alias{dwaPB}
-\alias{dwaPC}
-\alias{dwaPD}
-\alias{dwaPG}
-\alias{dwaPP}
-\alias{dwaPQ}
-\alias{dwaPS}
-\alias{dwaPT}
-\alias{dwaQ0}
-\alias{dwaQ1}
-\alias{dwaQB}
-\alias{dwaQC}
-\alias{dwaQD}
-\alias{dwaQG}
-\alias{dwaQP}
-\alias{dwaQQ}
-\alias{dwaQS}
-\alias{dwaQT}
-\alias{dwaS0}
-\alias{dwaS1}
-\alias{dwaSB}
-\alias{dwaSC}
-\alias{dwaSD}
-\alias{dwaSG}
-\alias{dwaSP}
-\alias{dwaSQ}
-\alias{dwaSS}
-\alias{dwaST}
-\alias{dwaT0}
-\alias{dwaT1}
-\alias{dwaTB}
-\alias{dwaTC}
-\alias{dwaTD}
-\alias{dwaTG}
-\alias{dwaTP}
-\alias{dwaTQ}
-\alias{dwaTS}
-\alias{dwaTT}
-\title{Delimit strings}
+\alias{dww00}
+\alias{dww01}
+\alias{dww0B}
+\alias{dww0C}
+\alias{dww0D}
+\alias{dww0G}
+\alias{dww0P}
+\alias{dww0Q}
+\alias{dww0S}
+\alias{dww0T}
+\alias{dww10}
+\alias{dww11}
+\alias{dww1B}
+\alias{dww1C}
+\alias{dww1D}
+\alias{dww1G}
+\alias{dww1P}
+\alias{dww1Q}
+\alias{dww1S}
+\alias{dww1T}
+\alias{dwwB0}
+\alias{dwwB1}
+\alias{dwwBB}
+\alias{dwwBC}
+\alias{dwwBD}
+\alias{dwwBG}
+\alias{dwwBP}
+\alias{dwwBQ}
+\alias{dwwBS}
+\alias{dwwBT}
+\alias{dwwC0}
+\alias{dwwC1}
+\alias{dwwCB}
+\alias{dwwCC}
+\alias{dwwCD}
+\alias{dwwCG}
+\alias{dwwCP}
+\alias{dwwCQ}
+\alias{dwwCS}
+\alias{dwwCT}
+\alias{dwwD0}
+\alias{dwwD1}
+\alias{dwwDB}
+\alias{dwwDC}
+\alias{dwwDD}
+\alias{dwwDG}
+\alias{dwwDP}
+\alias{dwwDQ}
+\alias{dwwDS}
+\alias{dwwDT}
+\alias{dwwG0}
+\alias{dwwG1}
+\alias{dwwGB}
+\alias{dwwGC}
+\alias{dwwGD}
+\alias{dwwGG}
+\alias{dwwGP}
+\alias{dwwGQ}
+\alias{dwwGS}
+\alias{dwwGT}
+\alias{dwwP0}
+\alias{dwwP1}
+\alias{dwwPB}
+\alias{dwwPC}
+\alias{dwwPD}
+\alias{dwwPG}
+\alias{dwwPP}
+\alias{dwwPQ}
+\alias{dwwPS}
+\alias{dwwPT}
+\alias{dwwQ0}
+\alias{dwwQ1}
+\alias{dwwQB}
+\alias{dwwQC}
+\alias{dwwQD}
+\alias{dwwQG}
+\alias{dwwQP}
+\alias{dwwQQ}
+\alias{dwwQS}
+\alias{dwwQT}
+\alias{dwwS0}
+\alias{dwwS1}
+\alias{dwwSB}
+\alias{dwwSC}
+\alias{dwwSD}
+\alias{dwwSG}
+\alias{dwwSP}
+\alias{dwwSQ}
+\alias{dwwSS}
+\alias{dwwST}
+\alias{dwwT0}
+\alias{dwwT1}
+\alias{dwwTB}
+\alias{dwwTC}
+\alias{dwwTD}
+\alias{dwwTG}
+\alias{dwwTP}
+\alias{dwwTQ}
+\alias{dwwTS}
+\alias{dwwTT}
+\title{Error-Checked String Delimiting (variations on a theme of
+\code{paste}).}
 \usage{
 delim.()
 
-da(a, ...)
+da(d, ...)
 
-dw(w, ...)
+dw(d, ...)
 
-daw(a, w, ...)
+daw(d, D, ...)
 
-dwa(w, a, ...)
+dww(d, D, ...)
 
 da0(...)
 
@@ -478,216 +479,220 @@ dawTS(...)
 
 dawTT(...)
 
-dwa00(...)
+dww00(...)
 
-dwa01(...)
+dww01(...)
 
-dwa0B(...)
+dww0B(...)
 
-dwa0C(...)
+dww0C(...)
 
-dwa0D(...)
+dww0D(...)
 
-dwa0G(...)
+dww0G(...)
 
-dwa0P(...)
+dww0P(...)
 
-dwa0Q(...)
+dww0Q(...)
 
-dwa0S(...)
+dww0S(...)
 
-dwa0T(...)
+dww0T(...)
 
-dwa10(...)
+dww10(...)
 
-dwa11(...)
+dww11(...)
 
-dwa1B(...)
+dww1B(...)
 
-dwa1C(...)
+dww1C(...)
 
-dwa1D(...)
+dww1D(...)
 
-dwa1G(...)
+dww1G(...)
 
-dwa1P(...)
+dww1P(...)
 
-dwa1Q(...)
+dww1Q(...)
 
-dwa1S(...)
+dww1S(...)
 
-dwa1T(...)
+dww1T(...)
 
-dwaB0(...)
+dwwB0(...)
 
-dwaB1(...)
+dwwB1(...)
 
-dwaBB(...)
+dwwBB(...)
 
-dwaBC(...)
+dwwBC(...)
 
-dwaBD(...)
+dwwBD(...)
 
-dwaBG(...)
+dwwBG(...)
 
-dwaBP(...)
+dwwBP(...)
 
-dwaBQ(...)
+dwwBQ(...)
 
-dwaBS(...)
+dwwBS(...)
 
-dwaBT(...)
+dwwBT(...)
 
-dwaC0(...)
+dwwC0(...)
 
-dwaC1(...)
+dwwC1(...)
 
-dwaCB(...)
+dwwCB(...)
 
-dwaCC(...)
+dwwCC(...)
 
-dwaCD(...)
+dwwCD(...)
 
-dwaCG(...)
+dwwCG(...)
 
-dwaCP(...)
+dwwCP(...)
 
-dwaCQ(...)
+dwwCQ(...)
 
-dwaCS(...)
+dwwCS(...)
 
-dwaCT(...)
+dwwCT(...)
 
-dwaD0(...)
+dwwD0(...)
 
-dwaD1(...)
+dwwD1(...)
 
-dwaDB(...)
+dwwDB(...)
 
-dwaDC(...)
+dwwDC(...)
 
-dwaDD(...)
+dwwDD(...)
 
-dwaDG(...)
+dwwDG(...)
 
-dwaDP(...)
+dwwDP(...)
 
-dwaDQ(...)
+dwwDQ(...)
 
-dwaDS(...)
+dwwDS(...)
 
-dwaDT(...)
+dwwDT(...)
 
-dwaG0(...)
+dwwG0(...)
 
-dwaG1(...)
+dwwG1(...)
 
-dwaGB(...)
+dwwGB(...)
 
-dwaGC(...)
+dwwGC(...)
 
-dwaGD(...)
+dwwGD(...)
 
-dwaGG(...)
+dwwGG(...)
 
-dwaGP(...)
+dwwGP(...)
 
-dwaGQ(...)
+dwwGQ(...)
 
-dwaGS(...)
+dwwGS(...)
 
-dwaGT(...)
+dwwGT(...)
 
-dwaP0(...)
+dwwP0(...)
 
-dwaP1(...)
+dwwP1(...)
 
-dwaPB(...)
+dwwPB(...)
 
-dwaPC(...)
+dwwPC(...)
 
-dwaPD(...)
+dwwPD(...)
 
-dwaPG(...)
+dwwPG(...)
 
-dwaPP(...)
+dwwPP(...)
 
-dwaPQ(...)
+dwwPQ(...)
 
-dwaPS(...)
+dwwPS(...)
 
-dwaPT(...)
+dwwPT(...)
 
-dwaQ0(...)
+dwwQ0(...)
 
-dwaQ1(...)
+dwwQ1(...)
 
-dwaQB(...)
+dwwQB(...)
 
-dwaQC(...)
+dwwQC(...)
 
-dwaQD(...)
+dwwQD(...)
 
-dwaQG(...)
+dwwQG(...)
 
-dwaQP(...)
+dwwQP(...)
 
-dwaQQ(...)
+dwwQQ(...)
 
-dwaQS(...)
+dwwQS(...)
 
-dwaQT(...)
+dwwQT(...)
 
-dwaS0(...)
+dwwS0(...)
 
-dwaS1(...)
+dwwS1(...)
 
-dwaSB(...)
+dwwSB(...)
 
-dwaSC(...)
+dwwSC(...)
 
-dwaSD(...)
+dwwSD(...)
 
-dwaSG(...)
+dwwSG(...)
 
-dwaSP(...)
+dwwSP(...)
 
-dwaSQ(...)
+dwwSQ(...)
 
-dwaSS(...)
+dwwSS(...)
 
-dwaST(...)
+dwwST(...)
 
-dwaT0(...)
+dwwT0(...)
 
-dwaT1(...)
+dwwT1(...)
 
-dwaTB(...)
+dwwTB(...)
 
-dwaTC(...)
+dwwTC(...)
 
-dwaTD(...)
+dwwTD(...)
 
-dwaTG(...)
+dwwTG(...)
 
-dwaTP(...)
+dwwTP(...)
 
-dwaTQ(...)
+dwwTQ(...)
 
-dwaTS(...)
+dwwTS(...)
 
-dwaTT(...)
+dwwTT(...)
 }
 \arguments{
-\item{a, w}{\link[chr_scl]{Character scalar} across delimiter vs. within
-delimiter, respectively. Defaults to a blank string (i.e., \code{""}).}
+\item{d, D}{\link[=chr_scl]{Character scalar} delimiters.}
 
 \item{...}{An arbitrary number of atomic vector arguments to be delimited.
-Argument in \code{...} must be recyclable for \code{da}, \code{daw},
-\code{daA}, and \code{dawAW}.}
+Argument in \code{...} must be recyclable for functions that delimit across
+arguments in \code{...} as the first or only step (i.e., functions with
+names beginning with \code{da}).}
 }
 \value{
-a character-scalar, character vector, or list of character vectors.
+\tabular{lll}{
+\code{da}, \code{dw}, \code{da[d]}, and \code{dw[d]}
+\tab    \tab A character vector.                                   \cr
+\code{daw}, \code{dww}, \code{daw[d][D]}, and code{dww\link[=D]{d}}
+\tab    \tab A character scalar.                                     }
 }
 \description{
 Simplifies and extends \code{paste} and \code{paste0}, allowing
@@ -695,777 +700,80 @@ for 'delimiting across' and 'delimiting within' arguments in \code{...},
 and a combination of delimiting within and across arguments, in any order.
 Also offers convenience functions for specific delimiters.
 \cr\cr
-\strong{\code{da(a., ...)}}
-\cr Delimits across corresponding elements of arguments in \code{...}.
-\code{da(delim, ...)} is identical to \code{paste(..., sep = delim)}.
+\strong{\code{da(d, ...)}}
+\cr Delimits across corresponding elements of arguments in \code{...} using
+the delimiter \code{d}. Thus, \code{da("|", 1:3, 4:6)} produces
+\code{c('1|4', '2|5', '3|6')}, which is also the result of calling
+\code{paste(1:3, 4:6, sep = '|')}.
 \cr\cr
-\strong{\code{dw(w., ...)}}
-\cr Delimits within arguments in \code{...}. \code{dw(delim, ...)} is
-equivalent to calling \code{sapply(list(...), paste0, collapse = delim)}.
+\strong{\code{dw(d, ...)}}
+\cr Delimits within arguments in \code{...} using the delimiter \code{d}.
+Thus, \code{dw(":", 1:3, 4:6)} produces \code{c('1:2:3', '4:5:6')}, which
+is also the result of calling \code{sapply(list(1:3, 4:6), paste0, collapse
+  = "|"}).
 \cr\cr
-\strong{\code{daw(a., w., ...)}}
-\cr Delimits across then within. \code{daw(delim.a, delimn.w, ...)} is
-identical to \code{paste(..., sep = delim.a, collapse = delim.w)}
+\strong{\code{daw(d, D, ...)}}
+\cr Delimits across arguments in \code{...} using the first delimiter
+\code{d}, then delimits within the resulting vector using the delimiter
+\code{D}. Thus, \code{daw('|', ':', 1:3, 4:6)} produces
+\code{'1|4:2|5:3:6'}, which is also the result of calling \code{paste(1:3,
+  4:6, sep = '|', collapse = ':')}.
 \cr\cr
-\strong{\code{dwa(w., a., ...)}}
-\cr Delimits within then across. \code{dwa(delim.w, delim.a, ...)} is
-equivalent to \code{paste(sapply(list(...), paste0, collapse = delim.w),
-  sep = delim.a)}.
+\strong{\code{dww(d, D, ...)}}
+\cr Delimits within arguments in \code{...} using the delimiter \code{d},
+then delimits within the resulting vector using the delimiter \code{D}.
+Thus, \code{dww(':', '|', 1:3, 4:6)} produces \code{'1:2:3|4:5:6'}, which
+is also the result of calling \code{paste0(sapply(list(1:3, 4:6), paste0,
+  collapse = ":"), collapse = "|")}.
 \cr\cr
-\strong{Extensions}
-\cr Functions are extended for specific delimiters, signified by the
-following extension characters:\tabular{lll}{
-EXTENSION   \tab EXTENSION         \tab DELIMITER  \cr
-CHARACTER   \tab NAME              \tab INVOKED    \cr
-\code{'0'}  \tab Blank             \tab\code{""}   \cr
-\code{'1'}  \tab Space             \tab\code{" "}  \cr
-\code{'B'}  \tab Broken pipe       \tab\code{"¦"}  \cr
-\code{'C'}  \tab Colon             \tab\code{":"}  \cr
-\code{'D'}  \tab Dot               \tab\code{"."}  \cr
-\code{'G'}  \tab Grammatical comma \tab\code{", "} \cr
-\code{'P'}  \tab Pipe              \tab\code{"|"}  \cr
-\code{'Q'}  \tab (Back)-quote      \tab\code{"`"}  \cr
-\code{'S'}  \tab Simple comma      \tab\code{","}  \cr
-\code{'T'}  \tab Tilde             \tab\code{"~"}    }
-\strong{\code{daA}}
-\cr Delimits across using the extension character A.
+\strong{Delimiter-Specific Extension Functions}
+\cr Delimiter-specific functions are available for convenience for common
+delimiters and for any combination of two common delimiters. Common
+delimiters and their extension characters are shown in the following
+table:\tabular{lll}{
+EXTENSION   \tab EXTENSION             \tab DELIMITER                 \cr
+CHARACTER   \tab DESCRIPTION           \tab INVOKED                   \cr
+\code{'0'}  \tab Blank                 \tab\code{""}                  \cr
+\code{'1'}  \tab Space                 \tab\code{" "}                 \cr
+\code{'B'}  \tab Broken pipe           \tab\code{"¦"}                 \cr
+\code{'C'}  \tab Colon                 \tab\code{":"}                 \cr
+\code{'D'}  \tab Dot                   \tab\code{"."}                 \cr
+\code{'G'}  \tab Grammatical comma*    \tab\code{", "}                \cr
+\code{'P'}  \tab Pipe                  \tab\code{"|"}                 \cr
+\code{'Q'}  \tab Back quote (back tick)\tab\code{"`"}                 \cr
+\code{'S'}  \tab Simple comma^         \tab\code{","}                 \cr
+\code{'T'}  \tab Tilde                 \tab\code{"~"}                   }
+NOTE: 'Grammatical comma' vs. 'simple comma' indicates whether the function
+produces grammatical comma-separated lists vs. simple comma-separated
+values (e.g., \code{'1, 2, 3'} vs. \code{'1,2,3'}).
 \cr\cr
-\strong{\code{dwW}}
-\cr Delimits within using the extension character W.
+\strong{Extension Functions \code{da[d]}}
+\cr Delimits across arguments in \code{...} using the delimiter invoked by
+the extension character \code{[d]}. Thus, \code{daP(1:3, 4:6)} produces
+\code{c('1|4', '2|5', '3|6')}, which is also the result of calling
+\code{paste(1:3, 4:6, sep = '|')}.
 \cr\cr
-\strong{\code{dawAW}}
-\cr Delimits across using the extension character A then delimits within
-using the extension character W.
+\strong{Extension Functions \code{dw[d]}}
+\cr Delimits within arguments in \code{...} using the delimiter invoked by
+the extension character \code{[d]}. Thus, \code{dwC(1:3, 4:6)} produces
+\code{c('1:2:3', '4:5:6')}, which is also the result of calling
+\code{sapply(list(1:3, 4:6), paste0, collapse = ":")}.
 \cr\cr
-\strong{\code{dwaWA}}
-\cr Delimits within using the extension character W then delimits across
-using the extension character A.
+\strong{Extension Functions \code{daw[d][D]}}
+\cr Delimits across arguments in \code{...} using the delimiter invoked by
+the extension character \code{[d]} and then delimits within the resulting
+vector using the delimiter invoked by the extension character \code{[D]}.
+Thus, \code{dawPC(1:3, 4:6)} produces \code{'1|4:2|5:3|6'}, which is also
+the result of calling \code{paste(1:3, 4:6, sep = "|", collapse = ":")}.
+\cr\cr
+\strong{Extension Functions \code{dww[d][D]}}
+\cr Delimits within using the delimiter invoked by the extension
+character \code{[d]} and then delimits within the resulting vector using
+the delimiter invoked by the extension character \code{[D]}. Thus,
+\code{dwwCP(1:3, 4:6)} produces \code{'1:2:3|4:5:6'}, which is also the
+result of calling \code{paste0(sapply(list(1:3, 4:6), paste0, collapse =
+  ":"), collapse = "|")}.
 }
-\section{Functions}{
-\itemize{
-\item \code{da()}: Delimit across vectors in \code{...} using \code{a}
-resulting in a character vector of \code{max(lengths(list(...)))}
-\code{a}-delimited strings.
-
-\item \code{dw()}: Delimit within vectors in \code{...} using \code{w},
-resulting in a character vector of \code{\link[base]{...length()}}
-\code{w}-separated strings.
-
-\item \code{daw()}: Delimit across vectors in \code{...} using \code{a},
-then delimit within using \code{w}, resulting in a character-scalar string
-containing \code{max(lengths(list(...)))} \code{a}-delimited substrings,
-each of which contains \code{\link[base]{...length()}} \code{w}-delimited
-subsubstrings.
-
-\item \code{dwa()}: Delimit within vectors in \code{...} using \code{w},
-then delimit across using \code{a}, resulting in a character-scalar string
-containing \code{\link[base]{...length()}} \code{w}-delimited substrings,
-each of which contains \code{max(length(list(...)))} \code{a}-delimited
-subsubstrings.
-
-\item \code{da0()}: Delimit across vectors in \code{...} using blanks.
-
-\item \code{da1()}: Delimit across vectors in \code{...} using spaces.
-
-\item \code{daB()}: Delimit across vectors in \code{...} using broken-pipes.
-
-\item \code{daC()}: Delimit across vectors in \code{...} using colons.
-
-\item \code{daD()}: Delimit across vectors in \code{...} using dots/periods.
-
-\item \code{daG()}: Delimit across vectors in \code{...} using grammatical
-commas.
-
-\item \code{daP()}: Delimit across vectors in \code{...} using pipes.
-
-\item \code{daQ()}: Delimit across vectors in \code{...} using
-(back)-quotes.
-
-\item \code{daS()}: Delimit across vectors in \code{...} using simple
-commas.
-
-\item \code{daT()}: Delimit across vectors in \code{...} using tildes.
-
-\item \code{dw0()}: Delimit within vectors in \code{...} using blanks.
-
-\item \code{dw1()}: Delimit within vectors in \code{...} using spaces.
-
-\item \code{dwB()}: Delimit within vectors in \code{...} using broken-pipes.
-
-\item \code{dwC()}: Delimit within vectors in \code{...} using colons.
-
-\item \code{dwD()}: Delimit within vectors in \code{...} using dots/periods.
-
-\item \code{dwG()}: Delimit within vectors in \code{...} using grammatical
-commas.
-
-\item \code{dwP()}: Delimit within vectors in \code{...} using pipes.
-
-\item \code{dwQ()}: Delimit within vectors in \code{...} using
-(back)-quotes.
-
-\item \code{dwS()}: Delimit within vectors in \code{...} using simple
-commas.
-
-\item \code{dwT()}: Delimit within vectors in \code{...} using tildes.
-
-\item \code{daw00()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{blanks}.
-
-\item \code{daw01()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{blanks} then \emph{spaces}, respectively.
-
-\item \code{daw0B()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{blanks} then \emph{broken-pipes}, respectively.
-
-\item \code{daw0C()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{blanks} then \emph{colons}, respectively.
-
-\item \code{daw0D()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{blanks} then \emph{dots/periods}, respectively.
-
-\item \code{daw0G()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{blanks} then \emph{grammatical commas},
-respectively.
-
-\item \code{daw0P()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{blanks} then \emph{pipes}, respectively.
-
-\item \code{daw0Q()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{blanks} then \emph{(back)-quotes}, respectively.
-
-\item \code{daw0S()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{blanks} then \emph{simple commas}, respectively.
-
-\item \code{daw0T()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{blanks} then \emph{tildes}, respectively.
-
-\item \code{daw10()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{spaces} then \emph{blanks}, respectively.
-
-\item \code{daw11()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{spaces}.
-
-\item \code{daw1B()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{spaces} then \emph{broken-pipes}, respectively.
-
-\item \code{daw1C()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{spaces} then \emph{colons}, respectively.
-
-\item \code{daw1D()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{spaces} then \emph{dots/periods}, respectively.
-
-\item \code{daw1G()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{spaces} then \emph{grammatical commas},
-respectively.
-
-\item \code{daw1P()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{spaces} then \emph{pipes}, respectively.
-
-\item \code{daw1Q()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{spaces} then \emph{(back)-quotes}, respectively.
-
-\item \code{daw1S()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{spaces} then \emph{simple commas}, respectively.
-
-\item \code{daw1T()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{spaces} then \emph{tildes}, respectively.
-
-\item \code{dawB0()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{broken-pipes} then \emph{blanks}, respectively.
-
-\item \code{dawB1()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{broken-pipes} then \emph{spaces}, respectively.
-
-\item \code{dawBB()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{broken-pipes}.
-
-\item \code{dawBC()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{broken-pipes} then \emph{colons}, respectively.
-
-\item \code{dawBD()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{broken-pipes} then \emph{dots/periods},
-respectively.
-
-\item \code{dawBG()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{broken-pipes} then \emph{grammatical commas},
-respectively.
-
-\item \code{dawBP()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{broken-pipes} then \emph{pipes}, respectively.
-
-\item \code{dawBQ()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{broken-pipes} then \emph{(back)-quotes},
-respectively.
-
-\item \code{dawBS()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{broken-pipes} then \emph{simple commas},
-respectively.
-
-\item \code{dawBT()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{broken-pipes} then \emph{tildes}, respectively.
-
-\item \code{dawC0()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{colons} then \emph{blanks}, respectively.
-
-\item \code{dawC1()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{colons} then \emph{spaces}, respectively.
-
-\item \code{dawCB()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{colons} then \emph{broken-pipes}, respectively.
-
-\item \code{dawCC()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{colons}.
-
-\item \code{dawCD()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{colons} then \emph{dots/periods}, respectively.
-
-\item \code{dawCG()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{colons} then \emph{grammatical commas},
-respectively.
-
-\item \code{dawCP()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{colons} then \emph{pipes}, respectively.
-
-\item \code{dawCQ()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{colons} then \emph{(back)-quotes}, respectively.
-
-\item \code{dawCS()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{colons} then \emph{simple commas}, respectively.
-
-\item \code{dawCT()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{colons} then \emph{tildes}, respectively.
-
-\item \code{dawD0()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{dots/periods} then \emph{blanks}, respectively.
-
-\item \code{dawD1()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{dots/periods} then \emph{spaces}, respectively.
-
-\item \code{dawDB()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{dots/periods} then \emph{broken-pipes},
-respectively.
-
-\item \code{dawDC()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{dots/periods} then \emph{colons}, respectively.
-
-\item \code{dawDD()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{dots/periods}.
-
-\item \code{dawDG()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{dots/periods} then \emph{grammatical commas},
-respectively.
-
-\item \code{dawDP()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{dots/periods} then \emph{pipes}, respectively.
-
-\item \code{dawDQ()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{dots/periods} then \emph{(back)-quotes},
-respectively.
-
-\item \code{dawDS()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{dots/periods} then \emph{simple commas},
-respectively.
-
-\item \code{dawDT()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{dots/periods} then \emph{tildes}, respectively.
-
-\item \code{dawG0()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{grammatical commas} then \emph{blanks},
-respectively.
-
-\item \code{dawG1()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{grammatical commas} then \emph{spaces},
-respectively.
-
-\item \code{dawGB()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{grammatical commas} then \emph{broken-pipes},
-respectively.
-
-\item \code{dawGC()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{grammatical commas} then \emph{colons},
-respectively.
-
-\item \code{dawGD()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{grammatical commas} then \emph{dots/periods},
-respectively.
-
-\item \code{dawGG()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{grammatical commas}.
-
-\item \code{dawGP()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{grammatical commas} then \emph{pipes}, respectively.
-
-\item \code{dawGQ()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{grammatical commas} then \emph{(back)-quotes},
-respectively.
-
-\item \code{dawGS()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{grammatical commas} then \emph{simple commas},
-respectively.
-
-\item \code{dawGT()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{grammatical commas} then \emph{tildes},
-respectively.
-
-\item \code{dawP0()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{pipes} then \emph{blanks}, respectively.
-
-\item \code{dawP1()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{pipes} then \emph{spaces}, respectively.
-
-\item \code{dawPB()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{pipes} then \emph{broken-pipes}, respectively.
-
-\item \code{dawPC()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{pipes} then \emph{colons}, respectively.
-
-\item \code{dawPD()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{pipes} then \emph{dots/periods}, respectively.
-
-\item \code{dawPG()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{pipes} then \emph{grammatical commas}, respectively.
-
-\item \code{dawPP()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{pipes}.
-
-\item \code{dawPQ()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{pipes} then \emph{(back)-quotes}, respectively.
-
-\item \code{dawPS()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{pipes} then \emph{simple commas}, respectively.
-
-\item \code{dawPT()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{pipes} then \emph{tildes}, respectively.
-
-\item \code{dawQ0()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{blanks}, respectively.
-
-\item \code{dawQ1()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{spaces}, respectively.
-
-\item \code{dawQB()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{broken-pipes},
-respectively.
-
-\item \code{dawQC()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{colons}, respectively.
-
-\item \code{dawQD()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{dots/periods},
-respectively.
-
-\item \code{dawQG()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{grammatical commas},
-respectively.
-
-\item \code{dawQP()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{pipes}, respectively.
-
-\item \code{dawQQ()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{(back)-quotes}.
-
-\item \code{dawQS()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{simple commas},
-respectively.
-
-\item \code{dawQT()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{tildes}, respectively.
-
-\item \code{dawS0()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{simple commas} then \emph{blanks}, respectively.
-
-\item \code{dawS1()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{simple commas} then \emph{spaces}, respectively.
-
-\item \code{dawSB()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{simple commas} then \emph{broken-pipes},
-respectively.
-
-\item \code{dawSC()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{simple commas} then \emph{colons}, respectively.
-
-\item \code{dawSD()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{simple commas} then \emph{dots/periods},
-respectively.
-
-\item \code{dawSG()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{simple commas} then \emph{grammatical commas},
-respectively.
-
-\item \code{dawSP()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{simple commas} then \emph{pipes}, respectively.
-
-\item \code{dawSQ()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{simple commas} then \emph{(back)-quotes},
-respectively.
-
-\item \code{dawSS()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{simple commas}.
-
-\item \code{dawST()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{simple commas} then \emph{tildes}, respectively.
-
-\item \code{dawT0()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{tildes} then \emph{blanks}, respectively.
-
-\item \code{dawT1()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{tildes} then \emph{spaces}, respectively.
-
-\item \code{dawTB()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{tildes} then \emph{broken-pipes}, respectively.
-
-\item \code{dawTC()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{tildes} then \emph{colons}, respectively.
-
-\item \code{dawTD()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{tildes} then \emph{dots/periods}, respectively.
-
-\item \code{dawTG()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{tildes} then \emph{grammatical commas},
-respectively.
-
-\item \code{dawTP()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{tildes} then \emph{pipes}, respectively.
-
-\item \code{dawTQ()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{tildes} then \emph{(back)-quotes}, respectively.
-
-\item \code{dawTS()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{tildes} then \emph{simple commas}, respectively.
-
-\item \code{dawTT()}: Delimit \emph{across} then \emph{within} vectors in
-\code{...} using \emph{tildes}.
-
-\item \code{dwa00()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{blanks}.
-
-\item \code{dwa01()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{blanks} then \emph{spaces}, respectively.
-
-\item \code{dwa0B()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{blanks} then \emph{broken-pipes}, respectively.
-
-\item \code{dwa0C()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{blanks} then \emph{colons}, respectively.
-
-\item \code{dwa0D()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{blanks} then \emph{dots/periods}, respectively.
-
-\item \code{dwa0G()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{blanks} then \emph{grammatical commas},
-respectively.
-
-\item \code{dwa0P()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{blanks} then \emph{pipes}, respectively.
-
-\item \code{dwa0Q()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{blanks} then \emph{(back)-quotes}, respectively.
-
-\item \code{dwa0S()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{blanks} then \emph{simple commas}, respectively.
-
-\item \code{dwa0T()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{blanks} then \emph{tildes}, respectively.
-
-\item \code{dwa10()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{spaces} then \emph{blanks}, respectively.
-
-\item \code{dwa11()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{spaces}.
-
-\item \code{dwa1B()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{spaces} then \emph{broken-pipes}, respectively.
-
-\item \code{dwa1C()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{spaces} then \emph{colons}, respectively.
-
-\item \code{dwa1D()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{spaces} then \emph{dots/periods}, respectively.
-
-\item \code{dwa1G()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{spaces} then \emph{grammatical commas},
-respectively.
-
-\item \code{dwa1P()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{spaces} then \emph{pipes}, respectively.
-
-\item \code{dwa1Q()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{spaces} then \emph{(back)-quotes}, respectively.
-
-\item \code{dwa1S()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{spaces} then \emph{simple commas}, respectively.
-
-\item \code{dwa1T()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{spaces} then \emph{tildes}, respectively.
-
-\item \code{dwaB0()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{broken-pipes} then \emph{blanks}, respectively.
-
-\item \code{dwaB1()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{broken-pipes} then \emph{spaces}, respectively.
-
-\item \code{dwaBB()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{broken-pipes}.
-
-\item \code{dwaBC()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{broken-pipes} then \emph{colons}, respectively.
-
-\item \code{dwaBD()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{broken-pipes} then \emph{dots/periods},
-respectively.
-
-\item \code{dwaBG()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{broken-pipes} then \emph{grammatical commas},
-respectively.
-
-\item \code{dwaBP()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{broken-pipes} then \emph{pipes}, respectively.
-
-\item \code{dwaBQ()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{broken-pipes} then \emph{(back)-quotes},
-respectively.
-
-\item \code{dwaBS()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{broken-pipes} then \emph{simple commas},
-respectively.
-
-\item \code{dwaBT()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{broken-pipes} then \emph{tildes}, respectively.
-
-\item \code{dwaC0()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{colons} then \emph{blanks}, respectively.
-
-\item \code{dwaC1()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{colons} then \emph{spaces}, respectively.
-
-\item \code{dwaCB()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{colons} then \emph{broken-pipes}, respectively.
-
-\item \code{dwaCC()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{colons}.
-
-\item \code{dwaCD()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{colons} then \emph{dots/periods}, respectively.
-
-\item \code{dwaCG()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{colons} then \emph{grammatical commas},
-respectively.
-
-\item \code{dwaCP()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{colons} then \emph{pipes}, respectively.
-
-\item \code{dwaCQ()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{colons} then \emph{(back)-quotes}, respectively.
-
-\item \code{dwaCS()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{colons} then \emph{simple commas}, respectively.
-
-\item \code{dwaCT()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{colons} then \emph{tildes}, respectively.
-
-\item \code{dwaD0()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{dots/periods} then \emph{blanks}, respectively.
-
-\item \code{dwaD1()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{dots/periods} then \emph{spaces}, respectively.
-
-\item \code{dwaDB()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{dots/periods} then \emph{broken-pipes},
-respectively.
-
-\item \code{dwaDC()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{dots/periods} then \emph{colons}, respectively.
-
-\item \code{dwaDD()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{dots/periods}.
-
-\item \code{dwaDG()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{dots/periods} then \emph{grammatical commas},
-respectively.
-
-\item \code{dwaDP()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{dots/periods} then \emph{pipes}, respectively.
-
-\item \code{dwaDQ()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{dots/periods} then \emph{(back)-quotes},
-respectively.
-
-\item \code{dwaDS()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{dots/periods} then \emph{simple commas},
-respectively.
-
-\item \code{dwaDT()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{dots/periods} then \emph{tildes}, respectively.
-
-\item \code{dwaG0()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{grammatical commas} then \emph{blanks},
-respectively.
-
-\item \code{dwaG1()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{grammatical commas} then \emph{spaces},
-respectively.
-
-\item \code{dwaGB()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{grammatical commas} then \emph{broken-pipes},
-respectively.
-
-\item \code{dwaGC()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{grammatical commas} then \emph{colons},
-respectively.
-
-\item \code{dwaGD()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{grammatical commas} then \emph{dots/periods},
-respectively.
-
-\item \code{dwaGG()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{grammatical commas}.
-
-\item \code{dwaGP()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{grammatical commas} then \emph{pipes}, respectively.
-
-\item \code{dwaGQ()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{grammatical commas} then \emph{(back)-quotes},
-respectively.
-
-\item \code{dwaGS()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{grammatical commas} then \emph{simple commas},
-respectively.
-
-\item \code{dwaGT()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{grammatical commas} then \emph{tildes},
-respectively.
-
-\item \code{dwaP0()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{pipes} then \emph{blanks}, respectively.
-
-\item \code{dwaP1()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{pipes} then \emph{spaces}, respectively.
-
-\item \code{dwaPB()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{pipes} then \emph{broken-pipes}, respectively.
-
-\item \code{dwaPC()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{pipes} then \emph{colons}, respectively.
-
-\item \code{dwaPD()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{pipes} then \emph{dots/periods}, respectively.
-
-\item \code{dwaPG()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{pipes} then \emph{grammatical commas}, respectively.
-
-\item \code{dwaPP()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{pipes}.
-
-\item \code{dwaPQ()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{pipes} then \emph{(back)-quotes}, respectively.
-
-\item \code{dwaPS()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{pipes} then \emph{simple commas}, respectively.
-
-\item \code{dwaPT()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{pipes} then \emph{tildes}, respectively.
-
-\item \code{dwaQ0()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{blanks}, respectively.
-
-\item \code{dwaQ1()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{spaces}, respectively.
-
-\item \code{dwaQB()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{broken-pipes},
-respectively.
-
-\item \code{dwaQC()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{colons}, respectively.
-
-\item \code{dwaQD()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{dots/periods},
-respectively.
-
-\item \code{dwaQG()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{grammatical commas},
-respectively.
-
-\item \code{dwaQP()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{pipes}, respectively.
-
-\item \code{dwaQQ()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{(back)-quotes}.
-
-\item \code{dwaQS()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{simple commas},
-respectively.
-
-\item \code{dwaQT()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{(back)-quotes} then \emph{tildes}, respectively.
-
-\item \code{dwaS0()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{simple commas} then \emph{blanks}, respectively.
-
-\item \code{dwaS1()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{simple commas} then \emph{spaces}, respectively.
-
-\item \code{dwaSB()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{simple commas} then \emph{broken-pipes},
-respectively.
-
-\item \code{dwaSC()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{simple commas} then \emph{colons}, respectively.
-
-\item \code{dwaSD()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{simple commas} then \emph{dots/periods},
-respectively.
-
-\item \code{dwaSG()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{simple commas} then \emph{grammatical commas},
-respectively.
-
-\item \code{dwaSP()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{simple commas} then \emph{pipes}, respectively.
-
-\item \code{dwaSQ()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{simple commas} then \emph{(back)-quotes},
-respectively.
-
-\item \code{dwaSS()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{simple commas}.
-
-\item \code{dwaST()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{simple commas} then \emph{tildes}, respectively.
-
-\item \code{dwaT0()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{tildes} then \emph{blanks}, respectively.
-
-\item \code{dwaT1()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{tildes} then \emph{spaces}, respectively.
-
-\item \code{dwaTB()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{tildes} then \emph{broken-pipes}, respectively.
-
-\item \code{dwaTC()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{tildes} then \emph{colons}, respectively.
-
-\item \code{dwaTD()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{tildes} then \emph{dots/periods}, respectively.
-
-\item \code{dwaTG()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{tildes} then \emph{grammatical commas},
-respectively.
-
-\item \code{dwaTP()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{tildes} then \emph{pipes}, respectively.
-
-\item \code{dwaTQ()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{tildes} then \emph{(back)-quotes}, respectively.
-
-\item \code{dwaTS()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{tildes} then \emph{simple commas}, respectively.
-
-\item \code{dwaTT()}: Delimit \emph{within} then \emph{across} vectors in
-\code{...} using \emph{tildes}.
-
-}}
 \seealso{
 Other strings: 
 \code{\link{blank.}()},
@@ -1480,7 +788,6 @@ Other strings:
 \code{\link{spacing.}()},
 \code{\link{ss.}()},
 \code{\link{tocase.}()},
-\code{\link{weave.}()},
-\code{\link{xpr.}()}
+\code{\link{weave.}()}
 }
 \concept{strings}

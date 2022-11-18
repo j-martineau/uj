@@ -4,45 +4,84 @@
 \alias{pgrid.}
 \alias{pgrid}
 \alias{pgrid0}
+\alias{pgrid1}
+\alias{pgridn}
+\alias{pgridx}
 \title{\code{expand.grid} for \code{paste} and \code{paste0}}
 \usage{
 pgrid.()
 
-pgrid(..., p. = " ", ch. = F, blank. = F, na.err. = T)
+pgrid(p, ..., ch = F, crossed = F, na.err = T)
 
-pgrid0(..., ch. = F, blank. = F, na.err. = T)
+pgrid0(..., ch = F, crossed = F, na.err = T)
+
+pgrid1(..., ch = F, crossed = F, na.err = T)
+
+pgridn(p, ..., ch = F, na.err = T)
+
+pgridx(p, ..., ch = F, na.err = T)
 }
 \arguments{
-\item{...}{Non-empty atomic objects.}
-
-\item{p.}{\link[cmp_chr_scl]{Complete character scalar} to use as the
+\item{p}{\link[=cmp_chr_scl]{Complete character scalar} to use as the
 'paste'.}
 
-\item{ch., blank., na.err.}{\link[cmp_lgl_scl]{Complete logical scalars}
-indicating, respectively, whether to split arguments in \code{...} into
-constituent characters after conversion to mode 'character', whether to add
-a blank string element to each argument in \code{...}, and whether to throw
-an error if an argument in \code{...} contains an \code{NA} value.}
+\item{...}{Non-empty atomic objects.}
+
+\item{ch, na.err}{Non-\code{NA} logical scalars indicating, respectively,
+whether to split each arguments in \code{...} into its constituent
+characters after conversion to mode 'character' and whether to throw an
+error if an argument in \code{...} contains an \code{NA} value.}
+
+\item{crossed}{A non-\code{NA} logical scalar indicating whether to
+construct the result to look like a fully-crossed model. See \emph{The
+\code{crossed} Argument} section for details.}
 }
 \value{
 A character vector.
 }
 \description{
-\code{expand.grid} for \code{paste} and \code{paste0}
+\tabular{ll}{
+\code{pgrid}    \tab Converts the \code{n} arguments in \code{...} to
+character (with additional optional pre-processing) and
+create a character vector with each element consisting
+of sub-strings from across arguments in \code{...}
+pasted together using the 'paste' \code{p}. See the
+\emph{Value} section for how the value of \code{crossed}
+affects the results.                                 \cr
+\code{pgrid0}   \tab Calls \code{pgrid} with \code{p = ""} (blank string).\cr
+\code{pgrid1}   \tab Calls \code{pgrid} with \code{p = " "} (space).      \cr
+\code{pgridn}   \tab Calls \code{pgrid} with \code{crossed = FALSE} so as to
+produce only \code{n}-way combinations from across the
+\code{n} arguments in \code{...}.                    \cr
+\code{pgridx}   \tab Calls \code{pgrid} with \code{crossed = TRUE} so as to
+produce all possible \code{1}-way, \code{2}-way, ...,
+\code{N}-way combinations from across the arguments in
+\code{...} (i.e. fully-crossed combinations).          }
 }
-\section{Functions}{
-\itemize{
-\item \code{pgrid()}: Convert arguments in \code{...} to character, separating
-them into their constituent characters (if \code{ch = T}), add a blank
-string (if \code{add.blank = T}), and create a character vector containing
-all possible combinations of elements in \code{...} pasted together using
-the 'paste' \code{p}. The first part of the character scalar in each
-element of the result is from \code{...1}, the second from \code{..2}, and
-so on.
+\section{The \code{crossed} Argument}{
+ The following console excerpt shows
+the effect of the value of \code{crossed}:
 
-\item \code{pgrid0()}: Call \code{pgrid} with \code{p. = ""} (a blank string).
+\if{html}{\out{<div class="sourceCode">}}\preformatted{> x <- c("A", "B", "C")
+> y <- c(1, 2)
+> z <- c("a", "b")
+> p <- "."
+> list(n = sort(pgrid(p, x, y, z, crossed = FALSE)),
+       y = sort(pgrid(p, x, y, z, crossed = TRUE )))
+$n
+[1] "A.1.a" "A.1.b" "A.2.a" "A.2.b" "B.1.a" "B.1.b"
+[7] "B.2.a" "B.2.b" "C.1.a" "C.1.b" "C.2.a" "C.2.b"
 
-}}
+$y
+ [1] "1"     "1.a"   "1.b"   "2"     "2.a"   "2.b"
+ [7] "a"     "A"     "A.1"   "A.1.a" "A.1.b" "A.2"
+[13] "A.2.a" "A.2.b" "A.a"   "A.b"   "b"     "B"
+[19] "B.1"   "B.1.a" "B.1.b" "B.2"   "B.2.a" "B.2.b"
+[25] "B.a"   "B.b"   "C"     "C.1"   "C.1.a" "C.1.b"
+[31] "C.2"   "C.2.a" "C.2.b" "C.a"   "C.b"
+}\if{html}{\out{</div>}}
+}
+
 \seealso{
 Other strings: 
 \code{\link{blank.}()},
@@ -57,7 +96,6 @@ Other strings:
 \code{\link{spacing.}()},
 \code{\link{ss.}()},
 \code{\link{tocase.}()},
-\code{\link{weave.}()},
-\code{\link{xpr.}()}
+\code{\link{weave.}()}
 }
 \concept{strings}

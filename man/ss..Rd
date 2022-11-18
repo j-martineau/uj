@@ -43,39 +43,39 @@ uch(..., trm = T, sqz = T, n = NULL)
 sstb(x, d, name = "string", parts = "part")
 }
 \arguments{
-\item{d}{\link[cmp_chr_vec]{Complete character vec} delimiter or
-delimiters to use in splitting strings.}
+\item{d}{\link[=cmp_chr_vec]{Complete character vec} delimiter or delimiters
+to use in splitting strings.}
 
-\item{...}{An arbitrary number of objects to be \link[a]{atomized}
-before splitting.}
+\item{...}{An arbitrary number of objects to be \link[=av]{atomized} before
+splitting.}
 
-\item{trm}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+\item{trm}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
 trim white space from each side of each element of the result.}
 
-\item{sqz}{link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+\item{sqz}{link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
 squeeze the result by removing either empty strings (for \code{ss}
 functions) or characters that are neither letters, digits, nor spaces (for
 \code{ch}).}
 
-\item{u}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether to
+\item{u}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
 reduce the result to unique values.}
 
-\item{n}{An optional \link[cmp_psw_scl]{complete positive-valued whole-number
+\item{n}{An optional \link[=cmp_psw_scl]{complete positive whole-number
 scalar} specifying an element to be extracted from the result.}
 
-\item{x}{\link[chr_vec]{character vec} of
-string(s) to be split.}
+\item{x}{\link[=chr_vec]{character vec} of string(s) to be split.}
 
-\item{name}{\link[cmp_scl_scl]{Complete character scalar} name of the
+\item{name}{\link[=cmp_scl_scl]{Complete character scalar} name of the
 variable to hold the original strings.}
 
-\item{part}{\link[cmp_chr_vec]{Complete character vec}
-with as many elements as each string will be split into for naming
-variables containing a part of each string.}
+\item{part}{\link[=cmp_chr_vec]{Complete character vec} with as many elements
+as each string will be split into for naming variables containing a part of
+each string.}
 }
 \value{
-Either a \link[chr_vec]{character vector}, a \link{chr_vls}{character
-  vlist}, or a \link[chr_dtf]{character dtf}.
+Either a \link[=chr_vec]{character vector}, a
+\link[=chr_vls]{character vlist}, or a \link[=chr_dtf]{character
+data.frame}.
 }
 \description{
 \strong{\code{ss}} splits strings using the delimiter(s) in
@@ -162,7 +162,6 @@ Other strings:
 \code{\link{rev_str.}()},
 \code{\link{spacing.}()},
 \code{\link{tocase.}()},
-\code{\link{weave.}()},
-\code{\link{xpr.}()}
+\code{\link{weave.}()}
 }
 \concept{strings}

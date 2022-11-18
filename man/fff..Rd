@@ -42,24 +42,28 @@ ifff(x, fff, ...)
 \arguments{
 \item{x}{An object.}
 
-\item{fff}{\link[cmp_chr_scl]{Complete character scalar} containing one or
+\item{fff}{\link[=cmp_chr_scl]{Complete character scalar} containing one or
 more values from \code{fff_vals()} separated by pipes and/or underscores.
 Combinations of forms can be specified by separating them with underscores.
 Separating forms or combinations of forms with pipes will result in a value
 of \code{TRUE} if any of them applies to \code{x}.}
 
-\item{...}{Additional arguments to \code{\link{meets}} containing value and
-element/row/column count restrictions.}
+\item{...}{
+  Arguments passed on to \code{\link[=meets.]{meets.}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \value{
-\code{fff_vals} and \code{fff} return a character vector. All
-others return either \code{TRUE} or \code{FALSE}.
+\tabular{lll}{
+\code{fff_vals} and \code{fff}\tab  \tab A character vector.            \cr
+\code{ifff} and \code{i[fff]} \tab  \tab A logical scalar.                }
 }
 \description{
 Gets a vector of form properties from \code{fff_vals()} that are
 applicable to \code{x}. An object's form properties have to do with the
-number of \link[ddd]{defined dimensions} and/or \link[fff]{effective
-dimensions} plus some additional restrictions:\tabular{eee}{
+number of \link[=ddd]{defined dimensions} and/or \link[=eee]{effective
+dimensions} plus some additional restrictions:\tabular{lll}{
 FUNDAMENTAL   \tab FUNDAMENTAL   \tab FUNDAMENTAL                       \cr
 TYPE VALUE    \tab TYPE NAME     \tab TYPE DEFINITION                   \cr
 \code{'emp'}\tab empty         \tab Non-\code{NULL}, length = 0.        \cr
@@ -67,59 +71,49 @@ TYPE VALUE    \tab TYPE NAME     \tab TYPE DEFINITION                   \cr
 \code{'pnt'}\tab point         \tab Containing 1 element (includes 1-by-1
 data.frames).                       \cr
 \code{'lin'}\tab linear        \tab Effectively 1-dimensional.          \cr
-\code{'row'}\tab 1-row         \tab Row matrix or row
-\code{\link[idtf]{data.frame}}.     \cr
-\code{'col'}\tab 1-column      \tab Column matrix or column
-\code{\link[idtf]{data.frame}}.     \cr
-\code{'rct'}\tab rectangular   \tab 2+ by 2+ matrix or
-\code{\link[idtf]{data.frame}}.     \cr
-\code{'sqr'}\tab square        \tab Square atomic matrix                \cr
+\code{'row'}\tab 1-row         \tab Row matrix or row data.frame.       \cr
+\code{'col'}\tab 1-column      \tab Column matrix or column data.frame. \cr
+\code{'rct'}\tab rectangular   \tab 2+ by 2+ matrix or data.frame  .    \cr
+\code{'sqr'}\tab square        \tab Square atomic matrix.               \cr
 \code{'sld'}\tab solid         \tab Array with 2+ index positions in 3+
 dimensions.                           }
 Functions related to form properties are described in the following
 table:\tabular{ll}{
-FUNCTION          \tab WHAT THE                                           \cr
-FORMAT            \tab FUNCTION DOES                                      \cr
-\code{i***}       \tab Evaluates whether an object is of the form represented
-by \code{***}.                                     \cr
+FUNCTION          \tab WHAT THE                                         \cr
+FORMAT            \tab FUNCTION DOES                                    \cr
+\code{i[fff]}       \tab Evaluates whether an object is of the form
+represented by \code{***}.                       \cr
 \code{fff}        \tab Gets a character scalar containing the forms of an
-object.                                            \cr
+object.                                          \cr
 \code{ifff}       \tab Evaluates an object for a specific form and any
-additional properties specified in \code{...}.     \cr
-\code{fff_vals}   \tab Gets a character vector of all possible form property
-values.                                              }
+additional properties specified in \code{...}.   \cr
+\code{fff_vals}   \tab Gets a character vector of all possible form
+property values.                                   }
 }
-\section{Functions}{
-\itemize{
-\item \code{fff()}: Evaluates whether \code{x} is empty.
+\section{Specifying Additional Property Requirements}{
 
-\item \code{iemp()}: Evaluates whether \code{x} is empty.
-
-\item \code{ipnt()}: Evaluates whether \code{x} is a point.
-
-\item \code{ilin()}: Evaluates whether \code{x} is linear.
-
-\item \code{irow()}: Evaluates whether \code{x} is a row object.
-
-\item \code{icol()}: Evaluates whether \code{x} is a column object.
-
-\item \code{irct()}: Evaluates whether \code{x} is a rectangular object.
-
-\item \code{isqr()}: Evaluates whether \code{x} is a square object.
-
-\item \code{isld()}: Evaluates whether \code{x} is a solid object.
-
-\item \code{fff_vals()}: Get a list of all possible form property values.
-
-\item \code{ifff()}: Evaluates whether any property in \code{fff} is a form
-property applicable to \code{x} (subject to any additional restrictions
-in \code{...}).
-
-}}
-\section{Submitting additional arguments to \code{ifff} via \code{...}}{
-
-Allows for checking not just the form but whether length, number of rows,
-number of columns, and element values meet flexible criteria.
+Specifying additional requirements in \code{...} is optional. The full set
+of recognized arguments names are defined in the following table along with
+the properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                    \cr
+\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
+\code{nr}     \tab Vec of valid numbers of rows.                        \cr
+\code{nc}     \tab Vec of valid numbers of columns.                     \cr
+\code{min}    \tab Scalar minimum valid length/number of element.       \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
+\code{minc}   \tab Scalar minimum valid number of columns.              \cr
+\code{max}    \tab Scalar maximum valid length/number of element.       \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
+\code{vals}   \tab Vec of valid values.                                 \cr
+\code{lt}     \tab Scalar value all values of \code{x} must be less
+than.                                                \cr
+\code{le}     \tab Scalar value all values of \code{x} must be less than or
+equal to.                                            \cr
+\code{ge}     \tab Scalar value all values of \code{x} must be greater than
+or equal to.                                         \cr
+\code{gt}     \tab Scalar value all values of \code{x} must be greater
+than.                                                  }
 }
 
 \seealso{

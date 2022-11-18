@@ -43,7 +43,7 @@
 \alias{rcr_dtf}
 \alias{rcr_vec}
 \alias{rcr_vls}
-\title{Fundamental type plus extended class properties}
+\title{Fundamental Type + Extended Class Properties}
 \usage{
 ttt_ccc.()
 
@@ -130,120 +130,24 @@ rcr_vec(x)
 rcr_vls(x)
 }
 \arguments{
-\item{x}{An object.}
-
-\item{mmm}{Optional \link[cmp_chr_scl]{Complete character scalar} naming an
-extended mode from \code{\link{mmm_vals}()}.}
+\item{x}{An R object.}
 }
 \value{
-Logical scalar.
+\tabular{ll}{
+\code{ttt_ccc_vals}   \tab A character vector.                          \cr
+\code{[ttt]_[ccc]}    \tab A logical scalar.                              }
 }
 \description{
-Combinations of \link[ttt]{fundamental type} and
-\link[ccc]{extended class}.
+\tabular{ll}{
+\code{ttt_ccc_vals}   \tab Gets a character vector of all possible
+\link[=ttt]{fundamental type} +
+\link[=ccc]{extended class} properties.      \cr
+\code{[ttt]_[ccc]}    \tab Evaluates whether \code{x} is of the
+\link[=ttt]{fundamental type} represented by the
+placeholder \code{[ttt]} and of the
+\link[=ccc]{extended class} represented by the
+placeholder \code{[ccc]}.                      }
 }
-\section{Functions}{
-\itemize{
-\item \code{ttt_ccc_vals()}: Get a character vector of all possible fundamental
-type plus extended class properties.
-
-\item \code{atm_arr()}: Is \code{x} an \link[iatm]{atomic} \link[iarr]{array}?
-
-\item \code{atm_gen()}: Is \code{x} an \link[iatm]{atomic} \link[igen]{generic}?
-
-\item \code{atm_mat()}: Is \code{x} an \link[iatm]{atomic} \link[imat]{matrix}?
-
-\item \code{atm_mvc()}: Is \code{x} an \link[iatm]{atomic}
-\link[imvc]{multivec}?
-
-\item \code{atm_scl()}: Is \code{x} an \link[iatm]{atomic} \link[iscl]{scalar}?
-
-\item \code{atm_dtf()}: Is \code{x} an \link[iatm]{atomic}
-\link[idtf]{data.frame}?
-
-\item \code{atm_vec()}: Is \code{x} an \link[iatm]{atomic} \link[ivec]{vec}?
-
-\item \code{atm_vls()}: Is \code{x} an \link[iatm]{atomic} \link[ivls]{vlist}?
-
-\item \code{pop_arr()}: Is \code{x} a \link[ipop]{populated} \link[iarr]{array}?
-
-\item \code{pop_gen()}: Is \code{x} a \link[ipop]{populated}
-\link[igen]{generic}?
-
-\item \code{pop_mat()}: Is \code{x} a \link[ipop]{populated}
-\link[imat]{matrix}?
-
-\item \code{pop_mvc()}: Is \code{x} a \link[ipop]{populated}
-\link[imvc]{multivec}?
-
-\item \code{pop_scl()}: Is \code{x} a \link[ipop]{populated}
-\link[iscl]{scalar}?
-
-\item \code{pop_dtf()}: Is \code{x} a \link[ipop]{populated}
-\link[idtf]{data.frame}?
-
-\item \code{pop_vec()}: Is \code{x} a \link[ipop]{populated} \link[ivec]{vec}?
-
-\item \code{pop_vls()}: Is \code{x} a \link[ipop]{populated} \link[ivls]{vlist}?
-
-\item \code{cmp_arr()}: Is \code{x} a \link[icmp]{complete} \link[iarr]{array}?
-
-\item \code{cmp_gen()}: Is \code{x} a \link[icmp]{complete}
-\link[igen]{generic}?
-
-\item \code{cmp_mat()}: Is \code{x} a \link[icmp]{complete} \link[imat]{matrix}?
-
-\item \code{cmp_mvc()}: Is \code{x} a \link[icmp]{complete}
-\link[imvc]{multivec}?
-
-\item \code{cmp_scl()}: Is \code{x} a \link[icmp]{complete} \link[iscl]{scalar}?
-
-\item \code{cmp_dtf()}: Is \code{x} a \link[icmp]{complete}
-\link[idtf]{data.frame}?
-
-\item \code{cmp_vec()}: Is \code{x} a \link[icmp]{complete} \link[ivec]{vec}?
-
-\item \code{cmp_vls()}: Is \code{x} a \link[icmp]{complete} \link[ivls]{vlist}?
-
-\item \code{emp_arr()}: Is \code{x} an \link[iemp]{empty} \link[iarr]{array}?
-
-\item \code{emp_gen()}: Is \code{x} an \link[iemp]{empty} \link[igen]{generic}?
-
-\item \code{emp_mat()}: Is \code{x} an \link[iemp]{empty} \link[imat]{matrix}?
-
-\item \code{emp_mvc()}: Is \code{x} an \link[iemp]{empty} \link[imvc]{multivec}?
-
-\item \code{emp_scl()}: Is \code{x} an \link[iemp]{empty} \link[iscl]{scalar}?
-
-\item \code{emp_dtf()}: Is \code{x} an \link[iemp]{empty}
-\link[idtf]{data.frame}?
-
-\item \code{emp_vec()}: Is \code{x} an \link[iemp]{empty} \link[ivec]{vec}?
-
-\item \code{emp_vls()}: Is \code{x} an \link[iemp]{empty} \link[ivls]{vlist}?
-
-\item \code{rcr_arr()}: Is \code{x} a \link[ircr]{recursive} \link[iarr]{array}?
-
-\item \code{rcr_gen()}: Is \code{x} a \link[ircr]{recursive}
-\link[igen]{generic}?
-
-\item \code{rcr_mat()}: Is \code{x} a \link[ircr]{recursive}
-\link[imat]{matrix}?
-
-\item \code{rcr_mvc()}: Is \code{x} a \link[ircr]{recursive}
-\link[imvc]{multivec}?
-
-\item \code{rcr_scl()}: Is \code{x} a \link[ircr]{recursive}
-\link[iscl]{scalar}?
-
-\item \code{rcr_dtf()}: Is \code{x} a \link[ircr]{recursive}
-\link[idtf]{data.frame}?
-
-\item \code{rcr_vec()}: Is \code{x} a \link[ircr]{recursive} \link[ivec]{vec}?
-
-\item \code{rcr_vls()}: Is \code{x} a \link[ircr]{recursive} \link[ivls]{vlist}?
-
-}}
 \seealso{
 Other props: 
 \code{\link{as_mmm.}()},

@@ -3,48 +3,58 @@
 \name{bs.}
 \alias{bs.}
 \alias{u}
-\alias{up}
 \alias{dn}
-\alias{spf}
+\alias{up}
 \alias{mid}
+\alias{spf}
 \alias{levs}
-\title{Wraps of functions from package \code{base}.}
+\title{Thin Wraps of Base Package Functions}
 \usage{
 bs.()
 
 u(x)
 
-up(x)
-
 dn(x)
 
-spf(fmt, ...)
+up(x)
 
 mid(x, start, stop)
+
+spf(fmt, ...)
 
 levs(x)
 }
 \arguments{
-\item{x}{A numeric object (\code{up} and \code{down}), a character object
-(\code{spf}), an unordered or ordered factor object (\code{levs}), or any
-object \code{u}}
+\item{x}{a numeric vector.  Or, for \code{round} and \code{signif}, a
+    complex vector.}
 
 \item{fmt}{a character vector of format strings, each of up to 8192 bytes.}
 
 \item{...}{arguments to be passed to methods.}
 }
 \value{
-A numeric object (\code{up} and \code{dn}) or a character object
-(\code{spf}, \code{mid}, and \code{levs}).
+For \code{substr}, a character vector of the same length and with the
+  same attributes as \code{x} (after possible coercion).
+
+  For \code{substring}, a character vector of length the longest of the
+  arguments.  This will have names taken from \code{x} (if it has any
+  after coercion, repeated as needed), and other attributes copied from
+  \code{x} if it is the longest of the arguments).
+
+  For the replacement functions, a character vector of the same length as
+  \code{x} or \code{text}, with \code{\link[base]{attributes}} such as
+  \code{\link[base]{names}} preserved.
+
+  Elements of \code{x} or \code{text} with a declared encoding (see
+  \code{\link[base]{Encoding}}) will be returned with the same encoding.
 }
 \description{
-The following table describes thin wraps in this group of
-functions:\tabular{ll}{
-WRAPPER       \tab FUNCTION                                             \cr
+\tabular{ll}{
+\code{u}      \tab \code{\link[base]{unique}}                           \cr
 \code{up}     \tab \code{\link[base]{ceiling}}                          \cr
 \code{dn}     \tab \code{\link[base]{floor}}                            \cr
-\code{spf}    \tab \code{\link[base]{sprintf}}                          \cr
 \code{mid}    \tab \code{\link[base]{substr}}                           \cr
+\code{spf}    \tab \code{\link[base]{sprintf}}                          \cr
 \code{levs}   \tab \code{\link[base]{levels}}                             }
 }
 \details{
@@ -79,19 +89,19 @@ These are generic functions: methods can be defined for them
 \code{\link{uv}} in that \code{uv} takes an arbitrary number of parameters
 and \link[a]{atomizes} them before getting unique atomic values.
 
-\item \code{up()}: Round up to nearest integer.
-
 \item \code{dn()}: Round down to nearest integer.
 
-\item \code{spf()}: Format inlays into strings.
+\item \code{up()}: Round up to nearest integer.
 
 \item \code{mid()}: Extract substring(s).
+
+\item \code{spf()}: Format inlays into strings.
 
 \item \code{levs()}: Get levels of an unordered factor or ordered factor object.
 
 }}
 \note{
-The S4 version of \code{substring<-} ignores \code{last}; this version
+The S version of \code{substring<-} ignores \code{last}; this version
   does not.
 
   These functions are often used with \code{\link[base]{nchar}} to truncate a
