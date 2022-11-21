@@ -1,4 +1,4 @@
-#' @name pals.
+#' @name pals_uj
 #' @family plots
 #' @family colors
 #' @title Plotting palettes
@@ -31,44 +31,44 @@
 #'  \code{pal_edots}, \code{pal_fdots}, \code{pal_ldots}, \code{pal_sdots}\tab  
 #'  \tab A positive whole number vector.                                       }
 #' @export
-pals. <- function() {help("pals.", package = "uj")}
+pals_uj <- NULL
 
-#' @rdname pals.
+#' @rdname pals_uj
 #' @export
 pal_colors <- function(n) {
   if (!cmp_psw_scl(n)) {stop("\n \u2022 [n] must be a positive whole-number scalar.")}
   first_n(n, v(colors))
 }
 
-#' @rdname pals.
+#' @rdname pals_uj
 #' @export
 pal_lines <- function(n) {
   if (!cmp_psw_scl(n)) {stop("\n \u2022 [n] must be a positive whole-number scalar.")}
   first_n(n, v(lines))
 }
 
-#' @rdname pals.
+#' @rdname pals_uj
 #' @export
 pal_fdots <- function(n) {
   if (!cmp_psw_scl(n)) {stop("\n \u2022 [n] must be a positive whole-number scalar.")}
   first_n(n, v(fdots))
 }
 
-#' @rdname pals.
+#' @rdname pals_uj
 #' @export
 pal_ldots <- function(n) {
   if (!cmp_psw_scl(n)) {stop("\n \u2022 [n] must be a positive whole-number scalar.")}
   first_n(n, v(ldots))
 }
 
-#' @rdname pals.
+#' @rdname pals_uj
 #' @export
 pal_edots <- function(n) {
   if (!cmp_psw_scl(n)) {stop("\n \u2022 [n] must be a positive whole-number scalar.")}
   first_n(n, v(edots))
 }
 
-#' @rdname pals.
+#' @rdname pals_uj
 #' @export
 pal_sdots <- function(n) {
   if (!cmp_psw_scl(n)) {stop("\n \u2022 [n] must be a positive whole-number scalar.")}

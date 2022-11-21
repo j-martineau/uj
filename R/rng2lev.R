@@ -1,4 +1,4 @@
-#' @name rng2lev.
+#' @name rng2lev
 #' @title Convert sortable values in specific ranges to a specific level
 #' @description rng2lev. Convert values of \code{x} to the \code{n} levels in
 #'   \code{levs} distinguished by the \code{n-1} thresholds in \code{cuts}.
@@ -14,10 +14,6 @@
 #'   levels distinguished by that value of \code{cuts}.
 #' @return Atomic object of the same dimension as \code{x} and the same mode as
 #'   \code{levs}.
-#' @export
-rng2lev. <- function() {help("rng2lev.", package = "uj")}
-
-#' @rdname rng2lev.
 #' @export
 rng2lev <- function(x, cuts, levs) {
   errs <- c(f0(isrt(x)          , NULL, " \u2022 [x] must be an atomic sortable object (?isrt)."),

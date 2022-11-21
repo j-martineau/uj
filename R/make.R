@@ -1,4 +1,4 @@
-#' @name make.
+#' @name make_uj
 #' @family extensions
 #' @title Extended object creation functionality
 #' @param ... Objects to placed in an atomic vector+, atomic matrix, atomic
@@ -25,9 +25,9 @@
 #'   vlist}. All others return the value of the function they are thin wrappers
 #'   for.
 #' @export
-make. <- function() {help("make.", package = "uj")}
+make_uj <- NULL
 
-#' @describeIn make. Creates an atomic vector from the atomic objects in
+#' @describeIn make_uj Creates an atomic vector from the atomic objects in
 #'   \code{...} collapsed into a vector, replicated \code{r.} times, with
 #'   optional element names.
 #' @export
@@ -46,7 +46,7 @@ vec <- function(..., r. = 1, vn. = NULL) {
   x
 }
 
-#' @describeIn make. Creates a named atomic vec by taking the original call
+#' @describeIn make_uj Creates a named atomic vec by taking the original call
 #'   and parsing arguments to get element names. Allows for more concise code
 #'   such as \code{vec.(a, b)} giving the same result as \code{list(a = a, b =
 #'   b)}.
@@ -60,11 +60,11 @@ vec. <- function(...) {
   eval.parent(parse(text = x, n = 1))                                            # and evaluate it in the environment of the calling function
 }
 
-#' @describeIn make. Creates a vector of \code{r.} \code{NA} values.
+#' @describeIn make_uj Creates a vector of \code{r.} \code{NA} values.
 #' @export
 vec_na <- function(r.) {vec(NA, r. = r.)}
 
-#' @describeIn make. Creates an atomic matrix from the atomic elements in
+#' @describeIn make_uj Creates an atomic matrix from the atomic elements in
 #'   \code{...} with \code{r.} rows, \code{c.} columns, optionally filling by
 #'   row, with optional row and column names.
 #' @export
@@ -107,7 +107,7 @@ mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
   x
 }
 
-#' @describeIn make. Creates an  with 0 rows and columns
+#' @describeIn make_uj Creates a data.frame with 0 rows and columns
 #'   with names from \code{cn.}, which may be pipe delimited.
 #' @export
 dtf0 <- function(cn) {
@@ -117,7 +117,7 @@ dtf0 <- function(cn) {
   run(cmd)
 }
 
-#' @describeIn make. Creates an \link[idtf]{atomic dtf} with \code{nr.} rows and
+#' @describeIn make_uj Creates an \link[idtf]{atomic dtf} with \code{nr.} rows and
 #'   columns with names from \code{cn.} (which may be pipe delimited). All cells
 #'   of the resulting tibble are populated with \code{NA}. values.
 #' @export
@@ -131,7 +131,7 @@ dtf_na <- function(cn, nr) {
   run(cmd)
 }
 
-#' @describeIn make. Creates an \link[idtf]{atomic dtf} from the
+#' @describeIn make_uj Creates an \link[idtf]{atomic dtf} from the
 #'   \link[ivec]{atomic vec} arguments in \code{...} with optional row names,
 #'   plus optional column names to replace any names of arguments in \code{...}.
 #' @export
@@ -157,7 +157,7 @@ dtf <- function(..., cn. = NULL) {
   out
 }
 
-#' @describeIn make. Creates an atomic \link[=ivls]{vlist} from the arguments in
+#' @describeIn make_uj Creates an atomic \link[=ivls]{vlist} from the arguments in
 #'   \code{...} with optional element names to replace any names of arguments in
 #'   \code{...}.
 #' @export
@@ -173,7 +173,7 @@ vls <- function(..., en. = NULL) {
   dots
 }
 
-#' @describeIn make. Creates a named \link[ivls]{atomic vlist} by taking the
+#' @describeIn make_uj Creates a named \link[ivls]{atomic vlist} by taking the
 #'   original call and parsing arguments to get element names. Allows for more
 #'   concise code such as \code{mkvls(letters, LETTERS)} giving the same result
 #'   as \code{list(letters = letters, LETTERS = LETTERS)}.
@@ -185,7 +185,7 @@ vls. <- function(...) {
   eval.parent(parse(text = x, n = 1))                                            # and evaluate it in the environment of the calling function
 }
 
-#' @describeIn make. Creates a square atomic diagonal matrix. For numeric
+#' @describeIn make_uj Creates a square atomic diagonal matrix. For numeric
 #'   \code{x}, off-diagonals are \code{0}. For logical \code{x}, off diagonals
 #'   are \code{FALSE}. For character \code{x}, off diagonals are blank strings
 #'   (\code{""}). For all others, off diagonals are \code{NA}.

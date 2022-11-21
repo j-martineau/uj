@@ -1,4 +1,3 @@
-#' @name swap.
 #' @family extensions
 #' @title Swap atomic values.
 #' @param x An atomic object.
@@ -9,12 +8,8 @@
 #'   values of \code{x} must be contained in \code{old}.
 #' @return An atomic object of the same dimensions as \code{x}.
 #' @export
-swap. <- function() {help("swap.", package = "uj")}
-
-#' @rdname swap.
-#' @export
 swap <- function(x, old, new, all = F) {
-  errs <- c(f0(pop_atm(x)  , NULL, "\n \u2022 [x] must be populated and atomic (?ipop)."),
+  errs <- c(f0(ipop(x) & iatm(x)  , NULL, "\n \u2022 [x] must be populated and atomic (?ipop)."),
             f0(atm_vec(old), NULL, "\n \u2022 [old] must be populated and atomic (?ipop)."),
             f0(atm_vec(new), NULL, "\n \u2022 [new] must be populated and atomic (?ipop)."),
             f0(isTF(all)   , NULL, "\n \u2022 [all] must be scalar TRUE or scalar FALSE"))

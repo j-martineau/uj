@@ -1,4 +1,4 @@
-#' @name dp.
+#' @name wrap_dplyr
 #' @family wraps
 #' @title Wraps of functions from package \code{dplyr}.
 #' @description The following table describes the wraps this group of functions
@@ -14,42 +14,42 @@
 #'   limited functionality as explained in the \emph{Functions} section.
 #' @return A data.frame.
 #' @export
-dp. <- function() {help("dp.", package = "uj")}
+wrap_dplyr <- NULL
 
-#' @describeIn dp. Thin wrap aggregation with \code{\link[dplyr]{summarize}}.
+#' @describeIn wrap_dplyr Thin wrap aggregation with
+#'   \code{\link[dplyr]{summarize}}.
 #' @inherit dplyr::summarize
 #' @export
 dpagg <- function(.data, ..., .groups = NULL) {dplyr::summarize(.data, ..., .groups = .groups)}
 
-#' @describeIn dp. Thin wrap of \code{\link[dplyr]{n}}.
+#' @describeIn wrap_dplyr Thin wrap of \code{\link[dplyr]{n}}.
 #' @inherit dplyr::n
 #' @export
 dpn <- function() {dplyr::n()}
 
-#' @describeIn dp. Thin wrap of \code{\link[dplyr]{all_of}}.
+#' @describeIn wrap_dplyr Thin wrap of \code{\link[dplyr]{all_of}}.
 #' @inherit dplyr::all_of
 #' @export
 dpall <- function(x) {dplyr::all_of(x)}
 
-#' @describeIn dp. Limited functionality wrap of \code{\link[dplyr]{group_by}}
-#'  Limited to a \code{\link[idtf]{dtf}} (\code{x}) and a character vector
-#'  naming grouping variables (\code{keys}).
+#' @describeIn wrap_dplyr Limited functionality wrap of
+#'   \code{\link[dplyr]{group_by}} Limited to a \code{\link[idtf]{dtf}}
+#'   (\code{x}) and a character vector naming grouping variables (\code{keys}).
 #' @param keys A character vector naming grouping variables in \code{x}.
 #' @export
 dpgrp <- function(x, keys) {run("dplyr::group_by(x, ", paste0(keys, collapse = ", "), ")")}
 
-#' @describeIn dp. Thin wrap of \code{\link[dplyr]{left_join}}.
+#' @describeIn wrap_dplyr Thin wrap of \code{\link[dplyr]{left_join}}.
 #' @inherit dplyr::left_join
 #' @export
 dpjoin <- function(x, y, by = NULL, copy = FALSE, suffix = c(".x", ".y"), ..., keep = FALSE) {dplyr::left_join(x, y, by - by, copy = copy, suffix = suffix, ..., keep = keep)}
 
-#' @describeIn dp. Thin wrap of \code{\link[dplyr]{rename}}.
+#' @describeIn wrap_dplyr Thin wrap of \code{\link[dplyr]{rename}}.
 #' @inherit dplyr::rename
 #' @export
 dplab <- function(.data, ...) {dplyr::rename(.data, ...)}
 
-#' @describeIn dp. Thin wrap of \code{\link[dplyr]{mutate}}.
+#' @describeIn wrap_dplyr Thin wrap of \code{\link[dplyr]{mutate}}.
 #' @inherit dplyr::mutate
 #' @export
 dpmod <- function(.data, ...) {dplyr::mutate(.data, ...)}
-

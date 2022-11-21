@@ -1,4 +1,4 @@
-#' @name dots.
+#' @name dots_uj
 #' @family extensions
 #' @title Manage dot arguments
 #' @description Get named arguments from \code{...} with default values if
@@ -33,9 +33,9 @@
 #'   indicating whether names are required, whether lank names are allowed, and
 #'   whether names must be unique.
 #' @export
-dots. <- function() {help("dots.", package = "uj")}
+dots_uj <- NULL
 
-#' @describeIn dots. Extract one or more arguments from those in \code{...}
+#' @describeIn dots_uj Extract one or more arguments from those in \code{...}
 #'   based on their names matching values supplied in \code{names.}. If a
 #'   supplied name matches the name of an arguments in \code{...}, that argument
 #'   is returned. Otherwise, the element of \code{defs.} with a matching name is
@@ -78,7 +78,7 @@ dots <- function(names., defs., ...) {
   out
 }
 
-#' @describeIn dots. A simplified version for extracting a single named
+#' @describeIn dots_uj A simplified version for extracting a single named
 #'   argument from \code{...} or, if a matching argument is not found, its
 #'   default value.
 #' @export
@@ -87,7 +87,7 @@ dot <- function(name., def., ...) {
   dots(name., def., ...)
 }
 
-#' @describeIn dots. If \code{names.} is \code{NULL}, the return value is
+#' @describeIn dots_uj If \code{names.} is \code{NULL}, the return value is
 #'   \code{...names()}, otherwise, \code{names.} i returned. Throws an error in
 #'   the following cases:\itemize{
 #'     \item \code{0} Arguments are supplied in \code{...}, \code{names.} is not
@@ -125,7 +125,7 @@ dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
   subs.
 }
 
-#' @describeIn dots. Extracts named arguments from \code{...} as a named list
+#' @describeIn dots_uj Extracts named arguments from \code{...} as a named list
 #'   (does not include arguments named with blank strings).
 #' @export
 named_dots <- function(...) {
@@ -136,7 +136,7 @@ named_dots <- function(...) {
   if (any(ok.names)) {dots[ok.names]} else {NULL}
 }
 
-#' @describeIn dots. Extract unnamed arguments from \code{...} as an unnamed
+#' @describeIn dots_uj Extract unnamed arguments from \code{...} as an unnamed
 #'   list (includes any arguments named with blank strings).
 #' @export
 unnamed_dots <- function(...) {

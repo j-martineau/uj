@@ -1,4 +1,4 @@
-#' @name files.
+#' @name files_uj
 #' @family files
 #' @family extensions
 #' @title Evaluate and manipulate paths to files or folders on disk.
@@ -58,10 +58,6 @@
 #'   \code{object_dirs} and \code{folder_dirs}
 #'        \tab   \tab A character vector.                                      }
 #' @export
-files. <- function() {help("files.", package = "uj")}
-
-#' @rdname files.
-#' @export
 is_path <- function(..., err = F) {
   x <- list(...)
   ok.n <- length(x) == 0
@@ -80,35 +76,35 @@ is_path <- function(..., err = F) {
   out
 }
 
-#' @rdname files.
+#' @rdname files_uj
 #' @export
 as_path <- function(...) {if (is_path(..., err = T)) {file.path(...)}}
 
-#' @rdname files.
+#' @rdname files_uj
 #' @export
 object_path  <- function(path, err = T) {f0(is_path(path, err = err), path.expand(path), "")}
 
-#' @rdname files.
+#' @rdname files_uj
 #' @export
 parent_path  <- function(path, err = T) {dirname(object_path(path, err = err))}
 
-#' @rdname files.
+#' @rdname files_uj
 #' @export
 object_name  <- function(path, err = T) {basename(object_path(path, err = err))}
 
-#' @rdname files.
+#' @rdname files_uj
 #' @export
 parent_name  <- function(path, err = T) {object_name(parent_path(path, err = err))}
 
-#' @rdname files.
+#' @rdname files_uj
 #' @export
 object_dirs <- function(path, err = T) {strsplit(object_path(path, err = err), .Platform$file.sep, fixed = T)[[1]]}
 
-#' @rdname files.
+#' @rdname files_uj
 #' @export
 parent_dirs <- function(path, err = T) {strsplit(parent_path(path, err = err), .Platform$file.sep, fixed = T)[[1]]}
 
-#' @rdname files.
+#' @rdname files_uj
 #' @export
 newdirs <- function(dirs, path = NULL) {
   cancel <- function() {stop("canceled by user.")}                               # FUNCTION to throw an error

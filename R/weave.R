@@ -1,6 +1,6 @@
-#' @name weave.
+#' @title Weave Inlay Values into a String
+#'   \cr (variations on a theme of \code{sprintf})
 #' @family strings
-#' @title Weave inlay values into a string
 #' @description Inlay escape sequences to specify formatting follow the patterns
 #'   and meanings given in the following table:\tabular{ll}{
 #'   PATTERN            \tab MEANS INSERT ARGUMENT                           \cr
@@ -89,10 +89,6 @@
 #'   escape sequence in \code{x}. The number of inlay escape sequences in
 #'   \code{x} must be equal to the number of arguments in \code{...}.
 #' @return A character scalar.
-#' @export
-weave. <- function() {help("weave.", package = "uj")}
-
-#' @rdname weave.
 #' @export
 weave <- function(x, ...) {
   ok.dots <- ...length() > 0

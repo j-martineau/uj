@@ -1,4 +1,3 @@
-#' @name comparable.
 #' @family props
 #' @title Are objects comparable?
 #' @description Determines whether modes of all arguments in \code{...} are
@@ -10,10 +9,6 @@
 #' @param recycle. \link[=cmp_lgl_scl]{Complete logical scalar} indicating
 #'   whether arguments in \code{...} must be recyclable to be comparable.
 #' @return A logical scalar.
-#' @export
-comparable. <- function() {help("comparable.")}
-
-#' @rdname comparable.
 #' @export
 comparable <- function(..., recycle. = T) {
   x <- list(...)

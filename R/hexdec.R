@@ -1,4 +1,4 @@
-#' @name hexdec.
+#' @name hexdec
 #' @family math
 #' @title Convert Non-Negative Whole Numbers between Decimal and Hexadecimal
 #' @description \tabular{ll}{
@@ -21,10 +21,6 @@
 #'                       non-negative whole-number hexadecimal values in the
 #'                       format \code{'#HHH...'} where \code{H} is a placeholder
 #'                       for an uppercase hexadecimal digit.                   }
-#' @export
-hexdec. <- function() {help("hexdec.", package = "uj")}
-
-#' @rdname hexdec.
 #' @export
 todec <- function(x) {
   ok.x <- F
@@ -59,7 +55,7 @@ todec <- function(x) {
   sapply(lapply(x, ch), conv)
 }
 
-#' @rdname hexdec.
+#' @rdname hexdec
 #' @export
 tohex <- function(x) {
   if (!cmp_nnw_vec(x)) {stop("\n \u2022 [x] must be complete, non-negative whole-number vec (?cmp_nnw_vec).")}

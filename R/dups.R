@@ -1,4 +1,4 @@
-#' @name dups.
+#' @name dups
 #' @family values
 #' @title Identify Duplicate Values.
 #' @description Extended functionality for \code{duplicated}.\tabular{ll}{
@@ -26,13 +26,9 @@
 #' idups(c(0:5, 5:10, 10:15, 15:20))
 #' idups(c(0:5, 5:10, 10:15, 15:20), int = T)
 #' @export
-dups. <- function() {help("dups.", package = "uj")}
-
-#' @rdname dups.
-#' @export
 dups <- function(...) {x <- av(...); unique(x[duplicated(x)])}
 
-#' @rdname dups.
+#' @rdname dups
 #' @export
 idups <- function(x, int = F) {
   errs <- c(f0(atm_vec(x), NULL, "\n \u2022 [x] must be an atomic vec (?atm_vec)."),

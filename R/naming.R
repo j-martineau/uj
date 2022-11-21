@@ -1,4 +1,4 @@
-#' @name naming.
+#' @name naming
 #' @family extensions
 #' @title Get or set element, row, and/or column names.
 #' @param x Vector or list for \code{namev} and \code{vn}; matrix or data.frame
@@ -22,9 +22,9 @@
 #'   names, respectively.
 #' @return Character vector or a named/renamed version of \code{x}.
 #' @export
-naming. <- function() {help("naming.", package = "uj")}
+naming <- NULL
 
-#' @describeIn naming. Name the elements of a vector.
+#' @describeIn naming Name the elements of a vector.
 #' @export
 namev <- function(x, en) {
   ok.en <- cmp_vec(en) & length(x) == length(en)
@@ -35,7 +35,7 @@ namev <- function(x, en) {
   x
 }
 
-#' @describeIn naming. Name the rows of a matrix or data frame.
+#' @describeIn naming Name the rows of a matrix or data frame.
 #' @export
 namer <- function(x, rn) {
   ok.rn <- cmp_vec(rn) & nrow(x) == nrow(en)
@@ -46,7 +46,7 @@ namer <- function(x, rn) {
   x
 }
 
-#' @describeIn naming. Name the columns of a matrix or data frame.
+#' @describeIn naming Name the columns of a matrix or data frame.
 #' @export
 namec <- function(x, cn) {
   ok.cn <- cmp_vec(rn) & ncol(x) == ncol(en)
@@ -57,7 +57,7 @@ namec <- function(x, cn) {
   x
 }
 
-#' @describeIn naming. Create a 1-element list from \code{x} and name that
+#' @describeIn naming Create a 1-element list from \code{x} and name that
 #'   element with the value of \code{e}
 #' @export
 namel <- function(x, ln) {
@@ -66,11 +66,11 @@ namel <- function(x, ln) {
   x
 }
 
-#' @describeIn naming. Name the rows and columns of a matrix or data frame.
+#' @describeIn naming Name the rows and columns of a matrix or data frame.
 #' @export
 namerc <- function(x, rn, cn) {namer(namec(x, cn), rn)}
 
-#' @describeIn naming. Determine whether an objects elements, rows, and/or
+#' @describeIn naming Determine whether an objects elements, rows, and/or
 #'   columns are named, accounting for whether names must be unique, whether the
 #'   object may contain empty elements, and whether names may be blank strings
 #'   ("").
@@ -110,27 +110,27 @@ named <- function(x, d = 0, u = T, blank = F) {
   leOK & ueOK & beOK & lrOK & urOK & brOK & lcOK & ucOK & bcOK
 }
 
-#' @describeIn naming. Are elements of \code{x} named?
+#' @describeIn naming Are elements of \code{x} named?
 #' @export
 enamed <- function(x, u = T, blank = F) {named(x, 0, u, blank)}
 
-#' @describeIn naming. Are rows of \code{x} named?
+#' @describeIn naming Are rows of \code{x} named?
 #' @export
 rnamed <- function(x, u = T, blank = F) {named(x, 1, u, blank)}
 
-#' @describeIn naming. Are columns of \code{x} named?
+#' @describeIn naming Are columns of \code{x} named?
 #' @export
 cnamed <- function(x, u = T, blank = F) {named(x, 2, u, blank)}
 
-#' @describeIn naming. Are both rows and columns of \code{x} named?
+#' @describeIn naming Are both rows and columns of \code{x} named?
 #' @export
 rcnamed <- function(x, u = T, blank = F) {named(x, 12, u, blank)}
 
-#' @describeIn naming. Are all \code{...} arguments named?
+#' @describeIn naming Are all \code{...} arguments named?
 #' @export
 named. <- function(..., u = T, blank = F) {named(list(...), 0, u, blank)}
 
-#' @describeIn naming. Get element, row, and/or column names with optional
+#' @describeIn naming Get element, row, and/or column names with optional
 #'   restrictions.
 #' @export
 getnames <- function(x, d = 0, u = T, err = F) {
@@ -161,18 +161,18 @@ getnames <- function(x, d = 0, u = T, err = F) {
   list(r = rn, c = cn)
 }
 
-#' @describeIn naming. Get element names.
+#' @describeIn naming Get element names.
 #' @export
 en <- function(x, u = T, err = F) {getnames(x, 0, u, err)}
 
-#' @describeIn naming. Get row names.
+#' @describeIn naming Get row names.
 #' @export
 rn <- function(x, u = T, err = F) {getnames(x, 1, u, err)}
 
-#' @describeIn naming. Get column names.
+#' @describeIn naming Get column names.
 #' @export
 cn <- function(x, u = T, err = F) {getnames(x, 2, u, err)}
 
-#' @describeIn naming. Get row and column names (in a 2-element list).
+#' @describeIn naming Get row and column names (in a 2-element list).
 #' @export
 rcn <- function(x, u = T, err = F) {getnames(x, 12, u, err)}

@@ -1,860 +1,907 @@
-#' @name cmp_mmm_ccc.
 #' @family props
 #' @title Completeness + Extended Mode + Extended Class Properties
-#' @description \tabular{ll}{
-#'   \code{cmp_mmm_ccc_vals}   \tab Gets a character vector of all possible
-#'                                  \link[=icmp]{completeness} +
-#'                                  \link[=mmm]{extended mode} +
-#'                                  \link[=ccc]{extended class} properties.  \cr
-#'   \code{cmp_[mmm]_[ccc]}    \tab Evaluates whether \code{x} is
-#'                                  \link[=cmp]{complete}, of the
-#'                                  \link[=mmm]{extended mode} represented by
-#'                                  the placeholder \code{[mmm]} and of the
-#'                                  \link[=ccc]{extended class} represented by
-#'                                  the placeholder \code{[ccc]}.              }
-#' @param x An R object.
-#' @return \tabular{ll}{
-#'   \code{cmp_mmm_ccc_vals}   \tab A character vector.                      \cr
-#'   \code{cmp_[mmm]_[ccc]}    \tab A logical scalar.                          }
+#' @description NOTE: \code{MMM} and \code{CCC} are used as placeholders for any
+#'   given extended mode and extended class, respectively.
+#'   \cr\cr
+#'   \strong{\code{cmp_mmm_ccc}}: Evaluates whether \code{x} is complete,
+#'   matches the extended mode specified in the argument \code{mmm} and matches
+#'   the extended class specified in the argument \code{ccc}.
+#'   (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{cmp_MMM_CCC}}: Evaluates whether \code{x} is complete and
+#'   matches the extended mode \code{MMM} and extended class \code{CCC}.
+#'   (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{cmp_mmm_ccc_props}}: Gets a character vector of all possible
+#'   completeness + extended mode + extended class properties.
+#' @param x An R object
+#' @param mmm A character scalar containing an
+#'   extended mode property from mmm_props().
+#' @param ccc A character scalar containing an
+#'   extended class property from ccc_props().
+#' @inheritDotParams meets
+#' @inheritSection meets Specifying Count and Value Restrictions
+#' @return \strong{\code{cmp_mmm_ccc_props}}: A character vector.
+#'   \cr\cr\strong{cmp_mmm_ccc, cmp_MMM_CCC}: A logical scalar.
 #' @export
-cmp_mmm_ccc. <- function() {help("cmp_mmm_ccc.", package = "uj")}
-
-#' @rdname cmp_mmm_ccc.
-#' @export
-cmp_mmm_ccc_vals <- function() {
-  join <- function(x) {paste0(av(x), collapse = "_")}
-  out <- av(apply(expand.grid(mmm = mmm_vals(), ccc = ccc_vals()), 1, join))
-  paste0("cmp_", out)
+cmp_mmm_ccc <- function(x, mmm_ccc, ...) {
+  errs <- c(.meets_errs(x, ...),
+            f0(f0(length(mmm) != 1 | !is.character(mmm), F, f0(is.na(mmm), F, mmm %in% mmm_props())), NULL, '\n \u2022 [mmm] is not a scalar value from mmm_props().'),
+            f0(f0(length(ccc) != 1 | !is.character(ccc), F, f0(is.na(ccc), F, ccc %in% ccc_props())), NULL, '\n \u2022 [ccc] is not a scalar value from ccc_props().'))
+  if (!is.null(errs)) {stop(errs)}
+  if (!meets(x, ...)) {return(F)}
+  if (!run(paste0('i', ccc, '(x)'))) {return(F)}
+  mfun <- paste0('i', mmm)
+  if (ccc == 'dtf') {all(apply(x, 2, mfun)) & !any(is.na(av(x)))}
+  else if (ccc == 'vls') {all(sapply(x, mfun)) & !any(is.na(av(x)))}
+  else if (!is.atomic(x)) {F}
+  else {!any(is.na(x)) & run(mfun)}
 }
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname mmm_ccc
 #' @export
-cmp_ch1_arr <- function(x) {cmp_arr(x) & ch1_arr(x)}
+cmp_mmm_ccc_props <- function() {paste0('cmp_', sort(av(apply(expand.grid(mmm = .mmm_props(), ccc = .ccc_props()), 1, paste0, collapse = '_'))))}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ch1_gen <- function(x) {cmp_gen(x) & ch1_gen(x)}
+cmp_ch1_arr <- function(x, ...) {cmp_mmm_ccc(x, 'ch1', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ch1_dtf <- function(x) {cmp_dtf(x) & ch1_dtf(x)}
+cmp_ch1_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'ch1', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ch1_vls <- function(x) {cmp_vls(x) & ch1_vls(x)}
+cmp_ch1_gen <- function(x, ...) {cmp_mmm_ccc(x, 'ch1', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ch1_mat <- function(x) {cmp_mat(x) & ch1_mat(x)}
+cmp_ch1_mat <- function(x, ...) {cmp_mmm_ccc(x, 'ch1', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ch1_mvc <- function(x) {cmp_mvc(x) & ch1_mvc(x)}
+cmp_ch1_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'ch1', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ch1_scl <- function(x) {cmp_scl(x) & ch1_scl(x)}
+cmp_ch1_scl <- function(x, ...) {cmp_mmm_ccc(x, 'ch1', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ch1_vec <- function(x) {cmp_vec(x) & ch1_vec(x)}
+cmp_ch1_vec <- function(x, ...) {cmp_mmm_ccc(x, 'ch1', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_chr_arr <- function(x) {cmp_arr(x) & chr_arr(x)}
+cmp_ch1_vls <- function(x, ...) {cmp_mmm_ccc(x, 'ch1', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_chr_gen <- function(x) {cmp_gen(x) & chr_gen(x)}
+cmp_ch3_arr <- function(x, ...) {cmp_mmm_ccc(x, 'ch3', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_chr_dtf <- function(x) {cmp_dtf(x) & chr_dtf(x)}
+cmp_ch3_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'ch3', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_chr_vls <- function(x) {cmp_vls(x) & chr_vls(x)}
+cmp_ch3_gen <- function(x, ...) {cmp_mmm_ccc(x, 'ch3', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_chr_mat <- function(x) {cmp_mat(x) & chr_mat(x)}
+cmp_ch3_mat <- function(x, ...) {cmp_mmm_ccc(x, 'ch3', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_chr_mvc <- function(x) {cmp_mvc(x) & chr_mvc(x)}
+cmp_ch3_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'ch3', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_chr_scl <- function(x) {cmp_scl(x) & chr_scl(x)}
+cmp_ch3_scl <- function(x, ...) {cmp_mmm_ccc(x, 'ch3', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_chr_vec <- function(x) {cmp_vec(x) & chr_vec(x)}
+cmp_ch3_vec <- function(x, ...) {cmp_mmm_ccc(x, 'ch3', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_clr_arr <- function(x) {cmp_arr(x) & clr_arr(x)}
+cmp_ch3_vls <- function(x, ...) {cmp_mmm_ccc(x, 'ch3', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_clr_gen <- function(x) {cmp_gen(x) & clr_gen(x)}
+cmp_chr_arr <- function(x, ...) {cmp_mmm_ccc(x, 'chr', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_clr_dtf <- function(x) {cmp_dtf(x) & clr_dtf(x)}
+cmp_chr_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'chr', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_clr_vls <- function(x) {cmp_vls(x) & clr_vls(x)}
+cmp_chr_gen <- function(x, ...) {cmp_mmm_ccc(x, 'chr', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_clr_mat <- function(x) {cmp_mat(x) & clr_mat(x)}
+cmp_chr_mat <- function(x, ...) {cmp_mmm_ccc(x, 'chr', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_clr_mvc <- function(x) {cmp_mvc(x) & clr_mvc(x)}
+cmp_chr_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'chr', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_clr_scl <- function(x) {cmp_scl(x) & clr_scl(x)}
+cmp_chr_scl <- function(x, ...) {cmp_mmm_ccc(x, 'chr', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_clr_vec <- function(x) {cmp_vec(x) & clr_vec(x)}
+cmp_chr_vec <- function(x, ...) {cmp_mmm_ccc(x, 'chr', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_evn_arr <- function(x) {cmp_arr(x) & evn_arr(x)}
+cmp_chr_vls <- function(x, ...) {cmp_mmm_ccc(x, 'chr', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_evn_gen <- function(x) {cmp_gen(x) & evn_gen(x)}
+cmp_clr_arr <- function(x, ...) {cmp_mmm_ccc(x, 'clr', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_evn_dtf <- function(x) {cmp_dtf(x) & evn_dtf(x)}
+cmp_clr_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'clr', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_evn_vls <- function(x) {cmp_vls(x) & evn_vls(x)}
+cmp_clr_gen <- function(x, ...) {cmp_mmm_ccc(x, 'clr', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_evn_mat <- function(x) {cmp_mat(x) & evn_mat(x)}
+cmp_clr_mat <- function(x, ...) {cmp_mmm_ccc(x, 'clr', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_evn_mvc <- function(x) {cmp_mvc(x) & evn_mvc(x)}
+cmp_clr_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'clr', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_evn_scl <- function(x) {cmp_scl(x) & evn_scl(x)}
+cmp_clr_scl <- function(x, ...) {cmp_mmm_ccc(x, 'clr', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_evn_vec <- function(x) {cmp_vec(x) & evn_vec(x)}
+cmp_clr_vec <- function(x, ...) {cmp_mmm_ccc(x, 'clr', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_fac_arr <- function(x) {cmp_arr(x) & fac_arr(x)}
+cmp_clr_vls <- function(x, ...) {cmp_mmm_ccc(x, 'clr', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_fac_gen <- function(x) {cmp_gen(x) & fac_gen(x)}
+cmp_evn_arr <- function(x, ...) {cmp_mmm_ccc(x, 'evn', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_fac_dtf <- function(x) {cmp_dtf(x) & fac_dtf(x)}
+cmp_evn_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'evn', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_fac_vls <- function(x) {cmp_vls(x) & fac_vls(x)}
+cmp_evn_gen <- function(x, ...) {cmp_mmm_ccc(x, 'evn', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_fac_mat <- function(x) {cmp_mat(x) & fac_mat(x)}
+cmp_evn_mat <- function(x, ...) {cmp_mmm_ccc(x, 'evn', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_fac_mvc <- function(x) {cmp_mvc(x) & fac_mvc(x)}
+cmp_evn_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'evn', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_fac_scl <- function(x) {cmp_scl(x) & fac_scl(x)}
+cmp_evn_scl <- function(x, ...) {cmp_mmm_ccc(x, 'evn', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_fac_vec <- function(x) {cmp_vec(x) & fac_vec(x)}
+cmp_evn_vec <- function(x, ...) {cmp_mmm_ccc(x, 'evn', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_frc_arr <- function(x) {cmp_arr(x) & frc_arr(x)}
+cmp_evn_vls <- function(x, ...) {cmp_mmm_ccc(x, 'evn', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_frc_gen <- function(x) {cmp_gen(x) & frc_gen(x)}
+cmp_fac_arr <- function(x, ...) {cmp_mmm_ccc(x, 'fac', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_frc_dtf <- function(x) {cmp_dtf(x) & frc_dtf(x)}
+cmp_fac_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'fac', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_frc_vls <- function(x) {cmp_vls(x) & frc_vls(x)}
+cmp_fac_gen <- function(x, ...) {cmp_mmm_ccc(x, 'fac', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_frc_mat <- function(x) {cmp_mat(x) & frc_mat(x)}
+cmp_fac_mat <- function(x, ...) {cmp_mmm_ccc(x, 'fac', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_frc_mvc <- function(x) {cmp_mvc(x) & frc_mvc(x)}
+cmp_fac_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'fac', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_frc_scl <- function(x) {cmp_scl(x) & frc_scl(x)}
+cmp_fac_scl <- function(x, ...) {cmp_mmm_ccc(x, 'fac', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_frc_vec <- function(x) {cmp_vec(x) & frc_vec(x)}
+cmp_fac_vec <- function(x, ...) {cmp_mmm_ccc(x, 'fac', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ind_arr <- function(x) {cmp_arr(x) & ind_arr(x)}
+cmp_fac_vls <- function(x, ...) {cmp_mmm_ccc(x, 'fac', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ind_gen <- function(x) {cmp_gen(x) & ind_gen(x)}
+cmp_frc_arr <- function(x, ...) {cmp_mmm_ccc(x, 'frc', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ind_dtf <- function(x) {cmp_dtf(x) & ind_dtf(x)}
+cmp_frc_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'frc', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ind_vls <- function(x) {cmp_vls(x) & ind_vls(x)}
+cmp_frc_gen <- function(x, ...) {cmp_mmm_ccc(x, 'frc', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ind_mat <- function(x) {cmp_mat(x) & ind_mat(x)}
+cmp_frc_mat <- function(x, ...) {cmp_mmm_ccc(x, 'frc', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ind_mvc <- function(x) {cmp_mvc(x) & ind_mvc(x)}
+cmp_frc_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'frc', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ind_scl <- function(x) {cmp_scl(x) & ind_scl(x)}
+cmp_frc_scl <- function(x, ...) {cmp_mmm_ccc(x, 'frc', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ind_vec <- function(x) {cmp_vec(x) & ind_vec(x)}
+cmp_frc_vec <- function(x, ...) {cmp_mmm_ccc(x, 'frc', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_lgl_arr <- function(x) {cmp_arr(x) & lgl_arr(x)}
+cmp_frc_vls <- function(x, ...) {cmp_mmm_ccc(x, 'frc', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_lgl_gen <- function(x) {cmp_gen(x) & lgl_gen(x)}
+cmp_ind_arr <- function(x, ...) {cmp_mmm_ccc(x, 'ind', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_lgl_dtf <- function(x) {cmp_dtf(x) & lgl_dtf(x)}
+cmp_ind_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'ind', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_lgl_vls <- function(x) {cmp_vls(x) & lgl_vls(x)}
+cmp_ind_gen <- function(x, ...) {cmp_mmm_ccc(x, 'ind', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_lgl_mat <- function(x) {cmp_mat(x) & lgl_mat(x)}
+cmp_ind_mat <- function(x, ...) {cmp_mmm_ccc(x, 'ind', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_lgl_mvc <- function(x) {cmp_mvc(x) & lgl_mvc(x)}
+cmp_ind_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'ind', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_lgl_scl <- function(x) {cmp_scl(x) & lgl_scl(x)}
+cmp_ind_scl <- function(x, ...) {cmp_mmm_ccc(x, 'ind', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_lgl_vec <- function(x) {cmp_vec(x) & lgl_vec(x)}
+cmp_ind_vec <- function(x, ...) {cmp_mmm_ccc(x, 'ind', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_neg_arr <- function(x) {cmp_arr(x) & neg_arr(x)}
+cmp_ind_vls <- function(x, ...) {cmp_mmm_ccc(x, 'ind', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_neg_gen <- function(x) {cmp_gen(x) & neg_gen(x)}
+cmp_lgl_arr <- function(x, ...) {cmp_mmm_ccc(x, 'lgl', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_neg_dtf <- function(x) {cmp_dtf(x) & neg_dtf(x)}
+cmp_lgl_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'lgl', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_neg_vls <- function(x) {cmp_vls(x) & neg_vls(x)}
+cmp_lgl_gen <- function(x, ...) {cmp_mmm_ccc(x, 'lgl', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_neg_mat <- function(x) {cmp_mat(x) & neg_mat(x)}
+cmp_lgl_mat <- function(x, ...) {cmp_mmm_ccc(x, 'lgl', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_neg_mvc <- function(x) {cmp_mvc(x) & neg_mvc(x)}
+cmp_lgl_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'lgl', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_neg_scl <- function(x) {cmp_scl(x) & neg_scl(x)}
+cmp_lgl_scl <- function(x, ...) {cmp_mmm_ccc(x, 'lgl', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_neg_vec <- function(x) {cmp_vec(x) & neg_vec(x)}
+cmp_lgl_vec <- function(x, ...) {cmp_mmm_ccc(x, 'lgl', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ngw_arr <- function(x) {cmp_arr(x) & ngw_arr(x)}
+cmp_lgl_vls <- function(x, ...) {cmp_mmm_ccc(x, 'lgl', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ngw_gen <- function(x) {cmp_gen(x) & ngw_gen(x)}
+cmp_neg_arr <- function(x, ...) {cmp_mmm_ccc(x, 'neg', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ngw_dtf <- function(x) {cmp_dtf(x) & ngw_dtf(x)}
+cmp_neg_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'neg', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ngw_vls <- function(x) {cmp_vls(x) & ngw_vls(x)}
+cmp_neg_gen <- function(x, ...) {cmp_mmm_ccc(x, 'neg', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ngw_mat <- function(x) {cmp_mat(x) & ngw_mat(x)}
+cmp_neg_mat <- function(x, ...) {cmp_mmm_ccc(x, 'neg', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ngw_mvc <- function(x) {cmp_mvc(x) & ngw_mvc(x)}
+cmp_neg_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'neg', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ngw_scl <- function(x) {cmp_scl(x) & ngw_scl(x)}
+cmp_neg_scl <- function(x, ...) {cmp_mmm_ccc(x, 'neg', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ngw_vec <- function(x) {cmp_vec(x) & ngw_vec(x)}
+cmp_neg_vec <- function(x, ...) {cmp_mmm_ccc(x, 'neg', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nng_arr <- function(x) {cmp_arr(x) & nng_arr(x)}
+cmp_neg_vls <- function(x, ...) {cmp_mmm_ccc(x, 'neg', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nng_gen <- function(x) {cmp_gen(x) & nng_gen(x)}
+cmp_ngw_arr <- function(x, ...) {cmp_mmm_ccc(x, 'ngw', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nng_dtf <- function(x) {cmp_dtf(x) & nng_dtf(x)}
+cmp_ngw_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'ngw', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nng_vls <- function(x) {cmp_vls(x) & nng_vls(x)}
+cmp_ngw_gen <- function(x, ...) {cmp_mmm_ccc(x, 'ngw', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nng_mat <- function(x) {cmp_mat(x) & nng_mat(x)}
+cmp_ngw_mat <- function(x, ...) {cmp_mmm_ccc(x, 'ngw', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nng_mvc <- function(x) {cmp_mvc(x) & nng_mvc(x)}
+cmp_ngw_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'ngw', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nng_scl <- function(x) {cmp_scl(x) & nng_scl(x)}
+cmp_ngw_scl <- function(x, ...) {cmp_mmm_ccc(x, 'ngw', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nng_vec <- function(x) {cmp_vec(x) & nng_vec(x)}
+cmp_ngw_vec <- function(x, ...) {cmp_mmm_ccc(x, 'ngw', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nnw_arr <- function(x) {cmp_arr(x) & nnw_arr(x)}
+cmp_ngw_vls <- function(x, ...) {cmp_mmm_ccc(x, 'ngw', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nnw_gen <- function(x) {cmp_gen(x) & nnw_gen(x)}
+cmp_nng_arr <- function(x, ...) {cmp_mmm_ccc(x, 'nng', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nnw_dtf <- function(x) {cmp_dtf(x) & nnw_dtf(x)}
+cmp_nng_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'nng', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nnw_vls <- function(x) {cmp_vls(x) & nnw_vls(x)}
+cmp_nng_gen <- function(x, ...) {cmp_mmm_ccc(x, 'nng', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nnw_mat <- function(x) {cmp_mat(x) & nnw_mat(x)}
+cmp_nng_mat <- function(x, ...) {cmp_mmm_ccc(x, 'nng', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nnw_mvc <- function(x) {cmp_mvc(x) & nnw_mvc(x)}
+cmp_nng_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'nng', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nnw_scl <- function(x) {cmp_scl(x) & nnw_scl(x)}
+cmp_nng_scl <- function(x, ...) {cmp_mmm_ccc(x, 'nng', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nnw_vec <- function(x) {cmp_vec(x) & nnw_vec(x)}
+cmp_nng_vec <- function(x, ...) {cmp_mmm_ccc(x, 'nng', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nps_arr <- function(x) {cmp_arr(x) & nps_arr(x)}
+cmp_nng_vls <- function(x, ...) {cmp_mmm_ccc(x, 'nng', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nps_gen <- function(x) {cmp_gen(x) & nps_gen(x)}
+cmp_nnw_arr <- function(x, ...) {cmp_mmm_ccc(x, 'nnw', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nps_dtf <- function(x) {cmp_dtf(x) & nps_dtf(x)}
+cmp_nnw_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'nnw', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nps_vls <- function(x) {cmp_vls(x) & nps_vls(x)}
+cmp_nnw_gen <- function(x, ...) {cmp_mmm_ccc(x, 'nnw', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nps_mat <- function(x) {cmp_mat(x) & nps_mat(x)}
+cmp_nnw_mat <- function(x, ...) {cmp_mmm_ccc(x, 'nnw', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nps_mvc <- function(x) {cmp_mvc(x) & nps_mvc(x)}
+cmp_nnw_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'nnw', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nps_scl <- function(x) {cmp_scl(x) & nps_scl(x)}
+cmp_nnw_scl <- function(x, ...) {cmp_mmm_ccc(x, 'nnw', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nps_vec <- function(x) {cmp_vec(x) & nps_vec(x)}
+cmp_nnw_vec <- function(x, ...) {cmp_mmm_ccc(x, 'nnw', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_npw_arr <- function(x) {cmp_arr(x) & npw_arr(x)}
+cmp_nnw_vls <- function(x, ...) {cmp_mmm_ccc(x, 'nnw', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_npw_gen <- function(x) {cmp_gen(x) & npw_gen(x)}
+cmp_nps_arr <- function(x, ...) {cmp_mmm_ccc(x, 'nps', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_npw_dtf <- function(x) {cmp_dtf(x) & npw_dtf(x)}
+cmp_nps_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'nps', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_npw_vls <- function(x) {cmp_vls(x) & npw_vls(x)}
+cmp_nps_gen <- function(x, ...) {cmp_mmm_ccc(x, 'nps', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_npw_mat <- function(x) {cmp_mat(x) & npw_mat(x)}
+cmp_nps_mat <- function(x, ...) {cmp_mmm_ccc(x, 'nps', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_npw_mvc <- function(x) {cmp_mvc(x) & npw_mvc(x)}
+cmp_nps_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'nps', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_npw_scl <- function(x) {cmp_scl(x) & npw_scl(x)}
+cmp_nps_scl <- function(x, ...) {cmp_mmm_ccc(x, 'nps', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_npw_vec <- function(x) {cmp_vec(x) & npw_vec(x)}
+cmp_nps_vec <- function(x, ...) {cmp_mmm_ccc(x, 'nps', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nst_arr <- function(x) {cmp_arr(x) & nst_arr(x)}
+cmp_nps_vls <- function(x, ...) {cmp_mmm_ccc(x, 'nps', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nst_gen <- function(x) {cmp_gen(x) & nst_gen(x)}
+cmp_npw_arr <- function(x, ...) {cmp_mmm_ccc(x, 'npw', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nst_dtf <- function(x) {cmp_dtf(x) & nst_dtf(x)}
+cmp_npw_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'npw', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nst_vls <- function(x) {cmp_vls(x) & nst_vls(x)}
+cmp_npw_gen <- function(x, ...) {cmp_mmm_ccc(x, 'npw', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nst_mat <- function(x) {cmp_mat(x) & nst_mat(x)}
+cmp_npw_mat <- function(x, ...) {cmp_mmm_ccc(x, 'npw', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nst_mvc <- function(x) {cmp_mvc(x) & nst_mvc(x)}
+cmp_npw_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'npw', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nst_scl <- function(x) {cmp_scl(x) & nst_scl(x)}
+cmp_npw_scl <- function(x, ...) {cmp_mmm_ccc(x, 'npw', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_nst_vec <- function(x) {cmp_vec(x) & nst_vec(x)}
+cmp_npw_vec <- function(x, ...) {cmp_mmm_ccc(x, 'npw', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_num_arr <- function(x) {cmp_arr(x) & num_arr(x)}
+cmp_npw_vls <- function(x, ...) {cmp_mmm_ccc(x, 'npw', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_num_gen <- function(x) {cmp_gen(x) & num_gen(x)}
+cmp_nst_arr <- function(x, ...) {cmp_mmm_ccc(x, 'nst', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_num_dtf <- function(x) {cmp_dtf(x) & num_dtf(x)}
+cmp_nst_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'nst', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_num_vls <- function(x) {cmp_vls(x) & num_vls(x)}
+cmp_nst_gen <- function(x, ...) {cmp_mmm_ccc(x, 'nst', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_num_mat <- function(x) {cmp_mat(x) & num_mat(x)}
+cmp_nst_mat <- function(x, ...) {cmp_mmm_ccc(x, 'nst', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_num_mvc <- function(x) {cmp_mvc(x) & num_mvc(x)}
+cmp_nst_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'nst', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_num_scl <- function(x) {cmp_scl(x) & num_scl(x)}
+cmp_nst_scl <- function(x, ...) {cmp_mmm_ccc(x, 'nst', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_num_vec <- function(x) {cmp_vec(x) & num_vec(x)}
+cmp_nst_vec <- function(x, ...) {cmp_mmm_ccc(x, 'nst', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_odd_arr <- function(x) {cmp_arr(x) & odd_arr(x)}
+cmp_nst_vls <- function(x, ...) {cmp_mmm_ccc(x, 'nst', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_odd_gen <- function(x) {cmp_gen(x) & odd_gen(x)}
+cmp_num_arr <- function(x, ...) {cmp_mmm_ccc(x, 'num', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_odd_dtf <- function(x) {cmp_dtf(x) & odd_dtf(x)}
+cmp_num_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'num', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_odd_vls <- function(x) {cmp_vls(x) & odd_vls(x)}
+cmp_num_gen <- function(x, ...) {cmp_mmm_ccc(x, 'num', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_odd_mat <- function(x) {cmp_mat(x) & odd_mat(x)}
+cmp_num_mat <- function(x, ...) {cmp_mmm_ccc(x, 'num', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_odd_mvc <- function(x) {cmp_mvc(x) & odd_mvc(x)}
+cmp_num_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'num', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_odd_scl <- function(x) {cmp_scl(x) & odd_scl(x)}
+cmp_num_scl <- function(x, ...) {cmp_mmm_ccc(x, 'num', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_odd_vec <- function(x) {cmp_vec(x) & odd_vec(x)}
+cmp_num_vec <- function(x, ...) {cmp_mmm_ccc(x, 'num', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ord_arr <- function(x) {cmp_arr(x) & ord_arr(x)}
+cmp_num_vls <- function(x, ...) {cmp_mmm_ccc(x, 'num', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ord_gen <- function(x) {cmp_gen(x) & ord_gen(x)}
+cmp_odd_arr <- function(x, ...) {cmp_mmm_ccc(x, 'odd', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ord_dtf <- function(x) {cmp_dtf(x) & ord_dtf(x)}
+cmp_odd_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'odd', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ord_vls <- function(x) {cmp_vls(x) & ord_vls(x)}
+cmp_odd_gen <- function(x, ...) {cmp_mmm_ccc(x, 'odd', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ord_mat <- function(x) {cmp_mat(x) & ord_mat(x)}
+cmp_odd_mat <- function(x, ...) {cmp_mmm_ccc(x, 'odd', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ord_mvc <- function(x) {cmp_mvc(x) & ord_mvc(x)}
+cmp_odd_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'odd', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ord_scl <- function(x) {cmp_scl(x) & ord_scl(x)}
+cmp_odd_scl <- function(x, ...) {cmp_mmm_ccc(x, 'odd', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ord_vec <- function(x) {cmp_vec(x) & ord_vec(x)}
+cmp_odd_vec <- function(x, ...) {cmp_mmm_ccc(x, 'odd', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pct_arr <- function(x) {cmp_arr(x) & pct_arr(x)}
+cmp_odd_vls <- function(x, ...) {cmp_mmm_ccc(x, 'odd', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pct_gen <- function(x) {cmp_gen(x) & pct_gen(x)}
+cmp_ord_arr <- function(x, ...) {cmp_mmm_ccc(x, 'ord', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pct_dtf <- function(x) {cmp_dtf(x) & pct_dtf(x)}
+cmp_ord_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'ord', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pct_vls <- function(x) {cmp_vls(x) & pct_vls(x)}
+cmp_ord_gen <- function(x, ...) {cmp_mmm_ccc(x, 'ord', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pct_mat <- function(x) {cmp_mat(x) & pct_mat(x)}
+cmp_ord_mat <- function(x, ...) {cmp_mmm_ccc(x, 'ord', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pct_mvc <- function(x) {cmp_mvc(x) & pct_mvc(x)}
+cmp_ord_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'ord', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pct_scl <- function(x) {cmp_scl(x) & pct_scl(x)}
+cmp_ord_scl <- function(x, ...) {cmp_mmm_ccc(x, 'ord', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pct_vec <- function(x) {cmp_vec(x) & pct_vec(x)}
+cmp_ord_vec <- function(x, ...) {cmp_mmm_ccc(x, 'ord', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pos_arr <- function(x) {cmp_arr(x) & pos_arr(x)}
+cmp_ord_vls <- function(x, ...) {cmp_mmm_ccc(x, 'ord', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pos_gen <- function(x) {cmp_gen(x) & pos_gen(x)}
+cmp_pct_arr <- function(x, ...) {cmp_mmm_ccc(x, 'pct', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pos_dtf <- function(x) {cmp_dtf(x) & pos_dtf(x)}
+cmp_pct_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'pct', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pos_vls <- function(x) {cmp_vls(x) & pos_vls(x)}
+cmp_pct_gen <- function(x, ...) {cmp_mmm_ccc(x, 'pct', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pos_mat <- function(x) {cmp_mat(x) & pos_mat(x)}
+cmp_pct_mat <- function(x, ...) {cmp_mmm_ccc(x, 'pct', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pos_mvc <- function(x) {cmp_mvc(x) & pos_mvc(x)}
+cmp_pct_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'pct', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pos_scl <- function(x) {cmp_scl(x) & pos_scl(x)}
+cmp_pct_scl <- function(x, ...) {cmp_mmm_ccc(x, 'pct', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_pos_vec <- function(x) {cmp_vec(x) & pos_vec(x)}
+cmp_pct_vec <- function(x, ...) {cmp_mmm_ccc(x, 'pct', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ppn_arr <- function(x) {cmp_arr(x) & ppn_arr(x)}
+cmp_pct_vls <- function(x, ...) {cmp_mmm_ccc(x, 'pct', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ppn_gen <- function(x) {cmp_gen(x) & ppn_gen(x)}
+cmp_pos_arr <- function(x, ...) {cmp_mmm_ccc(x, 'pos', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ppn_dtf <- function(x) {cmp_dtf(x) & ppn_dtf(x)}
+cmp_pos_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'pos', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ppn_vls <- function(x) {cmp_vls(x) & ppn_vls(x)}
+cmp_pos_gen <- function(x, ...) {cmp_mmm_ccc(x, 'pos', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ppn_mat <- function(x) {cmp_mat(x) & ppn_mat(x)}
+cmp_pos_mat <- function(x, ...) {cmp_mmm_ccc(x, 'pos', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ppn_mvc <- function(x) {cmp_mvc(x) & ppn_mvc(x)}
+cmp_pos_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'pos', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ppn_scl <- function(x) {cmp_scl(x) & ppn_scl(x)}
+cmp_pos_scl <- function(x, ...) {cmp_mmm_ccc(x, 'pos', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_ppn_vec <- function(x) {cmp_vec(x) & ppn_vec(x)}
+cmp_pos_vec <- function(x, ...) {cmp_mmm_ccc(x, 'pos', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_psw_arr <- function(x) {cmp_arr(x) & psw_arr(x)}
+cmp_pos_vls <- function(x, ...) {cmp_mmm_ccc(x, 'pos', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_psw_gen <- function(x) {cmp_gen(x) & psw_gen(x)}
+cmp_ppn_arr <- function(x, ...) {cmp_mmm_ccc(x, 'ppn', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_psw_dtf <- function(x) {cmp_dtf(x) & psw_dtf(x)}
+cmp_ppn_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'ppn', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_psw_vls <- function(x) {cmp_vls(x) & psw_vls(x)}
+cmp_ppn_gen <- function(x, ...) {cmp_mmm_ccc(x, 'ppn', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_psw_mat <- function(x) {cmp_mat(x) & psw_mat(x)}
+cmp_ppn_mat <- function(x, ...) {cmp_mmm_ccc(x, 'ppn', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_psw_mvc <- function(x) {cmp_mvc(x) & psw_mvc(x)}
+cmp_ppn_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'ppn', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_psw_scl <- function(x) {cmp_scl(x) & psw_scl(x)}
+cmp_ppn_scl <- function(x, ...) {cmp_mmm_ccc(x, 'ppn', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_psw_vec <- function(x) {cmp_vec(x) & psw_vec(x)}
+cmp_ppn_vec <- function(x, ...) {cmp_mmm_ccc(x, 'ppn', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_arr <- function(x) {cmp_arr(x) & srt_arr(x)}
+cmp_ppn_vls <- function(x, ...) {cmp_mmm_ccc(x, 'ppn', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_gen <- function(x) {cmp_gen(x) & srt_gen(x)}
+cmp_psw_arr <- function(x, ...) {cmp_mmm_ccc(x, 'psw', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_dtf <- function(x) {cmp_dtf(x) & srt_dtf(x)}
+cmp_psw_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'psw', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_vls <- function(x) {cmp_vls(x) & srt_vls(x)}
+cmp_psw_gen <- function(x, ...) {cmp_mmm_ccc(x, 'psw', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_mat <- function(x) {cmp_mat(x) & srt_mat(x)}
+cmp_psw_mat <- function(x, ...) {cmp_mmm_ccc(x, 'psw', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_mvc <- function(x) {cmp_mvc(x) & srt_mvc(x)}
+cmp_psw_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'psw', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_scl <- function(x) {cmp_scl(x) & srt_scl(x)}
+cmp_psw_scl <- function(x, ...) {cmp_mmm_ccc(x, 'psw', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_vec <- function(x) {cmp_vec(x) & srt_vec(x)}
+cmp_psw_vec <- function(x, ...) {cmp_mmm_ccc(x, 'psw', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_str_arr <- function(x) {cmp_arr(x) & str_arr(x)}
+cmp_psw_vls <- function(x, ...) {cmp_mmm_ccc(x, 'psw', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_str_gen <- function(x) {cmp_gen(x) & str_gen(x)}
+cmp_srt_arr <- function(x, ...) {cmp_mmm_ccc(x, 'srt', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_str_dtf <- function(x) {cmp_dtf(x) & str_dtf(x)}
+cmp_srt_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'srt', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_str_vls <- function(x) {cmp_vls(x) & str_vls(x)}
+cmp_srt_gen <- function(x, ...) {cmp_mmm_ccc(x, 'srt', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_str_mat <- function(x) {cmp_mat(x) & str_mat(x)}
+cmp_srt_mat <- function(x, ...) {cmp_mmm_ccc(x, 'srt', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_str_mvc <- function(x) {cmp_mvc(x) & str_mvc(x)}
+cmp_srt_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'srt', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_str_scl <- function(x) {cmp_scl(x) & str_scl(x)}
+cmp_srt_scl <- function(x, ...) {cmp_mmm_ccc(x, 'srt', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_str_vec <- function(x) {cmp_vec(x) & str_vec(x)}
+cmp_srt_vec <- function(x, ...) {cmp_mmm_ccc(x, 'srt', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_uno_arr <- function(x) {cmp_arr(x) & uno_arr(x)}
+cmp_srt_vls <- function(x, ...) {cmp_mmm_ccc(x, 'srt', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_uno_gen <- function(x) {cmp_gen(x) & uno_gen(x)}
+cmp_str_arr <- function(x, ...) {cmp_mmm_ccc(x, 'str', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_uno_dtf <- function(x) {cmp_dtf(x) & uno_dtf(x)}
+cmp_str_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'str', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_uno_vls <- function(x) {cmp_vls(x) & uno_vls(x)}
+cmp_str_gen <- function(x, ...) {cmp_mmm_ccc(x, 'str', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_uno_mat <- function(x) {cmp_mat(x) & uno_mat(x)}
+cmp_str_mat <- function(x, ...) {cmp_mmm_ccc(x, 'str', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_uno_mvc <- function(x) {cmp_mvc(x) & uno_mvc(x)}
+cmp_str_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'str', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_uno_scl <- function(x) {cmp_scl(x) & uno_scl(x)}
+cmp_str_scl <- function(x, ...) {cmp_mmm_ccc(x, 'str', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_uno_vec <- function(x) {cmp_vec(x) & uno_vec(x)}
+cmp_str_vec <- function(x, ...) {cmp_mmm_ccc(x, 'str', 'vec', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_whl_arr <- function(x) {cmp_arr(x) & whl_arr(x)}
+cmp_str_vls <- function(x, ...) {cmp_mmm_ccc(x, 'str', 'vls', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_whl_gen <- function(x) {cmp_gen(x) & whl_gen(x)}
+cmp_uno_arr <- function(x, ...) {cmp_mmm_ccc(x, 'uno', 'arr', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_whl_dtf <- function(x) {cmp_dtf(x) & whl_dtf(x)}
+cmp_uno_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'uno', 'dtf', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_whl_vls <- function(x) {cmp_vls(x) & whl_vls(x)}
+cmp_uno_gen <- function(x, ...) {cmp_mmm_ccc(x, 'uno', 'gen', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_whl_mat <- function(x) {cmp_mat(x) & whl_mat(x)}
+cmp_uno_mat <- function(x, ...) {cmp_mmm_ccc(x, 'uno', 'mat', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_whl_mvc <- function(x) {cmp_mvc(x) & whl_mvc(x)}
+cmp_uno_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'uno', 'mvc', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_whl_scl <- function(x) {cmp_scl(x) & whl_scl(x)}
+cmp_uno_scl <- function(x, ...) {cmp_mmm_ccc(x, 'uno', 'scl', ...)}
 
-#' @rdname cmp_mmm_ccc.
+#' @rdname cmp_mmm_ccc
 #' @export
-cmp_whl_vec <- function(x) {cmp_vec(x) & whl_vec(x)}
+cmp_uno_vec <- function(x, ...) {cmp_mmm_ccc(x, 'uno', 'vec', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_uno_vls <- function(x, ...) {cmp_mmm_ccc(x, 'uno', 'vls', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_whl_arr <- function(x, ...) {cmp_mmm_ccc(x, 'whl', 'arr', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_whl_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'whl', 'dtf', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_whl_gen <- function(x, ...) {cmp_mmm_ccc(x, 'whl', 'gen', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_whl_mat <- function(x, ...) {cmp_mmm_ccc(x, 'whl', 'mat', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_whl_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'whl', 'mvc', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_whl_scl <- function(x, ...) {cmp_mmm_ccc(x, 'whl', 'scl', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_whl_vec <- function(x, ...) {cmp_mmm_ccc(x, 'whl', 'vec', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_whl_vls <- function(x, ...) {cmp_mmm_ccc(x, 'whl', 'vls', ...)}

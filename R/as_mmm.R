@@ -1,6 +1,6 @@
-#' @name as_mmm.
+#' @name as_mmm
 #' @family props
-#' @title Coerce to base mode or extended mode.
+#' @title Coerce to Base Mode or Extended Mode.
 #' @description \tabular{ll}{
 #'  \code{as_clr}   \tab Coerce a valid R color representation of mode character
 #'                       to hexadecimal RGB character representation.        \cr
@@ -32,10 +32,6 @@
 #'  \code{as_uno}\tab  \tab An object of \link[=mmm]{extended mode} \code{'uno'}
 #'                          (unordered factor).                                }
 #' @export
-as_mmm. <- function() {help("as_mmm.", package = "uj")}
-
-#' @rdname as_mmm.
-#' @export
 as_clr <- function(x, na = F) {
   errs <- c(f0(ichr(x), NULL, "\n \u2022 [x] is not of mode character."),
             f0(isTF(na), NULL, "\n \u2022 [na] must be TRUE or FALSE."),
@@ -51,37 +47,33 @@ as_clr <- function(x, na = F) {
   x
 }
 
-#' @rdname as_mmm.
+#' @rdname as_mmm
 #' @export
 as_fun <- function(x) {
   if (!ifun(x)) {stop("\n \u2022 [x] is neither a function nor a character scalar name of a function.")}
   f0(is.function(x), x, match.fun(x))
 }
 
-#' @rdname as_mmm.
-#' @inherit base::as.character
+#' @rdname as_mmm
 #' @export
 as_chr <- function(x, ...) {base::as.character(x, ...)}
 
-#' @rdname as_mmm.
-#' @inherit base::as.integer
+#' @rdname as_mmm
 #' @export
 as_int <- function(x, ...) {base::as.integer(x, ...)}
 
-#' @rdname as_mmm.
-#' @inherit base::as.numeric
+#' @rdname as_mmm
 #' @export
 as_num <- function(x, ...) {base::as.numeric(x, ...)}
 
-#' @rdname as_mmm.
-#' @inherit base::as.logical
+#' @rdname as_mmm
 #' @export
 as_lgl <- function(x, ...) {base::as.logical(x, ...)}
 
-#' @rdname as_mmm.
+#' @rdname as_mmm
 #' @export
 as_ord <- function(x, levs) {factor(x, levels = levs, ordered = T)}
 
-#' @rdname as_mmm.
+#' @rdname as_mmm
 #' @export
 as_uno <- function(x, levs) {factor(x, levels = levs, ordered = F)}

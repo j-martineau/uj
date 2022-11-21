@@ -1,4 +1,4 @@
-#' @name callers.
+#' @name callers
 #' @family extensions
 #' @family environments
 #' @title Functions in the Call Stack
@@ -37,10 +37,6 @@
 #' }
 #' fun.a()
 #' @export
-callers. <- function() {help("callers.", package = "uj")}
-
-#' @rdname callers.
-#' @export
 callers <- function(gens = NULL) {
   if (!inll(gens) & !cmp_psw_vec(gens)) {stop("\n \u2022 [gens] must be NULL or a positive whole-number vec (?cmp_psw_vec).")}
   x <- rev(as.character(sys.calls()))                                            # get the call stack
@@ -55,10 +51,10 @@ callers <- function(gens = NULL) {
   x[gens]                                                                        # otherwise, if the specified generations exist, return just those gens
 }
 
-#' @rdname callers.
+#' @rdname callers
 #' @export
 caller <- function() {callers(1)}
 
-#' @rdname callers.
+#' @rdname callers
 #' @export
 ncallers <- function() {length(callers())}

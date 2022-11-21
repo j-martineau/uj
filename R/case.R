@@ -1,6 +1,5 @@
-#' @name case.
 #' @family extensions
-#' @family forks
+#' @family fork
 #' @title Case as an extension of switch
 #' @description case. Takes a name (i.e., any atomic scalar) and matches that
 #'   name to the name matching an element of \code{...} where matching can be
@@ -25,10 +24,6 @@
 #'   is found, an error is thrown.
 #' @return Either the value of an argument selected from \code{...} or the value
 #'   of \code{def.}.
-#' @export
-case. <- function() {help("case.", package = "uj")}
-
-#' @rdname case.
 #' @export
 case <- function(name., ..., names. = NULL, def. = "err") {
   ok.names <- f0(inll(names.), T, f0(!ivec(names.), F, length(names.) == ...length()))

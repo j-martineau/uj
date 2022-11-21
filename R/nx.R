@@ -1,4 +1,4 @@
-#' @name nx.
+#' @name n_is
 #' @family extensions
 #' @title Dedicated counting functions
 #' @param x \link[=innw]{non-negative whole-number} object.
@@ -57,11 +57,6 @@
 #' nch(letters, "a string")
 #' nch(letters, "a string", a = T)
 #' @export
-nx. <- function() {help("nx.", package = "uj")}
-
-#' @describeIn nx. Check for specific counts, minimum counts, maximum counts,
-#'   and equal counts. Returns counts themselves if no checks are specified.
-#' @export
 n_is <- function(x, n = NULL, min = NULL, max = NULL, eq = F) {
   errs <- c(f0(cmp_nnw(x), NULL, "\n \u2022 [x] must contain only non-negative whole numbers."),
             f0(inll(n) | cmp_nnw_vec(n), NULL, "\n \u2022 [n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
@@ -77,7 +72,7 @@ n_is <- function(x, n = NULL, min = NULL, max = NULL, eq = F) {
   ok.n & ok.min & ok.max & ok.eq                                                 # whether all argument length restrictions are met
 }
 
-#' @describeIn nx. Length of arguments.
+#' @describeIn n_is Length of arguments.
 #' @export
 nx <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = F, na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {
   dots <- list(...)
@@ -113,23 +108,23 @@ nx <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = F, na = F, val
   n_is(lengths(dots, F), n = n, min = min, max = max, eq = eq)
 }
 
-#' @describeIn nx. Lengths of \code{...} arguments.
+#' @describeIn n_is Lengths of \code{...} arguments.
 #' @export
 ns <- function(..., n = NULL, min = NULL, max = NULL, na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {nx(..., n = n, min = min, max = max, na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt)}
 
-#' @describeIn nx. Minimum length of any \code{...} argument.
+#' @describeIn n_is Minimum length of any \code{...} argument.
 #' @export
 nmin <- function(..., na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {min(nx(..., na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt))}
 
-#' @describeIn nx. Maximum length of any \code{...} argument.
+#' @describeIn n_is Maximum length of any \code{...} argument.
 #' @export
 nmax <- function(..., na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {max(nx(..., na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt))}
 
-#' @describeIn nx. Whether all \code{...} arguments have the same length.
+#' @describeIn n_is Whether all \code{...} arguments have the same length.
 #' @export
 nsame <- function(..., min = NULL, max = NULL, na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {nx(..., min = min, max = max, eq = T, na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt)}
 
-#' @describeIn nx. Number of \code{TRUE} elements.
+#' @describeIn n_is Number of \code{TRUE} elements.
 #' @export
 nw <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   dots <- list(...)
@@ -146,11 +141,11 @@ nw <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   n_is(sapply(lapply(dots, which), length), n, min, max, eq)
 }
 
-#' @describeIn nx. Number of \code{TRUE} elements.
+#' @describeIn n_is Number of \code{TRUE} elements.
 #' @export
 nt <- nw
 
-#' @describeIn nx. Number of \code{FALSE} elements.
+#' @describeIn n_is Number of \code{FALSE} elements.
 #' @export
 nf <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   dots <- list(...)
@@ -167,7 +162,7 @@ nf <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   n_is(sapply(lapply(lapply(dots, not), which), length), n, min, max, eq)
 }
 
-#' @describeIn nx. Number of unique elements.
+#' @describeIn n_is Number of unique elements.
 #' @export
 nu <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   dots <- list(...)
@@ -184,7 +179,7 @@ nu <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   n_is(sapply(lapply(dots, unique), length), n, min, max, eq)
 }
 
-#' @describeIn nx. Number of rows.
+#' @describeIn n_is Number of rows.
 #' @export
 nr <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
   dots <- list(...)
@@ -197,7 +192,7 @@ nr <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
   n_is(sapply(dots, nrow), n, min, max, eq)
 }
 
-#' @describeIn nx. Number of columns.
+#' @describeIn n_is Number of columns.
 #' @export
 nc <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
   dots <- list(...)
@@ -210,7 +205,7 @@ nc <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
   n_is(sapply(dots, ncol), n, min, max, eq)
 }
 
-#' @describeIn nx. Number of characters in each element.
+#' @describeIn n_is Number of characters in each element.
 #'   argument.
 #' @export
 nch <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
@@ -230,7 +225,7 @@ nch <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   n_is(ns, n, min, max, eq)
 }
 
-#' @describeIn nx. Number of \code{NA} values.
+#' @describeIn n_is Number of \code{NA} values.
 #' @export
 nna <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {
   dots <- list(...)
@@ -247,7 +242,7 @@ nna <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {
   n_is(ns, n, min, max, eq)
 }
 
-#' @describeIn nx. Number of non-\code{NA} values.
+#' @describeIn n_is Number of non-\code{NA} values.
 #' @export
 nok <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {
   dots <- list(...)
@@ -264,66 +259,66 @@ nok <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {
   n_is(ns, n, min, max, eq)
 }
 
-#' @describeIn nx. Number of atomic elements.
+#' @describeIn n_is Number of atomic elements.
 #' @export
 nat <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {nx(..., n = n, min = min, max = max, eq = eq, a = T)}
 
-#' @describeIn nx. Is the number of elements 0?
+#' @describeIn n_is Is the number of elements 0?
 #' @export
 n0 <- function(..., na = F, a = T) {nx(..., n = 0, na = na, a = a)}
 
-#' @describeIn nx. Is the number of elements 1?
+#' @describeIn n_is Is the number of elements 1?
 #' @export
 n1 <- function(..., na = F, a = T) {nx(..., n = 1, na = na, a = a)}
 
-#' @describeIn nx. Is the number of elements 2?
+#' @describeIn n_is Is the number of elements 2?
 #' @export
 n2 <- function(..., na = F, a = T) {nx(..., n = 2, na = na, a = a)}
 
-#' @describeIn nx. Is the number of elements 3?
+#' @describeIn n_is Is the number of elements 3?
 #' @export
 n3 <- function(..., na = F, a = T) {nx(..., n = 3, na = na, a = a)}
 
-#' @describeIn nx. Is the number of elements 1 or gerater?
+#' @describeIn n_is Is the number of elements 1 or gerater?
 #' @export
 n1p <- function(..., na = F, eq = T, a = T) {nx(..., min = 1, na = na, a = a)}
 
-#' @describeIn nx. Is the number of elements 2 or greater?
+#' @describeIn n_is Is the number of elements 2 or greater?
 #' @export
 n2p <- function(..., na = F, eq = T, a = T) {nx(..., min = 2, na = na, a = a)}
 
-#' @describeIn nx. Is the number of elements 3 or greater?
+#' @describeIn n_is Is the number of elements 3 or greater?
 #' @export
 n3p <- function(..., na = F, eq = T, a = T) {nx(..., min = 3, na = na, a = a)}
 
-#' @describeIn nx. Is the number of dot arguments 0?
+#' @describeIn n_is Is the number of dot arguments 0?
 #' @export
 nd <- function() {eval.parent(...length())}
 
-#' @describeIn nx. Is the number of dot arguments 0?
+#' @describeIn n_is Is the number of dot arguments 0?
 #' @export
 nd0 <- function() {eval.parent(...length() == 0)}
 
-#' @describeIn nx. Is the number of dot arguments 1?
+#' @describeIn n_is Is the number of dot arguments 1?
 #' @export
 nd1 <- function() {eval.parent(...length() == 1)}
 
-#' @describeIn nx. Is the number of dot arguments 2?
+#' @describeIn n_is Is the number of dot arguments 2?
 #' @export
 nd2 <- function() {eval.parent(...length() == 2)}
 
-#' @describeIn nx. Is the number of dot arguments 2?
+#' @describeIn n_is Is the number of dot arguments 2?
 #' @export
 nd3 <- function() {eval.parent(...length() == 3)}
 
-#' @describeIn nx. Is the number of dot arguments 1 or greater?
+#' @describeIn n_is Is the number of dot arguments 1 or greater?
 #' @export
 nd1p <- function() {eval.parent(...length() >= 1)}
 
-#' @describeIn nx. Is the number of dot arguments 2 or greater?
+#' @describeIn n_is Is the number of dot arguments 2 or greater?
 #' @export
 nd2p <- function() {eval.parent(...length() >= 2)}
 
-#' @describeIn nx. Is the number of dot arguments 3 or greater?
+#' @describeIn n_is Is the number of dot arguments 3 or greater?
 #' @export
 nd3p <- function() {eval.parent(...length() >= 3)}

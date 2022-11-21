@@ -1,4 +1,4 @@
-#' @name spacing.
+#' @name spacing
 #' @family strings
 #' @title Error-Checked \code{stringr}-Based Spacing Functions
 #' @description \tabular{ll}{
@@ -33,16 +33,12 @@
 #' sqz(c("a ", "b", "c", " ", "d  ", ""))
 #' sqz(trm(c("a ", "b", "c", " ", "d  ", "")))
 #' @export
-spacing. <- function() {help("spacing.", package = "uj")}
-
-#' @rdname spacing.
-#' @export
 spaces <- function(n) {
   if (!cmp_nnw_scl(n)) {stop("\n \u2022 [n] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
   paste0(rep(" ", n), collapse = "")
 }
 
-#' @rdname spacing.
+#' @rdname spacing
 #' @export
 pad <- function(..., n. = 0, s. = "r", p. = " ") {
   errs <- c(f0(all(sapply(list(...), cmp_chr)), NULL, "\n \u2022 [...] must contain at least one argument, and all must be complete character vecs (?cmp_chr_vec)."),
@@ -53,14 +49,14 @@ pad <- function(..., n. = 0, s. = "r", p. = " ") {
   sapply(av(...), stringr::str_pad, width = n., side = s., pad = p.)
 }
 
-#' @rdname spacing.
+#' @rdname spacing
 #' @export
 sqz <- function(...) {
   if (!all(sapply(list(...), cmp_chr))) {stop("\n \u2022 [...] must contain at least one argument, and all must be complete character vecs (?cmp_chr_vec).")}
   stringr::str_squish(av(...))
 }
 
-#' @rdname spacing.
+#' @rdname spacing
 #' @export
 trm <- function(...) {
   if (!all(sapply(list(...), cmp_chr))) {stop("\n \u2022 [...] must contain at least one argument, and all must be complete character vecs (?cmp_chr_vec)")}

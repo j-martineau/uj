@@ -1,4 +1,3 @@
-#' @name charn.
 #' @title Extract a single character
 #' @description Get the \code{n}-th character of each element of \code{x}.
 #' @family strings
@@ -8,10 +7,6 @@
 #'   dimensions as \code{x}.
 #' @return \code{link[=cmp_ch1]{Complete onechar}} atomic object of the same
 #'   dimension as \code{x}.
-#' @export
-charn. <- function() {help("charn.", package = "uj")}
-
-#' @rdname charn.
 #' @export
 charn <- function(x, n) {
   errs <- c(f0(ichr(x)                                 , NULL, "\n \u2022 [x] must be an atomic object of mode 'character' (?ichr)."),

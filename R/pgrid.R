@@ -1,4 +1,4 @@
-#' @name pgrid.
+#' @name pgrid
 #' @family strings
 #' @title \code{expand.grid} for \code{paste} and \code{paste0}
 #' @description \tabular{ll}{
@@ -51,10 +51,6 @@
 #'   ```
 #' @return A character vector.
 #' @export
-pgrid. <- function() {help("pgrid.", package = "uj")}
-
-#' @rdname pgrid.
-#' @export
 pgrid <- function(p, ..., ch = F, crossed = F, na.err = T) {
   combo <- function(xx) {
     xx <- av(xx)
@@ -80,18 +76,18 @@ pgrid <- function(p, ..., ch = F, crossed = F, na.err = T) {
   out
 }
 
-#' @rdname pgrid.
+#' @rdname pgrid
 #' @export
 pgrid0 <- function(..., ch = F, crossed = F, na.err = T) {pgrid("", ..., ch = ch, crossed = crossed, na.err = na.err)}
 
-#' @rdname pgrid.
+#' @rdname pgrid
 #' @export
 pgrid1 <- function(..., ch = F, crossed = F, na.err = T) {pgrid(" ", ..., ch = ch, crossed = crossed, na.err = na.err)}
 
-#' @rdname pgrid.
+#' @rdname pgrid
 #' @export
 pgridn <- function(p, ..., ch = F, na.err = T) {pgrid(p, ..., ch = ch, crossed = F, na.err = na.err)}
 
-#' @rdname pgrid.
+#' @rdname pgrid
 #' @export
 pgridx <- function(p, ..., ch = F, na.err = T) {pgrid(p, ..., ch = ch, crossed = T, na.err = na.err)}

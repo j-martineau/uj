@@ -1,129 +1,142 @@
-#' @name cmp_mmm.
+#' @name cmp_mmm
 #' @family props
-#' @title Completeness + Extended Mode Properties
-#' @description \tabular{ll}{
-#'   \code{cmp_mmm_vals}   \tab Gets a character vector of all possible
-#'                              \link[=icmp]{completeness} +
-#'                              \link[=mmm]{extended mode} properties.       \cr
-#'   \code{cmp_[mmm]}      \tab Evaluates whether \code{x} is
-#'                              \link[=icmp]{complete} and of the
-#'                              \link[=mmm]{extended mode} represented by the
-#'                              placeholder \code{[mmm]}.                      }
-#' @param x An R object.
-#' @return \tabular{ll}{
-#'   \code{cmp_mmm_vals}   \tab A character vector.                          \cr
-#'   \code{cmp_[mmm]}      \tab A logical scalar.                              }
+#' @title Completeness + Extended mode Properties
+#' @description NOTE: \code{MMM} is used as a wildcard for any
+#'   given extended mode property.
+#'   \cr\cr
+#'   \strong{\code{cmp_mmm}}: Evaluates whether \code{x} is complete and
+#'   matches the extended mode specified in the argument \code{mmm}
+#'   (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{cmp_MMM}}: Evaluates whether \code{x} is complete and
+#'   matches the extended mode property \code{MMM}.
+#'   (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{cmp_mmm_props}}: Gets a character vector of all possible
+#'   completeness + extended mode properties.
+#' @param x An R object
+#' @param mmm A character scalar containing an
+#'   extended mode property from mmm_props().
+#' @inheritDotParams meets
+#' @inheritSection meets Specifying Count and Value Restrictions
+#' @return \strong{\code{cmp_mmm_props}}: A character vector.
+#'   \cr\cr\strong{cmp_mmm, cmp_MMM}: A logical scalar.
 #' @export
-cmp_mmm. <- function() {help("cmp_mmm.", package = "uj")}
+cmp_mmm <- function(x, mmm, ...) {
+  errs <- c(.meets_errs(x, ...),
+            f0(f0(length(mmm) != 1 | !is.character(mmm), F, f0(is.na(mmm), F, mmm %in% mmm_props())), NULL, '\n \u2022 [mmm] is not a scalar value from mmm_props().'))
+  if (!is.null(errs)) {stop(errs)}
+  if (!immm(x)) {F} else {x <- av(x); !any(is.na(x))}
+}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_mmm_vals <- function() {paste0("cmp_", mmm_vals())}
+cmp_mmm_props <- function() {paste0('cmp_', mmm_props())}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_atm <- function(x) {icmp(x) & iatm(x)}
+cmp_ch1 <- function(x, ...) {cmp_mmm(x, 'ch1', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_ch1 <- function(x) {icmp(x) & ich1(x)}
+cmp_ch3 <- function(x, ...) {cmp_mmm(x, 'ch3', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_chr <- function(x) {icmp(x) & ichr(x)}
+cmp_chr <- function(x, ...) {cmp_mmm(x, 'chr', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_clr <- function(x) {icmp(x) & iclr(x)}
+cmp_clr <- function(x, ...) {cmp_mmm(x, 'clr', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_evn <- function(x) {icmp(x) & ievn(x)}
+cmp_evn <- function(x, ...) {cmp_mmm(x, 'evn', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_fac <- function(x) {icmp(x) & ifac(x)}
+cmp_fac <- function(x, ...) {cmp_mmm(x, 'fac', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_frc <- function(x) {icmp(x) & ifrc(x)}
+cmp_frc <- function(x, ...) {cmp_mmm(x, 'frc', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_ind <- function(x) {icmp(x) & iind(x)}
+cmp_ind <- function(x, ...) {cmp_mmm(x, 'ind', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_lgl <- function(x) {icmp(x) & ilgl(x)}
+cmp_lgl <- function(x, ...) {cmp_mmm(x, 'lgl', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_neg <- function(x) {icmp(x) & ineg(x)}
+cmp_neg <- function(x, ...) {cmp_mmm(x, 'neg', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_ngw <- function(x) {icmp(x) & ingw(x)}
+cmp_ngw <- function(x, ...) {cmp_mmm(x, 'ngw', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_nng <- function(x) {icmp(x) & inng(x)}
+cmp_nng <- function(x, ...) {cmp_mmm(x, 'nng', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_nnw <- function(x) {icmp(x) & innw(x)}
+cmp_nnw <- function(x, ...) {cmp_mmm(x, 'nnw', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_nps <- function(x) {icmp(x) & inps(x)}
+cmp_nps <- function(x, ...) {cmp_mmm(x, 'nps', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_npw <- function(x) {icmp(x) & inpw(x)}
+cmp_npw <- function(x, ...) {cmp_mmm(x, 'npw', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_nst <- function(x) {icmp(x) & inst(x)}
+cmp_nst <- function(x, ...) {cmp_mmm(x, 'nst', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_num <- function(x) {icmp(x) & inum(x)}
+cmp_num <- function(x, ...) {cmp_mmm(x, 'num', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_odd <- function(x) {icmp(x) & iodd(x)}
+cmp_odd <- function(x, ...) {cmp_mmm(x, 'odd', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_ord <- function(x) {icmp(x) & iord(x)}
+cmp_ord <- function(x, ...) {cmp_mmm(x, 'ord', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_pct <- function(x) {icmp(x) & ipct(x)}
+cmp_pct <- function(x, ...) {cmp_mmm(x, 'pct', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_pos <- function(x) {icmp(x) & ipos(x)}
+cmp_pos <- function(x, ...) {cmp_mmm(x, 'pos', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_ppn <- function(x) {icmp(x) & ippn(x)}
+cmp_ppn <- function(x, ...) {cmp_mmm(x, 'ppn', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_psw <- function(x) {icmp(x) & ipsw(x)}
+cmp_psw <- function(x, ...) {cmp_mmm(x, 'psw', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_srt <- function(x) {icmp(x) & isrt(x)}
+cmp_srt <- function(x, ...) {cmp_mmm(x, 'srt', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_str <- function(x) {icmp(x) & istr(x)}
+cmp_str <- function(x, ...) {cmp_mmm(x, 'str', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_uno <- function(x) {icmp(x) & iuno(x)}
+cmp_uno <- function(x, ...) {cmp_mmm(x, 'uno', ...)}
 
-#' @rdname cmp_mmm.
+#' @rdname cmp_mmm
 #' @export
-cmp_whl <- function(x) {icmp(x) & iwhl(x)}
+cmp_whl <- function(x, ...) {cmp_mmm(x, 'whl', ...)}

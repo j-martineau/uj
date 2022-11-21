@@ -1,12 +1,12 @@
-#' @name ipat.
+#' @name ipat
 #' @family strings
 #' @title Simplified string indexing for fixed patterns
 #' @description \tabular{ll}{
-#'   \code{has_pat}   \tab Evaluate whether each element of \code{x} contains
-#'                         the string in \code{pat}.                         \cr
 #'   \code{ipat}      \tab Logically indexes character vector elements
 #'                         containing a pattern as \code{TRUE} or
 #'                         \code{FALSE}.                                     \cr
+#'   \code{has_pat}   \tab Evaluate whether each element of \code{x} contains
+#'                         the string in \code{pat}.                         \cr
 #'   \code{wpat}      \tab Numerically indexes character vector elements
 #'                         containing a pattern as integer element numbers.  \cr
 #'   \code{npat}      \tab Counts the number of times a pattern appears in each
@@ -31,18 +31,7 @@
 #'   \code{ppats}                         \tab  
 #'         \tab \link[=whl_vls]{Whole-number vlist}.                           }
 #' @export
-ipat. <- function() {help("ipat.", package = "uj")}
-
-#' @rdname ipat.
-#' @export
-has_pat <- function(x, pat) {
-  errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),
-            f0(cmp_chr_scl(pat), NULL, " \u2022 [pat] must be a complete character scalar (?cmp_chr_vec)."))
-  if (idef(errs)) {stop(errs)}
-  nchar(x) != nchar(gsub(x, pat, "", fixed = T))
-}
-
-#' @rdname ipat.
+#' @rdname ipat
 #' @export
 ipat <- function(x, pat) {
   errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),
@@ -51,7 +40,16 @@ ipat <- function(x, pat) {
   grepl(pat, x, fixed = T)
 }
 
-#' @rdname ipat.
+#' @rdname ipat
+#' @export
+has_pat <- function(x, pat) {
+  errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),
+            f0(cmp_chr_scl(pat), NULL, " \u2022 [pat] must be a complete character scalar (?cmp_chr_vec)."))
+  if (idef(errs)) {stop(errs)}
+  nchar(x) != nchar(gsub(x, pat, "", fixed = T))
+}
+
+#' @rdname ipat
 #' @export
 wpat <- function(x, pat) {
   errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),
@@ -60,7 +58,7 @@ wpat <- function(x, pat) {
   grep(pat, x, fixed = T)
 }
 
-#' @rdname ipat.
+#' @rdname ipat
 #' @export
 npat <- function(x, pat) {
   errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),
@@ -69,7 +67,7 @@ npat <- function(x, pat) {
   lengths(gregexpr(pat, x, fixed = T))
 }
 
-#' @rdname ipat.
+#' @rdname ipat
 #' @export
 ppat <- function(x, pat) {
   errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),
@@ -81,7 +79,7 @@ ppat <- function(x, pat) {
   return(out)
 }
 
-#' @rdname ipat.
+#' @rdname ipat
 #' @export
 ppats <- function(x, pat) {
   errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),

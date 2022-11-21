@@ -1,4 +1,4 @@
-#' @name na.
+#' @name na
 #' @family extensions
 #' @title Manage \code{NA} and non-\code{NA} values
 #' @description All functions in this group take objects of atomic mode,
@@ -40,10 +40,6 @@
 #'  \code{sub_na}            \tab   \tab \code{x} with \code{NA} values
 #'                                        replaced.                            }
 #' @export
-na. <- function() {help("na.", package = "uj")}
-
-#' @rdname na.
-#' @export
 na <- function(x) {
   if (length(x) > 0) {
     if (is.atomic(x)) {return(is.na(x))}
@@ -53,7 +49,7 @@ na <- function(x) {
   stop("\n \u2022 [x] must be populated (?ipop) and atomic, a populated atomic vlist (?ivls), or a populated atomic tabular (?itab).")
 }
 
-#' @rdname na.
+#' @rdname na
 #' @export
 ok <- function(x) {
   if (length(x) > 0) {
@@ -64,7 +60,7 @@ ok <- function(x) {
   stop("\n \u2022 [x] must be populated (?ipop) and atomic, a populated atomic vlist (?ivls), or a populated atomic tabular (?itab).")
 }
 
-#' @rdname na.
+#' @rdname na
 #' @export
 sub_na <- function(x, s) {
   if (length(x) == 0) {return(x)}
@@ -84,15 +80,15 @@ sub_na <- function(x, s) {
   } else {stop("\n \u2022 [x] must be an atomic vlist (?atm_vls), atomic dtf (?idtf), or some other atomic object.")}
 }
 
-#' @rdname na.
+#' @rdname na
 #' @export
 nas <- function(x) {if (n1(x) & iatm(x)) {is.na(x)} else {F}}
 
-#' @rdname na.
+#' @rdname na
 #' @export
 oks <- function(x) {if (n1(x) & iatm(x)) {!is.na(x)} else {F}}
 
-#' @rdname na.
+#' @rdname na
 #' @export
 rm_na <- function(x) {
   if (is.atomic(x)) {return(x[!is.na(x)])}

@@ -1,15 +1,9 @@
-#' @name uj_constants.
+#' @name uj_constants
 #' @title Package constants for \code{uj}
 #' @param ... unquoted, comma-separated list of the names of constants to
 #'   return. If multiple constants are specified, they are coerced into a single
 #'   atomic vector result.
 #' @return An atomic vector of length 1 or greater.
-#' @export
-uj_constants. <- function() {help("uj_constants.", package = "uj")}
-
-#' @describeIn uj_constants. Get a named \link[=atm_vls]{atomic vlist}
-#'   containing all package \code{uj} constants with an associated attribute
-#'   describing each.
 #' @export
 uj_constants <- function() {
   labs <- c(
@@ -135,7 +129,7 @@ uj_constants <- function() {
   values
 }
 
-#' @describeIn uj_constants. Get one or more \code{uj} package constants.
+#' @describeIn uj_constants Get one or more \code{uj} package constants.
 #' @export
 v <- function(...) {
   x <- as.character(match.call())

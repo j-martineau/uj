@@ -1,4 +1,4 @@
-#' @name compatible.
+#' @name compatible
 #' @family props
 #' @title Are objects compatible?
 #' @description Compatibility means that objects or corresponding variables in
@@ -55,10 +55,6 @@
 #' compatible(NumZero, NumSeven, NumDigits, recycle = F)
 #' compatible(list(letters), LETTERS, as.character(0:9))
 #' @export
-compatible. <- function() {help("compatible.", package = "uj")}
-
-#' @rdname compatible.
-#' @export
 compatible <- function(..., recyclable. = TRUE) {
   dots <- list(...)
   n.dots <- length(dots)
@@ -83,7 +79,7 @@ compatible <- function(..., recyclable. = TRUE) {
   T
 }
 
-#' @rdname compatible.
+#' @rdname compatible
 #' @export
 compatible_mats <- function(..., bind. = "c") {
   dots <- list(...)
@@ -101,7 +97,7 @@ compatible_mats <- function(..., bind. = "c") {
   T
 }
 
-#' @rdname compatible.
+#' @rdname compatible
 #' @export
 compatible_dtfs <- function(..., bind. = "c") {
   dots <- list(...)

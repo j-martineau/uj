@@ -7,7 +7,7 @@
   NULL
 }
 
-#' @name n_th.
+#' @name n_th
 #' @family extensions
 #' @title Extract elements by index position
 #' @description \tabular{ll}{
@@ -27,17 +27,13 @@
 #' n_th(letters, 5)
 #' n_th(letters, )
 #' @export
-n_th. <- function() {help("n_th.", package = "uj")}
-
-#' @rdname n_th.
-#' @export
 n_th <- function(x, n) {
   errs <- .n_th_errs(x, n, F)
   if (idef(errs)) {stop(errs)}
   x[n]
 }
 
-#' @rdname n_th.
+#' @rdname n_th
 #' @export
 first_n <- function(x, n) {
   errs <- .n_th_errs(x, n, T)
@@ -45,7 +41,7 @@ first_n <- function(x, n) {
   x[1:n]
 }
 
-#' @rdname n_th.
+#' @rdname n_th
 #' @export
 last_n <- function(x, n) {
   errs <- .n_th_errs(x, n, F)
@@ -53,7 +49,7 @@ last_n <- function(x, n) {
   n <- 1:n; x[1 + length(x) - n]
 }
 
-#' @rdname n_th.
+#' @rdname n_th
 #' @export
 n_th_last <- function(x, n) {
   errs <- .n_th_errs(x, n, T)

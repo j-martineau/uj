@@ -1,4 +1,4 @@
-#' @name ss.
+#' @name ss
 #' @family strings
 #' @title Split strings and select/check for elements
 #' @description \strong{\code{ss}} splits strings using the delimiter(s) in
@@ -66,10 +66,6 @@
 #'   \link[=chr_vls]{character vlist}, or a \link[=chr_dtf]{character
 #'   data.frame}.
 #' @export
-ss. <- function() {help("ss.", package = "uj")}
-
-#' @describeIn ss. Flexible fixed-string string splitting function.
-#' @export
 ss <- function(d, ..., trm = T, sqz = T, u = F, n = NULL) {
   errs <- c(f0(all(sapply(list(...), ichr))  , NULL, "\n \u2022 [...] must contain at least one argument, all of which must be character generics (?chr_gen)."),
             f0(cmp_chr_vec(d)                , NULL, "\n \u2022 [d] must be a complete character vec (?cmp_chr_vec)."),
@@ -87,39 +83,39 @@ ss <- function(d, ..., trm = T, sqz = T, u = F, n = NULL) {
   x
 }
 
-#' @describeIn ss. Split strings using a pipe (\code{'|'}) delimiter.
+#' @rdname ss
 #' @export
 ss1 <- function(..., trm = T, sqz = T, n = NULL, u = F) {ss(" ", ..., trm = trm, sqz = sqz, n = NULL, u = F)}
 
-#' @describeIn ss. Split strings using a pipe (\code{'|'}) delimiter.
+#' @rdname ss
 #' @export
 ssP <- function(..., trm = T, sqz = T, n = NULL, u = F) {ss("|", ..., trm = trm, sqz = sqz, n = NULL, u = F)}
 
-#' @describeIn ss. Split strings using a dot/period (\code{'.'}) delimiter.
+#' @rdname ss
 #' @export
 ssD <- function(..., trm = T, sqz = T, n = NULL, u = F) {ss(".", ..., trm = trm, sqz = sqz, n = NULL, u = F)}
 
-#' @describeIn ss. Split strings using a broken pipe (\code{'¦'}) delimiter.
+#' @rdname ss
 #' @export
 ssB <- function(..., trm = T, sqz = T, n = NULL, u = F) {ss("¦", ..., trm = trm, sqz = sqz, n = NULL, u = F)}
 
-#' @describeIn ss. Split a string using pipe and dot delimiters.
+#' @rdname ss
 #' @export
 ssPD <- function(..., trm = T, sqz = T, n = NULL, u = F) {ss(c("|", "."), ..., trm = trm, sqz = sqz, n = NULL, u = F)}
 
-#' @describeIn ss. Split a string using pipe and broken pipe delimiters.
+#' @rdname ss
 #' @export
 ssPB <- function(..., trm = T, sqz = T, n = NULL, u = F) {ss(c("|", "¦"), ..., trm = trm, sqz = sqz, n = NULL, u = F)}
 
-#' @describeIn ss. Split a string using dot and broken pipe delimiters.
+#' @rdname ss
 #' @export
 ssDB <- function(..., trm = T, sqz = T, n = NULL, u = F) {ss(c(".", "¦"), ..., trm = trm, sqz = sqz, n = NULL, u = F)}
 
-#' @describeIn ss. Split a string using pipe, dot, and broken pipe delimiters.
+#' @rdname ss
 #' @export
 ssPDB <- function(..., trm = T, sqz = T, n = NULL, u = F) {ss(c("|", ".", "¦"), ..., trm = trm, sqz = sqz, n = NULL, u = F)}
 
-#' @describeIn ss. Split a string into constituent characters.
+#' @rdname ss
 #' @export
 ch <- function(..., trm = T, sqz = T, n = NULL, u = F) {
   errs <- c(f0(all(sapply(list(...), ichr))     , NULL, "\n \u2022 [...] must contain at least one argument, all of which must be character generics (?chr_gen)."),
@@ -134,12 +130,11 @@ ch <- function(..., trm = T, sqz = T, n = NULL, u = F) {
   x
 }
 
-#' @describeIn ss. Split a string into unique constituent characters.
+#' @rdname ss
 #' @export
 uch <- function(..., trm = T, sqz = T, n = NULL) {ch(..., trm = trm, sqz = sqz, n = n, u = T)}
 
-#' @describeIn ss. Split strings and place results in a tibble, including
-#'   original values
+#' @rdname ss
 #' @export
 sstb <- function(x, d, name = "string", parts = "part") {
   ss0 <- function(xx, dd) {ss(dd, xx)}

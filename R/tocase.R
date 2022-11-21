@@ -1,4 +1,4 @@
-#' @name tocase.
+#' @name tocase
 #' @family strings
 #' @title Convert string case
 #' @description \tabular{ll}{
@@ -40,10 +40,6 @@
 #' scase(TestTitle, TestSentence, TestWords, TestSet, case = "T")
 #' scase(TestVector, case = "UPPER")
 #' @export
-tocase. <- function() {help("tocase.", package = "j")}
-
-#' @rdname tocase.
-#' @export
 tocase <- function(case., ..., a. = T) {
   x <- list(...)
   n <- length(x)
@@ -52,7 +48,7 @@ tocase <- function(case., ..., a. = T) {
   all.vls <- all(sapply(x), chr_vls)
   if (n > 0) {ns <- lengths(x)} else {ns <- 1}
   ok.case <- isIN(case., c("l", "s", "t", "u"))
-  ok.dots <- f0(n == 0, F, f0(any(lengths(x.) == 0), F, f0(all(sapply(x., is.atomic)), T, all.chr | all.dtf | all.vls)))
+  ok.dots <- f0(n == 0, F, f0(any(lengths(x) == 0), F, f0(all(sapply(x, is.atomic)), T, all.chr | all.dtf | all.vls)))
   errs <- c(f0(ok.case , NULL, "\n \u2022 [case.] must be either 'l', 's', 't', or 'u'."),
             f0(ok.dots , NULL, "\n \u2022 [...] must be contain non-empty character objects (?ichr), character dtfs (?chr_dtf), or character vlists (?chr_vls)."),
             f0(isTF(a.), NULL, "\n \u2022 [a.] must be TRUE or FALSE."))
@@ -77,26 +73,26 @@ tocase <- function(case., ..., a. = T) {
   x
 }
 
-#' @rdname tocase.
+#' @rdname tocase
 #' @export
 tosentence <- function(..., a. = T) {tocase("s", ..., a. = a.)}
 
-#' @rdname tocase.
+#' @rdname tocase
 #' @export
 totitle <- function(..., a. = T) {tocase("t", ..., a. = a.)}
 
-#' @rdname tocase.
+#' @rdname tocase
 #' @export
 lc <- function(..., a. = T) {tocase("l", ..., a. = a.)}
 
-#' @rdname tocase.
+#' @rdname tocase
 #' @export
 sc <- function(..., a. = T) {tocase("s", ..., a. = a.)}
 
-#' @rdname tocase.
+#' @rdname tocase
 #' @export
 tc <- function(..., a. = T) {tocase("t", ..., a. = a.)}
 
-#' @rdname tocase.
+#' @rdname tocase
 #' @export
 uc <- function(..., a. = T) {tocase("u", ..., a. = a.)}

@@ -1,4 +1,83 @@
-#' @name meets.
+.meets_errs <- function(x, ...) {
+  if (...length() == 0) {return(T)}
+  vars <- c('n', 'nr', 'nc', 'min', 'minr', 'minc', 'max', 'maxr', 'maxc', 'vals', 'lt', 'le', 'le', 'ge', 'gt')
+  dots <- list(...)
+  dot.names <- names(dots)
+  pop.names <- dot.names[dot.names != ""]
+  unq.names <- unique(pop.names[pop.names != ""])
+  all.unique <- f0(is.null(dot.names), T, setequal(pop.names, unq.names))
+  no.blanks <- f0(is.null(dot.names), T, !any(dot.names == ""))
+  all.valid <- f0(length(pop.names) == 0, T, all(dot.names %in% vars))
+  errs <- c(f0(!no.blanks, NULL, "\n \u2022 All arguments in [...] must be named."),
+            f0(all.unique, NULL, "\n \u2022 Arguments in [...] must be named uniquely."),
+            f0(all.valid , NULL, "\n \u2022 Names of arguments in [...] must be in c('n', 'nr', 'nc', 'min', 'minr', 'minc', 'max', 'maxr', 'maxc', 'vals', 'lt', 'le', 'le', 'ge', 'gt')."))
+  if (idef(errs)) {return(errs)}
+
+
+  ok_vec <- function(dot) {f0(is.null(dot), T,
+                              f0(!is.atomic(dot) | length(dot) == 0, F,
+                                 f0(is.vector(dot), T,
+                                    f0(!is.array(dot), F,
+                                       length(which(dim(dot) > 1)) < 2))))}
+
+  ok_scl <- function(dot) {f0(is.null(dot), T,
+                              f0(!ok_vec(dot), F,
+                                 length(dot) == 1))}
+
+  ok_ind_vec <- function(dot) {f0(is.null(dot), T,
+                                  f0(!ok_vec(dot), F,
+                                     !any(is.na(dot)) & all(dot >= 0 & round(dot) == dot)))}
+
+  ok_ind_scl <- function(dot) {f0(is.null(dot), T,
+                                  f0(!ok_scl(dot), F,
+                                     !is.na(dot) & dot >= 0 & round(dot) == dot ))}
+
+  ok_srt_vec <- function(obj, dot) {
+    obj.wild <- f0(is.null(obj), T, f0(!is.atomic, F, f0(length(obj) == 0, T, all(is.na(obj)))))
+    obj.chr <- is.character(obj); dot.chr <- is.character(dot)
+    obj.num <- is.numeric(obj); dot.num <- is.numeric(dot)
+    obj.lgl <- is.logical(obj); dot.lgl <- is.logical(dot)
+    obj.ord <- is.ordered(obj); dot.ord <- is.ordered(dot)
+    obj.levs <- f0(!obj.ord, NULL, levels(obj)); obj.nlevs <- length(obj.levs)
+    dot.levs <- f0(!dot.ord, NULL, levels(dot)); dot.nlevs <- length(dot.levs)
+    f0(is.null(dot), T,
+       f0(!ok_vec(dot), F,
+          f0(!dot.num & !dot.lgl & !dot.chr & !dot.ord, F,
+             f0(!is.atomic(obj), T,
+                f0(obj.wild, T,
+                   f0(obj.chr & dot.chr, T,
+                      f0(obj.num & dot.num, T,
+                         f0(obj.lgl & dot.lgl, T,
+                            f0(!obj.ord | !dot.ord, F,
+                               f0(obj.nlevs != dot.nlevs, F,
+                                  all(obj.levs == dot.levs)))))))))))
+  }
+
+  ok_srt_scl <- function(obj, dot) {f0(is.null(dot), T,
+                                       f0(!ok_srt_vec(obj, dot), F,
+                                          length(dot) == 1))}
+
+  lt   <- dots$lt; min  <- dots$min ; max  <- dots$max ; n  <- dots$n
+  le   <- dots$le; minr <- dots$minr; maxr <- dots$maxr; nr <- dots$nr
+  ge   <- dots$ge; minc <- dots$minc; maxc <- dots$maxc; nc <- dots$nc
+  gt   <- dots$gt; vals <- dots$vals; one  <- c(n, min, max)
+  c(f0(ok_ind_vec(n ), NULL, "\n \u2022 [n] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
+    f0(ok_ind_vec(nr), NULL, "\n \u2022 [nr] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
+    f0(ok_ind_vec(nc), NULL, "\n \u2022 [nc] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
+    f0(ok_ind_scl(min), NULL, "\n \u2022 [min] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+    f0(ok_ind_scl(max), NULL, "\n \u2022 [max] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+    f0(ok_ind_scl(minr), NULL, "\n \u2022 [minr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+    f0(ok_ind_scl(minc), NULL, "\n \u2022 [minc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+    f0(ok_ind_scl(maxr), NULL, "\n \u2022 [maxr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+    f0(ok_ind_scl(maxc), NULL, "\n \u2022 [maxc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+    f0(ok_srt_scl(x, lt), NULL, "\n \u2022 [lt] must be NULL or a non-NA atomic scalar (?cmp_scl) comparable with [x] (?comparable)."),
+    f0(ok_srt_scl(x, le), NULL, "\n \u2022 [le] must be NULL or a non-NA atomic scalar (?cmp_scl) comparable with [x] (?comparable)."),
+    f0(ok_srt_scl(x, ge), NULL, "\n \u2022 [ge] must be NULL or a non-NA atomic scalar (?cmp_scl) comparable with [x] (?comparable)."),
+    f0(ok_srt_scl(x, gt), NULL, "\n \u2022 [gt] must be NULL or a non-NA atomic scalar (?cmp_scl) comparable with [x] (?comparable)."),
+    f0(ok_srt_vec(x, vals), NULL, "\n \u2022 [vals] must be NULL or a complete atomic vec (?cmp_vec) comparable with [x] (?comparable)."))
+}
+
+#' @name meets
 #' @family props
 #' @title Does an object meet count and/or value restrictions?
 #' @description Count and value restrictions are provided in \code{...}. If none
@@ -6,9 +85,9 @@
 #' @param x An object.
 #' @param ... Optional named arguments specifying (additional) property
 #'   requirements for \code{x} in terms of element values and/or
-#'   element/row/column counts. See the \emph{Specifying Additional Property
-#'   Requirements} section.
-#' @section Specifying Additional Property Requirements:
+#'   element/row/column counts. See the \emph{Specifying Count and Value
+#'   Restrictions} section.
+#' @section Specifying Count and Value Restrictions:
 #'   Specifying additional requirements in \code{...} is optional. The full set
 #'   of recognized arguments names are defined in the following table along with
 #'   the properties each specifies:\tabular{ll}{
@@ -23,54 +102,16 @@
 #'   \code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
 #'   \code{maxc}   \tab Scalar maximum valid number of columns.              \cr
 #'   \code{vals}   \tab Vec of valid values.                                 \cr
-#'   \code{lt}     \tab Scalar value all values of \code{x} must be less
-#'                      than.                                                \cr
-#'   \code{le}     \tab Scalar value all values of \code{x} must be less than or
-#'                      equal to.                                            \cr
-#'   \code{ge}     \tab Scalar value all values of \code{x} must be greater than
-#'                      or equal to.                                         \cr
-#'   \code{gt}     \tab Scalar value all values of \code{x} must be greater
-#'                      than.                                                  }
+#'   \code{lt}     \tab Scalar less-than bound on values of \code{x}.        \cr
+#'   \code{le}     \tab Scalar less-than-or-equal bound on values of
+#'                      \code{x}.                                            \cr
+#'   \code{ge}     \tab Scalar greater-than-or-equal bound on values of
+#'                      \code{x}.                                            \cr
+#'   \code{gt}     \tab Scalar greater-than bound on values of \code{x}.       }
 #' @return A logical scalar.
 #' @export
-meets. <- function() {help("meets.", package = "uj")}
-
 meets <- function(x, ...) {
-  if (...length() == 0) {return(T)}
-  vars <- 'n.nr.nc.min.minr.minc.max.maxr.maxc.vals.lt.le.le.ge.gt'
-  vars <- av(strsplit(vars, ".", T))
-  dots <- list(...)
-  labs <- names(dots)
-  ok.labs <- f0(is_unq(labs), all(labs %in% vars), F)
-  if (!ok.labs) {stop("\n \u2022 Arguments in [...] must be uniquely named with names in c('n', 'min', 'max', 'nr', 'minr', 'maxr', 'nc', 'minc', 'maxc', 'vals', 'lt', 'le', 'ge', 'gt').")}
-  lt   <- dots$lt; min  <- dots$min ; max  <- dots$max ; n  <- dots$n
-  le   <- dots$le; minr <- dots$minr; maxr <- dots$maxr; nr <- dots$nr
-  ge   <- dots$ge; minc <- dots$minc; maxc <- dots$maxc; nc <- dots$nc
-  gt   <- dots$gt; vals <- dots$vals
-  x2d  <- id2D(x)
-  ok.vals <- nll_or(vals, 'pop_atm')
-  ok.lt <- nll_or(lt, 'srt_scl')  ;  ok.le <- nll_or(le, 'srt_scl')
-  ok.ge <- nll_or(ge, 'srt_scl')  ;  ok.gt <- nll_or(gt, 'srt_scl')
-  errs <- c(f0(f0(x2d, T, length(c(nr, minr, maxr, nc, minc, maxc)) == 0), NULL, "\n \u2022 [nr], [minr], [maxr], [nc], [minc], and [maxc] must be NULL when [x.] is not a matrix or dft (?is_dtf)."),
-            f0(nll_or(n   , 'cmp_nnw_vec')                               , NULL, "\n \u2022 [n] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(nll_or(nr  , 'cmp_nnw_vec')                               , NULL, "\n \u2022 [nr] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(nll_or(nc  , 'cmp_nnw_vec')                               , NULL, "\n \u2022 [nc] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(nll_or(min , 'cmp_nnw_scl')                               , NULL, "\n \u2022 [min] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(nll_or(minr, 'cmp_nnw_scl')                               , NULL, "\n \u2022 [minr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(nll_or(minc, 'cmp_nnw_scl')                               , NULL, "\n \u2022 [minc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(nll_or(max , 'cmp_nnw_scl')                               , NULL, "\n \u2022 [max] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(nll_or(maxr, 'cmp_nnw_scl')                               , NULL, "\n \u2022 [maxr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(nll_or(maxc, 'cmp_nnw_scl')                               , NULL, "\n \u2022 [maxc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(ok.vals                                                   , NULL, "\n \u2022 [vals] must be NULL or a complete atomic object (?cmp)."),
-            f0(ok.lt                                                     , NULL, "\n \u2022 [lt] must be NULL or a complete sortable atomic scalar (?cmp_scl)."),
-            f0(ok.le                                                     , NULL, "\n \u2022 [le] must be NULL or a complete sortable atomic scalar (?cmp_scl)."),
-            f0(ok.ge                                                     , NULL, "\n \u2022 [ge] must be NULL or a complete sortable atomic scalar (?cmp_scl)."),
-            f0(ok.gt                                                     , NULL, "\n \u2022 [gt] must be NULL or a complete sortable atomic scalar (?cmp_scl)."),
-            f0(f0(inll(vals) | !ok.vals , T, compatible(x, vals))        , NULL, "\n \u2022 Modes of [x.] and [vals] are not compatible."),
-            f0(f0(inll(lt) | !ok.lt, T, comparable(x, lt))               , NULL, "\n \u2022 Modes of [x.] and [lt] are not comparable."),
-            f0(f0(inll(le) | !ok.le, T, comparable(x, le))               , NULL, "\n \u2022 Modes of [x.] and [le] are not comparable."),
-            f0(f0(inll(ge) | !ok.ge, T, comparable(x, ge))               , NULL, "\n \u2022 Modes of [x.] and [ge] are not comparable."),
-            f0(f0(inll(gt) | !ok.gt, T, comparable(x, gt))               , NULL, "\n \u2022 Modes of [x.] and [gt] are not comparable."))
+  errs <- .meets_errs(x, ...)
   if (!inll(errs)) {stop(errs)}
   av <- av(x)                                                                    # atomic values from {x}
   nx <- f0(id1D(x), length(x), prod(dim(x)))                                     # length of {x}

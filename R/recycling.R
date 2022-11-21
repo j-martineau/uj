@@ -1,4 +1,4 @@
-#' @name recycling.
+#' @name recycling
 #' @family extensions
 #' @family environments
 #' @title Recycling and recyclability
@@ -36,10 +36,6 @@
 #'   \code{recyclable}     \tab Logical scalar                               \cr
 #'   \code{recycle}        \tab \code{NULL} (called for side effect).          }
 #' @export
-recycling. <- function() {help("recycling.", package = "uj")}
-
-#' @rdname recycling.
-#' @export
 recyclable_n <- function(n, targ = max(n)) {
   errs <- c(f0(cmp_psw_vec(n)   , NULL, "\n \u2022 [n] must be a complete positive whole-number vec (?cmp_psw_vec)."),
             f0(cmp_psw_scl(targ), NULL, "\n \u2022 [targ] must be a complete positive whole-number scalar (?cmp_psw_scl)."))
@@ -48,7 +44,7 @@ recyclable_n <- function(n, targ = max(n)) {
   all(out == round(out))
 }
 
-#' @rdname recycling.
+#' @rdname recycling
 #' @export
 recyclable <- function(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL, err. = F) {
   errs <- c(f0(all(sapply(list(...), ivec))    , NULL, "\n \u2022 Arguments in [...] must be atomic vecs (?ivec)."),
@@ -71,7 +67,7 @@ recyclable <- function(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL, err.
   out
 }
 
-#' @rdname recycling.
+#' @rdname recycling
 #' @export
 recycle <- function(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL) {
   recyclable(..., n. = n., min. = min., max. = max., targ. = targ., err. = T)

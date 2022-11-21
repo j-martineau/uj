@@ -1,4 +1,4 @@
-#' @name binfuns.
+#' @name binfuns
 #' @family extensions
 #' @family logicals
 #' @family failsafe
@@ -43,52 +43,48 @@
 #' @param x,y Any objects.
 #' @return A logical scalar.
 #' @export
-binfuns. <- function() {help("binfuns.", package = "uj")}
-
-#' @rdname binfuns.
-#' @export
 `%IS%` <- function(x, y) {identical(x, y)}
 
-#' @rdname binfuns.
+#' @rdname binfuns
 #' @export
 `%ISNT%` <- function(x, y) {!identical(x, y)}
 
-#' @rdname binfuns.
+#' @rdname binfuns
 #' @export
 `%EQ%` <- function(x, y) {isEQ(x, y)}
 
-#' @rdname binfuns.
+#' @rdname binfuns
 #' @export
 `%NEQ%` <- function(x, y) {!isEQ(x, y)}
 
-#' @rdname binfuns.
+#' @rdname binfuns
 #' @export
 `%AND%` <- function(x, y) {isT(x) & isT(y)}
 
-#' @rdname binfuns.
+#' @rdname binfuns
 #' @export
 `%OR%` <- function(x, y) {isT(x) | isT(y)}
 
-#' @rdname binfuns.
+#' @rdname binfuns
 #' @export
 `%NOT%` <- function(x, y) {isF(x) & isF(y)}
 
-#' @rdname binfuns.
+#' @rdname binfuns
 #' @export
 `%ONE%` <- function(x, y) {f0(isT(x), isF(y), isT(y))}
 
-#' @rdname binfuns.
+#' @rdname binfuns
 #' @export
 `%IN%` <- function(x, y) {isIN(x, y)}
 
-#' @rdname binfuns.
+#' @rdname binfuns
 #' @export
 `%OUT%` <- function(x, y) {notIN(x, y)}
 
-#' @rdname binfuns.
+#' @rdname binfuns
 #' @export
 `%HAS%` <- function(x, y) {isIN(y, x)}
 
-#' @rdname binfuns.
+#' @rdname binfuns
 #' @export
 `%LACKS%` <- function(x, y) {notIN(y, x)}

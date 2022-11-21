@@ -1,4 +1,4 @@
-#' @name eee.
+#' @name eee
 #' @family props
 #' @title Effective dimensionality properties
 #' @description Effective dimensionality of a non-empty object is defined as
@@ -29,80 +29,81 @@
 #'   \code{≥ 3}\tab\code{'eHD'}\tab Effectively hyper-dimensional
 #'                             \tab Non-empty array with multiple index
 #'                                  positions in at least 3 dimensions.        }
-#' Functions related to effective dimensionality are described in the following
-#' table:\tabular{ll}{
-#' FUNCTION          \tab WHAT THE                                           \cr
-#' FORMAT            \tab FUNCTION DOES                                      \cr
-#' \code{i[eee]}     \tab Evaluates whether an object is of the effective
-#'                        dimensionality represented by \code{[eee]}.        \cr
-#' \code{eee}        \tab Gets a character scalar containing the effective
-#'                        dimensionality of an object.                       \cr
-#' \code{ieee}       \tab Evaluates an object for a specific effective
-#'                        dimensionality and any additional properties
-#'                        specified in \code{...}.                           \cr
-#' \code{neee}       \tab Gets a whole-number scalar giving the number of
-#'                        effective dimensions.                              \cr
-#' \code{eee_vals}   \tab Gets a character vector of all possible effective
-#'                        dimensionality property values.                      }
-#' @param x An object.
-#' @param eee \link[=cmp_chr_scl]{Complete character scalar} containing one or
-#'   more values from \code{eee_vals()} separated by pipes and/or underscores.
-#'   Combinations of effective dimensionality properties can be specified by
-#'   underscore-delimiting them. Pipe-delimiting effective dimensionality
-#'   properties or combinations of effective dimensionality will result in a
-#'   value of \code{TRUE} if any of them applies to \code{x}.
-#' @inheritDotParams meets.
-#' @inheritSection meets. Specifying Additional Property Requirements
-#' @return \tabular{lll}{
-#'   \code{eee_vals} and \code{eee}\tab   \tab A character scalar or vector. \cr
-#'   \code{neee(x)}                \tab   \tab \code{NaN} or a non-negative
-#'                                             whole-number scalar.          \cr
-#'   \code{ieee} and \code{i[eee]} \tab   \tab A logical scalar.               }
-#' @export
-eee. <- function() {help("eee.", package = "uj")}
-
-#' @rdname eee.
+#'   Functions related to effective dimensionality properties are as follows:
+#'   \tabular{ll}{
+#'     EEE FUNCTION         \tab WHAT IT DOES                                \cr
+#'     \code{iEEE}          \tab Evaluates whether \code{x} matches the
+#'                               effective dimensionality property \code{EEE}
+#'                               (subject to any restrictions in \code{...}).\cr
+#'     \code{eee}           \tab Gets a character vector containing all
+#'                               effective dimensionality properties matching
+#'                               \code{x}.                                   \cr
+#'     \code{ieee}          \tab Evaluates \code{x} against the
+#'                               effective dimensionality property specification
+#'                               in \code{spec} (subject to any restrictions in
+#'                               \code{...}).                                \cr
+#'     \code{eee_props}     \tab Gets a character vector of all possible
+#'                               effective dimensionality property values.   \cr
+#'     \code{is_eee_spec}   \tab Evaluates whether \code{spec} is a valid
+#'                               effective dimensionality property
+#'                               specification.                                }
+#' @param x An R object.
+#' @param spec \code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
+#'   containing one or more effective dimensionality properties (i.e., from
+#'   \code{eee_vals()}). \strong{NOTE}: properties may be pipe-separated. If
+#'   If there are multiple properties in \code{spec}, \code{x} is inspected for
+#'   a match to any of the specified properties.
+#' @inheritDotParams meets
+#' @inheritSection meets Specifying Count and Value Restrictions
+#' @return \strong{\code{eee_vals}}: A character vector.
+#'   \cr\cr\strong{\code{eee}}: A character scalar or character vector.
+#'   \cr\cr\strong{\code{iEEE, ieee, is_eee_spec}}: A logical scalar.
 #' @export
 eee <- function(x) {
-  n <- f0(length(x) == 0, NaN, f0(NROW(x) * NCOL(x) == 1, 0, f0(is.vector(x), 1, length(which(dim(x) > 1)))))
-  f0(is.nan(n), 'eUD', f0(0 == n, 'e0D', f0(1 == n, 'e1D', f0(2 == n, 'e2D', f0(3 <= n, 'eHD', NULL)))))
+  props <- .eee_props()
+  out <- NULL
+  for (prop in props) {out <- c(out, f0(run('.is_', prop, '(x)'), prop, NULL))}
+  out
 }
 
-#' @rdname eee.
+#' @rdname eee
+#' @export
+eee_props <- function() {.eee_props()}
+
+#' @rdname eee
+#' @export
+is_eee_spec <- function(spec) {spec <- .spec_vals(); f0(length(spec) == 0, F, all(spec %in% .eee_props()))}
+
+#' @rdname eee
+#' @export
+ieee <- function(x, spec, ...) {
+  errs <- c(.meets_errs(x, ...), f0(is_eee_spec(spec), NULL, '\n \u2022 [spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from eee_props().'))
+  if (!is.null(errs)) {stop(errs)}
+  if (!meets(x, ...)) {return(F)}
+  for (prop in .spec_vals(spec)) {if (run('.is_', prop, '(x)')) {return(T)}}
+  F
+}
+
+#' @rdname eee
+#' @export
+ie0D <- function(x, ...) {ieee(x, 'e0D', ...)}
+
+#' @rdname eee
+#' @export
+ie1D <- function(x, ...) {ieee(x, 'e1D', ...)}
+
+#' @rdname eee
+#' @export
+ie2D <- function(x, ...) {ieee(x, 'e2D', ...)}
+
+#' @rdname eee
+#' @export
+ieHD <- function(x, ...) {ieee(x, 'eHD', ...)}
+
+#' @rdname eee
+#' @export
+ieUD <- function(x, ...) {ieee(x, 'eUD', ...)}
+
+#' @rdname eee
 #' @export
 neee <- function(x) {f0(length(x) == 0, NaN, f0(NROW(x) * NCOL(x) == 1, 0, f0(is.vector(x), 1, length(which(dim(x) > 1)))))}
-
-#' @rdname eee.
-#' @export
-ie0D <- function(x) {neee(x) == 0}
-
-#' @rdname eee.
-#' @export
-ie1D <- function(x) {neee(x) == 1}
-
-#' @rdname eee.
-#' @export
-ie2D <- function(x) {neee(x) == 2}
-
-#' @rdname eee.
-#' @export
-ieHD <- function(x) {neee(x) > 2}
-
-#' @rdname eee.
-#' @export
-ieUD <- function(x) {identical(eee(x), NaN)}
-
-#' @rdname eee.
-#' @export
-eee_vals <- function() {c('e0D', 'e1D', 'e2D', 'eHD', 'eUD')}
-
-#' @rdname eee.
-#' @export
-ieee <- function(x, eee, ...) {
-  if (!cmp_chr_scl(eee)) {stop("\n \u2022 [eee] must be a non-NA character scalar.")}
-  valid.eee <- ttt_vals()
-  eee.combos <- strsplit(eee, "|", fixed = T)[[1]]
-  new.eee <- unlist(strsplit(eee.combos, "_", fixed = T))
-  if (!all(new.eee %in% valid.eee)) {stop("\n \u2022 [eee = '", eee, "'] specifies an 'effective dimensionality' property not in [uj::eee_vals() = c(", paste0(paste0("'", eee_vals(), "'"), collapse = ", "), ")].")}
-  ippp(x, eee, ...)
-}

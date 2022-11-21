@@ -1,4 +1,3 @@
-#' @name is_unq.
 #' @family extensions
 #' @title Does an object have only unique atomic values?
 #' @description Evaluates whether \code{x} contains only only unique atomic
@@ -11,10 +10,6 @@
 #' @param na A non-\code{NA} logical scalar indicating whether \code{NA} values
 #'   are allowed.
 #' @return \code{TRUE} or \code{FALSE}.
-#' @export
-is_unq. <- function() {help("is_unq.", package = "uj")}
-
-#' @rdname is_unq.
 #' @export
 is_unq <- function(x, a = T, na = F) {
   if (isTRUE(a)) {x <- unlist(x, T, F)}

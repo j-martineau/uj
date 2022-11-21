@@ -1,4 +1,4 @@
-#' @name failsafe.
+#' @name failsafe
 #' @family extensions
 #' @family errs
 #' @family failsafe
@@ -26,20 +26,16 @@
 #'   \code{msgERR}              \tab   \tab Either \code{NULL} or a character
 #'                                          scalar.                            }
 #' @export
-failsafe. <- function() {help("failsafe.", package = "uj")}
-
-#' @rdname failsafe.
-#' @export
 failsafe <- function(x) {tryCatch(identity(x), error = function(e) e, finally = NULL)}
 
-#' @rdname failsafe.
+#' @rdname failsafe
 #' @export
 isERR <- function(x) {any(class(failsafe(x)) %in% c("error", "simpleError"))}
 
-#' @rdname failsafe.
+#' @rdname failsafe
 #' @export
 notERR <- function(x) {!any(class(failsafe(x)) %in% c("error", "simpleError"))}
 
-#' @rdname failsafe.
+#' @rdname failsafe
 #' @export
 msgERR <- function(x) {f0(isERR(x), x$message, NULL)}

@@ -4,7 +4,7 @@
     f0(fun == "r" , NULL, f0(cmp_psw_scl(e), NULL, "\n \u2022 [e] must be a positive whole-number scalar (?cmp_psw_scl).")))
 }
 
-#' @name r.
+#' @name r
 #' @family extended
 #' @title Error-Checked Wraps of \code{\link[=base:rep]{base::rep}}.
 #' @description \tabular{ll}{
@@ -53,17 +53,13 @@
 #' re(2, 3, 0:4, 5:9)
 #' er(3, 2, 0:4, 5:9)
 #' @export
-r. <- function() {help("r.", package = "uj")}
-
-#' @rdname r.
-#' @export
 r <- function(r, ...) {
   errs <- .r.errs("r", ..., r = r)
   if (idef(errs)) {stop(errs)}
   rep.int(av(...), r)
 }
 
-#' @rdname r.
+#' @rdname r
 #' @export
 e <- function(e, ...) {
   errs <- .r.errs("e", ..., e = e)
@@ -71,7 +67,7 @@ e <- function(e, ...) {
   rep(av(...), each = e)
 }
 
-#' @rdname r.
+#' @rdname r
 #' @export
 re <- function(r, e, ...) {
   errs <- .r.errs("re", ..., r = r, e = e)
@@ -79,7 +75,7 @@ re <- function(r, e, ...) {
   rep(rep(av(...), times = r), each = e)
 }
 
-#' @rdname r.
+#' @rdname r
 #' @export
 re <- function(e, r, ...) {
   errs <- .r.errs("er", ..., r = r, e = e)

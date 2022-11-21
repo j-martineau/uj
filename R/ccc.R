@@ -1,99 +1,107 @@
-#' @name ccc.
+#' @name ccc
 #' @family props
-#' @title Extended class properties
-#' @description Extended classes are not formally defined, but are dynamically
-#' evaluated. Extended classes come in two varieties: universal and atomic. The
-#' following two tables define each extended class in universal and atomic form,
-#' respectively.:\tabular{lll}{
-#' EXTENDED     \tab PROPERTY     \tab QUALIFYING                            \cr
-#' CLASS        \tab VALUE        \tab OBJECTS                               \cr
-#' vlist        \tab \code{'vls'} \tab Vector-list (i.e., not a data.frame). \cr
-#' data.frame   \tab \code{'dtf'} \tab Data.frame.                           \cr
-#' generic      \tab \code{'gen'} \tab Vector, array, or vlist.              \cr
-#' matrix       \tab \code{'mat'} \tab Matrix.                               \cr
-#' array+       \tab \code{'arr'} \tab Array or vector of any length.        \cr
-#' scalar       \tab \code{'scl'} \tab Array or vector of any length.        \cr
-#' vector+      \tab \code{'vec'} \tab Vector of length 1+ or array of length 1+
-#'                                     with multiple index positions in either 0
-#'                                     or 1 dimensions.                      \cr
-#' multivec     \tab \code{'mvc'} \tab Vector of length 2+ or array of length 2+
-#'                                     with multiple index positions in exactly
-#'                                     1 dimension.                            }
-#' Functions related to extended are described in the following
-#' table:\tabular{ll}{
-#' FUNCTION          \tab WHAT THE                                           \cr
-#' FORMAT            \tab FUNCTION DOES                                      \cr
-#' \code{i[ccc]}       \tab Evaluates whether an object is of the extended class
-#'                        represented by \code{[ccc]}.                       \cr
-#' \code{ccc}        \tab Gets a character vector containing all extended class
-#'                        properties of an object.                           \cr
-#' \code{iccc}       \tab Evaluates an object for a specific extended class and
-#'                        any additional properties specified in \code{...}. \cr
-#' \code{ccc_vals}   \tab Gets a character vector of all possible extended class
-#'                        type property values.                                }
-#' @param x An object.
-#' @param ccc \code{NULL} or \link[=cmp_chr_scl]{complete character scalar}
-#'   containing one or more values from \code{ccc_vals()} separated by pipes
-#'   and/or underscores. Combinations of extended classes can be specified by
-#'   separating them with underscores. Separating extended classes or
-#'   combinations of extended classes with pipes will result in a value of
-#'   \code{TRUE} if any of them applies to \code{x}.
-#' @inheritDotParams meets.
-#' @inheritSection meets. Specifying Additional Property Requirements
-#' @return \tabular{lll}{
-#'   \code{ccc_vals}              \tab   \tab A character vector.            \cr
-#'   \code{ccc}                   \tab   \tab A character scalar or vector.  \cr
-#'   \code{iccc} and \code{i[ccc]}\tab   \tab A logical scalar.                }
+#' @title Extended Class Properties
+#' @description NOTE: \code{CCC} is used to represent any given extended class
+#'   property.
+#'   \cr\cr
+#'   Extended class properties are not formally defined, but are dynamically
+#'   evaluated, and defined as follows:\tabular{lll}{
+#'     PROPERTY     \tab PROPERTY   \tab QUALIFYING                          \cr
+#'     NAME         \tab VALUE      \tab OBJECTS                             \cr
+#'     array        \tab\code{'arr'}\tab Arrays.                             \cr
+#'     data.frame   \tab\code{'dtf'}\tab Data frames.                        \cr
+#'     vlist        \tab\code{'vls'}\tab Vector-lists\eqn{^a}.               \cr
+#'     generic      \tab\code{'gen'}\tab Vectors/vlists/arrays.              \cr
+#'     matrix       \tab\code{'mat'}\tab Matrices.                           \cr
+#'     scalar       \tab\code{'scl'}\tab Vectors/vlists/arrays of length-1.  \cr
+#'     multivec     \tab\code{'mvc'}\tab Vectors/vlists of length 2+ and
+#'                                       \link[=eee]{effectively 1D} arrays. \cr
+#'     vec          \tab\code{'vec'}\tab Scalars and multivecs.                }
+#'   \eqn{^a} i.e., not a data.frame list.
+#'   \cr\cr
+#'   Functions related to extended class properties are as follows:
+#'   \tabular{ll}{
+#'     CCC FUNCTION         \tab WHAT IT DOES                                \cr
+#'     \code{iCCC}          \tab Evaluates whether \code{x} matches the
+#'                               extended class property \code{CCC}
+#'                               (subject to any restrictions in \code{...}).\cr
+#'     \code{ccc}           \tab Gets a character vector containing all
+#'                               extended class properties matching
+#'                               \code{x}.                                   \cr
+#'     \code{iccc}          \tab Evaluates \code{x} against the
+#'                               extended class property specification
+#'                               in \code{spec} (subject to any restrictions in
+#'                               \code{...}).                                \cr
+#'     \code{ccc_props}     \tab Gets a character vector of all possible
+#'                               extended class property values.             \cr
+#'     \code{is_ccc_spec}   \tab Evaluates whether \code{spec} is a valid
+#'                               extended class property
+#'                               specification.                                }
+#' @param x An R object.
+#' @param spec \code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
+#'   containing one or more extended class properties (i.e., from
+#'   \code{ccc_vals()}). \strong{NOTE}: properties may be pipe-separated. If
+#'   If there are multiple properties in \code{spec}, \code{x} is inspected for
+#'   a match to any of the specified properties.
+#' @inheritDotParams meets
+#' @inheritSection meets Specifying Count and Value Restrictions
+#' @return \strong{\code{ccc_vals}}: A character vector.
+#'   \cr\cr\strong{\code{ccc}}: A character scalar or character vector.
+#'   \cr\cr\strong{\code{iCCC, iccc, is_ccc_spec}}: A logical scalar.
 #' @export
-ccc. <- function() {help("ccc.", package = "uj")}
-
-#' @rdname ccc.
-#' @export
-iarr <- function(x) {is.array(x) | is.vector(x)}
-
-#' @rdname ccc.
-#' @export
-idtf <- function(x) {is.data.frame(x)}
-
-#' @rdname ccc.
-#' @export
-igen <- function(x) {is.vector(x) | is.array(x) | (is.list(x) & !is.data.frame(x))}
-
-#' @rdname ccc.
-#' @export
-imat <- function(x) {is.matrix(x)}
-
-#' @rdname ccc.
-#' @export
-imvc <- function(x) {length(x) > 1 & (is.vector(x) | (is.array(x) & length(which(dim(x) > 1)) == 1))}
-
-#' @rdname ccc.
-#' @export
-iscl <- function(x) {length(x) == 1 & (is.array(x) | is.vector(x))}
-
-#' @rdname ccc.
-#' @export
-ivec <- function(x) {length(x) > 0 & (is.vector(x) | (is.array(x) & length(which(dim(x) > 1)) <= 1))}
-
-#' @rdname ccc.
-#' @export
-ivls <- function(x) {is.list(x) & !is.data.frame(x)}
-
-#' @rdname ccc.
-#' @export
-ccc_vals <- function() {c('arr', 'dtf', 'gen', 'mat', 'mvc', 'scl', 'vec', 'vls')}
-
-#' @rdname ccc.
-#' @export
-ccc <- function(x) {c(f0(iarr(x), 'arr', NULL), f0(idtf(x), 'dtf', NULL), f0(igen(x), 'gen', NULL), f0(imat(x), 'mat', NULL), f0(imvc(x), 'mvc', NULL), f0(iscl(x), 'scl', NULL), f0(ivec(x), 'vec', NULL), f0(ivls(x), 'vls', NULL))}
-
-#' @rdname ccc.
-#' @export
-iccc <- function(x, ccc, ...) {
-  if (!cmp_chr_scl(ccc)) {stop("\n \u2022 [ccc] must be a non-NA character scalar.")}
-  valid.ccc <- ttt_vals()
-  ccc.combos <- strsplit(ccc, "|", fixed = T)[[1]]
-  new.ccc <- unlist(strsplit(ccc.combos, "_", fixed = T))
-  if (!all(new.ccc %in% valid.ccc)) {stop("\n \u2022 [ccc = '", ccc, "'] specifies an 'extended class' property not in [uj::ccc_vals() = c(", paste0(paste0("'", ccc_vals(), "'"), collapse = ", "), ")].")}
-  ippp(x, ccc, ...)
+ccc <- function(x) {
+  props <- .ccc_props()
+  out <- NULL
+  for (prop in props) {out <- c(out, f0(run('.is_', prop, '(x)'), prop, NULL))}
+  out
 }
+
+#' @rdname ccc
+#' @export
+ccc_props <- function() {.ccc_props()}
+
+#' @rdname ccc
+#' @export
+is_ccc_spec <- function(spec) {spec <- .spec_vals(); f0(length(spec) == 0, F, all(spec %in% .ccc_props()))}
+
+#' @rdname ccc
+#' @export
+iccc <- function(x, spec, ...) {
+  errs <- c(.meets_errs(x, ...), f0(is_ccc_spec(spec), NULL, '\n \u2022 [spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from ccc_props().'))
+  if (!is.null(errs)) {stop(errs)}
+  if (!meets(x, ...)) {return(F)}
+  for (prop in .spec_vals(spec)) {if (run('.is_', prop, '(x)')) {return(T)}}
+  F
+}
+
+#' @rdname ccc
+#' @export
+iarr <- function(x, ...) {iccc(x, 'arr', ...)}
+
+#' @rdname ccc
+#' @export
+idtf <- function(x, ...) {iccc(x, 'dtf', ...)}
+
+#' @rdname ccc
+#' @export
+igen <- function(x, ...) {iccc(x, 'gen', ...)}
+
+#' @rdname ccc
+#' @export
+imat <- function(x, ...) {iccc(x, 'mat', ...)}
+
+#' @rdname ccc
+#' @export
+imvc <- function(x, ...) {iccc(x, 'mvc', ...)}
+
+#' @rdname ccc
+#' @export
+iscl <- function(x, ...) {iccc(x, 'scl', ...)}
+
+#' @rdname ccc
+#' @export
+ivec <- function(x, ...) {iccc(x, 'vec', ...)}
+
+#' @rdname ccc
+#' @export
+ivls <- function(x, ...) {iccc(x, 'vls', ...)}

@@ -1,4 +1,4 @@
-#' @name inc.
+#' @name inc
 #' @family math
 #' @title Increment or Decrement a Variable
 #' @description \tabular{ll}{
@@ -11,10 +11,6 @@
 #'   throw an error if any values of \code{x} are \code{NA}.
 #' @return An atomic numeric object of the same dimension as \code{x}.
 #' @export
-inc. <- function() {help("inc.", package = "uj")}
-
-#' @rdname inc.
-#' @export
 inc <- function(x, i = 1, na = F) {
   ok.x <- f0(inum(x), T, f0(num_dtf(x), T, num_vls(x)))
   errs <- c(f0(ok.x                                       , NULL, "\n \u2022 [x] must be populated numeric object (?pop_num), a numeric dtf (?num_dtf), or a numeric vlist (?num_vls)."),
@@ -25,7 +21,7 @@ inc <- function(x, i = 1, na = F) {
   x + i
 }
 
-#' @rdname inc.
+#' @rdname inc
 #' @export
 dec <- function(x, d = 1, na = F) {
   ok.x <- f0(inum(x), T, f0(num_dtf(x), T, num_vls(x)))

@@ -1,4 +1,4 @@
-#' @name errs.
+#' @name errs_uj
 #' @family errs
 #' @title Error Management
 #' @description Bank error messages in the immediate environment of a function
@@ -147,9 +147,9 @@
 #' @return \code{NULL}. Called for the side effect of banking and/or processing
 #'   error messages.
 #' @export
-errs. <- function() {help("errs.", package = "uj")}
+errs_uj <- NULL
 
-#' @rdname errs.
+#' @rdname errs_uj
 #' @export
 err_check <- function(gens. = 0) {
   ok.gens <- f0(!cmp_nnw_scl(gens.), F, gens. <= ncallers() - 1)
@@ -167,7 +167,7 @@ err_check <- function(gens. = 0) {
   NULL
 }
 
-#' @rdname errs.
+#' @rdname errs_uj
 #' @export
 bank_err <- function(..., gens. = 0) {
   ok.gens <- f0(!cmp_nnw_scl(gens.), F, gens. <= ncallers() - 1)
@@ -186,7 +186,7 @@ bank_err <- function(..., gens. = 0) {
   NULL
 }
 
-#' @rdname errs.
+#' @rdname errs_uj
 #' @export
 bank_lgl <- function(..., nas. = F, extras. = NULL) {
   dots  <- named_dots(...)
@@ -195,9 +195,9 @@ bank_lgl <- function(..., nas. = F, extras. = NULL) {
   n.labs <- length(labs)
   ok.0 <- ...length() > 0
   ok.labs <- f0(!ok.0, T, f0(n.dots != n.labs, F, f0(any(labs == ""), F, isEQ(labs, unique(labs)))))
-  ok.lgl <- f0(n.dots == 0, T, all(sapply(dots., cmp_lgl_scl)))
+  ok.lgl <- f0(n.dots == 0, T, all(sapply(dots, cmp_lgl_scl)))
   ok.nas <- isTF(nas.)
-  ok.extras <- f0(inll(extras.), T, cmp_atm(extras.))
+  ok.extras <- f0(inll(extras.), T, icmp(extras.) & is.atomic(extras.))
   errs <- c(f0(ok.0     , NULL, "\n \u2022 [...] is empty."),
             f0(ok.labs  , NULL, "\n \u2022 All arguments in [...] must be named uniquely without using blank strings."),
             f0(ok.lgl   , NULL, "\n \u2022 All arguments in [...] must be complete logical scalars (?cmp_lgl_scl)."),
@@ -227,12 +227,12 @@ bank_lgl <- function(..., nas. = F, extras. = NULL) {
   NULL
 }
 
-#' @rdname errs.
+#' @rdname errs_uj
 #' @export
 bank_not <- function(...) {
   named <- named_dots(...)
   blank <- unnamed_dots(...)
-  error <- paste0(as.character(unlist(blank., T, F)), collapse = "")
+  error <- paste0(as.character(unlist(blank, T, F)), collapse = "")
   names <- names(named.)
   v0 <- ...length() > 0
   vnn <- f0(!v0, T, length(named) > 0)
@@ -256,7 +256,7 @@ bank_not <- function(...) {
   NULL
 }
 
-#' @rdname errs.
+#' @rdname errs_uj
 #' @export
 bank_pop <- function(...) {
   named <- named_dots(...)
@@ -276,7 +276,7 @@ bank_pop <- function(...) {
   NULL
 }
 
-#' @rdname errs.
+#' @rdname errs_uj
 #' @export
 bank_funs <- function(funs., ...) {
   if (cmp_chr_vec(funs.)) {
@@ -304,7 +304,7 @@ bank_funs <- function(funs., ...) {
   NULL
 }
 
-#' @rdname errs.
+#' @rdname errs_uj
 #' @export
 bank_ppp <- function(ppp., ..., nas. = F) {
   labs <- ...names()
@@ -329,7 +329,7 @@ bank_ppp <- function(ppp., ..., nas. = F) {
   NULL
 }
 
-#' @rdname errs.
+#' @rdname errs_uj
 #' @export
 bank_vals <- function(...) {
   oxford_vals <- function(xx) {
@@ -345,8 +345,8 @@ bank_vals <- function(...) {
   ok.args <- f0(!ok.0, T, length(args) > 0)
   ok.vals <- f0(!ok.0, T, length(args) > 0)
   ok.labs <- f0(!ok.0 | !ok.args, T, !any(labs == "") & isEQ(labs, unique(labs)))
-  ok.atm <- f0(!ok.0, T, all(sapply(args, pop_atm)))
-  ok.pop <- f0(!ok.vals, T, all(sapply(vals, pop_atm)))
+  ok.atm <- f0(!ok.0, T, all(sapply(args, ipop), sapply(args, iatm)))
+  ok.pop <- f0(!ok.vals, T, all(sapply(vals, ipop), sapply(vals, iatm)))
   errs <- c(f0(ok.0   , NULL, "\n \u2022 [...] is empty."),
             f0(ok.args, NULL, "\n \u2022 At least one argument in [...] must be named."),
             f0(ok.vals, NULL, "\n \u2022 At least one argument in [...] must be unnamed."),
@@ -374,7 +374,7 @@ bank_vals <- function(...) {
   NULL
 }
 
-#' @rdname errs.
+#' @rdname errs_uj
 #' @export
 bank_dots <- function(ppp., ..., named. = F) {
   dots  <- list(...)
@@ -395,7 +395,7 @@ bank_dots <- function(ppp., ..., named. = F) {
   NULL
 }
 
-#' @rdname errs.
+#' @rdname errs_uj
 #' @export
 bank_when <- function(whens., values., ...) {
   oxford_vals <- function(xx) {
@@ -434,7 +434,7 @@ bank_when <- function(whens., values., ...) {
   NULL
 }
 
-#' @rdname errs.
+#' @rdname errs_uj
 #' @export
 bank_pats <- function(pats., ...) {
   dots <- named_dots(...)
@@ -490,7 +490,7 @@ bank_pats <- function(pats., ...) {
   bank_err(err, gens. = 1)
 }
 
-#' @rdname errs.
+#' @rdname errs_uj
 #' @export
 bank_fail <- function(x) {
   x <- failsafe(x)

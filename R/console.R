@@ -1,4 +1,4 @@
-#' @name console.
+#' @name say
 #' @title User Updates and Interactions via the Console
 #' @description This family of functions is for interacting with the user via
 #'   the console: \tabular{ll}{
@@ -83,10 +83,6 @@
 #' @return \code{NULL}: called for side effects of console-based user updates or
 #'   pausing execution for until user indicates execution should continue.
 #' @export
-console. <- function() {help("console.", package = "uj")}
-
-#' @rdname console.
-#' @export
 say <- function(..., lev = NA) {
   msg <- paste(av(...), collapse = "")
   dot <- isID(msg, "") | isID(as.numeric(lev), as.numeric("6"))
@@ -105,10 +101,10 @@ say <- function(..., lev = NA) {
   NULL
 }
 
-#' @rdname console.
+#' @rdname say
 #' @export
 cat0 <- function(...) {say("\n", ..., "\n")}
 
-#' @rdname console.
+#' @rdname say
 #' @export
 continue <- function() {readline("Hit [enter] or [return] to continue")}

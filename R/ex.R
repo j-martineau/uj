@@ -1,4 +1,3 @@
-#' @name ex.
 #' @family extensions
 #' @description ex. Extract rows and/or columns of \link[=id2D]{two-dimensional
 #'   objects} or elements of \link[=ie1D]{effectively one-dimensional objects}.
@@ -26,10 +25,6 @@
 #' ex(letters, e = 1:13)
 #' ex(letters, e = iE)
 #' ex(letters, r = iR, c = iC)
-#' @export
-ex. <- function() {help("ex.", package = "uj")}
-
-#' @rdname ex.
 #' @export
 ex <- function(x, r = NULL, c = NULL, e = NULL) {
   errs <- c(f0(ipop(x)                 , NULL, "\n \u2022 [x] must be populated (?ipop)."),

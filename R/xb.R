@@ -1,4 +1,4 @@
-#' @name xb.
+#' @name xb
 #' @family extensions
 #' @title Error-checked row and column binding
 #' @description \tabular{ll}{
@@ -22,10 +22,6 @@
 #' @param ... Multiple \code{\link{compatible}} atomic matrices or multiple
 #'   compatible \link[=atm_dtf]{atomic data.frames}.
 #' @return An \link[=atm_dtf]{atomic data.frame} or an atomic matrix.
-#' @export
-xb. <- function() {help("xb.", package = "uj")}
-
-#' @rdname xb.
 #' @export
 xb <- function(..., bind = NA) {
   ok.dots <- ...length() > 1
@@ -63,10 +59,10 @@ xb <- function(..., bind = NA) {
   }
 }
 
-#' @rdname xb.
+#' @rdname xb
 #' @export
 cb <- function(...) {xb(..., bind = "c")}
 
-#' @rdname xb.
+#' @rdname xb
 #' @export
 rb <- function(...) {xb(..., bind = "r")}

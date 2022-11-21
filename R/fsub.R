@@ -1,4 +1,3 @@
-#' @name fsub.
 #' @title Fixed-value string substitution
 #' @description Replace strings in \code{pats} with corresponding (possibly
 #'   recycled) strings in \code{subs}.
@@ -8,10 +7,6 @@
 #' @param pats,subs \link[=cmp_chr_vec]{Complete character vecs} containing
 #'   patterns to replace and their associated replacement strings.
 #' @return Atomic character object.
-#' @export
-fsub. <- function() {help("fsub.", package = "uj")}
-
-#' @rdname fsub.
 #' @export
 fsub <- function(x, pats, subs) {
   errs <- c(f0(cmp_chr_gen(x)                             , NULL, " \u2022 [x] must be a complete character generic (?cmp_chr_gen)."),

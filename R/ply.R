@@ -1,4 +1,4 @@
-#' @name ply.
+#' @name ply
 #' @family extensions
 #' @title Variations on \code{apply} Functions.
 #' @description Generalized \code{apply(.)} with a wide range of options.
@@ -36,10 +36,6 @@
 #'   function \code{fun}.
 #' @param proc. \code{NULL} or a list of named elements with processing
 #'   instructions. See section \strong{The \code{proc.} Argument}.
-#' @export
-ply. <- function() {help("ply.", package = "uj")}
-
-#' @describeIn ply. Generalized \code{apply(.)} function.
 #' @export
 ply <- function(x, fun, dim, ..., proc. = NULL) {
   if (length(x) == 0) {stop("\n \u2022 [x] is empty.")}
@@ -94,65 +90,65 @@ ply <- function(x, fun, dim, ..., proc. = NULL) {
   x
 }
 
-#' @describeIn ply. Are there \strong{zero} \code{TRUE} values in the result
+#' @describeIn ply Are there \strong{zero} \code{TRUE} values in the result
 #'   of applying \code{fun}? Assumes that applying \code{fun} results in
 #'   logical values.
 #' @export
 norply <- function(x, fun, dim, ..., proc. = NULL) {proc.$agg <- "nor"; ply(x, fun, dim, ..., proc. = proc.)}
 
-#' @describeIn ply. Are there \strong{any} \code{TRUE} values in the result of
+#' @describeIn ply Are there \strong{any} \code{TRUE} values in the result of
 #'   applying \code{fun}? Assumes that applying \code{fun} results in logical
 #'   values.
 #' @export
 anyply <- function(x, fun, dim, ..., proc. = NULL) {proc.$agg <- "any"; ply(x, fun, dim, ..., proc. = proc.)}
 
-#' @describeIn ply. Are there \strong{only} \code{TRUE} values in the result
+#' @describeIn ply Are there \strong{only} \code{TRUE} values in the result
 #'   of applying \code{fun}? Assumes that applying \code{fun} results in
 #'   logical values.
 #' @export
 allply <- function(x, fun, dim, ..., proc. = NULL) {proc.$agg <- "all"; ply(x, fun, dim, ..., proc. = proc.)}
 
-#' @describeIn ply. Is there exactly \strong{one} \code{TRUE} values in the
+#' @describeIn ply Is there exactly \strong{one} \code{TRUE} values in the
 #'   result of applying \code{fun}? Assumes that applying \code{fun} results
 #'   in logical values.
 #' @export
 oneply <- function(x, fun, dim, ..., proc. = NULL) {proc.$agg <- "one"; ply(x, fun, dim, ..., proc. = proc.)}
 
-#' @describeIn ply. Are there \strong{two or more} \code{TRUE} values in the
+#' @describeIn ply Are there \strong{two or more} \code{TRUE} values in the
 #'   result of applying \code{fun}? Assumes that applying \code{fun} results
 #'   in logical values.
 #' @export
 twoply <- function(x, fun, dim, ..., proc. = NULL) {proc.$agg <- "two"; ply(x, fun, dim, ..., proc. = proc.)}
 
-#' @describeIn ply. Atomize \code{x} and apply \code{fun} to the resulting
+#' @describeIn ply Atomize \code{x} and apply \code{fun} to the resulting
 #'   atomic vector.
 #' @export
 atmply <- function(x, fun, ..., proc. = NULL) {proc.$a1 <- T; ply(x, fun, 0, ..., proc. = proc.)}
 
-#' @describeIn ply. Apply \code{fun} to each element of \code{x}, assumed to
+#' @describeIn ply Apply \code{fun} to each element of \code{x}, assumed to
 #'   be an \link[atm_mvc]{atomic mvect}.
 #' @export
 mvcply <- function(x, fun, ..., proc. = NULL) {proc.$arg <- 'mvc'; ply(x, fun, 0, ..., proc. = proc.)}
 
-#' @describeIn ply. Apply \code{FUN} to each element of \code{x}, assumed to
+#' @describeIn ply Apply \code{FUN} to each element of \code{x}, assumed to
 #'   be an \link[atm_vec]{atomic vect}.
 #' @export
 vecply <- function(x, fun, ..., proc. = NULL) {proc.$arg <- 'vec'; ply(x, fun, 0, ..., proc. = proc.)}
 
-#' @describeIn ply. Apply \code{fun} to each row of \code{x}, assumed to be
+#' @describeIn ply Apply \code{fun} to each row of \code{x}, assumed to be
 #'   a matrix or \link[is_dtf]{dtf}.
 #' @export
 rowply <- function(x, fun, ..., proc. = NULL) {proc.$arg <- 'd2D'; ply(x, fun, 1, ..., proc. = proc.)}
 
-#' @describeIn ply. Apply \code{fun} to each column of \code{x}, assumed to
+#' @describeIn ply Apply \code{fun} to each column of \code{x}, assumed to
 #'   be a matrix or \link[is_dtf]{dtf}.
 colply <- function(x, fun, ..., proc. = NULL) {proc.$arg <- 'd2D'; ply(x, fun, 2, ..., proc. = proc.)}
 
-#' @describeIn ply. Apply \code{fun} across all dimensions of \code{x}.
+#' @describeIn ply Apply \code{fun} across all dimensions of \code{x}.
 #' @export
 dimply <- function(x, fun, ..., proc. = NULL) {dim <- f0(ddd(x) < 2, 0, 1:length(dim(x))); ply(x, fun, dim, ..., proc. = proc.)}
 
-#' @describeIn ply. Apply \code{fun} to each element of \code{x}, assumed to
+#' @describeIn ply Apply \code{fun} to each element of \code{x}, assumed to
 #'   be a \link[is_vls]{vlist}.
 #' @export
 vlsply <- function(x, fun, ..., proc. = NULL) {proc.$arg <- 'pop_vls'; ply(x, fun, 0, ..., proc. = proc.)}
