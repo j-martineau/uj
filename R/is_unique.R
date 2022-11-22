@@ -19,6 +19,6 @@ is_unq <- function(x, a = T, na = F) {
             f0(length(x) > 0                              , NULL, "\n \u2022 [x] is of length 0."),
             f0(isTF(a)                                    , NULL, "\n \u2022 [a] must be TRUE or FALSE."),
             f0(isTF(na)                                   , NULL, "\n \u2022 [na] must be TRUE or FALSE."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   length(x) == length(unique(x))
 }

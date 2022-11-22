@@ -2,7 +2,7 @@
 % Please edit documentation in R/ex.R
 \name{ex}
 \alias{ex}
-\title{Extract rows, columns, and/or elements}
+\title{Extract Rows, Columns, and/or Elements}
 \usage{
 ex(x, r = NULL, c = NULL, e = NULL)
 }
@@ -50,7 +50,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -59,13 +58,14 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 }
 \concept{extensions}

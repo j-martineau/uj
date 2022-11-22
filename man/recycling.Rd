@@ -5,7 +5,7 @@
 \alias{recyclable_n}
 \alias{recyclable}
 \alias{recycle}
-\title{Recycling and recyclability}
+\title{Recycling and Recyclability}
 \usage{
 recyclable_n(n, targ = max(n))
 
@@ -33,31 +33,41 @@ scalar} giving the maximum valid recycled argument length.}
 giving the target length of recycled arguments.}
 
 \item{err.}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
-to throw an error if the arguments in \code{...} are not recyclable.}
+to throw an error if the \code{...} arguments are not recyclable.}
 
 \item{lengths.}{\link[=cmp_psw_vec]{Complete positive whole-number vec} of
 lengths to check for recyclability.}
 }
 \value{
-\tabular{ll}{
-\code{recyclable_n}   \tab Logical scalar                               \cr
-\code{recyclable}     \tab Logical scalar                               \cr
-\code{recycle}        \tab \code{NULL} (called for side effect).          }
+\strong{\code{recyclable_n}}
+\cr A logical scalar
+\cr\cr
+\strong{\code{recyclable}}
+\cr A logical scalar
+\cr\cr
+\strong{\code{recycle}}
+\cr \code{NULL} (called for side effect).
 }
 \description{
-\tabular{ll}{
-\code{recyclable_n}   \tab Checks whether the vector of lengths in
-\code{n.} represents recyclable arguments
-subject to the setting in \code{targ.}.      \cr
-\code{recyclable}     \tab Evaluates whether arguments in \code{...} are
-recyclable subject to settings in the arguments
-\code{n.}, \code{min.}, \code{max.}, and
-\code{targ.}.                                \cr
-\code{recycle}        \tab Recycle arguments in \code{...} in the
-environment of the calling function subject to
-settings in the arguments \code{n.},
-\code{min.}, \code{max.}, and \code{targ.}.    }
+Recycling and Recyclability
 }
+\section{Functions in This Family}{
+
+\strong{\code{recyclable_n}}
+\cr Checks whether the vector of lengths in \code{n.} represents recyclable
+arguments subject to the setting in \code{targ.}.
+\cr\cr
+\strong{\code{recyclable}}
+\cr Evaluates whether \code{...} arguments are recyclable subject to
+settings in the arguments \code{n.}, \code{min.}, \code{max.}, and
+\code{targ.}.
+\cr\cr
+\strong{\code{recycle}}
+\cr Recycle \code{...} arguments in the environment of the calling
+function subject to settings in the arguments \code{n.}, \code{min.},
+\code{max.}, and \code{targ.}.
+}
+
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
@@ -73,7 +83,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -82,12 +91,13 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 
 Other environments: 

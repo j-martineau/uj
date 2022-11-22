@@ -2,8 +2,7 @@
 % Please edit documentation in R/weave.R
 \name{weave}
 \alias{weave}
-\title{Weave Inlay Values into a String
-\cr (variations on a theme of \code{sprintf})}
+\title{Weave Inlay Values into a String}
 \usage{
 weave(x, ...)
 }
@@ -15,12 +14,15 @@ sequences (see details).}
 into \code{x} with formatting specified in inlay escape sequences. The
 \code{N}-th argument in \code{...} corresponds to the \code{N}-th inlay
 escape sequence in \code{x}. The number of inlay escape sequences in
-\code{x} must be equal to the number of arguments in \code{...}.}
+\code{x} must be equal to the number of \code{...} arguments.}
 }
 \value{
 A character scalar.
 }
 \description{
+A reformulation of \code{\link[base]{sprintf}}.
+}
+\details{
 Inlay escape sequences to specify formatting follow the patterns
 and meanings given in the following table:\tabular{ll}{
 PATTERN            \tab MEANS INSERT ARGUMENT                           \cr
@@ -111,7 +113,7 @@ Other strings:
 \code{\link{ipat}()},
 \code{\link{max_nch}()},
 \code{\link{mkstr}},
-\code{\link{ox.}()},
+\code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{revstr}()},
 \code{\link{spacing}},

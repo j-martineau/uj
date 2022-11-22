@@ -1,9 +1,12 @@
 #' @name inc
 #' @family math
 #' @title Increment or Decrement a Variable
-#' @description \tabular{ll}{
-#'   \code{inc}   \tab Increments \code{x} by the value in \code{i}.         \cr
-#'   \code{dec}   \tab Decrements \code{x} by the value in \code{d}.           }
+#' @section Functions in This Family:
+#'   \strong{\code{inc}}
+#'   \cr Increments \code{x} by the value in \code{i}.
+#'   \cr\cr
+#'   \strong{\code{dec}}
+#'   \cr Decrements \code{x} by the value in \code{d}.
 #' @param x \link[=atm_num]{Atomic numeric} object.
 #' @param i,d \link[=cmp_num_scl]{Complete numeric scalar} giving the value by
 #'   which to increment or decrement, respectively.
@@ -17,7 +20,7 @@ inc <- function(x, i = 1, na = F) {
             f0(cmp_num_scl(i)                             , NULL, "\n \u2022 [i] must be a complete numeric scalar (?cmp_num_scl)."),
             f0(isTF(na)                                   , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
             f0(f0(!ok.x | !isF(na), T, !any(is.na(av(x)))), NULL, "\n \u2022 [x] contains NA values but [na = FALSE]."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   x + i
 }
 
@@ -29,6 +32,6 @@ dec <- function(x, d = 1, na = F) {
             f0(cmp_num_scl(d)                             , NULL, "\n \u2022 [d] must be a complete numeric scalar (?cmp_num_scl)."),
             f0(isTF(na)                                   , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
             f0(f0(!ok.x | !isF(na), T, !any(is.na(av(x)))), NULL, "\n \u2022 [x] contains NA values but [na = FALSE]."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   x - d
 }

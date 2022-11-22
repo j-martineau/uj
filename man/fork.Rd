@@ -4,7 +4,7 @@
 \alias{fork}
 \alias{f0}
 \alias{f1}
-\title{Forking as an extension of \code{\link[base]{ifelse}}}
+\title{Forking as an Extension of \code{base::ifelse}}
 \usage{
 fork(test, yes, no, na = "err")
 
@@ -34,10 +34,12 @@ An R object.
 }
 \description{
 Robust extended functionality for \code{\link[base]{ifelse}}.
+}
+\section{Functions in this Family}{
+
 \strong{\code{fork}}
-\cr Evaluates logical scalar or logical vector
-\code{test} and returns an object of the same length as
-\code{test} where:\itemize{
+\cr Evaluates logical scalar or logical vector \code{test} and returns an
+object of the same length as \code{test} where:\itemize{
 \item \code{TRUE} values of \code{test} are replaced by corresponding
 values of \code{yes}.
 \item \code{FALSE} values of \code{test} are replaced by corresponding
@@ -51,9 +53,8 @@ in \code{test}, throws an error).                                 }
 \code{test} is anything else, returns \code{no}.
 \cr\cr
 \strong{\code{f1}}
-\cr\emph{error-checked version of} \code{f0}:
-\cr Evaluates and processes logical scalar \code{test} in the following
-manner:\itemize{
+\cr Error-checked version of \code{f0}. Evaluates and processes logical
+scalar \code{test} in the following manner:\itemize{
 \item If \code{test = TRUE}, returns \code{yes}.
 \item If \code{test = FALSE}, returns \code{no}.
 \item If \code{test = NA}, returns \code{na} unless \code{na = 'err'}, in
@@ -62,6 +63,7 @@ which case, an error is thrown.
 returns \code{err} unless \code{err = 'err'}, in which case an
 error is thrown.                                                  }
 }
+
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
@@ -76,7 +78,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -85,17 +86,19 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 
-Other fork: 
-\code{\link{case}()}
+Other forking: 
+\code{\link{case}()},
+\code{\link{swap}()}
 }
 \concept{extensions}
-\concept{fork}
+\concept{forking}

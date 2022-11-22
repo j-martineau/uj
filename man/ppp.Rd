@@ -80,47 +80,47 @@ will result in a value of \code{TRUE} if any of them applies to \code{x}.}
 to print the property definition to the console.}
 }
 \value{
-\tabular{lll}{
-\code{ppp}, \code{ppp_all}, \code{ppp_vals}, \code{pop_funs},
-\code{ppp_from_combo}, \code{combos_from_ppp}
-\tab   \tab A character vector.                                   \cr
-\code{ppp_concise}, \code{alt_ppp_concise}
-\tab   \tab A character scalar.                                   \cr
-All others
-\tab   \tab A logical scalar.                                       }
+\strong{\code{ppp, ppp_all, ppp_vals, pop_funs, ppp_from_combo,
+  combos_from_ppp}}
+\cr A character vector.
+\cr\cr
+\strong{\code{ppp_concise, alt_ppp_concise}}
+\cr A character scalar.
+\cr\cr
+\strong{All others}
+\cr A logical scalar.
 }
 \description{
 This set of functions provide utilities that bring together
 these seven families of properties defined by this package:\tabular{ll}{
-PROPERTY          \tab PROPERTY                                         \cr
-FAMILY            \tab TYPE                                             \cr
-\code{\link{bbb}} \tab Base                                             \cr
-\code{\link{ccc}} \tab Extended class                                   \cr
-\code{\link{ddd}} \tab Defined dimensionality                           \cr
-\code{\link{eee}} \tab Effective dimensionality                         \cr
-\code{\link{iii}} \tab Integrity (state of completeness)                \cr
-\code{\link{mmm}} \tab Extended mode                                    \cr
-\code{\link{sss}} \tab Shape                                              }
-\strong{Individual Property Specifications}
-\cr In this package, all individual property specifications are scalars
-containing exactly 3 characters (e.g., \code{'ord'}, \code{'dtf'},
-\code{'d1D'}, or \code{'rct'}).
+PROPERTY         \tab PROPERTY                                        \cr
+FAMILY VALUE     \tab FAMILY NAME                                     \cr
+\code{\link{bbb}}\tab Base                                            \cr
+\code{\link{ccc}}\tab Extended class                                  \cr
+\code{\link{ddd}}\tab Defined dimensionality                          \cr
+\code{\link{eee}}\tab Effective dimensionality                        \cr
+\code{\link{iii}}\tab Integrity (state of completeness)               \cr
+\code{\link{mmm}}\tab Extended mode                                   \cr
+\code{\link{sss}}\tab Shape                                             }
+\strong{Individual Property Specifications}: In this package, all
+individual property specifications are scalars containing exactly 3
+characters (e.g., \code{'ord'}, \code{'dtf'}, \code{'d1D'}, or
+\code{'rct'}).
 \cr\cr
-\strong{Combination/Conjunctive Property Specifications}
-\cr Specifications for properties that must co-occur are constructed by
-delimiting multiple individual properties with underscores (e.g., the
-properties \code{'ord'}, \code{'dtf'}, \code{'d1D'}, and \code{'rct'} could
-be specified to occur together using the combination/conjunctive property
-specification \code{'ord_dtf_d1D_rct'} or an equivalent
-underscore-delimited permutation.
+\strong{Combination/Conjunctive Property Specifications}: Specifications
+for properties that must co-occur are constructed by delimiting multiple
+individual properties with underscores (e.g., the properties \code{'ord'},
+\code{'dtf'}, \code{'d1D'}, and \code{'rct'} could be specified to occur
+together using the combination/conjunctive property specification
+\code{'ord_dtf_d1D_rct'} or an equivalent underscore-delimited permutation.
 \cr\cr
-\strong{Alternative/Compensatory Property Specifications}
-\cr Specifications for alternative/compensatory properties give a way to
-indicate that if any one (individual or combination) property is satisfied
-the entire specification is satisfied. They are constructed by
-pipe-delimiting multiple individual or combination properties. For example,
-the specification \code{'ord|dtf_d1D||dtf_rct'} would be satisfied by an
-object with property \code{'ord'}, by an object with the combined property
+\strong{Alternative/Compensatory Property Specifications}: Specifications
+for alternative/compensatory properties give a way to indicate that if any
+one (individual or combination) property is satisfied the entire
+specification is satisfied. They are constructed by pipe-delimiting
+multiple individual or combination properties. For example, the
+specification \code{'ord|dtf_d1D||dtf_rct'} would be satisfied by an object
+with property \code{'ord'}, by an object with the combined property
 \code{'dtf_d1D'}, or by an object with the combined property
 \code{'dtf_rct'}.
 \cr\cr
@@ -131,153 +131,168 @@ is explained in the sections entitled \itemize{
 \item Combination Property Functions}
 }
 \section{Universal Property Functions}{
- Property functions addressing
-\emph{all} property families are the following: \tabular{ll}{
-FUNCTION                 \tab WHAT THE                                \cr
-NAME                     \tab FUNCTION DOES                           \cr
-\code{ppp}         \tab Get all properties of all property families
-applicable to an object.                \cr
-\code{ippp}              \tab Evaluate whether an object satisfies the
-property specification in \code{ppp}
-subject to any additional restrictions
-supplied in \code{...}.                 \cr
-\code{nll_or}            \tab Evaluate whether an object is either
-\code{NULL} or satisfies the property
-specification in argument \code{ppp}
-subject to any additional restrictions in
-\code{...}.                             \cr
-\code{nas_or}            \tab Evaluate whether an object is either scalar
-\code{NA} or satisfies the property
-specification in argument \code{ppp}
-subject to any additional restrictions in
-\code{...}.                             \cr
-\code{all_props}         \tab Get all possible individual properties from
-all property families and all possible
-combination/conjunctive properties as
-checked by combined property functions (see
-the \emph{combined property functions}
-section).                               \cr
-\code{ppp_all}           \tab Get all constituent individual properties
-from the property specification in argument
-\code{ppp}.                             \cr
-\code{ppp_funs}          \tab Gets the names of all property functions
-that check for a single property or a
-combined property without checking for any
-additional restrictions.                \cr
-\code{ppp_defs}          \tab Get a data frame defining all individual
-properties of all property families.    \cr
-\code{is_ppp_fun}        \tab Evaluates whether a character scalar is the
-name of a property function (those listed
-by \code{\link{ppp_funs}}).             \cr
-\code{is_valid_ppp}      \tab Evaluates a character scalar property
-specification for validity (i.e., does it
-contain only single properties, valid
-combination properties, and/or valid
-alternate properties).                  \cr
-\code{ppp_from_combo}    \tab Extract each individual property value from
-a combination/conjunctive property
-specification. \cr
-\code{combos_from_ppp}   \tab Extracts each individual or combination
-property specification from an
-alternative/compensatory property
-specification.                          \cr
-\code{ppp_verbose}       \tab Get a verbose definition of an individual
-property specification.                 \cr
-\code{ppp_concise}       \tab Get a plain-language, concise definition of
-an individual or combination/conjunctive
-property specification.                 \cr
-\code{alt_ppp_concise}   \tab Get a plain-language, concise definition of
-an alternative/compensatory property
-specification.                            }
+ These functions address all property
+families.
+\cr\cr
+\strong{\code{ppp}}
+\cr Get all properties of all property families applicable to an object.
+\cr\cr
+\strong{\code{ippp}}
+\cr Evaluate whether an object satisfies the property specification in
+\code{ppp} subject to any additional restrictions supplied in \code{...}.
+\cr\cr
+\strong{\code{nll_or}}
+\cr Evaluate whether an object is either \code{NULL} or satisfies the
+property specification in argument \code{ppp} subject to any additional
+restrictions in \code{...}.
+\cr\cr
+\strong{\code{nas_or}}
+\cr Evaluate whether an object is either scalar \code{NA} or satisfies the
+property specification in argument \code{ppp} subject to any additional
+restrictions in \code{...}.
+\cr\cr
+\strong{\code{all_props}}
+\cr Get all possible individual properties from all property families and
+all possible combination/conjunctive properties as checked by combined
+property functions (see the \emph{combined property functions} section).
+\cr\cr
+\strong{\code{ppp_all}}
+\cr Get all constituent individual properties from the property
+specification in argument \code{ppp}.
+\cr\cr
+\strong{\code{ppp_funs}}
+\cr Gets the names of all property functions that check for a single
+property or a combined property without checking for any additional
+restrictions.
+\cr\cr
+\strong{\code{ppp_defs}}
+\cr Get a data frame defining all individual properties of all property
+families.
+\cr\cr
+\strong{\code{is_ppp_fun}}
+\cr Evaluates whether a character scalar is the name of a property function
+(those listed by \code{\link{ppp_funs}}).
+\cr\cr
+\strong{\code{is_valid_ppp}}
+\cr Evaluates a character scalar property specification for validity (i.e.,
+does it contain only single properties, valid combination properties,
+and/or valid alternate properties).
+\cr\cr
+\strong{\code{ppp_from_combo}}
+\cr Extract each individual property value from a combination/conjunctive
+property specification.
+\cr\cr
+\strong{\code{combos_from_ppp}}
+\cr Extracts each individual or combination property specification from an
+alternative/compensatory property specification.
+\cr\cr
+\strong{\code{ppp_verbose}}
+\cr Get a verbose definition of an individual property specification.
+\cr\cr
+\strong{\code{ppp_concise}}
+\cr Get a plain-language, concise definition of an individual or
+combination/conjunctive property specification.
+\cr\cr
+\strong{\code{alt_ppp_concise}}
+\cr Get a plain-language, concise definition of an alternative/compensatory
+property specification.
 }
 
 \section{Individual Property Functions}{
  Property functions associated with a
 single property family take the following forms where \code{PPP} is a
 placeholder for any given individual property and \code{FFF} is a
-placeholder for any given  property family: \tabular{ll}{
-FUNCTION           \tab WHAT THE                                        \cr
-NAME FORMAT        \tab FUNCTION DOES                                   \cr
-\code{FFF}         \tab Get properties from the property family
-represented by \code{FFF} applicable to an
-object.                                         \cr
-\code{iPPP}         \tab Evaluate whether an object has the specific
-property represented by \code{PPP}.             \cr
-\code{iFFF}        \tab Evaluate whether an object has one or more
-individual properties from the property family
-represented by \code{FFF}, subject to any
-restrictions supplied in \code{...}.            \cr
-\code{FFF_props}   \tab Get all properties in the property family
-represented by \code{FFF}.                        }
+placeholder for any given  property family.
+\cr\cr
+\strong{\code{FFF}}
+\cr Get properties from the property family represented by \code{FFF}
+applicable to an object.
+\cr\cr
+\strong{\code{iPPP}}
+\cr Evaluate whether an object has the specific property represented by
+\code{PPP}.
+\cr\cr
+\strong{\code{iFFF}}
+\cr Evaluate whether an object has one or more individual properties from
+the property family represented by \code{FFF}, subject to any restrictions
+supplied in \code{...}.
+\cr\cr
+\strong{\code{FFF_props}}
+\cr Get all properties in the property family represented by \code{FFF}.
 }
 
 \section{Combination Property Functions}{
  Property functions associated with a
 single property family take the following forms where \code{CCC},
 \code{MMM}, and \code{BBB} are placeholders for properties from extended
-class, extended mode, and base property families:\tabular{ll}{
-FUNCTION      \tab WHAT THE                                             \cr
-NAME FORMAT   \tab FUNCTION DOES                                        \cr
-\code{\link{MMM_CCC}}
-\tab Evaluate whether an object is of the extended mode represented by
-\code{MMM} and of the extended class represented by
-\code{CCC}.                                                      \cr
-\code{\link{BBB_CCC}}
-\tab Evaluate whether an object is of the fundamental type represented by
-\code{BBB} and of the extended class represented by
-\code{CCC}.                                                      \cr
-\code{\link{BBB_MMM}}
-\tab Evaluate whether an object is of the fundamental type represented by
-\code{BBB} and of the extended mode represented by
-\code{MMM}.                                                      \cr
-\code{\link{cmp_CCC}}
-\tab Evaluate whether an object is complete (non-empty, atomic,
-containing no \code{NA} values). and is of the extended class
-represented by \code{CCC}.                                       \cr
-\code{\link{cmp_MMM}}
-\tab Evaluate whether an object is complete (implying non-empty and
-atomic) and is of the extended mode represented by \code{MMM}.   \cr
-\code{\link{cmp_MMM_CCC}}
-\tab Evaluate whether an object is complete (implying non-empty and
-atomic), is of the extended mode represented by \code{MMM}, and is
-of the extended class represented by \code{CCC}.                 \cr
-\code{\link{mmm_ccc_props}}
-\tab Get all combined extended mode + extended class properties.      \cr
-\code{\link{bbb_ccc_props}}
-\tab Get all combined base + extended class properties.               \cr
-\code{\link{bbb_mmm_props}}
-\tab Get combined base + extended mode properties.                    \cr
-\code{\link{cmp_ccc_props}}
-\tab Get all combined completeness + extended class properties.       \cr
-\code{\link{cmp_mmm_props}}
-\tab Get all combined completeness + extended mode properties.        \cr
-\code{\link{cmp_mmm_ccc_props}}   
-\tab Get all combined completeness + extended mode + extended class
-properties.                                                        }
+class, extended mode, and base property families.
+\cr\cr
+\strong{\code{MMM_CCC}}
+\cr Evaluate whether an object is of the extended mode represented by
+\code{MMM} and of the extended class represented by \code{CCC}.
+\cr\cr
+\strong{\code{BBB_CCC}}
+\cr Evaluate whether an object is of the fundamental type represented by
+\code{BBB} and of the extended class represented by \code{CCC}.
+\cr\cr
+\strong{\code{BBB_MMM}}
+\cr Evaluate whether an object is of the fundamental type represented by
+\code{BBB} and of the extended mode represented by \code{MMM}.
+\cr\cr
+\strong{\code{cmp_CCC}}
+\cr Evaluate whether an object is complete (non-empty, atomic, containing
+no \code{NA} values). and is of the extended class represented by
+\code{CCC}.
+\cr\cr
+\strong{\code{cmp_MMM}}
+\cr Evaluate whether an object is complete (implying non-empty and atomic)
+and is of the extended mode represented by \code{MMM}.
+\cr\cr
+\strong{\code{cmp_MMM_CCC}}
+\cr Evaluate whether an object is complete (implying non-empty and atomic),
+is of the extended mode represented by \code{MMM}, and is of the extended
+class represented by \code{CCC}.
+\cr\cr
+\strong{\code{mmm_ccc_props}}
+\cr Get all combined extended mode + extended class properties.
+\cr\cr
+\strong{\code{bbb_ccc_props}}
+\cr Get all combined base + extended class properties.
+\cr\cr
+\strong{\code{bbb_mmm_props}}
+\cr Get combined base + extended mode properties.
+\cr\cr
+\strong{\code{cmp_ccc_props}}
+\cr Get all combined completeness + extended class properties.
+\cr\cr
+\strong{\code{cmp_mmm_props}}
+\cr Get all combined completeness + extended mode properties.
+\cr\cr
+\strong{\code{cmp_mmm_ccc_props}}
+\cr Get all combined completeness + extended mode + extended class
+properties.
 }
 
 \section{Specifying Count and Value Restrictions}{
-
-Specifying additional requirements in \code{...} is optional. The full set
-of recognized arguments names are defined in the following table along with
-the properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                    \cr
-\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
-\code{nr}     \tab Vec of valid numbers of rows.                        \cr
-\code{nc}     \tab Vec of valid numbers of columns.                     \cr
-\code{min}    \tab Scalar minimum valid length/number of element.       \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
-\code{minc}   \tab Scalar minimum valid number of columns.              \cr
-\code{max}    \tab Scalar maximum valid length/number of element.       \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
-\code{vals}   \tab Vec of valid values.                                 \cr
-\code{lt}     \tab Scalar less-than bound on values of \code{x}.        \cr
-\code{le}     \tab Scalar less-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{ge}     \tab Scalar greater-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{gt}     \tab Scalar greater-than bound on values of \code{x}.       }
+ Specifying additional
+requirements in \code{...} is optional. The full set of recognized
+arguments names are defined in the following table along with the
+properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                      \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
+\code{nr}     \tab Vector of valid numbers of rows.                       \cr
+\code{nc}     \tab Vector of valid numbers of columns.                    \cr
+\code{min}    \tab Scalar minimum valid length/number of element.         \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                \cr
+\code{max}    \tab Scalar maximum valid length/number of element.         \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
+\code{vals}   \tab Vector of valid values.                                \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
 }
 
 \seealso{
@@ -288,7 +303,6 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc_props}()},
 \code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -297,6 +311,7 @@ Other props:
 \code{\link{eee}()},
 \code{\link{iii}()},
 \code{\link{meets}()},
+\code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{sss}()}
 }

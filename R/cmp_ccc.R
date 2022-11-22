@@ -1,26 +1,33 @@
 #' @name cmp_ccc
 #' @family props
-#' @title Completeness + Extended class Properties
-#' @description NOTE: \code{CCC} is used as a wildcard for any
-#'   given extended class property.
+#' @title Completeness + Extended Class Properties
+#' @section Functions in This Family:
+#'   NOTE: \code{CCC} is used as a wildcard for any given extended
+#'   class property.
 #'   \cr\cr
-#'   \strong{\code{cmp_ccc}}: Evaluates whether \code{x} is complete and
-#'   matches the extended class specified in the argument \code{ccc}
-#'   (subject to any restrictions in \code{...}).
+#'   \strong{\code{cmp_ccc}}
+#'   \cr Evaluates whether \code{x} is complete and matches the extended class
+#'   specified in the argument \code{ccc} (subject to any restrictions in
+#'   \code{...}).
 #'   \cr\cr
-#'   \strong{\code{cmp_CCC}}: Evaluates whether \code{x} is complete and
-#'   matches the extended class property \code{CCC}.
-#'   (subject to any restrictions in \code{...}).
+#'   \strong{\code{cmp_CCC}}
+#'   \cr Evaluates whether \code{x} is complete and matches the extended class
+#'   property \code{CCC}. (subject to any restrictions in
+#'   \code{...}).
 #'   \cr\cr
-#'   \strong{\code{cmp_ccc_props}}: Gets a character vector of all possible
-#'   completeness + extended class properties.
+#'   \strong{\code{cmp_ccc_props}}
+#'   \cr Gets a character vector of all possible completeness + extended class
+#'   properties.
 #' @param x An R object
 #' @param ccc A character scalar containing an
 #'   extended class property from ccc_props().
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{cmp_ccc_props}}: A character vector.
-#'   \cr\cr\strong{cmp_ccc, cmp_CCC}: A logical scalar.
+#' @return \strong{\code{cmp_ccc_props}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{cmp_ccc, cmp_CCC}}
+#'   \cr A logical scalar.
 #' @export
 cmp_ccc <- function(x, ccc, ...) {
   errs <- c(.meets_errs(x, ...),

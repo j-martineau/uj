@@ -2,7 +2,7 @@
 #' @family plots
 #' @family colors
 #' @title Build markdown expressions for styled and colored ggtext.
-#' @description build_markdown Style text as subscript.
+#' @description Style text in markdown.
 #' @details Style text as subscript, superscript, bold color, and plain
 #'   color. The following markdown styling function names do not follow the
 #'   conventions described later:
@@ -316,7 +316,7 @@ pdcyn <- function(x) {paste0(v(pdcyn), x, v(plain2))}
 
 #' @describeIn mkd Style text as plain and full green.
 #' @export
-pgrn <- function(x) {paste0(v(pgrn), x, v(plain2))}
+pfgrn <- function(x) {paste0(v(pfgrn), x, v(plain2))}
 
 #' @describeIn mkd Style text as plain and light green.
 #' @export

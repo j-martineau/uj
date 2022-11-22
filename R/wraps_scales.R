@@ -1,4 +1,4 @@
-#' @name wrap_scales
+#' @name wraps_scales
 #' @family wraps
 #' @title Wraps of Functions from the \code{scales} Package
 #' @description \tabular{ll}{
@@ -7,6 +7,6 @@
 #' @export
 wrap_scales <- NULL
 
-#' @rdname wrap_scales
+#' @rdname wraps_scales
 #' @export
 sca <- function(color, alpha = NA) {scales::alpha(color, alpha)}

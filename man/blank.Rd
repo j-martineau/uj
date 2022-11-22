@@ -2,12 +2,12 @@
 % Please edit documentation in R/blank.R
 \name{blank}
 \alias{blank}
-\title{Blank strings}
+\title{Blank Strings}
 \usage{
 blank(x)
 }
 \arguments{
-\item{x}{An object}
+\item{x}{An R object}
 }
 \value{
 Logical scalar
@@ -24,7 +24,7 @@ Other strings:
 \code{\link{ipat}()},
 \code{\link{max_nch}()},
 \code{\link{mkstr}},
-\code{\link{ox.}()},
+\code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{revstr}()},
 \code{\link{spacing}},

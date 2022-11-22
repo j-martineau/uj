@@ -18,7 +18,7 @@ A single atomic vector containing all constituent atomic values in
 the full set of arguments supplied in \code{...}.
 }
 \description{
-Reduce all arguments in \code{...} to a single atomic vector of
+Reduce all \code{...} arguments to a single atomic vector of
 atomic elements without any additional attributes.
 }
 \examples{
@@ -45,7 +45,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -54,13 +53,14 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 }
 \concept{extensions}

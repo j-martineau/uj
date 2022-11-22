@@ -28,7 +28,7 @@ Other strings:
 \code{\link{ipat}()},
 \code{\link{max_nch}()},
 \code{\link{mkstr}},
-\code{\link{ox.}()},
+\code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{revstr}()},
 \code{\link{spacing}},

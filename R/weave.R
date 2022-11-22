@@ -1,7 +1,7 @@
 #' @title Weave Inlay Values into a String
-#'   \cr (variations on a theme of \code{sprintf})
 #' @family strings
-#' @description Inlay escape sequences to specify formatting follow the patterns
+#' @description A reformulation of \code{\link[base]{sprintf}}.
+#' @details Inlay escape sequences to specify formatting follow the patterns
 #'   and meanings given in the following table:\tabular{ll}{
 #'   PATTERN            \tab MEANS INSERT ARGUMENT                           \cr
 #'   \code{'{@@}'}      \tab As is (argument must be scalar).                \cr
@@ -87,7 +87,7 @@
 #'   into \code{x} with formatting specified in inlay escape sequences. The
 #'   \code{N}-th argument in \code{...} corresponds to the \code{N}-th inlay
 #'   escape sequence in \code{x}. The number of inlay escape sequences in
-#'   \code{x} must be equal to the number of arguments in \code{...}.
+#'   \code{x} must be equal to the number of \code{...} arguments.
 #' @return A character scalar.
 #' @export
 weave <- function(x, ...) {
@@ -96,7 +96,7 @@ weave <- function(x, ...) {
   errs <- c(f0(cmp_chr_scl(x), NULL, "\n \u2022 [x] must be a complate character scalar (?cmp_chr_scl)."),
             f0(ok.dots       , NULL, "\n \u2022 [...] is empty."),
             f0(ok.props      , NULL, "\n \u2022 Arguments in [...] must be complete character objects (?cmp_chr)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   dots <- list(...)                                                              # The arguments to weave into {x}
   n.dots <- ...length()                                                          # The number of such arguments
   code.prefix <- "[{][@]"                                                        # gregexpr pattern for switch code prefix, i.e., '{@'
@@ -199,7 +199,7 @@ weave <- function(x, ...) {
           else if (io) {dot <- ox_or(dot)}
           out <- c(out, text, dot)                                               # : : : : append the plain text and formatted i-th arg to the result
   }}}}
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   text.start <- code.stop + 1                                                    # position in {x} of last plain text after the last switch code
   text.stop <- nchar(x)                                                          # get position of last character in {x}
   text <- f0(text.stop < text.start, "", substr(x, text.start, text.stop))       # get last plain text, if any

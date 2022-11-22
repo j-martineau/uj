@@ -41,32 +41,60 @@ character scalar function name or a function object; for \code{as_ord} and
 \item{levs}{\link[=cmp_vec]{Complete atomic vec} giving factor levels.}
 }
 \value{
-\tabular{lll}{
-\code{as_clr}, \code{as_chr}\tab   \tab An object of mode
-\code{'character'}.              \cr
-\code{as_fun}\tab  \tab A function object.                               \cr
-\code{as_int}\tab  \tab An object of mode \code{'integer'}.              \cr
-\code{as_num}\tab  \tab An object of mode \code{'numeric'}.              \cr
-\code{as_lgl}\tab  \tab An object of mode \code{'logical'}.              \cr
-\code{as_ord}\tab  \tab An object of mode \code{'ordered'} (factor).     \cr
-\code{as_uno}\tab  \tab An object of \link[=mmm]{extended mode} \code{'uno'}
-(unordered factor).                                }
+\strong{\code{as_clr, as_chr}}
+\cr An object of mode \code{'character'}.
+\cr\cr
+\strong{\code{as_fun}}
+\cr A function object.
+\cr\cr
+\strong{\code{as_int}}
+\cr An object of mode \code{'integer'}.
+\cr\cr
+\strong{\code{as_num}}
+\cr An object of mode \code{'numeric'}.
+\cr\cr
+\strong{\code{as_lgl}}
+\cr An object of mode \code{'logical'}.
+\cr\cr
+\strong{\code{as_ord}}
+\cr An object of mode \code{'ordered'} (factor).
+\cr\cr
+\strong{\code{as_uno}}
+\cr An object of \link[=mmm]{extended mode} \code{'uno'} (unordered
+factor).
 }
 \description{
-\tabular{ll}{
-\code{as_clr}   \tab Coerce a valid R color representation of mode character
-to hexadecimal RGB character representation.        \cr
-\code{as_fun}   \tab Return \code{x} if it is a function, otherwise, search
-for a function named \code{x} and return it.        \cr
-\code{as_chr}   \tab Thin wrapper of \code{\link[base]{as.character}}.   \cr
-\code{as_int}   \tab Thin wrapper of \code{\link[base]{as.integer}}.     \cr
-\code{as_num}   \tab Thin wrapper of \code{\link[base]{as.numeric}}.     \cr
-\code{as_lgl}   \tab Thin wrapper of \code{\link[base]{as.logical}}.     \cr
-\code{as_ord}   \tab Wrapper for \code{factor(x, levels = levs,
-                      ordered = TRUE)}.                                   \cr
-\code{as_uno}   \tab Wrapper for \code{factor(x, levels = levs,
-                      ordered = FALSE)}.                                    }
+Coerce to Base Mode or Extended Mode.
 }
+\section{Functions in This Family}{
+
+\strong{\code{as_clr}}
+\cr Coerce a valid R color representation of mode character to hexadecimal
+RGB character representation.
+\cr\cr
+\strong{\code{as_fun}}
+\cr Return \code{x} if it is a function, otherwise, search for a function
+named \code{x} and return it.
+\cr\cr
+\strong{\code{as_chr}}
+\cr Thin wrapper of \code{\link[base]{as.character}}.
+\cr\cr
+\strong{\code{as_int}}
+\cr Thin wrapper of \code{\link[base]{as.integer}}.
+\cr\cr
+\strong{\code{as_num}}
+\cr Thin wrapper of \code{\link[base]{as.numeric}}.
+\cr\cr
+\strong{\code{as_lgl}}
+\cr Thin wrapper of \code{\link[base]{as.logical}}.
+\cr\cr
+\strong{\code{as_ord}}
+\cr Wrapper for \code{factor(x, levels = levs, ordered = TRUE)}.
+\cr\cr
+\strong{\code{as_uno}}
+\cr Wrapper for \code{factor(x, levels = levs, ordered = FALSE)}.
+}
+
 \seealso{
 Other props: 
 \code{\link{bbb_ccc}()},
@@ -74,7 +102,6 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc_props}()},
 \code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -83,6 +110,7 @@ Other props:
 \code{\link{eee}()},
 \code{\link{iii}()},
 \code{\link{meets}()},
+\code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
 \code{\link{sss}()}

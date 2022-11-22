@@ -1,28 +1,32 @@
 #' @family props
 #' @title Base + Extended Mode Properties
-#' @description NOTE: \code{BBB} and \code{MMM} are used as placeholders for any
+#' @section Functions in this Family:
+#'   NOTE: \code{BBB} and \code{MMM} are used as placeholders for any
 #'   given base and extended mode, respectively.
 #'   \cr\cr
-#'   \strong{\code{bbb_mmm}}: Evaluates whether \code{x} matches the
-#'   base property specified in the argument \code{bbb} and matches the
-#'   extended mode specified in the argument \code{mmm}.
-#'   (subject to any restrictions in \code{...}).
+#'   \strong{\code{bbb_mmm}}
+#'   \cr Evaluates whether \code{x} matches the base property specified in the
+#'   argument \code{bbb} and matches the extended mode specified in the argument
+#'   \code{mmm}. (subject to any restrictions in \code{...}).
 #'   \cr\cr
-#'   \strong{\code{BBB_MMM}}: Evaluates whether \code{x} matches
-#'   base property \code{BBB} and extended mode \code{MMM}.
-#'   (subject to any restrictions in \code{...}).
+#'   \strong{\code{BBB_MMM}}
+#'   \cr Evaluates whether \code{x} matches base property \code{BBB} and
+#'   extended mode \code{MMM}. (subject to any restrictions in \code{...}).
 #'   \cr\cr
-#'   \strong{\code{bbb_mmm_props}}: Gets a character vector of all possible
-#'   base + extended mode properties.
+#'   \strong{\code{bbb_mmm_props}}
+#'   \cr Gets a character vector of all possible base + extended mode
+#'   properties.
 #' @param x An R object
-#' @param bbb A character scalar containing an
-#'   base property from bbb_props().
-#' @param mmm A character scalar containing an
-#'   extended mode property from mmm_props().
+#' @param bbb A character scalar containing an base property from bbb_props().
+#' @param mmm A character scalar containing an extended mode property from
+#'   mmm_props().
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{bbb_mmm_props}}: A character vector.
-#'   \cr\cr\strong{bbb_mmm, BBB_MMM}: A logical scalar.
+#' @return \strong{\code{bbb_mmm_props}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{bbb_mmm, BBB_MMM}}
+#'   \cr A logical scalar.
 #' @export
 bbb_mmm <- function(x, bbb, mmm, ...) {
   BBB <- c("atm", "pop")

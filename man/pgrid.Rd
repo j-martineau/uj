@@ -25,7 +25,7 @@ pgridx(p, ..., ch = F, na.err = T)
 \item{...}{Non-empty atomic objects.}
 
 \item{ch, na.err}{Non-\code{NA} logical scalars indicating, respectively,
-whether to split each arguments in \code{...} into its constituent
+whether to split each \code{...} arguments into its constituent
 characters after conversion to mode 'character' and whether to throw an
 error if an argument in \code{...} contains an \code{NA} value.}
 
@@ -37,24 +37,33 @@ construct the result to look like a fully-crossed model. See \emph{The
 A character vector.
 }
 \description{
-\tabular{ll}{
-\code{pgrid}    \tab Converts the \code{n} arguments in \code{...} to
-character (with additional optional pre-processing) and
-create a character vector with each element consisting
-of sub-strings from across arguments in \code{...}
-pasted together using the 'paste' \code{p}. See the
-\emph{Value} section for how the value of \code{crossed}
-affects the results.                                 \cr
-\code{pgrid0}   \tab Calls \code{pgrid} with \code{p = ""} (blank string).\cr
-\code{pgrid1}   \tab Calls \code{pgrid} with \code{p = " "} (space).      \cr
-\code{pgridn}   \tab Calls \code{pgrid} with \code{crossed = FALSE} so as to
-produce only \code{n}-way combinations from across the
-\code{n} arguments in \code{...}.                    \cr
-\code{pgridx}   \tab Calls \code{pgrid} with \code{crossed = TRUE} so as to
-produce all possible \code{1}-way, \code{2}-way, ...,
-\code{N}-way combinations from across the arguments in
-\code{...} (i.e. fully-crossed combinations).          }
+\code{expand.grid} for \code{paste} and \code{paste0}
 }
+\section{Functions in this Family}{
+
+\strong{\code{pgrid}}
+\cr Converts the \code{n} \code{...} arguments to character (with
+additional optional pre-processing) and create a character vector with each
+element consisting of sub-strings from across \code{...} arguments
+pasted together using the 'paste' \code{p}. See the \emph{Value} section
+for how the value of \code{crossed} affects the results.
+\cr\cr
+\strong{\code{pgrid0}}
+\cr Calls \code{pgrid} with \code{p = ""} (blank string).
+\cr\cr
+\strong{\code{pgrid1}}
+\cr Calls \code{pgrid} with \code{p = " "} (space).
+\cr\cr
+\strong{\code{pgridn}}
+\cr Calls \code{pgrid} with \code{crossed = FALSE} so as to produce only
+\code{n}-way combinations from across the \code{n} \code{...} arguments.
+\cr\cr
+\strong{\code{pgridx}}
+\cr Calls \code{pgrid} with \code{crossed = TRUE} so as to produce all
+possible \code{1}-way, \code{2}-way, ..., \code{N}-way combinations from
+across the \code{...} arguments (i.e. fully-crossed combinations).
+}
+
 \section{The \code{crossed} Argument}{
  The following console excerpt shows
 the effect of the value of \code{crossed}:
@@ -88,7 +97,7 @@ Other strings:
 \code{\link{ipat}()},
 \code{\link{max_nch}()},
 \code{\link{mkstr}},
-\code{\link{ox.}()},
+\code{\link{ox}()},
 \code{\link{revstr}()},
 \code{\link{spacing}},
 \code{\link{ss}()},

@@ -29,24 +29,29 @@
 #'   \code{≥ 3}\tab\code{'eHD'}\tab Effectively hyper-dimensional
 #'                             \tab Non-empty array with multiple index
 #'                                  positions in at least 3 dimensions.        }
-#'   Functions related to effective dimensionality properties are as follows:
-#'   \tabular{ll}{
-#'     EEE FUNCTION         \tab WHAT IT DOES                                \cr
-#'     \code{iEEE}          \tab Evaluates whether \code{x} matches the
-#'                               effective dimensionality property \code{EEE}
-#'                               (subject to any restrictions in \code{...}).\cr
-#'     \code{eee}           \tab Gets a character vector containing all
-#'                               effective dimensionality properties matching
-#'                               \code{x}.                                   \cr
-#'     \code{ieee}          \tab Evaluates \code{x} against the
-#'                               effective dimensionality property specification
-#'                               in \code{spec} (subject to any restrictions in
-#'                               \code{...}).                                \cr
-#'     \code{eee_props}     \tab Gets a character vector of all possible
-#'                               effective dimensionality property values.   \cr
-#'     \code{is_eee_spec}   \tab Evaluates whether \code{spec} is a valid
-#'                               effective dimensionality property
-#'                               specification.                                }
+#' @section Functions in this Family:
+#'   \strong{\code{iEEE}}
+#'   \cr Evaluates whether \code{x} matches the effective dimensionality
+#'   property \code{EEE} (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{eee}}
+#'   \cr Gets a character vector containing all effective dimensionality
+#'   properties matching \code{x}.
+#'   \cr\cr
+#'   \strong{\code{ieee}}
+#'   \cr Evaluates \code{x} against the effective dimensionality property
+#'   specification in \code{spec} (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{eee_props}}
+#'   \cr Gets a character vector of all possible effective dimensionality
+#'   property values.
+#'   \cr\cr
+#'   \strong{\code{is_eee_spec}}
+#'   \cr Evaluates whether \code{spec} is a valid effective dimensionality
+#'   property specification.
+#'   \cr\cr
+#'   \strong{\code{neee}}
+#'   \cr Gets the number of effective dimensions of \code{x}.
 #' @param x An R object.
 #' @param spec \code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
 #'   containing one or more effective dimensionality properties (i.e., from
@@ -55,9 +60,17 @@
 #'   a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{eee_vals}}: A character vector.
-#'   \cr\cr\strong{\code{eee}}: A character scalar or character vector.
-#'   \cr\cr\strong{\code{iEEE, ieee, is_eee_spec}}: A logical scalar.
+#' @return \strong{\code{eee_vals}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{eee}}
+#'   \cr A character scalar or character vector.
+#'   \cr\cr
+#'   \strong{\code{iEEE, ieee, is_eee_spec}}
+#'   \cr A logical scalar.
+#'   \cr\cr
+#'   \strong{\code{neee}}
+#'   \cr An integer scalar or \code{NaN}.
 #' @export
 eee <- function(x) {
   props <- .eee_props()

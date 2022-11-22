@@ -16,7 +16,7 @@ u2u <- function(x, old, new) {
   errs <- c(f0(cmp_num(x)                          , NULL, " \u2022 [x] must be a complete numeric object (?cmp_num)."),
             f0(cmp_chr_scl(old) & !isIN(old, units), NULL, " \u2022 [old] must be a character scalar in c('cm', 'in', 'mm', 'pt')."),
             f0(cmp_chr_scl(new) & !isIN(new, units), NULL, " \u2022 [new] must be a character scalar in c('cm', 'in', 'mm', 'pt')."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   x * conv[[paste0(old, "2", new)]]
 }
 

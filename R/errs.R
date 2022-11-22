@@ -1,4 +1,4 @@
-#' @name errs_uj
+#' @name err_check
 #' @family errs
 #' @title Error Management
 #' @description Bank error messages in the immediate environment of a function
@@ -6,123 +6,119 @@
 #'   Results in a combined, multiple-error message to be reported at the
 #'   completion of all error checks. See details for explanations of each
 #'   function in this family.
-#' @details
-#'   \strong{err_check}
-#'   \cr \emph{process any banked error messages}
-#'   \cr Check for banked error messages in the environment of the function
+#' @section \code{err_check}:
+#'   \emph{Process any banked error messages}.
+#'   \cr\cr
+#'   Check for banked error messages in the environment of the function
 #'   \code{gens} generations back in the call stack, and if there are any,
 #'   process them, stopping execution. If there are none, take no action. Should
 #'   be called after all error checking has been completed.
+#' @section \code{bank_err}:
+#'   \emph{Bank an arbitrary error message}.
 #'   \cr\cr
-#'   \strong{bank_err}
-#'   \cr \emph{bank an arbitrary error message}
-#'   \cr Banks the error message in \code{...} in the environment of the
-#'   function \code{gens} generations back in the call stack. The error message
-#'   is constructed by \link[=av]{atomizing} and collapsing all arguments in
-#'   \code{...} into a character scalar.
+#'   Banks the error message in \code{...} in the environment of the function
+#'   \code{gens} generations back in the call stack. The error message is
+#'   constructed by \link[=av]{atomizing} and collapsing all \code{...}
+#'   arguments into a character scalar.
+#' @section \code{bank_lgl}:
+#'   \emph{Check for logical scalar args}.
 #'   \cr\cr
-#'   \strong{bank_lgl}
-#'   \cr \emph{check for logical scalar args}
-#'   \cr Checks the named arguments in \code{...} for whether they are atomic
-#'   scalar \code{TRUE} or atomic scalar \code{FALSE}. If \code{na = TRUE}, also
-#'   allows atomic scalar \code{NA}. If \code{extras} contains atomic values
-#'   (logical or not), also allows those values. For each named argument that
-#'   does not meet the requirements, banks an error.
+#'   Checks the named arguments in \code{...} for whether they are atomic scalar
+#'   \code{TRUE} or atomic scalar \code{FALSE}. If \code{na = TRUE}, also allows
+#'   atomic scalar \code{NA}. If \code{extras} contains atomic values (logical
+#'   or not), also allows those values. For each named argument that does not
+#'   meet the requirements, banks an error.
+#' @section \code{bank_not}:
+#'   \emph{Bank errors for \code{FALSE} args}.
 #'   \cr\cr
-#'   \strong{bank_not}
-#'   \cr \emph{bank errors for \code{FALSE} args}
-#'   \cr For each named argument in \code{...} that is \code{FALSE}, creates an
-#'   error message by collapsing unnamed arguments in \code{...} into a
-#'   character scalar message template, and banks the error message for that
-#'   named argument. The location where the name of a \code{FALSE} named
-#'   argument should occur in the message is indicated by the escape sequence
+#'   For each named argument in \code{...} that is \code{FALSE}, creates an
+#'   error message by collapsing unnamed \code{...} arguments into a character
+#'   scalar message template, and banks the error message for that named
+#'   argument. The location where the name of a \code{FALSE} named argument
+#'   should occur in the message is indicated by the escape sequence
 #'   \code{'{@@}'}.
+#' @section \code{bank_pop}:
+#'   \emph{Bank errors for non-populated args}
 #'   \cr\cr
-#'   \strong{bank_pop}
-#'   \cr \emph{bank errors for non-populated args}
-#'   \cr For each named argument in \code{...} that is either \code{NULL} or
-#'   empty (i.e., of length 0), banks an error message.
+#'   For each named argument in \code{...} that is either \code{NULL} or empty
+#'   (i.e., of length 0), banks an error message.
+#' @section \code{bank_funs}:
+#'   \emph{Bank errors for args not passing property-checking
+#'   functions}.
 #'   \cr\cr
-#'   \strong{bank_funs}
-#'   \cr \emph{bank errors for args not passing property-checking functions}
-#'   \cr For each named argument in \code{...}, checks whether it satisfies any
-#'   one of the property functions named in \code{funs.}, and if not, banks an
-#'   error message. \code{funs.} must be a character scalar containing the names
-#'   of one or more \link[ppp_funs]{property functions}, separated by pipes. An
+#'   For each named argument in \code{...}, checks whether it satisfies any one
+#'   of the property functions named in \code{funs.}, and if not, banks an error
+#'   message. \code{funs.} must be a character scalar containing the names of
+#'   one or more \link[ppp_funs]{property functions}, separated by pipes. An
 #'   argument passes the test if calling any one of the functions results in a
 #'   value of \code{TRUE}.
+#' @section \code{bank_ppp}:
+#'   \emph{Bank errors for args not passing arbitrary property checks}.
 #'   \cr\cr
-#'   \strong{bank_ppp}
-#'   \cr \emph{bank errors for args not passing arbitrary property checks}
-#'   \cr More flexible but less efficient than \code{bank_funs}. For each named
+#'   More flexible but less efficient than \code{bank_funs}. For each named
 #'   argument in \code{...}, banks an error message if it does satisfy the
 #'   \link[ippp]{property specification} in \code{ppp}. If \code{nas. = TRUE},
-#'   arguments may also be atomic scalar \code{NA} values. \code{ppp.} must be a
-#'   character scalar containing one or more property combos. Property combos
-#'   are created by separating multiple properties from \code{\link{ppp_all()}}.
-#'   A property combo may be a single property. Multiple property combos are
-#'   separated from each other using pipes. An argument satisfies the property
-#'   specification if it satisfies any of the property combos.
+#'   arguments may also be atomic scalar \code{NA} values.
 #'   \cr\cr
-#'   \strong{bank_vals}
-#'   \cr \emph{bank errors for args with out-of-bounds values}
-#'   \cr Bank errors if atomic scalar arguments do not have one of a list of
-#'   values. For each named atomic scalar argument in \code{...}, checks it
-#'   against the remaining (unnamed) atomic arguments in \code{...} (which do
-#'   not have to be of the same mode), and if the named argument's value does
-#'   not match a value from any unnamed argument in \code{...}, banks an error
-#'   message.
+#'   \code{ppp.} must be a character scalar containing one or more property
+#'   combos. Property combos are created by separating multiple properties from
+#'   \code{\link{ppp_all()}}. A property combo may be a single property.
+#'   Multiple property combos are separated from each other using pipes. An
+#'   argument satisfies the property specification if it satisfies any of the
+#'   property combos.
+#' @section \code{bank_vals}:
+#'   \emph{Bank errors for args with out-of-bounds values}.
 #'   \cr\cr
-#'   \strong{bank_dots}
-#'   \cr \emph{bank errors for \code{...} args}
-#'   \cr Bank errors if dot arguments do not satisfy a property specification,
-#'   and optionally, if they are not named. Checks if each argument in
-#'   \code{...} satisfies the property specification in \code{prop.} and if not,
-#'   banks an error message. If \code{named. = TRUE}, checks whether all
-#'   arguments in \code{...} are named, and if not banks an error message.
+#'   Bank errors if atomic scalar arguments do not have one of a list of values.
+#'   For each named atomic scalar argument in \code{...}, checks it against the
+#'   remaining (unnamed) atomic \code{...} arguments (which do not have to be of
+#'   the same mode), and if the named argument's value does not match a value
+#'   from any unnamed argument in \code{...}, banks an error message.
+#' @section \code{bank_dots}:
+#'   \emph{Bank errors for \code{...} args}.
 #'   \cr\cr
-#'   \strong{bank_when}
-#'   \cr \emph{bank errors for one arg conditional on the value of another}
-#'   \cr Bank errors conditionally on the value of two arguments. Banks an error
-#'   if the first named atomic scalar argument in \code{...} has a value
-#'   contained in \code{whens.} and the second named atomic scalar argument in
-#'   \code{...} does not contain a value from \code{values.}.
+#'   Bank errors if dot arguments do not satisfy a property specification, and
+#'   optionally, if they are not named. Checks if each argument in \code{...}
+#'   satisfies the property specification in \code{prop.} and if not, banks an
+#'   error message. If \code{named. = TRUE}, checks whether all \code{...}
+#'   arguments are named, and if not banks an error message.
+#' @section \code{bank_when}:
+#'   \emph{Bank errors for one arg conditional on the value of another}.
 #'   \cr\cr
-#'   \strong{bank_pats}
-#'   \cr \emph{bank errors for args not matching any patterns of properties}
-#'   \cr Bank errors conditionally on the pattern of properties of arguments in
+#'   Bank errors conditionally on the value of two arguments. Banks an error if
+#'   the first named atomic scalar argument in \code{...} has a value contained
+#'   in \code{whens.} and the second named atomic scalar argument in \code{...}
+#'   does not contain a value from \code{values.}.
+#' @section \code{bank_pats}:
+#'   \emph{Bank errors for args not matching any patterns of properties}.
+#'   \cr\cr
+#'   Bank errors conditionally on the pattern of properties of arguments in
 #'   \code{...} matching none of the specified patterns of associated properties
 #'   in \code{pats.}.
-#'   \cr\cr
-#'   \strong{bank_fail}
-#'   \cr \emph{bank errors for args producing an error when evaluated}.
+#' @section \code{bank_fail}:
+#'   \emph{Bank errors for args producing an error when evaluated}.
 #' @param x An R object.
 #' @param gens. \link[cmp_nnw_scl]{Complete non-negative whole-number scalar}
 #'   indicating the number of generations back in the call stack in which to
 #'   bank and/or check for error messages.
-#' @param ... \code{bank_err}
-#'   \cr An arbitrary number of atomic arguments that when collapsed into a
-#'   character scalar form an error message.
+#' @param ... For \code{bank_err}: An arbitrary number of atomic arguments that
+#'   when collapsed into a character scalar form an error message.
 #'   \cr\cr
-#'   \code{bank_lgl}, \code{bank_pop}, \code{bank_funs}, \code{bank_prop},
-#'   and \code{bank_pats}
-#'   \cr An arbitrary number of named arguments to be error checked.
+#'   For \code{bank_lgl, bank_pop, bank_funs, bank_prop, bank_pats}: An
+#'   arbitrary number of named arguments to be error checked.
 #'   \cr\cr
-#'   \code{bank_not}
-#'   \cr An arbitrary number of named logical scalar arguments to be checked for
-#'   \code{TRUE}-ness plus an arbitrary number of unnamed atomic arguments that
-#'   when collapsed form an error message.
+#'   For \code{bank_not}: An arbitrary number of named logical scalar arguments
+#'   to be checked for \code{TRUE}-ness plus an arbitrary number of unnamed
+#'   atomic arguments that when collapsed form an error message.
 #'   \cr\cr
-#'   \code{bank_vals}
-#'   \cr An arbitrary number of named atomic scalar arguments and an arbitrary
-#'   number of unnamed atomic arguments holding valid values of the named
-#'   arguments.
+#'   For \code{bank_vals}: An arbitrary number of named atomic scalar arguments
+#'   and an arbitrary number of unnamed atomic arguments holding valid values of
+#'   the named arguments.
 #'   \cr\cr
-#'   \code{bank_dots}
-#'   \cr An arbitrary number of named or unnamed arguments to be error checked.
+#'   For \code{bank_dots}: An arbitrary number of named or unnamed arguments to
+#'   be error checked.
 #'   \cr\cr
-#'   \code{bank_when}
-#'   \cr Two named atomic scalar arguments to be error checked.
+#'   For \code{bank_when}: Two named atomic scalars to be error checked.
 #' @param nas. \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
 #'   atomic scalar \code{NA} values qualify.
 #' @param extras \code{NUlL} or an \link[=icmp]{complete atomic object}
@@ -136,20 +132,16 @@
 #'   \link[=ppp_vals]{property values} with underscores. Multiple combos are
 #'   separated by pipes.
 #' @param named. \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
-#'   arguments in \code{...} must be uniquely named without using blank strings.
+#'   \code{...} arguments must be uniquely named without using blank strings.
 #' @param whens.,values. \link[=ipop]{Populated atomic objects}.
 #' @param pats. \link[=ivls]{Atomic vlist} containing multiple elements, each
 #'   of which must be a complete character mvect of the same length as the
-#'   number of arguments in \code{...}. Each element gives a pattern of valid
+#'   number of \code{...} arguments. Each element gives a pattern of valid
 #'   properties for the argument in \code{...} in the form of one property
 #'   specification per argument in \code{...} in the same order of those
 #'   arguments.
 #' @return \code{NULL}. Called for the side effect of banking and/or processing
 #'   error messages.
-#' @export
-errs_uj <- NULL
-
-#' @rdname errs_uj
 #' @export
 err_check <- function(gens. = 0) {
   ok.gens <- f0(!cmp_nnw_scl(gens.), F, gens. <= ncallers() - 1)
@@ -167,7 +159,7 @@ err_check <- function(gens. = 0) {
   NULL
 }
 
-#' @rdname errs_uj
+#' @rdname err_check
 #' @export
 bank_err <- function(..., gens. = 0) {
   ok.gens <- f0(!cmp_nnw_scl(gens.), F, gens. <= ncallers() - 1)
@@ -186,7 +178,7 @@ bank_err <- function(..., gens. = 0) {
   NULL
 }
 
-#' @rdname errs_uj
+#' @rdname err_check
 #' @export
 bank_lgl <- function(..., nas. = F, extras. = NULL) {
   dots  <- named_dots(...)
@@ -203,7 +195,7 @@ bank_lgl <- function(..., nas. = F, extras. = NULL) {
             f0(ok.lgl   , NULL, "\n \u2022 All arguments in [...] must be complete logical scalars (?cmp_lgl_scl)."),
             f0(ok.nas   , NULL, "\n \u2022 [nas.] must be TRUE or FALSE."),
             f0(ok.extras, NULL, "\n \u2022 [extras.] must be NULL or complete and atomic (?icmp)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   has.extras <- idef(extras.)
   if (has.extras) {
     av.extras <- extras. <- av(extras.)
@@ -227,13 +219,13 @@ bank_lgl <- function(..., nas. = F, extras. = NULL) {
   NULL
 }
 
-#' @rdname errs_uj
+#' @rdname err_check
 #' @export
 bank_not <- function(...) {
   named <- named_dots(...)
   blank <- unnamed_dots(...)
   error <- paste0(as.character(unlist(blank, T, F)), collapse = "")
-  names <- names(named.)
+  names <- names(named)
   v0 <- ...length() > 0
   vnn <- f0(!v0, T, length(named) > 0)
   vnb <- f0(!v0, T, length(blank) > 0)
@@ -256,7 +248,7 @@ bank_not <- function(...) {
   NULL
 }
 
-#' @rdname errs_uj
+#' @rdname err_check
 #' @export
 bank_pop <- function(...) {
   named <- named_dots(...)
@@ -271,12 +263,12 @@ bank_pop <- function(...) {
   errs <- c(f0(ok.n      , NULL, "\n \u2022 [...] is empty."),
             f0(ok.unnamed, NULL, "\n \u2022 All arguments in [...] must be named."),
             f0(ok.named  , NULL, "\n \u2022 Names of arguments in [...] must be unique without using blank strings."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   for (i in 1:length(named)) {if (inil(named[[1]])) {bank_err("[", labs[i], "] is NULL or empty.", gens. = 1)}}
   NULL
 }
 
-#' @rdname errs_uj
+#' @rdname err_check
 #' @export
 bank_funs <- function(funs., ...) {
   if (cmp_chr_vec(funs.)) {
@@ -294,7 +286,7 @@ bank_funs <- function(funs., ...) {
   errs <- c(f0(ok.n   , NULL, "\n \u2022 [...] is empty."),
             f0(ok.labs, NULL, "\n \u2022 All arguments in [...] must be uniquely named without using blank strings."),
             f0(ok.funs, NULL, "\n \u2022 [funs.] contains a function name not found in ppp_funs()."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   errs <- paste0("[", labs, "] must be ", alt_ppp_concise(funs.))
   for (i in 1:n.dots) {
     ok <- FALSE
@@ -304,7 +296,7 @@ bank_funs <- function(funs., ...) {
   NULL
 }
 
-#' @rdname errs_uj
+#' @rdname err_check
 #' @export
 bank_ppp <- function(ppp., ..., nas. = F) {
   labs <- ...names()
@@ -318,7 +310,7 @@ bank_ppp <- function(ppp., ..., nas. = F) {
             f0(ok.n   , NULL, "\n \u2022 [...] is empty."),
             f0(ok.labs, NULL, "\n \u2022 All arguments in [...] must be uniquely named without using blank strings."),
             f0(ok.nas , NULL, "\n \u2022 [nas.] must be TRUE or FALSE."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   errs <- paste0("[", labs, "] must be ", alt_ppp_concise(ppp.), ".")
   for (i in 1:n.dots) {
     val <- F
@@ -329,7 +321,7 @@ bank_ppp <- function(ppp., ..., nas. = F) {
   NULL
 }
 
-#' @rdname errs_uj
+#' @rdname err_check
 #' @export
 bank_vals <- function(...) {
   oxford_vals <- function(xx) {
@@ -353,7 +345,7 @@ bank_vals <- function(...) {
             f0(ok.labs, NULL, "\n \u2022 Named arguments in [...] must be uniquely named without using blank strings."),
             f0(ok.atm , NULL, "\n \u2022 Named arguments in [...] must be non-empty and atomic."),
             f0(ok.pop , NULL, "\n \u2022 Unnamed arguments in [...] must be non-empty and atomic."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   values <- NULL
   for (val in vals) {
     if (any(is.na(val))) {values <- c(values, 'NA')}
@@ -374,7 +366,7 @@ bank_vals <- function(...) {
   NULL
 }
 
-#' @rdname errs_uj
+#' @rdname err_check
 #' @export
 bank_dots <- function(ppp., ..., named. = F) {
   dots  <- list(...)
@@ -389,13 +381,13 @@ bank_dots <- function(ppp., ..., named. = F) {
             f0(ok.0    , NULL, "\n \u2022 [...] is empty."),
             f0(ok.named, NULL, "\n \u2022 [named.] must be TRUE or FALSE."),
             f0(ok.labs , NULL, "\n \u2022 When [named. = TRUE], all arguments in [...] must be uniquely named without using blank strings."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   ok.dots <- sapply(dots, ippp, ppp = ppp.)
   if (!ok.dots) {bank_err("All arguments in [...] must be ", alt_ppp_concise(ppp.), ".", gens. = 1)}
   NULL
 }
 
-#' @rdname errs_uj
+#' @rdname err_check
 #' @export
 bank_when <- function(whens., values., ...) {
   oxford_vals <- function(xx) {
@@ -419,7 +411,7 @@ bank_when <- function(whens., values., ...) {
             f0(ok.whens2 , NULL, "\n \u2022 [whens.] and [..1] are not of compatible (?compatible) modes."),
             f0(ok.values2, NULL, "\n \u2022 [values.] and [..2] are not of compatible (?compatible) modes."),
             f0(ok.dots   , NULL, "\n \u2022 Both arguments in [...] must be atomic and scalar (?iscl)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   labs1 <- paste0("[", labs[1], "]")
   labs2 <- paste0("[", labs[2], "]")
   when <- ..1
@@ -434,7 +426,7 @@ bank_when <- function(whens., values., ...) {
   NULL
 }
 
-#' @rdname errs_uj
+#' @rdname err_check
 #' @export
 bank_pats <- function(pats., ...) {
   dots <- named_dots(...)
@@ -456,7 +448,7 @@ bank_pats <- function(pats., ...) {
             f0(n.pats < 2 , NULL, "\n \u2022 The number of patterns in [pats.] is less than 2."),
             f0(n.dots < 2 , NULL, "\n \u2022 The number of arguments in [...] is less than 2."),
             f0(n.blank > 0, NULL, "\n \u2022 All arguments in [...] must be named."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   nc <- rep.int(0, n.dots)
   for (i in 1:n.pats) {
     pat <- pats.[[i]]
@@ -490,7 +482,7 @@ bank_pats <- function(pats., ...) {
   bank_err(err, gens. = 1)
 }
 
-#' @rdname errs_uj
+#' @rdname err_check
 #' @export
 bank_fail <- function(x) {
   x <- failsafe(x)

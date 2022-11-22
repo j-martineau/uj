@@ -1,28 +1,35 @@
 #' @family props
 #' @title Completeness + Extended Mode + Extended Class Properties
-#' @description NOTE: \code{MMM} and \code{CCC} are used as placeholders for any
+#' @section Functions in this Family:
+#'    NOTE: \code{MMM} and \code{CCC} are used as placeholders for any
 #'   given extended mode and extended class, respectively.
 #'   \cr\cr
-#'   \strong{\code{cmp_mmm_ccc}}: Evaluates whether \code{x} is complete,
-#'   matches the extended mode specified in the argument \code{mmm} and matches
-#'   the extended class specified in the argument \code{ccc}.
-#'   (subject to any restrictions in \code{...}).
+#'   \strong{\code{cmp_mmm_ccc}}
+#'   \cr Evaluates whether \code{x} is complete, matches the extended mode
+#'   specified in the argument \code{mmm} and matches the extended class
+#'   specified in the argument \code{ccc}. (subject to any restrictions in
+#'   \code{...}).
 #'   \cr\cr
-#'   \strong{\code{cmp_MMM_CCC}}: Evaluates whether \code{x} is complete and
-#'   matches the extended mode \code{MMM} and extended class \code{CCC}.
-#'   (subject to any restrictions in \code{...}).
+#'   \strong{\code{cmp_MMM_CCC}}
+#'   \cr Evaluates whether \code{x} is complete and matches the extended mode
+#'   \code{MMM} and extended class \code{CCC}. (subject to any restrictions in
+#'   \code{...}).
 #'   \cr\cr
-#'   \strong{\code{cmp_mmm_ccc_props}}: Gets a character vector of all possible
-#'   completeness + extended mode + extended class properties.
-#' @param x An R object
-#' @param mmm A character scalar containing an
-#'   extended mode property from mmm_props().
-#' @param ccc A character scalar containing an
-#'   extended class property from ccc_props().
+#'   \strong{\code{cmp_mmm_ccc_props}}
+#'   \cr Gets a character vector of all possible completeness + extended mode +
+#'   extended class properties.
+#' @param x An R object.
+#' @param mmm A character scalar containing an extended mode property from
+#'   mmm_props().
+#' @param ccc A character scalar containing an extended class property from
+#'   ccc_props().
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{cmp_mmm_ccc_props}}: A character vector.
-#'   \cr\cr\strong{cmp_mmm_ccc, cmp_MMM_CCC}: A logical scalar.
+#' @return \strong{\code{cmp_mmm_ccc_props}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{cmp_mmm_ccc, cmp_MMM_CCC}}
+#'   \cr A logical scalar.
 #' @export
 cmp_mmm_ccc <- function(x, mmm_ccc, ...) {
   errs <- c(.meets_errs(x, ...),
@@ -38,7 +45,7 @@ cmp_mmm_ccc <- function(x, mmm_ccc, ...) {
   else {!any(is.na(x)) & run(mfun)}
 }
 
-#' @rdname mmm_ccc
+#' @rdname cmp_mmm_ccc
 #' @export
 cmp_mmm_ccc_props <- function() {paste0('cmp_', sort(av(apply(expand.grid(mmm = .mmm_props(), ccc = .ccc_props()), 1, paste0, collapse = '_'))))}
 

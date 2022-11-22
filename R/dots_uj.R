@@ -3,7 +3,7 @@
 #' @title Manage dot arguments
 #' @description Get named arguments from \code{...} with default values if
 #'   missing, named and unnamed arguments from \code{...}, and names of
-#'   arguments in \code{...}.
+#'   \code{...} arguments.
 #' @param ... An arbitrary number of arguments.
 #' @param names. \code{NULL} or \link[=cmp_vec]{complete atomic vec} (may
 #'   include \code{NA}) values). Is split along the delimiter \code{'|'} to
@@ -18,10 +18,10 @@
 #'   not \code{NULL}, it is split using pipes \code{'|'} as a delimiter. If
 #'   there are no pipes contained in \code{names.}, it remains unchanged. When
 #'   this argument is not \code{NULL}, it is substituted for the names of
-#'   arguments in \code{...}; thus, after splitting, its length must equal the
-#'   number of arguments in \code{...}. For example, the value \code{names. =
+#'   \code{...} arguments; thus, after splitting, its length must equal the
+#'   number of \code{...} arguments. For example, the value \code{names. =
 #'   c("one", "two", "three|four|five")} indicates that there should be five
-#'   arguments in \code{...} and the vector \code{c('one', 'two', 'three',
+#'   \code{...} arguments and the vector \code{c('one', 'two', 'three',
 #'   'four', 'five')} is substituted for their names.
 #' @param defs. Named \link[=ivls]{vlist} of default objects/values to return if
 #'   the specified arguments are not in \code{...}. Elements of \code{defs.}
@@ -37,7 +37,7 @@ dots_uj <- NULL
 
 #' @describeIn dots_uj Extract one or more arguments from those in \code{...}
 #'   based on their names matching values supplied in \code{names.}. If a
-#'   supplied name matches the name of an arguments in \code{...}, that argument
+#'   supplied name matches the name of an \code{...} arguments, that argument
 #'   is returned. Otherwise, the element of \code{defs.} with a matching name is
 #'   returned.
 #'   \cr\cr
@@ -58,7 +58,7 @@ dots <- function(names., defs., ...) {
   ok.n <- length(dots) > 0
   errs <- c(f0(ok.names, NULL, "\n \u2022 [names.] must be a complete atomic vec (?cmp_vec)."),
             f0(ok.n    , NULL, "\n \u2022 [...] must contain at least one argument."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   dot.names <- names(dots);
   def.names <- names(defs.)                                                      # names of args in {...} and elements of {defs.}
   names. <- ss("|", as.character(av(names.)))                                    # atomize {names.}, convert to character, and split along {'|'}
@@ -94,11 +94,11 @@ dot <- function(name., def., ...) {
 #'           \code{NULL} and its length is not equal to the number of arguments
 #'           in \code{...}.
 #'     \item \code{req.} is \code{TRUE}, \code{names.} is \code{NULL}, and none
-#'           of the arguments in \code{...} are named.
+#'           of the \code{...} arguments are named.
 #'     \item \code{names.} is \code{NULL} and either (a) \code{blank.} is
 #'           \code{TRUE} and any argument in \code{...} is either unnamed or its
 #'           name is \code{''} or (b) \code{u.} is \code{TRUE} and multiple
-#'           arguments in \code{...} share a name.
+#'           \code{...} arguments share a name.
 #'     \item \code{names.} is not \code{NULL} and either (a) \code{blank.} is
 #'           \code{TRUE} and \code{names.} contains \code{''} or (b) \code{u.}
 #'           is \code{TRUE} and \code{names.} contains duplicate values.       }
@@ -110,18 +110,18 @@ dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
             f0(isTF(req.)                     , NULL, "\n \u2022 [req.] must be TRUE or FALSE."),
             f0(isTF(blank.)                   , NULL, "\n \u2022 [blank.] must be TRUE or FALSE."),
             f0(isTF(u.)                       , NULL, "\n \u2022 [u.] must be TRUE or FALSE."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   n.dots <- ...length()
   n.names <- length(...names())
   if (inll(subs.)) {subs. <- ...names()}
   errs <- c(f0(n.names == n.dots | inll(subs.), NULL, "\n \u2022 When [subs.] is not NULL, it must contain one value per argument in [...]."),
             f0(n.names == n.dots | !req.      , NULL, "\n \u2022 When [req. = TRUE], arguments in [...] must be named or [subs.] must contain one value per argument in [...]."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   subs. <- av(strsplit(as.character(av(subs.)), "|", fixed = TRUE))
   subs.[is.na(subs.)] <- 'NA'
   errs <- c(f0(!blank. | notIN("", subs.), NULL, "\n \u2022 A name is blank but [blank. = FALSE]."),
             f0(!u.     | is_unq(subs.)   , NULL, "\n \u2022 Names provided are not unique but [u. = TRUE]."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   subs.
 }
 

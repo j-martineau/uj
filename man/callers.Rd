@@ -17,20 +17,32 @@ ncallers()
 number(s) of generations back in the function call stack to go.}
 }
 \value{
-\tabular{ll}{
-\code{ncallers}   \tab Integer scalar.                                  \cr
-\code{callers}    \tab Character vector.                                \cr
-\code{caller}     \tab Character scalar.                                  }
+\strong{\code{ncallers}}
+\cr An integer scalar.
+\cr\cr
+\strong{\code{callers}}
+\cr A character vector.
+\cr\cr
+\strong{\code{caller}}
+\cr A character scalar.
 }
 \description{
-\tabular{ll}{
-\code{ncallers}   \tab Gets the number of functions in the call stack.  \cr
-\code{callers}    \tab Gets names of all calling functions, with the
-immediate calling function in the first position
-and, if \code{gens.} is not \code{NULL}, selects the
-\code{gens.}-th element(s) from the call stack.  \cr
-\code{caller}     \tab Gets the name of the immediate calling function.   }
+Functions in the Call Stack
 }
+\section{Functions in This Family}{
+
+\strong{\code{ncallers}}
+\cr Gets the number of functions in the call stack.
+\cr\cr
+\strong{\code{callers}}
+\cr Gets names of all calling functions, with the immediate calling
+function in the first position and, if \code{gens.} is not \code{NULL},
+selects the \code{gens.}-th element(s) from the call stack.
+\cr\cr
+\strong{\code{caller}}
+\cr Gets the name of the immediate calling function.
+}
+
 \examples{
 fun.a <- function() {A <- 0; fun.b()}
 fun.b <- function() {B <- 1; fun.c()}
@@ -67,7 +79,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -76,13 +87,14 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 
 Other environments: 

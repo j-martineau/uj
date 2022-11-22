@@ -22,13 +22,19 @@ throw an error if any values of \code{x} are \code{NA}.}
 An atomic numeric object of the same dimension as \code{x}.
 }
 \description{
-\tabular{ll}{
-\code{inc}   \tab Increments \code{x} by the value in \code{i}.         \cr
-\code{dec}   \tab Decrements \code{x} by the value in \code{d}.           }
+Increment or Decrement a Variable
 }
+\section{Functions in This Family}{
+
+\strong{\code{inc}}
+\cr Increments \code{x} by the value in \code{i}.
+\cr\cr
+\strong{\code{dec}}
+\cr Decrements \code{x} by the value in \code{d}.
+}
+
 \seealso{
 Other math: 
-\code{\link{hexdec}},
-\code{\link{stats0}}
+\code{\link{hexdec}}
 }
 \concept{math}

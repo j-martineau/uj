@@ -1,6 +1,34 @@
 #' @name n_is
 #' @family extensions
-#' @title Dedicated counting functions
+#' @title Dedicated Counting Functions
+#' @description
+#'   Counts functions can be used with a single unnamed argument, multiple
+#'   unnamed arguments, and with restrictions in named arguments, in any
+#'   combination. The functions in this family are: \tabular{ll}{
+#'   FUNCTION(S)            \tab QUESTION(S) ANSWERED                        \cr
+#'   `n_is`                 \tab Do counts in `x` meet criteria in `n`, `min`,
+#'                               `max`, and/or `eq`?                         \cr
+#'   `nd`                   \tab How many `...` arguments?                   \cr
+#'   `nx`                   \tab How many values in `...` arguments?         \cr
+#'   `ns`                   \tab How many values in each `...` argument?     \cr
+#'   `nmin, nmax`           \tab What is the min or max `...` argument length,
+#'                               respectively?                               \cr
+#'   `nsame`                \tab Are lengths of all `...` arguments the same?\cr
+#'   `nw, nt`               \tab How many `TRUE` values?                     \cr
+#'   `nf`                   \tab How many `FALSE` values?                    \cr
+#'   `nu, nuv`              \tab How many unique atomic values?              \cr
+#'   `nr, nc`               \tab How many rows or columns, respectively?     \cr
+#'   `nch`                  \tab How many characters in each element?        \cr
+#'   `nna, nok`             \tab How many `NA` or non-`NA` values,
+#'                               respectively?                               \cr
+#'   `nat`                  \tab How many values after \link[=av]{atomizing}?\cr
+#'   `n0, n1, n2, n3`       \tab Is length `0`, `1`, `2`, or `3`,
+#'                               respectively?                               \cr
+#'   `n1p, n2p, n3p`        \tab Is length `1+`, `2+`, or `3+`, respectively?\cr
+#'   `nd0, nd1, nd2, nd3`   \tab Is the number of `...` arguments `0`, `1`, `2`,
+#'                               or `3`, respectively?                       \cr
+#'   `nd1p, nd2p, nd3p`     \tab Is the number of `...` arguments `1+`, `2+`, or
+#'                               `3+`, respectively.                           }
 #' @param x \link[=innw]{non-negative whole-number} object.
 #' @param ... One or more arguments to be examined for counts.
 #' @param n Optional \link[=cmp_nnw_vec]{complete non-negative whole-number
@@ -16,7 +44,7 @@
 #' @param vals Optional \link[=atm_vec]{atomic vec} indicating specific values
 #'   to be counted.
 #' @param lt,le,ge,gt Optional \link[=cmp_srt_scl]{complete sortable scalars}
-#'   indicating specific values elements of arguments in \code{...} must be less
+#'   indicating specific values elements of \code{...} arguments must be less
 #'   than, less than or equal to, greater than or equal to, or greater than,
 #'   respectively, to be counted.
 #' @return An integer or logical scalar or vector.
@@ -63,7 +91,7 @@ n_is <- function(x, n = NULL, min = NULL, max = NULL, eq = F) {
             f0(inll(min) | cmp_nnw_scl(min), NULL, "\n \u2022 [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(inll(max) | cmp_nnw_scl(max), NULL, "\n \u2022 [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(isTF(eq), NULL, "\n \u2022 [eq] must be TRUE or FALSE."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (length(c(n, min, max)) == 0 & !eq) {return(x)}                             # if no restrictions are specified, return the raw counts
   ok.n <- f0(inll(n), T, all(x %in% n))                                          # whether exact argument length restriction is met
   ok.min <- f0(inll(min), T, all(x >= min))                                      # whether min argument length restriction is met
@@ -72,7 +100,7 @@ n_is <- function(x, n = NULL, min = NULL, max = NULL, eq = F) {
   ok.n & ok.min & ok.max & ok.eq                                                 # whether all argument length restrictions are met
 }
 
-#' @describeIn n_is Length of arguments.
+#' @rdname n_is
 #' @export
 nx <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = F, na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {
   dots <- list(...)
@@ -94,7 +122,7 @@ nx <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = F, na = F, val
             f0(f0(inll(le  ), T, comparable(..., le  , recycle = F)), NULL, "\n \u2022 [le] must be NULL or comparable with arguments in [...]."),
             f0(f0(inll(ge  ), T, comparable(..., ge  , recycle = F)), NULL, "\n \u2022 [ge] must be NULL or comparable with arguments in [...]."),
             f0(f0(inll(gt  ), T, comparable(..., gt  , recycle = F)), NULL, "\n \u2022 [gt] must be NULL or comparable with arguments in [...]."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (a) {dots <- list(av.dots)}
   for (i in 1:length(dots)) {
     dot <- dots[[i]]
@@ -108,23 +136,23 @@ nx <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = F, na = F, val
   n_is(lengths(dots, F), n = n, min = min, max = max, eq = eq)
 }
 
-#' @describeIn n_is Lengths of \code{...} arguments.
+#' @rdname n_is
 #' @export
 ns <- function(..., n = NULL, min = NULL, max = NULL, na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {nx(..., n = n, min = min, max = max, na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt)}
 
-#' @describeIn n_is Minimum length of any \code{...} argument.
+#' @rdname n_is
 #' @export
 nmin <- function(..., na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {min(nx(..., na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt))}
 
-#' @describeIn n_is Maximum length of any \code{...} argument.
+#' @rdname n_is
 #' @export
 nmax <- function(..., na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {max(nx(..., na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt))}
 
-#' @describeIn n_is Whether all \code{...} arguments have the same length.
+#' @rdname n_is
 #' @export
 nsame <- function(..., min = NULL, max = NULL, na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {nx(..., min = min, max = max, eq = T, na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt)}
 
-#' @describeIn n_is Number of \code{TRUE} elements.
+#' @rdname n_is
 #' @export
 nw <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   dots <- list(...)
@@ -136,16 +164,16 @@ nw <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
             f0(isTF(eq)                    , NULL, "\n \u2022 [eq] must be TRUE or FALSE."),
             f0(isTF(na)                    , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
             f0(f0(!isF(na), T, !any(is.na(av))), NULL, "\n \u2022 [na = FALSE] but arguments in [...] contains NA values."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (isT(a)) {dots <- list(av(dots))}
   n_is(sapply(lapply(dots, which), length), n, min, max, eq)
 }
 
-#' @describeIn n_is Number of \code{TRUE} elements.
+#' @rdname n_is
 #' @export
 nt <- nw
 
-#' @describeIn n_is Number of \code{FALSE} elements.
+#' @rdname n_is
 #' @export
 nf <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   dots <- list(...)
@@ -157,12 +185,12 @@ nf <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
             f0(isTF(eq)                        , NULL, "\n \u2022 [eq] must be TRUE or FALSE."),
             f0(isTF(na)                        , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
             f0(f0(!isF(na), T, !any(is.na(av))), NULL, "\n \u2022 [na = FALSE] but arguments in [...] contains NA values."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (isT(a)) {dots <- list(av(dots))}
   n_is(sapply(lapply(lapply(dots, not), which), length), n, min, max, eq)
 }
 
-#' @describeIn n_is Number of unique elements.
+#' @rdname n_is
 #' @export
 nu <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   dots <- list(...)
@@ -174,12 +202,16 @@ nu <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
             f0(isTF(eq)                        , NULL, "\n \u2022 [eq] must be TRUE or FALSE."),
             f0(isTF(na)                        , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
             f0(f0(!isF(na), T, !any(is.na(av))), NULL, "\n \u2022 [na = FALSE] but arguments in [...] contains NA values."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (isT(a)) {dots <- list(av(dots))}
   n_is(sapply(lapply(dots, unique), length), n, min, max, eq)
 }
 
-#' @describeIn n_is Number of rows.
+#' @rdname n_is
+#' @export
+nuv <- nu
+
+#' @rdname n_is
 #' @export
 nr <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
   dots <- list(...)
@@ -188,11 +220,11 @@ nr <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
             f0(inll(min) | cmp_nnw_scl(min), NULL, "\n \u2022 [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(inll(max) | cmp_nnw_scl(max), NULL, "\n \u2022 [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(isTF(eq)                    , NULL, "\n \u2022 [eq] must be TRUE or FALSE."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   n_is(sapply(dots, nrow), n, min, max, eq)
 }
 
-#' @describeIn n_is Number of columns.
+#' @rdname n_is
 #' @export
 nc <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
   dots <- list(...)
@@ -201,12 +233,11 @@ nc <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
             f0(inll(min) | cmp_nnw_scl(min), NULL, "\n \u2022 [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(inll(max) | cmp_nnw_scl(max), NULL, "\n \u2022 [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(isTF(eq)                    , NULL, "\n \u2022 [eq] must be TRUE or FALSE."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   n_is(sapply(dots, ncol), n, min, max, eq)
 }
 
-#' @describeIn n_is Number of characters in each element.
-#'   argument.
+#' @rdname n_is
 #' @export
 nch <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   dots <- list(...)
@@ -219,13 +250,13 @@ nch <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
             f0(isTF(eq)                       , NULL, "\n \u2022 [eq] must be TRUE or FALSE."),
             f0(isTF(na)                       , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
             f0(!isF(na) | !any(is.na(av.dots)), NULL, "\n \u2022 [na = FALSE] but arguments in [...] contains NA values."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (isT(a)) {dots <- list(av.dots)}
   ns <- sapply(lapply(dots, ch), length)
   n_is(ns, n, min, max, eq)
 }
 
-#' @describeIn n_is Number of \code{NA} values.
+#' @rdname n_is
 #' @export
 nna <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {
   dots <- list(...)
@@ -236,13 +267,13 @@ nna <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {
             f0(inll(min) | cmp_nnw_scl(min)   , NULL, "\n \u2022 [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(inll(max) | cmp_nnw_scl(max)   , NULL, "\n \u2022 [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(isTF(eq)                       , NULL, "\n \u2022 [eq] must be TRUE or FALSE."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (isT(a)) {dots <- list(av.dots)}
   ns <- sapply(lapply(dots, is.na), length)
   n_is(ns, n, min, max, eq)
 }
 
-#' @describeIn n_is Number of non-\code{NA} values.
+#' @rdname n_is
 #' @export
 nok <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {
   dots <- list(...)
@@ -253,72 +284,72 @@ nok <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {
             f0(inll(min) | cmp_nnw_scl(min)   , NULL, "\n \u2022 [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(inll(max) | cmp_nnw_scl(max)   , NULL, "\n \u2022 [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(isTF(eq)                       , NULL, "\n \u2022 [eq] must be TRUE or FALSE."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (isT(a)) {dots <- list(av.dots)}
   ns <- sapply(lapply(lapply(dots, is.na), not), length)
   n_is(ns, n, min, max, eq)
 }
 
-#' @describeIn n_is Number of atomic elements.
+#' @rdname n_is
 #' @export
 nat <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {nx(..., n = n, min = min, max = max, eq = eq, a = T)}
 
-#' @describeIn n_is Is the number of elements 0?
+#' @rdname n_is
 #' @export
 n0 <- function(..., na = F, a = T) {nx(..., n = 0, na = na, a = a)}
 
-#' @describeIn n_is Is the number of elements 1?
+#' @rdname n_is
 #' @export
 n1 <- function(..., na = F, a = T) {nx(..., n = 1, na = na, a = a)}
 
-#' @describeIn n_is Is the number of elements 2?
+#' @rdname n_is
 #' @export
 n2 <- function(..., na = F, a = T) {nx(..., n = 2, na = na, a = a)}
 
-#' @describeIn n_is Is the number of elements 3?
+#' @rdname n_is
 #' @export
 n3 <- function(..., na = F, a = T) {nx(..., n = 3, na = na, a = a)}
 
-#' @describeIn n_is Is the number of elements 1 or gerater?
+#' @rdname n_is
 #' @export
 n1p <- function(..., na = F, eq = T, a = T) {nx(..., min = 1, na = na, a = a)}
 
-#' @describeIn n_is Is the number of elements 2 or greater?
+#' @rdname n_is
 #' @export
 n2p <- function(..., na = F, eq = T, a = T) {nx(..., min = 2, na = na, a = a)}
 
-#' @describeIn n_is Is the number of elements 3 or greater?
+#' @rdname n_is
 #' @export
 n3p <- function(..., na = F, eq = T, a = T) {nx(..., min = 3, na = na, a = a)}
 
-#' @describeIn n_is Is the number of dot arguments 0?
+#' @rdname n_is
 #' @export
 nd <- function() {eval.parent(...length())}
 
-#' @describeIn n_is Is the number of dot arguments 0?
+#' @rdname n_is
 #' @export
 nd0 <- function() {eval.parent(...length() == 0)}
 
-#' @describeIn n_is Is the number of dot arguments 1?
+#' @rdname n_is
 #' @export
 nd1 <- function() {eval.parent(...length() == 1)}
 
-#' @describeIn n_is Is the number of dot arguments 2?
+#' @rdname n_is
 #' @export
 nd2 <- function() {eval.parent(...length() == 2)}
 
-#' @describeIn n_is Is the number of dot arguments 2?
+#' @rdname n_is
 #' @export
 nd3 <- function() {eval.parent(...length() == 3)}
 
-#' @describeIn n_is Is the number of dot arguments 1 or greater?
+#' @rdname n_is
 #' @export
 nd1p <- function() {eval.parent(...length() >= 1)}
 
-#' @describeIn n_is Is the number of dot arguments 2 or greater?
+#' @rdname n_is
 #' @export
 nd2p <- function() {eval.parent(...length() >= 2)}
 
-#' @describeIn n_is Is the number of dot arguments 3 or greater?
+#' @rdname n_is
 #' @export
 nd3p <- function() {eval.parent(...length() >= 3)}

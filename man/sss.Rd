@@ -55,9 +55,14 @@ a match to any of the specified properties.}
   }}
 }
 \value{
-\strong{\code{sss_vals}}: A character vector.
-\cr\cr\strong{\code{sss}}: A character scalar or character vector.
-\cr\cr\strong{\code{iSSS, isss, is_sss_spec}}: A logical scalar.
+\strong{\code{sss_vals}}
+\cr A character vector.
+\cr\cr
+\strong{\code{sss}}
+\cr A character scalar or character vector.
+\cr\cr
+\strong{\code{iSSS, isss, is_sss_spec}}
+\cr A logical scalar.
 }
 \description{
 NOTE: \code{SSS} is used as a placeholder representing any given
@@ -87,50 +92,51 @@ Rectangular   \tab\code{'rct'}\tab Matrices and data.frames with multiple
 rows and multiple columns.         \cr
 Square        \tab\code{'sqr'}\tab Matrices and data.frames with multiple
 rows, multiple columns, and the same
-number of rows and columns.
+number of rows and columns.        \cr
 Solid         \tab\code{'sld'}\tab Arrays with multiple index positions
 in 3+ dimensions.                    }
-Functions related to shape properties are as follows:
-\tabular{ll}{
-SSS FUNCTION         \tab WHAT IT DOES                                \cr
-\code{iSSS}          \tab Evaluates whether \code{x} matches the
-shape property \code{SSS}
-(subject to any restrictions in \code{...}).\cr
-\code{sss}           \tab Gets a character vector containing all
-shape properties matching
-\code{x}.                                   \cr
-\code{isss}          \tab Evaluates \code{x} against the
-shape property specification
-in \code{spec} (subject to any restrictions in
-\code{...}).                                \cr
-\code{sss_props}     \tab Gets a character vector of all possible
-shape property values.                      \cr
-\code{is_sss_spec}   \tab Evaluates whether \code{spec} is a valid
-shape property
-specification.                                }
 }
-\section{Specifying Count and Value Restrictions}{
+\section{Functions in this Family}{
 
-Specifying additional requirements in \code{...} is optional. The full set
-of recognized arguments names are defined in the following table along with
-the properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                    \cr
-\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
-\code{nr}     \tab Vec of valid numbers of rows.                        \cr
-\code{nc}     \tab Vec of valid numbers of columns.                     \cr
-\code{min}    \tab Scalar minimum valid length/number of element.       \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
-\code{minc}   \tab Scalar minimum valid number of columns.              \cr
-\code{max}    \tab Scalar maximum valid length/number of element.       \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
-\code{vals}   \tab Vec of valid values.                                 \cr
-\code{lt}     \tab Scalar less-than bound on values of \code{x}.        \cr
-\code{le}     \tab Scalar less-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{ge}     \tab Scalar greater-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{gt}     \tab Scalar greater-than bound on values of \code{x}.       }
+\strong{\code{iSSS}}
+\cr Evaluates whether \code{x} matches the shape property \code{SSS}
+(subject to any restrictions in \code{...}).
+\cr\cr
+\strong{\code{sss}}
+\cr Gets a character vector containing all shape properties matching
+\code{x}.
+\cr\cr
+\strong{\code{isss}}
+\cr Evaluates \code{x} against the shape property specification in
+\code{spec} (subject to any restrictions in \code{...}).
+\cr\cr
+\strong{\code{sss_props}}
+\cr Gets a character vector of all possible shape property values.
+\cr\cr
+\strong{\code{is_sss_spec}}
+\cr Evaluates whether \code{spec} is a valid shape property specification.
+}
+
+\section{Specifying Count and Value Restrictions}{
+ Specifying additional
+requirements in \code{...} is optional. The full set of recognized
+arguments names are defined in the following table along with the
+properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                      \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
+\code{nr}     \tab Vector of valid numbers of rows.                       \cr
+\code{nc}     \tab Vector of valid numbers of columns.                    \cr
+\code{min}    \tab Scalar minimum valid length/number of element.         \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                \cr
+\code{max}    \tab Scalar maximum valid length/number of element.         \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
+\code{vals}   \tab Vector of valid values.                                \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
 }
 
 \seealso{
@@ -141,7 +147,6 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc_props}()},
 \code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -150,6 +155,7 @@ Other props:
 \code{\link{eee}()},
 \code{\link{iii}()},
 \code{\link{meets}()},
+\code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()}
 }

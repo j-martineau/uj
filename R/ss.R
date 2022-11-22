@@ -1,6 +1,6 @@
 #' @name ss
 #' @family strings
-#' @title Split strings and select/check for elements
+#' @title Split Strings and Select/Check for Elements
 #' @description \strong{\code{ss}} splits strings using the delimiter(s) in
 #'   \code{d} following these sequential steps:\enumerate{
 #'   \item Reduce \code{...} to an atomic vector containing the constituent
@@ -73,7 +73,7 @@ ss <- function(d, ..., trm = T, sqz = T, u = F, n = NULL) {
             f0(isTF(sqz)                     , NULL, "\n \u2022 [sqz] must be TRUE or FALSE."),
             f0(isTF(u)                       , NULL, "\n \u2022 [u] must be TRUE or FALSE."),
             f0(f0(inll(n), T, cmp_psw_vec(n)), NULL, "\n \u2022 [n] must be NULL or a complete positive whole-number vec (?cmp_psw_vec)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   x <- av(...)
   for (dd in d) {x <- av(strsplit(as.character(av(x)), dd, fixed = T))}
   if (trm) {x <- trimws(x)}
@@ -123,7 +123,7 @@ ch <- function(..., trm = T, sqz = T, n = NULL, u = F) {
             f0(isTF(sqz)                        , NULL, "\n \u2022 [sqz] must be TRUE or FALSE."),
             f0(isTF(u)                          , NULL, "\n \u2022 [u] must be TRUE or FALSE."),
             f0(f0(is.null(n), T, cmp_psw_vec(n)), NULL, "\n \u2022 [n] must be NULL or a complete positive whole-number vec (?cmp_psw_vec)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   x <- ss("", av(...), trm = trm, u = u)
   if (sqz) {x <- x[x %in% c(letters, LETTERS, 0:9, " ")]}
   if (idef(n)) {x <- x[n]}

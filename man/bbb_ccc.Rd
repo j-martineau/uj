@@ -121,47 +121,54 @@ extended class property from ccc_props().}
   }}
 }
 \value{
-\strong{\code{bbb_ccc_props}}: A character vector.
-\cr\cr\strong{bbb_ccc, BBB_CCC}: A logical scalar.
+\strong{\code{bbb_ccc_props}}
+\cr A character vector.
+\cr\cr
+\strong{\code{bbb_ccc, BBB_CCC}}
+\cr A logical scalar.
 }
 \description{
+Base + Extended Class Properties
+}
+\section{Functions in this Family}{
+
 NOTE: \code{BBB} and \code{CCC} are used as placeholders for any
 given base and extended class, respectively.
 \cr\cr
-\strong{\code{bbb_ccc}}: Evaluates whether \code{x} matches the
-base property specified in the argument \code{bbb} and matches the
-extended class specified in the argument \code{ccc}.
-(subject to any restrictions in \code{...}).
+\strong{\code{bbb_ccc}}
+\cr Evaluates whether \code{x} matches the base property specified in the
+argument \code{bbb} and matches the extended class specified in the
+argument \code{ccc}. (subject to any restrictions in \code{...}).
 \cr\cr
-\strong{\code{BBB_CCC}}: Evaluates whether \code{x} matches
-base property \code{BBB} and extended class \code{CCC}.
-(subject to any restrictions in \code{...}).
+\strong{\code{BBB_CCC}}
+\cr Evaluates whether \code{x} matches base property \code{BBB} and
+extended class \code{CCC}. (subject to any restrictions in \code{...}).
 \cr\cr
-\strong{\code{bbb_ccc_props}}: Gets a character vector of all possible
-base + extended class properties.
+\strong{\code{bbb_ccc_props}}
+\cr Gets a character vector of all possible base + extended class
+properties.
 }
-\section{Specifying Count and Value Restrictions}{
 
-Specifying additional requirements in \code{...} is optional. The full set
-of recognized arguments names are defined in the following table along with
-the properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                    \cr
-\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
-\code{nr}     \tab Vec of valid numbers of rows.                        \cr
-\code{nc}     \tab Vec of valid numbers of columns.                     \cr
-\code{min}    \tab Scalar minimum valid length/number of element.       \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
-\code{minc}   \tab Scalar minimum valid number of columns.              \cr
-\code{max}    \tab Scalar maximum valid length/number of element.       \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
-\code{vals}   \tab Vec of valid values.                                 \cr
-\code{lt}     \tab Scalar less-than bound on values of \code{x}.        \cr
-\code{le}     \tab Scalar less-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{ge}     \tab Scalar greater-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{gt}     \tab Scalar greater-than bound on values of \code{x}.       }
+\section{Specifying Count and Value Restrictions}{
+ Specifying additional
+requirements in \code{...} is optional. The full set of recognized
+arguments names are defined in the following table along with the
+properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                      \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
+\code{nr}     \tab Vector of valid numbers of rows.                       \cr
+\code{nc}     \tab Vector of valid numbers of columns.                    \cr
+\code{min}    \tab Scalar minimum valid length/number of element.         \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                \cr
+\code{max}    \tab Scalar maximum valid length/number of element.         \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
+\code{vals}   \tab Vector of valid values.                                \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
 }
 
 \seealso{
@@ -171,7 +178,6 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc_props}()},
 \code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -180,6 +186,7 @@ Other props:
 \code{\link{eee}()},
 \code{\link{iii}()},
 \code{\link{meets}()},
+\code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
 \code{\link{sss}()}

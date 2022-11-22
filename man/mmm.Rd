@@ -112,9 +112,14 @@ a match to any of the specified properties.}
   }}
 }
 \value{
-\strong{\code{mmm_vals}}: A character vector.
-\cr\cr\strong{\code{mmm}}: A character scalar or character vector.
-\cr\cr\strong{\code{iMMM, immm, is_mmm_spec}}: A logical scalar.
+\strong{\code{mmm_vals}}
+\cr A character vector.
+\cr\cr
+\strong{\code{mmm}}
+\cr A character scalar or character vector.
+\cr\cr
+\strong{\code{iMMM, immm, is_mmm_spec}}
+\cr A logical scalar.
 }
 \description{
 NOTE: \code{MMM} is used as a wildcard representing any given
@@ -125,9 +130,9 @@ other objects, the extended mode is \code{NULL}. These are not formally
 defined classes, but are evaluated dynamically based on the current
 characteristics of an object.
 \cr\cr
-Atomic objects that contain only \code{NA} values are of every extended mode,
-as they can be coerced to any mode without introducing new \code{NA} values.
-The following tables gives extended mode values, names, and
+Atomic objects that contain only \code{NA} values are of every extended
+mode, as they can be coerced to any mode without introducing new \code{NA}
+values. The following tables gives extended mode values, names, and
 requirements
 \cr\cr
 \strong{Character Extended Modes}\tabular{lll}{
@@ -173,47 +178,49 @@ interval \code{[0, 1]}).      \cr
 \code{'nnw'}\tab Non-negative whole\tab Non-negative whole-number.    \cr
 \code{'npw'}\tab Non-positive whole\tab Non-positive whole-number.    \cr
 \code{'ngw'}\tab Negative whole    \tab Negative whole-number.          }
-Functions related to extended mode properties are as follows:
-\tabular{ll}{
-MMM FUNCTION         \tab WHAT IT DOES                                \cr
-\code{iMMM}          \tab Evaluates whether \code{x} matches the
-extended mode property \code{MMM}
-(subject to any restrictions in \code{...}).\cr
-\code{mmm}           \tab Gets a character vector containing all
-extended mode properties matching
-\code{x}.                                   \cr
-\code{immm}          \tab Evaluates \code{x} against the
-extended mode property specification
-in \code{spec} (subject to any restrictions in
-\code{...}).                                \cr
-\code{mmm_props}     \tab Gets a character vector of all possible
-extended mode property values.              \cr
-\code{is_mmm_spec}   \tab Evaluates whether \code{spec} is a valid
-extended mode property
-specification.                                }
 }
-\section{Specifying Count and Value Restrictions}{
+\section{Functions in this Family}{
 
-Specifying additional requirements in \code{...} is optional. The full set
-of recognized arguments names are defined in the following table along with
-the properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                    \cr
-\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
-\code{nr}     \tab Vec of valid numbers of rows.                        \cr
-\code{nc}     \tab Vec of valid numbers of columns.                     \cr
-\code{min}    \tab Scalar minimum valid length/number of element.       \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
-\code{minc}   \tab Scalar minimum valid number of columns.              \cr
-\code{max}    \tab Scalar maximum valid length/number of element.       \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
-\code{vals}   \tab Vec of valid values.                                 \cr
-\code{lt}     \tab Scalar less-than bound on values of \code{x}.        \cr
-\code{le}     \tab Scalar less-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{ge}     \tab Scalar greater-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{gt}     \tab Scalar greater-than bound on values of \code{x}.       }
+\strong{\code{iMMM}}
+\cr Evaluates whether \code{x} matches the extended mode property
+\code{MMM} (subject to any restrictions in \code{...}).
+\cr\cr
+\strong{\code{mmm}}
+\cr Gets a character vector containing all extended mode properties
+matching \code{x}.
+\cr\cr
+\strong{\code{immm}}
+\cr Evaluates \code{x} against the extended mode property specification in
+\code{spec} (subject to any restrictions in \code{...}).
+\cr\cr
+\strong{\code{mmm_props}}
+\cr Gets a character vector of all possible extended mode property values.
+\cr\cr
+\strong{\code{is_mmm_spec}}
+\cr Evaluates whether \code{spec} is a valid extended mode property
+specification.
+}
+
+\section{Specifying Count and Value Restrictions}{
+ Specifying additional
+requirements in \code{...} is optional. The full set of recognized
+arguments names are defined in the following table along with the
+properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                      \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
+\code{nr}     \tab Vector of valid numbers of rows.                       \cr
+\code{nc}     \tab Vector of valid numbers of columns.                    \cr
+\code{min}    \tab Scalar minimum valid length/number of element.         \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                \cr
+\code{max}    \tab Scalar maximum valid length/number of element.         \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
+\code{vals}   \tab Vector of valid values.                                \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
 }
 
 \seealso{
@@ -224,7 +231,6 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc_props}()},
 \code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -233,6 +239,7 @@ Other props:
 \code{\link{eee}()},
 \code{\link{iii}()},
 \code{\link{meets}()},
+\code{\link{mmm_ccc}()},
 \code{\link{ppp}()},
 \code{\link{sss}()}
 }

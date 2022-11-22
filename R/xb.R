@@ -1,68 +1,58 @@
 #' @name xb
 #' @family extensions
-#' @title Error-checked row and column binding
-#' @description \tabular{ll}{
-#'   \code{xb.}   \tab Column or row bind or \link[=atm_dtf]{atomic data.frames}
-#'                     in \code{...}. If \code{bind = NA}, \code{xb} attempts to
-#'                     both row and column bind arguments in \code{...}. If both
-#'                     are successful, processes an error indicating ambiguous
-#'                     dimension for binding. If neither is successful,
-#'                     processes an associated error. Otherwise, returns the
-#'                     result that was successful.                           \cr
-#'   \code{cb}    \tab Column bind an arbitrary number of atomic matrices or
-#'                     \link[=atm_dtf]{atomic data.frames}.                  \cr
-#'   \code{rb}    \tab Row bind an arbitrary number of atomic matrices or
-#'                     \link[=atm_dtf]{atomic data.frames}.                    }
-#'   Requires all arguments in \code{...} to be \code{\link{compatible}} atomic
-#'   matrices or \link[=atm_dtf]{atomic data.frames}.
-#' @param bind \link[=ch1_scl]{Onechar scalar} indicating how to bind:
-#'   \code{'r'} for row binding, \code{'c'} for column-binding, \code{NA} to
-#'   identify whether either row or column binding is successful and return
-#'   whichever was successful.
+#' @title Error-Checked Row and Column Binding
+#' @section Functions in This Family:
+#'   \strong{\code{cb}}
+#'   \cr Column bind an arbitrary number of atomic matrices or
+#'   \link[=atm_dtf]{atomic data.frames}.
+#'   \cr\cr
+#'   \strong{\code{rb}}
+#'   \cr Row bind an arbitrary number of atomic matrices or
+#'   \link[=atm_dtf]{atomic data.frames}.
+#'   \cr\cr
+#'   \strong{\code{xb}}
+#'   \cr Row binds if \code{...} arguments are compatible only for row
+#'   binding. Column binds if arguments are compatible only for column binding.
+#'   Throws an error if arguments are either compatible for both row and column
+#'   binding or not compatible for binding at all.
 #' @param ... Multiple \code{\link{compatible}} atomic matrices or multiple
 #'   compatible \link[=atm_dtf]{atomic data.frames}.
 #' @return An \link[=atm_dtf]{atomic data.frame} or an atomic matrix.
 #' @export
-xb <- function(..., bind = NA) {
-  ok.dots <- ...length() > 1
-  ok.dtfs <- f0(!ok.dots, T, allply(list(...), idtf))
-  ok.mats <- f0(!ok.dots, T, allply(list(...), imat))
-  ok.cccs <- ok.dtfs | ok.mats
-  ok.bind <- isNa(bind) | isIN(bind, c("r", "c"))
-  err <- NULL
-  if (!ok.bind) {err <- c(err, "\n \u2022 [bind] must be NA, 'r', or 'c'")}
-  if (!ok.dots) {err <- c(err, "\n \u2022 [...] contains less than 2 arguments.")}
-  if (!ok.cccs) {err <- c(err, "\n \u2022 [...] must contain (a) only atomic matrices or (b) only atomic tabulars.")}
-  if (idef(err)) {stop(err)}
-  infix <- f0(ok.dtfs, " atomic data.frames in [...] ", " atomic matrices in [...] ")
-  if (bind %EQ% "r") {
-    suffix <- "are incompatible for row binding."
-    if (ok.mats & !compatible_mats(..., bind = "r")) {stop("\n \u2022 The", infix, suffix)}
-    else if (ok.dtfs & !compatible_dtfs(..., bind = "r")) {stop("\n \u2022 The", infix, suffix)}
-    rbind(...)
-  }
-  else if (bind %EQ% "c") {
-    suffix <- "are incompatible for column binding."
-    if (ok.mats & !compatible_mats(..., bind = "c")) {stop("\n \u2022 The", infix, suffix)}
-    else if (ok.dtfs & !compatible_dtfs(..., bind = "c")) {stop("\n \u2022 The", infix, suffix)}
-    cbind(...)
-  }
-  if (isNa(bind)) {
-    prefix1 <- c("\n \u2022 The", infix, "are incompatible for binding")
-    prefix2 <- c("\n \u2022 Whether to row or column bind the", infix, "was ambiguous")
-    infix <- " (i.e., both row and column binding"
-    try.cb <- tryCatch(xb(..., bind = "c"), error = function(e) e, finally = NULL)
-    try.rb <- tryCatch(xb(..., bind = "r"), error = function(e) e, finally = NULL)
-    if (isERR(try.cb) &  isERR(try.rb)) {stop(prefix1, infix, "failed)."   )}
-    if (notERR(try.cb) & notERR(try.rb)) {stop(prefix2, infix, "succeeded).")}
-    if (notERR(try.cb)) {try.cb} else {try.rb}
-  }
+xb <- function(...) {
+  if (...length() < 2) {stop("\n \u2022 [...] contains fewer than 2 arguments.")}
+  x <- list(...)
+  dtf <- all(sapply(x, atm_dtf))
+  mat <- all(sapply(x, atm_mat))
+  if (!dtf & !mat) {stop("\n \u2022 [...] must contain only atomic matrices or only atomic data.frames.")}
+  ok.r <- f0(dtf, compatible_dtfs("r", ...), compatible_mats("r", ...))
+  ok.c <- f0(dtf, compatible_dtfs("c", ...), compatible_mats("c", ...))
+  if (ok.r & ok.c) {stop("\n \u2022 Arguments in [...] are compatible for both row and column binding. Use rb(...) or cb(...) instead.")}
+  else if (ok.r) {rbind(...)}
+  else if (ok.c) {rbind(...)}
+  else {stop("\n \u2022 Arguments in [...] are not compatible for either row or column binding.")}
 }
 
 #' @rdname xb
 #' @export
-cb <- function(...) {xb(..., bind = "c")}
+cb <- function(...) {
+  if (...length() < 2) {stop("\n \u2022 [...] contains fewer than 2 arguments.")}
+  x <- list(...)
+  dtf <- all(sapply(x, atm_dtf))
+  mat <- all(sapply(x, atm_mat))
+  if (!dtf & !mat) {stop("\n \u2022 [...] must contain only atomic matrices or only atomic data.frames.")}
+  if (f0(dtf, compatible_dtfs("c", ...), compatible_mats("c", ...))) {cbind(...)}
+  else {stop("\n \u2022 Arguments in [...] are not compatible for column binding.")}
+}
 
 #' @rdname xb
 #' @export
-rb <- function(...) {xb(..., bind = "r")}
+rb <- function(...) {
+  if (...length() < 2) {stop("\n \u2022 [...] contains fewer than 2 arguments.")}
+  x <- list(...)
+  dtf <- all(sapply(x, atm_dtf))
+  mat <- all(sapply(x, atm_mat))
+  if (!dtf & !mat) {stop("\n \u2022 [...] must contain only atomic matrices or only atomic data.frames.")}
+  if (f0(dtf, compatible_dtfs("r", ...), compatible_mats("r", ...))) {cbind(...)}
+  else {stop("\n \u2022 Arguments in [...] are not compatible for row binding.")}
+}

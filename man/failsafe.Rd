@@ -5,7 +5,7 @@
 \alias{isERR}
 \alias{notERR}
 \alias{msgERR}
-\title{Evaluate objects, flag any errors}
+\title{Evaluate Objects, Flag Any Errors}
 \usage{
 failsafe(x)
 
@@ -20,29 +20,38 @@ msgERR(x)
 function where the initial call was made.}
 }
 \value{
-\tabular{lll}{
-\code{failsafe}            \tab   \tab Either \code{x}, an object of class
-\code{'error'}, or an object of class
-\code{'simpleError'}.             \cr
-\code{isERR}, \code{notERR}\tab   \tab A logical scalar.                \cr
-\code{msgERR}              \tab   \tab Either \code{NULL} or a character
-scalar.                            }
+\strong{\code{failsafe}}
+\cr Either \code{x}, an object of class \code{'error'}, or an object of
+class \code{'simpleError'}.
+\cr\cr
+\strong{\code{isERR, notERR}}
+\cr A logical scalar.
+\cr\cr
+\strong{\code{msgERR}}
+\cr Either \code{NULL} or a character scalar.
 }
 \description{
-\tabular{ll}{
-\code{failsafe}   \tab Attempts to call \code{identity(x)}. If an error is
-produced in doing so, returns an object of class
-\code{'error'} or of class \code{'simpleError'}. If
-an error is not generated, returns the safely
-evaluated value of \code{x}.                     \cr
-\code{isERR}      \tab Evaluates whether calling \code{identity(x)}
-produced an error.                               \cr
-\code{notERR}     \tab Evaluates whether calling \code{identity(x)} did not
-produce an error.                                \cr
-\code{msgERR}     \tab Gets any error message associated with calling
-\code{identity(x)}. If there is none, returns
-\code{NULL}.                                       }
+Evaluate Objects, Flag Any Errors
 }
+\section{Functions in This Family}{
+
+\strong{\code{failsafe}}
+\cr Attempts to call \code{identity(x)}. If an error is produced in doing
+so, returns an object of class \code{'error'} or of class
+\code{'simpleError'}. If an error is not generated, returns the safely
+evaluated value of \code{x}.
+\cr\cr
+\strong{\code{isERR}}
+\cr Evaluates whether calling \code{identity(x)} produced an error.
+\cr\cr
+\strong{\code{notERR}}
+\cr Evaluates whether calling \code{identity(x)} did not produce an error.
+\cr\cr
+\strong{\code{msgERR}}
+\cr Gets any error message associated with calling \code{identity(x)}. If
+there is none, returns \code{NULL}.
+}
+
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
@@ -57,7 +66,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -66,17 +74,18 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 
 Other errs: 
-\code{\link{errs_uj}}
+\code{\link{err_check}()}
 
 Other failsafe: 
 \code{\link{binfuns}},

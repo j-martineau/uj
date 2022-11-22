@@ -19,24 +19,31 @@ logical vector (\code{int = FALSE}) or an integer vector (\code{int =
   TRUE}).}
 }
 \value{
-\tabular{ll}{
-\code{dups}    \tab An atomic vector.                                   \cr
-\code{idups}   \tab A logical vector (when \code{int = FALSE}); an integer
-vector (when \code{int = TRUE}).                      }
+\strong{\code{dups}}
+\cr An atomic vector.
+\cr\cr
+\strong{\code{idups}}
+\cr A logical vector (when \code{int = FALSE}); an integer vector (when
+\code{int = TRUE}).
 }
 \description{
-Extended functionality for \code{duplicated}.\tabular{ll}{
-\code{dups}    \tab Atomizes \code{...} (i.e., reduces it to a single
-atomic vector) and reduces the resulting vector to
-contain one copy of each duplicated element.        \cr
-\code{idups}   \tab Indexes all elements of \code{x} that are duplicates of
-elements appearing earlier in \code{x}, either as a
-logical vector of the same length as \code{x} (when
-\code{int = FALSE}) or as an integer vector whose
-length is the same as the number of elements in
-\code{x} that are duplicates of earlier elements (when
-\code{int = TRUE}).                                   }
+Extended functionality for \code{duplicated}.
 }
+\section{Functions in This Family}{
+
+\strong{\code{dups}}
+Atomizes \code{...} (i.e., reduces it to a single atomic vector) and
+reduces the resulting vector to contain one copy of each duplicated
+element.
+\cr\cr
+\strong{\code{idups}}
+Indexes all elements of \code{x} that are duplicates of elements appearing
+earlier in \code{x}, either as a logical vector of the same length as
+\code{x} (when \code{int = FALSE}) or as an integer vector whose length is
+the same as the number of elements in \code{x} that are duplicates of
+earlier elements (when \code{int = TRUE}).
+}
+
 \examples{
 dups(0:5, 5:10, 10:15, 15:20)
 idups(c(0:5, 5:10, 10:15, 15:20))

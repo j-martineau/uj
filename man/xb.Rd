@@ -4,9 +4,9 @@
 \alias{xb}
 \alias{cb}
 \alias{rb}
-\title{Error-checked row and column binding}
+\title{Error-Checked Row and Column Binding}
 \usage{
-xb(..., bind = NA)
+xb(...)
 
 cb(...)
 
@@ -15,31 +15,30 @@ rb(...)
 \arguments{
 \item{...}{Multiple \code{\link{compatible}} atomic matrices or multiple
 compatible \link[=atm_dtf]{atomic data.frames}.}
-
-\item{bind}{\link[=ch1_scl]{Onechar scalar} indicating how to bind:
-\code{'r'} for row binding, \code{'c'} for column-binding, \code{NA} to
-identify whether either row or column binding is successful and return
-whichever was successful.}
 }
 \value{
 An \link[=atm_dtf]{atomic data.frame} or an atomic matrix.
 }
 \description{
-\tabular{ll}{
-\code{xb.}   \tab Column or row bind or \link[=atm_dtf]{atomic data.frames}
-in \code{...}. If \code{bind = NA}, \code{xb} attempts to
-both row and column bind arguments in \code{...}. If both
-are successful, processes an error indicating ambiguous
-dimension for binding. If neither is successful,
-processes an associated error. Otherwise, returns the
-result that was successful.                           \cr
-\code{cb}    \tab Column bind an arbitrary number of atomic matrices or
-\link[=atm_dtf]{atomic data.frames}.                  \cr
-\code{rb}    \tab Row bind an arbitrary number of atomic matrices or
-\link[=atm_dtf]{atomic data.frames}.                    }
-Requires all arguments in \code{...} to be \code{\link{compatible}} atomic
-matrices or \link[=atm_dtf]{atomic data.frames}.
+Error-Checked Row and Column Binding
 }
+\section{Functions in This Family}{
+
+\strong{\code{cb}}
+\cr Column bind an arbitrary number of atomic matrices or
+\link[=atm_dtf]{atomic data.frames}.
+\cr\cr
+\strong{\code{rb}}
+\cr Row bind an arbitrary number of atomic matrices or
+\link[=atm_dtf]{atomic data.frames}.
+\cr\cr
+\strong{\code{xb}}
+\cr Row binds if \code{...} arguments are compatible only for row
+binding. Column binds if arguments are compatible only for column binding.
+Throws an error if arguments are either compatible for both row and column
+binding or not compatible for binding at all.
+}
+
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
@@ -55,7 +54,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -64,12 +62,13 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
-\code{\link{swap}()}
+\code{\link{swap}()},
+\code{\link{uj_logicals}}
 }
 \concept{extensions}

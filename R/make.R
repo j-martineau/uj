@@ -7,7 +7,7 @@
 #'   apply to vector or list elements. May be pipe-delimited.
 #' @param cn,cn. Optional \link[=cmp_chr_vec]{complete character vec} of names
 #'   to apply to columns of a matrix or dtf May be pipe-delimited. For tibbles,
-#'   this argument can be used only if the arguments in \code{...} are not
+#'   this argument can be used only if the \code{...} arguments are not
 #'   named.
 #' @param rn. Optional \link[=cmp_chr_vec]{complete character vec} of names to
 #'   apply to rows of a matrix or dtf May be pipe-delimited.
@@ -36,7 +36,7 @@ vec <- function(..., r. = 1, vn. = NULL) {
   if (length(x) == 0 | isEQ(r., 0)) {x <- vector()}
   errs <- c(f0(cmp_nnw_scl(r.), NULL, "\n \u2022 [r.] must be a non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(inll(vn.) | cmp_chr_vec(vn.), NULL, "\n \u2022 [vn.] must be NULL or a complete character vec (?cmp_chr_vec)." ))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (r. > 1) {x <- rep.int(x, r.)}
   if (idef(vn.)) {
     vn. <- ssP(vn.)
@@ -76,7 +76,7 @@ mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
             f0(isTF(br.)                   , NULL, "\n \u2022 [br.] must be TRUE or FALSE."),
             f0(inll(rn.) | cmp_chr_vec(rn.), NULL, "\n \u2022 [rn.] must be NULL or a complete character vector (?cmp_chr_vec)."),
             f0(inll(cn.) | cmp_chr_vec(cn.), NULL, "\n \u2022 [cn.] must be NULL or a complete character vector (?cmp_chr_vec)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if  (is.null(nr.) & is.null(nc.)) {nr0 <- 1; nc0 <- length(av)}
   else if (is.null(nr.)) {nc0 <- nc.; nr0 <- length(av) / nc.}
   else if (is.null(nc.)) {nr0 <- nr.; nc0 <- length(av) / nr.}
@@ -100,7 +100,7 @@ mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
   errs <- c(errs,
             f0(ok.rn, NULL, "\n \u2022 [rn.] must be NULL or a complete vect of length equal to the number of resulting rows."),
             f0(ok.cn, NULL, "\n \u2022 [cn.] must be NULL or a complete vect of length equal to the number of resulting columns."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   x <- matrix(av, nrow = nr., ncol = nc., byrow = br.)
   rownames(x) <- rn.
   colnames(x) <- cn.
@@ -124,7 +124,7 @@ dtf0 <- function(cn) {
 dtf_na <- function(cn, nr) {
   errs <- c(f0(cmp_chr_vec(cn), NULL, "\n \u2022 [cn] must be a complete character vector (?cmp_chr_vec)."),
             f0(cmp_psw_scl(nr), NULL, "\n \u2022 [nr] must be NULL or a positive whole number scalar (?cmp_psw_scl)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   val <- rep.int(NA, nr)
   cn <- av(strsplit(cn, "|", fixed = T))
   cmd <- paste0("tibble::tibble(", paste0(paste0(cn, " = val"), collapse = ", "), ")")
@@ -132,8 +132,8 @@ dtf_na <- function(cn, nr) {
 }
 
 #' @describeIn make_uj Creates an \link[idtf]{atomic dtf} from the
-#'   \link[ivec]{atomic vec} arguments in \code{...} with optional row names,
-#'   plus optional column names to replace any names of arguments in \code{...}.
+#'   \link[ivec]{atomic vec} \code{...} arguments with optional row names,
+#'   plus optional column names to replace any names of \code{...} arguments.
 #' @export
 dtf <- function(..., cn. = NULL) {
   cn. <- f0(cmp_chr_vec(cn.), ss(cn.), cn.)
@@ -151,7 +151,7 @@ dtf <- function(..., cn. = NULL) {
             f0(ok.vec , NULL, "\n \u2022 Arguments in [...] must be atomic vecs (?ivec)."),
             f0(ok.reps, NULL, "\n \u2022 Arguments in [...] are not recyclable ."),
             f0(ok.cn  , NULL, "\n \u2022 [cn.] must be NULL or match the number of arguments in [...]."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   out <- tibble::tibble(...)
   if (idef(cn.)) {colnames(out) <- cn.}
   out
@@ -168,7 +168,7 @@ vls <- function(..., en. = NULL) {
   ok.en <- f0(inll(en.), T, f0(!cmp_chr_vec(en.), F, length(en.) == n.dots))
   errs <- c(f0(n.dots > 0, NULL, "\n \u2022 [...] is empty."),
             f0(ok.en     , NULL, "\n \u2022 [en.] must be NULL or match the number of arguments in [...]."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (idef(en.)) {names(dots) <- en.}
   dots
 }
@@ -197,7 +197,7 @@ diag. <- function(x = 1, r = 1) {
   errs <- c(f0(ok.x  , NULL, "\n \u2022 [x] must be an numeric, logical, or character."),
             f0(ok.r  , NULL, "\n \u2022 [r] must a positive whole-number scalar (?cmp_psw_scl)."),
             f0(ok.ge1, NULL, "\n \u2022 Neither [length(x)] nor [r] is greater than 1."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   nr <- nrow(x)
   nc <- ncol(x)
   if (is.matrix(x)) {if (nr > 0 & nr == nc) {x <- diag(x, nr, nc)}}

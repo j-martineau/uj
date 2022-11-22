@@ -1,6 +1,10 @@
-#' @name ox.
+#' @name ox
 #' @family strings
 #' @title Oxford comma separated lists.
+#' @description ox Oxford separated list with \code{conj} as the conjunction
+#'   separating the next to last and last elements of the list, with the list
+#'   preceded by the prefix \code{pref}.
+#' @export
 #' @param ... Any number of arguments coerceable to mode character.
 #' @param pref A prefix to prepend to the resulting character scalar.
 #' @param conj The conjunction to use between the next to last and last
@@ -8,7 +12,7 @@
 #' @param n \link[=cmp_psw_scl]{Complete positive whole-number scalar}.
 #' @param comp \link[=cmp_chr_scl]{Complete character scalar} used for comparing
 #'   to \code{n}, such as \code{'at least'} or \code{'or fewer'}.
-#' @param comp.first \link[=cmp_lgl_scl]{Complete logical scalar} used to
+#' @param first \link[=cmp_lgl_scl]{Complete logical scalar} used to
 #'   determine whether \code{comp} is placed in front of \code{n} rather than
 #'   after \code{n}..
 #' @return A character scalar containing all atomic elements of \code{...}
@@ -63,12 +67,6 @@
 #' ox_orless(Fruits, n = 2)
 #' ox_orfewer(Fruits, n = 2)
 #' @export
-ox. <- function() {help("ox.", package = "uj")}
-
-#' @describeIn ox. Oxford separated list with \code{conj} as the conjunction
-#'   separating the next to last and last elements of the list, with the list
-#'   preceded by the prefix \code{pref}.
-#' @export
 ox <- function(..., conj = "and", pref = "", quote = 0) {
   vals <- av(...)
   errs <- c(f0(length(vals) > 0 , NULL, "\n \u2022 [...] is empty."),
@@ -76,12 +74,12 @@ ox <- function(..., conj = "and", pref = "", quote = 0) {
             f0(cmp_chr_scl(conj), NULL, "\n \u2022 [conj] must be a complete character scalar (?cmp_chr_scl)."),
             f0(cmp_chr_scl(pref), NULL, "\n \u2022 [pref] must be a complete character scalar (?cmp_chr_scl)."),
             f0(isIN(quote, 0:2) , NULL, "\n \u2022 [quote] must be 0, 1, or 2."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   n.vals <- length(vals)
   if (n.vals == 1) {
     errs <- c(f0(conj != 'nor'                  , NULL, "\n \u2022 [conj = 'nor'], but [...] contains only 1 atomic element."),
               f0(conj != "or" | pref != "either", NULL, "\n \u2022 [conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element."))
-    if (idef(errs)) {stop(errs)}
+    if (!is.null(errs)) {stop(errs)}
   }
   if (pref != "") {pref <- paste0(pref, " ")}                                    # if pref(ix) is not empty, follow it with a space
   last <- vals[n.vals]                                                           # get the last element of X
@@ -92,9 +90,9 @@ ox <- function(..., conj = "and", pref = "", quote = 0) {
   paste0(pref, list, conj, last)                                                 # put everything together
 }
 
-#' @describeIn ox. Oxford-comma-separated list including a numeric requirement.
+#' @describeIn ox Oxford-comma-separated list including a numeric requirement.
 #' @export
-ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, comp.first = TRUE) {
+ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, first = TRUE) {
   vals <- av(...)
   errs <- c(f0(length(vals) > 0 , NULL, "\n \u2022 [...] is empty."),
             f0(icmp(vals)       , NULL, "\n \u2022 Arguments in [...] must be complete and atomic (?icmp)."),
@@ -102,104 +100,104 @@ ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, comp.first = TR
             f0(cmp_chr_scl(comp), NULL, "\n \u2022 [comp] must be a non-NA character scalar (?cmp_chr_scl)."),
             f0(isIN(quote, 0:2) , NULL, "\n \u2022 [quote] must be 0, 1, or 2."),
             f0(cmp_nnw_scl(n)   , NULL, "\n \u2022 [n] must be a non-negative whole number scalar (?cmp_nnw_scl)."),
-            f0(isTF(comp.first) , NULL, "\n \u2022 [comp.first] must be TRUE or FALSE."))
-  if (idef(errs)) {stop(errs)}
-  pref <- f0(comp == "", paste(n, "of"), f0(comp.first, paste(n, comp, "of"), paste(comp, n, "of")))
+            f0(isTF(first)      , NULL, "\n \u2022 [first] must be TRUE or FALSE."))
+  if (!is.null(errs)) {stop(errs)}
+  pref <- f0(comp == "", paste(n, "of"), f0(first, paste(n, comp, "of"), paste(comp, n, "of")))
   ox(vals, conj = conj, pref = pref, quote = quote)
 }
 
-#' @describeIn ox. Oxford-comma-separated 'and' list.
+#' @describeIn ox Oxford-comma-separated 'and' list.
 #' @export
 ox_and <- function(..., pref = NULL) {ox(..., pref = pref, conj = "and")}
 
-#' @describeIn ox. Oxford-comma-separated 'or' list.
+#' @describeIn ox Oxford-comma-separated 'or' list.
 #' @export
 ox_or <- function(..., pref = NULL) {ox(..., pref = pref, conj = "or")}
 
-#' @describeIn ox. Oxford-comma-separated 'nor' list.
+#' @describeIn ox Oxford-comma-separated 'nor' list.
 #' @export
 ox_nor <- function(..., pref = "neither") {ox(..., pref = pref, conj = "nor")}
 
-#' @describeIn ox. Oxford-comma-separated 'either' list.
+#' @describeIn ox Oxford-comma-separated 'either' list.
 #' @export
 ox_either <- function(...) {ox(..., pref = "either", conj = "or")}
 
-#' @describeIn ox. Oxford-comma-separated 'neither/nor' list.
+#' @describeIn ox Oxford-comma-separated 'neither/nor' list.
 #' @export
 ox_neither <- function(...) {ox(..., pref = "neither", conj = "nor")}
 
-#' @describeIn ox. Oxford-comma-separated 'all of' list.
+#' @describeIn ox Oxford-comma-separated 'all of' list.
 #' @export
 ox_all <- function(..., conj = "and") {ox(..., pref = "all of", conj = conj)}
 
-#' @describeIn ox. Oxford-comma-separated 'any of' list.
+#' @describeIn ox Oxford-comma-separated 'any of' list.
 #' @export
 ox_any <- function(..., conj = "and") {ox(..., pref = "any of", conj = conj)}
 
-#' @describeIn ox. Oxford-comma-separated 'all of' list.
+#' @describeIn ox Oxford-comma-separated 'all of' list.
 #' @export
 ox_none <- function(..., conj = "or") {ox(..., pref = "none of", conj = conj)}
 
-#' @describeIn ox. Oxford-comma-separated 'some of' list.
+#' @describeIn ox Oxford-comma-separated 'some of' list.
 #' @export
 ox_some <- function(..., conj = "and") {ox(..., pref = "some of", conj = conj)}
 
-#' @describeIn ox. Oxford-comma-separated 'exactly n of' list.
+#' @describeIn ox Oxford-comma-separated 'exactly n of' list.
 #' @export
 ox_exactly <- function(..., conj = "or", n = 1) {ox_n(..., comp = "exactly", n = n, conj = conj)}
 
-#' @describeIn ox. Oxford-comma-separated 'less than n of' list.
+#' @describeIn ox Oxford-comma-separated 'less than n of' list.
 #' @export
 ox_less <- function(..., conj = "and", n = 2) {ox_n(..., comp = "less than", n = n)}
 
-#' @describeIn ox. Oxford-comma-separated 'more than n of' list.
+#' @describeIn ox Oxford-comma-separated 'more than n of' list.
 #' @export
 ox_more <- function(..., conj = "and", n = 1) {ox_n(..., comp = "more than", n = n)}
 
-#' @describeIn ox. Oxford-comma-separated 'fewer than n of' list.
+#' @describeIn ox Oxford-comma-separated 'fewer than n of' list.
 #' @export
 ox_fewer <- function(..., conj = "and", n = 2) {ox_n(..., comp = "fewer than", n = n)}
 
-#' @describeIn ox. Oxford-comma-separated 'greater than n of' list.
+#' @describeIn ox Oxford-comma-separated 'greater than n of' list.
 #' @export
 ox_greater <- function(..., conj = "and", n = 2) {ox_n(..., comp = "greater than", n = n)}
 
-#' @describeIn ox. Oxford-comma-separated 'at least n of' list.
+#' @describeIn ox Oxford-comma-separated 'at least n of' list.
 #' @export
 ox_atleast <- function(..., conj = "and", n = 1) {ox_n(..., comp = "at least", n = n)}
 
-#' @describeIn ox. Oxford-comma-separated 'at most n of' list.
+#' @describeIn ox Oxford-comma-separated 'at most n of' list.
 #' @export
 ox_atmost <- function(..., conj = "and", n = 1) {ox_n(..., comp = "at most", n = n)}
 
-#' @describeIn ox. Oxford-comma-separated 'no greater than n of' list.
+#' @describeIn ox Oxford-comma-separated 'no greater than n of' list.
 #' @export
 ox_nogreater <- function(..., conj = "and", n = 1) {ox_n(..., comp = "no greater than", n = n)}
 
-#' @describeIn ox. Oxford-comma-separated 'no fewer than n of' list.
+#' @describeIn ox Oxford-comma-separated 'no fewer than n of' list.
 #' @export
 ox_nofewer <- function(..., conj = "and", n = 1) {ox_n(..., comp = "no fewer than", n = n)}
 
-#' @describeIn ox. Oxford-comma-separated 'no more than n of' list.
+#' @describeIn ox Oxford-comma-separated 'no more than n of' list.
 #' @export
 ox_nomore <- function(..., conj = "and", n = 1) {ox_n(..., comp = "no more than", n = n)}
 
-#' @describeIn ox. Oxford-comma-separated 'no less than n of' list.
+#' @describeIn ox Oxford-comma-separated 'no less than n of' list.
 #' @export
 ox_noless <- function(..., conj = "and", n = 1) {ox_n(..., comp = "no less than", n = n)}
 
-#' @describeIn ox. Oxford-comma-separated 'n or more of' list.
+#' @describeIn ox Oxford-comma-separated 'n or more of' list.
 #' @export
 ox_ormore <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or more", n = n, comp.first = F)}
 
-#' @describeIn ox. Oxford-comma-separated 'n or greater of' list.
+#' @describeIn ox Oxford-comma-separated 'n or greater of' list.
 #' @export
 ox_orgreater <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or greater", n = n, comp.first = F)}
 
-#' @describeIn ox. Oxford-comma-separated 'n or less of' list.
+#' @describeIn ox Oxford-comma-separated 'n or less of' list.
 #' @export
 ox_orless <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or less", n = n, comp.first = F)}
 
-#' @describeIn ox. Oxford-comma-separated 'n or fewer of' list.
+#' @describeIn ox Oxford-comma-separated 'n or fewer of' list.
 #' @export
 ox_orfewer <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or fewer", n = n, comp.first = F)}

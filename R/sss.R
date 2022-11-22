@@ -28,27 +28,27 @@
 #'                                        rows and multiple columns.         \cr
 #'     Square        \tab\code{'sqr'}\tab Matrices and data.frames with multiple
 #'                                        rows, multiple columns, and the same
-#'                                        number of rows and columns.
+#'                                        number of rows and columns.        \cr
 #'     Solid         \tab\code{'sld'}\tab Arrays with multiple index positions
 #'                                        in 3+ dimensions.                    }
-#'   Functions related to shape properties are as follows:
-#'   \tabular{ll}{
-#'     SSS FUNCTION         \tab WHAT IT DOES                                \cr
-#'     \code{iSSS}          \tab Evaluates whether \code{x} matches the
-#'                               shape property \code{SSS}
-#'                               (subject to any restrictions in \code{...}).\cr
-#'     \code{sss}           \tab Gets a character vector containing all
-#'                               shape properties matching
-#'                               \code{x}.                                   \cr
-#'     \code{isss}          \tab Evaluates \code{x} against the
-#'                               shape property specification
-#'                               in \code{spec} (subject to any restrictions in
-#'                               \code{...}).                                \cr
-#'     \code{sss_props}     \tab Gets a character vector of all possible
-#'                               shape property values.                      \cr
-#'     \code{is_sss_spec}   \tab Evaluates whether \code{spec} is a valid
-#'                               shape property
-#'                               specification.                                }
+#' @section Functions in this Family:
+#'   \strong{\code{iSSS}}
+#'   \cr Evaluates whether \code{x} matches the shape property \code{SSS}
+#'   (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{sss}}
+#'   \cr Gets a character vector containing all shape properties matching
+#'   \code{x}.
+#'   \cr\cr
+#'   \strong{\code{isss}}
+#'   \cr Evaluates \code{x} against the shape property specification in
+#'   \code{spec} (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{sss_props}}
+#'   \cr Gets a character vector of all possible shape property values.
+#'   \cr\cr
+#'   \strong{\code{is_sss_spec}}
+#'   \cr Evaluates whether \code{spec} is a valid shape property specification.
 #' @param x An R object.
 #' @param spec \code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
 #'   containing one or more shape properties (i.e., from
@@ -57,9 +57,14 @@
 #'   a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{sss_vals}}: A character vector.
-#'   \cr\cr\strong{\code{sss}}: A character scalar or character vector.
-#'   \cr\cr\strong{\code{iSSS, isss, is_sss_spec}}: A logical scalar.
+#' @return \strong{\code{sss_vals}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{sss}}
+#'   \cr A character scalar or character vector.
+#'   \cr\cr
+#'   \strong{\code{iSSS, isss, is_sss_spec}}
+#'   \cr A logical scalar.
 #' @export
 sss <- function(x) {
   props <- .sss_props()

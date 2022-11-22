@@ -7,19 +7,22 @@
 #' @name r
 #' @family extended
 #' @title Error-Checked Wraps of \code{\link[=base:rep]{base::rep}}.
-#' @description \tabular{ll}{
-#' \code{r}            \tab   \tab Atomizes \code{...} and, with the resulting
-#'                                 vector \code{dots}, calls
-#'                                 \code{base::rep.int(dots, r)}.            \cr
-#' \code{e}            \tab   \tab Atomizes \code{...} and, with the resulting
-#'                                 vector \code{dots}, calls
-#'                                 \code{base::rep(dots, each = e)}.         \cr
-#' \code{er}, \code{re}\tab   \tab Both functions atomize \code{...}, and, with
-#'                                 the resulting vector, calls
-#'                                 \code{base::rep(dots, times = r, each = e)}.}
-#' \tabular{ll}{
-#' NOTE \tab Although \code{er} and \code{re} produce identical results when
-#'           their arguments are the same, both are included for convenience.  }
+#' @section Functions in This Family:
+#'   \strong{\code{r}}
+#'   \cr Atomizes \code{...} and, with the result \code{dots}, calls
+#'   \code{rep.int(dots, r)}.
+#'   \cr\cr
+#'   \strong{\code{e}}
+#'   \cr Atomizes \code{...} and, with the result \code{dots}, calls
+#'   \code{rep(dots, each = e)}.
+#'   \cr\cr
+#'   \strong{\code{er, re}}
+#'   \cr Atomize \code{...}, and, with the result \code{dots}, calls
+#'   \code{rep(dots, times = r, each = e)}.
+#'   \cr\cr
+#'   NOTE
+#'   \cr Although \code{er} and \code{re} produce identical results when their
+#'   arguments are the same, both are included for convenience.
 #' @section Comparing Function Output: The following console excerpt
 #'   demonstrates how each function performs.
 #'   ```
@@ -34,10 +37,10 @@
 #'   [1] 0 0 0 1 1 1 9 9 9
 #'
 #'   $re
-#'    [1] 0 0 0 1 1 1 9 9 9 0 0 0 1 1 1 9 9 9
+#'    [1] 0 0 0 1 1 1 9 9 9 0 0 0 1 1 1 9 9 9
 #'
 #'   $er
-#'    [1] 0 0 1 1 9 9 0 0 1 1 9 9 0 0 1 1 9 9
+#'    [1] 0 0 1 1 9 9 0 0 1 1 9 9 0 0 1 1 9 9
 #'   ```
 #' @param ... One or more atomic vectors to be replicated, reduced to unique
 #'   values, or reduced to unique duplicated values.
@@ -55,7 +58,7 @@
 #' @export
 r <- function(r, ...) {
   errs <- .r.errs("r", ..., r = r)
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   rep.int(av(...), r)
 }
 
@@ -63,7 +66,7 @@ r <- function(r, ...) {
 #' @export
 e <- function(e, ...) {
   errs <- .r.errs("e", ..., e = e)
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   rep(av(...), each = e)
 }
 
@@ -71,7 +74,7 @@ e <- function(e, ...) {
 #' @export
 re <- function(r, e, ...) {
   errs <- .r.errs("re", ..., r = r, e = e)
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   rep(rep(av(...), times = r), each = e)
 }
 
@@ -79,6 +82,6 @@ re <- function(r, e, ...) {
 #' @export
 re <- function(e, r, ...) {
   errs <- .r.errs("er", ..., r = r, e = e)
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   rep(rep(av(...), times = r), each = e)
 }

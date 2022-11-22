@@ -28,22 +28,24 @@ pausing execution for until user indicates execution should continue.
 }
 \description{
 This family of functions is for interacting with the user via
-the console: \tabular{ll}{
-FUNCTION          \tab WHAT THE                                         \cr
-NAME              \tab FUNCTION DOES                                    \cr
-\code{say}        \tab Collapse the message in \code{...} to a character
-scalar and print it to the console or structure it
-as a certain level of update and then print it to
-the console. See details.                        \cr
-\code{cat0}       \tab Collapse \code{...} to a character scalar message
-prefixed and suffixed with newlines, and print it to
-the console (ensures that the message occurs on its
-own line of the console).
-\code{continue}   \tab Print \code{"Hit [enter] or [return] to continue"}
-to the console and pause execution until the user
-hits the enter or return key.                      }
+the console.
 }
-\details{
+\section{Functions in this Family}{
+
+\strong{\code{say}}
+\cr Collapse the message in \code{...} to a character scalar and print it
+to the console or structure it as a certain level of update and then print
+it to the console. See details.
+\cr\cr
+\strong{\code{cat0}}
+\cr Collapse \code{...} to a character scalar message prefixed and suffixed
+with newlines, and print it to the console (ensures that the message occurs
+on its own line of the console).
+\cr\cr
+\strong{\code{continue}}
+\cr Print \code{"Hit [enter] or [return] to continue"} to the console and
+pause execution until the user hits the enter or return key.
+\cr\cr
 The function \code{say} allows for structuring user update messages
 at six hierarchical levels as explained in the following table where
 \code{___} is a placeholder the character scalar message created when
@@ -105,3 +107,4 @@ Will result in a console with these contents:
   L1B_another_random_message
 }\if{html}{\out{</div>}}
 }
+

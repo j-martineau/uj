@@ -1,6 +1,6 @@
-#' @name wrap_tibble
+#' @name wraps_tibble
 #' @family wraps
-#' @title Thin wraps of functions from package \code{tibble}.
+#' @title Thin Wraps of Functions from Package \code{tibble}.
 #' @description The following table describes wrapper functions in this group of
 #'   functions:\tabular{ll}{
 #'   WRAPPER       \tab TIBBLE FUNCTION                                      \cr
@@ -14,29 +14,29 @@
 #'   system dialog box.
 #' @return A tibble.
 #' @export
-wrap_tibble <- NULL
+wraps_tibble <- NULL
 
-#' @rdname wrap_tibble
+#' @rdname wraps_tibble
 #' @inherit tibble::tibble
 #' @export
 tb <- function(..., .rows = NULL, .name_repair = c("check_unique", "unique", "universal", "minimal")) {tibble::tibble(..., .rows = .rows, .name_repair = .name_repair)}
 
-#' @rdname wrap_tibble
+#' @rdname wraps_tibble
 #' @inherit tibble::tribble
 #' @export
 trb <- function(...) {tibble::tribble(...)}
 
-#' @rdname wrap_tibble
+#' @rdname wraps_tibble
 #' @inherit tibble::tibble_row
 #' @export
 tbr <- function(..., .name_repair = c("check_unique", "unique", "universal", "minimal")) {tibble::tibble_row(..., .name_repair = .name_repair)}
 
-#' @rdname wrap_tibble
+#' @rdname wraps_tibble
 #' @inherit tibble::as_tibble
 #' @export
 tbas <- function(x, ..., .rows = NULL, .name_repair = c("check_unique", "unique", "universal", "minimal"), rownames = pkgconfig::get_config("tibble::rownames", NULL)) {tibble::as_tibble(x, ..., .rows = .rows, .name_repair = .name_repair, rownames = rownames)}
 
-#' @rdname wrap_tibble
+#' @rdname wraps_tibble
 #' @inherit tibble::is_tibble
 #' @export
 tbis <- function(x) {tibble::is_tibble(x)}

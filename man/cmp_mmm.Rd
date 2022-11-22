@@ -30,7 +30,7 @@
 \alias{cmp_str}
 \alias{cmp_uno}
 \alias{cmp_whl}
-\title{Completeness + Extended mode Properties}
+\title{Completeness + Extended Mode Properties}
 \usage{
 cmp_mmm(x, mmm, ...)
 
@@ -93,8 +93,8 @@ cmp_whl(x, ...)
 \arguments{
 \item{x}{An R object}
 
-\item{mmm}{A character scalar containing an
-extended mode property from mmm_props().}
+\item{mmm}{A character scalar containing an extended mode property from
+mmm_props().}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -103,46 +103,54 @@ extended mode property from mmm_props().}
   }}
 }
 \value{
-\strong{\code{cmp_mmm_props}}: A character vector.
-\cr\cr\strong{cmp_mmm, cmp_MMM}: A logical scalar.
+\strong{\code{cmp_mmm_props}}
+\cr A character vector.
+\cr\cr
+\strong{\code{cmp_mmm, cmp_MMM}}
+\cr A logical scalar.
 }
 \description{
-NOTE: \code{MMM} is used as a wildcard for any
-given extended mode property.
-\cr\cr
-\strong{\code{cmp_mmm}}: Evaluates whether \code{x} is complete and
-matches the extended mode specified in the argument \code{mmm}
-(subject to any restrictions in \code{...}).
-\cr\cr
-\strong{\code{cmp_MMM}}: Evaluates whether \code{x} is complete and
-matches the extended mode property \code{MMM}.
-(subject to any restrictions in \code{...}).
-\cr\cr
-\strong{\code{cmp_mmm_props}}: Gets a character vector of all possible
-completeness + extended mode properties.
+Completeness + Extended Mode Properties
 }
-\section{Specifying Count and Value Restrictions}{
+\section{Functions in This Family}{
 
-Specifying additional requirements in \code{...} is optional. The full set
-of recognized arguments names are defined in the following table along with
-the properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                    \cr
-\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
-\code{nr}     \tab Vec of valid numbers of rows.                        \cr
-\code{nc}     \tab Vec of valid numbers of columns.                     \cr
-\code{min}    \tab Scalar minimum valid length/number of element.       \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
-\code{minc}   \tab Scalar minimum valid number of columns.              \cr
-\code{max}    \tab Scalar maximum valid length/number of element.       \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
-\code{vals}   \tab Vec of valid values.                                 \cr
-\code{lt}     \tab Scalar less-than bound on values of \code{x}.        \cr
-\code{le}     \tab Scalar less-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{ge}     \tab Scalar greater-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{gt}     \tab Scalar greater-than bound on values of \code{x}.       }
+NOTE: \code{MMM} is used as a wildcard for any given extended
+mode property.
+\cr\cr
+\strong{\code{cmp_mmm}}
+\cr Evaluates whether \code{x} is complete and matches the extended mode
+specified in the argument \code{mmm} (subject to any restrictions in
+\code{...}).
+\cr\cr
+\strong{\code{cmp_MMM}}
+\cr Evaluates whether \code{x} is complete and matches the extended mode
+property \code{MMM}. (subject to any restrictions in \code{...}).
+\cr\cr
+\strong{\code{cmp_mmm_props}}
+\cr Gets a character vector of all possible completeness + extended mode
+properties.
+}
+
+\section{Specifying Count and Value Restrictions}{
+ Specifying additional
+requirements in \code{...} is optional. The full set of recognized
+arguments names are defined in the following table along with the
+properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                      \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
+\code{nr}     \tab Vector of valid numbers of rows.                       \cr
+\code{nc}     \tab Vector of valid numbers of columns.                    \cr
+\code{min}    \tab Scalar minimum valid length/number of element.         \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                \cr
+\code{max}    \tab Scalar maximum valid length/number of element.         \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
+\code{vals}   \tab Vector of valid values.                                \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
 }
 
 \seealso{
@@ -153,7 +161,6 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc_props}()},
 \code{\link{cmp_mmm_ccc}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
@@ -161,6 +168,7 @@ Other props:
 \code{\link{eee}()},
 \code{\link{iii}()},
 \code{\link{meets}()},
+\code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
 \code{\link{sss}()}

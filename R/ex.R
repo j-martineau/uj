@@ -1,7 +1,7 @@
 #' @family extensions
 #' @description ex. Extract rows and/or columns of \link[=id2D]{two-dimensional
 #'   objects} or elements of \link[=ie1D]{effectively one-dimensional objects}.
-#' @title Extract rows, columns, and/or elements
+#' @title Extract Rows, Columns, and/or Elements
 #' @param x Any valid R object.
 #' @param r \link[=cmp_ind_vec]{Complete indexer vec} indicating rows to extract
 #'   from \code{x} of \link[=id2D]{defined dimensionality 2}.
@@ -31,13 +31,13 @@ ex <- function(x, r = NULL, c = NULL, e = NULL) {
             f0(inll(r) | cmp_psw_vec(r), NULL, "\n \u2022 [r] must be NULL or a positive whole-number scalar/vector (?cmp_psw_scl, ?cmp_psw_vec)."),
             f0(inll(c) | cmp_psw_vec(c), NULL, "\n \u2022 [c] must be NULL or a positive whole-number scalar/vector (?cmp_psw_scl, ?cmp_psw_vec)."),
             f0(inll(e) | cmp_psw_vec(e), NULL, "\n \u2022 [e] must be NULL or a positive whole-number scalar/vector (?cmp_psw_scl, ?cmp_psw_vec)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (imat(x) | idtf(x)) {
     errs <- c(f0(inll(e)                          , NULL, "\n \u2022 [x] is not a vector of vlist, but [e] specifies elements to extract."),
               f0(idef(r) | idef(c)                , NULL, "\n \u2022 [x] is a matrix or data frame, but both [r] and [c] are NULL."       ),
               f0(f0(inll(r), T, all(r <= nrow(x))), NULL, "\n \u2022 [r] contains a value that does not point to any row in [x]."         ),
               f0(f0(inll(c), T, all(c <= ncol(x))), NULL, "\n \u2022 [c] contains a value that does not point to any column in [x]."      ))
-    if (idef(errs)) {stop(errs)}
+    if (!is.null(errs)) {stop(errs)}
     if (inll(r)) {r <- 1:nrow(x)}
     if (inll(c)) {c <- 1:ncol(x)}
     x <- x[r, c]
@@ -47,7 +47,7 @@ ex <- function(x, r = NULL, c = NULL, e = NULL) {
               f0(inll(c), NULL, "\n \u2022 [x] is a not a matrix or data frame, but [c] specifies columns to extract."),
               f0(inll(r), NULL, "\n \u2022 [x] is a not a matrix or data frame, but [r] specifies rows to extract."),
               f0(ok.e   , NULL, "\n \u2022 [e] contains values that do not point to any element of [x]."))
-    if (idef(errs)) {stop(errs)}
+    if (!is.null(errs)) {stop(errs)}
     x[e]
   }
   else {stop("\n \u2022 [x] is neither a matrix, data.frame, vector, or vlist (?ivls).")}

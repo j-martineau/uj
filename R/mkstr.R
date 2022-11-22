@@ -1,6 +1,91 @@
 #' @name mkstr
 #' @family strings
-#' @title Specialized string building functions
+#' @title Specialized String Building Functions
+#' @description Build strings where function name components have the following
+#'   meaning:\tabular{ll}{
+#'     prefix = `g`         \tab Glue/collapse values within.           \cr
+#'     prefix = `p`         \tab Paste values across.                   \cr
+#'                          \tab                                        \cr
+#'     suffix = `eq`        \tab Space-padded equality statement.       \cr
+#'     suffix = `eq0`       \tab Non-padded equality statement.         \cr
+#'     suffix = `cat`       \tab Vector concatenation statement.        \cr
+#'     suffix = `elt`       \tab Element extraction statement.          \cr
+#'     suffix = `fun`       \tab Function call statement.               \cr
+#'     suffix = `lst`       \tab Comma-separated list.                  \cr
+#'     suffix = `form`      \tab Formula statement.                     \cr
+#'     suffix = `colon`     \tab Separate by colons.                    \cr
+#'     suffix = `wrap`      \tab Enclose on left and right.             \cr
+#'     suffix = `tick`      \tab Enclose in back-ticks.                 \cr
+#'     suffix = `quote`     \tab Enclose in single quotes.              \cr
+#'     suffix = `quote2`    \tab Enclose in double quotes.              \cr
+#'     suffix = `brace`     \tab Enclose in curly braces.               \cr
+#'     suffix = `paren`     \tab Enclose in parentheses.                \cr
+#'     suffix = `bracket`   \tab Enclose in square brackets.              }
+#' Each prefix is joined with each suffix to create a unique function. The
+#' action indicated by the prefix happens first, followed by the action
+#' indicated in the suffix. How each function works is illustrated in the
+#' details.
+#' @details \tabular{ll}{
+#' FUNCTION CALL                             \tab RESULT OF FUNCTION CALL    \cr
+#' `geq(c('x', 'y', 'z'), 0, 1, 2)`          \tab `'xyz = 012'`              \cr
+#' `peq(c('x', 'y', 'z'), 0, 1, 2)`          \tab \code{c('x = 012', 'y = 012',
+#'                                                'z = 012')}                \cr
+#'                                           \tab                            \cr
+#' `geq0(c('x', 'y', 'z'), 0, 1, 2)`         \tab `'xyz=012'`                \cr
+#' `peq0(c('x', 'y', 'z'), 0, 1, 2)`         \tab \code{c('x=012', 'y=012',
+#'                                                'z=012')}                  \cr
+#'                                           \tab                            \cr
+#' `gcat(c('x', 'y', 'z'), 0, 1, 2)`         \tab `'c(xyz012)'`              \cr
+#' `pcat(c('x', 'y', 'z'), 0, 1, 2)`         \tab `'c(x, y, z, 0, 1, 2)'`    \cr
+#'                                           \tab                            \cr
+#' `gelt(c('x', 'y', 'z'), 0, 1, 2)`         \tab `'xyz[012]'`               \cr
+#' `pelt(c('x', 'y', 'z'), 0, 1, 2)`         \tab `c('x[0]', 'y[1]', 'z[2]')`\cr
+#'                                           \tab                            \cr
+#' `gfun(c('x', 'y', 'z'), 0, 1, 2)`         \tab `'xyz(012)'`               \cr
+#' `pfun(c('x', 'y', 'z'), 0, 1, 2)`         \tab `c('x(0)', 'y(1)', 'z(2)')`\cr
+#'                                           \tab                            \cr
+#' `glst(c('x', 'y', 'z'), 0, 1, 2)`         \tab `'x, y, z, 0, 1, 2'`       \cr
+#' `plst(c('x', 'y', 'z'), 0, 1, 2)`         \tab \code{c('x, 0, 1, 2',
+#'                                                        'y, 0, 1, 2',
+#'                                                        'z, 0, 1, 2')}     \cr
+#'                                           \tab                            \cr
+#' `gform(c('x', 'y', 'z'), 0, 1, 2)`        \tab `'xyz ~ 0 + 1 + 2'`        \cr
+#' `pform(c('x', 'y', 'z'), 0, 1, 2)`        \tab \code{c('x ~ 0 + 1 + 2',
+#'                                                       'y ~ 0 + 1 + 2',
+#'                                                       'z ~ 0 + 1 + 2')}   \cr
+#'                                           \tab                            \cr
+#' `gtick(c('x', 'y', 'z'), 0, 1, 2)`        \tab `'`xyz012`'`               \cr
+#' `ptick(c('x', 'y', 'z'), 0, 1, 2)`        \tab \code{c('`x012`', '`y012`',
+#'                                                        '`z012`')}         \cr
+#'                                           \tab                            \cr
+#' `gwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)`   \tab `'lLl012r'`                \cr
+#' `pwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)`   \tab \code{c('l012r', 'L012r',
+#'                                                        'l012r')}          \cr
+#'                                           \tab                            \cr
+#' `gbrace(c('x', 'y', 'z'), 0, 1, 2)`       \tab `'\{xyz012\}'`             \cr
+#' `pbrace(c('x', 'y', 'z'), 0, 1, 2)`       \tab \code{c('\{x012\}',
+#'                                                        '\{y012\}',
+#'                                                        '\{z012\`')}       \cr
+#'                                           \tab                            \cr
+#' `gcolon(c('x', 'y', 'z'), 0, 1, 2)`       \tab `'x:y:z:0:1:2'`            \cr
+#' `pcolon(c('x', 'y', 'z'), 0, 1, 2)`       \tab \code{c('x:0:1:2', 'y:0:1:2',
+#'                                                        'z:0:1:2')}        \cr
+#'                                           \tab                            \cr
+#' `gparen(c('x', 'y', 'z'), 0, 1, 2)`       \tab `'(xyz012)'`               \cr
+#' `pparen(c('x', 'y', 'z'), 0, 1, 2)`       \tab \code{c('(x012)', '(y012)',
+#'                                                        '(z012)')}         \cr
+#'                                           \tab                            \cr
+#' `gquote(c('x', 'y', 'z'), 0, 1, 2)`       \tab `"'xyz012'"`               \cr
+#' `pquote(c('x', 'y', 'z'), 0, 1, 2)`       \tab \code{c('"x012"', '"y012"',
+#'                                                        '"z012"')}         \cr
+#'                                           \tab                            \cr
+#' `gquote2(c('x', 'y', 'z'), 0, 1, 2)`      \tab `"'xyz012'"`               \cr
+#' `pquote2(c('x', 'y', 'z'), 0, 1, 2)`      \tab \code{c('"x012"', '"y012"',
+#'                                                        '"z012"')}         \cr
+#'                                           \tab                            \cr
+#' `gbracket(c('x', 'y', 'z'), 0, 1, 2)`     \tab `'[xyz012]'`               \cr
+#' `pbracket(c('x', 'y', 'z'), 0, 1, 2)`     \tab \code{c('[x012]', '[y012]',
+#'                                                        '[z012]')}           }
 #' @param x An object containing atomic values (atomized).
 #' @param l,r \link[=cmp_chr_scl]{Complete character scalars} giving left and
 #'   right side enclosures for \code{...} after \link[=a]{atomization}.
@@ -8,180 +93,120 @@
 #'   vector.
 #' @return Character vector
 #' @export
-mkstr <- NULL
-
-#' @describeIn mkstr Build a space-padded equality statements of atomized and
-#'   glued values of \code{x} and \code{...} (e.g., \code{geq(c('x', 'y', 'z'),
-#'   0, 1, 2)} produces \code{'xyz = 012'}).
-#' @export
 geq <- function(x, ...) {paste0(av(x), " = ", av(...), collapse = "")}
 
-#' @describeIn mkstr Build an unpadded equality statements of atomized and
-#'   glued values of \code{.x} and \code{...} (e.g., \code{geq0(c('x', 'y',
-#'   'z'), 0, 1, 2)} produces \code{'xyz=012'}).
+#' @rdname mkstr
 #' @export
 geq0 <- function(x, ...) {paste0(av(x), "=", av(...), collapse = "")}
 
-#' @describeIn mkstr Build a vector concatenation statements of atomized and
-#'   glued values of \code{...} (e.g., \code{gcat(c('x', 'y', 'z'), 0, 1, 2)}
-#'   produces \code{'c(xyz012)'}).
+#' @rdname mkstr
 #' @export
 gcat <- function(...) {paste0("c(", av(...), ")", collapse = "")}
 
-#' @describeIn mkstr Build an element extraction concatenation statement from
-#'   atomized and glued values of \code{x} and \code{...} (e.g.,
-#'   \code{gelt(c('x', 'y', 'z'), 0, 1, 2)} produces \code{'xyz[012]'}).
+#' @rdname mkstr
 #' @export
 gelt <- function(x, ...) {paste0(av(x), "[", av(...), "]", collapse = "")}
 
-#' @describeIn mkstr Build a function call from atomized and glued values of
-#'   \code{x} and \code{...} (e.g., \code{gfun(c('x', 'y', 'z'), 0, 1, 2)}
-#'   produces \code{'xyz(012)'}).
+#' @rdname mkstr
 #' @export
 gfun <- function(x, ...) {paste0(av(x), "(", av(...), ")", collapse = "")}
 
-#' @describeIn mkstr Build a comma-separated list from atomized and glued
-#'   values of \code{...} (e.g., \code{glst(c('x', 'y', 'z'), 0, 1, 2)} produces
-#'   \code{'x, y, z, 0, 1, 2'}).
+#' @rdname mkstr
 #' @export
 glst <- function(...) {paste0(av(...), collapse = ", ")}
 
-#' @describeIn mkstr Build a model formula of additive terms from atomized and
-#'   glued values of \code{x} and \code{...} (e.g., \code{gform(c('x', 'y',
-#'   'z'), 0, 1, 2)} produces \code{'xyz ~ 012'}).
+#' @rdname mkstr
 #' @export
 gform <- function(x, ...) {paste0(av(x), " ~ ", paste0(av(...), collapse = " + "), collapse = "")}
 
-#' @describeIn mkstr Build a backtick-quoted value from atomized and glued
-#'   values of \code{...} (e.g., \code{gtick(c('x', 'y', 'z'), 0, 1, 2)}
-#'   produces \code{'`xyz012`'}).
+#' @rdname mkstr
 #' @export
 gtick <- function(...) {paste0("`" , av(...), "`", collapse = "")}
 
-#' @describeIn mkstr Build left- and write-wrapped strings from atomized and
-#'   glued values of \code{l.}, \code{r.}, and \code{...} (e.g.,
-#'   \code{gwrap(c('a', 'b', 'c'), 'z', 0, 1, 2)} produces \code{'abc012z'}).
+#' @rdname mkstr
 #' @export
 gwrap <- function(l, r, ...) {paste0(av(l), av(...), av(r), collapse = "")}
 
-#' @describeIn mkstr Build a curly-brace-enclosed value from atomized and glued
-#'   values of \code{...} (e.g., \code{gbrace(c('x', 'y', 'z'), 0, 1, 2)}
-#'   produces \code{'\{xyz012\}'}).
+#' @rdname mkstr
 #' @export
 gbrace <- function(...) {paste0("{" , av(...), "}", collapse = "")}
 
-#' @describeIn mkstr Build a colon-delimited list from atomized and glued
-#'   values of \code{...} (e.g., \code{gcolon(c('x', 'y', 'z'), 0, 1, 2)}
-#'   produces \code{'x:y:z:0:1:2'}).
+#' @rdname mkstr
 #' @export
 gcolon <- function(...) {paste0(av(...), collapse = ":")}
 
-#' @describeIn mkstr Build a parentheses-enclosed value from atomized and glued
-#'   values of \code{...} (e.g., \code{gparen(c('x', 'y', 'z'), 0, 1, 2)}
-#'   produces \code{'(xyz012)'}).
+#' @rdname mkstr
 #' @export
 gparen <- function(...) {paste0("(" , av(...), ")", collapse = "")}
 
-#' @describeIn mkstr Build a single-straight-quote-enclosed value from atomized
-#'   and glued values of \code{...} (e.g., \code{gquote(c('x', 'y', 'z'), 0, 1,
-#'   2)} produces \code{"'xyz012'"}).
+#' @rdname mkstr
 #' @export
 gquote <- function(...) {paste0("'" , av(...), "'", collapse = "")}
 
-#' @describeIn mkstr Build a double-straight-quote-enclosed value from atomized
-#'   and glued values of \code{...} (e.g., \code{gquote(c('x', 'y', 'z'), 0, 1,
-#'   2)} produces \code{'"xyz012"'}).
+#' @rdname mkstr
 #' @export
 gquote2 <- function(...) {paste0("\"", av(...), "\"", collapse = "")}
 
-#' @describeIn mkstr Build a square-bracket-enclosed value from atomized and
-#'   glued values of \code{...} (e.g., \code{gbracket(c('x', 'y', 'z'), 0, 1,
-#'   2)} produces \code{'(xyz012)'}).
+#' @rdname mkstr
 #' @export
 gbracket <- function(...) {paste0("[", av(...), "]", collapse = "")}
 
-#' @describeIn mkstr Build vector concatenation statement from atomized values
-#'   of \code{...} (e.g., \code{pcat(c('x', 'y', 'z'), 0, 1, 2)} produces
-#'   \code{'c(x, y, z, 0, 1, 2)'}).
+#' @rdname mkstr
 #' @export
 pcat <- function(...) {paste0("c(", paste(..., sep = ", "), ")")}
 
-#' @describeIn mkstr Build string-padded equality statements (e.g.,
-#'   \code{peq(c('x', 'y', 'z'), 0, 1, 2)} produces \code{c('x = 012', 'y =
-#'   012', 'z = 012')}).
+#' @rdname mkstr
 #' @export
 peq <- function(x, ...) {paste0(x, " = ", ...)}
 
-#' @describeIn mkstr Build unpadded equality statements (e.g.,
-#'   \code{peq0(c('x', 'y', 'z'), 0, 1, 2)} produces \code{c('x=012', 'y=012',
-#'   'z=012')}).
+#' @rdname mkstr
 #' @export
 peq0 <- function(x, ...) {paste0(x, "=", ...)}
 
-#' @describeIn mkstr Build element extraction statements (e.g.,
-#'   \code{pelt(c('x', 'y', 'z'), 0, 1, 2)} produces \code{c('x\[012\]',
-#'   'y\[012\]', 'z\[012\]')}).
+#' @rdname mkstr
 #' @export
 pelt <- function(x, ...) {paste0(x, "[", ..., "]")}
 
-#' @describeIn mkstr Build function calls (e.g., \code{pfun(c('x', 'y', 'z'),
-#'   0, 1, 2)} produces \code{c('x(012)', 'y(012)', 'z(012)')}).
+#' @rdname mkstr
 #' @export
 pfun <- function(x, ...) {paste0(x, "(", ..., ")")}
 
-#' @describeIn mkstr Build comma-separated lists (e.g., \code{plst(c('x', 'y',
-#'   'z'), 0, 1, 2)} produces \code{c('x, 0, 1, 2', 'y, 0, 1, 2', 'z, 0, 1,
-#'   2')}).
+#' @rdname mkstr
 #' @export
 plst <- function(...) {paste0(..., sep = ", ")}
 
-#' @describeIn mkstr Build model formula statements with additive terms only
-#'   (e.g., \code{pform(c('x', 'y', 'z'), 0, 1, 2)} produces \code{c('x ~ 0 + 1
-#'   + 2', 'y ~ 0 + 1 + 2', 'z ~ 0 + 1 + 2')}).
+#' @rdname mkstr
 #' @export
-pform <- function(x, ...) {paste0(x, " ~ ",  da(..., a. = " + "))}
+pform <- function(x, ...) {paste0(x, " ~ ",  paste0(..., sep = " + "))}
 
-#' @describeIn mkstr Build tick enclosed vectors (e.g., \code{ptick(c('x', 'y',
-#'   'z'), 0, 1, 2)} produces \code{c('`x012`', '`y012`', '`z012`')}).
+#' @rdname mkstr
 #' @export
 ptick <- function(...) {paste0("`" , ..., "`")}
 
-#' @describeIn mkstr Build left/right wrapped vectors (e.g., \code{pwrap(c('l',
-#'   'L', 'l'), 'r', 1, 2)} produces \code{c('l12r`', 'L12r`', 'l12r')}).
+#' @rdname mkstr
 #' @export
 pwrap <- function(l, r, ...) {paste0(l, ..., r)}
 
-#' @describeIn mkstr Build curly-brace-enclosed vectors (e.g.,
-#'   \code{pbrace(c('x', 'y', 'z'), 0, 1, 2)} produces \code{c('\{x012\}',
-#'   '\{y012\}', '\{z012\}')}.
+#' @rdname mkstr
 #' @export
 pbrace <- function(...) {paste0("[" , ..., "]")}
 
-#' @describeIn mkstr Build colon-delimited lists (e.g., \code{pcolon(c('x',
-#'   'y', 'z'), 0, 1, 2)} produces \code{c('x:0:1:2', 'y:0:1:2', 'z:0:1:2')}).
+#' @rdname mkstr
 #' @export
 pcolon <- function(...) {paste0(..., sep = ":")}
 
-#' @describeIn mkstr Build parentheses-enclosed vectors (e.g.,
-#'   \code{pparen(c('x', 'y', 'z'), 0, 1, 2)} produces \code{c('(x012)',
-#'   '(y012)', '(z012)')}.
+#' @rdname mkstr
 #' @export
 pparen <- function(...) {paste0("(" , ..., ")")}
 
-#' @describeIn mkstr Build single-straight-quoted vectors (e.g.,
-#'   \code{pquote(c('x', 'y', 'z'), 0, 1, 2)} produces \code{c("'x012'",
-#'   "'y012'", "'z012'")}).
+#' @rdname mkstr
 #' @export
 pquote <- function(...) {paste0("'" , ..., "'")}
 
-#' @describeIn mkstr Build single-straight-quoted vectors (e.g.,
-#'   \code{pquote(c('x', 'y', 'z'), 0, 1, 2)} produces \code{c('"x012"',
-#'   '"y012"', '"z012"')}).
+#' @rdname mkstr
 #' @export
 pquote2 <- function(...) {paste0("\"", ..., "\"")}
 
-#' @describeIn mkstr Build square-bracket-enclosed vectors (e.g.,
-#'   \code{pbrace(c('x', 'y', 'z'), 0, 1, 2)} produces \code{c('\[x012\]',
-#'   '\[y012\]', '\[z012\]')}.
+#' @rdname mkstr
 #' @export
 pbracket <- function(...) {paste0("[" , ..., "]")}

@@ -1,29 +1,28 @@
 #' @name compatible
 #' @family props
 #' @title Are objects compatible?
-#' @description Compatibility means that objects or corresponding variables in
-#'   data.frames arguments are either:\itemize{
-#'     \item all numeric
-#'     \item all character
-#'     \item all logical
-#'     \item all unordered factor with the same levels, or
-#'     \item ordered factor with the same levels in the same order.            }
-#'   FOR \link[=atm_dtf]{ATOMIC DATA.FRAMES}:
-#'   \cr Arguments are compatible for row binding if they have identical column
-#'   names and their respective columns are of compatible modes as defined
-#'   above. Arguments are compatible for column binding if they have the same
-#'   number of rows.
+#' @section Functions in this Family:
+#'   \strong{\code{compatible}}
+#'   \cr Evaluates whether all \code{...} arguments are compatible, meaning
+#'   all numeric, all character, all logical, all unordered factor with the same
+#'   levels, or ordered factor with the same levels in the same order.
 #'   \cr\cr
-#'   FOR \link[=atm_mat]{ATOMIC MATRICES}:
-#' \cr Arguments are compatible for row binding if their modes are compatible
-#' and they have the same number of columns. Arguments are compatible for column
-#' binding if their modes are compatible and they the same number of rows.
+#'   \strong{\code{compatible_dtfs}}
+#'   \cr Evaluates whether all \code{...} arguments are
+#'   \link[=atm_dtf]{atomic data.frames}. For row binding, also evaluates
+#'   whether they have the same number of columns and all corresponding columns
+#'   are compatible. For column binding, also evaluates whether they have the
+#'   same number of rows.
+#'   \cr\cr
+#'   \strong{\code{compatible_atms}}
+#'   \cr Evaluates whether all \code{...} arguments are compatible matrices
+#'   and (for row binding) have the same number of columns or (for column
+#'   binding) have the same number of rows.
 #' @param ... An arbitrary number of arguments to be checked for compatibility
 #'   with each other.
-#' @param recyclable. A non-\code{NA} logical scalar indicating whether
-#'   arguments in \code{...} must be recyclable to be compatible_
-#' @param bind. A \link[=cmp_chr_scl]{Complete character scalar} indicating how
-#'   to bind: \code{'c'} or \code{'r'} for column vs. row binding, respectively.
+#' @param rec. A non-\code{NA} logical scalar indicating whether arguments in
+#'   \code{...} must be recyclable to be compatible.
+#' @param b Either \code{'c'} for column binding or \code{'r'} for row binding.
 #' @return A logical scalar.
 #' @examples
 #' N0 <- 0
@@ -55,43 +54,43 @@
 #' compatible(NumZero, NumSeven, NumDigits, recycle = F)
 #' compatible(list(letters), LETTERS, as.character(0:9))
 #' @export
-compatible <- function(..., recyclable. = TRUE) {
-  dots <- list(...)
-  n.dots <- length(dots)
-  errs <- c(f0(n.dots < 2        , "\n \u2022 [...] must contain multiple arguments.", NULL),
-            f0(!isTF(recyclable.), "\n \u2022 [recyclable.] must be TRUE or FALSE."  , NULL))
-  if (idef(errs)) {stop(errs)}
-  if (recyclable.) {
-    unq.ns <- unique(lengths(dots))
-    n.reps <- max(unq.ns) / unq.ns
-    if (any(n.reps != round(n.reps))) {return(F)}
+compatible <- function(..., rec. = TRUE) {
+  x <- list(...)
+  n <- length(x)
+  errs <- c(f0(n >= 2    , NULL, "\n \u2022 [...] must contain multiple arguments."),
+            f0(isTF(rec.), NULL, "\n \u2022 [rec.] must be TRUE or FALSE."         ))
+  if (!is.null(errs)) {stop(errs)}
+  if (rec.) {
+    un <- unique(lengths(x))
+    nr <- max(un) / un
+    if (any(nr != round(nr))) {return(F)}
   }
-  is.chr <- all(sapply(dots, is.character))
-  is.lgl <- all(sapply(dots, is.logical))
-  is.num <- all(sapply(dots, is.numeric))
-  is.ord <- all(sapply(dots, is.ordered))
-  is.uno <- all(sapply(dots, is.factor)) & !any(sapply(dots, is.ordered))
-  if (is.chr | is.lgl | is.num) {return(T)}
-  if (!is.ord & !is.uno) {return(F)}
-  fac.levs <- sapply(dots, levels)
-  if (is.ord) {for (i in 2:n.dots) {if (!identical(fac.levs[[i]], fac.levs[[i - 1]])) {return(F)}}}
-  if (is.uno) {for (i in 2:n.dots) {if (!setequal(fac.levs[[i]], fac.levs[[i - 1]])) {return(F)}}}
+  chr <- all(sapply(x, is.character))
+  lgl <- all(sapply(x, is.logical))
+  num <- all(sapply(x, is.numeric))
+  ord <- all(sapply(x, is.ordered))
+  uno <- all(sapply(x, is.factor)) & !any(sapply(x, is.ordered))
+  if (chr | lgl | num) {return(T)}
+  if (!ord & !uno) {return(F)}
+  levs <- sapply(x, levels)
+  if (ord) {for (i in 2:n) {if (!identical(levs[[i]], levs[[i - 1]])) {return(F)}}}
+  if (uno) {for (i in 2:n) {if (!setequal( levs[[i]], levs[[i - 1]])) {return(F)}}}
   T
 }
 
 #' @rdname compatible
 #' @export
-compatible_mats <- function(..., bind. = "c") {
-  dots <- list(...)
-  n.dots <- length(dots)
-  errs <- c(f0(!f0(n.dots < 2, F,  all(sapply(dots, atm_mat)))      , "\n \u2022 [...] must contain multiple atomic matrices (?atm_mat).", NULL),
-            f0(!f0(!cmp_ch1_scl(bind.), F, isIN(bind., c("c", "r"))), "\n \u2022 [bind.] must be character scalar 'c' or 'r'."           , NULL))
-  if (idef(errs)) {stop(errs)}
-  for (i in 2:n.dots) {
-    curr <- dots[[i]]
-    prev <- dots[[i - 1]]
-    if (bind. == "r" & ncol(prev) != ncol(curr)) {return(F)}
-    if (bind. == "c" & nrow(prev) != nrow(curr)) {return(F)}
+compatible_mats <- function(b, ...) {
+  x <- list(...)
+  n <- length(x)
+  errs <- c(f0(f0(!ch1_scl(b), F, isIN(b, c("c", "r"))), NULL, "\n \u2022 [b] must be character scalar 'c' or 'r'."         ),
+            f0(f0(n < 2, F, all(sapply(x, atm_mat   ))), NULL, "\n \u2022 [...] must contain 2+ atomic matrices (?atm_mat)."))
+  if (!is.null(errs)) {stop(errs)}
+  for (i in 2:n) {
+    curr <- x[[i]]
+    prev <- x[[i - 1]]
+    if (b == "r" & ncol(prev) != ncol(curr)) {return(F)}
+    if (b == "c" & nrow(prev) != nrow(curr)) {return(F)}
     if (!compatible(prev, curr)) {return(F)}
   }
   T
@@ -99,17 +98,17 @@ compatible_mats <- function(..., bind. = "c") {
 
 #' @rdname compatible
 #' @export
-compatible_dtfs <- function(..., bind. = "c") {
-  dots <- list(...)
-  n.dots <- length(dots)
-  errs <- c(f0(!f0(n.dots < 2, F,  all(sapply(dots, atm_dtf)))    , "\n \u2022 [...] must contain multiple atomic data.frames (?atm_dtf).", NULL),
-            f0(!f0(!cmp_ch1_scl(bind.), F, bind. %in% c("c", "r")), "\n \u2022 [bind.] must be character scalar 'c' or 'r'."              , NULL))
-  if (idef(errs)) {stop(errs)}
-  for (i in 2:n.dots) {
-    curr <- dots[[i]]
-    prev <- dots[[i - 1]]
-    if (bind. == "c" & nrow(curr) != nrow(prev)) {return(F)}
-    if (bind. == "r") {
+compatible_dtfs <- function(b, ...) {
+  x <- list(...)
+  n <- length(x)
+  errs <- c(f0(f0(!cmp_ch1_scl(b), F, b %in% c("c", "r")), NULL, "\n \u2022 [b] must be character scalar 'c' or 'r'."                  ),
+            f0(f0(n < 2, F,  all(sapply(x, atm_dtf))    ), NULL, "\n \u2022 [...] must contain multiple atomic data.frames (?atm_dtf)."))
+  if (!is.null(errs)) {stop(errs)}
+  for (i in 2:n) {
+    curr <- x[[i]]
+    prev <- x[[i - 1]]
+    if (b == "c" & nrow(curr) != nrow(prev)) {return(F)}
+    if (b == "r") {
       if (ncol(curr) != ncol(prev)) {return(F)}
       if (!identical(colnames(curr), colnames(prev))) {return(F)}
       for (j in 1:ncol(curr)) {if (!compatible(curr[[j]], prev[[j]])) {return(F)}}

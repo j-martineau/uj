@@ -3,7 +3,7 @@
 #' @family extensions
 #' @family environments
 #' @description Collapses \code{...} into a character scalar and evaluates
-#'   it as code in the calling environment.
+#'   it as code in the environment of the calling function.
 #' @param ... Arguments to be pasted into a character scalar command to be run
 #'   (i.e., parsed and evaluated) in the environment where \code{run(...)} was
 #'   called.

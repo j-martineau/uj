@@ -10,17 +10,25 @@
 #' @name n_th
 #' @family extensions
 #' @title Extract elements by index position
-#' @description \tabular{ll}{
-#'   \code{n_th}        \tab Gets the \code{n}-th element(s) of a vector.    \cr
-#'   \code{first_n}     \tab Gets the first \code{n} elements of a vector.   \cr
-#'   \code{last_n}      \tab Gets the last \code{n} elements of a vector.    \cr
-#'   \code{n_th_last}   \tab Gets the \code{n}-th from last element(s) of a
-#'                           vector.                                           }
+#' @section Functions in This Family:
+#'   \strong{\code{n_th}}
+#'   \cr Gets the \code{n}-th element(s) of a vector.
+#'   \cr\cr
+#'   \strong{\code{first_n}}
+#'   \cr Gets the first \code{n} elements of a vector.
+#'   \cr\cr
+#'   \strong{\code{last_n}}
+#'   \cr Gets the last \code{n} elements of a vector.
+#'   \cr\cr
+#'   \strong{\code{n_th_last}}
+#'   \cr Gets the \code{n}-th from last element(s) of a vector.
 #' @param x A \link[=pop_vec]{populated vector} to extract elements from.
 #' @param n A \link[=cmp_psw_scl]{complete positive whole-number scalar}.
-#' @return \tabular{lll}{
-#'   \code{n_th}, \code{n_th_last}\tab   \tab A (possibly scalar) vector.    \cr
-#'   \code{first_n}, \code{last_n}\tab   \tab A scalar vector.                 }
+#' @return \strong{\code{n_th, n_th_last}}
+#'   \cr A (possibly scalar) vector.
+#'   \cr\cr
+#'   \strong{\code{first_n, last_n}}
+#'   \cr A scalar vector.
 #' @examples
 #' first_n(letters, 5)
 #' last_n(letters, 5)
@@ -29,7 +37,7 @@
 #' @export
 n_th <- function(x, n) {
   errs <- .n_th_errs(x, n, F)
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   x[n]
 }
 
@@ -37,7 +45,7 @@ n_th <- function(x, n) {
 #' @export
 first_n <- function(x, n) {
   errs <- .n_th_errs(x, n, T)
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   x[1:n]
 }
 
@@ -45,7 +53,7 @@ first_n <- function(x, n) {
 #' @export
 last_n <- function(x, n) {
   errs <- .n_th_errs(x, n, F)
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   n <- 1:n; x[1 + length(x) - n]
 }
 
@@ -53,6 +61,6 @@ last_n <- function(x, n) {
 #' @export
 n_th_last <- function(x, n) {
   errs <- .n_th_errs(x, n, T)
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   x[length(x) - n + 1]
 }

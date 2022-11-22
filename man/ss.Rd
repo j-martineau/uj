@@ -13,7 +13,7 @@
 \alias{ch}
 \alias{uch}
 \alias{sstb}
-\title{Split strings and select/check for elements}
+\title{Split Strings and Select/Check for Elements}
 \usage{
 ss(d, ..., trm = T, sqz = T, u = F, n = NULL)
 
@@ -126,7 +126,7 @@ Other strings:
 \code{\link{ipat}()},
 \code{\link{max_nch}()},
 \code{\link{mkstr}},
-\code{\link{ox.}()},
+\code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{revstr}()},
 \code{\link{spacing}},

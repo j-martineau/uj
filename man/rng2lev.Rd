@@ -15,8 +15,8 @@ levels.}
 \item{levs}{\link[=atm_vec]{Atomic vec} of \code{n} level labels.}
 }
 \value{
-Atomic object of the same dimension as \code{x} and the same mode as
-\code{levs}.
+An atomic object of the same dimension as \code{x} and the same mode
+as \code{levs}.
 }
 \description{
 rng2lev. Convert values of \code{x} to the \code{n} levels in

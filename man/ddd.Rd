@@ -46,14 +46,18 @@ a match to any of the specified properties.}
   }}
 }
 \value{
-\strong{\code{ddd_vals}}: A character vector.
-\cr\cr\strong{\code{ddd}}: A character scalar or character vector.
-\cr\cr\strong{\code{iDDD, iddd, is_ddd_spec}}: A logical scalar.
+\strong{\code{ddd_vals}}
+\cr A character vector.
+\cr\cr
+\strong{\code{ddd}}
+\cr A character scalar or character vector.
+\cr\cr
+\strong{\code{iDDD, iddd, is_ddd_spec}}
+\cr A logical scalar.
+\strong{\code{nddd}}
+\cr An integer scalar.
 }
 \description{
-NOTE: \code{DDD} is used as a wildcard representing any given
-effective dimensionality property.
-\cr\cr
 An object's defined dimensionality is the number of dimensions
 on which its components can be indexed. The following table gives levels of
 defined dimensionality, property values assigned to levels of defined
@@ -72,47 +76,55 @@ DIMENSIONS   \tab VALUE       \tab NAME             \tab OBJECTS        \cr
 \tab data.frame or matrix.                \cr
 \code{≥ 3}   \tab\code{'dHD'} \tab Hyper-dimensional structure.
 \tab Array with 3+ dimensions.              }
-Functions related to defined dimensionality properties are as follows:
-\tabular{ll}{
-DDD FUNCTION         \tab WHAT IT DOES                                \cr
-\code{iDDD}          \tab Evaluates whether \code{x} matches the
-defined dimensionality property \code{DDD}
-(subject to any restrictions in \code{...}).\cr
-\code{ddd}           \tab Gets a character vector containing all
-defined dimensionality properties matching
-\code{x}.                                   \cr
-\code{iddd}          \tab Evaluates \code{x} against the
-defined dimensionality property specification
-in \code{spec} (subject to any restrictions in
-\code{...}).                                \cr
-\code{ddd_props}     \tab Gets a character vector of all possible
-defined dimensionality property values.     \cr
-\code{is_ddd_spec}   \tab Evaluates whether \code{spec} is a valid
-defined dimensionality property
-specification.                                }
 }
-\section{Specifying Count and Value Restrictions}{
+\section{Functions in this Family}{
 
-Specifying additional requirements in \code{...} is optional. The full set
-of recognized arguments names are defined in the following table along with
-the properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                    \cr
-\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
-\code{nr}     \tab Vec of valid numbers of rows.                        \cr
-\code{nc}     \tab Vec of valid numbers of columns.                     \cr
-\code{min}    \tab Scalar minimum valid length/number of element.       \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
-\code{minc}   \tab Scalar minimum valid number of columns.              \cr
-\code{max}    \tab Scalar maximum valid length/number of element.       \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
-\code{vals}   \tab Vec of valid values.                                 \cr
-\code{lt}     \tab Scalar less-than bound on values of \code{x}.        \cr
-\code{le}     \tab Scalar less-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{ge}     \tab Scalar greater-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{gt}     \tab Scalar greater-than bound on values of \code{x}.       }
+NOTE: \code{DDD} is used as a wildcard representing any given
+effective dimensionality property.
+\cr\cr
+\strong{\code{iDDD}}
+\cr Evaluates whether \code{x} matches the defined dimensionality property
+\code{DDD} (subject to any restrictions in \code{...}).
+\cr\cr
+\strong{\code{ddd}}
+\cr Gets a character vector containing all defined dimensionality
+properties matching \code{x}.
+\cr\cr
+\strong{\code{iddd}}
+\cr Evaluates \code{x} against the defined dimensionality property
+specification in \code{spec} (subject to any restrictions in \code{...}).
+\cr\cr
+\strong{\code{ddd_props}}
+\cr Gets a character vector of all possible defined dimensionality property
+values.
+\cr\cr
+\strong{\code{is_ddd_spec}}
+\cr Evaluates whether \code{spec} is a valid defined dimensionality
+property specification.
+\strong{\code{nddd}}
+\cr Gets the number of defined dimensions of \code{x}.
+}
+
+\section{Specifying Count and Value Restrictions}{
+ Specifying additional
+requirements in \code{...} is optional. The full set of recognized
+arguments names are defined in the following table along with the
+properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                      \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
+\code{nr}     \tab Vector of valid numbers of rows.                       \cr
+\code{nc}     \tab Vector of valid numbers of columns.                    \cr
+\code{min}    \tab Scalar minimum valid length/number of element.         \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                \cr
+\code{max}    \tab Scalar maximum valid length/number of element.         \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
+\code{vals}   \tab Vector of valid values.                                \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
 }
 
 \seealso{
@@ -123,7 +135,6 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc_props}()},
 \code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -131,6 +142,7 @@ Other props:
 \code{\link{eee}()},
 \code{\link{iii}()},
 \code{\link{meets}()},
+\code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
 \code{\link{sss}()}

@@ -110,7 +110,7 @@ argument can be a list with up to seven optional named elements, which give
 processing instructions as follows: \tabular{ll}{
 NAME‑VALUE PAIR      \tab PROCESSING INSTRUCTION                        \cr
 \code{s = TRUE}      \tab link[base:simplify2array]{Simplify} the
-result.\cr
+result.                                       \cr
 \code{a1 = TRUE}     \tab link[=a]{Atomize} \code{x} first.             \cr
 \code{a2 = TRUE}     \tab link[=a]{Atomize} the result.                 \cr
 \code{na = TRUE}     \tab Replace resulting \code{NA}s with \code{TRUE}.\cr
@@ -146,7 +146,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -154,13 +153,14 @@ Other extensions:
 \code{\link{na}()},
 \code{\link{os}()},
 \code{\link{pause}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 }
 \concept{extensions}

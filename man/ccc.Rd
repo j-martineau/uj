@@ -55,9 +55,14 @@ a match to any of the specified properties.}
   }}
 }
 \value{
-\strong{\code{ccc_vals}}: A character vector.
-\cr\cr\strong{\code{ccc}}: A character scalar or character vector.
-\cr\cr\strong{\code{iCCC, iccc, is_ccc_spec}}: A logical scalar.
+\strong{\code{ccc_vals}}
+\cr A character vector.
+\cr\cr
+\strong{\code{ccc}}
+\cr A character scalar or character vector.
+\cr\cr
+\strong{\code{iCCC, iccc, is_ccc_spec}}
+\cr A logical scalar.
 }
 \description{
 NOTE: \code{CCC} is used to represent any given extended class
@@ -69,56 +74,57 @@ PROPERTY     \tab PROPERTY   \tab QUALIFYING                          \cr
 NAME         \tab VALUE      \tab OBJECTS                             \cr
 array        \tab\code{'arr'}\tab Arrays.                             \cr
 data.frame   \tab\code{'dtf'}\tab Data frames.                        \cr
-vlist        \tab\code{'vls'}\tab Vector-lists\eqn{^a}.               \cr
+vlist        \tab\code{'vls'}\tab Vector-lists. (A)                   \cr
 generic      \tab\code{'gen'}\tab Vectors/vlists/arrays.              \cr
 matrix       \tab\code{'mat'}\tab Matrices.                           \cr
 scalar       \tab\code{'scl'}\tab Vectors/vlists/arrays of length-1.  \cr
 multivec     \tab\code{'mvc'}\tab Vectors/vlists of length 2+ and
 \link[=eee]{effectively 1D} arrays. \cr
 vec          \tab\code{'vec'}\tab Scalars and multivecs.                }
-\eqn{^a} i.e., not a data.frame list.
-\cr\cr
-Functions related to extended class properties are as follows:
-\tabular{ll}{
-CCC FUNCTION         \tab WHAT IT DOES                                \cr
-\code{iCCC}          \tab Evaluates whether \code{x} matches the
-extended class property \code{CCC}
-(subject to any restrictions in \code{...}).\cr
-\code{ccc}           \tab Gets a character vector containing all
-extended class properties matching
-\code{x}.                                   \cr
-\code{iccc}          \tab Evaluates \code{x} against the
-extended class property specification
-in \code{spec} (subject to any restrictions in
-\code{...}).                                \cr
-\code{ccc_props}     \tab Gets a character vector of all possible
-extended class property values.             \cr
-\code{is_ccc_spec}   \tab Evaluates whether \code{spec} is a valid
-extended class property
-specification.                                }
+(A) i.e., not a data.frame list.
 }
-\section{Specifying Count and Value Restrictions}{
+\section{Functions in This Family}{
 
-Specifying additional requirements in \code{...} is optional. The full set
-of recognized arguments names are defined in the following table along with
-the properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                    \cr
-\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
-\code{nr}     \tab Vec of valid numbers of rows.                        \cr
-\code{nc}     \tab Vec of valid numbers of columns.                     \cr
-\code{min}    \tab Scalar minimum valid length/number of element.       \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
-\code{minc}   \tab Scalar minimum valid number of columns.              \cr
-\code{max}    \tab Scalar maximum valid length/number of element.       \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
-\code{vals}   \tab Vec of valid values.                                 \cr
-\code{lt}     \tab Scalar less-than bound on values of \code{x}.        \cr
-\code{le}     \tab Scalar less-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{ge}     \tab Scalar greater-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{gt}     \tab Scalar greater-than bound on values of \code{x}.       }
+\strong{\code{iCCC}}
+\cr Evaluates whether \code{x} matches the extended class property
+\code{CCC} (subject to any restrictions in \code{...}).
+\cr\cr
+\strong{\code{ccc}}
+\cr Gets a character vector containing all extended class properties
+matching \code{x}.
+\cr\cr
+\strong{\code{iccc}}
+\cr Evaluates \code{x} against the extended class property specification in
+\code{spec} (subject to any restrictions in \code{...}).
+\cr\cr
+\strong{\code{ccc_props}}
+\cr Gets a character vector of all possible extended class property values.
+\cr\cr
+\strong{\code{is_ccc_spec}}
+\cr Evaluates whether \code{spec} is a valid extended class property
+specification.
+}
+
+\section{Specifying Count and Value Restrictions}{
+ Specifying additional
+requirements in \code{...} is optional. The full set of recognized
+arguments names are defined in the following table along with the
+properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                      \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
+\code{nr}     \tab Vector of valid numbers of rows.                       \cr
+\code{nc}     \tab Vector of valid numbers of columns.                    \cr
+\code{min}    \tab Scalar minimum valid length/number of element.         \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                \cr
+\code{max}    \tab Scalar maximum valid length/number of element.         \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
+\code{vals}   \tab Vector of valid values.                                \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
 }
 
 \seealso{
@@ -128,7 +134,6 @@ Other props:
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc_props}()},
 \code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -137,6 +142,7 @@ Other props:
 \code{\link{eee}()},
 \code{\link{iii}()},
 \code{\link{meets}()},
+\code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
 \code{\link{sss}()}

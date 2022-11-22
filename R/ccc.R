@@ -10,33 +10,33 @@
 #'     NAME         \tab VALUE      \tab OBJECTS                             \cr
 #'     array        \tab\code{'arr'}\tab Arrays.                             \cr
 #'     data.frame   \tab\code{'dtf'}\tab Data frames.                        \cr
-#'     vlist        \tab\code{'vls'}\tab Vector-lists\eqn{^a}.               \cr
+#'     vlist        \tab\code{'vls'}\tab Vector-lists. (A)                   \cr
 #'     generic      \tab\code{'gen'}\tab Vectors/vlists/arrays.              \cr
 #'     matrix       \tab\code{'mat'}\tab Matrices.                           \cr
 #'     scalar       \tab\code{'scl'}\tab Vectors/vlists/arrays of length-1.  \cr
 #'     multivec     \tab\code{'mvc'}\tab Vectors/vlists of length 2+ and
 #'                                       \link[=eee]{effectively 1D} arrays. \cr
 #'     vec          \tab\code{'vec'}\tab Scalars and multivecs.                }
-#'   \eqn{^a} i.e., not a data.frame list.
+#'   (A) i.e., not a data.frame list.
+#' @section Functions in This Family:
+#'   \strong{\code{iCCC}}
+#'   \cr Evaluates whether \code{x} matches the extended class property
+#'   \code{CCC} (subject to any restrictions in \code{...}).
 #'   \cr\cr
-#'   Functions related to extended class properties are as follows:
-#'   \tabular{ll}{
-#'     CCC FUNCTION         \tab WHAT IT DOES                                \cr
-#'     \code{iCCC}          \tab Evaluates whether \code{x} matches the
-#'                               extended class property \code{CCC}
-#'                               (subject to any restrictions in \code{...}).\cr
-#'     \code{ccc}           \tab Gets a character vector containing all
-#'                               extended class properties matching
-#'                               \code{x}.                                   \cr
-#'     \code{iccc}          \tab Evaluates \code{x} against the
-#'                               extended class property specification
-#'                               in \code{spec} (subject to any restrictions in
-#'                               \code{...}).                                \cr
-#'     \code{ccc_props}     \tab Gets a character vector of all possible
-#'                               extended class property values.             \cr
-#'     \code{is_ccc_spec}   \tab Evaluates whether \code{spec} is a valid
-#'                               extended class property
-#'                               specification.                                }
+#'   \strong{\code{ccc}}
+#'   \cr Gets a character vector containing all extended class properties
+#'   matching \code{x}.
+#'   \cr\cr
+#'   \strong{\code{iccc}}
+#'   \cr Evaluates \code{x} against the extended class property specification in
+#'   \code{spec} (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{ccc_props}}
+#'   \cr Gets a character vector of all possible extended class property values.
+#'   \cr\cr
+#'   \strong{\code{is_ccc_spec}}
+#'   \cr Evaluates whether \code{spec} is a valid extended class property
+#'   specification.
 #' @param x An R object.
 #' @param spec \code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
 #'   containing one or more extended class properties (i.e., from
@@ -45,9 +45,14 @@
 #'   a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{ccc_vals}}: A character vector.
-#'   \cr\cr\strong{\code{ccc}}: A character scalar or character vector.
-#'   \cr\cr\strong{\code{iCCC, iccc, is_ccc_spec}}: A logical scalar.
+#' @return \strong{\code{ccc_vals}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{ccc}}
+#'   \cr A character scalar or character vector.
+#'   \cr\cr
+#'   \strong{\code{iCCC, iccc, is_ccc_spec}}
+#'   \cr A logical scalar.
 #' @export
 ccc <- function(x) {
   props <- .ccc_props()

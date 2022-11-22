@@ -67,7 +67,7 @@
 \alias{twoTF}
 \alias{twoLG}
 \alias{twoBL}
-\title{Failsafe \code{is} functions}
+\title{Failsafe \code{is} Functions}
 \format{
 An object of class \code{NULL} of length 0.
 }
@@ -401,7 +401,6 @@ Other extensions:
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -410,13 +409,14 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 
 Other failsafe: 
@@ -425,7 +425,7 @@ Other failsafe:
 
 Other logicals: 
 \code{\link{binfuns}},
-\code{\link{logicals_uj}()}
+\code{\link{uj_logicals}}
 }
 \concept{extensions}
 \concept{failsafe}

@@ -1,6 +1,6 @@
 #' @name atomize
 #' @title Atomize to a vector of atomic values
-#' @description Reduce all arguments in \code{...} to a single atomic vector of
+#' @description Reduce all \code{...} arguments to a single atomic vector of
 #'   atomic elements without any additional attributes.
 #' @family extensions
 #' @param ... Arguments to be atomized.

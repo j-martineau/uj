@@ -81,10 +81,6 @@
 .ppp_props <- function() {sort(c(.bbb_props(), .ccc_props(), .ddd_props(), .eee_props(), .iii_props(), .mmm_props(), .sss_props()))}
 .spec_vals <- function(x) {if (!is.character(x)) {return(NULL)} else {x <- unname(unlist(strsplit(x, "|", fixed = T))); x[x != ""]}}
 
-# @description Drop the 'i' prefix from 4-character 'i***' (single-property)
-#   function names.
-# @param x Character scalar.
-# @return Character scalar.
 .drop_iprefix <- function(x) {
   i <- nchar(x) == 4 & substr(x, 1, 1) == "i"
   x[i] <- substr(x[i], 2, 4)
@@ -96,35 +92,34 @@
 #' @title All purpose property checking
 #' @description This set of functions provide utilities that bring together
 #'   these seven families of properties defined by this package:\tabular{ll}{
-#'   PROPERTY          \tab PROPERTY                                         \cr
-#'   FAMILY            \tab TYPE                                             \cr
-#'   \code{\link{bbb}} \tab Base                                             \cr
-#'   \code{\link{ccc}} \tab Extended class                                   \cr
-#'   \code{\link{ddd}} \tab Defined dimensionality                           \cr
-#'   \code{\link{eee}} \tab Effective dimensionality                         \cr
-#'   \code{\link{iii}} \tab Integrity (state of completeness)                \cr
-#'   \code{\link{mmm}} \tab Extended mode                                    \cr
-#'   \code{\link{sss}} \tab Shape                                              }
-#'   \strong{Individual Property Specifications}
-#'   \cr In this package, all individual property specifications are scalars
-#'   containing exactly 3 characters (e.g., \code{'ord'}, \code{'dtf'},
-#'   \code{'d1D'}, or \code{'rct'}).
+#'     PROPERTY         \tab PROPERTY                                        \cr
+#'     FAMILY VALUE     \tab FAMILY NAME                                     \cr
+#'     \code{\link{bbb}}\tab Base                                            \cr
+#'     \code{\link{ccc}}\tab Extended class                                  \cr
+#'     \code{\link{ddd}}\tab Defined dimensionality                          \cr
+#'     \code{\link{eee}}\tab Effective dimensionality                        \cr
+#'     \code{\link{iii}}\tab Integrity (state of completeness)               \cr
+#'     \code{\link{mmm}}\tab Extended mode                                   \cr
+#'     \code{\link{sss}}\tab Shape                                             }
+#'   \strong{Individual Property Specifications}: In this package, all
+#'   individual property specifications are scalars containing exactly 3
+#'   characters (e.g., \code{'ord'}, \code{'dtf'}, \code{'d1D'}, or
+#'   \code{'rct'}).
 #'   \cr\cr
-#'   \strong{Combination/Conjunctive Property Specifications}
-#'   \cr Specifications for properties that must co-occur are constructed by
-#'   delimiting multiple individual properties with underscores (e.g., the
-#'   properties \code{'ord'}, \code{'dtf'}, \code{'d1D'}, and \code{'rct'} could
-#'   be specified to occur together using the combination/conjunctive property
-#'   specification \code{'ord_dtf_d1D_rct'} or an equivalent
-#'   underscore-delimited permutation.
+#'   \strong{Combination/Conjunctive Property Specifications}: Specifications
+#'   for properties that must co-occur are constructed by delimiting multiple
+#'   individual properties with underscores (e.g., the properties \code{'ord'},
+#'   \code{'dtf'}, \code{'d1D'}, and \code{'rct'} could be specified to occur
+#'   together using the combination/conjunctive property specification
+#'   \code{'ord_dtf_d1D_rct'} or an equivalent underscore-delimited permutation.
 #'   \cr\cr
-#'   \strong{Alternative/Compensatory Property Specifications}
-#'   \cr Specifications for alternative/compensatory properties give a way to
-#'   indicate that if any one (individual or combination) property is satisfied
-#'   the entire specification is satisfied. They are constructed by
-#'   pipe-delimiting multiple individual or combination properties. For example,
-#'   the specification \code{'ord|dtf_d1D||dtf_rct'} would be satisfied by an
-#'   object with property \code{'ord'}, by an object with the combined property
+#'   \strong{Alternative/Compensatory Property Specifications}: Specifications
+#'   for alternative/compensatory properties give a way to indicate that if any
+#'   one (individual or combination) property is satisfied the entire
+#'   specification is satisfied. They are constructed by pipe-delimiting
+#'   multiple individual or combination properties. For example, the
+#'   specification \code{'ord|dtf_d1D||dtf_rct'} would be satisfied by an object
+#'   with property \code{'ord'}, by an object with the combined property
 #'   \code{'dtf_d1D'}, or by an object with the combined property
 #'   \code{'dtf_rct'}.
 #'   \cr\cr
@@ -133,123 +128,140 @@
 #'     \item Universal Property Functions
 #'     \item Individual Property Functions
 #'     \item Combination Property Functions}
-#' @section Universal Property Functions: Property functions addressing
-#'   \emph{all} property families are the following: \tabular{ll}{
-#'     FUNCTION                 \tab WHAT THE                                \cr
-#'     NAME                     \tab FUNCTION DOES                           \cr
-#'     \code{ppp}         \tab Get all properties of all property families
-#'                                   applicable to an object.                \cr
-#'     \code{ippp}              \tab Evaluate whether an object satisfies the
-#'                                   property specification in \code{ppp}
-#'                                   subject to any additional restrictions
-#'                                   supplied in \code{...}.                 \cr
-#'     \code{nll_or}            \tab Evaluate whether an object is either
-#'                                   \code{NULL} or satisfies the property
-#'                                   specification in argument \code{ppp}
-#'                                   subject to any additional restrictions in
-#'                                   \code{...}.                             \cr
-#'     \code{nas_or}            \tab Evaluate whether an object is either scalar
-#'                                   \code{NA} or satisfies the property
-#'                                   specification in argument \code{ppp}
-#'                                   subject to any additional restrictions in
-#'                                   \code{...}.                             \cr
-#'     \code{all_props}         \tab Get all possible individual properties from
-#'                                   all property families and all possible
-#'                                   combination/conjunctive properties as
-#'                                   checked by combined property functions (see
-#'                                   the \emph{combined property functions}
-#'                                   section).                               \cr
-#'     \code{ppp_all}           \tab Get all constituent individual properties
-#'                                   from the property specification in argument
-#'                                   \code{ppp}.                             \cr
-#'     \code{ppp_funs}          \tab Gets the names of all property functions
-#'                                   that check for a single property or a
-#'                                   combined property without checking for any
-#'                                   additional restrictions.                \cr
-#'     \code{ppp_defs}          \tab Get a data frame defining all individual
-#'                                   properties of all property families.    \cr
-#'     \code{is_ppp_fun}        \tab Evaluates whether a character scalar is the
-#'                                   name of a property function (those listed
-#'                                   by \code{\link{ppp_funs}}).             \cr
-#'     \code{is_valid_ppp}      \tab Evaluates a character scalar property
-#'                                   specification for validity (i.e., does it
-#'                                   contain only single properties, valid
-#'                                   combination properties, and/or valid
-#'                                   alternate properties).                  \cr
-#'     \code{ppp_from_combo}    \tab Extract each individual property value from
-#'                                   a combination/conjunctive property
-#'                                   specification. \cr
-#'     \code{combos_from_ppp}   \tab Extracts each individual or combination
-#'                                   property specification from an
-#'                                   alternative/compensatory property
-#'                                   specification.                          \cr
-#'     \code{ppp_verbose}       \tab Get a verbose definition of an individual
-#'                                   property specification.                 \cr
-#'     \code{ppp_concise}       \tab Get a plain-language, concise definition of
-#'                                   an individual or combination/conjunctive
-#'                                   property specification.                 \cr
-#'     \code{alt_ppp_concise}   \tab Get a plain-language, concise definition of
-#'                                   an alternative/compensatory property
-#'                                   specification.                            }
+#' @section Universal Property Functions: These functions address all property
+#'   families.
+#'   \cr\cr
+#'   \strong{\code{ppp}}
+#'   \cr Get all properties of all property families applicable to an object.
+#'   \cr\cr
+#'   \strong{\code{ippp}}
+#'   \cr Evaluate whether an object satisfies the property specification in
+#'   \code{ppp} subject to any additional restrictions supplied in \code{...}.
+#'   \cr\cr
+#'   \strong{\code{nll_or}}
+#'   \cr Evaluate whether an object is either \code{NULL} or satisfies the
+#'   property specification in argument \code{ppp} subject to any additional
+#'   restrictions in \code{...}.
+#'   \cr\cr
+#'   \strong{\code{nas_or}}
+#'   \cr Evaluate whether an object is either scalar \code{NA} or satisfies the
+#'   property specification in argument \code{ppp} subject to any additional
+#'   restrictions in \code{...}.
+#'   \cr\cr
+#'   \strong{\code{all_props}}
+#'   \cr Get all possible individual properties from all property families and
+#'   all possible combination/conjunctive properties as checked by combined
+#'   property functions (see the \emph{combined property functions} section).
+#'   \cr\cr
+#'   \strong{\code{ppp_all}}
+#'   \cr Get all constituent individual properties from the property
+#'   specification in argument \code{ppp}.
+#'   \cr\cr
+#'   \strong{\code{ppp_funs}}
+#'   \cr Gets the names of all property functions that check for a single
+#'   property or a combined property without checking for any additional
+#'   restrictions.
+#'   \cr\cr
+#'   \strong{\code{ppp_defs}}
+#'   \cr Get a data frame defining all individual properties of all property
+#'   families.
+#'   \cr\cr
+#'   \strong{\code{is_ppp_fun}}
+#'   \cr Evaluates whether a character scalar is the name of a property function
+#'   (those listed by \code{\link{ppp_funs}}).
+#'   \cr\cr
+#'   \strong{\code{is_valid_ppp}}
+#'   \cr Evaluates a character scalar property specification for validity (i.e.,
+#'   does it contain only single properties, valid combination properties,
+#'   and/or valid alternate properties).
+#'   \cr\cr
+#'   \strong{\code{ppp_from_combo}}
+#'   \cr Extract each individual property value from a combination/conjunctive
+#'   property specification.
+#'   \cr\cr
+#'   \strong{\code{combos_from_ppp}}
+#'   \cr Extracts each individual or combination property specification from an
+#'   alternative/compensatory property specification.
+#'   \cr\cr
+#'   \strong{\code{ppp_verbose}}
+#'   \cr Get a verbose definition of an individual property specification.
+#'   \cr\cr
+#'   \strong{\code{ppp_concise}}
+#'   \cr Get a plain-language, concise definition of an individual or
+#'   combination/conjunctive property specification.
+#'   \cr\cr
+#'   \strong{\code{alt_ppp_concise}}
+#'   \cr Get a plain-language, concise definition of an alternative/compensatory
+#'   property specification.
 #' @section Individual Property Functions: Property functions associated with a
 #'   single property family take the following forms where \code{PPP} is a
 #'   placeholder for any given individual property and \code{FFF} is a
-#'   placeholder for any given  property family: \tabular{ll}{
-#'   FUNCTION           \tab WHAT THE                                        \cr
-#'   NAME FORMAT        \tab FUNCTION DOES                                   \cr
-#'   \code{FFF}         \tab Get properties from the property family
-#'                           represented by \code{FFF} applicable to an
-#'                           object.                                         \cr
-#'   \code{iPPP}         \tab Evaluate whether an object has the specific
-#'                           property represented by \code{PPP}.             \cr
-#'   \code{iFFF}        \tab Evaluate whether an object has one or more
-#'                           individual properties from the property family
-#'                           represented by \code{FFF}, subject to any
-#'                           restrictions supplied in \code{...}.            \cr
-#'   \code{FFF_props}   \tab Get all properties in the property family
-#'                           represented by \code{FFF}.                        }
+#'   placeholder for any given  property family.
+#'   \cr\cr
+#'   \strong{\code{FFF}}
+#'   \cr Get properties from the property family represented by \code{FFF}
+#'   applicable to an object.
+#'   \cr\cr
+#'   \strong{\code{iPPP}}
+#'   \cr Evaluate whether an object has the specific property represented by
+#'   \code{PPP}.
+#'   \cr\cr
+#'   \strong{\code{iFFF}}
+#'   \cr Evaluate whether an object has one or more individual properties from
+#'   the property family represented by \code{FFF}, subject to any restrictions
+#'   supplied in \code{...}.
+#'   \cr\cr
+#'   \strong{\code{FFF_props}}
+#'   \cr Get all properties in the property family represented by \code{FFF}.
 #' @section Combination Property Functions: Property functions associated with a
 #'   single property family take the following forms where \code{CCC},
 #'   \code{MMM}, and \code{BBB} are placeholders for properties from extended
-#'   class, extended mode, and base property families:\tabular{ll}{
-#'   FUNCTION      \tab WHAT THE                                             \cr
-#'   NAME FORMAT   \tab FUNCTION DOES                                        \cr
-#'   \code{\link{MMM_CCC}}
-#'     \tab Evaluate whether an object is of the extended mode represented by
-#'          \code{MMM} and of the extended class represented by
-#'          \code{CCC}.                                                      \cr
-#'   \code{\link{BBB_CCC}}
-#'     \tab Evaluate whether an object is of the fundamental type represented by
-#'          \code{BBB} and of the extended class represented by
-#'          \code{CCC}.                                                      \cr
-#'   \code{\link{BBB_MMM}}
-#'     \tab Evaluate whether an object is of the fundamental type represented by
-#'          \code{BBB} and of the extended mode represented by
-#'          \code{MMM}.                                                      \cr
-#'   \code{\link{cmp_CCC}}
-#'     \tab Evaluate whether an object is complete (non-empty, atomic,
-#'          containing no \code{NA} values). and is of the extended class
-#'          represented by \code{CCC}.                                       \cr
-#'   \code{\link{cmp_MMM}}
-#'     \tab Evaluate whether an object is complete (implying non-empty and
-#'          atomic) and is of the extended mode represented by \code{MMM}.   \cr
-#'   \code{\link{cmp_MMM_CCC}}
-#'     \tab Evaluate whether an object is complete (implying non-empty and
-#'          atomic), is of the extended mode represented by \code{MMM}, and is
-#'          of the extended class represented by \code{CCC}.                 \cr
-#'   \code{\link{mmm_ccc_props}}
-#'     \tab Get all combined extended mode + extended class properties.      \cr
-#'   \code{\link{bbb_ccc_props}}
-#'     \tab Get all combined base + extended class properties.               \cr
-#'   \code{\link{bbb_mmm_props}}
-#'     \tab Get combined base + extended mode properties.                    \cr
-#'   \code{\link{cmp_ccc_props}}
-#'     \tab Get all combined completeness + extended class properties.       \cr
-#'   \code{\link{cmp_mmm_props}}
-#'     \tab Get all combined completeness + extended mode properties.        \cr
-#'   \code{\link{cmp_mmm_ccc_props}}   
-#'     \tab Get all combined completeness + extended mode + extended class
-#'          properties.                                                        }
+#'   class, extended mode, and base property families.
+#'   \cr\cr
+#'   \strong{\code{MMM_CCC}}
+#'   \cr Evaluate whether an object is of the extended mode represented by
+#'   \code{MMM} and of the extended class represented by \code{CCC}.
+#'   \cr\cr
+#'   \strong{\code{BBB_CCC}}
+#'   \cr Evaluate whether an object is of the fundamental type represented by
+#'   \code{BBB} and of the extended class represented by \code{CCC}.
+#'   \cr\cr
+#'   \strong{\code{BBB_MMM}}
+#'   \cr Evaluate whether an object is of the fundamental type represented by
+#'   \code{BBB} and of the extended mode represented by \code{MMM}.
+#'   \cr\cr
+#'   \strong{\code{cmp_CCC}}
+#'   \cr Evaluate whether an object is complete (non-empty, atomic, containing
+#'   no \code{NA} values). and is of the extended class represented by
+#'   \code{CCC}.
+#'   \cr\cr
+#'   \strong{\code{cmp_MMM}}
+#'   \cr Evaluate whether an object is complete (implying non-empty and atomic)
+#'   and is of the extended mode represented by \code{MMM}.
+#'   \cr\cr
+#'   \strong{\code{cmp_MMM_CCC}}
+#'   \cr Evaluate whether an object is complete (implying non-empty and atomic),
+#'   is of the extended mode represented by \code{MMM}, and is of the extended
+#'   class represented by \code{CCC}.
+#'   \cr\cr
+#'   \strong{\code{mmm_ccc_props}}
+#'   \cr Get all combined extended mode + extended class properties.
+#'   \cr\cr
+#'   \strong{\code{bbb_ccc_props}}
+#'   \cr Get all combined base + extended class properties.
+#'   \cr\cr
+#'   \strong{\code{bbb_mmm_props}}
+#'   \cr Get combined base + extended mode properties.
+#'   \cr\cr
+#'   \strong{\code{cmp_ccc_props}}
+#'   \cr Get all combined completeness + extended class properties.
+#'   \cr\cr
+#'   \strong{\code{cmp_mmm_props}}
+#'   \cr Get all combined completeness + extended mode properties.
+#'   \cr\cr
+#'   \strong{\code{cmp_mmm_ccc_props}}
+#'   \cr Get all combined completeness + extended mode + extended class
+#'   properties.
 #' @param as.dtf \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
 #'   to return the result as a dtf with column 1 containing property values and
 #'   column 2 containing the property families.
@@ -265,14 +277,15 @@
 #'   to print the property definition to the console.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \tabular{lll}{
-#'   \code{ppp}, \code{ppp_all}, \code{ppp_vals}, \code{pop_funs},
-#'   \code{ppp_from_combo}, \code{combos_from_ppp}
-#'         \tab   \tab A character vector.                                   \cr
-#'   \code{ppp_concise}, \code{alt_ppp_concise}
-#'         \tab   \tab A character scalar.                                   \cr
-#'   All others
-#'         \tab   \tab A logical scalar.                                       }
+#' @return \strong{\code{ppp, ppp_all, ppp_vals, pop_funs, ppp_from_combo,
+#'   combos_from_ppp}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{ppp_concise, alt_ppp_concise}}
+#'   \cr A character scalar.
+#'   \cr\cr
+#'   \strong{All others}
+#'   \cr A logical scalar.
 #' @export
 ppp <- function(x) {sort(c(bbb(x), ccc(x), ddd(x), eee(x), iii(x), mmm(x), sss(x)))}
 
@@ -297,7 +310,7 @@ ppp_props <- function(as.dtf = F) {
 #' @rdname ppp
 #' @export
 ippp <- function(x, spec, ...) {
-  if (!is_valid_ppp(ppp)) {stop("\n \u2022 [spec] specifies a property not in [uj::ppp_props()].")}
+  if (!is_valid_ppp(ppp)) {stop("\n \u2022 [spec] specifies a property not in ppp_props().")}
   if (!meets(x, ...)) {return(F)}
   all.ppps <- ppp_props()
   combos <- combos_from_spec(spec)
@@ -323,7 +336,7 @@ ppp_all <- function(spec, valid = ppp_props()) {
   ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% ppp_props()), F)
   errs <- c(f0(cmp_chr_scl(spec), NULL, "\n \u2022 [spec] must be a complete character scalar (?cmp_chr_scl)."),
             f0(ok.valid         , NULL, "\n \u2022 [valid] must be a complete character vector (?cmp_chr_vec) containing only values from ppp_vals()."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   combos <- av(strsplit(spec, "|", fixed = T))
   singles <- trimws(av(strsplit(combos, "_", fixed = T)))
   singles <- singles[singles != ""]
@@ -404,7 +417,7 @@ ppp_defs <- function() {
     "mmm"  , "clr"   , "character color value"             , "A character object containing valid color values",
     "mmm"  , "evn"   , "even whole-number"                 , "An even whole-number object",
     "mmm"  , "fac"   , "factor"                            , "An ordered-factor or unordered-factor object",
-    "mmm"  , "frc"   , "fractional numeric"                , "A fractional numeric object (containing 1+ non-whole-number values)",
+    "mmm"  , "frc"   , "fractional numeric"                , "A fractional numeric object (having 1+ non-whole-number values)",
     "mmm"  , "ind"   , "indexing"                          , "A indexing object (logical or positive whole number)",
     "mmm"  , "lgl"   , "logical"                           , "A logical object",
     "mmm"  , "neg"   , "negative numeric"                  , "A negative numeric object",
@@ -421,6 +434,7 @@ ppp_defs <- function() {
     "mmm"  , "pos"   , "positive numeric"                  , "A positive numeric object",
     "mmm"  , "ppn"   , "proportion  numeric"               , "A numeric proportion object (values in the interval [0, 1])",
     "mmm"  , "psw"   , "positive whole-number"             , "A positive whole-number object",
+    "mmm"  , "str"   , "string"                            , "A string object (character without any blanks)",
     "mmm"  , "srt"   , "sortable"                          , "A sortable object (character, logical, numeric, or ordered factor)",
     "mmm"  , "uno"   , "unordered-factor"                  , "A unordered-factor object",
     "mmm"  , "whl"   , "whole-number"                      , "A whole-number object",
@@ -428,8 +442,8 @@ ppp_defs <- function() {
     "sss"  , "emp"   , "empty"                             , "An empty object (of length 0, but not NULL)",
     "sss"  , "lin"   , "linear"                            , "A linear object (vector/vlist/1D array of length 2+, row/column matrix/data.frame, or populated array with multiple indexing positions in exactly 1 dimension)",
     "sss"  , "pnt"   , "point"                             , "A point object (length-1 vector/array/vlist or 1 x 1 data.frame/matrix)",
+    "sss"  , "rct"   , "rectangular"                       , "A rectangular object (2+ x 2+ data.frame/matrix)",
     "sss"  , "row"   , "row"                               , "A row object (1 x 2+ data.frame/matrix)",
-    "sss"  , "rct"   , "rectangular"                       , "A rectangular object (2+ x 2+ data.frame/matrix, or a higher-dimensional array with multiple index positions in exactly 2 dimensions)",
     "sss"  , "sld"   , "solid"                             , "A solid object (array with multiple index positions in 3+ dimensions)",
     "sss"  , "sqr"   , "square"                            , "A square atomic matrix"
   )
@@ -479,7 +493,7 @@ is_valid_ppp <- function(ppp) {
 ppp_from_combo <- function(combo, valid = ppp_props()) {
   ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% ppp_props()), F)
   errs <- c(f0(cmp_chr_scl(combo), NULL, "\n \u2022 [combo] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(ok.valid        , NULL, "\n \u2022 [valid] must be a complete character vec (?cpm_chr_vec) containing only values from ppp_props()."))
+            f0(ok.valid          , NULL, "\n \u2022 [valid] must be a complete character vec (?cpm_chr_vec) containing only values from ppp_props()."))
   if (!is.null(errs)) {stop(errs)}
   if (length(combo) != av(strsplit(combo, "|", fixed = T))) {stop("\n \u2022 [combo] contains multiple alternate property specs.")}
   out <- trimws(av(strsplit(combo, "_", fixed = T)))
@@ -495,10 +509,10 @@ ppp_from_combo <- function(combo, valid = ppp_props()) {
 combos_from_spec <- function(spec, valid = ppp_props()) {
   ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% ppp_props()), F)
   errs <- c(f0(cmp_chr_scl(spec), NULL, "\n \u2022 [spec] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(ok.valid, NULL, "\n \u2022 [valid] must be a complete character vec (?cpm_chr_vec) containing only values from ppp_props()."))
+            f0(ok.valid         , NULL, "\n \u2022 [valid] must be a complete character vec (?cpm_chr_vec) containing only values from ppp_props()."))
   if (!is.null(errs)) {stop(errs)}
   ppp.singles <- ppp_all(spec, valid)
-  if (!all(ppp.singles %in% valid)) {stop("\n \u2022 [ppp] contains a property spec not in [valid = c(", paste0(paste0("'", valid, "'"), collapse = ", "), ")].")}
+  if (!all(ppp.singles %in% valid)) {stop("\n \u2022 [ppp] contains a property spec not in c(", paste0(paste0("'", valid, "'"), collapse = ", "), ").")}
   out <- trimws(av(strsplit(ppp, "|", fixed = T)))
   out <- out[out != ""]
   out <- .drop_iprefix(out)
@@ -510,9 +524,9 @@ combos_from_spec <- function(spec, valid = ppp_props()) {
 ppp_verbose <- function(ppp = NULL, print = TRUE) {
   errs <- c(f0(inll(ppp) | !is_valid_ppp(ppp), NULL, "\n \u2022 [ppp] must be NULL or a scalar individual property specification."),
             f0(isTF(print)                   , NULL, "\n \u2022 [print] must be TRUE or FALSE."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (!is.null(ppp)) {ppp <- ppp_all(ppp)}
-  if (length(ppp) > 1) {stop("\n \u2022  [ppp = '", ppp, "'] contains more than 1 property value.")}
+  if (length(ppp) > 1) {stop("\n \u2022 [ppp] contains more than 1 property value.")}
   ppp <- .drop_iprefix(ppp)
   out <- ppp_defs()
   if (idef(ppp)) {

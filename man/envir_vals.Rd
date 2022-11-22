@@ -5,7 +5,7 @@
 \alias{vexists}
 \alias{vget}
 \alias{vset}
-\title{Objects in environments of calling functions}
+\title{Objects in Environments of Calling Functions}
 \usage{
 vexists(name, err = T, gens = 1)
 
@@ -27,23 +27,33 @@ the number of generations back in the function call stack to go.}
 \item{val}{A value to place into the object specified by \code{name}.}
 }
 \value{
-\tabular{ll}{
-\code{vexists}   \tab A logical scalar.                                 \cr
-\code{vget}    \tab An R object                                         \cr
-\code{vset}    \tab \code{NULL} (called for its side effect).             }
+\strong{\code{vexists}}
+\cr A logical scalar.
+\cr\cr
+\strong{\code{vget}}
+\cr An R object
+\cr\cr
+\strong{\code{vset}}
+\cr \code{NULL} (called for its side effect).
 }
 \description{
-\tabular{ll}{
-\code{vexists}   \tab Checks for the existence of an object in the
-environment of the calling function \code{gens}
-generations back in the call stack.               \cr
-\code{vget}      \tab Gets the value of an object in the environment of the
-calling function \code{gens} generations back in the
-call stack.                                       \cr
-\code{vset }     \tab Sets the value of an object in the environment of the
-calling function \code{gens} generations back in the
-call stack.                                         }
+Objects in Environments of Calling Functions
 }
+\section{Functions in This Family}{
+
+\strong{\code{vexists}}
+\cr Checks for the existence of an object in the environment of the calling
+function \code{gens} generations back in the call stack.
+\cr\cr
+\strong{\code{vget}}
+\cr Gets the value of an object in the environment of the calling function
+\code{gens} generations back in the call stack.
+\cr\cr
+\strong{\code{vset}}
+\cr Sets the value of an object in the environment of the calling function
+\code{gens} generations back in the call stack.
+}
+
 \examples{
 fun.a <- function() {A <- 0; fun.b()}
 fun.b <- function() {B <- 1; fun.c()}
@@ -80,7 +90,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -89,13 +98,14 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 
 Other environments: 

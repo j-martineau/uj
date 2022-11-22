@@ -1,7 +1,34 @@
-#' @name dialogs
+#' @name uj_dialogs
 #' @family dialogs
-#' @title Dialog boxes using package \code{svDialogs}.
-#' @description Launch a dialog box
+#' @title Dialog Boxes Using Package \code{svDialogs}.
+#' @description All functions in this family take `...` arguments, which are
+#'   \link[=av]{atomized} and collapsed into a prompt to be displayed in a
+#'   dialog box.\tabular{ll}{
+#'   \strong{FUNCTION}   \tab \strong{WHAT IT DOES}                          \cr
+#'   `msgbox`       \tab Launch a simple dialog box to give the message.     \cr
+#'   `dirbox`       \tab Ask user to select a directory/folder. (A)          \cr
+#'   `docbox`       \tab Ask user to select a document. (A)                  \cr
+#'   `ansbox`       \tab Ask user to input a text response.                  \cr
+#'   `no`           \tab Does user select the 'no' button? (not 'yes')       \cr
+#'   `yes`          \tab Does user select the 'yes' button? (not 'no')       \cr
+#'   `msg`          \tab Returning the name of the button clicked.           \cr
+#'   `okx`          \tab Does user select the 'ok' button? (not 'cancel')    \cr
+#'   `choose_dir`   \tab Ask user to select a directory/folder.              \cr
+#'   `choose_doc`   \tab Ask user to select a document/file.                 \cr
+#'   `ask`          \tab Ask the user for typed input                        \cr
+#'   `ask1`         \tab Ask user to select a single option from a list.     \cr
+#'   `asks1`        \tab Ask user to select 1 option from a list, possibly
+#'                       across multiple rounds.                             \cr
+#'   `askn`         \tab Ask user to select a 1+ options from a list.        \cr
+#'   `asksn`        \tab Ask user to select a 1+ options from a list of
+#'                       possible options, possibly across multiple rounds.  \cr
+#'   `asknew`       \tab Ask user to enter a space- or comma-separated list of
+#'                       replacement values for existing values.               }
+#'   NOTE:
+#'   \cr `(A). `Fail safe feature launches a message dialog box prompting the
+#'              use to take an action in the next dialog box. After user
+#'              acknowledges, only then launches the selection dialog to avoid
+#'              problems with prompts not showing up on all operating systems.
 #' @param x \link[=cmp_chr_scl]{Complete character scalar} message.
 #' @param d \link[=cmp_chr_scl]{Complete character scalar} default directory.
 #' @param t \link[=cmp_chr_scl]{Complete character scalar} type of dialog box
@@ -31,27 +58,18 @@
 #'   new values must be unique.
 #' @return \link[=cmp_chr_scl]{Complete character scalar}
 #' @export
-dialogs <- ""
-
-#' @describeIn dialogs Collapse \code{...} into a character scalar message and
-#'   launch a simple dialog box to give the message.
-#' @export
 msgbox <- function(..., t = "ok") {
   msg <- paste0(av(...), collapse = "")
   vals <- c("ok", "okcancel", "yesno", "yesnocancel")
   errs <- c(f0(idef(msg)     , NULL, "\n \u2022 No user update message was provided in [...]."),
             f0(cmp_chr_scl(t), NULL, "\n \u2022 [t] must be a character scalar in c('ok', 'okcancel', 'yesno', 'yesnocancel')."),
             f0(isIN(t, vals) , NULL, "\n \u2022 [t] must be a character scalar in c('ok', 'okcancel', 'yesno', 'yesnocancel')."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   ans <- svDialogs::dlg_message(msg, type = t)
   if (t == "ok") {NULL} else {ans}
 }
 
-#' @describeIn dialogs Collapse {...} into a character scalar prompt. Ask user
-#'   to select a directory/folder. Fail safe feature launches a message dialog
-#'   box prompting the use to take an action in the next dialog box After user
-#'   acknowledges, launches the directory/folder selection dialog to avoid
-#'   problems with the prompt not showing up on all operating systems.
+#' @rdname uj_dialogs
 #' @export
 dirbox <- function(..., d = getwd()) {
   msg <- paste0(av(...), collapse = "")
@@ -60,15 +78,11 @@ dirbox <- function(..., d = getwd()) {
   errs <- c(f0(cmp_chr_scl(msg), NULL, "\n \u2022 No message to the user was provided in [...]."),
             f0(cmp_chr_scl(d)  , NULL, "\n \u2022 No default directory provided in [d]."),
             f0(dir.exists(d)   , NULL, da0("\n \u2022 [d = '", d, "'] is not an existing directory/folder.")))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   msgbox(da0("In the next dialog box, ", msg)); svDialogs::dlg_dir(default = d, title = msg)
 }
 
-#' @describeIn dialogs Collapse \code{...} into a character scalar prompt. Ask
-#'   user to select a document Fail safe feature launches a message dialog box
-#'   prompting the use to take an action in the next dialog box After user
-#'   acknowledges, launches the file selection dialog to avoid problems with the
-#'   prompt not showing up on all operating systems.
+#' @rdname uj_dialogs
 #' @export
 docbox <- function(...) {
   msg <- paste0(av(...), collapse = "")
@@ -77,40 +91,35 @@ docbox <- function(...) {
   msgbox(da0("In the next dialog box, ", msg)); svDialogs::dlg_open(title = msg)
 }
 
-#' @describeIn dialogs Ask user to input a text response.
+#' @rdname uj_dialogs
 #' @export
 ansbox <- function(x = "Enter a value", def = "") {svDialogs::dlg_input(message = x, default = def)}
 
-#' @describeIn dialogs Does user select the 'no' button (rather than 'yes') in
-#'   response to the prompt?
+#' @rdname uj_dialogs
 #' @export
 no <- function(...) {msgbox(paste0(av(...), collapse = ""), t = "yesno")$res != "yes"}
 
-#' @describeIn dialogs Does user select the 'yes' button (rather than 'no') in
-#'   response to the prompt?
+#' @rdname uj_dialogs
 #' @export
 yes <- function(...) {msgbox(paste0(av(...), collapse = ""), t = "yesno")$res == "yes"}
 
-#' @describeIn dialogs Display a message in a dialog box, returning
-#'   the value of the button clicked.
+#' @rdname uj_dialogs
 #' @export
 msg <- function(x, t = "ok") {msgbox(x, t = t)$res}
 
-#' @describeIn dialogs Does user select the 'ok' (rather than 'cancel') button
-#'   in response to the prompt?
+#' @rdname uj_dialogs
 #' @export
 okx <- function(x) {x <- msg(x, "okcancel"); if (x != "ok") {stop("canceled")}}
 
-#' @describeIn dialogs Ask user to select a directory.
+#' @rdname uj_dialogs
 #' @export
 choose_dir <- function(type = "file") {dirbox(okx(da1("Select a", type, "directory")))$res}
 
-#' @describeIn dialogs Ask user to select a document
+#' @rdname uj_dialogs
 #' @export
 choose_doc <- function(type = "document") {docbox(okx(da1("Select a", type, "file")))$res}
 
-#' @describeIn dialogs Ask the user for typed input to be returned without
-#'   further processing.
+#' @rdname uj_dialogs
 #' @export
 ask <- function(..., def = "", cancel = ".stop") {
   ends <- r(2, "\n")                                                              # pad front and back with three newlines to make all content appear inside the dialog box
@@ -120,8 +129,7 @@ ask <- function(..., def = "", cancel = ".stop") {
   else {answer}                                                                   # ELSE return the answer
 }
 
-#' @describeIn dialogs Ask user to select a single option from among a list of
-#'   possible options.
+#' @rdname uj_dialogs
 #' @export
 ask1 <- function(opts, what, more = FALSE) {
   suffix <- f0(more, "\n(more options may be presented next)", NULL)             # suffix if more options are available
@@ -136,8 +144,7 @@ ask1 <- function(opts, what, more = FALSE) {
   else {stop("invalid selection")}                                               # ELSE error
 }
 
-#' @describeIn dialogs Ask user to select a one or more options from among a
-#'   list of possible options.
+#' @rdname uj_dialogs
 #' @export
 askn <- function(opts, what, all = TRUE, none = TRUE, more = FALSE) {
   suffix <- f0(more, "\n(more options may be presented next)", NULL)             # IF there are potentially more options, put in suffix
@@ -177,8 +184,7 @@ askn <- function(opts, what, all = TRUE, none = TRUE, more = FALSE) {
   stop("invalid selection")                                                      # throw error if nothing has yet been returned
 }
 
-#' @describeIn dialogs Ask user to select a one or more options from among a
-#'   list of possible options, possibly across multiple rounds of interaction
+#' @rdname uj_dialogs
 #' @export
 asksn <- function(opts, what, per = 9) {
   done  <- F                                                                         # start out not done yet
@@ -198,8 +204,7 @@ asksn <- function(opts, what, per = 9) {
   out                                                                                # return value
 }
 
-#' @describeIn dialogs Ask user to select 1 options from among a list of
-#'   possible options, possibly across multiple dialog boxes.
+#' @rdname uj_dialogs
 #' @export
 asks1 <- function(opts, what, per = 9) {
   done <- F                                                                      # start out not done yet
@@ -215,8 +220,7 @@ asks1 <- function(opts, what, per = 9) {
   out                                                                            # return value
 }
 
-#' @describeIn dialogs Ask user to enter a space- or comma-separated list of
-#'   replacement values for existing values.
+#' @rdname uj_dialogs
 #' @export
 asknew <- function(old, what, unq = T) {
   list <- dw("\n", old)                                                           # separate old values with newlines
@@ -228,4 +232,3 @@ asknew <- function(old, what, unq = T) {
   if (length(out) == length(old) & (!unq | setequal(uv(out), out))) {return(out)} # IF the replacement length matches and uniqueness checks out THEN answer is valid so return it
   stop("invalid entry")                                                           # ELSE error
 }
-

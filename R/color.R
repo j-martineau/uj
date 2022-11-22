@@ -1,98 +1,86 @@
-#' @name colors_uj
+#' @name color
 #' @family colors
 #' @title Simple Color Creation
 #' @description Simple color creation with a wide variety of options (intensity,
 #'   blending, lightening, darkening, opacity).
+#' @section \code{color}: Takes any valid color representation and lightens,
+#'   darkens, adds opacity levels, and/or gets the complementary color.
+#' @section \code{rgba}: Creates colors from \code{r} = red, \code{g} = green,
+#'   \code{b} = blue, and \code{a} = alpha weights, each in the interval
+#'   \code{[0, 1]}.
+#' @section \code{hsva}: Creates colors from \code{h} = hue, \code{s} =
+#'   saturation, \code{v} = value, and \code{a} = alpha weights, each in the
+#'   interval \code{[0, 1]}.
+#' @section \code{blend}: Blends colors \code{x} and \code{y} using non-negative
+#'   numeric weights \code{wx} and \code{wy}, and proportional numeric \code{a}
+#'   = alpha values. Each corresponding pair of values of these arguments is
+#'   normalized to sum to 1 to give the proportions of the resulting color that
+#'   should come from \code{x} and \code{y}, respectively.
+#' @section \code{xxx} and \code{xxx_yyy}: NOTE: \code{xxx} and \code{yyy} are
+#'   placeholders for 3-letter codes for common colors.
 #'   \cr\cr
-#'   \tabular{ll}{
-#'   FUNCTION             \tab WHAT THE                                      \cr
-#'   NAME/\[FORMAT\]      \tab FUNCTION DOES                                 \cr
-#'   \code{color}         \tab Takes any valid color representation and
-#'                             lightens, darkens, adds opacity levels, and/or
-#'                             gets the complementary color.                 \cr
-#'   \code{rgba}          \tab Create colors from \code{r} = red, \code{g} =
-#'                             green, \code{b} = blue, and \code{a} = alpha
-#'                             weights, each in the interval \code{[0, 1]}.  \cr
-#'   \code{hsva}          \tab Create colors from \code{h} = hue, \code{s} =
-#'                             saturation, \code{v} = value, and \code{a} =
-#'                             alpha weights, each in the interval
-#'                             \code{[0, 1]}.                                \cr
-#'   \code{blend}         \tab Blend colors \code{x} and \code{y} using
-#'                             non-negative numeric weights \code{wx} and
-#'                             \code{wy}, and proportional numeric \code{a} =
-#'                             alpha values.                                 \cr
-#'   \code{[ccc]}         \tab Build the common color \code{[ccc]} by \code{p} =
-#'                             primary intensity, \code{s} = secondary
-#'                             intensity, and \code{a} = alpha, each in the
-#'                             interval \code{[0, 1]}.                       \cr
-#'   \code{[ccc]_[CCC]}   \tab Create 50/50 blends of the common colors
-#'                             \code{[ccc]} and \code{[CCC]} by \code{p} =
-#'                             primary intensity, \code{s} = secondary
-#'                             intensity, and \code{a} = alpha, each in the
-#'                             interval \code{[0, 1]}.                       \cr
-#'   \code{pal_cb}        \tab Creates colorblind-friendly palettes of 2 to 20
-#'                             Colors 1-10 vs. 11-20 are bright vs. 50% darkened
-#'                             versions. Bright/darkened differences may be
-#'                             insufficient for some audiences.              \cr
-#'   \code{pal_swatch}    \tab Draws swatches for a collection/palette of
-#'                             colors.                                         }
-#'   Common three-letter color codes used in this family of functions are
-#'   defined in the following table:\tabular{ll}{
-#'     3-LETTER    \tab COLOR     \tab RGB CHANNEL VALUES                    \cr
-#'     CODE        \tab NAME      \tab OF DEFAULT VERSION                    \cr
-#'     \code{wht}  \tab white     \tab \code{r = 1  , g = 1  , b = 1  }.     \cr
-#'     \code{blk}  \tab black     \tab \code{r = 0  , g = 0  , b = 0  }.     \cr
-#'     \code{gry}  \tab grey      \tab \code{r = 0.5, g = 0.5, b = 0.5}.     \cr
-#'     \code{red}  \tab red       \tab \code{r = 1  , g = 0  , b = 0  }.     \cr
-#'     \code{grn}  \tab green     \tab \code{r = 0  , g = 1  , b = 0  }.     \cr
-#'     \code{blu}  \tab blue      \tab \code{r = 0  , g = 0  , b = 1  }.     \cr
-#'     \code{ylw}  \tab yellow    \tab \code{r = 1  , g = 1  , b = 0  }.     \cr
-#'     \code{cyn}  \tab cyan      \tab \code{r = 0  , g = 1  , b = 1  }.     \cr
-#'     \code{mag}  \tab magenta   \tab \code{r = 1  , g = 0  , b = 1  }.     \cr
-#'     \code{vlt}  \tab violet (a)\tab \code{r = 1  , g = 0  , b = 1  }.     \cr
-#'     \code{ppl}  \tab purple (b)\tab A 1:2 blend of red:blue.              \cr
-#'     \code{orn}  \tab orange (c)\tab A 33:51 blend of red:yellow.            }
-#'   (a) identical to \code{mag}.
-#'   (b) a \code{1:2} blend of \code{red:blu}.
-#'   (c) a \code{33:51} blend of \code{red:ylw}.
-#' @section Understanding How Function Arguments are Used:
-#'        \strong{recycling}: The only arguments not recycled are \code{na},
-#'   \code{nc}, and \code{ng}.
+#'   \code{xxx} functions create versions of common color \code{xxx} by \code{p}
+#'   = primary intensity, \code{s} = secondary intensity, and \code{a} = alpha,
+#'   each in the interval \code{[0, 1]}.
 #'   \cr\cr
-#'        \strong{\code{wx} and \code{wy}}: Each corresponding pair of values of
-#'   these arguments is normalized to sum to 1 to give the proportions of the
-#'   resulting color that should come from \code{x} and \code{y}, respectively.
+#'   \code{xxx_yyy} functions create versions of 50/50 blends of the common
+#'   colors \code{xxx} and \code{yyy} by \code{p} = primary intensity, \code{s}
+#'   = secondary intensity, and \code{a} = alpha, each in the interval \code{[0,
+#'   1]}.
 #'   \cr\cr
-#'   \strong{\code{p} and \code{s}}: \code{p} is used to indicate the proportion
-#'   of the RGB values of the most intense version of a hue should be present in
-#'   a resulting color. \code{s} is used to indicate how much of complement of
-#'   each RGB value should be present in a resulting color. The table below
-#'   gives a helpful heuristic for setting values of \code{p} and
-#'   \code{s}:\tabular{ll}{
-#'   ARGUMENT VALUES       \tab RESULTING COLOR                              \cr
-#'   \code{p = 1, s = 0   }\tab The most intense version of a color.         \cr
-#'   \code{s = 1, p = 0   }\tab The most intense \emph{complementary} color. \cr
-#'   \code{p > s > 0}      \tab A lighter, muted color.                      \cr
-#'   \code{s < p < 1}      \tab A darker color.                              \cr
-#'   \code{s > p > 0}      \tab A lighter, muted \emph{complementary} color. \cr
-#'   \code{p < s < 1}      \tab A darker \emph{complementary} color.         \cr
-#'   \code{p = s = 1}      \tab White.                                       \cr
-#'   \code{p = s = 0}      \tab Black.                                       \cr
-#'   \code{p = s = 0.5}    \tab Grey.                                          }
-#'   A concrete numeric example is that calling:
+#'   Three-letter codes for common color are as follows:\tabular{lll}{
+#'   3-LETTER    \tab COLOR         \tab RGB CHANNEL VALUES                  \cr
+#'   CODE        \tab NAME          \tab OF DEFAULT VERSION                  \cr
+#'   \code{wht}  \tab white         \tab \code{r = 1  , g = 1  , b = 1  }.   \cr
+#'   \code{blk}  \tab black         \tab \code{r = 0  , g = 0  , b = 0  }.   \cr
+#'   \code{gry}  \tab grey          \tab \code{r = 0.5, g = 0.5, b = 0.5}.   \cr
+#'   \code{red}  \tab red           \tab \code{r = 1  , g = 0  , b = 0  }.   \cr
+#'   \code{grn}  \tab green         \tab \code{r = 0  , g = 1  , b = 0  }.   \cr
+#'   \code{blu}  \tab blue          \tab \code{r = 0  , g = 0  , b = 1  }.   \cr
+#'   \code{ylw}  \tab yellow        \tab \code{r = 1  , g = 1  , b = 0  }.   \cr
+#'   \code{cyn}  \tab cyan          \tab \code{r = 0  , g = 1  , b = 1  }.   \cr
+#'   \code{mag}  \tab magenta       \tab \code{r = 1  , g = 0  , b = 1  }.   \cr
+#'   \code{vlt}  \tab violet        \tab \code{r = 1  , g = 0  , b = 1  }.   \cr
+#'   \code{ppl}  \tab purple        \tab A 1:2 blend of red:blue.            \cr
+#'   \code{orn}  \tab orange        \tab A 33:51 blend of red:yellow.          }
+#' @section \code{pal_cb}: Creates colorblind-friendly palettes of 2 to 20 Colors 1-10 vs. 11-20
+#'   are bright vs. 50% darkened versions. Bright/darkened differences may be
+#'   insufficient for some audiences.
+#' @section \code{pal_swatch}:
+#'   \cr Draws swatches for a collection/palette of colors.
+#'   \cr\cr
+#' @section Recycling: The only arguments not recycled are \code{na}, \code{nc},
+#'   and \code{ng}.
+#' @section The Arguments \code{p} and \code{s}: \code{p} is used to indicate
+#'   the proportion of the RGB values of the most intense version of a hue
+#'   should be present in a resulting color. \code{s} is used to indicate how
+#'   much of complement of each RGB value should be present in a resulting
+#'   color. The table below gives a helpful heuristic for setting values of
+#'   \code{p} and \code{s}:\tabular{ll}{
+#'   ARGUMENT VALUES        \tab RESULTING COLOR                             \cr
+#'   \code{p = 1, s = 0}    \tab The most intense version of a color.        \cr
+#'   \code{s = 1, p = 0}    \tab The most intense complementary color.       \cr
+#'   \code{p > s > 0}       \tab A lighter, muted color.                     \cr
+#'   \code{s < p < 1}       \tab A darker color.                             \cr
+#'   \code{s > p > 0}       \tab A lighter, muted complementary color.       \cr
+#'   \code{p < s < 1}       \tab A darker complementary color.               \cr
+#'   \code{p = s = 1}       \tab White.                                      \cr
+#'   \code{p = s = 0}       \tab Black.                                      \cr
+#'   \code{p = s = 0.5}     \tab Grey.                                         }
+#'   A concrete numeric example is that calling
 #'   ```
-#'        \code{ylw(p = 0.7, s = 0.3)}
+#'        ylw(p = 0.7, s = 0.3)
 #'   ```
 #'   starts with primary and secondary RGB values of
 #'   ```
-#'        \code{prm = c(r = 1, g = 1, b = 0)}
-#'        \code{sec = c(r = 0, g = 0, b = 1)}.
+#'        prm = c(r = 1, g = 1, b = 0)
+#'        sec = c(r = 0, g = 0, b = 1)
 #'   ```
 #'   To get final RGB values, the primary RGB values are multiplied by \code{p =
 #'   0.7}, secondary RGB values are multiple by \code{s = 0.3}, and the results
 #'   are summed pairwise giving
 #'   ```
-#'        \code{final = c(r = 0.7, g = 0.7, b = 0.3)}
+#'        final = c(r = 0.7, g = 0.7, b = 0.3)
 #'   ```
 #' @param x \link[=atm_vec]{Atomic vec} containing valid color representations.
 #'   Recycled with \code{y}, \code{lighten}, \code{darken}, \code{comp},
@@ -137,7 +125,7 @@ color <- function(x, lighten = 0, darken = 0, a = 1, comp = F) {
             f0(cmp_ppn_vec(a)          , NULL, "\n \u2022 [a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
             f0(isTF(comp)              , NULL, "\n \u2022 [comp] must be TRUE or FALSE."),
             f0(all(reps == round(reps)), NULL, "\n \u2022 [x], [lighten], [darken], and [a] are not recyclable (?recyclable)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (r[1] > 1) {x       <- rep.int(x      , r[1])}
   if (r[2] > 1) {lighten <- rep.int(lighten, r[2])}
   if (r[3] > 1) {darken  <- rep.int(darken , r[3])}
@@ -162,7 +150,7 @@ color <- function(x, lighten = 0, darken = 0, a = 1, comp = F) {
   rgb(r, g, b, a)
 }
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 rgba <- function(r = 1, g = 1, b = 1, a = 1) {
   ns <- c(length(r), length(g), length(b), length(a))
@@ -172,11 +160,11 @@ rgba <- function(r = 1, g = 1, b = 1, a = 1) {
             f0(cmp_ppn_vec(b)          , NULL, "\n \u2022 [b] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
             f0(cmp_ppn_vec(a)          , NULL, "\n \u2022 [a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
             f0(all(reps == round(reps)), NULL, "\n \u2022 [r], [g], [b], and [a] are not recyclable (?recyclable)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   rgb(r, g, b, a)
 }
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 hsva <- function(h = 1, s = 1, v = 1, a = 1) {
   ns <- c(length(h), length(s), length(v), length(a))
@@ -186,11 +174,11 @@ hsva <- function(h = 1, s = 1, v = 1, a = 1) {
             f0(cmp_ppn_vec(v)          , NULL, "\n \u2022 [v] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
             f0(cmp_ppn_vec(a)          , NULL, "\n \u2022 [a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
             f0(all(reps == round(reps)), NULL, "\n \u2022 [h], [s], [v], and [a] are not recyclable (?recyclable)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   hsv(h, s, v, a)
 }
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 blend <- function(x, y, wx = 1, wy = 1, a = NA) {
   browser()
@@ -202,7 +190,7 @@ blend <- function(x, y, wx = 1, wy = 1, a = NA) {
             f0(cmp_pos_vec(wy)              , NULL, "\n \u2022 [wu] must be a complete positive numeric vec (?cmp_pos_vec)."),
             f0(all(reps == round(reps))     , NULL, "\n \u2022 [a] must be [NA] or a complete proportion numeric vec(?cmp_ppn_vec)."),
             f0(f0(nas(a), T, cmp_ppn_vec(a)), NULL, "\n \u2022 [x], [y], [wx], [wy], and [a] are not recyclable (?recyclable)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   x  <- as_clr(x)                                                                # convert x and y to hexadecimal RGBA
   y  <- as_clr(y)
   wt <- wx + wy                                                                  # rescale x and y weights to sum to 1
@@ -224,93 +212,93 @@ blend <- function(x, y, wx = 1, wy = 1, a = NA) {
   rgba(r, g, b, a)                                                               # return the blended color in hexadecimal RGBA format
 }
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 red <- function(p = 1, s = 0, a = 1) {rgba(p, s, s, a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 grn <- function(p = 1, s = 0, a = 1) {rgba(s, p, s, a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 blu <- function(p = 1, s = 0, a = 1) {rgba(s, s, p, a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 cyn <- function(p = 1, s = 0, a = 1) {rgba(s, p, p, a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 mag <- function(p = 1, s = 0, a = 1) {rgba(p, s, p, a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 vlt <- function(p = 1, s = 0, a = 1) {rgba(p, s, p, a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 ylw <- function(p = 1, s = 0, a = 1) {rgba(p, p, s, a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 gry <- function(p = 0.5, a = 1) {rgba(p, p, p, a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 blk <- function(a = 1) {rgba(0, 0, 0, a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 wht <- function(a = 1) {rgba(1, 1, 1, a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 ppl <- function(p = 1, s = 0, a = 1) {blend(red(p, s), blu(p, s), 1, 2, a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 orn <- function(p = 1, s = 0, a = 1) {blend(red(p, s), ylw(p, s), 33, 51, a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 blu_grn <- function(p = 1, s = 0, a = 1) {blend(blu(p, s), grn(p, s), a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 blu_ppl <- function(p = 1, s = 0, a = 1) {blend(blu(p, s), ppl(p, s), a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 blu_vlt <- function(p = 1, s = 0, a = 1) {blend(blu(p, s), vlt(p, s), a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 ylw_grn <- function(p = 1, s = 0, a = 1) {blend(ylw(p, s), grn(p, s), a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 ylw_orn <- function(p = 1, s = 0, a = 1) {blend(ylw(p, s), orn(p, s), a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 red_orn <- function(p = 1, s = 0, a = 1) {blend(red(p, s), orn(p, s), a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 red_ppl <- function(p = 1, s = 0, a = 1) {blend(red(p, s), ppl(p, s), a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 red_vlt <- function(p = 1, s = 0, a = 1) {blend(red(p, s), vlt(p, s), a)}
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 pal_cb <- function(ng, nc = NULL, a = 1) {
   errs <- c(f0(cmp_psw_scl(ng)             , NULL, "\n \u2022 [ng] must be a complete positive whole-number scalar (?cmp_psw_scl)."),
             f0(f0(inll(nc), T, cmp_psw_scl), NULL, "\n \u2022 [nc] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl)."),
             f0(cmp_ppn_scl(a)              , NULL, "\n \u2022 [a] must be a complete proportion scalar (?cmp_ppn_scl). That is, in the interval [0, 1]."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   out <- c("#4E79A7", "#F28E2B", "#E15759", "#76B7B2", "#59A14F", "#EDC948", "#B07AA1", "#FF9DA7", "#9C755F", "#BAB0AC", # bright colors
            "#273D54", "#794716", "#712C2D", "#3B5C59", "#2D5128", "#776524", "#583D51", "#804F54", "#4E3B30", "#5D5856") # darkened 50%
   if (length(nc) == 0) {if (nc < 20) {nc <- nc} else {nc <- 20}}                 # IF [nc] was not supplied THEN IF [nc] is less than 20, use as is ELSE  cap at 20
@@ -319,7 +307,7 @@ pal_cb <- function(ng, nc = NULL, a = 1) {
   scales::alpha(out, a)                                                          # apply the alpha value
 }
 
-#' @rdname colors_uj
+#' @rdname color
 #' @export
 pal_swatch <- function(x) {
   if (!cmp_clr_vec(x)) {stop("\n \u2022 [x] must be a complete color vec (?cmp_clr_vec) [i.e., containing only valid character-mode color values].")}

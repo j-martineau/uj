@@ -4,7 +4,7 @@
 \alias{swap}
 \title{Swap atomic values.}
 \usage{
-swap(x, old, new, all = F)
+swap(x, old, new, all = FALSE)
 }
 \arguments{
 \item{x}{An atomic object.}
@@ -37,7 +37,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -46,12 +45,18 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
+
+Other forking: 
+\code{\link{case}()},
+\code{\link{fork}()}
 }
 \concept{extensions}
+\concept{forking}

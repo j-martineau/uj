@@ -1,4 +1,4 @@
-#' @name wrap_base
+#' @name wraps_base
 #' @family wraps
 #' @title Thin Wraps of Base Package Functions
 #' @description \tabular{ll}{
@@ -9,36 +9,36 @@
 #'   \code{spf}    \tab \code{\link[base]{sprintf}}                          \cr
 #'   \code{levs}   \tab \code{\link[base]{levels}}                             }
 #' @export
-wrap_base <- NULL
+wraps_base <- NULL
 
-#' @describeIn wrap_base Thin wrapper for \code{\link[base]{unique}}. Differs
+#' @describeIn wraps_base Thin wrapper for \code{\link[base]{unique}}. Differs
 #'   from \code{\link{uv}} in that \code{uv} takes an arbitrary number of
 #'   parameters and \link[a]{atomizes} them before getting unique atomic values.
 #' @inherit base::ceiling
 #' @export
 u <- function(x) {base::unique(x)}
 
-#' @describeIn wrap_base Round down to nearest integer.
+#' @describeIn wraps_base Round down to nearest integer.
 #' @inherit base::floor
 #' @export
 dn <- function(x) {base::floor(x)}
 
-#' @describeIn wrap_base Round up to nearest integer.
+#' @describeIn wraps_base Round up to nearest integer.
 #' @inherit base::ceiling
 #' @export
 up <- function(x) {base::ceiling(x)}
 
-#' @describeIn wrap_base Extract substring(s).
+#' @describeIn wraps_base Extract substring(s).
 #' @inherit base::substr
 #' @export
 mid <- function(x, start, stop) {base::substr(x, start, stop)}
 
-#' @describeIn wrap_base Format inlays into strings.
+#' @describeIn wraps_base Format inlays into strings.
 #' @inherit base::sprintf
 #' @export
 spf <- function(fmt, ...) {base::sprintf(fmt, ...)}
 
-#' @describeIn wrap_base Get levels of an unordered factor or ordered factor object.
+#' @describeIn wraps_base Get levels of an unordered factor or ordered factor object.
 #' @inherit base::levels
 #' @export
 levs <- function(x) {base::levels(x)}

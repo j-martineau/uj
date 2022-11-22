@@ -7,7 +7,7 @@
 #'   processing instructions as follows: \tabular{ll}{
 #'   NAME‑VALUE PAIR      \tab PROCESSING INSTRUCTION                        \cr
 #'   \code{s = TRUE}      \tab link[base:simplify2array]{Simplify} the
-#'                             result.\cr
+#'                             result.                                       \cr
 #'   \code{a1 = TRUE}     \tab link[=a]{Atomize} \code{x} first.             \cr
 #'   \code{a2 = TRUE}     \tab link[=a]{Atomize} the result.                 \cr
 #'   \code{na = TRUE}     \tab Replace resulting \code{NA}s with \code{TRUE}.\cr
@@ -71,7 +71,7 @@ ply <- function(x, fun, dim, ..., proc. = NULL) {
             f0(ok.agg   , NULL, "\n \u2022 When supplied, [proc.$agg] must be 'nor', 'any', 'all', 'one', or 'two'."),
             f0(ok.arg   , NULL, "\n \u2022 When supplied, [proc.$arg] must be a valid property specification as validated by is_valid_xxx()."),
             f0(ok.out   , NULL, "\n \u2022 When supplied, [proc.$out] must be a valid property specification as validated by is_valid_xxx()."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   if (a1) {x <- av(x)}
   if (idef(arg)) {if (!ippp(x, arg)) {stop("\n \u2022 [x] does not match [proc.$arg = '", arg, "'].")}}
   if (isEQ(dim, 0)) {x <- f0(iarr(x) | is.data.frame(x), apply(x, 1:length(dim(x)), fun, ...), f0(inll(x) | ivec(x), sapply(x, fun, ...), f0(ivls(x), lapply(x, fun, ...), x)))}
@@ -83,7 +83,7 @@ ply <- function(x, fun, dim, ..., proc. = NULL) {
     err <- isEQ(na, 'err')
     errs <- c(f0(ilgl(x)              , NULL, "\n \u2022 [proc.$agg] is not NULL, but results of applying [fun] are not of mode logical."),
               f0(!err | !any(is.na(x)), NULL, "\n \u2022 Applying [fun] produced NA values, but [proc.$na = 'err']."))
-    if (idef(errs)) {stop(errs)}
+    if (!is.null(errs)) {stop(errs)}
     if (!err) {x[is.na(x)] <- na}
     x <- f0(agg == "nor", norT(x), f0(agg == "any", anyT(x), f0(agg == "all", allT(x), f0(agg == "one", oneT(x), f0(agg == "two", twoT(x), x)))))
   }

@@ -1,26 +1,32 @@
 #' @name cmp_mmm
 #' @family props
-#' @title Completeness + Extended mode Properties
-#' @description NOTE: \code{MMM} is used as a wildcard for any
-#'   given extended mode property.
+#' @title Completeness + Extended Mode Properties
+#' @section Functions in This Family:
+#'   NOTE: \code{MMM} is used as a wildcard for any given extended
+#'   mode property.
 #'   \cr\cr
-#'   \strong{\code{cmp_mmm}}: Evaluates whether \code{x} is complete and
-#'   matches the extended mode specified in the argument \code{mmm}
-#'   (subject to any restrictions in \code{...}).
+#'   \strong{\code{cmp_mmm}}
+#'   \cr Evaluates whether \code{x} is complete and matches the extended mode
+#'   specified in the argument \code{mmm} (subject to any restrictions in
+#'   \code{...}).
 #'   \cr\cr
-#'   \strong{\code{cmp_MMM}}: Evaluates whether \code{x} is complete and
-#'   matches the extended mode property \code{MMM}.
-#'   (subject to any restrictions in \code{...}).
+#'   \strong{\code{cmp_MMM}}
+#'   \cr Evaluates whether \code{x} is complete and matches the extended mode
+#'   property \code{MMM}. (subject to any restrictions in \code{...}).
 #'   \cr\cr
-#'   \strong{\code{cmp_mmm_props}}: Gets a character vector of all possible
-#'   completeness + extended mode properties.
+#'   \strong{\code{cmp_mmm_props}}
+#'   \cr Gets a character vector of all possible completeness + extended mode
+#'   properties.
 #' @param x An R object
-#' @param mmm A character scalar containing an
-#'   extended mode property from mmm_props().
+#' @param mmm A character scalar containing an extended mode property from
+#'   mmm_props().
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{cmp_mmm_props}}: A character vector.
-#'   \cr\cr\strong{cmp_mmm, cmp_MMM}: A logical scalar.
+#' @return \strong{\code{cmp_mmm_props}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{cmp_mmm, cmp_MMM}}
+#'   \cr A logical scalar.
 #' @export
 cmp_mmm <- function(x, mmm, ...) {
   errs <- c(.meets_errs(x, ...),

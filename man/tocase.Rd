@@ -38,23 +38,27 @@ or upper case, respectively. Case insensitive.}
 An atomic character object or a \link[=chr_vls]{character vlist}.
 }
 \description{
-\tabular{ll}{
-\code{tocase}
-\tab Convert among lower, upper, sentence, and title case based on
-the case specified in \code{case}.                            \cr
-\code{lc}
-\tab Converts to lower case via \code{\link[base]{tolower}}.       \cr
-\code{uc}
-\tab Converts to upper case via \code{\link[base]{to upper}}.      \cr
-\code{tosentence}, \code{sc}   
-\tab Convert to sentence case via
-\code{\link[stringr]{str_to_sentence}}.                       \cr
-\code{totitle}, \code{tc}
-\tab Convert to sentence case via
-\code{\link[stringr]{str_to_title}}.                            }
-
 Convert to the case specified in \code{case}.
 }
+\section{Functions in This Family}{
+
+\strong{\code{tocase}}
+\cr Convert among lower, upper, sentence, and title case based on the case
+specified in \code{case}.
+\cr\cr
+\strong{\code{lc}}
+\cr Converts to lower case via \code{\link[base]{tolower}}.
+\cr\cr
+\strong{\code{uc}}
+\cr Converts to upper case via \code{\link[base]{toupper}}.
+\cr\cr
+\strong{\code{tosentence, sc}}
+\cr Convert to sentence case via \code{\link[stringr]{str_to_sentence}}.
+\cr\cr
+\strong{\code{totitle, tc}}
+\cr Convert to sentence case via \code{\link[stringr]{str_to_title}}.
+}
+
 \examples{
 TestTitle    <- "This is a Title"
 TestSentence <- "This is a sentence."
@@ -81,7 +85,7 @@ Other strings:
 \code{\link{ipat}()},
 \code{\link{max_nch}()},
 \code{\link{mkstr}},
-\code{\link{ox.}()},
+\code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{revstr}()},
 \code{\link{spacing}},

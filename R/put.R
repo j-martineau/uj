@@ -1,13 +1,18 @@
-#' @name put.
+#' @name put
 #' @family extensions
 #' @title Put values into objects
-#' @description \tabular{ll}{
-#'   \code{put}    \tab Put values in \code{v} into \code{e}-indexed elements of
-#'                      the vector or \code{\link[=ivls]{vlist}} \code{x}.   \cr
-#'   \code{putr}   \tab Put the vector \code{v} into the \code{r}-indexed row of
-#'                      the matrix or data frame \code{x}.                   \cr
-#'   \code{putc}   \tab Put the vector \code{v} into the \code{c}-indexed of the
-#'                      matrix or data frame \code{x}.                         }
+#' @section Functions in This Family:
+#'   \strong{\code{put}}
+#'   \cr Put values in \code{v} into \code{e}-indexed elements of the vector or
+#'   \code{\link[=ivls]{vlist}} \code{x}.
+#'   \cr\cr
+#'   \strong{\code{putr}}
+#'   \cr Put the vector \code{v} into the \code{r}-indexed row of the matrix or
+#'   data frame \code{x}.
+#'   \cr\cr
+#'   \strong{\code{putc}}
+#'   \cr Put the vector \code{v} into the \code{c}-indexed of the matrix or data
+#'   frame \code{x}.
 #' @param x Object into which values will be placed. May be a \code{\link{vec}},
 #'   \code{\link[ivls]{vlist}}, matrix, or data.frame.
 #' @param v A vector of replacement values.
@@ -18,17 +23,13 @@
 #'   column to replace, respectively.
 #' @return An object of the same dimension as \code{x}.
 #' @export
-put. <- function() {help("put.", package = "uj")}
-
-#' @rdname put.
-#' @export
 put <- function(x, v, e) {x[e] <- v; x}
 
-#' @rdname put.
+#' @rdname put
 #' @export
 putr <- function(x, v, r) {x[r,] <- v; x}
 
-#' @rdname put.
+#' @rdname put
 #' @export
 putc <- function(x, v, c) {x[, c] <- v; x}
 

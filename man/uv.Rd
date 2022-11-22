@@ -3,7 +3,7 @@
 \name{uv}
 \alias{uv}
 \alias{uav}
-\title{Reduce \code{...} to a vector of unique atomic values}
+\title{Reduce \code{...} to a Vector of Unique Atomic Values}
 \usage{
 uv(...)
 

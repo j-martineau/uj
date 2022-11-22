@@ -6,44 +6,47 @@
 \alias{compatible_dtfs}
 \title{Are objects compatible?}
 \usage{
-compatible(..., recyclable. = TRUE)
+compatible(..., rec. = TRUE)
 
-compatible_mats(..., bind. = "c")
+compatible_mats(b, ...)
 
-compatible_dtfs(..., bind. = "c")
+compatible_dtfs(b, ...)
 }
 \arguments{
 \item{...}{An arbitrary number of arguments to be checked for compatibility
 with each other.}
 
-\item{recyclable.}{A non-\code{NA} logical scalar indicating whether
-arguments in \code{...} must be recyclable to be compatible_}
+\item{rec.}{A non-\code{NA} logical scalar indicating whether arguments in
+\code{...} must be recyclable to be compatible.}
 
-\item{bind.}{A \link[=cmp_chr_scl]{Complete character scalar} indicating how
-to bind: \code{'c'} or \code{'r'} for column vs. row binding, respectively.}
+\item{b}{Either \code{'c'} for column binding or \code{'r'} for row binding.}
 }
 \value{
 A logical scalar.
 }
 \description{
-Compatibility means that objects or corresponding variables in
-data.frames arguments are either:\itemize{
-\item all numeric
-\item all character
-\item all logical
-\item all unordered factor with the same levels, or
-\item ordered factor with the same levels in the same order.            }
-FOR \link[=atm_dtf]{ATOMIC DATA.FRAMES}:
-\cr Arguments are compatible for row binding if they have identical column
-names and their respective columns are of compatible modes as defined
-above. Arguments are compatible for column binding if they have the same
-number of rows.
-\cr\cr
-FOR \link[=atm_mat]{ATOMIC MATRICES}:
-\cr Arguments are compatible for row binding if their modes are compatible
-and they have the same number of columns. Arguments are compatible for column
-binding if their modes are compatible and they the same number of rows.
+Are objects compatible?
 }
+\section{Functions in this Family}{
+
+\strong{\code{compatible}}
+\cr Evaluates whether all \code{...} arguments are compatible, meaning
+all numeric, all character, all logical, all unordered factor with the same
+levels, or ordered factor with the same levels in the same order.
+\cr\cr
+\strong{\code{compatible_dtfs}}
+\cr Evaluates whether all \code{...} arguments are
+\link[=atm_dtf]{atomic data.frames}. For row binding, also evaluates
+whether they have the same number of columns and all corresponding columns
+are compatible. For column binding, also evaluates whether they have the
+same number of rows.
+\cr\cr
+\strong{\code{compatible_atms}}
+\cr Evaluates whether all \code{...} arguments are compatible matrices
+and (for row binding) have the same number of columns or (for column
+binding) have the same number of rows.
+}
+
 \examples{
 N0 <- 0
 N7 <- 0:7
@@ -82,7 +85,6 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc_props}()},
 \code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -90,6 +92,7 @@ Other props:
 \code{\link{eee}()},
 \code{\link{iii}()},
 \code{\link{meets}()},
+\code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
 \code{\link{sss}()}

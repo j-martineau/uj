@@ -1,10 +1,7 @@
 #' @name ddd
 #' @family props
 #' @title Defined dimensionality properties
-#' @description NOTE: \code{DDD} is used as a wildcard representing any given
-#'   effective dimensionality property.
-#'   \cr\cr
-#'   An object's defined dimensionality is the number of dimensions
+#' @description An object's defined dimensionality is the number of dimensions
 #'   on which its components can be indexed. The following table gives levels of
 #'   defined dimensionality, property values assigned to levels of defined
 #'   dimensionality, property names, and a definition of each value of defined
@@ -22,24 +19,31 @@
 #'                                 \tab data.frame or matrix.                \cr
 #'   \code{≥ 3}   \tab\code{'dHD'} \tab Hyper-dimensional structure.
 #'                                 \tab Array with 3+ dimensions.              }
-#'   Functions related to defined dimensionality properties are as follows:
-#'   \tabular{ll}{
-#'     DDD FUNCTION         \tab WHAT IT DOES                                \cr
-#'     \code{iDDD}          \tab Evaluates whether \code{x} matches the
-#'                               defined dimensionality property \code{DDD}
-#'                               (subject to any restrictions in \code{...}).\cr
-#'     \code{ddd}           \tab Gets a character vector containing all
-#'                               defined dimensionality properties matching
-#'                               \code{x}.                                   \cr
-#'     \code{iddd}          \tab Evaluates \code{x} against the
-#'                               defined dimensionality property specification
-#'                               in \code{spec} (subject to any restrictions in
-#'                               \code{...}).                                \cr
-#'     \code{ddd_props}     \tab Gets a character vector of all possible
-#'                               defined dimensionality property values.     \cr
-#'     \code{is_ddd_spec}   \tab Evaluates whether \code{spec} is a valid
-#'                               defined dimensionality property
-#'                               specification.                                }
+#' @section Functions in this Family:
+#'   NOTE: \code{DDD} is used as a wildcard representing any given
+#'   effective dimensionality property.
+#'   \cr\cr
+#'   \strong{\code{iDDD}}
+#'   \cr Evaluates whether \code{x} matches the defined dimensionality property
+#'   \code{DDD} (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{ddd}}
+#'   \cr Gets a character vector containing all defined dimensionality
+#'   properties matching \code{x}.
+#'   \cr\cr
+#'   \strong{\code{iddd}}
+#'   \cr Evaluates \code{x} against the defined dimensionality property
+#'   specification in \code{spec} (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{ddd_props}}
+#'   \cr Gets a character vector of all possible defined dimensionality property
+#'   values.
+#'   \cr\cr
+#'   \strong{\code{is_ddd_spec}}
+#'   \cr Evaluates whether \code{spec} is a valid defined dimensionality
+#'   property specification.
+#'   \strong{\code{nddd}}
+#'   \cr Gets the number of defined dimensions of \code{x}.
 #' @param x An R object.
 #' @param spec \code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
 #'   containing one or more defined dimensionality properties (i.e., from
@@ -48,9 +52,16 @@
 #'   a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{ddd_vals}}: A character vector.
-#'   \cr\cr\strong{\code{ddd}}: A character scalar or character vector.
-#'   \cr\cr\strong{\code{iDDD, iddd, is_ddd_spec}}: A logical scalar.
+#' @return \strong{\code{ddd_vals}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{ddd}}
+#'   \cr A character scalar or character vector.
+#'   \cr\cr
+#'   \strong{\code{iDDD, iddd, is_ddd_spec}}
+#'   \cr A logical scalar.
+#'   \strong{\code{nddd}}
+#'   \cr An integer scalar.
 #' @export
 ddd <- function(x) {
   props <- .ddd_props()

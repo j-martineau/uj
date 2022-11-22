@@ -18,24 +18,24 @@
 #'     populated    \tab\code{'pop'}\tab Objects of length 1 or greater.     \cr
 #'     recursive    \tab\code{'rcr'}\tab Recursive objects (data.frames and
 #'                                       lists).                               }
-#'   Functions related to base properties are as follows:
-#'   \tabular{ll}{
-#'     BBB FUNCTION         \tab WHAT IT DOES                                \cr
-#'     \code{iBBB}          \tab Evaluates whether \code{x} matches the
-#'                               base property \code{BBB}
-#'                               (subject to any restrictions in \code{...}).\cr
-#'     \code{bbb}           \tab Gets a character vector containing all
-#'                               base properties matching
-#'                               \code{x}.                                   \cr
-#'     \code{ibbb}          \tab Evaluates \code{x} against the
-#'                               base property specification
-#'                               in \code{spec} (subject to any restrictions in
-#'                               \code{...}).                                \cr
-#'     \code{bbb_props}     \tab Gets a character vector of all possible
-#'                               base property values.                       \cr
-#'     \code{is_bbb_spec}   \tab Evaluates whether \code{spec} is a valid
-#'                               base property
-#'                               specification.                                }
+#' @section Functions in This Family:
+#'   \strong{\code{iBBB}}
+#'   \cr Evaluates whether \code{x} matches the base property \code{BBB}
+#'   (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{bbb}}
+#'   \cr Gets a character vector containing all base properties matching
+#'   \code{x}.
+#'   \cr\cr
+#'   \strong{\code{ibbb}}
+#'   \cr Evaluates \code{x} against the base property specification in
+#'   \code{spec} (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{bbb_props}}
+#'   \cr Gets a character vector of all possible base property values.
+#'   \cr\cr
+#'   \strong{\code{is_bbb_spec}}
+#'   \cr Evaluates whether \code{spec} is a valid base property specification.
 #' @param x An R object.
 #' @param spec \code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
 #'   containing one or more base properties (i.e., from
@@ -44,9 +44,14 @@
 #'   a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{bbb_vals}}: A character vector.
-#'   \cr\cr\strong{\code{bbb}}: A character scalar or character vector.
-#'   \cr\cr\strong{\code{iBBB, ibbb, is_bbb_spec}}: A logical scalar.
+#' @return \strong{\code{bbb_vals}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{bbb}}
+#'   \cr A character scalar or character vector.
+#'   \cr\cr
+#'   \strong{\code{iBBB, ibbb, is_bbb_spec}}
+#'   \cr A logical scalar.
 #' @export
 bbb <- function(x) {
   props <- .bbb_props()

@@ -2,7 +2,7 @@
 % Please edit documentation in R/comparable.R
 \name{comparable}
 \alias{comparable}
-\title{Are objects comparable?}
+\title{Are Objects Comparable?}
 \usage{
 comparable(..., recycle. = T)
 }
@@ -11,13 +11,13 @@ comparable(..., recycle. = T)
 with each other.}
 
 \item{recycle.}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating
-whether arguments in \code{...} must be recyclable to be comparable.}
+whether \code{...} arguments must be recyclable to be comparable.}
 }
 \value{
 A logical scalar.
 }
 \description{
-Determines whether modes of all arguments in \code{...} are
+Determines whether modes of all \code{...} arguments are
 comparable (i.e., sortable and compatible with each other), meaning that
 the are either all character, all logical, all numeric, or all ordered
 factor with the same set of levels (in the same order).
@@ -30,7 +30,6 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc_props}()},
 \code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{compatible}()},
@@ -38,6 +37,7 @@ Other props:
 \code{\link{eee}()},
 \code{\link{iii}()},
 \code{\link{meets}()},
+\code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
 \code{\link{sss}()}

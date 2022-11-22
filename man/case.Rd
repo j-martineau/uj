@@ -19,7 +19,7 @@ error is thrown, otherwise \code{def.} is returned as the default value.}
 \item{names.}{Either \code{NULL} or a \link[=cmp_scl_vec]{complete character
 vec}. If this argument is of mode character, it is split using pipe
 (\code{'|'}) delimiters. Its length (after potential splitting) must match
-the number of arguments in \code{...}. Values of \code{names.} must be
+the number of \code{...} arguments. Values of \code{names.} must be
 unique.}
 
 \item{def.}{The default value to return if no match is found, unless
@@ -31,10 +31,10 @@ Either the value of an argument selected from \code{...} or the value
 of \code{def.}.
 }
 \description{
-case. Takes a name (i.e., any atomic scalar) and matches that
-name to the name matching an element of \code{...} where matching can be
-achieved by matching the name of an argument in \code{...}. When names are
-supplied via \code{names.}, they substituted for the names of arguments in
+Takes a name (i.e., any atomic scalar) and matches that name to
+the name matching an element of \code{...} where matching can be achieved
+by matching the name of an argument in \code{...}. When names are supplied
+via \code{names.}, they substituted for the names of arguments in
 \code{...}. When no match is found and \code{def. = "err"} an error is
 thrown, otherwise, the value of \code{def.} is returned.
 }
@@ -52,7 +52,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -61,17 +60,19 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 
-Other fork: 
-\code{\link{fork}()}
+Other forking: 
+\code{\link{fork}()},
+\code{\link{swap}()}
 }
 \concept{extensions}
-\concept{fork}
+\concept{forking}

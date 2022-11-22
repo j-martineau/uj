@@ -3,43 +3,54 @@
 #' @family logicals
 #' @family failsafe
 #' @title Scalar Result Failsafe Binary Logical Functions
-#' @description \tabular{ll}{
-#'   \code{\%IS\%}          \tab Evaluates whether \code{x} and \code{y} are
-#'                               \code{\link[base]{identical}}.            \cr
-#'   \code{\%ISNT\%}        \tab Evaluates whether \code{x} and \code{y} are
-#'                               NOT \code{\link[base]{identical}}.        \cr
-#'   \code{\%EQ\%} (a)      \tab Evaluates whether \code{x} and \code{y} are
-#'                               \code{\link[base]{setequal}}.             \cr
-#'   \code{\%NEQ\%} (a)     \tab Evaluates whether \code{x} and \code{y} are
-#'                               NOT \code{\link[base]{setequal}}.         \cr
-#'   \code{\%AND\%}         \tab Evaluates whether \code{x} and \code{y} are
-#'                               both scalar \code{TRUE}.                  \cr
-#'   \code{\%OR\%}          \tab Evaluates whether \code{x} or \code{y} is
-#'                               scalar \code{TRUE} or both.               \cr
-#'   \code{\%NOR\%}         \tab Evaluates whether \code{x} and \code{y} are
-#'                               both scalar \code{FALSE}.                 \cr
-#'   \code{\%ONE\%}         \tab Evaluates whether
-#'                               \link[=base:xor]{either \code{x} or \code{y}}
-#'                               is scalar \code{TRUE}, but not both.      \cr
-#'   \code{\%IN\%} (b)      \tab Evaluates whether atomic scalar \code{x} is
-#'                               an element in atomic object \code{y}.     \cr
-#'   \code{\%OUT\%} (b)     \tab Evaluates whether atomic scalar \code{x} is
-#'                               NOT an element in atomic object \code{y}. \cr
-#'   \code{\%HAS\%} (c)     \tab Evaluates whether atomic object \code{x}
-#'                               contains atomic scalar \code{y}.          \cr
-#'   \code{\%LACKS\%} (c)   \tab Evaluates whether atomic object \code{x}
-#'                               lacks (does not contain) atomic scalar
-#'                               \code{y}.                                   }
-#' (a) If \code{x} and \code{y} are not \code{\link{compatible}}, \code{\%EQ\%}
-#' and \code{\%NEQ\%} return \code{FALSE} and \code{TRUE}, respectively.
-#' \cr\cr
-#' (b) If \code{x} is not atomic, \code{y} is not atomic scalar, or \code{x} and
-#' \code{y} are not \code{\link{compatible}}, \code{\%IN\%} and \code{\%OUT\%}
-#' return \code{FALSE} and \code{TRUE}, respectively.
-#' \cr\cr
-#' (c) If \code{x} is not atomic scalar, \code{y} is not atomic, or \code{x} and
-#' \code{y} are not \code{\link{compatible}}, \code{\%HAS\%} and
-#' \code{\%LACKS\%} return \code{FALSE} and \code{TRUE}, respectively.
+#' @section Functions in This Family:
+#'   \strong{`%IS%`}
+#'   \cr Evaluates whether `x` and `y` are identical.
+#'   \cr\cr
+#'   \strong{`%ISNT%`}
+#'   \cr Evaluates whether `x` and `y` are NOT identical.
+#'   \cr\cr
+#'   \strong{`%EQ%`}
+#'   \cr Evaluates whether `x` and `y` are setequal. (A)
+#'   \cr\cr
+#'   \strong{`%NEQ%`}
+#'   \cr Evaluates whether `x` and `y` are NOT setequal. (A)
+#'   \cr\cr
+#'   \strong{`%AND%`}
+#'   \cr Evaluates whether `x` and `y` are both scalar `TRUE`.
+#'   \cr\cr
+#'   \strong{`%OR%`}
+#'   \cr Evaluates whether `x` and `y` is scalar `TRUE` or both.
+#'   \cr\cr
+#'   \strong{`%NOR%`}
+#'   \cr Evaluates whether `x` and `y` are both scalar `FALSE`.
+#'   \cr\cr
+#'   \strong{`%ONE%`}
+#'   \cr Evaluates whether either `x` or `y` is scalar `TRUE`, but not both.
+#'   \cr\cr
+#'   \strong{`%IN%`}
+#'   \cr Evaluates whether atomic scalar `x` is in atomic object `y`. (B)
+#'   \cr\cr
+#'   \strong{`%OUT%`}
+#'   \cr Evaluates whether atomic scalar `x` is NOT in atomic object `y`. (B)
+#'   \cr\cr
+#'   \strong{`%HAS%`}
+#'   \cr Evaluates whether atomic object `x` contains atomic scalar `y` (C).
+#'   \cr\cr
+#'   \strong{`%LACKS%`}
+#'   \cr Evaluates whether atomic object `x` lacks (does not contain) atomic
+#'   scalar `y`. (C)
+#'   \cr\cr
+#'   (A) If `x` and `y` are not \code{\link{compatible}}, `%EQ%` and `%NEQ%`
+#'   return `FALSE` and `TRUE`, respectively.
+#'   \cr\cr
+#'   (B) If `x` is not atomic, `y` is not atomic scalar, or `x` and `y` are not
+#'   \code{\link{compatible}}, `%IN%` and `%OUT%` return `FALSE` and `TRUE`,
+#'   respectively.
+#'   \cr\cr
+#'   (C) If `x` is not atomic scalar, `y` is not atomic, or `x` and `y` are not
+#'   \code{\link{compatible}}, `%HAS%` and `%LACKS%` return `FALSE` and `TRUE`,
+#'   respectively.
 #' @param x,y Any objects.
 #' @return A logical scalar.
 #' @export

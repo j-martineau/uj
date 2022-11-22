@@ -17,7 +17,7 @@ environment where \code{run(...)} was called.
 }
 \description{
 Collapses \code{...} into a character scalar and evaluates
-it as code in the calling environment.
+it as code in the environment of the calling function.
 }
 \examples{
 Join <- ""
@@ -45,7 +45,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -54,12 +53,13 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 
 Other environments: 

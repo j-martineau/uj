@@ -1,26 +1,27 @@
 #' @name hexdec
 #' @family math
 #' @title Convert Non-Negative Whole Numbers between Decimal and Hexadecimal
-#' @description \tabular{ll}{
-#'   \code{todec}   \tab Converts hexadecimal \link[=cmp_chr]{complete character
-#'                       object} \code{x} from hexadecimal to decimal. \code{x}
-#'                       may be formatted as either \code{'hhh...'} or
-#'                       \code{'#hhh...'} where \code{h} is a placeholder for a
-#'                       hexidecimal digit in either upper or lower case.    \cr
-#'   \code{tohex}   \tab Converts \link[=cmp_psw]{complete positive
-#'                       whole-number} \code{x} to hexadecimal formatted as
-#'                       \code{'#HHH...'} where \code{H} is a placeholder for an
-#'                       uppercase hexadecimal digit.                                   }
+#' @section Functions in This Family:
+#'   \strong{\code{todec}}
+#'   \cr Converts hexadecimal \link[=cmp_chr]{complete character object}
+#'   \code{x} from hexadecimal to decimal. \code{x} may be formatted as either
+#'   \code{'hhh...'} or \code{'#hhh...'} where \code{h} is a placeholder for a
+#'   hexidecimal digit in either upper or lower case.
+#'   \cr\cr
+#'   \strong{\code{tohex}}
+#'   \cr Converts \link[=cmp_psw]{complete positive whole-number} \code{x} to
+#'   hexadecimal formatted as \code{'#HHH...'} where \code{H} is a placeholder
+#'   for an uppercase hexadecimal digit.
 #' @param x A \link[=cmp_nnw]{complete non-negative whole-number object} or a
 #'   \link[=cmp_chr]{complete character vec} containing only non-negative
 #'   whole-number hexademical values.
-#' @return \tabular{ll}{
-#'   \code{todec}   \tab A \link[=cmp_nnw]{complete non-negative whole-number
-#'                       object}                                             \cr
-#'   \code{tohex}   \tab A \link[=cmp_chr]{complete character object} containing
-#'                       non-negative whole-number hexadecimal values in the
-#'                       format \code{'#HHH...'} where \code{H} is a placeholder
-#'                       for an uppercase hexadecimal digit.                   }
+#' @return \strong{\code{todec}}: A \link[=cmp_nnw]{complete non-negative
+#'   whole-number object}
+#'   \cr\cr
+#'   \strong{\code{tohex}}: A \link[=cmp_chr]{complete character object}
+#'   containing non-negative whole-number hexadecimal values in the format
+#'   \code{'#HHH...'} where \code{H} is a placeholder for an uppercase
+#'   hexadecimal digit.
 #' @export
 todec <- function(x) {
   ok.x <- F
@@ -36,7 +37,7 @@ todec <- function(x) {
   errs <- c(f0(ok.x   , NULL, "\n \u2022 [x] must be of mode character, have at least one value, contain no NA values, and contain only the characters in '#0123456789ABCDEFabcdef'."),
             f0(ok.pref, NULL, "\n \u2022 If pound signs ('#') are used, they must be the first character of any element of [x] in which they are used."),
             f0(ok.emp , NULL, "\n \u2022 After removing pound signs ('#'), one or more elements of [x] is a blank string."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   conv <- function(xx) {                                                         # sub-function to convert a single hex value to decimal.
     cc <- strsplit(xx, "", T)[[1]]                                               # split the string into characters
     nn <- length(xx)                                                             # number of hex digits

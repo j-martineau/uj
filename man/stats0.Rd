@@ -19,7 +19,6 @@
 \alias{rsums0}
 \alias{cmeans0}
 \alias{rmeans0}
-\alias{sets}
 \title{Compute stats ignoring NA}
 \format{
 An object of class \code{NULL} of length 0.
@@ -58,8 +57,6 @@ rsums0(x)
 cmeans0(x)
 
 rmeans0(x)
-
-sets(n)
 }
 \arguments{
 \item{...}{Scalars, vectors, or matrices. Reduced a single vector of atomic
@@ -125,15 +122,8 @@ separately for each column.
 \item \code{rmeans0()}: Row means of \code{x} removing non-\code{NA} values
 separately for each row.
 
-\item \code{sets()}: Create a list containing elements of indices to create all
-possible combinations of 1 or more elements of an object of size \code{n}.
-
 }}
 \seealso{
-Other math: 
-\code{\link{hexdec}},
-\code{\link{inc}()}
-
 Other extensions: 
 \code{\link{atomize}},
 \code{\link{binfuns}},
@@ -148,7 +138,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -157,14 +146,18 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
+
+Other na_values: 
+\code{\link{na}()}
 }
 \concept{extensions}
-\concept{math}
+\concept{na_values}
 \keyword{datasets}

@@ -29,24 +29,25 @@
 #'                                      May be a vector of array.            \cr
 #'     OK scalar   \tab\code{'oks'}\tab An atomic scalar of value not equal to
 #'                                      \code{NA}. May be a vector of array.   }
-#'   Functions related to integrity properties are as follows:
-#'   \tabular{ll}{
-#'     III FUNCTION         \tab WHAT IT DOES                                \cr
-#'     \code{iIII}          \tab Evaluates whether \code{x} matches the
-#'                               integrity property \code{III}
-#'                               (subject to any restrictions in \code{...}).\cr
-#'     \code{iii}           \tab Gets a character vector containing all
-#'                               integrity properties matching
-#'                               \code{x}.                                   \cr
-#'     \code{iiii}          \tab Evaluates \code{x} against the
-#'                               integrity property specification
-#'                               in \code{spec} (subject to any restrictions in
-#'                               \code{...}).                                \cr
-#'     \code{iii_props}     \tab Gets a character vector of all possible
-#'                               integrity property values.                  \cr
-#'     \code{is_iii_spec}   \tab Evaluates whether \code{spec} is a valid
-#'                               integrity property
-#'                               specification.                                }
+#' @section Functions in this Family:
+#'   \strong{\code{iIII}}
+#'   \cr Evaluates whether \code{x} matches the integrity property \code{III}
+#'   (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{iii}}
+#'   \cr Gets a character vector containing all integrity properties matching
+#'   \code{x}.
+#'   \cr\cr
+#'   \strong{\code{iiii}}
+#'   \cr Evaluates \code{x} against the integrity property specification in
+#'   \code{spec} (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{iii_props}}
+#'   \cr Gets a character vector of all possible integrity property values.
+#'   \cr\cr
+#'   \strong{\code{is_iii_spec}}
+#'   \cr Evaluates whether \code{spec} is a valid integrity property
+#'   specification.
 #' @param x An R object.
 #' @param spec \code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
 #'   containing one or more integrity properties (i.e., from
@@ -55,9 +56,14 @@
 #'   a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{iii_vals}}: A character vector.
-#'   \cr\cr\strong{\code{iii}}: A character scalar or character vector.
-#'   \cr\cr\strong{\code{iIII, iiii, is_iii_spec}}: A logical scalar.
+#' @return \strong{\code{iii_vals}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{iii}}
+#'   \cr A character scalar or character vector.
+#'   \cr\cr
+#'   \strong{\code{iIII, iiii, is_iii_spec}}
+#'   \cr A logical scalar.
 #' @export
 iii <- function(x) {
   props <- .iii_props()

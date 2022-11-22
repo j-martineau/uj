@@ -47,44 +47,59 @@ x \%LACKS\% y
 A logical scalar.
 }
 \description{
-\tabular{ll}{
-\code{\%IS\%}          \tab Evaluates whether \code{x} and \code{y} are
-\code{\link[base]{identical}}.            \cr
-\code{\%ISNT\%}        \tab Evaluates whether \code{x} and \code{y} are
-NOT \code{\link[base]{identical}}.        \cr
-\code{\%EQ\%} (a)      \tab Evaluates whether \code{x} and \code{y} are
-\code{\link[base]{setequal}}.             \cr
-\code{\%NEQ\%} (a)     \tab Evaluates whether \code{x} and \code{y} are
-NOT \code{\link[base]{setequal}}.         \cr
-\code{\%AND\%}         \tab Evaluates whether \code{x} and \code{y} are
-both scalar \code{TRUE}.                  \cr
-\code{\%OR\%}          \tab Evaluates whether \code{x} or \code{y} is
-scalar \code{TRUE} or both.               \cr
-\code{\%NOR\%}         \tab Evaluates whether \code{x} and \code{y} are
-both scalar \code{FALSE}.                 \cr
-\code{\%ONE\%}         \tab Evaluates whether
-\link[=base:xor]{either \code{x} or \code{y}}
-is scalar \code{TRUE}, but not both.      \cr
-\code{\%IN\%} (b)      \tab Evaluates whether atomic scalar \code{x} is
-an element in atomic object \code{y}.     \cr
-\code{\%OUT\%} (b)     \tab Evaluates whether atomic scalar \code{x} is
-NOT an element in atomic object \code{y}. \cr
-\code{\%HAS\%} (c)     \tab Evaluates whether atomic object \code{x}
-contains atomic scalar \code{y}.          \cr
-\code{\%LACKS\%} (c)   \tab Evaluates whether atomic object \code{x}
-lacks (does not contain) atomic scalar
-\code{y}.                                   }
-(a) If \code{x} and \code{y} are not \code{\link{compatible}}, \code{\%EQ\%}
-and \code{\%NEQ\%} return \code{FALSE} and \code{TRUE}, respectively.
+Scalar Result Failsafe Binary Logical Functions
+}
+\section{Functions in This Family}{
+
+\strong{\verb{\%IS\%}}
+\cr Evaluates whether \code{x} and \code{y} are identical.
 \cr\cr
-(b) If \code{x} is not atomic, \code{y} is not atomic scalar, or \code{x} and
-\code{y} are not \code{\link{compatible}}, \code{\%IN\%} and \code{\%OUT\%}
+\strong{\verb{\%ISNT\%}}
+\cr Evaluates whether \code{x} and \code{y} are NOT identical.
+\cr\cr
+\strong{\verb{\%EQ\%}}
+\cr Evaluates whether \code{x} and \code{y} are setequal. (A)
+\cr\cr
+\strong{\verb{\%NEQ\%}}
+\cr Evaluates whether \code{x} and \code{y} are NOT setequal. (A)
+\cr\cr
+\strong{\verb{\%AND\%}}
+\cr Evaluates whether \code{x} and \code{y} are both scalar \code{TRUE}.
+\cr\cr
+\strong{\verb{\%OR\%}}
+\cr Evaluates whether \code{x} and \code{y} is scalar \code{TRUE} or both.
+\cr\cr
+\strong{\verb{\%NOR\%}}
+\cr Evaluates whether \code{x} and \code{y} are both scalar \code{FALSE}.
+\cr\cr
+\strong{\verb{\%ONE\%}}
+\cr Evaluates whether either \code{x} or \code{y} is scalar \code{TRUE}, but not both.
+\cr\cr
+\strong{\verb{\%IN\%}}
+\cr Evaluates whether atomic scalar \code{x} is in atomic object \code{y}. (B)
+\cr\cr
+\strong{\verb{\%OUT\%}}
+\cr Evaluates whether atomic scalar \code{x} is NOT in atomic object \code{y}. (B)
+\cr\cr
+\strong{\verb{\%HAS\%}}
+\cr Evaluates whether atomic object \code{x} contains atomic scalar \code{y} (C).
+\cr\cr
+\strong{\verb{\%LACKS\%}}
+\cr Evaluates whether atomic object \code{x} lacks (does not contain) atomic
+scalar \code{y}. (C)
+\cr\cr
+(A) If \code{x} and \code{y} are not \code{\link{compatible}}, \verb{\%EQ\%} and \verb{\%NEQ\%}
 return \code{FALSE} and \code{TRUE}, respectively.
 \cr\cr
-(c) If \code{x} is not atomic scalar, \code{y} is not atomic, or \code{x} and
-\code{y} are not \code{\link{compatible}}, \code{\%HAS\%} and
-\code{\%LACKS\%} return \code{FALSE} and \code{TRUE}, respectively.
+(B) If \code{x} is not atomic, \code{y} is not atomic scalar, or \code{x} and \code{y} are not
+\code{\link{compatible}}, \verb{\%IN\%} and \verb{\%OUT\%} return \code{FALSE} and \code{TRUE},
+respectively.
+\cr\cr
+(C) If \code{x} is not atomic scalar, \code{y} is not atomic, or \code{x} and \code{y} are not
+\code{\link{compatible}}, \verb{\%HAS\%} and \verb{\%LACKS\%} return \code{FALSE} and \code{TRUE},
+respectively.
 }
+
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
@@ -99,7 +114,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -108,18 +122,19 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 
 Other logicals: 
 \code{\link{is_failsafe}},
-\code{\link{logicals_uj}()}
+\code{\link{uj_logicals}}
 
 Other failsafe: 
 \code{\link{failsafe}()},

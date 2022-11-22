@@ -2,7 +2,7 @@
 #' @family extensions
 #' @family failsafe
 #' @family logicals
-#' @title Failsafe \code{is} functions
+#' @title Failsafe \code{is} Functions
 #' @description Functions that produce a \code{TRUE} or \code{FALSE} result as
 #'   long as identity-evaluating their arguments (i.e.,
 #'   \code{identity(arg_name)}) does not itself produce an error.

@@ -1,12 +1,12 @@
 #' @name fork
-#' @title Forking as an extension of \code{\link[base]{ifelse}}
+#' @title Forking as an Extension of \code{base::ifelse}
 #' @family extensions
-#' @family fork
+#' @family forking
 #' @description Robust extended functionality for \code{\link[base]{ifelse}}.
+#' @section Functions in this Family:
 #'   \strong{\code{fork}}
-#'   \cr Evaluates logical scalar or logical vector
-#'   \code{test} and returns an object of the same length as
-#'   \code{test} where:\itemize{
+#'   \cr Evaluates logical scalar or logical vector \code{test} and returns an
+#'   object of the same length as \code{test} where:\itemize{
 #'     \item \code{TRUE} values of \code{test} are replaced by corresponding
 #'           values of \code{yes}.
 #'     \item \code{FALSE} values of \code{test} are replaced by corresponding
@@ -20,9 +20,8 @@
 #'   \code{test} is anything else, returns \code{no}.
 #'   \cr\cr
 #'   \strong{\code{f1}}
-#'   \cr\emph{error-checked version of} \code{f0}:
-#'   \cr Evaluates and processes logical scalar \code{test} in the following
-#'   manner:\itemize{
+#'   \cr Error-checked version of \code{f0}. Evaluates and processes logical
+#'   scalar \code{test} in the following manner:\itemize{
 #'     \item If \code{test = TRUE}, returns \code{yes}.
 #'     \item If \code{test = FALSE}, returns \code{no}.
 #'     \item If \code{test = NA}, returns \code{na} unless \code{na = 'err'}, in
@@ -57,14 +56,14 @@ fork <- function(test, yes, no, na = 'err') {
               f0(ok.yes  , NULL, "\n \u2022 [yes] must be of length 1 or a vector of the same length as [test]."),
               f0(ok.no   , NULL, "\n \u2022 [no] must be of length 1 or a vector of the same length as [test]."),
               f0(iscl(na), NULL, "\n \u2022 [na] must be an atomic scalar."))
-    if (idef(errs)) {stop(errs)}
+    if (!is.null(errs)) {stop(errs)}
     ok.tny <- ok.test & ok.yes & ok.no
     ok.test <- f0(!na.err | !ok.test, T, cmp_lgl_vec(test))
     ok.comp <- f0(!ok.tny, NULL, compatible(yes, no, f0(inc.na, na, NULL)))
     errs <- c(f0(ok.test , NULL, "\n \u2022 [na = 'err'] but [test] contains NA values."),
               f0(ok.comp , NULL, f0(inc.na, "\n \u2022 [yes], [no], and [na] must be of compatible (?compatible) modes.",
                                             "\n \u2022 [yes] and [no] must be of compatible (?compatible) modes.")))
-    if (idef(errs)) {stop(errs)}
+    if (!is.null(errs)) {stop(errs)}
     if (ny == 1) {yes <- rep.int(yes, nt)}
     if (nn == 1) {no  <- rep.int(no , nt)}
     out <- rep.int(na, nt)

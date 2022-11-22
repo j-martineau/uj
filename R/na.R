@@ -1,22 +1,27 @@
 #' @name na
 #' @family extensions
+#' @family na_values
 #' @title Manage \code{NA} and non-\code{NA} values
 #' @description All functions in this group take objects of atomic mode,
 #'   \link[=atm_dtf]{atomic dtfs}, or \link[=atm_vls]{atomic vlists}.
-#'   \cr\cr
-#'   \code{na}
+#' @section Functions in this Family:
+#'   \strong{\code{na}}
 #'   \cr Indexes \code{NA} values of \code{x}.
 #'   \cr\cr
-#'   \code{ok}
+#'   \strong{\code{ok}}
 #'   \cr Indexes non-\code{NA} values of \code{x}.
 #'   \cr\cr
-#'   \code{nas}
-#'   \cr Evaluates whether \code{x} an \code{NA} scalar.
+#'   \strong{\code{nas}}
+#'   \cr Is \code{x} an \code{NA} scalar.
 #'   \cr\cr
-#'   \code{oks}
-#'   \cr Evaluates whether \code{x} a non-\code{NA} scalar.
+#'   \strong{\code{oks}}
+#'   \cr Is \code{x} an \code{NA} scalar.
 #'   \cr\cr
-#'   \code{rm_na}
+#'   \strong{\code{sub_na}}
+#'   \cr Substitutes \code{s} for \code{NA} values of \code{x}. Modes of
+#'   \code{x} and \code{s} must be compatible (\code{\link{=compatible}}).
+#'   \cr\cr
+#'   \strong{\code{rm_na}}
 #'   \cr Removes \code{NA} values of \code{x}. If there are no \code{NA} values
 #'   in \code{x}, this function returns \code{x} unchanged. \strong{However}, if
 #'   there are \code{NA} values in \code{x}, by removing \code{NA} values from
@@ -25,20 +30,20 @@
 #'   class is reduced to an atomic vector sans \code{NA} values. If \code{x} is
 #'   an \code{\link[=atm_vls]{atomic vlist}}, any elements with \code{NA} values
 #'   are reduced to atomic vectors sans their \code{NA} values.
-#'   \cr\cr
-#'   \code{sub_na}
-#'   \cr Substitutes \code{s} for \code{NA} values of \code{x}. Modes of
-#'   \code{x} and \code{s} must be compatible (\code{\link{=compatible}}).
 #' @param x The argument to be inspected/managed.
 #' @param s \link[=atm_scl]{Atomic scalar} to replace \code{NA} values. Mode must
 #'   be \code{\link{compatible}} with \code{x}.
-#' @return\tabular{lll}{
-#'  \code{na} and \code{ok}  \tab   \tab A logical object of the same dimension
-#'                                       as \code{x}.                        \cr
-#'  \code{nas} and \code{oks}\tab   \tab A logical scalar.                   \cr
-#'  \code{rm_na}             \tab   \tab Either an atomic vector or \code{x}.\cr
-#'  \code{sub_na}            \tab   \tab \code{x} with \code{NA} values
-#'                                        replaced.                            }
+#' @return \strong{\code{na, ok}}
+#'   \cr Logical object of the same dimension as \code{x}.
+#'   \cr\cr
+#'   \strong{\code{nas, oks}}
+#'   \cr A logical scalar.
+#'   \cr\cr
+#'   \strong{\code{rm_na}}
+#'   \cr Either an atomic vector or \code{x}.
+#'   \cr\cr
+#'   \strong{\code{sub_na}}
+#'   \cr code{x} with \code{NA} values replaced.
 #' @export
 na <- function(x) {
   if (length(x) > 0) {

@@ -1,19 +1,21 @@
 #' @family props
 #' @title Base + Extended Class Properties
-#' @description NOTE: \code{BBB} and \code{CCC} are used as placeholders for any
+#' @section Functions in this Family:
+#'   NOTE: \code{BBB} and \code{CCC} are used as placeholders for any
 #'   given base and extended class, respectively.
 #'   \cr\cr
-#'   \strong{\code{bbb_ccc}}: Evaluates whether \code{x} matches the
-#'   base property specified in the argument \code{bbb} and matches the
-#'   extended class specified in the argument \code{ccc}.
-#'   (subject to any restrictions in \code{...}).
+#'   \strong{\code{bbb_ccc}}
+#'   \cr Evaluates whether \code{x} matches the base property specified in the
+#'   argument \code{bbb} and matches the extended class specified in the
+#'   argument \code{ccc}. (subject to any restrictions in \code{...}).
 #'   \cr\cr
-#'   \strong{\code{BBB_CCC}}: Evaluates whether \code{x} matches
-#'   base property \code{BBB} and extended class \code{CCC}.
-#'   (subject to any restrictions in \code{...}).
+#'   \strong{\code{BBB_CCC}}
+#'   \cr Evaluates whether \code{x} matches base property \code{BBB} and
+#'   extended class \code{CCC}. (subject to any restrictions in \code{...}).
 #'   \cr\cr
-#'   \strong{\code{bbb_ccc_props}}: Gets a character vector of all possible
-#'   base + extended class properties.
+#'   \strong{\code{bbb_ccc_props}}
+#'   \cr Gets a character vector of all possible base + extended class
+#'   properties.
 #' @param x An R object
 #' @param bbb A character scalar containing an
 #'   base property from bbb_props().
@@ -21,8 +23,11 @@
 #'   extended class property from ccc_props().
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{bbb_ccc_props}}: A character vector.
-#'   \cr\cr\strong{bbb_ccc, BBB_CCC}: A logical scalar.
+#' @return \strong{\code{bbb_ccc_props}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{bbb_ccc, BBB_CCC}}
+#'   \cr A logical scalar.
 #' @export
 bbb_ccc <- function(x, bbb, ccc, ...) {
   BBB <- c("atm", "nil", "pop", "rcr")

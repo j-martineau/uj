@@ -12,19 +12,19 @@
 #'   0, the level assigned is the lower of the levels distinguished by that
 #'   value of \code{cuts}. Otherwise, the level assigned is the upper of the
 #'   levels distinguished by that value of \code{cuts}.
-#' @return Atomic object of the same dimension as \code{x} and the same mode as
-#'   \code{levs}.
+#' @return An atomic object of the same dimension as \code{x} and the same mode
+#'   as \code{levs}.
 #' @export
 rng2lev <- function(x, cuts, levs) {
   errs <- c(f0(isrt(x)          , NULL, " \u2022 [x] must be an atomic sortable object (?isrt)."),
             f0(cmp_srt_vec(cuts), NULL, " \u2022 [cuts] must be a complete sortable vec (?cmp_srt_vec)."),
             f0(cmp_srt_vec(levs), NULL, " \u2022 [levs] must be a complete sortable vec (?cmp_srt_vec)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   errs <- c(f0(all(sort(cuts) == cuts)                , NULL, " \u2022 [cuts] must be in increasing order."),
             f0(length(unique(cuts)) != length(cuts)   , NULL, " \u2022 [cuts] contains duplicate values."),
             f0(length(cuts) != length(levs) - 1       , NULL, " \u2022 There must be one fewer value in [cuts] than in [levs]."),
             f0(compatible(x, cuts, levs, recycle. = F), NULL, " \u2022 [x], [cuts], and [levs] must be of comparable modes (?comparable)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   cuts <- c(-Inf, cuts, Inf)                                                     # infinite lower and upper cuts
   tolev <- function(y) {                                                         # FUN to get a level for an individual value
     for (i in 1:length(levs)) {                                                  # : FOR each level

@@ -8,7 +8,7 @@
 \alias{xwarn}
 \alias{xplot}
 \alias{xcon}
-\title{Remove various objects or characteristics.}
+\title{Remove Various Objects or Characteristics}
 \usage{
 xat(x, ...)
 
@@ -29,25 +29,37 @@ xcon()
 containing names of attributes or classes to remove.}
 }
 \value{
-\tabular{lll}{
-\code{xat}, \code{xat0}, \code{xcls}
-\tab    \tab An R object.                                             \cr
-  \tab    \tab                                                          \cr
-\code{xwarn}, \code{splot}, \code{xcon}
-\tab    \tab {NULL} (call for side effects).                            }
-An object (\code{xat} and \code{xcls}) or \code{NULL} (\code{xwarn}
-and \code{xcls}).
+\strong{\code{xat, xat0, xcls}}
+\cr An R object.
+\cr\cr
+\strong{\code{xwarn, splot, xcon}}
+\cr \code{NULL} (called for side effects).
 }
 \description{
-\tabular{ll}{
-\code{xat}     \tab Remove one or more attributes by name.              \cr
-\code{xat0}    \tab Remove all attributes.                              \cr
-\code{xcls}    \tab Remove one or more class attributes by name.        \cr
-\code{xwarn}   \tab Purge all warnings.                                 \cr
-\code{xplot}   \tab Purge all plots (and if \code{x} is not \code{NULL},
-print {x}, which is meant to be a plot object).     \cr
-\code{xcon}    \tab Clear the console.                                    }
+Remove Various Objects or Characteristics
 }
+\section{Functions in This Family}{
+
+\strong{\code{xat}}
+\cr Remove one or more attributes by name.
+\cr\cr
+\strong{\code{xat0}}
+\cr Remove all attributes.
+\cr\cr
+\strong{\code{xcls}}
+\cr Remove one or more class attributes by name.
+\cr\cr
+\strong{\code{xwarn}}
+\cr Purge all warnings.
+\cr\cr
+\strong{\code{xplot}}
+\cr Purge all plots (and if \code{x} is not \code{NULL}, print {x}, which
+is meant to be a plot object).
+\cr\cr
+\strong{\code{xcon}}
+\cr Clear the console.
+}
+
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
@@ -63,7 +75,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{make_uj}},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
@@ -72,12 +83,13 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 }
 \concept{extensions}

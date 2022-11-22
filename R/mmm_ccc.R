@@ -1,28 +1,27 @@
 #' @family props
 #' @title Extended Mode + Extended Class Properties
-#' @description NOTE: \code{MMM} and \code{CCC} are used as placeholders for any
-#'   given extended mode and extended class, respectively.
-#'   \cr\cr
-#'   \strong{\code{mmm_ccc}}: Evaluates whether \code{x} matches the
-#'   extended mode specified in the argument \code{mmm} and matches the
-#'   extended class specified in the argument \code{ccc}.
-#'   (subject to any restrictions in \code{...}).
-#'   \cr\cr
-#'   \strong{\code{MMM_CCC}}: Evaluates whether \code{x} matches
-#'   extended mode \code{MMM} and extended class \code{CCC}.
-#'   (subject to any restrictions in \code{...}).
-#'   \cr\cr
-#'   \strong{\code{mmm_ccc_props}}: Gets a character vector of all possible
+#' @description Manage combinations of \link[=mmm]{extended mode} and
+#'   \link[=ccc]{extended class}.
+#' @section \code{mmm_ccc}: Evaluates whether \code{x} matches the extended mode
+#'   specified in the argument \code{mmm} and matches the extended class
+#'   specified in the argument \code{ccc}. (subject to any restrictions in
+#'   \code{...}).
+#' @section \code{xxx_yyy}: Evaluates whether \code{x} matches extended mode
+#'   \code{xxx} and extended class \code{yyy}, where \code{xxx} and \code{yyy}
+#'   are wildcards representing 3-character extended mode and extended class
+#'   codes respectively. (subject to any restrictions in \code{...}).
+#' @section \code{mmm_ccc_props}: Gets a character vector of all possible
 #'   extended mode + extended class properties.
 #' @param x An R object
-#' @param mmm A character scalar containing an
-#'   extended mode property from mmm_props().
-#' @param ccc A character scalar containing an
-#'   extended class property from ccc_props().
+#' @param mmm Character scalar containing an extended mode property from
+#'   mmm_props().
+#' @param ccc Character scalar containing an extended class property from
+#'   ccc_props().
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{mmm_ccc_props}}: A character vector.
-#'   \cr\cr\strong{mmm_ccc, MMM_CCC}: A logical scalar.
+#' @return \tabular{ll}{
+#'   \code{mmm_ccc_props}      \tab A character vector. \cr
+#'   \code{mmm_ccc, xxx_yyy}   \tab A logical scalar.     }
 #' @export
 mmm_ccc <- function(x, mmm_ccc, ...) {
   errs <- c(.meets_errs(x, ...),

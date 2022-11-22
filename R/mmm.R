@@ -9,9 +9,9 @@
 #'   defined classes, but are evaluated dynamically based on the current
 #'   characteristics of an object.
 #'   \cr\cr
-#'   Atomic objects that contain only \code{NA} values are of every extended mode,
-#'   as they can be coerced to any mode without introducing new \code{NA} values.
-#'   The following tables gives extended mode values, names, and
+#'   Atomic objects that contain only \code{NA} values are of every extended
+#'   mode, as they can be coerced to any mode without introducing new \code{NA}
+#'   values. The following tables gives extended mode values, names, and
 #'   requirements
 #'   \cr\cr
 #'   \strong{Character Extended Modes}\tabular{lll}{
@@ -57,24 +57,25 @@
 #'     \code{'nnw'}\tab Non-negative whole\tab Non-negative whole-number.    \cr
 #'     \code{'npw'}\tab Non-positive whole\tab Non-positive whole-number.    \cr
 #'     \code{'ngw'}\tab Negative whole    \tab Negative whole-number.          }
-#'   Functions related to extended mode properties are as follows:
-#'   \tabular{ll}{
-#'     MMM FUNCTION         \tab WHAT IT DOES                                \cr
-#'     \code{iMMM}          \tab Evaluates whether \code{x} matches the
-#'                               extended mode property \code{MMM}
-#'                               (subject to any restrictions in \code{...}).\cr
-#'     \code{mmm}           \tab Gets a character vector containing all
-#'                               extended mode properties matching
-#'                               \code{x}.                                   \cr
-#'     \code{immm}          \tab Evaluates \code{x} against the
-#'                               extended mode property specification
-#'                               in \code{spec} (subject to any restrictions in
-#'                               \code{...}).                                \cr
-#'     \code{mmm_props}     \tab Gets a character vector of all possible
-#'                               extended mode property values.              \cr
-#'     \code{is_mmm_spec}   \tab Evaluates whether \code{spec} is a valid
-#'                               extended mode property
-#'                               specification.                                }
+#' @section Functions in this Family:
+#'   \strong{\code{iMMM}}
+#'   \cr Evaluates whether \code{x} matches the extended mode property
+#'   \code{MMM} (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{mmm}}
+#'   \cr Gets a character vector containing all extended mode properties
+#'   matching \code{x}.
+#'   \cr\cr
+#'   \strong{\code{immm}}
+#'   \cr Evaluates \code{x} against the extended mode property specification in
+#'   \code{spec} (subject to any restrictions in \code{...}).
+#'   \cr\cr
+#'   \strong{\code{mmm_props}}
+#'   \cr Gets a character vector of all possible extended mode property values.
+#'   \cr\cr
+#'   \strong{\code{is_mmm_spec}}
+#'   \cr Evaluates whether \code{spec} is a valid extended mode property
+#'   specification.
 #' @param x An R object.
 #' @param spec \code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
 #'   containing one or more extended mode properties (i.e., from
@@ -83,9 +84,14 @@
 #'   a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{mmm_vals}}: A character vector.
-#'   \cr\cr\strong{\code{mmm}}: A character scalar or character vector.
-#'   \cr\cr\strong{\code{iMMM, immm, is_mmm_spec}}: A logical scalar.
+#' @return \strong{\code{mmm_vals}}
+#'   \cr A character vector.
+#'   \cr\cr
+#'   \strong{\code{mmm}}
+#'   \cr A character scalar or character vector.
+#'   \cr\cr
+#'   \strong{\code{iMMM, immm, is_mmm_spec}}
+#'   \cr A logical scalar.
 #' @export
 mmm <- function(x) {
   props <- .mmm_props()

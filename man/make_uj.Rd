@@ -55,7 +55,7 @@ apply to rows of a matrix or dtf May be pipe-delimited.}
 
 \item{cn, cn.}{Optional \link[=cmp_chr_vec]{complete character vec} of names
 to apply to columns of a matrix or dtf May be pipe-delimited. For tibbles,
-this argument can be used only if the arguments in \code{...} are not
+this argument can be used only if the \code{...} arguments are not
 named.}
 
 \item{nr, nr.}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}
@@ -103,8 +103,8 @@ columns with names from \code{cn.} (which may be pipe delimited). All cells
 of the resulting tibble are populated with \code{NA}. values.
 
 \item \code{dtf()}: Creates an \link[idtf]{atomic dtf} from the
-\link[ivec]{atomic vec} arguments in \code{...} with optional row names,
-plus optional column names to replace any names of arguments in \code{...}.
+\link[ivec]{atomic vec} \code{...} arguments with optional row names,
+plus optional column names to replace any names of \code{...} arguments.
 
 \item \code{vls()}: Creates an atomic \link[=ivls]{vlist} from the arguments in
 \code{...} with optional element names to replace any names of arguments in
@@ -136,7 +136,6 @@ Other extensions:
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
-\code{\link{logicals_uj}()},
 \code{\link{n_is}()},
 \code{\link{n_th}()},
 \code{\link{naming}},
@@ -144,13 +143,14 @@ Other extensions:
 \code{\link{os}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{put.}()},
+\code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
+\code{\link{uj_logicals}},
 \code{\link{xb}()}
 }
 \concept{extensions}

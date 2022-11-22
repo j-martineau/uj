@@ -49,9 +49,17 @@ a match to any of the specified properties.}
   }}
 }
 \value{
-\strong{\code{eee_vals}}: A character vector.
-\cr\cr\strong{\code{eee}}: A character scalar or character vector.
-\cr\cr\strong{\code{iEEE, ieee, is_eee_spec}}: A logical scalar.
+\strong{\code{eee_vals}}
+\cr A character vector.
+\cr\cr
+\strong{\code{eee}}
+\cr A character scalar or character vector.
+\cr\cr
+\strong{\code{iEEE, ieee, is_eee_spec}}
+\cr A logical scalar.
+\cr\cr
+\strong{\code{neee}}
+\cr An integer scalar or \code{NaN}.
 }
 \description{
 Effective dimensionality of a non-empty object is defined as
@@ -82,47 +90,53 @@ with multiple index positions in exactly
 \code{≥ 3}\tab\code{'eHD'}\tab Effectively hyper-dimensional
 \tab Non-empty array with multiple index
 positions in at least 3 dimensions.        }
-Functions related to effective dimensionality properties are as follows:
-\tabular{ll}{
-EEE FUNCTION         \tab WHAT IT DOES                                \cr
-\code{iEEE}          \tab Evaluates whether \code{x} matches the
-effective dimensionality property \code{EEE}
-(subject to any restrictions in \code{...}).\cr
-\code{eee}           \tab Gets a character vector containing all
-effective dimensionality properties matching
-\code{x}.                                   \cr
-\code{ieee}          \tab Evaluates \code{x} against the
-effective dimensionality property specification
-in \code{spec} (subject to any restrictions in
-\code{...}).                                \cr
-\code{eee_props}     \tab Gets a character vector of all possible
-effective dimensionality property values.   \cr
-\code{is_eee_spec}   \tab Evaluates whether \code{spec} is a valid
-effective dimensionality property
-specification.                                }
 }
-\section{Specifying Count and Value Restrictions}{
+\section{Functions in this Family}{
 
-Specifying additional requirements in \code{...} is optional. The full set
-of recognized arguments names are defined in the following table along with
-the properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                    \cr
-\code{n}      \tab Vec of valid lengths/numbers of elements.            \cr
-\code{nr}     \tab Vec of valid numbers of rows.                        \cr
-\code{nc}     \tab Vec of valid numbers of columns.                     \cr
-\code{min}    \tab Scalar minimum valid length/number of element.       \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                 \cr
-\code{minc}   \tab Scalar minimum valid number of columns.              \cr
-\code{max}    \tab Scalar maximum valid length/number of element.       \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                 \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.              \cr
-\code{vals}   \tab Vec of valid values.                                 \cr
-\code{lt}     \tab Scalar less-than bound on values of \code{x}.        \cr
-\code{le}     \tab Scalar less-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{ge}     \tab Scalar greater-than-or-equal bound on values of
-\code{x}.                                            \cr
-\code{gt}     \tab Scalar greater-than bound on values of \code{x}.       }
+\strong{\code{iEEE}}
+\cr Evaluates whether \code{x} matches the effective dimensionality
+property \code{EEE} (subject to any restrictions in \code{...}).
+\cr\cr
+\strong{\code{eee}}
+\cr Gets a character vector containing all effective dimensionality
+properties matching \code{x}.
+\cr\cr
+\strong{\code{ieee}}
+\cr Evaluates \code{x} against the effective dimensionality property
+specification in \code{spec} (subject to any restrictions in \code{...}).
+\cr\cr
+\strong{\code{eee_props}}
+\cr Gets a character vector of all possible effective dimensionality
+property values.
+\cr\cr
+\strong{\code{is_eee_spec}}
+\cr Evaluates whether \code{spec} is a valid effective dimensionality
+property specification.
+\cr\cr
+\strong{\code{neee}}
+\cr Gets the number of effective dimensions of \code{x}.
+}
+
+\section{Specifying Count and Value Restrictions}{
+ Specifying additional
+requirements in \code{...} is optional. The full set of recognized
+arguments names are defined in the following table along with the
+properties each specifies:\tabular{ll}{
+NAME          \tab WHAT IT SPECIFIES                                      \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
+\code{nr}     \tab Vector of valid numbers of rows.                       \cr
+\code{nc}     \tab Vector of valid numbers of columns.                    \cr
+\code{min}    \tab Scalar minimum valid length/number of element.         \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                \cr
+\code{max}    \tab Scalar maximum valid length/number of element.         \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
+\code{vals}   \tab Vector of valid values.                                \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
 }
 
 \seealso{
@@ -133,7 +147,6 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc_props}()},
 \code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -141,6 +154,7 @@ Other props:
 \code{\link{ddd}()},
 \code{\link{iii}()},
 \code{\link{meets}()},
+\code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
 \code{\link{sss}()}

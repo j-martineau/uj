@@ -32,20 +32,32 @@ pad: "l", "r", or "b" for left, right, or both, respectively.}
 character used to pad strings.}
 }
 \value{
-\tabular{lll}{
-\code{spaces}                     \tab   \tab A character scalar.       \cr
-\code{pad}, \code{trm}, \code{sqz}\tab   \tab A character object.         }
+\strong{\code{spaces}}
+\cr A character scalar.
+\cr\cr
+\strong{\code{pad, trm, sqz}}
+\cr A character object.
 }
 \description{
-\tabular{ll}{
-\code{spaces}   \tab Create a character vector of \code{n} spaces.      \cr
-\code{pad}      \tab Pad a string with leading and/or trailing spaces using
-\code{\link[stringr]{pad}}.                        \cr
-\code{sqz}      \tab Trim leading, trailing, and extra internal spaces
-using \code{\link[stringr]{str_squish}}.           \cr
-\code{trm}      \tab Trim leading and trailing spaces using
-\code{\link[stringr]{str_trim}}.                     }
+Error-Checked \code{stringr}-Based Spacing Functions
 }
+\section{Functions in This Family}{
+
+\strong{\code{spaces}}
+\cr Create a character vector of \code{n} spaces.
+\cr\cr
+\strong{\code{pad}}
+\cr Pad a string with leading and/or trailing spaces using
+\code{\link[stringr]{pad}}.
+\cr\cr
+\strong{\code{sqz}}
+\cr Trim leading, trailing, and extra internal spaces using
+\code{\link[stringr]{str_squish}}.
+\cr\cr
+\strong{\code{trm}}
+\cr Trim leading and trailing spaces using \code{\link[stringr]{str_trim}}.
+}
+
 \examples{
 spaces(0)
 spaces(4)
@@ -67,7 +79,7 @@ Other strings:
 \code{\link{ipat}()},
 \code{\link{max_nch}()},
 \code{\link{mkstr}},
-\code{\link{ox.}()},
+\code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{revstr}()},
 \code{\link{ss}()},

@@ -1,14 +1,20 @@
 #' @name spacing
 #' @family strings
 #' @title Error-Checked \code{stringr}-Based Spacing Functions
-#' @description \tabular{ll}{
-#'   \code{spaces}   \tab Create a character vector of \code{n} spaces.      \cr
-#'   \code{pad}      \tab Pad a string with leading and/or trailing spaces using
-#'                        \code{\link[stringr]{pad}}.                        \cr
-#'   \code{sqz}      \tab Trim leading, trailing, and extra internal spaces
-#'                        using \code{\link[stringr]{str_squish}}.           \cr
-#'   \code{trm}      \tab Trim leading and trailing spaces using
-#'                        \code{\link[stringr]{str_trim}}.                     }
+#' @section Functions in This Family:
+#'   \strong{\code{spaces}}
+#'   \cr Create a character vector of \code{n} spaces.
+#'   \cr\cr
+#'   \strong{\code{pad}}
+#'   \cr Pad a string with leading and/or trailing spaces using
+#'   \code{\link[stringr]{pad}}.
+#'   \cr\cr
+#'   \strong{\code{sqz}}
+#'   \cr Trim leading, trailing, and extra internal spaces using
+#'   \code{\link[stringr]{str_squish}}.
+#'   \cr\cr
+#'   \strong{\code{trm}}
+#'   \cr Trim leading and trailing spaces using \code{\link[stringr]{str_trim}}.
 #' @param ... An arbitrary number of atomic arguments to be processed.
 #' @param n \link[=cmp_psw_scl]{Complete positive whole-number scalar}
 #'   indicating the number of spaces.
@@ -18,9 +24,11 @@
 #'   pad: "l", "r", or "b" for left, right, or both, respectively.
 #' @param p. \link[=cmp_ch1_scl]{Complete onechar scalar} containing a single
 #'   character used to pad strings.
-#' @return \tabular{lll}{
-#'   \code{spaces}                     \tab   \tab A character scalar.       \cr
-#'   \code{pad}, \code{trm}, \code{sqz}\tab   \tab A character object.         }
+#' @return \strong{\code{spaces}}
+#'   \cr A character scalar.
+#'   \cr\cr
+#'   \strong{\code{pad, trm, sqz}}
+#'   \cr A character object.
 #' @examples
 #' spaces(0)
 #' spaces(4)
@@ -45,7 +53,7 @@ pad <- function(..., n. = 0, s. = "r", p. = " ") {
             f0(cmp_nnw_scl(n.)                , NULL, "\n \u2022 [n.] must be a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
             f0(isIN(s., "l", "r", "b")        , NULL, "\n \u2022 [s.] must be a complete onechar scalar (?cmp_ch1_scl) in c('r', 'l', 'b')."),
             f0(cmp_ch1_scl(p.)                , NULL, "\n \u2022 [p.] must be a complete onechar scalar (?cmp_ch1_scl)."))
-  if (idef(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(errs)}
   sapply(av(...), stringr::str_pad, width = n., side = s., pad = p.)
 }
 
