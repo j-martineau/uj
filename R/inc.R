@@ -1,18 +1,16 @@
 #' @name inc
 #' @family math
 #' @title Increment or Decrement a Variable
-#' @section Functions in This Family:
-#'   \strong{\code{inc}}
-#'   \cr Increments \code{x} by the value in \code{i}.
-#'   \cr\cr
-#'   \strong{\code{dec}}
-#'   \cr Decrements \code{x} by the value in \code{d}.
-#' @param x \link[=atm_num]{Atomic numeric} object.
-#' @param i,d \link[=cmp_num_scl]{Complete numeric scalar} giving the value by
+#' @description \tabular{ll}{
+#'   FUNCTION   \tab WHAT IT DOES                                            \cr
+#'   `inc`      \tab Increment `x` by the value in `i`.                      \cr
+#'   `dec`      \tab Decrement `x` by the value in `d`.                        }
+#' @param x AN \link[=atm_num]{atomic numeric} object.
+#' @param i,d \link[=cmp_num_scl]{Complete numeric scalars} giving the value by
 #'   which to increment or decrement, respectively.
-#' @param na \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
-#'   throw an error if any values of \code{x} are \code{NA}.
-#' @return An atomic numeric object of the same dimension as \code{x}.
+#' @param na A non`NA` logical scalar indicating whether to
+#'   throw an error if any values of `x` are `NA`.
+#' @return An atomic numeric object of the same dimension as `x`.
 #' @export
 inc <- function(x, i = 1, na = F) {
   ok.x <- f0(inum(x), T, f0(num_dtf(x), T, num_vls(x)))

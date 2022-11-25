@@ -1,41 +1,61 @@
 #' @name ply
 #' @family extensions
-#' @title Variations on \code{apply} Functions.
-#' @description Generalized \code{apply(.)} with a wide range of options.
-#' @section The \code{proc.} Argument: When not \code{NULL}, the \code{proc.}
+#' @title Variations on `apply` Functions
+#' @description `norply`, `anyply`, `allply`, `oneply`, and `twoply` assume the
+#'   results of applying `fun` are of mode 'logical'. \tabular{ll}{
+#'   FUNCTION   \tab WHAT IT DOES                                            \cr
+#'   `ply`      \tab Offering all functionality in a single function.        \cr
+#'   `norply`   \tab Evaluates whether there are \emph{`0`} `TRUE` values in the
+#'                   the result of applying `fun`.                           \cr
+#'   `anyply`   \tab Evaluates whether there are \emph{any} `TRUE` values in the
+#'                   the result of applying `fun`.                           \cr
+#'   `allply`   \tab Evaluates whether there are \emph{only} `TRUE` values in
+#'                   the result of applying `fun`.                           \cr
+#'   `oneply`   \tab Evaluates whether there is \emph{exactly `1`} `TRUE` value
+#'                   in the result of applying `fun`.                        \cr
+#'   `twoply`   \tab Evaluates whether there are \emph{`2+`} `TRUE` values in
+#'                   the result of applying `fun`.                           \cr
+#'   `atmply`   \tab \link[=av]{Atomize} `x` and apply `fun` to each element of
+#'                   the resulting atomic vector.                            \cr
+#'   `mvcply`   \tab Apply `fun` to each element of the \link[=atm_vec]{atomic
+#'                   multivec} `x`.                                          \cr
+#'   `vecply`   \tab Apply `fun` to each element of the \link[=atm_vec]{atomic
+#'                   vec} `x`.                                               \cr
+#'   `rowply`   \tab Apply `fun` to each row of matrix/data.frame `x`.       \cr
+#'   `colply`   \tab Apply `fun` to each column of matrix/data.frame `x`.    \cr
+#'   `dimply`   \tab Apply `fun` to each cell of array/data.frame `x`.       \cr
+#'   `vlsply`   \tab Apply `fun` to each element of \link[=ivls]{vlist} `x`.   }
+#' @section The `proc` Argument: When not `NULL`, the `proc`
 #'   argument can be a list with up to seven optional named elements, which give
 #'   processing instructions as follows: \tabular{ll}{
-#'   NAME‑VALUE PAIR      \tab PROCESSING INSTRUCTION                        \cr
-#'   \code{s = TRUE}      \tab link[base:simplify2array]{Simplify} the
-#'                             result.                                       \cr
-#'   \code{a1 = TRUE}     \tab link[=a]{Atomize} \code{x} first.             \cr
-#'   \code{a2 = TRUE}     \tab link[=a]{Atomize} the result.                 \cr
-#'   \code{na = TRUE}     \tab Replace resulting \code{NA}s with \code{TRUE}.\cr
-#'   \code{na = FALSE}    \tab Replace resulting \code{NA}s with
-#'                             \code{FALSE}.                                 \cr
-#'   \code{na = 'err'}    \tab Throw error if result contains any \code{NA}s.\cr
-#'   \code{agg = 'nor'   }\tab Does result contain zero \code{TRUE} values?  \cr
-#'   \code{agg = 'any'}   \tab Does result contain any \code{TRUE} values?   \cr
-#'   \code{agg = 'all'}   \tab Does result contain only \code{TRUE} values?  \cr
-#'   \code{agg = 'one'}   \tab Does result contain exactly one \code{TRUE}
-#'                             value?                                        \cr
-#'   \code{agg = 'two'}   \tab Does result contain two+ \code{TRUE} values.  \cr
-#'   \code{arg = '***'}   \tab Inspect \code{x} for properties specified in the
-#'                             character vector represented by \code{***} and
-#'                             throw an error if they are not met.           \cr
-#'   \code{out = '***'}   \tab Inspect the result for properties specified in
-#'                             the character vector represented by \code{***}
-#'                             and throw an error if they are not met.         }
-#' @param x An object to apply \code{fun} to.
-#' @param fun Function or name of a function to apply to \code{x}.
-#' @param dim \link[=cmp_nnw_vec]{Complete non-negative whole-number vec} giving
-#'   the dimension(s) of \code{x} to apply the function \code{fun} to (\code{0}
-#'   indicates applying to elements of an object, where for arrays, and tibbles,
-#'   this means applying to every cell).
+#'     NAME & VALUE    \tab PROCESSING INSTRUCTION                           \cr
+#'     `s = TRUE`      \tab \link[base:simplify2array]{Simplify} the result. \cr
+#'     `a1 = TRUE`     \tab \link[=a]{Atomize} `x` first.                    \cr
+#'     `a2 = TRUE`     \tab Atomize the result.                              \cr
+#'     `na = TRUE`     \tab Replace resulting `NA` values with `TRUE`.       \cr
+#'     `na = FALSE`    \tab Replace resulting `NA` values with `FALSE`.      \cr
+#'     `na = 'err'`    \tab Throw error if result contains any `NA`s.        \cr
+#'     `agg = 'nor'`   \tab Inspect result for \emph{`0`} `TRUE` values.     \cr
+#'     `agg = 'any'`   \tab Inspect result for \emph{any} `TRUE` values.     \cr
+#'     `agg = 'all'`   \tab Inspect result for \emph{only} `TRUE` values.    \cr
+#'     `agg = 'one'`   \tab Inspect result for \emph{exactly `1`} `TRUE`
+#'                          value.                                           \cr
+#'     `agg = 'two'`   \tab Inspect result for \emph{`2+`} `TRUE` values.    \cr
+#'     `arg = '***'`   \tab Inspect `x` for \link[=ppp]{properties} given in the
+#'                          string `***` and throw an error if not met.      \cr
+#'     `out = '***'`   \tab Inspect the result for properties given in the
+#'                          string `***` and throw an error if not met.        }
+#' @param x An object to apply `fun` to.
+#' @param fun Function or name of a function to apply to `x`.
+#' @param dim A \link[=cmp_nnw_vec]{complete non-negative whole-number vec}
+#'   giving dimension(s) of `x` to apply the function `fun` to (`0` indicates
+#'   applying to elements of a vector or \link[=ivls]{vlist} vs. applying to
+#'   every cell for arrays and data.frames).
 #' @param ... An arbitrary number of additional arguments to be passed to the
-#'   function \code{fun}.
-#' @param proc. \code{NULL} or a list of named elements with processing
-#'   instructions. See section \strong{The \code{proc.} Argument}.
+#'   function `fun`.
+#' @param proc. `NULL` or a list of named elements with processing instructions.
+#'   See \emph{The `proc` Argument}.
+#' @return Varies.
 #' @export
 ply <- function(x, fun, dim, ..., proc. = NULL) {
   if (length(x) == 0) {stop("\n \u2022 [x] is empty.")}
@@ -90,65 +110,50 @@ ply <- function(x, fun, dim, ..., proc. = NULL) {
   x
 }
 
-#' @describeIn ply Are there \strong{zero} \code{TRUE} values in the result
-#'   of applying \code{fun}? Assumes that applying \code{fun} results in
-#'   logical values.
+#' @rdname ply
 #' @export
 norply <- function(x, fun, dim, ..., proc. = NULL) {proc.$agg <- "nor"; ply(x, fun, dim, ..., proc. = proc.)}
 
-#' @describeIn ply Are there \strong{any} \code{TRUE} values in the result of
-#'   applying \code{fun}? Assumes that applying \code{fun} results in logical
-#'   values.
+#' @rdname ply
 #' @export
 anyply <- function(x, fun, dim, ..., proc. = NULL) {proc.$agg <- "any"; ply(x, fun, dim, ..., proc. = proc.)}
 
-#' @describeIn ply Are there \strong{only} \code{TRUE} values in the result
-#'   of applying \code{fun}? Assumes that applying \code{fun} results in
-#'   logical values.
+#' @rdname ply
 #' @export
 allply <- function(x, fun, dim, ..., proc. = NULL) {proc.$agg <- "all"; ply(x, fun, dim, ..., proc. = proc.)}
 
-#' @describeIn ply Is there exactly \strong{one} \code{TRUE} values in the
-#'   result of applying \code{fun}? Assumes that applying \code{fun} results
-#'   in logical values.
+#' @rdname ply
 #' @export
 oneply <- function(x, fun, dim, ..., proc. = NULL) {proc.$agg <- "one"; ply(x, fun, dim, ..., proc. = proc.)}
 
-#' @describeIn ply Are there \strong{two or more} \code{TRUE} values in the
-#'   result of applying \code{fun}? Assumes that applying \code{fun} results
-#'   in logical values.
+#' @rdname ply
 #' @export
 twoply <- function(x, fun, dim, ..., proc. = NULL) {proc.$agg <- "two"; ply(x, fun, dim, ..., proc. = proc.)}
 
-#' @describeIn ply Atomize \code{x} and apply \code{fun} to the resulting
-#'   atomic vector.
+#' @rdname ply
 #' @export
 atmply <- function(x, fun, ..., proc. = NULL) {proc.$a1 <- T; ply(x, fun, 0, ..., proc. = proc.)}
 
-#' @describeIn ply Apply \code{fun} to each element of \code{x}, assumed to
-#'   be an \link[atm_mvc]{atomic mvect}.
+#' @rdname ply
 #' @export
 mvcply <- function(x, fun, ..., proc. = NULL) {proc.$arg <- 'mvc'; ply(x, fun, 0, ..., proc. = proc.)}
 
-#' @describeIn ply Apply \code{FUN} to each element of \code{x}, assumed to
-#'   be an \link[atm_vec]{atomic vect}.
+#' @rdname ply
 #' @export
 vecply <- function(x, fun, ..., proc. = NULL) {proc.$arg <- 'vec'; ply(x, fun, 0, ..., proc. = proc.)}
 
-#' @describeIn ply Apply \code{fun} to each row of \code{x}, assumed to be
-#'   a matrix or \link[is_dtf]{dtf}.
+#' @rdname ply
 #' @export
 rowply <- function(x, fun, ..., proc. = NULL) {proc.$arg <- 'd2D'; ply(x, fun, 1, ..., proc. = proc.)}
 
-#' @describeIn ply Apply \code{fun} to each column of \code{x}, assumed to
-#'   be a matrix or \link[is_dtf]{dtf}.
+#' @rdname ply
+#' @export
 colply <- function(x, fun, ..., proc. = NULL) {proc.$arg <- 'd2D'; ply(x, fun, 2, ..., proc. = proc.)}
 
-#' @describeIn ply Apply \code{fun} across all dimensions of \code{x}.
+#' @rdname ply
 #' @export
 dimply <- function(x, fun, ..., proc. = NULL) {dim <- f0(ddd(x) < 2, 0, 1:length(dim(x))); ply(x, fun, dim, ..., proc. = proc.)}
 
-#' @describeIn ply Apply \code{fun} to each element of \code{x}, assumed to
-#'   be a \link[is_vls]{vlist}.
+#' @rdname ply
 #' @export
 vlsply <- function(x, fun, ..., proc. = NULL) {proc.$arg <- 'pop_vls'; ply(x, fun, 0, ..., proc. = proc.)}

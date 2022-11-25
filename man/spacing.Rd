@@ -25,39 +25,29 @@ indicating the number of spaces.}
 \item{n.}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}
 indicating the number of pad characters.}
 
-\item{s.}{\link[=cmp_ch1_scl]{Complete onechar scalar} indicate side(s) to
-pad: "l", "r", or "b" for left, right, or both, respectively.}
+\item{s.}{\link[=cmp_ch1_scl]{Complete onechar scalar} indicating side(s) to
+pad: \code{'l'}, \code{'r'}, or \code{'b'} for left, right, or both, respectively.}
 
 \item{p.}{\link[=cmp_ch1_scl]{Complete onechar scalar} containing a single
 character used to pad strings.}
 }
 \value{
-\strong{\code{spaces}}
-\cr A character scalar.
-\cr\cr
-\strong{\code{pad, trm, sqz}}
-\cr A character object.
+\tabular{ll}{
+FUNCTION               \tab RETURN VALUE                                \cr
+\code{spaces}               \tab A character scalar.                         \cr
+\code{pad}, \code{trm}, \code{ sqz}   \tab A character object.                           }
 }
 \description{
-Error-Checked \code{stringr}-Based Spacing Functions
+\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES                                            \cr
+\code{spaces}   \tab Create a character vector of \code{n} spaces.                \cr
+\code{pad}      \tab Pad a string with leading and/or trailing spaces using
+\code{\link[stringr:pad]{stringr::pad}}.                \cr
+\code{sqz}      \tab Trim leading, trailing, and extra internal spaces using
+\code{\link[stringr:str_squish]{stringr::str_squish}}.  \cr
+\code{trm}      \tab Trim leading and trailing spaces using
+\code{\link[stringr:str_trim]{stringr::str_trim}}.        }
 }
-\section{Functions in This Family}{
-
-\strong{\code{spaces}}
-\cr Create a character vector of \code{n} spaces.
-\cr\cr
-\strong{\code{pad}}
-\cr Pad a string with leading and/or trailing spaces using
-\code{\link[stringr]{pad}}.
-\cr\cr
-\strong{\code{sqz}}
-\cr Trim leading, trailing, and extra internal spaces using
-\code{\link[stringr]{str_squish}}.
-\cr\cr
-\strong{\code{trm}}
-\cr Trim leading and trailing spaces using \code{\link[stringr]{str_trim}}.
-}
-
 \examples{
 spaces(0)
 spaces(4)

@@ -211,18 +211,18 @@ twoBL(x)
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-Functions that produce a \code{TRUE} or \code{FALSE} result as
-long as identity-evaluating their arguments (i.e.,
-\code{identity(arg_name)}) does not itself produce an error.
+Functions that produce a \code{TRUE} or \code{FALSE} result as long as
+identity-evaluating their arguments (e.g., \code{identity(x)}) does not itself
+produce an error.
 }
 \section{Functions}{
 \itemize{
 \item \code{isIN()}: Is \code{x} in the collective set of atomized values
 from \code{...}?
 
-\item \code{isID()}: Are \code{x} and \code{y} identical?
+\item \code{isID()}: Are \code{x} and \code{y} \link[base]{identical}?
 
-\item \code{isEQ()}: Are \code{x} and \code{y} atomic and setequal?
+\item \code{isEQ()}: Are \code{x} and \code{y} atomic and \link[base]{setequal}?
 
 \item \code{isT()}: Is \code{x} scalar \code{TRUE}?
 
@@ -240,7 +240,7 @@ from \code{...}?
 
 \item \code{isBL()}: Is \code{x} a scalar blank string?
 
-\item \code{notIN()}: Is \code{x} atomic, of length 1, and not contained
+\item \code{notIN()}: Is \code{x} atomic, of length \code{1}, and not contained
 in any argument in \code{...}?
 
 \item \code{notID()}: Thin wrapper for \code{!identical}.

@@ -13,8 +13,8 @@ putr(x, v, r)
 putc(x, v, c)
 }
 \arguments{
-\item{x}{Object into which values will be placed. May be a \code{\link{vec}},
-\code{\link[ivls]{vlist}}, matrix, or data.frame.}
+\item{x}{Object into which values will be placed. May be a \link[=ivec]{vec},
+\link[ivls]{vlist}, matrix, or data.frame.}
 
 \item{v}{A vector of replacement values.}
 
@@ -26,26 +26,19 @@ element(s) to replace.}
 column to replace, respectively.}
 }
 \value{
-An object of the same dimension as \code{x}.
+An object of the same class and dimension as \code{x}.
 }
 \description{
-Put values into objects
+\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES                                            \cr
+\code{put}      \tab Put values of \code{v} into \code{e}-indexed elements of the vector
+or \link[=ivls]{vlist} \code{x}.                             \cr
+\code{putr}     \tab Put the vector \code{v} into the \code{r}-indexed row of the matrix
+or data frame \code{x}.                                      \cr
+\code{putc}     \tab or \link[=ivls]{vlist} \code{x}.                             \cr
+\code{putr}     \tab Put the vector \code{v} into the \code{c}-indexed column of the
+matrix or data frame \code{x}.                                 }
 }
-\section{Functions in This Family}{
-
-\strong{\code{put}}
-\cr Put values in \code{v} into \code{e}-indexed elements of the vector or
-\code{\link[=ivls]{vlist}} \code{x}.
-\cr\cr
-\strong{\code{putr}}
-\cr Put the vector \code{v} into the \code{r}-indexed row of the matrix or
-data frame \code{x}.
-\cr\cr
-\strong{\code{putc}}
-\cr Put the vector \code{v} into the \code{c}-indexed of the matrix or data
-frame \code{x}.
-}
-
 \seealso{
 Other extensions: 
 \code{\link{atomize}},

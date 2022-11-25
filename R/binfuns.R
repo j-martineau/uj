@@ -3,55 +3,34 @@
 #' @family logicals
 #' @family failsafe
 #' @title Scalar Result Failsafe Binary Logical Functions
-#' @section Functions in This Family:
-#'   \strong{`%IS%`}
-#'   \cr Evaluates whether `x` and `y` are identical.
-#'   \cr\cr
-#'   \strong{`%ISNT%`}
-#'   \cr Evaluates whether `x` and `y` are NOT identical.
-#'   \cr\cr
-#'   \strong{`%EQ%`}
-#'   \cr Evaluates whether `x` and `y` are setequal. (A)
-#'   \cr\cr
-#'   \strong{`%NEQ%`}
-#'   \cr Evaluates whether `x` and `y` are NOT setequal. (A)
-#'   \cr\cr
-#'   \strong{`%AND%`}
-#'   \cr Evaluates whether `x` and `y` are both scalar `TRUE`.
-#'   \cr\cr
-#'   \strong{`%OR%`}
-#'   \cr Evaluates whether `x` and `y` is scalar `TRUE` or both.
-#'   \cr\cr
-#'   \strong{`%NOR%`}
-#'   \cr Evaluates whether `x` and `y` are both scalar `FALSE`.
-#'   \cr\cr
-#'   \strong{`%ONE%`}
-#'   \cr Evaluates whether either `x` or `y` is scalar `TRUE`, but not both.
-#'   \cr\cr
-#'   \strong{`%IN%`}
-#'   \cr Evaluates whether atomic scalar `x` is in atomic object `y`. (B)
-#'   \cr\cr
-#'   \strong{`%OUT%`}
-#'   \cr Evaluates whether atomic scalar `x` is NOT in atomic object `y`. (B)
-#'   \cr\cr
-#'   \strong{`%HAS%`}
-#'   \cr Evaluates whether atomic object `x` contains atomic scalar `y` (C).
-#'   \cr\cr
-#'   \strong{`%LACKS%`}
-#'   \cr Evaluates whether atomic object `x` lacks (does not contain) atomic
-#'   scalar `y`. (C)
-#'   \cr\cr
-#'   (A) If `x` and `y` are not \code{\link{compatible}}, `%EQ%` and `%NEQ%`
-#'   return `FALSE` and `TRUE`, respectively.
+#' @description \tabular{ll}{
+#'   FUNCTION    \tab WHAT IT DOES                                           \cr
+#'   `%IS%`      \tab Evaluate whether `x` and `y` are identical.            \cr
+#'   `%ISNT%`    \tab Evaluate whether `x` and `y` are NOT identical.        \cr
+#'   `%EQ%`      \tab Evaluate whether `x` and `y` are setequal. (A)         \cr
+#'   `%NEQ%`     \tab Evaluate whether `x` and `y` are NOT setequal. (A)     \cr
+#'   `%AND%`     \tab Evaluate whether `x` and `y` are both scalar `TRUE`.   \cr
+#'   `%OR%`      \tab Evaluate whether `x` and `y` is scalar `TRUE` or both. \cr
+#'   `%NOR%`     \tab Evaluate whether `x` and `y` are both scalar `FALSE`.  \cr
+#'   `%ONE%`     \tab Evaluate whether either `x` or `y` is scalar `TRUE`, but
+#'                    not both.                                              \cr
+#'   `%IN%`      \tab Evaluate whether atomic scalar `x` is contained in atomic
+#'                    object `y`. (B)                                        \cr
+#'   `%OUT%`     \tab Evaluate whether atomic scalar `x` is NOT contained in
+#'                    atomic object `y`. (B)                                 \cr
+#'   `%HAS%`     \tab Evaluate whether atomic object `x` contains atomic scalar
+#'                    `y` (C).                                               \cr
+#'   `%LACKS%`   \tab Evaluate whether atomic object `x` lacks (does not
+#'                    contain) atomic scalar `y`. (C)                          }
+#'   (A) If `x` and `y` are not \link[=compatible]{compatible}, `%EQ%` and
+#'   `%NEQ%` return `FALSE` and `TRUE`, respectively.
 #'   \cr\cr
 #'   (B) If `x` is not atomic, `y` is not atomic scalar, or `x` and `y` are not
-#'   \code{\link{compatible}}, `%IN%` and `%OUT%` return `FALSE` and `TRUE`,
-#'   respectively.
+#'   compatible, `%IN%` and `%OUT%` return `FALSE` and `TRUE`, respectively.
 #'   \cr\cr
 #'   (C) If `x` is not atomic scalar, `y` is not atomic, or `x` and `y` are not
-#'   \code{\link{compatible}}, `%HAS%` and `%LACKS%` return `FALSE` and `TRUE`,
-#'   respectively.
-#' @param x,y Any objects.
+#'   compatible, `%HAS%` and `%LACKS%` return `FALSE` and `TRUE`, respectively.
+#' @param x,y Any R objects.
 #' @return A logical scalar.
 #' @export
 `%IS%` <- function(x, y) {identical(x, y)}

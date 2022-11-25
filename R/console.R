@@ -1,37 +1,33 @@
 #' @name say
 #' @title User Updates and Interactions via the Console
-#' @description This family of functions is for interacting with the user via
-#'   the console.
-#' @section Functions in this Family:
-#'   \strong{\code{say}}
-#'   \cr Collapse the message in \code{...} to a character scalar and print it
-#'   to the console or structure it as a certain level of update and then print
-#'   it to the console. See details.
-#'   \cr\cr
-#'   \strong{\code{cat0}}
-#'   \cr Collapse \code{...} to a character scalar message prefixed and suffixed
-#'   with newlines, and print it to the console (ensures that the message occurs
-#'   on its own line of the console).
-#'   \cr\cr
-#'   \strong{\code{continue}}
-#'   \cr Print \code{"Hit [enter] or [return] to continue"} to the console and
-#'   pause execution until the user hits the enter or return key.
-#'   \cr\cr
-#'   The function \code{say} allows for structuring user update messages
+#' @description \tabular{ll}{
+#'   FUNCTION     \tab WHAT IT DOES                                          \cr
+#'   `say`        \tab Collapse the message in `...` to a character scalar
+#'                     and print it to the console or structure it as a certain
+#'                     level of update and then print it to the console.
+#'                     See details.                                          \cr
+#'   `cat0`       \tab Collapse `...` to a character scalar message
+#'                     prefixed and suffixed with newlines, and print it to the
+#'                     console (ensures that the message occurs on its own line
+#'                     of the console).                                      \cr
+#'   `continue`   \tab Print `"Hit [enter] or [return] to continue"` to the
+#'                     console and pause execution until the user hits the enter
+#'                     or return key.                                          }
+#' @details The function `say` allows for structuring user update messages
 #'   at six hierarchical levels as explained in the following table where
-#'   \code{___} is a placeholder the character scalar message created when
-#'   collapsing \code{...}.: \tabular{lll}{
-#'   MESSAGE           \tab VALUE OF          \tab UPDATE                    \cr
-#'   SUPPLIED          \tab THE \code{lev}    \tab PRINTED TO                \cr
-#'   IN \code{...}?    \tab ARGUMENT          \tab CONSOLE                   \cr
-#'   yes               \tab \code{NA}         \tab \code{'___'}              \cr
-#'   yes               \tab \code{1}          \tab \code{'\\n___'}           \cr
-#'   yes               \tab \code{2}          \tab \code{'\\n| ___'}         \cr
-#'   yes               \tab \code{3}          \tab \code{'\\n| > ___'}       \cr
-#'   yes               \tab \code{4}          \tab \code{' > ___'}           \cr
-#'   yes               \tab \code{5}          \tab \code{'..(___)'}          \cr
-#'   no                \tab \code{6}          \tab \code{'.'}                \cr
-#'   no                \tab \code{NA}         \tab \code{'.'}                  }
+#'   `___` is a placeholder the character scalar message created when
+#'   collapsing `...`:\tabular{lll}{
+#'     MESSAGE     \tab VALUE OF     \tab UPDATE                             \cr
+#'     SUPPLIED    \tab THE `lev``   \tab PRINTED TO                         \cr
+#'     IN `...`?   \tab ARGUMENT     \tab CONSOLE                            \cr
+#'     yes         \tab `NA`         \tab `'___'`                            \cr
+#'     yes         \tab `1`          \tab `'\\n___'`                         \cr
+#'     yes         \tab `2`          \tab `'\\n| ___'`                       \cr
+#'     yes         \tab `3`          \tab `'\\n| > ___'`                     \cr
+#'     yes         \tab `4`          \tab `' > ___'`                         \cr
+#'     yes         \tab `5`          \tab `'..(___)'`                        \cr
+#'     no          \tab `6`          \tab `'.'`                              \cr
+#'     no          \tab `NA`         \tab '.'                                  }
 #'   Other combinations not represented in the table above will result in an
 #'   error.
 #'   \cr\cr
@@ -77,12 +73,12 @@
 #'   ```
 #' @param ... An arbitrary number of atomic arguments to be atomized collapsed
 #'   into a character scalar message to the user. If no values are supplied and
-#'   \code{lev = NA} or \code{lev = 6}, prints a single dot (period) immediately
-#'   following the current contents of the console.
-#' @param lev Either \code{NA} to print the message in \code{...} immediately
-#'   following the current contents of the console or a value from \code{1:6} to
-#'   use the console for up to six levels of user updates. See details.
-#' @return \code{NULL}: called for side effects of console-based user updates or
+#'   `lev = NA` or `lev = 6`, prints a single dot (`.`) immediately following
+#'   the current contents of the console.
+#' @param lev Either `NA` to print the message in `...` immediately following
+#'   the current contents of the console or a value from `1:6` to use the
+#'   console for up to six levels of user updates. See details.
+#' @return `NULL`. Called for side effects of console-based user updates or
 #'   pausing execution for until user indicates execution should continue.
 #' @export
 say <- function(..., lev = NA) {

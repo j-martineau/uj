@@ -9,26 +9,16 @@
 
 #' @name n_th
 #' @family extensions
-#' @title Extract elements by index position
-#' @section Functions in This Family:
-#'   \strong{\code{n_th}}
-#'   \cr Gets the \code{n}-th element(s) of a vector.
-#'   \cr\cr
-#'   \strong{\code{first_n}}
-#'   \cr Gets the first \code{n} elements of a vector.
-#'   \cr\cr
-#'   \strong{\code{last_n}}
-#'   \cr Gets the last \code{n} elements of a vector.
-#'   \cr\cr
-#'   \strong{\code{n_th_last}}
-#'   \cr Gets the \code{n}-th from last element(s) of a vector.
+#' @title Extract Elements by Index Position
+#' @description \tabular{ll}{
+#'   FUNCTION      \tab WHAT IT DOES                                         \cr
+#'   `n_th`        \tab Gets the `n`-th element(s) of a vector.              \cr
+#'   `first_n`     \tab Gets the first `n`` elements of a vector.            \cr
+#'   `last_n`      \tab Gets the last `n` elements of a vector.              \cr
+#'   `n_th_last`   \tab Gets the `n`-th from last element(s) of a vector.      }
 #' @param x A \link[=pop_vec]{populated vector} to extract elements from.
 #' @param n A \link[=cmp_psw_scl]{complete positive whole-number scalar}.
-#' @return \strong{\code{n_th, n_th_last}}
-#'   \cr A (possibly scalar) vector.
-#'   \cr\cr
-#'   \strong{\code{first_n, last_n}}
-#'   \cr A scalar vector.
+#' @return A vector or \link[=ivls]{vlist} of length `1+`.
 #' @examples
 #' first_n(letters, 5)
 #' last_n(letters, 5)

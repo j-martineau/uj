@@ -32,7 +32,7 @@
 \alias{istr}
 \alias{iuno}
 \alias{iwhl}
-\title{Extended mode properties}
+\title{Extended Mode Properties}
 \usage{
 mmm(x)
 
@@ -100,10 +100,10 @@ iwhl(x, ...)
 \item{x}{An R object.}
 
 \item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
-containing one or more extended mode properties (i.e., from
-\code{mmm_vals()}). \strong{NOTE}: properties may be pipe-separated. If
-If there are multiple properties in \code{spec}, \code{x} is inspected for
-a match to any of the specified properties.}
+containing one or more extended mode properties from \code{mmm_props()}.
+Extended mode properties may be pipe-delimited. If there are multiple
+properties in \code{spec}, \code{x} is inspected for a match to any of the specified
+properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -112,115 +112,59 @@ a match to any of the specified properties.}
   }}
 }
 \value{
-\strong{\code{mmm_vals}}
-\cr A character vector.
-\cr\cr
-\strong{\code{mmm}}
-\cr A character scalar or character vector.
-\cr\cr
-\strong{\code{iMMM, immm, is_mmm_spec}}
-\cr A logical scalar.
+\tabular{ll}{
+FUNCTIONS                       \tab RETURN VALUE                       \cr
+\code{mmm_vals}                      \tab A character vector.                \cr
+\code{mmm}                           \tab A character scalar or vector.      \cr
+\code{mmmi}, \code{ixxx}, \code{is_mmm_spec}   \tab A logical scalar.                    }
 }
 \description{
-NOTE: \code{MMM} is used as a wildcard representing any given
-extended mode.
-\cr\cr
 Extended modes are defined for non-empty atomic objects. For all
-other objects, the extended mode is \code{NULL}. These are not formally
-defined classes, but are evaluated dynamically based on the current
-characteristics of an object.
+other objects, the extended mode is \code{NULL}. These are not formally defined
+classes, but are evaluated dynamically based on the current characteristics
+of an object.
 \cr\cr
-Atomic objects that contain only \code{NA} values are of every extended
-mode, as they can be coerced to any mode without introducing new \code{NA}
-values. The following tables gives extended mode values, names, and
-requirements
+Atomic objects that contain only \code{NA} values are of every extended mode, as
+they can be coerced to any mode without introducing new \code{NA} values. The
+following tables gives extended mode values, names, and requirements.
 \cr\cr
-\strong{Character Extended Modes}\tabular{lll}{
-PROPERTY    \tab PROPERTY   \tab QUALIFYING                           \cr
-VALUE       \tab NAME       \tab CHARACTERISTICS                      \cr
-\code{'chr'}\tab Character  \tab Character.                           \cr
-\code{'clr'}\tab Color      \tab Valid character color representation.\cr
-\code{'ch1'}\tab Onechar    \tab Single character values.             \cr
-\code{'str'}\tab String     \tab No blank ("") values.                  }
-\strong{Categorical Extended Modes}\tabular{lll}{
-PROPERTY    \tab PROPERTY   \tab QUALIFYING                           \cr
-VALUE       \tab NAME       \tab CHARACTERISTICS                      \cr
-\code{'fac'}\tab Factor     \tab Factor.                              \cr
-\code{'lgl'}\tab Logical    \tab Logical.                             \cr
-\code{'ord'}\tab Ordered    \tab Ordered factor.                      \cr
-\code{'uno'}\tab Unordered  \tab Unordered factor.                      }
-\strong{Combination Extended Modes}\tabular{lll}{
-PROPERTY    \tab PROPERTY    \tab QUALIFYING                          \cr
-VALUE       \tab NAME        \tab CHARACTERISTICS                     \cr
-\code{'ind'}\tab Indexer     \tab Logical or positive whole number.   \cr
-\code{'srt'}\tab Sortable    \tab Character, logical, numeric, or
-ordered factor.                      \cr
-\code{'nst'}\tab non-sortable\tab Atomic, but not sortable.             }
-\strong{Numeric Extended Modes}\tabular{lll}{
-PROPERTY    \tab PROPERTY          \tab QUALIFYING                    \cr
-VALUE       \tab NAME              \tab CHARACTERISTICS               \cr
-\code{'num'}\tab Numeric           \tab Numeric.                      \cr
-\code{'frc'}\tab Fractional        \tab At least one non-\code{NA} value
-is fractional (i.e., not a
-whole number).                \cr
-\code{'pct'}\tab Percent           \tab Percentage numeric (in the
-interval \code{[0, 100]}).    \cr
-\code{'ppn'}\tab Proportion        \tab Proportion numeric (in the
-interval \code{[0, 1]}).      \cr
-\code{'pos'}\tab Positive          \tab Positive numeric.             \cr
-\code{'nng'}\tab Non-negative      \tab Non-negative numeric.         \cr
-\code{'nps'}\tab Non-positive      \tab Non-positive numeric.         \cr
-\code{'neg'}\tab Negative          \tab Negative numeric.             \cr
-\code{'whl'}\tab Whole             \tab Whole number.                 \cr
-\code{'evn'}\tab Even              \tab Even (whole) number.          \cr
-\code{'odd'}\tab Odd               \tab Odd (whole) number.           \cr
-\code{'psw'}\tab Positive whole    \tab Positive whole-number.        \cr
-\code{'nnw'}\tab Non-negative whole\tab Non-negative whole-number.    \cr
-\code{'npw'}\tab Non-positive whole\tab Non-positive whole-number.    \cr
-\code{'ngw'}\tab Negative whole    \tab Negative whole-number.          }
+\strong{Character Extended Mode Properties}\tabular{lll}{
+VALUE   \tab NAME        \tab CHARACTERISTICS                           \cr
+\code{'chr'} \tab Character   \tab Character.                                \cr
+\code{'clr'} \tab Color       \tab Valid character color representation.     \cr
+\code{'ch1'} \tab Onechar     \tab Single character values.                  \cr
+\code{'str'} \tab String      \tab No blank ("") values.                       }
+\strong{Categorical Extended Mode Properties\verb{\\tabular\{lll\}\{ VALUE   \\tab NAME        \\tab CHARACTERISTICS                           \\cr}'fac'\verb{\\tab Factor      \\tab Factor.                                   \\cr}'lgl'\verb{\\tab Logical     \\tab Logical.                                  \\cr}'ord'\verb{\\tab Ordered     \\tab Ordered factor.                           \\cr}'uno'\verb{ \\tab Unordered   \\tab Unordered factor.                           \} \\strong\{Combination Extended Mode Properties} \tabular{lll}{
+VALUE   \tab NAME           \tab CHARACTERISTICS                        \cr
+\code{'ind'} \tab Indexer        \tab Logical or positive whole number.      \cr
+\code{'srt'} \tab Sortable       \tab Character, logical, numeric, or ordered
+factor.                                \cr
+\code{'nst'} \tab non-sortable   \tab Atomic, but not sortable.                }
+\strong{Numeric Extended Mode Properties\verb{\\tabular\{lll\}\{ VALUE   \\tab NAME                 \\tab CHARACTERISTICS                  \\cr}'num'\verb{\\tab Numeric              \\tab Numeric.                         \\cr}'frc'\verb{\\tab Fractional           \\tab At least}1\verb{ non-}NA\verb{value is not a whole number .                   \\cr}'pct'\verb{\\tab Percent              \\tab Percentage numeric (in the interval}\link{0, 100}}).                     \cr
+\code{'ppn'} \tab Proportion           \tab Proportion numeric (in the interval
+\verb{[0, 1]\}).                       \\cr }'pos'\verb{\\tab Positive             \\tab Positive numeric.                \\cr}'nng'\verb{\\tab Non-negative         \\tab Non-negative numeric.            \\cr}'nps'\verb{\\tab Non-positive         \\tab Non-positive numeric.            \\cr}'neg'\verb{\\tab Negative             \\tab Negative numeric.                \\cr}'whl'\verb{\\tab Whole                \\tab Whole number.                    \\cr}'evn'\verb{\\tab Even                 \\tab Even (whole) number.             \\cr}'odd'\verb{\\tab Odd                  \\tab Odd (whole) number.              \\cr}'psw'\verb{\\tab Positive whole       \\tab Positive whole-number.           \\cr}'nnw'\verb{\\tab Non-negative whole   \\tab Non-negative whole-number.       \\cr}'npw'\verb{\\tab Non-positive whole   \\tab Non-positive whole-number.       \\cr}'ngw'\verb{\\tab Negative whole       \\tab Negative whole-number.             \} Functions in this family are:\\tabular\{ll\}\{ FUNCTION        \\tab WHAT IT DOES                                       \\cr}mmm\verb{          \\tab Get a character vector containing all extended mode properties possessed by}x\verb{.                       \\cr }ixxx\verb{         \\tab Evaluate whether}x\verb{possesses the extended mode property}xxx\verb{(a placeholder for any given extended mode property value), subject to any restrictions in}...\verb{.                                             \\cr }mmmi\verb{         \\tab Evaluate whether}x\verb{possesses one or more (possibly pipe-delimited) extended mode properties in}spec\verb{, subject to any restrictions in }...\verb{.              \\cr }mmm_props\verb{    \\tab Get a character vector of all possible extended mode property values.                                   \\cr}is_mmm_spec\verb{   \\tab Evaluate whether }spec` is a valid extended mode
+property specification.                              }
 }
-\section{Functions in this Family}{
-
-\strong{\code{iMMM}}
-\cr Evaluates whether \code{x} matches the extended mode property
-\code{MMM} (subject to any restrictions in \code{...}).
-\cr\cr
-\strong{\code{mmm}}
-\cr Gets a character vector containing all extended mode properties
-matching \code{x}.
-\cr\cr
-\strong{\code{immm}}
-\cr Evaluates \code{x} against the extended mode property specification in
-\code{spec} (subject to any restrictions in \code{...}).
-\cr\cr
-\strong{\code{mmm_props}}
-\cr Gets a character vector of all possible extended mode property values.
-\cr\cr
-\strong{\code{is_mmm_spec}}
-\cr Evaluates whether \code{spec} is a valid extended mode property
-specification.
-}
-
 \section{Specifying Count and Value Restrictions}{
- Specifying additional
-requirements in \code{...} is optional. The full set of recognized
-arguments names are defined in the following table along with the
-properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                      \cr
-\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
-\code{nr}     \tab Vector of valid numbers of rows.                       \cr
-\code{nc}     \tab Vector of valid numbers of columns.                    \cr
-\code{min}    \tab Scalar minimum valid length/number of element.         \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
-\code{minc}   \tab Scalar minimum valid number of columns.                \cr
-\code{max}    \tab Scalar maximum valid length/number of element.         \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
-\code{vals}   \tab Vector of valid values.                                \cr
-\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
-\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
-\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
-\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
+ Specifying restrictions in
+\code{...} is optional. The full set of recognized arguments names are defined
+in the following table along with the properties each
+specifies:\tabular{ll}{
+NAME     \tab WHAT IT SPECIFIES                                         \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.              \cr
+\code{nr}     \tab Vector of valid numbers of rows.                          \cr
+\code{nc}     \tab Vector of valid numbers of columns.                       \cr
+\code{min}    \tab Scalar minimum valid length/number of element.            \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                      \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                   \cr
+\code{max}    \tab Scalar maximum valid length/number of element.            \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                      \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                   \cr
+\code{vals}   \tab Vector of valid values.                                   \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.                 \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.          }
 }
 
 \seealso{

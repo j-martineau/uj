@@ -1,60 +1,35 @@
 #' @name as_mmm
 #' @family props
 #' @title Coerce to Base Mode or Extended Mode.
-#' @section Functions in This Family:
-#'   \strong{\code{as_clr}}
-#'   \cr Coerce a valid R color representation of mode character to hexadecimal
-#'   RGB character representation.
-#'   \cr\cr
-#'   \strong{\code{as_fun}}
-#'   \cr Return \code{x} if it is a function, otherwise, search for a function
-#'   named \code{x} and return it.
-#'   \cr\cr
-#'   \strong{\code{as_chr}}
-#'   \cr Thin wrapper of \code{\link[base]{as.character}}.
-#'   \cr\cr
-#'   \strong{\code{as_int}}
-#'   \cr Thin wrapper of \code{\link[base]{as.integer}}.
-#'   \cr\cr
-#'   \strong{\code{as_num}}
-#'   \cr Thin wrapper of \code{\link[base]{as.numeric}}.
-#'   \cr\cr
-#'   \strong{\code{as_lgl}}
-#'   \cr Thin wrapper of \code{\link[base]{as.logical}}.
-#'   \cr\cr
-#'   \strong{\code{as_ord}}
-#'   \cr Wrapper for \code{factor(x, levels = levs, ordered = TRUE)}.
-#'   \cr\cr
-#'   \strong{\code{as_uno}}
-#'   \cr Wrapper for \code{factor(x, levels = levs, ordered = FALSE)}.
-#' @param x For \code{as_clr}, an object of mode character; for \code{as_fun}, a
-#'   character scalar function name or a function object; for \code{as_ord} and
-#'   \code{as_uno}, an atomic object; and for all others, any R object.
-#' @param na \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
-#'   \code{NA} values qualify as missing color representations.
+#' @description \tabular{ll}{
+#'  FUNCTION    \tab WHAT IT DOES                                            \cr
+#'   `as_clr`    \tab Coerce a valid R color representation of mode character to
+#'                    hexadecimal RGB character representation.              \cr
+#'   `as_fun`    \tab Return `x` if it is a function, otherwise, search for a
+#'                    function named `x` and return it.                      \cr
+#'   `as_chr`    \tab Thin wrapper of `as.character`.                        \cr
+#'   `as_int`    \tab Thin wrapper of `as.integer`.                          \cr
+#'   `as_num`    \tab Thin wrapper of `as.numeric`.                          \cr
+#'   `as_lgl`    \tab Thin wrapper of `as.logical`.                          \cr
+#'   `as_ord`    \tab Wrapper for `factor(x, levels = levs, ordered = TRUE)`.\cr
+#'   `as_uno`    \tab Wrapper for `factor(x, levels = levs, ordered = FALSE)`. }
+#' @param x For `as_clr`, an object of mode character; for `as_fun`, a
+#'   character scalar function name or a function object; for `as_ord` and
+#'   `as_uno`, an atomic object; and for all others, any R object.
+#' @param na A \link[=cmp_lgl_scl]{complete logical scalar} indicating whether
+#'   `NA` values qualify as missing color representations.
 #' @param levs \link[=cmp_vec]{Complete atomic vec} giving factor levels.
 #' @param ... Further arguments passed to or from other methods.
-#' @return \strong{\code{as_clr, as_chr}}
-#'   \cr An object of mode \code{'character'}.
-#'   \cr\cr
-#'   \strong{\code{as_fun}}
-#'   \cr A function object.
-#'   \cr\cr
-#'   \strong{\code{as_int}}
-#'   \cr An object of mode \code{'integer'}.
-#'   \cr\cr
-#'   \strong{\code{as_num}}
-#'   \cr An object of mode \code{'numeric'}.
-#'   \cr\cr
-#'   \strong{\code{as_lgl}}
-#'   \cr An object of mode \code{'logical'}.
-#'   \cr\cr
-#'   \strong{\code{as_ord}}
-#'   \cr An object of mode \code{'ordered'} (factor).
-#'   \cr\cr
-#'   \strong{\code{as_uno}}
-#'   \cr An object of \link[=mmm]{extended mode} \code{'uno'} (unordered
-#'   factor).
+#' @return \tabular{ll}{
+#'   FUNCTION             \tab RETURN VALUE                                  \cr
+#'   `as_clr`, `as_chr`   \tab An object of mode `'character'`.              \cr
+#'   `as_fun`             \tab A function object.                            \cr
+#'   `as_int`             \tab An object of mode `'integer'`.                \cr
+#'   `as_num`             \tab An object of mode `'numeric'`.                \cr
+#'   `as_lgl`             \tab An object of mode `'logical'`.                \cr
+#'   `as_ord`             \tab An object of mode `'ordered'`` (factor).      \cr
+#'   `as_uno`             \tab An object of \link[=mmm]{extended mode} `'uno'`
+#'                             (unordered factor).                             }
 #' @export
 as_clr <- function(x, na = F) {
   errs <- c(f0(ichr(x), NULL, "\n \u2022 [x] is not of mode character."),

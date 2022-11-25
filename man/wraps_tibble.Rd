@@ -80,8 +80,8 @@ Read more in \link[tibble]{rownames}.
 }}
 
 \item{file}{Either a character scalar or vector that resolves to a file path
-or \code{NULL} (in which case the user is asked to select a file using a
-system dialog box.}
+or \code{NULL} (in which case the user is asked to select a file using a system
+dialog box.}
 }
 \value{
 A tibble.
@@ -89,12 +89,12 @@ A tibble.
 \description{
 The following table describes wrapper functions in this group of
 functions:\tabular{ll}{
-WRAPPER       \tab TIBBLE FUNCTION                                      \cr
-\code{tb}     \tab \code{\link[tibble]{tibble}}                         \cr
-\code{trb}    \tab \code{\link[tibble]{tibble_row}}                     \cr
-\code{tbr}    \tab \code{\link[tibble]{tribble}}                        \cr
-\code{tbas}   \tab \code{\link[tibble]{as_tibble}}                      \cr
-\code{tbis}   \tab \code{\link[tibble]{is_tibble}}                        }
+WRAPPER   \tab TIBBLE FUNCTION                                       \cr
+\code{tb}      \tab \code{\link[tibble]{tibble}}                            \cr
+\code{trb}     \tab \code{\link[tibble]{tibble_row}}                        \cr
+\code{tbr}     \tab \code{\link[tibble]{tribble}}                           \cr
+\code{tbas}    \tab \code{\link[tibble]{as_tibble}}                         \cr
+\code{tbis}    \tab \code{\link[tibble]{is_tibble}}                           }
 }
 \section{Row names}{
 

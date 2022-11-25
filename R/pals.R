@@ -2,42 +2,31 @@
 #' @family plots
 #' @family colors
 #' @title Plotting Palettes
-#' @section Functions in This Family:
-#'   \strong{\code{pal_colors}}
-#'   \cr Creates a color palette with the first \code{n} color values from
-#'   \code{v(colors)}.
-#'   \cr\cr
-#'   \strong{\code{pal_lines}}
-#'   \cr Creates a line-type palette with the first \code{n} line-type values
-#'   from \code{v(lines)}.
-#'   \cr\cr
-#'   \strong{\code{pal_edots}}
-#'   \cr Creates an empty-dots/shapes palette with the first \code{n} empty-dot
-#'   values from \code{v(edots)}. Empty dots are closed shapes with an unfilled
-#'   interior.
-#'   \cr\cr
-#'   \strong{\code{pal_fdots}}
-#'   \cr Creates a fillable-dots/shapes palette with the first \code{n}
-#'   empty-dot values from \code{v(fdots)}. Fillable dots are closed shapes with
-#'   a fillable interior.
-#'   \cr\cr
-#'   \strong{\code{pal_ldots}}
-#'   \cr Creates a line-only dots/shapes palette with the first \code{n}
-#'   line-only dot values from \code{v(ldots)}. Line-only dots are non-enclosing
-#'   shapes.
-#'   \cr\cr
-#'   \strong{\code{pal_sdots}}
-#'   \cr Creates a solid-dots/shapes palette with the first first \code{n}
-#'   solid-dot values from \code{v(sdots)}.
-#'   \cr\cr
-#'   NOTE: If \code{n > v(.)}, values are recycled.
-#' @param n \link[=cmp_psw_scl]{Complete positive whole-number scalar}
+#' @description \tabular{ll}{
+#'   FUNCTION     \tab WHAT IT DOES                                          \cr
+#'   pal_colors   \tab Creates a color palette with the first `n` color values
+#'                     from `v(colors)`.                                     \cr
+#'   pal_lines    \tab Creates a line-type palette with the first `n` line-type
+#'                     values from `v(lines)`.                               \cr
+#'   pal_edots    \tab Creates an empty-dots/shapes palette with the first `n`
+#'                     empty-dot values from `v(edots)`. Empty dots are closed
+#'                     shapes with an unfilled interior.                     \cr
+#'   pal_fdots    \tab Creates a fillable-dots/shapes palette with the first `n`
+#'                     empty-dot values from `v(fdots)`. Fillable dots are
+#'                     closed shapes with a fillable interior.               \cr
+#'   pal_ldots    \tab Creates a line-only dots/shapes palette with the first
+#'                     `n` line-only dot values from `v(ldots)`. Line-only dots
+#'                     are non-enclosing shapes.                             \cr
+#'   pal_sdots    \tab Creates a solid-dots/shapes palette with the first first
+#'                     `n` solid-dot values from `v(sdots)`.                   }
+#'   NOTE: Palette values are recycled if `n > length(v(.))`.
+#' @param n A \link[=cmp_psw_scl]{complete positive whole-number scalar}
 #'   indicating the number of unique values to return.
-#' @return \strong{\code{pal_colors, pal_lines}}
-#'   \cr A character vector.
-#'   \cr\cr
-#'   \strong{\code{pal_edots, pal_fdots, pal_ldots, pal_sdots}}
-#'   \cr A positive whole number vector.
+#' @return \tabular{ll}{
+#'   FUNCTIONS                   \tab RETURN VALUE                           \cr
+#'   `pal_colors`, `pal_lines`   \tab A character vector.                    \cr
+#'   `pal_edots`, `pal_fdots`    \tab A positive whole-number vector.        \cr
+#'   `pal_ldots`, `pal_sdots`    \tab A positive whole-number vector.          }
 #' @export
 pals_uj <- NULL
 

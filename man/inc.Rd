@@ -10,29 +10,23 @@ inc(x, i = 1, na = F)
 dec(x, d = 1, na = F)
 }
 \arguments{
-\item{x}{\link[=atm_num]{Atomic numeric} object.}
+\item{x}{AN \link[=atm_num]{atomic numeric} object.}
 
-\item{i, d}{\link[=cmp_num_scl]{Complete numeric scalar} giving the value by
+\item{i, d}{\link[=cmp_num_scl]{Complete numeric scalars} giving the value by
 which to increment or decrement, respectively.}
 
-\item{na}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
+\item{na}{A non\code{NA} logical scalar indicating whether to
 throw an error if any values of \code{x} are \code{NA}.}
 }
 \value{
 An atomic numeric object of the same dimension as \code{x}.
 }
 \description{
-Increment or Decrement a Variable
+\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES                                            \cr
+\code{inc}      \tab Increment \code{x} by the value in \code{i}.                      \cr
+\code{dec}      \tab Decrement \code{x} by the value in \code{d}.                        }
 }
-\section{Functions in This Family}{
-
-\strong{\code{inc}}
-\cr Increments \code{x} by the value in \code{i}.
-\cr\cr
-\strong{\code{dec}}
-\cr Decrements \code{x} by the value in \code{d}.
-}
-
 \seealso{
 Other math: 
 \code{\link{hexdec}}

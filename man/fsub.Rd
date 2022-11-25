@@ -7,7 +7,7 @@
 fsub(x, pats, subs)
 }
 \arguments{
-\item{x}{\link[=atm_chr]{Atomic character object}.}
+\item{x}{An \link[=atm_chr]{atomic character object}.}
 
 \item{pats, subs}{\link[=cmp_chr_vec]{Complete character vecs} containing
 patterns to replace and their associated replacement strings.}
@@ -16,8 +16,8 @@ patterns to replace and their associated replacement strings.}
 Atomic character object.
 }
 \description{
-Replace strings in \code{pats} with corresponding (possibly
-recycled) strings in \code{subs}.
+Replace strings in \code{pats} with corresponding (possibly recycled)
+strings in \code{subs}.
 }
 \seealso{
 Other strings: 

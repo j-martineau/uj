@@ -3,33 +3,26 @@
 #' @family errs
 #' @family failsafe
 #' @title Evaluate Objects, Flag Any Errors
-#' @section Functions in This Family:
-#'   \strong{\code{failsafe}}
-#'   \cr Attempts to call \code{identity(x)}. If an error is produced in doing
-#'   so, returns an object of class \code{'error'} or of class
-#'   \code{'simpleError'}. If an error is not generated, returns the safely
-#'   evaluated value of \code{x}.
-#'   \cr\cr
-#'   \strong{\code{isERR}}
-#'   \cr Evaluates whether calling \code{identity(x)} produced an error.
-#'   \cr\cr
-#'   \strong{\code{notERR}}
-#'   \cr Evaluates whether calling \code{identity(x)} did not produce an error.
-#'   \cr\cr
-#'   \strong{\code{msgERR}}
-#'   \cr Gets any error message associated with calling \code{identity(x)}. If
-#'   there is none, returns \code{NULL}.
+#' @description \tabular{ll}{
+#'   FUNCTION     \tab WHAT IT DOES \cr
+#'   `failsafe`   \tab Call `identity(x)`. If an error is produced in doing so,
+#'                     returns an object of class `'error'` or of class
+#'                     `'simpleError'`. If an error is not generated, returns
+#'                     the safely evaluated value of `x`.                    \cr
+#'   `isERR`      \tab Evaluate whether calling `identity(x)` produced an
+#'                     error.                                                \cr
+#'   `notERR`     \tab Evaluate whether calling `identity(x)` \emph{did not}
+#'                     produce an error.                                     \cr
+#'   `msgERR`     \tab Get any error message associated with calling
+#'                     `identity(x)`. If there is none, returns `NULL`.        }
 #' @param x An object or a call to evaluate in the environment of a parent
 #'   function where the initial call was made.
-#' @return \strong{\code{failsafe}}
-#'   \cr Either \code{x}, an object of class \code{'error'}, or an object of
-#'   class \code{'simpleError'}.
-#'   \cr\cr
-#'   \strong{\code{isERR, notERR}}
-#'   \cr A logical scalar.
-#'   \cr\cr
-#'   \strong{\code{msgERR}}
-#'   \cr Either \code{NULL} or a character scalar.
+#' @return \tabular{ll}{
+#'   FUNCTIONS           \tab RETURN VALUE                                   \cr
+#'   `failsafe`          \tab Either `x`, an object of class `'error'`, or an
+#'                            object of class `'simpleError'`.               \cr
+#'   `isERR`, `notERR`   \tab A logical scalar.                              \cr
+#'   `msgERR`            \tab Either `NULL` or a character scalar.             }
 #' @export
 failsafe <- function(x) {tryCatch(identity(x), error = function(e) e, finally = NULL)}
 

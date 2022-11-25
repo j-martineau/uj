@@ -3,12 +3,12 @@
 #'   objects} or elements of \link[=ie1D]{effectively one-dimensional objects}.
 #' @title Extract Rows, Columns, and/or Elements
 #' @param x Any valid R object.
-#' @param r \link[=cmp_ind_vec]{Complete indexer vec} indicating rows to extract
-#'   from \code{x} of \link[=id2D]{defined dimensionality 2}.
-#' @param c \link[=cmp_ind_vec]{Complete indexer vec} indicating columns to
-#'   extract from \code{x} of \link[=id2D]{defined dimensionality 2}.
-#' @param r \link[=cmp_ind_vec]{Complete indexer vec} indicating elements to
-#'   extract from \code{x} of \link[=id1D]{defined dimensionality 1}.
+#' @param r A \link[=cmp_ind_vec]{complete indexer vec} indicating rows to
+#'   extract from `x` of \link[=id2D]{defined dimensionality `2`}.
+#' @param c A \link[=cmp_ind_vec]{complete indexer vec} indicating columns to
+#'   extract from `x` of \link[=id2D]{defined dimensionality `2`}.
+#' @param r A \link[=cmp_ind_vec]{complete indexer vec} indicating elements to
+#'   extract from `x` of \link[=id1D]{defined dimensionality `1`}.
 #' @examples
 #' Mat <- matrix(1:100, nrow = 10)
 #' Dat   <- as_tibble(Mat)

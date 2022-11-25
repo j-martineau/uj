@@ -1,42 +1,37 @@
-#' @family props
 #' @title Base + Extended Class Properties
-#' @section Functions in this Family:
-#'   NOTE: \code{BBB} and \code{CCC} are used as placeholders for any
-#'   given base and extended class, respectively.
-#'   \cr\cr
-#'   \strong{\code{bbb_ccc}}
-#'   \cr Evaluates whether \code{x} matches the base property specified in the
-#'   argument \code{bbb} and matches the extended class specified in the
-#'   argument \code{ccc}. (subject to any restrictions in \code{...}).
-#'   \cr\cr
-#'   \strong{\code{BBB_CCC}}
-#'   \cr Evaluates whether \code{x} matches base property \code{BBB} and
-#'   extended class \code{CCC}. (subject to any restrictions in \code{...}).
-#'   \cr\cr
-#'   \strong{\code{bbb_ccc_props}}
-#'   \cr Gets a character vector of all possible base + extended class
-#'   properties.
+#' @family props
+#' @description \tabular{ll}{
+#'   FUNCTION          \tab WHAT IT DOES                                     \cr
+#'   `bbb_ccc`         \tab Evaluates whether `x` matches the base property
+#'                          specified in the argument `ccc` and matches the
+#'                          extended class specified in the argument `ccc`
+#'                          subject to any restrictions in `...`.            \cr
+#'   `BBB_CCC`         \tab Evaluates whether `x` matches base property `BBB`
+#'                          and extended class `CCC` subject to any restrictions
+#'                          in `...` where `BBB` and `CCC` are placeholders for
+#'                          any given base property and any given extended class
+#'                          property, respectively.                          \cr
+#'   `bbb_ccc_props`   \tab Gets a character vector of all possible base +
+#'                          extended class properties.                         }
 #' @param x An R object
-#' @param bbb A character scalar containing an
-#'   base property from bbb_props().
-#' @param ccc A character scalar containing an
-#'   extended class property from ccc_props().
+#' @param bbb A character scalar containing a base property from `bbb_props()`.
+#' @param ccc A character scalar containing an extended class property from
+#'   `ccc_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{bbb_ccc_props}}
-#'   \cr A character vector.
-#'   \cr\cr
-#'   \strong{\code{bbb_ccc, BBB_CCC}}
-#'   \cr A logical scalar.
+#' @return \tabular{ll}{
+#'   FUNCTION               \tab RETURN VALUE                                \cr
+#'   `ccc_mmm_props`        \tab A character vector.                         \cr
+#'   `ccc_mmm`, `CCC_MMM`   \tab A logical scalar.                             }
 #' @export
 bbb_ccc <- function(x, bbb, ccc, ...) {
   BBB <- c("atm", "nil", "pop", "rcr")
   errs <- c(.meets_errs(x, ...),
-            f0(f0(length(bbb) != 1 | !is.character(bbb), F, f0(is.na(bbb), F, bbb %in% BBB)), NULL, "\n \u2022 [bbb] is not a scalar value from c('atm', 'nil', 'pop', 'rcr'."),
-            f0(f0(length(ccc) != 1 | !is.character(ccc), F, f0(is.na(ccc), F, ccc %in% ccc_props())), NULL, '\n \u2022 [ccc] is not a scalar value from ccc_props().'))
+            f0(f0(length(bbb) != 1 | !is.character(bbb), F, f0(is.na(bbb), F, bbb %in% BBB  )), NULL, "\n \u2022 [bbb] is not a scalar value from c('atm', 'nil', 'pop', 'rcr'."),
+            f0(f0(length(ccc) != 1 | !is.character(ccc), F, f0(is.na(ccc), F, ccc %in% .cccs)), NULL, '\n \u2022 [ccc] is not a scalar value from ccc_props().'))
   if (!is.null(errs)) {stop(errs)}
   else if (!meets(x, ...)) {F}
-  else if (!run(paste0('i', ccc, '(x)'))) {F}
+  else if (!run(paste0('.i', ccc, '(x)'))) {F}
   else if (bbb == "nil") {length(x) == 0}
   else if (length(x) == 0) {F}
   else if (bbb == "pop") {T}
@@ -53,7 +48,7 @@ bbb_ccc <- function(x, bbb, ccc, ...) {
 
 #' @rdname bbb_ccc
 #' @export
-bbb_ccc_props <- function() {sort(av(apply(expand.grid(bbb = c("atm", "nil", "pop", "rcr"), ccc = .ccc_props()), 1, paste0, collapse = '_')))}
+bbb_ccc_props <- function() {sort(av(apply(expand.grid(bbb = c("atm", "nil", "pop", "rcr"), ccc = .cccs), 1, paste0, collapse = '_')))}
 
 
 #' @rdname bbb_ccc

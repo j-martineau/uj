@@ -1,6 +1,6 @@
 #' @family extensions
 #' @family environments
-#' @title Identify the current operating system.
+#' @title Identify the Current Operating System.
 #' @description Identifies the operating system as 'win', 'mac', or 'unix'.
 #' @return Character scalar
 #' @export

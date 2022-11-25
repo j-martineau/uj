@@ -3,11 +3,11 @@
 #' @title Swap atomic values.
 #' @param x An atomic object.
 #' @param old,new \link[=atm_vec]{Atomic vecs} of unique values to be replaced
-#'   and replacement values, respectively. \code{length(new)} must be in
-#'   \code{c(1, length(old))}.
-#' @param all link[=cmp_lgl_scl]{Complete logical scalar} indicating whether all
-#'   values of \code{x} must be contained in \code{old}.
-#' @return An atomic object of the same dimensions as \code{x}.
+#'   and replacement values, respectively. `length(new)` must be in `c(1,
+#'   length(old))`.
+#' @param all A non-`NA` logical scalar indicating whether all values of `x`
+#'   must be contained in `old`.
+#' @return An atomic object of the same dimensions as `x`.
 #' @export
 swap <- function(x, old, new, all = FALSE) {
   errs <- c(f0(ipop(x) & iatm(x), NULL, "\n \u2022 [x] must be populated and atomic (?ipop)."),

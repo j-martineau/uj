@@ -47,78 +47,75 @@ data.frame, vlist, or square atomic diagonal matrix.}
 \item{vn.}{Optional \link[-cmp_chr_vec]{complete character vec} of names to
 apply to vector or list elements. May be pipe-delimited.}
 
-\item{br.}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
-fill matrices by row.}
+\item{br.}{A \link[=cmp_lgl_scl]{complete logical scalar} indicating whether
+to fill matrices by row.}
 
-\item{rn.}{Optional \link[=cmp_chr_vec]{complete character vec} of names to
-apply to rows of a matrix or dtf May be pipe-delimited.}
+\item{rn.}{Optional A \link[=cmp_chr_vec]{complete character vec} of names to
+apply to rows of a matrix or data.frame. May be pipe-delimited.}
 
 \item{cn, cn.}{Optional \link[=cmp_chr_vec]{complete character vec} of names
 to apply to columns of a matrix or dtf May be pipe-delimited. For tibbles,
-this argument can be used only if the \code{...} arguments are not
-named.}
+this argument can be used only if the \code{...} arguments are not named.}
 
-\item{nr, nr.}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}
+\item{nr, nr.}{\link[=cmp_psw_scl]{Complete positive whole-number scalars}
 giving number of rows.}
 
 \item{x}{A numeric, logical, or character object of length 1 or greater.}
 
-\item{r, r.}{\link[=cmp_psw_scl]{Complete positive whole-number scalar} giving
-number of replications.}
+\item{r, r.}{\link[=cmp_psw_scl]{Complete positive whole-number scalars}
+giving number of replications.}
 
-\item{nc, nc.}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}
+\item{nc, nc.}{\link[=cmp_psw_scl]{Complete positive whole-number scalars}
 giving number of columns.}
 }
 \value{
-An \link[=atm_dtf]{atomic dta.frame}, an \link[=atm_vec]{atomic
-vector+}, an \link[=atm_mat]{atomic matrix}, or a \link[=atm_vls]{atomic
-vlist}. All others return the value of the function they are thin wrappers
-for.
+An \link[=atm_dtf]{atomic dta.frame}, an \link[=atm_vec]{atomic vec},
+an \link[=atm_mat]{atomic matrix}, or a \link[=atm_vls]{atomic vlist}. All
+others return the value of the function they are thin wrappers for.
 }
 \description{
 Extended object creation functionality
 }
 \section{Functions}{
 \itemize{
-\item \code{vec()}: Creates an atomic vector from the atomic objects in
-\code{...} collapsed into a vector, replicated \code{r.} times, with
-optional element names.
+\item \code{vec()}: Createsan atomic vector from the atomic objects in \code{...}
+collapsed into a vector, replicated \code{r.} times, with optional element
+names.
 
-\item \code{vec.()}: Creates a named atomic vec by taking the original call
+\item \code{vec.()}: Create a named atomic vec by taking the original call
 and parsing arguments to get element names. Allows for more concise code
-such as \code{vec.(a, b)} giving the same result as \code{list(a = a, b =
-  b)}.
+such as \code{vec.(a, b)} giving the same result as \code{list(a = a, b = b)}.
 
-\item \code{vec_na()}: Creates a vector of \code{r.} \code{NA} values.
+\item \code{vec_na()}: Creates a vector of \code{r.} \code{NA} values
 
-\item \code{mat()}: Creates an atomic matrix from the atomic elements in
-\code{...} with \code{r.} rows, \code{c.} columns, optionally filling by
-row, with optional row and column names.
+\item \code{mat()}: Create an atomic matrix from the atomic elements in \code{...}
+with \code{nr.} rows, \code{nc.} columns, optionally filling by row, with optional
+row and column names.
 
-\item \code{dtf0()}: Creates a data.frame with 0 rows and columns
-with names from \code{cn.}, which may be pipe delimited.
+\item \code{dtf0()}: Creates a data.frame with 0 rows and columns with names
+from \code{cn}, which may be pipe delimited.
 
-\item \code{dtf_na()}: Creates an \link[idtf]{atomic dtf} with \code{nr.} rows and
-columns with names from \code{cn.} (which may be pipe delimited). All cells
-of the resulting tibble are populated with \code{NA}. values.
+\item \code{dtf_na()}: Creates an \link[idtf]{atomic dtf} with \code{nr} rows and
+columns with names from \code{cn} (which may be pipe delimited). All cells
+of the resulting tibble are populated with \code{NA} values.
 
 \item \code{dtf()}: Creates an \link[idtf]{atomic dtf} from the
-\link[ivec]{atomic vec} \code{...} arguments with optional row names,
-plus optional column names to replace any names of \code{...} arguments.
+\link[ivec]{atomic vec} \code{...} arguments with optional row names, plus
+optional column names to replace any names of \code{...} arguments.
 
-\item \code{vls()}: Creates an atomic \link[=ivls]{vlist} from the arguments in
-\code{...} with optional element names to replace any names of arguments in
+\item \code{vls()}: Creates an atomic \link[=ivls]{vlist} from the arguments
+in \code{...} with optional element names to replace any names of arguments in
 \code{...}.
 
 \item \code{vls.()}: Creates a named \link[ivls]{atomic vlist} by taking the
 original call and parsing arguments to get element names. Allows for more
-concise code such as \code{mkvls(letters, LETTERS)} giving the same result
-as \code{list(letters = letters, LETTERS = LETTERS)}.
+concise code such as \code{vls.(letters, LETTERS)} giving the same result as
+\code{list(letters = letters, LETTERS = LETTERS)}.
 
-\item \code{diag.()}: Creates a square atomic diagonal matrix. For numeric
-\code{x}, off-diagonals are \code{0}. For logical \code{x}, off diagonals
-are \code{FALSE}. For character \code{x}, off diagonals are blank strings
-(\code{""}). For all others, off diagonals are \code{NA}.
+\item \code{diag.()}: Creates a square atomic diagonal matrix. For numeric \code{x},
+off-diagonals are 0. For logical \code{x}, off diagonals are \code{FALSE}. For
+character \code{x}, off diagonals are blank strings (\code{""}). For all others, off
+diagonals are \code{NA}.
 
 }}
 \seealso{

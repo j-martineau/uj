@@ -1,48 +1,44 @@
 #' @family props
 #' @title Base + Extended Mode Properties
-#' @section Functions in this Family:
-#'   NOTE: \code{BBB} and \code{MMM} are used as placeholders for any
-#'   given base and extended mode, respectively.
-#'   \cr\cr
-#'   \strong{\code{bbb_mmm}}
-#'   \cr Evaluates whether \code{x} matches the base property specified in the
-#'   argument \code{bbb} and matches the extended mode specified in the argument
-#'   \code{mmm}. (subject to any restrictions in \code{...}).
-#'   \cr\cr
-#'   \strong{\code{BBB_MMM}}
-#'   \cr Evaluates whether \code{x} matches base property \code{BBB} and
-#'   extended mode \code{MMM}. (subject to any restrictions in \code{...}).
-#'   \cr\cr
-#'   \strong{\code{bbb_mmm_props}}
-#'   \cr Gets a character vector of all possible base + extended mode
-#'   properties.
+#' @description \tabular{ll}{
+#'   FUNCTION          \tab WHAT IT DOES                                     \cr
+#'   `bbb_mmm`         \tab Evaluates whether `x` matches the base property
+#'                          specified in the argument `bbb` and matches the
+#'                          extended mode specified in the argument `mmm`
+#'                          subject to any restrictions in `...`.            \cr
+#'   `BBB_MMM`         \tab Evaluates whether `x` matches base property `BBB`
+#'                          and extended mode `MMM` subject to any restrictions
+#'                          in `...` where `BBB` and `MMM` are placeholders for
+#'                          any given base property and any given extended mode
+#'                          property, respectively.                          \cr
+#'   `bbb_mmm_props`   \tab Gets a character vector of all possible base +
+#'                          extended mode properties.                          }
 #' @param x An R object
-#' @param bbb A character scalar containing an base property from bbb_props().
+#' @param bbb A character scalar containing an base property from `bbb_props()`.
 #' @param mmm A character scalar containing an extended mode property from
-#'   mmm_props().
+#'   `mmm_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{bbb_mmm_props}}
-#'   \cr A character vector.
-#'   \cr\cr
-#'   \strong{\code{bbb_mmm, BBB_MMM}}
-#'   \cr A logical scalar.
+#' @return \tabular{ll}{
+#'   FUNCTION               \tab RETURN VALUE                                \cr
+#'   `bbb_mmm_props`        \tab A character vector.                         \cr
+#'   `bbb_mmm`, `BBB_MMM`   \tab A logical scalar.                             }
 #' @export
 bbb_mmm <- function(x, bbb, mmm, ...) {
   BBB <- c("atm", "pop")
   errs <- c(.meets_errs(x, ...),
-            f0(f0(length(bbb) != 1 | !is.character(bbb), F, f0(is.na(bbb), F, bbb %in% BBB)), NULL, "\n \u2022 [bbb] is not a scalar value from c('atm', 'pop')."),
-            f0(f0(length(mmm) != 1 | !is.character(mmm), F, f0(is.na(mmm), F, mmm %in% mmm_props())), NULL, '\n \u2022 [mmm] is not a scalar value from mmm_props().'))
+            f0(f0(length(bbb) != 1 | !is.character(bbb), F, f0(is.na(bbb), F, bbb %in% BBB  )), NULL, "\n \u2022 [bbb] is not a scalar value from c('atm', 'pop')."),
+            f0(f0(length(mmm) != 1 | !is.character(mmm), F, f0(is.na(mmm), F, mmm %in% .mmms)), NULL, '\n \u2022 [mmm] is not a scalar value from mmm_props().'))
   if (!is.null(errs)) {stop(errs)}
   else if (!meets(x, ...)) {return(F)}
-  else if (bbb == "atm") {if (!is.atomic(x)) {F} else {run("i", mmm, "(x)")}}
-  else if (bbb == "pop") {if (!is.atomic(x)) {F} else if (length(x) == 0) {F} else {run("i", mmm, "(x)")}}
+  else if (bbb == "atm") {if (!is.atomic(x)) {F} else {run(".i", mmm, "(x)")}}
+  else if (bbb == "pop") {if (!is.atomic(x)) {F} else if (length(x) == 0) {F} else {run(".i", mmm, "(x)")}}
   else {F}
 }
 
 #' @rdname bbb_mmm
 #' @export
-bbb_mmm_props <- function() {sort(av(apply(expand.grid(bbb = c("atm", "pop"), mmm = .mmm_props()), 1, paste0, collapse = '_')))}
+bbb_mmm_props <- function() {sort(av(apply(expand.grid(bbb = c("atm", "pop"), mmm = .mmms), 1, paste0, collapse = '_')))}
 
 
 #' @rdname bbb_mmm

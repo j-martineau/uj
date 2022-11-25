@@ -10,11 +10,10 @@ blank(x)
 \item{x}{An R object}
 }
 \value{
-Logical scalar
+A logical scalar
 }
 \description{
-Evaluates whether \code{x} is a blank string scalar (i.e.,
-\code{""}).
+Evaluate whether \code{x} is a blank string scalar (i.e., \code{""}).
 }
 \seealso{
 Other strings: 

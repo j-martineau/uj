@@ -4,7 +4,7 @@
 \alias{r}
 \alias{e}
 \alias{re}
-\title{Error-Checked Wraps of \code{\link[=base:rep]{base::rep}}.}
+\title{Error-Checked Wraps of \code{base::rep}}
 \usage{
 r(r, ...)
 
@@ -29,27 +29,18 @@ replication of the entire vector.}
 An atomic vector.
 }
 \description{
-Error-Checked Wraps of \code{\link[=base:rep]{base::rep}}.
-}
-\section{Functions in This Family}{
-
-\strong{\code{r}}
-\cr Atomizes \code{...} and, with the result \code{dots}, calls
-\code{rep.int(dots, r)}.
-\cr\cr
-\strong{\code{e}}
-\cr Atomizes \code{...} and, with the result \code{dots}, calls
-\code{rep(dots, each = e)}.
-\cr\cr
-\strong{\code{er, re}}
-\cr Atomize \code{...}, and, with the result \code{dots}, calls
-\code{rep(dots, times = r, each = e)}.
-\cr\cr
+\tabular{ll}{
+FUNCTIONS    \tab WHAT IT DOES                                          \cr
+\code{r}          \tab \link[=av]{Atomize} \code{...} and with the result \code{dots},
+call \code{rep.int(dots, r)}.                              \cr
+\code{e}          \tab Atomize \code{...} and with the result \code{dots}, call
+\code{rep.int(dots, each = e)}.                            \cr
+\code{re}, \code{er}   \tab Atomize \code{...}, and with the result \code{dots}, call
+\code{rep(dots, times = r, each = e)}.                       }
 NOTE
-\cr Although \code{er} and \code{re} produce identical results when their
-arguments are the same, both are included for convenience.
+\cr Although \code{er} and \code{re} produce identical results when their arguments
+are the same, both are included for convenience.
 }
-
 \section{Comparing Function Output}{
  The following console excerpt
 demonstrates how each function performs.

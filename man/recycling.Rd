@@ -39,35 +39,24 @@ to throw an error if the \code{...} arguments are not recyclable.}
 lengths to check for recyclability.}
 }
 \value{
-\strong{\code{recyclable_n}}
-\cr A logical scalar
-\cr\cr
-\strong{\code{recyclable}}
-\cr A logical scalar
-\cr\cr
-\strong{\code{recycle}}
-\cr \code{NULL} (called for side effect).
+\tabular{ll}{
+FUNCTIONS                      \tab RETURN VALUE                        \cr
+\code{recyclable_n}, \code{recyclable}   \tab A logical scalar.                   \cr
+\code{recycle}                      \tab \code{NULL}. Called for side effect.       }
 }
 \description{
-Recycling and Recyclability
+\tabular{ll}{
+FUNCTION         \tab WHAT IT DOES                                      \cr
+\code{recyclable_n}   \tab Check whether the vector of lengths in \code{n} represent
+recyclable arguments subject to the setting in
+\code{targ}.                                           \cr
+\code{recyclable}     \tab Evaluates whether \code{...} arguments are recyclable
+subject to settings in the arguments \code{n.}, \code{min.},
+\code{max.}, and \code{targ.}.                              \cr
+\code{recycle}        \tab Recycle \code{...} arguments in the environment of the
+calling function subject to settings in the arguments
+\code{n.}, \code{min.}, \code{max.}, and \code{targ.}.                   }
 }
-\section{Functions in This Family}{
-
-\strong{\code{recyclable_n}}
-\cr Checks whether the vector of lengths in \code{n.} represents recyclable
-arguments subject to the setting in \code{targ.}.
-\cr\cr
-\strong{\code{recyclable}}
-\cr Evaluates whether \code{...} arguments are recyclable subject to
-settings in the arguments \code{n.}, \code{min.}, \code{max.}, and
-\code{targ.}.
-\cr\cr
-\strong{\code{recycle}}
-\cr Recycle \code{...} arguments in the environment of the calling
-function subject to settings in the arguments \code{n.}, \code{min.},
-\code{max.}, and \code{targ.}.
-}
-
 \seealso{
 Other extensions: 
 \code{\link{atomize}},

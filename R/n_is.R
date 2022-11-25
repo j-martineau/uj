@@ -1,51 +1,54 @@
 #' @name n_is
 #' @family extensions
 #' @title Dedicated Counting Functions
-#' @description
-#'   Counts functions can be used with a single unnamed argument, multiple
-#'   unnamed arguments, and with restrictions in named arguments, in any
-#'   combination. The functions in this family are: \tabular{ll}{
-#'   FUNCTION(S)            \tab QUESTION(S) ANSWERED                        \cr
-#'   `n_is`                 \tab Do counts in `x` meet criteria in `n`, `min`,
-#'                               `max`, and/or `eq`?                         \cr
-#'   `nd`                   \tab How many `...` arguments?                   \cr
-#'   `nx`                   \tab How many values in `...` arguments?         \cr
-#'   `ns`                   \tab How many values in each `...` argument?     \cr
-#'   `nmin, nmax`           \tab What is the min or max `...` argument length,
-#'                               respectively?                               \cr
-#'   `nsame`                \tab Are lengths of all `...` arguments the same?\cr
-#'   `nw, nt`               \tab How many `TRUE` values?                     \cr
-#'   `nf`                   \tab How many `FALSE` values?                    \cr
-#'   `nu, nuv`              \tab How many unique atomic values?              \cr
-#'   `nr, nc`               \tab How many rows or columns, respectively?     \cr
-#'   `nch`                  \tab How many characters in each element?        \cr
-#'   `nna, nok`             \tab How many `NA` or non-`NA` values,
-#'                               respectively?                               \cr
-#'   `nat`                  \tab How many values after \link[=av]{atomizing}?\cr
-#'   `n0, n1, n2, n3`       \tab Is length `0`, `1`, `2`, or `3`,
-#'                               respectively?                               \cr
-#'   `n1p, n2p, n3p`        \tab Is length `1+`, `2+`, or `3+`, respectively?\cr
-#'   `nd0, nd1, nd2, nd3`   \tab Is the number of `...` arguments `0`, `1`, `2`,
-#'                               or `3`, respectively?                       \cr
-#'   `nd1p, nd2p, nd3p`     \tab Is the number of `...` arguments `1+`, `2+`, or
-#'                               `3+`, respectively.                           }
+#' @description Couning functions can be used with a single unnamed argument,
+#'   multiple unnamed arguments, and with restrictions in named arguments, in
+#'   any combination. The functions in this family are: \tabular{ll}{
+#'   FUNCTION(S)                  \tab QUESTION(S) ANSWERED                  \cr
+#'   `n_is`                       \tab Do counts in `x` meet criteria in `n`,
+#'                                     `min`, `max`, and/or `eq`?            \cr
+#'   `nd`                         \tab How many `...` arguments?             \cr
+#'   `nx`                         \tab How many values in `...` arguments?   \cr
+#'   `ns`                         \tab How many values in each `...`
+#'                                     argument?                             \cr
+#'   `nmin`, `nmax`               \tab What is the min or max `...` argument
+#'                                     length, respectively?                 \cr
+#'   `nsame`                      \tab Are lengths of all `...` arguments the
+#'                                     same?                                 \cr
+#'   `nw`, `nt`                   \tab How many `TRUE` values?               \cr
+#'   `nf`                         \tab How many `FALSE` values?              \cr
+#'   `nu`, `nuv`                  \tab How many unique atomic values?        \cr
+#'   `nr`, `nc`                   \tab How many rows or columns,
+#'                                     espectively?                          \cr
+#'   `nch`                        \tab How many characters in each element?  \cr
+#'   `nna`, `nok`                 \tab How many `NA` or non-`NA` values,
+#'                                     respectively?                         \cr
+#'   `nat`                        \tab How many values after
+#'                                     \link[=av]{atomizing}?                \cr
+#'   `n0`, `n1`, `n2`, `n3`       \tab Is length `0`, `1`, `2`, or `3`,
+#'                                     respectively?                         \cr
+#'   `n1p`, `n2p, n3p`            \tab Is length `1+`, `2+`, or `3+`,
+#'                                     respectively?                         \cr
+#'   `nd0`, `nd1`, `nd2`, `nd3`   \tab Is the number of `...` arguments `0`,
+#'                                     `1`, `2`, or `3`, respectively?       \cr
+#'   `nd1p`, `nd2p`, `nd3p`       \tab Is the number of `...` arguments `1+`,
+#'                                     `2+`, or `3+`, respectively.            }
 #' @param x \link[=innw]{non-negative whole-number} object.
 #' @param ... One or more arguments to be examined for counts.
-#' @param n Optional \link[=cmp_nnw_vec]{complete non-negative whole-number
-#'   vec} of valid element, row, or column counts.
+#' @param n Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec}
+#'   of valid element, row, or column counts.
 #' @param min,max Optional \link[=cmp_nnw_scl]{complete non-negative
 #'   whole-number scalars} giving minimum and maximum valid element, row, or
 #'   column counts.
-#' @param eq,na,a Non-\code{NA} scalars indicating, respectively, whether all
-#'   counts must be equal, whether \code{NA} values are allowed, and whether to
-#'   atomize \code{...} to create a single atomic vector before processing. If
-#'   \code{a} is \code{FALSE}, each argument in \code{...} is processed
-#'   separately.
+#' @param eq,na,a Non-`NA` scalars indicating, respectively, whether all counts
+#'   must be equal, whether `NA` values are allowed, and whether to
+#'   \link[=av]{atomize} `...` to create a single atomic vector before
+#'   processing. If `a = FALSE`, each argument in `...` is processed separately.
 #' @param vals Optional \link[=atm_vec]{atomic vec} indicating specific values
 #'   to be counted.
 #' @param lt,le,ge,gt Optional \link[=cmp_srt_scl]{complete sortable scalars}
-#'   indicating specific values elements of \code{...} arguments must be less
-#'   than, less than or equal to, greater than or equal to, or greater than,
+#'   indicating specific values elements of `...` arguments must be less than,
+#'   less than or equal to, greater than or equal to, or greater than,
 #'   respectively, to be counted.
 #' @return An integer or logical scalar or vector.
 #' @examples

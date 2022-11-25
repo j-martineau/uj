@@ -24,55 +24,38 @@ rm_na(x)
 \arguments{
 \item{x}{The argument to be inspected/managed.}
 
-\item{s}{\link[=atm_scl]{Atomic scalar} to replace \code{NA} values. Mode must
-be \code{\link{compatible}} with \code{x}.}
+\item{s}{An \link[=atm_scl]{atomic scalar} to replace \code{NA} values. Mode must
+be \link[=compatible]{compatible} with\code{x}}
 }
 \value{
-\strong{\code{na, ok}}
-\cr Logical object of the same dimension as \code{x}.
-\cr\cr
-\strong{\code{nas, oks}}
-\cr A logical scalar.
-\cr\cr
-\strong{\code{rm_na}}
-\cr Either an atomic vector or \code{x}.
-\cr\cr
-\strong{\code{sub_na}}
-\cr code{x} with \code{NA} values replaced.
+\tabular{ll}{
+FUNCTIONS      \tab RETURN VALUE                                        \cr
+\code{na}, \code{ok}     \tab A logical object of the same dimension as \code{x}.      \cr
+\code{nas}, \code{oks}   \tab A logical scalar.                                   \cr
+\code{rm_na}        \tab Either an atomic vector or \code{x}.                     \cr
+\code{sub_na}       \tab \code{x} with \code{NA} values replaced.                        }
 }
 \description{
 All functions in this group take objects of atomic mode,
 \link[=atm_dtf]{atomic dtfs}, or \link[=atm_vls]{atomic vlists}.
+\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES                                          \cr
+\code{na}       \tab Index \code{NA} values of \code{x}.                             \cr
+\code{ok}       \tab Index non-\code{NA} values of \code{x}.                         \cr
+\code{nas}      \tab Evaluate whether \code{x} is an \code{NA} scalar.               \cr
+\code{oks}      \tab Evaluate whether \code{x} is a non-\code{NA} scalar.            \cr
+\code{sub_na}   \tab Substitute \code{s} for \code{NA} values of\code{x} Modes of \code{x} and \code{s}
+must be \link[=compatible]{compatible}.               \cr
+\code{rm_na}    \tab Remove \code{NA} values of \code{x} If there are no \code{NA} values in
+\code{x}, this function returns \code{x} unchanged. If there are
+\code{NA} values in \code{x}, by removing \code{NA} values from \code{x},
+this function changes the dimensions of and/or class
+of \code{x} If \code{x} is an array or an \link[atm_dtf]{atomic
+data.frame}, its class is reduced to an atomic vector
+sans \code{NA} values. If \code{x} is an \link[=atm_vls]{atomic
+vlist}, any elements with \code{NA} values are reduced to
+atomic vectors sans their \code{NA} values.                  }
 }
-\section{Functions in this Family}{
-
-\strong{\code{na}}
-\cr Indexes \code{NA} values of \code{x}.
-\cr\cr
-\strong{\code{ok}}
-\cr Indexes non-\code{NA} values of \code{x}.
-\cr\cr
-\strong{\code{nas}}
-\cr Is \code{x} an \code{NA} scalar.
-\cr\cr
-\strong{\code{oks}}
-\cr Is \code{x} an \code{NA} scalar.
-\cr\cr
-\strong{\code{sub_na}}
-\cr Substitutes \code{s} for \code{NA} values of \code{x}. Modes of
-\code{x} and \code{s} must be compatible (\code{\link{=compatible}}).
-\cr\cr
-\strong{\code{rm_na}}
-\cr Removes \code{NA} values of \code{x}. If there are no \code{NA} values
-in \code{x}, this function returns \code{x} unchanged. \strong{However}, if
-there are \code{NA} values in \code{x}, by removing \code{NA} values from
-\code{x}, this function changes the dimensions of and/or class of \code{x}.
-If \code{x} is an array or an \code{\link[atm_dtf]{atomic data.frame}}, its
-class is reduced to an atomic vector sans \code{NA} values. If \code{x} is
-an \code{\link[=atm_vls]{atomic vlist}}, any elements with \code{NA} values
-are reduced to atomic vectors sans their \code{NA} values.
-}
-
 \seealso{
 Other extensions: 
 \code{\link{atomize}},

@@ -15,52 +15,39 @@ continue()
 \arguments{
 \item{...}{An arbitrary number of atomic arguments to be atomized collapsed
 into a character scalar message to the user. If no values are supplied and
-\code{lev = NA} or \code{lev = 6}, prints a single dot (period) immediately
-following the current contents of the console.}
+\code{lev = NA} or \code{lev = 6}, prints a single dot (\code{.}) immediately following
+the current contents of the console.}
 
-\item{lev}{Either \code{NA} to print the message in \code{...} immediately
-following the current contents of the console or a value from \code{1:6} to
-use the console for up to six levels of user updates. See details.}
+\item{lev}{Either \code{NA} to print the message in \code{...} immediately following
+the current contents of the console or a value from \code{1:6} to use the
+console for up to six levels of user updates. See details.}
 }
 \value{
-\code{NULL}: called for side effects of console-based user updates or
+\code{NULL}. Called for side effects of console-based user updates or
 pausing execution for until user indicates execution should continue.
 }
 \description{
-This family of functions is for interacting with the user via
-the console.
+\tabular{ll}{
+FUNCTION     \tab WHAT IT DOES                                          \cr
+\code{say}        \tab Collapse the message in \code{...} to a character scalar
+and print it to the console or structure it as a certain
+level of update and then print it to the console.
+See details.                                          \cr
+\code{cat0}       \tab Collapse \code{...} to a character scalar message
+prefixed and suffixed with newlines, and print it to the
+console (ensures that the message occurs on its own line
+of the console).                                      \cr
+\code{continue}   \tab Print \code{"Hit [enter] or [return] to continue"} to the
+console and pause execution until the user hits the enter
+or return key.                                          }
 }
-\section{Functions in this Family}{
-
-\strong{\code{say}}
-\cr Collapse the message in \code{...} to a character scalar and print it
-to the console or structure it as a certain level of update and then print
-it to the console. See details.
-\cr\cr
-\strong{\code{cat0}}
-\cr Collapse \code{...} to a character scalar message prefixed and suffixed
-with newlines, and print it to the console (ensures that the message occurs
-on its own line of the console).
-\cr\cr
-\strong{\code{continue}}
-\cr Print \code{"Hit [enter] or [return] to continue"} to the console and
-pause execution until the user hits the enter or return key.
-\cr\cr
+\details{
 The function \code{say} allows for structuring user update messages
 at six hierarchical levels as explained in the following table where
-\code{___} is a placeholder the character scalar message created when
-collapsing \code{...}.: \tabular{lll}{
-MESSAGE           \tab VALUE OF          \tab UPDATE                    \cr
-SUPPLIED          \tab THE \code{lev}    \tab PRINTED TO                \cr
-IN \code{...}?    \tab ARGUMENT          \tab CONSOLE                   \cr
-yes               \tab \code{NA}         \tab \code{'___'}              \cr
-yes               \tab \code{1}          \tab \code{'\\n___'}           \cr
-yes               \tab \code{2}          \tab \code{'\\n| ___'}         \cr
-yes               \tab \code{3}          \tab \code{'\\n| > ___'}       \cr
-yes               \tab \code{4}          \tab \code{' > ___'}           \cr
-yes               \tab \code{5}          \tab \code{'..(___)'}          \cr
-no                \tab \code{6}          \tab \code{'.'}                \cr
-no                \tab \code{NA}         \tab \code{'.'}                  }
+\verb{___} is a placeholder the character scalar message created when
+collapsing \code{...}:\tabular{lll}{
+MESSAGE     \tab VALUE OF     \tab UPDATE                             \cr
+SUPPLIED    \tab THE \verb{lev``   \\tab PRINTED TO                         \\cr IN }...\verb{?   \\tab ARGUMENT     \\tab CONSOLE                            \\cr yes         \\tab }NA\verb{        \\tab}'\emph{\strong{'\verb{                           \\cr yes         \\tab}1\verb{         \\tab}'\\n}}'\verb{                        \\cr yes         \\tab}2\verb{         \\tab}'\\n| ___'\verb{                      \\cr yes         \\tab}3\verb{         \\tab}'\\n| > ___'\verb{                    \\cr yes         \\tab}4\verb{         \\tab}' > \emph{\strong{'\verb{                        \\cr yes         \\tab}5\verb{         \\tab}'..(}})'\verb{                       \\cr no          \\tab}6\verb{         \\tab}'.'\verb{                             \\cr no          \\tab}NA`         \tab '.'                                  }
 Other combinations not represented in the table above will result in an
 error.
 \cr\cr
@@ -107,4 +94,3 @@ Will result in a console with these contents:
   L1B_another_random_message
 }\if{html}{\out{</div>}}
 }
-

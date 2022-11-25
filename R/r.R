@@ -6,23 +6,18 @@
 
 #' @name r
 #' @family extended
-#' @title Error-Checked Wraps of \code{\link[=base:rep]{base::rep}}.
-#' @section Functions in This Family:
-#'   \strong{\code{r}}
-#'   \cr Atomizes \code{...} and, with the result \code{dots}, calls
-#'   \code{rep.int(dots, r)}.
-#'   \cr\cr
-#'   \strong{\code{e}}
-#'   \cr Atomizes \code{...} and, with the result \code{dots}, calls
-#'   \code{rep(dots, each = e)}.
-#'   \cr\cr
-#'   \strong{\code{er, re}}
-#'   \cr Atomize \code{...}, and, with the result \code{dots}, calls
-#'   \code{rep(dots, times = r, each = e)}.
-#'   \cr\cr
+#' @title Error-Checked Wraps of `base::rep`
+#' @description \tabular{ll}{
+#'   FUNCTIONS    \tab WHAT IT DOES                                          \cr
+#'   `r`          \tab \link[=av]{Atomize} `...` and with the result `dots`,
+#'                     call `rep.int(dots, r)`.                              \cr
+#'   `e`          \tab Atomize `...` and with the result `dots`, call
+#'                     `rep.int(dots, each = e)`.                            \cr
+#'   `re`, `er`   \tab Atomize `...`, and with the result `dots`, call
+#'                     `rep(dots, times = r, each = e)`.                       }
 #'   NOTE
-#'   \cr Although \code{er} and \code{re} produce identical results when their
-#'   arguments are the same, both are included for convenience.
+#'   \cr Although `er` and `re` produce identical results when their arguments
+#'   are the same, both are included for convenience.
 #' @section Comparing Function Output: The following console excerpt
 #'   demonstrates how each function performs.
 #'   ```

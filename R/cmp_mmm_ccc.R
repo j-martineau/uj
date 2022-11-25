@@ -1,53 +1,48 @@
 #' @family props
 #' @title Completeness + Extended Mode + Extended Class Properties
-#' @section Functions in this Family:
-#'    NOTE: \code{MMM} and \code{CCC} are used as placeholders for any
-#'   given extended mode and extended class, respectively.
-#'   \cr\cr
-#'   \strong{\code{cmp_mmm_ccc}}
-#'   \cr Evaluates whether \code{x} is complete, matches the extended mode
-#'   specified in the argument \code{mmm} and matches the extended class
-#'   specified in the argument \code{ccc}. (subject to any restrictions in
-#'   \code{...}).
-#'   \cr\cr
-#'   \strong{\code{cmp_MMM_CCC}}
-#'   \cr Evaluates whether \code{x} is complete and matches the extended mode
-#'   \code{MMM} and extended class \code{CCC}. (subject to any restrictions in
-#'   \code{...}).
-#'   \cr\cr
-#'   \strong{\code{cmp_mmm_ccc_props}}
-#'   \cr Gets a character vector of all possible completeness + extended mode +
-#'   extended class properties.
+#' @description \tabular{ll}{
+#'   FUNCTION              \tab WHAT IT DOES                                 \cr
+#'   `cmp_mmm_ccc`         \tab Evaluates whether `x` is complete, matches the
+#'                              extended mode specified in the argument `mmm`
+#'                              and matches the extended class specified in the
+#'                              argument `ccc` (subject to any restrictions in
+#'                              `...`).                                      \cr
+#'   `cmp_MMM_CCC`         \tab Evaluates whether `x` is complete and matches
+#'                              the extended mode `MMM` and extended class
+#'                              `CCC` subject to any restrictions in
+#'                              `...`, where `MMM` and `CCC` are placeholders
+#'                              for any given extended mode and extended class
+#'                              properties.                                  \cr
+#'   `cmp_mmm_ccc_props`   \tab Gets a character vector of all possible
+#'                              completeness + extended mode + extended class
+#'                              properties.                                    }
 #' @param x An R object.
-#' @param mmm A character scalar containing an extended mode property from
-#'   mmm_props().
-#' @param ccc A character scalar containing an extended class property from
-#'   ccc_props().
+#' @param mmm A character scalar extended mode property from `mmm_props()`.
+#' @param ccc A character scalar extended class property from `ccc_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{cmp_mmm_ccc_props}}
-#'   \cr A character vector.
-#'   \cr\cr
-#'   \strong{\code{cmp_mmm_ccc, cmp_MMM_CCC}}
-#'   \cr A logical scalar.
+#' @return \tabular{ll}{
+#'   FUNCTION                       \tab RETURN VALUE                        \cr
+#'   `cmp_mmm_ccc_props`            \tab A character vector.                 \cr
+#'   `cmp_mmm_ccc`, `cmp_MMM_CCC`   \tab A logical scalar.                     }
 #' @export
-cmp_mmm_ccc <- function(x, mmm_ccc, ...) {
+cmp_mmm_ccc <- function(x, mmm, ccc, ...) {
   errs <- c(.meets_errs(x, ...),
-            f0(f0(length(mmm) != 1 | !is.character(mmm), F, f0(is.na(mmm), F, mmm %in% mmm_props())), NULL, '\n \u2022 [mmm] is not a scalar value from mmm_props().'),
-            f0(f0(length(ccc) != 1 | !is.character(ccc), F, f0(is.na(ccc), F, ccc %in% ccc_props())), NULL, '\n \u2022 [ccc] is not a scalar value from ccc_props().'))
+            f0(f0(length(mmm) != 1 | !is.character(mmm), F, f0(is.na(mmm), F, mmm %in% .mmms)), NULL, '\n \u2022 [mmm] is not a scalar value from mmm_props().'),
+            f0(f0(length(ccc) != 1 | !is.character(ccc), F, f0(is.na(ccc), F, ccc %in% .cccs)), NULL, '\n \u2022 [ccc] is not a scalar value from ccc_props().'))
   if (!is.null(errs)) {stop(errs)}
   if (!meets(x, ...)) {return(F)}
-  if (!run(paste0('i', ccc, '(x)'))) {return(F)}
-  mfun <- paste0('i', mmm)
+  if (!run(paste0('.i', ccc, '(x)'))) {return(F)}
+  mfun <- paste0('.i', mmm)
   if (ccc == 'dtf') {all(apply(x, 2, mfun)) & !any(is.na(av(x)))}
   else if (ccc == 'vls') {all(sapply(x, mfun)) & !any(is.na(av(x)))}
   else if (!is.atomic(x)) {F}
-  else {!any(is.na(x)) & run(mfun)}
+  else {!any(is.na(x)) & run(mfun, "(x)")}
 }
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_mmm_ccc_props <- function() {paste0('cmp_', sort(av(apply(expand.grid(mmm = .mmm_props(), ccc = .ccc_props()), 1, paste0, collapse = '_'))))}
+cmp_mmm_ccc_props <- function() {paste0('cmp_', sort(av(apply(expand.grid(mmm = .mmms, ccc = .cccs), 1, paste0, collapse = '_'))))}
 
 #' @rdname cmp_mmm_ccc
 #' @export

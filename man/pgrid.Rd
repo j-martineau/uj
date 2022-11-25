@@ -19,7 +19,7 @@ pgridn(p, ..., ch = F, na.err = T)
 pgridx(p, ..., ch = F, na.err = T)
 }
 \arguments{
-\item{p}{\link[=cmp_chr_scl]{Complete character scalar} to use as the
+\item{p}{A \link[=cmp_chr_scl]{complete character scalar} to use as the
 'paste'.}
 
 \item{...}{Non-empty atomic objects.}
@@ -37,33 +37,24 @@ construct the result to look like a fully-crossed model. See \emph{The
 A character vector.
 }
 \description{
-\code{expand.grid} for \code{paste} and \code{paste0}
+\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES                                            \cr
+\code{pgrid}    \tab Converts the \code{n} \code{...} arguments to character (with
+additional optional pre-processing) and create a character
+vector with each element consisting of sub-strings from
+across \code{...} arguments pasted together using the 'paste'
+\code{p}. See the \emph{value} section for how the value of
+\code{crossed} affects the results.                          \cr
+\code{pgrid0}   \tab Calls \code{pgrid} with \code{p = ""} (a blank string).           \cr
+\code{pgrid1}   \tab Calls \code{pgrid} with \code{p = " "} (a space).                 \cr
+\code{pgridn}   \tab Calls \code{pgrid} with \code{crossed = FALSE} so as to produce only
+\code{n}-way combinations from across the \code{n} \code{...}
+arguments.                                              \cr
+\code{pgridx}   \tab Calls \code{pgrid} with \code{crossed = TRUE} so as to produce all
+possible \code{1}-way, \code{2}-way, ..., \code{n}-way combinations from
+across the \code{...} arguments (i.e. fully-crossed
+combinations).                                            }
 }
-\section{Functions in this Family}{
-
-\strong{\code{pgrid}}
-\cr Converts the \code{n} \code{...} arguments to character (with
-additional optional pre-processing) and create a character vector with each
-element consisting of sub-strings from across \code{...} arguments
-pasted together using the 'paste' \code{p}. See the \emph{Value} section
-for how the value of \code{crossed} affects the results.
-\cr\cr
-\strong{\code{pgrid0}}
-\cr Calls \code{pgrid} with \code{p = ""} (blank string).
-\cr\cr
-\strong{\code{pgrid1}}
-\cr Calls \code{pgrid} with \code{p = " "} (space).
-\cr\cr
-\strong{\code{pgridn}}
-\cr Calls \code{pgrid} with \code{crossed = FALSE} so as to produce only
-\code{n}-way combinations from across the \code{n} \code{...} arguments.
-\cr\cr
-\strong{\code{pgridx}}
-\cr Calls \code{pgrid} with \code{crossed = TRUE} so as to produce all
-possible \code{1}-way, \code{2}-way, ..., \code{N}-way combinations from
-across the \code{...} arguments (i.e. fully-crossed combinations).
-}
-
 \section{The \code{crossed} Argument}{
  The following console excerpt shows
 the effect of the value of \code{crossed}:

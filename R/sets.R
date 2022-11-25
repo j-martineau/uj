@@ -1,6 +1,7 @@
-#' @title Get All Possible Non-Empty Sets
-#' @description Create a list containing elements of indices to create all
-#'   possible sets of 1 or more elements of an object of size \code{n}.
+#' @title Create Indices to Build All Possible Non-Empty Sets
+#' @description Create a list of elements containing indices to create all
+#'   possible sets of size `1` or greater from a length-`n` vector of unique
+#'   values.
 #' @export
 sets <- function(n) {
   if (!cmp_psw_scl(n)) {stop("\n \u2022 [n] must be a positive whole-number scalar.")}

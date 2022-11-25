@@ -1,34 +1,28 @@
 #' @name spacing
 #' @family strings
-#' @title Error-Checked \code{stringr}-Based Spacing Functions
-#' @section Functions in This Family:
-#'   \strong{\code{spaces}}
-#'   \cr Create a character vector of \code{n} spaces.
-#'   \cr\cr
-#'   \strong{\code{pad}}
-#'   \cr Pad a string with leading and/or trailing spaces using
-#'   \code{\link[stringr]{pad}}.
-#'   \cr\cr
-#'   \strong{\code{sqz}}
-#'   \cr Trim leading, trailing, and extra internal spaces using
-#'   \code{\link[stringr]{str_squish}}.
-#'   \cr\cr
-#'   \strong{\code{trm}}
-#'   \cr Trim leading and trailing spaces using \code{\link[stringr]{str_trim}}.
+#' @title Error-Checked `stringr`-Based Spacing Functions
+#' @description \tabular{ll}{
+#'   FUNCTION   \tab WHAT IT DOES                                            \cr
+#'   `spaces`   \tab Create a character vector of `n` spaces.                \cr
+#'   `pad`      \tab Pad a string with leading and/or trailing spaces using
+#'                   \code{\link[stringr:pad]{stringr::pad}}.                \cr
+#'   `sqz`      \tab Trim leading, trailing, and extra internal spaces using
+#'                   \code{\link[stringr:str_squish]{stringr::str_squish}}.  \cr
+#'   `trm`      \tab Trim leading and trailing spaces using
+#'                   \code{\link[stringr:str_trim]{stringr::str_trim}}.        }
 #' @param ... An arbitrary number of atomic arguments to be processed.
 #' @param n \link[=cmp_psw_scl]{Complete positive whole-number scalar}
 #'   indicating the number of spaces.
 #' @param n. \link[=cmp_psw_scl]{Complete positive whole-number scalar}
 #'   indicating the number of pad characters.
-#' @param s. \link[=cmp_ch1_scl]{Complete onechar scalar} indicate side(s) to
-#'   pad: "l", "r", or "b" for left, right, or both, respectively.
+#' @param s. \link[=cmp_ch1_scl]{Complete onechar scalar} indicating side(s) to
+#'   pad: `'l'`, `'r'`, or `'b'` for left, right, or both, respectively.
 #' @param p. \link[=cmp_ch1_scl]{Complete onechar scalar} containing a single
 #'   character used to pad strings.
-#' @return \strong{\code{spaces}}
-#'   \cr A character scalar.
-#'   \cr\cr
-#'   \strong{\code{pad, trm, sqz}}
-#'   \cr A character object.
+#' @return \tabular{ll}{
+#'   FUNCTION               \tab RETURN VALUE                                \cr
+#'   `spaces`               \tab A character scalar.                         \cr
+#'   `pad`, `trm`, ` sqz`   \tab A character object.                           }
 #' @examples
 #' spaces(0)
 #' spaces(4)

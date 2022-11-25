@@ -2,7 +2,7 @@
 % Please edit documentation in R/run.R
 \name{run}
 \alias{run}
-\title{Build and evaluate code}
+\title{Build and Evaluate Code}
 \usage{
 run(...)
 }

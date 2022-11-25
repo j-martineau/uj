@@ -34,10 +34,9 @@ cmp_vec(x, ...)
 cmp_vls(x, ...)
 }
 \arguments{
-\item{x}{An R object}
+\item{x}{An R object.}
 
-\item{ccc}{A character scalar containing an
-extended class property from ccc_props().}
+\item{ccc}{A character scalar extended class property from \code{ccc_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -46,55 +45,44 @@ extended class property from ccc_props().}
   }}
 }
 \value{
-\strong{\code{cmp_ccc_props}}
-\cr A character vector.
-\cr\cr
-\strong{\code{cmp_ccc, cmp_CCC}}
-\cr A logical scalar.
+\tabular{ll}{
+FUNCTION               \tab WHAT IT DOES                                \cr
+\code{cmp_ccc_props}        \tab A character vector.                         \cr
+\code{cmp_ccc}, \code{cmp_CCC}   \tab A logical scalar.                             }
 }
 \description{
-Completeness + Extended Class Properties
+\tabular{ll}{
+FUNCTION          \tab WHAT IT DOES                                     \cr
+\code{cmp_ccc}         \tab Evaluate whether \code{x} is complete and matches the
+extended class specified in the argument \code{ccc}
+subject to any restrictions in \code{...}.            \cr
+\code{cmp_CCC}         \tab Evaluates whether \code{x} is complete and matches the
+extended class property \code{CCC} subject to any
+restrictions in \code{...}, where \code{CCC} is a placeholder
+for any given extended class property.           \cr
+\code{cmp_ccc_props}   \tab Gets a character vector of all possible completeness
++ extended class properties.                       }
 }
-\section{Functions in This Family}{
-
-NOTE: \code{CCC} is used as a wildcard for any given extended
-class property.
-\cr\cr
-\strong{\code{cmp_ccc}}
-\cr Evaluates whether \code{x} is complete and matches the extended class
-specified in the argument \code{ccc} (subject to any restrictions in
-\code{...}).
-\cr\cr
-\strong{\code{cmp_CCC}}
-\cr Evaluates whether \code{x} is complete and matches the extended class
-property \code{CCC}. (subject to any restrictions in
-\code{...}).
-\cr\cr
-\strong{\code{cmp_ccc_props}}
-\cr Gets a character vector of all possible completeness + extended class
-properties.
-}
-
 \section{Specifying Count and Value Restrictions}{
- Specifying additional
-requirements in \code{...} is optional. The full set of recognized
-arguments names are defined in the following table along with the
-properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                      \cr
-\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
-\code{nr}     \tab Vector of valid numbers of rows.                       \cr
-\code{nc}     \tab Vector of valid numbers of columns.                    \cr
-\code{min}    \tab Scalar minimum valid length/number of element.         \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
-\code{minc}   \tab Scalar minimum valid number of columns.                \cr
-\code{max}    \tab Scalar maximum valid length/number of element.         \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
-\code{vals}   \tab Vector of valid values.                                \cr
-\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
-\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
-\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
-\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
+ Specifying restrictions in
+\code{...} is optional. The full set of recognized arguments names are defined
+in the following table along with the properties each
+specifies:\tabular{ll}{
+NAME     \tab WHAT IT SPECIFIES                                         \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.              \cr
+\code{nr}     \tab Vector of valid numbers of rows.                          \cr
+\code{nc}     \tab Vector of valid numbers of columns.                       \cr
+\code{min}    \tab Scalar minimum valid length/number of element.            \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                      \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                   \cr
+\code{max}    \tab Scalar maximum valid length/number of element.            \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                      \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                   \cr
+\code{vals}   \tab Vector of valid values.                                   \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.                 \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.          }
 }
 
 \seealso{

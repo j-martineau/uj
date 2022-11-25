@@ -56,7 +56,7 @@ asknew(old, what, unq = T)
 \item{...}{Objects to be atomized to create the question.}
 
 \item{t}{\link[=cmp_chr_scl]{Complete character scalar} type of dialog box
-(valid values are \code{c('ok', 'okcancel', 'yesno', 'yesnocancel'}).}
+(valid values are \code{c('ok', 'okcancel', 'yesno', 'yesnocancel')})..}
 
 \item{d}{\link[=cmp_chr_scl]{Complete character scalar} default directory.}
 
@@ -94,7 +94,8 @@ interaction.}
 new values must be unique.}
 }
 \value{
-\link[=cmp_chr_scl]{Complete character scalar}
+A \link[=cmp_chr_scl]{complete character scalar} or a
+\link[=cmp_scl_vec]{complete character vec}.
 }
 \description{
 All functions in this family take \code{...} arguments, which are
@@ -102,8 +103,8 @@ All functions in this family take \code{...} arguments, which are
 dialog box.\tabular{ll}{
 \strong{FUNCTION}   \tab \strong{WHAT IT DOES}                          \cr
 \code{msgbox}       \tab Launch a simple dialog box to give the message.     \cr
-\code{dirbox}       \tab Ask user to select a directory/folder. (A)          \cr
-\code{docbox}       \tab Ask user to select a document. (A)                  \cr
+\code{dirbox}       \tab Ask user to select a directory/folder. \code{(A)}        \cr
+\code{docbox}       \tab Ask user to select a document. \code{(A)}                \cr
 \code{ansbox}       \tab Ask user to input a text response.                  \cr
 \code{no}           \tab Does user select the 'no' button? (not 'yes')       \cr
 \code{yes}          \tab Does user select the 'yes' button? (not 'no')       \cr

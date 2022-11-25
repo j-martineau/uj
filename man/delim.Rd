@@ -685,103 +685,45 @@ Argument in \code{...} must be recyclable for functions that delimit across
 names beginning with \code{da}).}
 }
 \value{
-\strong{\code{da, dw, da[d], dw[d]}}
-\cr A character vector.
-\cr\cr
-\strong{\code{daw, dww, daw[d][D], dww[d][D]}}
-\cr A character scalar.
+\tabular{ll}{
+FUNCTIONS                        \tab RETURN VALUE                      \cr
+\code{da}, \code{dw}, \code{daX}, \code{dwX}         \tab A character vector.\cr
+\code{daw}, \code{dww}, \code{dawXY}, \code{dwwXY}   \tab A character scalar.}
 }
 \description{
-Simplifies and extends \code{paste} and \code{paste0}, allowing
-for 'delimiting across' and 'delimiting within' \code{...} arguments, and a
-combination of delimiting within and across arguments, in any order. Also
-offers convenience functions for common delimiters.
-}
-\section{Common Delimiters}{
- Delimiter-specific functions are available for
-convenience for common delimiters and for any combination of two common
-delimiters. Common delimiters and their extension characters are shown in
-the following table:\tabular{lll}{
-EXTENSION    \tab EXTENSION                \tab DELIMITER             \cr
-CHARACTER    \tab DESCRIPTION              \tab INVOKED               \cr
-\code{'0'}   \tab Blank                    \tab\code{''}              \cr
-\code{'1'}   \tab Space                    \tab\code{' '}             \cr
-\code{'B'}   \tab Broken pipe              \tab\code{'¦'}             \cr
-\code{'C'}   \tab Colon                    \tab\code{':'}             \cr
-\code{'D'}   \tab Dot                      \tab\code{'.'}             \cr
-\code{'G'}   \tab Grammatical comma (A)    \tab\code{', '}            \cr
-\code{'P'}   \tab Pipe                     \tab\code{'|'}             \cr
-\code{'Q'}   \tab Back-tick quote (A)      \tab\code{'`'}             \cr
-\code{'S'}   \tab Simple comma*            \tab\code{','}             \cr
-\code{'T'}   \tab Tilde                    \tab\code{'~'}               }
-(A) 'Grammatical comma' vs. 'simple comma' indicates whether the function
-produces grammatical comma-separated lists vs. simple comma-separated
-values (e.g., \code{'1, 2, 3'} vs. \code{'1,2,3'}).
-}
 
-\section{\code{da(d, ...)}}{
- Delimit across \code{...} arguments using
-\code{d}. Thus                                                       \cr\cr
-\code{da('|', 1:3, 4:6)} gives \code{c('1|4', '2|5', '3|6')}                   \cr\cr
-and                                                                  \cr\cr
-\code{da(d, ...)} aliases \code{paste(..., sep = d)}.
 }
+\examples{
+  # delimit across using delimiter '|'.
+  # aliases paste(1:3, 4:6, sep = '|').
+  da('|', 1:3, 4:6)
 
-\section{\code{dw(d, ...)}}{
- Delimit within \code{...} arguments using
-\code{d}. Thus                                                       \cr\cr
-\code{dw(':', 1:3, 4:6)} gives \code{c('1:2:3', '4:5:6')}                      \cr\cr
-and                                                                  \cr\cr
-\code{dw(d, ...)} aliases \code{sapply(list(...), paste0, collapse = d)}.
+  # delimit within using delimiter ':'.
+  # aliases sapply(list(1:3, 4:6), paste0, collapse = ':').
+  dw(':', 1:3, 4:6)
+
+  # delimit across using '|', then within using ':'
+  # aliases paste(..., sep = d, collapse = D)
+  daw('|', ':', 1:3, 4:6)
+
+  # delimit within using '|' then again within using ':'.
+  # aliases paste0(sapply(list(...), paste0, collapse = d), collapse = D).
+  dww('|', ':', 1:3, 4:6)
+
+  # delimit across using pipe (encoded by 'P' suffix in function name).
+  daP(1:3, 4:6)
+
+  # delimit within using colon (encoded by 'C' suffix in function name).
+  dwC(1:3, 4:6)
+
+  # delimit across using pipe, then within using colon.
+  dawPC(1:3, 4:6)
+
+  # delimit within using colon, then again using pipe.
+  dwwCP(1:3, 4:6)
 }
-
-\section{\code{daw(d, D, ...)}}{
- Delimit across \code{...} using \code{d},
-then delimit within the resulting vector using \code{D}.             \cr\cr
-\code{daw('|', ':', 1:3, 4:6)} gives \code{'1|4:2|5:3:6'}                      \cr\cr
-and                                                                  \cr\cr
-\code{daw(d, D, ...)} aliases \code{paste(..., sep = d, collapse = D)}.        \cr\cr
-}
-
-\section{\code{dww(d, D, ...)}}{
- Delimit within \code{...} using \code{d},
-then delimit within the resulting vector using \code{D}.             \cr\cr
-\code{dww('|', ':', 1:3, 4:6)} gives \code{'1:2:3|4:5:6'}                      \cr\cr
-and                                                                  \cr\cr
-\code{dww(d, D, ...)} aliases
-\code{paste0(sapply(list(...), paste0, collapse = d), collapse = D)}
-}
-
-\section{Extension Functions \code{da[d]}}{
- Delimit across \code{...} using
-the delimiter invoked by the extension character \code{[d]}. Thus    \cr\cr
-\code{daP(1:3, 4:6)} gives \code{c('1|4', '2|5', '3|6')}.
-}
-
-\section{Extension Functions \code{dw[d]}}{
- Delimit within \code{...} using
-the delimiter invoked by the extension character \code{[d]}. Thus    \cr\cr
-\code{dwC(1:3, 4:6)} gives \code{c('1:2:3', '4:5:6')}.
-}
-
-\section{Extension Functions \code{daw[d][D]}}{
- Delimit across \code{...}
-using the delimiter invoked by the extension character \code{[d]}, then
-delimit within the resulting vector using the delimiter invoked by the
-extension character \code{[D]}. Thus                                 \cr\cr
-\code{dawPC(1:3, 4:6)} gives \code{'1|4:2|5:3|6'}.
-}
-
-\section{Extension Functions \code{dww[d][D]}}{
- Delimit within \code{...}
-using the delimiter invoked by the extension character \code{[d]}, then
-delimit within the resulting vector using the delimiter invoked by the
-extension character \code{[D]}. Thus                                 \cr\cr
-\verb{dwwCP(1:3, 4:6)\}} gives \code{'1:2:3|4:5:6'}.
-}
-
 \seealso{
-Other strings: 
+Other strings:
 \code{\link{blank}()},
 \code{\link{charn}()},
 \code{\link{fsub}()},

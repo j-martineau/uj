@@ -1,15 +1,15 @@
 #' @family extensions
 #' @title Does an object have only unique atomic values?
-#' @description Evaluates whether \code{x} contains only only unique atomic
-#'   values, with options for for atomizing before evaluation and for handling
-#'   \code{NA} values.
+#' @description Evaluates whether `x` contains only only unique atomic values,
+#'   with options for for atomizing before evaluation and for handling `NA`
+#'   values.
 #' @param x An atomic object.
-#' @param a A non-\code{NA} logical scalar indicating whether to reduce \code{x}
-#'   to an atomic vector containing all of its atomic values. When \code{FALSE}
-#'   and \code{x} is not atomic, throws an error.
-#' @param na A non-\code{NA} logical scalar indicating whether \code{NA} values
-#'   are allowed.
-#' @return \code{TRUE} or \code{FALSE}.
+#' @param a A non-`NA` logical scalar indicating whether to reduce `x` to an
+#'   atomic vector containing all of its atomic values. When `FALSE` and `x` is
+#'   not atomic, throws an error.
+#' @param na A non-`NA` logical scalar indicating whether `NA` values are
+#'   allowed.
+#' @return `TRUE` or `FALSE`.
 #' @export
 is_unq <- function(x, a = T, na = F) {
   if (isTRUE(a)) {x <- unlist(x, T, F)}

@@ -25,28 +25,24 @@ with each other.}
 A logical scalar.
 }
 \description{
-Are objects compatible?
+\tabular{ll}{
+FUNCTION            \tab WHAT IT DOES                                   \cr
+\code{compatible}        \tab Evaluates whether all \code{...} arguments are
+compatible, meaning all numeric, all character,
+all logical, all unordered factor with the same
+evels, or ordered factor with the same levels in
+the same order.                                \cr
+\code{compatible_dtfs}   \tab Evaluates whether all \code{...} arguments are
+\link[=atm_dtf]{atomic data.frames}. For row
+binding, also evaluates whether they have the same
+number of columns and all corresponding columns
+are compatible. For column binding, also evaluates
+whether they have the same number of rows.     \cr
+\code{compatible_atms}   \tab Evaluate whether all \code{...} arguments are
+compatible matrices and (for row binding) have the
+same number of columns or (for column binding)
+have the same number of rows.                    }
 }
-\section{Functions in this Family}{
-
-\strong{\code{compatible}}
-\cr Evaluates whether all \code{...} arguments are compatible, meaning
-all numeric, all character, all logical, all unordered factor with the same
-levels, or ordered factor with the same levels in the same order.
-\cr\cr
-\strong{\code{compatible_dtfs}}
-\cr Evaluates whether all \code{...} arguments are
-\link[=atm_dtf]{atomic data.frames}. For row binding, also evaluates
-whether they have the same number of columns and all corresponding columns
-are compatible. For column binding, also evaluates whether they have the
-same number of rows.
-\cr\cr
-\strong{\code{compatible_atms}}
-\cr Evaluates whether all \code{...} arguments are compatible matrices
-and (for row binding) have the same number of columns or (for column
-binding) have the same number of rows.
-}
-
 \examples{
 N0 <- 0
 N7 <- 0:7

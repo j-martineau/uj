@@ -22,7 +22,7 @@
 \alias{pt2cm}
 \alias{pt2in}
 \alias{pt2mm}
-\title{Convert units from among plotting units}
+\title{Convert Plotting Units}
 \usage{
 u2u(x, old, new)
 
@@ -70,56 +70,26 @@ pt2mm(x)
 \item{x}{\link[=atm_num]{Atomic, numeric object}.}
 
 \item{old, new}{\link[=cmp_chr_scl]{Complete character scalars} giving old and
-new units of length, respectively. Valid values are \code{c('cm', 'in',
-  'mm', 'pt')} for centimeters, inches, millimeters, and points,
-respectively.}
+new units of distance, respectively: \code{c('cm', 'in', 'mm', 'pt')} for
+centimeters, inches, millimeters, and points, respectively.}
 }
 \value{
 An atomic, numeric object.
 }
 \description{
-Convert units from among plotting units
+Available units are:\tabular{ll}{
+CODE   \tab NAME                                                      \cr
+\code{cm}   \tab Centimeters                                               \cr
+\verb{in}   \tab Inches                                                    \cr
+\code{mm}   \tab Millimeters                                               \cr
+\code{pt}   \tab Points (A)                                                  }
+(A) Points are \code{1/72} of an inch.
+\cr\cr
+Unit functions take the following forms, where \code{aa} and \code{bb} are wildcard
+units and \code{old} and \code{new} are user-supplied argument values:\tabular{ll}{
+FUNCTION   \tab CONVERTS UNITS                                        \cr
+\code{aa2bb}    \tab From \code{aa} to \code{bb}.                                    \cr
+\code{aa2u}     \tab From \code{aa} to \code{new}.                                   \cr
+\code{u2bb}     \tab From \code{old} to \code{bb}.                                   \cr
+\code{u2u}      \tab From \code{old} to \code{new}.                                    }
 }
-\section{Functions}{
-\itemize{
-\item \code{u2cm()}: Convert from \code{old} units to centimeters.
-
-\item \code{u2in()}: Convert from \code{old} units to inches.
-
-\item \code{u2mm()}: Convert from \code{old} units to millimeters.
-
-\item \code{u2pt()}: Convert from \code{old} units to points.
-
-\item \code{cm2u()}: Convert from centimeters to \code{new} units.
-
-\item \code{in2u()}: Convert from inches to \code{new} units.
-
-\item \code{mm2u()}: Convert from millimeters to \code{new} units.
-
-\item \code{pt2u()}: Convert from points to \code{new} units.
-
-\item \code{cm2in()}: Convert from centimeters to inches.
-
-\item \code{cm2mm()}: Convert from centimeters to millimeters.
-
-\item \code{cm2pt()}: Convert from centimeters to points.
-
-\item \code{in2cm()}: Convert from inches to centimeters
-
-\item \code{in2mm()}: Convert from inches to millimeters.
-
-\item \code{in2pt()}: Convert from inches to points.
-
-\item \code{mm2cm()}: Convert from millimeters to centimeters.
-
-\item \code{mm2in()}: Convert from millimeters to inches.
-
-\item \code{mm2pt()}: Convert from millimeters to points.
-
-\item \code{pt2cm()}: Convert from points to centimeters.
-
-\item \code{pt2in()}: Convert from points to inches.
-
-\item \code{pt2mm()}: Convert from points to millimeters.
-
-}}

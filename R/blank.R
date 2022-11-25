@@ -1,8 +1,7 @@
 #' @title Blank Strings
 #' @family strings
-#' @description Evaluates whether \code{x} is a blank string scalar (i.e.,
-#'   \code{""}).
+#' @description Evaluate whether `x` is a blank string scalar (i.e., `""`).
 #' @param x An R object
-#' @return Logical scalar
+#' @return A logical scalar
 #' @export
 blank <- function(x) {f0(length(x) == 1 & is.character(x), x == "", F)}

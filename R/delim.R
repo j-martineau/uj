@@ -18,76 +18,97 @@
 #' @name delim
 #' @family strings
 #' @title Error-Checked String Delimiting
-#' @description Simplifies and extends \code{paste} and \code{paste0}, allowing
-#'   for 'delimiting across' and 'delimiting within' \code{...} arguments, and a
-#'   combination of delimiting within and across arguments, in any order. Also
-#'   offers convenience functions for common delimiters.
-#' @section Common Delimiters: Delimiter-specific functions are available for
-#'   convenience for common delimiters and for any combination of two common
-#'   delimiters. Common delimiters and their extension characters are shown in
-#'   the following table:\tabular{lll}{
-#'     EXTENSION    \tab EXTENSION                \tab DELIMITER             \cr
-#'     CHARACTER    \tab DESCRIPTION              \tab INVOKED               \cr
-#'     \code{'0'}   \tab Blank                    \tab\code{''}              \cr
-#'     \code{'1'}   \tab Space                    \tab\code{' '}             \cr
-#'     \code{'B'}   \tab Broken pipe              \tab\code{'¦'}             \cr
-#'     \code{'C'}   \tab Colon                    \tab\code{':'}             \cr
-#'     \code{'D'}   \tab Dot                      \tab\code{'.'}             \cr
-#'     \code{'G'}   \tab Grammatical comma (A)    \tab\code{', '}            \cr
-#'     \code{'P'}   \tab Pipe                     \tab\code{'|'}             \cr
-#'     \code{'Q'}   \tab Back-tick quote (A)      \tab\code{'`'}             \cr
-#'     \code{'S'}   \tab Simple comma*            \tab\code{','}             \cr
-#'     \code{'T'}   \tab Tilde                    \tab\code{'~'}               }
+#' @description Simplifies and extends `base::paste` and `base::paste0`. There
+#'   are both primary functions with user-specified delimiters and convenience
+#'   functions for common delimiters.
+#'   \cr\strong{Primary Functions}\tabular{ll}{
+#'     FUNCTION   \tab WHAT IT DOES                                          \cr
+#'     `da`       \tab Delimits across corresponding elements of recyclable
+#'                     atomic vector `...` arguments using the delimiter `d`.
+#'                     Produce a character vector containing
+#'                     `max(lengths(list(...))) d`-delimited strings.        \cr
+#'     `dw`       \tab Delimits elements within each atomic vector `...`
+#'                     argument using the delimiter `d`. Produces a character
+#'                     vector containing `...length() d`-delimited strings.  \cr
+#'     `daw`      \tab Delimits across corresponding elements of recyclable
+#'                     atomic vector `...` arguments using the delimiter `d`,
+#'                     then delimits the elements of the resulting character
+#'                     vector using the delimiter `D`. Produces a character
+#'                     scalar containing `...length() D`-delimited strings,
+#'                     each of which contains `max(lengths(list(...)))`
+#'                     `d`-delimited strings.                                \cr
+#'     `dww`      \tab Delimits elements within each atomic vector `...`
+#'                     argument using the delimiter `d`, then delimits the
+#'                     elements within the resulting vector using the delimiter
+#'                     `D`. Produces a character scalar containing
+#'                     `...length() D`-delimited strings, each of which is
+#'                     itself a `d`-delimited string.                          }
+#'   \strong{Common-Delimiter Convenience Functions}
+#'   \cr Function names of convenience functions take the following forms where
+#'   `X` and `Y` are placeholders for common-delimiter codes appended to primary
+#'   function names:\tabular{ll}{
+#'     NAMING       \tab WHAT THE CONVENIENCE                                \cr
+#'     CONVENTION   \tab FUNCTION DOES                                       \cr
+#'     `daX`        \tab Delimit across using common delimiter `X`.          \cr
+#'     `dwX`        \tab Delimit within using common delimiter `X`.          \cr
+#'     `daXY`       \tab Delimit across using common delimiter `X`, then within
+#'                       using common delimiter `Y`.                         \cr
+#'     `dwXY`       \tab Delimit within using common delimiter `X`, then again
+#'                       using common delimiter `Y`.                           }
+#'   Common delimiters encoded as suffixes of function names are:\tabular{lll}{
+#'     COMMMON     \tab COMMON                  \tab VALUE OF                \cr
+#'     DELIMITER   \tab DELIMITER               \tab DELIMITER               \cr
+#'     CODE        \tab DESCRIPTION             \tab INVOKED                 \cr
+#'     `'0'`       \tab Blank                   \tab `''`                    \cr
+#'     `'1'`       \tab Space                   \tab `' '`                   \cr
+#'     `'B'`       \tab Broken pipe             \tab `'¦'`                   \cr
+#'     `'C'`       \tab Colon                   \tab `':'`                   \cr
+#'     `'D'`       \tab Dot                     \tab `'.'`                   \cr
+#'     `'G'`       \tab Grammatical comma (A)   \tab `', '`                  \cr
+#'     `'P'`       \tab Pipe                    \tab `'|'`                   \cr
+#'     `'Q'`       \tab Back-tick quote (A)     \tab `'`'`                   \cr
+#'     `'S'`       \tab Simple comma*           \tab `','`                   \cr
+#'     `'T'`       \tab Tilde                   \tab `'~'`                     }
 #'   (A) 'Grammatical comma' vs. 'simple comma' indicates whether the function
-#'   produces grammatical comma-separated lists vs. simple comma-separated
-#'   values (e.g., \code{'1, 2, 3'} vs. \code{'1,2,3'}).
-#' @section \code{da(d, ...)}: Delimit across \code{...} arguments using
-#'   \code{d}. Thus                                                       \cr\cr
-#'   `da('|', 1:3, 4:6)` gives `c('1|4', '2|5', '3|6')`                   \cr\cr
-#'   and                                                                  \cr\cr
-#'   `da(d, ...)` aliases `paste(..., sep = d)`.
-#' @section \code{dw(d, ...)}: Delimit within \code{...} arguments using
-#'   \code{d}. Thus                                                       \cr\cr
-#'   `dw(':', 1:3, 4:6)` gives `c('1:2:3', '4:5:6')`                      \cr\cr
-#'   and                                                                  \cr\cr
-#'   `dw(d, ...)` aliases `sapply(list(...), paste0, collapse = d)`.
-#' @section \code{daw(d, D, ...)}: Delimit across \code{...} using \code{d},
-#'   then delimit within the resulting vector using \code{D}.             \cr\cr
-#'   `daw('|', ':', 1:3, 4:6)` gives `'1|4:2|5:3:6'`                      \cr\cr
-#'   and                                                                  \cr\cr
-#'   `daw(d, D, ...)` aliases `paste(..., sep = d, collapse = D)`.        \cr\cr
-#' @section \code{dww(d, D, ...)}: Delimit within \code{...} using \code{d},
-#'   then delimit within the resulting vector using \code{D}.             \cr\cr
-#'   `dww('|', ':', 1:3, 4:6)` gives `'1:2:3|4:5:6'`                      \cr\cr
-#'   and                                                                  \cr\cr
-#'   `dww(d, D, ...)` aliases
-#'   `paste0(sapply(list(...), paste0, collapse = d), collapse = D)`
-#' @section Extension Functions \code{da[d]}: Delimit across \code{...} using
-#'   the delimiter invoked by the extension character \code{[d]}. Thus    \cr\cr
-#'   `daP(1:3, 4:6)` gives `c('1|4', '2|5', '3|6')`.
-#' @section Extension Functions \code{dw[d]}: Delimit within \code{...} using
-#'   the delimiter invoked by the extension character \code{[d]}. Thus    \cr\cr
-#'   `dwC(1:3, 4:6)` gives `c('1:2:3', '4:5:6')`.
-#' @section Extension Functions \code{daw[d][D]}: Delimit across \code{...}
-#'   using the delimiter invoked by the extension character \code{[d]}, then
-#'   delimit within the resulting vector using the delimiter invoked by the
-#'   extension character \code{[D]}. Thus                                 \cr\cr
-#'   `dawPC(1:3, 4:6)` gives `'1|4:2|5:3|6'`.
-#' @section Extension Functions \code{dww[d][D]}: Delimit within \code{...}
-#'   using the delimiter invoked by the extension character \code{[d]}, then
-#'   delimit within the resulting vector using the delimiter invoked by the
-#'   extension character \code{[D]}. Thus                                 \cr\cr
-#'   `dwwCP(1:3, 4:6)}` gives `'1:2:3|4:5:6'`.
+#'   produces grammatical comma-delimited lists vs. simple comma-delimited
+#'   values (e.g., `'1, 2, 3'` vs. `'1,2,3'`).
+#' @examples
+#'   # delimit across using delimiter '|'.
+#'   # aliases paste(1:3, 4:6, sep = '|').
+#'   da('|', 1:3, 4:6)
+#'
+#'   # delimit within using delimiter ':'.
+#'   # aliases sapply(list(1:3, 4:6), paste0, collapse = ':').
+#'   dw(':', 1:3, 4:6)
+#'
+#'   # delimit across using '|', then within using ':'
+#'   # aliases paste(..., sep = d, collapse = D)
+#'   daw('|', ':', 1:3, 4:6)
+#'
+#'   # delimit within using '|' then again within using ':'.
+#'   # aliases paste0(sapply(list(...), paste0, collapse = d), collapse = D).
+#'   dww('|', ':', 1:3, 4:6)
+#'
+#'   # delimit across using pipe (encoded by 'P' suffix in function name).
+#'   daP(1:3, 4:6)
+#'
+#'   # delimit within using colon (encoded by 'C' suffix in function name).
+#'   dwC(1:3, 4:6)
+#'
+#'   # delimit across using pipe, then within using colon.
+#'   dawPC(1:3, 4:6)
+#'
+#'   # delimit within using colon, then again using pipe.
+#'   dwwCP(1:3, 4:6)
 #' @param ... An arbitrary number of atomic vector arguments to be delimited.
-#'   Argument in \code{...} must be recyclable for functions that delimit across
-#'   \code{...} arguments as the first or only step (i.e., functions with
-#'   names beginning with \code{da}).
+#'   Argument in `...` must be recyclable for functions that delimit across
+#'   `...` arguments as the first or only step (i.e., functions with
+#'   names beginning with `da`).
 #' @param d,D \link[=chr_scl]{Character scalar} delimiters.
-#' @return \strong{\code{da, dw, da[d], dw[d]}}
-#'   \cr A character vector.
-#'   \cr\cr
-#'   \strong{\code{daw, dww, daw[d][D], dww[d][D]}}
-#'   \cr A character scalar.
+#' @return \tabular{ll}{
+#'   FUNCTIONS                        \tab RETURN VALUE                      \cr
+#'   `da`, `dw`, `daX`, `dwX`         \tab A character vector.               \cr
+#'   `daw`, `dww`, `dawXY`, `dwwXY`   \tab A character scalar.                 }
 #' @export
 da <- function(d, ...) {
   errs <- .delim_errs(list(d = d, dots = list(...)), TRUE)

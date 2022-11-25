@@ -41,65 +41,40 @@ x \%HAS\% y
 x \%LACKS\% y
 }
 \arguments{
-\item{x, y}{Any objects.}
+\item{x, y}{Any R objects.}
 }
 \value{
 A logical scalar.
 }
 \description{
-Scalar Result Failsafe Binary Logical Functions
-}
-\section{Functions in This Family}{
-
-\strong{\verb{\%IS\%}}
-\cr Evaluates whether \code{x} and \code{y} are identical.
-\cr\cr
-\strong{\verb{\%ISNT\%}}
-\cr Evaluates whether \code{x} and \code{y} are NOT identical.
-\cr\cr
-\strong{\verb{\%EQ\%}}
-\cr Evaluates whether \code{x} and \code{y} are setequal. (A)
-\cr\cr
-\strong{\verb{\%NEQ\%}}
-\cr Evaluates whether \code{x} and \code{y} are NOT setequal. (A)
-\cr\cr
-\strong{\verb{\%AND\%}}
-\cr Evaluates whether \code{x} and \code{y} are both scalar \code{TRUE}.
-\cr\cr
-\strong{\verb{\%OR\%}}
-\cr Evaluates whether \code{x} and \code{y} is scalar \code{TRUE} or both.
-\cr\cr
-\strong{\verb{\%NOR\%}}
-\cr Evaluates whether \code{x} and \code{y} are both scalar \code{FALSE}.
-\cr\cr
-\strong{\verb{\%ONE\%}}
-\cr Evaluates whether either \code{x} or \code{y} is scalar \code{TRUE}, but not both.
-\cr\cr
-\strong{\verb{\%IN\%}}
-\cr Evaluates whether atomic scalar \code{x} is in atomic object \code{y}. (B)
-\cr\cr
-\strong{\verb{\%OUT\%}}
-\cr Evaluates whether atomic scalar \code{x} is NOT in atomic object \code{y}. (B)
-\cr\cr
-\strong{\verb{\%HAS\%}}
-\cr Evaluates whether atomic object \code{x} contains atomic scalar \code{y} (C).
-\cr\cr
-\strong{\verb{\%LACKS\%}}
-\cr Evaluates whether atomic object \code{x} lacks (does not contain) atomic
-scalar \code{y}. (C)
-\cr\cr
-(A) If \code{x} and \code{y} are not \code{\link{compatible}}, \verb{\%EQ\%} and \verb{\%NEQ\%}
-return \code{FALSE} and \code{TRUE}, respectively.
+\tabular{ll}{
+FUNCTION    \tab WHAT IT DOES                                           \cr
+\verb{\%IS\%}      \tab Evaluate whether \code{x} and \code{y} are identical.            \cr
+\verb{\%ISNT\%}    \tab Evaluate whether \code{x} and \code{y} are NOT identical.        \cr
+\verb{\%EQ\%}      \tab Evaluate whether \code{x} and \code{y} are setequal. (A)         \cr
+\verb{\%NEQ\%}     \tab Evaluate whether \code{x} and \code{y} are NOT setequal. (A)     \cr
+\verb{\%AND\%}     \tab Evaluate whether \code{x} and \code{y} are both scalar \code{TRUE}.   \cr
+\verb{\%OR\%}      \tab Evaluate whether \code{x} and \code{y} is scalar \code{TRUE} or both. \cr
+\verb{\%NOR\%}     \tab Evaluate whether \code{x} and \code{y} are both scalar \code{FALSE}.  \cr
+\verb{\%ONE\%}     \tab Evaluate whether either \code{x} or \code{y} is scalar \code{TRUE}, but
+not both.                                              \cr
+\verb{\%IN\%}      \tab Evaluate whether atomic scalar \code{x} is contained in atomic
+object \code{y}. (B)                                        \cr
+\verb{\%OUT\%}     \tab Evaluate whether atomic scalar \code{x} is NOT contained in
+atomic object \code{y}. (B)                                 \cr
+\verb{\%HAS\%}     \tab Evaluate whether atomic object \code{x} contains atomic scalar
+\code{y} (C).                                               \cr
+\verb{\%LACKS\%}   \tab Evaluate whether atomic object \code{x} lacks (does not
+contain) atomic scalar \code{y}. (C)                          }
+(A) If \code{x} and \code{y} are not \link[=compatible]{compatible}, \verb{\%EQ\%} and
+\verb{\%NEQ\%} return \code{FALSE} and \code{TRUE}, respectively.
 \cr\cr
 (B) If \code{x} is not atomic, \code{y} is not atomic scalar, or \code{x} and \code{y} are not
-\code{\link{compatible}}, \verb{\%IN\%} and \verb{\%OUT\%} return \code{FALSE} and \code{TRUE},
-respectively.
+compatible, \verb{\%IN\%} and \verb{\%OUT\%} return \code{FALSE} and \code{TRUE}, respectively.
 \cr\cr
 (C) If \code{x} is not atomic scalar, \code{y} is not atomic, or \code{x} and \code{y} are not
-\code{\link{compatible}}, \verb{\%HAS\%} and \verb{\%LACKS\%} return \code{FALSE} and \code{TRUE},
-respectively.
+compatible, \verb{\%HAS\%} and \verb{\%LACKS\%} return \code{FALSE} and \code{TRUE}, respectively.
 }
-
 \seealso{
 Other extensions: 
 \code{\link{atomize}},

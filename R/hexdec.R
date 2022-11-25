@@ -1,27 +1,26 @@
 #' @name hexdec
 #' @family math
 #' @title Convert Non-Negative Whole Numbers between Decimal and Hexadecimal
-#' @section Functions in This Family:
-#'   \strong{\code{todec}}
-#'   \cr Converts hexadecimal \link[=cmp_chr]{complete character object}
-#'   \code{x} from hexadecimal to decimal. \code{x} may be formatted as either
-#'   \code{'hhh...'} or \code{'#hhh...'} where \code{h} is a placeholder for a
-#'   hexidecimal digit in either upper or lower case.
-#'   \cr\cr
-#'   \strong{\code{tohex}}
-#'   \cr Converts \link[=cmp_psw]{complete positive whole-number} \code{x} to
-#'   hexadecimal formatted as \code{'#HHH...'} where \code{H} is a placeholder
-#'   for an uppercase hexadecimal digit.
+#' @description \tabular{ll}{
+#'   FUNCTION   \tab WHAT IT DOES                                            \cr
+#'   `todec`    \tab Convert hexadecimal \link[=cmp_chr]{complete character
+#'                   object} `x` from hexadecimal to decimal. `x` may be
+#'                   formatted as either `'hhh...'` or `'#hhh...'` where `h`
+#'                   is a placeholder for a hexidecimal digit in either upper
+#'                   or lower case.                                          \cr
+#'   `tohex`    \tab Convert \link[=cmp_psw]{complete positive whole-number}
+#'                   `x` to hexadecimal formatted as `'#HHH...'` where `H` is a
+#'                   placeholder for an uppercase hexadecimal digit.           }
 #' @param x A \link[=cmp_nnw]{complete non-negative whole-number object} or a
 #'   \link[=cmp_chr]{complete character vec} containing only non-negative
 #'   whole-number hexademical values.
-#' @return \strong{\code{todec}}: A \link[=cmp_nnw]{complete non-negative
-#'   whole-number object}
-#'   \cr\cr
-#'   \strong{\code{tohex}}: A \link[=cmp_chr]{complete character object}
-#'   containing non-negative whole-number hexadecimal values in the format
-#'   \code{'#HHH...'} where \code{H} is a placeholder for an uppercase
-#'   hexadecimal digit.
+#' @return \tabular{ll}{
+#'  FUNCTION   \tab RETURN VALUE                                             \cr
+#'  `todec`\tab A \link[=cmp_nnw]{Complete non-negative whole-number object}.\cr
+#'  `tohex`\tab A \link[=cmp_chr]{complete character object} containing
+#'              non-negative whole-number hexadecimal values in the format
+#'              `'#HHH...'` where `H` is a placeholder for an uppercase
+#'              hexadecimal digit.                                             }
 #' @export
 todec <- function(x) {
   ok.x <- F

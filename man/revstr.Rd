@@ -2,7 +2,7 @@
 % Please edit documentation in R/revstr.R
 \name{revstr}
 \alias{revstr}
-\title{Reverse strings}
+\title{Reverse Strings}
 \usage{
 revstr(x)
 }

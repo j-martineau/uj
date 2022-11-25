@@ -19,7 +19,7 @@
 \alias{rsums0}
 \alias{cmeans0}
 \alias{rmeans0}
-\title{Compute stats ignoring NA}
+\title{Compute Stats Ignoring \code{NA} Values}
 \format{
 An object of class \code{NULL} of length 0.
 }
@@ -62,65 +62,64 @@ rmeans0(x)
 \item{...}{Scalars, vectors, or matrices. Reduced a single vector of atomic
 values for \code{sd0}, \code{min0}, \code{max0}, and \code{mean0}.}
 
-\item{x}{\link[=cmp_num_vec]{Complete numeric vec} or
+\item{x}{A \link[=cmp_num_vec]{complete numeric vec} or a
 \link[=cmp_num_mat]{complete numeric matrix}.}
 
-\item{y}{Optional \link[=cmp_num_vec]{complete numeric vec} or
+\item{y}{An optional \link[=cmp_num_vec]{complete numeric vec} or a
 \link[=cmp_num_mat]{complete numeric matrix}.}
 
 \item{n}{Positive whole-number scalar size of the complete set each subset is
 drawn from.}
 }
 \description{
-Compute stats ignoring NA
+Compute Stats Ignoring \code{NA} Values
 }
 \section{Functions}{
 \itemize{
-\item \code{sum0()}: Standard deviation of non-\code{NA} atomic elements
-contained in \code{...} as a whole.
+\item \code{sum0()}: Standard deviation of collective non-\code{NA} atomic elements
+in \code{...}.
 
-\item \code{sd0()}: Standard deviation of non-\code{NA} atomic elements
-contained in \code{...} as a whole.
+\item \code{sd0()}: Standard deviation of collective non-\code{NA} atomic elements
+in \code{...}.
 
-\item \code{cor0()}: Correlation of complete cases in \code{x.} and/or
-\code{y.}.
+\item \code{cor0()}: Correlation of complete cases in \code{x} and/or \code{y}.
 
-\item \code{cov0()}: Covariance of complete cases in \code{x.} and/or
-\code{y.}.
+\item \code{cov0()}: Covariance of complete cases in \code{x} and/or \code{y}.
 
-\item \code{min0()}: Minimum value of non-\code{NA} atomic elements contained
-in \code{...} as a whole.
+\item \code{min0()}: Minimum value of collective non-\code{NA} atomic elements in
+\code{...}.
 
-\item \code{max0()}: Maximum value of non-\code{NA} atomic elements contained
-in \code{...} as a whole.
+\item \code{max0()}: Maximum value of collective non-\code{NA} atomic elements in
+\code{...}.
 
-\item \code{var0()}: Variance of non-\code{NA} atomic elements contained in
-\code{...} as a whole.
+\item \code{var0()}: Variance of collective non-\code{NA} atomic elements in \code{...}.
 
-\item \code{pmin0()}: Pairwise minimum values ignoring \code{NA} values.
+\item \code{pmin0()}: Pairwise minimum values ignoring pairs containing any \code{NA}
+values.
 
-\item \code{pmax0()}: Pairwise maximum values ignoring \code{NA} values.
+\item \code{pmax0()}: Pairwise maximum values ignoring pairs containing any \code{NA}
+values.
 
-\item \code{mean0()}: Mean value of non-\code{NA} atomic elements contained in
-\code{...} as a whole.
+\item \code{mean0()}: Mean value of collective non-\code{NA} atomic elements in
+\code{...}.
 
-\item \code{csds0()}: Column standard deviations of \code{x} removing
-non-\code{NA} values separately for each column.
-
-\item \code{rsds0()}: Row standard deviations of \code{x} removing non-\code{NA}
-values separately for each row.
-
-\item \code{csums0()}: Column sums of \code{x} removing non-\code{NA} values
+\item \code{csds0()}: Column standard deviations of \code{x} removing non-\code{NA} values
 separately for each column.
 
-\item \code{rsums0()}: Row sums of \code{x} removing non-\code{NA} values
+\item \code{rsds0()}: Row standard deviations of \code{x} removing non-\code{NA} values
 separately for each row.
 
-\item \code{cmeans0()}: Column means of \code{x} removing non-\code{NA} values
-separately for each column.
+\item \code{csums0()}: Column sums of \code{x} removing non-\code{NA} values separately for
+each column.
 
-\item \code{rmeans0()}: Row means of \code{x} removing non-\code{NA} values
-separately for each row.
+\item \code{rsums0()}: Row sums of \code{x} removing non-\code{NA} values separately for
+each row.
+
+\item \code{cmeans0()}: Column means of \code{x} removing non-\code{NA} values separately
+for each column.
+
+\item \code{rmeans0()}: Row means of \code{x} removing non-\code{NA} values separately for
+each row.
 
 }}
 \seealso{

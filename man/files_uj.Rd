@@ -11,7 +11,7 @@
 \alias{object_dirs}
 \alias{parent_dirs}
 \alias{newdirs}
-\title{Evaluate and Manipulate Paths to Files or Dolders on Disk}
+\title{Evaluate and Manipulate Paths to Files or Folders}
 \usage{
 is_path(..., err = F)
 
@@ -38,74 +38,59 @@ newdirs(dirs, path = NULL)
 error should be thrown if \code{...} is not a valid object path when
 collapsed to a character scalar.}
 
-\item{path}{\link[=cmp_chr_scl]{Complete character scalar} path to either a
+\item{path}{A \link[=cmp_chr_scl]{complete character scalar} path to either a
 directory or a file.}
 
-\item{dirs}{\link[=cmp_chr_vec]{Complete character vec} of new sub-directory
+\item{dirs}{A \link[=cmp_chr_vec]{complete character vec} of new sub-directory
 names.}
 }
 \value{
-\strong{\code{is_path}}
-\cr A logical scalar.
-\cr\cr
-\strong{\code{object_path, folder_path, object_name, folder_name}}
-\cr A character scalar.
-\cr\cr
-\strong{\code{object_dirs, folder_dirs}}
-\cr A character vector.
+\tabular{ll}{
+FUNCTIONS                      \tab RETURN VALUE                        \cr
+\code{is_path}                      \tab A logical scalar.                   \cr
+\code{object_path}, \code{folder_path}   \tab A character scalar.                 \cr
+\code{object_name}, \code{folder_name}   \tab A character scalar.                 \cr
+\code{object_dirs}, \code{folder_dirs}   \tab A character vector.                   }
 }
 \description{
-Evaluate and Manipulate Paths to Files or Dolders on Disk
+\tabular{ll}{
+FUNCTION        \tab WHAT IT DOES                                       \cr
+\code{is_path}        \tab Check whether \code{...} resolves to a valid path for an
+object (file or folder) when \code{...} arguments are
+collapsed into a character scalar.                 \cr
+\code{as_path}       \tab Collapse \code{...} into a path using the current platform
+file path separator \code{.Platform$file.sep}.          \cr
+\code{object_path}   \tab Collapse \code{...} into a character scalar and expand the
+path to the object indicated by the result to account
+for relative paths.                                \cr
+\code{parent_path}   \tab Call \code{object_path} and extract from the resulting
+character scalar just the path to the parent folder of
+the object specified by \code{...} (i.e., discarding the
+name of the object itself).                        \cr
+\code{object_name}   \tab Call \code{object_path} and extract from the resulting
+character scalar just the name of the object,
+discarding the path to its parent.                 \cr
+\code{parent_name}   \tab Call \code{parent_path} and extract from the resulting
+character scalar just the name of last folder in the
+path.                                              \cr
+\code{object_dirs}   \tab Call \code{object_path} and split the resulting character
+scalar into a character vector containing the name of
+the root folder, the names of any intermediate
+folders, the name of the parent folder of the object,
+and the name of the object.                        \cr
+\code{parent_dirs}   \tab Call \code{folder_path} and split the resulting character
+scalar into a character vector containing the name of
+the root folder, the names of any intermediate
+folders, and the name of the parent folder of the
+object specified by \code{...}.                         \cr
+\code{new_dirs}      \tab Creates sub-directories within an existing directory,
+optionally asking the user to choose that existing
+directory.                                           }
 }
 \details{
 In most cases, if (optionally) specified, functions throw an error
 if \code{...} does not resolve to a valid object path.
 }
-\section{Functions in this Family}{
-
-\strong{\code{is_path}}
-\cr Checks whether \code{...} resolves to a valid path for an object (file
-or folder) when \code{...} arguments are collapsed into a character
-scalar.
-\cr\cr
-\strong{\code{as_path}}
-\cr Collapses \code{...} into a path using the current platform file path
-separator (\code{.Platform$file.sep}).
-\cr\cr
-\strong{\code{object_path}}
-\cr Collapses \code{...} into a character scalar and expands the path to
-the object indicated by the result to account for relative paths.
-\cr\cr
-\strong{\code{parent_path}}
-\cr Calls \code{object_path} and extracts from the resulting character
-scalar just the path to the parent folder of the object specified by
-\code{...} (i.e., discarding the name of the object itself).
-\cr\cr
-\strong{\code{object_name}}
-\cr Calls \code{object_path} and extracts from the resulting character
-scalar just the name of the object, discarding the path to its parent.
-\cr\cr
-\strong{\code{parent_name}}
-\cr Call \code{parent_path} and extracts from the resulting character
-scalar just the name of last folder in the path
-\cr\cr
-\strong{\code{object_dirs}}
-\cr Calls \code{object_path} and splits the resulting character scalar into
-a character vector containing the name of the root folder, the names of any
-intermediate folders, the name of the parent folder of the object, and the
-name of the object.
-\cr\cr
-\strong{\code{parent_dirs}}
-\cr Calls \code{folder_path} and splits the resulting character scalar into
-a character vector containing the name of the root folder, the names of any
-intermediate folders, and the name of the parent folder of the object
-specified by \code{...}.
-\cr\cr
-\strong{\code{new_dirs}}
-\cr Creates sub-directories within an existing directory, optionally asking
-the user to choose that existing directory.
-}
-
 \seealso{
 Other extensions: 
 \code{\link{atomize}},

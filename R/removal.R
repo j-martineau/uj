@@ -1,33 +1,21 @@
 #' @name removal
 #' @family extensions
 #' @title Remove Various Objects or Characteristics
-#' @section Functions in This Family:
-#'   \strong{\code{xat}}
-#'   \cr Remove one or more attributes by name.
-#'   \cr\cr
-#'   \strong{\code{xat0}}
-#'   \cr Remove all attributes.
-#'   \cr\cr
-#'   \strong{\code{xcls}}
-#'   \cr Remove one or more class attributes by name.
-#'   \cr\cr
-#'   \strong{\code{xwarn}}
-#'   \cr Purge all warnings.
-#'   \cr\cr
-#'   \strong{\code{xplot}}
-#'   \cr Purge all plots (and if \code{x} is not \code{NULL}, print {x}, which
-#'   is meant to be a plot object).
-#'   \cr\cr
-#'   \strong{\code{xcon}}
-#'   \cr Clear the console.
+#' @description \tabular{ll}{
+#'   FUNCTION   \tab WHAT IT DOES \cr
+#'   `xat`      \tab Remove one or more attributes by name.                  \cr
+#'   `xat0`     \tab Remove all attributes.                                  \cr
+#'   `xcls`     \tab Remove one or more class attributes by name.            \cr
+#'   `xwarn`    \tab Purge all warnings.                                     \cr
+#'   `xplot`    \tab Purge all plots (and if `x` is not `NULL`, print it).   \cr
+#'   `xcon`     \tab Clear the console.                                        }
 #' @param x An R object.
 #' @param ... One or more \link[=cmp_chr_vec]{complete character vecs}
 #'   containing names of attributes or classes to remove.
-#' @return \strong{\code{xat, xat0, xcls}}
-#'   \cr An R object.
-#'   \cr\cr
-#'   \strong{\code{xwarn, splot, xcon}}
-#'   \cr \code{NULL} (called for side effects).
+#' @return \tabular{ll}{
+#'   FUNCTION                   \tab RETURN VALUE                            \cr
+#'   `xat, xat0, xcls`          \tab An R object.                            \cr
+#'   `xwarn`, `splot`, `xcon`   \tab `NULL`. Called for side effects.          }
 #' @export
 xat <- function(x, ...) {for (a in av(...)) {attr(x, a) <- NULL}; x}
 

@@ -1,5 +1,5 @@
 .meets_errs <- function(x, ...) {
-  if (...length() == 0) {return(T)}
+  if (...length() == 0) {return(NULL)}
   vars <- c('n', 'nr', 'nc', 'min', 'minr', 'minc', 'max', 'maxr', 'maxc', 'vals', 'lt', 'le', 'le', 'ge', 'gt')
   dots <- list(...)
   dot.names  <- names(dots)
@@ -82,35 +82,36 @@
 #' @name meets
 #' @family props
 #' @title Does an Object Meet Count and/or Value Restrictions?
-#' @description Count and value restrictions are provided in \code{...}. If none
-#'   are provided
+#' @description Count and value restrictions are provided in `...`. If none
+#'   are provided, returns `TRUE`.
 #' @param x An object.
 #' @param ... Optional named arguments specifying (additional) property
-#'   requirements for \code{x} in terms of element values and/or
-#'   element/row/column counts. See the \emph{Specifying Count and Value
-#'   Restrictions} section.
-#' @section Specifying Count and Value Restrictions: Specifying additional
-#' requirements in \code{...} is optional. The full set of recognized
-#' arguments names are defined in the following table along with the
-#' properties each specifies:\tabular{ll}{
-#' NAME          \tab WHAT IT SPECIFIES                                      \cr
-#' \code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
-#' \code{nr}     \tab Vector of valid numbers of rows.                       \cr
-#' \code{nc}     \tab Vector of valid numbers of columns.                    \cr
-#' \code{min}    \tab Scalar minimum valid length/number of element.         \cr
-#' \code{minr}   \tab Scalar minimum valid number of rows.                   \cr
-#' \code{minc}   \tab Scalar minimum valid number of columns.                \cr
-#' \code{max}    \tab Scalar maximum valid length/number of element.         \cr
-#' \code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
-#' \code{maxc}   \tab Scalar maximum valid number of columns.                \cr
-#' \code{vals}   \tab Vector of valid values.                                \cr
-#' \code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
-#' \code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
-#' \code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
-#' \code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
+#'   requirements for `x` in terms of element values and/or element, row, and/or
+#'   column counts. See the \emph{specifying count and value restrictions}
+#'   section.
+#' @section Specifying Count and Value Restrictions: Specifying restrictions in
+#'   `...` is optional. The full set of recognized arguments names are defined
+#'   in the following table along with the properties each
+#'   specifies:\tabular{ll}{
+#'   NAME     \tab WHAT IT SPECIFIES                                         \cr
+#'   `n`      \tab Vector of valid lengths/numbers of elements.              \cr
+#'   `nr`     \tab Vector of valid numbers of rows.                          \cr
+#'   `nc`     \tab Vector of valid numbers of columns.                       \cr
+#'   `min`    \tab Scalar minimum valid length/number of element.            \cr
+#'   `minr`   \tab Scalar minimum valid number of rows.                      \cr
+#'   `minc`   \tab Scalar minimum valid number of columns.                   \cr
+#'   `max`    \tab Scalar maximum valid length/number of element.            \cr
+#'   `maxr`   \tab Scalar maximum valid number of rows.                      \cr
+#'   `maxc`   \tab Scalar maximum valid number of columns.                   \cr
+#'   `vals`   \tab Vector of valid values.                                   \cr
+#'   `lt`     \tab Scalar less-than (exclusive upper) bound.                 \cr
+#'   `le`     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
+#'   `ge`     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
+#'   `gt`     \tab Scalar greater-than bound (exclusive lower) bound.          }
 #' @return A logical scalar.
 #' @export
 meets <- function(x, ...) {
+  if (...length() == 0) {return(T)}
   errs <- .meets_errs(x, ...)
   if (!inll(errs)) {stop(errs)}
   av <- av(x)                                                                    # atomic values from {x}

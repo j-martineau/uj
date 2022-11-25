@@ -22,56 +22,41 @@ ppat(x, pat)
 ppats(x, pat)
 }
 \arguments{
-\item{x}{\link[=chr_vec]{Character vector}.}
+\item{x}{A \link[=chr_vec]{character vector}.}
 
-\item{pat}{A fixed (not regular expression) \link[=cmp_chr_scl]{complete
-character scalar} pattern to search for in the atomic vector resulting from
-collapsing all elements of every argument supplied via \code{...}.}
+\item{pat}{A fixed value \link[=cmp_chr_scl]{complete character scalar}
+pattern to search for in the atomic vector resulting from collapsing all
+elements of every argument supplied via \code{...}.}
 }
 \value{
-\strong{\code{has_pat, ipat}}
-\cr A logical vector.
-\cr\cr
-\strong{\code{wpat, npat, ppat}}
-\cr A \link[=whl_vec]{whole-number vector}.
-\cr\cr
-\strong{\code{ppats}}
-\cr A \link[=whl_vls]{whole-number vlist}.
+\tabular{ll}{
+FUNCTIONS                \tab RETURN VALUE                              \cr
+\code{has_pat}, \code{ipat}        \tab A logical vector.                         \cr
+\code{wpat}, \code{npat}, \code{ppat}   \tab A \link[=whl_vec]{whole-number vector}.   \cr
+\code{ppats}                  \tab A \link[=whl_vls]{whole-number vlist}.      }
 }
 \description{
-Simplified string indexing for fixed patterns
+\tabular{ll}{
+FUNCTION    \tab WHAAT IT DOES                                          \cr
+\code{ipat}      \tab Logically indexes character vector elements containing a
+pattern as \code{TRUE} or \code{FALSE}.                          \cr
+\code{has_pat}   \tab Evaluate whether each element of \code{x} contains the string
+in \code{pat}.                                              \cr
+\code{wpat}      \tab Numerically indexes character vector elements containing
+a pattern as integer element numbers.                  \cr
+\code{npat}      \tab Counts the number of times a pattern appears in each
+element of a character vector.                         \cr
+\code{ppat}      \tab Identifies the position of \emph{the first} character of the
+first instance of a pattern in each element of a character
+vector.                                                \cr
+\code{ppats}     \tab Identifies the position of the first character of \emph{every}
+instance of a pattern in each element of a characte
+vector.                                                  }
 }
 \details{
-Always \link[=a]{atomizes} \code{...} via \code{av(...)} to create a
-single character vector to search for a fixed pattern.
+Always \link[=a]{atomizes} \code{...} to create a single character vector
+to search for a fixed pattern.
 }
-\section{Functions in This Family}{
-
-\strong{\code{ipat}}
-\cr Logically indexes character vector elements containing a pattern as
-\code{TRUE} or \code{FALSE}.
-\cr\cr
-\strong{\code{has_pat}}
-\cr Evaluate whether each element of \code{x} contains the string in
-\code{pat}.
-\cr\cr
-\strong{\code{wpat}}
-\cr Numerically indexes character vector elements containing a pattern as
-integer element numbers.
-\cr\cr
-\strong{\code{npat}}
-\cr Counts the number of times a pattern appears in each element of a
-character vector.
-\cr\cr
-\strong{\code{ppat}}
-\cr Identifies the position of \emph{the first} character of the first
-instance of a pattern in each element of a character vector.
-\cr\cr
-\strong{\code{ppats}}
-\cr Identifies the position of the first character of
-\emph{every} instance of a pattern in each element of a character vector.
-}
-
 \seealso{
 Other strings: 
 \code{\link{blank}()},

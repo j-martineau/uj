@@ -1,43 +1,37 @@
 #' @name cmp_mmm
 #' @family props
 #' @title Completeness + Extended Mode Properties
-#' @section Functions in This Family:
-#'   NOTE: \code{MMM} is used as a wildcard for any given extended
-#'   mode property.
-#'   \cr\cr
-#'   \strong{\code{cmp_mmm}}
-#'   \cr Evaluates whether \code{x} is complete and matches the extended mode
-#'   specified in the argument \code{mmm} (subject to any restrictions in
-#'   \code{...}).
-#'   \cr\cr
-#'   \strong{\code{cmp_MMM}}
-#'   \cr Evaluates whether \code{x} is complete and matches the extended mode
-#'   property \code{MMM}. (subject to any restrictions in \code{...}).
-#'   \cr\cr
-#'   \strong{\code{cmp_mmm_props}}
-#'   \cr Gets a character vector of all possible completeness + extended mode
-#'   properties.
+#' @description \tabular{ll}{
+#'   FUNCTION          \tab WHAT IT DOES                                     \cr
+#'   `cmp_mmm`         \tab Evaluates whether `x` is complete and matches
+#'                          the extended mode specified in the argument `mmm`
+#'                          subject to any restrictions in `...`.            \cr
+#'   `cmp_MMM`         \tab Evaluates whether `x` is complete and matches the
+#'                          extended mode property `MMM` subject to any
+#'                          restrictions in `...`, where `MMM` is a placeholder
+#'                          for any given extended mode property.            \cr
+#'   `cmp_mmm_props`   \tab Gets a character vector of all possible completeness
+#'                          + extended mode properties.                        }
 #' @param x An R object
 #' @param mmm A character scalar containing an extended mode property from
-#'   mmm_props().
+#'   `mmm_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{cmp_mmm_props}}
-#'   \cr A character vector.
-#'   \cr\cr
-#'   \strong{\code{cmp_mmm, cmp_MMM}}
-#'   \cr A logical scalar.
+#' @return \tabular{ll}{
+#'   FUNCTION               \tab RETURN VALUE                                \cr
+#'   `cmp_mmm_props`        \tab A character vector.                         \cr
+#'   `cmp_mmm`, `cmp_MMM`   \tab A logical scalar.                             }
 #' @export
 cmp_mmm <- function(x, mmm, ...) {
   errs <- c(.meets_errs(x, ...),
-            f0(f0(length(mmm) != 1 | !is.character(mmm), F, f0(is.na(mmm), F, mmm %in% mmm_props())), NULL, '\n \u2022 [mmm] is not a scalar value from mmm_props().'))
+            f0(f0(length(mmm) != 1 | !is.character(mmm), F, f0(is.na(mmm), F, mmm %in% .mmms)), NULL, '\n \u2022 [mmm] is not a scalar value from mmm_props().'))
   if (!is.null(errs)) {stop(errs)}
-  if (!immm(x)) {F} else {x <- av(x); !any(is.na(x))}
+  if (!immm(x, mmm, ...)) {F} else {x <- av(x); !any(is.na(x))}
 }
 
 #' @rdname cmp_mmm
 #' @export
-cmp_mmm_props <- function() {paste0('cmp_', mmm_props())}
+cmp_mmm_props <- function() {paste0('cmp_', .mmms)}
 
 #' @rdname cmp_mmm
 #' @export

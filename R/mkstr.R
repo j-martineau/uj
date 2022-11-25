@@ -26,72 +26,64 @@
 #' indicated in the suffix. How each function works is illustrated in the
 #' details.
 #' @details \tabular{ll}{
-#' FUNCTION CALL                             \tab RESULT OF FUNCTION CALL    \cr
-#' `geq(c('x', 'y', 'z'), 0, 1, 2)`          \tab `'xyz = 012'`              \cr
-#' `peq(c('x', 'y', 'z'), 0, 1, 2)`          \tab \code{c('x = 012', 'y = 012',
-#'                                                'z = 012')}                \cr
-#'                                           \tab                            \cr
-#' `geq0(c('x', 'y', 'z'), 0, 1, 2)`         \tab `'xyz=012'`                \cr
-#' `peq0(c('x', 'y', 'z'), 0, 1, 2)`         \tab \code{c('x=012', 'y=012',
-#'                                                'z=012')}                  \cr
-#'                                           \tab                            \cr
-#' `gcat(c('x', 'y', 'z'), 0, 1, 2)`         \tab `'c(xyz012)'`              \cr
-#' `pcat(c('x', 'y', 'z'), 0, 1, 2)`         \tab `'c(x, y, z, 0, 1, 2)'`    \cr
-#'                                           \tab                            \cr
-#' `gelt(c('x', 'y', 'z'), 0, 1, 2)`         \tab `'xyz[012]'`               \cr
-#' `pelt(c('x', 'y', 'z'), 0, 1, 2)`         \tab `c('x[0]', 'y[1]', 'z[2]')`\cr
-#'                                           \tab                            \cr
-#' `gfun(c('x', 'y', 'z'), 0, 1, 2)`         \tab `'xyz(012)'`               \cr
-#' `pfun(c('x', 'y', 'z'), 0, 1, 2)`         \tab `c('x(0)', 'y(1)', 'z(2)')`\cr
-#'                                           \tab                            \cr
-#' `glst(c('x', 'y', 'z'), 0, 1, 2)`         \tab `'x, y, z, 0, 1, 2'`       \cr
-#' `plst(c('x', 'y', 'z'), 0, 1, 2)`         \tab \code{c('x, 0, 1, 2',
-#'                                                        'y, 0, 1, 2',
-#'                                                        'z, 0, 1, 2')}     \cr
-#'                                           \tab                            \cr
-#' `gform(c('x', 'y', 'z'), 0, 1, 2)`        \tab `'xyz ~ 0 + 1 + 2'`        \cr
-#' `pform(c('x', 'y', 'z'), 0, 1, 2)`        \tab \code{c('x ~ 0 + 1 + 2',
-#'                                                       'y ~ 0 + 1 + 2',
-#'                                                       'z ~ 0 + 1 + 2')}   \cr
-#'                                           \tab                            \cr
-#' `gtick(c('x', 'y', 'z'), 0, 1, 2)`        \tab `'`xyz012`'`               \cr
-#' `ptick(c('x', 'y', 'z'), 0, 1, 2)`        \tab \code{c('`x012`', '`y012`',
-#'                                                        '`z012`')}         \cr
-#'                                           \tab                            \cr
-#' `gwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)`   \tab `'lLl012r'`                \cr
-#' `pwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)`   \tab \code{c('l012r', 'L012r',
-#'                                                        'l012r')}          \cr
-#'                                           \tab                            \cr
-#' `gbrace(c('x', 'y', 'z'), 0, 1, 2)`       \tab `'\{xyz012\}'`             \cr
-#' `pbrace(c('x', 'y', 'z'), 0, 1, 2)`       \tab \code{c('\{x012\}',
-#'                                                        '\{y012\}',
-#'                                                        '\{z012\`')}       \cr
-#'                                           \tab                            \cr
-#' `gcolon(c('x', 'y', 'z'), 0, 1, 2)`       \tab `'x:y:z:0:1:2'`            \cr
-#' `pcolon(c('x', 'y', 'z'), 0, 1, 2)`       \tab \code{c('x:0:1:2', 'y:0:1:2',
-#'                                                        'z:0:1:2')}        \cr
-#'                                           \tab                            \cr
-#' `gparen(c('x', 'y', 'z'), 0, 1, 2)`       \tab `'(xyz012)'`               \cr
-#' `pparen(c('x', 'y', 'z'), 0, 1, 2)`       \tab \code{c('(x012)', '(y012)',
-#'                                                        '(z012)')}         \cr
-#'                                           \tab                            \cr
-#' `gquote(c('x', 'y', 'z'), 0, 1, 2)`       \tab `"'xyz012'"`               \cr
-#' `pquote(c('x', 'y', 'z'), 0, 1, 2)`       \tab \code{c('"x012"', '"y012"',
-#'                                                        '"z012"')}         \cr
-#'                                           \tab                            \cr
-#' `gquote2(c('x', 'y', 'z'), 0, 1, 2)`      \tab `"'xyz012'"`               \cr
-#' `pquote2(c('x', 'y', 'z'), 0, 1, 2)`      \tab \code{c('"x012"', '"y012"',
-#'                                                        '"z012"')}         \cr
-#'                                           \tab                            \cr
-#' `gbracket(c('x', 'y', 'z'), 0, 1, 2)`     \tab `'[xyz012]'`               \cr
-#' `pbracket(c('x', 'y', 'z'), 0, 1, 2)`     \tab \code{c('[x012]', '[y012]',
-#'                                                        '[z012]')}           }
-#' @param x An object containing atomic values (atomized).
+#' FUNCTION CALL                   \tab RESULT                               \cr
+#' `geq(c('x', 'y', 'z'), 0, 1, 2)`\tab `'xyz = 012'`                        \cr
+#' `peq(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('x = 012', 'y = 012', 'z = 012')` \cr
+#'                                  \tab                                     \cr
+#' `geq0(c('x', 'y', 'z'), 0, 1, 2)`\tab `'xyz=012'`                         \cr
+#' `peq0(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('x=012', 'y=012', 'z=012')`      \cr
+#'                                  \tab                                     \cr
+#' `gcat(c('x', 'y', 'z'), 0, 1, 2)`\tab `'c(xyz012)'`                       \cr
+#' `pcat(c('x', 'y', 'z'), 0, 1, 2)`\tab `'c(x, y, z, 0, 1, 2)'`             \cr
+#'                                  \tab                                     \cr
+#' `gelt(c('x', 'y', 'z'), 0, 1, 2)`\tab `'xyz[012]'`                        \cr
+#' `pelt(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('x[0]', 'y[1]', 'z[2]')`         \cr
+#'                                  \tab                                     \cr
+#' `gfun(c('x', 'y', 'z'), 0, 1, 2)`\tab `'xyz(012)'`                        \cr
+#' `pfun(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('x(0)', 'y(1)', 'z(2)')`         \cr
+#'                                  \tab                                     \cr
+#' `glst(c('x', 'y', 'z'), 0, 1, 2)`\tab `'x, y, z, 0, 1, 2'`                \cr
+#' `plst(c('x', 'y', 'z'), 0, 1, 2)`\tab \code{c('x, 0, 1, 2', 'y, 0, 1, 2',
+#'                                               'z, 0, 1, 2')}              \cr
+#'                                   \tab                                    \cr
+#' `gform(c('x', 'y', 'z'), 0, 1, 2)`\tab `'xyz ~ 0 + 1 + 2'`                \cr
+#' `pform(c('x', 'y', 'z'), 0, 1, 2)`\tab \code{c('x ~ 0 + 1 + 2',
+#'                                                'y ~ 0 + 1 + 2',
+#'                                                'z ~ 0 + 1 + 2')}          \cr
+#'                                   \tab                                    \cr
+#' `gtick(c('x', 'y', 'z'), 0, 1, 2)`\tab `'`xyz012`'`                       \cr
+#' `ptick(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('`x012`', '`y012`', '`z012`')`  \cr
+#'                                    \tab                                   \cr
+#' `gbrace(c('x', 'y', 'z'), 0, 1, 2)`\tab `'\{xyz012\}'`                    \cr
+#' `pbrace(c('x', 'y', 'z'), 0, 1, 2)`\tab \code{c('\{x012\}', '\{y012\}',
+#'                                                 '\{z012\`')}              \cr
+#'                                    \tab                                   \cr
+#' `gcolon(c('x', 'y', 'z'), 0, 1, 2)`\tab `'x:y:z:0:1:2'`                   \cr
+#' `pcolon(c('x', 'y', 'z'), 0, 1, 2)`\tab \code{c('x:0:1:2', 'y:0:1:2',
+#'                                                 'z:0:1:2')}               \cr
+#'                                    \tab                                   \cr
+#' `gparen(c('x', 'y', 'z'), 0, 1, 2)`\tab `'(xyz012)'`                      \cr
+#' `pparen(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('(x012)', '(y012)', '(z012)')` \cr
+#'                                    \tab                                   \cr
+#' `gquote(c('x', 'y', 'z'), 0, 1, 2)`\tab `"'xyz012'"`                      \cr
+#' `pquote(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('"x012"', '"y012"', '"z012"')` \cr
+#'                                     \tab                                  \cr
+#' `gquote2(c('x', 'y', 'z'), 0, 1, 2)`\tab `"'xyz012'"`                     \cr
+#' `pquote2(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('"x012"', '"y012"', '"z012"')`\cr
+#'                                      \tab                                 \cr
+#' `gbracket(c('x', 'y', 'z'), 0, 1, 2)`\tab `'[xyz012]'`                    \cr
+#' `pbracket(c('x', 'y', 'z'), 0, 1, 2)`\tab \code{c('[x012]', '[y012]',
+#'                                                  '[z012]')}               \cr
+#'                                        \tab                               \cr
+#' `gwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)`\tab `'lLl012r'`                   \cr
+#' `pwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)`    \tab \code{c('l012r', 'L012r',
+#'                                                        'l012r')}            }
+#' @param x An object containing atomic values (atomized before processing).
 #' @param l,r \link[=cmp_chr_scl]{Complete character scalars} giving left and
-#'   right side enclosures for \code{...} after \link[=a]{atomization}.
+#'   right side enclosures for `...` after \link[=a]{atomization}.
 #' @param ... An arbitrary number of objects to be atomized into a single atomic
 #'   vector.
-#' @return Character vector
+#' @return A character scalar or vector
 #' @export
 geq <- function(x, ...) {paste0(av(x), " = ", av(...), collapse = "")}
 

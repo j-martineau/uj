@@ -4,7 +4,7 @@
 \alias{atomize}
 \alias{a}
 \alias{av}
-\title{Atomize to a vector of atomic values}
+\title{Atomize to a Vector of Atomic Values}
 \usage{
 a(...)
 

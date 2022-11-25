@@ -3,12 +3,15 @@
 \name{values}
 \alias{values}
 \alias{vnames}
+\alias{vtable}
 \alias{v}
-\title{Package Constants for \code{uj}}
+\title{\code{uj} Defined Values}
 \usage{
 values()
 
 vnames()
+
+vtable()
 
 v(...)
 }
@@ -18,24 +21,22 @@ return. If multiple constants are specified, they are coerced into a single
 atomic vector result.}
 }
 \value{
+\tabular{ll}{
+FUNCTION        \tab RETURN VALUE                                       \cr
+\code{values}        \tab A \link[=ivls]{vlist}.                             \cr
+\code{vtable}        \tab A data.frame.                                      \cr
+\code{v}, \code{vnames}   \tab A character vector.                                  }
 An atomic vector of length 1 or greater.
 }
 \description{
-Package Constants for \code{uj}
+\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES                                            \cr
+\code{values}   \tab Get a named list where names are the arguments submitted to
+\code{v(...)}, element values are the values of the contents
+of the named element, and the attribute \code{'descriptions'}
+gives verbose descriptions if needed.                   \cr
+\code{vnames}   \tab Get a vector of named values available.                 \cr
+\code{vtable}   \tab Get a tibble with three columns: \code{name}, \code{value}, and
+\code{description}.                                          \cr
+\code{v}        \tab Gets one or more \code{uj} package values by name.             }
 }
-\section{\code{values}}{
- Gets a named list where names are the arguments
-submitted to \code{v(...)}, element values are the values of the constants,
-and the attribute \code{'descriptions'} gives verbose descriptions if
-needed.
-}
-
-\section{\code{vnames}}{
- Gets a character vector of all available \code{uj}
-package constant names.
-}
-
-\section{\code{v}}{
- Gets one or more \code{uj} package constants by name.
-}
-

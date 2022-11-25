@@ -1,22 +1,21 @@
 #' @name ox
 #' @family strings
-#' @title Oxford comma separated lists.
-#' @description ox Oxford separated list with \code{conj} as the conjunction
-#'   separating the next to last and last elements of the list, with the list
-#'   preceded by the prefix \code{pref}.
-#' @export
+#' @title Oxford-Comma Separated Lists
+#' @description Create an Oxford-comma separated list with `conj` as the
+#'   conjunction separating the next to last and last elements of the list, with
+#'   the list preceded by the prefix `pref`.
 #' @param ... Any number of arguments coerceable to mode character.
 #' @param pref A prefix to prepend to the resulting character scalar.
-#' @param conj The conjunction to use between the next to last and last
-#'   elements of the list. See details.
-#' @param n \link[=cmp_psw_scl]{Complete positive whole-number scalar}.
-#' @param comp \link[=cmp_chr_scl]{Complete character scalar} used for comparing
-#'   to \code{n}, such as \code{'at least'} or \code{'or fewer'}.
-#' @param first \link[=cmp_lgl_scl]{Complete logical scalar} used to
-#'   determine whether \code{comp} is placed in front of \code{n} rather than
-#'   after \code{n}..
-#' @return A character scalar containing all atomic elements of \code{...}
-#'   formatted as an Oxford-comma separated list.
+#' @param conj The conjunction to use between the next to last and last elements
+#'   of the list. See details.
+#' @param n A \link[=cmp_psw_scl]{complete positive whole-number scalar}.
+#' @param comp A \link[=cmp_chr_scl]{complete character scalar} used for
+#'   comparing to `n`, such as `'at least'` or `'or fewer'`.
+#' @param first A \link[=cmp_lgl_scl]{complete logical scalar} used to determine
+#'   whether `comp` is placed in front of `n` rather than after `n`.
+#' @return A character scalar containing all atomic elements of `...` formatted
+#'   as an Oxford-comma separated list.
+#' @export
 #' @examples
 #' Fruits <- c("apples", "bananas", "oranges")
 #'

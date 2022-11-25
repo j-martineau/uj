@@ -20,25 +20,18 @@ compatible \link[=atm_dtf]{atomic data.frames}.}
 An \link[=atm_dtf]{atomic data.frame} or an atomic matrix.
 }
 \description{
-Error-Checked Row and Column Binding
+\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES \cr
+\code{xb}       \tab Row binds if \code{...} arguments are compatible only for row
+binding. Column binds if arguments are compatible only for
+column binding. Throws an error if arguments are either
+compatible for both row and column binding or not
+compatible for binding at all.                          \cr
+\code{cb}       \tab Column bind an arbitrary number of atomic matrices or
+\link[=atm_dtf]{atomic data.frames}.                    \cr
+\code{rb}       \tab Row bind an arbitrary number of atomic matrices or
+\link[=atm_dtf]{atomic data.frames}.                      }
 }
-\section{Functions in This Family}{
-
-\strong{\code{cb}}
-\cr Column bind an arbitrary number of atomic matrices or
-\link[=atm_dtf]{atomic data.frames}.
-\cr\cr
-\strong{\code{rb}}
-\cr Row bind an arbitrary number of atomic matrices or
-\link[=atm_dtf]{atomic data.frames}.
-\cr\cr
-\strong{\code{xb}}
-\cr Row binds if \code{...} arguments are compatible only for row
-binding. Column binds if arguments are compatible only for column binding.
-Throws an error if arguments are either compatible for both row and column
-binding or not compatible for binding at all.
-}
-
 \seealso{
 Other extensions: 
 \code{\link{atomize}},

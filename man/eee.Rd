@@ -38,9 +38,9 @@ neee(x)
 
 \item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
 containing one or more effective dimensionality properties (i.e., from
-\code{eee_vals()}). \strong{NOTE}: properties may be pipe-separated. If
-If there are multiple properties in \code{spec}, \code{x} is inspected for
-a match to any of the specified properties.}
+\code{eee_props()}). Effective dimensionality properties may be pipe-delimited.
+If there are multiple properties in \code{spec}, \code{x} is inspected for a match
+to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -49,17 +49,12 @@ a match to any of the specified properties.}
   }}
 }
 \value{
-\strong{\code{eee_vals}}
-\cr A character vector.
-\cr\cr
-\strong{\code{eee}}
-\cr A character scalar or character vector.
-\cr\cr
-\strong{\code{iEEE, ieee, is_eee_spec}}
-\cr A logical scalar.
-\cr\cr
-\strong{\code{neee}}
-\cr An integer scalar or \code{NaN}.
+\tabular{ll}{
+FUNCTIONS                       \tab RETURN VALUE                       \cr
+\code{eee_vals}                      \tab A character vector.                \cr
+\code{eee}                           \tab A character scalar or vector.      \cr
+\code{neee}                          \tab A numeric scalar.                  \cr
+\code{ieee}, \code{ixxx}, \code{is_eee_spec}   \tab A logical scalar.                    }
 }
 \description{
 Effective dimensionality of a non-empty object is defined as
@@ -90,53 +85,44 @@ with multiple index positions in exactly
 \code{≥ 3}\tab\code{'eHD'}\tab Effectively hyper-dimensional
 \tab Non-empty array with multiple index
 positions in at least 3 dimensions.        }
+Functions in this family are:\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES \cr
+\code{eee}           \tab Get a character vector containing all effective
+dimensionality properties possessed by \code{x}       \cr
+\code{ixxx}          \tab Evaluate whether \code{x} possesses the effective
+dimensionality property \code{xxx} (a placeholder for any
+given effective dimensionality property value),
+subject to any restrictions in \code{...}.            \cr
+\code{ieee}          \tab Evaluate whether \code{x} possesses one or more
+(possibly pipe-delimited) effective dimensionality
+properties in \code{spec}, subject to any restrictions in
+\code{...}.                                           \cr
+\code{neee}          \tab Get the number of effective dimensions of \code{x}.   \cr
+\code{eee_props}     \tab Get a character vector of all possible effective
+dimensionality property values.                  \cr
+\code{is_eee_spec}   \tab Evaluate whether \code{spec} is a valid effective
+dimensionality property specification.             }
 }
-\section{Functions in this Family}{
-
-\strong{\code{iEEE}}
-\cr Evaluates whether \code{x} matches the effective dimensionality
-property \code{EEE} (subject to any restrictions in \code{...}).
-\cr\cr
-\strong{\code{eee}}
-\cr Gets a character vector containing all effective dimensionality
-properties matching \code{x}.
-\cr\cr
-\strong{\code{ieee}}
-\cr Evaluates \code{x} against the effective dimensionality property
-specification in \code{spec} (subject to any restrictions in \code{...}).
-\cr\cr
-\strong{\code{eee_props}}
-\cr Gets a character vector of all possible effective dimensionality
-property values.
-\cr\cr
-\strong{\code{is_eee_spec}}
-\cr Evaluates whether \code{spec} is a valid effective dimensionality
-property specification.
-\cr\cr
-\strong{\code{neee}}
-\cr Gets the number of effective dimensions of \code{x}.
-}
-
 \section{Specifying Count and Value Restrictions}{
- Specifying additional
-requirements in \code{...} is optional. The full set of recognized
-arguments names are defined in the following table along with the
-properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                      \cr
-\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
-\code{nr}     \tab Vector of valid numbers of rows.                       \cr
-\code{nc}     \tab Vector of valid numbers of columns.                    \cr
-\code{min}    \tab Scalar minimum valid length/number of element.         \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
-\code{minc}   \tab Scalar minimum valid number of columns.                \cr
-\code{max}    \tab Scalar maximum valid length/number of element.         \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
-\code{vals}   \tab Vector of valid values.                                \cr
-\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
-\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
-\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
-\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
+ Specifying restrictions in
+\code{...} is optional. The full set of recognized arguments names are defined
+in the following table along with the properties each
+specifies:\tabular{ll}{
+NAME     \tab WHAT IT SPECIFIES                                         \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.              \cr
+\code{nr}     \tab Vector of valid numbers of rows.                          \cr
+\code{nc}     \tab Vector of valid numbers of columns.                       \cr
+\code{min}    \tab Scalar minimum valid length/number of element.            \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                      \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                   \cr
+\code{max}    \tab Scalar maximum valid length/number of element.            \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                      \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                   \cr
+\code{vals}   \tab Vector of valid values.                                   \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.                 \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.          }
 }
 
 \seealso{

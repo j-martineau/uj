@@ -2,45 +2,38 @@
 #' @family extensions
 #' @family environments
 #' @title Recycling and Recyclability
-#' @section Functions in This Family:
-#'   \strong{\code{recyclable_n}}
-#'   \cr Checks whether the vector of lengths in \code{n.} represents recyclable
-#'   arguments subject to the setting in \code{targ.}.
-#'   \cr\cr
-#'   \strong{\code{recyclable}}
-#'   \cr Evaluates whether \code{...} arguments are recyclable subject to
-#'   settings in the arguments \code{n.}, \code{min.}, \code{max.}, and
-#'   \code{targ.}.
-#'   \cr\cr
-#'   \strong{\code{recycle}}
-#'   \cr Recycle \code{...} arguments in the environment of the calling
-#'   function subject to settings in the arguments \code{n.}, \code{min.},
-#'   \code{max.}, and \code{targ.}.
+#' @description \tabular{ll}{
+#'   FUNCTION         \tab WHAT IT DOES                                      \cr
+#'   `recyclable_n`   \tab Check whether the vector of lengths in `n` represent
+#'                         recyclable arguments subject to the setting in
+#'                         `targ`.                                           \cr
+#'   `recyclable`     \tab Evaluates whether `...` arguments are recyclable
+#'                         subject to settings in the arguments `n.`, `min.`,
+#'                         `max.`, and `targ.`.                              \cr
+#'   `recycle`        \tab Recycle `...` arguments in the environment of the
+#'                        calling function subject to settings in the arguments
+#'                        `n.`, `min.`, `max.`, and `targ.`.                   }
 #' @param ... Named arguments to be recycled in the environment of the calling
 #'   function.
 #' @param lengths. \link[=cmp_psw_vec]{Complete positive whole-number vec} of
 #'   lengths to check for recyclability.
 #' @param targ. \link[=cmp_psw_scl]{Complete positive whole-number scalar}
 #'   giving the target length of recycled arguments.
-#' @param n. For \code{recyclable_n}, a \link[=cmp_psw_vec]{complete positive
+#' @param n. For `recyclable_n`, a \link[=cmp_psw_vec]{complete positive
 #'   whole-number vec} giving the lengths of arguments to be recycled; for
-#'   \code{recyclable} and \code{recycle}, either \code{NULL} or a
+#'   `recyclable` and `recycle`, either `NULL` or a
 #'   \link[=cmp_psw_vec]{complete positive whole-number vec} giving the set of
 #'   valid recycled argument lengths.
-#' @param min. \code{NULL} or \link[=cmp_psw_scl]{complete positive whole-number
+#' @param min. `NULL` or \link[=cmp_psw_scl]{complete positive whole-number
 #'   scalar} giving the minimum valid recycled argument length.
-#' @param max. \code{NULL} or \link[=cmp_psw_scl]{complete positive whole-number
+#' @param max. `NULL` or \link[=cmp_psw_scl]{complete positive whole-number
 #'   scalar} giving the maximum valid recycled argument length.
 #' @param err. \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
-#'   to throw an error if the \code{...} arguments are not recyclable.
-#' @return \strong{\code{recyclable_n}}
-#'   \cr A logical scalar
-#'   \cr\cr
-#'   \strong{\code{recyclable}}
-#'   \cr A logical scalar
-#'   \cr\cr
-#'   \strong{\code{recycle}}
-#'   \cr \code{NULL} (called for side effect).
+#'   to throw an error if the `...` arguments are not recyclable.
+#' @return \tabular{ll}{
+#'   FUNCTIONS                      \tab RETURN VALUE                        \cr
+#'   `recyclable_n`, `recyclable`   \tab A logical scalar.                   \cr
+#'   `recycle`                      \tab `NULL`. Called for side effect.       }
 #' @export
 recyclable_n <- function(n, targ = max(n)) {
   errs <- c(f0(cmp_psw_vec(n)   , NULL, "\n \u2022 [n] must be a complete positive whole-number vec (?cmp_psw_vec)."),

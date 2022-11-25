@@ -16,54 +16,46 @@ f1(test, yes, no, na = no, err = no)
 \item{test}{A logical scalar or vector is anticipated, but this argument may
 be any R object.}
 
-\item{yes, no}{Objects of any type for \code{f0} and \code{f1}.
-\link[=atm_scl]{Atomic scalars} or \link[=atm_vec]{atomic vecs} of the same
-length as \code{test} for \code{fork}.}
+\item{yes, no}{Objects of any type for \code{f0} and \code{f1}. \link[=atm_scl]{Atomic
+scalars} or \link[=atm_vec]{atomic vecs} of the same length as \code{test} for
+\code{fork}.}
 
-\item{na}{An object of any type for \code{f1}. An \link[=atm_scl]{atomic
-scalar} \code{\link{compatible}} with \code{yes} and \code{no} for
-\code{fork}, with the additional possibility of \code{na = 'err'} to
-indicate an error should be thrown if any values in
-\code{test} are \code{NA}.}
+\item{na}{An object of any type for \code{f1}. An \link[=atm_scl]{atomic scalar}
+\link[=compatible]{compatible} with \code{yes} and \code{no} for \code{fork}, with the
+additional possibility of \code{na = 'err'} to indicate an error should be
+thrown if any values in \code{test} are \code{na}.}
 
-\item{err}{\code{'err'} or an object to be returned when \code{test} is not
-an atomic scalar in \code{c(TRUE, FALSE, NA)}.}
+\item{err}{\code{'err'} or an object to be returned when \code{test} is not an atomic
+scalar in \code{c(TRUE, FALSE, NA)}.}
 }
 \value{
 An R object.
 }
 \description{
 Robust extended functionality for \code{\link[base]{ifelse}}.
-}
-\section{Functions in this Family}{
-
-\strong{\code{fork}}
-\cr Evaluates logical scalar or logical vector \code{test} and returns an
-object of the same length as \code{test} where:\itemize{
+\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES                                            \cr
+\code{fork}     \tab Evaluate logical scalar or logical vector \code{test} and return
+an object of the same length as \code{test} where:\itemize{
 \item \code{TRUE} values of \code{test} are replaced by corresponding
 values of \code{yes}.
-\item \code{FALSE} values of \code{test} are replaced by corresponding
-values of \code{no}.
+\item \code{FALSE} values of \code{test} are replaced by
+corresponding values of \code{no}.
 \item \code{NA} values of \code{test} are replaced by \code{na} (unless
-\code{na = 'err'}, in which case if there are any \code{NA} values
-in \code{test}, throws an error).                                 }
-\cr\cr
-\strong{\code{f0}}
-\cr If \code{test} is scalar \code{TRUE}, returns \code{yes}. If
-\code{test} is anything else, returns \code{no}.
-\cr\cr
-\strong{\code{f1}}
-\cr Error-checked version of \code{f0}. Evaluates and processes logical
-scalar \code{test} in the following manner:\itemize{
-\item If \code{test = TRUE}, returns \code{yes}.
+\code{na = 'err'}, in which case if there are any \code{na}
+values in \code{test}, throws an error).              }\cr
+\code{f0}       \tab If \code{test} is scalar \code{TRUE}, returns \code{yes}. If \code{test} is
+anything else, returns \code{no}.                            \cr
+\code{f1}       \tab Error-checked version of \code{f0}. Evaluates and processes
+logical scalar \code{test} in the following manner:\itemize{
+\item If \code{test = NA}, returns \code{yes}.
 \item If \code{test = FALSE}, returns \code{no}.
 \item If \code{test = NA}, returns \code{na} unless \code{na = 'err'}, in
 which case, an error is thrown.
-\item If \code{test} is neither a logical scalar nor scalar \code{na},
-returns \code{err} unless \code{err = 'err'}, in which case an
-error is thrown.                                                  }
+\item If \code{test} is neither a logical scalar nor scalar
+\code{na}, returns \code{err} unless \code{err = 'err'}, in which
+case an error is thrown.                           }}
 }
-
 \seealso{
 Other extensions: 
 \code{\link{atomize}},

@@ -1,6 +1,6 @@
 #' @name revstr
 #' @family strings
-#' @title Reverse strings
+#' @title Reverse Strings
 #' @description Reverse the order of characters in each element of a character
 #'   vector.
 #' @param x A \link[=cmp_chr_vec]{complete character vec}.

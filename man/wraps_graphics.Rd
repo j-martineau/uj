@@ -4,7 +4,7 @@
 \alias{wraps_graphics}
 \alias{strh}
 \alias{strw}
-\title{Wraps for Functions in Package \code{graphics}}
+\title{Tnin Wraps for Functions in Package \code{graphics}}
 \usage{
 strh(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...)
 
@@ -29,8 +29,10 @@ Numeric vector with the same length as \code{s}, giving the estimate of
   width and height 0 (as they are not plotted).
 }
 \description{
-Thin wrappers for \code{\link[graphics]{strheight}} and
-\code{\link[graphics]{strwidth}}.
+\tabular{ll}{
+WRAPPER   \tab GRAPHICS FUNCTION                                        \cr
+\code{strh}    \tab \code{\link[graphics]{strheight}}.                       \cr
+\code{strw}    \tab \code{\link[graphics]{strwidth}}.                          }
 }
 \details{
 Note that the \sQuote{height} of a string is determined only by the

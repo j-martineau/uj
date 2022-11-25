@@ -43,10 +43,10 @@ isqr(x, ...)
 \item{x}{An R object.}
 
 \item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
-containing one or more shape properties (i.e., from
-\code{sss_vals()}). \strong{NOTE}: properties may be pipe-separated. If
-If there are multiple properties in \code{spec}, \code{x} is inspected for
-a match to any of the specified properties.}
+containing one or more shape properties (i.e., from \code{sss_vals()}). Shape
+properties in \code{spec} may be pipe-delimited. If there are multiple shape
+properties in \code{spec}, \code{x} is inspected for any match to any shape property
+in \code{spec}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -55,88 +55,73 @@ a match to any of the specified properties.}
   }}
 }
 \value{
-\strong{\code{sss_vals}}
-\cr A character vector.
-\cr\cr
-\strong{\code{sss}}
-\cr A character scalar or character vector.
-\cr\cr
-\strong{\code{iSSS, isss, is_sss_spec}}
-\cr A logical scalar.
+\tabular{ll}{
+FUNCTIONS                       \tab RETURN VALUE                       \cr
+\code{sss_vals}                      \tab A character vector.                \cr
+\code{sss}                           \tab A character scalar or vector.      \cr
+\code{ixxx}, \code{isss}, \code{is_sss_spec}   \tab A logical scalar.                    }
 }
 \description{
-NOTE: \code{SSS} is used as a placeholder representing any given
-shape property.
-\cr\cr
-An object's shape properties have to do with the
-number of \link[=ddd]{defined dimensions} and/or \link[=eee]{effective
-dimensions} with some additional restrictions. All shape properties are
-described in the following table:\tabular{lll}{
-PROPERTY      \tab PROPERTY   \tab QUALIFYING                         \cr
-NAME          \tab VALUE      \tab OBJECTS                            \cr
-Empty         \tab\code{'emp'}\tab Non-\code{NULL}, length-1 objects. \cr
-Point         \tab\code{'pnt'}\tab Length-1 vectors, length-1
-\link[=ivls]{vlists}, length-1 arrays,
-and \code{1 x 1} data.frames.      \cr
-Linear        \tab\code{'lin'}\tab Length 2+ vectors, length 2+
-\link[=ivls]{vlists}, length 2+ arrays
+An object's shape properties have to do with the number of
+\link[=ddd]{defined dimensions} and/or \link[=eee]{effective dimensions}
+with some additional restrictions as follows:\tabular{lll}{
+NAME          \tab VALUE     \tab QUALIFYING OBJECTS                    \cr
+Empty         \tab \code{'emp'}   \tab Non-\code{NULL}, length-\code{1} objects.       \cr
+Point         \tab \code{'pnt'}   \tab Length-\code{1} vectors, length-\code{1}
+\link[=ivls]{vlists}, length-\code{1} arrays,
+and \verb{1 x 1} data.frames.              \cr
+Linear        \tab \code{'lin'}   \tab Length \verb{2+} vectors, length \verb{2+}
+\link[=ivls]{vlists}, length \verb{2+} arrays
 with multiple index positions in just
-1 dimension, and data.frames with 1
-row and multiple columns or 1 column
-and multiple rows.                 \cr
-Row           \tab\code{'row'}\tab Matrices and data.frames with 1 row
-and multiple columns.             \cr
-Column        \tab\code{'col'}\tab Matrices and data.frames with 1
-column and multiple rows          \cr
-Rectangular   \tab\code{'rct'}\tab Matrices and data.frames with multiple
-rows and multiple columns.         \cr
-Square        \tab\code{'sqr'}\tab Matrices and data.frames with multiple
+\code{1} dimension, and data.frames with \code{1}
+row and multiple columns or \code{1} column
+and multiple rows.                    \cr
+Row           \tab \code{'row'}   \tab Matrices and data.frames with \code{1} row and
+multiple columns.                     \cr
+Column        \tab \code{'col'}   \tab Matrices and data.frames with \code{1} column
+and multiple rows.                    \cr
+Rectangular   \tab \code{'rct'}   \tab Matrices and data.frames with multiple
+rows and multiple columns.            \cr
+Square        \tab \code{'sqr'}   \tab Matrices and data.frames with multiple
 rows, multiple columns, and the same
-number of rows and columns.        \cr
-Solid         \tab\code{'sld'}\tab Arrays with multiple index positions
-in 3+ dimensions.                    }
+number of rows and columns.           \cr
+Solid         \tab \code{'sld'}   \tab Arrays with multiple index positions in
+\verb{3+} dimensions.                        }
+Functions in this family are:\tabular{ll}{
+FUNCTION        \tab WHAT IT DOES                                       \cr
+\code{sss}           \tab Gets a character vector containing all shape
+properties possessed by \code{x}                        \cr
+\code{ixxx}          \tab Evaluates whether \code{x} possesses the shape property
+\code{xxx} (a placeholder for any given shape property
+value), subject to any restrictions in \code{...}.      \cr
+\code{isss}          \tab Evaluates whether \code{x} possesses one or more
+(possibly pipe-delimited) shape properties in
+\code{spec}, subject to any restrictions in \code{...}.      \cr
+\code{sss_props}     \tab Gets a character vector of all possible shape
+property values.                                   \cr
+\code{is_sss_spec}   \tab Evaluates whether \code{spec} is a valid shape property
+specification.                                       }
 }
-\section{Functions in this Family}{
-
-\strong{\code{iSSS}}
-\cr Evaluates whether \code{x} matches the shape property \code{SSS}
-(subject to any restrictions in \code{...}).
-\cr\cr
-\strong{\code{sss}}
-\cr Gets a character vector containing all shape properties matching
-\code{x}.
-\cr\cr
-\strong{\code{isss}}
-\cr Evaluates \code{x} against the shape property specification in
-\code{spec} (subject to any restrictions in \code{...}).
-\cr\cr
-\strong{\code{sss_props}}
-\cr Gets a character vector of all possible shape property values.
-\cr\cr
-\strong{\code{is_sss_spec}}
-\cr Evaluates whether \code{spec} is a valid shape property specification.
-}
-
 \section{Specifying Count and Value Restrictions}{
- Specifying additional
-requirements in \code{...} is optional. The full set of recognized
-arguments names are defined in the following table along with the
-properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                      \cr
-\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
-\code{nr}     \tab Vector of valid numbers of rows.                       \cr
-\code{nc}     \tab Vector of valid numbers of columns.                    \cr
-\code{min}    \tab Scalar minimum valid length/number of element.         \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
-\code{minc}   \tab Scalar minimum valid number of columns.                \cr
-\code{max}    \tab Scalar maximum valid length/number of element.         \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
-\code{vals}   \tab Vector of valid values.                                \cr
-\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
-\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
-\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
-\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
+ Specifying restrictions in
+\code{...} is optional. The full set of recognized arguments names are defined
+in the following table along with the properties each
+specifies:\tabular{ll}{
+NAME     \tab WHAT IT SPECIFIES                                         \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.              \cr
+\code{nr}     \tab Vector of valid numbers of rows.                          \cr
+\code{nc}     \tab Vector of valid numbers of columns.                       \cr
+\code{min}    \tab Scalar minimum valid length/number of element.            \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                      \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                   \cr
+\code{max}    \tab Scalar maximum valid length/number of element.            \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                      \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                   \cr
+\code{vals}   \tab Vector of valid values.                                   \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.                 \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.          }
 }
 
 \seealso{

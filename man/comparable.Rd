@@ -10,17 +10,17 @@ comparable(..., recycle. = T)
 \item{...}{An arbitrary number of arguments to be checked for comparability
 with each other.}
 
-\item{recycle.}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating
-whether \code{...} arguments must be recyclable to be comparable.}
+\item{recycle.}{A non-\code{NA} logical scalar indicating whether \code{...} arguments
+must be recyclable to be comparable.}
 }
 \value{
 A logical scalar.
 }
 \description{
-Determines whether modes of all \code{...} arguments are
-comparable (i.e., sortable and compatible with each other), meaning that
-the are either all character, all logical, all numeric, or all ordered
-factor with the same set of levels (in the same order).
+Determines whether modes of all \code{...} arguments are comparable
+(i.e., sortable and compatible with each other), meaning that the are
+either all character, all logical, all numeric, or all ordered factor with
+the same set of levels (in the same order).
 }
 \seealso{
 Other props: 

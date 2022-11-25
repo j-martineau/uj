@@ -29,37 +29,21 @@ xcon()
 containing names of attributes or classes to remove.}
 }
 \value{
-\strong{\code{xat, xat0, xcls}}
-\cr An R object.
-\cr\cr
-\strong{\code{xwarn, splot, xcon}}
-\cr \code{NULL} (called for side effects).
+\tabular{ll}{
+FUNCTION                   \tab RETURN VALUE                            \cr
+\verb{xat, xat0, xcls}          \tab An R object.                            \cr
+\code{xwarn}, \code{splot}, \code{xcon}   \tab \code{NULL}. Called for side effects.          }
 }
 \description{
-Remove Various Objects or Characteristics
+\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES \cr
+\code{xat}      \tab Remove one or more attributes by name.                  \cr
+\code{xat0}     \tab Remove all attributes.                                  \cr
+\code{xcls}     \tab Remove one or more class attributes by name.            \cr
+\code{xwarn}    \tab Purge all warnings.                                     \cr
+\code{xplot}    \tab Purge all plots (and if \code{x} is not \code{NULL}, print it).   \cr
+\code{xcon}     \tab Clear the console.                                        }
 }
-\section{Functions in This Family}{
-
-\strong{\code{xat}}
-\cr Remove one or more attributes by name.
-\cr\cr
-\strong{\code{xat0}}
-\cr Remove all attributes.
-\cr\cr
-\strong{\code{xcls}}
-\cr Remove one or more class attributes by name.
-\cr\cr
-\strong{\code{xwarn}}
-\cr Purge all warnings.
-\cr\cr
-\strong{\code{xplot}}
-\cr Purge all plots (and if \code{x} is not \code{NULL}, print {x}, which
-is meant to be a plot object).
-\cr\cr
-\strong{\code{xcon}}
-\cr Clear the console.
-}
-
 \seealso{
 Other extensions: 
 \code{\link{atomize}},

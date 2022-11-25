@@ -1,9 +1,9 @@
 #' @title Fixed-Value String Substitution
-#' @description Replace strings in \code{pats} with corresponding (possibly
-#'   recycled) strings in \code{subs}.
+#' @description Replace strings in `pats` with corresponding (possibly recycled)
+#'   strings in `subs`.
 #' @family strings
 #' @family extensions
-#' @param x \link[=atm_chr]{Atomic character object}.
+#' @param x An \link[=atm_chr]{atomic character object}.
 #' @param pats,subs \link[=cmp_chr_vec]{Complete character vecs} containing
 #'   patterns to replace and their associated replacement strings.
 #' @return Atomic character object.

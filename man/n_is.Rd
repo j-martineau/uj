@@ -136,18 +136,17 @@ nd3p()
 \arguments{
 \item{x}{\link[=innw]{non-negative whole-number} object.}
 
-\item{n}{Optional \link[=cmp_nnw_vec]{complete non-negative whole-number
-vec} of valid element, row, or column counts.}
+\item{n}{Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec}
+of valid element, row, or column counts.}
 
 \item{min, max}{Optional \link[=cmp_nnw_scl]{complete non-negative
 whole-number scalars} giving minimum and maximum valid element, row, or
 column counts.}
 
-\item{eq, na, a}{Non-\code{NA} scalars indicating, respectively, whether all
-counts must be equal, whether \code{NA} values are allowed, and whether to
-atomize \code{...} to create a single atomic vector before processing. If
-\code{a} is \code{FALSE}, each argument in \code{...} is processed
-separately.}
+\item{eq, na, a}{Non-\code{NA} scalars indicating, respectively, whether all counts
+must be equal, whether \code{NA} values are allowed, and whether to
+\link[=av]{atomize} \code{...} to create a single atomic vector before
+processing. If \code{a = FALSE}, each argument in \code{...} is processed separately.}
 
 \item{...}{One or more arguments to be examined for counts.}
 
@@ -155,41 +154,46 @@ separately.}
 to be counted.}
 
 \item{lt, le, ge, gt}{Optional \link[=cmp_srt_scl]{complete sortable scalars}
-indicating specific values elements of \code{...} arguments must be less
-than, less than or equal to, greater than or equal to, or greater than,
+indicating specific values elements of \code{...} arguments must be less than,
+less than or equal to, greater than or equal to, or greater than,
 respectively, to be counted.}
 }
 \value{
 An integer or logical scalar or vector.
 }
 \description{
-Counts functions can be used with a single unnamed argument, multiple
-unnamed arguments, and with restrictions in named arguments, in any
-combination. The functions in this family are: \tabular{ll}{
-FUNCTION(S)            \tab QUESTION(S) ANSWERED                        \cr
-\code{n_is}                 \tab Do counts in \code{x} meet criteria in \code{n}, \code{min},
-\code{max}, and/or \code{eq}?                         \cr
-\code{nd}                   \tab How many \code{...} arguments?                   \cr
-\code{nx}                   \tab How many values in \code{...} arguments?         \cr
-\code{ns}                   \tab How many values in each \code{...} argument?     \cr
-\verb{nmin, nmax}           \tab What is the min or max \code{...} argument length,
-respectively?                               \cr
-\code{nsame}                \tab Are lengths of all \code{...} arguments the same?\cr
-\verb{nw, nt}               \tab How many \code{TRUE} values?                     \cr
-\code{nf}                   \tab How many \code{FALSE} values?                    \cr
-\verb{nu, nuv}              \tab How many unique atomic values?              \cr
-\verb{nr, nc}               \tab How many rows or columns, respectively?     \cr
-\code{nch}                  \tab How many characters in each element?        \cr
-\verb{nna, nok}             \tab How many \code{NA} or non-\code{NA} values,
-respectively?                               \cr
-\code{nat}                  \tab How many values after \link[=av]{atomizing}?\cr
-\verb{n0, n1, n2, n3}       \tab Is length \code{0}, \code{1}, \code{2}, or \code{3},
-respectively?                               \cr
-\verb{n1p, n2p, n3p}        \tab Is length \verb{1+}, \verb{2+}, or \verb{3+}, respectively?\cr
-\verb{nd0, nd1, nd2, nd3}   \tab Is the number of \code{...} arguments \code{0}, \code{1}, \code{2},
-or \code{3}, respectively?                       \cr
-\verb{nd1p, nd2p, nd3p}     \tab Is the number of \code{...} arguments \verb{1+}, \verb{2+}, or
-\verb{3+}, respectively.                           }
+Couning functions can be used with a single unnamed argument,
+multiple unnamed arguments, and with restrictions in named arguments, in
+any combination. The functions in this family are: \tabular{ll}{
+FUNCTION(S)                  \tab QUESTION(S) ANSWERED                  \cr
+\code{n_is}                       \tab Do counts in \code{x} meet criteria in \code{n},
+\code{min}, \code{max}, and/or \code{eq}?            \cr
+\code{nd}                         \tab How many \code{...} arguments?             \cr
+\code{nx}                         \tab How many values in \code{...} arguments?   \cr
+\code{ns}                         \tab How many values in each \code{...}
+argument?                             \cr
+\code{nmin}, \code{nmax}               \tab What is the min or max \code{...} argument
+length, respectively?                 \cr
+\code{nsame}                      \tab Are lengths of all \code{...} arguments the
+same?                                 \cr
+\code{nw}, \code{nt}                   \tab How many \code{TRUE} values?               \cr
+\code{nf}                         \tab How many \code{FALSE} values?              \cr
+\code{nu}, \code{nuv}                  \tab How many unique atomic values?        \cr
+\code{nr}, \code{nc}                   \tab How many rows or columns,
+espectively?                          \cr
+\code{nch}                        \tab How many characters in each element?  \cr
+\code{nna}, \code{nok}                 \tab How many \code{NA} or non-\code{NA} values,
+respectively?                         \cr
+\code{nat}                        \tab How many values after
+\link[=av]{atomizing}?                \cr
+\code{n0}, \code{n1}, \code{n2}, \code{n3}       \tab Is length \code{0}, \code{1}, \code{2}, or \code{3},
+respectively?                         \cr
+\code{n1p}, \verb{n2p, n3p}            \tab Is length \verb{1+}, \verb{2+}, or \verb{3+},
+respectively?                         \cr
+\code{nd0}, \code{nd1}, \code{nd2}, \code{nd3}   \tab Is the number of \code{...} arguments \code{0},
+\code{1}, \code{2}, or \code{3}, respectively?       \cr
+\code{nd1p}, \code{nd2p}, \code{nd3p}       \tab Is the number of \code{...} arguments \verb{1+},
+\verb{2+}, or \verb{3+}, respectively.            }
 }
 \examples{
 N <- 0:15

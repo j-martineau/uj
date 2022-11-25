@@ -1,28 +1,28 @@
 #' @name compatible
 #' @family props
 #' @title Are objects compatible?
-#' @section Functions in this Family:
-#'   \strong{\code{compatible}}
-#'   \cr Evaluates whether all \code{...} arguments are compatible, meaning
-#'   all numeric, all character, all logical, all unordered factor with the same
-#'   levels, or ordered factor with the same levels in the same order.
-#'   \cr\cr
-#'   \strong{\code{compatible_dtfs}}
-#'   \cr Evaluates whether all \code{...} arguments are
-#'   \link[=atm_dtf]{atomic data.frames}. For row binding, also evaluates
-#'   whether they have the same number of columns and all corresponding columns
-#'   are compatible. For column binding, also evaluates whether they have the
-#'   same number of rows.
-#'   \cr\cr
-#'   \strong{\code{compatible_atms}}
-#'   \cr Evaluates whether all \code{...} arguments are compatible matrices
-#'   and (for row binding) have the same number of columns or (for column
-#'   binding) have the same number of rows.
+#' @description \tabular{ll}{
+#'   FUNCTION            \tab WHAT IT DOES                                   \cr
+#'   `compatible`        \tab Evaluates whether all `...` arguments are
+#'                            compatible, meaning all numeric, all character,
+#'                            all logical, all unordered factor with the same
+#'                            evels, or ordered factor with the same levels in
+#'                            the same order.                                \cr
+#'   `compatible_dtfs`   \tab Evaluates whether all `...` arguments are
+#'                            \link[=atm_dtf]{atomic data.frames}. For row
+#'                            binding, also evaluates whether they have the same
+#'                            number of columns and all corresponding columns
+#'                            are compatible. For column binding, also evaluates
+#'                            whether they have the same number of rows.     \cr
+#'   `compatible_atms`   \tab Evaluate whether all `...` arguments are
+#'                            compatible matrices and (for row binding) have the
+#'                            same number of columns or (for column binding)
+#'                            have the same number of rows.                    }
 #' @param ... An arbitrary number of arguments to be checked for compatibility
 #'   with each other.
 #' @param rec. A non-\code{NA} logical scalar indicating whether arguments in
-#'   \code{...} must be recyclable to be compatible.
-#' @param b Either \code{'c'} for column binding or \code{'r'} for row binding.
+#'   `...` must be recyclable to be compatible.
+#' @param b Either `'c'` for column binding or `'r'` for row binding.
 #' @return A logical scalar.
 #' @examples
 #' N0 <- 0

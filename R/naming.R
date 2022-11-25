@@ -2,46 +2,52 @@
 #' @family extensions
 #' @title Get Names, Set Names, Determine if Named
 #' @description \tabular{ll}{
-#'   `namev`    \tab Name the elements of a vector or \link[=ivls]{vlist}.   \cr
-#'   `namer`    \tab Name the rows of a matrix or data.frame.                \cr
-#'   `namec`    \tab Name the columns of a matrix or data.frame.             \cr
-#'   `namel`    \tab Create and name a 1-element list.                       \cr
-#'   `namerc`   \tab Name rows and columns of a matrix or data.frame.        \cr
-#'   `named`    \tab Determine whether an object's elements, rows, and/or
-#'                   columns are named, accounting for whether names must be
-#'                   unique, whether the object may contain empty elements, and
-#'                   whether names may be blank strings.                     \cr
-#'   `enamed`   \tab Are elements of `x` named?                              \cr
-#'   `rnamed`   \tab Are rows of `x` named?                                  \cr
-#'   `cnamed`   \tab Are columns of `x` named?                               \cr
-#'   `dnamed`   \tab Are dot arguments (`...`) named?                        \cr
-#'   `getnames` \tab Get element, row, and/or column names with optional
-#'                   restrictions.                                           \cr
-#'   `en`       \tab Get element names.                                      \cr
-#'   `rn`       \tab Get row names.                                          \cr
-#'   `cn`       \tab Get column names.                                       \cr
-#'   `rcn`      \tab Get row and column names as a 2-element list.             }
-#'
-#' @param x Vector or list for \code{namev} and \code{vn}; matrix or data.frame
-#'   for \code{rn}, \code{namer}, \code{cn}, \code{namec}, \code{namerc}; or any
-#'   object for \code{namel}.
+#'   FUNCTION     \tab WHAT IT DOES                                          \cr
+#'   `namev`      \tab Name the elements of a vector or \link[=ivls]{vlist}. \cr
+#'   `namer`      \tab Name the rows of a matrix or data.frame.              \cr
+#'   `namec`      \tab Name the columns of a matrix or data.frame.           \cr
+#'   `namel`      \tab Create and name a 1-element list.                     \cr
+#'   `namerc`     \tab Name rows and columns of a matrix or data.frame.      \cr
+#'   `named`      \tab Determine whether an object's elements, rows, and/or
+#'                     columns are named, accounting for whether names must be
+#'                     unique, whether the object may contain empty elements,
+#'                     and whether names may be blank strings.               \cr
+#'   `enamed`     \tab Are elements of `x` named?                            \cr
+#'   `rnamed`     \tab Are rows of `x` named?                                \cr
+#'   `cnamed`     \tab Are columns of `x` named?                             \cr
+#'   `dnamed`     \tab Are dot arguments (`...`) named?                      \cr
+#'   `getnames`   \tab Get element, row, and/or column names with optional
+#'                     restrictions.                                         \cr
+#'   `en`         \tab Get element names.                                    \cr
+#'   `rn`         \tab Get row names.                                        \cr
+#'   `cn`         \tab Get column names.                                     \cr
+#'   `rcn`        \tab Get row and column names as a 2-element list.           }
+#' @param x Vector or list for `namev` and `vn`; matrix or data.frame for `rn`,
+#'   `namer`, `cn`, `namec`, and `namerc`; or any object for `namel`.
 #' @param ... Arbitrary number of arguments to be inspected for names.
-#' @param err \link[=cmp_lgl_scl]{Complete logical} scalar indicating whether
+#' @param err A \link[=cmp_lgl_scl]{complete logical} scalar indicating whether
 #'   names must be non-missing.
-#' @param d \link[=cmp_psw_scl]{Complete positive whole-number scalar} giving
+#' @param d A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving
 #'   the dimension(s) to name: `0` for elements (of atomic or list vectors
-#'   only), `1` for rows of matrices or tibbles, `2` for columns of
-#'   matrices or data.frames, or `12` for rows and columns of matrices or
-#'   data.frames.
-#' @param u \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
+#'   only), `1` for rows of matrices or tibbles, `2` for columns of matrices or
+#'   data.frames, or `12` for rows and columns of matrices or data.frames.
+#' @param u A \link[=cmp_lgl_scl]{complete logical scalar} indicating whether
 #'   names must be unique.
-#' @param blank \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
-#'   blank strings (`""`) are allowed as names.
-#' @param ln \link[=cmp_chr_scl]{Complete character scalar} element name.
-#' @param en \link[=cmp_chr_vec]{Complete character vec} of element names.
-#' @param rn,cn \link[=cmp_chr_vec]{Complete character vecs} of row or column
+#' @param blank A \link[=cmp_lgl_scl]{complete logical scalar} indicating
+#'   whether blank strings (`""`) are allowed as names.
+#' @param ln A \link[=cmp_chr_scl]{complete character scalar} element name.
+#' @param en A \link[=cmp_chr_vec]{complete character vec} of element names.
+#' @param rn,cn \link[=cmp_chr_vec]{complete character vecs} of row or column
 #'   names, respectively.
-#' @return Character vector or a named/renamed version of `x`.
+#' @return \tabular{ll}{
+#'   FUNCTIONS                     \tab RETURN VALUE                         \cr
+#'   `namev`                       \tab A vector.                            \cr
+#'   `namer`, `namec`, `namerc`    \tab A matrix/data.frame.                 \cr
+#'   `namel`                       \tab A 1-element list.                    \cr
+#'   `named`, `enamed`, `rnamed`   \tab A logical scalar.                    \cr
+#'   `cnamed`, `rcnamed`           \tab A logical scalar.                    \cr
+#'   `en`, `rn`, `cn`              \tab A character vector.                  \cr
+#'   `rcn`                         \tab A list of 2 character vectors.         }
 #' @export
 namev <- function(x, en) {
   ok.en <- cmp_vec(en) & length(x) == length(en)

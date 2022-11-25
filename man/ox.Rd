@@ -27,7 +27,7 @@
 \alias{ox_orgreater}
 \alias{ox_orless}
 \alias{ox_orfewer}
-\title{Oxford comma separated lists.}
+\title{Oxford-Comma Separated Lists}
 \usage{
 ox(..., conj = "and", pref = "", quote = 0)
 
@@ -84,28 +84,27 @@ ox_orfewer(..., conj = "and", n = 1)
 \arguments{
 \item{...}{Any number of arguments coerceable to mode character.}
 
-\item{conj}{The conjunction to use between the next to last and last
-elements of the list. See details.}
+\item{conj}{The conjunction to use between the next to last and last elements
+of the list. See details.}
 
 \item{pref}{A prefix to prepend to the resulting character scalar.}
 
-\item{comp}{\link[=cmp_chr_scl]{Complete character scalar} used for comparing
-to \code{n}, such as \code{'at least'} or \code{'or fewer'}.}
+\item{comp}{A \link[=cmp_chr_scl]{complete character scalar} used for
+comparing to \code{n}, such as \code{'at least'} or \code{'or fewer'}.}
 
-\item{n}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}.}
+\item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar}.}
 
-\item{first}{\link[=cmp_lgl_scl]{Complete logical scalar} used to
-determine whether \code{comp} is placed in front of \code{n} rather than
-after \code{n}..}
+\item{first}{A \link[=cmp_lgl_scl]{complete logical scalar} used to determine
+whether \code{comp} is placed in front of \code{n} rather than after \code{n}.}
 }
 \value{
-A character scalar containing all atomic elements of \code{...}
-formatted as an Oxford-comma separated list.
+A character scalar containing all atomic elements of \code{...} formatted
+as an Oxford-comma separated list.
 }
 \description{
-ox Oxford separated list with \code{conj} as the conjunction
-separating the next to last and last elements of the list, with the list
-preceded by the prefix \code{pref}.
+Create an Oxford-comma separated list with \code{conj} as the
+conjunction separating the next to last and last elements of the list, with
+the list preceded by the prefix \code{pref}.
 }
 \section{Functions}{
 \itemize{

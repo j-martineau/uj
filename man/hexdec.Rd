@@ -16,31 +16,26 @@ tohex(x)
 whole-number hexademical values.}
 }
 \value{
-\strong{\code{todec}}: A \link[=cmp_nnw]{complete non-negative
-whole-number object}
-\cr\cr
-\strong{\code{tohex}}: A \link[=cmp_chr]{complete character object}
-containing non-negative whole-number hexadecimal values in the format
+\tabular{ll}{
+FUNCTION   \tab RETURN VALUE                                             \cr
+\code{todec}\tab A \link[=cmp_nnw]{Complete non-negative whole-number object}.\cr
+\code{tohex}\tab A \link[=cmp_chr]{complete character object} containing
+non-negative whole-number hexadecimal values in the format
 \code{'#HHH...'} where \code{H} is a placeholder for an uppercase
-hexadecimal digit.
+hexadecimal digit.                                             }
 }
 \description{
-Convert Non-Negative Whole Numbers between Decimal and Hexadecimal
+\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES                                            \cr
+\code{todec}    \tab Convert hexadecimal \link[=cmp_chr]{complete character
+object} \code{x} from hexadecimal to decimal. \code{x} may be
+formatted as either \code{'hhh...'} or \code{'#hhh...'} where \code{h}
+is a placeholder for a hexidecimal digit in either upper
+or lower case.                                          \cr
+\code{tohex}    \tab Convert \link[=cmp_psw]{complete positive whole-number}
+\code{x} to hexadecimal formatted as \code{'#HHH...'} where \code{H} is a
+placeholder for an uppercase hexadecimal digit.           }
 }
-\section{Functions in This Family}{
-
-\strong{\code{todec}}
-\cr Converts hexadecimal \link[=cmp_chr]{complete character object}
-\code{x} from hexadecimal to decimal. \code{x} may be formatted as either
-\code{'hhh...'} or \code{'#hhh...'} where \code{h} is a placeholder for a
-hexidecimal digit in either upper or lower case.
-\cr\cr
-\strong{\code{tohex}}
-\cr Converts \link[=cmp_psw]{complete positive whole-number} \code{x} to
-hexadecimal formatted as \code{'#HHH...'} where \code{H} is a placeholder
-for an uppercase hexadecimal digit.
-}
-
 \seealso{
 Other math: 
 \code{\link{inc}()}

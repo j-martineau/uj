@@ -1,40 +1,35 @@
 #' @name pgrid
 #' @family strings
-#' @title \code{expand.grid} for \code{paste} and \code{paste0}
-#' @section Functions in this Family:
-#'   \strong{\code{pgrid}}
-#'   \cr Converts the \code{n} \code{...} arguments to character (with
-#'   additional optional pre-processing) and create a character vector with each
-#'   element consisting of sub-strings from across \code{...} arguments
-#'   pasted together using the 'paste' \code{p}. See the \emph{Value} section
-#'   for how the value of \code{crossed} affects the results.
-#'   \cr\cr
-#'   \strong{\code{pgrid0}}
-#'   \cr Calls \code{pgrid} with \code{p = ""} (blank string).
-#'   \cr\cr
-#'   \strong{\code{pgrid1}}
-#'   \cr Calls \code{pgrid} with \code{p = " "} (space).
-#'   \cr\cr
-#'   \strong{\code{pgridn}}
-#'   \cr Calls \code{pgrid} with \code{crossed = FALSE} so as to produce only
-#'   \code{n}-way combinations from across the \code{n} \code{...} arguments.
-#'   \cr\cr
-#'   \strong{\code{pgridx}}
-#'   \cr Calls \code{pgrid} with \code{crossed = TRUE} so as to produce all
-#'   possible \code{1}-way, \code{2}-way, ..., \code{N}-way combinations from
-#'   across the \code{...} arguments (i.e. fully-crossed combinations).
+#' @title `expand.grid` for `paste` and `paste0`
+#' @description \tabular{ll}{
+#'   FUNCTION   \tab WHAT IT DOES                                            \cr
+#'   `pgrid`    \tab Converts the `n` `...` arguments to character (with
+#'                   additional optional pre-processing) and create a character
+#'                   vector with each element consisting of sub-strings from
+#'                   across `...` arguments pasted together using the 'paste'
+#'                   `p`. See the \emph{value} section for how the value of
+#'                   `crossed` affects the results.                          \cr
+#'   `pgrid0`   \tab Calls `pgrid` with `p = ""` (a blank string).           \cr
+#'   `pgrid1`   \tab Calls `pgrid` with `p = " "` (a space).                 \cr
+#'   `pgridn`   \tab Calls `pgrid` with `crossed = FALSE` so as to produce only
+#'                   `n`-way combinations from across the `n` `...`
+#'                   arguments.                                              \cr
+#'   `pgridx`   \tab Calls `pgrid` with `crossed = TRUE` so as to produce all
+#'                   possible `1`-way, `2`-way, ..., `n`-way combinations from
+#'                   across the `...` arguments (i.e. fully-crossed
+#'                   combinations).                                            }
 #' @param ... Non-empty atomic objects.
-#' @param p \link[=cmp_chr_scl]{Complete character scalar} to use as the
+#' @param p A \link[=cmp_chr_scl]{complete character scalar} to use as the
 #'   'paste'.
-#' @param ch,na.err Non-\code{NA} logical scalars indicating, respectively,
-#'   whether to split each \code{...} arguments into its constituent
+#' @param ch,na.err Non-`NA` logical scalars indicating, respectively,
+#'   whether to split each `...` arguments into its constituent
 #'   characters after conversion to mode 'character' and whether to throw an
-#'   error if an argument in \code{...} contains an \code{NA} value.
-#' @param crossed A non-\code{NA} logical scalar indicating whether to
+#'   error if an argument in `...` contains an `NA` value.
+#' @param crossed A non-`NA` logical scalar indicating whether to
 #'   construct the result to look like a fully-crossed model. See \emph{The
-#'   \code{crossed} Argument} section for details.
-#' @section The \code{crossed} Argument: The following console excerpt shows
-#'   the effect of the value of \code{crossed}:
+#'   `crossed` Argument} section for details.
+#' @section The `crossed` Argument: The following console excerpt shows
+#'   the effect of the value of `crossed`:
 #'   ```
 #'   > x <- c("A", "B", "C")
 #'   > y <- c(1, 2)

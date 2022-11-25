@@ -5,7 +5,7 @@
 \alias{first_n}
 \alias{last_n}
 \alias{n_th_last}
-\title{Extract elements by index position}
+\title{Extract Elements by Index Position}
 \usage{
 n_th(x, n)
 
@@ -21,30 +21,14 @@ n_th_last(x, n)
 \item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar}.}
 }
 \value{
-\strong{\code{n_th, n_th_last}}
-\cr A (possibly scalar) vector.
-\cr\cr
-\strong{\code{first_n, last_n}}
-\cr A scalar vector.
+A vector or \link[=ivls]{vlist} of length \verb{1+}.
 }
 \description{
-Extract elements by index position
+\tabular{ll}{
+FUNCTION      \tab WHAT IT DOES                                         \cr
+\code{n_th}        \tab Gets the \code{n}-th element(s) of a vector.              \cr
+\code{first_n}     \tab Gets the first \verb{n`` elements of a vector.            \\cr }last_n\verb{     \\tab Gets the last}n\verb{elements of a vector.              \\cr}n_th_last\verb{   \\tab Gets the }n`-th from last element(s) of a vector.      }
 }
-\section{Functions in This Family}{
-
-\strong{\code{n_th}}
-\cr Gets the \code{n}-th element(s) of a vector.
-\cr\cr
-\strong{\code{first_n}}
-\cr Gets the first \code{n} elements of a vector.
-\cr\cr
-\strong{\code{last_n}}
-\cr Gets the last \code{n} elements of a vector.
-\cr\cr
-\strong{\code{n_th_last}}
-\cr Gets the \code{n}-th from last element(s) of a vector.
-}
-
 \examples{
 first_n(letters, 5)
 last_n(letters, 5)

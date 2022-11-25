@@ -1,3 +1,9 @@
+.id0D <- function(x) {is.null(x)}
+.id1D <- function(x) {is.vector(x)}
+.id2D <- function(x) {is.matrix(x) | is.data.frame(x)}
+.idHD <- function(x) {length(dim(x)) > 2}
+.ddds <- c("d0D", "d1D", "d2D", "dHD")
+
 #' @name ddd
 #' @family props
 #' @title Defined dimensionality properties
@@ -19,64 +25,51 @@
 #'                                 \tab data.frame or matrix.                \cr
 #'   \code{≥ 3}   \tab\code{'dHD'} \tab Hyper-dimensional structure.
 #'                                 \tab Array with 3+ dimensions.              }
-#' @section Functions in this Family:
-#'   NOTE: \code{DDD} is used as a wildcard representing any given
-#'   effective dimensionality property.
-#'   \cr\cr
-#'   \strong{\code{iDDD}}
-#'   \cr Evaluates whether \code{x} matches the defined dimensionality property
-#'   \code{DDD} (subject to any restrictions in \code{...}).
-#'   \cr\cr
-#'   \strong{\code{ddd}}
-#'   \cr Gets a character vector containing all defined dimensionality
-#'   properties matching \code{x}.
-#'   \cr\cr
-#'   \strong{\code{iddd}}
-#'   \cr Evaluates \code{x} against the defined dimensionality property
-#'   specification in \code{spec} (subject to any restrictions in \code{...}).
-#'   \cr\cr
-#'   \strong{\code{ddd_props}}
-#'   \cr Gets a character vector of all possible defined dimensionality property
-#'   values.
-#'   \cr\cr
-#'   \strong{\code{is_ddd_spec}}
-#'   \cr Evaluates whether \code{spec} is a valid defined dimensionality
-#'   property specification.
-#'   \strong{\code{nddd}}
-#'   \cr Gets the number of defined dimensions of \code{x}.
+#'   Functions in this family are:\tabular{ll}{
+#'     FUNCTION   \tab WHAT IT DOES \cr
+#'     `ddd`           \tab Get a character vector containing all defined
+#'                          dimensionality properties possessed by `x`       \cr
+#'     `ixxx`          \tab Evaluate whether `x` possesses the defined
+#'                          dimensionality property `xxx` (a placeholder for any
+#'                          given defined dimensionality property value),
+#'                          subject to any restrictions in `...`.            \cr
+#'     `iddd`          \tab Evaluate whether `x` possesses one or more
+#'                          (possibly pipe-delimited) defined dimensionality
+#'                          properties in `spec`, subject to any restrictions in
+#'                          `...`.                                           \cr
+#'     `nddd`          \tab Get the number of defined dimensions of `x`.     \cr
+#'     `ddd_props`     \tab Get a character vector of all possible defined
+#'                          dimensionality property values.                  \cr
+#'     `is_ddd_spec`   \tab Evaluate whether `spec` is a valid defined
+#'                          dimensionality property specification.             }
 #' @param x An R object.
-#' @param spec \code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec}
 #'   containing one or more defined dimensionality properties (i.e., from
-#'   \code{ddd_vals()}). \strong{NOTE}: properties may be pipe-separated. If
-#'   If there are multiple properties in \code{spec}, \code{x} is inspected for
-#'   a match to any of the specified properties.
+#'   `ddd_props()`). Defined dimensionality properties may be pipe-delimited. If
+#'   there are multiple properties in `spec`, `x` is inspected for a match to
+#'   any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \strong{\code{ddd_vals}}
-#'   \cr A character vector.
-#'   \cr\cr
-#'   \strong{\code{ddd}}
-#'   \cr A character scalar or character vector.
-#'   \cr\cr
-#'   \strong{\code{iDDD, iddd, is_ddd_spec}}
-#'   \cr A logical scalar.
-#'   \strong{\code{nddd}}
-#'   \cr An integer scalar.
+#' @return \tabular{ll}{
+#'   FUNCTIONS                       \tab RETURN VALUE                       \cr
+#'   `ddd_vals`                      \tab A character vector.                \cr
+#'   `ddd`                           \tab A character scalar or vector.      \cr
+#'   `nddd`                          \tab A numeric scalar.
+#'   `iddd`, `ixxx`, `is_ddd_spec`   \tab A logical scalar.                   }
 #' @export
 ddd <- function(x) {
-  props <- .ddd_props()
   out <- NULL
-  for (prop in props) {out <- c(out, f0(run('.is_', prop, '(x)'), prop, NULL))}
+  for (d in .ddds) {out <- c(out, f0(run('.i', d, '(x)'), d, NULL))}
   out
 }
 
 #' @rdname ddd
 #' @export
-ddd_props <- function() {.ddd_props()}
+ddd_props <- function() {.ddds}
 
 #' @rdname ddd
 #' @export
-is_ddd_spec <- function(spec) {spec <- .spec_vals(); f0(length(spec) == 0, F, all(spec %in% .ddd_props()))}
+is_ddd_spec <- function(spec) {spec <- .spec_vals(spec); f0(length(spec) == 0, F, all(spec %in% .ddds))}
 
 #' @rdname ddd
 #' @export
@@ -84,7 +77,7 @@ iddd <- function(x, spec, ...) {
   errs <- c(.meets_errs(x, ...), f0(is_ddd_spec(spec), NULL, '\n \u2022 [spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from ddd_props().'))
   if (!is.null(errs)) {stop(errs)}
   if (!meets(x, ...)) {return(F)}
-  for (prop in .spec_vals(spec)) {if (run('.is_', prop, '(x)')) {return(T)}}
+  for (prop in .spec_vals(spec)) {if (run('.i', prop, '(x)')) {return(T)}}
   F
 }
 

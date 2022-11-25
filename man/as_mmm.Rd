@@ -33,7 +33,7 @@ as_uno(x, levs)
 character scalar function name or a function object; for \code{as_ord} and
 \code{as_uno}, an atomic object; and for all others, any R object.}
 
-\item{na}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
+\item{na}{A \link[=cmp_lgl_scl]{complete logical scalar} indicating whether
 \code{NA} values qualify as missing color representations.}
 
 \item{...}{Further arguments passed to or from other methods.}
@@ -41,60 +41,30 @@ character scalar function name or a function object; for \code{as_ord} and
 \item{levs}{\link[=cmp_vec]{Complete atomic vec} giving factor levels.}
 }
 \value{
-\strong{\code{as_clr, as_chr}}
-\cr An object of mode \code{'character'}.
-\cr\cr
-\strong{\code{as_fun}}
-\cr A function object.
-\cr\cr
-\strong{\code{as_int}}
-\cr An object of mode \code{'integer'}.
-\cr\cr
-\strong{\code{as_num}}
-\cr An object of mode \code{'numeric'}.
-\cr\cr
-\strong{\code{as_lgl}}
-\cr An object of mode \code{'logical'}.
-\cr\cr
-\strong{\code{as_ord}}
-\cr An object of mode \code{'ordered'} (factor).
-\cr\cr
-\strong{\code{as_uno}}
-\cr An object of \link[=mmm]{extended mode} \code{'uno'} (unordered
-factor).
+\tabular{ll}{
+FUNCTION             \tab RETURN VALUE                                  \cr
+\code{as_clr}, \code{as_chr}   \tab An object of mode \code{'character'}.              \cr
+\code{as_fun}             \tab A function object.                            \cr
+\code{as_int}             \tab An object of mode \code{'integer'}.                \cr
+\code{as_num}             \tab An object of mode \code{'numeric'}.                \cr
+\code{as_lgl}             \tab An object of mode \code{'logical'}.                \cr
+\code{as_ord}             \tab An object of mode \verb{'ordered'`` (factor).      \\cr }as_uno\verb{            \\tab An object of \link[=mmm]\{extended mode\}}'uno'`
+(unordered factor).                             }
 }
 \description{
-Coerce to Base Mode or Extended Mode.
+\tabular{ll}{
+FUNCTION    \tab WHAT IT DOES                                            \cr
+\code{as_clr}    \tab Coerce a valid R color representation of mode character to
+hexadecimal RGB character representation.              \cr
+\code{as_fun}    \tab Return \code{x} if it is a function, otherwise, search for a
+function named \code{x} and return it.                      \cr
+\code{as_chr}    \tab Thin wrapper of \code{as.character}.                        \cr
+\code{as_int}    \tab Thin wrapper of \code{as.integer}.                          \cr
+\code{as_num}    \tab Thin wrapper of \code{as.numeric}.                          \cr
+\code{as_lgl}    \tab Thin wrapper of \code{as.logical}.                          \cr
+\code{as_ord}    \tab Wrapper for \code{factor(x, levels = levs, ordered = TRUE)}.\cr
+\code{as_uno}    \tab Wrapper for \code{factor(x, levels = levs, ordered = FALSE)}. }
 }
-\section{Functions in This Family}{
-
-\strong{\code{as_clr}}
-\cr Coerce a valid R color representation of mode character to hexadecimal
-RGB character representation.
-\cr\cr
-\strong{\code{as_fun}}
-\cr Return \code{x} if it is a function, otherwise, search for a function
-named \code{x} and return it.
-\cr\cr
-\strong{\code{as_chr}}
-\cr Thin wrapper of \code{\link[base]{as.character}}.
-\cr\cr
-\strong{\code{as_int}}
-\cr Thin wrapper of \code{\link[base]{as.integer}}.
-\cr\cr
-\strong{\code{as_num}}
-\cr Thin wrapper of \code{\link[base]{as.numeric}}.
-\cr\cr
-\strong{\code{as_lgl}}
-\cr Thin wrapper of \code{\link[base]{as.logical}}.
-\cr\cr
-\strong{\code{as_ord}}
-\cr Wrapper for \code{factor(x, levels = levs, ordered = TRUE)}.
-\cr\cr
-\strong{\code{as_uno}}
-\cr Wrapper for \code{factor(x, levels = levs, ordered = FALSE)}.
-}
-
 \seealso{
 Other props: 
 \code{\link{bbb_ccc}()},

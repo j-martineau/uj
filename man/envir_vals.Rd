@@ -14,46 +14,36 @@ vget(name, err = T, gens = 1)
 vset(name, val, gens = 1)
 }
 \arguments{
-\item{name}{\link[=cmp_chr_scl]{Complete character scalar} giving the name of
-an object.}
+\item{name}{A \link[=cmp_chr_scl]{complete character scalar} giving the name
+of an object.}
 
-\item{err}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
-throw an error if the object specified by \code{name} does not exist (i.e.,
-rather than returning \code{FALSE}).}
+\item{err}{A non\code{NA} logical scalar indicating whether to throw an error if
+the object specified by \code{name} does not exist (i.e., rather than returning
+\code{FALSE}).}
 
-\item{gens}{\link[=cmp_psw_scl]{Complete positive whole-number scalar} giving
-the number of generations back in the function call stack to go.}
+\item{gens}{A \link[=cmp_psw_scl]{complete positive whole-number scalar}
+giving the number of generations back in the function call stack to go.}
 
 \item{val}{A value to place into the object specified by \code{name}.}
 }
 \value{
-\strong{\code{vexists}}
-\cr A logical scalar.
-\cr\cr
-\strong{\code{vget}}
-\cr An R object
-\cr\cr
-\strong{\code{vset}}
-\cr \code{NULL} (called for its side effect).
+\tabular{ll}{
+FUNCTION    \tab RETURN VALUE                                           \cr
+\code{vexists}   \tab A logical scalar.                                      \cr
+\code{vget}      \tab An R object.                                           \cr
+\code{vset}      \tab \code{NULL}. Called for its side effect.                      }
 }
 \description{
-Objects in Environments of Calling Functions
+All functions in this family operate in the environment of the
+calling function \code{gens} generations back in the call stack.\tabular{ll}{
+FUNCTION    \tab WHAT IT DOES \cr
+\code{vexists}   \tab Check for the existence of an object in the environment
+of the \code{gens}-specified calling function.              \cr
+\code{vget}      \tab Get the value of an object in the environment of the
+\code{gens}-specified calling function.                     \cr
+\code{vset}      \tab Set the value of an object in the environment of the
+\code{gens}-specified calling function.                       }
 }
-\section{Functions in This Family}{
-
-\strong{\code{vexists}}
-\cr Checks for the existence of an object in the environment of the calling
-function \code{gens} generations back in the call stack.
-\cr\cr
-\strong{\code{vget}}
-\cr Gets the value of an object in the environment of the calling function
-\code{gens} generations back in the call stack.
-\cr\cr
-\strong{\code{vset}}
-\cr Sets the value of an object in the environment of the calling function
-\code{gens} generations back in the call stack.
-}
-
 \examples{
 fun.a <- function() {A <- 0; fun.b()}
 fun.b <- function() {B <- 1; fun.c()}

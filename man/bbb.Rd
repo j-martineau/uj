@@ -40,10 +40,9 @@ ircr(x, ...)
 \item{x}{An R object.}
 
 \item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
-containing one or more base properties (i.e., from
-\code{bbb_vals()}). \strong{NOTE}: properties may be pipe-separated. If
-If there are multiple properties in \code{spec}, \code{x} is inspected for
-a match to any of the specified properties.}
+containing one or more base properties (i.e., from \code{bbb_props()}). Base
+properties may be pipe-delimited. If there are multiple properties in
+\code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -52,75 +51,61 @@ a match to any of the specified properties.}
   }}
 }
 \value{
-\strong{\code{bbb_vals}}
-\cr A character vector.
-\cr\cr
-\strong{\code{bbb}}
-\cr A character scalar or character vector.
-\cr\cr
-\strong{\code{iBBB, ibbb, is_bbb_spec}}
-\cr A logical scalar.
+\tabular{ll}{
+FUNCTIONS                       \tab RETURN VALUE                       \cr
+\code{bbb_vals}                      \tab A character vector.                \cr
+\code{bbb}                           \tab A character scalar or vector.      \cr
+\code{ibbb}, \code{ixxx}, \code{is_bbb_spec}   \tab A logical scalar.                    }
 }
 \description{
-NOTE: \code{BBB} is used as a wildcard representing any given
-based property.
-\cr\cr
 An object's base properties are defined by its most basic
 structural properties as described in the following table: \tabular{lll}{
-PROPERTY     \tab PROPERTY   \tab QUALIFYING                          \cr
-NAME         \tab VALUE      \tab OBJECTS                             \cr
-atomic       \tab\code{'atm'}\tab Atomic objects.                     \cr
-defined      \tab\code{'def'}\tab Non-\code{NULL} objects.            \cr
-function     \tab\code{'fun'}\tab Function objects or character scalars
+NAME        \tab VALUE     \tab QUALIFYING OBJECTS                    \cr
+atomic      \tab \code{'atm'}   \tab Atomic objects.                       \cr
+defined     \tab \code{'def'}   \tab Non-\code{NULL} objects.                   \cr
+function    \tab \code{'fun'}   \tab Function objects or character scalars
 containing a valid function name
-accessible to the calling function. \cr
-nil          \tab\code{'nil'}\tab Objects of nil (or zero) length.    \cr
-null         \tab\code{'nll'}\tab The \code{NULL} object.             \cr
-populated    \tab\code{'pop'}\tab Objects of length 1 or greater.     \cr
-recursive    \tab\code{'rcr'}\tab Recursive objects (data.frames and
-lists).                               }
+accessible to the calling function.   \cr
+nil         \tab \code{'nil'}   \tab Objects of nil (\code{0}) length.          \cr
+null        \tab \code{'nll'}   \tab The \code{NULL} object.                    \cr
+populated   \tab \code{'pop'}   \tab Objects of length \code{1} or greater.     \cr
+recursive   \tab \code{'rcr'}   \tab Recursive objects (data.frames and
+lists).                                 }
+Functions in this family are:\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES \cr
+\code{bbb}           \tab Gets a character vector containing all base
+properties possessed by \code{x}                      \cr
+\code{ixxx}          \tab Evaluates whether \code{x} possesses the base property
+\code{xxx} (a placeholder for any given base property
+value), subject to any restrictions in \code{...}.    \cr
+\code{ibbb}          \tab Evaluates whether \code{x} possesses one or more
+(possibly pipe-delimited) base properties in \code{spec},
+subject to any restrictions in \code{...}.            \cr
+\code{bbbs_props}    \tab Gets a character vector of all possible base
+property values.                                 \cr
+\code{is_bbb_spec}   \tab Evaluates whether \code{spec} is a valid base property
+specification.                                     }
 }
-\section{Functions in This Family}{
-
-\strong{\code{iBBB}}
-\cr Evaluates whether \code{x} matches the base property \code{BBB}
-(subject to any restrictions in \code{...}).
-\cr\cr
-\strong{\code{bbb}}
-\cr Gets a character vector containing all base properties matching
-\code{x}.
-\cr\cr
-\strong{\code{ibbb}}
-\cr Evaluates \code{x} against the base property specification in
-\code{spec} (subject to any restrictions in \code{...}).
-\cr\cr
-\strong{\code{bbb_props}}
-\cr Gets a character vector of all possible base property values.
-\cr\cr
-\strong{\code{is_bbb_spec}}
-\cr Evaluates whether \code{spec} is a valid base property specification.
-}
-
 \section{Specifying Count and Value Restrictions}{
- Specifying additional
-requirements in \code{...} is optional. The full set of recognized
-arguments names are defined in the following table along with the
-properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                      \cr
-\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
-\code{nr}     \tab Vector of valid numbers of rows.                       \cr
-\code{nc}     \tab Vector of valid numbers of columns.                    \cr
-\code{min}    \tab Scalar minimum valid length/number of element.         \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
-\code{minc}   \tab Scalar minimum valid number of columns.                \cr
-\code{max}    \tab Scalar maximum valid length/number of element.         \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
-\code{vals}   \tab Vector of valid values.                                \cr
-\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
-\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
-\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
-\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
+ Specifying restrictions in
+\code{...} is optional. The full set of recognized arguments names are defined
+in the following table along with the properties each
+specifies:\tabular{ll}{
+NAME     \tab WHAT IT SPECIFIES                                         \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.              \cr
+\code{nr}     \tab Vector of valid numbers of rows.                          \cr
+\code{nc}     \tab Vector of valid numbers of columns.                       \cr
+\code{min}    \tab Scalar minimum valid length/number of element.            \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                      \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                   \cr
+\code{max}    \tab Scalar maximum valid length/number of element.            \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                      \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                   \cr
+\code{vals}   \tab Vector of valid values.                                   \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.                 \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.          }
 }
 
 \seealso{

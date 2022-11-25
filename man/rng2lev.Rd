@@ -2,30 +2,29 @@
 % Please edit documentation in R/rng2lev.R
 \name{rng2lev}
 \alias{rng2lev}
-\title{Convert sortable values in specific ranges to a specific level}
+\title{Convert Sortable Values in Specific Ranges to a Specific Level}
 \usage{
 rng2lev(x, cuts, levs)
 }
 \arguments{
-\item{x}{Atomic object of \link[=isrt]{sortable} values.}
+\item{x}{An atomic object of \link[=isrt]{sortable} values.}
 
-\item{cuts}{\link[=num_vec]{Atomic vec} of \code{n-1} cuts for \code{n}
-levels.}
+\item{cuts}{An \link[=num_vec]{atomic vec} of \code{n-1} cuts for \code{n} levels.}
 
-\item{levs}{\link[=atm_vec]{Atomic vec} of \code{n} level labels.}
+\item{levs}{An \link[=atm_vec]{atomic vec} of \code{n} level labels.}
 }
 \value{
-An atomic object of the same dimension as \code{x} and the same mode
-as \code{levs}.
+An atomic object of the same dimension as \code{x} and the same mode as
+\code{levs}.
 }
 \description{
-rng2lev. Convert values of \code{x} to the \code{n} levels in
-\code{levs} distinguished by the \code{n-1} thresholds in \code{cuts}.
+Convert values of \code{x} to the \code{n} levels in \code{levs} distinguished
+by the \code{n-1} thresholds in \code{cuts}.
 
-When values of \code{x} are equal to a value of \code{cuts},
-assignment to level is dependent on whether the value of \code{cut} is less
-than 0 vs. greater than or equal to 0. For a value of \code{cut} less than
-0, the level assigned is the lower of the levels distinguished by that
-value of \code{cuts}. Otherwise, the level assigned is the upper of the
-levels distinguished by that value of \code{cuts}.
+When values of \code{x} are equal to a value of \code{cuts}, assignment to
+level is dependent on whether the value of each element of \code{cut} is less
+than \code{0} vs. greater than or equal to \code{0}. For a value in \code{cuts} less than
+\code{0}, the level assigned is the lower of the levels distinguished by that
+value of \code{cuts}. Otherwise, the level assigned is the upper of the levels
+distinguished by that value of \code{cuts}.
 }

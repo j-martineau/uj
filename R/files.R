@@ -1,67 +1,56 @@
 #' @name files_uj
 #' @family files
 #' @family extensions
-#' @title Evaluate and Manipulate Paths to Files or Dolders on Disk
-#' @section Functions in this Family:
-#'   \strong{\code{is_path}}
-#'   \cr Checks whether \code{...} resolves to a valid path for an object (file
-#'   or folder) when \code{...} arguments are collapsed into a character
-#'   scalar.
-#'   \cr\cr
-#'   \strong{\code{as_path}}
-#'   \cr Collapses \code{...} into a path using the current platform file path
-#'   separator (\code{.Platform$file.sep}).
-#'   \cr\cr
-#'   \strong{\code{object_path}}
-#'   \cr Collapses \code{...} into a character scalar and expands the path to
-#'   the object indicated by the result to account for relative paths.
-#'   \cr\cr
-#'   \strong{\code{parent_path}}
-#'   \cr Calls \code{object_path} and extracts from the resulting character
-#'   scalar just the path to the parent folder of the object specified by
-#'   \code{...} (i.e., discarding the name of the object itself).
-#'   \cr\cr
-#'   \strong{\code{object_name}}
-#'   \cr Calls \code{object_path} and extracts from the resulting character
-#'   scalar just the name of the object, discarding the path to its parent.
-#'   \cr\cr
-#'   \strong{\code{parent_name}}
-#'   \cr Call \code{parent_path} and extracts from the resulting character
-#'   scalar just the name of last folder in the path
-#'   \cr\cr
-#'   \strong{\code{object_dirs}}
-#'   \cr Calls \code{object_path} and splits the resulting character scalar into
-#'   a character vector containing the name of the root folder, the names of any
-#'   intermediate folders, the name of the parent folder of the object, and the
-#'   name of the object.
-#'   \cr\cr
-#'   \strong{\code{parent_dirs}}
-#'   \cr Calls \code{folder_path} and splits the resulting character scalar into
-#'   a character vector containing the name of the root folder, the names of any
-#'   intermediate folders, and the name of the parent folder of the object
-#'   specified by \code{...}.
-#'   \cr\cr
-#'   \strong{\code{new_dirs}}
-#'   \cr Creates sub-directories within an existing directory, optionally asking
-#'   the user to choose that existing directory.
+#' @title Evaluate and Manipulate Paths to Files or Folders
+#' @description \tabular{ll}{
+#'   FUNCTION        \tab WHAT IT DOES                                       \cr
+#'  `is_path`        \tab Check whether `...` resolves to a valid path for an
+#'                        object (file or folder) when `...` arguments are
+#'                        collapsed into a character scalar.                 \cr
+#'   `as_path`       \tab Collapse `...` into a path using the current platform
+#'                        file path separator `.Platform$file.sep`.          \cr
+#'   `object_path`   \tab Collapse `...` into a character scalar and expand the
+#'                        path to the object indicated by the result to account
+#'                        for relative paths.                                \cr
+#'   `parent_path`   \tab Call `object_path` and extract from the resulting
+#'                        character scalar just the path to the parent folder of
+#'                        the object specified by `...` (i.e., discarding the
+#'                        name of the object itself).                        \cr
+#'   `object_name`   \tab Call `object_path` and extract from the resulting
+#'                        character scalar just the name of the object,
+#'                        discarding the path to its parent.                 \cr
+#'   `parent_name`   \tab Call `parent_path` and extract from the resulting
+#'                        character scalar just the name of last folder in the
+#'                        path.                                              \cr
+#'   `object_dirs`   \tab Call `object_path` and split the resulting character
+#'                        scalar into a character vector containing the name of
+#'                        the root folder, the names of any intermediate
+#'                        folders, the name of the parent folder of the object,
+#'                        and the name of the object.                        \cr
+#'   `parent_dirs`   \tab Call `folder_path` and split the resulting character
+#'                        scalar into a character vector containing the name of
+#'                        the root folder, the names of any intermediate
+#'                        folders, and the name of the parent folder of the
+#'                        object specified by `...`.                         \cr
+#'   `new_dirs`      \tab Creates sub-directories within an existing directory,
+#'                        optionally asking the user to choose that existing
+#'                        directory.                                           }
 #' @details In most cases, if (optionally) specified, functions throw an error
-#'   if \code{...} does not resolve to a valid object path.
+#'   if `...` does not resolve to a valid object path.
 #' @param ... Atomic arguments pasted to create
 #' @param err \link[=cmp_atm_scl]{Complete logical scalar} indicating whether an
-#'   error should be thrown if \code{...} is not a valid object path when
+#'   error should be thrown if `...` is not a valid object path when
 #'   collapsed to a character scalar.
-#' @param dirs \link[=cmp_chr_vec]{Complete character vec} of new sub-directory
+#' @param dirs A \link[=cmp_chr_vec]{complete character vec} of new sub-directory
 #'   names.
-#' @param path \link[=cmp_chr_scl]{Complete character scalar} path to either a
+#' @param path A \link[=cmp_chr_scl]{complete character scalar} path to either a
 #'   directory or a file.
-#' @return \strong{\code{is_path}}
-#'   \cr A logical scalar.
-#'   \cr\cr
-#'   \strong{\code{object_path, folder_path, object_name, folder_name}}
-#'   \cr A character scalar.
-#'   \cr\cr
-#'   \strong{\code{object_dirs, folder_dirs}}
-#'   \cr A character vector.
+#' @return \tabular{ll}{
+#'   FUNCTIONS                      \tab RETURN VALUE                        \cr
+#'   `is_path`                      \tab A logical scalar.                   \cr
+#'   `object_path`, `folder_path`   \tab A character scalar.                 \cr
+#'   `object_name`, `folder_name`   \tab A character scalar.                 \cr
+#'   `object_dirs`, `folder_dirs`   \tab A character vector.                   }
 #' @export
 is_path <- function(..., err = F) {
   x <- list(...)

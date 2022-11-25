@@ -2,7 +2,7 @@
 % Please edit documentation in R/reclass.R
 \name{reclass}
 \alias{reclass}
-\title{Set object class}
+\title{Set Object Class}
 \usage{
 reclass(x, cls)
 }
@@ -15,7 +15,7 @@ reclass(x, cls)
 An object of class \code{cls}.
 }
 \description{
-Set object class
+Set Object Class
 }
 \seealso{
 Other extensions: 

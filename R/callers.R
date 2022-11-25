@@ -2,27 +2,21 @@
 #' @family extensions
 #' @family environments
 #' @title Functions in the Call Stack
-#' @section Functions in This Family:
-#'   \strong{\code{ncallers}}
-#'   \cr Gets the number of functions in the call stack.
-#'   \cr\cr
-#'   \strong{\code{callers}}
-#'   \cr Gets names of all calling functions, with the immediate calling
-#'   function in the first position and, if \code{gens.} is not \code{NULL},
-#'   selects the \code{gens.}-th element(s) from the call stack.
-#'   \cr\cr
-#'   \strong{\code{caller}}
-#'   \cr Gets the name of the immediate calling function.
-#' @param gens \link[cmp_psw_vec]{Complete positive whole-number vec} giving the
-#'   number(s) of generations back in the function call stack to go.
-#' @return \strong{\code{ncallers}}
-#'   \cr An integer scalar.
-#'   \cr\cr
-#'   \strong{\code{callers}}
-#'   \cr A character vector.
-#'   \cr\cr
-#'   \strong{\code{caller}}
-#'   \cr A character scalar.
+#' @description \tabular{ll}{
+#'   FUNCTION     \tab WHAT IT DOES                                          \cr
+#'   `ncallers`   \tab Gets the number of functions in the call stack.       \cr
+#'   `callers`    \tab Get names of all calling functions, with the immediate
+#'                     calling function in the first position and, if `gens.` is
+#'                     not `NULL`, selects the `gens.`-th element(s) from the
+#'                     call stack.                                           \cr
+#'   `caller`     \tab Gets the name of the immediate calling function.        }
+#' @param gens A \link[cmp_psw_vec]{complete positive whole-number vec} giving
+#'   the number(s) of generations back in the function call stack to go.
+#' @return \tabular{ll}{
+#'   FUNCTION     \tab RETURN VALUE                                          \cr
+#'   `ncallers`   \tab An integer scalar.                                    \cr
+#'   `callers`    \tab A character vector.                                   \cr
+#'   `caller`     \tab A character scalar.                                     }
 #' @examples
 #' fun.a <- function() {A <- 0; fun.b()}
 #' fun.b <- function() {B <- 1; fun.c()}

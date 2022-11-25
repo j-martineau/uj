@@ -6,8 +6,8 @@
 #'   dialog box.\tabular{ll}{
 #'   \strong{FUNCTION}   \tab \strong{WHAT IT DOES}                          \cr
 #'   `msgbox`       \tab Launch a simple dialog box to give the message.     \cr
-#'   `dirbox`       \tab Ask user to select a directory/folder. (A)          \cr
-#'   `docbox`       \tab Ask user to select a document. (A)                  \cr
+#'   `dirbox`       \tab Ask user to select a directory/folder. `(A)`        \cr
+#'   `docbox`       \tab Ask user to select a document. `(A)`                \cr
 #'   `ansbox`       \tab Ask user to input a text response.                  \cr
 #'   `no`           \tab Does user select the 'no' button? (not 'yes')       \cr
 #'   `yes`          \tab Does user select the 'yes' button? (not 'no')       \cr
@@ -32,7 +32,7 @@
 #' @param x \link[=cmp_chr_scl]{Complete character scalar} message.
 #' @param d \link[=cmp_chr_scl]{Complete character scalar} default directory.
 #' @param t \link[=cmp_chr_scl]{Complete character scalar} type of dialog box
-#'   (valid values are \code{c('ok', 'okcancel', 'yesno', 'yesnocancel'}).
+#'   (valid values are `c('ok', 'okcancel', 'yesno', 'yesnocancel')`)..
 #' @param def \link[=cmp_chr_scl]{Complete character scalar} default value.
 #' @param type, \link[=cmp_chr_scl]{Complete character scalar} type of directory
 #'   or document to select
@@ -56,7 +56,8 @@
 #'   interaction.
 #' @param unq \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
 #'   new values must be unique.
-#' @return \link[=cmp_chr_scl]{Complete character scalar}
+#' @return A \link[=cmp_chr_scl]{complete character scalar} or a
+#'   \link[=cmp_scl_vec]{complete character vec}.
 #' @export
 msgbox <- function(..., t = "ok") {
   msg <- paste0(av(...), collapse = "")

@@ -7,29 +7,27 @@
 #'   apply to vector or list elements. May be pipe-delimited.
 #' @param cn,cn. Optional \link[=cmp_chr_vec]{complete character vec} of names
 #'   to apply to columns of a matrix or dtf May be pipe-delimited. For tibbles,
-#'   this argument can be used only if the \code{...} arguments are not
-#'   named.
-#' @param rn. Optional \link[=cmp_chr_vec]{complete character vec} of names to
-#'   apply to rows of a matrix or dtf May be pipe-delimited.
-#' @param r,r. \link[=cmp_psw_scl]{Complete positive whole-number scalar} giving
-#'   number of replications.
-#' @param nr,nr. \link[=cmp_psw_scl]{Complete positive whole-number scalar}
+#'   this argument can be used only if the `...` arguments are not named.
+#' @param rn. Optional A \link[=cmp_chr_vec]{complete character vec} of names to
+#'   apply to rows of a matrix or data.frame. May be pipe-delimited.
+#' @param r,r. \link[=cmp_psw_scl]{Complete positive whole-number scalars}
+#'   giving number of replications.
+#' @param nr,nr. \link[=cmp_psw_scl]{Complete positive whole-number scalars}
 #'   giving number of rows.
-#' @param nc,nc. \link[=cmp_psw_scl]{Complete positive whole-number scalar}
+#' @param nc,nc. \link[=cmp_psw_scl]{Complete positive whole-number scalars}
 #'   giving number of columns.
-#' @param br. \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
-#'   fill matrices by row.
+#' @param br. A \link[=cmp_lgl_scl]{complete logical scalar} indicating whether
+#'   to fill matrices by row.
 #' @param x A numeric, logical, or character object of length 1 or greater.
-#' @return An \link[=atm_dtf]{atomic dta.frame}, an \link[=atm_vec]{atomic
-#'   vector+}, an \link[=atm_mat]{atomic matrix}, or a \link[=atm_vls]{atomic
-#'   vlist}. All others return the value of the function they are thin wrappers
-#'   for.
+#' @return An \link[=atm_dtf]{atomic dta.frame}, an \link[=atm_vec]{atomic vec},
+#'   an \link[=atm_mat]{atomic matrix}, or a \link[=atm_vls]{atomic vlist}. All
+#'   others return the value of the function they are thin wrappers for.
 #' @export
 make_uj <- NULL
 
-#' @describeIn make_uj Creates an atomic vector from the atomic objects in
-#'   \code{...} collapsed into a vector, replicated \code{r.} times, with
-#'   optional element names.
+#' @describeIn make_uj Createsan atomic vector from the atomic objects in `...`
+#'   collapsed into a vector, replicated `r.` times, with optional element
+#'   names.
 #' @export
 vec <- function(..., r. = 1, vn. = NULL) {
   x <- av(...)
@@ -46,10 +44,9 @@ vec <- function(..., r. = 1, vn. = NULL) {
   x
 }
 
-#' @describeIn make_uj Creates a named atomic vec by taking the original call
+#' @describeIn make_uj Create a named atomic vec by taking the original call
 #'   and parsing arguments to get element names. Allows for more concise code
-#'   such as \code{vec.(a, b)} giving the same result as \code{list(a = a, b =
-#'   b)}.
+#'   such as `vec.(a, b)` giving the same result as `list(a = a, b = b)`.
 #' @export
 vec. <- function(...) {
   x <- as_chr(match.call())                                                      # get a function call object and convert to character
@@ -60,13 +57,13 @@ vec. <- function(...) {
   eval.parent(parse(text = x, n = 1))                                            # and evaluate it in the environment of the calling function
 }
 
-#' @describeIn make_uj Creates a vector of \code{r.} \code{NA} values.
+#' @describeIn make_uj Creates a vector of `r.` `NA` values
 #' @export
 vec_na <- function(r.) {vec(NA, r. = r.)}
 
-#' @describeIn make_uj Creates an atomic matrix from the atomic elements in
-#'   \code{...} with \code{r.} rows, \code{c.} columns, optionally filling by
-#'   row, with optional row and column names.
+#' @describeIn make_uj Create an atomic matrix from the atomic elements in `...`
+#'   with `nr.` rows, `nc.` columns, optionally filling by row, with optional
+#'   row and column names.
 #' @export
 mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
   av <- av(...)
@@ -107,8 +104,8 @@ mat <- function(..., nr. = 1, nc. = NULL, br. = F, rn. = NULL, cn. = NULL) {
   x
 }
 
-#' @describeIn make_uj Creates a data.frame with 0 rows and columns
-#'   with names from \code{cn.}, which may be pipe delimited.
+#' @describeIn make_uj Creates a data.frame with 0 rows and columns with names
+#'   from `cn`, which may be pipe delimited.
 #' @export
 dtf0 <- function(cn) {
   if (!cmp_chr_vec(cn)) {stop("\n \u2022 [cn] must be a complete character vector (?cmp_chr_vec).")}
@@ -117,9 +114,9 @@ dtf0 <- function(cn) {
   run(cmd)
 }
 
-#' @describeIn make_uj Creates an \link[idtf]{atomic dtf} with \code{nr.} rows and
-#'   columns with names from \code{cn.} (which may be pipe delimited). All cells
-#'   of the resulting tibble are populated with \code{NA}. values.
+#' @describeIn make_uj Creates an \link[idtf]{atomic dtf} with `nr` rows and
+#'   columns with names from `cn` (which may be pipe delimited). All cells
+#'   of the resulting tibble are populated with `NA` values.
 #' @export
 dtf_na <- function(cn, nr) {
   errs <- c(f0(cmp_chr_vec(cn), NULL, "\n \u2022 [cn] must be a complete character vector (?cmp_chr_vec)."),
@@ -132,8 +129,8 @@ dtf_na <- function(cn, nr) {
 }
 
 #' @describeIn make_uj Creates an \link[idtf]{atomic dtf} from the
-#'   \link[ivec]{atomic vec} \code{...} arguments with optional row names,
-#'   plus optional column names to replace any names of \code{...} arguments.
+#'   \link[ivec]{atomic vec} `...` arguments with optional row names, plus
+#'   optional column names to replace any names of `...` arguments.
 #' @export
 dtf <- function(..., cn. = NULL) {
   cn. <- f0(cmp_chr_vec(cn.), ss(cn.), cn.)
@@ -157,9 +154,9 @@ dtf <- function(..., cn. = NULL) {
   out
 }
 
-#' @describeIn make_uj Creates an atomic \link[=ivls]{vlist} from the arguments in
-#'   \code{...} with optional element names to replace any names of arguments in
-#'   \code{...}.
+#' @describeIn make_uj Creates an atomic \link[=ivls]{vlist} from the arguments
+#'   in `...` with optional element names to replace any names of arguments in
+#'   `...`.
 #' @export
 vls <- function(..., en. = NULL) {
   en. <- f0(cmp_chr_vec(en.), av(strsplit(en., "|", fixed = T)), en.)
@@ -175,8 +172,8 @@ vls <- function(..., en. = NULL) {
 
 #' @describeIn make_uj Creates a named \link[ivls]{atomic vlist} by taking the
 #'   original call and parsing arguments to get element names. Allows for more
-#'   concise code such as \code{mkvls(letters, LETTERS)} giving the same result
-#'   as \code{list(letters = letters, LETTERS = LETTERS)}.
+#'   concise code such as `vls.(letters, LETTERS)` giving the same result as
+#'   `list(letters = letters, LETTERS = LETTERS)`.
 #' @export
 vls. <- function(...) {
   x <- as_chr(match.call())                                                      # get a function call object and convert to character
@@ -185,10 +182,10 @@ vls. <- function(...) {
   eval.parent(parse(text = x, n = 1))                                            # and evaluate it in the environment of the calling function
 }
 
-#' @describeIn make_uj Creates a square atomic diagonal matrix. For numeric
-#'   \code{x}, off-diagonals are \code{0}. For logical \code{x}, off diagonals
-#'   are \code{FALSE}. For character \code{x}, off diagonals are blank strings
-#'   (\code{""}). For all others, off diagonals are \code{NA}.
+#' @describeIn make_uj Creates a square atomic diagonal matrix. For numeric `x`,
+#'   off-diagonals are 0. For logical `x`, off diagonals are `FALSE`. For
+#'   character `x`, off diagonals are blank strings (`""`). For all others, off
+#'   diagonals are `NA`.
 #' @export
 diag. <- function(x = 1, r = 1) {
   ok.x <- inum(x) | ilgl(x) | ichr(x)

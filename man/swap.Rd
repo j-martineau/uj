@@ -10,11 +10,10 @@ swap(x, old, new, all = FALSE)
 \item{x}{An atomic object.}
 
 \item{old, new}{\link[=atm_vec]{Atomic vecs} of unique values to be replaced
-and replacement values, respectively. \code{length(new)} must be in
-\code{c(1, length(old))}.}
+and replacement values, respectively. \code{length(new)} must be in \code{c(1, length(old))}.}
 
-\item{all}{link[=cmp_lgl_scl]{Complete logical scalar} indicating whether all
-values of \code{x} must be contained in \code{old}.}
+\item{all}{A non-\code{NA} logical scalar indicating whether all values of \code{x}
+must be contained in \code{old}.}
 }
 \value{
 An atomic object of the same dimensions as \code{x}.

@@ -7,14 +7,14 @@
 charn(x, n)
 }
 \arguments{
-\item{x}{\link[=ichr]{Atomic character object}.}
+\item{x}{A \link[=ichr]{character object}.}
 
-\item{n}{\link[=cmp_psw_scl]{Complete positive whole-number scalar} or
-\link{cmp_psw}{complete positive whole-number atomic object} of the same
+\item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} or
+\link[=cmp_psw]{complete positive whole-number object} of the same
 dimensions as \code{x}.}
 }
 \value{
-\code{link[=cmp_ch1]{Complete onechar}} atomic object of the same
+A link[=cmp_ch1]{complete onechar} atomic object of the same
 dimension as \code{x}.
 }
 \description{

@@ -35,9 +35,9 @@ nddd(x)
 
 \item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
 containing one or more defined dimensionality properties (i.e., from
-\code{ddd_vals()}). \strong{NOTE}: properties may be pipe-separated. If
-If there are multiple properties in \code{spec}, \code{x} is inspected for
-a match to any of the specified properties.}
+\code{ddd_props()}). Defined dimensionality properties may be pipe-delimited. If
+there are multiple properties in \code{spec}, \code{x} is inspected for a match to
+any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -46,16 +46,12 @@ a match to any of the specified properties.}
   }}
 }
 \value{
-\strong{\code{ddd_vals}}
-\cr A character vector.
-\cr\cr
-\strong{\code{ddd}}
-\cr A character scalar or character vector.
-\cr\cr
-\strong{\code{iDDD, iddd, is_ddd_spec}}
-\cr A logical scalar.
-\strong{\code{nddd}}
-\cr An integer scalar.
+\tabular{ll}{
+FUNCTIONS                       \tab RETURN VALUE                       \cr
+\code{ddd_vals}                      \tab A character vector.                \cr
+\code{ddd}                           \tab A character scalar or vector.      \cr
+\code{nddd}                          \tab A numeric scalar.
+\code{iddd}, \code{ixxx}, \code{is_ddd_spec}   \tab A logical scalar.                   }
 }
 \description{
 An object's defined dimensionality is the number of dimensions
@@ -76,55 +72,44 @@ DIMENSIONS   \tab VALUE       \tab NAME             \tab OBJECTS        \cr
 \tab data.frame or matrix.                \cr
 \code{≥ 3}   \tab\code{'dHD'} \tab Hyper-dimensional structure.
 \tab Array with 3+ dimensions.              }
+Functions in this family are:\tabular{ll}{
+FUNCTION   \tab WHAT IT DOES \cr
+\code{ddd}           \tab Get a character vector containing all defined
+dimensionality properties possessed by \code{x}       \cr
+\code{ixxx}          \tab Evaluate whether \code{x} possesses the defined
+dimensionality property \code{xxx} (a placeholder for any
+given defined dimensionality property value),
+subject to any restrictions in \code{...}.            \cr
+\code{iddd}          \tab Evaluate whether \code{x} possesses one or more
+(possibly pipe-delimited) defined dimensionality
+properties in \code{spec}, subject to any restrictions in
+\code{...}.                                           \cr
+\code{nddd}          \tab Get the number of defined dimensions of \code{x}.     \cr
+\code{ddd_props}     \tab Get a character vector of all possible defined
+dimensionality property values.                  \cr
+\code{is_ddd_spec}   \tab Evaluate whether \code{spec} is a valid defined
+dimensionality property specification.             }
 }
-\section{Functions in this Family}{
-
-NOTE: \code{DDD} is used as a wildcard representing any given
-effective dimensionality property.
-\cr\cr
-\strong{\code{iDDD}}
-\cr Evaluates whether \code{x} matches the defined dimensionality property
-\code{DDD} (subject to any restrictions in \code{...}).
-\cr\cr
-\strong{\code{ddd}}
-\cr Gets a character vector containing all defined dimensionality
-properties matching \code{x}.
-\cr\cr
-\strong{\code{iddd}}
-\cr Evaluates \code{x} against the defined dimensionality property
-specification in \code{spec} (subject to any restrictions in \code{...}).
-\cr\cr
-\strong{\code{ddd_props}}
-\cr Gets a character vector of all possible defined dimensionality property
-values.
-\cr\cr
-\strong{\code{is_ddd_spec}}
-\cr Evaluates whether \code{spec} is a valid defined dimensionality
-property specification.
-\strong{\code{nddd}}
-\cr Gets the number of defined dimensions of \code{x}.
-}
-
 \section{Specifying Count and Value Restrictions}{
- Specifying additional
-requirements in \code{...} is optional. The full set of recognized
-arguments names are defined in the following table along with the
-properties each specifies:\tabular{ll}{
-NAME          \tab WHAT IT SPECIFIES                                      \cr
-\code{n}      \tab Vector of valid lengths/numbers of elements.           \cr
-\code{nr}     \tab Vector of valid numbers of rows.                       \cr
-\code{nc}     \tab Vector of valid numbers of columns.                    \cr
-\code{min}    \tab Scalar minimum valid length/number of element.         \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                   \cr
-\code{minc}   \tab Scalar minimum valid number of columns.                \cr
-\code{max}    \tab Scalar maximum valid length/number of element.         \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                   \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.                \cr
-\code{vals}   \tab Vector of valid values.                                \cr
-\code{lt}     \tab Scalar less-than (exclusive upper) bound.              \cr
-\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound      \cr
-\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.  \cr
-\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.       }
+ Specifying restrictions in
+\code{...} is optional. The full set of recognized arguments names are defined
+in the following table along with the properties each
+specifies:\tabular{ll}{
+NAME     \tab WHAT IT SPECIFIES                                         \cr
+\code{n}      \tab Vector of valid lengths/numbers of elements.              \cr
+\code{nr}     \tab Vector of valid numbers of rows.                          \cr
+\code{nc}     \tab Vector of valid numbers of columns.                       \cr
+\code{min}    \tab Scalar minimum valid length/number of element.            \cr
+\code{minr}   \tab Scalar minimum valid number of rows.                      \cr
+\code{minc}   \tab Scalar minimum valid number of columns.                   \cr
+\code{max}    \tab Scalar maximum valid length/number of element.            \cr
+\code{maxr}   \tab Scalar maximum valid number of rows.                      \cr
+\code{maxc}   \tab Scalar maximum valid number of columns.                   \cr
+\code{vals}   \tab Vector of valid values.                                   \cr
+\code{lt}     \tab Scalar less-than (exclusive upper) bound.                 \cr
+\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
+\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
+\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.          }
 }
 
 \seealso{

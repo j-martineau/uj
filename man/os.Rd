@@ -2,7 +2,7 @@
 % Please edit documentation in R/os.R
 \name{os}
 \alias{os}
-\title{Identify the current operating system.}
+\title{Identify the Current Operating System.}
 \usage{
 os()
 }

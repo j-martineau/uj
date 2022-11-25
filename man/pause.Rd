@@ -2,7 +2,7 @@
 % Please edit documentation in R/pause.R
 \name{pause}
 \alias{pause}
-\title{Pause execution.}
+\title{Pause Execution.}
 \usage{
 pause(x = 1e-07)
 }
@@ -11,7 +11,7 @@ pause(x = 1e-07)
 of seconds to pause.}
 }
 \value{
-\code{NULL} (called for its side effect).
+\code{NULL}. Called for its side effect.
 }
 \description{
 Pause for \code{x} seconds, then resume execution.

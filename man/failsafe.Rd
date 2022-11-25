@@ -20,38 +20,27 @@ msgERR(x)
 function where the initial call was made.}
 }
 \value{
-\strong{\code{failsafe}}
-\cr Either \code{x}, an object of class \code{'error'}, or an object of
-class \code{'simpleError'}.
-\cr\cr
-\strong{\code{isERR, notERR}}
-\cr A logical scalar.
-\cr\cr
-\strong{\code{msgERR}}
-\cr Either \code{NULL} or a character scalar.
+\tabular{ll}{
+FUNCTIONS           \tab RETURN VALUE                                   \cr
+\code{failsafe}          \tab Either \code{x}, an object of class \code{'error'}, or an
+object of class \code{'simpleError'}.               \cr
+\code{isERR}, \code{notERR}   \tab A logical scalar.                              \cr
+\code{msgERR}            \tab Either \code{NULL} or a character scalar.             }
 }
 \description{
-Evaluate Objects, Flag Any Errors
+\tabular{ll}{
+FUNCTION     \tab WHAT IT DOES \cr
+\code{failsafe}   \tab Call \code{identity(x)}. If an error is produced in doing so,
+returns an object of class \code{'error'} or of class
+\code{'simpleError'}. If an error is not generated, returns
+the safely evaluated value of \code{x}.                    \cr
+\code{isERR}      \tab Evaluate whether calling \code{identity(x)} produced an
+error.                                                \cr
+\code{notERR}     \tab Evaluate whether calling \code{identity(x)} \emph{did not}
+produce an error.                                     \cr
+\code{msgERR}     \tab Get any error message associated with calling
+\code{identity(x)}. If there is none, returns \code{NULL}.        }
 }
-\section{Functions in This Family}{
-
-\strong{\code{failsafe}}
-\cr Attempts to call \code{identity(x)}. If an error is produced in doing
-so, returns an object of class \code{'error'} or of class
-\code{'simpleError'}. If an error is not generated, returns the safely
-evaluated value of \code{x}.
-\cr\cr
-\strong{\code{isERR}}
-\cr Evaluates whether calling \code{identity(x)} produced an error.
-\cr\cr
-\strong{\code{notERR}}
-\cr Evaluates whether calling \code{identity(x)} did not produce an error.
-\cr\cr
-\strong{\code{msgERR}}
-\cr Gets any error message associated with calling \code{identity(x)}. If
-there is none, returns \code{NULL}.
-}
-
 \seealso{
 Other extensions: 
 \code{\link{atomize}},

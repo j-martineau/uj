@@ -53,58 +53,65 @@ cn(x, u = T, err = F)
 rcn(x, u = T, err = F)
 }
 \arguments{
-\item{x}{Vector or list for \code{namev} and \code{vn}; matrix or data.frame
-for \code{rn}, \code{namer}, \code{cn}, \code{namec}, \code{namerc}; or any
-object for \code{namel}.}
+\item{x}{Vector or list for \code{namev} and \code{vn}; matrix or data.frame for \code{rn},
+\code{namer}, \code{cn}, \code{namec}, and \code{namerc}; or any object for \code{namel}.}
 
-\item{en}{\link[=cmp_chr_vec]{Complete character vec} of element names.}
+\item{en}{A \link[=cmp_chr_vec]{complete character vec} of element names.}
 
-\item{rn, cn}{\link[=cmp_chr_vec]{Complete character vecs} of row or column
+\item{rn, cn}{\link[=cmp_chr_vec]{complete character vecs} of row or column
 names, respectively.}
 
-\item{ln}{\link[=cmp_chr_scl]{Complete character scalar} element name.}
+\item{ln}{A \link[=cmp_chr_scl]{complete character scalar} element name.}
 
-\item{d}{\link[=cmp_psw_scl]{Complete positive whole-number scalar} giving
+\item{d}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving
 the dimension(s) to name: \code{0} for elements (of atomic or list vectors
-only), \code{1} for rows of matrices or tibbles, \code{2} for columns of
-matrices or data.frames, or \code{12} for rows and columns of matrices or
-data.frames.}
+only), \code{1} for rows of matrices or tibbles, \code{2} for columns of matrices or
+data.frames, or \code{12} for rows and columns of matrices or data.frames.}
 
-\item{u}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
+\item{u}{A \link[=cmp_lgl_scl]{complete logical scalar} indicating whether
 names must be unique.}
 
-\item{blank}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
-blank strings (\code{""}) are allowed as names.}
+\item{blank}{A \link[=cmp_lgl_scl]{complete logical scalar} indicating
+whether blank strings (\code{""}) are allowed as names.}
 
 \item{...}{Arbitrary number of arguments to be inspected for names.}
 
-\item{err}{\link[=cmp_lgl_scl]{Complete logical} scalar indicating whether
+\item{err}{A \link[=cmp_lgl_scl]{complete logical} scalar indicating whether
 names must be non-missing.}
 }
 \value{
-Character vector or a named/renamed version of \code{x}.
+\tabular{ll}{
+FUNCTIONS                     \tab RETURN VALUE                         \cr
+\code{namev}                       \tab A vector.                            \cr
+\code{namer}, \code{namec}, \code{namerc}    \tab A matrix/data.frame.                 \cr
+\code{namel}                       \tab A 1-element list.                    \cr
+\code{named}, \code{enamed}, \code{rnamed}   \tab A logical scalar.                    \cr
+\code{cnamed}, \code{rcnamed}           \tab A logical scalar.                    \cr
+\code{en}, \code{rn}, \code{cn}              \tab A character vector.                  \cr
+\code{rcn}                         \tab A list of 2 character vectors.         }
 }
 \description{
 \tabular{ll}{
-\code{namev}    \tab Name the elements of a vector or \link[=ivls]{vlist}.   \cr
-\code{namer}    \tab Name the rows of a matrix or data.frame.                \cr
-\code{namec}    \tab Name the columns of a matrix or data.frame.             \cr
-\code{namel}    \tab Create and name a 1-element list.                       \cr
-\code{namerc}   \tab Name rows and columns of a matrix or data.frame.        \cr
-\code{named}    \tab Determine whether an object's elements, rows, and/or
+FUNCTION     \tab WHAT IT DOES                                          \cr
+\code{namev}      \tab Name the elements of a vector or \link[=ivls]{vlist}. \cr
+\code{namer}      \tab Name the rows of a matrix or data.frame.              \cr
+\code{namec}      \tab Name the columns of a matrix or data.frame.           \cr
+\code{namel}      \tab Create and name a 1-element list.                     \cr
+\code{namerc}     \tab Name rows and columns of a matrix or data.frame.      \cr
+\code{named}      \tab Determine whether an object's elements, rows, and/or
 columns are named, accounting for whether names must be
-unique, whether the object may contain empty elements, and
-whether names may be blank strings.                     \cr
-\code{enamed}   \tab Are elements of \code{x} named?                              \cr
-\code{rnamed}   \tab Are rows of \code{x} named?                                  \cr
-\code{cnamed}   \tab Are columns of \code{x} named?                               \cr
-\code{dnamed}   \tab Are dot arguments (\code{...}) named?                        \cr
-\code{getnames} \tab Get element, row, and/or column names with optional
-restrictions.                                           \cr
-\code{en}       \tab Get element names.                                      \cr
-\code{rn}       \tab Get row names.                                          \cr
-\code{cn}       \tab Get column names.                                       \cr
-\code{rcn}      \tab Get row and column names as a 2-element list.             }
+unique, whether the object may contain empty elements,
+and whether names may be blank strings.               \cr
+\code{enamed}     \tab Are elements of \code{x} named?                            \cr
+\code{rnamed}     \tab Are rows of \code{x} named?                                \cr
+\code{cnamed}     \tab Are columns of \code{x} named?                             \cr
+\code{dnamed}     \tab Are dot arguments (\code{...}) named?                      \cr
+\code{getnames}   \tab Get element, row, and/or column names with optional
+restrictions.                                         \cr
+\code{en}         \tab Get element names.                                    \cr
+\code{rn}         \tab Get row names.                                        \cr
+\code{cn}         \tab Get column names.                                     \cr
+\code{rcn}        \tab Get row and column names as a 2-element list.           }
 }
 \seealso{
 Other extensions: 
