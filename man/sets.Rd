@@ -2,12 +2,13 @@
 % Please edit documentation in R/sets.R
 \name{sets}
 \alias{sets}
-\title{Create Indices to Build All Possible Non-Empty Sets}
+\title{Create indices to build all possible non-empty sets}
 \usage{
 sets(n)
 }
+\arguments{
+\item{n}{A \link[cmp_psw_scl]{complete positive whole-number scalar}.}
+}
 \description{
-Create a list of elements containing indices to create all
-possible sets of size \code{1} or greater from a length-\code{n} vector of unique
-values.
+Create a list of elements containing indices to create all possible unique-value sets of size \code{1} to \code{n} from a length-\code{n} vector of unique values.
 }

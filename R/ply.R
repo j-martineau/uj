@@ -1,60 +1,43 @@
 #' @name ply
 #' @family extensions
-#' @title Variations on `apply` Functions
-#' @description `norply`, `anyply`, `allply`, `oneply`, and `twoply` assume the
-#'   results of applying `fun` are of mode 'logical'. \tabular{ll}{
-#'   FUNCTION   \tab WHAT IT DOES                                            \cr
-#'   `ply`      \tab Offering all functionality in a single function.        \cr
-#'   `norply`   \tab Evaluates whether there are \emph{`0`} `TRUE` values in the
-#'                   the result of applying `fun`.                           \cr
-#'   `anyply`   \tab Evaluates whether there are \emph{any} `TRUE` values in the
-#'                   the result of applying `fun`.                           \cr
-#'   `allply`   \tab Evaluates whether there are \emph{only} `TRUE` values in
-#'                   the result of applying `fun`.                           \cr
-#'   `oneply`   \tab Evaluates whether there is \emph{exactly `1`} `TRUE` value
-#'                   in the result of applying `fun`.                        \cr
-#'   `twoply`   \tab Evaluates whether there are \emph{`2+`} `TRUE` values in
-#'                   the result of applying `fun`.                           \cr
-#'   `atmply`   \tab \link[=av]{Atomize} `x` and apply `fun` to each element of
-#'                   the resulting atomic vector.                            \cr
-#'   `mvcply`   \tab Apply `fun` to each element of the \link[=atm_vec]{atomic
-#'                   multivec} `x`.                                          \cr
-#'   `vecply`   \tab Apply `fun` to each element of the \link[=atm_vec]{atomic
-#'                   vec} `x`.                                               \cr
-#'   `rowply`   \tab Apply `fun` to each row of matrix/data.frame `x`.       \cr
-#'   `colply`   \tab Apply `fun` to each column of matrix/data.frame `x`.    \cr
-#'   `dimply`   \tab Apply `fun` to each cell of array/data.frame `x`.       \cr
-#'   `vlsply`   \tab Apply `fun` to each element of \link[=ivls]{vlist} `x`.   }
-#' @section The `proc` Argument: When not `NULL`, the `proc`
-#'   argument can be a list with up to seven optional named elements, which give
-#'   processing instructions as follows: \tabular{ll}{
-#'     NAME & VALUE    \tab PROCESSING INSTRUCTION                           \cr
-#'     `s = TRUE`      \tab \link[base:simplify2array]{Simplify} the result. \cr
-#'     `a1 = TRUE`     \tab \link[=a]{Atomize} `x` first.                    \cr
-#'     `a2 = TRUE`     \tab Atomize the result.                              \cr
-#'     `na = TRUE`     \tab Replace resulting `NA` values with `TRUE`.       \cr
-#'     `na = FALSE`    \tab Replace resulting `NA` values with `FALSE`.      \cr
-#'     `na = 'err'`    \tab Throw error if result contains any `NA`s.        \cr
-#'     `agg = 'nor'`   \tab Inspect result for \emph{`0`} `TRUE` values.     \cr
-#'     `agg = 'any'`   \tab Inspect result for \emph{any} `TRUE` values.     \cr
-#'     `agg = 'all'`   \tab Inspect result for \emph{only} `TRUE` values.    \cr
-#'     `agg = 'one'`   \tab Inspect result for \emph{exactly `1`} `TRUE`
-#'                          value.                                           \cr
-#'     `agg = 'two'`   \tab Inspect result for \emph{`2+`} `TRUE` values.    \cr
-#'     `arg = '***'`   \tab Inspect `x` for \link[=ppp]{properties} given in the
-#'                          string `***` and throw an error if not met.      \cr
-#'     `out = '***'`   \tab Inspect the result for properties given in the
-#'                          string `***` and throw an error if not met.        }
+#' @title Variations on `apply` functions
+#' @description (`norply`, `anyply`, `allply`, `oneply`, and `twoply` assume the result of applying `fun` is of mode 'logical')
+#' \itemize{
+#'   \item **`ply`**: offers all functionality specialized `ply` functions described below
+#'   \item **`norply`**: evaluates whether there are *0* `TRUE` values in the result of applying `fun`.
+#'   \item **`anyply`**: evaluates whether there are *any* `TRUE` values in the result of applying `fun`.
+#'   \item **`allply`**: evaluates whether there are *only* `TRUE` values in the result of applying `fun`.
+#'   \item **`oneply`**: evaluates whether there is *exactly 1* `TRUE` value in the result of applying `fun`.
+#'   \item **`twoply`**: evaluates whether there are *2+* `TRUE` values in the result of applying `fun`.
+#'   \item **`atmply`**: \link[=av]{Atomize} `x` and apply `fun` to elements of the resulting atomic vector.
+#'   \item **`mvcply`**: apply `fun` to elements of \link[=atm_vec]{atomic multivec} `x`.
+#'   \item **`vecply`**: apply `fun` to elements of \link[=atm_vec]{atomic vec} `x`.
+#'   \item **`rowply`**: apply `fun` to rows of matrix/data.frame `x`.
+#'   \item **`colply`**: apply `fun` to columns of matrix/data.frame `x`.
+#'   \item **`dimply`**: apply `fun` to cells of array/data.frame `x`.
+#'   \item **`vlsply`**: apply `fun` to elements of \link[=ivls]{vlist} `x`.
+#' }
+#' @section The `proc` Argument: When not `NULL`, the `proc` argument is an optional list with up to seven named elements, which give processing instructions as follows:
+#' \itemize{
+#'   \item **`s = TRUE`**: \link[base:simplify2array]{simplify} the result.
+#'   \item **`a1 = TRUE`**: \link[=a]{atomize} `x` as a first step.
+#'   \item **`a2 = TRUE`**: atomize the result.
+#'   \item **`na = TRUE`**: replace resulting `NA` values with `TRUE`.
+#'   \item **`na = FALSE`**: replace resulting `NA` values with `FALSE`.
+#'   \item **`na = 'err'`**: throw error if result contains any `NA`s.
+#'   \item **`agg = 'nor'`**: inspect result for *0* `TRUE` values.
+#'   \item **`agg = 'any'`**: inspect result for *any* `TRUE` values.
+#'   \item **`agg = 'all'`**: inspect result for *only* `TRUE` values.
+#'   \item **`agg = 'one'`**: inspect result for *exactly 1* `TRUE` value.
+#'   \item **`agg = 'two'`**: inspect result for *2+* `TRUE` values.
+#'   \item **`arg = 'xxx'`**: inspect `x` for \link[=ppp]{properties} in the string `xxx` and throw an error if not met.
+#'   \item **`out = 'yyy'`**: inspect the result for properties given in the string `yyy` and throw an error if not met.
+#' }
 #' @param x An object to apply `fun` to.
-#' @param fun Function or name of a function to apply to `x`.
-#' @param dim A \link[=cmp_nnw_vec]{complete non-negative whole-number vec}
-#'   giving dimension(s) of `x` to apply the function `fun` to (`0` indicates
-#'   applying to elements of a vector or \link[=ivls]{vlist} vs. applying to
-#'   every cell for arrays and data.frames).
-#' @param ... An arbitrary number of additional arguments to be passed to the
-#'   function `fun`.
-#' @param proc. `NULL` or a list of named elements with processing instructions.
-#'   See \emph{The `proc` Argument}.
+#' @param fun Function or character scalar name of a function to apply to `x`.
+#' @param dim A \link[=cmp_nnw_vec]{complete non-negative whole-number vec} giving dimension(s) of `x` to apply the function `fun` to (`0` indicates applying to elements of a vector or \link[=ivls]{vlist} vs. applying to every cell for arrays and data.frames).
+#' @param ... An arbitrary number of additional arguments to be passed to the function `fun`.
+#' @param proc. `NULL` or a list of named elements with processing instructions. See the *the `proc` argument* section.
 #' @return Varies.
 #' @export
 ply <- function(x, fun, dim, ..., proc. = NULL) {

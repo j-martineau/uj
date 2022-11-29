@@ -1,56 +1,28 @@
 .r.errs <- function(fun, ..., r = NULL, e = NULL, R = NULL) {
-  c(f0(all(sapply(list(...), ivec))       , NULL, "\n \u2022 Arguments in [...] must be atomic vecs (?atm_vec)."),
+  c(f0(all(sapply(list(...), ivec))        , NULL, "\n \u2022 Arguments in [...] must be atomic vecs (?atm_vec)."),
     f0(fun == "e" , NULL, f0(cmp_psw_scl(r), NULL, "\n \u2022 [r] must be a positive whole-number scalar (?cmp_psw_scl).")),
     f0(fun == "r" , NULL, f0(cmp_psw_scl(e), NULL, "\n \u2022 [e] must be a positive whole-number scalar (?cmp_psw_scl).")))
 }
 
-#' @name r
-#' @family extended
-#' @title Error-Checked Wraps of `base::rep`
-#' @description \tabular{ll}{
-#'   FUNCTIONS    \tab WHAT IT DOES                                          \cr
-#'   `r`          \tab \link[=av]{Atomize} `...` and with the result `dots`,
-#'                     call `rep.int(dots, r)`.                              \cr
-#'   `e`          \tab Atomize `...` and with the result `dots`, call
-#'                     `rep.int(dots, each = e)`.                            \cr
-#'   `re`, `er`   \tab Atomize `...`, and with the result `dots`, call
-#'                     `rep(dots, times = r, each = e)`.                       }
-#'   NOTE
-#'   \cr Although `er` and `re` produce identical results when their arguments
-#'   are the same, both are included for convenience.
-#' @section Comparing Function Output: The following console excerpt
-#'   demonstrates how each function performs.
-#'   ```
-#'   > list(r  =  r(2,    0:1, 9),
-#'   +      e  =  e(3,    0:1, 9),
-#'   +      re = re(2, 3, 0:1, 9),
-#'   +      er = er(3, 2, 0:1, 9))
-#'   $r
-#'   [1] 0 1 9 0 1 9
-#'
-#'   $e
-#'   [1] 0 0 0 1 1 1 9 9 9
-#'
-#'   $re
-#'    [1] 0 0 0 1 1 1 9 9 9 0 0 0 1 1 1 9 9 9
-#'
-#'   $er
-#'    [1] 0 0 1 1 9 9 0 0 1 1 9 9 0 0 1 1 9 9
-#'   ```
-#' @param ... One or more atomic vectors to be replicated, reduced to unique
-#'   values, or reduced to unique duplicated values.
-#' @param r A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving
-#'   the number of replications of entire vectors.
-#' @param e A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving
-#'   the number of times each value is to be replicated in place before
-#'   replication of the entire vector.
+#' @family extensions
+#' @title Error-checked wrappers for `base::rep`
+#' @description These functions \link[=av]{atomize} `...` arguments, converting them to an atomic vector (represented here as `dots`) before replication.
+#' \itemize{
+#'   \item **`r`**: calls `rep.int(dots, r)`.
+#'   \item **`e`**: calls `rep.int(dots, each = e)`.
+#'   \item **`re, er`**: call `rep(dots, times = r, each = e)`.
+#' }
+#' NOTE: Although `er` and `re` produce identical results when their arguments are the same, both are included for convenience.
+#' @param ... One or more atomic vectors to be replicated, reduced to unique values, or reduced to unique duplicated values.
+#' @param r A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of replications of entire vectors.
+#' @param e A complete positive whole-number scalar giving the number of times each value is to be replicated in place.
 #' @return An atomic vector.
+#' @export
 #' @examples
 #' r(2, 0:4, 5:9)
 #' e(3, 0:4, 5:9)
 #' re(2, 3, 0:4, 5:9)
 #' er(3, 2, 0:4, 5:9)
-#' @export
 r <- function(r, ...) {
   errs <- .r.errs("r", ..., r = r)
   if (!is.null(errs)) {stop(errs)}

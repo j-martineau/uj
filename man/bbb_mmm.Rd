@@ -57,7 +57,7 @@
 \alias{pop_str}
 \alias{pop_uno}
 \alias{pop_whl}
-\title{Base + Extended Mode Properties}
+\title{Base + extended mode properties}
 \usage{
 bbb_mmm(x, bbb, mmm, ...)
 
@@ -176,8 +176,7 @@ pop_whl(x, ...)
 
 \item{bbb}{A character scalar containing an base property from \code{bbb_props()}.}
 
-\item{mmm}{A character scalar containing an extended mode property from
-\code{mmm_props()}.}
+\item{mmm}{A character scalar containing an extended mode property from \code{mmm_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -186,46 +185,36 @@ pop_whl(x, ...)
   }}
 }
 \value{
-\tabular{ll}{
-FUNCTION               \tab RETURN VALUE                                \cr
-\code{bbb_mmm_props}        \tab A character vector.                         \cr
-\code{bbb_mmm}, \code{BBB_MMM}   \tab A logical scalar.                             }
+\itemize{
+\item \strong{\code{bbb_mmm_props}}: a character vector.
+\item \strong{\verb{bbb_mmm, xxx_yyy}}: a logical scalar.
+}
 }
 \description{
-\tabular{ll}{
-FUNCTION          \tab WHAT IT DOES                                     \cr
-\code{bbb_mmm}         \tab Evaluates whether \code{x} matches the base property
-specified in the argument \code{bbb} and matches the
-extended mode specified in the argument \code{mmm}
-subject to any restrictions in \code{...}.            \cr
-\code{BBB_MMM}         \tab Evaluates whether \code{x} matches base property \code{BBB}
-and extended mode \code{MMM} subject to any restrictions
-in \code{...} where \code{BBB} and \code{MMM} are placeholders for
-any given base property and any given extended mode
-property, respectively.                          \cr
-\code{bbb_mmm_props}   \tab Gets a character vector of all possible base +
-extended mode properties.                          }
+\itemize{
+\item \strong{\code{bbb_mmm}}: evaluates whether \code{x} matches the base property specified in the argument \code{bbb} and matches the extended mode specified in the argument \code{mmm} subject to any restrictions in \code{...}.
+\item \strong{\code{xxx_yyy}}: evaluates whether \code{x} matches base property \code{xxx} and extended mode \code{yyy} subject to any restrictions in \code{...} where \code{xxx} and \code{yyy} are placeholders for any given base property and any given extended mode property, respectively.
+\item \strong{\code{bbb_mmm_props}}: gets a character vector of all possible base + extended mode properties.
 }
-\section{Specifying Count and Value Restrictions}{
- Specifying restrictions in
-\code{...} is optional. The full set of recognized arguments names are defined
-in the following table along with the properties each
-specifies:\tabular{ll}{
-NAME     \tab WHAT IT SPECIFIES                                         \cr
-\code{n}      \tab Vector of valid lengths/numbers of elements.              \cr
-\code{nr}     \tab Vector of valid numbers of rows.                          \cr
-\code{nc}     \tab Vector of valid numbers of columns.                       \cr
-\code{min}    \tab Scalar minimum valid length/number of element.            \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                      \cr
-\code{minc}   \tab Scalar minimum valid number of columns.                   \cr
-\code{max}    \tab Scalar maximum valid length/number of element.            \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                      \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.                   \cr
-\code{vals}   \tab Vector of valid values.                                   \cr
-\code{lt}     \tab Scalar less-than (exclusive upper) bound.                 \cr
-\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
-\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
-\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.          }
+}
+\section{Specifying count and value restrictions}{
+ Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
+\itemize{
+\item \strong{\code{n}}: a vector of valid lengths/numbers of elements.
+\item \strong{\code{nr}}: a vector of valid numbers of rows.
+\item \strong{\code{nc}}: a vector of valid numbers of columns.
+\item \strong{\code{min}}: a scalar minimum valid length/number of element.
+\item \strong{\code{minr}}: a scalar minimum valid number of rows.
+\item \strong{\code{minc}}: a scalar minimum valid number of columns.
+\item \strong{\code{max}}: a scalar maximum valid length/number of element.
+\item \strong{\code{maxr}}: a scalar maximum valid number of rows.
+\item \strong{\code{maxc}}: a scalar maximum valid number of columns.
+\item \strong{\code{vals}}: a vector of valid values.
+\item \strong{\code{lt}}: a scalar less-than (exclusive upper) bound.
+\item \strong{\code{le}}: a scalar less-than-or-equal (inclusive upper) bound
+\item \strong{\code{ge}}: a scalar greater-than-or-equal (inclusive lower) bound.
+\item \strong{\code{gt}}: a scalar greater-than bound (exclusive lower) bound.
+}
 }
 
 \seealso{

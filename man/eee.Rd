@@ -36,11 +36,7 @@ neee(x)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
-containing one or more effective dimensionality properties (i.e., from
-\code{eee_props()}). Effective dimensionality properties may be pipe-delimited.
-If there are multiple properties in \code{spec}, \code{x} is inspected for a match
-to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more effective dimensionality properties (i.e., from \code{eee_props()}). Effective dimensionality properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -49,80 +45,51 @@ to any of the specified properties.}
   }}
 }
 \value{
-\tabular{ll}{
-FUNCTIONS                       \tab RETURN VALUE                       \cr
-\code{eee_vals}                      \tab A character vector.                \cr
-\code{eee}                           \tab A character scalar or vector.      \cr
-\code{neee}                          \tab A numeric scalar.                  \cr
-\code{ieee}, \code{ixxx}, \code{is_eee_spec}   \tab A logical scalar.                    }
+\itemize{
+\item \strong{\code{eee_vals}}: a character vector.
+\item \strong{\code{eee}}: a character scalar/vector.
+\item \strong{\code{neee}}: a numeric scalar.
+\item \strong{\verb{ieee, ixxx}}: a logical scalar.
+\item \strong{\code{is_eee_spec}}: a logical scalar.
+}
 }
 \description{
-Effective dimensionality of a non-empty object is defined as
-the number of dimensions with multiple indexed positions. Effective
-dimensionality is undefined for empty objects. The following table
-describes values of effective dimensionality, property names assigned to
-them, and a definition of those values.\tabular{llll}{
-NUMBER OF    \tab EFFECTIVE        \tab EFFECTIVE
-\tab CHARACTERISTICS\cr
-EFFECTIVE    \tab DIMENSIONALITY   \tab DIMENSIONALITY   
-\tab OF QUALIFYING\cr
-DIMENSIONS   \tab PROPERTY VALUE   \tab PROPERTY NAME   
-\tab OBJECTS      \cr
-\code{NaN}\tab\code{'eUD'}\tab Effectively dimensionally undefined
-\tab \code{NULL} or of length 0.              \cr
-\code{0}  \tab\code{'e0D'}\tab Effectively \code{0}-dimensional
-\tab Vector of length 1, vlist of length 1, array
-of length 1, or code{1 × 1} data.frame   \cr
-\code{1}  \tab\code{'e1D'}\tab Effectively \code{1}-dimensional
-\tab Vector or vlist of length 2+ or
-non-empty array with multiple index
-positions in \code{1} dimension.         \cr
-\code{2}  \tab\code{'e2D'}\tab Effectively \code{2}-dimensional
-\tab Data frames or matrices with multiple rows
-and multiple columns and non-empty arrays
-with multiple index positions in exactly
-\code{2} dimensions.                     \cr
-\code{≥ 3}\tab\code{'eHD'}\tab Effectively hyper-dimensional
-\tab Non-empty array with multiple index
-positions in at least 3 dimensions.        }
-Functions in this family are:\tabular{ll}{
-FUNCTION   \tab WHAT IT DOES \cr
-\code{eee}           \tab Get a character vector containing all effective
-dimensionality properties possessed by \code{x}       \cr
-\code{ixxx}          \tab Evaluate whether \code{x} possesses the effective
-dimensionality property \code{xxx} (a placeholder for any
-given effective dimensionality property value),
-subject to any restrictions in \code{...}.            \cr
-\code{ieee}          \tab Evaluate whether \code{x} possesses one or more
-(possibly pipe-delimited) effective dimensionality
-properties in \code{spec}, subject to any restrictions in
-\code{...}.                                           \cr
-\code{neee}          \tab Get the number of effective dimensions of \code{x}.   \cr
-\code{eee_props}     \tab Get a character vector of all possible effective
-dimensionality property values.                  \cr
-\code{is_eee_spec}   \tab Evaluate whether \code{spec} is a valid effective
-dimensionality property specification.             }
+Effective dimensionality of a non-empty object is defined as the number of dimensions with \verb{2+} positions. Effective dimensionality is undefined for empty objects.
+\itemize{
+\item \strong{\code{'eUD'}}: Effectively \code{NaN}-dimensional (\code{NULL} or otherwise of length-\code{0} objects; effective dimensionality is undefined).
+\item \strong{\code{'e0D'}}: Effectively \code{0}-dimensional (vectors, vlists, and arrays of length \code{1} and \verb{1 × 1} data.frames).
+\item \strong{\code{'e1D'}}: Effectively \code{1}-dimensional (vectors or vlists of length \verb{2+}, length \verb{2+} arrays with \verb{2+} positions in just \code{1} dimension, and \verb{1 x 2+} or \verb{2+ x 1} data.frames).
+\item \strong{\code{'e2D'}}: Effectively \code{2}-dimensional (\verb{2+ x 2+} data frames or matrices and length \verb{4+} arrays with \verb{2+} positions in just \code{2} dimensions).
+\item \strong{\code{'eHD'}}: Effectively hyper-dimensional (length-\verb{8+} array with \verb{2+} positions in \verb{3+} dimensions).
 }
-\section{Specifying Count and Value Restrictions}{
- Specifying restrictions in
-\code{...} is optional. The full set of recognized arguments names are defined
-in the following table along with the properties each
-specifies:\tabular{ll}{
-NAME     \tab WHAT IT SPECIFIES                                         \cr
-\code{n}      \tab Vector of valid lengths/numbers of elements.              \cr
-\code{nr}     \tab Vector of valid numbers of rows.                          \cr
-\code{nc}     \tab Vector of valid numbers of columns.                       \cr
-\code{min}    \tab Scalar minimum valid length/number of element.            \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                      \cr
-\code{minc}   \tab Scalar minimum valid number of columns.                   \cr
-\code{max}    \tab Scalar maximum valid length/number of element.            \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                      \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.                   \cr
-\code{vals}   \tab Vector of valid values.                                   \cr
-\code{lt}     \tab Scalar less-than (exclusive upper) bound.                 \cr
-\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
-\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
-\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.          }
+\strong{Functions}
+\itemize{
+\item \strong{\code{eee}}: Gets a character vector containing all effective dimensionality properties possessed by \code{x}.
+\item \strong{\code{ixxx}}: Evaluates whether \code{x} possesses the effective dimensionality property \code{xxx} (a placeholder for any given effective dimensionality property value), subject to any restrictions in \code{...}.
+\item \strong{\code{ieee}}: Evaluates whether \code{x} possesses one or more (possibly pipe-delimited) effective dimensionality properties in \code{spec}, subject to any restrictions in \code{...}.
+\item \strong{\code{neee}}: Get the number of effective dimensions of \code{x}.
+\item \strong{\code{eee_props}}: Gets a character vector of all possible effective dimensionality property values.
+\item \strong{\code{is_eee_spec}}: Evaluates whether \code{spec} is a valid effective dimensionality property specification.
+}
+}
+\section{Specifying count and value restrictions}{
+ Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
+\itemize{
+\item \strong{\code{n}}: a vector of valid lengths/numbers of elements.
+\item \strong{\code{nr}}: a vector of valid numbers of rows.
+\item \strong{\code{nc}}: a vector of valid numbers of columns.
+\item \strong{\code{min}}: a scalar minimum valid length/number of element.
+\item \strong{\code{minr}}: a scalar minimum valid number of rows.
+\item \strong{\code{minc}}: a scalar minimum valid number of columns.
+\item \strong{\code{max}}: a scalar maximum valid length/number of element.
+\item \strong{\code{maxr}}: a scalar maximum valid number of rows.
+\item \strong{\code{maxc}}: a scalar maximum valid number of columns.
+\item \strong{\code{vals}}: a vector of valid values.
+\item \strong{\code{lt}}: a scalar less-than (exclusive upper) bound.
+\item \strong{\code{le}}: a scalar less-than-or-equal (inclusive upper) bound
+\item \strong{\code{ge}}: a scalar greater-than-or-equal (inclusive lower) bound.
+\item \strong{\code{gt}}: a scalar greater-than bound (exclusive lower) bound.
+}
 }
 
 \seealso{

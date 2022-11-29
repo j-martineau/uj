@@ -226,7 +226,7 @@
 \alias{dwwTQ}
 \alias{dwwTS}
 \alias{dwwTT}
-\title{Error-Checked String Delimiting}
+\title{Error-checked string delimiting}
 \usage{
 da(d, ...)
 
@@ -679,51 +679,80 @@ dwwTT(...)
 \arguments{
 \item{d, D}{\link[=chr_scl]{Character scalar} delimiters.}
 
-\item{...}{An arbitrary number of atomic vector arguments to be delimited.
-Argument in \code{...} must be recyclable for functions that delimit across
-\code{...} arguments as the first or only step (i.e., functions with
-names beginning with \code{da}).}
+\item{...}{An arbitrary number of atomic vector arguments to be delimited. Argument in \code{...} must be recyclable for functions that delimit across \code{...} arguments as the first or only step (i.e., functions with names beginning with \code{da}).}
 }
 \value{
-\tabular{ll}{
-FUNCTIONS                        \tab RETURN VALUE                      \cr
-\code{da}, \code{dw}, \code{daX}, \code{dwX}         \tab A character vector.\cr
-\code{daw}, \code{dww}, \code{dawXY}, \code{dwwXY}   \tab A character scalar.}
+\itemize{
+\item \strong{\verb{da, dw, daX, daw, dww}}: a character scalar.
+\item \strong{\verb{dawXY, dwwXY}}: a character scalar.
+}
 }
 \description{
-
+Simplified and extended \code{base::paste} and \code{base::paste0}. There are both primary functions with user-specified delimiters and convenience functions for common delimiters.
+\cr\cr
+\strong{Primary Functions}
+\itemize{
+\item \strong{\code{da}}: Delimits across corresponding elements of (recyclable atomic vector) \code{...} arguments using delimiter \code{d}. Produces a character vector of \code{max(lengths(list(...)))} substrings delimited by \code{d}.
+\item \strong{\code{dw}}: Delimits elements within each (atomic vector) \code{...} argument using delimiter \code{d}. Produces a character vector of \code{...length()} substrings delimited by \code{d}.
+\item \strong{\code{daw}}: Delimit across corresponding elements of (recyclable atomic vector) \code{...} arguments using delimiter \code{d}, then delimit elements within the resulting character vector using delimiter \code{D}. Produces a character scalar of \code{...length()} substrings delimited by \code{D} where each substring contains \code{max(lengths(list(...)))} sub-substrings delimited by \code{d}.
+\item \strong{\code{dww}}: Delimit elements within each (atomic vector) \code{...} argument using delimiter \code{d}, then delimit elements within the resulting vector using delimiter \code{D}. Produces a character scalar of \code{...length()} substrings delimited by \code{D} where each substring contains sub-substrings delimited by \code{d}.
+}
+\strong{Common-Delimiter Convenience Functions}
+\cr Convenience function names are constructed by append \code{1} or \code{2} codes for common delimiters to the function name as follows (where \code{X} and \code{Y} are placeholders for common-delimiter codes):
+\itemize{
+\item \strong{\code{daX}}: Delimits across with \code{X}.
+\item \strong{\code{dwX}}: Delimits within with \code{X}.
+\item \strong{\code{dawXY}}: Delimits across with \code{X} then within with \code{Y}.
+\item \strong{\code{dwwXY}}: Delimits within with \code{X} then again with \code{Y}.
+}
+Common delimiters are encoded as:
+\tabular{lll}{
+CODE        \tab NAME           \tab DELIMITER INVOKED
+\cr \code{'0'}   \tab blank          \tab \code{''}
+\cr \code{'1'}   \tab space          \tab \code{' '}
+\cr \code{'B'}   \tab broken pipe    \tab \code{'¦'}
+\cr \code{'C'}   \tab colon          \tab \code{':'}
+\cr \code{'D'}   \tab dot            \tab \code{'.'}
+\cr \code{'G'}   \tab grammatical    \tab\code{', '}
+\cr         \tab comma          \tab  
+\cr \code{'P'}   \tab pipe           \tab \code{'|'}
+\cr \code{'Q'}   \tab back-tick      \tab \code{'``'}
+\cr \code{'S'}   \tab simple comma   \tab \code{','}
+\cr \code{'T'}   \tab tilde          \tab \code{'~'}
+}
+'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., \code{'1, 2, 3'} vs. \code{'1,2,3'}).
 }
 \examples{
-  # delimit across using delimiter '|'.
-  # aliases paste(1:3, 4:6, sep = '|').
-  da('|', 1:3, 4:6)
+# delimit across using delimiter '|'.
+# aliases paste(1:3, 4:6, sep = '|').
+da('|', 1:3, 4:6)
 
-  # delimit within using delimiter ':'.
-  # aliases sapply(list(1:3, 4:6), paste0, collapse = ':').
-  dw(':', 1:3, 4:6)
+# delimit within using delimiter ':'.
+# aliases sapply(list(1:3, 4:6), paste0, collapse = ':').
+dw(':', 1:3, 4:6)
 
-  # delimit across using '|', then within using ':'
-  # aliases paste(..., sep = d, collapse = D)
-  daw('|', ':', 1:3, 4:6)
+# delimit across using '|', then within using ':'
+# aliases paste(..., sep = d, collapse = D)
+daw('|', ':', 1:3, 4:6)
 
-  # delimit within using '|' then again within using ':'.
-  # aliases paste0(sapply(list(...), paste0, collapse = d), collapse = D).
-  dww('|', ':', 1:3, 4:6)
+# delimit within using '|' then again within using ':'.
+# aliases paste0(sapply(list(...), paste0, collapse = d), collapse = D).
+dww('|', ':', 1:3, 4:6)
 
-  # delimit across using pipe (encoded by 'P' suffix in function name).
-  daP(1:3, 4:6)
+# delimit across using pipe (encoded by 'P' suffix in function name).
+daP(1:3, 4:6)
 
-  # delimit within using colon (encoded by 'C' suffix in function name).
-  dwC(1:3, 4:6)
+# delimit within using colon (encoded by 'C' suffix in function name).
+dwC(1:3, 4:6)
 
-  # delimit across using pipe, then within using colon.
-  dawPC(1:3, 4:6)
+# delimit across using pipe, then within using colon.
+dawPC(1:3, 4:6)
 
-  # delimit within using colon, then again using pipe.
-  dwwCP(1:3, 4:6)
+# delimit within using colon, then again using pipe.
+dwwCP(1:3, 4:6)
 }
 \seealso{
-Other strings:
+Other strings: 
 \code{\link{blank}()},
 \code{\link{charn}()},
 \code{\link{fsub}()},

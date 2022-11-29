@@ -1,33 +1,22 @@
 #' @name ipat
 #' @family strings
 #' @title Simplified string indexing for fixed patterns
-#' @description \tabular{ll}{
-#'   FUNCTION    \tab WHAAT IT DOES                                          \cr
-#'   `ipat`      \tab Logically indexes character vector elements containing a
-#'                    pattern as `TRUE` or `FALSE`.                          \cr
-#'   `has_pat`   \tab Evaluate whether each element of `x` contains the string
-#'                    in `pat`.                                              \cr
-#'   `wpat`      \tab Numerically indexes character vector elements containing
-#'                    a pattern as integer element numbers.                  \cr
-#'   `npat`      \tab Counts the number of times a pattern appears in each
-#'                    element of a character vector.                         \cr
-#'   `ppat`      \tab Identifies the position of *the first* character of the
-#'                    first instance of a pattern in each element of a character
-#'                    vector.                                                \cr
-#'   `ppats`     \tab Identifies the position of the first character of *every*
-#'                    instance of a pattern in each element of a characte
-#'                    vector.                                                  }
-#' @details Always \link[=a]{atomizes} `...` to create a single character vector
-#'   to search for a fixed pattern.
+#' @description \itemize{
+#'   \item **`ipat`**: Logically indexes character vector elements containing a pattern as `TRUE` or `FALSE`.
+#'   \item **`wpat`**: Numerically indexes character vector elements containing a pattern as integer element numbers.
+#'   \item **`npat`**: Counts the number of times a pattern appears in each element of a character vector.
+#'   \item **`ppat`**: Identifies the position of *the first* character of the first instance of a pattern in each element of a character vector.
+#'   \item **`ppats`**: Identifies the position of the first character of *every* instance of a pattern in each element of a character vector.
+#'   \item **`has_pat`**: Evaluate whether each element of `x` contains the string in `pat`.
+#' }
+#' @details Always \link[=a]{atomizes} `...` to create a single character vector to search for a fixed pattern.
 #' @param x A \link[=chr_vec]{character vector}.
-#' @param pat A fixed value \link[=cmp_chr_scl]{complete character scalar}
-#'   pattern to search for in the atomic vector resulting from collapsing all
-#'   elements of every argument supplied via `...`.
-#' @return \tabular{ll}{
-#'   FUNCTIONS                \tab RETURN VALUE                              \cr
-#'   `has_pat`, `ipat`        \tab A logical vector.                         \cr
-#'   `wpat`, `npat`, `ppat`   \tab A \link[=whl_vec]{whole-number vector}.   \cr
-#'   `ppats`                  \tab A \link[=whl_vls]{whole-number vlist}.      }
+#' @param pat A fixed value \link[=cmp_chr_scl]{complete character scalar} pattern to search for in the atomic vector resulting from collapsing all elements of every argument supplied via `...`.
+#' @return \itemize{
+#'   \item **`ppats`**: a \link[=whl_vls]{whole-number vlist}.
+#'   \item **`has_pat, ipat`**: a logical vector.
+#'   \item **`wpat, npat, ppat`**: A \link[=whl_vec]{whole-number vector}.
+#' }
 #' @export
 ipat <- function(x, pat) {
   errs <- c(f0(cmp_chr_vec(x)  , NULL, " \u2022 [x] must be a complete character vec (?cmp_chr_vec)."     ),

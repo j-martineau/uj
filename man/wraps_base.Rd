@@ -8,7 +8,7 @@
 \alias{mid}
 \alias{spf}
 \alias{levs}
-\title{Thin Wraps of Functions from Package \code{base}}
+\title{Thin wrappers for \code{base} functions}
 \usage{
 u(x)
 
@@ -43,16 +43,15 @@ For a vector, an object of the same type of \code{x}, but with only
   always has the same number of dimensions as \code{x}.
 }
 \description{
-\tabular{ll}{
-WRAPPER   \tab BASE FUNCTION                                            \cr
-\code{u} (A)   \tab \code{\link[base]{unique}}                               \cr
-\code{up}      \tab \code{\link[base]{ceiling}}                              \cr
-\code{dn}      \tab \code{\link[base]{floor}}                                \cr
-\code{mid}     \tab \code{\link[base]{substr}}                               \cr
-\code{spf}     \tab \code{\link[base]{sprintf}}                              \cr
-\code{levs}    \tab \code{\link[base]{levels}}                                 }
-(A) \code{u} differs from \code{\link{uv}} in that \code{uv} \link[=a]{atomizes} an
-arbitrary number of \code{...} arguments before calling \code{unique}.
+\itemize{
+\item \strong{\code{u}}: thinly wraps code{\link[base]{unique}}.
+\item \strong{\code{up}}: thinly wraps \code{\link[base]{ceiling}}.
+\item \strong{\code{dn}}: thinly wraps \code{\link[base]{floor}}.
+\item \strong{\code{mid}}: thinly wraps \code{\link[base]{substr}}.
+\item \strong{\code{spf}}: thinly wraps \code{\link[base]{sprintf}}.
+\item \strong{\code{levs}}: thinly wraps \code{\link[base]{levels}}.
+}
+NOTE: \code{u} differs from \code{\link{uv}} in that \code{uv} \link[=a]{atomizes} an arbitrary number of \code{...} arguments before calling \code{unique}.
 }
 \details{
 This is a generic function with methods for vectors, data frames and
@@ -190,6 +189,7 @@ Other wraps:
 \code{\link{wraps_data_table}},
 \code{\link{wraps_dplyr}},
 \code{\link{wraps_gg}},
+\code{\link{wraps_graphics}},
 \code{\link{wraps_readr}},
 \code{\link{wraps_scales}},
 \code{\link{wraps_tibble}}

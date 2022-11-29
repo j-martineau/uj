@@ -7,56 +7,32 @@
 
 #' @name iii
 #' @family props
-#' @title Integrity (state of completeness) Properties
-#' @description Integrity properties are defined for \link[=ipop]{populated}
-#'   \link[=atm_dtf]{atomic data.frame}, populated \link[=atm_vls]{atomic
-#'   vlists}, populated atomic vectors, and populated atomic arrays. For all
-#'   others, all integrity properties are considered \code{FALSE}. The following
-#'   table summarizes valid integrity properties. \tabular{lll}{
-#'   NAME        \tab VALUE   \tab QUALIFYING OBJECTS                        \cr
-#'   Complete    \tab `'cmp'` \tab Populated and atomic vectors, arrays,
-#'                                 \link[=atm_dtf]{data.frames}, and
-#'                                 \link[=atm_vls]{vlists} containing
-#'                                 \strong{no} `NA` values.                  \cr
-#'   Missing     \tab `'mss'` \tab Populated and atomic vectors, arrays,
-#'                                 \link[=atm_dtf]{data.frames}, and
-#'                                 \link[=atm_vls]{vlists} containing
-#'                                 \strong{only} `NA` values.                \cr
-#'   Partial     \tab `'prt'` \tab Populated and atomic vectors, arrays,
-#'                                 \link[=atm_dtf]{data.frames}, and
-#'                                 \link[=atm_vls]{vlists} containing
-#'                                 \strong{both} `NA` and non-`NA` values.   \cr
-#'   NA scalar   \tab `'nas'` \tab An atomic scalar of value `NA`. May be a
-#'                                 vector of array.                          \cr
-#'   OK scalar   \tab `'oks'` \tab A non-`NA` atomic scalar of value. May be a
-#'                                 vector of array.                            }
-#'   Functions in this family are:\tabular{ll}{
-#'   FUNCTION   \tab WHAT IT DOES \cr
-#'   `iii`           \tab Gets a character vector containing all integrity
-#'                        properties possessed by `x`.                       \cr
-#'   `ixxx`          \tab Evaluates whether `x` possesses the integrity property
-#'                        `xxx` (a placeholder for any given integrity property
-#'                        value) subject to any restrictions in `...`.       \cr
-#'   `iiii`          \tab Evaluates whether `x` possesses one or more  (possibly
-#'                        pipe-delimited) integrity properties in `spec` subject
-#'                        to any restrictions in `...`.                      \cr
-#'   `iii_props`     \tab Gets a character vector of all possible integrity
-#'                        property values.                                   \cr
-#'   `is_iii_spec`   \tab Evaluates whether `spec` is a valid integrity property
-#'                        specification.                            }
+#' @title Integrity (completeness) properties
+#' @description Integrity properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frame}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
+#' \itemize{
+#'   \item **`'cmp'`** (complete): populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing **no** `NA` values.
+#'   \item **`'mss'`** (missing): populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing **only** `NA` values.
+#'   \item **`'prt'`** (partial): populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing **both** `NA` and non-`NA` values.
+#'   \item **`'nas'`** (`NA` scalar): atomic scalar `NA`.
+#'   \item **`'oks'`** (OK scalar): non-`NA` atomic scalar.
+#' }
+#' **Functions**
+#' \itemize{
+#'   \item **`iii`**: gets a character vector containing all integrity properties possessed by `x`.
+#'   \item **`ixxx`**: evaluates whether `x` possesses the integrity property `xxx` (a placeholder for any given integrity property value) subject to any restrictions in `...`.
+#'   \item **`iiii`**: evaluates whether `x` possesses one or more (possibly pipe-delimited) integrity properties in `spec` subject to any restrictions in `...`.
+#'   \item **`iii_props`**: gets a character vector of all possible integrity property values.
+#'   \item **`is_iii_spec`**: evaluates whether `spec` is a valid integrity property specification.
+#' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec}
-#'   containing one or more integrity properties (i.e., from `iii_props()`).
-#'   Integrity properties may be pipe-delimited. If there are multiple
-#'   properties in `spec`, `x` is inspected for a match to any of the specified
-#'   properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more integrity properties (i.e., from `iii_props()`). Integrity properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
-#' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \tabular{ll}{
-#'   FUNCTIONS                       \tab RETURN VALUE                       \cr
-#'   `iii_vals`                      \tab A character vector.                \cr
-#'   `iii`                           \tab A character scalar or vector.      \cr
-#'   `iiii`, `ixxx`, `is_iii_spec`   \tab A logical scalar.                    }
+#' @inheritSection meets Specifying count and value restrictions
+#' @return \itemize{
+#'   \item **`iii`**: a character scalar/vector.
+#'   \item **`iii_vals`**: a character vector.
+#'   \item **`iiii, ixxx, is_iii_spec`**: a logical scalar.
+#' }
 #' @export
 iii <- function(x) {
   out <- NULL

@@ -1,186 +1,77 @@
-
-
 .ppp_props <- function() {sort(c(.bbbs(), .cccs(), .ddds(), .eees(), .iiis(), .mmms(), .ssss()))}
 .spec_vals <- function(x) {if (!is.character(x)) {return(NULL)} else {x <- unname(unlist(strsplit(x, "|", fixed = T))); x[x != ""]}}
-
-.drop_iprefix <- function(x) {
-  i <- nchar(x) == 4 & substr(x, 1, 1) == "i"
-  x[i] <- substr(x[i], 2, 4)
-  x
-}
+.drop_iprefix <- function(x) {i <- nchar(x) == 4 & substr(x, 1, 1) == "i"; x[i] <- substr(x[i], 2, 4); x}
 
 #' @name ppp
 #' @family props
 #' @title All purpose property checking
-#' @description This set of functions provide utilities that bring together
-#'   these seven families of properties defined by this package:\tabular{ll}{
-#'     PROPERTY         \tab PROPERTY                                        \cr
-#'     FAMILY VALUE     \tab FAMILY NAME                                     \cr
-#'     \code{\link{bbb}}\tab Base                                            \cr
-#'     \code{\link{ccc}}\tab Extended class                                  \cr
-#'     \code{\link{ddd}}\tab Defined dimensionality                          \cr
-#'     \code{\link{eee}}\tab Effective dimensionality                        \cr
-#'     \code{\link{iii}}\tab Integrity (state of completeness)               \cr
-#'     \code{\link{mmm}}\tab Extended mode                                   \cr
-#'     \code{\link{sss}}\tab Shape                                             }
-#'   \strong{Single Property Specifications}: In this package, all individual
-#'   property specifications are scalars containing exactly 3 characters (e.g.,
-#'   \code{'ord'}, \code{'dtf'}, \code{'d1D'}, or \code{'rct'}).
-#'   \cr\cr
-#'   \strong{Combination/Conjunctive Property Specifications}: Specifications
-#'   for properties that must co-occur are constructed by delimiting multiple
-#'   individual properties with underscores (e.g., the properties \code{'ord'},
-#'   \code{'dtf'}, \code{'d1D'}, and \code{'rct'} could be specified to occur
-#'   together using the combination/conjunctive property specification
-#'   \code{'ord_dtf_d1D_rct'} or an equivalent underscore-delimited permutation.
-#'   \cr\cr
-#'   \strong{Alternative/Compensatory Property Specifications}: Specifications
-#'   for alternative/compensatory properties give a way to indicate that if any
-#'   one (individual or combination) property is satisfied the entire
-#'   specification is satisfied. They are constructed by pipe-delimiting
-#'   multiple individual or combination properties. For example, the
-#'   specification \code{'ord|dtf_d1D||dtf_rct'} would be satisfied by an object
-#'   with property \code{'ord'}, by an object with the combined property
-#'   \code{'dtf_d1D'}, or by an object with the combined property
-#'   \code{'dtf_rct'}.
-#'   \cr\cr
-#'   \strong{Universal Property Functions (in this family)}\tabular{ll}{
-#'     FUNCTION             \tab WHAT IT DOES                                \cr
-#'     `ppp`                \tab Get a character vector of all single properties
-#'                               from all families that `x` possesses.       \cr
-#'     `ippp'               \tab Evaluate whether an object satisfies the
-#'                               property specification in `ppp` subject to any
-#'                               additional restrictions supplied in `...`.  \cr
-#'     `nll_or`             \tab Evaluate whether an object is either `NULL` or
-#'                               satisfies the property specification in
-#'                               argument `ppp` subject to any additional
-#'                                restrictions in `...`.                     \cr
-#'     `nas_or`             \tab Evaluate whether an object is either scalar
-#'                               `NA` or satisfies the property specification in
-#'                               argument `ppp` subject to any additional
-#'                               restrictions in `...`.                      \cr
-#'     `pop_funs`           \tab Get the names of all property functions that
-#'                               check for a single property or a combined
-#'                               property.                                   \cr
-#'     `ppp_props`          \tab Get a character vector of all single properties
-#'                               from all families.                          \cr
-#'     `all_props`          \tab Get all possible individual properties from all
-#'                               property families and all possible
-#'                               combination/conjunctive properties as checked
-#'                                by combined property functions (see the
-#'                               \emph{combined property functions} section).\cr
-#'     `ppp_all`            \tab Get all constituent individual properties from
-#'                               the property specification in `ppp`.        \cr
-#'     `ppps_from_combo`    \tab Extract each individual property value from a
-#'                               combination/conjunctive property
-#'                               specification.                              \cr
-#'     `combos_from_spec`   \tab Extract each individual or combination property
-#'                               specification from an alternative/compensatory
-#'                               property specification.                     \cr
-#'     `is_ppp_fun`         \tab Evaluate whether a character scalar is the name
-#'                                of a property function (those listed by
-#'                               `ppp_funs`).                                \cr
-#'     `is_valid_ppp`       \tab Evaluate a character scalar property
-#'                               specification for validity (i.e., does it
-#'                               contain only single properties, valid
-#'                               combination properties, and/or valid alternate
-#'                               properties).                                \cr
-#'     `is_valid_spec`      \tab Evaluate a character combination property
-#'                               specification for validity (i.e., does it
-#'                               contain only single properties or valid
-#'                               combination properties).                    \cr
-#'     `is_valid_combo`     \tab Evaluate whether a character scalar value is a
-#'                               valid single property specification.        \cr
-#'     `ppp_defs`           \tab Get a data frame defining all individual
-#'                               properties of all property families.        \cr
-#'     `ppp_verbose`        \tab Get a verbose definition of an individual
-#'                               property specification.                     \cr
-#'     `ppp_concise`        \tab Get a plain-language, concise definition of an
-#'                               individual or combination/conjunctive property
-#'                               specification.                              \cr
-#'     `alt_ppp_concise`    \tab Get a plain-language, concise definition of an
-#'                               alternative/compensatory property
-#'                               specification.                                }
-#'   \strong{ndividual Property Functions}: Property functions associated with a
-#'   single property family take the following forms where `PPP` is a
-#'   placeholder for any given individual property and `FFF` is a placeholder
-#'   for any given property family.\tabular{ll}{
-#'     FUNCTION      \tab WHAT IT DOES                                       \cr
-#'     `FFF`         \tab Get all properties of from the property family `FFF`
-#'                        possessed by `x`.                                  \cr
-#'     `iFFF`        \tab Evaluate whether `x` has the single property `PPP`,
-#'                        subject to restrictions in `...`.                  \cr
-#'     `iPPP`        \tab Evaluate whether `x` has one or more specific
-#'                        properties from property family `FFF`, subject to
-#'                        restrictions in `...`.                             \cr
-#'     `FFF_props`   \tab Get all possible properties of family `FFF`.         }
-#'   \strong{Combination Property Functions}: Property functions associated with
-#'   a single property family take the following forms where `CCC`, `MMM`, and
-#'   `BBB` are placeholders for properties from extended class, extended mode,
-#'   and base property families.\tabular{ll}{
-#'     FUNCTION              \tab WHAT IT DOES                               \cr
-#'     `MMM_CCC`             \tab Evaluate whether an object is of extended mode
-#'                                `MMM` and extended class `CCC`.            \cr
-#'     `BBB_CCC`             \tab Evaluate whether an object is of base property
-#'                                `BBB` and of extended class `CCC`.         \cr
-#'     `BBB_MMM`             \tab Evaluate whether an object is of base property
-#'                                `BBB` and of extended mode `MMM`.          \cr
-#'     `cmp_CCC`             \tab Evaluate whether an object is complete
-#'                                (non-empty, atomic, containing no `NA` values)
-#'                                and of extended class `CCC`.               \cr
-#'     `cmp_MMM`             \tab Evaluate whether an object is complete
-#'                                (implying non-empty and atomic) and of
-#'                                extended mode `MMM`.                       \cr
-#'     `cmp_MMM_CCC`         \tab Evaluate whether an object is complete
-#'                                (implying non-empty and atomic), of extended
-#'                                mode `MMM`, and of extended class `CCC`.   \cr
-#'     `bbb_ccc_props`       \tab Get all combined base + extended class
-#'                                properties.                                \cr
-#'     `bbb_mmm_props`       \tab Get all combined base + extended mode
-#'                                properties.                                \cr
-#'     `mmm_ccc_props`       \tab Get all combined extended mode + extended
-#'                                class properties.                          \cr
-#'     `cmp_ccc_props`       \tab Get all combined complete + extended class
-#'                                properties.                                \cr
-#'     `cmp_mmm_props`       \tab Get all combined complete + extended mode
-#'                                properties.                                \cr
-#'     `cmp_mmm_ccc_props`   \tab Get all combined complete + extended mode +
-#'                                extended class properties.                   }
-#' @param as.dtf A non-`NA` logical scalar indicating whether to return the
-#'   result as a data.frame with column 1 containing property values and column
-#'   2 containing the property families.
+#' @description This set of functions provide utilities that bring together seven families of object properties defined by this package:\itemize{
+#'   \item **\code{\link{bbb}}**: base.
+#'   \item **\code{\link{ccc}}**: extended class.
+#'   \item **\code{\link{ddd}}**: defined dimensionality.
+#'   \item **\code{\link{eee}}**: effective dimensionality.
+#'   \item **\code{\link{iii}}**: integrity (state of completeness).
+#'   \item **\code{\link{mmm}}**: extended mode.
+#'   \item **\code{\link{sss}}**: shape.
+#' }
+#' **Individual property specifications** are character scalars containing exactly `3` characters (e.g., `'ord'`, `'dtf'`, `'d1D'`, `'rct'`).
+#' \cr\cr
+#' **Combination (or conjunctive property specifications** are for properties that must co-occur. They are constructed by delimiting multiple individual properties with underscores (e.g., `'ord_dtf_d1D_rct'` or an equivalent underscore-delimited permutation).
+#' \cr\cr
+#' **Alternate (compensatory) property specifications** give a way to indicate that if any one (individual or combination) property is satisfied the entire specification is satisfied. They are constructed by pipe-delimiting multiple individual or combination properties. For example, the specification `'ord|dtf_d1D||dtf_rct'` would be satisfied by an object with individual property `'ord'`, combined property `'dtf_d1D'`, or combined property `'dtf_rct'`.
+#' \cr\cr
+#' **Universal property functions** address all families.
+#' \itemize{
+#'   \item **`ppp`**: gets all properties of all property families applicable to `x`
+#'   \item **`ippp`**: evaluates whether an object satisfies the property specification in `ppp` subject to any additional restrictions supplied in `...`.
+#'   \item **`nll_or`**: evaluates whether an object is either `NULL` or satisfies the property specification in argument `ppp` subject to any additional restrictions in `...`.
+#'   \item **`nas_or`**: evaluates whether an object is either scalar `NA` or satisfies the property specification in argument `ppp` subject to any additional restrictions in `...`.
+#'   \item **`all_props`**: gets all possible individual properties from all property families and all possible combination/conjunctive properties as checked by combined property functions.
+#'   \item **`ppp_all`**: gets all constituent individual properties from the property specification in argument `ppp`.
+#'   \item **`ppp_funs`**: gets the names of all property functions that check for a single property or a combined property without checking for any additional restrictions.
+#'   \item **`ppp_defs`**: gets a data frame defining all individual properties of all property families.
+#'   \item **`is_ppp_fun`**: evaluates whether a character scalar is the name of a property function (as listed by `ppp_funs`).
+#'   \item **`is_valid_ppp`**: evaluates a character scalar property specification for validity (i.e., does it contain only single properties, valid combination properties,and/or valid alternate properties).
+#'   \item **`ppp_from_combo`**: extracts each individual property value from a combination/conjunctive property specification.
+#'   \item **`combos_from_ppp`**: extracts each individual or combination property specification from an alternative/compensatory property specification.
+#'   \item **`ppp_verbose`**: gets a verbose definition of an individual property specification.
+#'   \item **`ppp_concise`**: gets a plain-language, concise definition of an individual or combination/conjunctive property specification.
+#'   \item **`alt_ppp_concise`**: gets a plain-language, concise definition of an alternative/compensatory property specification.
+#' }
+#' **Individual property functions** associated with a single property family take the following forms where `xxx` is a placeholder for any given individual property and `yyy` is a placeholder for any given  property family.
+#' \itemize{
+#'   \item **`yyy`**: gets properties applicable to `x` from from property family `yyy`.
+#'   \item **`ixxx`**: evaluates whether `x` has the property `xxx`.
+#'   \item **`iyyy`**: evaluates whether `x` has one or more individual properties from property family `yyy`, subject to any restrictions supplied in `...`.
+#'   \item **`yyy_props`**: gets all properties in the property family `yyy`.
+#' }
+#' **Combination property functions** associated with a multiple property families take the following forms where `xxx`, `yyy`, and `zzz` are placeholders for properties from base, extended mode, and extended class property families, respectively:
+#' \itemize{
+#'   \item **`yyy_zzz`**: evaluates whether an object is of extended mode `yyy` and extended class `zzz`.
+#'   \item **`xxx_zzz`**: evaluates whether an object is of base property `xxx` and extended class `zzz`.
+#'   \item **`xxx_yyy`**: evaluates whether an object is of base property `xxx` and extended mode `yyy`.
+#'   \item **`cmp_yyy`**: evaluates whether an object is complete (non-empty, atomic, containing no `NA` values) and of extended mode `yyy`.
+#'   \item **`cmp_zzz`**: evaluates whether an object is complete (implying non-empty and atomic) and extended class `zzz`.
+#'   \item **`cmp_yyy_zzz`**: evaluates whether an object is complete (non-empty and atomic), extended mode `yyy`, and extended class `zzz`.
+#'   \item **`mmm_ccc_props`**: gets all combined extended mode + extended class properties.
+#'   \item **`bbb_ccc_props`**: gets all combined base + extended class properties.
+#'   \item **`bbb_mmm_props`**: gets all combined base + extended mode properties.
+#'   \item **`cmp_ccc_props`**: gets all combined completeness + extended class properties.
+#'   \item **`cmp_mmm_props`**: gets all combined completeness + extended mode properties.
+#'   \item **`cmp_mmm_ccc_props`**: gets all combined completeness + extended mode + extended class properties.
+#' }
+#' @param as.dtf A non-`NA` logical scalar indicating whether to return the result as a data.frame with column `1` containing property values and column `2` containing the property families.
 #' @param x An R object.
-#' @param ppp A \link[=cmp_chr_scl]{complete character scalar} containing one or
-#'   more values from `ppp_vals()` separated by pipes and/or underscores.
-#'   Combinations of properties can be specified by separating them with
-#'   underscores. Separating properties or combinations of properties with pipes
-#'   will result in a value of `TRUE` if any of them applies to `x`.
-#' @param valid A \link[=cmp_chr_vec]{complete character vec} containing all
-#'   properties considered valid.
-#' @param print A non-`NA` logical scalar indicating whether to print the
-#'   property definition to the console.
+#' @param ppp A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from `ppp_vals()` separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of `TRUE` if any of them applies to `x`.
+#' @param valid A \link[=cmp_chr_vec]{complete character vec} containing all properties considered valid.
+#' @param print A non-`NA` logical scalar indicating whether to print the property definition to the console.
 #' @inheritDotParams meets
-#' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \tabular{ll}{
-#'   FUNCTION             \tab RETURN VALUE                                  \cr
-#'   `ppp`                \tab A character vector.                           \cr
-#'   `ippp'               \tab A logical scalar.                             \cr
-#'   `nll_or`             \tab A logical scalar.                             \cr
-#'   `nas_or`             \tab A logical scalar.                             \cr
-#'   `pop_funs`           \tab A character vector                            \cr
-#'   `ppp_props`          \tab A character vector.                           \cr
-#'   `all_props`          \tab A character vector.                           \cr
-#'   `ppp_all`            \tab A character vector.                           \cr
-#'   `ppps_from_combo`    \tab A character vector.                           \cr
-#'   `combos_from_spec`   \tab A character vector.                           \cr
-#'   `is_ppp_fun`         \tab A logical scalar.                             \cr
-#'   `is_valid_ppp`       \tab A logical scalar.                             \cr
-#'   `is_valid_spec`      \tab A logical scalar.                             \cr
-#'   `is_valid_combo`     \tab A logical scalar.                             \cr
-#'   `ppp_defs`           \tab A data.frame.                                 \cr
-#'   `ppp_verbose`        \tab A character scalar.                           \cr
-#'   `ppp_concise`        \tab A character scalar.                           \cr
-#'   `alt_ppp_concise`    \tab A character scalar.                             }
+#' @inheritSection meets Specifying count and value restrictions
+#' @return \itemize{
+#'   \item **`ppp_concise, alt_ppp_concise`**: a character scalar.
+#'   \item **`ppp, ppp_all, ppp_vals, pop_funs, ppp_from_combo, combos_from_ppp`**: a character vector.
+#'   \item **`All others`**: a logical scalar.
+#' }
 #' @export
 ppp <- function(x) {sort(c(bbb(x), ccc(x), ddd(x), eee(x), iii(x), mmm(x), sss(x)))}
 
@@ -204,6 +95,99 @@ ppp_props <- function(as.dtf = F) {
 
 #' @rdname ppp
 #' @export
+is_valid_spec <- function(spec) {
+  if (!cmp_chr_scl(spec)) {return(FALSE)}
+  spec <- av(strsplit(spec, "_", TRUE))
+  spec <- av(strsplit(spec, "|", TRUE))
+  spec <- trimws(spec)
+  spec <- spec[spec != ""]
+  spec <- .drop_iprefix(spec)
+  if (length(spec) == 0) {return(FALSE)}
+  all(spec %in% ppp_props())
+}
+
+#' @rdname ppp
+#' @export
+is_valid_combo <- function(combo) {
+  if (!cmp_chr_scl(combo)) {return(FALSE)}
+  combo <- av(strsplit(combo, "_", TRUE))
+  combo <- trimws(combo)
+  combo <- combo[combo != ""]
+  combo <- .drop_iprefix(combo)
+  if (length(combo) == 0) {return(FALSE)}
+  all(combo %in% ppp_props())
+}
+
+#' @rdname ppp
+#' @export
+is_valid_ppp <- function(ppp) {
+  if (!cmp_chr_scl(ppp)) {return(FALSE)}
+  ppp %in% ppp_props()
+}
+
+#' @rdname ppp
+#' @export
+ppp_from_combo <- function(combo, valid = ppp_props()) {
+  ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% ppp_props()), F)
+  errs <- c(f0(cmp_chr_scl(combo), NULL, "\n \u2022 [combo] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(ok.valid          , NULL, "\n \u2022 [valid] must be a complete character vec (?cpm_chr_vec) containing only values from ppp_props()."))
+  if (!is.null(errs)) {stop(errs)}
+  if (length(combo) != av(strsplit(combo, "|", fixed = T))) {stop("\n \u2022 [combo] contains multiple alternate property specs.")}
+  out <- trimws(av(strsplit(combo, "_", fixed = T)))
+  out <- out[out != ""]
+  out <- .drop_iprefix(out)
+  if (length(out) == 0    ) {stop("\n \u2022 [combo] contains no property specs.")}
+  if (!all(out %in% valid)) {stop("\n \u2022 [combo] contains a property not in c(", paste0(paste0("'", valid, "'"), collapse = ", "), ").")}
+  sort(unique(out))
+}
+
+#' @rdname ppp
+#' @export
+combos_from_spec <- function(spec, valid = ppp_props()) {
+  ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% ppp_props()), F)
+  errs <- c(f0(cmp_chr_scl(spec), NULL, "\n \u2022 [spec] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(ok.valid         , NULL, "\n \u2022 [valid] must be a complete character vec (?cpm_chr_vec) containing only values from ppp_props()."))
+  if (!is.null(errs)) {stop(errs)}
+  ppp.singles <- ppp_all(spec, valid)
+  if (!all(ppp.singles %in% valid)) {stop("\n \u2022 [ppp] contains a property spec not in c(", paste0(paste0("'", valid, "'"), collapse = ", "), ").")}
+  out <- trimws(av(strsplit(ppp, "|", fixed = T)))
+  out <- out[out != ""]
+  out <- .drop_iprefix(out)
+  sort(unique(out))
+}
+
+#' @rdname ppp
+#' @export
+ppp_funs <- function(as.dtf = F) {
+  if (!isTF(as.dtf)) {stop("\n \u2022 [as.dtf] must be TRUE or FALSE.")}
+  b_fun <- paste0("i", bbb_props()); b_fam <- rep("bbb", length(b_fun)); b_lab <- paste0("1_", b_fam, bbb_props())
+  c_fun <- paste0("i", ccc_props()); c_fam <- rep("ccc", length(c_fun)); c_lab <- paste0("1_", c_fam, ccc_props())
+  d_fun <- paste0("i", ddd_props()); d_fam <- rep("ddd", length(d_fun)); d_lab <- paste0("1_", d_fam, ddd_props())
+  e_fun <- paste0("i", eee_props()); e_fam <- rep("eee", length(e_fun)); e_lab <- paste0("1_", e_fam, eee_props())
+  i_fun <- paste0("i", iii_props()); i_fam <- rep("iii", length(i_fun)); i_lab <- paste0("1_", i_fam, iii_props())
+  m_fun <- paste0("i", mmm_props()); m_fam <- rep("mmm", length(m_fun)); m_lab <- paste0("1_", m_fam, mmm_props())
+  s_fun <- paste0("i", sss_props()); s_fam <- rep("sss", length(s_fun)); s_lab <- paste0("1_", s_fam, sss_props())
+  mc_fun <- mmm_ccc_props(); mc_fam <- rep("mmm_ccc", length(mc_fun)); mc_lab <- paste0("2_", mc_fam, "_", mc_fun)
+  bc_fun <- bbb_ccc_props(); bc_fam <- rep("bbb_ccc", length(bc_fun)); bc_lab <- paste0("2_", bc_fam, "_", bc_fun)
+  bm_fun <- bbb_mmm_props(); bm_fam <- rep("bbb_mmm", length(bm_fun)); bm_lab <- paste0("2_", bm_fam, "_", bm_fun)
+  cc_fun <- cmp_ccc_props(); cc_fam <- rep("cmp_yyy", length(cc_fun)); cc_lab <- paste0("3_", cc_fam, "_", cc_fun)
+  cmc_fun <- cmp_mmm_ccc_props(); cmc_fam <- rep("cmp_zzz_yyy", length(cmc_fun)); cmc_lab <- paste0("4_", cmc_fam, "_", cmc_fun)
+  fun <- c(b_fun, c_fun, d_fun, e_fun, i_fun, m_fun, s_fun, mc_fun, bc_fun, bm_fun, cc_fun, cmc_fun)
+  fam <- c(b_fam, c_fam, d_fam, e_fam, i_fam, m_fam, s_fam, mc_fam, bc_fam, bm_fam, cc_fam, cmc_fam)
+  ord <- order(c(b_lab, c_lab, d_lab, e_lab, i_lab, m_lab, s_lab, mc_lab, bc_lab, bm_lab, cc_lab, cmc_lab))
+  if (!as.dtf) {return(fun[ord])}
+  tibble::tibble(family = fam[ord], fun = fun[ord])
+}
+
+#' @rdname ppp
+#' @export
+is_ppp_fun <- function(x) {
+  if (!cmp_chr_scl(x)) {stop("\n \u2022 [x] must be a complete character scalar (?cmp_chr_scl).")}
+  x %in% ppp_funs()
+}
+
+#' @rdname ppp
+#' @export
 ippp <- function(x, spec, ...) {
   if (!is_valid_spec(spec)) {stop("\n \u2022 [spec] specifies a property not in ppp_props().")}
   if (!meets(x, ...)) {return(F)}
@@ -213,7 +197,7 @@ ippp <- function(x, spec, ...) {
     is.one <- combo %in% all.ppps
     is.fun <- is_ppp_fun(combo)
     if (!is.one & !is.fun) {
-      singles <- .drop_iprefix(ppps_from_combo(combo))
+      singles <- .drop_iprefix(ppp_from_combo(combo))
       meets <- TRUE
       for (ppp in singles) {if (meets) {
         meets <- meets & eval(parse(text = paste0("i", ppp, "(x)")))
@@ -248,33 +232,6 @@ nll_or <- function(x, ppp, ...) {f0(inll(x), T, ippp(x, ppp, ...))}
 #' @rdname ppp
 #' @export
 nas_or <- function(x, ppp, ...) {f0(inas(x), T, ippp(x, ppp, ...))}
-
-#' @rdname ppp
-#' @export
-ppp_funs <- function(as.dtf = F) {
-  if (!isTF(as.dtf)) {stop("\n \u2022 [as.dtf] must be TRUE or FALSE.")}
-  b_fun <- paste0("i", bbb_props()); b_fam <- rep("bbb", length(b_fun)); b_lab <- paste0("1_", b_fam, bbb_props())
-  c_fun <- paste0("i", ccc_props()); c_fam <- rep("ccc", length(c_fun)); c_lab <- paste0("1_", c_fam, ccc_props())
-  d_fun <- paste0("i", ddd_props()); d_fam <- rep("ddd", length(d_fun)); d_lab <- paste0("1_", d_fam, ddd_props())
-  e_fun <- paste0("i", eee_props()); e_fam <- rep("eee", length(e_fun)); e_lab <- paste0("1_", e_fam, eee_props())
-  i_fun <- paste0("i", iii_props()); i_fam <- rep("iii", length(i_fun)); i_lab <- paste0("1_", i_fam, iii_props())
-  m_fun <- paste0("i", mmm_props()); m_fam <- rep("mmm", length(m_fun)); m_lab <- paste0("1_", m_fam, mmm_props())
-  s_fun <- paste0("i", sss_props()); s_fam <- rep("sss", length(s_fun)); s_lab <- paste0("1_", s_fam, sss_props())
-  mc_fun <- mmm_ccc_props(); mc_fam <- rep("mmm_ccc", length(mc_fun)); mc_lab <- paste0("2_", mc_fam, "_", mc_fun)
-  bc_fun <- bbb_ccc_props(); bc_fam <- rep("bbb_ccc", length(bc_fun)); bc_lab <- paste0("2_", bc_fam, "_", bc_fun)
-  bm_fun <- bbb_mmm_props(); bm_fam <- rep("bbb_mmm", length(bm_fun)); bm_lab <- paste0("2_", bm_fam, "_", bm_fun)
-  cc_fun <- cmp_ccc_props(); cc_fam <- rep("cmp_ccc", length(cc_fun)); cc_lab <- paste0("3_", cc_fam, "_", cc_fun)
-  cmc_fun <- cmp_mmm_ccc_props(); cmc_fam <- rep("cmp_mmm_ccc", length(cmc_fun)); cmc_lab <- paste0("4_", cmc_fam, "_", cmc_fun)
-  fun <- c(b_fun, c_fun, d_fun, e_fun, i_fun, m_fun, s_fun, mc_fun, bc_fun, bm_fun, cc_fun, cmc_fun)
-  fam <- c(b_fam, c_fam, d_fam, e_fam, i_fam, m_fam, s_fam, mc_fam, bc_fam, bm_fam, cc_fam, cmc_fam)
-  ord <- order(c(b_lab, c_lab, d_lab, e_lab, i_lab, m_lab, s_lab, mc_lab, bc_lab, bm_lab, cc_lab, cmc_lab))
-  if (!as.dtf) {return(fun[ord])}
-  tibble::tibble(family = fam[ord], fun = fun[ord])
-}
-
-#' @rdname ppp
-#' @export
-all_props <- function() {ppp_funs()}
 
 #' @rdname ppp
 #' @export
@@ -350,76 +307,6 @@ ppp_defs <- function() {
 
 #' @rdname ppp
 #' @export
-is_ppp_fun <- function(x) {
-  if (!cmp_chr_scl(x)) {stop("\n \u2022 [x] must be a complete character scalar (?cmp_chr_scl).")}
-  x %in% ppp_funs()
-}
-
-#' @rdname ppp
-#' @export
-is_valid_spec <- function(spec) {
-  if (!cmp_chr_scl(spec)) {return(FALSE)}
-  spec <- av(strsplit(spec, "_", TRUE))
-  spec <- av(strsplit(spec, "|", TRUE))
-  spec <- trimws(spec)
-  spec <- spec[spec != ""]
-  spec <- .drop_iprefix(spec)
-  if (length(spec) == 0) {return(FALSE)}
-  all(spec %in% ppp_props())
-}
-
-#' @rdname ppp
-#' @export
-is_valid_combo <- function(combo) {
-  if (!cmp_chr_scl(combo)) {return(FALSE)}
-  combo <- av(strsplit(combo, "_", TRUE))
-  combo <- trimws(combo)
-  combo <- combo[combo != ""]
-  combo <- .drop_iprefix(combo)
-  if (length(combo) == 0) {return(FALSE)}
-  all(combo %in% ppp_props())
-}
-
-#' @rdname ppp
-#' @export
-is_valid_ppp <- function(ppp) {
-  if (!cmp_chr_scl(ppp)) {return(FALSE)}
-  ppp %in% ppp_props()
-}
-
-#' @rdname ppp
-#' @export
-ppps_from_combo <- function(combo, valid = ppp_props()) {
-  ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% ppp_props()), F)
-  errs <- c(f0(cmp_chr_scl(combo), NULL, "\n \u2022 [combo] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(ok.valid          , NULL, "\n \u2022 [valid] must be a complete character vec (?cpm_chr_vec) containing only values from ppp_props()."))
-  if (!is.null(errs)) {stop(errs)}
-  if (length(combo) != av(strsplit(combo, "|", fixed = T))) {stop("\n \u2022 [combo] contains multiple alternate property specs.")}
-  out <- trimws(av(strsplit(combo, "_", fixed = T)))
-  out <- out[out != ""]
-  out <- .drop_iprefix(out)
-  if (length(out) == 0    ) {stop("\n \u2022 [combo] contains no property specs.")}
-  if (!all(out %in% valid)) {stop("\n \u2022 [combo] contains a property not in c(", paste0(paste0("'", valid, "'"), collapse = ", "), ").")}
-  sort(unique(out))
-}
-
-#' @rdname ppp
-#' @export
-combos_from_spec <- function(spec, valid = ppp_props()) {
-  ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% ppp_props()), F)
-  errs <- c(f0(cmp_chr_scl(spec), NULL, "\n \u2022 [spec] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(ok.valid         , NULL, "\n \u2022 [valid] must be a complete character vec (?cpm_chr_vec) containing only values from ppp_props()."))
-  if (!is.null(errs)) {stop(errs)}
-  ppp.singles <- ppp_all(spec, valid)
-  if (!all(ppp.singles %in% valid)) {stop("\n \u2022 [ppp] contains a property spec not in c(", paste0(paste0("'", valid, "'"), collapse = ", "), ").")}
-  out <- trimws(av(strsplit(ppp, "|", fixed = T)))
-  out <- out[out != ""]
-  out <- .drop_iprefix(out)
-  sort(unique(out))
-}
-
-#' @rdname ppp
-#' @export
 ppp_verbose <- function(ppp = NULL, print = TRUE) {
   errs <- c(f0(inll(ppp) | !is_valid_ppp(ppp), NULL, "\n \u2022 [ppp] must be NULL or a scalar individual property specification."),
             f0(isTF(print)                   , NULL, "\n \u2022 [print] must be TRUE or FALSE."))
@@ -443,20 +330,20 @@ ppp_verbose <- function(ppp = NULL, print = TRUE) {
 #' @export
 ppp_concise <- function(combo) {
   if (!is_valid_combo(combo)) {stop("\n \u2022 [combo] does not contain a valid property combo specification.")}
-  combo <- .drop_iprefix(ppps_from_combo(combo))
+  combo <- .drop_iprefix(ppp_from_combo(combo))
   defs <- ppp_defs()
   fam <- av(defs$Family)
   val <- av(defs$Value )
   abb <- av(defs$Short )
+  bbb <- abb[val %in% combo & fam == "bbb"]
   ccc <- abb[val %in% combo & fam == "ccc"]
   ddd <- abb[val %in% combo & fam == "ddd"]
   eee <- abb[val %in% combo & fam == "eee"]
-  fff <- abb[val %in% combo & fam == "fff"]
+  iii <- abb[val %in% combo & fam == "iii"]
   mmm <- abb[val %in% combo & fam == "mmm"]
   sss <- abb[val %in% combo & fam == "sss"]
-  ttt <- abb[val %in% combo & fam == "ttt"]
   object <- length(ccc) == 0
-  out <- paste0(c(ccc, ddd, eee, fff, mmm, sss, ttt), collapse = ", ")
+  out <- paste0(c(bbb, ccc, ddd, eee, iii, mmm, sss), collapse = ", ")
   out <- av(strsplit(out, ", ", TRUE))
   out <- out[!duplicated(out)]
   out <- paste0(out, collapse = ", ")

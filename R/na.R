@@ -1,35 +1,23 @@
-#' @name na
 #' @family extensions
 #' @family na_values
 #' @title Manage `NA` and non-`NA` values
-#' @description All functions in this group take objects of atomic mode,
-#'   \link[=atm_dtf]{atomic dtfs}, or \link[=atm_vls]{atomic vlists}.
-#'   \tabular{ll}{
-#'     FUNCTION   \tab WHAT IT DOES                                          \cr
-#'     `na`       \tab Index `NA` values of `x`.                             \cr
-#'     `ok`       \tab Index non-`NA` values of `x`.                         \cr
-#'     `nas`      \tab Evaluate whether `x` is an `NA` scalar.               \cr
-#'     `oks`      \tab Evaluate whether `x` is a non-`NA` scalar.            \cr
-#'     `sub_na`   \tab Substitute `s` for `NA` values of`x` Modes of `x` and `s`
-#'                     must be \link[=compatible]{compatible}.               \cr
-#'     `rm_na`    \tab Remove `NA` values of `x` If there are no `NA` values in
-#'                     `x`, this function returns `x` unchanged. If there are
-#'                     `NA` values in `x`, by removing `NA` values from `x`,
-#'                     this function changes the dimensions of and/or class
-#'                     of `x` If `x` is an array or an \link[atm_dtf]{atomic
-#'                     data.frame}, its class is reduced to an atomic vector
-#'                     sans `NA` values. If `x` is an \link[=atm_vls]{atomic
-#'                     vlist}, any elements with `NA` values are reduced to
-#'                     atomic vectors sans their `NA` values.                  }
+#' @description All functions in this group take objects of atomic mode, \link[=atm_dtf]{atomic dtfs}, or \link[=atm_vls]{atomic vlists}:
+#' \itemize{
+#'   \item **`na`**: indexes `NA` values of `x`.
+#'   \item **`ok`**: indexes non-`NA` values of `x`.
+#'   \item **`nas`**: evaluates whether `x` is an `NA` scalar.
+#'   \item **`oks`**: evaluates whether `x` is a non-`NA` scalar.
+#'   \item **`sub_na`**: substitutes `s` for `NA` values of`x` Modes of `x` and `s` must be \link[=compatible]{compatible}.
+#'   \item **`rm_na`**: removes `NA` values of `x` If there are no `NA` values in `x`, returns `x` unchanged. If there are `NA` values in `x`, may changes the dimensions of and/or class of `x` in the course of removing `NA` values.
+#' }
 #' @param x The argument to be inspected/managed.
-#' @param s An \link[=atm_scl]{atomic scalar} to replace `NA` values. Mode must
-#'   be \link[=compatible]{compatible} with`x`
-#' @return \tabular{ll}{
-#'   FUNCTIONS      \tab RETURN VALUE                                        \cr
-#'   `na`, `ok`     \tab A logical object of the same dimension as `x`.      \cr
-#'   `nas`, `oks`   \tab A logical scalar.                                   \cr
-#'   `rm_na`        \tab Either an atomic vector or `x`.                     \cr
-#'   `sub_na`       \tab `x` with `NA` values replaced.                        }
+#' @param s An \link[=atm_scl]{atomic scalar} to replace `NA` values. Mode must be \link[=compatible]{compatible} with`x`
+#' @return \itemize{
+#'   \item **`rm_na`**: either an atomic vector or `x`.
+#'   \item **`sub_na`**: `x` with `NA` values replaced.
+#'   \item **`na, ok`**: a logical object of the same dimension as `x`.
+#'   \item **`nas, oks`**: a logical scalar.
+#' }
 #' @export
 na <- function(x) {
   if (length(x) > 0) {

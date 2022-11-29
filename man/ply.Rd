@@ -14,7 +14,7 @@
 \alias{colply}
 \alias{dimply}
 \alias{vlsply}
-\title{Variations on \code{apply} Functions}
+\title{Variations on \code{apply} functions}
 \usage{
 ply(x, fun, dim, ..., proc. = NULL)
 
@@ -45,82 +45,64 @@ vlsply(x, fun, ..., proc. = NULL)
 \arguments{
 \item{x}{An object to apply \code{fun} to.}
 
-\item{fun}{Function or name of a function to apply to \code{x}.}
+\item{fun}{Function or character scalar name of a function to apply to \code{x}.}
 
-\item{dim}{A \link[=cmp_nnw_vec]{complete non-negative whole-number vec}
-giving dimension(s) of \code{x} to apply the function \code{fun} to (\code{0} indicates
-applying to elements of a vector or \link[=ivls]{vlist} vs. applying to
-every cell for arrays and data.frames).}
+\item{dim}{A \link[=cmp_nnw_vec]{complete non-negative whole-number vec} giving dimension(s) of \code{x} to apply the function \code{fun} to (\code{0} indicates applying to elements of a vector or \link[=ivls]{vlist} vs. applying to every cell for arrays and data.frames).}
 
-\item{...}{An arbitrary number of additional arguments to be passed to the
-function \code{fun}.}
+\item{...}{An arbitrary number of additional arguments to be passed to the function \code{fun}.}
 
-\item{proc.}{\code{NULL} or a list of named elements with processing instructions.
-See \emph{The \code{proc} Argument}.}
+\item{proc.}{\code{NULL} or a list of named elements with processing instructions. See the \emph{the \code{proc} argument} section.}
 }
 \value{
 Varies.
 }
 \description{
-\code{norply}, \code{anyply}, \code{allply}, \code{oneply}, and \code{twoply} assume the
-results of applying \code{fun} are of mode 'logical'. \tabular{ll}{
-FUNCTION   \tab WHAT IT DOES                                            \cr
-\code{ply}      \tab Offering all functionality in a single function.        \cr
-\code{norply}   \tab Evaluates whether there are \emph{\code{0}} \code{TRUE} values in the
-the result of applying \code{fun}.                           \cr
-\code{anyply}   \tab Evaluates whether there are \emph{any} \code{TRUE} values in the
-the result of applying \code{fun}.                           \cr
-\code{allply}   \tab Evaluates whether there are \emph{only} \code{TRUE} values in
-the result of applying \code{fun}.                           \cr
-\code{oneply}   \tab Evaluates whether there is \emph{exactly \code{1}} \code{TRUE} value
-in the result of applying \code{fun}.                        \cr
-\code{twoply}   \tab Evaluates whether there are \emph{\verb{2+}} \code{TRUE} values in
-the result of applying \code{fun}.                           \cr
-\code{atmply}   \tab \link[=av]{Atomize} \code{x} and apply \code{fun} to each element of
-the resulting atomic vector.                            \cr
-\code{mvcply}   \tab Apply \code{fun} to each element of the \link[=atm_vec]{atomic
-multivec} \code{x}.                                          \cr
-\code{vecply}   \tab Apply \code{fun} to each element of the \link[=atm_vec]{atomic
-vec} \code{x}.                                               \cr
-\code{rowply}   \tab Apply \code{fun} to each row of matrix/data.frame \code{x}.       \cr
-\code{colply}   \tab Apply \code{fun} to each column of matrix/data.frame \code{x}.    \cr
-\code{dimply}   \tab Apply \code{fun} to each cell of array/data.frame \code{x}.       \cr
-\code{vlsply}   \tab Apply \code{fun} to each element of \link[=ivls]{vlist} \code{x}.   }
+(\code{norply}, \code{anyply}, \code{allply}, \code{oneply}, and \code{twoply} assume the result of applying \code{fun} is of mode 'logical')
+\itemize{
+\item \strong{\code{ply}}: offers all functionality specialized \code{ply} functions described below
+\item \strong{\code{norply}}: evaluates whether there are \emph{0} \code{TRUE} values in the result of applying \code{fun}.
+\item \strong{\code{anyply}}: evaluates whether there are \emph{any} \code{TRUE} values in the result of applying \code{fun}.
+\item \strong{\code{allply}}: evaluates whether there are \emph{only} \code{TRUE} values in the result of applying \code{fun}.
+\item \strong{\code{oneply}}: evaluates whether there is \emph{exactly 1} \code{TRUE} value in the result of applying \code{fun}.
+\item \strong{\code{twoply}}: evaluates whether there are \emph{2+} \code{TRUE} values in the result of applying \code{fun}.
+\item \strong{\code{atmply}}: \link[=av]{Atomize} \code{x} and apply \code{fun} to elements of the resulting atomic vector.
+\item \strong{\code{mvcply}}: apply \code{fun} to elements of \link[=atm_vec]{atomic multivec} \code{x}.
+\item \strong{\code{vecply}}: apply \code{fun} to elements of \link[=atm_vec]{atomic vec} \code{x}.
+\item \strong{\code{rowply}}: apply \code{fun} to rows of matrix/data.frame \code{x}.
+\item \strong{\code{colply}}: apply \code{fun} to columns of matrix/data.frame \code{x}.
+\item \strong{\code{dimply}}: apply \code{fun} to cells of array/data.frame \code{x}.
+\item \strong{\code{vlsply}}: apply \code{fun} to elements of \link[=ivls]{vlist} \code{x}.
+}
 }
 \section{The \code{proc} Argument}{
- When not \code{NULL}, the \code{proc}
-argument can be a list with up to seven optional named elements, which give
-processing instructions as follows: \tabular{ll}{
-NAME & VALUE    \tab PROCESSING INSTRUCTION                           \cr
-\code{s = TRUE}      \tab \link[base:simplify2array]{Simplify} the result. \cr
-\code{a1 = TRUE}     \tab \link[=a]{Atomize} \code{x} first.                    \cr
-\code{a2 = TRUE}     \tab Atomize the result.                              \cr
-\code{na = TRUE}     \tab Replace resulting \code{NA} values with \code{TRUE}.       \cr
-\code{na = FALSE}    \tab Replace resulting \code{NA} values with \code{FALSE}.      \cr
-\code{na = 'err'}    \tab Throw error if result contains any \code{NA}s.        \cr
-\code{agg = 'nor'}   \tab Inspect result for \emph{\code{0}} \code{TRUE} values.     \cr
-\code{agg = 'any'}   \tab Inspect result for \emph{any} \code{TRUE} values.     \cr
-\code{agg = 'all'}   \tab Inspect result for \emph{only} \code{TRUE} values.    \cr
-\code{agg = 'one'}   \tab Inspect result for \emph{exactly \code{1}} \code{TRUE}
-value.                                           \cr
-\code{agg = 'two'}   \tab Inspect result for \emph{\verb{2+}} \code{TRUE} values.    \cr
-\code{arg = '***'}   \tab Inspect \code{x} for \link[=ppp]{properties} given in the
-string \verb{***} and throw an error if not met.      \cr
-\code{out = '***'}   \tab Inspect the result for properties given in the
-string \verb{***} and throw an error if not met.        }
+ When not \code{NULL}, the \code{proc} argument is an optional list with up to seven named elements, which give processing instructions as follows:
+\itemize{
+\item \strong{\code{s = TRUE}}: \link[base:simplify2array]{simplify} the result.
+\item \strong{\code{a1 = TRUE}}: \link[=a]{atomize} \code{x} as a first step.
+\item \strong{\code{a2 = TRUE}}: atomize the result.
+\item \strong{\code{na = TRUE}}: replace resulting \code{NA} values with \code{TRUE}.
+\item \strong{\code{na = FALSE}}: replace resulting \code{NA} values with \code{FALSE}.
+\item \strong{\code{na = 'err'}}: throw error if result contains any \code{NA}s.
+\item \strong{\code{agg = 'nor'}}: inspect result for \emph{0} \code{TRUE} values.
+\item \strong{\code{agg = 'any'}}: inspect result for \emph{any} \code{TRUE} values.
+\item \strong{\code{agg = 'all'}}: inspect result for \emph{only} \code{TRUE} values.
+\item \strong{\code{agg = 'one'}}: inspect result for \emph{exactly 1} \code{TRUE} value.
+\item \strong{\code{agg = 'two'}}: inspect result for \emph{2+} \code{TRUE} values.
+\item \strong{\code{arg = 'xxx'}}: inspect \code{x} for \link[=ppp]{properties} in the string \code{xxx} and throw an error if not met.
+\item \strong{\code{out = 'yyy'}}: inspect the result for properties given in the string \code{yyy} and throw an error if not met.
+}
 }
 
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -131,12 +113,14 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

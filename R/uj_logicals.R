@@ -9,88 +9,39 @@
 #' @family extensions
 #' @family logicals
 #' @title Enhancements of `base` Logical Functions
-#' @description Primary arguments are `...`, `x`, and `y`; all others give
-#'   flexible options for evaluating primary arguments and/or error-checking
-#'   primary arguments. Functions in this family exist in the following
-#'   categories:\tabular{ll}{
-#'     CATEGORY           \tab PRIMARY ARGUMENTS                             \cr
-#'     Scalar Unary       \tab Logical scalar `x`.                           \cr
-#'     Vector Binary In   \tab Non-empty atomic vectors `x` and `y`.         \cr
-#'     Generic Unary      \tab Non-empty logical object `x`.                 \cr
-#'     Generic Binary     \tab `2` conformable non-empty logical `...`
-#'                             arguments.                                    \cr
-#'     Scalar Serial      \tab `N` logical scalar `...` arguments.           \cr
-#'     Vector Serial      \tab `N` recyclable logical vector `...` arguments.  }
-#'   Each is described in detail below.
-#'   \cr\cr
-#'   \strong{Scalar Unary Function}\tabular{lll}{
-#'     FUNCTION   \tab BASE ANALOG   \tab NOTES                              \cr
-#'     `TEST`     \tab `isTRUE(.)`   \tab Handles arguments other than non-`NA`
-#'                                        logical scalar as special cases.     }
-#'   \strong{Vector Binary In Functions}\tabular{lll}{
-#'     FUNCTION   \tab BASE ANALOG                                           \cr
-#'     `is_in`    \tab `x %in% y`                                            \cr
-#'     `not_in`   \tab `!(x %in% y)`                                         \cr
-#'     `has`      \tab `y %in% x`                                            \cr
-#'     `lacks`    \tab `!(y %in% x)`                                           }
-#'   The argument `agg` specifies whether and how to sweep across the results.
-#'   \cr\cr
-#'   \strong{Generic Unary Function}\tabular{ll}{
-#'     FUNCTION   \tab BASE ANALOG                                           \cr
-#'     `not`      \tab `!x`                                                    }
-#'   \strong{Generic Binary Functions}\tabular{ll}{
-#'     FUNCTION   \tab BASE ANALOG                                           \cr
-#'     `and`      \tab `x & y`                                               \cr
-#'     `or`       \tab `x | y`                                               \cr
-#'     `nor`      \tab `!(x | y)`                                            \cr
-#'     `one`      \tab `xor(x, y)`                                             }
-#'   \strong{Scalar Serial Functions}\tabular{ll}{
-#'     FUNCTION   \tab EVALUATES WHETHER                                     \cr
-#'     `ANY`      \tab Any `...` argument is `TRUE`.                         \cr
-#'     `ALL`      \tab All `...` arguments are `TRUE`.                       \cr
-#'     `NOR`      \tab `0` `...` arguments are `TRUE`.                       \cr
-#'     `ONE`      \tab Exactly `1` `...` argument is `TRUE`.                 \cr
-#'     `TWO`      \tab `2+` `...` arguments are `TRUE`.                         }
-#'   \strong{Vector Serial Function}
-#'   \cr Arguments `across` and `within` specify whether to sweep across
-#'   corresponding elements of `...` arguments and/or within each `...`
-#'   argument.
-#'     \tabular{ll}{
-#'     FUNCTION   \tab ACTION TAKEN                                          \cr
-#'     `tests`    \tab Logically indexes `TRUE` values in each sweep.        \cr
-#'     `w`        \tab Numerically indexes `TRUE` values in each sweep.      \cr
-#'     `nors`     \tab Evaluates each sweep for 0 `TRUE` values.             \cr
-#'     `anys`     \tab Evaluates each sweep for any `TRUE` values.           \cr
-#'     `alls`     \tab Evaluates each sweep for only `TRUE` values.          \cr
-#'     `ones`     \tab Evaluates each sweep for exactly `1` `TRUE` value.    \cr
-#'     `twos`     \tab Evaluates each sweep for `2+` `TRUE` values.            }
-#' @param x An \link[=atm_lgl]{atomic logical object} for all functions other
-#'   than `is_in`, `not_in`, `has`, and `lacks`. Otherwise, an atomic object.
-#' @param y An \link[=atm_lgl]{atomic logical object} for all functions other
-#'   than `is_in`, `not_in`, `has`, and `lacks`. Otherwise, an atomic object
-#'   \link[=compatible]{compatible} with `x`.
-#' @param na A non-`NA` logical scalar indicating what value should replace `NA`
-#'   values.
-#' @param err A non-`NA` logical scalar. `err = TRUE` indicates `TRUE` should be
-#'   substituted for non-logical values, `err = FALSE` indicates `FALSE` should
-#'   be substituted for non-logical values, `err = NA` indicates an error should
-#'   be thrown if a non-logical value is encountered.
-#' @param ... An arbitrary number of \link[=lgl_vec]{logical vecs} to be
-#'   processed.
-#' @param agg A \link[=cmp_chr_scl]{complete character scalar} in
-#'   `c('nor', 'one', 'any', 'two', 'all')` used to specify, respectively, that
-#'   0, 1, any, 2 or more, and all arguments must be `TRUE`.
-#' @param a A non-`NA`  logical scalar indicating whether to atomize `...`
-#'   before processing. This creates a single atomic vector of all atomic
-#'   elements contained in all `...` arguments and effectively changes the
-#'   behavior of `or` to `any`, `and` to `all`, and `not` to `!any`.
-#' @param not A non-`NA` logical scalar indicating whether to negate values
-#'   in arguments supplied in `...` before processing.
-#' @param across,within \link[=cmp_chr_scl]{Character scalars}. `NA` indicates
-#'   not summarizing across or within `...` arguments. Values in
-#'   `c('nor', 'one', 'any', 'two', 'all')` indicate zero, exactly one, any, two
-#'   or more, or all values are `TRUE` when looking across corresponding
-#'   elements of `...` arguments vs. within each `...` argument.
+#' @description \itemize{
+#'   \item **`TEST(x, ...)`**: is an extended analog of `isTRUE(x)`.
+#'   \item **`is_in(x, y, ...)`**: is an extended analog of `x %in% y`.
+#'   \item **`not_in(x, y, ...)`**: is an extended analog of `!(x %in% y)`.
+#'   \item **`has(x, y, ...)`**: is an extended analog of `y %in% x`.
+#'   \item **`lacks(x, y, ...)`**: is an extended analog of `!(y %in% x)`.
+#'   \item **`not(x, ...)`**: is an extended analog of `!x`.
+#'   \item **`and(x, y, ...)`**: is an extended analog of `x & y`.
+#'   \item **`or(x, y, ...)`**: is an extended analog of `x | y`.
+#'   \item **`nor(x, y, ...)`**: is an extended analog of `!(x | y)`.
+#'   \item **`one(x, y, ...)`**: is an extended analog of `xor(x, y)`.
+#'   \item **`ANY(.)`**: evaluates whether any `...` argument is `TRUE`.
+#'   \item **`ALL(.)`**: evaluates whether all `...` arguments are `TRUE`.
+#'   \item **`NOR(.)`**: evaluates whether `0` `...` arguments are `TRUE`.
+#'   \item **`ONE(.)`**: evaluates whether exactly `1` `...` argument is `TRUE`.
+#'   \item **`TWO(.)`**: evaluates whether `2+` `...` arguments are `TRUE`.
+#'   \item **`tests(.)`**: logically indexes `TRUE` values in each sweep.
+#'   \item **`w(.)`**: numerically indexes `TRUE` values in each sweep.
+#'   \item **`nors(.)`**: evaluates each sweep for 0 `TRUE` values.
+#'   \item **`anys(.)`**: evaluates each sweep for any `TRUE` values.
+#'   \item **`alls(.)`**: evaluates each sweep for only `TRUE` values.
+#'   \item **`ones(.)`**: evaluates each sweep for exactly `1` `TRUE` value.
+#'   \item **`twos(.)`**: evaluates each sweep for `2+` `TRUE` values.
+#' }
+#' @param x An \link[=atm_lgl]{atomic logical object} for all functions other than `is_in`, `not_in`, `has`, and `lacks`. Otherwise, an atomic object.
+#' @param y An atomic logical object. for all functions other than `is_in`, `not_in`, `has`, and `lacks`. Otherwise, an atomic object \link[=compatible]{compatible} with `x`.
+#' @param na A non-`NA` logical scalar indicating what value should replace `NA` values.
+#' @param err A non-`NA` logical scalar. `err = TRUE` indicates `TRUE` should be substituted for non-logical values, `err = FALSE` indicates `FALSE` should be substituted for non-logical values, `err = NA` indicates an error should be thrown if a non-logical value is encountered.
+#' @param ... An arbitrary number of \link[=lgl_vec]{logical vecs} to be processed.
+#' @param agg A \link[=cmp_chr_scl]{complete character scalar} in `c('nor', 'one', 'any', 'two', 'all')`**: used to specify, respectively, that 0, 1, any, 2 or more, and all arguments must be `TRUE`.
+#' @param a A non-`NA` logical scalar indicating whether to atomize `...` before processing. This creates a single atomic vector of all atomic elements contained in all `...` arguments and effectively changes the behavior of `or` to `any`, `and` to `all`, and `not` to `!any`.
+#' @param not A non-`NA` logical scalar indicating whether to negate values in arguments supplied in `...` before processing.
+#' @param across,within \link[=cmp_chr_scl]{Character scalars}. `NA` indicates not summarizing across or within `...` arguments. Values in `c('nor', 'one', 'any', 'two', 'all')`**: indicate zero, exactly one, any, two or more, or all values are `TRUE` when looking across corresponding elements of `...` arguments vs. within each `...` argument.
 #' @export
 not <- function(x, na = 'err') {
   errs <- c(f0(pop_lgl(x)                , NULL, "\n \u2022 [x] must be a populated logical object (?cmp_lgl)."),

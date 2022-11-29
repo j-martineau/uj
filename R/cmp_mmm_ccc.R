@@ -1,30 +1,19 @@
 #' @family props
-#' @title Completeness + Extended Mode + Extended Class Properties
-#' @description \tabular{ll}{
-#'   FUNCTION              \tab WHAT IT DOES                                 \cr
-#'   `cmp_mmm_ccc`         \tab Evaluates whether `x` is complete, matches the
-#'                              extended mode specified in the argument `mmm`
-#'                              and matches the extended class specified in the
-#'                              argument `ccc` (subject to any restrictions in
-#'                              `...`).                                      \cr
-#'   `cmp_MMM_CCC`         \tab Evaluates whether `x` is complete and matches
-#'                              the extended mode `MMM` and extended class
-#'                              `CCC` subject to any restrictions in
-#'                              `...`, where `MMM` and `CCC` are placeholders
-#'                              for any given extended mode and extended class
-#'                              properties.                                  \cr
-#'   `cmp_mmm_ccc_props`   \tab Gets a character vector of all possible
-#'                              completeness + extended mode + extended class
-#'                              properties.                                    }
+#' @title Completeness + extended mode + extended class properties
+#' @description \itemize{
+#'   \item **`cmp_mmm_ccc`**: evaluates whether `x` is complete, matches the extended mode specified in the argument `mmm` and matches the extended class specified in the argument `ccc` (subject to any restrictions in `...`).
+#'   \item **`cmp_xxx_yyy`**: evaluates whether `x` is complete and matches the extended mode `xxx` and extended class `yyy` subject to any restrictions in `...`, where `xxx` and `yyy` are placeholders for any given extended mode and extended class properties.
+#'   \item **`cmp_mmm_ccc_props`**: gets a character vector of all possible completeness + extended mode + extended class properties.
+#' }
 #' @param x An R object.
 #' @param mmm A character scalar extended mode property from `mmm_props()`.
 #' @param ccc A character scalar extended class property from `ccc_props()`.
 #' @inheritDotParams meets
-#' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \tabular{ll}{
-#'   FUNCTION                       \tab RETURN VALUE                        \cr
-#'   `cmp_mmm_ccc_props`            \tab A character vector.                 \cr
-#'   `cmp_mmm_ccc`, `cmp_MMM_CCC`   \tab A logical scalar.                     }
+#' @inheritSection meets Specifying count and value restrictions
+#' @return \itemize{
+#'   \item **`cmp_mmm_ccc_props`**: a character vector.
+#'   \item **`cmp_mmm_ccc, cmp_MMM_CCC`**: a logical scalar.
+#' }
 #' @export
 cmp_mmm_ccc <- function(x, mmm, ccc, ...) {
   errs <- c(.meets_errs(x, ...),

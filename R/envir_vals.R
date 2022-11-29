@@ -2,28 +2,22 @@
 #' @family extensions
 #' @family environments
 #' @title Objects in Environments of Calling Functions
-#' @description All functions in this family operate in the environment of the
-#'   calling function `gens` generations back in the call stack.\tabular{ll}{
-#'   FUNCTION    \tab WHAT IT DOES \cr
-#'   `vexists`   \tab Check for the existence of an object in the environment
-#'                    of the `gens`-specified calling function.              \cr
-#'   `vget`      \tab Get the value of an object in the environment of the
-#'                    `gens`-specified calling function.                     \cr
-#'   `vset`      \tab Set the value of an object in the environment of the
-#'                    `gens`-specified calling function.                       }
-#' @param name A \link[=cmp_chr_scl]{complete character scalar} giving the name
-#'   of an object.
+#' @description All functions in this family operate in the environment of the calling function `gens` generations back in the call stack.
+#' \itemize{
+#'   \item **`vexists`**: checks for the existence of an object in the environment of the `gens`-specified calling function.
+#'   \item **`vget`**: gets the value of an object in the environment of the `gens`-specified calling function.
+#'   \item **`vset`**: sets the value of an object in the environment of the `gens`-specified calling function.
+#' }
+#' @param name A \link[=cmp_chr_scl]{complete character scalar} giving the name of an object.
 #' @param val A value to place into the object specified by `name`.
-#' @param err A non`NA` logical scalar indicating whether to throw an error if
-#'   the object specified by `name` does not exist (i.e., rather than returning
-#'   `FALSE`).
-#' @param gens A \link[=cmp_psw_scl]{complete positive whole-number scalar}
-#'   giving the number of generations back in the function call stack to go.
-#' @return \tabular{ll}{
-#'   FUNCTION    \tab RETURN VALUE                                           \cr
-#'   `vexists`   \tab A logical scalar.                                      \cr
-#'   `vget`      \tab An R object.                                           \cr
-#'   `vset`      \tab `NULL`. Called for its side effect.                      }
+#' @param err A non`NA` logical scalar indicating whether to throw an error if the object specified by `name` does not exist (i.e., rather than returning `FALSE`).
+#' @param gens A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of generations back in the function call stack to go.
+#' @return \itemize{
+#'   \item **`vexists`**: a logical scalar.
+#'   \item **`vget`**: an R object.
+#'   \item **`vset`**: `NULL` (called for side effect).
+#' }
+#' @export
 #' @examples
 #' fun.a <- function() {A <- 0; fun.b()}
 #' fun.b <- function() {B <- 1; fun.c()}
@@ -45,7 +39,6 @@
 #'   cat("\n vget('B', gens = 1) : ", vget('B', err = F, gens = 1))
 #' }
 #' fun.a()
-#' @export
 vexists <- function(name, err = T, gens = 1) {
   errs <- c(f0(cmp_chr_scl(name), NULL, "\n \u2022 [name] must be a complete character scalar (?cmp_chr_scl)."),
             f0(isTF(err)        , NULL, "\n \u2022 [err] must be TRUE or FALSE."),

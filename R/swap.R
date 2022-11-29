@@ -1,12 +1,9 @@
-#' @family extensions
 #' @family forking
+#' @family extensions
 #' @title Swap atomic values.
 #' @param x An atomic object.
-#' @param old,new \link[=atm_vec]{Atomic vecs} of unique values to be replaced
-#'   and replacement values, respectively. `length(new)` must be in `c(1,
-#'   length(old))`.
-#' @param all A non-`NA` logical scalar indicating whether all values of `x`
-#'   must be contained in `old`.
+#' @param old,new \link[=atm_vec]{Atomic vecs} of unique values to be replaced and replacement values, respectively. `length(new)` must be in `c(1, length(old))`.
+#' @param all A non-`NA` logical scalar indicating whether all values of `x` must be contained in `old`.
 #' @return An atomic object of the same dimensions as `x`.
 #' @export
 swap <- function(x, old, new, all = FALSE) {

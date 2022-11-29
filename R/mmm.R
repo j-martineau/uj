@@ -29,84 +29,67 @@
 .iwhl <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(round(x) == x)})))}
 .mmms <- c("ch1", "ch3", "chr", "clr", "evn", "fac", "frc", "ind", "lgl", "neg", "ngw", "nng", "nnw", "nps", "npw", "nst", "num", "odd", "ord", "pct", "pos", "ppn", "psw", "srt", "str", "uno", "whl")
 
-#' @name mmm
 #' @family props
-#' @title Extended Mode Properties
-#' @description Extended modes are defined for non-empty atomic objects. For all
-#'   other objects, the extended mode is `NULL`. These are not formally defined
-#'   classes, but are evaluated dynamically based on the current characteristics
-#'   of an object.
-#'   \cr\cr
-#'   Atomic objects that contain only `NA` values are of every extended mode, as
-#'   they can be coerced to any mode without introducing new `NA` values. The
-#'   following tables gives extended mode values, names, and requirements.
-#'   \cr\cr
-#'   \strong{Character Extended Mode Properties}\tabular{lll}{
-#'   VALUE   \tab NAME        \tab CHARACTERISTICS                           \cr
-#'   `'chr'` \tab Character   \tab Character.                                \cr
-#'   `'clr'` \tab Color       \tab Valid character color representation.     \cr
-#'   `'ch1'` \tab Onechar     \tab Single character values.                  \cr
-#'   `'str'` \tab String      \tab No blank ("") values.                       }
-#'   \strong{Categorical Extended Mode Properties` \tabular{lll}{
-#'   VALUE   \tab NAME        \tab CHARACTERISTICS                           \cr
-#'   `'fac'` \tab Factor      \tab Factor.                                   \cr
-#'   `'lgl'` \tab Logical     \tab Logical.                                  \cr
-#'   `'ord'` \tab Ordered     \tab Ordered factor.                           \cr
-#'   `'uno'` \tab Unordered   \tab Unordered factor.                           }
-#'   \strong{Combination Extended Mode Properties` \tabular{lll}{
-#'   VALUE   \tab NAME           \tab CHARACTERISTICS                        \cr
-#'   `'ind'` \tab Indexer        \tab Logical or positive whole number.      \cr
-#'   `'srt'` \tab Sortable       \tab Character, logical, numeric, or ordered
-#'                                    factor.                                \cr
-#'   `'nst'` \tab non-sortable   \tab Atomic, but not sortable.                }
-#'   \strong{Numeric Extended Mode Properties` \tabular{lll}{
-#'   VALUE   \tab NAME                 \tab CHARACTERISTICS                  \cr
-#'   `'num'` \tab Numeric              \tab Numeric.                         \cr
-#'   `'frc'` \tab Fractional           \tab At least `1` non-`NA` value is not a
-#'                                          whole number .                   \cr
-#'   `'pct'` \tab Percent              \tab Percentage numeric (in the interval
-#'                                          `[0, 100]}).                     \cr
-#'   `'ppn'` \tab Proportion           \tab Proportion numeric (in the interval
-#'                                          `[0, 1]}).                       \cr
-#'   `'pos'` \tab Positive             \tab Positive numeric.                \cr
-#'   `'nng'` \tab Non-negative         \tab Non-negative numeric.            \cr
-#'   `'nps'` \tab Non-positive         \tab Non-positive numeric.            \cr
-#'   `'neg'` \tab Negative             \tab Negative numeric.                \cr
-#'   `'whl'` \tab Whole                \tab Whole number.                    \cr
-#'   `'evn'` \tab Even                 \tab Even (whole) number.             \cr
-#'   `'odd'` \tab Odd                  \tab Odd (whole) number.              \cr
-#'   `'psw'` \tab Positive whole       \tab Positive whole-number.           \cr
-#'   `'nnw'` \tab Non-negative whole   \tab Non-negative whole-number.       \cr
-#'   `'npw'` \tab Non-positive whole   \tab Non-positive whole-number.       \cr
-#'   `'ngw'` \tab Negative whole       \tab Negative whole-number.             }
-#'   Functions in this family are:\tabular{ll}{
-#'   FUNCTION        \tab WHAT IT DOES                                       \cr
-#'   `mmm`           \tab Get a character vector containing all extended mode
-#'                        properties possessed by `x`.                       \cr
-#'   `ixxx`          \tab Evaluate whether `x` possesses the extended mode
-#'                        property `xxx` (a placeholder for any given extended
-#'                        mode property value), subject to any restrictions in
-#'                        `...`.                                             \cr
-#'   `mmmi`          \tab Evaluate whether `x` possesses one or more (possibly
-#'                        pipe-delimited) extended mode properties in `spec`,
-#'                        subject to any restrictions in `...`.              \cr
-#'   `mmm_props`     \tab Get a character vector of all possible extended mode
-#'                        property values.                                   \cr
-#'   `is_mmm_spec`   \tab Evaluate whether `spec` is a valid extended mode
-#'                        property specification.                              }
+#' @title Extended mode properties
+#' @description Extended modes are defined for non-empty atomic objects. For all other objects, the extended mode is `NULL`. These are not formally defined classes, but are evaluated dynamically based on the current characteristics of an object.
+#' \cr\cr
+#' Atomic objects that contain only `NA` values are of every extended mode, as they can be coerced to any mode without introducing new `NA` values. The following tables gives extended mode values, names, and requirements.
+#' \cr\cr
+#' **Character extended mode properties**
+#' \itemize{
+#'   \item **`'chr'` (character)**: character.
+#'   \item **`'clr'` (color)**: character color representation.
+#'   \item **`'ch1'` (onechar)**: single character values.
+#'   \item **`'str'` (string)**: no blank ("") values.
+#' }
+#' **Categorical extended mode properties**
+#' \itemize{
+#'   \item **`'fac'` (factor)**: factor.
+#'   \item **`'lgl'` (logical)**: logical.
+#'   \item **`'ord'` (ordered)**: ordered factor.
+#'   \item **`'uno'` (unordered)**: Unordered factor.
+#' }
+#' **Combination extended mode properties**
+#' \itemize{
+#'   \item **`'ind'` (indexer)**: logical/positive whole number.
+#'   \item **`'srt'` (sortable)**: character/logical/numeric/ordered factor.
+#'   \item **`'nst'` (non-sortable)**: atomic but not sortable.
+#' }
+#' **Numeric extended mode properties**
+#' \itemize{
+#'   \item **`'num'` (numeric)**: numeric.
+#'   \item **`'frc'` (fractional)**: fractional numeric.
+#'   \item **`'pct'` (percent)**: percentage numeric (in the interval `[0, 100]`).
+#'   \item **`'ppn'` (proportion)**: proportion numeric (in the interval `[0, 1]`).
+#'   \item **`'pos'` (positive)**: positive numeric.
+#'   \item **`'neg'` (negative)**: negative numeric.
+#'   \item **`'nng'` (non-neg)**: non-negative numeric.
+#'   \item **`'nps'` (non-pos)**: non-positive numeric.
+#'   \item **`'whl'` (whole)**: whole number.
+#'   \item **`'psw'` (pos-whole)**: positive whole-number.
+#'   \item **`'nnw'` (non-neg-whole)**: non-negative whole-number.
+#'   \item **`'npw'` (non-pos-hole)**: non-positive whole-number.
+#'   \item **`'ngw'` (neg-whole)**: negative whole-number.
+#'   \item **`'evn'` (even)**: even (whole) number.
+#'   \item **`'odd'` (odd)**: odd (whole) number.
+#' }
+#' **Functions**
+#' \itemize{
+#'   \item **`mmm`**: gets a character vector containing all extended mode properties possessed by `x`.
+#'   \item **`ixxx`**: evaluates whether `x` possesses the extended mode property `xxx` (a placeholder for any given extended mode property value), subject to any restrictions in `...`.
+#'   \item **`immm`**: evaluates whether `x` possesses one or more (possibly pipe-delimited) extended mode properties in `spec`, subject to any restrictions in `...`.
+#'   \item **`mmm_props`**: gets a character vector of all possible extended mode property values.
+#'   \item **`is_mmm_spec`**: evaluates whether `spec` is a valid extended mode property specification.
+#' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec}
-#'   containing one or more extended mode properties from `mmm_props()`.
-#'   Extended mode properties may be pipe-delimited. If there are multiple
-#'   properties in `spec`, `x` is inspected for a match to any of the specified
-#'   properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more extended mode properties from `mmm_props()`. Extended mode properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
-#' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \tabular{ll}{
-#'   FUNCTIONS                       \tab RETURN VALUE                       \cr
-#'   `mmm_vals`                      \tab A character vector.                \cr
-#'   `mmm`                           \tab A character scalar or vector.      \cr
-#'   `mmmi`, `ixxx`, `is_mmm_spec`   \tab A logical scalar.                    }
+#' @inheritSection meets Specifying count and value restrictions
+#' @return \itemize{
+#'   \item **`mmm`**: a character scalar/vector.
+#'   \item **`mmm_vals`**: a character vector.
+#'   \item **`immm, ixxx, is_mmm_spec`**: a logical scalar.
+#' }
 #' @export
 mmm <- function(x) {
   out <- NULL

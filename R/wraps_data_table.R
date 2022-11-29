@@ -1,41 +1,24 @@
 #' @name wraps_data_table
 #' @family wraps
-#' @title Wraps of Functions from Package `data.table`
-#' @description The following table describes thin wraps in this group of
-#'   functions:\tabular{ll}{
-#'     WRAPPER     \tab FUNCTION                                             \cr
-#'     `dtas`      \tab \code{\link[data.table]{as.data.table}}              \cr
-#'     `dtis`      \tab \code{\link[data.table]{is.data.table}}              \cr
-#'     `dtmerge`   \tab \code{\link[data.table]{merge}}                      \cr
-#'     `dtwide`    \tab \code{\link[data.table]{dcast}}                        }
-#'   Functionality is stripped down significantly for these wraps.
-#'   \cr\cr
-#'   There are a few additional wrappers that combine multiple `data.table`
-#'   operations or that address extraction of data from a data.table without
-#'   using the non-standard `data.table` indexing functions. The are
-#'   described in the table below.
-#'   \tabular{ll}{
-#'     WRAPPER    \tab FUNCTIONALITY                                         \cr
-#'     `dtie`     \tab If `x` is already a data table, return it as is,
-#'                     otherwise, convert it to a data.table.                \cr
-#'     `dtcols`   \tab Select columns from a data.table without non-standard
-#'                     data.table indexing functions (i.e., `x[ , ..var]`).  \cr
-#'     `dtrows`   \tab Select rows from a data.table with similar syntax as
-#'                     `dtcols` (not strictly necessary as there is no special
-#'                     data.table syntax for extracting rows).               \cr
-#'     `dtsub`    \tab Select a sub-table from a data.table without using
-#'                     non-standard data.table indexing functions (i.e.,
-#'                     `x[row.var, ..col.var]`).                               }
-#' @param x An R object (`dtas`, `dtis`, and `dtie`). A
-#'   \code{\link[data.table]{data.table}} for all other functions.
-#' @param ir,ic \link[=cmp_ind_vec]{Complete indexer vecs} or
-#'   \link[=cmp_chr_vec]{complete character vecs} identifying rows and columns
-#'   of `x`, respectively.
-#' @param say Non-`NA` logical scalar indicating whether to notify user of
-#'   starting a potentially time-consuming process (i.e., converting to
-#'   data.table, joining two large data.tables, and reshaping from long to
-#'   wide).
-#' @return A \code{\link[data.table]{data.table}}.
+#' @title Wrappers of package `data.table` functions
+#' @description \itemize{
+#'   \item **`dtas`**: reduced functionality wrapper for \code{\link[data.table]{as.data.table}}.
+#'   \item **`dtis`**: reduced functionality wrapper for \code{\link[data.table]{is.data.table}}.
+#'   \item **`dtmerge`**: reduced functionality wrapper for \code{\link[data.table]{merge}}.
+#'   \item **`dtwide`**: reduced functionality wrapper for \code{\link[data.table]{dcast}}.
+#' }
+#' \cr\cr
+#' The following wrappers combine multiple `data.table` operations or address extraction without using `data.table`'a non-standard `[` extraction functions.
+#' \itemize{
+#'   \item **`dtie`**: evaluates whether `x` is already a `data.table`. If so, returns it as is, otherwise converts it to a `data.table`.
+#'   \item **`dtcols`**: select columns without `data.table`'s non-standard `[` extraction functions (i.e., `x[ , ..var]`).
+#'   \item **`dtrows`**: is a corollary for row extraction (but is not strictly necessary; there is no special `data.table` syntax row extraction).
+#'   \item **`dtsub`**: selects a sub-`data.table` without non-standard `[` extraction functions (i.e., `x[row.var, ..col.var]`).
+#' }
+#' @param x An R object for `dtas`, `dtis`, and `dtie`. A \code{\link[data.table]{data.table}} for all others.
+#' @param ir,ic \link[=cmp_ind_vec]{Complete indexer vecs} or \link[=cmp_chr_vec]{complete character vecs} naming rows and columns of `x`, respectively.
+#' @param say Non-`NA` logical scalar indicating whether to notify user of starting a potentially time-consuming process (converting to `data.table`, joining two large `data.table`s, and reshaping from long to wide).
+#' @return A data.table.
 #' @inherit data.table::as.data.table
 #' @export
 dtas <- function(x, say = TRUE) {if (say) {say("\n| coerce to data.table")}; data.table::as.data.table(x)}

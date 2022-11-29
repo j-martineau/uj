@@ -1,53 +1,37 @@
 #' @name naming
 #' @family extensions
-#' @title Get Names, Set Names, Determine if Named
-#' @description \tabular{ll}{
-#'   FUNCTION     \tab WHAT IT DOES                                          \cr
-#'   `namev`      \tab Name the elements of a vector or \link[=ivls]{vlist}. \cr
-#'   `namer`      \tab Name the rows of a matrix or data.frame.              \cr
-#'   `namec`      \tab Name the columns of a matrix or data.frame.           \cr
-#'   `namel`      \tab Create and name a 1-element list.                     \cr
-#'   `namerc`     \tab Name rows and columns of a matrix or data.frame.      \cr
-#'   `named`      \tab Determine whether an object's elements, rows, and/or
-#'                     columns are named, accounting for whether names must be
-#'                     unique, whether the object may contain empty elements,
-#'                     and whether names may be blank strings.               \cr
-#'   `enamed`     \tab Are elements of `x` named?                            \cr
-#'   `rnamed`     \tab Are rows of `x` named?                                \cr
-#'   `cnamed`     \tab Are columns of `x` named?                             \cr
-#'   `dnamed`     \tab Are dot arguments (`...`) named?                      \cr
-#'   `getnames`   \tab Get element, row, and/or column names with optional
-#'                     restrictions.                                         \cr
-#'   `en`         \tab Get element names.                                    \cr
-#'   `rn`         \tab Get row names.                                        \cr
-#'   `cn`         \tab Get column names.                                     \cr
-#'   `rcn`        \tab Get row and column names as a 2-element list.           }
-#' @param x Vector or list for `namev` and `vn`; matrix or data.frame for `rn`,
-#'   `namer`, `cn`, `namec`, and `namerc`; or any object for `namel`.
+#' @title Get names, set names, determine whether named
+#' @description \itemize{
+#'   \item **`named`**: evaluates whether an object's elements, rows, and/or columns are named, accounting for whether names must be unique, whether the object may contain empty elements, and whether names may be blank strings.
+#'   \item **`enamed`**: evaluates whether elements of `x` named.
+#'   \item **`rnamed cnamed`**: evaluates whether rows vx. columns of `x` are named, respectively.
+#'   \item **`dnamed`**: evaluates whether dot arguments (`...`) named.
+#' }\cr\itemize{
+#'   \item **`namev`**: names elements of a vector or \link[=ivls]{vlist}.
+#'   \item **`namel`**: creates and names a 1-element list.
+#'   \item **`namer namec namerc`**: name rows vs. columns vs. both rows and columns of `x`, respectively.
+#' }\cr\itemize{
+#'   \item **`en`**: gets element names.
+#'   \item **`rn cn rcn`**: get row vs. column vs. both row and column names, respectively.
+#'   \item **`getnames`**: gets element, row, and/or column names with optional restrictions.
+#' }
+#' @param x Vector or list for `namev` and `vn`; matrix or data.frame for `rn`, `namer`, `cn`, `namec`, and `namerc`; or any object for `namel`.
 #' @param ... Arbitrary number of arguments to be inspected for names.
-#' @param err A \link[=cmp_lgl_scl]{complete logical} scalar indicating whether
-#'   names must be non-missing.
-#' @param d A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving
-#'   the dimension(s) to name: `0` for elements (of atomic or list vectors
-#'   only), `1` for rows of matrices or tibbles, `2` for columns of matrices or
-#'   data.frames, or `12` for rows and columns of matrices or data.frames.
-#' @param u A \link[=cmp_lgl_scl]{complete logical scalar} indicating whether
-#'   names must be unique.
-#' @param blank A \link[=cmp_lgl_scl]{complete logical scalar} indicating
-#'   whether blank strings (`""`) are allowed as names.
+#' @param err A non-`NA` logical scalar indicating whether names must be non-missing.
+#' @param d A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the dimension(s) to name: `0` for elements (of atomic or list vectors only), `1` for rows of matrices or tibbles, `2` for columns of matrices or data.frames, or `12` for rows and columns of matrices or data.frames.
+#' @param u A non-`NA` logical scalar indicating whether names must be unique.
+#' @param blank A non-`NA` logical scalar indicating whether blank strings (`""`) are allowed as names.
 #' @param ln A \link[=cmp_chr_scl]{complete character scalar} element name.
 #' @param en A \link[=cmp_chr_vec]{complete character vec} of element names.
-#' @param rn,cn \link[=cmp_chr_vec]{complete character vecs} of row or column
-#'   names, respectively.
-#' @return \tabular{ll}{
-#'   FUNCTIONS                     \tab RETURN VALUE                         \cr
-#'   `namev`                       \tab A vector.                            \cr
-#'   `namer`, `namec`, `namerc`    \tab A matrix/data.frame.                 \cr
-#'   `namel`                       \tab A 1-element list.                    \cr
-#'   `named`, `enamed`, `rnamed`   \tab A logical scalar.                    \cr
-#'   `cnamed`, `rcnamed`           \tab A logical scalar.                    \cr
-#'   `en`, `rn`, `cn`              \tab A character vector.                  \cr
-#'   `rcn`                         \tab A list of 2 character vectors.         }
+#' @param rn,cn Complete character vecs of row or column names, respectively.
+#' @return \itemize{
+#'   \item **`rcn`**: a list of `2` character vectors.
+#'   \item **`namev**: a vector.
+#'   \item **`namel**: a `1`-element list.
+#'   \item **`en, rn, cn**: a character vector.
+#'   \item **`namer, namec, namerc**: a matrix or data.frame.
+#'   \item **`named, enamed, rnamed, cnamed, rcnamed**: a logical scalar.
+#' }
 #' @export
 namev <- function(x, en) {
   ok.en <- cmp_vec(en) & length(x) == length(en)

@@ -1,28 +1,21 @@
 #' @name spacing
 #' @family strings
-#' @title Error-Checked `stringr`-Based Spacing Functions
-#' @description \tabular{ll}{
-#'   FUNCTION   \tab WHAT IT DOES                                            \cr
-#'   `spaces`   \tab Create a character vector of `n` spaces.                \cr
-#'   `pad`      \tab Pad a string with leading and/or trailing spaces using
-#'                   \code{\link[stringr:pad]{stringr::pad}}.                \cr
-#'   `sqz`      \tab Trim leading, trailing, and extra internal spaces using
-#'                   \code{\link[stringr:str_squish]{stringr::str_squish}}.  \cr
-#'   `trm`      \tab Trim leading and trailing spaces using
-#'                   \code{\link[stringr:str_trim]{stringr::str_trim}}.        }
+#' @title Error-checked `stringr`-based spacing functions
+#' @description \itemize{
+#'   \item **`spaces`**: creates a character vector of `n` spaces.
+#'   \item **`pad`**: pads a string with leading and/or trailing spaces with \code{\link[stringr:pad]{stringr::pad}}.
+#'   \item **`sqz`**: trims leading, trailing, and extra internal spaces with \code{\link[stringr:str_squish]{stringr::str_squish}}.
+#'   \item **`trm`**: trims leading and trailing spaces with \code{\link[stringr:str_trim]{stringr::str_trim}}.
+#' }
 #' @param ... An arbitrary number of atomic arguments to be processed.
-#' @param n \link[=cmp_psw_scl]{Complete positive whole-number scalar}
-#'   indicating the number of spaces.
-#' @param n. \link[=cmp_psw_scl]{Complete positive whole-number scalar}
-#'   indicating the number of pad characters.
-#' @param s. \link[=cmp_ch1_scl]{Complete onechar scalar} indicating side(s) to
-#'   pad: `'l'`, `'r'`, or `'b'` for left, right, or both, respectively.
-#' @param p. \link[=cmp_ch1_scl]{Complete onechar scalar} containing a single
-#'   character used to pad strings.
-#' @return \tabular{ll}{
-#'   FUNCTION               \tab RETURN VALUE                                \cr
-#'   `spaces`               \tab A character scalar.                         \cr
-#'   `pad`, `trm`, ` sqz`   \tab A character object.                           }
+#' @param n A link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of spaces.
+#' @param n. A complete positive whole-number scalar indicating the number of pad characters.
+#' @param s. A \link[=cmp_ch1_scl]{complete onechar scalar} indicating side(s) to pad: `'l'`, `'r'`, or `'b'` for left, right, or both, respectively.
+#' @param p. A complete onechar scalar containing a single character used to pad strings.
+#' @return \itemize{
+#'   \item **`spaces`**: a character scalar.
+#'   \item **`pad`, `trm`, `sqz`**: a character object.
+#' }
 #' @examples
 #' spaces(0)
 #' spaces(4)

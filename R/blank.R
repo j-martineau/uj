@@ -1,5 +1,5 @@
-#' @title Blank Strings
 #' @family strings
+#' @title Blank strings
 #' @description Evaluate whether `x` is a blank string scalar (i.e., `""`).
 #' @param x An R object
 #' @return A logical scalar

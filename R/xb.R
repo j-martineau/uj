@@ -1,19 +1,12 @@
 #' @name xb
 #' @family extensions
-#' @title Error-Checked Row and Column Binding
-#' @description \tabular{ll}{
-#'   FUNCTION   \tab WHAT IT DOES \cr
-#'   `xb`       \tab Row binds if `...` arguments are compatible only for row
-#'                   binding. Column binds if arguments are compatible only for
-#'                   column binding. Throws an error if arguments are either
-#'                   compatible for both row and column binding or not
-#'                   compatible for binding at all.                          \cr
-#'   `cb`       \tab Column bind an arbitrary number of atomic matrices or
-#'                   \link[=atm_dtf]{atomic data.frames}.                    \cr
-#'   `rb`       \tab Row bind an arbitrary number of atomic matrices or
-#'                   \link[=atm_dtf]{atomic data.frames}.                      }
-#' @param ... Multiple \code{\link{compatible}} atomic matrices or multiple
-#'   compatible \link[=atm_dtf]{atomic data.frames}.
+#' @title Error-checked row and column binding
+#' @description \itemize{
+#'   \item **`xb`**: Row binds if `...` arguments are compatible only for row binding. Column binds if arguments are compatible only for column binding. Throws an error if arguments are either compatible for both row and column binding or not compatible for binding at all.
+#'   \item **`cb`**: Column binds an arbitrary number of atomic matrices or \link[=atm_dtf]{atomic data.frames}.
+#'   \item **`rb`**: Row binds an arbitrary number of atomic matrices or atomic data.frames.
+#' }
+#' @param ... Multiple \code{\link{compatible}} atomic matrices or multiple compatible \link[=atm_dtf]{atomic data.frames}.
 #' @return An \link[=atm_dtf]{atomic data.frame} or an atomic matrix.
 #' @export
 xb <- function(...) {

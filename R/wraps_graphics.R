@@ -1,9 +1,10 @@
 #' @name wraps_graphics
-#' @title Tnin Wraps for Functions in Package `graphics`
-#' @description \tabular{ll}{
-#'   WRAPPER   \tab GRAPHICS FUNCTION                                        \cr
-#'   `strh`    \tab \code{\link[graphics]{strheight}}.                       \cr
-#'   `strw`    \tab \code{\link[graphics]{strwidth}}.                          }
+#' @family wraps
+#' @title Thin wrappers of `graphics` functions.
+#' @description \itemize{
+#'   \item **`strh`**: thinly wraps \code{\link[graphics]{strheight}}.
+#'   \item **`strw`**: thinly wraps \code{\link[graphics]{strwidth}}.
+#' }
 #' @inherit graphics::strheight
 #' @export
 strh <- function(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...) {graphics::strheight(s = s, units = units, cex = cex, font = font, vfont = vfont, ...)}

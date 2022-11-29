@@ -1,82 +1,59 @@
-#' @title Weave Inlay Values into a String
 #' @family strings
-#' @description A reformulation of \code{\link[base]{sprintf}}.
-#'   \cr Inlay escape sequences to specify formatting follow the patterns and
-#'   meanings given in the following table:\tabular{ll}{
-#'   PATTERN        \tab MEANS INSERT ARGUMENT...                            \cr
-#'   `'{@@}'`       \tab As is (argument must be scalar).                    \cr
-#'   `'{@@x}'`      \tab After applying formatting switch `'x'`.             \cr
-#'   `'{@@xy}'`     \tab After applying formatting switches `'x'` and `'y'`. \cr
-#'   `'{@@xyz}'`    \tab After applying formatting switches `'x'`, `'y'`, and
-#'                       `'z'`.                                                }
-#'   There are three families of switches:\tabular{ll}{
-#'   FAMILY         \tab PURPOSE                                             \cr
-#'   `decimals`     \tab Specify the number of decimal points to include in
-#'                       formatting numeric arguments.                       \cr
-#'   `quotes`       \tab Types of quotes in which to enclose formatted argument
-#'                       values.                                             \cr
-#'   `list`         \tab Type of list to create in formatting arguments that
-#'                       may that may have more than one element.              }
-#'   Each escape sequence can contain only 1 switch from each family, but no
-#'   family is required to have a switch in any given escape sequence. In the
-#'   following table, the values switches may take are summarized, giving the
-#'   value, the family it belongs to, and the formatting instructions indicated
-#'   by the switch.\tabular{lll}{
-#'   VALUE   \tab FAMILY       \tab FORMATTING SPECIFICATION                 \cr
-#'   `'0'`   \tab `decimals`   \tab 0 decimal places.                        \cr
-#'   `'1'`   \tab `decimals`   \tab 1 decimal place.                         \cr
-#'   `'2'`   \tab `decimals`   \tab 2 decimal places.                        \cr
-#'   `'3'`   \tab `decimals`   \tab 3 decimal places.                        \cr
-#'   `'4'`   \tab `decimals`   \tab 4 decimal places.                        \cr
-#'   `'5'`   \tab `decimals`   \tab 5 decimal places.                        \cr
-#'   `'6'`   \tab `decimals`   \tab 6 decimal places.                        \cr
-#'   `'7'`   \tab `decimals`   \tab 7 decimal places.                        \cr
-#'   `'8'`   \tab `decimals`   \tab 8 decimal places.                        \cr
-#'   `'9'`   \tab `decimals`   \tab 9 decimal places.                        \cr
-#'   `'q'`   \tab `quote`      \tab Single straight quotes.                  \cr
-#'   `'Q'`   \tab `quote`      \tab Double straight quotes.                  \cr
-#'   `'t'`   \tab `quote`      \tab Single typeset quotes.                   \cr
-#'   `'T'`   \tab `quote`      \tab Double typeset quotes.                   \cr
-#'   `'b'`   \tab `list `      \tab Comma-separated list in curly braces.    \cr
-#'   `'c'`   \tab `list`       \tab Comma-separated concatenation statement
-#'                                  (i.e., `'c(...)'`).                      \cr
-#'   `'l'`   \tab `list`       \tab Comma-separated list.                    \cr
-#'   `'p'`   \tab `list`       \tab Comma-separated list in parentheses.     \cr
-#'   `'s'`   \tab `list`       \tab Comma-separated list in square brackets. \cr
-#'   `'a'`   \tab `list`       \tab \link[=ox_and]{Oxford-comma 'and' list}. \cr
-#'   `'o'`   \tab `list`       \tab \link[=ox_or]{Oxford-comma 'or' list}.     }
-#'   Switches may be given in any order, and there can only be one switch from
-#'   each family in a given inlay escape sequence. Regardless of order in the
-#'   escape sequence, switches from the `decimals` family are processed first,
-#'   followed by switches from the `quote` family, followed by switches from the
-#'   `list` family.
-#'   \cr\cr
-#'   Example are provided in the following table, giving inlay escape sequences,
-#'   the value of an argument to be formatted using the inlay escape sequence,
-#'   and the result of applying the inlay escape sequence's formatting switches
-#'   to the argument.\tabular{lll}{
-#'   ESCAPE        \tab ARGUMENT                   \tab RESULTING FORMATTED  \cr
-#'   SEQUENCE      \tab VALUE                      \tab CHARACTER SCALAR     \cr
-#'   `'{@@}'`      \tab `FALSE`                    \tab `'FALSE'`            \cr
-#'   `'{@@}'`      \tab `42`                       \tab `'42'`               \cr
-#'   `'{@@b}'`     \tab `4:7`                      \tab `'{4, 5, 6, 7}'`     \cr
-#'   `'{@@q}'`     \tab `'foo::bar'`               \tab `"'foo::bar'"}`      \cr
-#'   `'{@@0}'`     \tab `pi`                       \tab `'3'`                \cr
-#'   `'{@@aQ}'`    \tab `c('me', 'myself', 'I')`   \tab
-#'                      `'"me", "myself", and "I"'`                          \cr
-#'   `'{@@c2}'`    \tab `c(pi, exp(1), 42)`        \tab
-#'                      `'c(3.14, 2.62, 42.00)'`                             \cr
-#'   `'{@@Q6}'`    \tab `pi`                       \tab `'"3.141593"'`       \cr
-#'   `'{@@ot3}'`   \tab `c(pi, exp(1))`            \tab `'‘3.142’ or ‘2.718’'` }
-#' @param x A \link[=cmp_chr_scl]{complete character scalar} with inlay escape
-#'   sequences (see details).
-#' @param ... Arbitrary number of atomic scalar/vector arguments to be inserted
-#'   into `x` with formatting specified in inlay escape sequences. The `N`-th
-#'   argument in `...` corresponds to the `N`-th inlay escape sequence in `x`.
-#'   The number of inlay escape sequences in `x` must be equal to the number of
-#'   `...` arguments.
+#' @encoding UTF-8
+#' @title Weave inlay values into a string
+#' @description A reformulation of \code{\link[base]{sprintf}}. See details.
+#' @details This function relies on a template containing escape sequences which in turn contain formatting switches. Escape sequences specify where to insert inlay arguments. Switches specify how to format inlay arguments to be inlaid, and come in three families
+#' \cr\cr
+#' 'Decimal' switches specify number of decimal places for numeric inlay arguments, taking the values `'0'` to `'9'`
+#' \cr\cr
+#' 'Quote' switches specify quoting of elements of inlay arguments.\tabular{ll}{
+#'       **Switch**         \tab **Quote**
+#'   \cr **Value**          \tab **Type**
+#'   \cr `'q'`              \tab single straight
+#'   \cr `'Q'`              \tab double straight
+#'   \cr `'t'`              \tab single typeset
+#'   \cr `'T'`              \tab double typeset
+#' }
+#' 'List' switches specify formatting inlay arguments as comma-separated lists.\tabular{lll}{
+#'       **Switch**         \tab **List**      \tab **Result with Inlay**
+#'   \cr **Value**          \tab **Type**      \tab **Arg = `1:3`**
+#'   \cr `'o'`              \tab or            \tab `'1, 2, or 3'`
+#'   \cr `'a'`              \tab and           \tab `'1, 2, and 3'`
+#'   \cr `'b'`              \tab braces        \tab `'{1, 2, 3}'`
+#'   \cr `'c'`              \tab concat        \tab `'c(1, 2, 3)'`
+#'   \cr `'l'`              \tab simple        \tab `'1, 2, 3'}`
+#'   \cr `'p'`              \tab parens        \tab `'(1, 2, 3)'`
+#'   \cr `'s'`              \tab square        \tab `'[1, 2, 3]'`
+#' }
+#' **Building escape sequences**
+#' \cr\cr
+#' Escape sequences are formatted as `'{@@_}'` where `_` is a placeholder for `0` to `3` formatting switches, but with no more than `1` switch from each family. What each format signals is described below.
+#' \cr\cr
+#' `'{@@}'` signals insertion of a scalar inlay argument as is.
+#' \cr\cr
+#' `'{@@x}'` vs. `'{@@xy}'` signal insertion of an inlay argument after applying formatting switch `x` vs. formatting switches `x` and `y`. If an escape sequence with one of these formats does not contain a 'list' switch, the associated inlay argument *must be scalar* (otherwise it may also be a vector).
+#' \cr\cr
+#' `'{@@xyz}'` signals insertion of a scalar or vector inlay argument after applying formatting switches `x`, `y`, and `z`.
+#' \cr\cr
+#' **Order of switches** in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:\enumerate{
+#'   \item Decimal switch (if any).
+#'   \item Quote switch (if any).
+#'   \item List switch (if any).
+#' }
+#' @param x A \link[=cmp_chr_scl]{complete character scalar} with embedded escape sequences. See details.
+#' @param ... Arbitrary number of atomic scalar/vector arguments to be inserted into `x` with formatting specified in inlay escape sequences. The `N`-th argument in `...` corresponds to the `N`-th inlay escape sequence in `x`. The number of inlay escape sequences in `x` must be equal to the number of `...` arguments. See details.
 #' @return A character scalar.
 #' @export
+#' @examples
+#' weave('{@@}', FALSE)
+#' weave('{@@}', 42)
+#' weave('{@@b}', 4:7)
+#' weave('{@@q}', 'foo::bar')
+#' weave('{@@0}', pi)
+#' weave('{@@c2}', c(pi, exp(1), 42))
+#' weave('{@@Q6}', pi)
+#' weave('{@@ot3}', c(pi, exp(1)))
+#' weave('{@@aQ}', c('me', 'myself', 'I'))
 weave <- function(x, ...) {
   ok.dots <- ...length() > 0
   ok.props <- f0(ok.dots, all(sapply(list(...), cmp_vec)), F)
@@ -98,10 +75,8 @@ weave <- function(x, ...) {
   qt.switches <- " quote type switch (i.e., from 'qQtT')."                       # choose-max-of-1 set of quote-type switches
   dc.switches <- " decimal places switch (i.e., from '0123456789')."             # choose-max-of-1 set of digits of precision switches
   inlay.sequence <- " valid inlay escape sequence in x "                         # infix for describing inlay escape sequences
-  count.mismatch <- paste0("The number of arguments in [...] (", n.dots, ") ",   # mismatch between count of args and count of valid switch codes
-                          "and number of valid inlay escape sequences in [x.] ")
-  all.switches <- c("a", "b", "c", "l", "o", "p", "s", "q", "Q", "t", "T",       # all valid switch values
-                    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+  count.mismatch <- paste0("The number of arguments in [...] (", n.dots, ") and number of valid inlay escape sequences in [x.] ")
+  all.switches <- c("a", "b", "c", "l", "o", "p", "s", "q", "Q", "t", "T", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
   pat0 <- paste0(code.prefix, code.suffix)                                       # 0-switch pattern '{@}'
   pat1 <- paste0(code.prefix, switches, code.suffix)                             # 1-switch pattern '{@s}'
   pat2 <- paste0(code.prefix, switches, switches, code.suffix)                   # 2-switch pattern '{@ss}'

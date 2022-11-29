@@ -1,64 +1,25 @@
 #' @name dots_uj
 #' @family extensions
-#' @title Manage `...` (Dot) Arguments
-#' @description \tabular{ll}{
-#'   FUNCTION         \tab WHAT IT DOES                                      \cr
-#'   `dots`           \tab Extract one or more`...` arguments based on matching
-#'                         values supplied in `names.`. If a supplied name
-#'                         matches the name of a `...` argument, that argument
-#'                         is returned. Otherwise, the element of `defs.` with a
-#'                         matching name is returned. `names. = NULL` and
-#'                         `names. = NA` are converted to `'NULL'` and `'NA'`.
-#'                         Reserved words in `names.` should be backtick
-#'                         quoted.                                           \cr
-#'   `dot`            \tab A convenience version of `dots` for extracting a
-#'                         single named `...` argument (or if a matching `...`
-#'                         argument name is not found, its default value
-#'                         `def.`).                                          \cr
-#'   `dot_names`      \tab If `names. = NULL`, the return value is `...names()`,
-#'                         otherwise, `names.` is returned. Throws an error in
-#'                         the following cases:\itemize{
-#'                         \item `0 ...` arguments are supplied.
-#'                         \item `names. != NULL` and
-#'                               `length(names.) != ...length()`.
-#'                         \item `req. = TRUE`, `names. = NULL`, and no `...`
-#'                                arguments are named.
-#'                         \item `names. = NULL` and either \itemize{
-#'                           \item `blank. = TRUE` and any `...` argument is
-#'                                   unnamed or its name is blank, or
-#'                           \item `u. = TRUE` and any `...` arguments name
-#'                                   is duplicated.                        }}\cr
-#'   `named_dots`     \tab Extract named `...` arguments as a named list (does
-#'                         not include with blank-string names).             \cr
-#'   `unnamed_dots`   \tab Extract unnamed `...` arguments as an unnamed list
-#'                         (includes any named with blank strings).            }
+#' @title Manage `...` arguments
+#' @description \itemize{
+#'   \item **`dots`**: Extracts one or more`...` arguments based on matching values supplied in `names.`. If a supplied name matches the name of a `...` argument, that argument is returned. Otherwise, the element of `defs.` with a matching name is returned. `names. = NULL` and `names. = NA` are converted to `'NULL'` and `'NA'`. Reserved words in `names.` should be backtick quoted.
+#'   \item **`dot`**: A convenience version of `dots` for extracting a single named `...` argument (or if a matching `...` argument name is not found, its default value `def.`).
+#'   \item **`named_dots`**: Extracts named `...` arguments as a named list (does not include with blank-string names).
+#'   \item **`unnamed_dots`**: Extracts unnamed `...` arguments as an unnamed list (includes any named with blank strings).
+#'   \item **`dot_names`**: If `names. = NULL`, the return value is `...names()`, otherwise, `names.` is returned. Throws an error in the following cases:
+#'   \itemize{
+#'     \item `0 ...` Arguments are supplied.
+#'     \item `names. != NULL` and `length(names.) != ...length()`.
+#'     \item `req. = TRUE`, `names. = NULL`, and no `...` arguments are named.
+#'     \item `names. = NULL` and either (a) `blank. = TRUE` and any `...` argument is unnamed or its name is blank or (b) \item `u. = TRUE` and any `...` argument name is duplicated.
+#' }}
 #' @param ... An arbitrary number of arguments.
-#' @param names. `NULL` or an \link[=atm_vec]{atomic vec} (may
-#'   include `NA`) values). Is split along the delimiter `'|'` to
-#'   allow for compactness in submitting multiple names. `NULL` will match
-#'   either an argument in `...` or element of `defs.` with the name
-#'   `'NULL'`. `NA` values will match an argument in `...` or an
-#'   element of `defs.` with the name `'NA'`.
-#' @param name. `NULL` or \link[=cmp_scl]{complete atomic scalar}.
-#'   `NULL` is replaced with `'NULL'` and `NA` is replaced with
-#'   `'NA'`.
-#' @param subs. `NULL` or \link[=cmp_chr_vec]{complete character vec}. If not
-#'   `NULL`, it is split using pipes `'|'` as a delimiter. If there are no pipes
-#'   contained in `names.`, it remains unchanged. When this argument is not
-#'   `NULL`, it is substituted for the names of `...` arguments; thus, after
-#'   splitting, its length must equal the number of `...` arguments. For
-#'   example, `names. = c('one', 'two', 'three|four|five')` indicates
-#'   that there should be five `...` arguments and the vector
-#'   `c('one', 'two', 'three', 'four', 'five')` is substituted for their names.
-#' @param defs. Named \link[=ivls]{vlist} of default objects/values to return if
-#'   the specified arguments are not in `...`. Elements of `defs.`
-#'   must be uniquely named. If `defs.` is a tibble, columns with matching
-#'   names are returned.
-#' @param def. Default object/value to return if a specified argument is not in
-#'   `...`. Can be, but does not need to be, a list.
-#' @param req.,blank.,u. \link[=cmp_lgl_scl]{Complete logical scalars}
-#'   indicating whether names are required, whether lank names are allowed, and
-#'   whether names must be unique.
+#' @param names. `NULL` or an \link[=atm_vec]{atomic vec} (may include `NA` values). Is split along the delimiter `'|'` to allow for compactness in submitting multiple names. `NULL` will match either an argument in `...` or element of `defs.` with the name `'NULL'`. `NA` values will match an argument in `...` or an element of `defs.` with the name `'NA'`.
+#' @param name. `NULL` or \link[=cmp_scl]{complete atomic scalar}. `NULL` is replaced with `'NULL'` and `NA` is replaced with `'NA'`.
+#' @param subs. `NULL` or \link[=cmp_chr_vec]{complete character vec}. If not `NULL`, it is split using pipes `'|'` as a delimiter. If there are no pipes contained in `names.`, it remains unchanged. When this argument is not `NULL`, it is substituted for the names of `...` arguments; thus, after splitting, its length must equal the number of `...` arguments. For example, `names. = c('one', 'two', 'three|four|five')` indicates that there should be five `...` arguments and the vector `c('one', 'two', 'three', 'four', 'five')` is substituted for their names.
+#' @param defs. A named \link[=ivls]{vlist} of default objects/values to return if the specified arguments are not in `...`. Elements of `defs.` must be uniquely named. If `defs.` is a tibble, columns with matching names are returned.
+#' @param def. A default object/value to return if a specified argument is not in `...`. Can be, but does not need to be, a list.
+#' @param req.,blank.,u. Non-`NA` logical scalars indicating whether names are required, whether lank names are allowed, and whether names must be unique.
 #' @export
 dots <- function(names., defs., ...) {
   dots  <- list(...)

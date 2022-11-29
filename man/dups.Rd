@@ -3,7 +3,7 @@
 \name{dups}
 \alias{dups}
 \alias{idups}
-\title{Identify Duplicate Values.}
+\title{Duplicate values.}
 \usage{
 dups(...)
 
@@ -14,28 +14,20 @@ idups(x, int = F)
 
 \item{x}{An \link[=atm_vec]{atomic vec}.}
 
-\item{int}{A non-\code{NA} logical scalar indicating whether to return a logical
-vector (\code{int = FALSE}) or an integer vector (\code{int = TRUE}).}
+\item{int}{A non-\code{NA} logical scalar indicating whether to return a logical vector (\code{int = FALSE}) or an integer vector (\code{int = TRUE}).}
 }
 \value{
-\tabular{ll}{
-FUNCTION   \tab RETURN VALUE                                            \cr
-\code{dups}     \tab An atomic vector.                                       \cr
-\code{idups}    \tab A logical vector (when \code{int = FALSE}) or an integer vector
-(when \code{int = TRUE}).                                      }
+\itemize{
+\item \strong{\code{dups}}: an atomic vector.
+\item \strong{\code{idups}}: a logical vector (when \code{int = FALSE}) or an integer vector (when \code{int = TRUE}).
+}
 }
 \description{
 Extended functionality for \code{\link[base]{duplicated}}.
-\tabular{ll}{
-FUNCTION   \tab WHAT IT DOES                                          \cr
-\code{dups}     \tab \link[=av]{Atomize} \code{...}, then reduce the resulting
-vector to contain one copy of each duplicated element.\cr
-\code{idups}    \tab Index all elements of \code{x} that are duplicates of its
-earlier element, either as a logical vector of the same
-length as \code{x} (when \code{int = FALSE}) or as an integer
-vector whose length is the same as the number of elements
-in \code{x} that are duplicates of earlier elements (when
-\code{int = TRUE}).                                          }
+\itemize{
+\item \strong{\code{dups}}: \link[=av]{atomizes} \code{...}, then reduce the resulting vector to contain one copy of each duplicated element.
+\item \strong{\code{idups}}: indexes all elements of \code{x} that are duplicates of its earlier element, either as a logical vector of the same length as \code{x} (when \code{int = FALSE}) or as an integer vector whose length is the same as the number of elements in \code{x} that are duplicates of earlier elements (when \code{int = TRUE}).
+}
 }
 \examples{
 dups(0:5, 5:10, 10:15, 15:20)

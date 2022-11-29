@@ -2,7 +2,7 @@
 % Please edit documentation in R/blank.R
 \name{blank}
 \alias{blank}
-\title{Blank Strings}
+\title{Blank strings}
 \usage{
 blank(x)
 }

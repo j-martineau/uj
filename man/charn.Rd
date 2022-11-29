@@ -9,13 +9,10 @@ charn(x, n)
 \arguments{
 \item{x}{A \link[=ichr]{character object}.}
 
-\item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} or
-\link[=cmp_psw]{complete positive whole-number object} of the same
-dimensions as \code{x}.}
+\item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} or a \link[=cmp_psw]{complete positive whole-number object} of the same dimensions as \code{x}.}
 }
 \value{
-A link[=cmp_ch1]{complete onechar} atomic object of the same
-dimension as \code{x}.
+A link[=cmp_ch1]{complete onechar} atomic object of the same dimension as \code{x}.
 }
 \description{
 Get the \code{n}-th character of each element of \code{x}.
@@ -36,4 +33,5 @@ Other strings:
 \code{\link{tocase}()},
 \code{\link{weave}()}
 }
+\concept{chars}
 \concept{strings}

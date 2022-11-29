@@ -3,7 +3,7 @@
 \name{wraps_scales}
 \alias{wraps_scales}
 \alias{sca}
-\title{Wraps of Functions from the \code{scales} Package}
+\title{Thin wrappers of \code{scales} functions}
 \usage{
 sca(color, alpha = NA)
 }
@@ -12,9 +12,9 @@ sca(color, alpha = NA)
 existing alpha values are preserved.}
 }
 \description{
-\tabular{ll}{
-WRAPPER NAME   \tab SCALES FUNCTION                                     \cr
-\code{sca}     \tab \code{\link[scales]{alpha}}.                          }
+\itemize{
+\item \strong{\code{sca}}: thinly wraps \code{\link[scales]{alpha}}.
+}
 }
 \examples{
 alpha("red", 0.1)
@@ -28,6 +28,7 @@ Other wraps:
 \code{\link{wraps_data_table}},
 \code{\link{wraps_dplyr}},
 \code{\link{wraps_gg}},
+\code{\link{wraps_graphics}},
 \code{\link{wraps_readr}},
 \code{\link{wraps_tibble}}
 }

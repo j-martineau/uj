@@ -1,26 +1,18 @@
-#' @name cmp_mmm
 #' @family props
-#' @title Completeness + Extended Mode Properties
-#' @description \tabular{ll}{
-#'   FUNCTION          \tab WHAT IT DOES                                     \cr
-#'   `cmp_mmm`         \tab Evaluates whether `x` is complete and matches
-#'                          the extended mode specified in the argument `mmm`
-#'                          subject to any restrictions in `...`.            \cr
-#'   `cmp_MMM`         \tab Evaluates whether `x` is complete and matches the
-#'                          extended mode property `MMM` subject to any
-#'                          restrictions in `...`, where `MMM` is a placeholder
-#'                          for any given extended mode property.            \cr
-#'   `cmp_mmm_props`   \tab Gets a character vector of all possible completeness
-#'                          + extended mode properties.                        }
+#' @title Completeness + extended mode properties
+#' @description \itemize{
+#'   \item **`cmp_mmm`**: Evaluates whether `x` is complete and matches the extended mode specified in the argument `mmm` subject to any restrictions in `...`.
+#'   \item **`cmp_xxx`**: Evaluates whether `x` is complete and matches the extended mode property `xxx` subject to any restrictions in `...`, where `x` is a placeholder for any given extended mode property.
+#'   \item **`cmp_mmm_props`**: Gets a character vector of all possible completeness + extended mode properties.
+#' }
 #' @param x An R object
-#' @param mmm A character scalar containing an extended mode property from
-#'   `mmm_props()`.
+#' @param mmm A character scalar containing an extended mode property from `mmm_props()`.
 #' @inheritDotParams meets
-#' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \tabular{ll}{
-#'   FUNCTION               \tab RETURN VALUE                                \cr
-#'   `cmp_mmm_props`        \tab A character vector.                         \cr
-#'   `cmp_mmm`, `cmp_MMM`   \tab A logical scalar.                             }
+#' @inheritSection meets Specifying count and value restrictions
+#' @return \itemize{
+#'   \item **`cmp_mmm_props`**: a character vector.
+#'   \item **`cmp_mmm, cmp_MMM`**: a logical scalar.
+#' }
 #' @export
 cmp_mmm <- function(x, mmm, ...) {
   errs <- c(.meets_errs(x, ...),

@@ -1,11 +1,9 @@
-#' @title Fixed-Value String Substitution
-#' @description Replace strings in `pats` with corresponding (possibly recycled)
-#'   strings in `subs`.
 #' @family strings
 #' @family extensions
+#' @title Fixed-value string substitution
+#' @description Replace strings in `pats` with corresponding (possibly recycled) strings in `subs`.
 #' @param x An \link[=atm_chr]{atomic character object}.
-#' @param pats,subs \link[=cmp_chr_vec]{Complete character vecs} containing
-#'   patterns to replace and their associated replacement strings.
+#' @param pats,subs \link[=cmp_chr_vec]{Complete character vecs} containing patterns to replace and their associated replacement strings.
 #' @return Atomic character object.
 #' @export
 fsub <- function(x, pats, subs) {

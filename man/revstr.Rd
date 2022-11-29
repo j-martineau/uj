@@ -2,7 +2,7 @@
 % Please edit documentation in R/revstr.R
 \name{revstr}
 \alias{revstr}
-\title{Reverse Strings}
+\title{Reverse strings}
 \usage{
 revstr(x)
 }
@@ -13,8 +13,7 @@ revstr(x)
 A character vector.
 }
 \description{
-Reverse the order of characters in each element of a character
-vector.
+Reverse the order of characters in each element of a character vector.
 }
 \seealso{
 Other strings: 

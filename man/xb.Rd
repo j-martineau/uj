@@ -4,7 +4,7 @@
 \alias{xb}
 \alias{cb}
 \alias{rb}
-\title{Error-Checked Row and Column Binding}
+\title{Error-checked row and column binding}
 \usage{
 xb(...)
 
@@ -13,36 +13,28 @@ cb(...)
 rb(...)
 }
 \arguments{
-\item{...}{Multiple \code{\link{compatible}} atomic matrices or multiple
-compatible \link[=atm_dtf]{atomic data.frames}.}
+\item{...}{Multiple \code{\link{compatible}} atomic matrices or multiple compatible \link[=atm_dtf]{atomic data.frames}.}
 }
 \value{
 An \link[=atm_dtf]{atomic data.frame} or an atomic matrix.
 }
 \description{
-\tabular{ll}{
-FUNCTION   \tab WHAT IT DOES \cr
-\code{xb}       \tab Row binds if \code{...} arguments are compatible only for row
-binding. Column binds if arguments are compatible only for
-column binding. Throws an error if arguments are either
-compatible for both row and column binding or not
-compatible for binding at all.                          \cr
-\code{cb}       \tab Column bind an arbitrary number of atomic matrices or
-\link[=atm_dtf]{atomic data.frames}.                    \cr
-\code{rb}       \tab Row bind an arbitrary number of atomic matrices or
-\link[=atm_dtf]{atomic data.frames}.                      }
+\itemize{
+\item \strong{\code{xb}}: Row binds if \code{...} arguments are compatible only for row binding. Column binds if arguments are compatible only for column binding. Throws an error if arguments are either compatible for both row and column binding or not compatible for binding at all.
+\item \strong{\code{cb}}: Column binds an arbitrary number of atomic matrices or \link[=atm_dtf]{atomic data.frames}.
+\item \strong{\code{rb}}: Row binds an arbitrary number of atomic matrices or atomic data.frames.
+}
 }
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -53,6 +45,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -60,6 +53,7 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}}

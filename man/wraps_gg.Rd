@@ -33,7 +33,7 @@
 \alias{ggwrap}
 \alias{ggxlab}
 \alias{ggylab}
-\title{Thin Wraps of Functions from Package \code{ggplot} and \code{ggtext}.}
+\title{Thin wrappers of \code{ggplot2} and \code{ggtext} functions}
 \usage{
 ggp(data = NULL, mapping = ggplot2::aes(), ..., environment = parent.frame())
 
@@ -665,52 +665,39 @@ A list with class \code{uneval}. Components of the list are either
 quosures or constants.
 }
 \description{
-\strong{Basics}\tabular{ll}{
-WRAPPER     \tab GGPLOT2 FUNCTION                                     \cr
-\code{ggp}       \tab \code{\link[ggplot2]{ggplot}}                        \cr
-\code{ggaes}     \tab \code{\link[ggplot2]{aes}}                           \cr
-\code{ggmar}     \tab \code{\link[ggplot2]{margin}}                        \cr
-\code{ggexp}     \tab \code{\link[ggplot2]{expansion}}                     \cr
-\code{ggunit}    \tab \code{\link[ggplot2]{unit}}                          \cr
-\code{ggvars}    \tab \code{\link[ggplot2]{vars}}                          \cr
-\code{ggsv}      \tab \code{\link[ggplot2]{ggsave}}                          }
-\strong{Labels}\tabular{ll}{
-WRAPPER     \tab GGPLOT2 FUNCTION                                     \cr
-\code{gglab}     \tab \code{\link[ggplot2]{geom_label}}                    \cr
-\code{gglabs}    \tab \code{\link[ggplot2]{labs}}                          \cr
-\code{ggxlab}    \tab \code{\link[ggplot2]{xlab}}                          \cr
-\code{ggylab}    \tab \code{\link[ggplot2]{ylab}}                            }
-\strong{Geoms}\tabular{ll}{
-WRAPPER     \tab GGPLOT2 FUNCTION                                     \cr
-\code{ggdot}     \tab \code{\link[ggplot2]{geom_point}}                    \cr
-\code{gghln}     \tab \code{\link[ggplot2]{geom_hline}}                    \cr
-\code{gglin}     \tab \code{\link[ggplot2]{geom_line}}                     \cr
-\code{ggtxt}     \tab \code{\link[ggplot2]{geom_text}}                     \cr
-\code{ggvln}     \tab \code{\link[ggplot2]{geom_vline}}                      }
-\strong{Faceets}\tabular{ll}{
-WRAPPER     \tab GGPLOT2 FUNCTION                                     \cr
-\code{gggrid}    \tab \code{\link[ggplot2]{facet_grid}}                    \cr
-\code{ggwrap}    \tab \code{\link[ggplot2]{facet_wrap}}                      }
-\strong{Themes}\tabular{ll}{
-WRAPPER     \tab GGPLOT2 FUNCTION                                     \cr
-\code{ggthm}     \tab \code{\link[ggplot2]{theme}}                         \cr
-\code{ggtmin}   \tab \code{\link[ggplot2]{theme_minimal}}                    }
-\strong{Elements}\tabular{ll}{
-WRAPPER     \tab GGPLOT2 FUNCTION                                     \cr
-\code{ggenull}   \tab \code{\link[ggplot2]{element_blank}}                 \cr
-\code{ggerct}    \tab \code{\link[ggplot2]{element_rect}}                  \cr
-\code{ggetxt}    \tab \code{\link[ggplot2]{element_text}}                  \cr
-\code{ggelin}    \tab \code{\link[ggplot2]{element_line}}                  \cr
-\code{ggemd}     \tab \code{\link[ggtext]{element_markdown}} (A)             }
-\strong{Scales}\tabular{ll}{
-WRAPPER     \tab GGPLOT2 FUNCTION                                     \cr
-\code{ggsac}     \tab \code{\link[ggplot2]{scale_alpha_continuous}}        \cr
-\code{ggscm}     \tab \code{\link[ggplot2]{scale_color_manual}}            \cr
-\code{ggsdm}     \tab \code{\link[ggplot2]{scale_shape_manual}}            \cr
-\code{ggslm}     \tab \code{\link[ggplot2]{scale_linetype_manual}}         \cr
-\code{ggsxc}     \tab \code{\link[ggplot2]{scale_x_continuous}}            \cr
-\code{ggsyc}     \tab \code{\link[ggplot2]{scale_y_continuous}}              }
-(A) From the \code{ggtext} package.
+\itemize{
+\item \strong{\code{ggp}}: thinly wraps \code{\link[ggplot2]{ggplot}}
+\item \strong{\code{ggaes}}: thinly wraps \code{\link[ggplot2]{aes}}
+\item \strong{\code{ggmar}}: thinly wraps \code{\link[ggplot2]{margin}}
+\item \strong{\code{ggexp}}: thinly wraps \code{\link[ggplot2]{expansion}}
+\item \strong{\code{ggunit}}: thinly wraps \code{\link[ggplot2]{unit}}
+\item \strong{\code{ggvars}}: thinly wraps \code{\link[ggplot2]{vars}}
+\item \strong{\code{ggsv}}: thinly wraps \code{\link[ggplot2]{ggsave}}
+\item \strong{\code{gglab}}: thinly wraps \code{\link[ggplot2]{geom_label}}
+\item \strong{\code{gglabs}}: thinly wraps \code{\link[ggplot2]{labs}}
+\item \strong{\code{ggxlab}}: thinly wraps \code{\link[ggplot2]{xlab}}
+\item \strong{\code{ggylab}}: thinly wraps \code{\link[ggplot2]{ylab}}
+\item \strong{\code{ggdot}}: thinly wraps \code{\link[ggplot2]{geom_point}}
+\item \strong{\code{gghln}}: thinly wraps \code{\link[ggplot2]{geom_hline}}
+\item \strong{\code{gglin}}: thinly wraps \code{\link[ggplot2]{geom_line}}
+\item \strong{\code{ggtxt}}: thinly wraps \code{\link[ggplot2]{geom_text}}
+\item \strong{\code{ggvln}}: thinly wraps \code{\link[ggplot2]{geom_vline}}
+\item \strong{\code{gggrid}}: thinly wraps \code{\link[ggplot2]{facet_grid}}
+\item \strong{\code{ggwrap}}: thinly wraps \code{\link[ggplot2]{facet_wrap}}
+\item \strong{\code{ggthm}}: thinly wraps \code{\link[ggplot2]{theme}}
+\item \strong{\code{ggtmin}}: thinly wraps \code{\link[ggplot2]{theme_minimal}}
+\item \strong{\code{ggsac}}: thinly wraps \code{\link[ggplot2]{scale_alpha_continuous}}
+\item \strong{\code{ggscm}}: thinly wraps \code{\link[ggplot2]{scale_color_manual}}
+\item \strong{\code{ggsdm}}: thinly wraps \code{\link[ggplot2]{scale_shape_manual}}
+\item \strong{\code{ggslm}}: thinly wraps \code{\link[ggplot2]{scale_linetype_manual}}
+\item \strong{\code{ggsxc}}: thinly wraps \code{\link[ggplot2]{scale_x_continuous}}
+\item \strong{\code{ggsyc}}: thinly wraps \code{\link[ggplot2]{scale_y_continuous}}
+\item \strong{\code{ggenull}}: thinly wraps \code{\link[ggplot2]{element_blank}}
+\item \strong{\code{ggerct}}: thinly wraps \code{\link[ggplot2]{element_rect}}
+\item \strong{\code{ggetxt}}: thinly wraps \code{\link[ggplot2]{element_text}}
+\item \strong{\code{ggelin}}: thinly wraps \code{\link[ggplot2]{element_line}}
+\item \strong{\code{ggemd}}: thinly wraps \code{ggtext}'s \code{\link[ggtext]{element_markdown}}
+}
 }
 \details{
 \code{ggplot()} is used to construct the initial plot object,
@@ -1065,6 +1052,7 @@ Other wraps:
 \code{\link{wraps_base}},
 \code{\link{wraps_data_table}},
 \code{\link{wraps_dplyr}},
+\code{\link{wraps_graphics}},
 \code{\link{wraps_readr}},
 \code{\link{wraps_scales}},
 \code{\link{wraps_tibble}}

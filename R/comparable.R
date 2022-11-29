@@ -1,13 +1,8 @@
 #' @family props
-#' @title Are Objects Comparable?
-#' @description Determines whether modes of all `...` arguments are comparable
-#'   (i.e., sortable and compatible with each other), meaning that the are
-#'   either all character, all logical, all numeric, or all ordered factor with
-#'   the same set of levels (in the same order).
-#' @param ... An arbitrary number of arguments to be checked for comparability
-#'   with each other.
-#' @param recycle. A non-`NA` logical scalar indicating whether `...` arguments
-#'   must be recyclable to be comparable.
+#' @title Are objects comparable?
+#' @description Determines whether modes of all `...` arguments are comparable (i.e., sortable and compatible with each other), meaning that the are either all character, all logical, all numeric, or all ordered factor with the same set of levels (in the same order).
+#' @param ... An arbitrary number of arguments to be checked for comparability with each other.
+#' @param recycle. A non-`NA` logical scalar indicating whether `...` arguments must be recyclable to be comparable.
 #' @return A logical scalar.
 #' @export
 comparable <- function(..., recycle. = T) {

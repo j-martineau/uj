@@ -71,110 +71,60 @@ has(x, y, na = T, agg = NA)
 lacks(x, y, na = T, agg = NA)
 }
 \arguments{
-\item{x}{An \link[=atm_lgl]{atomic logical object} for all functions other
-than \code{is_in}, \code{not_in}, \code{has}, and \code{lacks}. Otherwise, an atomic object.}
+\item{x}{An \link[=atm_lgl]{atomic logical object} for all functions other than \code{is_in}, \code{not_in}, \code{has}, and \code{lacks}. Otherwise, an atomic object.}
 
-\item{na}{A non-\code{NA} logical scalar indicating what value should replace \code{NA}
-values.}
+\item{na}{A non-\code{NA} logical scalar indicating what value should replace \code{NA} values.}
 
-\item{y}{An \link[=atm_lgl]{atomic logical object} for all functions other
-than \code{is_in}, \code{not_in}, \code{has}, and \code{lacks}. Otherwise, an atomic object
-\link[=compatible]{compatible} with \code{x}.}
+\item{y}{An atomic logical object. for all functions other than \code{is_in}, \code{not_in}, \code{has}, and \code{lacks}. Otherwise, an atomic object \link[=compatible]{compatible} with \code{x}.}
 
-\item{err}{A non-\code{NA} logical scalar. \code{err = TRUE} indicates \code{TRUE} should be
-substituted for non-logical values, \code{err = FALSE} indicates \code{FALSE} should
-be substituted for non-logical values, \code{err = NA} indicates an error should
-be thrown if a non-logical value is encountered.}
+\item{err}{A non-\code{NA} logical scalar. \code{err = TRUE} indicates \code{TRUE} should be substituted for non-logical values, \code{err = FALSE} indicates \code{FALSE} should be substituted for non-logical values, \code{err = NA} indicates an error should be thrown if a non-logical value is encountered.}
 
-\item{...}{An arbitrary number of \link[=lgl_vec]{logical vecs} to be
-processed.}
+\item{...}{An arbitrary number of \link[=lgl_vec]{logical vecs} to be processed.}
 
-\item{a}{A non-\code{NA}  logical scalar indicating whether to atomize \code{...}
-before processing. This creates a single atomic vector of all atomic
-elements contained in all \code{...} arguments and effectively changes the
-behavior of \code{or} to \code{any}, \code{and} to \code{all}, and \code{not} to \code{!any}.}
+\item{a}{A non-\code{NA} logical scalar indicating whether to atomize \code{...} before processing. This creates a single atomic vector of all atomic elements contained in all \code{...} arguments and effectively changes the behavior of \code{or} to \code{any}, \code{and} to \code{all}, and \code{not} to \code{!any}.}
 
-\item{not}{A non-\code{NA} logical scalar indicating whether to negate values
-in arguments supplied in \code{...} before processing.}
+\item{not}{A non-\code{NA} logical scalar indicating whether to negate values in arguments supplied in \code{...} before processing.}
 
-\item{across, within}{\link[=cmp_chr_scl]{Character scalars}. \code{NA} indicates
-not summarizing across or within \code{...} arguments. Values in
-\code{c('nor', 'one', 'any', 'two', 'all')} indicate zero, exactly one, any, two
-or more, or all values are \code{TRUE} when looking across corresponding
-elements of \code{...} arguments vs. within each \code{...} argument.}
+\item{across, within}{\link[=cmp_chr_scl]{Character scalars}. \code{NA} indicates not summarizing across or within \code{...} arguments. Values in \code{c('nor', 'one', 'any', 'two', 'all')}**: indicate zero, exactly one, any, two or more, or all values are \code{TRUE} when looking across corresponding elements of \code{...} arguments vs. within each \code{...} argument.}
 
-\item{agg}{A \link[=cmp_chr_scl]{complete character scalar} in
-\code{c('nor', 'one', 'any', 'two', 'all')} used to specify, respectively, that
-0, 1, any, 2 or more, and all arguments must be \code{TRUE}.}
+\item{agg}{A \link[=cmp_chr_scl]{complete character scalar} in \code{c('nor', 'one', 'any', 'two', 'all')}**: used to specify, respectively, that 0, 1, any, 2 or more, and all arguments must be \code{TRUE}.}
 }
 \description{
-Primary arguments are \code{...}, \code{x}, and \code{y}; all others give
-flexible options for evaluating primary arguments and/or error-checking
-primary arguments. Functions in this family exist in the following
-categories:\tabular{ll}{
-CATEGORY           \tab PRIMARY ARGUMENTS                             \cr
-Scalar Unary       \tab Logical scalar \code{x}.                           \cr
-Vector Binary In   \tab Non-empty atomic vectors \code{x} and \code{y}.         \cr
-Generic Unary      \tab Non-empty logical object \code{x}.                 \cr
-Generic Binary     \tab \code{2} conformable non-empty logical \code{...}
-arguments.                                    \cr
-Scalar Serial      \tab \code{N} logical scalar \code{...} arguments.           \cr
-Vector Serial      \tab \code{N} recyclable logical vector \code{...} arguments.  }
-Each is described in detail below.
-\cr\cr
-\strong{Scalar Unary Function}\tabular{lll}{
-FUNCTION   \tab BASE ANALOG   \tab NOTES                              \cr
-\code{TEST}     \tab \code{isTRUE(.)}   \tab Handles arguments other than non-\code{NA}
-logical scalar as special cases.     }
-\strong{Vector Binary In Functions}\tabular{lll}{
-FUNCTION   \tab BASE ANALOG                                           \cr
-\code{is_in}    \tab \code{x \%in\% y}                                            \cr
-\code{not_in}   \tab \code{!(x \%in\% y)}                                         \cr
-\code{has}      \tab \code{y \%in\% x}                                            \cr
-\code{lacks}    \tab \code{!(y \%in\% x)}                                           }
-The argument \code{agg} specifies whether and how to sweep across the results.
-\cr\cr
-\strong{Generic Unary Function}\tabular{ll}{
-FUNCTION   \tab BASE ANALOG                                           \cr
-\code{not}      \tab \code{!x}                                                    }
-\strong{Generic Binary Functions}\tabular{ll}{
-FUNCTION   \tab BASE ANALOG                                           \cr
-\code{and}      \tab \code{x & y}                                               \cr
-\code{or}       \tab \code{x | y}                                               \cr
-\code{nor}      \tab \code{!(x | y)}                                            \cr
-\code{one}      \tab \code{xor(x, y)}                                             }
-\strong{Scalar Serial Functions}\tabular{ll}{
-FUNCTION   \tab EVALUATES WHETHER                                     \cr
-\code{ANY}      \tab Any \code{...} argument is \code{TRUE}.                         \cr
-\code{ALL}      \tab All \code{...} arguments are \code{TRUE}.                       \cr
-\code{NOR}      \tab \code{0} \code{...} arguments are \code{TRUE}.                       \cr
-\code{ONE}      \tab Exactly \code{1} \code{...} argument is \code{TRUE}.                 \cr
-\code{TWO}      \tab \verb{2+} \code{...} arguments are \code{TRUE}.                         }
-\strong{Vector Serial Function}
-\cr Arguments \code{across} and \code{within} specify whether to sweep across
-corresponding elements of \code{...} arguments and/or within each \code{...}
-argument.
-\tabular{ll}{
-FUNCTION   \tab ACTION TAKEN                                          \cr
-\code{tests}    \tab Logically indexes \code{TRUE} values in each sweep.        \cr
-\code{w}        \tab Numerically indexes \code{TRUE} values in each sweep.      \cr
-\code{nors}     \tab Evaluates each sweep for 0 \code{TRUE} values.             \cr
-\code{anys}     \tab Evaluates each sweep for any \code{TRUE} values.           \cr
-\code{alls}     \tab Evaluates each sweep for only \code{TRUE} values.          \cr
-\code{ones}     \tab Evaluates each sweep for exactly \code{1} \code{TRUE} value.    \cr
-\code{twos}     \tab Evaluates each sweep for \verb{2+} \code{TRUE} values.            }
+\itemize{
+\item \strong{\code{TEST(x, ...)}}: is an extended analog of \code{isTRUE(x)}.
+\item \strong{\code{is_in(x, y, ...)}}: is an extended analog of \code{x \%in\% y}.
+\item \strong{\code{not_in(x, y, ...)}}: is an extended analog of \code{!(x \%in\% y)}.
+\item \strong{\code{has(x, y, ...)}}: is an extended analog of \code{y \%in\% x}.
+\item \strong{\code{lacks(x, y, ...)}}: is an extended analog of \code{!(y \%in\% x)}.
+\item \strong{\code{not(x, ...)}}: is an extended analog of \code{!x}.
+\item \strong{\code{and(x, y, ...)}}: is an extended analog of \code{x & y}.
+\item \strong{\code{or(x, y, ...)}}: is an extended analog of \code{x | y}.
+\item \strong{\code{nor(x, y, ...)}}: is an extended analog of \code{!(x | y)}.
+\item \strong{\code{one(x, y, ...)}}: is an extended analog of \code{xor(x, y)}.
+\item \strong{\code{ANY(.)}}: evaluates whether any \code{...} argument is \code{TRUE}.
+\item \strong{\code{ALL(.)}}: evaluates whether all \code{...} arguments are \code{TRUE}.
+\item \strong{\code{NOR(.)}}: evaluates whether \code{0} \code{...} arguments are \code{TRUE}.
+\item \strong{\code{ONE(.)}}: evaluates whether exactly \code{1} \code{...} argument is \code{TRUE}.
+\item \strong{\code{TWO(.)}}: evaluates whether \verb{2+} \code{...} arguments are \code{TRUE}.
+\item \strong{\code{tests(.)}}: logically indexes \code{TRUE} values in each sweep.
+\item \strong{\code{w(.)}}: numerically indexes \code{TRUE} values in each sweep.
+\item \strong{\code{nors(.)}}: evaluates each sweep for 0 \code{TRUE} values.
+\item \strong{\code{anys(.)}}: evaluates each sweep for any \code{TRUE} values.
+\item \strong{\code{alls(.)}}: evaluates each sweep for only \code{TRUE} values.
+\item \strong{\code{ones(.)}}: evaluates each sweep for exactly \code{1} \code{TRUE} value.
+\item \strong{\code{twos(.)}}: evaluates each sweep for \verb{2+} \code{TRUE} values.
+}
 }
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -185,6 +135,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -192,12 +143,13 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{xb}()}
 
 Other logicals: 
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{is_failsafe}}
 }
 \concept{extensions}

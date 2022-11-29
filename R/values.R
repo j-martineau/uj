@@ -1,24 +1,17 @@
 #' @name values
-#' @title `uj` Defined Values
-#' @description \tabular{ll}{
-#'   FUNCTION   \tab WHAT IT DOES                                            \cr
-#'   `values`   \tab Get a named list where names are the arguments submitted to
-#'                   `v(...)`, element values are the values of the contents
-#'                   of the named element, and the attribute `'descriptions'`
-#'                   gives verbose descriptions if needed.                   \cr
-#'   `vnames`   \tab Get a vector of named values available.                 \cr
-#'   `vtable`   \tab Get a tibble with three columns: `name`, `value`, and
-#'                   `description`.                                          \cr
-#'   `v`        \tab Gets one or more `uj` package values by name.             }
-#' @param ... unquoted, comma-separated list of the names of constants to
-#'   return. If multiple constants are specified, they are coerced into a single
-#'   atomic vector result.
-#' @return \tabular{ll}{
-#'   FUNCTION        \tab RETURN VALUE                                       \cr
-#'   `values`        \tab A \link[=ivls]{vlist}.                             \cr
-#'   `vtable`        \tab A data.frame.                                      \cr
-#'   `v`, `vnames`   \tab A character vector.                                  }
-#' An atomic vector of length 1 or greater.
+#' @title Package `uj` defined values
+#' @description \itemize{
+#'   \item **`values`**: gets a named list where names are the arguments submitted to `v(...)`, element values are the values of the contents of the named element, and the attribute `'descriptions'` gives verbose descriptions if needed.
+#'   \item **`vnames`**: gets a vector of named values available.
+#'   \item **`vtable`**: gets a tibble with three columns: `name`, `value`, and `description`.
+#'   \item **`v`**: retrieves one or more `uj` package values by name.
+#' }
+#' @param ... Unquoted, comma-separated list of the names of constants to return. If multiple constants are specified, they are coerced into a single atomic vector result.
+#' @return \itemize{
+#'   \item **`values`**: a \link[=ivls]{vlist}.
+#'   \item **`vtable`**: a data.frame.
+#'   \item **`v, vnames`**: a character vector.
+#' }
 #' @export
 values <- function() {
   out <- list(

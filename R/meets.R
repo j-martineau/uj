@@ -81,33 +81,27 @@
 
 #' @name meets
 #' @family props
-#' @title Does an Object Meet Count and/or Value Restrictions?
-#' @description Count and value restrictions are provided in `...`. If none
-#'   are provided, returns `TRUE`.
+#' @title Evaluate whether an object meets count and/or value restrictions
+#' @description Count and value restrictions are provided in `...`. If none are provided, returns `TRUE`.
 #' @param x An object.
-#' @param ... Optional named arguments specifying (additional) property
-#'   requirements for `x` in terms of element values and/or element, row, and/or
-#'   column counts. See the \emph{specifying count and value restrictions}
-#'   section.
-#' @section Specifying Count and Value Restrictions: Specifying restrictions in
-#'   `...` is optional. The full set of recognized arguments names are defined
-#'   in the following table along with the properties each
-#'   specifies:\tabular{ll}{
-#'   NAME     \tab WHAT IT SPECIFIES                                         \cr
-#'   `n`      \tab Vector of valid lengths/numbers of elements.              \cr
-#'   `nr`     \tab Vector of valid numbers of rows.                          \cr
-#'   `nc`     \tab Vector of valid numbers of columns.                       \cr
-#'   `min`    \tab Scalar minimum valid length/number of element.            \cr
-#'   `minr`   \tab Scalar minimum valid number of rows.                      \cr
-#'   `minc`   \tab Scalar minimum valid number of columns.                   \cr
-#'   `max`    \tab Scalar maximum valid length/number of element.            \cr
-#'   `maxr`   \tab Scalar maximum valid number of rows.                      \cr
-#'   `maxc`   \tab Scalar maximum valid number of columns.                   \cr
-#'   `vals`   \tab Vector of valid values.                                   \cr
-#'   `lt`     \tab Scalar less-than (exclusive upper) bound.                 \cr
-#'   `le`     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
-#'   `ge`     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
-#'   `gt`     \tab Scalar greater-than bound (exclusive lower) bound.          }
+#' @param ... Optional named arguments count and/or value restrictions for `x`. See the *specifying count and value restrictions* section.
+#' @section Specifying count and value restrictions: Specifying restrictions in `...` is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
+#' \itemize{
+#'   \item **`n`**: a vector of valid lengths/numbers of elements.
+#'   \item **`nr`**: a vector of valid numbers of rows.
+#'   \item **`nc`**: a vector of valid numbers of columns.
+#'   \item **`min`**: a scalar minimum valid length/number of element.
+#'   \item **`minr`**: a scalar minimum valid number of rows.
+#'   \item **`minc`**: a scalar minimum valid number of columns.
+#'   \item **`max`**: a scalar maximum valid length/number of element.
+#'   \item **`maxr`**: a scalar maximum valid number of rows.
+#'   \item **`maxc`**: a scalar maximum valid number of columns.
+#'   \item **`vals`**: a vector of valid values.
+#'   \item **`lt`**: a scalar less-than (exclusive upper) bound.
+#'   \item **`le`**: a scalar less-than-or-equal (inclusive upper) bound
+#'   \item **`ge`**: a scalar greater-than-or-equal (inclusive lower) bound.
+#'   \item **`gt`**: a scalar greater-than bound (exclusive lower) bound.
+#' }
 #' @return A logical scalar.
 #' @export
 meets <- function(x, ...) {
@@ -119,20 +113,21 @@ meets <- function(x, ...) {
   nr <- NROW(x)                                                                  # number of rows in {x}
   nc <- NCOL(x)                                                                  # number of columns in {x}
   av <- av[!is.na(av)]                                                           # remove na values of {x}
+  d <- list(...)
   if (length(av) == 0) {return(T)}                                               # if 0-length and has passed validation, meets requirements
-  if (!is.null(n   )) {if (   !(nx %in% n   )) {return(F)}}                      # check for not meeting element count requirements
-  if (!is.null(min )) {if (   !(nx  >=  min )) {return(F)}}
-  if (!is.null(max )) {if (   !(nx  <=  max )) {return(F)}}
-  if (!is.null(nr  )) {if (   !(nr %in% nr  )) {return(F)}}                      # check for not meeting row count requirements
-  if (!is.null(minr)) {if (   !(nr  >=  minr)) {return(F)}}
-  if (!is.null(maxr)) {if (   !(nr  <=  maxr)) {return(F)}}
-  if (!is.null(nc  )) {if (   !(nc %in% nc  )) {return(F)}}                      # check for not meeting column count requirements
-  if (!is.null(minc)) {if (   !(nc  >=  minc)) {return(F)}}
-  if (!is.null(maxc)) {if (   !(nc  <=  maxc)) {return(F)}}
-  if (!is.null(lt  )) {if ( any(av  >=  lt  )) {return(F)}}                      # check for not meeting value requirements
-  if (!is.null(gt  )) {if ( any(av  <=  gt  )) {return(F)}}
-  if (!is.null(le  )) {if ( any(av  >   le  )) {return(F)}}
-  if (!is.null(ge  )) {if ( any(av  >   ge  )) {return(F)}}
-  if (!is.null(vals)) {if (!all(av %in% vals)) {return(F)}}
+  if (!is.null(d$n   )) {if (   !(nx %in% d$n   )) {return(F)}}                  # check for not meeting element count requirements
+  if (!is.null(d$min )) {if (   !(nx  >=  d$min )) {return(F)}}
+  if (!is.null(d$max )) {if (   !(nx  <=  d$max )) {return(F)}}
+  if (!is.null(d$nr  )) {if (   !(nr %in% d$nr  )) {return(F)}}                  # check for not meeting row count requirements
+  if (!is.null(d$minr)) {if (   !(nr  >=  d$minr)) {return(F)}}
+  if (!is.null(d$maxr)) {if (   !(nr  <=  d$maxr)) {return(F)}}
+  if (!is.null(d$nc  )) {if (   !(nc %in% d$nc  )) {return(F)}}                  # check for not meeting column count requirements
+  if (!is.null(d$minc)) {if (   !(nc  >=  d$minc)) {return(F)}}
+  if (!is.null(d$maxc)) {if (   !(nc  <=  d$maxc)) {return(F)}}
+  if (!is.null(d$lt  )) {if ( any(av  >=  d$lt  )) {return(F)}}                  # check for not meeting value requirements
+  if (!is.null(d$gt  )) {if ( any(av  <=  d$gt  )) {return(F)}}
+  if (!is.null(d$le  )) {if ( any(av  >   d$le  )) {return(F)}}
+  if (!is.null(d$ge  )) {if ( any(av  >   d$ge  )) {return(F)}}
+  if (!is.null(d$vals)) {if (!all(av %in% d$vals)) {return(F)}}
   T                                                                              # meets all requirements
 }

@@ -1,14 +1,9 @@
 #' @family extensions
-#' @description ex. Extract rows and/or columns of \link[=id2D]{two-dimensional
-#'   objects} or elements of \link[=ie1D]{effectively one-dimensional objects}.
-#' @title Extract Rows, Columns, and/or Elements
+#' @title Extract rows, columns, and/or elements
+#' @description Extract rows and/or columns of matrices/data.frames or elements of vectors/\link[=ivls]{vlists}.
 #' @param x Any valid R object.
-#' @param r A \link[=cmp_ind_vec]{complete indexer vec} indicating rows to
-#'   extract from `x` of \link[=id2D]{defined dimensionality `2`}.
-#' @param c A \link[=cmp_ind_vec]{complete indexer vec} indicating columns to
-#'   extract from `x` of \link[=id2D]{defined dimensionality `2`}.
-#' @param r A \link[=cmp_ind_vec]{complete indexer vec} indicating elements to
-#'   extract from `x` of \link[=id1D]{defined dimensionality `1`}.
+#' @param r,c \link[=cmp_ind_vec]{Complete indexer vecs} indicating rows and columns to extract from from matrix/data.frame `x`.
+#' @param e A complete indexer vec indicating elements to extract from vector/vlist `x`.
 #' @examples
 #' Mat <- matrix(1:100, nrow = 10)
 #' Dat   <- as_tibble(Mat)
@@ -33,7 +28,7 @@ ex <- function(x, r = NULL, c = NULL, e = NULL) {
             f0(inll(e) | cmp_psw_vec(e), NULL, "\n \u2022 [e] must be NULL or a positive whole-number scalar/vector (?cmp_psw_scl, ?cmp_psw_vec)."))
   if (!is.null(errs)) {stop(errs)}
   if (imat(x) | idtf(x)) {
-    errs <- c(f0(inll(e)                          , NULL, "\n \u2022 [x] is not a vector of vlist, but [e] specifies elements to extract."),
+    errs <- c(f0(inll(e)                          , NULL, "\n \u2022 [x] is not a vector or vlist (?ivls), but [e] specifies elements to extract."),
               f0(idef(r) | idef(c)                , NULL, "\n \u2022 [x] is a matrix or data frame, but both [r] and [c] are NULL."       ),
               f0(f0(inll(r), T, all(r <= nrow(x))), NULL, "\n \u2022 [r] contains a value that does not point to any row in [x]."         ),
               f0(f0(inll(c), T, all(c <= ncol(x))), NULL, "\n \u2022 [c] contains a value that does not point to any column in [x]."      ))

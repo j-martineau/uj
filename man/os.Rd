@@ -2,27 +2,26 @@
 % Please edit documentation in R/os.R
 \name{os}
 \alias{os}
-\title{Identify the Current Operating System.}
+\title{Identify the current operating system.}
 \usage{
 os()
 }
 \value{
-Character scalar
+Either \code{mac}, \code{unix}, or \code{win}.
 }
 \description{
-Identifies the operating system as 'win', 'mac', or 'unix'.
+Identify the current operating system.
 }
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -32,6 +31,7 @@ Other extensions:
 \code{\link{n_th}()},
 \code{\link{naming}},
 \code{\link{na}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -39,6 +39,7 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

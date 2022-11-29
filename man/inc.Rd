@@ -3,32 +3,25 @@
 \name{inc}
 \alias{inc}
 \alias{dec}
-\title{Increment or Decrement a Variable}
+\title{Increment or decrement a variable}
 \usage{
 inc(x, i = 1, na = F)
 
 dec(x, d = 1, na = F)
 }
 \arguments{
-\item{x}{AN \link[=atm_num]{atomic numeric} object.}
+\item{x}{An \link[=atm_num]{atomic numeric} object.}
 
-\item{i, d}{\link[=cmp_num_scl]{Complete numeric scalars} giving the value by
-which to increment or decrement, respectively.}
+\item{i, d}{\link[=cmp_num_scl]{Complete numeric scalars} giving the value by which to increment or decrement, respectively.}
 
-\item{na}{A non\code{NA} logical scalar indicating whether to
-throw an error if any values of \code{x} are \code{NA}.}
+\item{na}{A non\code{NA} logical scalar indicating whether to throw an error if any values of \code{x} are \code{NA}.}
 }
 \value{
 An atomic numeric object of the same dimension as \code{x}.
 }
 \description{
-\tabular{ll}{
-FUNCTION   \tab WHAT IT DOES                                            \cr
-\code{inc}      \tab Increment \code{x} by the value in \code{i}.                      \cr
-\code{dec}      \tab Decrement \code{x} by the value in \code{d}.                        }
+\itemize{
+\item \strong{\code{inc}}: increments \code{x} by \code{i}.
+\item \strong{\code{dec}}: decrements \code{x} by \code{d}.
 }
-\seealso{
-Other math: 
-\code{\link{hexdec}}
 }
-\concept{math}

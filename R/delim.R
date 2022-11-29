@@ -17,99 +17,75 @@
 
 #' @name delim
 #' @family strings
-#' @title Error-Checked String Delimiting
-#' @description Simplifies and extends `base::paste` and `base::paste0`. There
-#'   are both primary functions with user-specified delimiters and convenience
-#'   functions for common delimiters.
-#'   \cr\strong{Primary Functions}\tabular{ll}{
-#'     FUNCTION   \tab WHAT IT DOES                                          \cr
-#'     `da`       \tab Delimits across corresponding elements of recyclable
-#'                     atomic vector `...` arguments using the delimiter `d`.
-#'                     Produce a character vector containing
-#'                     `max(lengths(list(...))) d`-delimited strings.        \cr
-#'     `dw`       \tab Delimits elements within each atomic vector `...`
-#'                     argument using the delimiter `d`. Produces a character
-#'                     vector containing `...length() d`-delimited strings.  \cr
-#'     `daw`      \tab Delimits across corresponding elements of recyclable
-#'                     atomic vector `...` arguments using the delimiter `d`,
-#'                     then delimits the elements of the resulting character
-#'                     vector using the delimiter `D`. Produces a character
-#'                     scalar containing `...length() D`-delimited strings,
-#'                     each of which contains `max(lengths(list(...)))`
-#'                     `d`-delimited strings.                                \cr
-#'     `dww`      \tab Delimits elements within each atomic vector `...`
-#'                     argument using the delimiter `d`, then delimits the
-#'                     elements within the resulting vector using the delimiter
-#'                     `D`. Produces a character scalar containing
-#'                     `...length() D`-delimited strings, each of which is
-#'                     itself a `d`-delimited string.                          }
-#'   \strong{Common-Delimiter Convenience Functions}
-#'   \cr Function names of convenience functions take the following forms where
-#'   `X` and `Y` are placeholders for common-delimiter codes appended to primary
-#'   function names:\tabular{ll}{
-#'     NAMING       \tab WHAT THE CONVENIENCE                                \cr
-#'     CONVENTION   \tab FUNCTION DOES                                       \cr
-#'     `daX`        \tab Delimit across using common delimiter `X`.          \cr
-#'     `dwX`        \tab Delimit within using common delimiter `X`.          \cr
-#'     `daXY`       \tab Delimit across using common delimiter `X`, then within
-#'                       using common delimiter `Y`.                         \cr
-#'     `dwXY`       \tab Delimit within using common delimiter `X`, then again
-#'                       using common delimiter `Y`.                           }
-#'   Common delimiters encoded as suffixes of function names are:\tabular{lll}{
-#'     COMMMON     \tab COMMON                  \tab VALUE OF                \cr
-#'     DELIMITER   \tab DELIMITER               \tab DELIMITER               \cr
-#'     CODE        \tab DESCRIPTION             \tab INVOKED                 \cr
-#'     `'0'`       \tab Blank                   \tab `''`                    \cr
-#'     `'1'`       \tab Space                   \tab `' '`                   \cr
-#'     `'B'`       \tab Broken pipe             \tab `'¦'`                   \cr
-#'     `'C'`       \tab Colon                   \tab `':'`                   \cr
-#'     `'D'`       \tab Dot                     \tab `'.'`                   \cr
-#'     `'G'`       \tab Grammatical comma (A)   \tab `', '`                  \cr
-#'     `'P'`       \tab Pipe                    \tab `'|'`                   \cr
-#'     `'Q'`       \tab Back-tick quote (A)     \tab `'`'`                   \cr
-#'     `'S'`       \tab Simple comma*           \tab `','`                   \cr
-#'     `'T'`       \tab Tilde                   \tab `'~'`                     }
-#'   (A) 'Grammatical comma' vs. 'simple comma' indicates whether the function
-#'   produces grammatical comma-delimited lists vs. simple comma-delimited
-#'   values (e.g., `'1, 2, 3'` vs. `'1,2,3'`).
-#' @examples
-#'   # delimit across using delimiter '|'.
-#'   # aliases paste(1:3, 4:6, sep = '|').
-#'   da('|', 1:3, 4:6)
-#'
-#'   # delimit within using delimiter ':'.
-#'   # aliases sapply(list(1:3, 4:6), paste0, collapse = ':').
-#'   dw(':', 1:3, 4:6)
-#'
-#'   # delimit across using '|', then within using ':'
-#'   # aliases paste(..., sep = d, collapse = D)
-#'   daw('|', ':', 1:3, 4:6)
-#'
-#'   # delimit within using '|' then again within using ':'.
-#'   # aliases paste0(sapply(list(...), paste0, collapse = d), collapse = D).
-#'   dww('|', ':', 1:3, 4:6)
-#'
-#'   # delimit across using pipe (encoded by 'P' suffix in function name).
-#'   daP(1:3, 4:6)
-#'
-#'   # delimit within using colon (encoded by 'C' suffix in function name).
-#'   dwC(1:3, 4:6)
-#'
-#'   # delimit across using pipe, then within using colon.
-#'   dawPC(1:3, 4:6)
-#'
-#'   # delimit within using colon, then again using pipe.
-#'   dwwCP(1:3, 4:6)
-#' @param ... An arbitrary number of atomic vector arguments to be delimited.
-#'   Argument in `...` must be recyclable for functions that delimit across
-#'   `...` arguments as the first or only step (i.e., functions with
-#'   names beginning with `da`).
+#' @title Error-checked string delimiting
+#' @description Simplified and extended `base::paste` and `base::paste0`. There are both primary functions with user-specified delimiters and convenience functions for common delimiters.
+#' \cr\cr
+#' **Primary Functions**
+#' \itemize{
+#'   \item **`da`**: Delimits across corresponding elements of (recyclable atomic vector) `...` arguments using delimiter `d`. Produces a character vector of `max(lengths(list(...)))` substrings delimited by `d`.
+#'   \item **`dw`**: Delimits elements within each (atomic vector) `...` argument using delimiter `d`. Produces a character vector of `...length()` substrings delimited by `d`.
+#'   \item **`daw`**: Delimit across corresponding elements of (recyclable atomic vector) `...` arguments using delimiter `d`, then delimit elements within the resulting character vector using delimiter `D`. Produces a character scalar of `...length()` substrings delimited by `D` where each substring contains `max(lengths(list(...)))` sub-substrings delimited by `d`.
+#'   \item **`dww`**: Delimit elements within each (atomic vector) `...` argument using delimiter `d`, then delimit elements within the resulting vector using delimiter `D`. Produces a character scalar of `...length()` substrings delimited by `D` where each substring contains sub-substrings delimited by `d`.
+#' }
+#' **Common-Delimiter Convenience Functions**
+#' \cr Convenience function names are constructed by append `1` or `2` codes for common delimiters to the function name as follows (where `X` and `Y` are placeholders for common-delimiter codes):
+#' \itemize{
+#'   \item **`daX`**: Delimits across with `X`.
+#'   \item **`dwX`**: Delimits within with `X`.
+#'   \item **`dawXY`**: Delimits across with `X` then within with `Y`.
+#'   \item **`dwwXY`**: Delimits within with `X` then again with `Y`.
+#' }
+#' Common delimiters are encoded as:
+#' \tabular{lll}{
+#'   CODE        \tab NAME           \tab DELIMITER INVOKED
+#'   \cr `'0'`   \tab blank          \tab `''`
+#'   \cr `'1'`   \tab space          \tab `' '`
+#'   \cr `'B'`   \tab broken pipe    \tab `'¦'`
+#'   \cr `'C'`   \tab colon          \tab `':'`
+#'   \cr `'D'`   \tab dot            \tab `'.'`
+#'   \cr `'G'`   \tab grammatical    \tab`', '`
+#'   \cr         \tab comma          \tab  
+#'   \cr `'P'`   \tab pipe           \tab `'|'`
+#'   \cr `'Q'`   \tab back-tick      \tab `'``'`
+#'   \cr `'S'`   \tab simple comma   \tab `','`
+#'   \cr `'T'`   \tab tilde          \tab `'~'`
+#' }
+#' 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., `'1, 2, 3'` vs. `'1,2,3'`).
+#' @param ... An arbitrary number of atomic vector arguments to be delimited. Argument in `...` must be recyclable for functions that delimit across `...` arguments as the first or only step (i.e., functions with names beginning with `da`).
 #' @param d,D \link[=chr_scl]{Character scalar} delimiters.
-#' @return \tabular{ll}{
-#'   FUNCTIONS                        \tab RETURN VALUE                      \cr
-#'   `da`, `dw`, `daX`, `dwX`         \tab A character vector.               \cr
-#'   `daw`, `dww`, `dawXY`, `dwwXY`   \tab A character scalar.                 }
+#' @return \itemize{
+#'   \item **`da, dw, daX, daw, dww`**: a character scalar.
+#'   \item **`dawXY, dwwXY`**: a character scalar.
+#' }
 #' @export
+#' @examples
+#' # delimit across using delimiter '|'.
+#' # aliases paste(1:3, 4:6, sep = '|').
+#' da('|', 1:3, 4:6)
+#'
+#' # delimit within using delimiter ':'.
+#' # aliases sapply(list(1:3, 4:6), paste0, collapse = ':').
+#' dw(':', 1:3, 4:6)
+#'
+#' # delimit across using '|', then within using ':'
+#' # aliases paste(..., sep = d, collapse = D)
+#' daw('|', ':', 1:3, 4:6)
+#'
+#' # delimit within using '|' then again within using ':'.
+#' # aliases paste0(sapply(list(...), paste0, collapse = d), collapse = D).
+#' dww('|', ':', 1:3, 4:6)
+#'
+#' # delimit across using pipe (encoded by 'P' suffix in function name).
+#' daP(1:3, 4:6)
+#'
+#' # delimit within using colon (encoded by 'C' suffix in function name).
+#' dwC(1:3, 4:6)
+#'
+#' # delimit across using pipe, then within using colon.
+#' dawPC(1:3, 4:6)
+#'
+#' # delimit within using colon, then again using pipe.
+#' dwwCP(1:3, 4:6)
 da <- function(d, ...) {
   errs <- .delim_errs(list(d = d, dots = list(...)), TRUE)
   if (!is.null(errs)) {stop(errs)}

@@ -1,22 +1,18 @@
-#' @name callers
 #' @family extensions
 #' @family environments
-#' @title Functions in the Call Stack
-#' @description \tabular{ll}{
-#'   FUNCTION     \tab WHAT IT DOES                                          \cr
-#'   `ncallers`   \tab Gets the number of functions in the call stack.       \cr
-#'   `callers`    \tab Get names of all calling functions, with the immediate
-#'                     calling function in the first position and, if `gens.` is
-#'                     not `NULL`, selects the `gens.`-th element(s) from the
-#'                     call stack.                                           \cr
-#'   `caller`     \tab Gets the name of the immediate calling function.        }
-#' @param gens A \link[cmp_psw_vec]{complete positive whole-number vec} giving
-#'   the number(s) of generations back in the function call stack to go.
-#' @return \tabular{ll}{
-#'   FUNCTION     \tab RETURN VALUE                                          \cr
-#'   `ncallers`   \tab An integer scalar.                                    \cr
-#'   `callers`    \tab A character vector.                                   \cr
-#'   `caller`     \tab A character scalar.                                     }
+#' @title Generations of functions in the call stack
+#' @description \itemize{
+#'   \item **`ncallers`**: gets the number of functions in the call stack.
+#'   \item **`callers`**: gets names of all calling functions, with the immediate calling function in the first position and, if `gens.` is not `NULL`, selects the `gens.`-th element(s) from the call stack.
+#'   \item **`caller`**: gets the name of the immediate calling function.
+#' }
+#' @param gens A \link[cmp_psw_vec]{complete positive whole-number vec} giving the number(s) of generations back in the function call stack to go.
+#' @return \itemize{
+#'   \item **`ncallers`**: an integer scalar.
+#'   \item **`callers`**: a character vector.
+#'   \item **`caller`**: a character scalar.
+#' }
+#' @export
 #' @examples
 #' fun.a <- function() {A <- 0; fun.b()}
 #' fun.b <- function() {B <- 1; fun.c()}
@@ -38,7 +34,6 @@
 #'   cat("\n vget('B', gens = 1) : ", vget('B', err = F, gens = 1))
 #' }
 #' fun.a()
-#' @export
 callers <- function(gens = NULL) {
   if (!inll(gens) & !cmp_psw_vec(gens)) {stop("\n \u2022 [gens] must be NULL or a positive whole-number vec (?cmp_psw_vec).")}
   x <- rev(as.character(sys.calls()))                                            # get the call stack

@@ -10,53 +10,35 @@
 
 #' @name ccc
 #' @family props
-#' @title Extended Class Properties
-#' @description NOTE: \code{CCC} is used to represent any given extended class
-#'   property.
-#'   \cr\cr
-#'   Extended class properties are not formally defined, but are dynamically
-#'   evaluated, and defined as follows:\tabular{lll}{
-#'     PROPERTY     \tab PROPERTY   \tab QUALIFYING                          \cr
-#'     NAME         \tab VALUE      \tab OBJECTS                             \cr
-#'     array        \tab\code{'arr'}\tab Arrays.                             \cr
-#'     data.frame   \tab\code{'dtf'}\tab Data frames.                        \cr
-#'     vlist        \tab\code{'vls'}\tab Vector-lists. (A)                   \cr
-#'     generic      \tab\code{'gen'}\tab Vectors/vlists/arrays.              \cr
-#'     matrix       \tab\code{'mat'}\tab Matrices.                           \cr
-#'     scalar       \tab\code{'scl'}\tab Vectors/vlists/arrays of length-1.  \cr
-#'     multivec     \tab\code{'mvc'}\tab Vectors/vlists of length 2+ and
-#'                                       \link[=eee]{effectively 1D} arrays. \cr
-#'     vec          \tab\code{'vec'}\tab Scalars and multivecs.                }
-#'   (A) i.e., not a data.frame list.
-#'   \cr\cr
-#'   Functions in this family are:\tabular{ll}{
-#'     FUNCTION        \tab WHAT IT DOES \cr
-#'     `ccc`           \tab Gets a character vector containing all extended
-#'                          class properties possessed by `x`                \cr
-#'     `ixxx`          \tab Evaluates whether `x` possesses the extended class
-#'                          property `xxx` (a placeholder for any given extended
-#'                          class property value), subject to any restrictions
-#'                          in `...`.                                        \cr
-#'     `iccc`          \tab Evaluates whether `x` possesses one or more
-#'                          (possibly pipe-delimited) extended class properties
-#'                          in `spec`, subject to any restrictions in `...`. \cr
-#'     `ccc_props`     \tab Gets a character vector of all possible extended
-#'                          class property values.                           \cr
-#'     `is_ccc_spec`   \tab Evaluates whether `spec` is a valid extended class
-#'                          property specification.                            }
+#' @title Extended class properties
+#' @description Extended class properties are not formally defined, but are dynamically evaluated for properties as follows:
+#' \itemize{
+#'   \item **`arr`** (array): arrays.
+#'   \item **`dtf`** (data.frame): data frames.
+#'   \item **`vls`** (vlist): vector-lists (not data.frame lists).
+#'   \item **`gen`** (generic): vectors, vlists, and arrays.
+#'   \item **`mat`** (matrix): matrices.
+#'   \item **`scl`** (scalar): vectors, vlists, and arrays of length `1`.
+#'   \item **`mvc`** (multivec): vectors and vlists of length `2+` and \link[=ie1D]{effectively 1D} arrays.
+#'   \item **`vec`** (vec): scalars and multivecs
+#' }
+#' Functions in this family are:
+#' \itemize{
+#'   \item **`ccc`**: gets a character vector containing all extended class properties possessed by `x`.
+#'   \item **`ixxx`**: evaluates whether `x` possesses the extended class property `xxx`** (a placeholder for any given extended class property value), subject to any restrictions in `...`.
+#'   \item **`iccc`**: evaluates whether `x` possesses one or more (possibly pipe-delimited) extended class properties in `spec`, subject to any restrictions in `...`.
+#'   \item **`ccc_props`**: gets a character vector of all possible extended class property values.
+#'   \item **`is_ccc_spec`**: evaluates whether `spec` is a valid extended class property specification.
+#' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec}
-#'   containing one or more extended class properties (i.e., from
-#'   `ccc_props()`). Extended class properties may be pipe-delimited. If there
-#'   are multiple properties in `spec`, `x` is inspected for a match to any of
-#'   the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more extended class properties (i.e., from `ccc_props()`). Extended class properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
-#' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \tabular{ll}{
-#'   FUNCTIONS                       \tab RETURN VALUE                       \cr
-#'   `ccc_vals`                      \tab A character vector.                \cr
-#'   `ccc`                           \tab A character scalar or vector.      \cr
-#'   `iccc`, `ixxx`, `is_ccc_spec`   \tab A logical scalar.                    }
+#' @inheritSection meets Specifying count and value restrictions
+#' @return \itemize{
+#'   \item **`ccc`**: a character scalar/vector.
+#'   \item **`ccc_vals`**: a character vector.
+#'   \item **`iccc, ixxx, is_ccc_spec`**: a logical scalar.
+#' }
 #' @export
 ccc <- function(x) {
   out <- NULL

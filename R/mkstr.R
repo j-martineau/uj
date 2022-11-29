@@ -1,90 +1,69 @@
 #' @name mkstr
 #' @family strings
-#' @title Specialized String Building Functions
-#' @description Build strings where function name components have the following
-#'   meaning:\tabular{ll}{
-#'     prefix = `g`         \tab Glue/collapse values within.           \cr
-#'     prefix = `p`         \tab Paste values across.                   \cr
-#'                          \tab                                        \cr
-#'     suffix = `eq`        \tab Space-padded equality statement.       \cr
-#'     suffix = `eq0`       \tab Non-padded equality statement.         \cr
-#'     suffix = `cat`       \tab Vector concatenation statement.        \cr
-#'     suffix = `elt`       \tab Element extraction statement.          \cr
-#'     suffix = `fun`       \tab Function call statement.               \cr
-#'     suffix = `lst`       \tab Comma-separated list.                  \cr
-#'     suffix = `form`      \tab Formula statement.                     \cr
-#'     suffix = `colon`     \tab Separate by colons.                    \cr
-#'     suffix = `wrap`      \tab Enclose on left and right.             \cr
-#'     suffix = `tick`      \tab Enclose in back-ticks.                 \cr
-#'     suffix = `quote`     \tab Enclose in single quotes.              \cr
-#'     suffix = `quote2`    \tab Enclose in double quotes.              \cr
-#'     suffix = `brace`     \tab Enclose in curly braces.               \cr
-#'     suffix = `paren`     \tab Enclose in parentheses.                \cr
-#'     suffix = `bracket`   \tab Enclose in square brackets.              }
-#' Each prefix is joined with each suffix to create a unique function. The
-#' action indicated by the prefix happens first, followed by the action
-#' indicated in the suffix. How each function works is illustrated in the
-#' details.
-#' @details \tabular{ll}{
-#' FUNCTION CALL                   \tab RESULT                               \cr
-#' `geq(c('x', 'y', 'z'), 0, 1, 2)`\tab `'xyz = 012'`                        \cr
-#' `peq(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('x = 012', 'y = 012', 'z = 012')` \cr
-#'                                  \tab                                     \cr
-#' `geq0(c('x', 'y', 'z'), 0, 1, 2)`\tab `'xyz=012'`                         \cr
-#' `peq0(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('x=012', 'y=012', 'z=012')`      \cr
-#'                                  \tab                                     \cr
-#' `gcat(c('x', 'y', 'z'), 0, 1, 2)`\tab `'c(xyz012)'`                       \cr
-#' `pcat(c('x', 'y', 'z'), 0, 1, 2)`\tab `'c(x, y, z, 0, 1, 2)'`             \cr
-#'                                  \tab                                     \cr
-#' `gelt(c('x', 'y', 'z'), 0, 1, 2)`\tab `'xyz[012]'`                        \cr
-#' `pelt(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('x[0]', 'y[1]', 'z[2]')`         \cr
-#'                                  \tab                                     \cr
-#' `gfun(c('x', 'y', 'z'), 0, 1, 2)`\tab `'xyz(012)'`                        \cr
-#' `pfun(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('x(0)', 'y(1)', 'z(2)')`         \cr
-#'                                  \tab                                     \cr
-#' `glst(c('x', 'y', 'z'), 0, 1, 2)`\tab `'x, y, z, 0, 1, 2'`                \cr
-#' `plst(c('x', 'y', 'z'), 0, 1, 2)`\tab \code{c('x, 0, 1, 2', 'y, 0, 1, 2',
-#'                                               'z, 0, 1, 2')}              \cr
-#'                                   \tab                                    \cr
-#' `gform(c('x', 'y', 'z'), 0, 1, 2)`\tab `'xyz ~ 0 + 1 + 2'`                \cr
-#' `pform(c('x', 'y', 'z'), 0, 1, 2)`\tab \code{c('x ~ 0 + 1 + 2',
-#'                                                'y ~ 0 + 1 + 2',
-#'                                                'z ~ 0 + 1 + 2')}          \cr
-#'                                   \tab                                    \cr
-#' `gtick(c('x', 'y', 'z'), 0, 1, 2)`\tab `'`xyz012`'`                       \cr
-#' `ptick(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('`x012`', '`y012`', '`z012`')`  \cr
-#'                                    \tab                                   \cr
-#' `gbrace(c('x', 'y', 'z'), 0, 1, 2)`\tab `'\{xyz012\}'`                    \cr
-#' `pbrace(c('x', 'y', 'z'), 0, 1, 2)`\tab \code{c('\{x012\}', '\{y012\}',
-#'                                                 '\{z012\`')}              \cr
-#'                                    \tab                                   \cr
-#' `gcolon(c('x', 'y', 'z'), 0, 1, 2)`\tab `'x:y:z:0:1:2'`                   \cr
-#' `pcolon(c('x', 'y', 'z'), 0, 1, 2)`\tab \code{c('x:0:1:2', 'y:0:1:2',
-#'                                                 'z:0:1:2')}               \cr
-#'                                    \tab                                   \cr
-#' `gparen(c('x', 'y', 'z'), 0, 1, 2)`\tab `'(xyz012)'`                      \cr
-#' `pparen(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('(x012)', '(y012)', '(z012)')` \cr
-#'                                    \tab                                   \cr
-#' `gquote(c('x', 'y', 'z'), 0, 1, 2)`\tab `"'xyz012'"`                      \cr
-#' `pquote(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('"x012"', '"y012"', '"z012"')` \cr
-#'                                     \tab                                  \cr
-#' `gquote2(c('x', 'y', 'z'), 0, 1, 2)`\tab `"'xyz012'"`                     \cr
-#' `pquote2(c('x', 'y', 'z'), 0, 1, 2)`\tab `c('"x012"', '"y012"', '"z012"')`\cr
-#'                                      \tab                                 \cr
-#' `gbracket(c('x', 'y', 'z'), 0, 1, 2)`\tab `'[xyz012]'`                    \cr
-#' `pbracket(c('x', 'y', 'z'), 0, 1, 2)`\tab \code{c('[x012]', '[y012]',
-#'                                                  '[z012]')}               \cr
-#'                                        \tab                               \cr
-#' `gwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)`\tab `'lLl012r'`                   \cr
-#' `pwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)`    \tab \code{c('l012r', 'L012r',
-#'                                                        'l012r')}            }
+#' @title Specialized string building functions
+#' @description Build strings where function names are composed of a single-letter prefix and a longer suffix. Prefixes and their meanings are \itemize{
+#'   \item **`g`**: glue/collapse `...` arguments
+#'   \item **`p`**: paste across corresponding elements of `...` arguments.
+#' }
+#' Suffixes and their meanings are \itemize{
+#'   \item **`eq`**: space-padded equality statement.
+#'   \item **`eq0`**: non-padded equality statement.
+#'   \item **`cat`**: vector concatenation statement.
+#'   \item **`elt`**: element extraction statement.
+#'   \item **`fun`**: function call statement.
+#'   \item **`form`**: formula statement.
+#'   \item **`lst`**: delimit with comma + space.
+#'   \item **`colon`**: delimit with colons.
+#'   \item **`wrap`**: enclose in different left and right values.
+#'   \item **`tick`**: enclose in back-ticks.
+#'   \item **`brace`**: enclose in curly braces.
+#'   \item **`paren`**: enclose in parentheses.
+#'   \item **`quote`**: enclose in single quotes.
+#'   \item **`quote2`**: enclose in double quotes.
+#'   \item **`bracket`**: enclose in square brackets.
+#' }
+#' Each prefix is joined with each suffix to create a unique function. The action indicated by the prefix happens first, followed by the action indicated in the suffix. How each function works is illustrated in the details.
 #' @param x An object containing atomic values (atomized before processing).
-#' @param l,r \link[=cmp_chr_scl]{Complete character scalars} giving left and
-#'   right side enclosures for `...` after \link[=a]{atomization}.
-#' @param ... An arbitrary number of objects to be atomized into a single atomic
-#'   vector.
+#' @param l,r \link[=cmp_chr_scl]{Complete character scalars} giving left and right side enclosures for `...` after \link[=a]{atomization}.
+#' @param ... An arbitrary number of objects to be atomized into a single atomic vector.
 #' @return A character scalar or vector
 #' @export
+#' @examples
+#' geq(c('x', 'y', 'z'), 0, 1, 2)
+#' geq0(c('x', 'y', 'z'), 0, 1, 2)
+#' gcat(c('x', 'y', 'z'), 0, 1, 2)
+#' gelt(c('x', 'y', 'z'), 0, 1, 2)
+#' gfun(c('x', 'y', 'z'), 0, 1, 2)
+#' gform(c('x', 'y', 'z'), 0, 1, 2)
+#'
+#' peq(c('x', 'y', 'z'), 0, 1, 2)
+#' peq0(c('x', 'y', 'z'), 0, 1, 2)
+#' pcat(c('x', 'y', 'z'), 0, 1, 2)
+#' pelt(c('x', 'y', 'z'), 0, 1, 2)
+#' pfun(c('x', 'y', 'z'), 0, 1, 2)
+#' pform(c('x', 'y', 'z'), 0, 1, 2)
+#'
+#' glst(c('x', 'y', 'z'), 0, 1, 2)
+#' gtick(c('x', 'y', 'z'), 0, 1, 2)
+#'
+#' plst(c('x', 'y', 'z'), 0, 1, 2)
+#' ptick(c('x', 'y', 'z'), 0, 1, 2)
+#'
+#' gbrace(c('x', 'y', 'z'), 0, 1, 2)
+#' gcolon(c('x', 'y', 'z'), 0, 1, 2)
+#' gparen(c('x', 'y', 'z'), 0, 1, 2)
+#' gquote(c('x', 'y', 'z'), 0, 1, 2)
+#' gquote2(c('x', 'y', 'z'), 0, 1, 2)
+#' gbracket(c('x', 'y', 'z'), 0, 1, 2)
+#' gwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)
+#'
+#' pbrace(c('x', 'y', 'z'), 0, 1, 2)
+#' pcolon(c('x', 'y', 'z'), 0, 1, 2)
+#' pparen(c('x', 'y', 'z'), 0, 1, 2)
+#' pquote(c('x', 'y', 'z'), 0, 1, 2)
+#' pquote2(c('x', 'y', 'z'), 0, 1, 2)
+#' pbracket(c('x', 'y', 'z'), 0, 1, 2)
+#' pwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)
 geq <- function(x, ...) {paste0(av(x), " = ", av(...), collapse = "")}
 
 #' @rdname mkstr

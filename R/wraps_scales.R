@@ -1,10 +1,9 @@
 #' @name wraps_scales
 #' @family wraps
-#' @title Wraps of Functions from the \code{scales} Package
-#' @description \tabular{ll}{
-#'   WRAPPER NAME   \tab SCALES FUNCTION                                     \cr
-#'   \code{sca}     \tab \code{\link[scales]{alpha}}.                          }
-#' @export
+#' @title Thin wrappers of `scales` functions
+#' @description \itemize{
+#'   \item **`sca`**: thinly wraps \code{\link[scales]{alpha}}.
+#' }
 #' @inherit scales::alpha
 #' @export
 sca <- function(color, alpha = NA) {scales::alpha(color, alpha)}

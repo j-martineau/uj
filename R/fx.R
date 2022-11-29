@@ -1,41 +1,27 @@
 #' @name fork
-#' @title Forking as an Extension of `base::ifelse`
 #' @family extensions
 #' @family forking
+#' @title Fork as an extension of `base::ifelse`
 #' @description Robust extended functionality for \code{\link[base]{ifelse}}.
-#'   \tabular{ll}{
-#'   FUNCTION   \tab WHAT IT DOES                                            \cr
-#'   `fork`     \tab Evaluate logical scalar or logical vector `test` and return
-#'                   an object of the same length as `test` where:\itemize{
-#'                   \item `TRUE` values of `test` are replaced by corresponding
-#'                         values of `yes`.
-#'                   \item `FALSE` values of `test` are replaced by
-#'                         corresponding values of `no`.
-#'                   \item `NA` values of `test` are replaced by `na` (unless
-#'                         `na = 'err'`, in which case if there are any `na`
-#'                         values in `test`, throws an error).              }\cr
-#'   `f0`       \tab If `test` is scalar `TRUE`, returns `yes`. If `test` is
-#'                   anything else, returns `no`.                            \cr
-#'   `f1`       \tab Error-checked version of `f0`. Evaluates and processes
-#'                   logical scalar `test` in the following manner:\itemize{
-#'                   \item If `test = NA`, returns `yes`.
-#'                   \item If `test = FALSE`, returns `no`.
-#'                   \item If `test = NA`, returns `na` unless `na = 'err'`, in
-#'                         which case, an error is thrown.
-#'                   \item If `test` is neither a logical scalar nor scalar
-#'                         `na`, returns `err` unless `err = 'err'`, in which
-#'                         case an error is thrown.                           }}
-#' @param test A logical scalar or vector is anticipated, but this argument may
-#'   be any R object.
-#' @param yes,no Objects of any type for `f0` and `f1`. \link[=atm_scl]{Atomic
-#'   scalars} or \link[=atm_vec]{atomic vecs} of the same length as `test` for
-#'   `fork`.
-#' @param na An object of any type for `f1`. An \link[=atm_scl]{atomic scalar}
-#'   \link[=compatible]{compatible} with `yes` and `no` for `fork`, with the
-#'   additional possibility of `na = 'err'` to indicate an error should be
-#'   thrown if any values in `test` are `na`.
-#' @param err `'err'` or an object to be returned when `test` is not an atomic
-#'   scalar in `c(TRUE, FALSE, NA)`.
+#' \itemize{
+#'   \item **`f0`**: If `test` is scalar `TRUE`, returns `yes`. If `test` is anything else, returns `no`.
+#'   \item **`f1`**: Error-checked version of `f0`. Evaluates and processes logical scalar `test` in the following manner:
+#'   \itemize{
+#'     \item If `test = NA`, returns `yes`.
+#'     \item If `test = FALSE`, returns `no`.
+#'     \item If `test = NA`, returns `na` unless `na = 'err'`, in which case, an error is thrown.
+#'     \item If `test` is neither a logical scalar nor scalar `na`, returns `err` unless `err = 'err'`, in which case an error is thrown.
+#'   }
+#'   \item **`fork`**: Evaluates logical scalar or logical vector `test` and return an object of the same length as `test` where:
+#'   \itemize{
+#'     \item `TRUE` values of `test` are replaced by corresponding values of `yes`.
+#'     \item `FALSE` values of `test` are replaced by corresponding values of `no`.
+#'     \item `NA` values of `test` are replaced by `na` (unless `na = 'err'`, in which case if there are any `NA` values in `test`, throws an error).
+#' }}
+#' @param test A logical scalar or vector is anticipated, but this argument may be any R object.
+#' @param yes,no Objects of any type for `f0` and `f1`. \link[=atm_scl]{Atomic scalars} or \link[=atm_vec]{atomic vecs} of the same length as `test` for `fork`.
+#' @param na An object of any type for `f1`. An atomic scalar \link[=compatible]{compatible} with `yes` and `no` for `fork`, with the additional possibility of `na = 'err'` to indicate an error should be thrown if any values in `test` are `na`.
+#' @param err `'err'` or an object to be returned when `test` is not an atomic scalar in `c(TRUE, FALSE, NA)`.
 #' @return An R object.
 #' @export
 fork <- function(test, yes, no, na = 'err') {

@@ -2,16 +2,15 @@
 % Please edit documentation in R/pause.R
 \name{pause}
 \alias{pause}
-\title{Pause Execution.}
+\title{Pause execution.}
 \usage{
 pause(x = 1e-07)
 }
 \arguments{
-\item{x}{A \link[=cmp_num_scl]{complete mumeric scalar} indicating the number
-of seconds to pause.}
+\item{x}{A \link[=cmp_num_scl]{complete mumeric scalar} indicating the number of seconds to pause.}
 }
 \value{
-\code{NULL}. Called for its side effect.
+\code{NULL} (called for its side effect).
 }
 \description{
 Pause for \code{x} seconds, then resume execution.
@@ -19,14 +18,13 @@ Pause for \code{x} seconds, then resume execution.
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -37,12 +35,14 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{ply}()},
 \code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

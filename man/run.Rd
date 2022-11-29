@@ -2,22 +2,18 @@
 % Please edit documentation in R/run.R
 \name{run}
 \alias{run}
-\title{Build and Evaluate Code}
+\title{Build and evaluate code}
 \usage{
 run(...)
 }
 \arguments{
-\item{...}{Arguments to be pasted into a character scalar command to be run
-(i.e., parsed and evaluated) in the environment where \code{run(...)} was
-called.}
+\item{...}{Arguments to be pasted into a character scalar command to be run (i.e., parsed and evaluated) in the environment where \code{run(...)} was called.}
 }
 \value{
-\code{NULL}. Called for its side effect of executing code in the
-environment where \code{run(...)} was called.
+\code{NULL}. Called for its side effect of executing code in the environment where \code{run(...)} was called.
 }
 \description{
-Collapses \code{...} into a character scalar and evaluates
-it as code in the environment of the calling function.
+Collapses \code{...} into a character scalar and evaluates it as code in the environment of the calling function.
 }
 \examples{
 Join <- ""
@@ -33,14 +29,13 @@ print(CallScalar)
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -51,12 +46,14 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

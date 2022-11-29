@@ -2,39 +2,33 @@
 % Please edit documentation in R/is_unique.R
 \name{is_unq}
 \alias{is_unq}
-\title{Does an object have only unique atomic values?}
+\title{Evaluate whether an object has only unique atomic values}
 \usage{
 is_unq(x, a = T, na = F)
 }
 \arguments{
 \item{x}{An atomic object.}
 
-\item{a}{A non-\code{NA} logical scalar indicating whether to reduce \code{x} to an
-atomic vector containing all of its atomic values. When \code{FALSE} and \code{x} is
-not atomic, throws an error.}
+\item{a}{A non-\code{NA} logical scalar indicating whether to reduce \code{x} to an atomic vector containing all of its atomic values. When \code{FALSE} and \code{x} is not atomic, throws an error.}
 
-\item{na}{A non-\code{NA} logical scalar indicating whether \code{NA} values are
-allowed.}
+\item{na}{A non-\code{NA} logical scalar indicating whether \code{NA} values are allowed.}
 }
 \value{
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-Evaluates whether \code{x} contains only only unique atomic values,
-with options for for atomizing before evaluation and for handling \code{NA}
-values.
+Evaluates whether \code{x} contains only only unique atomic values, with options for for atomizing before evaluation and for handling \code{NA} values.
 }
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -44,6 +38,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -51,6 +46,7 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

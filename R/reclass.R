@@ -1,8 +1,8 @@
 #' @name reclass
-#' @title Set Object Class
+#' @title Set object class
 #' @family extensions
 #' @param x An R object.
-#' @param cls \link[=cmp_chr_vec]{Complete character vec} of classes to apply.
+#' @param cls A \link[=cmp_chr_vec]{complete character vec} of classes to apply.
 #' @return An object of class `cls`.
 #' @export
 reclass <- function(x, cls) {

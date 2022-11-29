@@ -5,7 +5,7 @@
 \alias{first_n}
 \alias{last_n}
 \alias{n_th_last}
-\title{Extract Elements by Index Position}
+\title{Extract elements by numeric position}
 \usage{
 n_th(x, n)
 
@@ -21,13 +21,13 @@ n_th_last(x, n)
 \item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar}.}
 }
 \value{
-A vector or \link[=ivls]{vlist} of length \verb{1+}.
+A scalar, vector, or \link[=ivls]{vlist}.
 }
 \description{
-\tabular{ll}{
-FUNCTION      \tab WHAT IT DOES                                         \cr
-\code{n_th}        \tab Gets the \code{n}-th element(s) of a vector.              \cr
-\code{first_n}     \tab Gets the first \verb{n`` elements of a vector.            \\cr }last_n\verb{     \\tab Gets the last}n\verb{elements of a vector.              \\cr}n_th_last\verb{   \\tab Gets the }n`-th from last element(s) of a vector.      }
+\itemize{
+\item \strong{\code{n_th}}: gets the \code{n}-th element(s) of a vector.
+\item \strong{\code{first_n}}: gets the first \verb{n`` elements of a vector. \\item **}last_n\verb{**: gets the last }n\verb{ elements of a vector. \\item **}n_th_last\verb{**: gets the }n`-th-from-last element(s) of a vector.
+}
 }
 \examples{
 first_n(letters, 5)
@@ -38,14 +38,13 @@ n_th(letters, )
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -55,6 +54,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -62,6 +62,7 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

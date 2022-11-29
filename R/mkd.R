@@ -1,63 +1,38 @@
 #' @name mkd
 #' @family plots
 #' @family colors
-#' @title Build Markdown Expressions for Styled and Colored `ggtext`
-#' @description Style text as subscript, superscript, bold color, and plain
-#'   color. The following markdown styling function names do not follow the
-#'   conventions described later:
-#'   \tabular{lll}{
-#'     TEXT STYLING      \tab REPRESENTATION   \tab NOTE                     \cr
-#'     subscript         \tab `subs`           \tab —                        \cr
-#'     superscript       \tab `subs`           \tab —                        \cr
-#'     bold black        \tab `bblk`           \tab —                        \cr
-#'     bold white        \tab `bwht`           \tab —                        \cr
-#'     bold invisible    \tab `binv`           \tab 1/256th opaque white.    \cr
-#'     plain black       \tab `pblk`           \tab —                        \cr
-#'     plain white       \tab `pwht`           \tab —                        \cr
-#'     plain invisible   \tab `pinv`           \tab 1/256th opaque white.      }
-#'   For all other markdown styling functions, conventions are as
-#'   follows:\tabular{lll}{
-#'     CONVENTION      \tab VALUE   \tab TEXT STYLING                        \cr
-#'     1st character   \tab `p`     \tab Plain.                              \cr
-#'     1st character   \tab `b`     \tab Bold.                               \cr
-#'     2nd character   \tab `f`     \tab Full intensity version of color.    \cr
-#'     2nd character   \tab `l`     \tab Light version of color.             \cr
-#'     2nd character   \tab `m`     \tab Medium version of color.            \cr
-#'     2nd character   \tab `d`     \tab Dark version of color.              \cr
-#'     2nd character   \tab `g`     \tab Grey.                               \cr
-#'     suffix          \tab `blu`   \tab Blue.                               \cr
-#'     suffix          \tab `cyn`   \tab Cyan.                               \cr
-#'     suffix          \tab `grn`   \tab Green.                              \cr
-#'     suffix          \tab `mag`   \tab Magenta.                            \cr
-#'     suffix          \tab `orn`   \tab Orange.                             \cr
-#'     suffix          \tab `red`   \tab Red.                                \cr
-#'     suffix          \tab `vlt`   \tab Violet.                             \cr
-#'     suffix          \tab `ylw`   \tab Yellow.                             \cr
-#'     suffix          \tab `05`    \tab 5% of the way from black to white.  \cr
-#'     suffix          \tab `10`    \tab 10% of the way from black to white. \cr
-#'     suffix          \tab `15`    \tab 15% of the way from black to white. \cr
-#'     suffix          \tab `20`    \tab 20% of the way from black to white. \cr
-#'     suffix          \tab `25`    \tab 25% of the way from black to white. \cr
-#'     suffix          \tab `30`    \tab 30% of the way from black to white. \cr
-#'     suffix          \tab `35`    \tab 35% of the way from black to white. \cr
-#'     suffix          \tab `40`    \tab 40% of the way from black to white. \cr
-#'     suffix          \tab `45`    \tab 45% of the way from black to white. \cr
-#'     suffix          \tab `50`    \tab 50% of the way from black to white. \cr
-#'     suffix          \tab `55`    \tab 55% of the way from black to white. \cr
-#'     suffix          \tab `60`    \tab 60% of the way from black to white. \cr
-#'     suffix          \tab `65`    \tab 65% of the way from black to white. \cr
-#'     suffix          \tab `70`    \tab 70% of the way from black to white. \cr
-#'     suffix          \tab `75`    \tab 75% of the way from black to white. \cr
-#'     suffix          \tab `80`    \tab 80% of the way from black to white. \cr
-#'     suffix          \tab `85`    \tab 85% of the way from black to white. \cr
-#'     suffix          \tab `90`    \tab 90% of the way from black to white. \cr
-#'     suffix          \tab `95`    \tab 95% of the way from black to white.   }
+#' @title Build markdown expressions for styled + colored `ggtext`
+#' @description **Subscript/superscript** functions are:
+#' \itemize{
+#'   \item **`subs`**: subscript.
+#'   \item **`sups`**: superscript.
+#' }
+#' \cr
+#' **Black, white, and invisible text** functions are:
+#' \itemize{
+#'   \item **`bblk` vs. `pblk`** for bold vs. plain black text.
+#'   \item **`bwht` vs. `pwht`** for bold vs. plain white text.
+#'   \item **`binv` vs. `pinv`** for bold vs. plain invisible text (use to ensure consistent spacing).
+#' }
+#' \cr
+#' **Greyscale** text function names take the following form:
+#' \cr **`bgXX` vs. `pgXX`** for bold vs. plain grey text where `XX` runs from `05` to `95` in increments of `5` to indicate what percentage white the color is. For example, `bg45` produces bold grey text with a white:black ratio of `45:55`.
+#' \cr\cr
+#' **Other common-color** text function names take the following forms:
+#' \itemize{
+#'   \item **prefix = `b` vs. `p`** for bold vs. plain text.
+#'   \item **infix = `f` vs. `l` vs. `m` vs. `d`** for full-intensity, light, medium, and dark versions.
+#'   \item **suffix = `blu`** for blue.
+#'   \item **suffix = `cyn`** for cyan.
+#'   \item **suffix = `grn`** for green.
+#'   \item **suffix = `mag`** for magenta.
+#'   \item **suffix = `orn`** for orange.
+#'   \item **suffix = `red`** for red.
+#'   \item **suffix = `vlt`** for violet.
+#'   \item **suffix = `ylw`** for yellow.
+#' }
 #' @param x A \link[=cmp_chr_vec]{character vector} of text to be styled.
 #' @return Markdown-styled character vector
-#' @export
-mkd <- NULL
-
-#' @rdname mkd
 #' @export
 subs <- function(x) {paste0(v(sub1), x, v(sub2))}
 
@@ -477,22 +452,22 @@ pg25 <- function(x) {paste0(v(pg25), x, v(plain2))}
 #' @export
 pg20 <- function(x) {paste0(v(pg20), x, v(plain2))}
 
-#' @describeIn mkd Style text as plain and 15% grey.
+#' @rdname mkd
 #' @export
 pg15 <- function(x) {paste0(v(pg15), x, v(plain2))}
 
-#' @describeIn mkd Style text as plain and 10% grey.
+#' @rdname mkd
 #' @export
 pg10 <- function(x) {paste0(v(pg10), x, v(plain2))}
 
-#' @describeIn mkd Style text as plain and 10% grey.
+#' @rdname mkd
 #' @export
 pg05 <- function(x) {paste0(v(pg05), x, v(plain2))}
 
-#' @describeIn mkd Style text as plain and black.
+#' @rdname mkd
 #' @export
 pblk <- function(x) {paste0(v(pblk), x, v(plain2))}
 
-#' @describeIn mkd Style text as plain invisible (1/256th opaque).
+#' @rdname mkd
 #' @export
 pinv <- function(x) {paste0(v(pinv), x, v(plain2))}

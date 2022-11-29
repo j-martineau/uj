@@ -5,7 +5,7 @@
 \alias{recyclable_n}
 \alias{recyclable}
 \alias{recycle}
-\title{Recycling and Recyclability}
+\title{Recycling and recyclability}
 \usage{
 recyclable_n(n, targ = max(n))
 
@@ -14,60 +14,43 @@ recyclable(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL, err. = F)
 recycle(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL)
 }
 \arguments{
-\item{...}{Named arguments to be recycled in the environment of the calling
-function.}
+\item{...}{Named arguments to be recycled in the environment of the calling function.}
 
-\item{n.}{For \code{recyclable_n}, a \link[=cmp_psw_vec]{complete positive
-whole-number vec} giving the lengths of arguments to be recycled; for
-\code{recyclable} and \code{recycle}, either \code{NULL} or a
-\link[=cmp_psw_vec]{complete positive whole-number vec} giving the set of
-valid recycled argument lengths.}
+\item{n.}{For \code{recyclable_n}, a complete positive whole-number vec giving the lengths of arguments to be recycled; for \code{recyclable} and \code{recycle}, either \code{NULL} or a complete positive whole-number vec giving the set of valid recycled argument lengths.}
 
-\item{min.}{\code{NULL} or \link[=cmp_psw_scl]{complete positive whole-number
-scalar} giving the minimum valid recycled argument length.}
+\item{min.}{\code{NULL} or complete positive whole-number scalar giving the minimum valid recycled argument length.}
 
-\item{max.}{\code{NULL} or \link[=cmp_psw_scl]{complete positive whole-number
-scalar} giving the maximum valid recycled argument length.}
+\item{max.}{\code{NULL} or complete positive whole-number scalar giving the maximum valid recycled argument length.}
 
-\item{targ.}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}
-giving the target length of recycled arguments.}
+\item{targ.}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the target length of recycled arguments.}
 
-\item{err.}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
-to throw an error if the \code{...} arguments are not recyclable.}
+\item{err.}{A non-\code{NA} logical scalar indicating whether to throw an error if the \code{...} arguments are not recyclable.}
 
-\item{lengths.}{\link[=cmp_psw_vec]{Complete positive whole-number vec} of
-lengths to check for recyclability.}
+\item{lengths.}{A \link[=cmp_psw_vec]{complete positive whole-number vec} of lengths to check for recyclability.}
 }
 \value{
-\tabular{ll}{
-FUNCTIONS                      \tab RETURN VALUE                        \cr
-\code{recyclable_n}, \code{recyclable}   \tab A logical scalar.                   \cr
-\code{recycle}                      \tab \code{NULL}. Called for side effect.       }
+\itemize{
+\item \strong{\code{recycle}}: \code{NULL} (called for side effect).
+\item \strong{\verb{recyclable_n, recyclable}}: a logical scalar.
+}
 }
 \description{
-\tabular{ll}{
-FUNCTION         \tab WHAT IT DOES                                      \cr
-\code{recyclable_n}   \tab Check whether the vector of lengths in \code{n} represent
-recyclable arguments subject to the setting in
-\code{targ}.                                           \cr
-\code{recyclable}     \tab Evaluates whether \code{...} arguments are recyclable
-subject to settings in the arguments \code{n.}, \code{min.},
-\code{max.}, and \code{targ.}.                              \cr
-\code{recycle}        \tab Recycle \code{...} arguments in the environment of the
-calling function subject to settings in the arguments
-\code{n.}, \code{min.}, \code{max.}, and \code{targ.}.                   }
+\itemize{
+\item \strong{\code{recycle}}: recycles \code{...} arguments in the environment of the calling function subject to any settings in arguments \code{n.}, \code{min.}, \code{max.}, and \code{targ.}.
+\item \strong{\code{recyclable}}: evaluates whether \code{...} arguments are recyclable subject to any settings in arguments \code{n.}, \code{min.}, \code{max.}, and \code{targ.}.
+\item \strong{\code{recyclable_n}}: checks whether the vector of lengths in \code{n} represent recyclable arguments subject to the setting in \code{targ}.
+}
 }
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -78,12 +61,14 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

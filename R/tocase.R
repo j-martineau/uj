@@ -1,24 +1,16 @@
 #' @name tocase
 #' @family strings
-#' @title Convert String Case
-#' @description \tabular{ll}{
-#'   FUNCTIONS            \tab WHAT THEY DO                                  \cr
-#'   `tocase`             \tab Converts among lower, upper, sentence, and title
-#'                             case based on the case specified in `case`.   \cr
-#'   `lc`                 \tab Converts to lower case via
-#'                             \code{\link[base:tolower]{base::tolower}}.    \cr
-#'   `uc`                 \tab Converts to upper case via
-#'                             \code{\link[base:toupper]{base::toupper}}.    \cr
-#'   `tosentence`, `sc`   \tab Convert to sentence case via
-#'          \code{\link[stringr:str_to_sentence]{stringr::str_to_sentence}} .\cr
-#'   `totitle`, `tc`      \tab Convert to title case via
-#'          \code{\link[stringr:str_to_title]{stringr::str_to_title}}.         }
+#' @title Convert string case
+#' @description \itemize{
+#'   \item **`tocase`**: converts among lower, upper, sentence, and title case based on the value of the argument `case`.
+#'   \item **`lc`**: converts to lower case via \code{\link[base:tolower]{base::tolower}}.
+#'   \item **`uc`**: converts to upper case via \code{\link[base:toupper]{base::toupper}}.
+#'   \item **`tosentence, sc`**: convert to sentence case via \code{\link[stringr:str_to_sentence]{stringr::str_to_sentence}}.
+#'   \item **`totitle, tc`**: convert to title case via \code{\link[stringr:str_to_title]{stringr::str_to_title}}.
+#' }
 #' @param ... An arbitrary number of atomic arguments to be processed.
-#' @param case. A \link[=cmp_ch1_scl]{complete onechar scalar}. EIther `'l'`,
-#'   `'s'`, `'t'`, or `'u'` to indicate lower, sentence, title, or upper case,
-#'   respectively. Case insensitive.
-#' @param a. A non-`NA` logical scalar indicating whether to \link[=a]{atomize}
-#'   `...` before processing.
+#' @param case. A \link[=cmp_ch1_scl]{complete onechar scalar}. Either `'l'`, `'s'`, `'t'`, or `'u'` to indicate lower, sentence, title, or upper case, respectively (case insensitive).
+#' @param a. A non-`NA` logical scalar indicating whether to \link[=a]{atomize} `...` before processing.
 #' @return An atomic character object or a \link[=chr_vls]{character vlist}.
 #' @examples
 #' TestTitle    <- "This is a Title"

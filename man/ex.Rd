@@ -2,22 +2,19 @@
 % Please edit documentation in R/ex.R
 \name{ex}
 \alias{ex}
-\title{Extract Rows, Columns, and/or Elements}
+\title{Extract rows, columns, and/or elements}
 \usage{
 ex(x, r = NULL, c = NULL, e = NULL)
 }
 \arguments{
 \item{x}{Any valid R object.}
 
-\item{r}{A \link[=cmp_ind_vec]{complete indexer vec} indicating elements to
-extract from \code{x} of \link[=id1D]{defined dimensionality \code{1}}.}
+\item{r, c}{\link[=cmp_ind_vec]{Complete indexer vecs} indicating rows and columns to extract from from matrix/data.frame \code{x}.}
 
-\item{c}{A \link[=cmp_ind_vec]{complete indexer vec} indicating columns to
-extract from \code{x} of \link[=id2D]{defined dimensionality \code{2}}.}
+\item{e}{A complete indexer vec indicating elements to extract from vector/vlist \code{x}.}
 }
 \description{
-ex. Extract rows and/or columns of \link[=id2D]{two-dimensional
-objects} or elements of \link[=ie1D]{effectively one-dimensional objects}.
+Extract rows and/or columns of matrices/data.frames or elements of vectors/\link[=ivls]{vlists}.
 }
 \examples{
 Mat <- matrix(1:100, nrow = 10)
@@ -39,13 +36,12 @@ ex(letters, r = iR, c = iC)
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -56,6 +52,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -63,6 +60,7 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

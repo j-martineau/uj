@@ -2,51 +2,34 @@
 % Please edit documentation in R/case.R
 \name{case}
 \alias{case}
-\title{Case as an Extension of Switch}
+\title{Case as an extension of switch}
 \usage{
 case(name., ..., names. = NULL, def. = "err")
 }
 \arguments{
-\item{name.}{\code{NULL} or an \link[=atm_scl]{atomic scalar} naming an argument
-in \code{...}. \code{NULL} is converted to \code{'NULL'} and \code{NA} is converted to \code{'NA'}.
-Coerced to mode character.}
+\item{name.}{\code{NULL} or an \link[=atm_scl]{atomic scalar} naming an argument in \code{...}. \code{NULL} is converted to \code{'NULL'} and \code{NA} is converted to \code{'NA'}. Coerced to mode character.}
 
-\item{...}{Any number of uniquely named arguments to select from to be the
-return value. Selection is based on which element's name equals the value
-of \code{name.}. When there is no match, if \code{def. = 'err'}, an error is thrown,
-otherwise \code{def.} is returned as the default value.}
+\item{...}{Any number of uniquely named arguments to select from to be the return value. Selection is based on which element's name equals the value of \code{name.}. When there is no match, if \code{def. = 'err'}, an error is thrown, otherwise \code{def.} is returned as the default value.}
 
-\item{names.}{Either \code{NULL} or a \link[=cmp_scl_vec]{complete character vec}.
-If this argument is of mode character, it is split using pipe delimiters.
-Its length (after potential splitting) must match the number of \code{...}
-arguments. Values of \code{names.} must be unique.}
+\item{names.}{Either \code{NULL} or a \link[=cmp_scl_vec]{complete character vec}. If this argument is of mode character, it is split using pipe delimiters. Its length (after potential splitting) must match the number of \code{...} arguments. Values of \code{names.} must be unique.}
 
-\item{def.}{The default value to return if no match is found, unless \code{def.}
-is the character scalar \code{'err'}. In that case, if no match is found, an
-error is thrown.}
+\item{def.}{The default value to return if no match is found, unless \code{def.} is the character scalar \code{'err'}. In that case, if no match is found, an error is thrown.}
 }
 \value{
-Either the value of an argument selected from \code{...} or the value of
-\code{def.}.
+Either the value of an argument selected from \code{...} or the value of \code{def.}.
 }
 \description{
-Takes a name (i.e., any atomic scalar) and matches that name to
-the name matching an element of \code{...} where matching can be achieved by
-matching the name of an argument in \code{...}. When names are supplied via
-\code{names.}, they substituted for the names of arguments in \code{...}. When no
-match is found and \code{def. = 'err'} an error is thrown, otherwise, the value
-of \code{def.} is returned.
+Takes a name (i.e., any atomic scalar) and matches that name to the name matching an element of \code{...} where matching can be achieved by matching the name of an argument in \code{...}. When names are supplied via \code{names.}, they substituted for the names of arguments in \code{...}. When no match is found and \code{def. = 'err'} an error is thrown, otherwise, the value of \code{def.} is returned.
 }
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -57,6 +40,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -64,6 +48,7 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

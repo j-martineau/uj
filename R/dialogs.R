@@ -1,63 +1,40 @@
 #' @name uj_dialogs
 #' @family dialogs
-#' @title Dialog Boxes Using Package \code{svDialogs}.
-#' @description All functions in this family take `...` arguments, which are
-#'   \link[=av]{atomized} and collapsed into a prompt to be displayed in a
-#'   dialog box.\tabular{ll}{
-#'   \strong{FUNCTION}   \tab \strong{WHAT IT DOES}                          \cr
-#'   `msgbox`       \tab Launch a simple dialog box to give the message.     \cr
-#'   `dirbox`       \tab Ask user to select a directory/folder. `(A)`        \cr
-#'   `docbox`       \tab Ask user to select a document. `(A)`                \cr
-#'   `ansbox`       \tab Ask user to input a text response.                  \cr
-#'   `no`           \tab Does user select the 'no' button? (not 'yes')       \cr
-#'   `yes`          \tab Does user select the 'yes' button? (not 'no')       \cr
-#'   `msg`          \tab Returning the name of the button clicked.           \cr
-#'   `okx`          \tab Does user select the 'ok' button? (not 'cancel')    \cr
-#'   `choose_dir`   \tab Ask user to select a directory/folder.              \cr
-#'   `choose_doc`   \tab Ask user to select a document/file.                 \cr
-#'   `ask`          \tab Ask the user for typed input                        \cr
-#'   `ask1`         \tab Ask user to select a single option from a list.     \cr
-#'   `asks1`        \tab Ask user to select 1 option from a list, possibly
-#'                       across multiple rounds.                             \cr
-#'   `askn`         \tab Ask user to select a 1+ options from a list.        \cr
-#'   `asksn`        \tab Ask user to select a 1+ options from a list of
-#'                       possible options, possibly across multiple rounds.  \cr
-#'   `asknew`       \tab Ask user to enter a space- or comma-separated list of
-#'                       replacement values for existing values.               }
-#'   NOTE:
-#'   \cr `(A). `Fail safe feature launches a message dialog box prompting the
-#'              use to take an action in the next dialog box. After user
-#'              acknowledges, only then launches the selection dialog to avoid
-#'              problems with prompts not showing up on all operating systems.
-#' @param x \link[=cmp_chr_scl]{Complete character scalar} message.
-#' @param d \link[=cmp_chr_scl]{Complete character scalar} default directory.
-#' @param t \link[=cmp_chr_scl]{Complete character scalar} type of dialog box
-#'   (valid values are `c('ok', 'okcancel', 'yesno', 'yesnocancel')`)..
-#' @param def \link[=cmp_chr_scl]{Complete character scalar} default value.
-#' @param type, \link[=cmp_chr_scl]{Complete character scalar} type of directory
-#'   or document to select
+#' @title Dialog boxes using package `svDialogs`
+#' @description All functions in this family take `...` arguments, which are \link[=av]{atomized} and collapsed into a prompt to be displayed in a dialog box.
+#' \itemize{
+#'   \item **`msgbox`**: launches a simple dialog box to give the message.
+#'   \item **`dirbox`**: asks user to select a directory/folder. `(A)`
+#'   \item **`docbox`**: asks user to select a document. `(A)`
+#'   \item **`ansbox`**: asks user to input a text response.
+#'   \item **`no`**: checks for user selecting the `no` button of a `yesno` dialog.
+#'   \item **`yes`**: checks for user selecting the `yes` button of a `yesno` dialog.
+#'   \item **`msg`**: returns the name of the button clicked.
+#'   \item **`okx`**: checks for user selecting the `ok` button of an `okcancel` dialog.
+#'   \item **`ask`**: asks user for typed input.
+#'   \item **`ask1`**: asks user to select a single option from a list.
+#'   \item **`askn`**: asks user to select `1+` options from a list.
+#'   \item **`asks1`**: asks user to select `1` option from a list, possibly across multiple rounds.
+#'   \item **`asksn`**: asks user to select a `1+` options from a list of possible options, possibly across multiple rounds.
+#'   \item **`asknew`**: asks user to enter a space- or comma-separated list of replacement values for existing values.
+#'   \item **`choose_dir`**: asks user to select a directory/folder.
+#'   \item **`choose_doc`**: asks user to select a document/file.
+#' }
+#' \tabular{ll}{`(A).` \tab Failsafe feature launches a message dialog box prompting the user to take an action in the next dialog box. After user acknowledges, only then launches the selection dialog to avoid problems with prompts not showing up on all operating systems.}
+#' @param x A \link[=cmp_chr_scl]{complete character scalar} message.
+#' @param d A complete character scalar default directory.
+#' @param t A complete character scalar type of dialog box (valid values are `'ok'`, `'okcancel'`, `'yesno'`, and `'yesnocancel'`).
+#' @param def A complete character scalar default value.
+#' @param type A complete character scalar type of directory or document to select.
 #' @param ... Objects to be atomized to create the question.
-#' @param cancel \link[=cmp_chr_scl]{Complete character scalar} value to return
-#'   if user clicks the \code{cancel} button The value \code{cancel = '.stop'}
-#'   is an indicator that an error should be thrown if the user clicks the
-#'   \code{cancel} button.
-#' @param opts \link[=cmp_chr_vec]{Complete character vector} of options to
-#'   choose from.
-#' @param what \link[=cmp_chr_scl]{Complete character scalar} describing type of
-#'   option being presented.
-#' @param more \link[cmp_lgl_scl]{Complete logical scalar} indicating whether
-#'   there are more options than could be presented in a single dialog box that
-#'   still could be presented.
-#' @param all,none \link[=cmp_lgl_scl]{Complete logical scalars} indicating
-#'   whether the user should be able to select all options or none of the
-#'   options, respectively.
-#' @param per \link[=cmp_psw_scl]{Complete positive whole-number scalar}
-#'   indicating the maximum number of options to present in a single dialog box
-#'   interaction.
-#' @param unq \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
-#'   new values must be unique.
-#' @return A \link[=cmp_chr_scl]{complete character scalar} or a
-#'   \link[=cmp_scl_vec]{complete character vec}.
+#' @param cancel A complete character scalar value to return if user clicks the `cancel` button. The value `cancel = '.stop'` is an indicator that an error should be thrown if the user clicks the `cancel` button.
+#' @param opts A \link[=cmp_chr_vec]{complete character vec} of options to choose from.
+#' @param what A complete character scalar describing type of option being presented.
+#' @param more A non-`NA` logical scalar indicating whether there are more options than could be presented in a single dialog box that still could be presented.
+#' @param all,none Non-`NA` logical scalars indicating whether the user should be able to select all options or none of the options, respectively.
+#' @param per A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the maximum number of options to present in a single dialog box interaction.
+#' @param unq A non-`NA` logical scalar indicating whether new values must be unique.
+#' @return A character scalar or vector.
 #' @export
 msgbox <- function(..., t = "ok") {
   msg <- paste0(av(...), collapse = "")

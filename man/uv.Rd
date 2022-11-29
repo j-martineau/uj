@@ -3,22 +3,20 @@
 \name{uv}
 \alias{uv}
 \alias{uav}
-\title{Reduce \code{...} to a Vector of Unique Atomic Values}
+\title{Reduce \code{...} to a vector of unique atomic values}
 \usage{
 uv(...)
 
 uav(...)
 }
 \arguments{
-\item{...}{One or more objects to be reduced to a single atomic vector and
-then further reduced to unique atomic values.}
+\item{...}{One or more objects to be reduced to a single atomic vector and then further reduced to unique atomic values.}
 }
 \value{
 An atomic vector.
 }
 \description{
-\link[=av]{Atomize} \code{...} and reducing the result to unique
-constituent atomic values.
+\link[=av]{Atomize} \code{...} and reduce the result to unique constituent atomic values.
 }
 \examples{
 uv(0:5, 5:10, 10:15, 15:20)

@@ -4,40 +4,25 @@
 \alias{hexdec}
 \alias{todec}
 \alias{tohex}
-\title{Convert Non-Negative Whole Numbers between Decimal and Hexadecimal}
+\title{Convert non-negative whole numbers between decimal and hexadecimal}
 \usage{
 todec(x)
 
 tohex(x)
 }
 \arguments{
-\item{x}{A \link[=cmp_nnw]{complete non-negative whole-number object} or a
-\link[=cmp_chr]{complete character vec} containing only non-negative
-whole-number hexademical values.}
+\item{x}{A \link[=cmp_nnw]{complete non-negative whole-number object} or a \link[=cmp_chr]{complete character vec} containing only non-negative whole-number hexademical values.}
 }
 \value{
-\tabular{ll}{
-FUNCTION   \tab RETURN VALUE                                             \cr
-\code{todec}\tab A \link[=cmp_nnw]{Complete non-negative whole-number object}.\cr
-\code{tohex}\tab A \link[=cmp_chr]{complete character object} containing
-non-negative whole-number hexadecimal values in the format
-\code{'#HHH...'} where \code{H} is a placeholder for an uppercase
-hexadecimal digit.                                             }
+\itemize{
+\item \strong{\code{todec}}: a complete non-negative whole-number object.
+\item \strong{\code{tohex}}: a complete character object containing non-negative whole-number hexadecimal values in the format \code{'#HHH...'} where \code{H} is a placeholder for an uppercase hexadecimal digit.
+}
 }
 \description{
-\tabular{ll}{
-FUNCTION   \tab WHAT IT DOES                                            \cr
-\code{todec}    \tab Convert hexadecimal \link[=cmp_chr]{complete character
-object} \code{x} from hexadecimal to decimal. \code{x} may be
-formatted as either \code{'hhh...'} or \code{'#hhh...'} where \code{h}
-is a placeholder for a hexidecimal digit in either upper
-or lower case.                                          \cr
-\code{tohex}    \tab Convert \link[=cmp_psw]{complete positive whole-number}
-\code{x} to hexadecimal formatted as \code{'#HHH...'} where \code{H} is a
-placeholder for an uppercase hexadecimal digit.           }
+\itemize{
+\item \strong{\code{todec}}: converts hexadecimal \link[=cmp_chr]{complete character object} \code{x} from hexadecimal to decimal. \code{x} may be formatted as either \code{'hhh...'} or \code{'#hhh...'} where \code{h} is a placeholder for a hexidecimal digit in either upper or lower case.
+\item \strong{\code{tohex}}: converts \link[=cmp_psw]{complete positive whole-number} \code{x} to hexadecimal formatted as \code{'#HHH...'} where \code{H} is a placeholder for an uppercase hexadecimal digit.
 }
-\seealso{
-Other math: 
-\code{\link{inc}()}
 }
 \concept{math}

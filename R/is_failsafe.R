@@ -1,19 +1,42 @@
 #' @name is_failsafe
-#' @family extensions
 #' @family failsafe
 #' @family logicals
-#' @title Failsafe `is` Functions
-#' @description Functions that produce a `TRUE` or `FALSE` result as long as
-#'   identity-evaluating their arguments (e.g., `identity(x)`) does not itself
-#'   produce an error.
+#' @family extensions
+#' @title Failsafe `is` functions
+#' @description These functions **always** produce a `TRUE` or `FALSE` result unless identity-evaluating arguments (e.g., `identity(x)`) produce an error.
+#' \cr\cr
+#' Function names are constructed of prefixes and suffixes, where the suffix specifies what kind of check is conducted and the prefix specifies how the check is modified or applying the check to multiple values and sweeping across the results.
+#' \cr\cr
+#' **Available suffixes** check for the following:
+#' \itemize{
+#'   \item **`IN`**: checks whether `x` is in the collective set of atomic values contained by all `...` arguments.
+#'   \item **`ID`**: checks whether `x` is identical to `y`.
+#'   \item **`EQ`**: checks whether `x` is set-equal to `y`
+#'   \item **`T`** : checks for scalar `TRUE`.
+#'   \item **`F`** : checks for scalar `FALSE`.
+#'   \item **`NA`**: checks for scalar `NA`.
+#'   \item **`Ok`**: checks for scalar non-`NA`.
+#'   \item **`TF`**: checks for scalar `TRUE` or `FALSE`.
+#'   \item **`LG`**: checks for scalar logical, including `NA`.
+#'   \item **`BL`**: checks for scalar `""` (blank string).
+#' }
+#' **Available prefixes** for modifying the result are
+#' \itemize{
+#'   \item **`is`**: identity.
+#'   \item **`not`**: negation.
+#' }
+#' **Available prefixes** for applying to multiple values and sweeping across the results are
+#' \itemize{
+#'   \item **`nor`**: No resulting value is `TRUE`.
+#'   \item **`any`**: Any resulting value is `TRUE`.
+#'   \item **`all`**: Every resulting value is `TRUE`.
+#'   \item **`one`**: Exactly 1 resulting value is `TRUE`.
+#'   \item **`two`**: 2+ resulting values are `TRUE`.
+#' }
+#' **Combining prefixes and suffix**: All prefixes combine with all suffixes to create function names.
 #' @param x,y Any R object.
-#' @param ... Objects to check for containing `x`.
+#' @param ... Objects to check `x` against for functions with the suffix `IN`.
 #' @return `TRUE` or `FALSE`.
-#' @export
-is_failsafe <- NULL
-
-#' @describeIn is_failsafe Is `x` in the collective set of atomized values
-#'   from \code{...}?
 #' @export
 isIN <- function(x, ...) {
   if (...length() == 0 | !is.atomic(x) | length(x) != 1) {return(F)}
@@ -24,46 +47,43 @@ isIN <- function(x, ...) {
   return(F)
 }
 
-#' @describeIn is_failsafe Are `x` and `y` \link[base]{identical}?
+#' @rdname is_failsafe
 #' @export
 isID <- function(x, y) {identical(x, y)}
 
-#' @describeIn is_failsafe Are `x` and `y` atomic and \link[base]{setequal}?
+#' @rdname is_failsafe
 #' @export
 isEQ <- function(x, y) {f0(!is.atomic(x) | !is.atomic(y), FALSE, tryCatch(setequal(x, y), error = function(e) F, finally = NULL))}
 
-#' @describeIn is_failsafe Is `x` scalar `TRUE`?
+#' @rdname is_failsafe
 #' @export
 isT <- function(x) {isTRUE(x)}
 
-#' @describeIn is_failsafe Is `x` scalar `FALSE`?
+#' @rdname is_failsafe
 #' @export
 isF <- function(x) {isFALSE(x)}
 
-#' @describeIn is_failsafe Is `x` scalar `NA`?
+#' @rdname is_failsafe
 #' @export
 isNa <- function(x) {f0(length(x) != 1, F, f0(!is.atomic(x), F, is.na(x)))}
 
-#' @describeIn is_failsafe Is `x` atomic, scalar, and non-`NA`?
+#' @rdname is_failsafe
 #' @export
 isOk <- function(x) {f0(length(x) != 1, F, f0(!is.atomic(x), F, !is.na(x)))}
 
-#' @describeIn is_failsafe Is `x` either scalar `TRUE` or scalar
-#'   `FALSE`?
+#' @rdname is_failsafe
 #' @export
 isTF <- function(x) {isTRUE(x) | isFALSE(x)}
 
-#' @describeIn is_failsafe Is `x` scalar logical (`TRUE`,
-#'   `FALSE` or `NA`)?
+#' @rdname is_failsafe
 #' @export
 isLG <- function(x) {isTF(x) | isNa(x)}
 
-#' @describeIn is_failsafe Is `x` a scalar blank string?
+#' @rdname is_failsafe
 #' @export
 isBL <- function(x) {isEQ(x, "")}
 
-#' @describeIn is_failsafe Is `x` atomic, of length `1`, and not contained
-#'   in any argument in \code{...}?
+#' @rdname is_failsafe
 #' @export
 notIN <- function(x, ...) {
   if (!is.atomic(x) | length(x) != 1 | ...length() == 0) {return(T)}
@@ -74,251 +94,230 @@ notIN <- function(x, ...) {
   return(T)
 }
 
-#' @describeIn is_failsafe Thin wrapper for `!identical`.
+#' @rdname is_failsafe
 #' @export
 notID <- function(x, y) {!identical(x, y)}
 
-#' @describeIn is_failsafe Is `x` not atomic, `y` not atomic, or
-#'   are they not setequal?
+#' @rdname is_failsafe
 #' @export
 notEQ <- function(x, y) {f0(!is.atomic(x) | !is.atomic(y), F, tryCatch(!setequal(x, y), error = function(e) T, finally = NULL))}
 
-#' @describeIn is_failsafe Is `x` not a scalar blank string?
+#' @rdname is_failsafe
+#' @export
+notT <- function(x) {!isT(x)}
+
+#' @rdname is_failsafe
+#' @export
+notF <- function(x) {!isF(x)}
+
+#' @rdname is_failsafe
+#' @export
+notNa <- function(x) {!isNa(x)}
+
+#' @rdname is_failsafe
+#' @export
+notOk <- function(x) {!isOk(x)}
+
+#' @rdname is_failsafe
 #' @export
 notBL <- function(x) {notIN(x, "")}
 
-#' @describeIn is_failsafe Are no elements of `x` in the collective
-#'   atomized values from \code{...}?
+#' @rdname is_failsafe
 #' @export
 norIN <- function(x, ...) {!any(sapply(x, isIN, ...))}
 
-#' @describeIn is_failsafe Are no elements of `x` identical to `y`?
+#' @rdname is_failsafe
 #' @export
 norID <- function(x, y) {!any(sapply(x, isID, y))}
 
-#' @describeIn is_failsafe Are no elements of `x` identical to `y`?
+#' @rdname is_failsafe
 #' @export
 norEQ <- function(x, y) {!any(sapply(x, isEQ, y))}
 
-#' @describeIn is_failsafe Are no elements of `x` scalar `TRUE`?
+#' @rdname is_failsafe
 #' @export
 norT <- function(x) {!any(sapply(x, isT))}
 
-#' @describeIn is_failsafe Are no elements of `x` scalar `FALSE`?
+#' @rdname is_failsafe
 #' @export
 norF <- function(x) {!any(sapply(x, isF))}
 
-#' @describeIn is_failsafe Are no elements of `x` scalar `NA`?
+#' @rdname is_failsafe
 #' @export
 norNa <- function(x) {!any(sapply(x, isNa))}
 
-#' @describeIn is_failsafe Are no elements of `x` scalar non-`NA`?
+#' @rdname is_failsafe
 #' @export
 norOk <- function(x) {!any(sapply(x, isOk))}
 
-#' @describeIn is_failsafe Are no elements of `x` either scalar
-#'   `TRUE` or scalar `FALSE`?
+#' @rdname is_failsafe
 #' @export
 norTF <- function(x) {!any(sapply(x, isTF))}
 
-#' @describeIn is_failsafe Are no elements of `x` scalar logical
-#'   (`NA`, `TRUE`, or `FALSE`)?
+#' @rdname is_failsafe
 #' @export
 norLG <- function(x) {!any(sapply(x, isLG))}
 
-#' @describeIn is_failsafe Are no elements of `x` blank string scalars?
+#' @rdname is_failsafe
 #' @export
 norBL <- function(x) {!any(sapply(x, isBL))}
 
-#' @describeIn is_failsafe Are any elements of `x` in the collective
-#'   atomized values from \code{...}?
+#' @rdname is_failsafe
 #' @export
 anyIN <- function(x, ...) {any(sapply(x, isIN, ...))}
 
-#' @describeIn is_failsafe Are any elements of `x` identical to
-#'   `y`?
+#' @rdname is_failsafe
 #' @export
 anyID <- function(x, y) {any(sapply(x, isID, y))}
 
-#' @describeIn is_failsafe Are any elements of `x` set-equal to
-#'   `y`?
+#' @rdname is_failsafe
 #' @export
 anyEQ <- function(x, y) {any(sapply(x, isEQ, y))}
 
-#' @describeIn is_failsafe Are any elements of `x` scalar `TRUE`?
+#' @rdname is_failsafe
 #' @export
 anyT <- function(x) {any(sapply(x, isT))}
 
-#' @describeIn is_failsafe Are any elements of `x` scalar `FALSE`?
+#' @rdname is_failsafe
 #' @export
 anyF <- function(x) {any(sapply(x, isF))}
 
-#' @describeIn is_failsafe Are any elements of `x` scalar, atomic, and
-#'   `NA`?
+#' @rdname is_failsafe
 #' @export
 anyNa <- function(x) {any(sapply(x, isNa))}
 
-#' @describeIn is_failsafe Are any elements of `x` scalar, atomic, and
-#'   non-`NA`?
+#' @rdname is_failsafe
 #' @export
 anyOk <- function(x) {any(sapply(x, isOk))}
 
-#' @describeIn is_failsafe Are no elements of `x` scalar `TRUE` or
-#'   scalar `FALSE`?
+#' @rdname is_failsafe
 #' @export
 anyTF <- function(x) {any(sapply(x, isTF))}
 
-#' @describeIn is_failsafe Are any elements of `x` scalar logical
-#'   (`TRUE`, `FALSE`, or `NA`)?
+#' @rdname is_failsafe
 #' @export
 anyLG <- function(x) {any(sapply(x, isLG))}
 
-#' @describeIn is_failsafe Are any elements of `x` scalar blank strings?
+#' @rdname is_failsafe
 #' @export
 anyBL <- function(x) {any(sapply(x, isBL))}
 
-#' @describeIn is_failsafe Are all elements of `x` in the collective set
-#'   of atomized values from \code{...}?
+#' @rdname is_failsafe
 #' @export
 allIN <- function(x, ...) {all(sapply(x, isIN, ...))}
 
-#' @describeIn is_failsafe Are all elements of `x` identical to
-#'   `y`?
+#' @rdname is_failsafe
 #' @export
 allID <- function(x, y) {all(sapply(x, isID, y))}
 
-#' @describeIn is_failsafe Are all elements of `x` set-equal to
-#'   `y`?
+#' @rdname is_failsafe
 #' @export
 allEQ <- function(x, y) {all(sapply(x, isEQ, y))}
 
-#' @describeIn is_failsafe Are all elements of `x` scalar `TRUE`?
+#' @rdname is_failsafe
 #' @export
 allT <- function(x) {all(sapply(x, isT))}
 
-#' @describeIn is_failsafe Are all elements of `x` scalar `FALSE`?
+#' @rdname is_failsafe
 #' @export
 allF <- function(x) {all(sapply(x, isF))}
 
-#' @describeIn is_failsafe Are all elements of `x` scalar `NA`?
+#' @rdname is_failsafe
 #' @export
 allNa <- function(x) {all(sapply(x, isNa))}
 
-#' @describeIn is_failsafe Are all elements of `x` scalar, atomic, and
-#'   non-`NA`?
+#' @rdname is_failsafe
 #' @export
 allOk <- function(x) {all(sapply(x, isOk))}
 
-#' @describeIn is_failsafe Are all elements of `x` scalar `TRUE`
-#'   or scalar `FALSE`?
+#' @rdname is_failsafe
 #' @export
 allTF <- function(x) {all(sapply(x, isTF))}
 
-#' @describeIn is_failsafe Are all elements of `x` scalar logical
-#'   (`TRUE`, `FALSE`, or `NA`)?
+#' @rdname is_failsafe
 #' @export
 allLG <- function(x) {all(sapply(x, isLG))}
 
-#' @describeIn is_failsafe Are all elements of `x` scalar blank strings?
+#' @rdname is_failsafe
 #' @export
 allBL <- function(x) {all(sapply(x, isBL))}
 
-#' @describeIn is_failsafe Is exactly one element of `x` in the
-#'   collective set of atomized values from \code{...}?
+#' @rdname is_failsafe
 #' @export
 oneIN <- function(x, ...) {length(which(sapply(x, isIN, ...))) == 1}
 
-#' @describeIn is_failsafe Is exactly one element of `x` identical to
-#'   `y`?
+#' @rdname is_failsafe
 #' @export
 oneID <- function(x, y) {length(which(sapply(x, isID, y))) == 1}
 
-#' @describeIn is_failsafe Is exactly one element of `x` set-equal to
-#'   `y`?
+#' @rdname is_failsafe
 #' @export
 oneEQ <- function(x, y) {length(which(sapply(x, isEQ, y))) == 1}
 
-#' @describeIn is_failsafe Is exactly one element of `x` scalar
-#'   `TRUE`?
+#' @rdname is_failsafe
 #' @export
 oneT <- function(x) {length(which(sapply(x, isT))) == 1}
 
-#' @describeIn is_failsafe Is exactly one element of `x` scalar
-#'   `FALSE`?
+#' @rdname is_failsafe
 #' @export
 oneF <- function(x) {length(which(sapply(x, isF))) == 1}
 
-#' @describeIn is_failsafe Is exactly one element of `x` scalar
-#'   `NA`?
+#' @rdname is_failsafe
 #' @export
 oneNa <- function(x) {length(which(sapply(x, isNa))) == 1}
 
-#' @describeIn is_failsafe Is exactly one element of `x` scalar, atomic,
-#'   and non-`NA`?
+#' @rdname is_failsafe
 #' @export
 oneOk <- function(x) {length(which(sapply(x, isOk))) == 1}
 
-#' @describeIn is_failsafe Is exactly one element of `x` scalar
-#'   `TRUE` or scalar `FALSE`?
+#' @rdname is_failsafe
 #' @export
 oneTF <- function(x) {length(which(sapply(x, isTF))) == 1}
 
-#' @describeIn is_failsafe Is exactly one element of `x` scalar logical
-#'   (`TRUE`, `FALSE`, or `NA`)?
+#' @rdname is_failsafe
 #' @export
 oneLG <- function(x) {length(which(sapply(x, isLG))) == 1}
 
-#' @describeIn is_failsafe Is exactly one element of `x` a scalar blank
-#'   string?
+#' @rdname is_failsafe
 #' @export
 oneBL <- function(x) {length(which(sapply(x, isBL))) == 1}
 
-#' @describeIn is_failsafe Are two or more elements of `x` in the
-#'   collective set of atomized values from \code{...}?
+#' @rdname is_failsafe
 #' @export
 twoIN <- function(x, ...) {length(which(sapply(x, isIN, ...))) >= 2}
 
-#' @describeIn is_failsafe Are two or more elements of `x` identical to
-#'   `y`?
+#' @rdname is_failsafe
 #' @export
 twoID <- function(x, y) {length(which(sapply(x, isID, y))) >= 2}
 
-#' @describeIn is_failsafe Are two or more elements of `x` set-equal to
-#'   `y`?
+#' @rdname is_failsafe
 #' @export
 twoEQ <- function(x, y) {length(which(sapply(x, isEQ, y))) >= 2}
 
-#' @describeIn is_failsafe Are two or more elements of `x` scalar
-#'   `TRUE`?
+#' @rdname is_failsafe
 #' @export
 twoT <- function(x) {all(sapply(x, isT))}
 
-#' @describeIn is_failsafe Are two or more elements of `x` scalar
-#'   `FALSE`?
+#' @rdname is_failsafe
 #' @export
 twoF <- function(x) {length(which(sapply(x, isF))) >= 2}
 
-#' @describeIn is_failsafe Are two or more elements of `x` scalar
-#'   `NA`?
+#' @rdname is_failsafe
 #' @export
 twoNa <- function(x) {length(which(sapply(x, isNa))) >= 2}
 
-#' @describeIn is_failsafe Are two or more elements of `x` scalar,
-#'   atomic, and non-`NA`?
+#' @rdname is_failsafe
 #' @export
 twoOk <- function(x) {length(which(sapply(x, isOk))) >= 2}
 
-#' @describeIn is_failsafe Are two or more elements of `x` scalar
-#'   `TRUE` or scalar `FALSE`?
+#' @rdname is_failsafe
 #' @export
 twoTF <- function(x) {length(which(sapply(x, isTF))) >= 2}
 
-#' @describeIn is_failsafe Are two or more elements of `x` scalar logical
-#'   (`TRUE`, `FALSE` or `NA`)?
+#' @rdname is_failsafe
 #' @export
 twoLG <- function(x) {length(which(sapply(x, isLG))) >= 2}
 
-#' @describeIn is_failsafe Are two or more elements of `x` scalar blank
-#'   strings?
+#' @rdname is_failsafe
 #' @export
 twoBL <- function(x) {length(which(sapply(x, isBL))) >= 2}

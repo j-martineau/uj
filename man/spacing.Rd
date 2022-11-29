@@ -6,7 +6,7 @@
 \alias{pad}
 \alias{sqz}
 \alias{trm}
-\title{Error-Checked \code{stringr}-Based Spacing Functions}
+\title{Error-checked \code{stringr}-based spacing functions}
 \usage{
 spaces(n)
 
@@ -17,36 +17,29 @@ sqz(...)
 trm(...)
 }
 \arguments{
-\item{n}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}
-indicating the number of spaces.}
+\item{n}{A link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of spaces.}
 
 \item{...}{An arbitrary number of atomic arguments to be processed.}
 
-\item{n.}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}
-indicating the number of pad characters.}
+\item{n.}{A complete positive whole-number scalar indicating the number of pad characters.}
 
-\item{s.}{\link[=cmp_ch1_scl]{Complete onechar scalar} indicating side(s) to
-pad: \code{'l'}, \code{'r'}, or \code{'b'} for left, right, or both, respectively.}
+\item{s.}{A \link[=cmp_ch1_scl]{complete onechar scalar} indicating side(s) to pad: \code{'l'}, \code{'r'}, or \code{'b'} for left, right, or both, respectively.}
 
-\item{p.}{\link[=cmp_ch1_scl]{Complete onechar scalar} containing a single
-character used to pad strings.}
+\item{p.}{A complete onechar scalar containing a single character used to pad strings.}
 }
 \value{
-\tabular{ll}{
-FUNCTION               \tab RETURN VALUE                                \cr
-\code{spaces}               \tab A character scalar.                         \cr
-\code{pad}, \code{trm}, \code{ sqz}   \tab A character object.                           }
+\itemize{
+\item \strong{\code{spaces}}: a character scalar.
+\item \strong{\code{pad}, \code{trm}, \code{sqz}}: a character object.
+}
 }
 \description{
-\tabular{ll}{
-FUNCTION   \tab WHAT IT DOES                                            \cr
-\code{spaces}   \tab Create a character vector of \code{n} spaces.                \cr
-\code{pad}      \tab Pad a string with leading and/or trailing spaces using
-\code{\link[stringr:pad]{stringr::pad}}.                \cr
-\code{sqz}      \tab Trim leading, trailing, and extra internal spaces using
-\code{\link[stringr:str_squish]{stringr::str_squish}}.  \cr
-\code{trm}      \tab Trim leading and trailing spaces using
-\code{\link[stringr:str_trim]{stringr::str_trim}}.        }
+\itemize{
+\item \strong{\code{spaces}}: creates a character vector of \code{n} spaces.
+\item \strong{\code{pad}}: pads a string with leading and/or trailing spaces with \code{\link[stringr:pad]{stringr::pad}}.
+\item \strong{\code{sqz}}: trims leading, trailing, and extra internal spaces with \code{\link[stringr:str_squish]{stringr::str_squish}}.
+\item \strong{\code{trm}}: trims leading and trailing spaces with \code{\link[stringr:str_trim]{stringr::str_trim}}.
+}
 }
 \examples{
 spaces(0)

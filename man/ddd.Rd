@@ -33,11 +33,7 @@ nddd(x)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
-containing one or more defined dimensionality properties (i.e., from
-\code{ddd_props()}). Defined dimensionality properties may be pipe-delimited. If
-there are multiple properties in \code{spec}, \code{x} is inspected for a match to
-any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more defined dimensionality properties from \code{ddd_props()}. Defined dimensionality properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -46,70 +42,49 @@ any of the specified properties.}
   }}
 }
 \value{
-\tabular{ll}{
-FUNCTIONS                       \tab RETURN VALUE                       \cr
-\code{ddd_vals}                      \tab A character vector.                \cr
-\code{ddd}                           \tab A character scalar or vector.      \cr
-\code{nddd}                          \tab A numeric scalar.
-\code{iddd}, \code{ixxx}, \code{is_ddd_spec}   \tab A logical scalar.                   }
+\itemize{
+\item \strong{\code{ddd_vals}}: a character vector.
+\item \strong{\code{ddd}}: a character scalar/vector.
+\item \strong{\code{nddd}}: a numeric scalar.
+\item \strong{\verb{iddd, ixxx, is_ddd_spec}}: a logical scalar.
+}
 }
 \description{
-An object's defined dimensionality is the number of dimensions
-on which its components can be indexed. The following table gives levels of
-defined dimensionality, property values assigned to levels of defined
-dimensionality, property names, and a definition of each value of defined
-dimensionality.\tabular{llll}{
-        \tab DEFINED          \tab DEFINED          \tab                \cr
-NUMBER  \tab DIMENSIONALITY   \tab DIMENSIONALITY   \tab CHARACTERISTICS\cr
-OF DEFINED\tab PROPERTY       \tab PROPERTY         \tab OF QUALIFYING  \cr
-DIMENSIONS   \tab VALUE       \tab NAME             \tab OBJECTS        \cr
-\code{0}     \tab\code{'d0D'} \tab 0-dimensional structure.
-\tab \code{NULL}.                         \cr
-\code{1}     \tab\code{'d1D'} \tab 1-dimensional structure.
-\tab Vector, \link[=ivls]{vlist},
-1-dimensional array.                 \cr
-\code{2}     \tab\code{'d2D'} \tab 2-dimensional structure.
-\tab data.frame or matrix.                \cr
-\code{≥ 3}   \tab\code{'dHD'} \tab Hyper-dimensional structure.
-\tab Array with 3+ dimensions.              }
-Functions in this family are:\tabular{ll}{
-FUNCTION   \tab WHAT IT DOES \cr
-\code{ddd}           \tab Get a character vector containing all defined
-dimensionality properties possessed by \code{x}       \cr
-\code{ixxx}          \tab Evaluate whether \code{x} possesses the defined
-dimensionality property \code{xxx} (a placeholder for any
-given defined dimensionality property value),
-subject to any restrictions in \code{...}.            \cr
-\code{iddd}          \tab Evaluate whether \code{x} possesses one or more
-(possibly pipe-delimited) defined dimensionality
-properties in \code{spec}, subject to any restrictions in
-\code{...}.                                           \cr
-\code{nddd}          \tab Get the number of defined dimensions of \code{x}.     \cr
-\code{ddd_props}     \tab Get a character vector of all possible defined
-dimensionality property values.                  \cr
-\code{is_ddd_spec}   \tab Evaluate whether \code{spec} is a valid defined
-dimensionality property specification.             }
+An object's defined dimensionality is the number of dimensions on which its elements can be indexed.
+\itemize{
+\item \strong{\code{'d0D'}}: \code{0}-dimensional structure (the \code{NULL} object).
+\item \strong{\code{'d1D'}}: \code{1}-dimensional structure (vectors, \link[=ivls]{vlists}, and \code{1}-dimensional arrays).
+\item \strong{\code{'d2D'}}: \code{2}-dimensional structure (data.frames and matrices).
+\item \strong{\code{'dHD'}}: Hyper-dimensional structure (arrays with \verb{3+} dimensions).
 }
-\section{Specifying Count and Value Restrictions}{
- Specifying restrictions in
-\code{...} is optional. The full set of recognized arguments names are defined
-in the following table along with the properties each
-specifies:\tabular{ll}{
-NAME     \tab WHAT IT SPECIFIES                                         \cr
-\code{n}      \tab Vector of valid lengths/numbers of elements.              \cr
-\code{nr}     \tab Vector of valid numbers of rows.                          \cr
-\code{nc}     \tab Vector of valid numbers of columns.                       \cr
-\code{min}    \tab Scalar minimum valid length/number of element.            \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                      \cr
-\code{minc}   \tab Scalar minimum valid number of columns.                   \cr
-\code{max}    \tab Scalar maximum valid length/number of element.            \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                      \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.                   \cr
-\code{vals}   \tab Vector of valid values.                                   \cr
-\code{lt}     \tab Scalar less-than (exclusive upper) bound.                 \cr
-\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
-\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
-\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.          }
+\strong{Functions}
+\itemize{
+\item \strong{\code{ddd}}: gets a character vector containing all defined dimensionality properties possessed by \code{x}.
+\item \strong{\code{ixxx}}: evaluates whether \code{x} possesses the defined dimensionality property \code{xxx} (a placeholder for any given defined dimensionality property value), subject to any restrictions in \code{...}.
+\item \strong{\code{iddd}}: evaluates whether \code{x} possesses one or more (possibly pipe-delimited) defined dimensionality properties in \code{spec}, subject to any restrictions in \code{...}.
+\item \strong{\code{nddd}}: gets the number of defined dimensions of \code{x}.
+\item \strong{\code{ddd_props}}: gets a character vector of all possible defined dimensionality property values.
+\item \strong{\code{is_ddd_spec}}: evaluates whether \code{spec} is a valid defined dimensionality property specification.
+}
+}
+\section{Specifying count and value restrictions}{
+ Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
+\itemize{
+\item \strong{\code{n}}: a vector of valid lengths/numbers of elements.
+\item \strong{\code{nr}}: a vector of valid numbers of rows.
+\item \strong{\code{nc}}: a vector of valid numbers of columns.
+\item \strong{\code{min}}: a scalar minimum valid length/number of element.
+\item \strong{\code{minr}}: a scalar minimum valid number of rows.
+\item \strong{\code{minc}}: a scalar minimum valid number of columns.
+\item \strong{\code{max}}: a scalar maximum valid length/number of element.
+\item \strong{\code{maxr}}: a scalar maximum valid number of rows.
+\item \strong{\code{maxc}}: a scalar maximum valid number of columns.
+\item \strong{\code{vals}}: a vector of valid values.
+\item \strong{\code{lt}}: a scalar less-than (exclusive upper) bound.
+\item \strong{\code{le}}: a scalar less-than-or-equal (inclusive upper) bound
+\item \strong{\code{ge}}: a scalar greater-than-or-equal (inclusive lower) bound.
+\item \strong{\code{gt}}: a scalar greater-than bound (exclusive lower) bound.
+}
 }
 
 \seealso{

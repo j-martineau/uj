@@ -9,11 +9,9 @@ swap(x, old, new, all = FALSE)
 \arguments{
 \item{x}{An atomic object.}
 
-\item{old, new}{\link[=atm_vec]{Atomic vecs} of unique values to be replaced
-and replacement values, respectively. \code{length(new)} must be in \code{c(1, length(old))}.}
+\item{old, new}{\link[=atm_vec]{Atomic vecs} of unique values to be replaced and replacement values, respectively. \code{length(new)} must be in \code{c(1, length(old))}.}
 
-\item{all}{A non-\code{NA} logical scalar indicating whether all values of \code{x}
-must be contained in \code{old}.}
+\item{all}{A non-\code{NA} logical scalar indicating whether all values of \code{x} must be contained in \code{old}.}
 }
 \value{
 An atomic object of the same dimensions as \code{x}.
@@ -22,16 +20,19 @@ An atomic object of the same dimensions as \code{x}.
 Swap atomic values.
 }
 \seealso{
+Other forking: 
+\code{\link{case}()},
+\code{\link{fork}()}
+
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -42,6 +43,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -49,13 +51,10 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{uj_logicals}},
 \code{\link{xb}()}
-
-Other forking: 
-\code{\link{case}()},
-\code{\link{fork}()}
 }
 \concept{extensions}
 \concept{forking}

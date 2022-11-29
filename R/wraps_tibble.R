@@ -1,17 +1,13 @@
 #' @name wraps_tibble
 #' @family wraps
-#' @title Thin Wraps of Functions from Package `tibble`.
-#' @description The following table describes wrapper functions in this group of
-#'   functions:\tabular{ll}{
-#'     WRAPPER   \tab TIBBLE FUNCTION                                       \cr
-#'     `tb`      \tab \code{\link[tibble]{tibble}}                            \cr
-#'     `trb`     \tab \code{\link[tibble]{tibble_row}}                        \cr
-#'     `tbr`     \tab \code{\link[tibble]{tribble}}                           \cr
-#'     `tbas`    \tab \code{\link[tibble]{as_tibble}}                         \cr
-#'     `tbis`    \tab \code{\link[tibble]{is_tibble}}                           }
-#' @param file Either a character scalar or vector that resolves to a file path
-#'   or `NULL` (in which case the user is asked to select a file using a system
-#'   dialog box.
+#' @title Thin wrappers of `tibble` functions
+#' @description \itemize{
+#'   \item **`tb`**: thinly wraps \code{\link[tibble]{tibble}}.
+#'   \item **`tbr`**: thinly wraps \code{\link[tibble]{tribble}}.
+#'   \item **`trb`**: thinly wraps \code{\link[tibble]{tibble_row}}.
+#'   \item **`tbas`**: thinly wraps \code{\link[tibble]{as_tibble}}.
+#'   \item **`tbis`**: thinly wraps \code{\link[tibble]{is_tibble}}.
+#' }
 #' @return A tibble.
 #' @export
 wraps_tibble <- NULL

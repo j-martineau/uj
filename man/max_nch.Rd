@@ -2,18 +2,18 @@
 % Please edit documentation in R/maxnch.R
 \name{max_nch}
 \alias{max_nch}
-\title{Length of Longest String}
+\title{Length of longest string}
 \usage{
 max_nch(x)
 }
 \arguments{
-\item{x}{An \link[=atm_chr]{atomic character object}.}
+\item{x}{An \link[=ichr]{character object}.}
 }
 \value{
 An integer scalar.
 }
 \description{
-Get the number of characters in the longest string in \code{x}.
+Gets the number of characters in the longest string in \code{x}.
 }
 \seealso{
 Other strings: 

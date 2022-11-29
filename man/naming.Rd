@@ -18,7 +18,7 @@
 \alias{rn}
 \alias{cn}
 \alias{rcn}
-\title{Get Names, Set Names, Determine if Named}
+\title{Get names, set names, determine whether named}
 \usage{
 namev(x, en)
 
@@ -53,77 +53,58 @@ cn(x, u = T, err = F)
 rcn(x, u = T, err = F)
 }
 \arguments{
-\item{x}{Vector or list for \code{namev} and \code{vn}; matrix or data.frame for \code{rn},
-\code{namer}, \code{cn}, \code{namec}, and \code{namerc}; or any object for \code{namel}.}
+\item{x}{Vector or list for \code{namev} and \code{vn}; matrix or data.frame for \code{rn}, \code{namer}, \code{cn}, \code{namec}, and \code{namerc}; or any object for \code{namel}.}
 
 \item{en}{A \link[=cmp_chr_vec]{complete character vec} of element names.}
 
-\item{rn, cn}{\link[=cmp_chr_vec]{complete character vecs} of row or column
-names, respectively.}
+\item{rn, cn}{Complete character vecs of row or column names, respectively.}
 
 \item{ln}{A \link[=cmp_chr_scl]{complete character scalar} element name.}
 
-\item{d}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving
-the dimension(s) to name: \code{0} for elements (of atomic or list vectors
-only), \code{1} for rows of matrices or tibbles, \code{2} for columns of matrices or
-data.frames, or \code{12} for rows and columns of matrices or data.frames.}
+\item{d}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the dimension(s) to name: \code{0} for elements (of atomic or list vectors only), \code{1} for rows of matrices or tibbles, \code{2} for columns of matrices or data.frames, or \code{12} for rows and columns of matrices or data.frames.}
 
-\item{u}{A \link[=cmp_lgl_scl]{complete logical scalar} indicating whether
-names must be unique.}
+\item{u}{A non-\code{NA} logical scalar indicating whether names must be unique.}
 
-\item{blank}{A \link[=cmp_lgl_scl]{complete logical scalar} indicating
-whether blank strings (\code{""}) are allowed as names.}
+\item{blank}{A non-\code{NA} logical scalar indicating whether blank strings (\code{""}) are allowed as names.}
 
 \item{...}{Arbitrary number of arguments to be inspected for names.}
 
-\item{err}{A \link[=cmp_lgl_scl]{complete logical} scalar indicating whether
-names must be non-missing.}
+\item{err}{A non-\code{NA} logical scalar indicating whether names must be non-missing.}
 }
 \value{
-\tabular{ll}{
-FUNCTIONS                     \tab RETURN VALUE                         \cr
-\code{namev}                       \tab A vector.                            \cr
-\code{namer}, \code{namec}, \code{namerc}    \tab A matrix/data.frame.                 \cr
-\code{namel}                       \tab A 1-element list.                    \cr
-\code{named}, \code{enamed}, \code{rnamed}   \tab A logical scalar.                    \cr
-\code{cnamed}, \code{rcnamed}           \tab A logical scalar.                    \cr
-\code{en}, \code{rn}, \code{cn}              \tab A character vector.                  \cr
-\code{rcn}                         \tab A list of 2 character vectors.         }
+\itemize{
+\item \strong{\code{rcn}}: a list of \code{2} character vectors.
+\item \strong{\verb{namev**: a vector. \\item **}namel}: a \code{1}-element list.
+\item \strong{\verb{en, rn, cn**: a character vector. \\item **}namer, namec, namerc}: a matrix or data.frame.
+\item \strong{`named, enamed, rnamed, cnamed, rcnamed}: a logical scalar.
+}
 }
 \description{
-\tabular{ll}{
-FUNCTION     \tab WHAT IT DOES                                          \cr
-\code{namev}      \tab Name the elements of a vector or \link[=ivls]{vlist}. \cr
-\code{namer}      \tab Name the rows of a matrix or data.frame.              \cr
-\code{namec}      \tab Name the columns of a matrix or data.frame.           \cr
-\code{namel}      \tab Create and name a 1-element list.                     \cr
-\code{namerc}     \tab Name rows and columns of a matrix or data.frame.      \cr
-\code{named}      \tab Determine whether an object's elements, rows, and/or
-columns are named, accounting for whether names must be
-unique, whether the object may contain empty elements,
-and whether names may be blank strings.               \cr
-\code{enamed}     \tab Are elements of \code{x} named?                            \cr
-\code{rnamed}     \tab Are rows of \code{x} named?                                \cr
-\code{cnamed}     \tab Are columns of \code{x} named?                             \cr
-\code{dnamed}     \tab Are dot arguments (\code{...}) named?                      \cr
-\code{getnames}   \tab Get element, row, and/or column names with optional
-restrictions.                                         \cr
-\code{en}         \tab Get element names.                                    \cr
-\code{rn}         \tab Get row names.                                        \cr
-\code{cn}         \tab Get column names.                                     \cr
-\code{rcn}        \tab Get row and column names as a 2-element list.           }
+\itemize{
+\item \strong{\code{named}}: evaluates whether an object's elements, rows, and/or columns are named, accounting for whether names must be unique, whether the object may contain empty elements, and whether names may be blank strings.
+\item \strong{\code{enamed}}: evaluates whether elements of \code{x} named.
+\item \strong{\verb{rnamed cnamed}}: evaluates whether rows vx. columns of \code{x} are named, respectively.
+\item \strong{\code{dnamed}}: evaluates whether dot arguments (\code{...}) named.
+}\cr\itemize{
+\item \strong{\code{namev}}: names elements of a vector or \link[=ivls]{vlist}.
+\item \strong{\code{namel}}: creates and names a 1-element list.
+\item \strong{\verb{namer namec namerc}}: name rows vs. columns vs. both rows and columns of \code{x}, respectively.
+}\cr\itemize{
+\item \strong{\code{en}}: gets element names.
+\item \strong{\verb{rn cn rcn}}: get row vs. column vs. both row and column names, respectively.
+\item \strong{\code{getnames}}: gets element, row, and/or column names with optional restrictions.
+}
 }
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -133,6 +114,7 @@ Other extensions:
 \code{\link{n_th}()},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -140,6 +122,7 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

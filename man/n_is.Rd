@@ -33,7 +33,7 @@
 \alias{nd1p}
 \alias{nd2p}
 \alias{nd3p}
-\title{Dedicated Counting Functions}
+\title{Dedicated counting functions}
 \usage{
 n_is(x, n = NULL, min = NULL, max = NULL, eq = F)
 
@@ -136,64 +136,48 @@ nd3p()
 \arguments{
 \item{x}{\link[=innw]{non-negative whole-number} object.}
 
-\item{n}{Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec}
-of valid element, row, or column counts.}
+\item{n}{Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec} of valid element, row, or column counts.}
 
-\item{min, max}{Optional \link[=cmp_nnw_scl]{complete non-negative
-whole-number scalars} giving minimum and maximum valid element, row, or
-column counts.}
+\item{min, max}{Optional \link[=cmp_nnw_scl]{complete non-negative whole-number scalars} giving minimum and maximum valid element, row, or column counts.}
 
-\item{eq, na, a}{Non-\code{NA} scalars indicating, respectively, whether all counts
-must be equal, whether \code{NA} values are allowed, and whether to
-\link[=av]{atomize} \code{...} to create a single atomic vector before
-processing. If \code{a = FALSE}, each argument in \code{...} is processed separately.}
+\item{eq, na, a}{Non-\code{NA} scalars indicating, respectively, whether all counts must be equal, whether \code{NA} values are allowed, and whether to \link[=av]{atomize} \code{...} to create a single atomic vector before processing. If \code{a = FALSE}, each argument in \code{...} is processed separately.}
 
 \item{...}{One or more arguments to be examined for counts.}
 
-\item{vals}{Optional \link[=atm_vec]{atomic vec} indicating specific values
-to be counted.}
+\item{vals}{Optional \link[=atm_vec]{atomic vec} indicating specific values to be counted.}
 
-\item{lt, le, ge, gt}{Optional \link[=cmp_srt_scl]{complete sortable scalars}
-indicating specific values elements of \code{...} arguments must be less than,
-less than or equal to, greater than or equal to, or greater than,
-respectively, to be counted.}
+\item{lt, le, ge, gt}{Optional \link[=cmp_srt_scl]{complete sortable scalars} indicating specific values elements of \code{...} arguments must be less than, less than or equal to, greater than or equal to, or greater than, respectively, to be counted.}
 }
 \value{
 An integer or logical scalar or vector.
 }
 \description{
-Couning functions can be used with a single unnamed argument,
-multiple unnamed arguments, and with restrictions in named arguments, in
-any combination. The functions in this family are: \tabular{ll}{
-FUNCTION(S)                  \tab QUESTION(S) ANSWERED                  \cr
-\code{n_is}                       \tab Do counts in \code{x} meet criteria in \code{n},
-\code{min}, \code{max}, and/or \code{eq}?            \cr
-\code{nd}                         \tab How many \code{...} arguments?             \cr
-\code{nx}                         \tab How many values in \code{...} arguments?   \cr
-\code{ns}                         \tab How many values in each \code{...}
-argument?                             \cr
-\code{nmin}, \code{nmax}               \tab What is the min or max \code{...} argument
-length, respectively?                 \cr
-\code{nsame}                      \tab Are lengths of all \code{...} arguments the
-same?                                 \cr
-\code{nw}, \code{nt}                   \tab How many \code{TRUE} values?               \cr
-\code{nf}                         \tab How many \code{FALSE} values?              \cr
-\code{nu}, \code{nuv}                  \tab How many unique atomic values?        \cr
-\code{nr}, \code{nc}                   \tab How many rows or columns,
-espectively?                          \cr
-\code{nch}                        \tab How many characters in each element?  \cr
-\code{nna}, \code{nok}                 \tab How many \code{NA} or non-\code{NA} values,
-respectively?                         \cr
-\code{nat}                        \tab How many values after
-\link[=av]{atomizing}?                \cr
-\code{n0}, \code{n1}, \code{n2}, \code{n3}       \tab Is length \code{0}, \code{1}, \code{2}, or \code{3},
-respectively?                         \cr
-\code{n1p}, \verb{n2p, n3p}            \tab Is length \verb{1+}, \verb{2+}, or \verb{3+},
-respectively?                         \cr
-\code{nd0}, \code{nd1}, \code{nd2}, \code{nd3}   \tab Is the number of \code{...} arguments \code{0},
-\code{1}, \code{2}, or \code{3}, respectively?       \cr
-\code{nd1p}, \code{nd2p}, \code{nd3p}       \tab Is the number of \code{...} arguments \verb{1+},
-\verb{2+}, or \verb{3+}, respectively.            }
+Counting functions can be used with a single unnamed argument, multiple unnamed arguments, and with restrictions in named arguments, in any combination. The functions in this family answer the questions described below.
+\itemize{\item \strong{\code{n_is}}: do counts in \code{x} meet criteria in \code{n}, \code{min},. \code{max}, and/or \code{eq}?}
+\cr\itemize{
+\item \strong{\code{nx}}: gets number of values in \code{...} arguments.
+\item \strong{\code{nd}}: number of \code{...} arguments.
+\item \strong{\code{ns}}: gets number of values in each \code{...} argument.
+\item \strong{\code{nf}}:  gets number of values \code{FALSE} values.
+\item \strong{\verb{nw nt}}: gets number of values \code{TRUE} values.
+}
+\cr\itemize{
+\item \strong{\code{nat}}: gets number of values after \link[=av]{atomizing}.
+\item \strong{\code{nch}}: gets number of characters in each element.
+\item \strong{\verb{nr nc}}: gets number of values rows vs. columns, respectively.
+\item \strong{\verb{nu nuv}}: gets number of unique atomic values.
+\item \strong{\verb{nna nok}}:  gets number of values atomic \code{NA} vs. atomic non-\code{NA} values, respectively.
+\item \strong{\verb{nmin nmax}}: gets the min vs. max \code{...} argument length, respectively.
+}
+\cr\itemize{
+\item \strong{\verb{n0 n1 n2 n3}}: evaluates whether length is \code{0} vs. \code{1} vs. \code{2} vs. \code{3}, respectively.
+\item \strong{\verb{n1p n2p n3p}}: evaluates whether length is \verb{1+} vs. \verb{2+} vs. \verb{3+}, respectively.
+}
+\cr\itemize{
+\item \strong{\code{nsame}}: are lengths of all \code{...} arguments the same.
+\item \strong{\verb{nd1p nd2p nd3p}}: is the number of \code{...} arguments \verb{1+} vs. \verb{2+} vs. \verb{3+}, respectively.
+\item \strong{\verb{nd0 nd1 nd2 nd3}}: is the number of \code{...} arguments \code{0} vs. \code{1} vs. \code{2} vs. \code{3}, respectively.
+}
 }
 \examples{
 N <- 0:15
@@ -235,14 +219,13 @@ nch(letters, "a string", a = T)
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -252,6 +235,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -259,6 +243,7 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

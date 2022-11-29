@@ -1,30 +1,19 @@
 #' @family props
-#' @title Extended Mode + Extended Class Properties
-#' @description \tabular{ll}{
-#'   FUNCTION          \tab WHAT IT DOES                                     \cr
-#'   `mmm_ccc`         \tab Evaluate whether `x` matches the extended mode
-#'                          specified in argument `mmm` and the extended class
-#'                          specified in argument `ccc`, subject to any
-#'                          restrictions in `...`.                           \cr
-#'   `MMM_CCC`         \tab Evaluate whether `x` matches extended mode `mmm` and
-#'                          extended class `ccc` subject to any restrictions in
-#'                          `...`, where `mmm` and `ccc` are placeholders for
-#'                          any given extended mode and any given extended
-#'                          class, respectively.                             \cr
-#'   `mmm_ccc_props`   \tab Get a character vector of all possible extended mode
-#'                          + extended class properties.                       }
+#' @title Extended mode + extended class properties
+#' @description \itemize{
+#'  **`mmm_ccc`**: evaluates whether `x` matches the extended mode specified in argument `mmm` and the extended class specified in argument `ccc`, subject to any restrictions in `...`.
+#'  **`xxx_yyy`**: evaluates whether `x` matches extended mode `xxx` and extended class `yyy` subject to any restrictions in `...`, where `xxx` and `yyy` are placeholders for any given extended mode and any given extended class, respectively.
+#'  **`mmm_ccc_props`**: gets a character vector of all possible extended mode + extended class properties.
+#' }
 #' @param x An R object
-#' @param mmm Character scalar containing an extended mode property from
-#'   `mmm_props()`.
-#' @param ccc Character scalar containing an extended class property from
-#'   `ccc_props()`.
+#' @param mmm A Character scalar extended mode property from `mmm_props()`.
+#' @param ccc A Character scalar extended class property from `ccc_props()`.
 #' @inheritDotParams meets
-#' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \tabular{ll}{
-#'   FUNCTION          \tab RETURN VALUE                                     \cr
-#'   `mmm_ccc`         \tab A logical scalar.                                \cr
-#'   `MMM_CCC`         \tab A logical scalar.                                \cr
-#'   `mmm_ccc_props`   \tab A character vector.                                }
+#' @inheritSection meets Specifying count and value restrictions
+#' @return \itemize{
+#'   \item **`mmm_ccc, MMM_CCC`**: a logical scalar.
+#'   \item **`mmm_ccc_props`**: a character vector.
+#' }
 #' @export
 mmm_ccc <- function(x, mmm_ccc, ...) {
   errs <- c(.meets_errs(x, ...),

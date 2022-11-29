@@ -5,7 +5,7 @@
 \alias{isERR}
 \alias{notERR}
 \alias{msgERR}
-\title{Evaluate Objects, Flag Any Errors}
+\title{Evaluate objects and flag any errors}
 \usage{
 failsafe(x)
 
@@ -16,41 +16,39 @@ notERR(x)
 msgERR(x)
 }
 \arguments{
-\item{x}{An object or a call to evaluate in the environment of a parent
-function where the initial call was made.}
+\item{x}{An object or a call to evaluate in the environment of a parent function where the initial call was made.}
 }
 \value{
-\tabular{ll}{
-FUNCTIONS           \tab RETURN VALUE                                   \cr
-\code{failsafe}          \tab Either \code{x}, an object of class \code{'error'}, or an
-object of class \code{'simpleError'}.               \cr
-\code{isERR}, \code{notERR}   \tab A logical scalar.                              \cr
-\code{msgERR}            \tab Either \code{NULL} or a character scalar.             }
+\itemize{
+\item \strong{\code{msgERR}}: either \code{NULL} or a character scalar.
+\item \strong{\code{failsafe}}: either \code{x}, an object of class \code{'error'}, or an object of class \code{'simpleError'}.
+\item \strong{\verb{isERR, notERR}}: A logical scalar.
+}
 }
 \description{
-\tabular{ll}{
-FUNCTION     \tab WHAT IT DOES \cr
-\code{failsafe}   \tab Call \code{identity(x)}. If an error is produced in doing so,
-returns an object of class \code{'error'} or of class
-\code{'simpleError'}. If an error is not generated, returns
-the safely evaluated value of \code{x}.                    \cr
-\code{isERR}      \tab Evaluate whether calling \code{identity(x)} produced an
-error.                                                \cr
-\code{notERR}     \tab Evaluate whether calling \code{identity(x)} \emph{did not}
-produce an error.                                     \cr
-\code{msgERR}     \tab Get any error message associated with calling
-\code{identity(x)}. If there is none, returns \code{NULL}.        }
+\itemize{
+\item \strong{\code{isERR}}: Evaluate whether calling \code{identity(x)} produced an error.
+\item \strong{\code{notERR}}: Evaluate whether calling \code{identity(x)} \emph{did not} produce an error.
+\item \strong{\code{msgERR}}: Get any error message associated with calling \code{identity(x)}. If there is none, returns \code{NULL}.
+\item \strong{\code{failsafe}}: Call \code{identity(x)}. If an error is produced in doing so, returns an object of class \code{'error'} or of class \code{'simpleError'}. If an error is not generated, returns the safely evaluated value of \code{x}.
+}
 }
 \seealso{
+Other errs: 
+\code{\link{err_check}()}
+
+Other failsafe: 
+\code{\link{binary_failsafe}},
+\code{\link{is_failsafe}}
+
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -61,6 +59,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -68,17 +67,11 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},
 \code{\link{xb}()}
-
-Other errs: 
-\code{\link{err_check}()}
-
-Other failsafe: 
-\code{\link{binfuns}},
-\code{\link{is_failsafe}}
 }
 \concept{errs}
 \concept{extensions}

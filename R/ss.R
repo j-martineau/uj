@@ -1,47 +1,32 @@
 #' @name ss
 #' @family strings
 #' @title Split Strings and Select/Check for Elements
-#' @description \strong{Function `ss`}
+#' @description **Function `ss`**
 #'   \cr splits strings using the delimiter(s) in `d` following this sequence:
 #'   \enumerate{
-#'   \item Reduce `...` to one atomic vector of constituent atomic values.
+#'   \item Reduce `...` to an atomic vector of all collective atomic values.
 #'   \item Convert the result to mode character.
-#'   \item Replace each element of the result with that element's constituent
-#'         parts as delimited by `d`, producing a potentially longer
-#'         character vector.
-#'   \item If `n` is not `NULL`, extracts the `n`-th elements(s) from the
-#'         result.
-#'   \item If `trm` is `TRUE`, trims white space (i.e., spaces, tabs, newlines)
-#'         from both ends of each element of the result.
-#'   \item If `sqz` is `TRUE`, removes leading and trailing white
-#'         space and replaces any multi-character strings of white-space
-#'         strings inside the result with a single space.
-#'   \item If `u` is `TRUE`, reduces the result to unique values.              }
-#'   \strong{`ch`} does the same, with the exception that the delimiter is a
-#'   blank string, resulting in a vector of single characters; and (if
-#'   `sqz = TRUE`) removing blank strings from the result.
-#'   \strong{Extension} functions are supplied for common delimiters, signified
-#'   by the following suffixes on function names:\tabular{lll}{
-#'   SUFFIX      \tab SUFFIX        \tab DELIMITER                           \cr
-#'   CHARACTER   \tab NAME          \tab INVOKED                             \cr
-#'   `'1'`       \tab Space         \tab `' '`                               \cr
-#'   `'P'`       \tab Pipe          \tab `'|'`                               \cr
-#'   `'D'`       \tab Dot           \tab `'.'`                               \cr
-#'   `'B'`       \tab Broken pipe   \tab `'¦'`                                 }
-#'   \strong{Function `uch`}
-#'   \cr Does the same as `ch` with the exception of reducing the result to
-#'   unique single characters.
+#'   \item Replace each element of the result with that element's constituent parts as delimited by `d`, producing a potentially longer character vector.
+#'   \item If `n` is not `NULL`, extracts the `n`-th elements(s) from the result.
+#'   \item If `trm` is `TRUE`, trims white space (i.e., spaces, tabs, newlines) from both ends of each element of the result.
+#'   \item If `sqz` is `TRUE`, removes leading and trailing white space and replaces any multi-character interior white-space strings inside the result with a single space.
+#'   \item If `u` is `TRUE`, reduces the result to unique values.}
+#'   **Function `ch`**
+#'   \cr Does the same as `ss` but with a blank string delimiter, resulting in a vector of single characters (if `sqz = TRUE`), also removes blank strings from the result.
 #'   \cr\cr
-#'   \strong{Function `sstb`}
-#'   \cr assumes that splitting each element of `x` along the delimiter `d`
-#'   results vectors of the same length, which are placed into a data.frame. For
-#'   example, the following console excerpt demonstrates a call to `sstb` and
-#'   its result.
+#'   **Extension functions** are supplied for common delimiters, signified by codes appended to `ss` function names:\tabular{ll}{
+#'     *Code (name)*            \tab *Delimiter invoked*
+#'     \cr`'1'` (space)         \tab`' '`
+#'     \cr`'P'` (pipe)          \tab`'|'`
+#'     \cr`'D'` (dot)           \tab`'.'`
+#'     \cr`'B'` (broken pipe)   \tab`'¦'`
+#'   }
+#'   **Function `uch`** reduces the result of `ch` to unique values.
+#'   \cr\cr
+#'   **Function `sstb`** assumes that splitting each element of `x` along the delimiter `d` results vectors of the same length, which are placed into a data.frame. For example, the following console excerpt demonstrates a call to `sstb` and its result.
 #'   ```
 #'   > sstb(x = c('a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p'),
-#'   +      d = '|'
-#'   +      name = 'original',
-#'   +      part = 'letter')
+#'   +      d = '|', name = 'original', part = 'letter')
 #'
 #'     original letter.1 letter.2 letter.3 letter.4
 #'   1  a|b|c|d        a        b        c        d
@@ -49,27 +34,18 @@
 #'   3  i|j|k|l        i        j        k        l
 #'   4  m|n|o|p        m        n        o        p
 #'   ```
-#' @param ... An arbitrary number of objects to be \link[=av]{atomized} before
-#'   splitting.
+#' @param ... An arbitrary number of objects to be \link[=av]{atomized} before splitting.
 #' @param x A \link[=chr_vec]{character vec} of string(s) to be split.
-#' @param name A \link[=cmp_chr_scl]{complete character scalar} name of the
-#'   variable to hold the original strings.
-#' @param part A \link[=cmp_chr_scl]{complete character scalar} prefix for
-#'   labeling components of vectors resulting from split strings.
-#' @param d A \link[=cmp_chr_vec]{complete character vec} delimiter or
-#'   delimiters to use in splitting strings.
-#' @param trm A \link[=cmp_lgl_scl]{complete logical scalar} indicating whether
-#'   to trim white space from each side of each element of the result.
-#' @param sqz A link[=cmp_lgl_scl]{complete logical scalar} indicating whether
-#'   to squeeze the result by removing either empty strings (for `ss` functions)
-#'   or characters that are neither letters, digits, nor spaces (for `ch`).
-#' @param n An optional \link[=cmp_psw_scl]{complete positive whole-number
-#'   scalar} specifying an element to be extracted from the result.
-#' @param u \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether to
-#'   reduce the result to unique values.
-#' @return Either a \link[=chr_vec]{character vector}, a
-#'   \link[=chr_vls]{character vlist}, or a \link[=chr_dtf]{character
-#'   data.frame}.
+#' @param name A \link[=cmp_chr_scl]{complete character scalar} name of the variable to hold the original strings.
+#' @param part A complete character scalar prefix for labeling components of vectors resulting from split strings.
+#' @param d A complete character vec of delimiter or delimiters to use in splitting strings.
+#' @param trm A non-`NA` logical scalar indicating whether to trim white space from each side of each element of the result.
+#' @param sqz A non-`NA` logical scalar indicating whether to squeeze the result by removing either empty strings (for `ss` functions) or characters that are neither letters, digits, nor spaces (for `ch`).
+#' @param n An optional \link[=cmp_psw_scl]{complete positive whole-number scalar} specifying an element to be extracted from the result. @param u complete non-`NA` scalar indicating whether to reduce the result to unique values.
+#' @return \itemize{
+#'   \item **`sstb`**: a data.frame.
+#'   \item **all others**: a character vector.
+#' }
 #' @export
 ss <- function(d, ..., trm = T, sqz = T, u = F, n = NULL) {
   errs <- c(f0(all(sapply(list(...), ichr))  , NULL, "\n \u2022 [...] must contain at least one argument, all of which must be character generics (?chr_gen)."),

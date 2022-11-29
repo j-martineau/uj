@@ -1,26 +1,15 @@
 #' @name hexdec
 #' @family math
-#' @title Convert Non-Negative Whole Numbers between Decimal and Hexadecimal
-#' @description \tabular{ll}{
-#'   FUNCTION   \tab WHAT IT DOES                                            \cr
-#'   `todec`    \tab Convert hexadecimal \link[=cmp_chr]{complete character
-#'                   object} `x` from hexadecimal to decimal. `x` may be
-#'                   formatted as either `'hhh...'` or `'#hhh...'` where `h`
-#'                   is a placeholder for a hexidecimal digit in either upper
-#'                   or lower case.                                          \cr
-#'   `tohex`    \tab Convert \link[=cmp_psw]{complete positive whole-number}
-#'                   `x` to hexadecimal formatted as `'#HHH...'` where `H` is a
-#'                   placeholder for an uppercase hexadecimal digit.           }
-#' @param x A \link[=cmp_nnw]{complete non-negative whole-number object} or a
-#'   \link[=cmp_chr]{complete character vec} containing only non-negative
-#'   whole-number hexademical values.
-#' @return \tabular{ll}{
-#'  FUNCTION   \tab RETURN VALUE                                             \cr
-#'  `todec`\tab A \link[=cmp_nnw]{Complete non-negative whole-number object}.\cr
-#'  `tohex`\tab A \link[=cmp_chr]{complete character object} containing
-#'              non-negative whole-number hexadecimal values in the format
-#'              `'#HHH...'` where `H` is a placeholder for an uppercase
-#'              hexadecimal digit.                                             }
+#' @title Convert non-negative whole numbers between decimal and hexadecimal
+#' @description \itemize{
+#'   \item **`todec`**: converts hexadecimal \link[=cmp_chr]{complete character object} `x` from hexadecimal to decimal. `x` may be formatted as either `'hhh...'` or `'#hhh...'` where `h` is a placeholder for a hexidecimal digit in either upper or lower case.
+#'   \item **`tohex`**: converts \link[=cmp_psw]{complete positive whole-number} `x` to hexadecimal formatted as `'#HHH...'` where `H` is a placeholder for an uppercase hexadecimal digit.
+#' }
+#' @param x A \link[=cmp_nnw]{complete non-negative whole-number object} or a \link[=cmp_chr]{complete character vec} containing only non-negative whole-number hexademical values.
+#' @return \itemize{
+#'   \item **`todec`**: a complete non-negative whole-number object.
+#'   \item **`tohex`**: a complete character object containing non-negative whole-number hexadecimal values in the format `'#HHH...'` where `H` is a placeholder for an uppercase hexadecimal digit.
+#' }
 #' @export
 todec <- function(x) {
   ok.x <- F

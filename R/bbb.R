@@ -7,48 +7,35 @@
 .ircr <- function(x) {is.recursive(x)}
 .bbbs <- c("atm", "def", "fun", "nil", "nll", "pop", "rcr")
 
-#' @name bbb
 #' @family props
-#' @title Base Properties
-#' @description An object's base properties are defined by its most basic
-#'   structural properties as described in the following table: \tabular{lll}{
-#'     NAME        \tab VALUE     \tab QUALIFYING OBJECTS                    \cr
-#'     atomic      \tab `'atm'`   \tab Atomic objects.                       \cr
-#'     defined     \tab `'def'`   \tab Non-`NULL` objects.                   \cr
-#'     function    \tab `'fun'`   \tab Function objects or character scalars
-#'                                     containing a valid function name
-#'                                     accessible to the calling function.   \cr
-#'     nil         \tab `'nil'`   \tab Objects of nil (`0`) length.          \cr
-#'     null        \tab `'nll'`   \tab The `NULL` object.                    \cr
-#'     populated   \tab `'pop'`   \tab Objects of length `1` or greater.     \cr
-#'     recursive   \tab `'rcr'`   \tab Recursive objects (data.frames and
-#'                                     lists).                                 }
-#'   Functions in this family are:\tabular{ll}{
-#'     FUNCTION   \tab WHAT IT DOES \cr
-#'     `bbb`           \tab Gets a character vector containing all base
-#'                          properties possessed by `x`                      \cr
-#'     `ixxx`          \tab Evaluates whether `x` possesses the base property
-#'                          `xxx` (a placeholder for any given base property
-#'                          value), subject to any restrictions in `...`.    \cr
-#'     `ibbb`          \tab Evaluates whether `x` possesses one or more
-#'                          (possibly pipe-delimited) base properties in `spec`,
-#'                          subject to any restrictions in `...`.            \cr
-#'     `bbbs_props`    \tab Gets a character vector of all possible base
-#'                          property values.                                 \cr
-#'     `is_bbb_spec`   \tab Evaluates whether `spec` is a valid base property
-#'                          specification.                                     }
+#' @title Base properties
+#' @description An object's base properties are defined by its most basic structural properties as described in the following table:
+#' \itemize{
+#'   \item **`'atm'`** (atomic): atomic objects.
+#'   \item **`'def'`** (defined): non-`NULL` objects.
+#'   \item **`'fun'`** (function): function objects or character scalar names of functions accessible to the calling function.
+#'   \item **`'nil'`** (nil): objects of nil length (i.e., `0`-length).
+#'   \item **`'nll'`** (null): the `NULL` object.
+#'   \item **`'pop'`** (populated): objects of length `1` or greater.
+#'   \item **`'rcr'`** (recursive): data.frames and lists.
+#' }
+#' **Functions**
+#' \itemize{
+#'   \item **`bbb`**: gets a character vector containing all base properties possessed by `x`.
+#'   \item **`ixxx`**: evaluates whether `x` possesses the base property `xxx` (a placeholder for any given base property value), subject to any restrictions in `...`.
+#'   \item **`ibbb`**: evaluates whether `x` possesses one or more (possibly pipe-delimited) base properties in `spec`, subject to any restrictions in `...`.
+#'   \item **`bbbs_props`**: gets a character vector of all possible base property values.
+#'   \item **`is_bbb_spec`**: evaluates whether `spec` is a valid base property specification.
+#' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec}
-#'   containing one or more base properties (i.e., from `bbb_props()`). Base
-#'   properties may be pipe-delimited. If there are multiple properties in
-#'   `spec`, `x` is inspected for a match to any of the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more base properties (i.e., from `bbb_props()`). Base properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
-#' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \tabular{ll}{
-#'   FUNCTIONS                       \tab RETURN VALUE                       \cr
-#'   `bbb_vals`                      \tab A character vector.                \cr
-#'   `bbb`                           \tab A character scalar or vector.      \cr
-#'   `ibbb`, `ixxx`, `is_bbb_spec`   \tab A logical scalar.                    }
+#' @inheritSection meets Specifying count and value restrictions
+#' @return \itemize{
+#'   \item **`bbb`**: a character scalar/vector.
+#'   \item **`bbb_vals`**: a character vector.
+#'   \item **`ibbb, ixxx, is_bbb_spec`**: a logical scalar.
+#' }
 #' @export
 bbb <- function(x) {
   out <- NULL

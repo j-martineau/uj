@@ -1,8 +1,7 @@
 #' @family extensions
 #' @family environments
-#' @title Identify the Current Operating System.
-#' @description Identifies the operating system as 'win', 'mac', or 'unix'.
-#' @return Character scalar
+#' @title Identify the current operating system.
+#' @return Either `mac`, `unix`, or `win`.
 #' @export
 os <- function() {
   type <- .Platform$OS.type

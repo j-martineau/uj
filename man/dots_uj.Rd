@@ -7,7 +7,7 @@
 \alias{dot_names}
 \alias{named_dots}
 \alias{unnamed_dots}
-\title{Manage \code{...} (Dot) Arguments}
+\title{Manage \code{...} arguments}
 \usage{
 dots(names., defs., ...)
 
@@ -20,83 +20,43 @@ named_dots(...)
 unnamed_dots(...)
 }
 \arguments{
-\item{names.}{\code{NULL} or an \link[=atm_vec]{atomic vec} (may
-include \code{NA}) values). Is split along the delimiter \code{'|'} to
-allow for compactness in submitting multiple names. \code{NULL} will match
-either an argument in \code{...} or element of \code{defs.} with the name
-\code{'NULL'}. \code{NA} values will match an argument in \code{...} or an
-element of \code{defs.} with the name \code{'NA'}.}
+\item{names.}{\code{NULL} or an \link[=atm_vec]{atomic vec} (may include \code{NA} values). Is split along the delimiter \code{'|'} to allow for compactness in submitting multiple names. \code{NULL} will match either an argument in \code{...} or element of \code{defs.} with the name \code{'NULL'}. \code{NA} values will match an argument in \code{...} or an element of \code{defs.} with the name \code{'NA'}.}
 
-\item{defs.}{Named \link[=ivls]{vlist} of default objects/values to return if
-the specified arguments are not in \code{...}. Elements of \code{defs.}
-must be uniquely named. If \code{defs.} is a tibble, columns with matching
-names are returned.}
+\item{defs.}{A named \link[=ivls]{vlist} of default objects/values to return if the specified arguments are not in \code{...}. Elements of \code{defs.} must be uniquely named. If \code{defs.} is a tibble, columns with matching names are returned.}
 
 \item{...}{An arbitrary number of arguments.}
 
-\item{name.}{\code{NULL} or \link[=cmp_scl]{complete atomic scalar}.
-\code{NULL} is replaced with \code{'NULL'} and \code{NA} is replaced with
-\code{'NA'}.}
+\item{name.}{\code{NULL} or \link[=cmp_scl]{complete atomic scalar}. \code{NULL} is replaced with \code{'NULL'} and \code{NA} is replaced with \code{'NA'}.}
 
-\item{def.}{Default object/value to return if a specified argument is not in
-\code{...}. Can be, but does not need to be, a list.}
+\item{def.}{A default object/value to return if a specified argument is not in \code{...}. Can be, but does not need to be, a list.}
 
-\item{subs.}{\code{NULL} or \link[=cmp_chr_vec]{complete character vec}. If not
-\code{NULL}, it is split using pipes \code{'|'} as a delimiter. If there are no pipes
-contained in \code{names.}, it remains unchanged. When this argument is not
-\code{NULL}, it is substituted for the names of \code{...} arguments; thus, after
-splitting, its length must equal the number of \code{...} arguments. For
-example, \code{names. = c('one', 'two', 'three|four|five')} indicates
-that there should be five \code{...} arguments and the vector
-\code{c('one', 'two', 'three', 'four', 'five')} is substituted for their names.}
+\item{subs.}{\code{NULL} or \link[=cmp_chr_vec]{complete character vec}. If not \code{NULL}, it is split using pipes \code{'|'} as a delimiter. If there are no pipes contained in \code{names.}, it remains unchanged. When this argument is not \code{NULL}, it is substituted for the names of \code{...} arguments; thus, after splitting, its length must equal the number of \code{...} arguments. For example, \code{names. = c('one', 'two', 'three|four|five')} indicates that there should be five \code{...} arguments and the vector \code{c('one', 'two', 'three', 'four', 'five')} is substituted for their names.}
 
-\item{req., blank., u.}{\link[=cmp_lgl_scl]{Complete logical scalars}
-indicating whether names are required, whether lank names are allowed, and
-whether names must be unique.}
+\item{req., blank., u.}{Non-\code{NA} logical scalars indicating whether names are required, whether lank names are allowed, and whether names must be unique.}
 }
 \description{
-\tabular{ll}{
-FUNCTION         \tab WHAT IT DOES                                      \cr
-\code{dots}           \tab Extract one or more\code{...} arguments based on matching
-values supplied in \code{names.}. If a supplied name
-matches the name of a \code{...} argument, that argument
-is returned. Otherwise, the element of \code{defs.} with a
-matching name is returned. \code{names. = NULL} and
-\code{names. = NA} are converted to \code{'NULL'} and \code{'NA'}.
-Reserved words in \code{names.} should be backtick
-quoted.                                           \cr
-\code{dot}            \tab A convenience version of \code{dots} for extracting a
-single named \code{...} argument (or if a matching \code{...}
-argument name is not found, its default value
-\code{def.}).                                          \cr
-\code{dot_names}      \tab If \code{names. = NULL}, the return value is \code{...names()},
-otherwise, \code{names.} is returned. Throws an error in
-the following cases:\itemize{
-\item \verb{0 ...} arguments are supplied.
-\item \code{names. != NULL} and
-\code{length(names.) != ...length()}.
-\item \code{req. = TRUE}, \code{names. = NULL}, and no \code{...}
-arguments are named.
-\item \code{names. = NULL} and either \itemize{
-\item \code{blank. = TRUE} and any \code{...} argument is
-unnamed or its name is blank, or
-\item \code{u. = TRUE} and any \code{...} arguments name
-is duplicated.                        }}\cr
-\code{named_dots}     \tab Extract named \code{...} arguments as a named list (does
-not include with blank-string names).             \cr
-\code{unnamed_dots}   \tab Extract unnamed \code{...} arguments as an unnamed list
-(includes any named with blank strings).            }
+\itemize{
+\item \strong{\code{dots}}: Extracts one or more\code{...} arguments based on matching values supplied in \code{names.}. If a supplied name matches the name of a \code{...} argument, that argument is returned. Otherwise, the element of \code{defs.} with a matching name is returned. \code{names. = NULL} and \code{names. = NA} are converted to \code{'NULL'} and \code{'NA'}. Reserved words in \code{names.} should be backtick quoted.
+\item \strong{\code{dot}}: A convenience version of \code{dots} for extracting a single named \code{...} argument (or if a matching \code{...} argument name is not found, its default value \code{def.}).
+\item \strong{\code{named_dots}}: Extracts named \code{...} arguments as a named list (does not include with blank-string names).
+\item \strong{\code{unnamed_dots}}: Extracts unnamed \code{...} arguments as an unnamed list (includes any named with blank strings).
+\item \strong{\code{dot_names}}: If \code{names. = NULL}, the return value is \code{...names()}, otherwise, \code{names.} is returned. Throws an error in the following cases:
+\itemize{
+\item \verb{0 ...} Arguments are supplied.
+\item \code{names. != NULL} and \code{length(names.) != ...length()}.
+\item \code{req. = TRUE}, \code{names. = NULL}, and no \code{...} arguments are named.
+\item \code{names. = NULL} and either (a) \code{blank. = TRUE} and any \code{...} argument is unnamed or its name is blank or (b) \item \code{u. = TRUE} and any \code{...} argument name is duplicated.
+}}
 }
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -107,6 +67,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -114,6 +75,7 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

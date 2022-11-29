@@ -1,18 +1,16 @@
 #' @name rng2lev
-#' @title Convert Sortable Values in Specific Ranges to a Specific Level
-#' @description Convert values of `x` to the `n` levels in `levs` distinguished
-#'   by the `n-1` thresholds in `cuts`.
+#' @title Convert sortable values in levels by range
+#' @description Convert values of `x` to the `n` levels in `levs` distinguished by the `n-1` thresholds in `cuts`.
+#' \cr\cr
+#' When values of `x` are equal to a value of `cuts`, assignment to level is dependent on whether the value of each element of `cut` is less than `0` vs. greater than or equal to `0`.
+#' \cr\cr
+#' For a value in `cuts` less than `0`, the level assigned is the lower of the levels distinguished by that value of `cuts`.
+#' \cr\cr
+#' Otherwise, the level assigned is the upper of the levels distinguished by that value of `cuts`.
 #' @param x An atomic object of \link[=isrt]{sortable} values.
 #' @param cuts An \link[=num_vec]{atomic vec} of `n-1` cuts for `n` levels.
-#' @param levs An \link[=atm_vec]{atomic vec} of `n` level labels.
-#' @description When values of `x` are equal to a value of `cuts`, assignment to
-#'   level is dependent on whether the value of each element of `cut` is less
-#'   than `0` vs. greater than or equal to `0`. For a value in `cuts` less than
-#'   `0`, the level assigned is the lower of the levels distinguished by that
-#'   value of `cuts`. Otherwise, the level assigned is the upper of the levels
-#'   distinguished by that value of `cuts`.
-#' @return An atomic object of the same dimension as `x` and the same mode as
-#'   `levs`.
+#' @param levs An atomic vec of `n` level labels.
+#' @return An atomic object of the same dimension as `x` and the same mode as `levs`.
 #' @export
 rng2lev <- function(x, cuts, levs) {
   errs <- c(f0(isrt(x)          , NULL, " \u2022 [x] must be an atomic sortable object (?isrt)."),

@@ -18,7 +18,7 @@
 \alias{asksn}
 \alias{asks1}
 \alias{asknew}
-\title{Dialog Boxes Using Package \code{svDialogs}.}
+\title{Dialog boxes using package \code{svDialogs}}
 \usage{
 msgbox(..., t = "ok")
 
@@ -55,76 +55,53 @@ asknew(old, what, unq = T)
 \arguments{
 \item{...}{Objects to be atomized to create the question.}
 
-\item{t}{\link[=cmp_chr_scl]{Complete character scalar} type of dialog box
-(valid values are \code{c('ok', 'okcancel', 'yesno', 'yesnocancel')})..}
+\item{t}{A complete character scalar type of dialog box (valid values are \code{'ok'}, \code{'okcancel'}, \code{'yesno'}, and \code{'yesnocancel'}).}
 
-\item{d}{\link[=cmp_chr_scl]{Complete character scalar} default directory.}
+\item{d}{A complete character scalar default directory.}
 
-\item{x}{\link[=cmp_chr_scl]{Complete character scalar} message.}
+\item{x}{A \link[=cmp_chr_scl]{complete character scalar} message.}
 
-\item{def}{\link[=cmp_chr_scl]{Complete character scalar} default value.}
+\item{def}{A complete character scalar default value.}
 
-\item{type, }{\link[=cmp_chr_scl]{Complete character scalar} type of directory
-or document to select}
+\item{type}{A complete character scalar type of directory or document to select.}
 
-\item{cancel}{\link[=cmp_chr_scl]{Complete character scalar} value to return
-if user clicks the \code{cancel} button The value \code{cancel = '.stop'}
-is an indicator that an error should be thrown if the user clicks the
-\code{cancel} button.}
+\item{cancel}{A complete character scalar value to return if user clicks the \code{cancel} button. The value \code{cancel = '.stop'} is an indicator that an error should be thrown if the user clicks the \code{cancel} button.}
 
-\item{opts}{\link[=cmp_chr_vec]{Complete character vector} of options to
-choose from.}
+\item{opts}{A \link[=cmp_chr_vec]{complete character vec} of options to choose from.}
 
-\item{what}{\link[=cmp_chr_scl]{Complete character scalar} describing type of
-option being presented.}
+\item{what}{A complete character scalar describing type of option being presented.}
 
-\item{more}{\link[cmp_lgl_scl]{Complete logical scalar} indicating whether
-there are more options than could be presented in a single dialog box that
-still could be presented.}
+\item{more}{A non-\code{NA} logical scalar indicating whether there are more options than could be presented in a single dialog box that still could be presented.}
 
-\item{all, none}{\link[=cmp_lgl_scl]{Complete logical scalars} indicating
-whether the user should be able to select all options or none of the
-options, respectively.}
+\item{all, none}{Non-\code{NA} logical scalars indicating whether the user should be able to select all options or none of the options, respectively.}
 
-\item{per}{\link[=cmp_psw_scl]{Complete positive whole-number scalar}
-indicating the maximum number of options to present in a single dialog box
-interaction.}
+\item{per}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the maximum number of options to present in a single dialog box interaction.}
 
-\item{unq}{\link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
-new values must be unique.}
+\item{unq}{A non-\code{NA} logical scalar indicating whether new values must be unique.}
 }
 \value{
-A \link[=cmp_chr_scl]{complete character scalar} or a
-\link[=cmp_scl_vec]{complete character vec}.
+A character scalar or vector.
 }
 \description{
-All functions in this family take \code{...} arguments, which are
-\link[=av]{atomized} and collapsed into a prompt to be displayed in a
-dialog box.\tabular{ll}{
-\strong{FUNCTION}   \tab \strong{WHAT IT DOES}                          \cr
-\code{msgbox}       \tab Launch a simple dialog box to give the message.     \cr
-\code{dirbox}       \tab Ask user to select a directory/folder. \code{(A)}        \cr
-\code{docbox}       \tab Ask user to select a document. \code{(A)}                \cr
-\code{ansbox}       \tab Ask user to input a text response.                  \cr
-\code{no}           \tab Does user select the 'no' button? (not 'yes')       \cr
-\code{yes}          \tab Does user select the 'yes' button? (not 'no')       \cr
-\code{msg}          \tab Returning the name of the button clicked.           \cr
-\code{okx}          \tab Does user select the 'ok' button? (not 'cancel')    \cr
-\code{choose_dir}   \tab Ask user to select a directory/folder.              \cr
-\code{choose_doc}   \tab Ask user to select a document/file.                 \cr
-\code{ask}          \tab Ask the user for typed input                        \cr
-\code{ask1}         \tab Ask user to select a single option from a list.     \cr
-\code{asks1}        \tab Ask user to select 1 option from a list, possibly
-across multiple rounds.                             \cr
-\code{askn}         \tab Ask user to select a 1+ options from a list.        \cr
-\code{asksn}        \tab Ask user to select a 1+ options from a list of
-possible options, possibly across multiple rounds.  \cr
-\code{asknew}       \tab Ask user to enter a space- or comma-separated list of
-replacement values for existing values.               }
-NOTE:
-\cr \verb{(A). }Fail safe feature launches a message dialog box prompting the
-use to take an action in the next dialog box. After user
-acknowledges, only then launches the selection dialog to avoid
-problems with prompts not showing up on all operating systems.
+All functions in this family take \code{...} arguments, which are \link[=av]{atomized} and collapsed into a prompt to be displayed in a dialog box.
+\itemize{
+\item \strong{\code{msgbox}}: launches a simple dialog box to give the message.
+\item \strong{\code{dirbox}}: asks user to select a directory/folder. \code{(A)}
+\item \strong{\code{docbox}}: asks user to select a document. \code{(A)}
+\item \strong{\code{ansbox}}: asks user to input a text response.
+\item \strong{\code{no}}: checks for user selecting the \code{no} button of a \code{yesno} dialog.
+\item \strong{\code{yes}}: checks for user selecting the \code{yes} button of a \code{yesno} dialog.
+\item \strong{\code{msg}}: returns the name of the button clicked.
+\item \strong{\code{okx}}: checks for user selecting the \code{ok} button of an \code{okcancel} dialog.
+\item \strong{\code{ask}}: asks user for typed input.
+\item \strong{\code{ask1}}: asks user to select a single option from a list.
+\item \strong{\code{askn}}: asks user to select \verb{1+} options from a list.
+\item \strong{\code{asks1}}: asks user to select \code{1} option from a list, possibly across multiple rounds.
+\item \strong{\code{asksn}}: asks user to select a \verb{1+} options from a list of possible options, possibly across multiple rounds.
+\item \strong{\code{asknew}}: asks user to enter a space- or comma-separated list of replacement values for existing values.
+\item \strong{\code{choose_dir}}: asks user to select a directory/folder.
+\item \strong{\code{choose_doc}}: asks user to select a document/file.
+}
+\tabular{ll}{\verb{(A).} \tab Failsafe feature launches a message dialog box prompting the user to take an action in the next dialog box. After user acknowledges, only then launches the selection dialog to avoid problems with prompts not showing up on all operating systems.}
 }
 \concept{dialogs}

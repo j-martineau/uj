@@ -32,7 +32,7 @@
 \alias{pquote}
 \alias{pquote2}
 \alias{pbracket}
-\title{Specialized String Building Functions}
+\title{Specialized string building functions}
 \usage{
 geq(x, ...)
 
@@ -97,95 +97,73 @@ pbracket(...)
 \arguments{
 \item{x}{An object containing atomic values (atomized before processing).}
 
-\item{...}{An arbitrary number of objects to be atomized into a single atomic
-vector.}
+\item{...}{An arbitrary number of objects to be atomized into a single atomic vector.}
 
-\item{l, r}{\link[=cmp_chr_scl]{Complete character scalars} giving left and
-right side enclosures for \code{...} after \link[=a]{atomization}.}
+\item{l, r}{\link[=cmp_chr_scl]{Complete character scalars} giving left and right side enclosures for \code{...} after \link[=a]{atomization}.}
 }
 \value{
 A character scalar or vector
 }
 \description{
-Build strings where function name components have the following
-meaning:\tabular{ll}{
-prefix = \code{g}         \tab Glue/collapse values within.           \cr
-prefix = \code{p}         \tab Paste values across.                   \cr
-                     \tab                                        \cr
-suffix = \code{eq}        \tab Space-padded equality statement.       \cr
-suffix = \code{eq0}       \tab Non-padded equality statement.         \cr
-suffix = \code{cat}       \tab Vector concatenation statement.        \cr
-suffix = \code{elt}       \tab Element extraction statement.          \cr
-suffix = \code{fun}       \tab Function call statement.               \cr
-suffix = \code{lst}       \tab Comma-separated list.                  \cr
-suffix = \code{form}      \tab Formula statement.                     \cr
-suffix = \code{colon}     \tab Separate by colons.                    \cr
-suffix = \code{wrap}      \tab Enclose on left and right.             \cr
-suffix = \code{tick}      \tab Enclose in back-ticks.                 \cr
-suffix = \code{quote}     \tab Enclose in single quotes.              \cr
-suffix = \code{quote2}    \tab Enclose in double quotes.              \cr
-suffix = \code{brace}     \tab Enclose in curly braces.               \cr
-suffix = \code{paren}     \tab Enclose in parentheses.                \cr
-suffix = \code{bracket}   \tab Enclose in square brackets.              }
-Each prefix is joined with each suffix to create a unique function. The
-action indicated by the prefix happens first, followed by the action
-indicated in the suffix. How each function works is illustrated in the
-details.
+Build strings where function names are composed of a single-letter prefix and a longer suffix. Prefixes and their meanings are \itemize{
+\item \strong{\code{g}}: glue/collapse \code{...} arguments
+\item \strong{\code{p}}: paste across corresponding elements of \code{...} arguments.
 }
-\details{
-\tabular{ll}{
-FUNCTION CALL                   \tab RESULT                               \cr
-\code{geq(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{'xyz = 012'}                        \cr
-\code{peq(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{c('x = 012', 'y = 012', 'z = 012')} \cr
-\tab                                     \cr
-\code{geq0(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{'xyz=012'}                         \cr
-\code{peq0(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{c('x=012', 'y=012', 'z=012')}      \cr
-\tab                                     \cr
-\code{gcat(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{'c(xyz012)'}                       \cr
-\code{pcat(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{'c(x, y, z, 0, 1, 2)'}             \cr
-\tab                                     \cr
-\code{gelt(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{'xyz[012]'}                        \cr
-\code{pelt(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{c('x[0]', 'y[1]', 'z[2]')}         \cr
-\tab                                     \cr
-\code{gfun(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{'xyz(012)'}                        \cr
-\code{pfun(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{c('x(0)', 'y(1)', 'z(2)')}         \cr
-\tab                                     \cr
-\code{glst(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{'x, y, z, 0, 1, 2'}                \cr
-\code{plst(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{c('x, 0, 1, 2', 'y, 0, 1, 2',
-                                              'z, 0, 1, 2')}              \cr
-\tab                                    \cr
-\code{gform(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{'xyz ~ 0 + 1 + 2'}                \cr
-\code{pform(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{c('x ~ 0 + 1 + 2',
-                                               'y ~ 0 + 1 + 2',
-                                               'z ~ 0 + 1 + 2')}          \cr
-\tab                                    \cr
-\code{gtick(c('x', 'y', 'z'), 0, 1, 2)}\tab \verb{'}xyz012\verb{'}                       \cr
-\code{ptick(c('x', 'y', 'z'), 0, 1, 2)}\tab \verb{c('}x012\code{', '}y012\code{', '}z012\verb{')}  \cr
-\tab                                   \cr
-\code{gbrace(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{'\\{xyz012\\}'}                    \cr
-\code{pbrace(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{c('\{x012\}', '\{y012\}',
-                                                '\{z012\`')}              \cr
-\tab                                   \cr
-\code{gcolon(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{'x:y:z:0:1:2'}                   \cr
-\code{pcolon(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{c('x:0:1:2', 'y:0:1:2',
-                                                'z:0:1:2')}               \cr
-\tab                                   \cr
-\code{gparen(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{'(xyz012)'}                      \cr
-\code{pparen(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{c('(x012)', '(y012)', '(z012)')} \cr
-\tab                                   \cr
-\code{gquote(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{"'xyz012'"}                      \cr
-\code{pquote(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{c('"x012"', '"y012"', '"z012"')} \cr
-\tab                                  \cr
-\code{gquote2(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{"'xyz012'"}                     \cr
-\code{pquote2(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{c('"x012"', '"y012"', '"z012"')}\cr
-\tab                                 \cr
-\code{gbracket(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{'[xyz012]'}                    \cr
-\code{pbracket(c('x', 'y', 'z'), 0, 1, 2)}\tab \code{c('[x012]', '[y012]',
-                                                 '[z012]')}               \cr
-\tab                               \cr
-\code{gwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)}\tab \code{'lLl012r'}                   \cr
-\code{pwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)}    \tab \code{c('l012r', 'L012r',
-                                                       'l012r')}            }
+Suffixes and their meanings are \itemize{
+\item \strong{\code{eq}}: space-padded equality statement.
+\item \strong{\code{eq0}}: non-padded equality statement.
+\item \strong{\code{cat}}: vector concatenation statement.
+\item \strong{\code{elt}}: element extraction statement.
+\item \strong{\code{fun}}: function call statement.
+\item \strong{\code{form}}: formula statement.
+\item \strong{\code{lst}}: delimit with comma + space.
+\item \strong{\code{colon}}: delimit with colons.
+\item \strong{\code{wrap}}: enclose in different left and right values.
+\item \strong{\code{tick}}: enclose in back-ticks.
+\item \strong{\code{brace}}: enclose in curly braces.
+\item \strong{\code{paren}}: enclose in parentheses.
+\item \strong{\code{quote}}: enclose in single quotes.
+\item \strong{\code{quote2}}: enclose in double quotes.
+\item \strong{\code{bracket}}: enclose in square brackets.
+}
+Each prefix is joined with each suffix to create a unique function. The action indicated by the prefix happens first, followed by the action indicated in the suffix. How each function works is illustrated in the details.
+}
+\examples{
+geq(c('x', 'y', 'z'), 0, 1, 2)
+geq0(c('x', 'y', 'z'), 0, 1, 2)
+gcat(c('x', 'y', 'z'), 0, 1, 2)
+gelt(c('x', 'y', 'z'), 0, 1, 2)
+gfun(c('x', 'y', 'z'), 0, 1, 2)
+gform(c('x', 'y', 'z'), 0, 1, 2)
+
+peq(c('x', 'y', 'z'), 0, 1, 2)
+peq0(c('x', 'y', 'z'), 0, 1, 2)
+pcat(c('x', 'y', 'z'), 0, 1, 2)
+pelt(c('x', 'y', 'z'), 0, 1, 2)
+pfun(c('x', 'y', 'z'), 0, 1, 2)
+pform(c('x', 'y', 'z'), 0, 1, 2)
+
+glst(c('x', 'y', 'z'), 0, 1, 2)
+gtick(c('x', 'y', 'z'), 0, 1, 2)
+
+plst(c('x', 'y', 'z'), 0, 1, 2)
+ptick(c('x', 'y', 'z'), 0, 1, 2)
+
+gbrace(c('x', 'y', 'z'), 0, 1, 2)
+gcolon(c('x', 'y', 'z'), 0, 1, 2)
+gparen(c('x', 'y', 'z'), 0, 1, 2)
+gquote(c('x', 'y', 'z'), 0, 1, 2)
+gquote2(c('x', 'y', 'z'), 0, 1, 2)
+gbracket(c('x', 'y', 'z'), 0, 1, 2)
+gwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)
+
+pbrace(c('x', 'y', 'z'), 0, 1, 2)
+pcolon(c('x', 'y', 'z'), 0, 1, 2)
+pparen(c('x', 'y', 'z'), 0, 1, 2)
+pquote(c('x', 'y', 'z'), 0, 1, 2)
+pquote2(c('x', 'y', 'z'), 0, 1, 2)
+pbracket(c('x', 'y', 'z'), 0, 1, 2)
+pwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)
 }
 \seealso{
 Other strings: 

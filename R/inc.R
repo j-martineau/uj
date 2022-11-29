@@ -1,15 +1,12 @@
 #' @name inc
-#' @family math
-#' @title Increment or Decrement a Variable
-#' @description \tabular{ll}{
-#'   FUNCTION   \tab WHAT IT DOES                                            \cr
-#'   `inc`      \tab Increment `x` by the value in `i`.                      \cr
-#'   `dec`      \tab Decrement `x` by the value in `d`.                        }
-#' @param x AN \link[=atm_num]{atomic numeric} object.
-#' @param i,d \link[=cmp_num_scl]{Complete numeric scalars} giving the value by
-#'   which to increment or decrement, respectively.
-#' @param na A non`NA` logical scalar indicating whether to
-#'   throw an error if any values of `x` are `NA`.
+#' @title Increment or decrement a variable
+#' @description \itemize{
+#'   \item **`inc`**: increments `x` by `i`.
+#'   \item **`dec`**: decrements `x` by `d`.
+#' }
+#' @param x An \link[=atm_num]{atomic numeric} object.
+#' @param i,d \link[=cmp_num_scl]{Complete numeric scalars} giving the value by which to increment or decrement, respectively.
+#' @param na A non`NA` logical scalar indicating whether to throw an error if any values of `x` are `NA`.
 #' @return An atomic numeric object of the same dimension as `x`.
 #' @export
 inc <- function(x, i = 1, na = F) {

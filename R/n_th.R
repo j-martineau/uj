@@ -7,24 +7,23 @@
   NULL
 }
 
-#' @name n_th
 #' @family extensions
-#' @title Extract Elements by Index Position
-#' @description \tabular{ll}{
-#'   FUNCTION      \tab WHAT IT DOES                                         \cr
-#'   `n_th`        \tab Gets the `n`-th element(s) of a vector.              \cr
-#'   `first_n`     \tab Gets the first `n`` elements of a vector.            \cr
-#'   `last_n`      \tab Gets the last `n` elements of a vector.              \cr
-#'   `n_th_last`   \tab Gets the `n`-th from last element(s) of a vector.      }
+#' @title Extract elements by numeric position
+#' @description \itemize{
+#'   \item **`n_th`**: gets the `n`-th element(s) of a vector.
+#'   \item **`first_n`**: gets the first `n`` elements of a vector.
+#'   \item **`last_n`**: gets the last `n` elements of a vector.
+#'   \item **`n_th_last`**: gets the `n`-th-from-last element(s) of a vector.
+#' }
 #' @param x A \link[=pop_vec]{populated vector} to extract elements from.
 #' @param n A \link[=cmp_psw_scl]{complete positive whole-number scalar}.
-#' @return A vector or \link[=ivls]{vlist} of length `1+`.
+#' @return A scalar, vector, or \link[=ivls]{vlist}.
+#' @export
 #' @examples
 #' first_n(letters, 5)
 #' last_n(letters, 5)
 #' n_th(letters, 5)
 #' n_th(letters, )
-#' @export
 n_th <- function(x, n) {
   errs <- .n_th_errs(x, n, F)
   if (!is.null(errs)) {stop(errs)}

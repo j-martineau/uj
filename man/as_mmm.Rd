@@ -10,7 +10,7 @@
 \alias{as_lgl}
 \alias{as_ord}
 \alias{as_uno}
-\title{Coerce to Base Mode or Extended Mode.}
+\title{Coerce to base or extended mode.}
 \usage{
 as_clr(x, na = F)
 
@@ -29,41 +29,35 @@ as_ord(x, levs)
 as_uno(x, levs)
 }
 \arguments{
-\item{x}{For \code{as_clr}, an object of mode character; for \code{as_fun}, a
-character scalar function name or a function object; for \code{as_ord} and
-\code{as_uno}, an atomic object; and for all others, any R object.}
+\item{x}{For \code{as_clr}, an object of mode character; for \code{as_fun}, a character scalar function name or a function object; for \code{as_ord} and \code{as_uno}, an atomic object; and for all others, any R object.}
 
-\item{na}{A \link[=cmp_lgl_scl]{complete logical scalar} indicating whether
-\code{NA} values qualify as missing color representations.}
+\item{na}{A non-\code{NA} logical scalar indicating whether \code{NA} values qualify as missing color representations.}
 
 \item{...}{Further arguments passed to or from other methods.}
 
-\item{levs}{\link[=cmp_vec]{Complete atomic vec} giving factor levels.}
+\item{levs}{A \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for \code{as_ord}).}
 }
 \value{
-\tabular{ll}{
-FUNCTION             \tab RETURN VALUE                                  \cr
-\code{as_clr}, \code{as_chr}   \tab An object of mode \code{'character'}.              \cr
-\code{as_fun}             \tab A function object.                            \cr
-\code{as_int}             \tab An object of mode \code{'integer'}.                \cr
-\code{as_num}             \tab An object of mode \code{'numeric'}.                \cr
-\code{as_lgl}             \tab An object of mode \code{'logical'}.                \cr
-\code{as_ord}             \tab An object of mode \verb{'ordered'`` (factor).      \\cr }as_uno\verb{            \\tab An object of \link[=mmm]\{extended mode\}}'uno'`
-(unordered factor).                             }
+\itemize{
+\item \strong{\code{as_fun}}: a function object.
+\item \strong{\code{as_int}}: an object of mode \code{'integer'}.
+\item \strong{\code{as_num}}: an object of mode \code{'numeric'}.
+\item \strong{\code{as_lgl}}: an object of mode \code{'logical'}.
+\item \strong{\code{as_ord}}: an object of mode \verb{'ordered'`` (factor). \\item **}as_uno\verb{**: an object of \link[=mmm]\{extended mode\} }'uno'\verb{ (unordered factor). \\item **}as_clr, as_chr\verb{**: an object of mode }'character'`.
+}
 }
 \description{
-\tabular{ll}{
-FUNCTION    \tab WHAT IT DOES                                            \cr
-\code{as_clr}    \tab Coerce a valid R color representation of mode character to
-hexadecimal RGB character representation.              \cr
-\code{as_fun}    \tab Return \code{x} if it is a function, otherwise, search for a
-function named \code{x} and return it.                      \cr
-\code{as_chr}    \tab Thin wrapper of \code{as.character}.                        \cr
-\code{as_int}    \tab Thin wrapper of \code{as.integer}.                          \cr
-\code{as_num}    \tab Thin wrapper of \code{as.numeric}.                          \cr
-\code{as_lgl}    \tab Thin wrapper of \code{as.logical}.                          \cr
-\code{as_ord}    \tab Wrapper for \code{factor(x, levels = levs, ordered = TRUE)}.\cr
-\code{as_uno}    \tab Wrapper for \code{factor(x, levels = levs, ordered = FALSE)}. }
+Functions to coerce objects to \link[base:mode]{base mode} or \link[=mmm]{extended mode}:
+\itemize{
+\item \strong{\code{as_clr}}: coerces a valid R color representation of mode character to hexadecimal RGB character representation.
+\item \strong{\code{as_fun}}: returns \code{x} if it is a function, otherwise, search for a function named \code{x} and return it.
+\item \strong{\code{as_chr}}: thinly wraps \code{\link[base:as.character]{base::as.character}}.
+\item \strong{\code{as_int}}: thinly wraps \code{\link[base:as.integer]{base::as.integer}}.
+\item \strong{\code{as_num}}: thinly wraps \code{\link[base:as.numeric]{base::as.numeric}}.
+\item \strong{\code{as_lgl}}: thinly wraps \code{\link[base:as.logical]{base::as.logical}}.
+\item \strong{\code{as_ord}}: wraps \code{base::factor(x, levels = levs, ordered = TRUE)}.
+\item \strong{\code{as_uno}}: wraps \code{base::factor(x, levels = levs, ordered = FALSE)}.
+}
 }
 \seealso{
 Other props: 

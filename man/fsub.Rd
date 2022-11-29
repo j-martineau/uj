@@ -2,22 +2,20 @@
 % Please edit documentation in R/fsub.R
 \name{fsub}
 \alias{fsub}
-\title{Fixed-Value String Substitution}
+\title{Fixed-value string substitution}
 \usage{
 fsub(x, pats, subs)
 }
 \arguments{
 \item{x}{An \link[=atm_chr]{atomic character object}.}
 
-\item{pats, subs}{\link[=cmp_chr_vec]{Complete character vecs} containing
-patterns to replace and their associated replacement strings.}
+\item{pats, subs}{\link[=cmp_chr_vec]{Complete character vecs} containing patterns to replace and their associated replacement strings.}
 }
 \value{
 Atomic character object.
 }
 \description{
-Replace strings in \code{pats} with corresponding (possibly recycled)
-strings in \code{subs}.
+Replace strings in \code{pats} with corresponding (possibly recycled) strings in \code{subs}.
 }
 \seealso{
 Other strings: 
@@ -37,14 +35,13 @@ Other strings:
 
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{is_failsafe}},
 \code{\link{is_unq}()},
@@ -54,6 +51,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -61,6 +59,7 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

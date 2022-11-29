@@ -1,118 +1,77 @@
 #' @name color
 #' @family colors
-#' @title Simple Color Creation
-#' @description Simple color creation with a wide variety of options (intensity,
-#'   blending, lightening, darkening, opacity).
-#'   \cr\cr
-#'   \strong{`color`}: Takes any valid color representation and lightens,
-#'   darkens, adds opacity levels, and/or gets the complementary color.
-#'   \cr\cr
-#'   \strong{`rgba`}: Creates colors from `r` = red, `g` = green, `b` = blue,
-#'   and `a` = alpha weights, each in the interval `[0, 1]`.
-#'   \cr\cr
-#'   \strong{`hsva`}: Creates colors from `h` = hue, `s` = saturation, `v` =
-#'   value, and `a` = alpha weights, each in the interval `[0, 1]`.
-#'   \cr\cr
-#'   \strong{`blend`}: Blends colors `x` and `y` using non-negative numeric
-#'   weights `wx` and `wy`, and proportional numeric `a` = alpha values. Each
-#'   corresponding pair of values of these arguments is normalized to sum to 1
-#'   to give the proportions of the resulting color that should come from `x`
-#'   and `y`, respectively.
-#'   \cr\cr
-#'   \strong{`xxx` and `xxx_yyy`}
-#'   \cr\cr
-#'   `xxx` functions create versions of common color `xxx` by `p` = primary
-#'   intensity, `s` = secondary intensity, and `a` = alpha, each in the interval
-#'   `[0, 1]`.
-#'   \cr\cr
-#'   `xxx_yyy` functions create versions of 50/50 blends of the common colors
-#'   `xxx` and `yyy` by `p` = primary intensity, `s` = secondary intensity, and
-#'   `a` = alpha, each in the interval `[0, 1]`.
-#'   \cr\cr
-#'   Three-letter codes for common color are as follows:\tabular{lll}{
-#'   3-LETTER   \tab COLOR     \tab RGB CHANNEL VALUES                       \cr
-#'   CODE       \tab NAME      \tab OF DEFAULT VERSION                       \cr
-#'   `wht`      \tab white     \tab `c(r = 1  , g = 1  , b = 1  )`           \cr
-#'   `blk`      \tab black     \tab `c(r = 0  , g = 0  , b = 0  )`           \cr
-#'   `gry`      \tab grey      \tab `c(r = 0.5, g = 0.5, b = 0.5)`           \cr
-#'   `red`      \tab red       \tab `c(r = 1  , g = 0  , b = 0  )`           \cr
-#'   `grn`      \tab green     \tab `c(r = 0  , g = 1  , b = 0  )`           \cr
-#'   `blu`      \tab blue      \tab `c(r = 0  , g = 0  , b = 1  )`           \cr
-#'   `ylw`      \tab yellow    \tab `c(r = 1  , g = 1  , b = 0  )`           \cr
-#'   `cyn`      \tab cyan      \tab `c(r = 0  , g = 1  , b = 1  )`           \cr
-#'   `mag`      \tab magenta   \tab `c(r = 1  , g = 0  , b = 1  )`           \cr
-#'   `vlt`      \tab violet    \tab `c(r = 1  , g = 0  , b = 1  )`           \cr
-#'   `ppl`      \tab purple    \tab A 1:2 blend of red:blue.                 \cr
-#'   `orn`      \tab orange    \tab A 33:51 blend of red:yellow.               }
-#'   \cr\cr
-#'   \strong{`pal_cb`}: Creates colorblind-friendly palettes of 2 to 20 Colors
-#'   1-10 vs. 11-20 are bright vs. 50% darkened versions. Bright/darkened
-#'   differences may be insufficient for some audiences.
-#'   \cr\cr
-#'   \strong{`pal_swatch`}: Draws swatches for a collection/palette of colors.
+#' @title Simple color creation
+#' @description Simple color creation with a wide variety of options (intensity, blending, lightening, darkening, opacity). This family of functions uses three-letter codes for common colors as follows:
+#' \tabular{lll}{
+#'   **Color**    \tab **Color**    \tab **RGB channel values of**
+#'   \cr **code** \tab **name**     \tab **default color version**
+#'   \cr `wht`    \tab white        \tab `c(r = 1  , g = 1  , b = 1  )`
+#'   \cr `blk`    \tab black        \tab `c(r = 0  , g = 0  , b = 0  )`
+#'   \cr `gry`    \tab grey         \tab `c(r = 0.5, g = 0.5, b = 0.5)`
+#'   \cr `red`    \tab red          \tab `c(r = 1  , g = 0  , b = 0  )`
+#'   \cr `grn`    \tab green        \tab `c(r = 0  , g = 1  , b = 0  )`
+#'   \cr `blu`    \tab blue         \tab `c(r = 0  , g = 0  , b = 1  )`
+#'   \cr `ylw`    \tab yellow       \tab `c(r = 1  , g = 1  , b = 0  )`
+#'   \cr `cyn`    \tab cyan         \tab `c(r = 0  , g = 1  , b = 1  )`
+#'   \cr `mag`    \tab magenta      \tab `c(r = 1  , g = 0  , b = 1  )`
+#'   \cr `vlt`    \tab violet       \tab `c(r = 1  , g = 0  , b = 1  )`
+#'   \cr `ppl`    \tab purple       \tab a `1:2` blend of red:blue.
+#'   \cr `orn`    \tab orange       \tab a `33:51` blend of red:yellow.
+#' }
+#' Functions in this family are:
+#' \itemize{
+#'   \item **`color`**: takes any valid color representation and lightens, darkens, adds opacity levels, and/or gets the complementary color.
+#'   \item **`rgba`**: creates colors from `r` = red, `g` = green, `b` = blue, and `a` = alpha weights, each in the interval `[0, 1]`.
+#'   \item **`hsva`**: creates colors from `h` = hue, `s` = saturation, `v` = value, and `a` = alpha weights, each in the interval `[0, 1]`.
+#'   \item **`blend`**: blends colors `x` and `y` using non-negative numeric weights `wx` and `wy`, and proportional numeric `a` = alpha values. Each corresponding pair of values of these arguments is normalized to sum to 1 to give the proportions of the resulting color that should come from `x` and `y`, respectively.
+#' }\cr\itemize{
+#'   \item **`xxx`**: creates versions of common color `xxx` by `p` = primary intensity, `s` = secondary intensity, and `a` = alpha, each in the interval `[0, 1]`.
+#'   \item **`xxx_yyy`**: creates versions of 50/50 blends of the common colors `xxx` and `yyy` by `p` = primary intensity, `s` = secondary intensity, and `a` = alpha, each in the interval `[0, 1]`.
+#' }\cr\itemize{
+#'   \item **`pal_cb`**: creates colorblind-friendly palettes of `2` to `20` Colors `1-10` vs. `11-20` are bright vs. `50%` darkened versions. Bright/darkened differences may be insufficient for some audiences.
+#'   \item **`pal_swatch`**: draws swatches for a collection/palette of colors.
+#' }
+#' NOTE: `xxx` and `yyy` are placeholders for 3-letter color codes.
 #' @section Recycling: The only arguments not recycled are `na, nc`, and `ng`.
-#' @section The Arguments `p` and `s`: `p` is used to indicate the proportion of
-#'   the RGB values of the most intense version of a hue should be present in a
-#'   resulting color. `s` is used to indicate how much of complement of each RGB
-#'   value should be present in a resulting color. The table below gives a
-#'   helpful heuristic for setting values of `p` and `s`:\tabular{ll}{
-#'   ARGUMENT VALUES      \tab RESULTING COLOR                               \cr
-#'   `c(p = 1, s = 0)`    \tab The most intense version of a color.          \cr
-#'   `c(s = 1, p = 0)`    \tab The most intense complementary color.         \cr
-#'   `c(p > s, s > 0)`    \tab A lighter, muted color.                       \cr
-#'   `c(s < p, p < 1)`    \tab A darker color.                               \cr
-#'   `c(s > p, p > 0)`    \tab A lighter, muted complementary color.         \cr
-#'   `c(p < s, s < 1)`    \tab A darker complementary color.                 \cr
-#'   `c(p = 1, s = 1)`    \tab White.                                        \cr
-#'   `c(p = 0  , s = 0)`  \tab Black.                                        \cr
-#'   `c(p = 0.5, s = 0.5)`\tab Grey.                                           }
-#'   A concrete numeric example is that calling
-#'   ```
-#'        ylw(p = 0.7, s = 0.3)
-#'   ```
-#'   starts with primary and secondary RGB values of
-#'   ```
-#'        prm = c(r = 1, g = 1, b = 0)
-#'        sec = c(r = 0, g = 0, b = 1)
-#'   ```
-#'   To get final RGB values, the primary RGB values are multiplied by
-#'   `p = 0.7`, secondary RGB values are multiple by `s = 0.3`, and the results
-#'   are summed pairwise giving
-#'   ```
-#'        final = c(r = 0.7, g = 0.7, b = 0.3)
-#'   ```
-#' @param x An \link[=atm_vec]{atomic vec} containing valid color
-#'   representations. Recycled with `y, lighten, darken, comp, a, p`,
-#'   `s, wx`, and `wy` where these are valid arguments.
-#' @param y An \link[=atm_vec]{atomic vec} containing valid R color
-#'   representations.
-#' @param na A non=`NA` logical scalar indicating whether `NA` counts as a valid
-#'   color alpha level.
-#' @param lighten A \link[=cmp_ppn_vec]{complete proportion numeric vec} of
-#'   proportions by which to lighten the colors given in `x` toward white.
-#' @param darken A \link[=cmp_ppn_vec]{complete proportion numeric vec} of
-#'   proportions by which to darken the colors given in `x` toward black.
-#' @param comp A \link[=cmp_lgl_vec]{complete logical vec} indicating whether to
-#'   return complementary colors.
-#' @param r,g,b \link[=cmp_ppn_vec]{Complete proportion numeric vecs} giving
-#'   intensities of red, blue, and green from the RGB color space. Recycled with
-#'   each other and `a`.
-#' @param h,s,v \link[=cmp_ppn_vec]{Complete proportion numeric vecs} giving
-#'   hue, saturation, and value/brightness from the HSV color space. Recycled
-#'   with each other and `a`.
-#' @param a \link[=cmp_ppn_vec]{Complete proportion numeric vec} of 1 or more
-#'   alpha levels (`0` = transparent, `0.5` = translucent, `1` = opaque). `NA`
-#'   values in `a` are only applicable with `color(.)` and `blend(.)`) to
-#'   indicate keeping existing alpha values.
-#' @param p,s \link[=cmp_ppn_vec]{Complete poportion numeric vecs} of 1 or more
-#'   primary and secondary color intensities (respectively) in the range `[0,
-#'   1]`.
-#' @param wx,wy \link[=cmp_nnw_vec]{Complete non-negative numeric vecs} giving
-#'   weights to apply to `x` and `y` in color blending.
-#' @param nc,ng \link[=cmp_psw_scl]{Complete positive whole-number scalars}
-#'   giving the number of colors and groups, respectively.
-#' @return A character vector of 1 or more hexadecimal RGB + alpha color
-#'   representations in the form `'#RRGGBBAA'`.
+#' @section The Arguments `p` and `s`: `p` is used to indicate the proportion of the RGB values of the most intense version of a hue should be present in a resulting color. `s` is used to indicate how much of complement of each RGB value should be present in a resulting color. The table below gives a helpful heuristic for setting values of `p` and `s`:
+#' \tabular{ll}{
+#'   **argument values**   \tab **resulting color**
+#'   \cr `p = 1, s = 0`    \tab intense
+#'   \cr `p > s > 0`       \tab lighter
+#'   \cr `s < p < 1`       \tab darker
+#'   \cr `p = s = 1`       \tab white
+#'   \cr `p = s = 0`       \tab black
+#'   \cr `p = s = 0.5`     \tab grey
+#'   \cr `s = 1, p = 0`    \tab intense, complementary
+#'   \cr `s > p > 0`       \tab lighter, complementary
+#'   \cr `p < s < 1`       \tab darker, complementary
+#' }
+#' A concrete numeric example is that calling
+#' ```
+#' ylw(p = 0.7, s = 0.3)
+#' ```
+#' starts with primary and secondary RGB values of
+#' ```
+#' prm = c(r = 1, g = 1, b = 0)
+#' sec = c(r = 0, g = 0, b = 1)
+#' ```
+#' To get final RGB values, the primary RGB values are multiplied by `p = 0.7`, secondary RGB values are multiple by `s = 0.3`, and the results are summed pairwise giving
+#' ````
+#' final = c(r = 0.7, g = 0.7, b = 0.3)
+#' ```
+#' @param x An \link[=atm_vec]{atomic vec} containing valid color representations. Recycled with `y, lighten, darken, comp, a, p, s, wx, wy` where these are valid arguments.
+#' @param y An atomic vec containing valid R color representations.
+#' @param na A non-`NA` logical scalar indicating whether `NA` counts as a valid color alpha level.
+#' @param lighten A \link[=cmp_ppn_vec]{complete proportion numeric vec} of proportions by which to lighten the colors given in `x` toward white.
+#' @param darken A complete proportion numeric vec of proportions by which to darken the colors given in `x` toward black.
+#' @param comp A \link[=cmp_lgl_vec]{complete logical vec} indicating whether to return complementary colors.
+#' @param r,g,b Complete proportion numeric vecs giving intensities of red, blue, and green from the RGB color space. Recycled with each other and `a`.
+#' @param h,s,v Complete proportion numeric vecs giving hue, saturation, and value/brightness from the HSV color space. Recycled√with each other and `a`.
+#' @param a A complete proportion numeric vec of 1 or more alpha levels (`0` = transparent, `0.5` = translucent, `1` = opaque). `NA` values in `a` are only applicable with `color(.)` and `blend(.)`) to indicate keeping existing alpha values.
+#' @param p,s Complete poportion numeric vecs of 1 or more primary and secondary color intensities (respectively) in the range `[0, 1]`.
+#' @param wx,wy \link[=cmp_nnw_vec]{Complete non-negative numeric vecs} giving weights to apply to `x` and `y` in color blending.
+#' @param nc,ng \link[=cmp_psw_scl]{Complete positive whole-number scalars} giving the number of colors and groups, respectively.
+#' @return A character vector of `1` or more hexadecimal RGB + alpha color representations in the form `'#RRGGBBAA'`.
 #' @export
 color <- function(x, lighten = 0, darken = 0, a = 1, comp = F) {
   ns <- c(length(x), length(lighten), length(darken), length(a))

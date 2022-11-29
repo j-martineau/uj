@@ -27,7 +27,7 @@
 \alias{ox_orgreater}
 \alias{ox_orless}
 \alias{ox_orfewer}
-\title{Oxford-Comma Separated Lists}
+\title{Oxford-comma separated lists}
 \usage{
 ox(..., conj = "and", pref = "", quote = 0)
 
@@ -84,27 +84,53 @@ ox_orfewer(..., conj = "and", n = 1)
 \arguments{
 \item{...}{Any number of arguments coerceable to mode character.}
 
-\item{conj}{The conjunction to use between the next to last and last elements
-of the list. See details.}
+\item{conj}{A complete character scalar conjunction to use between the next to last and last elements of the list. Typical values are \code{and}, \code{or} and \code{nor}.}
 
-\item{pref}{A prefix to prepend to the resulting character scalar.}
+\item{pref}{A \link[=cmp_chr_scl]{complete character scalar} prefix to prepend to the list.}
 
-\item{comp}{A \link[=cmp_chr_scl]{complete character scalar} used for
-comparing to \code{n}, such as \code{'at least'} or \code{'or fewer'}.}
+\item{comp}{A complete character scalar used for comparing to \code{n}, such as \code{'at least'} or \code{'or fewer'}.}
 
 \item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar}.}
 
-\item{first}{A \link[=cmp_lgl_scl]{complete logical scalar} used to determine
-whether \code{comp} is placed in front of \code{n} rather than after \code{n}.}
+\item{first}{A complete non-\code{NA} scalar used to determine whether \code{comp} is placed in front of \code{n} rather than after \code{n}.}
 }
 \value{
-A character scalar containing all atomic elements of \code{...} formatted
-as an Oxford-comma separated list.
+A character scalar containing all atomic elements of \code{...} formatted as an Oxford-comma separated list.
 }
 \description{
-Create an Oxford-comma separated list with \code{conj} as the
-conjunction separating the next to last and last elements of the list, with
-the list preceded by the prefix \code{pref}.
+Create Oxford-comma separated lists with a variety of templates (displayed below) where \code{{conj}} and \code{{n}} represent the values of arguments \code{conj} and \code{n}; \code{{pref}} and \code{{comp}} indicate the potentially-\code{NULL} values of arguments \code{pref} and \code{conj}; and \verb{[a]}, \verb{[b]}, and \verb{[z]} represents elements of a list.
+\cr\cr
+\strong{Functions and associated templates}\tabular{ll}{
+\cr\code{ox}            \tab\code{'(pref) [a], [b], ..., {conj} [z]'}
+\cr\code{ox_and}        \tab\code{'(pref) [a], [b], ..., and [z]'}
+\cr\code{ox_or}         \tab\code{'(pref) [a], [b], ..., or [z]'}
+\cr\code{ox_either}     \tab\code{'(pref) either [a], [b], ..., or [z]'}
+\cr\code{ox_neither}    \tab\code{'(pref) neither [a], [b], ..., nor [z]'}
+\cr\code{ox_any}        \tab\code{'(pref) any of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_all}        \tab\code{'(pref) all of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_none}       \tab\code{'(pref) none of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_some}       \tab\code{'(pref) some of [a], [b], ..., {conj} [z]'}
+\cr                \tab  
+\cr\code{ox_n}          \tab\code{'(pref) {n} of [a], [b], ..., {conj} [z]'}
+\cr                \tab\code{'(pref) {n} (comp) of [a], [b], ..., {conj} [z]'}
+\cr                \tab\code{'(pref) (comp) {n} of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_exactly}    \tab\code{'(pref) exactly {n} of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_less}       \tab\code{'(pref) less than {n} of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_more}       \tab\code{'(pref) more than {n} of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_fewer}      \tab\code{'(pref) fewer than {n} of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_greater}    \tab\code{'(pref) greater than {n} of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_orless}     \tab\code{'(pref) {n} or less of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_ormore}     \tab\code{'(pref) {n} or more of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_orfewer}    \tab\code{'(pref) {n} or fewer of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_orgreater}  \tab\code{'(pref) {n} or greater of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_atmost}     \tab\code{'(pref) at most {n} of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_atleast}    \tab\code{'(pref) at least {n} of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_noless}     \tab\code{'(pref) no less than {n} of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_nomore}     \tab\code{'(pref) no more than {n} of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_nofewer}    \tab\code{'(pref) no fewer than {n} of [a], [b], ..., {conj} [z]'}
+\cr\code{ox_nogreater}  \tab\code{'(pref) no greater than {n} of [a], [b], ..., {conj} [z]'}
+}
+NOTE: where it makes sense these functions appropriately process lists of length \code{1} and \code{2}.
 }
 \section{Functions}{
 \itemize{
@@ -130,25 +156,25 @@ the list preceded by the prefix \code{pref}.
 
 \item \code{ox_exactly()}: Oxford-comma-separated 'exactly n of' list.
 
-\item \code{ox_less()}: Oxford-comma-separated 'less than n of' list.
+\item \code{ox_less()}: Oxford-comma-separated 'less than n of' list.
 
-\item \code{ox_more()}: Oxford-comma-separated 'more than n of' list.
+\item \code{ox_more()}: Oxford-comma-separated 'more than n of' list.
 
-\item \code{ox_fewer()}: Oxford-comma-separated 'fewer than n of' list.
+\item \code{ox_fewer()}: Oxford-comma-separated 'fewer than n of' list.
 
-\item \code{ox_greater()}: Oxford-comma-separated 'greater than n of' list.
+\item \code{ox_greater()}: Oxford-comma-separated 'greater than n of' list.
 
 \item \code{ox_atleast()}: Oxford-comma-separated 'at least n of' list.
 
 \item \code{ox_atmost()}: Oxford-comma-separated 'at most n of' list.
 
-\item \code{ox_nogreater()}: Oxford-comma-separated 'no greater than n of' list.
+\item \code{ox_nogreater()}: Oxford-comma-separated 'no greater than n of' list.
 
-\item \code{ox_nofewer()}: Oxford-comma-separated 'no fewer than n of' list.
+\item \code{ox_nofewer()}: Oxford-comma-separated 'no fewer than n of' list.
 
-\item \code{ox_nomore()}: Oxford-comma-separated 'no more than n of' list.
+\item \code{ox_nomore()}: Oxford-comma-separated 'no more than n of' list.
 
-\item \code{ox_noless()}: Oxford-comma-separated 'no less than n of' list.
+\item \code{ox_noless()}: Oxford-comma-separated 'no less than n of' list.
 
 \item \code{ox_ormore()}: Oxford-comma-separated 'n or more of' list.
 

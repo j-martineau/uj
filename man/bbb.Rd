@@ -12,7 +12,7 @@
 \alias{inll}
 \alias{ipop}
 \alias{ircr}
-\title{Base Properties}
+\title{Base properties}
 \usage{
 bbb(x)
 
@@ -39,10 +39,7 @@ ircr(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
-containing one or more base properties (i.e., from \code{bbb_props()}). Base
-properties may be pipe-delimited. If there are multiple properties in
-\code{spec}, \code{x} is inspected for a match to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more base properties (i.e., from \code{bbb_props()}). Base properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -51,61 +48,50 @@ properties may be pipe-delimited. If there are multiple properties in
   }}
 }
 \value{
-\tabular{ll}{
-FUNCTIONS                       \tab RETURN VALUE                       \cr
-\code{bbb_vals}                      \tab A character vector.                \cr
-\code{bbb}                           \tab A character scalar or vector.      \cr
-\code{ibbb}, \code{ixxx}, \code{is_bbb_spec}   \tab A logical scalar.                    }
+\itemize{
+\item \strong{\code{bbb}}: a character scalar/vector.
+\item \strong{\code{bbb_vals}}: a character vector.
+\item \strong{\verb{ibbb, ixxx, is_bbb_spec}}: a logical scalar.
+}
 }
 \description{
-An object's base properties are defined by its most basic
-structural properties as described in the following table: \tabular{lll}{
-NAME        \tab VALUE     \tab QUALIFYING OBJECTS                    \cr
-atomic      \tab \code{'atm'}   \tab Atomic objects.                       \cr
-defined     \tab \code{'def'}   \tab Non-\code{NULL} objects.                   \cr
-function    \tab \code{'fun'}   \tab Function objects or character scalars
-containing a valid function name
-accessible to the calling function.   \cr
-nil         \tab \code{'nil'}   \tab Objects of nil (\code{0}) length.          \cr
-null        \tab \code{'nll'}   \tab The \code{NULL} object.                    \cr
-populated   \tab \code{'pop'}   \tab Objects of length \code{1} or greater.     \cr
-recursive   \tab \code{'rcr'}   \tab Recursive objects (data.frames and
-lists).                                 }
-Functions in this family are:\tabular{ll}{
-FUNCTION   \tab WHAT IT DOES \cr
-\code{bbb}           \tab Gets a character vector containing all base
-properties possessed by \code{x}                      \cr
-\code{ixxx}          \tab Evaluates whether \code{x} possesses the base property
-\code{xxx} (a placeholder for any given base property
-value), subject to any restrictions in \code{...}.    \cr
-\code{ibbb}          \tab Evaluates whether \code{x} possesses one or more
-(possibly pipe-delimited) base properties in \code{spec},
-subject to any restrictions in \code{...}.            \cr
-\code{bbbs_props}    \tab Gets a character vector of all possible base
-property values.                                 \cr
-\code{is_bbb_spec}   \tab Evaluates whether \code{spec} is a valid base property
-specification.                                     }
+An object's base properties are defined by its most basic structural properties as described in the following table:
+\itemize{
+\item \strong{\code{'atm'}} (atomic): atomic objects.
+\item \strong{\code{'def'}} (defined): non-\code{NULL} objects.
+\item \strong{\code{'fun'}} (function): function objects or character scalar names of functions accessible to the calling function.
+\item \strong{\code{'nil'}} (nil): objects of nil length (i.e., \code{0}-length).
+\item \strong{\code{'nll'}} (null): the \code{NULL} object.
+\item \strong{\code{'pop'}} (populated): objects of length \code{1} or greater.
+\item \strong{\code{'rcr'}} (recursive): data.frames and lists.
 }
-\section{Specifying Count and Value Restrictions}{
- Specifying restrictions in
-\code{...} is optional. The full set of recognized arguments names are defined
-in the following table along with the properties each
-specifies:\tabular{ll}{
-NAME     \tab WHAT IT SPECIFIES                                         \cr
-\code{n}      \tab Vector of valid lengths/numbers of elements.              \cr
-\code{nr}     \tab Vector of valid numbers of rows.                          \cr
-\code{nc}     \tab Vector of valid numbers of columns.                       \cr
-\code{min}    \tab Scalar minimum valid length/number of element.            \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                      \cr
-\code{minc}   \tab Scalar minimum valid number of columns.                   \cr
-\code{max}    \tab Scalar maximum valid length/number of element.            \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                      \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.                   \cr
-\code{vals}   \tab Vector of valid values.                                   \cr
-\code{lt}     \tab Scalar less-than (exclusive upper) bound.                 \cr
-\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
-\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
-\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.          }
+\strong{Functions}
+\itemize{
+\item \strong{\code{bbb}}: gets a character vector containing all base properties possessed by \code{x}.
+\item \strong{\code{ixxx}}: evaluates whether \code{x} possesses the base property \code{xxx} (a placeholder for any given base property value), subject to any restrictions in \code{...}.
+\item \strong{\code{ibbb}}: evaluates whether \code{x} possesses one or more (possibly pipe-delimited) base properties in \code{spec}, subject to any restrictions in \code{...}.
+\item \strong{\code{bbbs_props}}: gets a character vector of all possible base property values.
+\item \strong{\code{is_bbb_spec}}: evaluates whether \code{spec} is a valid base property specification.
+}
+}
+\section{Specifying count and value restrictions}{
+ Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
+\itemize{
+\item \strong{\code{n}}: a vector of valid lengths/numbers of elements.
+\item \strong{\code{nr}}: a vector of valid numbers of rows.
+\item \strong{\code{nc}}: a vector of valid numbers of columns.
+\item \strong{\code{min}}: a scalar minimum valid length/number of element.
+\item \strong{\code{minr}}: a scalar minimum valid number of rows.
+\item \strong{\code{minc}}: a scalar minimum valid number of columns.
+\item \strong{\code{max}}: a scalar maximum valid length/number of element.
+\item \strong{\code{maxr}}: a scalar maximum valid number of rows.
+\item \strong{\code{maxc}}: a scalar maximum valid number of columns.
+\item \strong{\code{vals}}: a vector of valid values.
+\item \strong{\code{lt}}: a scalar less-than (exclusive upper) bound.
+\item \strong{\code{le}}: a scalar less-than-or-equal (inclusive upper) bound
+\item \strong{\code{ge}}: a scalar greater-than-or-equal (inclusive lower) bound.
+\item \strong{\code{gt}}: a scalar greater-than bound (exclusive lower) bound.
+}
 }
 
 \seealso{

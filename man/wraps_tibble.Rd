@@ -8,7 +8,7 @@
 \alias{tbr}
 \alias{tbas}
 \alias{tbis}
-\title{Thin Wraps of Functions from Package \code{tibble}.}
+\title{Thin wrappers of \code{tibble} functions}
 \format{
 An object of class \code{NULL} of length 0.
 }
@@ -78,23 +78,18 @@ coerced to a tibble.}
 into this column and the \code{row.names} attribute is deleted.
 Read more in \link[tibble]{rownames}.
 }}
-
-\item{file}{Either a character scalar or vector that resolves to a file path
-or \code{NULL} (in which case the user is asked to select a file using a system
-dialog box.}
 }
 \value{
 A tibble.
 }
 \description{
-The following table describes wrapper functions in this group of
-functions:\tabular{ll}{
-WRAPPER   \tab TIBBLE FUNCTION                                       \cr
-\code{tb}      \tab \code{\link[tibble]{tibble}}                            \cr
-\code{trb}     \tab \code{\link[tibble]{tibble_row}}                        \cr
-\code{tbr}     \tab \code{\link[tibble]{tribble}}                           \cr
-\code{tbas}    \tab \code{\link[tibble]{as_tibble}}                         \cr
-\code{tbis}    \tab \code{\link[tibble]{is_tibble}}                           }
+\itemize{
+\item \strong{\code{tb}}: thinly wraps \code{\link[tibble]{tibble}}.
+\item \strong{\code{tbr}}: thinly wraps \code{\link[tibble]{tribble}}.
+\item \strong{\code{trb}}: thinly wraps \code{\link[tibble]{tibble_row}}.
+\item \strong{\code{tbas}}: thinly wraps \code{\link[tibble]{as_tibble}}.
+\item \strong{\code{tbis}}: thinly wraps \code{\link[tibble]{is_tibble}}.
+}
 }
 \section{Row names}{
 
@@ -223,6 +218,7 @@ Other wraps:
 \code{\link{wraps_data_table}},
 \code{\link{wraps_dplyr}},
 \code{\link{wraps_gg}},
+\code{\link{wraps_graphics}},
 \code{\link{wraps_readr}},
 \code{\link{wraps_scales}}
 }

@@ -1,20 +1,15 @@
 #' @name wraps_readr
 #' @family wraps
-#' @title Wraps of Functions from Package `readr`.
-#' @description The following table describes wrapper functions for the `readr`
-#'   package:\tabular{ll}{
-#'      WRAPPER NAME    \tab READR FUNCTION                                  \cr
-#'      `rdclip`        \tab \code{\link[readr]{clipboard}}                  \cr
-#'      `rdcsv`         \tab \code{\link[readr]{read_csv}}                   \cr
-#'      `rdtsv`         \tab \code{\link[readr]{read_tsv}}                   \cr
-#'      `rdxsv`         \tab \code{\link[readr]{read_delim}}                   }
-#'   File-reading functions also allow for a `NULL` value of file to prompt the
-#'   user to choose a file.
-#' @param file Either `NULL` or a \link[=chr_vec]{character vector} that
-#'   resolves to a file path. When `file = NULL` the user is asked to select a
-#'   file using a system dialog box.
-#' @return A data.frame.
+#' @title Thin and extended functionality wrappers of `readr` functions.
+#' @description \itemize{
+#'   \item **`rdclip`**: thinly wraps \code{\link[readr]{clipboard}}.
+#'   \item **`rdcsv`**: extends \code{\link[readr]{read_csv}} (to prompt user to select a file if `file = NULL`.
+#'   \item **`rdtsv`**: wraps \code{\link[readr]{read_tsv}} (to prompt user to select a file if `file = NULL`.
+#'   \item **`rdxsv`**: wraps \code{\link[readr]{read_delim}} (to prompt user to select a file if `file = NULL`.
+#' }
+#' @param file Either `NULL` or a \link[=chr_vec]{character vector} that resolves to a file path. When `file = NULL` the user is asked to select a file using a system dialog box.
 #' @inherit readr::read_csv
+#' @return A `data.frame`.
 #' @export
 rdcsv <- function(file = NULL, col_names = TRUE, col_types = NULL, col_select = NULL, id = NULL, locale = readr::default_locale(), na = c("", "NA"), quoted_na = TRUE, quote = "\"", comment = "", trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max), name_repair = "unique", num_threads = readr::readr_threads(), progress = readr::show_progress(), show_col_types = readr::should_show_types(), skip_empty_rows = TRUE, lazy = readr::should_read_lazy()) {
   if (inll(file)) {file <- choose_doc("comma separated values text file")}

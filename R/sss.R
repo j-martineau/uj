@@ -11,58 +11,34 @@
 #' @name sss
 #' @family props
 #' @title Shape properties
-#' @description An object's shape properties have to do with the number of
-#'   \link[=ddd]{defined dimensions} and/or \link[=eee]{effective dimensions}
-#'   with some additional restrictions as follows:\tabular{lll}{
-#'   NAME          \tab VALUE     \tab QUALIFYING OBJECTS                    \cr
-#'   Empty         \tab `'emp'`   \tab Non-`NULL`, length-`1` objects.       \cr
-#'   Point         \tab `'pnt'`   \tab Length-`1` vectors, length-`1`
-#'                                     \link[=ivls]{vlists}, length-`1` arrays,
-#'                                     and `1 x 1` data.frames.              \cr
-#'   Linear        \tab `'lin'`   \tab Length `2+` vectors, length `2+`
-#'                                     \link[=ivls]{vlists}, length `2+` arrays
-#'                                     with multiple index positions in just
-#'                                     `1` dimension, and data.frames with `1`
-#'                                     row and multiple columns or `1` column
-#'                                     and multiple rows.                    \cr
-#'   Row           \tab `'row'`   \tab Matrices and data.frames with `1` row and
-#'                                     multiple columns.                     \cr
-#'   Column        \tab `'col'`   \tab Matrices and data.frames with `1` column
-#'                                     and multiple rows.                    \cr
-#'   Rectangular   \tab `'rct'`   \tab Matrices and data.frames with multiple
-#'                                     rows and multiple columns.            \cr
-#'   Square        \tab `'sqr'`   \tab Matrices and data.frames with multiple
-#'                                     rows, multiple columns, and the same
-#'                                     number of rows and columns.           \cr
-#'   Solid         \tab `'sld'`   \tab Arrays with multiple index positions in
-#'                                     `3+` dimensions.                        }
-#'   Functions in this family are:\tabular{ll}{
-#'   FUNCTION        \tab WHAT IT DOES                                       \cr
-#'   `sss`           \tab Gets a character vector containing all shape
-#'                        properties possessed by `x`                        \cr
-#'   `ixxx`          \tab Evaluates whether `x` possesses the shape property
-#'                        `xxx` (a placeholder for any given shape property
-#'                        value), subject to any restrictions in `...`.      \cr
-#'   `isss`          \tab Evaluates whether `x` possesses one or more
-#'                        (possibly pipe-delimited) shape properties in
-#'                        `spec`, subject to any restrictions in `...`.      \cr
-#'   `sss_props`     \tab Gets a character vector of all possible shape
-#'                        property values.                                   \cr
-#'   `is_sss_spec`   \tab Evaluates whether `spec` is a valid shape property
-#'                        specification.                                       }
+#' @description Shape property values, names, and qualifying objects are as follows:
+#' \itemize{
+#'   \item **`'emp'`** (empty): non-`NULL`, length-`1` objects.
+#'   \item **`'pnt'`** (point): `1 x 1` data/frames and arrays, vectors, \link[=ivls]{vlists} with `1` element.
+#'   \item **`'col'`** (column): `1 x 2+` data.frames and matrices.
+#'   \item **`'row'`** (row): `2+ x 1` data.frames and matrices.
+#'   \item **`'lin'`** (linear): length `2+` vectors and vlists, length `2+` arrays elements in just `1` dimension, and column and row data.frames and matrices.
+#'   \item **`'rct'`** (rectangular): `2+ x 2+` data.frames and matrices.
+#'   \item **`'sqr'`** (square): `n × n` matrices where `n > 1`.
+#'   \item **`'sld'`** (solid): arrays with `2+` elements in `3+` dimensions.
+#' }
+#' **Functions**
+#' \itemize{
+#'   \item **`sss`**: gets a vector of shape properties applicable to `x`.
+#'   \item **`isss`**: evaluates whether `x` has one or more (possibly pipe-delimited) shape properties in `spec`, subject to any restrictions in `...`.
+#'   \item **`ixxx`**: evaluates whether `x` has the shape property `xxx` subject to any restrictions in `...` (where `xxx` is a placeholder for any shape property).
+#'   \item **`sss_props`**: gets a vector of all possible shape properties.
+#'   \item **`is_sss_spec`**: evaluates whether `spec` is a valid shape property specification.
+#' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec}
-#'   containing one or more shape properties (i.e., from `sss_vals()`). Shape
-#'   properties in `spec` may be pipe-delimited. If there are multiple shape
-#'   properties in `spec`, `x` is inspected for any match to any shape property
-#'   in `spec`.
+#' @param spec Either`NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more shape properties (i.e., from `sss_vals()`). Shape properties in `spec` may be pipe-delimited. If there are multiple shape properties in `spec`, `x` is inspected for any match to any shape property in `spec`.
 #' @inheritDotParams meets
-#' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \tabular{ll}{
-#'   FUNCTIONS                       \tab RETURN VALUE                       \cr
-#'   `sss_vals`                      \tab A character vector.                \cr
-#'   `sss`                           \tab A character scalar or vector.      \cr
-#'   `ixxx`, `isss`, `is_sss_spec`   \tab A logical scalar.                    }
+#' @inheritSection meets Specifying count and value restrictions
+#' @return \itemize{
+#'   \item **`sss`**: a character scalar/vector.
+#'   \item **`sss_vals`**: a character vector.
+#'   \item **`ixxx, isss, is_sss_spec`**: a logical scalar.
+#' }
 #' @export
 sss <- function(x) {
   out <- NULL

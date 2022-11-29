@@ -8,7 +8,7 @@
 \alias{xwarn}
 \alias{xplot}
 \alias{xcon}
-\title{Remove Various Objects or Characteristics}
+\title{Remove objects or object characteristics}
 \usage{
 xat(x, ...)
 
@@ -25,36 +25,34 @@ xcon()
 \arguments{
 \item{x}{An R object.}
 
-\item{...}{One or more \link[=cmp_chr_vec]{complete character vecs}
-containing names of attributes or classes to remove.}
+\item{...}{One or more \link[=cmp_chr_vec]{complete character vecs} containing names of attributes or classes to remove.}
 }
 \value{
-\tabular{ll}{
-FUNCTION                   \tab RETURN VALUE                            \cr
-\verb{xat, xat0, xcls}          \tab An R object.                            \cr
-\code{xwarn}, \code{splot}, \code{xcon}   \tab \code{NULL}. Called for side effects.          }
+\itemize{
+\item \strong{\verb{xat, xat0, xcls}}: An R object.
+\item \strong{\verb{xwarn, splot, xcon}}: \code{NULL} (called for side effects).
+}
 }
 \description{
-\tabular{ll}{
-FUNCTION   \tab WHAT IT DOES \cr
-\code{xat}      \tab Remove one or more attributes by name.                  \cr
-\code{xat0}     \tab Remove all attributes.                                  \cr
-\code{xcls}     \tab Remove one or more class attributes by name.            \cr
-\code{xwarn}    \tab Purge all warnings.                                     \cr
-\code{xplot}    \tab Purge all plots (and if \code{x} is not \code{NULL}, print it).   \cr
-\code{xcon}     \tab Clear the console.                                        }
+\itemize{
+\item \strong{\code{xat}}: remove one or more attributes by name.
+\item \strong{\code{xat0}}: removes all attributes.
+\item \strong{\code{xcls}}: removes one or more class attributes by name.
+\item \strong{\code{xwarn}}: purges all warnings.
+\item \strong{\code{xplot}}: purges all plots (and if \code{x} is not \code{NULL}, print it).
+\item \strong{\code{xcon}}: clears the console.
+}
 }
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -65,12 +63,14 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

@@ -6,7 +6,7 @@
 \alias{rdclip}
 \alias{rdxsv}
 \alias{rdtsv}
-\title{Wraps of Functions from Package \code{readr}.}
+\title{Thin and extended functionality wrappers of \code{readr} functions.}
 \usage{
 rdcsv(
   file = NULL,
@@ -83,9 +83,7 @@ rdtsv(
 )
 }
 \arguments{
-\item{file}{Either \code{NULL} or a \link[=chr_vec]{character vector} that
-resolves to a file path. When \code{file = NULL} the user is asked to select a
-file using a system dialog box.}
+\item{file}{Either \code{NULL} or a \link[=chr_vec]{character vector} that resolves to a file path. When \code{file = NULL} the user is asked to select a file using a system dialog box.}
 
 \item{col_names}{Either \code{TRUE}, \code{FALSE} or a character vector
 of column names.
@@ -235,18 +233,15 @@ i.e. If this option is \code{TRUE}, the value \verb{""""} represents
 a single quote, \verb{\\"}.}
 }
 \value{
-A data.frame.
+A \code{data.frame}.
 }
 \description{
-The following table describes wrapper functions for the \code{readr}
-package:\tabular{ll}{
-WRAPPER NAME    \tab READR FUNCTION                                  \cr
-\code{rdclip}        \tab \code{\link[readr]{clipboard}}                  \cr
-\code{rdcsv}         \tab \code{\link[readr]{read_csv}}                   \cr
-\code{rdtsv}         \tab \code{\link[readr]{read_tsv}}                   \cr
-\code{rdxsv}         \tab \code{\link[readr]{read_delim}}                   }
-File-reading functions also allow for a \code{NULL} value of file to prompt the
-user to choose a file.
+\itemize{
+\item \strong{\code{rdclip}}: thinly wraps \code{\link[readr]{clipboard}}.
+\item \strong{\code{rdcsv}}: extends \code{\link[readr]{read_csv}} (to prompt user to select a file if \code{file = NULL}.
+\item \strong{\code{rdtsv}}: wraps \code{\link[readr]{read_tsv}} (to prompt user to select a file if \code{file = NULL}.
+\item \strong{\code{rdxsv}}: wraps \code{\link[readr]{read_delim}} (to prompt user to select a file if \code{file = NULL}.
+}
 }
 \examples{
 # Input sources -------------------------------------------------------------
@@ -327,6 +322,7 @@ Other wraps:
 \code{\link{wraps_data_table}},
 \code{\link{wraps_dplyr}},
 \code{\link{wraps_gg}},
+\code{\link{wraps_graphics}},
 \code{\link{wraps_scales}},
 \code{\link{wraps_tibble}}
 }

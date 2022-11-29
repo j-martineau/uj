@@ -1,56 +1,41 @@
 #' @name n_is
 #' @family extensions
-#' @title Dedicated Counting Functions
-#' @description Couning functions can be used with a single unnamed argument,
-#'   multiple unnamed arguments, and with restrictions in named arguments, in
-#'   any combination. The functions in this family are: \tabular{ll}{
-#'   FUNCTION(S)                  \tab QUESTION(S) ANSWERED                  \cr
-#'   `n_is`                       \tab Do counts in `x` meet criteria in `n`,
-#'                                     `min`, `max`, and/or `eq`?            \cr
-#'   `nd`                         \tab How many `...` arguments?             \cr
-#'   `nx`                         \tab How many values in `...` arguments?   \cr
-#'   `ns`                         \tab How many values in each `...`
-#'                                     argument?                             \cr
-#'   `nmin`, `nmax`               \tab What is the min or max `...` argument
-#'                                     length, respectively?                 \cr
-#'   `nsame`                      \tab Are lengths of all `...` arguments the
-#'                                     same?                                 \cr
-#'   `nw`, `nt`                   \tab How many `TRUE` values?               \cr
-#'   `nf`                         \tab How many `FALSE` values?              \cr
-#'   `nu`, `nuv`                  \tab How many unique atomic values?        \cr
-#'   `nr`, `nc`                   \tab How many rows or columns,
-#'                                     espectively?                          \cr
-#'   `nch`                        \tab How many characters in each element?  \cr
-#'   `nna`, `nok`                 \tab How many `NA` or non-`NA` values,
-#'                                     respectively?                         \cr
-#'   `nat`                        \tab How many values after
-#'                                     \link[=av]{atomizing}?                \cr
-#'   `n0`, `n1`, `n2`, `n3`       \tab Is length `0`, `1`, `2`, or `3`,
-#'                                     respectively?                         \cr
-#'   `n1p`, `n2p, n3p`            \tab Is length `1+`, `2+`, or `3+`,
-#'                                     respectively?                         \cr
-#'   `nd0`, `nd1`, `nd2`, `nd3`   \tab Is the number of `...` arguments `0`,
-#'                                     `1`, `2`, or `3`, respectively?       \cr
-#'   `nd1p`, `nd2p`, `nd3p`       \tab Is the number of `...` arguments `1+`,
-#'                                     `2+`, or `3+`, respectively.            }
+#' @title Dedicated counting functions
+#' @description Counting functions can be used with a single unnamed argument, multiple unnamed arguments, and with restrictions in named arguments, in any combination. The functions in this family answer the questions described below.
+#' \itemize{\item **`n_is`**: do counts in `x` meet criteria in `n`, `min`,. `max`, and/or `eq`?}
+#' \cr\itemize{
+#'   \item **`nx`**: gets number of values in `...` arguments.
+#'   \item **`nd`**: number of `...` arguments.
+#'   \item **`ns`**: gets number of values in each `...` argument.
+#'   \item **`nf`**:  gets number of values `FALSE` values.
+#'   \item **`nw nt`**: gets number of values `TRUE` values.
+#' }
+#' \cr\itemize{
+#'   \item **`nat`**: gets number of values after \link[=av]{atomizing}.
+#'   \item **`nch`**: gets number of characters in each element.
+#'   \item **`nr nc`**: gets number of values rows vs. columns, respectively.
+#'   \item **`nu nuv`**: gets number of unique atomic values.
+#'   \item **`nna nok`**:  gets number of values atomic `NA` vs. atomic non-`NA` values, respectively.
+#'   \item **`nmin nmax`**: gets the min vs. max `...` argument length, respectively.
+#' }
+#' \cr\itemize{
+#'   \item **`n0 n1 n2 n3`**: evaluates whether length is `0` vs. `1` vs. `2` vs. `3`, respectively.
+#'   \item **`n1p n2p n3p`**: evaluates whether length is `1+` vs. `2+` vs. `3+`, respectively.
+#' }
+#' \cr\itemize{
+#'   \item **`nsame`**: are lengths of all `...` arguments the same.
+#'   \item **`nd1p nd2p nd3p`**: is the number of `...` arguments `1+` vs. `2+` vs. `3+`, respectively.
+#'   \item **`nd0 nd1 nd2 nd3`**: is the number of `...` arguments `0` vs. `1` vs. `2` vs. `3`, respectively.
+#' }
 #' @param x \link[=innw]{non-negative whole-number} object.
 #' @param ... One or more arguments to be examined for counts.
-#' @param n Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec}
-#'   of valid element, row, or column counts.
-#' @param min,max Optional \link[=cmp_nnw_scl]{complete non-negative
-#'   whole-number scalars} giving minimum and maximum valid element, row, or
-#'   column counts.
-#' @param eq,na,a Non-`NA` scalars indicating, respectively, whether all counts
-#'   must be equal, whether `NA` values are allowed, and whether to
-#'   \link[=av]{atomize} `...` to create a single atomic vector before
-#'   processing. If `a = FALSE`, each argument in `...` is processed separately.
-#' @param vals Optional \link[=atm_vec]{atomic vec} indicating specific values
-#'   to be counted.
-#' @param lt,le,ge,gt Optional \link[=cmp_srt_scl]{complete sortable scalars}
-#'   indicating specific values elements of `...` arguments must be less than,
-#'   less than or equal to, greater than or equal to, or greater than,
-#'   respectively, to be counted.
+#' @param n Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec} of valid element, row, or column counts.
+#' @param min,max Optional \link[=cmp_nnw_scl]{complete non-negative whole-number scalars} giving minimum and maximum valid element, row, or column counts.
+#' @param eq,na,a Non-`NA` scalars indicating, respectively, whether all counts must be equal, whether `NA` values are allowed, and whether to \link[=av]{atomize} `...` to create a single atomic vector before processing. If `a = FALSE`, each argument in `...` is processed separately.
+#' @param vals Optional \link[=atm_vec]{atomic vec} indicating specific values to be counted.
+#' @param lt,le,ge,gt Optional \link[=cmp_srt_scl]{complete sortable scalars} indicating specific values elements of `...` arguments must be less than, less than or equal to, greater than or equal to, or greater than, respectively, to be counted.
 #' @return An integer or logical scalar or vector.
+#' @export
 #' @examples
 #' N <- 0:15
 #' n_is(N, n = 0:5)
@@ -87,7 +72,6 @@
 #' nch(letters, eq = T)
 #' nch(letters, "a string")
 #' nch(letters, "a string", a = T)
-#' @export
 n_is <- function(x, n = NULL, min = NULL, max = NULL, eq = F) {
   errs <- c(f0(cmp_nnw(x), NULL, "\n \u2022 [x] must contain only non-negative whole numbers."),
             f0(inll(n) | cmp_nnw_vec(n), NULL, "\n \u2022 [n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),

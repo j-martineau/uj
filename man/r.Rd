@@ -4,7 +4,7 @@
 \alias{r}
 \alias{e}
 \alias{re}
-\title{Error-Checked Wraps of \code{base::rep}}
+\title{Error-checked wrappers for \code{base::rep}}
 \usage{
 r(r, ...)
 
@@ -15,58 +15,61 @@ re(e, r, ...)
 re(e, r, ...)
 }
 \arguments{
-\item{r}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving
-the number of replications of entire vectors.}
+\item{r}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of replications of entire vectors.}
 
-\item{...}{One or more atomic vectors to be replicated, reduced to unique
-values, or reduced to unique duplicated values.}
+\item{...}{One or more atomic vectors to be replicated, reduced to unique values, or reduced to unique duplicated values.}
 
-\item{e}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving
-the number of times each value is to be replicated in place before
-replication of the entire vector.}
+\item{e}{A complete positive whole-number scalar giving the number of times each value is to be replicated in place.}
 }
 \value{
 An atomic vector.
 }
 \description{
-\tabular{ll}{
-FUNCTIONS    \tab WHAT IT DOES                                          \cr
-\code{r}          \tab \link[=av]{Atomize} \code{...} and with the result \code{dots},
-call \code{rep.int(dots, r)}.                              \cr
-\code{e}          \tab Atomize \code{...} and with the result \code{dots}, call
-\code{rep.int(dots, each = e)}.                            \cr
-\code{re}, \code{er}   \tab Atomize \code{...}, and with the result \code{dots}, call
-\code{rep(dots, times = r, each = e)}.                       }
-NOTE
-\cr Although \code{er} and \code{re} produce identical results when their arguments
-are the same, both are included for convenience.
+These functions \link[=av]{atomize} \code{...} arguments, converting them to an atomic vector (represented here as \code{dots}) before replication.
+\itemize{
+\item \strong{\code{r}}: calls \code{rep.int(dots, r)}.
+\item \strong{\code{e}}: calls \code{rep.int(dots, each = e)}.
+\item \strong{\verb{re, er}}: call \code{rep(dots, times = r, each = e)}.
 }
-\section{Comparing Function Output}{
- The following console excerpt
-demonstrates how each function performs.
-
-\if{html}{\out{<div class="sourceCode">}}\preformatted{> list(r  =  r(2,    0:1, 9),
-+      e  =  e(3,    0:1, 9),
-+      re = re(2, 3, 0:1, 9),
-+      er = er(3, 2, 0:1, 9))
-$r
-[1] 0 1 9 0 1 9
-
-$e
-[1] 0 0 0 1 1 1 9 9 9
-
-$re
- [1] 0 0 0 1 1 1 9 9 9 0 0 0 1 1 1 9 9 9
-
-$er
- [1] 0 0 1 1 9 9 0 0 1 1 9 9 0 0 1 1 9 9
-}\if{html}{\out{</div>}}
+NOTE: Although \code{er} and \code{re} produce identical results when their arguments are the same, both are included for convenience.
 }
-
 \examples{
 r(2, 0:4, 5:9)
 e(3, 0:4, 5:9)
 re(2, 3, 0:4, 5:9)
 er(3, 2, 0:4, 5:9)
 }
-\concept{extended}
+\seealso{
+Other extensions: 
+\code{\link{atomize}},
+\code{\link{binary_failsafe}},
+\code{\link{callers}()},
+\code{\link{case}()},
+\code{\link{dots_uj}},
+\code{\link{envir_vals}},
+\code{\link{ex}()},
+\code{\link{failsafe}()},
+\code{\link{fork}()},
+\code{\link{fsub}()},
+\code{\link{is_failsafe}},
+\code{\link{is_unq}()},
+\code{\link{make_uj}},
+\code{\link{n_is}()},
+\code{\link{n_th}()},
+\code{\link{naming}},
+\code{\link{na}()},
+\code{\link{os}()},
+\code{\link{paths}},
+\code{\link{pause}()},
+\code{\link{ply}()},
+\code{\link{put}()},
+\code{\link{reclass}()},
+\code{\link{recycling}},
+\code{\link{removal}},
+\code{\link{run}()},
+\code{\link{stats0}},
+\code{\link{swap}()},
+\code{\link{uj_logicals}},
+\code{\link{xb}()}
+}
+\concept{extensions}

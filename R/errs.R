@@ -1,136 +1,39 @@
 #' @name err_check
 #' @family errs
-#' @title Error Management
-#' @description Bank error messages in the immediate environment of a function
-#'   to allow for exhaustive error checking before throwing an exception.
-#'   Results in a combined, multiple-error message to be reported at the
-#'   completion of all error checks.\tabular{ll}{
-#'     FUNCTION      \tab WHAT IT DOES                                       \cr
-#'     `err_check`   \tab \emph{Process any banked error messages}. Check for
-#'                        banked error messages in the environment of the
-#'                        function `gens` generations back in the call stack,
-#'                        and if there are any, process them, stopping
-#'                        execution. If there are none, take no action. To be
-#'                        called after error checking is complete.           \cr
-#'     `bank_err`    \tab \emph{Bank an arbitrary error message}. Bank the
-#'                        error message in `...` in the environment of the
-#'                        function `gens` generations back in the call stack.
-#'                        The error message is constructed by
-#'                        \link[=av]{atomizing} and collapsing `...` into a
-#'                        character scalar.                                  \cr
-#'     `bank_lgl`    \tab \emph{Check for logical scalar args}. Checks named
-#'                        `...` arguments for whether they are scalar `TRUE` or
-#'                        scalar `FALSE`. If `na = TRUE`, also allows atomic
-#'                        scalar `NA`. If `extras` contains atomic values
-#'                        (logical or not), also allows those values. For each
-#'                        named argument that does not meet the requirements,
-#'                        banks an error.                                   \cr
-#'     `bank_not`    \tab \emph{Bank errors for `FALSE` args}. For each scalar
-#'                        `FALSE` named `...` argument, create an error message
-#'                        by collapsing unnamed `...` arguments into a character
-#'                        scalar message template, banking the error message for
-#'                        that named argument. The location where the name of a
-#'                        `FALSE` named argument should occur in the message is
-#'                        indicated by the escape sequence `'{@@}'`.         \cr
-#'     `bank_pop`    \tab \emph{Bank errors for non-populated args}. For each
-#'                         named `...` argument that is either `NULL` or empty
-#'                         (of length `0`), banks an error message.          \cr
-#'     `bank_funs`   \tab \emph{Bank errors for args not passing property
-#'                        checking functions}. For each named `...` argument,
-#'                        check whether it satisfies any of the property
-#'                        functions named in `funs.`, and if not, bank an error
-#'                        message. `funs. must be a character scalar containing
-#'                        the names of one or more \link[ppp_funs]{property
-#'                        functions}, separated by pipes. An argument passes the
-#'                        test if calling any one of the functions results in a
-#'                        value of `TRUE`.                                   \cr
-#'     `bank_ppp`    \tab \emph{Bank errors for args not passing arbitrary
-#'                        property checks}. More flexible but less efficient
-#'                        than `bank_funs`. For each named `...` argument, bank
-#'                        an error message if it does satisfy the
-#'                        \link[ippp]{property specification} in `ppp`. If
-#'                        `nas. = TRUE`, arguments may also be atomic scalar
-#'                        `NA` values. `ppp.` must be a character scalar
-#'                        containing one or more property combos. Property
-#'                        combos are created by separating multiple properties
-#'                        from \link[=all_props]{all_props()}. A property combo
-#'                        may be a single property. Multiple property combos are
-#'                        separated from each other using pipes. An argument
-#'                        satisfies the property specification if it satisfies
-#'                        any of the property combos.                        \cr
-#'     `bank_vals`   \tab \emph{Bank errors for args with out-of-bounds values}.
-#'                        Bank errors if atomic scalar arguments do not have one
-#'                        of a list of values. For each named atomic scalar
-#'                        `...` argument, check it against the remaining
-#'                        (unnamed) atomic `...` arguments (which do not have to
-#'                        be of the same mode), and if the named argument's
-#'                        value does not match a value from any unnamed `...`
-#'                        argument, bank an error message.                   \cr
-#'     `bank_dots`   \tab \emph{Bank errors for `...` args}. Bank errors if
-#'                        `...` arguments do not satisfy a property
-#'                        specification, and optionally, if they are not named.
-#'                        Check if each `...` argument satisfies the property
-#'                        specification in `prop.` and if not, bank an error
-#'                        message. If `named. = TRUE`, check whether all `...`
-#'                        arguments are named, and if not banks an error
-#'                        message.                                           \cr
-#'     `bank_when`   \tab \emph{Bank errors for one arg conditional on the value
-#'                        of another}. Bank errors conditionally on the value of
-#'                        two arguments. Banks an error if the first named
-#'                        atomic scalar `...` argument has a value contained in
-#'                        `whens.` and the second named atomic scalar `...`
-#'                        argument does not contain a value from `values.`.  \cr
-#'     `bank_pats`   \tab \emph{Bank errors for args not matching any patterns
-#'                        of properties}. Bank errors conditionally on the
-#'                        pattern of properties of arguments in `...` matching
-#'                        none of the specified patterns of associated
-#'                        properties in `pats.`.                             \cr
-#'     `bank_fail`   \tab \emph{Bank errors for args producing an error when
-#'                        evaluated}.                                          }
+#' @title Error checking, banking, and processing
+#' @description Bank error messages in the immediate environment of a function to allow for exhaustive error checking before throwing an exception. Results in a combined, multiple-error message to be reported at the completion of all error checks.
+#' \itemize{
+#'   \item **`err_check`**: *Process any banked error messages*. Checks for banked error messages in the environment of the function `gens` generations back in the call stack, and if there are any, processes them, stopping execution. If there are none, takes no action. To be called after error checking is complete.
+#'   \item **`bank_err`**: *Bank an arbitrary error message*. Banks the error message in `...` in the environment of the function `gens` generations back in the call stack. The error message is constructed by \link[=av]{atomizing} and collapsing `...` into a character scalar.
+#'   \item **`bank_lgl`**: *Check for logical scalar args*. Checks named `...` arguments for whether they are scalar `TRUE` or scalar `FALSE`. If `na = TRUE`, also allows atomic scalar `NA`. If `extras` contains atomic values (logical or not), also allows those values. For each named argument that does not meet the requirements, banks an error.
+#'   \item **`bank_not`**: *Bank errors for `FALSE` args*. For each scalar `FALSE` named `...` argument, creates an error message by collapsing unnamed `...` arguments into a character scalar message template, banking the error message for that named argument. The location where the name of a `FALSE` named argument should occur in the message is indicated by the escape sequence `'{@@}'`.
+#'   \item **`bank_pop`**: *Bank errors for non-populated args*. For each named `...` argument that is either `NULL` or empty (of length `0`), banks an error message.
+#'   \item **`bank_funs`**: *Bank errors for args not meeting property functions*. For each named `...` argument, checks whether it satisfies any of the property functions named in `funs.`, and if not, banks an error message. `funs.` must be a character scalar containing the names of one or more \link[=ppp_funs]{property functions}, separated by pipes. An argument passes the test if calling any one of the functions results in a value of `TRUE`.
+#'   \item **`bank_ppp`**: *Bank errors for args not passing arbitrary property check*. More flexible but less efficient than `bank_funs`. For each named `...` argument, banks an error message if it does satisfy the \link[=ippp]{property specification} in `ppp`. If `nas. = TRUE`, arguments may also be atomic scalar `NA` values. `ppp.` must be a character scalar containing one or more property combos. Property combos are created by separating multiple properties from \link[=all_props]{all_props()}. A property combo may be a single property. Multiple property combos are separated from each other using pipes. An argument satisfies the property specification if it satisfies any of the property combos.
+#'   \item **`bank_vals`**: *Bank errors for args with out-of-bounds values*. Banks errors if atomic scalar arguments do not have one of a list of values. For each named atomic scalar `...` argument, checks it against the remaining (unnamed) atomic `...` arguments (which do not have to be of the same mode), and if the named argument's value does not match a value from any unnamed `...` argument, banks an error message.
+#'   \item **`bank_dots`**: *Bank errors for `...` args*. Bank errors if `...` arguments do not satisfy a property specification, and optionally, if they are not named. Checks if each `...` argument satisfies the property specification in `prop.` and if not, banks an error message. If `named. = TRUE`, checks whether all `...` arguments are named, and if not banks an error message.
+#'   \item **`bank_when`**: *Bank errors for one arg conditional on the value of another*. Bank errors conditionally on the value of two arguments. Banks an error if the first named atomic scalar `...` argument has a value contained in `whens.` and the second named atomic scalar `...` argument does not contain a value from `values.`.
+#'   \item **`bank_pats`**: *Bank errors for args not matching any patterns of properties*. Bank errors conditionally on the pattern of properties of arguments in `...` matching none of the specified patterns of associated properties in `pats.`.
+#'   \item **`bank_fail`**: *Bank errors for args producing an error when evaluated*.
+#' }
 #' @param x An R object.
-#' @param gens. A \link[cmp_nnw_scl]{Complete non-negative whole-number scalar}
-#'   indicating the number of generations back in the call stack in which to
-#'   bank and/or check for error messages.
-#' @param ... For `bank_err`: An arbitrary number of atomic arguments that when
-#'   collapsed into a character scalar form an error message.
-#'   \cr\cr
-#'   For `bank_lgl`, `bank_pop`, `bank_funs`, `bank_prop`, `bank_pats`: An
-#'   arbitrary number of named arguments to be error checked.
-#'   \cr\cr
-#'   For `bank_not`: An arbitrary number of named logical scalar arguments to be
-#'   checked for `TRUE`-ness plus an arbitrary number of unnamed atomic
-#'   arguments that when collapsed form an error message.
-#'   \cr\cr
-#'   For `bank_vals`: An arbitrary number of named atomic scalar arguments and
-#'   an arbitrary number of unnamed atomic arguments holding valid values of the
-#'   named arguments.
-#'   \cr\cr
-#'   For `bank_dots`: An arbitrary number of named or unnamed arguments to be
-#'   error checked.
-#'   \cr\cr
-#'   For `bank_when`: Two named atomic scalars to be error checked.
-#' @param nas. A non-`NA` logical scalar indicating whether atomic scalar `NA`
-#'   values qualify.
-#' @param extras `NUlL` or an \link[=icmp]{complete atomic object} containing
-#'   additional atomic values that qualify as valid.
-#' @param funs \link[=cmp_chr_scl]{Complete character scalar} containing a
-#'   \link[=ppp_funs]{property function} name or multiple property function
-#'   names separated by pipes, which are used to check if named arguments in
-#'   `...` satisfy the property specification in any of the function names.
-#' @param ppp A \link[=cmp_chr_scl]{complete character scalar} containing one or
-#'   more property combos (combos are created by separating one or more
-#'   \link[=all_props]{property values} with underscores. Multiple combos are
-#'   separated by pipes.
-#' @param named. A non-`NA` logical scalar indicating whether `...` arguments
-#'   must be uniquely named without using blank strings.
+#' @param gens. A \link[cmp_nnw_scl]{complete non-negative whole-number scalar} indicating the number of generations back in the call stack in which to bank and/or check for error messages.
+#' @param ... \itemize{
+#'   \item For `bank_err`: An arbitrary number of atomic arguments that when collapsed into a character scalar form an error message.
+#'   \item For `bank_lgl, bank_pop, bank_funs, bank_prop, bank_pats`: An arbitrary number of named arguments to be error checked.
+#'   \item For `bank_not`: An arbitrary number of named logical scalar arguments to be checked for `TRUE`-ness plus an arbitrary number of unnamed atomic arguments that when collapsed form an error message.
+#'   \item For `bank_vals`: An arbitrary number of named atomic scalar arguments and an arbitrary number of unnamed atomic arguments holding valid values of the named arguments.
+#'   \item For `bank_dots`: An arbitrary number of named or unnamed arguments to be error checked.
+#'   \item For `bank_when`: Two named atomic scalars to be error checked.
+#' }
+#' @param nas. A non-`NA` logical scalar indicating whether atomic scalar `NA` values qualify.
+#' @param extras `NUlL` or an \link[=icmp]{complete atomic object} containing additional atomic values that qualify as valid.
+#' @param funs A \link[=cmp_chr_scl]{complete character scalar} containing a \link[=ppp_funs]{property function} name or multiple property function names separated by pipes, which are used to check if named arguments in `...` satisfy the property specification in any of the function names.
+#' @param ppp A complete character scalar containing one or more property combos (combos are created by separating one or more \link[=all_props]{property values} with underscores. Multiple combos are separated by pipes.
+#' @param named. A non-`NA` logical scalar indicating whether `...` arguments must be uniquely named without using blank strings.
 #' @param whens.,values. \link[=ipop]{Populated atomic objects}.
-#' @param pats. An \link[=ivls]{atomic vlist} containing multiple elements, each
-#'   of which must be a \link[=cmp_chr_mvc]{complete character multivec} of the
-#'   same length as the number of `...` arguments. Each element gives a pattern
-#'   of valid properties for the argument in `...` in the form of one property
-#'   specification per argument in `...` in the same order of those arguments.
-#' @return `NULL`. Called for the side effect of banking and/or processing error
-#'   messages.
+#' @param pats. An \link[=ivls]{atomic vlist} containing multiple elements, each of which must be a \link[=cmp_chr_mvc]{complete character multivec} of the same length as the number of `...` arguments. Each element gives a pattern of valid properties for the argument in `...` in the form of one property specification per argument in `...` in the same order of those arguments.
+#' @return `NULL` (called for the side effect of banking and/or processing error messages).
 #' @export
 err_check <- function(gens. = 0) {
   ok.gens <- f0(!cmp_nnw_scl(gens.), F, gens. <= ncallers() - 1)

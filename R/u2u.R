@@ -1,24 +1,21 @@
 #' @name u2u
 #' @title Convert Plotting Units
-#' @description Available units are:\tabular{ll}{
-#'     CODE   \tab NAME                                                      \cr
-#'     `cm`   \tab Centimeters                                               \cr
-#'     `in`   \tab Inches                                                    \cr
-#'     `mm`   \tab Millimeters                                               \cr
-#'     `pt`   \tab Points (A)                                                  }
-#'   (A) Points are `1/72` of an inch.
-#'   \cr\cr
-#'   Unit functions take the following forms, where `aa` and `bb` are wildcard
-#'   units and `old` and `new` are user-supplied argument values:\tabular{ll}{
-#'     FUNCTION   \tab CONVERTS UNITS                                        \cr
-#'     `aa2bb`    \tab From `aa` to `bb`.                                    \cr
-#'     `aa2u`     \tab From `aa` to `new`.                                   \cr
-#'     `u2bb`     \tab From `old` to `bb`.                                   \cr
-#'     `u2u`      \tab From `old` to `new`.                                    }
+#' @description Unit functions take the following forms, where `aa` and `bb` are wildcard unit codes and `old` and `new` are user-supplied argument values.
+#' \itemize{
+#'   \item **`aa2bb`**: converts units from `aa` to `bb`.
+#'   \item **`aa2u`**: converts units from `aa` to `new`.
+#'   \item **`u2bb`**: converts units from `old` to `bb`.
+#'   \item **`u2u`**: converts units from `old` to `new`.
+#' }
+#' Available units are:
+#' \itemize{
+#'   \item **`cm`**: centimeters.
+#'   \item **`in`**: inches.
+#'   \item **`mm`**: millimeters.
+#'   \item **`pt`**: points (72 per inch).
+#' }
 #' @param x \link[=atm_num]{Atomic, numeric object}.
-#' @param old,new \link[=cmp_chr_scl]{Complete character scalars} giving old and
-#'   new units of distance, respectively: `c('cm', 'in', 'mm', 'pt')` for
-#'   centimeters, inches, millimeters, and points, respectively.
+#' @param old,new \link[=cmp_chr_scl]{Complete character scalars} giving old and new units of distance, respectively: `'cm'`, `'in'`, `'mm'`, `'pt'` for centimeters, inches, millimeters, and points, respectively.
 #' @return An atomic, numeric object.
 #' @export
 u2u <- function(x, old, new) {

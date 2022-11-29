@@ -8,65 +8,34 @@
 #' @name eee
 #' @family props
 #' @title Effective dimensionality properties
-#' @description Effective dimensionality of a non-empty object is defined as
-#'   the number of dimensions with multiple indexed positions. Effective
-#'   dimensionality is undefined for empty objects. The following table
-#'   describes values of effective dimensionality, property names assigned to
-#'   them, and a definition of those values.\tabular{llll}{
-#'   NUMBER OF    \tab EFFECTIVE        \tab EFFECTIVE
-#'                                      \tab CHARACTERISTICS\cr
-#'   EFFECTIVE    \tab DIMENSIONALITY   \tab DIMENSIONALITY   
-#'                                      \tab OF QUALIFYING\cr
-#'   DIMENSIONS   \tab PROPERTY VALUE   \tab PROPERTY NAME   
-#'                                      \tab OBJECTS      \cr
-#'   \code{NaN}\tab\code{'eUD'}\tab Effectively dimensionally undefined
-#'                             \tab \code{NULL} or of length 0.              \cr
-#'   \code{0}  \tab\code{'e0D'}\tab Effectively \code{0}-dimensional
-#'                             \tab Vector of length 1, vlist of length 1, array
-#'                                  of length 1, or code{1 × 1} data.frame   \cr
-#'   \code{1}  \tab\code{'e1D'}\tab Effectively \code{1}-dimensional
-#'                             \tab Vector or vlist of length 2+ or
-#'                                  non-empty array with multiple index
-#'                                  positions in \code{1} dimension.         \cr
-#'   \code{2}  \tab\code{'e2D'}\tab Effectively \code{2}-dimensional
-#'                             \tab Data frames or matrices with multiple rows
-#'                                  and multiple columns and non-empty arrays
-#'                                  with multiple index positions in exactly
-#'                                  \code{2} dimensions.                     \cr
-#'   \code{≥ 3}\tab\code{'eHD'}\tab Effectively hyper-dimensional
-#'                             \tab Non-empty array with multiple index
-#'                                  positions in at least 3 dimensions.        }
-#'   Functions in this family are:\tabular{ll}{
-#'     FUNCTION   \tab WHAT IT DOES \cr
-#'     `eee`           \tab Get a character vector containing all effective
-#'                          dimensionality properties possessed by `x`       \cr
-#'     `ixxx`          \tab Evaluate whether `x` possesses the effective
-#'                          dimensionality property `xxx` (a placeholder for any
-#'                          given effective dimensionality property value),
-#'                          subject to any restrictions in `...`.            \cr
-#'     `ieee`          \tab Evaluate whether `x` possesses one or more
-#'                          (possibly pipe-delimited) effective dimensionality
-#'                          properties in `spec`, subject to any restrictions in
-#'                          `...`.                                           \cr
-#'     `neee`          \tab Get the number of effective dimensions of `x`.   \cr
-#'     `eee_props`     \tab Get a character vector of all possible effective
-#'                          dimensionality property values.                  \cr
-#'     `is_eee_spec`   \tab Evaluate whether `spec` is a valid effective
-#'                          dimensionality property specification.             }
+#' @description Effective dimensionality of a non-empty object is defined as the number of dimensions with `2+` positions. Effective dimensionality is undefined for empty objects.
+#' \itemize{
+#'   \item **`'eUD'`**: Effectively `NaN`-dimensional (`NULL` or otherwise of length-`0` objects; effective dimensionality is undefined).
+#'   \item **`'e0D'`**: Effectively `0`-dimensional (vectors, vlists, and arrays of length `1` and `1 × 1` data.frames).
+#'   \item **`'e1D'`**: Effectively `1`-dimensional (vectors or vlists of length `2+`, length `2+` arrays with `2+` positions in just `1` dimension, and `1 x 2+` or `2+ x 1` data.frames).
+#'   \item **`'e2D'`**: Effectively `2`-dimensional (`2+ x 2+` data frames or matrices and length `4+` arrays with `2+` positions in just `2` dimensions).
+#'   \item **`'eHD'`**: Effectively hyper-dimensional (length-`8+` array with `2+` positions in `3+` dimensions).
+#' }
+#' **Functions**
+#' \itemize{
+#'   \item **`eee`**: Gets a character vector containing all effective dimensionality properties possessed by `x`.
+#'   \item **`ixxx`**: Evaluates whether `x` possesses the effective dimensionality property `xxx` (a placeholder for any given effective dimensionality property value), subject to any restrictions in `...`.
+#'   \item **`ieee`**: Evaluates whether `x` possesses one or more (possibly pipe-delimited) effective dimensionality properties in `spec`, subject to any restrictions in `...`.
+#'   \item **`neee`**: Get the number of effective dimensions of `x`.
+#'   \item **`eee_props`**: Gets a character vector of all possible effective dimensionality property values.
+#'   \item **`is_eee_spec`**: Evaluates whether `spec` is a valid effective dimensionality property specification.
+#' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec}
-#'   containing one or more effective dimensionality properties (i.e., from
-#'   `eee_props()`). Effective dimensionality properties may be pipe-delimited.
-#'   If there are multiple properties in `spec`, `x` is inspected for a match
-#'   to any of the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more effective dimensionality properties (i.e., from `eee_props()`). Effective dimensionality properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
-#' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \tabular{ll}{
-#'   FUNCTIONS                       \tab RETURN VALUE                       \cr
-#'   `eee_vals`                      \tab A character vector.                \cr
-#'   `eee`                           \tab A character scalar or vector.      \cr
-#'   `neee`                          \tab A numeric scalar.                  \cr
-#'   `ieee`, `ixxx`, `is_eee_spec`   \tab A logical scalar.                    }
+#' @inheritSection meets Specifying count and value restrictions
+#' @return \itemize{
+#'   \item **`eee_vals`**: a character vector.
+#'   \item **`eee`**: a character scalar/vector.
+#'   \item **`neee`**: a numeric scalar.
+#'   \item **`ieee, ixxx`**: a logical scalar.
+#'   \item **`is_eee_spec`**: a logical scalar.
+#' }
 #' @export
 eee <- function(x) {
   out <- NULL

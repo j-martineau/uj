@@ -32,7 +32,7 @@
 \alias{istr}
 \alias{iuno}
 \alias{iwhl}
-\title{Extended Mode Properties}
+\title{Extended mode properties}
 \usage{
 mmm(x)
 
@@ -99,11 +99,7 @@ iwhl(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
-containing one or more extended mode properties from \code{mmm_props()}.
-Extended mode properties may be pipe-delimited. If there are multiple
-properties in \code{spec}, \code{x} is inspected for a match to any of the specified
-properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more extended mode properties from \code{mmm_props()}. Extended mode properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -112,59 +108,82 @@ properties.}
   }}
 }
 \value{
-\tabular{ll}{
-FUNCTIONS                       \tab RETURN VALUE                       \cr
-\code{mmm_vals}                      \tab A character vector.                \cr
-\code{mmm}                           \tab A character scalar or vector.      \cr
-\code{mmmi}, \code{ixxx}, \code{is_mmm_spec}   \tab A logical scalar.                    }
+\itemize{
+\item \strong{\code{mmm}}: a character scalar/vector.
+\item \strong{\code{mmm_vals}}: a character vector.
+\item \strong{\verb{immm, ixxx, is_mmm_spec}}: a logical scalar.
+}
 }
 \description{
-Extended modes are defined for non-empty atomic objects. For all
-other objects, the extended mode is \code{NULL}. These are not formally defined
-classes, but are evaluated dynamically based on the current characteristics
-of an object.
+Extended modes are defined for non-empty atomic objects. For all other objects, the extended mode is \code{NULL}. These are not formally defined classes, but are evaluated dynamically based on the current characteristics of an object.
 \cr\cr
-Atomic objects that contain only \code{NA} values are of every extended mode, as
-they can be coerced to any mode without introducing new \code{NA} values. The
-following tables gives extended mode values, names, and requirements.
+Atomic objects that contain only \code{NA} values are of every extended mode, as they can be coerced to any mode without introducing new \code{NA} values. The following tables gives extended mode values, names, and requirements.
 \cr\cr
-\strong{Character Extended Mode Properties}\tabular{lll}{
-VALUE   \tab NAME        \tab CHARACTERISTICS                           \cr
-\code{'chr'} \tab Character   \tab Character.                                \cr
-\code{'clr'} \tab Color       \tab Valid character color representation.     \cr
-\code{'ch1'} \tab Onechar     \tab Single character values.                  \cr
-\code{'str'} \tab String      \tab No blank ("") values.                       }
-\strong{Categorical Extended Mode Properties\verb{\\tabular\{lll\}\{ VALUE   \\tab NAME        \\tab CHARACTERISTICS                           \\cr}'fac'\verb{\\tab Factor      \\tab Factor.                                   \\cr}'lgl'\verb{\\tab Logical     \\tab Logical.                                  \\cr}'ord'\verb{\\tab Ordered     \\tab Ordered factor.                           \\cr}'uno'\verb{ \\tab Unordered   \\tab Unordered factor.                           \} \\strong\{Combination Extended Mode Properties} \tabular{lll}{
-VALUE   \tab NAME           \tab CHARACTERISTICS                        \cr
-\code{'ind'} \tab Indexer        \tab Logical or positive whole number.      \cr
-\code{'srt'} \tab Sortable       \tab Character, logical, numeric, or ordered
-factor.                                \cr
-\code{'nst'} \tab non-sortable   \tab Atomic, but not sortable.                }
-\strong{Numeric Extended Mode Properties\verb{\\tabular\{lll\}\{ VALUE   \\tab NAME                 \\tab CHARACTERISTICS                  \\cr}'num'\verb{\\tab Numeric              \\tab Numeric.                         \\cr}'frc'\verb{\\tab Fractional           \\tab At least}1\verb{ non-}NA\verb{value is not a whole number .                   \\cr}'pct'\verb{\\tab Percent              \\tab Percentage numeric (in the interval}\link{0, 100}}).                     \cr
-\code{'ppn'} \tab Proportion           \tab Proportion numeric (in the interval
-\verb{[0, 1]\}).                       \\cr }'pos'\verb{\\tab Positive             \\tab Positive numeric.                \\cr}'nng'\verb{\\tab Non-negative         \\tab Non-negative numeric.            \\cr}'nps'\verb{\\tab Non-positive         \\tab Non-positive numeric.            \\cr}'neg'\verb{\\tab Negative             \\tab Negative numeric.                \\cr}'whl'\verb{\\tab Whole                \\tab Whole number.                    \\cr}'evn'\verb{\\tab Even                 \\tab Even (whole) number.             \\cr}'odd'\verb{\\tab Odd                  \\tab Odd (whole) number.              \\cr}'psw'\verb{\\tab Positive whole       \\tab Positive whole-number.           \\cr}'nnw'\verb{\\tab Non-negative whole   \\tab Non-negative whole-number.       \\cr}'npw'\verb{\\tab Non-positive whole   \\tab Non-positive whole-number.       \\cr}'ngw'\verb{\\tab Negative whole       \\tab Negative whole-number.             \} Functions in this family are:\\tabular\{ll\}\{ FUNCTION        \\tab WHAT IT DOES                                       \\cr}mmm\verb{          \\tab Get a character vector containing all extended mode properties possessed by}x\verb{.                       \\cr }ixxx\verb{         \\tab Evaluate whether}x\verb{possesses the extended mode property}xxx\verb{(a placeholder for any given extended mode property value), subject to any restrictions in}...\verb{.                                             \\cr }mmmi\verb{         \\tab Evaluate whether}x\verb{possesses one or more (possibly pipe-delimited) extended mode properties in}spec\verb{, subject to any restrictions in }...\verb{.              \\cr }mmm_props\verb{    \\tab Get a character vector of all possible extended mode property values.                                   \\cr}is_mmm_spec\verb{   \\tab Evaluate whether }spec` is a valid extended mode
-property specification.                              }
+\strong{Character extended mode properties}
+\itemize{
+\item \strong{\code{'chr'} (character)}: character.
+\item \strong{\code{'clr'} (color)}: character color representation.
+\item \strong{\code{'ch1'} (onechar)}: single character values.
+\item \strong{\code{'str'} (string)}: no blank ("") values.
 }
-\section{Specifying Count and Value Restrictions}{
- Specifying restrictions in
-\code{...} is optional. The full set of recognized arguments names are defined
-in the following table along with the properties each
-specifies:\tabular{ll}{
-NAME     \tab WHAT IT SPECIFIES                                         \cr
-\code{n}      \tab Vector of valid lengths/numbers of elements.              \cr
-\code{nr}     \tab Vector of valid numbers of rows.                          \cr
-\code{nc}     \tab Vector of valid numbers of columns.                       \cr
-\code{min}    \tab Scalar minimum valid length/number of element.            \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                      \cr
-\code{minc}   \tab Scalar minimum valid number of columns.                   \cr
-\code{max}    \tab Scalar maximum valid length/number of element.            \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                      \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.                   \cr
-\code{vals}   \tab Vector of valid values.                                   \cr
-\code{lt}     \tab Scalar less-than (exclusive upper) bound.                 \cr
-\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
-\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
-\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.          }
+\strong{Categorical extended mode properties}
+\itemize{
+\item \strong{\code{'fac'} (factor)}: factor.
+\item \strong{\code{'lgl'} (logical)}: logical.
+\item \strong{\code{'ord'} (ordered)}: ordered factor.
+\item \strong{\code{'uno'} (unordered)}: Unordered factor.
+}
+\strong{Combination extended mode properties}
+\itemize{
+\item \strong{\code{'ind'} (indexer)}: logical/positive whole number.
+\item \strong{\code{'srt'} (sortable)}: character/logical/numeric/ordered factor.
+\item \strong{\code{'nst'} (non-sortable)}: atomic but not sortable.
+}
+\strong{Numeric extended mode properties}
+\itemize{
+\item \strong{\code{'num'} (numeric)}: numeric.
+\item \strong{\code{'frc'} (fractional)}: fractional numeric.
+\item \strong{\code{'pct'} (percent)}: percentage numeric (in the interval \verb{[0, 100]}).
+\item \strong{\code{'ppn'} (proportion)}: proportion numeric (in the interval \verb{[0, 1]}).
+\item \strong{\code{'pos'} (positive)}: positive numeric.
+\item \strong{\code{'neg'} (negative)}: negative numeric.
+\item \strong{\code{'nng'} (non-neg)}: non-negative numeric.
+\item \strong{\code{'nps'} (non-pos)}: non-positive numeric.
+\item \strong{\code{'whl'} (whole)}: whole number.
+\item \strong{\code{'psw'} (pos-whole)}: positive whole-number.
+\item \strong{\code{'nnw'} (non-neg-whole)}: non-negative whole-number.
+\item \strong{\code{'npw'} (non-pos-hole)}: non-positive whole-number.
+\item \strong{\code{'ngw'} (neg-whole)}: negative whole-number.
+\item \strong{\code{'evn'} (even)}: even (whole) number.
+\item \strong{\code{'odd'} (odd)}: odd (whole) number.
+}
+\strong{Functions}
+\itemize{
+\item \strong{\code{mmm}}: gets a character vector containing all extended mode properties possessed by \code{x}.
+\item \strong{\code{ixxx}}: evaluates whether \code{x} possesses the extended mode property \code{xxx} (a placeholder for any given extended mode property value), subject to any restrictions in \code{...}.
+\item \strong{\code{immm}}: evaluates whether \code{x} possesses one or more (possibly pipe-delimited) extended mode properties in \code{spec}, subject to any restrictions in \code{...}.
+\item \strong{\code{mmm_props}}: gets a character vector of all possible extended mode property values.
+\item \strong{\code{is_mmm_spec}}: evaluates whether \code{spec} is a valid extended mode property specification.
+}
+}
+\section{Specifying count and value restrictions}{
+ Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
+\itemize{
+\item \strong{\code{n}}: a vector of valid lengths/numbers of elements.
+\item \strong{\code{nr}}: a vector of valid numbers of rows.
+\item \strong{\code{nc}}: a vector of valid numbers of columns.
+\item \strong{\code{min}}: a scalar minimum valid length/number of element.
+\item \strong{\code{minr}}: a scalar minimum valid number of rows.
+\item \strong{\code{minc}}: a scalar minimum valid number of columns.
+\item \strong{\code{max}}: a scalar maximum valid length/number of element.
+\item \strong{\code{maxr}}: a scalar maximum valid number of rows.
+\item \strong{\code{maxc}}: a scalar maximum valid number of columns.
+\item \strong{\code{vals}}: a vector of valid values.
+\item \strong{\code{lt}}: a scalar less-than (exclusive upper) bound.
+\item \strong{\code{le}}: a scalar less-than-or-equal (inclusive upper) bound
+\item \strong{\code{ge}}: a scalar greater-than-or-equal (inclusive lower) bound.
+\item \strong{\code{gt}}: a scalar greater-than bound (exclusive lower) bound.
+}
 }
 
 \seealso{

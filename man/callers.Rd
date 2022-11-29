@@ -4,7 +4,7 @@
 \alias{callers}
 \alias{caller}
 \alias{ncallers}
-\title{Functions in the Call Stack}
+\title{Generations of functions in the call stack}
 \usage{
 callers(gens = NULL)
 
@@ -13,25 +13,21 @@ caller()
 ncallers()
 }
 \arguments{
-\item{gens}{A \link[cmp_psw_vec]{complete positive whole-number vec} giving
-the number(s) of generations back in the function call stack to go.}
+\item{gens}{A \link[cmp_psw_vec]{complete positive whole-number vec} giving the number(s) of generations back in the function call stack to go.}
 }
 \value{
-\tabular{ll}{
-FUNCTION     \tab RETURN VALUE                                          \cr
-\code{ncallers}   \tab An integer scalar.                                    \cr
-\code{callers}    \tab A character vector.                                   \cr
-\code{caller}     \tab A character scalar.                                     }
+\itemize{
+\item \strong{\code{ncallers}}: an integer scalar.
+\item \strong{\code{callers}}: a character vector.
+\item \strong{\code{caller}}: a character scalar.
+}
 }
 \description{
-\tabular{ll}{
-FUNCTION     \tab WHAT IT DOES                                          \cr
-\code{ncallers}   \tab Gets the number of functions in the call stack.       \cr
-\code{callers}    \tab Get names of all calling functions, with the immediate
-calling function in the first position and, if \code{gens.} is
-not \code{NULL}, selects the \code{gens.}-th element(s) from the
-call stack.                                           \cr
-\code{caller}     \tab Gets the name of the immediate calling function.        }
+\itemize{
+\item \strong{\code{ncallers}}: gets the number of functions in the call stack.
+\item \strong{\code{callers}}: gets names of all calling functions, with the immediate calling function in the first position and, if \code{gens.} is not \code{NULL}, selects the \code{gens.}-th element(s) from the call stack.
+\item \strong{\code{caller}}: gets the name of the immediate calling function.
+}
 }
 \examples{
 fun.a <- function() {A <- 0; fun.b()}
@@ -58,13 +54,12 @@ fun.a()
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -75,6 +70,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -82,6 +78,7 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

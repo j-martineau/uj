@@ -1,28 +1,19 @@
-#' @title Base + Extended Class Properties
 #' @family props
-#' @description \tabular{ll}{
-#'   FUNCTION          \tab WHAT IT DOES                                     \cr
-#'   `bbb_ccc`         \tab Evaluates whether `x` matches the base property
-#'                          specified in the argument `ccc` and matches the
-#'                          extended class specified in the argument `ccc`
-#'                          subject to any restrictions in `...`.            \cr
-#'   `BBB_CCC`         \tab Evaluates whether `x` matches base property `BBB`
-#'                          and extended class `CCC` subject to any restrictions
-#'                          in `...` where `BBB` and `CCC` are placeholders for
-#'                          any given base property and any given extended class
-#'                          property, respectively.                          \cr
-#'   `bbb_ccc_props`   \tab Gets a character vector of all possible base +
-#'                          extended class properties.                         }
+#' @title Base + extended class properties
+#' @description \itemize{
+#'   \item **`bbb_ccc`**: evaluates whether `x` matches the base property specified in the argument `ccc` and matches the extended class specified in the argument `ccc` subject to any restrictions in `...`.
+#'   \item **`xxx_yyy`**: evaluates whether `x` matches base property `xxx` and extended class `yyy` subject to any restrictions in `...` where `xxx` and `yyy` are placeholders for any given base property and any given extended class property, respectively.
+#'   \item **`bbb_ccc_props`**: gets a character vector of all possible base + extended class properties.
+#' }
 #' @param x An R object
 #' @param bbb A character scalar containing a base property from `bbb_props()`.
-#' @param ccc A character scalar containing an extended class property from
-#'   `ccc_props()`.
+#' @param ccc A character scalar containing an extended class property from `ccc_props()`.
 #' @inheritDotParams meets
-#' @inheritSection meets Specifying Count and Value Restrictions
-#' @return \tabular{ll}{
-#'   FUNCTION               \tab RETURN VALUE                                \cr
-#'   `ccc_mmm_props`        \tab A character vector.                         \cr
-#'   `ccc_mmm`, `CCC_MMM`   \tab A logical scalar.                             }
+#' @inheritSection meets Specifying count and value restrictions
+#' @return \itemize{
+#'   \item **`ccc_mmm_props`**: a character vector.
+#'   \item **`ccc_mmm, xxx_yyy`**: a logical scalar.
+#' }
 #' @export
 bbb_ccc <- function(x, bbb, ccc, ...) {
   BBB <- c("atm", "nil", "pop", "rcr")

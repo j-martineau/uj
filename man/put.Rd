@@ -13,43 +13,35 @@ putr(x, v, r)
 putc(x, v, c)
 }
 \arguments{
-\item{x}{Object into which values will be placed. May be a \link[=ivec]{vec},
-\link[ivls]{vlist}, matrix, or data.frame.}
+\item{x}{For \code{put}, a vector or \link[=ccc]{vlist}. For \code{putc} and \code{putr}, a data.frame or matrix.}
 
-\item{v}{A vector of replacement values.}
+\item{v}{A vector of replacement values. Must be of the same length as \code{e} for \code{put}. Length must equal the number of \code{nrow(x)} for \code{putc}. Length must equal the \code{ncol(x)} for \code{putr}}
 
-\item{e}{A \link[=cmp_ind_vec]{complete indexer vec} or
-\link[=cmp_psw_scl]{complete positive whole-number scalar} indexing
-element(s) to replace.}
+\item{e}{A \link[=cmp_ind_vec]{complete indexer vec} of length equal to that of \code{v}.}
 
-\item{r, c}{A \link[=cmp_ind_scl]{complete indexer scalar} indicating row or
-column to replace, respectively.}
+\item{r, c}{\link[=cmp_ind_scl]{Complete indexer scalars} indicating row or column to replace, respectively.}
 }
 \value{
 An object of the same class and dimension as \code{x}.
 }
 \description{
-\tabular{ll}{
-FUNCTION   \tab WHAT IT DOES                                            \cr
-\code{put}      \tab Put values of \code{v} into \code{e}-indexed elements of the vector
-or \link[=ivls]{vlist} \code{x}.                             \cr
-\code{putr}     \tab Put the vector \code{v} into the \code{r}-indexed row of the matrix
-or data frame \code{x}.                                      \cr
-\code{putc}     \tab or \link[=ivls]{vlist} \code{x}.                             \cr
-\code{putr}     \tab Put the vector \code{v} into the \code{c}-indexed column of the
-matrix or data frame \code{x}.                                 }
+(These functions are not error checked.)
+\itemize{
+\item \strong{\code{put}}: puts values of \code{v} into \code{e}-indexed elements of \code{x} (assumed to be a vector or \link[=ccc]{vlist}).
+\item \strong{\code{putc}}: puts the vector \code{v} into the \code{c}-indexed column of \code{x} (assumed to be a data.frame or matrix).
+\item \strong{\code{putr}}: puts the vector \code{v} into the \code{r}-indexed row of \code{x} (assumed to be a data.frame or matrix).
+}
 }
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -60,12 +52,14 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{reclass}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

@@ -9,7 +9,7 @@
 \alias{dpjoin}
 \alias{dplab}
 \alias{dpmod}
-\title{Wraps of Functions from Package \code{dplyr}}
+\title{Thin wrappers of \code{dplyr} functions}
 \usage{
 dpagg(.data, ..., .groups = NULL)
 
@@ -70,7 +70,7 @@ or when \code{summarise()} is called from a function in a package.}
 
 \item{x}{A data.frame}
 
-\item{keys}{A character vector naming grouping variables in \code{x}.}
+\item{keys}{A \link[=cmp_chr_vec]{complete character vec} naming grouping variables in \code{x}.}
 
 \item{by}{A character vector of variables to join by.
 
@@ -106,18 +106,15 @@ output?}
 A data.frame.
 }
 \description{
-The following table describes the wraps this group of functions
-covers:\tabular{ll}{
-WRAPPER    \tab DPLYR FUNCTION                                   \cr
-\code{dpagg}    \tab \code{\link[dplyr]{summarize}}                        \cr
-\code{dpall}    \tab \code{\link[dplyr]{all_of}}                           \cr
-\code{dpjoin}   \tab \code{\link[dplyr]{left_join}}                        \cr
-\code{dplab}    \tab \code{\link[dplyr]{rename}}                           \cr
-\code{dpn}      \tab \code{\link[dplyr]{n}}                                \cr
-\code{dpmod}    \tab \code{\link[dplyr]{mutate}}                             }
-The function \code{dpgrp} wraps \code{dplyr::group_by}, but with limited
-functionality: Limited to a data.frame (\code{x}) and a character vector naming
-grouping variables (\code{keys}).
+\itemize{
+\item \strong{\code{dpn}}: thinly wraps \code{\link[dplyr]{n}}.
+\item \strong{\code{dpagg}} thinly wraps \code{\link[dplyr]{summarize}}.
+\item \strong{\code{dpall}}: thinly wraps \code{\link[dplyr]{all_of}}.
+\item \strong{\code{dplab}}: thinly wraps \code{\link[dplyr]{rename}}.
+\item \strong{\code{dpmod}}: thinly wraps \code{\link[dplyr]{mutate}}.
+\item \strong{\code{dpjoin}}: thinly wraps \code{\link[dplyr]{left_join}}.
+\item \strong{\code{dpgrp}}: wraps \code{\link[dplyr]{group_by}} with limited functionality, accepting only a data.frame (\code{x}) and a character vector naming grouping variables (\code{keys}).
+}
 }
 \section{Useful functions}{
 
@@ -301,6 +298,7 @@ Other wraps:
 \code{\link{wraps_base}},
 \code{\link{wraps_data_table}},
 \code{\link{wraps_gg}},
+\code{\link{wraps_graphics}},
 \code{\link{wraps_readr}},
 \code{\link{wraps_scales}},
 \code{\link{wraps_tibble}}

@@ -5,7 +5,7 @@
 \alias{vnames}
 \alias{vtable}
 \alias{v}
-\title{\code{uj} Defined Values}
+\title{Package \code{uj} defined values}
 \usage{
 values()
 
@@ -16,27 +16,20 @@ vtable()
 v(...)
 }
 \arguments{
-\item{...}{unquoted, comma-separated list of the names of constants to
-return. If multiple constants are specified, they are coerced into a single
-atomic vector result.}
+\item{...}{Unquoted, comma-separated list of the names of constants to return. If multiple constants are specified, they are coerced into a single atomic vector result.}
 }
 \value{
-\tabular{ll}{
-FUNCTION        \tab RETURN VALUE                                       \cr
-\code{values}        \tab A \link[=ivls]{vlist}.                             \cr
-\code{vtable}        \tab A data.frame.                                      \cr
-\code{v}, \code{vnames}   \tab A character vector.                                  }
-An atomic vector of length 1 or greater.
+\itemize{
+\item \strong{\code{values}}: a \link[=ivls]{vlist}.
+\item \strong{\code{vtable}}: a data.frame.
+\item \strong{\verb{v, vnames}}: a character vector.
+}
 }
 \description{
-\tabular{ll}{
-FUNCTION   \tab WHAT IT DOES                                            \cr
-\code{values}   \tab Get a named list where names are the arguments submitted to
-\code{v(...)}, element values are the values of the contents
-of the named element, and the attribute \code{'descriptions'}
-gives verbose descriptions if needed.                   \cr
-\code{vnames}   \tab Get a vector of named values available.                 \cr
-\code{vtable}   \tab Get a tibble with three columns: \code{name}, \code{value}, and
-\code{description}.                                          \cr
-\code{v}        \tab Gets one or more \code{uj} package values by name.             }
+\itemize{
+\item \strong{\code{values}}: gets a named list where names are the arguments submitted to \code{v(...)}, element values are the values of the contents of the named element, and the attribute \code{'descriptions'} gives verbose descriptions if needed.
+\item \strong{\code{vnames}}: gets a vector of named values available.
+\item \strong{\code{vtable}}: gets a tibble with three columns: \code{name}, \code{value}, and \code{description}.
+\item \strong{\code{v}}: retrieves one or more \code{uj} package values by name.
+}
 }

@@ -42,11 +42,7 @@ isqr(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec}
-containing one or more shape properties (i.e., from \code{sss_vals()}). Shape
-properties in \code{spec} may be pipe-delimited. If there are multiple shape
-properties in \code{spec}, \code{x} is inspected for any match to any shape property
-in \code{spec}.}
+\item{spec}{Either\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more shape properties (i.e., from \code{sss_vals()}). Shape properties in \code{spec} may be pipe-delimited. If there are multiple shape properties in \code{spec}, \code{x} is inspected for any match to any shape property in \code{spec}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -55,73 +51,51 @@ in \code{spec}.}
   }}
 }
 \value{
-\tabular{ll}{
-FUNCTIONS                       \tab RETURN VALUE                       \cr
-\code{sss_vals}                      \tab A character vector.                \cr
-\code{sss}                           \tab A character scalar or vector.      \cr
-\code{ixxx}, \code{isss}, \code{is_sss_spec}   \tab A logical scalar.                    }
+\itemize{
+\item \strong{\code{sss}}: a character scalar/vector.
+\item \strong{\code{sss_vals}}: a character vector.
+\item \strong{\verb{ixxx, isss, is_sss_spec}}: a logical scalar.
+}
 }
 \description{
-An object's shape properties have to do with the number of
-\link[=ddd]{defined dimensions} and/or \link[=eee]{effective dimensions}
-with some additional restrictions as follows:\tabular{lll}{
-NAME          \tab VALUE     \tab QUALIFYING OBJECTS                    \cr
-Empty         \tab \code{'emp'}   \tab Non-\code{NULL}, length-\code{1} objects.       \cr
-Point         \tab \code{'pnt'}   \tab Length-\code{1} vectors, length-\code{1}
-\link[=ivls]{vlists}, length-\code{1} arrays,
-and \verb{1 x 1} data.frames.              \cr
-Linear        \tab \code{'lin'}   \tab Length \verb{2+} vectors, length \verb{2+}
-\link[=ivls]{vlists}, length \verb{2+} arrays
-with multiple index positions in just
-\code{1} dimension, and data.frames with \code{1}
-row and multiple columns or \code{1} column
-and multiple rows.                    \cr
-Row           \tab \code{'row'}   \tab Matrices and data.frames with \code{1} row and
-multiple columns.                     \cr
-Column        \tab \code{'col'}   \tab Matrices and data.frames with \code{1} column
-and multiple rows.                    \cr
-Rectangular   \tab \code{'rct'}   \tab Matrices and data.frames with multiple
-rows and multiple columns.            \cr
-Square        \tab \code{'sqr'}   \tab Matrices and data.frames with multiple
-rows, multiple columns, and the same
-number of rows and columns.           \cr
-Solid         \tab \code{'sld'}   \tab Arrays with multiple index positions in
-\verb{3+} dimensions.                        }
-Functions in this family are:\tabular{ll}{
-FUNCTION        \tab WHAT IT DOES                                       \cr
-\code{sss}           \tab Gets a character vector containing all shape
-properties possessed by \code{x}                        \cr
-\code{ixxx}          \tab Evaluates whether \code{x} possesses the shape property
-\code{xxx} (a placeholder for any given shape property
-value), subject to any restrictions in \code{...}.      \cr
-\code{isss}          \tab Evaluates whether \code{x} possesses one or more
-(possibly pipe-delimited) shape properties in
-\code{spec}, subject to any restrictions in \code{...}.      \cr
-\code{sss_props}     \tab Gets a character vector of all possible shape
-property values.                                   \cr
-\code{is_sss_spec}   \tab Evaluates whether \code{spec} is a valid shape property
-specification.                                       }
+Shape property values, names, and qualifying objects are as follows:
+\itemize{
+\item \strong{\code{'emp'}} (empty): non-\code{NULL}, length-\code{1} objects.
+\item \strong{\code{'pnt'}} (point): \verb{1 x 1} data/frames and arrays, vectors, \link[=ivls]{vlists} with \code{1} element.
+\item \strong{\code{'col'}} (column): \verb{1 x 2+} data.frames and matrices.
+\item \strong{\code{'row'}} (row): \verb{2+ x 1} data.frames and matrices.
+\item \strong{\code{'lin'}} (linear): length \verb{2+} vectors and vlists, length \verb{2+} arrays elements in just \code{1} dimension, and column and row data.frames and matrices.
+\item \strong{\code{'rct'}} (rectangular): \verb{2+ x 2+} data.frames and matrices.
+\item \strong{\code{'sqr'}} (square): \verb{n × n} matrices where \code{n > 1}.
+\item \strong{\code{'sld'}} (solid): arrays with \verb{2+} elements in \verb{3+} dimensions.
 }
-\section{Specifying Count and Value Restrictions}{
- Specifying restrictions in
-\code{...} is optional. The full set of recognized arguments names are defined
-in the following table along with the properties each
-specifies:\tabular{ll}{
-NAME     \tab WHAT IT SPECIFIES                                         \cr
-\code{n}      \tab Vector of valid lengths/numbers of elements.              \cr
-\code{nr}     \tab Vector of valid numbers of rows.                          \cr
-\code{nc}     \tab Vector of valid numbers of columns.                       \cr
-\code{min}    \tab Scalar minimum valid length/number of element.            \cr
-\code{minr}   \tab Scalar minimum valid number of rows.                      \cr
-\code{minc}   \tab Scalar minimum valid number of columns.                   \cr
-\code{max}    \tab Scalar maximum valid length/number of element.            \cr
-\code{maxr}   \tab Scalar maximum valid number of rows.                      \cr
-\code{maxc}   \tab Scalar maximum valid number of columns.                   \cr
-\code{vals}   \tab Vector of valid values.                                   \cr
-\code{lt}     \tab Scalar less-than (exclusive upper) bound.                 \cr
-\code{le}     \tab Scalar less-than-or-equal (inclusive upper) bound         \cr
-\code{ge}     \tab Scalar greater-than-or-equal (inclusive lower) bound.     \cr
-\code{gt}     \tab Scalar greater-than bound (exclusive lower) bound.          }
+\strong{Functions}
+\itemize{
+\item \strong{\code{sss}}: gets a vector of shape properties applicable to \code{x}.
+\item \strong{\code{isss}}: evaluates whether \code{x} has one or more (possibly pipe-delimited) shape properties in \code{spec}, subject to any restrictions in \code{...}.
+\item \strong{\code{ixxx}}: evaluates whether \code{x} has the shape property \code{xxx} subject to any restrictions in \code{...} (where \code{xxx} is a placeholder for any shape property).
+\item \strong{\code{sss_props}}: gets a vector of all possible shape properties.
+\item \strong{\code{is_sss_spec}}: evaluates whether \code{spec} is a valid shape property specification.
+}
+}
+\section{Specifying count and value restrictions}{
+ Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
+\itemize{
+\item \strong{\code{n}}: a vector of valid lengths/numbers of elements.
+\item \strong{\code{nr}}: a vector of valid numbers of rows.
+\item \strong{\code{nc}}: a vector of valid numbers of columns.
+\item \strong{\code{min}}: a scalar minimum valid length/number of element.
+\item \strong{\code{minr}}: a scalar minimum valid number of rows.
+\item \strong{\code{minc}}: a scalar minimum valid number of columns.
+\item \strong{\code{max}}: a scalar maximum valid length/number of element.
+\item \strong{\code{maxr}}: a scalar maximum valid number of rows.
+\item \strong{\code{maxc}}: a scalar maximum valid number of columns.
+\item \strong{\code{vals}}: a vector of valid values.
+\item \strong{\code{lt}}: a scalar less-than (exclusive upper) bound.
+\item \strong{\code{le}}: a scalar less-than-or-equal (inclusive upper) bound
+\item \strong{\code{ge}}: a scalar greater-than-or-equal (inclusive lower) bound.
+\item \strong{\code{gt}}: a scalar greater-than bound (exclusive lower) bound.
+}
 }
 
 \seealso{

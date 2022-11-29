@@ -1,19 +1,17 @@
 #' @name wraps_dplyr
 #' @family wraps
-#' @title Wraps of Functions from Package `dplyr`
-#' @description The following table describes the wraps this group of functions
-#'   covers:\tabular{ll}{
-#'     WRAPPER    \tab DPLYR FUNCTION                                   \cr
-#'     `dpagg`    \tab \code{\link[dplyr]{summarize}}                        \cr
-#'     `dpall`    \tab \code{\link[dplyr]{all_of}}                           \cr
-#'     `dpjoin`   \tab \code{\link[dplyr]{left_join}}                        \cr
-#'     `dplab`    \tab \code{\link[dplyr]{rename}}                           \cr
-#'     `dpn`      \tab \code{\link[dplyr]{n}}                                \cr
-#'     `dpmod`    \tab \code{\link[dplyr]{mutate}}                             }
-#'   The function `dpgrp` wraps `dplyr::group_by`, but with limited
-#'   functionality: Limited to a data.frame (`x`) and a character vector naming
-#'   grouping variables (`keys`).
+#' @title Thin wrappers of `dplyr` functions
+#' @description \itemize{
+#'   \item **`dpn`**: thinly wraps \code{\link[dplyr]{n}}.
+#'   \item **`dpagg`** thinly wraps \code{\link[dplyr]{summarize}}.
+#'   \item **`dpall`**: thinly wraps \code{\link[dplyr]{all_of}}.
+#'   \item **`dplab`**: thinly wraps \code{\link[dplyr]{rename}}.
+#'   \item **`dpmod`**: thinly wraps \code{\link[dplyr]{mutate}}.
+#'   \item **`dpjoin`**: thinly wraps \code{\link[dplyr]{left_join}}.
+#'   \item **`dpgrp`**: wraps \code{\link[dplyr]{group_by}} with limited functionality, accepting only a data.frame (`x`) and a character vector naming grouping variables (`keys`).
+#' }
 #' @param x A data.frame
+#' @param keys A \link[=cmp_chr_vec]{complete character vec} naming grouping variables in `x`.
 #' @return A data.frame.
 #' @inherit dplyr::summarize
 #' @export
@@ -30,7 +28,6 @@ dpn <- function() {dplyr::n()}
 dpall <- function(x) {dplyr::all_of(x)}
 
 #' @rdname wraps_dplyr
-#' @param keys A character vector naming grouping variables in \code{x}.
 #' @export
 dpgrp <- function(x, keys) {run("dplyr::group_by(x, ", paste0(keys, collapse = ", "), ")")}
 

@@ -1,21 +1,20 @@
 #' @name removal
 #' @family extensions
-#' @title Remove Various Objects or Characteristics
-#' @description \tabular{ll}{
-#'   FUNCTION   \tab WHAT IT DOES \cr
-#'   `xat`      \tab Remove one or more attributes by name.                  \cr
-#'   `xat0`     \tab Remove all attributes.                                  \cr
-#'   `xcls`     \tab Remove one or more class attributes by name.            \cr
-#'   `xwarn`    \tab Purge all warnings.                                     \cr
-#'   `xplot`    \tab Purge all plots (and if `x` is not `NULL`, print it).   \cr
-#'   `xcon`     \tab Clear the console.                                        }
+#' @title Remove objects or object characteristics
+#' @description \itemize{
+#'   \item **`xat`**: remove one or more attributes by name.
+#'   \item **`xat0`**: removes all attributes.
+#'   \item **`xcls`**: removes one or more class attributes by name.
+#'   \item **`xwarn`**: purges all warnings.
+#'   \item **`xplot`**: purges all plots (and if `x` is not `NULL`, print it).
+#'   \item **`xcon`**: clears the console.
+#' }
 #' @param x An R object.
-#' @param ... One or more \link[=cmp_chr_vec]{complete character vecs}
-#'   containing names of attributes or classes to remove.
-#' @return \tabular{ll}{
-#'   FUNCTION                   \tab RETURN VALUE                            \cr
-#'   `xat, xat0, xcls`          \tab An R object.                            \cr
-#'   `xwarn`, `splot`, `xcon`   \tab `NULL`. Called for side effects.          }
+#' @param ... One or more \link[=cmp_chr_vec]{complete character vecs} containing names of attributes or classes to remove.
+#' @return \itemize{
+#'   \item **`xat, xat0, xcls`**: An R object.
+#'   \item **`xwarn, splot, xcon`**: `NULL` (called for side effects).
+#' }
 #' @export
 xat <- function(x, ...) {for (a in av(...)) {attr(x, a) <- NULL}; x}
 

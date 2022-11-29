@@ -2,32 +2,31 @@
 % Please edit documentation in R/reclass.R
 \name{reclass}
 \alias{reclass}
-\title{Set Object Class}
+\title{Set object class}
 \usage{
 reclass(x, cls)
 }
 \arguments{
 \item{x}{An R object.}
 
-\item{cls}{\link[=cmp_chr_vec]{Complete character vec} of classes to apply.}
+\item{cls}{A \link[=cmp_chr_vec]{complete character vec} of classes to apply.}
 }
 \value{
 An object of class \code{cls}.
 }
 \description{
-Set Object Class
+Set object class
 }
 \seealso{
 Other extensions: 
 \code{\link{atomize}},
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -38,12 +37,14 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

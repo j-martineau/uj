@@ -13,11 +13,9 @@ compatible_mats(b, ...)
 compatible_dtfs(b, ...)
 }
 \arguments{
-\item{...}{An arbitrary number of arguments to be checked for compatibility
-with each other.}
+\item{...}{An arbitrary number of arguments to be checked for compatibility with each other.}
 
-\item{rec.}{A non-\code{NA} logical scalar indicating whether arguments in
-\code{...} must be recyclable to be compatible.}
+\item{rec.}{A non-\code{NA} logical scalar indicating whether arguments in \code{...} must be recyclable to be compatible.}
 
 \item{b}{Either \code{'c'} for column binding or \code{'r'} for row binding.}
 }
@@ -25,23 +23,11 @@ with each other.}
 A logical scalar.
 }
 \description{
-\tabular{ll}{
-FUNCTION            \tab WHAT IT DOES                                   \cr
-\code{compatible}        \tab Evaluates whether all \code{...} arguments are
-compatible, meaning all numeric, all character,
-all logical, all unordered factor with the same
-evels, or ordered factor with the same levels in
-the same order.                                \cr
-\code{compatible_dtfs}   \tab Evaluates whether all \code{...} arguments are
-\link[=atm_dtf]{atomic data.frames}. For row
-binding, also evaluates whether they have the same
-number of columns and all corresponding columns
-are compatible. For column binding, also evaluates
-whether they have the same number of rows.     \cr
-\code{compatible_atms}   \tab Evaluate whether all \code{...} arguments are
-compatible matrices and (for row binding) have the
-same number of columns or (for column binding)
-have the same number of rows.                    }
+\itemize{
+\item \strong{\code{compatible}}: Evaluates whether all \code{...} arguments are compatible, meaning all numeric, all character, all logical, all unordered factor with the same levels, or ordered factor with the same levels in the same order.
+\item \strong{\code{compatible_dtfs}}: Evaluates whether all \code{...} arguments are \link[=atm_dtf]{atomic data.frames}. For row binding, also evaluates whether they have the same number of columns and all corresponding columns are compatible. For column binding, also evaluates whether they have the same number of rows.
+\item \strong{\code{compatible_atms}}: Evaluates whether all \code{...} arguments are compatible matrices and (for row binding) have the same number of columns or (for column binding) have the same number of rows.
+}
 }
 \examples{
 N0 <- 0

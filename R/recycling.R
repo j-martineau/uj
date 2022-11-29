@@ -1,39 +1,23 @@
 #' @name recycling
 #' @family extensions
 #' @family environments
-#' @title Recycling and Recyclability
-#' @description \tabular{ll}{
-#'   FUNCTION         \tab WHAT IT DOES                                      \cr
-#'   `recyclable_n`   \tab Check whether the vector of lengths in `n` represent
-#'                         recyclable arguments subject to the setting in
-#'                         `targ`.                                           \cr
-#'   `recyclable`     \tab Evaluates whether `...` arguments are recyclable
-#'                         subject to settings in the arguments `n.`, `min.`,
-#'                         `max.`, and `targ.`.                              \cr
-#'   `recycle`        \tab Recycle `...` arguments in the environment of the
-#'                        calling function subject to settings in the arguments
-#'                        `n.`, `min.`, `max.`, and `targ.`.                   }
-#' @param ... Named arguments to be recycled in the environment of the calling
-#'   function.
-#' @param lengths. \link[=cmp_psw_vec]{Complete positive whole-number vec} of
-#'   lengths to check for recyclability.
-#' @param targ. \link[=cmp_psw_scl]{Complete positive whole-number scalar}
-#'   giving the target length of recycled arguments.
-#' @param n. For `recyclable_n`, a \link[=cmp_psw_vec]{complete positive
-#'   whole-number vec} giving the lengths of arguments to be recycled; for
-#'   `recyclable` and `recycle`, either `NULL` or a
-#'   \link[=cmp_psw_vec]{complete positive whole-number vec} giving the set of
-#'   valid recycled argument lengths.
-#' @param min. `NULL` or \link[=cmp_psw_scl]{complete positive whole-number
-#'   scalar} giving the minimum valid recycled argument length.
-#' @param max. `NULL` or \link[=cmp_psw_scl]{complete positive whole-number
-#'   scalar} giving the maximum valid recycled argument length.
-#' @param err. \link[=cmp_lgl_scl]{Complete logical scalar} indicating whether
-#'   to throw an error if the `...` arguments are not recyclable.
-#' @return \tabular{ll}{
-#'   FUNCTIONS                      \tab RETURN VALUE                        \cr
-#'   `recyclable_n`, `recyclable`   \tab A logical scalar.                   \cr
-#'   `recycle`                      \tab `NULL`. Called for side effect.       }
+#' @title Recycling and recyclability
+#' @description \itemize{
+#'   \item **`recycle`**: recycles `...` arguments in the environment of the calling function subject to any settings in arguments `n.`, `min.`, `max.`, and `targ.`.
+#'   \item **`recyclable`**: evaluates whether `...` arguments are recyclable subject to any settings in arguments `n.`, `min.`, `max.`, and `targ.`.
+#'   \item **`recyclable_n`**: checks whether the vector of lengths in `n` represent recyclable arguments subject to the setting in `targ`.
+#' }
+#' @param ... Named arguments to be recycled in the environment of the calling function.
+#' @param lengths. A \link[=cmp_psw_vec]{complete positive whole-number vec} of lengths to check for recyclability.
+#' @param targ. A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the target length of recycled arguments.
+#' @param n. For `recyclable_n`, a complete positive whole-number vec giving the lengths of arguments to be recycled; for `recyclable` and `recycle`, either `NULL` or a complete positive whole-number vec giving the set of valid recycled argument lengths.
+#' @param min. `NULL` or complete positive whole-number scalar giving the minimum valid recycled argument length.
+#' @param max. `NULL` or complete positive whole-number scalar giving the maximum valid recycled argument length.
+#' @param err. A non-`NA` logical scalar indicating whether to throw an error if the `...` arguments are not recyclable.
+#' @return \itemize{
+#'   \item **`recycle`**: `NULL` (called for side effect).
+#'   \item **`recyclable_n, recyclable`**: a logical scalar.
+#' }
 #' @export
 recyclable_n <- function(n, targ = max(n)) {
   errs <- c(f0(cmp_psw_vec(n)   , NULL, "\n \u2022 [n] must be a complete positive whole-number vec (?cmp_psw_vec)."),

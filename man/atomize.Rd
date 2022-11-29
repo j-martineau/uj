@@ -4,7 +4,7 @@
 \alias{atomize}
 \alias{a}
 \alias{av}
-\title{Atomize to a Vector of Atomic Values}
+\title{Atomize (reduce arguments to an atomic vector)}
 \usage{
 a(...)
 
@@ -14,12 +14,10 @@ av(...)
 \item{...}{Arguments to be atomized.}
 }
 \value{
-A single atomic vector containing all constituent atomic values in
-the full set of arguments supplied in \code{...}.
+A single atomic vector containing all constituent atomic values in the full set of arguments supplied in \code{...}.
 }
 \description{
-Reduce all \code{...} arguments to a single atomic vector of
-atomic elements without any additional attributes.
+Reduce all \code{...} arguments to a single atomic vector of atomic elements without any additional attributes.
 }
 \examples{
 Fruits <- c("apples" , "bananas", "oranges")
@@ -33,14 +31,13 @@ av("celery", "beets", "lettuce")
 }
 \seealso{
 Other extensions: 
-\code{\link{binfuns}},
+\code{\link{binary_failsafe}},
 \code{\link{callers}()},
 \code{\link{case}()},
 \code{\link{dots_uj}},
 \code{\link{envir_vals}},
 \code{\link{ex}()},
 \code{\link{failsafe}()},
-\code{\link{files_uj}},
 \code{\link{fork}()},
 \code{\link{fsub}()},
 \code{\link{is_failsafe}},
@@ -51,6 +48,7 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{os}()},
+\code{\link{paths}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{put}()},
@@ -58,6 +56,7 @@ Other extensions:
 \code{\link{recycling}},
 \code{\link{removal}},
 \code{\link{run}()},
+\code{\link{r}()},
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uj_logicals}},

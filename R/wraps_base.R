@@ -1,16 +1,15 @@
 #' @name wraps_base
 #' @family wraps
-#' @title Thin Wraps of Functions from Package `base`
-#' @description \tabular{ll}{
-#'   WRAPPER   \tab BASE FUNCTION                                            \cr
-#'   `u` (A)   \tab \code{\link[base]{unique}}                               \cr
-#'   `up`      \tab \code{\link[base]{ceiling}}                              \cr
-#'   `dn`      \tab \code{\link[base]{floor}}                                \cr
-#'   `mid`     \tab \code{\link[base]{substr}}                               \cr
-#'   `spf`     \tab \code{\link[base]{sprintf}}                              \cr
-#'   `levs`    \tab \code{\link[base]{levels}}                                 }
-#' (A) `u` differs from \code{\link{uv}} in that `uv` \link[=a]{atomizes} an
-#'  arbitrary number of `...` arguments before calling `unique`.
+#' @title Thin wrappers for `base` functions
+#' @description \itemize{
+#'   \item **`u`**: thinly wraps code{\link[base]{unique}}.
+#'   \item **`up`**: thinly wraps \code{\link[base]{ceiling}}.
+#'   \item **`dn`**: thinly wraps \code{\link[base]{floor}}.
+#'   \item **`mid`**: thinly wraps \code{\link[base]{substr}}.
+#'   \item **`spf`**: thinly wraps \code{\link[base]{sprintf}}.
+#'   \item **`levs`**: thinly wraps \code{\link[base]{levels}}.
+#' }
+#' NOTE: `u` differs from \code{\link{uv}} in that `uv` \link[=a]{atomizes} an arbitrary number of `...` arguments before calling `unique`.
 #' @inherit base::unique
 #' @export
 u <- function(x) {base::unique(x)}

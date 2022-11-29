@@ -4,7 +4,7 @@
 \alias{wraps_graphics}
 \alias{strh}
 \alias{strw}
-\title{Tnin Wraps for Functions in Package \code{graphics}}
+\title{Thin wrappers of \code{graphics} functions.}
 \usage{
 strh(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...)
 
@@ -29,10 +29,10 @@ Numeric vector with the same length as \code{s}, giving the estimate of
   width and height 0 (as they are not plotted).
 }
 \description{
-\tabular{ll}{
-WRAPPER   \tab GRAPHICS FUNCTION                                        \cr
-\code{strh}    \tab \code{\link[graphics]{strheight}}.                       \cr
-\code{strw}    \tab \code{\link[graphics]{strwidth}}.                          }
+\itemize{
+\item \strong{\code{strh}}: thinly wraps \code{\link[graphics]{strheight}}.
+\item \strong{\code{strw}}: thinly wraps \code{\link[graphics]{strwidth}}.
+}
 }
 \details{
 Note that the \sQuote{height} of a string is determined only by the
@@ -79,5 +79,13 @@ strheight(sumex)
 par(op)  #- reset to previous setting
 }
 \seealso{
-\code{\link[graphics]{text}}, \code{\link{nchar}}
+Other wraps: 
+\code{\link{wraps_base}},
+\code{\link{wraps_data_table}},
+\code{\link{wraps_dplyr}},
+\code{\link{wraps_gg}},
+\code{\link{wraps_readr}},
+\code{\link{wraps_scales}},
+\code{\link{wraps_tibble}}
 }
+\concept{wraps}
