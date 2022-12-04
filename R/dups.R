@@ -1,5 +1,3 @@
-#' @name dups
-#' @family values
 #' @title Duplicate values.
 #' @description Extended functionality for \code{\link[base]{duplicated}}.
 #' \itemize{

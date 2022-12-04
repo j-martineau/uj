@@ -12,7 +12,7 @@
 \alias{as_uno}
 \title{Coerce to base or extended mode.}
 \usage{
-as_clr(x, na = F)
+as_clr(x, na = FALSE)
 
 as_fun(x)
 
@@ -31,33 +31,68 @@ as_uno(x, levs)
 \arguments{
 \item{x}{For \code{as_clr}, an object of mode character; for \code{as_fun}, a character scalar function name or a function object; for \code{as_ord} and \code{as_uno}, an atomic object; and for all others, any R object.}
 
-\item{na}{A non-\code{NA} logical scalar indicating whether \code{NA} values qualify as missing color representations.}
+\item{na}{A non-\code{NA} logical scalar indicating whether \code{NA} values are acceptable.}
 
 \item{...}{Further arguments passed to or from other methods.}
 
 \item{levs}{A \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for \code{as_ord}).}
 }
 \value{
-\itemize{
-\item \strong{\code{as_fun}}: a function object.
-\item \strong{\code{as_int}}: an object of mode \code{'integer'}.
-\item \strong{\code{as_num}}: an object of mode \code{'numeric'}.
-\item \strong{\code{as_lgl}}: an object of mode \code{'logical'}.
-\item \strong{\code{as_ord}}: an object of mode \verb{'ordered'`` (factor). \\item **}as_uno\verb{**: an object of \link[=mmm]\{extended mode\} }'uno'\verb{ (unordered factor). \\item **}as_clr, as_chr\verb{**: an object of mode }'character'`.
+\tabular{rl}{
+\code{as_chr}   \tab An object of mode \code{'character'}.
+\cr \code{as_clr}   \tab An object of extended mode \code{'clr'} (color valued character).
+\cr \code{as_fun}   \tab A function object.
+\cr \code{as_int}   \tab An object of mode \code{'integer'}.
+\cr \code{as_lgl}   \tab An object of mode \code{'logical'}.
+\cr \code{as_num}   \tab An object of mode \code{'numeric'}.
+\cr \code{as_ord}   \tab An object of extended mode \code{'ord'} (ordered factor).
+\cr \code{as_ord}   \tab An object of extended mode \code{'uno'} (unordered factor).
 }
 }
 \description{
 Functions to coerce objects to \link[base:mode]{base mode} or \link[=mmm]{extended mode}:
-\itemize{
-\item \strong{\code{as_clr}}: coerces a valid R color representation of mode character to hexadecimal RGB character representation.
-\item \strong{\code{as_fun}}: returns \code{x} if it is a function, otherwise, search for a function named \code{x} and return it.
-\item \strong{\code{as_chr}}: thinly wraps \code{\link[base:as.character]{base::as.character}}.
-\item \strong{\code{as_int}}: thinly wraps \code{\link[base:as.integer]{base::as.integer}}.
-\item \strong{\code{as_num}}: thinly wraps \code{\link[base:as.numeric]{base::as.numeric}}.
-\item \strong{\code{as_lgl}}: thinly wraps \code{\link[base:as.logical]{base::as.logical}}.
-\item \strong{\code{as_ord}}: wraps \code{base::factor(x, levels = levs, ordered = TRUE)}.
-\item \strong{\code{as_uno}}: wraps \code{base::factor(x, levels = levs, ordered = FALSE)}.
+\tabular{rl}{
+\cr \code{as_clr}   \tab Coerces valid R character color representation values to hexadecimal character RGB color values.
+\cr            \tab  
+\cr \code{as_fun}   \tab Returns \code{x} if it is a function, otherwise, search for a function named \code{x} and return it.
+\cr            \tab  
+\cr \code{as_chr}   \tab Thinly wraps \code{\link[base:as.character]{base::as.character}}.
+\cr            \tab  
+\cr \code{as_int}   \tab Thinly wraps \code{\link[base:as.integer]{base::as.integer}}.
+\cr            \tab  
+\cr \code{as_num}   \tab Thinly wraps \code{\link[base:as.numeric]{base::as.numeric}}.
+\cr            \tab  
+\cr \code{as_lgl}   \tab Thinly wraps \code{\link[base:as.logical]{base::as.logical}}.
+\cr            \tab  
+\cr \code{as_ord}   \tab As extended mode ordered factor. Wraps \code{base::factor(x, levels = levs, ordered = TRUE)}.
+\cr            \tab  
+\cr \code{as_uno}   \tab As extended mode unordered factor. Wraps \code{base::factor(x, levels = levs, ordered = FALSE)}.
 }
+}
+\examples{
+bins. <- sample(c(0, 1), 10, replace = T)
+chrs. <- c("3.14", "2.72", "1.41")
+clrs. <- c("red", "#AABBCC", "#AABBCCDD", "blue")
+nums. <- c(pi, exp(1), sqrt(2))
+
+as_fun(unique)
+as_fun("unique")
+
+bins.
+as_lgl(bins.)
+
+chrs.
+as_num(chrs.)
+as_int(chrs.)
+
+clrs.
+as_clr(clrs.)
+
+nums.
+as_chr(nums.)
+
+as_uno(clrs., levs = unique(clrs.))
+as_ord(clrs., levs = sort(unique(clrs.)))
 }
 \seealso{
 Other props: 

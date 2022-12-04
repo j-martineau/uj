@@ -1,5 +1,4 @@
 #' @name hexdec
-#' @family math
 #' @title Convert non-negative whole numbers between decimal and hexadecimal
 #' @description \itemize{
 #'   \item **`todec`**: converts hexadecimal \link[=cmp_chr]{complete character object} `x` from hexadecimal to decimal. `x` may be formatted as either `'hhh...'` or `'#hhh...'` where `h` is a placeholder for a hexidecimal digit in either upper or lower case.

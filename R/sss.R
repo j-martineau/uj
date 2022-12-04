@@ -1,13 +1,3 @@
-.icol <- function(x) {f0(!(is.matrix(x) | is.data.frame(x)), F, nrow > 1 & ncol == 1)}
-.iemp <- function(x) {length(x) == 0 & !is.null(x)}
-.ilin <- function(x) {.ie1D(x)}
-.ipnt <- function(x) {.ie0D(x)}
-.irct <- function(x) {f0(!.ie2D(x), F, is.matrix(x) | is.data.frame(x))}
-.irow <- function(x) {f0(!(is.matrix(x) | is.data.frame(x)), F, nrow == 1 & ncol > 1)}
-.isld <- function(x) {.ieUD(x)}
-.isqr <- function(x) {is.matrix(x) & NROW(x) > 1 & NCOL(x) > 1 & NROW(x) == NCOL(x)}
-.ssss <- c("col", "emp", "lin", "pnt", "rct", "row", "sld", "sqr")
-
 #' @name sss
 #' @family props
 #' @title Shape properties

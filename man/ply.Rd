@@ -53,9 +53,6 @@ vlsply(x, fun, ..., proc. = NULL)
 
 \item{proc.}{\code{NULL} or a list of named elements with processing instructions. See the \emph{the \code{proc} argument} section.}
 }
-\value{
-Varies.
-}
 \description{
 (\code{norply}, \code{anyply}, \code{allply}, \code{oneply}, and \code{twoply} assume the result of applying \code{fun} is of mode 'logical')
 \itemize{
@@ -93,37 +90,3 @@ Varies.
 }
 }
 
-\seealso{
-Other extensions: 
-\code{\link{atomize}},
-\code{\link{binary_failsafe}},
-\code{\link{callers}()},
-\code{\link{case}()},
-\code{\link{dots_uj}},
-\code{\link{envir_vals}},
-\code{\link{ex}()},
-\code{\link{failsafe}()},
-\code{\link{fork}()},
-\code{\link{fsub}()},
-\code{\link{is_failsafe}},
-\code{\link{is_unq}()},
-\code{\link{make_uj}},
-\code{\link{n_is}()},
-\code{\link{n_th}()},
-\code{\link{naming}},
-\code{\link{na}()},
-\code{\link{os}()},
-\code{\link{paths}},
-\code{\link{pause}()},
-\code{\link{put}()},
-\code{\link{reclass}()},
-\code{\link{recycling}},
-\code{\link{removal}},
-\code{\link{run}()},
-\code{\link{r}()},
-\code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uj_logicals}},
-\code{\link{xb}()}
-}
-\concept{extensions}

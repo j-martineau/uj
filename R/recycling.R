@@ -1,5 +1,4 @@
 #' @name recycling
-#' @family extensions
 #' @family environments
 #' @title Recycling and recyclability
 #' @description \itemize{

@@ -1,6 +1,6 @@
 #' @name pals
-#' @family plots
 #' @family colors
+#' @family plotting
 #' @title Plotting palettes
 #' @description \itemize{
 #'   \item **`pal_colors`**: creates a color palette with the first `n` color values from `v(colors)`.

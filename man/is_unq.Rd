@@ -19,37 +19,3 @@ is_unq(x, a = T, na = F)
 \description{
 Evaluates whether \code{x} contains only only unique atomic values, with options for for atomizing before evaluation and for handling \code{NA} values.
 }
-\seealso{
-Other extensions: 
-\code{\link{atomize}},
-\code{\link{binary_failsafe}},
-\code{\link{callers}()},
-\code{\link{case}()},
-\code{\link{dots_uj}},
-\code{\link{envir_vals}},
-\code{\link{ex}()},
-\code{\link{failsafe}()},
-\code{\link{fork}()},
-\code{\link{fsub}()},
-\code{\link{is_failsafe}},
-\code{\link{make_uj}},
-\code{\link{n_is}()},
-\code{\link{n_th}()},
-\code{\link{naming}},
-\code{\link{na}()},
-\code{\link{os}()},
-\code{\link{paths}},
-\code{\link{pause}()},
-\code{\link{ply}()},
-\code{\link{put}()},
-\code{\link{reclass}()},
-\code{\link{recycling}},
-\code{\link{removal}},
-\code{\link{run}()},
-\code{\link{r}()},
-\code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uj_logicals}},
-\code{\link{xb}()}
-}
-\concept{extensions}

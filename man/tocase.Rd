@@ -36,16 +36,16 @@ An atomic character object or a \link[=chr_vls]{character vlist}.
 }
 \description{
 \itemize{
-\item \strong{\code{tocase}}: converts among lower, upper, sentence, and title case based on the value of the argument \code{case}.
 \item \strong{\code{lc}}: converts to lower case via \code{\link[base:tolower]{base::tolower}}.
 \item \strong{\code{uc}}: converts to upper case via \code{\link[base:toupper]{base::toupper}}.
-\item \strong{\verb{tosentence, sc}}: convert to sentence case via \code{\link[stringr:str_to_sentence]{stringr::str_to_sentence}}.
+\item \strong{\code{tocase}}: converts among lower, upper, sentence, and title case based on the value of the argument \code{case}.
 \item \strong{\verb{totitle, tc}}: convert to title case via \code{\link[stringr:str_to_title]{stringr::str_to_title}}.
+\item \strong{\verb{tosentence, sc}}: convert to sentence case via \code{\link[stringr:str_to_sentence]{stringr::str_to_sentence}}.
 }
 }
 \examples{
-TestTitle    <- "This is a Title"
 TestSentence <- "This is a sentence."
+TestTitle    <- "This is a Title"
 TestWords    <- "this is an ordered group of words"
 TestSet      <- c("a", "set", "of", "words")
 TestVector   <- c(TestTitle, TestSentence, TestWords, TestSet)
@@ -63,11 +63,13 @@ scase(TestVector, case = "UPPER")
 \seealso{
 Other strings: 
 \code{\link{blank}()},
-\code{\link{charn}()},
+\code{\link{chn}()},
 \code{\link{delim}},
 \code{\link{fsub}()},
+\code{\link{gr}},
 \code{\link{ipat}()},
 \code{\link{max_nch}()},
+\code{\link{mkd}},
 \code{\link{mkstr}},
 \code{\link{ox}()},
 \code{\link{pgrid}()},

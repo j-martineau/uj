@@ -74,21 +74,16 @@ Effective dimensionality of a non-empty object is defined as the number of dimen
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\itemize{
-\item \strong{\code{n}}: a vector of valid lengths/numbers of elements.
-\item \strong{\code{nr}}: a vector of valid numbers of rows.
-\item \strong{\code{nc}}: a vector of valid numbers of columns.
-\item \strong{\code{min}}: a scalar minimum valid length/number of element.
-\item \strong{\code{minr}}: a scalar minimum valid number of rows.
-\item \strong{\code{minc}}: a scalar minimum valid number of columns.
-\item \strong{\code{max}}: a scalar maximum valid length/number of element.
-\item \strong{\code{maxr}}: a scalar maximum valid number of rows.
-\item \strong{\code{maxc}}: a scalar maximum valid number of columns.
-\item \strong{\code{vals}}: a vector of valid values.
-\item \strong{\code{lt}}: a scalar less-than (exclusive upper) bound.
-\item \strong{\code{le}}: a scalar less-than-or-equal (inclusive upper) bound
-\item \strong{\code{ge}}: a scalar greater-than-or-equal (inclusive lower) bound.
-\item \strong{\code{gt}}: a scalar greater-than bound (exclusive lower) bound.
+\tabular{rl}{
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively..
+\cr                   \tab  
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively..
+\cr                   \tab  
+\cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr                   \tab  
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively..
+\cr                   \tab  
+\cr          \code{vals}   \tab A vector of valid values.
 }
 }
 

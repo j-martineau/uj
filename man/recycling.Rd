@@ -42,38 +42,6 @@ recycle(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL)
 }
 }
 \seealso{
-Other extensions: 
-\code{\link{atomize}},
-\code{\link{binary_failsafe}},
-\code{\link{callers}()},
-\code{\link{case}()},
-\code{\link{dots_uj}},
-\code{\link{envir_vals}},
-\code{\link{ex}()},
-\code{\link{failsafe}()},
-\code{\link{fork}()},
-\code{\link{fsub}()},
-\code{\link{is_failsafe}},
-\code{\link{is_unq}()},
-\code{\link{make_uj}},
-\code{\link{n_is}()},
-\code{\link{n_th}()},
-\code{\link{naming}},
-\code{\link{na}()},
-\code{\link{os}()},
-\code{\link{paths}},
-\code{\link{pause}()},
-\code{\link{ply}()},
-\code{\link{put}()},
-\code{\link{reclass}()},
-\code{\link{removal}},
-\code{\link{run}()},
-\code{\link{r}()},
-\code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uj_logicals}},
-\code{\link{xb}()}
-
 Other environments: 
 \code{\link{callers}()},
 \code{\link{envir_vals}},
@@ -81,4 +49,3 @@ Other environments:
 \code{\link{run}()}
 }
 \concept{environments}
-\concept{extensions}

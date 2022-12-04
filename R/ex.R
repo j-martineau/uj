@@ -1,4 +1,3 @@
-#' @family extensions
 #' @title Extract rows, columns, and/or elements
 #' @description Extract rows and/or columns of matrices/data.frames or elements of vectors/\link[=ivls]{vlists}.
 #' @param x Any valid R object.

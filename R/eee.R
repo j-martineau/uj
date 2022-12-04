@@ -1,10 +1,3 @@
-.ie0D <- function(x) {NROW(x) * NCOL(x) == 1 & length(x) == 1}
-.ie1D <- function(x) {1 %in% c(NROW(x), NCOL(x)) & NROW(x) * NCOL(x) > 1}
-.ie2D <- function(x) {f0(!is.array(x) & !is.data.frame(x), F, length(which(dim(x) > 1)) == 2)}
-.ieHD <- function(x) {f0(!is.array(x), F, length(which(dim(x) > 1)) > 2)}
-.ieUD <- function(x) {length(x) == 0}
-.eees <- c("e0D", "e1D", "e2D", "eHD", "eUD")
-
 #' @name eee
 #' @family props
 #' @title Effective dimensionality properties

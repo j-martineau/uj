@@ -95,37 +95,3 @@ rcn(x, u = T, err = F)
 \item \strong{\code{getnames}}: gets element, row, and/or column names with optional restrictions.
 }
 }
-\seealso{
-Other extensions: 
-\code{\link{atomize}},
-\code{\link{binary_failsafe}},
-\code{\link{callers}()},
-\code{\link{case}()},
-\code{\link{dots_uj}},
-\code{\link{envir_vals}},
-\code{\link{ex}()},
-\code{\link{failsafe}()},
-\code{\link{fork}()},
-\code{\link{fsub}()},
-\code{\link{is_failsafe}},
-\code{\link{is_unq}()},
-\code{\link{make_uj}},
-\code{\link{n_is}()},
-\code{\link{n_th}()},
-\code{\link{na}()},
-\code{\link{os}()},
-\code{\link{paths}},
-\code{\link{pause}()},
-\code{\link{ply}()},
-\code{\link{put}()},
-\code{\link{reclass}()},
-\code{\link{recycling}},
-\code{\link{removal}},
-\code{\link{run}()},
-\code{\link{r}()},
-\code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uj_logicals}},
-\code{\link{xb}()}
-}
-\concept{extensions}

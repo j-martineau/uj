@@ -1,4 +1,3 @@
-#' @family extensions
 #' @title Put values into objects
 #' @description (These functions are not error checked.)
 #' \itemize{

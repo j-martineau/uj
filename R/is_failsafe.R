@@ -1,7 +1,7 @@
 #' @name is_failsafe
 #' @family failsafe
+#' @family failsafe
 #' @family logicals
-#' @family extensions
 #' @title Failsafe `is` functions
 #' @description These functions **always** produce a `TRUE` or `FALSE` result unless identity-evaluating arguments (e.g., `identity(x)`) produce an error.
 #' \cr\cr

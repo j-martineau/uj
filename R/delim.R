@@ -57,7 +57,6 @@
 #'   \item **`da, dw, daX, daw, dww`**: a character scalar.
 #'   \item **`dawXY, dwwXY`**: a character scalar.
 #' }
-#' @export
 #' @examples
 #' # delimit across using delimiter '|'.
 #' # aliases paste(1:3, 4:6, sep = '|').
@@ -86,6 +85,7 @@
 #'
 #' # delimit within using colon, then again using pipe.
 #' dwwCP(1:3, 4:6)
+#' @export
 da <- function(d, ...) {
   errs <- .delim_errs(list(d = d, dots = list(...)), TRUE)
   if (!is.null(errs)) {stop(errs)}

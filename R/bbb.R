@@ -1,12 +1,3 @@
-.iatm <- function(x) {is.atomic(x) & !is.null(x)}
-.idef <- function(x) {!is.null(x)}
-.ifun <- function(x) {f0(is.function(x), T, f0(length(x) != 1 | !is.character(x), F, f0(is.na(x), F, !isERR(match.fun(x)))))}
-.inil <- function(x) {length(x) == 0}
-.inll <- function(x) {is.null(x)}
-.ipop <- function(x) {length(x) > 0}
-.ircr <- function(x) {is.recursive(x)}
-.bbbs <- c("atm", "def", "fun", "nil", "nll", "pop", "rcr")
-
 #' @family props
 #' @title Base properties
 #' @description An object's base properties are defined by its most basic structural properties as described in the following table:

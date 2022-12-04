@@ -1,7 +1,6 @@
 #' @name envir_vals
-#' @family extensions
 #' @family environments
-#' @title Objects in Environments of Calling Functions
+#' @title Objects in environments of calling functions
 #' @description All functions in this family operate in the environment of the calling function `gens` generations back in the call stack.
 #' \itemize{
 #'   \item **`vexists`**: checks for the existence of an object in the environment of the `gens`-specified calling function.
@@ -17,7 +16,6 @@
 #'   \item **`vget`**: an R object.
 #'   \item **`vset`**: `NULL` (called for side effect).
 #' }
-#' @export
 #' @examples
 #' fun.a <- function() {A <- 0; fun.b()}
 #' fun.b <- function() {B <- 1; fun.c()}
@@ -39,6 +37,7 @@
 #'   cat("\n vget('B', gens = 1) : ", vget('B', err = F, gens = 1))
 #' }
 #' fun.a()
+#' @export
 vexists <- function(name, err = T, gens = 1) {
   errs <- c(f0(cmp_chr_scl(name), NULL, "\n \u2022 [name] must be a complete character scalar (?cmp_chr_scl)."),
             f0(isTF(err)        , NULL, "\n \u2022 [err] must be TRUE or FALSE."),

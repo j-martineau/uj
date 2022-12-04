@@ -63,8 +63,7 @@ sstb(x, d, name = "string", parts = "part")
 }
 }
 \description{
-\strong{Function \code{ss}}
-\cr splits strings using the delimiter(s) in \code{d} following this sequence:
+\strong{\code{ss}} splits strings using the delimiter(s) in \code{d} following this sequence:
 \enumerate{
 \item Reduce \code{...} to an atomic vector of all collective atomic values.
 \item Convert the result to mode character.
@@ -73,8 +72,7 @@ sstb(x, d, name = "string", parts = "part")
 \item If \code{trm} is \code{TRUE}, trims white space (i.e., spaces, tabs, newlines) from both ends of each element of the result.
 \item If \code{sqz} is \code{TRUE}, removes leading and trailing white space and replaces any multi-character interior white-space strings inside the result with a single space.
 \item If \code{u} is \code{TRUE}, reduces the result to unique values.}
-\strong{Function \code{ch}}
-\cr Does the same as \code{ss} but with a blank string delimiter, resulting in a vector of single characters (if \code{sqz = TRUE}), also removes blank strings from the result.
+\strong{\code{ch}} does the same as \code{ss} but with a blank string delimiter, resulting in a vector of single characters (if \code{sqz = TRUE}), also removes blank strings from the result.
 \cr\cr
 \strong{Extension functions} are supplied for common delimiters, signified by codes appended to \code{ss} function names:\tabular{ll}{
 \emph{Code (name)}            \tab \emph{Delimiter invoked}
@@ -83,9 +81,9 @@ sstb(x, d, name = "string", parts = "part")
 \cr\code{'D'} (dot)           \tab\code{'.'}
 \cr\code{'B'} (broken pipe)   \tab\code{'¦'}
 }
-\strong{Function \code{uch}} reduces the result of \code{ch} to unique values.
+\strong{\code{uch}} reduces the result of \code{ch} to unique values.
 \cr\cr
-\strong{Function \code{sstb}} assumes that splitting each element of \code{x} along the delimiter \code{d} results vectors of the same length, which are placed into a data.frame. For example, the following console excerpt demonstrates a call to \code{sstb} and its result.
+\strong{\code{sstb}} assumes that splitting each element of \code{x} along the delimiter \code{d} results vectors of the same length, which are placed into a data.frame. For example, the following console excerpt demonstrates a call to \code{sstb} and its result.
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{> sstb(x = c('a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p'),
 +      d = '|', name = 'original', part = 'letter')
@@ -98,13 +96,21 @@ sstb(x, d, name = "string", parts = "part")
 }\if{html}{\out{</div>}}
 }
 \seealso{
+Other chars: 
+\code{\link{chn}()},
+\code{\link{max_nch}()},
+\code{\link{revstr}()},
+\code{\link{spacing}}
+
 Other strings: 
 \code{\link{blank}()},
-\code{\link{charn}()},
+\code{\link{chn}()},
 \code{\link{delim}},
 \code{\link{fsub}()},
+\code{\link{gr}},
 \code{\link{ipat}()},
 \code{\link{max_nch}()},
+\code{\link{mkd}},
 \code{\link{mkstr}},
 \code{\link{ox}()},
 \code{\link{pgrid}()},
@@ -113,4 +119,5 @@ Other strings:
 \code{\link{tocase}()},
 \code{\link{weave}()}
 }
+\concept{chars}
 \concept{strings}

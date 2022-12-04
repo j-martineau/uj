@@ -62,53 +62,21 @@ Binary functions that always produce either \code{TRUE} or \code{FALSE} unless c
 \item \strong{\verb{\%HAS\%}}: evaluates whether atomic object \code{x} contains atomic scalar \code{y}.\eqn{^3}
 \item \strong{\verb{\%LACKS\%}}: evaluates whether atomic object \code{x} lacks (does not contain) atomic scalar \code{y}.\eqn{^3}
 }
-\eqn{^1}. If \code{x} and \code{y} are not \code{\link{compatible}}, \verb{\%EQ\%} and \verb{\%NEQ\%} return \code{FALSE} and \code{TRUE}, respectively.
+\eqn{^1} If \code{x} and \code{y} are not \code{\link{compatible}}, \verb{\%EQ\%} and \verb{\%NEQ\%} return \code{FALSE} and \code{TRUE}, respectively.
 \cr\cr
-\eqn{^2}. If \code{x} is not atomic, \code{y} is not atomic scalar, or \code{x} and \code{y} are not compatible, \verb{\%IN\%} and \verb{\%OUT\%} return \code{FALSE} and \code{TRUE}, respectively.
+\eqn{^2} If \code{x} is not atomic, \code{y} is not atomic scalar, or \code{x} and \code{y} are not compatible, \verb{\%IN\%} and \verb{\%OUT\%} return \code{FALSE} and \code{TRUE}, respectively.
 \cr\cr
-\eqn{^3}. If \code{x} is not atomic scalar, \code{y} is not atomic, or \code{x} and \code{y} are not compatible, \verb{\%HAS\%} and \verb{\%LACKS\%} return \code{FALSE} and \code{TRUE}, respectively.
+\eqn{^3} If \code{x} is not atomic scalar, \code{y} is not atomic, or \code{x} and \code{y} are not compatible, \verb{\%HAS\%} and \verb{\%LACKS\%} return \code{FALSE} and \code{TRUE}, respectively.
 }
 \seealso{
-Other extensions: 
-\code{\link{atomize}},
-\code{\link{callers}()},
-\code{\link{case}()},
-\code{\link{dots_uj}},
-\code{\link{envir_vals}},
-\code{\link{ex}()},
-\code{\link{failsafe}()},
-\code{\link{fork}()},
-\code{\link{fsub}()},
-\code{\link{is_failsafe}},
-\code{\link{is_unq}()},
-\code{\link{make_uj}},
-\code{\link{n_is}()},
-\code{\link{n_th}()},
-\code{\link{naming}},
-\code{\link{na}()},
-\code{\link{os}()},
-\code{\link{paths}},
-\code{\link{pause}()},
-\code{\link{ply}()},
-\code{\link{put}()},
-\code{\link{reclass}()},
-\code{\link{recycling}},
-\code{\link{removal}},
-\code{\link{run}()},
-\code{\link{r}()},
-\code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uj_logicals}},
-\code{\link{xb}()}
-
-Other logicals: 
-\code{\link{is_failsafe}},
-\code{\link{uj_logicals}}
-
 Other failsafe: 
 \code{\link{failsafe}()},
 \code{\link{is_failsafe}}
+
+Other logicals: 
+\code{\link{evals}},
+\code{\link{is_failsafe}},
+\code{\link{meets}()}
 }
-\concept{extensions}
 \concept{failsafe}
 \concept{logicals}

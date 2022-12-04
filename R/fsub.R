@@ -1,5 +1,4 @@
 #' @family strings
-#' @family extensions
 #' @title Fixed-value string substitution
 #' @description Replace strings in `pats` with corresponding (possibly recycled) strings in `subs`.
 #' @param x An \link[=atm_chr]{atomic character object}.

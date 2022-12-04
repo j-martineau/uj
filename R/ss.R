@@ -1,8 +1,8 @@
 #' @name ss
+#' @family chars
 #' @family strings
 #' @title Split Strings and Select/Check for Elements
-#' @description **Function `ss`**
-#'   \cr splits strings using the delimiter(s) in `d` following this sequence:
+#' @description **`ss`** splits strings using the delimiter(s) in `d` following this sequence:
 #'   \enumerate{
 #'   \item Reduce `...` to an atomic vector of all collective atomic values.
 #'   \item Convert the result to mode character.
@@ -11,8 +11,7 @@
 #'   \item If `trm` is `TRUE`, trims white space (i.e., spaces, tabs, newlines) from both ends of each element of the result.
 #'   \item If `sqz` is `TRUE`, removes leading and trailing white space and replaces any multi-character interior white-space strings inside the result with a single space.
 #'   \item If `u` is `TRUE`, reduces the result to unique values.}
-#'   **Function `ch`**
-#'   \cr Does the same as `ss` but with a blank string delimiter, resulting in a vector of single characters (if `sqz = TRUE`), also removes blank strings from the result.
+#'   **`ch`** does the same as `ss` but with a blank string delimiter, resulting in a vector of single characters (if `sqz = TRUE`), also removes blank strings from the result.
 #'   \cr\cr
 #'   **Extension functions** are supplied for common delimiters, signified by codes appended to `ss` function names:\tabular{ll}{
 #'     *Code (name)*            \tab *Delimiter invoked*
@@ -21,9 +20,9 @@
 #'     \cr`'D'` (dot)           \tab`'.'`
 #'     \cr`'B'` (broken pipe)   \tab`'¦'`
 #'   }
-#'   **Function `uch`** reduces the result of `ch` to unique values.
+#'   **`uch`** reduces the result of `ch` to unique values.
 #'   \cr\cr
-#'   **Function `sstb`** assumes that splitting each element of `x` along the delimiter `d` results vectors of the same length, which are placed into a data.frame. For example, the following console excerpt demonstrates a call to `sstb` and its result.
+#'   **`sstb`** assumes that splitting each element of `x` along the delimiter `d` results vectors of the same length, which are placed into a data.frame. For example, the following console excerpt demonstrates a call to `sstb` and its result.
 #'   ```
 #'   > sstb(x = c('a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p'),
 #'   +      d = '|', name = 'original', part = 'letter')

@@ -1,14 +1,4 @@
-.iarr <- function(x) {is.array(x)}
-.idtf <- function(x) {is.data.frame(x)}
-.igen <- function(x) {is.array(x) | is.vector(x)}
-.imat <- function(x) {is.matrix(x)}
-.imvc <- function(x) {f0(length(x) < 2, F, f0(is.vector(x), T, is.array(x) & length(which(dim(x) > 1)) == 1))}
-.iscl <- function(x) {f0(length(x) != 1, F, is.array(x) | is.vector(x))}
-.ivec <- function(x) {f0(length(x) == 0, F, f0(is.vector(x), T, is.array(x) & length(which(dim(x) > 1)) < 2))}
-.ivls <- function(x) {is.list(x) & !is.data.frame(x)}
-.cccs <- c("arr", "dtf", "gen", "mat", "mvc", "scl", "vec", "vls")
 
-#' @name ccc
 #' @family props
 #' @title Extended class properties
 #' @description Extended class properties are not formally defined, but are dynamically evaluated for properties as follows:
@@ -48,7 +38,7 @@ ccc <- function(x) {
 
 #' @rdname ccc
 #' @export
-ccc_props <- function() {.cccs()}
+ccc_props <- function() {.cccs}
 
 #' @rdname ccc
 #' @export

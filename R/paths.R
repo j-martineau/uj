@@ -1,6 +1,5 @@
 #' @name paths
 #' @family files
-#' @family extensions
 #' @title Evaluate and manipulate paths to files or folders
 #' @description \itemize{
 #'   \item **`is_path`**: checks whether `...` resolves to a valid path for an object (file or folder) when `...` arguments are collapsed into a character scalar.

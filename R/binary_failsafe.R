@@ -1,7 +1,6 @@
 #' @name binary_failsafe
-#' @family extensions
-#' @family logicals
 #' @family failsafe
+#' @family logicals
 #' @title Failsafe binary logical functions
 #' @description Binary functions that always produce either `TRUE` or `FALSE` unless calling `identity(x)` or `identity(y)` produces an error.
 #' \itemize{

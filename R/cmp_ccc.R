@@ -11,7 +11,7 @@
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \itemize{
 #'   \item **`cmp_ccc_props`**: a character vector.
-#'   \item **`cmp_ccc, cmp_CCC`**: a logical scalar.
+#'   \item **`cmp_ccc, cmp_xxx`**: a logical scalar.
 #' }
 #' @export
 cmp_ccc <- function(x, ccc, ...) {

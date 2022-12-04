@@ -1,7 +1,3 @@
-.ppp_props <- function() {sort(c(.bbbs(), .cccs(), .ddds(), .eees(), .iiis(), .mmms(), .ssss()))}
-.spec_vals <- function(x) {if (!is.character(x)) {return(NULL)} else {x <- unname(unlist(strsplit(x, "|", fixed = T))); x[x != ""]}}
-.drop_iprefix <- function(x) {i <- nchar(x) == 4 & substr(x, 1, 1) == "i"; x[i] <- substr(x[i], 2, 4); x}
-
 #' @name ppp
 #' @family props
 #' @title All purpose property checking
@@ -73,7 +69,7 @@
 #'   \item **`All others`**: a logical scalar.
 #' }
 #' @export
-ppp <- function(x) {sort(c(bbb(x), ccc(x), ddd(x), eee(x), iii(x), mmm(x), sss(x)))}
+ppp <- function(x) {.ppps}
 
 #' @rdname ppp
 #' @export
@@ -149,8 +145,8 @@ combos_from_spec <- function(spec, valid = ppp_props()) {
             f0(ok.valid         , NULL, "\n \u2022 [valid] must be a complete character vec (?cpm_chr_vec) containing only values from ppp_props()."))
   if (!is.null(errs)) {stop(errs)}
   ppp.singles <- ppp_all(spec, valid)
-  if (!all(ppp.singles %in% valid)) {stop("\n \u2022 [ppp] contains a property spec not in c(", paste0(paste0("'", valid, "'"), collapse = ", "), ").")}
-  out <- trimws(av(strsplit(ppp, "|", fixed = T)))
+  if (!all(ppp.singles %in% valid)) {stop("\n \u2022 [spec] contains a property spec not in c(", paste0(paste0("'", valid, "'"), collapse = ", "), ").")}
+  out <- trimws(av(strsplit(spec, "|", fixed = T)))
   out <- out[out != ""]
   out <- .drop_iprefix(out)
   sort(unique(out))

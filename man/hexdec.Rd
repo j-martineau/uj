@@ -25,4 +25,3 @@ tohex(x)
 \item \strong{\code{tohex}}: converts \link[=cmp_psw]{complete positive whole-number} \code{x} to hexadecimal formatted as \code{'#HHH...'} where \code{H} is a placeholder for an uppercase hexadecimal digit.
 }
 }
-\concept{math}

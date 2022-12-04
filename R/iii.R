@@ -1,11 +1,3 @@
-.icmp <- function(x) {f0(length(x) == 0 | !is.atomic(x), F, !any(is.na(x)))}
-.imss <- function(x) {f0(length(x) == 0 | !is.atomic(x), F, all(is.na(x)))}
-.inas <- function(x) {f0(length(x) != 1 | !is.atomic(x), F, is.na(x))}
-.ioks <- function(x) {f0(length(x) != 1 | !is.atomic(x), F, !is.na(x))}
-.iprt <- function(x) {f0(length(x) < 2 | !is.atomic(x), F, {x <- is.na(x); any(x) & !all(x)})}
-.iiis <- c("cmp", "mss", "nas", "oks", "prt")
-
-#' @name iii
 #' @family props
 #' @title Integrity (completeness) properties
 #' @description Integrity properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frame}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.

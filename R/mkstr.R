@@ -27,7 +27,6 @@
 #' @param l,r \link[=cmp_chr_scl]{Complete character scalars} giving left and right side enclosures for `...` after \link[=a]{atomization}.
 #' @param ... An arbitrary number of objects to be atomized into a single atomic vector.
 #' @return A character scalar or vector
-#' @export
 #' @examples
 #' geq(c('x', 'y', 'z'), 0, 1, 2)
 #' geq0(c('x', 'y', 'z'), 0, 1, 2)
@@ -64,6 +63,7 @@
 #' pquote2(c('x', 'y', 'z'), 0, 1, 2)
 #' pbracket(c('x', 'y', 'z'), 0, 1, 2)
 #' pwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)
+#' @export
 geq <- function(x, ...) {paste0(av(x), " = ", av(...), collapse = "")}
 
 #' @rdname mkstr

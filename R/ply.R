@@ -1,5 +1,4 @@
 #' @name ply
-#' @family extensions
 #' @title Variations on `apply` functions
 #' @description (`norply`, `anyply`, `allply`, `oneply`, and `twoply` assume the result of applying `fun` is of mode 'logical')
 #' \itemize{
@@ -38,7 +37,6 @@
 #' @param dim A \link[=cmp_nnw_vec]{complete non-negative whole-number vec} giving dimension(s) of `x` to apply the function `fun` to (`0` indicates applying to elements of a vector or \link[=ivls]{vlist} vs. applying to every cell for arrays and data.frames).
 #' @param ... An arbitrary number of additional arguments to be passed to the function `fun`.
 #' @param proc. `NULL` or a list of named elements with processing instructions. See the *the `proc` argument* section.
-#' @return Varies.
 #' @export
 ply <- function(x, fun, dim, ..., proc. = NULL) {
   if (length(x) == 0) {stop("\n \u2022 [x] is empty.")}

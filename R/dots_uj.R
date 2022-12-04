@@ -1,5 +1,4 @@
 #' @name dots_uj
-#' @family extensions
 #' @title Manage `...` arguments
 #' @description \itemize{
 #'   \item **`dots`**: Extracts one or more`...` arguments based on matching values supplied in `names.`. If a supplied name matches the name of a `...` argument, that argument is returned. Otherwise, the element of `defs.` with a matching name is returned. `names. = NULL` and `names. = NA` are converted to `'NULL'` and `'NA'`. Reserved words in `names.` should be backtick quoted.

@@ -1,6 +1,5 @@
 #' @name reclass
 #' @title Set object class
-#' @family extensions
 #' @param x An R object.
 #' @param cls A \link[=cmp_chr_vec]{complete character vec} of classes to apply.
 #' @return An object of class `cls`.

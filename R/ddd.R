@@ -1,9 +1,3 @@
-.id0D <- function(x) {is.null(x)}
-.id1D <- function(x) {is.vector(x)}
-.id2D <- function(x) {is.matrix(x) | is.data.frame(x)}
-.idHD <- function(x) {length(dim(x)) > 2}
-.ddds <- c("d0D", "d1D", "d2D", "dHD")
-
 #' @name ddd
 #' @family props
 #' @title Defined dimensionality properties

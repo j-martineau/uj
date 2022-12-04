@@ -1,11 +1,10 @@
-#' @name uj_dialogs
-#' @family dialogs
+#' @name dialogs
 #' @title Dialog boxes using package `svDialogs`
 #' @description All functions in this family take `...` arguments, which are \link[=av]{atomized} and collapsed into a prompt to be displayed in a dialog box.
 #' \itemize{
 #'   \item **`msgbox`**: launches a simple dialog box to give the message.
-#'   \item **`dirbox`**: asks user to select a directory/folder. `(A)`
-#'   \item **`docbox`**: asks user to select a document. `(A)`
+#'   \item **`dirbox`**: asks user to select a directory/folder.\eqn{^1}
+#'   \item **`docbox`**: asks user to select a document.\eqn{^1}
 #'   \item **`ansbox`**: asks user to input a text response.
 #'   \item **`no`**: checks for user selecting the `no` button of a `yesno` dialog.
 #'   \item **`yes`**: checks for user selecting the `yes` button of a `yesno` dialog.
@@ -20,7 +19,7 @@
 #'   \item **`choose_dir`**: asks user to select a directory/folder.
 #'   \item **`choose_doc`**: asks user to select a document/file.
 #' }
-#' \tabular{ll}{`(A).` \tab Failsafe feature launches a message dialog box prompting the user to take an action in the next dialog box. After user acknowledges, only then launches the selection dialog to avoid problems with prompts not showing up on all operating systems.}
+#' \eqn{^1} Failsafe feature launches a message dialog box prompting the user to take an action in the next dialog box. After user acknowledges, only then launches the selection dialog to avoid problems with prompts not showing up on all operating systems.
 #' @param x A \link[=cmp_chr_scl]{complete character scalar} message.
 #' @param d A complete character scalar default directory.
 #' @param t A complete character scalar type of dialog box (valid values are `'ok'`, `'okcancel'`, `'yesno'`, and `'yesnocancel'`).
@@ -34,7 +33,12 @@
 #' @param all,none Non-`NA` logical scalars indicating whether the user should be able to select all options or none of the options, respectively.
 #' @param per A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the maximum number of options to present in a single dialog box interaction.
 #' @param unq A non-`NA` logical scalar indicating whether new values must be unique.
-#' @return A character scalar or vector.
+#' @return \itemize{
+#'   \item **`yes, no`**: a logical scalar.
+#'   \item **`askn, asksn, asknew`**: a character vector.
+#'   \item **`msgbox, dirbox, docbox, ansbox`**: an environment.
+#'   \item **`msg, okx, ask, ask1, asks1, choose_dir, choose_doc`**: a character scalar.
+#' }
 #' @export
 msgbox <- function(..., t = "ok") {
   msg <- paste0(av(...), collapse = "")
@@ -47,7 +51,7 @@ msgbox <- function(..., t = "ok") {
   if (t == "ok") {NULL} else {ans}
 }
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 dirbox <- function(..., d = getwd()) {
   msg <- paste0(av(...), collapse = "")
@@ -60,7 +64,7 @@ dirbox <- function(..., d = getwd()) {
   msgbox(da0("In the next dialog box, ", msg)); svDialogs::dlg_dir(default = d, title = msg)
 }
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 docbox <- function(...) {
   msg <- paste0(av(...), collapse = "")
@@ -69,35 +73,35 @@ docbox <- function(...) {
   msgbox(da0("In the next dialog box, ", msg)); svDialogs::dlg_open(title = msg)
 }
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 ansbox <- function(x = "Enter a value", def = "") {svDialogs::dlg_input(message = x, default = def)}
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 no <- function(...) {msgbox(paste0(av(...), collapse = ""), t = "yesno")$res != "yes"}
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 yes <- function(...) {msgbox(paste0(av(...), collapse = ""), t = "yesno")$res == "yes"}
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 msg <- function(x, t = "ok") {msgbox(x, t = t)$res}
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 okx <- function(x) {x <- msg(x, "okcancel"); if (x != "ok") {stop("canceled")}}
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 choose_dir <- function(type = "file") {dirbox(okx(da1("Select a", type, "directory")))$res}
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 choose_doc <- function(type = "document") {docbox(okx(da1("Select a", type, "file")))$res}
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 ask <- function(..., def = "", cancel = ".stop") {
   ends <- r(2, "\n")                                                              # pad front and back with three newlines to make all content appear inside the dialog box
@@ -107,7 +111,7 @@ ask <- function(..., def = "", cancel = ".stop") {
   else {answer}                                                                   # ELSE return the answer
 }
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 ask1 <- function(opts, what, more = FALSE) {
   suffix <- f0(more, "\n(more options may be presented next)", NULL)             # suffix if more options are available
@@ -122,7 +126,7 @@ ask1 <- function(opts, what, more = FALSE) {
   else {stop("invalid selection")}                                               # ELSE error
 }
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 askn <- function(opts, what, all = TRUE, none = TRUE, more = FALSE) {
   suffix <- f0(more, "\n(more options may be presented next)", NULL)             # IF there are potentially more options, put in suffix
@@ -162,7 +166,7 @@ askn <- function(opts, what, all = TRUE, none = TRUE, more = FALSE) {
   stop("invalid selection")                                                      # throw error if nothing has yet been returned
 }
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 asksn <- function(opts, what, per = 9) {
   done  <- F                                                                         # start out not done yet
@@ -182,7 +186,7 @@ asksn <- function(opts, what, per = 9) {
   out                                                                                # return value
 }
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 asks1 <- function(opts, what, per = 9) {
   done <- F                                                                      # start out not done yet
@@ -198,7 +202,7 @@ asks1 <- function(opts, what, per = 9) {
   out                                                                            # return value
 }
 
-#' @rdname uj_dialogs
+#' @rdname dialogs
 #' @export
 asknew <- function(old, what, unq = T) {
   list <- dw("\n", old)                                                           # separate old values with newlines

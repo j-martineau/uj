@@ -16,12 +16,20 @@ An integer scalar.
 Gets the number of characters in the longest string in \code{x}.
 }
 \seealso{
+Other chars: 
+\code{\link{chn}()},
+\code{\link{revstr}()},
+\code{\link{spacing}},
+\code{\link{ss}()}
+
 Other strings: 
 \code{\link{blank}()},
-\code{\link{charn}()},
+\code{\link{chn}()},
 \code{\link{delim}},
 \code{\link{fsub}()},
+\code{\link{gr}},
 \code{\link{ipat}()},
+\code{\link{mkd}},
 \code{\link{mkstr}},
 \code{\link{ox}()},
 \code{\link{pgrid}()},
@@ -31,4 +39,5 @@ Other strings:
 \code{\link{tocase}()},
 \code{\link{weave}()}
 }
+\concept{chars}
 \concept{strings}

@@ -1,5 +1,4 @@
 #' @name n_is
-#' @family extensions
 #' @title Dedicated counting functions
 #' @description Counting functions can be used with a single unnamed argument, multiple unnamed arguments, and with restrictions in named arguments, in any combination. The functions in this family answer the questions described below.
 #' \itemize{\item **`n_is`**: do counts in `x` meet criteria in `n`, `min`,. `max`, and/or `eq`?}
@@ -91,7 +90,7 @@ n_is <- function(x, n = NULL, min = NULL, max = NULL, eq = F) {
 #' @export
 nx <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = F, na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {
   dots <- list(...)
-  av.dots <- av(dots)
+  atoms <- av(dots)
   ok.min <- inll(min) | cmp_nnw_scl(min)
   ok.max <- inll(max) | cmp_nnw_scl(max)
   ok.mm <- f0(!ok.min | !ok.max, T, f0(inll(min) | inll(max), T, max >= min))
@@ -103,14 +102,14 @@ nx <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = F, na = F, val
             f0(ok.mm                                                , NULL, "\n \u2022 [max] must be greater than or equal to [min]."),
             f0(isTF(eq)                                             , NULL, "\n \u2022 [eq] must be TRUE or FALSE."),
             f0(isTF(na)                                             , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
-            f0(f0(!isF(na), T, !any(is.na(av)))                     , NULL, "\n \u2022 [na = FALSE] but arguments in [...] contains NA values."),
+            f0(f0(!isF(na), T, !any(is.na(atoms)))                     , NULL, "\n \u2022 [na = FALSE] but arguments in [...] contains NA values."),
             f0(f0(inll(vals), T, compatible(..., vals, recycle = F)), NULL, "\n \u2022 [vals] must be NULL or compatible with arguments in [...]."),
             f0(f0(inll(lt  ), T, comparable(..., lt  , recycle = F)), NULL, "\n \u2022 [lt] must be NULL or comparable with arguments in [...]."),
             f0(f0(inll(le  ), T, comparable(..., le  , recycle = F)), NULL, "\n \u2022 [le] must be NULL or comparable with arguments in [...]."),
             f0(f0(inll(ge  ), T, comparable(..., ge  , recycle = F)), NULL, "\n \u2022 [ge] must be NULL or comparable with arguments in [...]."),
             f0(f0(inll(gt  ), T, comparable(..., gt  , recycle = F)), NULL, "\n \u2022 [gt] must be NULL or comparable with arguments in [...]."))
   if (!is.null(errs)) {stop(errs)}
-  if (a) {dots <- list(av.dots)}
+  if (a) {dots <- list(atoms)}
   for (i in 1:length(dots)) {
     dot <- dots[[i]]
     if (idef(vals)) {dot <- dot[dot %in% vals]}
@@ -143,16 +142,17 @@ nsame <- function(..., min = NULL, max = NULL, na = F, vals = NULL, lt = NULL, l
 #' @export
 nw <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   dots <- list(...)
-  errs <- c(f0(all(sapply(dots, pop_lgl))  , NULL, "\n \u2022 [...] must contain only non-empty logical objects."),
-            f0(isTF(a)                     , NULL, "\n \u2022 [a] must be TRUE or FALSE."),
-            f0(inll(n) | cmp_nnw_vec(n)    , NULL, "\n \u2022 [n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(inll(min) | cmp_nnw_scl(min), NULL, "\n \u2022 [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(inll(max) | cmp_nnw_scl(max), NULL, "\n \u2022 [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(isTF(eq)                    , NULL, "\n \u2022 [eq] must be TRUE or FALSE."),
-            f0(isTF(na)                    , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
-            f0(f0(!isF(na), T, !any(is.na(av))), NULL, "\n \u2022 [na = FALSE] but arguments in [...] contains NA values."))
+  atoms <- av(dots)
+  errs <- c(f0(all(sapply(dots, pop_lgl))         , NULL, "\n \u2022 [...] must contain only non-empty logical objects."),
+            f0(isTF(a)                            , NULL, "\n \u2022 [a] must be TRUE or FALSE."),
+            f0(inll(n) | cmp_nnw_vec(n)           , NULL, "\n \u2022 [n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
+            f0(inll(min) | cmp_nnw_scl(min)       , NULL, "\n \u2022 [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+            f0(inll(max) | cmp_nnw_scl(max)       , NULL, "\n \u2022 [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+            f0(isTF(eq)                           , NULL, "\n \u2022 [eq] must be TRUE or FALSE."),
+            f0(isTF(na)                           , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
+            f0(f0(!isF(na), T, !any(is.na(atoms))), NULL, "\n \u2022 [na = FALSE] but arguments in [...] contains NA values."))
   if (!is.null(errs)) {stop(errs)}
-  if (isT(a)) {dots <- list(av(dots))}
+  if (isT(a)) {dots <- list(atoms)}
   n_is(sapply(lapply(dots, which), length), n, min, max, eq)
 }
 
@@ -164,14 +164,15 @@ nt <- nw
 #' @export
 nf <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   dots <- list(...)
-  errs <- c(f0(all(sapply(dots, pop_lgl))      , NULL, "\n \u2022 [...] must contain only non-empty logical objects."),
-            f0(isTF(a)                         , NULL, "\n \u2022 [a] must be TRUE or FALSE."),
-            f0(inll(n) | cmp_nnw_vec(n)        , NULL, "\n \u2022 [n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(inll(min) | cmp_nnw_scl(min)    , NULL, "\n \u2022 [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(inll(max) | cmp_nnw_scl(max)    , NULL, "\n \u2022 [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(isTF(eq)                        , NULL, "\n \u2022 [eq] must be TRUE or FALSE."),
-            f0(isTF(na)                        , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
-            f0(f0(!isF(na), T, !any(is.na(av))), NULL, "\n \u2022 [na = FALSE] but arguments in [...] contains NA values."))
+  atoms <- av(dots)
+  errs <- c(f0(all(sapply(dots, pop_lgl))         , NULL, "\n \u2022 [...] must contain only non-empty logical objects."),
+            f0(isTF(a)                            , NULL, "\n \u2022 [a] must be TRUE or FALSE."),
+            f0(inll(n) | cmp_nnw_vec(n)           , NULL, "\n \u2022 [n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
+            f0(inll(min) | cmp_nnw_scl(min)       , NULL, "\n \u2022 [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+            f0(inll(max) | cmp_nnw_scl(max)       , NULL, "\n \u2022 [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+            f0(isTF(eq)                           , NULL, "\n \u2022 [eq] must be TRUE or FALSE."),
+            f0(isTF(na)                           , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
+            f0(f0(!isF(na), T, !any(is.na(atoms))), NULL, "\n \u2022 [na = FALSE] but arguments in [...] contains NA values."))
   if (!is.null(errs)) {stop(errs)}
   if (isT(a)) {dots <- list(av(dots))}
   n_is(sapply(lapply(lapply(dots, not), which), length), n, min, max, eq)
@@ -181,14 +182,15 @@ nf <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
 #' @export
 nu <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
   dots <- list(...)
-  errs <- c(f0(all(sapply(dots, pop_lgl))      , NULL, "\n \u2022 [...] must contain only non-empty logical objects."),
-            f0(isTF(a)                         , NULL, "\n \u2022 [a] must be TRUE or FALSE."),
-            f0(inll(n) | cmp_nnw_vec(n)        , NULL, "\n \u2022 [n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(inll(min) | cmp_nnw_scl(min)    , NULL, "\n \u2022 [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(inll(max) | cmp_nnw_scl(max)    , NULL, "\n \u2022 [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(isTF(eq)                        , NULL, "\n \u2022 [eq] must be TRUE or FALSE."),
-            f0(isTF(na)                        , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
-            f0(f0(!isF(na), T, !any(is.na(av))), NULL, "\n \u2022 [na = FALSE] but arguments in [...] contains NA values."))
+  atoms <- av(dots)
+  errs <- c(f0(all(sapply(dots, pop_lgl))         , NULL, "\n \u2022 [...] must contain only non-empty logical objects."),
+            f0(isTF(a)                            , NULL, "\n \u2022 [a] must be TRUE or FALSE."),
+            f0(inll(n) | cmp_nnw_vec(n)           , NULL, "\n \u2022 [n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
+            f0(inll(min) | cmp_nnw_scl(min)       , NULL, "\n \u2022 [min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+            f0(inll(max) | cmp_nnw_scl(max)       , NULL, "\n \u2022 [max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+            f0(isTF(eq)                           , NULL, "\n \u2022 [eq] must be TRUE or FALSE."),
+            f0(isTF(na)                           , NULL, "\n \u2022 [na] must be TRUE or FALSE."),
+            f0(f0(!isF(na), T, !any(is.na(atoms))), NULL, "\n \u2022 [na = FALSE] but arguments in [...] contains NA values."))
   if (!is.null(errs)) {stop(errs)}
   if (isT(a)) {dots <- list(av(dots))}
   n_is(sapply(lapply(dots, unique), length), n, min, max, eq)

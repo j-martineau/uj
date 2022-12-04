@@ -1,4 +1,3 @@
-#' @family extensions
 #' @title Evaluate whether an object has only unique atomic values
 #' @description Evaluates whether `x` contains only only unique atomic values, with options for for atomizing before evaluation and for handling `NA` values.
 #' @param x An atomic object.

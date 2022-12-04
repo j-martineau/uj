@@ -1,6 +1,7 @@
+#' @family chars
+#' @family strings
 #' @title Length of longest string
 #' @description Gets the number of characters in the longest string in `x`.
-#' @family strings
 #' @param x An \link[=ichr]{character object}.
 #' @return An integer scalar.
 #' @export

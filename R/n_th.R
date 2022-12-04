@@ -7,7 +7,6 @@
   NULL
 }
 
-#' @family extensions
 #' @title Extract elements by numeric position
 #' @description \itemize{
 #'   \item **`n_th`**: gets the `n`-th element(s) of a vector.
@@ -18,12 +17,12 @@
 #' @param x A \link[=pop_vec]{populated vector} to extract elements from.
 #' @param n A \link[=cmp_psw_scl]{complete positive whole-number scalar}.
 #' @return A scalar, vector, or \link[=ivls]{vlist}.
-#' @export
 #' @examples
 #' first_n(letters, 5)
 #' last_n(letters, 5)
 #' n_th(letters, 5)
 #' n_th(letters, )
+#' @export
 n_th <- function(x, n) {
   errs <- .n_th_errs(x, n, F)
   if (!is.null(errs)) {stop(errs)}

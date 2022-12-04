@@ -1,5 +1,6 @@
 #' @name color
 #' @family colors
+#' @family plotting
 #' @title Simple color creation
 #' @description Simple color creation with a wide variety of options (intensity, blending, lightening, darkening, opacity). This family of functions uses three-letter codes for common colors as follows:
 #' \tabular{lll}{
@@ -59,6 +60,7 @@
 #' ````
 #' final = c(r = 0.7, g = 0.7, b = 0.3)
 #' ```
+#'  
 #' @param x An \link[=atm_vec]{atomic vec} containing valid color representations. Recycled with `y, lighten, darken, comp, a, p, s, wx, wy` where these are valid arguments.
 #' @param y An atomic vec containing valid R color representations.
 #' @param na A non-`NA` logical scalar indicating whether `NA` counts as a valid color alpha level.

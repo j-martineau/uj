@@ -1,4 +1,5 @@
-#' @name err_check
+.errx <- function(...) {paste0(c("\n \u2022 ", unlist(list(...), T, F)), collapse = "")}
+
 #' @family errs
 #' @title Error checking, banking, and processing
 #' @description Bank error messages in the immediate environment of a function to allow for exhaustive error checking before throwing an exception. Results in a combined, multiple-error message to be reported at the completion of all error checks.

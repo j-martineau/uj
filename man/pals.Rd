@@ -44,12 +44,16 @@ pal_sdots(n)
 NOTE: Palette values are recycled if \code{n > length(v(.))}.
 }
 \seealso{
-Other plots: 
-\code{\link{mkd}}
-
 Other colors: 
 \code{\link{color}},
 \code{\link{mkd}}
+
+Other plotting: 
+\code{\link{color}},
+\code{\link{ggp}()},
+\code{\link{gr}},
+\code{\link{sca}()},
+\code{\link{u2u}()}
 }
 \concept{colors}
-\concept{plots}
+\concept{plotting}

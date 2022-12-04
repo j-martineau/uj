@@ -1,5 +1,4 @@
 #' @name naming
-#' @family extensions
 #' @title Get names, set names, determine whether named
 #' @description \itemize{
 #'   \item **`named`**: evaluates whether an object's elements, rows, and/or columns are named, accounting for whether names must be unique, whether the object may contain empty elements, and whether names may be blank strings.

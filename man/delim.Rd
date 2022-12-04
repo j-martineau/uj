@@ -754,10 +754,12 @@ dwwCP(1:3, 4:6)
 \seealso{
 Other strings: 
 \code{\link{blank}()},
-\code{\link{charn}()},
+\code{\link{chn}()},
 \code{\link{fsub}()},
+\code{\link{gr}},
 \code{\link{ipat}()},
 \code{\link{max_nch}()},
+\code{\link{mkd}},
 \code{\link{mkstr}},
 \code{\link{ox}()},
 \code{\link{pgrid}()},

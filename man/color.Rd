@@ -175,6 +175,7 @@ To get final RGB values, the primary RGB values are multiplied by \code{p = 0.7}
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{final = c(r = 0.7, g = 0.7, b = 0.3)
 ```
+ 
 }\if{html}{\out{</div>}}
 }
 
@@ -182,5 +183,13 @@ To get final RGB values, the primary RGB values are multiplied by \code{p = 0.7}
 Other colors: 
 \code{\link{mkd}},
 \code{\link{pals}}
+
+Other plotting: 
+\code{\link{ggp}()},
+\code{\link{gr}},
+\code{\link{pals}},
+\code{\link{sca}()},
+\code{\link{u2u}()}
 }
 \concept{colors}
+\concept{plotting}
