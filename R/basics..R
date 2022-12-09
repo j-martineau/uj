@@ -9,8 +9,10 @@
 #'   \cr  `up`   \tab Thinly wraps \code{\link[base]{ceiling}}.
 #'   \cr  `dn`   \tab Thinly wraps \code{\link[base]{floor}}.
 #'   \cr   `u`   \tab Thinly wraps \code{\link[base]{unique}}\eqn{^1}.
+#'   \cr   `w`   \tab Thinly Wraps \code{\link[base]{which}}\eqn{^2}.
 #' }
-#'     \eqn{^1} Differs from \code{\link{uv}} because `uv` calls `unique(av(...))`.
+#' \eqn{^1.} Differs from \code{\link{uv}}, which calls `unique(av(...))`.
+#' \eqn{^2.} Differs from \code{\link{wv}}, which calls `which(av(...))`.
 #' @examples
 #' vals <- c(1:3, 2:4) / 3
 #' vars <- c("a", "bb", "ccc", "dddd", "ccc", "bb")
@@ -34,6 +36,11 @@
 #' @inherit base::unique
 #' @export
 u <- function(x) {base::unique(x)}
+
+#' @rdname basics
+#' @inherit base::which
+#' @export
+w <- function(x) {base::which(x)}
 
 #' @rdname basics
 #' @inherit base::floor

@@ -3,17 +3,14 @@
 #' @title Coerce to base or extended mode.
 #' @description Functions to coerce objects to \link[base:mode]{base mode} or \link[=mmm]{extended mode}:
 #' \tabular{rl}{
+#'   \cr `as_chr`   \tab Thinly wraps \code{\link[base:as.character]{base::as.character}}.
+#'   \cr `as_int`   \tab Thinly wraps \code{\link[base:as.integer]{base::as.integer}}.
+#'   \cr `as_num`   \tab Thinly wraps \code{\link[base:as.numeric]{base::as.numeric}}.
+#'   \cr `as_lgl`   \tab Thinly wraps \code{\link[base:as.logical]{base::as.logical}}.
+#'   \cr            \tab  
 #'   \cr `as_clr`   \tab Coerces valid R character color representation values to hexadecimal character RGB color values.
 #'   \cr            \tab  
 #'   \cr `as_fun`   \tab Returns `x` if it is a function, otherwise, search for a function named `x` and return it.
-#'   \cr            \tab  
-#'   \cr `as_chr`   \tab Thinly wraps \code{\link[base:as.character]{base::as.character}}.
-#'   \cr            \tab  
-#'   \cr `as_int`   \tab Thinly wraps \code{\link[base:as.integer]{base::as.integer}}.
-#'   \cr            \tab  
-#'   \cr `as_num`   \tab Thinly wraps \code{\link[base:as.numeric]{base::as.numeric}}.
-#'   \cr            \tab  
-#'   \cr `as_lgl`   \tab Thinly wraps \code{\link[base:as.logical]{base::as.logical}}.
 #'   \cr            \tab  
 #'   \cr `as_ord`   \tab As extended mode ordered factor. Wraps `base::factor(x, levels = levs, ordered = TRUE)`.
 #'   \cr            \tab  
@@ -24,14 +21,18 @@
 #' @param levs A \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for `as_ord`).
 #' @param ... Further arguments passed to or from other methods.
 #' @return \tabular{rl}{
+#'       `as_fun`   \tab A function object.
+#'   \cr            \tab  
 #'       `as_chr`   \tab An object of mode `'character'`.
-#'   \cr `as_clr`   \tab An object of extended mode `'clr'` (color valued character).
-#'   \cr `as_fun`   \tab A function object.
 #'   \cr `as_int`   \tab An object of mode `'integer'`.
 #'   \cr `as_lgl`   \tab An object of mode `'logical'`.
 #'   \cr `as_num`   \tab An object of mode `'numeric'`.
-#'   \cr `as_ord`   \tab An object of extended mode `'ord'` (ordered factor).
-#'   \cr `as_ord`   \tab An object of extended mode `'uno'` (unordered factor).
+#'   \cr            \tab  
+#'   \cr `as_clr`   \tab An object of extended mode `'clr'` (color valued character).
+#'   \cr            \tab  
+#'   \cr `as_ord`   \tab An object of extended mode `'ord'` (ordered factor).
+#'   \cr            \tab  
+#'   \cr `as_ord`   \tab An object of extended mode `'uno'` (unordered factor).
 #' }
 #' @examples
 #' bins. <- sample(c(0, 1), 10, replace = T)

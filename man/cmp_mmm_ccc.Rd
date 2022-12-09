@@ -671,33 +671,46 @@ cmp_whl_vls(x, ...)
   }}
 }
 \value{
-\itemize{
-\item \strong{\code{cmp_mmm_ccc_props}}: a character vector.
-\item \strong{\verb{cmp_mmm_ccc, cmp_MMM_CCC}}: a logical scalar.
+\tabular{rl}{
+  \code{cmp_mmm_ccc_props}   \tab A character vector.
+\cr     \code{cmp_mmm_ccc}   \tab A logical scalar.
+\cr     \code{cmp_xxx_yyy}   \tab A logical scalar\eqn{^3}.
 }
+\eqn{^{3.}} \code{xxx} is an extended mode property; \code{yyy} is an extended class property.
 }
 \description{
-\itemize{
-\item \strong{\code{cmp_mmm_ccc}}: evaluates whether \code{x} is complete, matches the extended mode specified in the argument \code{mmm} and matches the extended class specified in the argument \code{ccc} (subject to any restrictions in \code{...}).
-\item \strong{\code{cmp_xxx_yyy}}: evaluates whether \code{x} is complete and matches the extended mode \code{xxx} and extended class \code{yyy} subject to any restrictions in \code{...}, where \code{xxx} and \code{yyy} are placeholders for any given extended mode and extended class properties.
-\item \strong{\code{cmp_mmm_ccc_props}}: gets a character vector of all possible completeness + extended mode + extended class properties.
+\tabular{rl}{
+  \code{cmp_mmm_ccc_props}   \tab Gets a character vector of all possible completeness + extended mode + extended class properties.
+\cr                     \tab   
+\cr     \code{cmp_mmm_ccc}   \tab Evaluates whether \code{x} is complete and matches properties in arguments \code{mmm}\eqn{^1} and \code{ccc}\eqn{^2} (subject to any restrictions in \code{...}).
+\cr                     \tab   
+\cr     \code{cmp_xxx_yyy}   \tab Evaluates whether \code{x} is complete and matches properties \code{xxx}\eqn{^1} and \code{yyy}\eqn{^1} (subject to any restrictions in \code{...}).
 }
+\eqn{^{1.}} An extended mode property.
+\cr \eqn{^{2.}} An extended class property.
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively..
-\cr                   \tab  
-\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively..
-\cr                   \tab  
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr                   \tab  
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr                   \tab  
 \cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                   \tab  
-\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively..
-\cr                   \tab  
+\cr                   \tab  
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr                   \tab  
 \cr          \code{vals}   \tab A vector of valid values.
 }
 }
 
+\examples{
+cmp_mmm_ccc_props()
+cmp_mmm_ccc(letters, "ch1", "vec")
+cmp_mmm_ccc(letters, "str", "scl")
+cmp_ch1_vec(letters)
+cmp_str_scl("a")
+}
 \seealso{
 Other props: 
 \code{\link{as_mmm}},

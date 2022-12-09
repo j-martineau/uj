@@ -54,8 +54,8 @@ Other errs:
 \code{\link{err_check}()}
 
 Other failsafe: 
-\code{\link{binary_failsafe}},
-\code{\link{is_failsafe}}
+\code{\link{failsafe_binaries}},
+\code{\link{failsafe_is}}
 }
 \concept{errs}
 \concept{failsafe}

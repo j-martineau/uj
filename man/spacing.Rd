@@ -82,10 +82,6 @@ Other strings:
 \code{\link{ss}()},
 \code{\link{tocase}()},
 \code{\link{weave}()}
-
-Other validated: 
-\code{\link{xb}()}
 }
 \concept{chars}
 \concept{strings}
-\concept{validated}

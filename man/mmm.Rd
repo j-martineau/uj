@@ -109,80 +109,80 @@ iwhl(x, ...)
 }
 \value{
 \tabular{rl}{
-\verb{immm,ixxx,is_mmm_spec}   \tab A logical scalar.
-\cr         \code{mmm_props}   \tab A character vector.
-\cr               \code{mmm}   \tab A character scalar/vector.
+  \code{is_mmm_spec}   \tab A logical scalar.
+\cr \code{mmm_props}   \tab A character vector.
+\cr      \code{immm}   \tab A logical scalar.
+\cr      \code{ixxx}   \tab A logical scalar\eqn{^2}.
+\cr       \code{mmm}   \tab A character scalar/vector.
 }
+\eqn{^{2.}} \code{xxx} represents an extended mode property.
 }
 \description{
 Extended modes are defined for non-empty atomic objects. For all other objects, the extended mode is \code{NULL}. These are not formally defined classes, but are evaluated dynamically based on the current characteristics of an object.
-\cr\cr
-Atomic objects that contain only \code{NA} values are of every extended mode, as they can be coerced to any mode without introducing new \code{NA} values. The following tables gives extended mode values, names, and requirements.
-\cr\cr
-\strong{Character extended mode properties}
-\tabular{rl}{
-\code{'chr'}   \tab character
+\cr\cr Atomic objects that contain only \code{NA} values are of every extended mode, as they can be coerced to any mode without introducing new \code{NA} values.
+\cr\cr \strong{Character extended modes} \tabular{rl}{
+  \code{'chr'}   \tab character
 \cr \code{'ch1'}   \tab 1-char ( 1-character values)
 \cr \code{'ch3'}   \tab 3-char ( 3-character values)
 \cr \code{'clr'}   \tab color (valid color values)
 \cr \code{'str'}   \tab string (no blanks)
 }
-\strong{Numeric extended mode properties}
-\tabular{rl}{
-\code{'num'}   \tab numeric
-\cr \code{'frc'}   \tab fractional
-\cr \code{'pct'}   \tab percentage \code{0-100}
-\cr \code{'ppn'}   \tab proportion \code{0-1}
-\cr \code{'pos'}   \tab positive
-\cr \code{'neg'}   \tab negative
-\cr \code{'nng'}   \tab non-negative
-\cr \code{'nps'}   \tab non-positive
-\cr \code{'whl'}   \tab whole number
-\cr \code{'evn'}   \tab even whole
-\cr \code{'odd'}   \tab odd whole
-\cr \code{'ngw'}   \tab negative whole
-\cr \code{'psw'}   \tab positive whole
-\cr \code{'nnw'}   \tab non-neg whole
-\cr \code{'npw'}   \tab non-pos whole
-}
-\strong{Categorical extended mode properties}
-\tabular{rl}{
-\code{'fac'}   \tab factor
+\strong{Categorical extended modes} \tabular{rl}{
+  \code{'fac'}   \tab factor
 \cr \code{'lgl'}   \tab logical
 \cr \code{'ord'}   \tab ordered factor
 \cr \code{'uno'}   \tab unordered factor
 }
-\strong{Combination extended mode properties}
-\tabular{rl}{
-\code{'ind'}   \tab indexer (\code{lgl} or \code{psw})
-\cr \code{'srt'}   \tab sortable (\code{chr}, \code{num}. or \code{ord})
+\strong{Basic numeric extended modes} \tabular{rl}{
+  \code{'num'}   \tab numeric
+\cr \code{'frc'}   \tab fractional
+\cr \code{'whl'}   \tab whole number
+}
+\strong{Value-restricted numeric modes} \tabular{rl}{
+  \code{'pct'}   \tab percentage (\code{0-100})
+\cr \code{'ppn'}   \tab proportion (\code{0-1})
+\cr \code{'pos'}   \tab positive
+\cr \code{'neg'}   \tab negative
+\cr \code{'nng'}   \tab non-negative
+\cr \code{'nps'}   \tab non-positive
+}
+\strong{Whole-number value-restricted modes} \tabular{rl}{
+  \code{'evn'}   \tab even
+\cr \code{'odd'}   \tab odd
+\cr \code{'ngw'}   \tab negative whole
+\cr \code{'psw'}   \tab positive whole
+\cr \code{'nnw'}   \tab non-negative whole
+\cr \code{'npw'}   \tab non-positive whole
+}
+\strong{Combination extended modes} \tabular{rl}{
+  \code{'ind'}   \tab indexer (\code{lgl}, \code{psw})
+\cr \code{'srt'}   \tab sortable (\code{chr}, \code{num}, \code{ord})
 \cr \code{'nst'}   \tab non-sortable atomic
 }
-\strong{Functions}
-\tabular{rl}{
-\code{is_mmm_spec}   \tab Evaluates whether \code{spec} is a valid extended mode property specification.
+\strong{Extended mode functions} \tabular{rl}{
+  \code{is_mmm_spec}   \tab Evaluates whether \code{spec} is a valid extended mode property specification.
 \cr               \tab  
 \cr \code{mmm_props}   \tab Gets a character vector of all possible extended mode property values.
 \cr               \tab  
 \cr      \code{immm}   \tab Evaluates whether \code{x} possesses one or more (possibly pipe-delimited) extended mode properties in \code{spec}, subject to any restrictions in \code{...}.
 \cr               \tab  
-\cr      \code{ixxx}   \tab Evaluates whether \code{x} possesses the extended mode property \code{xxx}\eqn{^1}, subject to any restrictions in \code{...}.
+\cr      \code{ixxx}   \tab Evaluates whether \code{x} matches extended mode property \code{xxx}\eqn{^1} (subject to any restrictions in \code{...}).
 \cr               \tab  
 \cr       \code{mmm}   \tab Gets a character vector containing all extended mode properties possessed by \code{x}.
 }
-\eqn{^1.} A placeholder for any given extended mode property value.
+\eqn{^{1.}} Represents an extended mode property.
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively..
-\cr                   \tab  
-\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively..
-\cr                   \tab  
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr                   \tab  
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr                   \tab  
 \cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                   \tab  
-\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively..
-\cr                   \tab  
+\cr                   \tab  
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr                   \tab  
 \cr          \code{vals}   \tab A vector of valid values.
 }
 }
@@ -192,19 +192,14 @@ mmm_props()
 mmm(letters)
 mmm(1:10)
 mmm(c(pi, log(10), exp(1)))
-
 is_mmm_spec("invalid")
 is_mmm_spec("psw|srt")
-
+immm(1:10, "psw|srt")
 immm(letters, "ch1")
 immm(letters, "srt")
-
-immm(1:10, "psw|srt")
 immm(1:10, "ch3")
-
 ich1(letters)
 isrt(letters)
-
 iclr(1:10)
 iclr("blue")
 iclr("#1077ACFF")

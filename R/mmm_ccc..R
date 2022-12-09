@@ -1,33 +1,33 @@
 #' @family props
 #' @title Extended mode + extended class properties
 #' @description \tabular{rl}{
-#'   `mmm_ccc_props`   \tab Gets a character vector of all possible \link[=mmm]{extended mode} + \link[=ccc]{extended class} properties.
-#'   \cr               \tab  
-#'   \cr   `mmm_ccc`   \tab Evaluates whether `x` matches the extended mode specified in `mmm` and the extended class in argument `ccc`, subject to any restrictions in `...`.
-#'   \cr               \tab  
-#'   \cr   `xxx_yyy`   \tab Evaluates whether `x` matches extended mode `xxx`\eqn{^1} and extended class `yyy`\eqn{^2} subject to any restrictions in `...`.
+#'     `mmm_ccc_props`   \tab Gets a character vector of all possible \link[=mmm]{extended mode} + \link[=ccc]{extended class} properties.
+#'   \cr                 \tab  
+#'   \cr     `mmm_ccc`   \tab Evaluates whether `x` matches properties in arguments `mmm`\eqn{^1} and `ccc`\eqn{^1} (subject to any restrictions in `...`).
+#'   \cr                 \tab  
+#'   \cr     `xxx_yyy`   \tab Evaluates whether `x` matches properties `xxx`\eqn{^1} and `yyy`\eqn{^2} (subject to any restrictions in `...`).
 #' }
-#'            \eqn{^1} A placeholder for any given extended mode.
-#' \cr\cr     \eqn{^2} A placeholder for any given extended class.
+#'     \eqn{^{1.}} An extended mode.
+#' \cr \eqn{^{2.}} An extended class.
 #' @param x An R object.
 #' @param mmm A character scalar extended mode property from `mmm_props()`.
 #' @param ccc A character scalar extended class property from `ccc_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `mmm_ccc,MMM_CCC`   \tab A logical scalar.
-#'   \cr `mmm_ccc_props`   \tab A character vector.
+#'     `mmm_ccc_props`   \tab A character vector.
+#'   \cr     `mmm_ccc`   \tab A logical scalar.
+#'   \cr     `xxx_yyy`   \tab A logical scalar\eqn{^3}.
 #' }
+#' \eqn{^{3.}} `xxx` and `yyy` represent an extended mode and extended class, respectively.
 #' @examples
 #' scalar1 <- "a"
 #' lst2x26 <- list(letters = letters, LETTERS = LETTERS)
-#'
 #' c(mmm_ccc(lst2x26, "chr", "vls"), chr_vls(lst2x26))
 #' c(mmm_ccc(lst2x26, "num", "mat"), num_mat(lst2x26))
 #' c(mmm_ccc(scalar1, "ch1", "scl"), ch1_scl(scalar1))
 #' c(mmm_ccc(letters, "ch1", "vec"), ch1_vec(letters))
 #' c(mmm_ccc(letters, "num", "dtf"), num_dtf(letters))
-#'
 #' mmm_ccc_props()
 #' @export
 mmm_ccc <- function(x, mmm, ccc, ...) {

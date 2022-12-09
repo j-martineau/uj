@@ -68,12 +68,12 @@
 .iwhl <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(round(x) == x)})))}
 .mmms <- c("ch1", "ch3", "chr", "clr", "evn", "fac", "frc", "ind", "lgl", "neg", "ngw", "nng", "nnw", "nps", "npw", "nst", "num", "odd", "ord", "pct", "pos", "ppn", "psw", "srt", "str", "uno", "whl")
 
-.icol <- function(x) {f0(!(is.matrix(x) | is.data.frame(x)), F, nrow > 1 & ncol == 1)}
+.icol <- function(x) {f0(!(is.matrix(x) | is.data.frame(x)), F, nrow(x) > 1 & ncol(x) == 1)}
 .iemp <- function(x) {length(x) == 0 & !is.null(x)}
 .ilin <- function(x) {.ie1D(x)}
 .ipnt <- function(x) {.ie0D(x)}
 .irct <- function(x) {f0(!.ie2D(x), F, is.matrix(x) | is.data.frame(x))}
-.irow <- function(x) {f0(!(is.matrix(x) | is.data.frame(x)), F, nrow == 1 & ncol > 1)}
+.irow <- function(x) {f0(!(is.matrix(x) | is.data.frame(x)), F, nrow(x) == 1 & ncol(x) > 1)}
 .isld <- function(x) {.ieUD(x)}
 .isqr <- function(x) {is.matrix(x) & NROW(x) > 1 & NCOL(x) > 1 & NROW(x) == NCOL(x)}
 .ssss <- c("col", "emp", "lin", "pnt", "rct", "row", "sld", "sqr")

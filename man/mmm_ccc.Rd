@@ -672,32 +672,34 @@ whl_vls(x, ...)
 }
 \value{
 \tabular{rl}{
-\verb{mmm_ccc,MMM_CCC}   \tab A logical scalar.
-\cr \code{mmm_ccc_props}   \tab A character vector.
+  \code{mmm_ccc_props}   \tab A character vector.
+\cr     \code{mmm_ccc}   \tab A logical scalar.
+\cr     \code{xxx_yyy}   \tab A logical scalar\eqn{^3}.
 }
+\eqn{^{3.}} \code{xxx} and \code{yyy} represent an extended mode and extended class, respectively.
 }
 \description{
 \tabular{rl}{
-\code{mmm_ccc_props}   \tab Gets a character vector of all possible \link[=mmm]{extended mode} + \link[=ccc]{extended class} properties.
-\cr               \tab  
-\cr   \code{mmm_ccc}   \tab Evaluates whether \code{x} matches the extended mode specified in \code{mmm} and the extended class in argument \code{ccc}, subject to any restrictions in \code{...}.
-\cr               \tab  
-\cr   \code{xxx_yyy}   \tab Evaluates whether \code{x} matches extended mode \code{xxx}\eqn{^1} and extended class \code{yyy}\eqn{^2} subject to any restrictions in \code{...}.
+  \code{mmm_ccc_props}   \tab Gets a character vector of all possible \link[=mmm]{extended mode} + \link[=ccc]{extended class} properties.
+\cr                 \tab  
+\cr     \code{mmm_ccc}   \tab Evaluates whether \code{x} matches properties in arguments \code{mmm}\eqn{^1} and \code{ccc}\eqn{^1} (subject to any restrictions in \code{...}).
+\cr                 \tab  
+\cr     \code{xxx_yyy}   \tab Evaluates whether \code{x} matches properties \code{xxx}\eqn{^1} and \code{yyy}\eqn{^2} (subject to any restrictions in \code{...}).
 }
-    \eqn{^1} A placeholder for any given extended mode.
-\cr\cr     \eqn{^2} A placeholder for any given extended class.
+\eqn{^{1.}} An extended mode.
+\cr \eqn{^{2.}} An extended class.
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively..
-\cr                   \tab  
-\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively..
-\cr                   \tab  
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr                   \tab  
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr                   \tab  
 \cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                   \tab  
-\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively..
-\cr                   \tab  
+\cr                   \tab  
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr                   \tab  
 \cr          \code{vals}   \tab A vector of valid values.
 }
 }
@@ -705,13 +707,11 @@ whl_vls(x, ...)
 \examples{
 scalar1 <- "a"
 lst2x26 <- list(letters = letters, LETTERS = LETTERS)
-
 c(mmm_ccc(lst2x26, "chr", "vls"), chr_vls(lst2x26))
 c(mmm_ccc(lst2x26, "num", "mat"), num_mat(lst2x26))
 c(mmm_ccc(scalar1, "ch1", "scl"), ch1_scl(scalar1))
 c(mmm_ccc(letters, "ch1", "vec"), ch1_vec(letters))
 c(mmm_ccc(letters, "num", "dtf"), num_dtf(letters))
-
 mmm_ccc_props()
 }
 \seealso{

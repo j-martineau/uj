@@ -3,6 +3,7 @@
 \name{basics}
 \alias{basics}
 \alias{u}
+\alias{w}
 \alias{dn}
 \alias{up}
 \alias{len}
@@ -12,6 +13,8 @@
 \title{Thin wrappers for \code{base} functions}
 \usage{
 u(x)
+
+w(x)
 
 dn(x)
 
@@ -68,8 +71,10 @@ For a vector, an object of the same type of \code{x}, but with only
 \cr  \code{up}   \tab Thinly wraps \code{\link[base]{ceiling}}.
 \cr  \code{dn}   \tab Thinly wraps \code{\link[base]{floor}}.
 \cr   \code{u}   \tab Thinly wraps \code{\link[base]{unique}}\eqn{^1}.
+\cr   \code{w}   \tab Thinly Wraps \code{\link[base]{which}}\eqn{^2}.
 }
-    \eqn{^1} Differs from \code{\link{uv}} because \code{uv} calls \code{unique(av(...))}.
+\eqn{^1.} Differs from \code{\link{uv}}, which calls \code{unique(av(...))}.
+\eqn{^2.} Differs from \code{\link{wv}}, which calls \code{which(av(...))}.
 }
 \details{
 This is a generic function with methods for vectors, data frames and
@@ -103,39 +108,9 @@ This is a generic function with methods for vectors, data frames and
   numbers!
 }
 \note{
-This does \strong{not} by default give the number of characters that
-  will be used to \code{print()} the string.  Use
-  \code{\link[base]{encodeString}} to find that.
-#ifdef windows not active  Where character strings have been marked as UTF-8, the number of
-  characters and widths will be computed in UTF-8, even though printing
-  may use escapes such as \samp{<U+2642>} in a non-UTF-8 locale.
-
-  The concept of \sQuote{width} is a slippery one even in a monospaced
-  font. Some human languages have the concept of \emph{combining}
-  characters, in which two or more characters are rendered together: an
-  example would be \code{"y\u306"}, which is two characters of width
-  one: combining characters are given width zero, and there are other
-  zero-width characters such as the zero-width space \code{"\u200b"}.
-
-  Some East Asian languages have \sQuote{wide} characters, ideographs
-  which are conventionally printed across two columns when mixed with
-  ASCII and other \sQuote{narrow} characters in those languages.  The
-  problem is that whether a computer prints wide characters over two or
-  one columns depends on the font, with it not being uncommon to use two
-  columns in a font intended for East Asian users and a single column in
-  a \sQuote{Western} font.  Unicode has encodings for \sQuote{fullwidth}
-  versions of ASCII characters and \sQuote{halfwidth} versions of
-  Katakana (Japanese) and Hangul (Korean) characters.  Then there is the
-  \sQuote{East Asian Ambiguous class} (Greek, Cyrillic, signs, some
-  accented Latin chars, etc), for which the historical practice was to
-  use two columns in East Asia and one elsewhere.  The width quoted by
-  \code{nchar} for characters in that class (and some others) depends on
-  the locale, being one except in some East Asian locales on some OSes
-  (notably Windows).
-
-  Control characters are usually given width zero: this includes CR and
-  LF.  Computing the width of a string containing control characters
-  should be avoided (and may depend on the OS and \R version).
+Unlike most other base \R functions this does not coerce \code{x}
+  to logical: only arguments with \code{\link[base]{typeof}} logical are
+  accepted and others give an error.
 }
 \section{Warning}{
 
@@ -248,6 +223,7 @@ Other wraps:
 \code{\link{tb}()}
 }
 \author{
-Original code by Jonathan Rougier.
+Werner Stahel and Peter Holzer (ETH Zurich) proposed the
+  \code{arr.ind} option.
 }
 \concept{wraps}

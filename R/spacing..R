@@ -1,7 +1,6 @@
 #' @name spacing
 #' @family chars
 #' @family strings
-#' @family validated
 #' @title `stringr`-based spacing functions
 #' @details \tabular{rl}{
 #'    `spaces`   \tab Creates a character vector of `n` spaces.
