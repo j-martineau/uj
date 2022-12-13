@@ -1,12 +1,15 @@
 #' @name pgrid
 #' @family strings
 #' @title `expand.grid` for `paste` and `paste0`
-#' @description \itemize{
-#'   \item **`pgrid`**: converts the `n` `...` arguments to character (with additional optional pre-processing) and create a character vector with each element consisting of sub-strings from across `...` arguments pasted together using the 'paste' `p`. See the *value* section for how the value of `crossed` affects the return value.
-#'   \item **`pgrid0`**: calls `pgrid` with `p = ""` (a blank string).
-#'   \item **`pgrid1`**: calls `pgrid` with `p = " "` (a space).
-#'   \item **`pgridn`**: calls `pgrid` with `crossed = FALSE` so as to produce only `n`-way combinations from across the `n` `...` arguments.
-#'   \item **`pgridx`**: calls `pgrid` with `crossed = TRUE` so as to produce all possible `1`-way, `2`-way, ..., `n`-way combinations from across the `...` arguments (i.e. fully-crossed combinations).
+#' @description \tabular{rl}{
+#'        `pgrid`   \tab Converts the `n` `...` arguments to character (with additional optional pre-processing) and create a character vector with each element consisting of sub-strings from across `...` arguments pasted together using the 'paste' `p`. See the *value* section for how the value of `crossed` affects the return value.
+#'   \cr            \tab   
+#'   \cr `pgrid0`   \tab Calls `pgrid` with `p = ""` (blank).
+#'   \cr `pgrid1`   \tab Calls `pgrid` with `p = " "` (space).
+#'   \cr            \tab   
+#'   \cr `pgridn`   \tab Calls `pgrid` with `crossed = FALSE` to produce only `n`-way combinations from across the `n` `...` arguments.
+#'   \cr            \tab   
+#'   \cr `pgridx`   \tab Calls `pgrid` with `crossed = TRUE` to produce all possible `1`-way, `2`-way, ..., `n`-way combinations from across the `...` arguments (i.e. fully-crossed combinations).
 #' }
 #' @param ... Non-empty atomic objects.
 #' @param p A \link[=cmp_chr_scl]{complete character scalar} to use as the 'paste'.
@@ -33,6 +36,16 @@
 #' [31] "C.2"   "C.2.a" "C.2.b" "C.a"   "C.b"
 #' ```
 #' @return A character vector.
+#' @examples
+#' x <- c("A", "B", "C")
+#' y <- c(1, 2)
+#' z <- c("a", "b")
+#' pgrid(".", x, y, z, crossed = F)
+#' pgrid(".", x, y, z, crossed = T)
+#' pgridn(".", x, y, y)
+#' pgridx(".", x, y, z)
+#' pgrid0(x, y, z)
+#' pgrid1(x, y, z)
 #' @export
 pgrid <- function(p, ..., ch = F, crossed = F, na.err = T) {
   combo <- function(xx) {
@@ -41,15 +54,15 @@ pgrid <- function(p, ..., ch = F, crossed = F, na.err = T) {
     paste0(xx, collapse = p)
   }
   dots <- list(...)
-  errs <- c(f0(length(dots) > 0                    , NULL, "\n \u2022 [...] is empty."),
-            f0(all(sapply(dots, cmp_vec))          , NULL, "\n \u2022 All arguments in [...] must be complete atomic vector+'s (?cmp_vec)"),
-            f0(all(sapply(dots, length) > 0)       , NULL, "\n \u2022 [...] contains an empty element."),
-            f0(cmp_chr_scl(p)                      , NULL, "\n \u2022 [p] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(isTF(ch)                            , NULL, "\n \u2022 [ch] must be TRUE or FALSE."),
-            f0(isTF(crossed)                       , NULL, "\n \u2022 [crossed] must be TRUE or FALSE."),
-            f0(isTF(na.err)                        , NULL, "\n \u2022 [na.err] must be TRUE or FALSE."),
-            f0(!isT(na.err) | !any(is.na(av(dots))), NULL, "\n \u2022 Arguments in [...] may not contain [NA] values when [na.err = TRUE]."))
-  if (!is.null(errs)) {stop(errs)}
+  errs <- c(f0(length(dots) > 0                    , NULL, "[...] is empty."),
+            f0(all(sapply(dots, cmp_vec))          , NULL, "All arguments in [...] must be complete atomic vector+'s (?cmp_vec)"),
+            f0(all(sapply(dots, length) > 0)       , NULL, "[...] contains an empty element."),
+            f0(cmp_chr_scl(p)                      , NULL, "[p] must be a complete character scalar (?cmp_chr_scl)."),
+            f0(isTF(ch)                            , NULL, "[ch] must be TRUE or FALSE."),
+            f0(isTF(crossed)                       , NULL, "[crossed] must be TRUE or FALSE."),
+            f0(isTF(na.err)                        , NULL, "[na.err] must be TRUE or FALSE."),
+            f0(!isT(na.err) | !any(is.na(av(dots))), NULL, "Arguments in [...] may not contain [NA] values when [na.err = TRUE]."))
+  if (!is.null(errs)) {stop(.errs(errs))}
   call <- paste0("c(as.character(dots[[", 1:length(dots), "]]), f0(crossed, '', NULL))")
   call <- paste0(call, collapse = ", ")
   call <- paste0("expand.grid(", call, ", stringsAsFactors = F)")

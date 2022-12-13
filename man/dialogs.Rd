@@ -80,32 +80,62 @@ asknew(old, what, unq = T)
 \item{unq}{A non-\code{NA} logical scalar indicating whether new values must be unique.}
 }
 \value{
-\itemize{
-\item \strong{\verb{yes, no}}: a logical scalar.
-\item \strong{\verb{askn, asksn, asknew}}: a character vector.
-\item \strong{\verb{msgbox, dirbox, docbox, ansbox}}: an environment.
-\item \strong{\verb{msg, okx, ask, ask1, asks1, choose_dir, choose_doc}}: a character scalar.
+\tabular{rl}{
+\cr \code{choose_dir}   \tab A character scalar.
+\cr \code{choose_doc}   \tab   
+\cr      \code{asks1}   \tab   
+\cr       \code{ask1}   \tab   
+\cr        \code{ask}   \tab   
+\cr        \code{okx}   \tab   
+\cr        \code{msg}   \tab   
+\cr                \tab   
+\cr     \code{ansbox}   \tab An environment.
+\cr     \code{docbox}   \tab   
+\cr     \code{dirbox}   \tab   
+\cr     \code{msgbox}   \tab   
+\cr                \tab   
+\cr     \code{asknew}   \tab A character vector.
+\cr      \code{asksn}   \tab   
+\cr       \code{askn}   \tab   
+\cr                \tab   
+\cr        \code{yes}   \tab A logical scalar.
+\cr         \code{no}   \tab   
 }
 }
 \description{
 All functions in this family take \code{...} arguments, which are \link[=av]{atomized} and collapsed into a prompt to be displayed in a dialog box.
-\itemize{
-\item \strong{\code{msgbox}}: launches a simple dialog box to give the message.
-\item \strong{\code{dirbox}}: asks user to select a directory/folder.\eqn{^1}
-\item \strong{\code{docbox}}: asks user to select a document.\eqn{^1}
-\item \strong{\code{ansbox}}: asks user to input a text response.
-\item \strong{\code{no}}: checks for user selecting the \code{no} button of a \code{yesno} dialog.
-\item \strong{\code{yes}}: checks for user selecting the \code{yes} button of a \code{yesno} dialog.
-\item \strong{\code{msg}}: returns the name of the button clicked.
-\item \strong{\code{okx}}: checks for user selecting the \code{ok} button of an \code{okcancel} dialog.
-\item \strong{\code{ask}}: asks user for typed input.
-\item \strong{\code{ask1}}: asks user to select a single option from a list.
-\item \strong{\code{askn}}: asks user to select \verb{1+} options from a list.
-\item \strong{\code{asks1}}: asks user to select \code{1} option from a list, possibly across multiple rounds.
-\item \strong{\code{asksn}}: asks user to select a \verb{1+} options from a list of possible options, possibly across multiple rounds.
-\item \strong{\code{asknew}}: asks user to enter a space- or comma-separated list of replacement values for existing values.
-\item \strong{\code{choose_dir}}: asks user to select a directory/folder.
-\item \strong{\code{choose_doc}}: asks user to select a document/file.
+\tabular{rl}{
+  \code{choose_doc}   \tab asks user to select a document/file.
+\cr                \tab   
+\cr \code{choose_dir}   \tab asks user to select a directory/folder.
+\cr                \tab   
+\cr     \code{msgbox}   \tab launches a simple dialog box to give the message.
+\cr                \tab   
+\cr     \code{dirbox}   \tab asks user to select a directory/folder\eqn{^1}.
+\cr                \tab   
+\cr     \code{docbox}   \tab asks user to select a document\eqn{^1}.
+\cr                \tab   
+\cr     \code{ansbox}   \tab asks user to input a text response.
+\cr                \tab   
+\cr     \code{asknew}   \tab asks user to enter a space- or comma-separated list of replacement values for existing values.
+\cr                \tab   
+\cr      \code{asks1}   \tab asks user to select \code{1} option from a list, possibly across multiple rounds.
+\cr                \tab   
+\cr      \code{asksn}   \tab asks user to select a \verb{1+} options from a list of possible options, possibly across multiple rounds.
+\cr                \tab   
+\cr       \code{ask1}   \tab asks user to select a single option from a list.
+\cr                \tab   
+\cr       \code{askn}   \tab asks user to select \verb{1+} options from a list.
+\cr                \tab   
+\cr        \code{ask}   \tab asks user for typed input.
+\cr                \tab   
+\cr        \code{msg}   \tab returns the name of the button clicked.
+\cr                \tab   
+\cr        \code{okx}   \tab checks for user selecting the \code{ok} button of an \code{okcancel} dialog.
+\cr                \tab   
+\cr        \code{yes}   \tab checks for user selecting the \code{yes} button of a \code{yesno} dialog.
+\cr                \tab   
+\cr         \code{no}   \tab checks for user selecting the \code{no} button of a \code{yesno} dialog.
 }
-\eqn{^1} Failsafe feature launches a message dialog box prompting the user to take an action in the next dialog box. After user acknowledges, only then launches the selection dialog to avoid problems with prompts not showing up on all operating systems.
+\eqn{^{1.}} Failsafe feature launches a message dialog box prompting the user to take an action in the next dialog box. After user acknowledges, only then launches the selection dialog to avoid problems with prompts not showing up on all operating systems.
 }

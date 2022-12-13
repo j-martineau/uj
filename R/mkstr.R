@@ -1,26 +1,30 @@
 #' @name mkstr
 #' @family strings
 #' @title Specialized string building functions
-#' @description Build strings where function names are composed of a single-letter prefix and a longer suffix. Prefixes and their meanings are \itemize{
-#'   \item **`g`**: glue/collapse `...` arguments
-#'   \item **`p`**: paste across corresponding elements of `...` arguments.
+#' @description Build strings where function names are composed of a single-letter prefix and a longer suffix. Prefixes and their meanings are
+#' \tabular{rl}{
+#'       `g`   \tab Glue/collapse `...` args
+#'   \cr `p`   \tab Paste across corresponding element of `...`.
 #' }
-#' Suffixes and their meanings are \itemize{
-#'   \item **`eq`**: space-padded equality statement.
-#'   \item **`eq0`**: non-padded equality statement.
-#'   \item **`cat`**: vector concatenation statement.
-#'   \item **`elt`**: element extraction statement.
-#'   \item **`fun`**: function call statement.
-#'   \item **`form`**: formula statement.
-#'   \item **`lst`**: delimit with comma + space.
-#'   \item **`colon`**: delimit with colons.
-#'   \item **`wrap`**: enclose in different left and right values.
-#'   \item **`tick`**: enclose in back-ticks.
-#'   \item **`brace`**: enclose in curly braces.
-#'   \item **`paren`**: enclose in parentheses.
-#'   \item **`quote`**: enclose in single quotes.
-#'   \item **`quote2`**: enclose in double quotes.
-#'   \item **`bracket`**: enclose in square brackets.
+#' Suffixes and their meanings are
+#' \tabular{rl}{
+#'      `bracket`   \tab Enclose in square brackets.
+#'   \cr `quote2`   \tab   double quotes.
+#'   \cr  `quote`   \tab   single quotes.
+#'   \cr  `paren`   \tab   parentheses.
+#'   \cr  `brace`   \tab   braces.
+#'   \cr   `tick`   \tab   backticks.
+#'   \cr   `wrap`   \tab   left & right.
+#'   \cr            \tab   
+#'   \cr  `colon`   \tab Delimit with colons.
+#'   \cr    `lst`   \tab   comma + space.
+#'   \cr            \tab   
+#'   \cr   `form`   \tab Formula statement.
+#'   \cr    `elt`   \tab   element extraction
+#'   \cr    `fun`   \tab   function call
+#'   \cr    `cat`   \tab   vector concatenation
+#'   \cr    `eq0`   \tab   unpadded equality
+#'   \cr     `eq`   \tab   space-padded equality
 #' }
 #' Each prefix is joined with each suffix to create a unique function. The action indicated by the prefix happens first, followed by the action indicated in the suffix. How each function works is illustrated in the details.
 #' @param x An object containing atomic values (atomized before processing).

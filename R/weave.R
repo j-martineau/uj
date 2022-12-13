@@ -3,39 +3,33 @@
 #' @title Weave inlay values into a string
 #' @description A reformulation of \code{\link[base]{sprintf}}. See details.
 #' @details This function relies on a template containing escape sequences which in turn contain formatting switches. Escape sequences specify where to insert inlay arguments. Switches specify how to format inlay arguments to be inlaid, and come in three families
-#' \cr\cr
-#' 'Decimal' switches specify number of decimal places for numeric inlay arguments, taking the values `'0'` to `'9'`
-#' \cr\cr
-#' 'Quote' switches specify quoting of elements of inlay arguments.\tabular{ll}{
-#'       **Switch**         \tab **Quote**
-#'   \cr **Value**          \tab **Type**
-#'   \cr `'q'`              \tab single straight
-#'   \cr `'Q'`              \tab double straight
-#'   \cr `'t'`              \tab single typeset
-#'   \cr `'T'`              \tab double typeset
-#' }
-#' 'List' switches specify formatting inlay arguments as comma-separated lists.\tabular{lll}{
-#'       **Switch**         \tab **List**      \tab **Result with Inlay**
-#'   \cr **Value**          \tab **Type**      \tab **Arg = `1:3`**
-#'   \cr `'o'`              \tab or            \tab `'1, 2, or 3'`
-#'   \cr `'a'`              \tab and           \tab `'1, 2, and 3'`
-#'   \cr `'b'`              \tab braces        \tab `'{1, 2, 3}'`
-#'   \cr `'c'`              \tab concat        \tab `'c(1, 2, 3)'`
-#'   \cr `'l'`              \tab simple        \tab `'1, 2, 3'}`
-#'   \cr `'p'`              \tab parens        \tab `'(1, 2, 3)'`
-#'   \cr `'s'`              \tab square        \tab `'[1, 2, 3]'`
+#' \cr\cr 'Decimal' switches specify number of decimal places for numeric inlay arguments, taking the values `'0'` to `'9'`
+#' \cr\cr 'Quote' switches specify quoting of elements of inlay arguments.\tabular{ccc}{
+#'      **Switch**   \tab **Quote** \tab   **Quote**  
+#'   \cr **Value**   \tab **Style** \tab   **Type**
+#'   \cr `'q'`       \tab straight  \tab   single
+#'   \cr `'Q'`       \tab straight  \tab   double
+#'   \cr `'t'`       \tab typeset   \tab   single
+#'   \cr `'T'`       \tab typeset   \tab   typeset  
+#' } 'List' switches specify formatting inlay arguments as comma-separated lists.\tabular{ccc}{
+#'      **Switch**   \tab **List**  \tab   **Result with**  
+#'   \cr **Value**   \tab **Type**  \tab   **`arg = 1:3`**  
+#'   \cr `'o'`       \tab or        \tab   `'1, 2, or 3'`
+#'   \cr `'a'`       \tab and       \tab   `'1, 2, and 3'`  
+#'   \cr `'b'`       \tab braces    \tab  `'{1, 2, 3}'`
+#'   \cr `'c'`       \tab concat    \tab `'c(1, 2, 3)'`
+#'   \cr `'l'`       \tab simple    \tab   `'1, 2, 3'`
+#'   \cr `'p'`       \tab parens    \tab  `'(1, 2, 3)'`
+#'   \cr `'s'`       \tab square    \tab  `'[1, 2, 3]'`
 #' }
 #' **Building escape sequences**
-#' \cr\cr
-#' Escape sequences are formatted as `'{@@_}'` where `_` is a placeholder for `0` to `3` formatting switches, but with no more than `1` switch from each family. What each format signals is described below.
-#' \cr\cr
-#' `'{@@}'` signals insertion of a scalar inlay argument as is.
-#' \cr\cr
-#' `'{@@x}'` vs. `'{@@xy}'` signal insertion of an inlay argument after applying formatting switch `x` vs. formatting switches `x` and `y`. If an escape sequence with one of these formats does not contain a 'list' switch, the associated inlay argument *must be scalar* (otherwise it may also be a vector).
-#' \cr\cr
-#' `'{@@xyz}'` signals insertion of a scalar or vector inlay argument after applying formatting switches `x`, `y`, and `z`.
-#' \cr\cr
-#' **Order of switches** in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:\enumerate{
+#' \cr\cr Escape sequences are formatted as `'{@@_}'` where `_` is a placeholder for `0` to `3` formatting switches, but with no more than `1` switch from each family. What each format signals is described below.
+#' \cr\cr `'{@@}'` signals insertion of a scalar inlay argument as is.
+#' \cr\cr `'{@@x}'` vs. `'{@@xy}'` signal insertion of an inlay argument after applying formatting switch `x` vs. formatting switches `x` and `y`. If an escape sequence with one of these formats does not contain a 'list' switch, the associated inlay argument *must be scalar* (otherwise it may also be a vector).
+#' \cr\cr `'{@@xyz}'` signals insertion of a scalar or vector inlay argument after applying formatting switches `x`, `y`, and `z`.
+#' \cr\cr **Order of switches**
+#' \cr Order of switches in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:
+#' \enumerate{
 #'   \item Decimal switch (if any).
 #'   \item Quote switch (if any).
 #'   \item List switch (if any).
@@ -57,10 +51,10 @@
 weave <- function(x, ...) {
   ok.dots <- ...length() > 0
   ok.props <- f0(ok.dots, all(sapply(list(...), cmp_vec)), F)
-  errs <- c(f0(cmp_chr_scl(x), NULL, "\n \u2022 [x] must be a complate character scalar (?cmp_chr_scl)."),
-            f0(ok.dots       , NULL, "\n \u2022 [...] is empty."),
-            f0(ok.props      , NULL, "\n \u2022 Arguments in [...] must be complete character objects (?cmp_chr)."))
-  if (!is.null(errs)) {stop(errs)}
+  errs <- c(f0(cmp_chr_scl(x), NULL, "[x] must be a complate character scalar (?cmp_chr_scl)."),
+            f0(ok.dots       , NULL, "[...] is empty."),
+            f0(ok.props      , NULL, "Arguments in [...] must be complete character objects (?cmp_chr)."))
+  if (!is.null(errs)) {stop(.errs(errs))}
   dots <- list(...)                                                              # The arguments to weave into {x}
   n.dots <- ...length()                                                          # The number of such arguments
   code.prefix <- "[{][@]"                                                        # gregexpr pattern for switch code prefix, i.e., '{@'
@@ -94,7 +88,7 @@ weave <- function(x, ...) {
   switches <- switches[order(switches$P), ]                                      # sort by position of first letter of pattern in {x}
   n.switches <- nrow(switches)                                                   # number of switch patterns found in {x}
   ok.n <- n.switches == n.dots                                                   # match between number of switch codes and args in {...}?
-  if (!ok.n) {stop("\n \u2022 ", count.mismatch, "(", n.switches, ") don't match.")}
+  if (!ok.n) {stop(.errs(p0(count.mismatch, "(", n.switches, ") don't match.")))}
   code.stop <- 0                                                                 # position in {x} of 0-th (edge case) switch code's last character
   out <- ""                                                                      # initialize result
   errs <- NULL
@@ -108,9 +102,9 @@ weave <- function(x, ...) {
     code <- substr(x, code.start, code.stop)                                     # : current switch code
     switches <- ch(code)                                                         # : all of the characters in the switch code
     switches <- switches[switches %in% all.switches]                             # : get just the switches (removing '{@', and '}')
-    sequence  <- paste0(i, "-th", inlay.sequence, "('", code, "')")              # : string for communicating about the current switch code
+    sequence  <- p0(i, "-th", inlay.sequence, "('", code, "')")              # : string for communicating about the current switch code
     ok.switches <- length(switches) == length(unique(switches))                  # : are all switches unique?
-    if (!ok.switches) {errs <- c(errs, "\n \u2022 The ", sequence, "contains duplicate switches.")}
+    if (!ok.switches) {errs <- c(errs, p0("The ", sequence, "contains duplicate switches."))}
     if (ok.switches) {                                                           # : if no duplicate switches error
       ia <- "a" %in% code; ib <- "b" %in% code; ic <- "c" %in% code              # : : whether the switch code contains each valid switch
       il <- "l" %in% code; io <- "o" %in% code; ip <- "p" %in% code
@@ -126,17 +120,17 @@ weave <- function(x, ...) {
       ok.qt <- nq < 2
       ok.dc <- nd < 2
       errs <- c(errs,
-                f0(ok.ls, NULL, paste0("\n \u2022 The ", sequence, has.mult, ls.switches)),
-                f0(ok.qt, NULL, paste0("\n \u2022 The ", sequence, has.mult, qt.switches)),
-                f0(ok.dc, NULL, paste0("\n \u2022 The ", sequence, has.mult, dc.switches)))
+                f0(ok.ls, NULL, p0("The ", sequence, has.mult, ls.switches)),
+                f0(ok.qt, NULL, p0("The ", sequence, has.mult, qt.switches)),
+                f0(ok.dc, NULL, p0("The ", sequence, has.mult, dc.switches)))
      if (ok.ls & ok.qt & ok.dc) {
         dot <- dots[[i]]                                                         # : : : get the i-th arg from {...}
         nd <- length(dot)                                                        # : : : get its length
         ok.ls <- ANY(nl == 1, nd == 1)                                           # : : : is list type specified or is i-th arg scalar?
         ok.dot <- ANY(nd == 0, is.numeric(dot))                                  # : : : are no digits of precision indicated or i-th arg is numeric?
         errs <- c(errs,
-                  f0(ok.ls , NULL, paste0("\n \u2022 ..", i, non.scl, sequence, assume.scl)),
-                  f0(ok.dot, NULL, paste0("\n \u2022 ..", i, non.num, sequence, assume.num)))
+                  f0(ok.ls , NULL, p0("..", i, non.scl, sequence, assume.scl)),
+                  f0(ok.dot, NULL, p0("..", i, non.num, sequence, assume.num)))
         if (ok.ls & ok.dot) {                                                           # : : : if no such errors
           if      (i0) {dot <- sprintf("%0.0f", dot)}                            # : : : : for any specified digits of precision,
           else if (i1) {dot <- sprintf("%0.1f", dot)}                            #         format i-th arg as specified
@@ -161,7 +155,7 @@ weave <- function(x, ...) {
           else if (io) {dot <- ox_or(dot)}
           out <- c(out, text, dot)                                               # : : : : append the plain text and formatted i-th arg to the result
   }}}}
-  if (!is.null(errs)) {stop(errs)}
+  if (!is.null(errs)) {stop(.errs(errs))}
   text.start <- code.stop + 1                                                    # position in {x} of last plain text after the last switch code
   text.stop <- nchar(x)                                                          # get position of last character in {x}
   text <- f0(text.stop < text.start, "", substr(x, text.start, text.stop))       # get last plain text, if any

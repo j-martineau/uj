@@ -78,13 +78,13 @@
 color <- function(x, lighten = 0, darken = 0, a = 1, comp = F) {
   ns <- c(length(x), length(lighten), length(darken), length(a))
   reps <- max(ns) / ns
-  errs <- c(f0(cmp_clr_vec(x)          , NULL, "\n \u2022 [x] must be a complete color vec (?cmp_clr_vec) [i.e., containing only valid character-mode color values]."),
-            f0(cmp_ppn_vec(lighten)    , NULL, "\n \u2022 [lighten] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
-            f0(cmp_ppn_vec(darken)     , NULL, "\n \u2022 [darken] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
-            f0(cmp_ppn_vec(a)          , NULL, "\n \u2022 [a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
-            f0(isTF(comp)              , NULL, "\n \u2022 [comp] must be TRUE or FALSE."),
-            f0(all(reps == round(reps)), NULL, "\n \u2022 [x], [lighten], [darken], and [a] are not recyclable (?recyclable)."))
-  if (!is.null(errs)) {stop(errs)}
+  errs <- c(f0(cmp_clr_vec(x)          , NULL, "[x] must be a complete color vec (?cmp_clr_vec) [i.e., containing only valid character-mode color values]."),
+            f0(cmp_ppn_vec(lighten)    , NULL, "[lighten] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
+            f0(cmp_ppn_vec(darken)     , NULL, "[darken] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
+            f0(cmp_ppn_vec(a)          , NULL, "[a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
+            f0(isTF(comp)              , NULL, "[comp] must be TRUE or FALSE."),
+            f0(all(reps == round(reps)), NULL, "[x], [lighten], [darken], and [a] are not recyclable (?recyclable)."))
+  if (!is.null(errs)) {stop(.errs(errs))}
   if (r[1] > 1) {x       <- rep.int(x      , r[1])}
   if (r[2] > 1) {lighten <- rep.int(lighten, r[2])}
   if (r[3] > 1) {darken  <- rep.int(darken , r[3])}
@@ -114,12 +114,12 @@ color <- function(x, lighten = 0, darken = 0, a = 1, comp = F) {
 rgba <- function(r = 1, g = 1, b = 1, a = 1) {
   ns <- c(length(r), length(g), length(b), length(a))
   reps <- max(ns) / ns
-  errs <- c(f0(cmp_ppn_vec(r)          , NULL, "\n \u2022 [r] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
-            f0(cmp_ppn_vec(g)          , NULL, "\n \u2022 [g] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
-            f0(cmp_ppn_vec(b)          , NULL, "\n \u2022 [b] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
-            f0(cmp_ppn_vec(a)          , NULL, "\n \u2022 [a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
-            f0(all(reps == round(reps)), NULL, "\n \u2022 [r], [g], [b], and [a] are not recyclable (?recyclable)."))
-  if (!is.null(errs)) {stop(errs)}
+  errs <- c(f0(cmp_ppn_vec(r)          , NULL, "[r] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
+            f0(cmp_ppn_vec(g)          , NULL, "[g] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
+            f0(cmp_ppn_vec(b)          , NULL, "[b] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
+            f0(cmp_ppn_vec(a)          , NULL, "[a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
+            f0(all(reps == round(reps)), NULL, "[r], [g], [b], and [a] are not recyclable (?recyclable)."))
+  if (!is.null(errs)) {stop(.errs(errs))}
   rgb(r, g, b, a)
 }
 
@@ -128,12 +128,12 @@ rgba <- function(r = 1, g = 1, b = 1, a = 1) {
 hsva <- function(h = 1, s = 1, v = 1, a = 1) {
   ns <- c(length(h), length(s), length(v), length(a))
   reps <- max(ns) / ns
-  errs <- c(f0(cmp_ppn_vec(h)          , NULL, "\n \u2022 [h] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
-            f0(cmp_ppn_vec(s)          , NULL, "\n \u2022 [s] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
-            f0(cmp_ppn_vec(v)          , NULL, "\n \u2022 [v] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
-            f0(cmp_ppn_vec(a)          , NULL, "\n \u2022 [a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
-            f0(all(reps == round(reps)), NULL, "\n \u2022 [h], [s], [v], and [a] are not recyclable (?recyclable)."))
-  if (!is.null(errs)) {stop(errs)}
+  errs <- c(f0(cmp_ppn_vec(h)          , NULL, "[h] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
+            f0(cmp_ppn_vec(s)          , NULL, "[s] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
+            f0(cmp_ppn_vec(v)          , NULL, "[v] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
+            f0(cmp_ppn_vec(a)          , NULL, "[a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."),
+            f0(all(reps == round(reps)), NULL, "[h], [s], [v], and [a] are not recyclable (?recyclable)."))
+  if (!is.null(errs)) {stop(.errs(errs))}
   hsv(h, s, v, a)
 }
 
@@ -143,13 +143,13 @@ blend <- function(x, y, wx = 1, wy = 1, a = NA) {
   browser()
   ns <- c(length(x), length(y), length(wx), length(wy), length(a))
   reps <- max(ns) / ns
-  errs <- c(f0(cmp_clr_vec(x)               , NULL, "\n \u2022 [x] must be a complete color vec (?cmp_clr_vec)."),
-            f0(cmp_clr_vec(y)               , NULL, "\n \u2022 [x] must be a complete color vec (?cmp_clr_vec)."),
-            f0(cmp_pos_vec(wx)              , NULL, "\n \u2022 [wx] must be a complete positive numeric vec (?cmp_pos_vec)."),
-            f0(cmp_pos_vec(wy)              , NULL, "\n \u2022 [wu] must be a complete positive numeric vec (?cmp_pos_vec)."),
-            f0(all(reps == round(reps))     , NULL, "\n \u2022 [a] must be [NA] or a complete proportion numeric vec(?cmp_ppn_vec)."),
-            f0(f0(nas(a), T, cmp_ppn_vec(a)), NULL, "\n \u2022 [x], [y], [wx], [wy], and [a] are not recyclable (?recyclable)."))
-  if (!is.null(errs)) {stop(errs)}
+  errs <- c(f0(cmp_clr_vec(x)               , NULL, "[x] must be a complete color vec (?cmp_clr_vec)."),
+            f0(cmp_clr_vec(y)               , NULL, "[x] must be a complete color vec (?cmp_clr_vec)."),
+            f0(cmp_pos_vec(wx)              , NULL, "[wx] must be a complete positive numeric vec (?cmp_pos_vec)."),
+            f0(cmp_pos_vec(wy)              , NULL, "[wu] must be a complete positive numeric vec (?cmp_pos_vec)."),
+            f0(all(reps == round(reps))     , NULL, "[a] must be [NA] or a complete proportion numeric vec(?cmp_ppn_vec)."),
+            f0(f0(nas(a), T, cmp_ppn_vec(a)), NULL, "[x], [y], [wx], [wy], and [a] are not recyclable (?recyclable)."))
+  if (!is.null(errs)) {stop(.errs(errs))}
   x  <- as_clr(x)                                                                # convert x and y to hexadecimal RGBA
   y  <- as_clr(y)
   wt <- wx + wy                                                                  # rescale x and y weights to sum to 1
@@ -254,10 +254,10 @@ red_vlt <- function(p = 1, s = 0, a = 1) {blend(red(p, s), vlt(p, s), a)}
 #' @rdname color
 #' @export
 pal_cb <- function(ng, nc = NULL, a = 1) {
-  errs <- c(f0(cmp_psw_scl(ng)             , NULL, "\n \u2022 [ng] must be a complete positive whole-number scalar (?cmp_psw_scl)."),
-            f0(f0(inll(nc), T, cmp_psw_scl), NULL, "\n \u2022 [nc] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl)."),
-            f0(cmp_ppn_scl(a)              , NULL, "\n \u2022 [a] must be a complete proportion scalar (?cmp_ppn_scl). That is, in the interval [0, 1]."))
-  if (!is.null(errs)) {stop(errs)}
+  errs <- c(f0(cmp_psw_scl(ng)             , NULL, "[ng] must be a complete positive whole-number scalar (?cmp_psw_scl)."),
+            f0(f0(inll(nc), T, cmp_psw_scl), NULL, "[nc] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl)."),
+            f0(cmp_ppn_scl(a)              , NULL, "[a] must be a complete proportion scalar (?cmp_ppn_scl). That is, in the interval [0, 1]."))
+  if (!is.null(errs)) {stop(.errs(errs))}
   out <- c("#4E79A7", "#F28E2B", "#E15759", "#76B7B2", "#59A14F", "#EDC948", "#B07AA1", "#FF9DA7", "#9C755F", "#BAB0AC", # bright colors
            "#273D54", "#794716", "#712C2D", "#3B5C59", "#2D5128", "#776524", "#583D51", "#804F54", "#4E3B30", "#5D5856") # darkened 50%
   if (length(nc) == 0) {if (nc < 20) {nc <- nc} else {nc <- 20}}                 # IF [nc] was not supplied THEN IF [nc] is less than 20, use as is ELSE  cap at 20
@@ -269,7 +269,7 @@ pal_cb <- function(ng, nc = NULL, a = 1) {
 #' @rdname color
 #' @export
 pal_swatch <- function(x) {
-  if (!cmp_clr_vec(x)) {stop("\n \u2022 [x] must be a complete color vec (?cmp_clr_vec) [i.e., containing only valid character-mode color values].")}
+  if (!cmp_clr_vec(x)) {stop(.errs("[x] must be a complete color vec (?cmp_clr_vec) [i.e., containing only valid character-mode color values]."))}
   as_clr(x)                                                                      # convert [x] to hexadecimal RGBA format
   Options <- par()                                                               # bank current graphical parameters
   par(mar  = c(0, 0, 0, 0),                                                      # set margins to zero (entire window is the plot region)

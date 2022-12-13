@@ -153,30 +153,43 @@ An integer or logical scalar or vector.
 }
 \description{
 Counting functions can be used with a single unnamed argument, multiple unnamed arguments, and with restrictions in named arguments, in any combination. The functions in this family answer the questions described below.
-\itemize{\item \strong{\code{n_is}}: do counts in \code{x} meet criteria in \code{n}, \code{min},. \code{max}, and/or \code{eq}?}
-\cr\itemize{
-\item \strong{\code{nx}}: gets number of values in \code{...} arguments.
-\item \strong{\code{nd}}: number of \code{...} arguments.
-\item \strong{\code{ns}}: gets number of values in each \code{...} argument.
-\item \strong{\code{nf}}:  gets number of values \code{FALSE} values.
-\item \strong{\verb{nw nt}}: gets number of values \code{TRUE} values.
-}
-\cr\itemize{
-\item \strong{\code{nat}}: gets number of values after \link[=av]{atomizing}.
-\item \strong{\code{nch}}: gets number of characters in each element.
-\item \strong{\verb{nr nc}}: gets number of values rows vs. columns, respectively.
-\item \strong{\verb{nu nuv}}: gets number of unique atomic values.
-\item \strong{\verb{nna nok}}:  gets number of values atomic \code{NA} vs. atomic non-\code{NA} values, respectively.
-\item \strong{\verb{nmin nmax}}: gets the min vs. max \code{...} argument length, respectively.
-}
-\cr\itemize{
-\item \strong{\verb{n0 n1 n2 n3}}: evaluates whether length is \code{0} vs. \code{1} vs. \code{2} vs. \code{3}, respectively.
-\item \strong{\verb{n1p n2p n3p}}: evaluates whether length is \verb{1+} vs. \verb{2+} vs. \verb{3+}, respectively.
-}
-\cr\itemize{
-\item \strong{\code{nsame}}: are lengths of all \code{...} arguments the same.
-\item \strong{\verb{nd1p nd2p nd3p}}: is the number of \code{...} arguments \verb{1+} vs. \verb{2+} vs. \verb{3+}, respectively.
-\item \strong{\verb{nd0 nd1 nd2 nd3}}: is the number of \code{...} arguments \code{0} vs. \code{1} vs. \code{2} vs. \code{3}, respectively.
+\tabular{rl}{
+\cr \verb{nu,nuv}   \tab Number of unique atomic values.
+\cr  \verb{nw,nt}   \tab   \code{TRUE} values.
+\cr     \code{nf}   \tab   \code{FALSE} values.
+\cr    \code{nna}   \tab   atomic \code{NA...} values.
+\cr    \code{nok}   \tab   atomic non-\code{NA...} values.
+\cr    \code{nch}   \tab   characters in each element.
+\cr     \code{nr}   \tab   rows.
+\cr     \code{nc}   \tab   columns.
+\cr            \tab   
+\cr     \code{nd}   \tab Number of \code{...} args.
+\cr    \code{nd0}   \tab Are there \verb{0 ...} args?
+\cr    \code{nd1}   \tab   \verb{1 ...} args?
+\cr    \code{nd2}   \tab   \verb{2 ...} arg?
+\cr    \code{nd3}   \tab   \verb{3 ...} args?
+\cr   \code{nd1p}   \tab   \code{1+ ...} args?
+\cr   \code{nd2p}   \tab   \code{2+ ...} args?
+\cr   \code{nd3p}   \tab   \code{3+ ...} args?
+\cr            \tab   
+\cr     \code{n0}   \tab Is length \code{0}?
+\cr     \code{n1}   \tab   \code{1}?
+\cr     \code{n2}   \tab   \code{2}?
+\cr     \code{n3}   \tab   \code{3}?
+\cr    \code{n1p}   \tab   \verb{1+}?
+\cr    \code{n2p}   \tab   \verb{2+}?
+\cr    \code{n3p}   \tab   \verb{3+}?
+\cr            \tab   
+\cr   \code{nmin}   \tab Min \code{...} arg length.
+\cr   \code{nmax}   \tab Max \code{...} arg length.
+\cr            \tab   
+\cr  \code{nsame}   \tab Are \code{...} arg lengths the same?
+\cr    \code{nat}   \tab Length after \link[=av]{atomizing}.
+\cr            \tab   
+\cr     \code{nx}   \tab Length(s) of \code{...} args.
+\cr     \code{ns}   \tab Lengths of \code{...} args.
+\cr            \tab   
+\cr   \code{n_is}   \tab Do counts in \code{x} meet criteria in \verb{n, min, max, eq}?
 }
 }
 \examples{
@@ -186,7 +199,6 @@ n_is(N, min = 3, max = 12)
 n_is(N, eq = T)
 n_is(rep(0, 3), eq = T)
 nx(letters, LETTERS, 0:9, NULL)
-nx(letters, LETTERS, 0:9, vals = letters)
 nx(letters, LETTERS, vals = letters)
 nx(letters, LETTERS, le = "M", ge = "m")
 nx(letters, LETTERS, lt = "M", gt = "m")
@@ -203,8 +215,8 @@ nmin(letters, LETTERS, 0:9, min = 11)
 nmax(letters, LETTERS, 0:9, max = 11)
 nsame(letters, LETTERS, 0:9, min = 11, max = 25)
 nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49)
+nt(0:99 \%in\% 50:59, 0:99 \%in\% 41:49)
 nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, n = 0:9)
-nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, min = 9, max = 19)
 nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, min = 9, max = 19, eq = T)
 nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49)
 nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, n = 0:9)

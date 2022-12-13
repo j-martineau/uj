@@ -15,7 +15,7 @@
 \usage{
 is_path(..., err = F)
 
-as_path(...)
+as_path(..., err = T)
 
 object_path(path, err = T)
 
@@ -41,27 +41,68 @@ newdirs(dirs, path = NULL)
 \item{dirs}{A \link[=cmp_chr_vec]{complete character vec} of new sub-directory names.}
 }
 \value{
-\itemize{
-\item \strong{\code{is_path}}: a logical scalar.
-\item \strong{\verb{object_dirs, folder_dirs}}: a character vector.
-\item \strong{\verb{object_path, folder_path, object_name, folder_name}}: a character scalar.
+\tabular{rl}{
+  \code{object_path}   \tab A character scalar.
+\cr \code{folder_path}   \tab   
+\cr \code{object_name}   \tab   
+\cr \code{folder_name}   \tab   
+\cr                 \tab   
+\cr \code{object_dirs}   \tab A character vector.
+\cr \code{folder_dirs}   \tab   
+\cr                 \tab   
+\cr     \code{is_path}   \tab A logical scalar.
 }
 }
 \description{
-\itemize{
-\item \strong{\code{is_path}}: checks whether \code{...} resolves to a valid path for an object (file or folder) when \code{...} arguments are collapsed into a character scalar.
-\item \strong{\code{as_path}}: collapses \code{...} into a path using the current platform file path separator \code{.Platform$file.sep}.
-\item \strong{\code{new_dirs}}: creates sub-directories within an existing directory, optionally asking the user to choose that existing directory.
-\item \strong{\code{object_path}}: collapses \code{...} into a character scalar and expand the path to the object indicated by the result to account for relative paths.
-\item \strong{\code{parent_path}}: calls \code{object_path} and extract from the resulting character scalar just the path to the parent folder of the object specified by \code{...} (i.e., discarding the name of the object itself).
-\item \strong{\code{object_name}}: calls \code{object_path} and extract from the resulting character scalar just the name of the object, discarding the path to its parent.
-\item \strong{\code{parent_name}}: calls \code{parent_path} and extract from the resulting character scalar just the name of last folder in the path.
-\item \strong{\code{object_dirs}}: calls \code{object_path} and split the resulting character scalar into a character vector containing the name of the root folder, the names of any intermediate folders, the name of the parent folder of the object, and the name of the object.
-\item \strong{\code{parent_dirs}}: calls \code{parent_path} and split the resulting character scalar into a character vector containing the name of the root folder, the names of any intermediate folders, and the name of the parent folder of the object specified by \code{...}.
+\tabular{rl}{
+  \code{parent_dirs}   \tab Calls \code{parent_path} and split the resulting character scalar into a character vector containing the name of the root folder, the names of any intermediate folders, and the name of the parent folder of the object specified by \code{...}.
+\cr                 \tab   
+\cr \code{object_path}   \tab Collapses \code{...} into a character scalar and expand the path to the object indicated by the result to account for relative paths.
+\cr                 \tab   
+\cr \code{parent_path}   \tab Calls \code{object_path} and extract from the resulting character scalar just the path to the parent folder of the object specified by \code{...} (i.e., discarding the name of the object itself).
+\cr                 \tab   
+\cr \code{object_name}   \tab Calls \code{object_path} and extract from the resulting character scalar just the name of the object, discarding the path to its parent.
+\cr                 \tab   
+\cr \code{parent_name}   \tab Calls \code{parent_path} and extract from the resulting character scalar just the name of last folder in the path.
+\cr                 \tab   
+\cr \code{object_dirs}   \tab Calls \code{object_path} and split the resulting character scalar into a character vector containing the name of the root folder, the names of any intermediate folders, the name of the parent folder of the object, and the name of the object.
+\cr                 \tab   
+\cr    \code{new_dirs}   \tab Creates sub-directories within an existing directory, optionally asking the user to choose that existing directory.
+\cr                 \tab   
+\cr     \code{is_path}   \tab Checks whether \code{...} resolves to a valid path for an object (file or folder) when \code{...} arguments are collapsed into a character scalar.
+\cr                 \tab   
+\cr     \code{as_path}   \tab Collapses \code{...} into a path using the current platform file path separator \code{.Platform$file.sep}.
 }
 }
 \details{
 In most cases, if (optionally) specified, functions throw an error if \code{...} does not resolve to a valid object path.
+}
+\examples{
+path. <- path.expand("~")
+parts. <- ss(.Platform$file.sep, path.)
+parts. <- parts.[parts. != ""]
+parts.[1] <- paste0(.Platform$file.sep, parts.[1])
+parts. <- paste0("'", parts., "'")
+code. <- paste0(parts., collapse = ", ")
+is_path. <- paste0("is_path(", code., ")")
+as_path. <- paste0("as_path(", code., ")")
+
+path.
+parts.
+is_path.
+as_path.
+
+parent_dirs(path.)
+object_dirs(path.)
+
+parent_path(path.)
+object_path(path.)
+
+parent_name(path.)
+object_name(path.)
+
+run(is_path.)
+run(as_path.)
 }
 \seealso{
 Other files: 

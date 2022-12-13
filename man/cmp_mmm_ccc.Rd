@@ -682,9 +682,9 @@ cmp_whl_vls(x, ...)
 \tabular{rl}{
   \code{cmp_mmm_ccc_props}   \tab Gets a character vector of all possible completeness + extended mode + extended class properties.
 \cr                     \tab   
-\cr     \code{cmp_mmm_ccc}   \tab Evaluates whether \code{x} is complete and matches properties in arguments \code{mmm}\eqn{^1} and \code{ccc}\eqn{^2} (subject to any restrictions in \code{...}).
+\cr     \code{cmp_mmm_ccc}   \tab Evaluates whether \code{x} is complete and matches properties in arguments \code{mmm\eqn{^1}} and \code{ccc\eqn{^2}} (subject to any restrictions in \code{...}).
 \cr                     \tab   
-\cr     \code{cmp_xxx_yyy}   \tab Evaluates whether \code{x} is complete and matches properties \code{xxx}\eqn{^1} and \code{yyy}\eqn{^1} (subject to any restrictions in \code{...}).
+\cr     \code{cmp_xxx_yyy}   \tab Evaluates whether \code{x} is complete and matches properties \code{xxx\eqn{^1}} and \code{yyy\eqn{^2}} (subject to any restrictions in \code{...}).
 }
 \eqn{^{1.}} An extended mode property.
 \cr \eqn{^{2.}} An extended class property.
@@ -692,15 +692,15 @@ cmp_whl_vls(x, ...)
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                   \tab  
-\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                   \tab  
-\cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                   \tab  
-\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                   \tab  
-\cr          \code{vals}   \tab A vector of valid values.
+  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr                     \tab   
+\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr                     \tab   
+\cr  \verb{lt, le, ge, gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr                     \tab   
+\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr                     \tab   
+\cr            \code{vals}   \tab A vector of valid values.
 }
 }
 

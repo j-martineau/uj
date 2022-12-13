@@ -1,12 +1,15 @@
 #' @name dots_uj
 #' @title Manage `...` arguments
-#' @description \itemize{
-#'   \item **`dots`**: Extracts one or more`...` arguments based on matching values supplied in `names.`. If a supplied name matches the name of a `...` argument, that argument is returned. Otherwise, the element of `defs.` with a matching name is returned. `names. = NULL` and `names. = NA` are converted to `'NULL'` and `'NA'`. Reserved words in `names.` should be backtick quoted.
-#'   \item **`dot`**: A convenience version of `dots` for extracting a single named `...` argument (or if a matching `...` argument name is not found, its default value `def.`).
-#'   \item **`named_dots`**: Extracts named `...` arguments as a named list (does not include with blank-string names).
-#'   \item **`unnamed_dots`**: Extracts unnamed `...` arguments as an unnamed list (includes any named with blank strings).
-#'   \item **`dot_names`**: If `names. = NULL`, the return value is `...names()`, otherwise, `names.` is returned. Throws an error in the following cases:
-#'   \itemize{
+#' @description \tabular{rl}{
+#'     `unnamed_dots`   \tab Extracts unnamed `...` arguments as an unnamed list (includes any named with blank strings).
+#'   \cr                \tab   
+#'   \cr `named_dots`   \tab Extracts named `...` arguments as a named list (does not include with blank-string names).
+#'   \cr                \tab   
+#'   \cr       `dots`   \tab Extracts one or more`...` arguments based on matching values supplied in `names.`. If a supplied name matches the name of a `...` argument, that argument is returned. Otherwise, the element of `defs.` with a matching name is returned. `names. = NULL` and `names. = NA` are converted to `'NULL'` and `'NA'`. Reserved words in `names.` should be backtick quoted.
+#'   \cr                \tab   
+#'   \cr        `dot`   \tab A convenience version of `dots` for extracting a single named `...` argument (or if a matching `...` argument name is not found, its default value `def.`).
+#'   \cr                \tab   
+#'   \cr  `dot_names`   \tab If `names. = NULL`, the return value is `...names()`, otherwise, `names.` is returned. Throws an error in the following cases:\itemize{
 #'     \item `0 ...` Arguments are supplied.
 #'     \item `names. != NULL` and `length(names.) != ...length()`.
 #'     \item `req. = TRUE`, `names. = NULL`, and no `...` arguments are named.
@@ -24,8 +27,8 @@ dots <- function(names., defs., ...) {
   dots  <- list(...)
   ok.names <- atm_vec(names.)
   ok.n <- length(dots) > 0
-  errs <- c(f0(ok.names, NULL, "\n \u2022 [names.] must be a complete atomic vec (?cmp_vec)."),
-            f0(ok.n    , NULL, "\n \u2022 [...] must contain at least one argument."))
+  errs <- c(f0(ok.names, NULL, "[names.] must be a complete atomic vec (?cmp_vec)."),
+            f0(ok.n    , NULL, "[...] must contain at least one argument."))
   if (!is.null(errs)) {stop(errs)}
   dot.names <- names(dots);
   def.names <- names(defs.)                                                      # names of args in {...} and elements of {defs.}
@@ -34,7 +37,7 @@ dots <- function(names., defs., ...) {
   in.dots <- names. %in% dot.names                                               # whether each value of {names.} is in the names of args in {...}
   in.defs <- names. %in% def.names                                               # whether each value of {names.} is in the names of {defs.}
   match  <- all(in.dots | in.defs)                                               # validity check (does every value of {names.} have a match?)
-  if (!match) {stop("\n \u2022 Values in [names.] must match elements of [...] or of [defs.].")} # error if validity check failed
+  if (!match) {stop(.errs("Values in [names.] must match elements of [...] or of [defs.]."))}
   n.names <- length(names.)                                                      # number of arguments to match
   out <- rep.int(list(NULL), n.names)                                            # initialize the results as a list of {NULL` elements
   for (i in 1:n.names) {                                                         # for each element of {names.}
@@ -49,7 +52,7 @@ dots <- function(names., defs., ...) {
 #' @rdname dots_uj
 #' @export
 dot <- function(name., def., ...) {
-  if (!cmp_scl(name.)) {stop("\n \u2022 [name.] must be a complete atomic scalar (?cmp_scl).")}
+  if (!cmp_scl(name.)) {stop("[name.] must be a complete atomic scalar (?cmp_scl).")}
   dots(name., def., ...)
 }
 
@@ -57,23 +60,23 @@ dot <- function(name., def., ...) {
 #' @export
 dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
   dots <- list(...)
-  errs <- c(f0(length(dots) > 0               , NULL, "\n \u2022 [...] is empty."),
-            f0(f0(inll(subs.), T, ivec(subs.)), NULL, "\n \u2022 [subs.] must be NULL or an atomic vector with one value per argument in [...]."),
-            f0(isTF(req.)                     , NULL, "\n \u2022 [req.] must be TRUE or FALSE."),
-            f0(isTF(blank.)                   , NULL, "\n \u2022 [blank.] must be TRUE or FALSE."),
-            f0(isTF(u.)                       , NULL, "\n \u2022 [u.] must be TRUE or FALSE."))
-  if (!is.null(errs)) {stop(errs)}
+  errs <- c(f0(length(dots) > 0               , NULL, "[...] is empty."),
+            f0(f0(inll(subs.), T, ivec(subs.)), NULL, "[subs.] must be NULL or an atomic vector with one value per argument in [...]."),
+            f0(isTF(req.)                     , NULL, "[req.] must be TRUE or FALSE."),
+            f0(isTF(blank.)                   , NULL, "[blank.] must be TRUE or FALSE."),
+            f0(isTF(u.)                       , NULL, "[u.] must be TRUE or FALSE."))
+  if (!is.null(errs)) {stop(.errs(errs))}
   n.dots <- ...length()
   n.names <- length(...names())
   if (inll(subs.)) {subs. <- ...names()}
-  errs <- c(f0(n.names == n.dots | inll(subs.), NULL, "\n \u2022 When [subs.] is not NULL, it must contain one value per argument in [...]."),
-            f0(n.names == n.dots | !req.      , NULL, "\n \u2022 When [req. = TRUE], arguments in [...] must be named or [subs.] must contain one value per argument in [...]."))
-  if (!is.null(errs)) {stop(errs)}
+  errs <- c(f0(n.names == n.dots | inll(subs.), NULL, "When [subs.] is not NULL, it must contain one value per argument in [...]."),
+            f0(n.names == n.dots | !req.      , NULL, "When [req. = TRUE], arguments in [...] must be named or [subs.] must contain one value per argument in [...]."))
+  if (!is.null(errs)) {stop(.errs(errs))}
   subs. <- av(strsplit(as.character(av(subs.)), "|", fixed = TRUE))
   subs.[is.na(subs.)] <- 'NA'
-  errs <- c(f0(!blank. | notIN("", subs.), NULL, "\n \u2022 A name is blank but [blank. = FALSE]."),
-            f0(!u.     | is_unq(subs.)   , NULL, "\n \u2022 Names provided are not unique but [u. = TRUE]."))
-  if (!is.null(errs)) {stop(errs)}
+  errs <- c(f0(!blank. | notIN("", subs.), NULL, "A name is blank but [blank. = FALSE]."),
+            f0(!u.     | is_unq(subs.)   , NULL, "Names provided are not unique but [u. = TRUE]."))
+  if (!is.null(errs)) {stop(.errs(errs))}
   subs.
 }
 

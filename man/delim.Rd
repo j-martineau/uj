@@ -682,45 +682,52 @@ dwwTT(...)
 \item{...}{An arbitrary number of atomic vector arguments to be delimited. Argument in \code{...} must be recyclable for functions that delimit across \code{...} arguments as the first or only step (i.e., functions with names beginning with \code{da}).}
 }
 \value{
-\itemize{
-\item \strong{\verb{da, dw, daX, daw, dww}}: a character scalar.
-\item \strong{\verb{dawXY, dwwXY}}: a character scalar.
+\tabular{rl}{
+  \code{dawXY}   \tab A character
+\cr \code{dwwXY}   \tab scalar.
+\cr   \code{daw}   \tab   
+\cr   \code{dww}   \tab   
+\cr \verb{        \\tab    \\cr  }daX\verb{   \\tab A character \\cr    }da\verb{   \\tab vector \\cr    }dw`   \tab   
 }
 }
 \description{
 Simplified and extended \code{base::paste} and \code{base::paste0}. There are both primary functions with user-specified delimiters and convenience functions for common delimiters.
 \cr\cr
 \strong{Primary Functions}
-\itemize{
-\item \strong{\code{da}}: Delimits across corresponding elements of (recyclable atomic vector) \code{...} arguments using delimiter \code{d}. Produces a character vector of \code{max(lengths(list(...)))} substrings delimited by \code{d}.
-\item \strong{\code{dw}}: Delimits elements within each (atomic vector) \code{...} argument using delimiter \code{d}. Produces a character vector of \code{...length()} substrings delimited by \code{d}.
-\item \strong{\code{daw}}: Delimit across corresponding elements of (recyclable atomic vector) \code{...} arguments using delimiter \code{d}, then delimit elements within the resulting character vector using delimiter \code{D}. Produces a character scalar of \code{...length()} substrings delimited by \code{D} where each substring contains \code{max(lengths(list(...)))} sub-substrings delimited by \code{d}.
-\item \strong{\code{dww}}: Delimit elements within each (atomic vector) \code{...} argument using delimiter \code{d}, then delimit elements within the resulting vector using delimiter \code{D}. Produces a character scalar of \code{...length()} substrings delimited by \code{D} where each substring contains sub-substrings delimited by \code{d}.
+\tabular{rl}{
+  \code{dww}   \tab Delimit elements within each (atomic vector) \code{...} argument using delimiter \code{d}, then delimit elements within the resulting vector using delimiter \code{D}. Produces a character scalar of \code{...length()} substrings delimited by \code{D} where each substring contains sub-substrings delimited by \code{d}.
+\cr         \tab   
+\cr \code{daw}   \tab Delimit across corresponding elements of (recyclable atomic vector) \code{...} arguments using delimiter \code{d}, then delimit elements within the resulting character vector using delimiter \code{D}. Produces a character scalar of \code{...length()} substrings delimited by \code{D} where each substring contains \code{max(lengths(list(...)))} sub-substrings delimited by \code{d}.
+\cr         \tab   
+\cr  \code{dw}   \tab Delimits elements within each (atomic vector) \code{...} argument using delimiter \code{d}. Produces a character vector of \code{...length()} substrings delimited by \code{d}.
+\cr         \tab   
+\cr  \code{da}   \tab Delimits across corresponding elements of (recyclable atomic vector) \code{...} arguments using delimiter \code{d}. Produces a character vector of \code{max(lengths(list(...)))} substrings delimited by \code{d}.
 }
 \strong{Common-Delimiter Convenience Functions}
 \cr Convenience function names are constructed by append \code{1} or \code{2} codes for common delimiters to the function name as follows (where \code{X} and \code{Y} are placeholders for common-delimiter codes):
-\itemize{
-\item \strong{\code{daX}}: Delimits across with \code{X}.
-\item \strong{\code{dwX}}: Delimits within with \code{X}.
-\item \strong{\code{dawXY}}: Delimits across with \code{X} then within with \code{Y}.
-\item \strong{\code{dwwXY}}: Delimits within with \code{X} then again with \code{Y}.
+\tabular{rl}{
+  \code{dawXY}   \tab Delimits across with \code{X} then within with \code{Y}.
+\cr           \tab   
+\cr \code{dwwXY}   \tab Delimits within with \code{X} then again with \code{Y}.
+\cr           \tab   
+\cr   \code{daX}   \tab Delimits across with \code{X}.
+\cr   \code{dwX}   \tab Delimits within with \code{X}.
 }
 Common delimiters are encoded as:
 \tabular{lll}{
-CODE        \tab NAME           \tab DELIMITER INVOKED
-\cr \code{'0'}   \tab blank          \tab \code{''}
-\cr \code{'1'}   \tab space          \tab \code{' '}
-\cr \code{'B'}   \tab broken pipe    \tab \code{'¦'}
-\cr \code{'C'}   \tab colon          \tab \code{':'}
-\cr \code{'D'}   \tab dot            \tab \code{'.'}
-\cr \code{'G'}   \tab grammatical    \tab\code{', '}
-\cr         \tab comma          \tab  
-\cr \code{'P'}   \tab pipe           \tab \code{'|'}
-\cr \code{'Q'}   \tab back-tick      \tab \code{'``'}
-\cr \code{'S'}   \tab simple comma   \tab \code{','}
-\cr \code{'T'}   \tab tilde          \tab \code{'~'}
+  CODE        \tab NAME                        \tab DELIMITER INVOKED
+\cr   \code{'0'}   \tab blank                       \tab \code{''}
+\cr \code{'1'}     \tab space                       \tab \code{' '}
+\cr \code{'B'}     \tab broken pipe                 \tab \code{'¦'}
+\cr \code{'C'}     \tab colon                       \tab \code{':'}
+\cr \code{'D'}     \tab dot                         \tab \code{'.'}
+\cr \code{'G'}     \tab grammatical comma\eqn{^1}   \tab \code{', '}
+\cr \code{'P'}     \tab pipe                        \tab \code{'|'}
+\cr \code{'Q'}     \tab back-tick                   \tab \code{'``'}
+\cr \code{'S'}     \tab simple comma\eqn{^1}        \tab \code{','}
+\cr \code{'T'}     \tab tilde                       \tab \code{'~'}
 }
-'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., \code{'1, 2, 3'} vs. \code{'1,2,3'}).
+\eqn{^{1.}} 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., \code{'1, 2, 3'} vs. \code{'1,2,3'}).
 }
 \examples{
 # delimit across using delimiter '|'.

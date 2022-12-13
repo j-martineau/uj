@@ -1,25 +1,40 @@
 #' @name dialogs
 #' @title Dialog boxes using package `svDialogs`
 #' @description All functions in this family take `...` arguments, which are \link[=av]{atomized} and collapsed into a prompt to be displayed in a dialog box.
-#' \itemize{
-#'   \item **`msgbox`**: launches a simple dialog box to give the message.
-#'   \item **`dirbox`**: asks user to select a directory/folder.\eqn{^1}
-#'   \item **`docbox`**: asks user to select a document.\eqn{^1}
-#'   \item **`ansbox`**: asks user to input a text response.
-#'   \item **`no`**: checks for user selecting the `no` button of a `yesno` dialog.
-#'   \item **`yes`**: checks for user selecting the `yes` button of a `yesno` dialog.
-#'   \item **`msg`**: returns the name of the button clicked.
-#'   \item **`okx`**: checks for user selecting the `ok` button of an `okcancel` dialog.
-#'   \item **`ask`**: asks user for typed input.
-#'   \item **`ask1`**: asks user to select a single option from a list.
-#'   \item **`askn`**: asks user to select `1+` options from a list.
-#'   \item **`asks1`**: asks user to select `1` option from a list, possibly across multiple rounds.
-#'   \item **`asksn`**: asks user to select a `1+` options from a list of possible options, possibly across multiple rounds.
-#'   \item **`asknew`**: asks user to enter a space- or comma-separated list of replacement values for existing values.
-#'   \item **`choose_dir`**: asks user to select a directory/folder.
-#'   \item **`choose_doc`**: asks user to select a document/file.
+#' \tabular{rl}{
+#'       `choose_doc`   \tab asks user to select a document/file.
+#'   \cr                \tab   
+#'   \cr `choose_dir`   \tab asks user to select a directory/folder.
+#'   \cr                \tab   
+#'   \cr     `msgbox`   \tab launches a simple dialog box to give the message.
+#'   \cr                \tab   
+#'   \cr     `dirbox`   \tab asks user to select a directory/folder\eqn{^1}.
+#'   \cr                \tab   
+#'   \cr     `docbox`   \tab asks user to select a document\eqn{^1}.
+#'   \cr                \tab   
+#'   \cr     `ansbox`   \tab asks user to input a text response.
+#'   \cr                \tab   
+#'   \cr     `asknew`   \tab asks user to enter a space- or comma-separated list of replacement values for existing values.
+#'   \cr                \tab   
+#'   \cr      `asks1`   \tab asks user to select `1` option from a list, possibly across multiple rounds.
+#'   \cr                \tab   
+#'   \cr      `asksn`   \tab asks user to select a `1+` options from a list of possible options, possibly across multiple rounds.
+#'   \cr                \tab   
+#'   \cr       `ask1`   \tab asks user to select a single option from a list.
+#'   \cr                \tab   
+#'   \cr       `askn`   \tab asks user to select `1+` options from a list.
+#'   \cr                \tab   
+#'   \cr        `ask`   \tab asks user for typed input.
+#'   \cr                \tab   
+#'   \cr        `msg`   \tab returns the name of the button clicked.
+#'   \cr                \tab   
+#'   \cr        `okx`   \tab checks for user selecting the `ok` button of an `okcancel` dialog.
+#'   \cr                \tab   
+#'   \cr        `yes`   \tab checks for user selecting the `yes` button of a `yesno` dialog.
+#'   \cr                \tab   
+#'   \cr         `no`   \tab checks for user selecting the `no` button of a `yesno` dialog.
 #' }
-#' \eqn{^1} Failsafe feature launches a message dialog box prompting the user to take an action in the next dialog box. After user acknowledges, only then launches the selection dialog to avoid problems with prompts not showing up on all operating systems.
+#' \eqn{^{1.}} Failsafe feature launches a message dialog box prompting the user to take an action in the next dialog box. After user acknowledges, only then launches the selection dialog to avoid problems with prompts not showing up on all operating systems.
 #' @param x A \link[=cmp_chr_scl]{complete character scalar} message.
 #' @param d A complete character scalar default directory.
 #' @param t A complete character scalar type of dialog box (valid values are `'ok'`, `'okcancel'`, `'yesno'`, and `'yesnocancel'`).
@@ -33,20 +48,35 @@
 #' @param all,none Non-`NA` logical scalars indicating whether the user should be able to select all options or none of the options, respectively.
 #' @param per A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the maximum number of options to present in a single dialog box interaction.
 #' @param unq A non-`NA` logical scalar indicating whether new values must be unique.
-#' @return \itemize{
-#'   \item **`yes, no`**: a logical scalar.
-#'   \item **`askn, asksn, asknew`**: a character vector.
-#'   \item **`msgbox, dirbox, docbox, ansbox`**: an environment.
-#'   \item **`msg, okx, ask, ask1, asks1, choose_dir, choose_doc`**: a character scalar.
+#' @return \tabular{rl}{
+#'   \cr `choose_dir`   \tab A character scalar.
+#'   \cr `choose_doc`   \tab   
+#'   \cr      `asks1`   \tab   
+#'   \cr       `ask1`   \tab   
+#'   \cr        `ask`   \tab   
+#'   \cr        `okx`   \tab   
+#'   \cr        `msg`   \tab   
+#'   \cr                \tab   
+#'   \cr     `ansbox`   \tab An environment.
+#'   \cr     `docbox`   \tab   
+#'   \cr     `dirbox`   \tab   
+#'   \cr     `msgbox`   \tab   
+#'   \cr                \tab   
+#'   \cr     `asknew`   \tab A character vector.
+#'   \cr      `asksn`   \tab   
+#'   \cr       `askn`   \tab   
+#'   \cr                \tab   
+#'   \cr        `yes`   \tab A logical scalar.
+#'   \cr         `no`   \tab   
 #' }
 #' @export
 msgbox <- function(..., t = "ok") {
   msg <- paste0(av(...), collapse = "")
   vals <- c("ok", "okcancel", "yesno", "yesnocancel")
-  errs <- c(f0(idef(msg)     , NULL, "\n \u2022 No user update message was provided in [...]."),
-            f0(cmp_chr_scl(t), NULL, "\n \u2022 [t] must be a character scalar in c('ok', 'okcancel', 'yesno', 'yesnocancel')."),
-            f0(isIN(t, vals) , NULL, "\n \u2022 [t] must be a character scalar in c('ok', 'okcancel', 'yesno', 'yesnocancel')."))
-  if (!is.null(errs)) {stop(errs)}
+  errs <- c(f0(idef(msg)     , NULL, "No user update message was provided in [...]."),
+            f0(cmp_chr_scl(t), NULL, "[t] must be a character scalar in c('ok', 'okcancel', 'yesno', 'yesnocancel')."),
+            f0(isIN(t, vals) , NULL, "[t] must be a character scalar in c('ok', 'okcancel', 'yesno', 'yesnocancel')."))
+  if (!is.null(errs)) {stop(.errs(errs))}
   ans <- svDialogs::dlg_message(msg, type = t)
   if (t == "ok") {NULL} else {ans}
 }
@@ -57,10 +87,10 @@ dirbox <- function(..., d = getwd()) {
   msg <- paste0(av(...), collapse = "")
   d <- paste0(av(d), collapse = "")
   if (inll(msg)) {msg <- "choose a directory/folder"}
-  errs <- c(f0(cmp_chr_scl(msg), NULL, "\n \u2022 No message to the user was provided in [...]."),
-            f0(cmp_chr_scl(d)  , NULL, "\n \u2022 No default directory provided in [d]."),
-            f0(dir.exists(d)   , NULL, da0("\n \u2022 [d = '", d, "'] is not an existing directory/folder.")))
-  if (!is.null(errs)) {stop(errs)}
+  errs <- c(f0(cmp_chr_scl(msg), NULL, "No message to the user was provided in [...]."),
+            f0(cmp_chr_scl(d)  , NULL, "No default directory provided in [d]."),
+            f0(dir.exists(d)   , NULL, da0("[d = '", d, "'] is not an existing directory/folder.")))
+  if (!is.null(errs)) {stop(.errs(errs))}
   msgbox(da0("In the next dialog box, ", msg)); svDialogs::dlg_dir(default = d, title = msg)
 }
 
@@ -69,7 +99,7 @@ dirbox <- function(..., d = getwd()) {
 docbox <- function(...) {
   msg <- paste0(av(...), collapse = "")
   if (inll(msg)) {msg <- "choose a document"}
-  if (!cmp_chr_scl(msg)) {stop("\n \u2022 [...] must be empty or must be collapsible to a character scalar.")}
+  if (!cmp_chr_scl(msg)) {stop(.errs("[...] must be empty or must be collapsible to a character scalar."))}
   msgbox(da0("In the next dialog box, ", msg)); svDialogs::dlg_open(title = msg)
 }
 

@@ -20,39 +20,33 @@ A reformulation of \code{\link[base]{sprintf}}. See details.
 }
 \details{
 This function relies on a template containing escape sequences which in turn contain formatting switches. Escape sequences specify where to insert inlay arguments. Switches specify how to format inlay arguments to be inlaid, and come in three families
-\cr\cr
-'Decimal' switches specify number of decimal places for numeric inlay arguments, taking the values \code{'0'} to \code{'9'}
-\cr\cr
-'Quote' switches specify quoting of elements of inlay arguments.\tabular{ll}{
-\strong{Switch}         \tab \strong{Quote}
-\cr \strong{Value}          \tab \strong{Type}
-\cr \code{'q'}              \tab single straight
-\cr \code{'Q'}              \tab double straight
-\cr \code{'t'}              \tab single typeset
-\cr \code{'T'}              \tab double typeset
-}
-'List' switches specify formatting inlay arguments as comma-separated lists.\tabular{lll}{
-\strong{Switch}         \tab \strong{List}      \tab \strong{Result with Inlay}
-\cr \strong{Value}          \tab \strong{Type}      \tab \strong{Arg = \code{1:3}}
-\cr \code{'o'}              \tab or            \tab \code{'1, 2, or 3'}
-\cr \code{'a'}              \tab and           \tab \code{'1, 2, and 3'}
-\cr \code{'b'}              \tab braces        \tab \code{'{1, 2, 3}'}
-\cr \code{'c'}              \tab concat        \tab \code{'c(1, 2, 3)'}
-\cr \code{'l'}              \tab simple        \tab \verb{'1, 2, 3'\}}
-\cr \code{'p'}              \tab parens        \tab \code{'(1, 2, 3)'}
-\cr \code{'s'}              \tab square        \tab \code{'[1, 2, 3]'}
+\cr\cr 'Decimal' switches specify number of decimal places for numeric inlay arguments, taking the values \code{'0'} to \code{'9'}
+\cr\cr 'Quote' switches specify quoting of elements of inlay arguments.\tabular{ccc}{
+  \strong{Switch}   \tab \strong{Quote} \tab   \strong{Quote}  
+\cr \strong{Value}   \tab \strong{Style} \tab   \strong{Type}
+\cr \code{'q'}       \tab straight  \tab   single
+\cr \code{'Q'}       \tab straight  \tab   double
+\cr \code{'t'}       \tab typeset   \tab   single
+\cr \code{'T'}       \tab typeset   \tab   typeset  
+} 'List' switches specify formatting inlay arguments as comma-separated lists.\tabular{ccc}{
+  \strong{Switch}   \tab \strong{List}  \tab   \strong{Result with}  
+\cr \strong{Value}   \tab \strong{Type}  \tab   \strong{\verb{arg = 1:3}}  
+\cr \code{'o'}       \tab or        \tab   \code{'1, 2, or 3'}
+\cr \code{'a'}       \tab and       \tab   \code{'1, 2, and 3'}  
+\cr \code{'b'}       \tab braces    \tab  \code{'{1, 2, 3}'}
+\cr \code{'c'}       \tab concat    \tab \code{'c(1, 2, 3)'}
+\cr \code{'l'}       \tab simple    \tab   \code{'1, 2, 3'}
+\cr \code{'p'}       \tab parens    \tab  \code{'(1, 2, 3)'}
+\cr \code{'s'}       \tab square    \tab  \code{'[1, 2, 3]'}
 }
 \strong{Building escape sequences}
-\cr\cr
-Escape sequences are formatted as \code{'{@_}'} where \verb{_} is a placeholder for \code{0} to \code{3} formatting switches, but with no more than \code{1} switch from each family. What each format signals is described below.
-\cr\cr
-\code{'{@}'} signals insertion of a scalar inlay argument as is.
-\cr\cr
-\code{'{@x}'} vs. \code{'{@xy}'} signal insertion of an inlay argument after applying formatting switch \code{x} vs. formatting switches \code{x} and \code{y}. If an escape sequence with one of these formats does not contain a 'list' switch, the associated inlay argument \emph{must be scalar} (otherwise it may also be a vector).
-\cr\cr
-\code{'{@xyz}'} signals insertion of a scalar or vector inlay argument after applying formatting switches \code{x}, \code{y}, and \code{z}.
-\cr\cr
-\strong{Order of switches} in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:\enumerate{
+\cr\cr Escape sequences are formatted as \code{'{@_}'} where \verb{_} is a placeholder for \code{0} to \code{3} formatting switches, but with no more than \code{1} switch from each family. What each format signals is described below.
+\cr\cr \code{'{@}'} signals insertion of a scalar inlay argument as is.
+\cr\cr \code{'{@x}'} vs. \code{'{@xy}'} signal insertion of an inlay argument after applying formatting switch \code{x} vs. formatting switches \code{x} and \code{y}. If an escape sequence with one of these formats does not contain a 'list' switch, the associated inlay argument \emph{must be scalar} (otherwise it may also be a vector).
+\cr\cr \code{'{@xyz}'} signals insertion of a scalar or vector inlay argument after applying formatting switches \code{x}, \code{y}, and \code{z}.
+\cr\cr \strong{Order of switches}
+\cr Order of switches in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:
+\enumerate{
 \item Decimal switch (if any).
 \item Quote switch (if any).
 \item List switch (if any).

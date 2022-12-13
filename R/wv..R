@@ -1,5 +1,0 @@
-#' @title Which \link[=av]{atomized} values are `TRUE`?
-wv <- function(...) {
-  x <- av(...)
-  f0(ilgl(x), which(x), stop(.errx("[...] does not resolve to a logical obejct.")))
-}

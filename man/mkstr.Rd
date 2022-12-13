@@ -105,26 +105,30 @@ pbracket(...)
 A character scalar or vector
 }
 \description{
-Build strings where function names are composed of a single-letter prefix and a longer suffix. Prefixes and their meanings are \itemize{
-\item \strong{\code{g}}: glue/collapse \code{...} arguments
-\item \strong{\code{p}}: paste across corresponding elements of \code{...} arguments.
+Build strings where function names are composed of a single-letter prefix and a longer suffix. Prefixes and their meanings are
+\tabular{rl}{
+  \code{g}   \tab Glue/collapse \code{...} args
+\cr \code{p}   \tab Paste across corresponding element of \code{...}.
 }
-Suffixes and their meanings are \itemize{
-\item \strong{\code{eq}}: space-padded equality statement.
-\item \strong{\code{eq0}}: non-padded equality statement.
-\item \strong{\code{cat}}: vector concatenation statement.
-\item \strong{\code{elt}}: element extraction statement.
-\item \strong{\code{fun}}: function call statement.
-\item \strong{\code{form}}: formula statement.
-\item \strong{\code{lst}}: delimit with comma + space.
-\item \strong{\code{colon}}: delimit with colons.
-\item \strong{\code{wrap}}: enclose in different left and right values.
-\item \strong{\code{tick}}: enclose in back-ticks.
-\item \strong{\code{brace}}: enclose in curly braces.
-\item \strong{\code{paren}}: enclose in parentheses.
-\item \strong{\code{quote}}: enclose in single quotes.
-\item \strong{\code{quote2}}: enclose in double quotes.
-\item \strong{\code{bracket}}: enclose in square brackets.
+Suffixes and their meanings are
+\tabular{rl}{
+  \code{bracket}   \tab Enclose in square brackets.
+\cr \code{quote2}   \tab   double quotes.
+\cr  \code{quote}   \tab   single quotes.
+\cr  \code{paren}   \tab   parentheses.
+\cr  \code{brace}   \tab   braces.
+\cr   \code{tick}   \tab   backticks.
+\cr   \code{wrap}   \tab   left & right.
+\cr            \tab   
+\cr  \code{colon}   \tab Delimit with colons.
+\cr    \code{lst}   \tab   comma + space.
+\cr            \tab   
+\cr   \code{form}   \tab Formula statement.
+\cr    \code{elt}   \tab   element extraction
+\cr    \code{fun}   \tab   function call
+\cr    \code{cat}   \tab   vector concatenation
+\cr    \code{eq0}   \tab   unpadded equality
+\cr     \code{eq}   \tab   space-padded equality
 }
 Each prefix is joined with each suffix to create a unique function. The action indicated by the prefix happens first, followed by the action indicated in the suffix. How each function works is illustrated in the details.
 }

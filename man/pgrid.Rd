@@ -31,12 +31,15 @@ pgridx(p, ..., ch = F, na.err = T)
 A character vector.
 }
 \description{
-\itemize{
-\item \strong{\code{pgrid}}: converts the \code{n} \code{...} arguments to character (with additional optional pre-processing) and create a character vector with each element consisting of sub-strings from across \code{...} arguments pasted together using the 'paste' \code{p}. See the \emph{value} section for how the value of \code{crossed} affects the return value.
-\item \strong{\code{pgrid0}}: calls \code{pgrid} with \code{p = ""} (a blank string).
-\item \strong{\code{pgrid1}}: calls \code{pgrid} with \code{p = " "} (a space).
-\item \strong{\code{pgridn}}: calls \code{pgrid} with \code{crossed = FALSE} so as to produce only \code{n}-way combinations from across the \code{n} \code{...} arguments.
-\item \strong{\code{pgridx}}: calls \code{pgrid} with \code{crossed = TRUE} so as to produce all possible \code{1}-way, \code{2}-way, ..., \code{n}-way combinations from across the \code{...} arguments (i.e. fully-crossed combinations).
+\tabular{rl}{
+  \code{pgrid}   \tab Converts the \code{n} \code{...} arguments to character (with additional optional pre-processing) and create a character vector with each element consisting of sub-strings from across \code{...} arguments pasted together using the 'paste' \code{p}. See the \emph{value} section for how the value of \code{crossed} affects the return value.
+\cr            \tab   
+\cr \code{pgrid0}   \tab Calls \code{pgrid} with \verb{p = ""} (blank).
+\cr \code{pgrid1}   \tab Calls \code{pgrid} with \verb{p = " "} (space).
+\cr            \tab   
+\cr \code{pgridn}   \tab Calls \code{pgrid} with \code{crossed = FALSE} to produce only \code{n}-way combinations from across the \code{n} \code{...} arguments.
+\cr            \tab   
+\cr \code{pgridx}   \tab Calls \code{pgrid} with \code{crossed = TRUE} to produce all possible \code{1}-way, \code{2}-way, ..., \code{n}-way combinations from across the \code{...} arguments (i.e. fully-crossed combinations).
 }
 }
 \section{The \code{crossed} Argument}{
@@ -62,6 +65,17 @@ $y
 }\if{html}{\out{</div>}}
 }
 
+\examples{
+x <- c("A", "B", "C")
+y <- c(1, 2)
+z <- c("a", "b")
+pgrid(".", x, y, z, crossed = F)
+pgrid(".", x, y, z, crossed = T)
+pgridn(".", x, y, y)
+pgridx(".", x, y, z)
+pgrid0(x, y, z)
+pgrid1(x, y, z)
+}
 \seealso{
 Other strings: 
 \code{\link{blank}()},

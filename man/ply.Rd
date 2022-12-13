@@ -16,17 +16,17 @@
 \alias{vlsply}
 \title{Variations on \code{apply} functions}
 \usage{
-ply(x, fun, dim, ..., proc. = NULL)
+ply(x, fun, ..., dim. = 0, proc. = NULL)
 
-norply(x, fun, dim, ..., proc. = NULL)
+norply(x, fun, ..., dim. = 0, proc. = NULL)
 
-anyply(x, fun, dim, ..., proc. = NULL)
+anyply(x, fun, ..., dim. = 0, proc. = NULL)
 
-allply(x, fun, dim, ..., proc. = NULL)
+allply(x, fun, ..., dim. = 0, proc. = NULL)
 
-oneply(x, fun, dim, ..., proc. = NULL)
+oneply(x, fun, ..., dim. = 0, proc. = NULL)
 
-twoply(x, fun, dim, ..., proc. = NULL)
+twoply(x, fun, ..., dim. = 0, proc. = NULL)
 
 atmply(x, fun, ..., proc. = NULL)
 
@@ -47,46 +47,91 @@ vlsply(x, fun, ..., proc. = NULL)
 
 \item{fun}{Function or character scalar name of a function to apply to \code{x}.}
 
-\item{dim}{A \link[=cmp_nnw_vec]{complete non-negative whole-number vec} giving dimension(s) of \code{x} to apply the function \code{fun} to (\code{0} indicates applying to elements of a vector or \link[=ivls]{vlist} vs. applying to every cell for arrays and data.frames).}
-
 \item{...}{An arbitrary number of additional arguments to be passed to the function \code{fun}.}
+
+\item{dim.}{A \link[=cmp_nnw_vec]{complete non-negative whole-number vec} giving dimension(s) of \code{x} to apply the function \code{fun} to (\code{0} indicates applying to elements of a vector or \link[=ivls]{vlist} vs. applying to every cell for arrays and data.frames).}
 
 \item{proc.}{\code{NULL} or a list of named elements with processing instructions. See the \emph{the \code{proc} argument} section.}
 }
 \description{
-(\code{norply}, \code{anyply}, \code{allply}, \code{oneply}, and \code{twoply} assume the result of applying \code{fun} is of mode 'logical')
-\itemize{
-\item \strong{\code{ply}}: offers all functionality specialized \code{ply} functions described below
-\item \strong{\code{norply}}: evaluates whether there are \emph{0} \code{TRUE} values in the result of applying \code{fun}.
-\item \strong{\code{anyply}}: evaluates whether there are \emph{any} \code{TRUE} values in the result of applying \code{fun}.
-\item \strong{\code{allply}}: evaluates whether there are \emph{only} \code{TRUE} values in the result of applying \code{fun}.
-\item \strong{\code{oneply}}: evaluates whether there is \emph{exactly 1} \code{TRUE} value in the result of applying \code{fun}.
-\item \strong{\code{twoply}}: evaluates whether there are \emph{2+} \code{TRUE} values in the result of applying \code{fun}.
-\item \strong{\code{atmply}}: \link[=av]{Atomize} \code{x} and apply \code{fun} to elements of the resulting atomic vector.
-\item \strong{\code{mvcply}}: apply \code{fun} to elements of \link[=atm_vec]{atomic multivec} \code{x}.
-\item \strong{\code{vecply}}: apply \code{fun} to elements of \link[=atm_vec]{atomic vec} \code{x}.
-\item \strong{\code{rowply}}: apply \code{fun} to rows of matrix/data.frame \code{x}.
-\item \strong{\code{colply}}: apply \code{fun} to columns of matrix/data.frame \code{x}.
-\item \strong{\code{dimply}}: apply \code{fun} to cells of array/data.frame \code{x}.
-\item \strong{\code{vlsply}}: apply \code{fun} to elements of \link[=ivls]{vlist} \code{x}.
+\tabular{rl}{
+  \code{norply}   \tab Checks for \code{0} resulting \code{TRUE} values\eqn{^1}.
+\cr \code{anyply}   \tab     any
+\cr \code{allply}   \tab     only
+\cr \code{oneply}   \tab     exactly \code{1}
+\cr \code{twoply}   \tab     \code{2} or more
+\cr            \tab   
+\cr \code{atmply}   \tab \link[=av]{Atomizes} \code{x} and applies \code{fun} to elements of the result.
+\cr            \tab   
+\cr \code{mvcply}   \tab Applies \code{fun} to elements of \link[=atm_vec]{atomic multivec} \code{x}.
+\cr \code{vecply}   \tab     \link[=atm_vec]{atomic vec}
+\cr \code{vlsply}   \tab     \link[=ivls]{vlist}
+\cr            \tab   
+\cr \code{rowply}   \tab Applies \code{fun} to rows of \code{x}.
+\cr \code{colply}   \tab     columns
+\cr \code{dimply}   \tab     cells
+\cr            \tab   
+\cr    \code{ply}   \tab Offers all functionality of the above specialized \code{ply} functions.
 }
 }
 \section{The \code{proc} Argument}{
  When not \code{NULL}, the \code{proc} argument is an optional list with up to seven named elements, which give processing instructions as follows:
-\itemize{
-\item \strong{\code{s = TRUE}}: \link[base:simplify2array]{simplify} the result.
-\item \strong{\code{a1 = TRUE}}: \link[=a]{atomize} \code{x} as a first step.
-\item \strong{\code{a2 = TRUE}}: atomize the result.
-\item \strong{\code{na = TRUE}}: replace resulting \code{NA} values with \code{TRUE}.
-\item \strong{\code{na = FALSE}}: replace resulting \code{NA} values with \code{FALSE}.
-\item \strong{\code{na = 'err'}}: throw error if result contains any \code{NA}s.
-\item \strong{\code{agg = 'nor'}}: inspect result for \emph{0} \code{TRUE} values.
-\item \strong{\code{agg = 'any'}}: inspect result for \emph{any} \code{TRUE} values.
-\item \strong{\code{agg = 'all'}}: inspect result for \emph{only} \code{TRUE} values.
-\item \strong{\code{agg = 'one'}}: inspect result for \emph{exactly 1} \code{TRUE} value.
-\item \strong{\code{agg = 'two'}}: inspect result for \emph{2+} \code{TRUE} values.
-\item \strong{\code{arg = 'xxx'}}: inspect \code{x} for \link[=ppp]{properties} in the string \code{xxx} and throw an error if not met.
-\item \strong{\code{out = 'yyy'}}: inspect the result for properties given in the string \code{yyy} and throw an error if not met.
+\tabular{rll}{
+  \strong{Name} \tab   \strong{Value}   \tab \strong{Instructions}
+\cr  \code{arg} \tab   \code{'***'}     \tab Inspect \code{x} for a match to \link[=ppp]{property spec} \code{'***'}.
+\cr        \tab               \tab   
+\cr  \code{out} \tab   \code{'***'}     \tab Inspect result for a match to property spec \code{'***'}.
+\cr        \tab               \tab   
+\cr  \code{agg} \tab   \code{'nor'}     \tab Inspect result for \code{0} \code{TRUE} values.
+\cr  \code{agg} \tab   \code{'any'}     \tab     any
+\cr  \code{agg} \tab   \code{'all'}     \tab     only
+\cr  \code{agg} \tab   \code{'one'}     \tab     exactly \code{1}
+\cr  \code{agg} \tab   \code{'two'}     \tab     \code{2} or more
+\cr        \tab               \tab   
+\cr   \code{na} \tab   \code{'err'}     \tab Throw error if result has any \code{NA}s.
+\cr        \tab               \tab   
+\cr   \code{na} \tab   \code{FALSE}     \tab Replace resulting \code{NA}s with \code{FALSE}.
+\cr   \code{na} \tab   \code{TRUE}      \tab     \code{TRUE}.
+\cr        \tab               \tab   
+\cr   \code{a1} \tab   \code{TRUE}      \tab \link[=av]{Atomize} \code{x}.
+\cr   \code{a2} \tab   \code{TRUE}      \tab Atomize the result.
+\cr    \code{s} \tab   \code{TRUE}      \tab \link[base:simplify2array]{Simplify} the result.
 }
 }
 
+\examples{
+NumVec. <- 1:5
+NumMat. <- matrix(1:25, nrow = 5)
+ChrDtf. <- dtf(az = letters[1:10], AZ = LETTERS[1:10], nm = as.character(0:9))
+ChrVls. <- list(az = letters, AZ = LETTERS, nm = as.character(0:9))
+Comp. <- function(x, comp, value) {if (comp == "<") {x < value} else {x > value}}
+
+NumVec.
+NumMat.
+ChrDtf.
+ChrVls.
+
+norply(NumVec., Comp., ">", value = 6)
+norply(NumVec., Comp., ">", value = 4)
+
+anyply(NumVec., Comp., ">", value = 6)
+anyply(NumVec., Comp., ">", value = 4)
+
+allply(NumVec., Comp., "<", value = 6)
+allply(NumVec., Comp., "<", value = 4)
+
+oneply(NumVec., Comp., ">", value = 6)
+oneply(NumVec., Comp., ">", value = 4)
+
+twoply(NumVec., Comp., ">", value = 2)
+twoply(NumVec., Comp., ">", value = 5)
+twoply(NumMat., Comp., ">", value = 15, dim. = 2)
+
+dimply(NumMat., Comp., ">", value = 15)
+dimply(ChrDtf., toupper)
+
+rowply(NumMat., sum)
+colply(ChrDtf., paste0, collapse = "")
+
+vlsply(ChrVls., paste0, collapse = "")
+}

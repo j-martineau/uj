@@ -2,6 +2,7 @@
 % Please edit documentation in R/ss.R
 \name{ss}
 \alias{ss}
+\alias{ss0}
 \alias{ss1}
 \alias{ssP}
 \alias{ssD}
@@ -11,33 +12,65 @@
 \alias{ssDB}
 \alias{ssPDB}
 \alias{ch}
+\alias{uss}
+\alias{uss0}
+\alias{uss1}
+\alias{ussP}
+\alias{ussD}
+\alias{ussB}
+\alias{ussPD}
+\alias{ussPB}
+\alias{ussDB}
+\alias{ussPDB}
 \alias{uch}
 \alias{sstb}
 \title{Split Strings and Select/Check for Elements}
 \usage{
-ss(d, ..., trm = T, sqz = T, u = F, n = NULL)
+ss(d, ..., trm = TRUE, sqz = TRUE, drop = TRUE, u = FALSE, n = NULL)
 
-ss1(..., trm = T, sqz = T, n = NULL, u = F)
+ss0(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ssP(..., trm = T, sqz = T, n = NULL, u = F)
+ss1(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ssD(..., trm = T, sqz = T, n = NULL, u = F)
+ssP(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ssB(..., trm = T, sqz = T, n = NULL, u = F)
+ssD(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ssPD(..., trm = T, sqz = T, n = NULL, u = F)
+ssB(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ssPB(..., trm = T, sqz = T, n = NULL, u = F)
+ssPD(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ssDB(..., trm = T, sqz = T, n = NULL, u = F)
+ssPB(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ssPDB(..., trm = T, sqz = T, n = NULL, u = F)
+ssDB(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ch(..., trm = T, sqz = T, n = NULL, u = F)
+ssPDB(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-uch(..., trm = T, sqz = T, n = NULL)
+ch(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-sstb(x, d, name = "string", parts = "part")
+uss(d, ..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+
+uss0(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+
+uss1(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+
+ussP(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+
+ussD(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+
+ussB(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+
+ussPD(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+
+ussPB(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+
+ussDB(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+
+ussPDB(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+
+uch(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+
+sstb(d, ..., name = "string", part = "part")
 }
 \arguments{
 \item{d}{A complete character vec of delimiter or delimiters to use in splitting strings.}
@@ -46,24 +79,26 @@ sstb(x, d, name = "string", parts = "part")
 
 \item{trm}{A non-\code{NA} logical scalar indicating whether to trim white space from each side of each element of the result.}
 
-\item{sqz}{A non-\code{NA} logical scalar indicating whether to squeeze the result by removing either empty strings (for \code{ss} functions) or characters that are neither letters, digits, nor spaces (for \code{ch}).}
+\item{sqz}{A non-\code{NA} logical scalar indicating whether to squeeze the result by removing extra internal whitespace.}
 
-\item{n}{An optional \link[=cmp_psw_scl]{complete positive whole-number scalar} specifying an element to be extracted from the result. @param u complete non-\code{NA} scalar indicating whether to reduce the result to unique values.}
+\item{drop}{A non-\code{NA} logical scalar. For functions associated character-wise splitting (i.e., ending in \code{0} or \code{ch}), indicates whether to drop resulting values that are not letters, digits, or spaces. For all others, indicates whether to drop resulting blank string values.}
 
-\item{x}{A \link[=chr_vec]{character vec} of string(s) to be split.}
+\item{u}{complete non-\code{NA} scalar indicating whether to reduce the result to unique values.}
+
+\item{n}{An optional \link[=cmp_psw_scl]{complete positive whole-number scalar} specifying an element to be extracted from the result.}
 
 \item{name}{A \link[=cmp_chr_scl]{complete character scalar} name of the variable to hold the original strings.}
 
 \item{part}{A complete character scalar prefix for labeling components of vectors resulting from split strings.}
+
+\item{x}{A \link[=chr_vec]{character vec} of string(s) to be split.}
 }
 \value{
-\itemize{
-\item \strong{\code{sstb}}: a data.frame.
-\item \strong{all others}: a character vector.
-}
+All functions return a character vector except for \code{sstb}, which returns a data.frame.
 }
 \description{
-\strong{\code{ss}} splits strings using the delimiter(s) in \code{d} following this sequence:
+\strong{\code{ss}}
+This function splits strings using the delimiter(s) in \code{d} following this sequence:
 \enumerate{
 \item Reduce \code{...} to an atomic vector of all collective atomic values.
 \item Convert the result to mode character.
@@ -71,22 +106,28 @@ sstb(x, d, name = "string", parts = "part")
 \item If \code{n} is not \code{NULL}, extracts the \code{n}-th elements(s) from the result.
 \item If \code{trm} is \code{TRUE}, trims white space (i.e., spaces, tabs, newlines) from both ends of each element of the result.
 \item If \code{sqz} is \code{TRUE}, removes leading and trailing white space and replaces any multi-character interior white-space strings inside the result with a single space.
-\item If \code{u} is \code{TRUE}, reduces the result to unique values.}
-\strong{\code{ch}} does the same as \code{ss} but with a blank string delimiter, resulting in a vector of single characters (if \code{sqz = TRUE}), also removes blank strings from the result.
-\cr\cr
-\strong{Extension functions} are supplied for common delimiters, signified by codes appended to \code{ss} function names:\tabular{ll}{
-\emph{Code (name)}            \tab \emph{Delimiter invoked}
-\cr\code{'1'} (space)         \tab\code{' '}
-\cr\code{'P'} (pipe)          \tab\code{'|'}
-\cr\code{'D'} (dot)           \tab\code{'.'}
-\cr\code{'B'} (broken pipe)   \tab\code{'¦'}
+\item If \code{u} is \code{TRUE}, reduces the result to unique values.
 }
-\strong{\code{uch}} reduces the result of \code{ch} to unique values.
+\strong{Extension functions}
+\cr Extension functions are supplied for common delimiters, signified by codes appended to \code{ss} function names:
+\tabular{rll}{
+  \emph{Code}   \tab \emph{Name} \tab   \emph{Delimiter}
+\cr\code{'0'}   \tab blank  \tab   \code{''}
+\cr\code{'1'}   \tab space  \tab   \code{' '}
+\cr\code{'P'}   \tab pipe   \tab   \code{'|'}
+\cr\code{'D'}   \tab dot    \tab   \code{'.'}
+\cr\code{'B'}   \tab broken \tab   \code{'¦'}
+\cr        \tab pipe   \tab   
+}
+In addition, \code{ch} aliases \code{ss0}.
 \cr\cr
-\strong{\code{sstb}} assumes that splitting each element of \code{x} along the delimiter \code{d} results vectors of the same length, which are placed into a data.frame. For example, the following console excerpt demonstrates a call to \code{sstb} and its result.
+\strong{Unique-value functions}
+\cr Prepending \code{u} to a function name reduces the result of calling that function to unique values.
+\cr\cr
+\strong{\code{sstb}}
+\cr Assumes that splitting each element of \code{x} along the delimiter \code{d} results vectors of the same length, which are placed into a data.frame. For example, the following console excerpt demonstrates a call to \code{sstb} and its result.
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{> sstb(x = c('a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p'),
-+      d = '|', name = 'original', part = 'letter')
+\if{html}{\out{<div class="sourceCode">}}\preformatted{> sstb('|', 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p', name = 'original', part = 'letter')
 
   original letter.1 letter.2 letter.3 letter.4
 1  a|b|c|d        a        b        c        d
@@ -94,6 +135,37 @@ sstb(x, d, name = "string", parts = "part")
 3  i|j|k|l        i        j        k        l
 4  m|n|o|p        m        n        o        p
 }\if{html}{\out{</div>}}
+}
+\examples{
+ss("", "super-cooled")
+ss("|", "super||cooled", "super|heated")
+ss0("super-cooled", "super-heated")
+ss1("super cooled", "super heated")
+ssP("super|cooled", "super|heated", u = TRUE)
+ssD("super.cooled", "super.heated")
+ssB("super¦cooled", "super¦heated")
+ssPD("super|cooled", "super.heated")
+ssPB("super|cooled", "super¦heated")
+ssDB("super.cooled", "super¦heated")
+ssPDB("super|cooled¦|super|heated", u = TRUE)
+ssPDB(" super|cooled  ¦super..  heated", n = 3)
+ssPDB(" super|cooled  ¦super..  heated", trm = F, sqz = F, drop = F, n = 3)
+
+uss("", "super-cooled")
+uss("|", "super|cooled", "super|heated")
+uss0("super-cooled", "super-heated")
+uss1("super cooled", "super heated")
+ussP("super|cooled", "super|heated")
+ussP("super|cooled", "super|heated")
+ussD("super.cooled", "super.heated")
+ussB("super¦cooled", "super¦heated")
+ussPD("super|cooled", "super.heated")
+ussPB("super|cooled", "super¦heated")
+ussDB("super.cooled", "super¦heated")
+ussPDB("super|cooled¦super|heated")
+
+sstb("|", 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p')
+sstb("|", 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p', name = 'original', part = 'letter')
 }
 \seealso{
 Other chars: 
