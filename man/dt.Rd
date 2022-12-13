@@ -128,10 +128,10 @@ A data.table.
 }
 \description{
 \tabular{rl}{
-  \code{dtmerge}   \tab Thinly wraps \code{\link[data.table]{merge}}.
-\cr \code{dtwide}   \tab Thinly wraps \code{\link[data.table]{dcast}}.
+  \code{dtmerge}   \tab Thinly wraps \code{\link[data.table]{merge}}.
+\cr \code{dtwide}   \tab Thinly wraps \code{\link[data.table]{dcast}}.
 \cr   \code{dtas}   \tab Thinly wraps \code{\link[data.table]{as.data.table}}.
-\cr   \code{dtis}   \tab Thinly wraps \code{\link[data.table]{is.data.table}}.
+\cr   \code{dtis}   \tab Thinly wraps \code{\link[data.table]{is.data.table}}.
 \cr            \tab   
 \cr \code{dtrows}   \tab Selects rows.
 \cr            \tab   

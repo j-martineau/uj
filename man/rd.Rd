@@ -234,19 +234,18 @@ a single quote, \verb{\\"}.}
 }
 \value{
 \tabular{rl}{
-  \code{rdclip}   \tab Varies.
-\cr           \tab   
-\cr \code{rdcsv}   \tab A \code{data.frame}.
-\cr \code{rdtsv}   \tab   
-\cr \code{rdxsv}   \tab   
+  \code{rdclip} \tab   Varies.
+\cr \code{rdcsv} \tab   A \code{data.frame}.
+\cr \code{rdtsv} \tab   A \code{data.drame}.
+\cr \code{rdxsv} \tab   A \code{data.drame}.
 }
 }
 \description{
 \tabular{rl}{
-  \code{rdclip}   \tab Thinly wraps \code{\link[readr]{clipboard}}.
-\cr \code{rdcsv}   \tab Extends \code{\link[readr]{read_csv}}\eqn{^1}.
-\cr \code{rdtsv}   \tab Extends \code{\link[readr]{read_tsv}}\eqn{^1}.
-\cr \code{rdxsv}   \tab Extends \code{\link[readr]{read_delim}}\eqn{^1}.
+  \code{rdclip} \tab   Thinly wraps \code{\link[readr]{clipboard}}.
+\cr \code{rdcsv} \tab   Extends \code{\link[readr]{read_csv}}\eqn{^1}.
+\cr \code{rdtsv} \tab   Extends \code{\link[readr]{read_tsv}}\eqn{^1}.
+\cr \code{rdxsv} \tab   Extends \code{\link[readr]{read_delim}}\eqn{^1}.
 }
 \eqn{^1} Prompts user to select a file if \code{file = NULL}.
 }

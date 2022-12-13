@@ -1,7 +1,7 @@
 #' @family props
-#' @title `Base` + `xclass` properties
+#' @title `base + xclass` properties
 #' @description \tabular{rl}{
-#'     `bbb_ccc_props`   \tab Gets all possible \link[=bbb]{`base`} + \link[=ccc]{`xclass`} properties.
+#'     `bbb_ccc_props`   \tab Gets all possible \code{\link[=bbb]{base} + \link[=ccc]{xclass}} properties.
 #'   \cr                 \tab   
 #'   \cr     `bbb_ccc`   \tab Does `x` match `base` and `xclass` specs in `bbb` and `ccc`, respectively?
 #'   \cr                 \tab   
@@ -14,9 +14,8 @@
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `bbb_ccc_props`   \tab A character vector.
-#'   \cr                 \tab   
-#'   \cr     `bbb_ccc`   \tab A logical scalar
-#'   \cr     `BBB_CCC`   \tab   
+#'   \cr     `bbb_ccc`   \tab A logical scalar
+#'   \cr     `BBB_CCC`   \tab A logical scalar
 #' }
 #' @examples
 #' bbb_ccc_props()

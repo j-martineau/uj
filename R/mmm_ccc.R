@@ -1,7 +1,7 @@
 #' @family props
 #' @title `xmode` + `xclass` properties
 #' @description \tabular{rl}{
-#'     `mmm_ccc_props`   \tab Gets all \link[=mmm]{`xmode`} + \link[=ccc]{`xclass`} properties.
+#'     `mmm_ccc_props`   \tab Gets all \code{\link[=mmm]{xmode}} + \code{\link[=ccc]{xclass}} properties.
 #'   \cr                 \tab   
 #'   \cr     `mmm_ccc`   \tab Does `x` match `xmode` and `xclass` specs in arguments `mmm` and `ccc`, respectively?
 #'   \cr                 \tab   
@@ -13,10 +13,9 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `mmm_ccc_props`   \tab A character vector.
-#'   \cr                 \tab   
-#'   \cr     `mmm_ccc`   \tab A logical scalar.
-#'   \cr     `MMM_CCC`   \tab   
+#'     `mmm_ccc_props` \tab   A character vector.
+#'   \cr     `mmm_ccc` \tab   A logical scalar.
+#'   \cr     `MMM_CCC` \tab   A logical scalar.
 #' }
 #' @examples
 #' scalar1 <- "a"

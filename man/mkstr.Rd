@@ -112,61 +112,70 @@ Build strings where function names are composed of a single-letter prefix and a 
 }
 Suffixes and their meanings are
 \tabular{rl}{
-  \code{bracket}   \tab Enclose in square brackets.
-\cr \code{quote2}   \tab   double quotes.
-\cr  \code{quote}   \tab   single quotes.
-\cr  \code{paren}   \tab   parentheses.
-\cr  \code{brace}   \tab   braces.
-\cr   \code{tick}   \tab   backticks.
-\cr   \code{wrap}   \tab   left & right.
-\cr            \tab   
-\cr  \code{colon}   \tab Delimit with colons.
-\cr    \code{lst}   \tab   comma + space.
-\cr            \tab   
-\cr   \code{form}   \tab Formula statement.
-\cr    \code{elt}   \tab   element extraction
-\cr    \code{fun}   \tab   function call
-\cr    \code{cat}   \tab   vector concatenation
-\cr    \code{eq0}   \tab   unpadded equality
-\cr     \code{eq}   \tab   space-padded equality
+  \code{bracket}   \tab Enclose in square brackets
+\cr \code{quote2}   \tab Enclose in double quotes
+\cr  \code{quote}   \tab Enclose in single quotes
+\cr  \code{paren}   \tab Enclose in parentheses
+\cr  \code{brace}   \tab Enclose in braces
+\cr   \code{tick}   \tab Enclose in backticks
+\cr   \code{wrap}   \tab Enclose left and right
+\cr            \tab    
+\cr  \code{colon}   \tab Delimit with colons
+\cr    \code{lst}   \tab Delimit with comma + space
+\cr            \tab    
+\cr   \code{form}   \tab Formula statement
+\cr    \code{elt}   \tab Element extraction statement
+\cr    \code{fun}   \tab Function call statement
+\cr    \code{cat}   \tab Vector concatenation statement
+\cr    \code{eq0}   \tab Unpadded equality statement
+\cr     \code{eq}   \tab Space-padded equality statement
 }
 Each prefix is joined with each suffix to create a unique function. The action indicated by the prefix happens first, followed by the action indicated in the suffix. How each function works is illustrated in the details.
 }
 \examples{
 geq(c('x', 'y', 'z'), 0, 1, 2)
-geq0(c('x', 'y', 'z'), 0, 1, 2)
-gcat(c('x', 'y', 'z'), 0, 1, 2)
-gelt(c('x', 'y', 'z'), 0, 1, 2)
-gfun(c('x', 'y', 'z'), 0, 1, 2)
-gform(c('x', 'y', 'z'), 0, 1, 2)
-
 peq(c('x', 'y', 'z'), 0, 1, 2)
+
+geq0(c('x', 'y', 'z'), 0, 1, 2)
 peq0(c('x', 'y', 'z'), 0, 1, 2)
+
+gcat(c('x', 'y', 'z'), 0, 1, 2)
 pcat(c('x', 'y', 'z'), 0, 1, 2)
+
+gelt(c('x', 'y', 'z'), 0, 1, 2)
 pelt(c('x', 'y', 'z'), 0, 1, 2)
+
+gfun(c('x', 'y', 'z'), 0, 1, 2)
 pfun(c('x', 'y', 'z'), 0, 1, 2)
+
+gform(c('x', 'y', 'z'), 0, 1, 2)
 pform(c('x', 'y', 'z'), 0, 1, 2)
 
 glst(c('x', 'y', 'z'), 0, 1, 2)
-gtick(c('x', 'y', 'z'), 0, 1, 2)
-
 plst(c('x', 'y', 'z'), 0, 1, 2)
+
+gtick(c('x', 'y', 'z'), 0, 1, 2)
 ptick(c('x', 'y', 'z'), 0, 1, 2)
 
 gbrace(c('x', 'y', 'z'), 0, 1, 2)
-gcolon(c('x', 'y', 'z'), 0, 1, 2)
-gparen(c('x', 'y', 'z'), 0, 1, 2)
-gquote(c('x', 'y', 'z'), 0, 1, 2)
-gquote2(c('x', 'y', 'z'), 0, 1, 2)
-gbracket(c('x', 'y', 'z'), 0, 1, 2)
-gwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)
-
 pbrace(c('x', 'y', 'z'), 0, 1, 2)
+
+gcolon(c('x', 'y', 'z'), 0, 1, 2)
 pcolon(c('x', 'y', 'z'), 0, 1, 2)
+
+gparen(c('x', 'y', 'z'), 0, 1, 2)
 pparen(c('x', 'y', 'z'), 0, 1, 2)
+
+gquote(c('x', 'y', 'z'), 0, 1, 2)
 pquote(c('x', 'y', 'z'), 0, 1, 2)
+
+gquote2(c('x', 'y', 'z'), 0, 1, 2)
 pquote2(c('x', 'y', 'z'), 0, 1, 2)
+
+gbracket(c('x', 'y', 'z'), 0, 1, 2)
 pbracket(c('x', 'y', 'z'), 0, 1, 2)
+
+gwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)
 pwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)
 }
 \seealso{

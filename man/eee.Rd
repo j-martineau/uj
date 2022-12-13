@@ -36,7 +36,7 @@ neee(x)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more \code{effective-D} properties (i.e., from \code{eee_props()}). \code{Effective-D} properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more \code{effective-D} properties from \code{eee_props()}. \code{Effective-D} properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -46,37 +46,39 @@ neee(x)
 }
 \value{
 \tabular{rl}{
-  \code{is_eee_spec}   \tab A logical scalar.
+  \code{is_eee_spec}   \tab A logical scalar.
 \cr      \code{ieee}   \tab   
-\cr      \code{ixxx}   \tab   
+\cr      \code{iEEE}   \tab   
 \cr               \tab   
 \cr \code{eee_props}   \tab A character vector.
 \cr       \code{eee}   \tab   
 \cr               \tab   
-\cr      \code{neee}   \tab A numeric scalar.
+\cr      \code{neee}   \tab A numeric scalar.
 }
 }
 \description{
-Effective dimensionality (\code{effective-D}) of a non-empty object is defined as the number of dimensions with \verb{2+} positions. \code{Effective-D} is undefined for empty objects.
+An object's \code{effective-D} is defined as the number of dimensions in which it has multiple populated index positions (i.e., if a dimension has only one index position, that is not an effective dimension).
 \tabular{rl}{
-  \code{'eUD'}   \tab Effectively \code{NaN}-dimensional (\code{NULL} or otherwise of length-\code{0} objects; \code{effective-D} is undefined).
-\cr             \tab  
-\cr   \code{'e0D'}   \tab Effectively \code{0}-dimensional (vectors, vlists, and arrays of length \code{1} and \verb{1 × 1} data.frames).
-\cr             \tab  
-\cr   \code{'e1D'}   \tab Effectively \code{1}-dimensional (vectors or vlists of length \verb{2+}, length \verb{2+} arrays with \verb{2+} positions in \code{1} dimension, and \verb{1 x 2+} or \verb{2+ x 1} data.frames).
-\cr             \tab  
-\cr   \code{'e2D'}   \tab Effectively \code{2}-dimensional (\verb{2+ x 2+} data frames or matrices and length \verb{4+} arrays with \verb{2+} positions in \code{2} dimensions).
-\cr             \tab  
-\cr   \code{'eHD'}   \tab Effectively hyper-dimensional (length-\verb{8+} array with \verb{2+} positions in \verb{3+} dimensions).
+  \code{'eUD'} \tab   Effectively \code{NaN}-dimensional\eqn{^a}.
+\cr   \code{'e0D'} \tab   Effectively \verb{0D}\eqn{^b}.
+\cr   \code{'e1D'} \tab   Effectively \verb{1D}\eqn{^c}.
+\cr   \code{'e2D'} \tab   Effectively \verb{2D}\eqn{^d}.
+\cr   \code{'eHD'} \tab   Effectively \code{HD}\eqn{^e}.
 }
+   \eqn{^{a.}} That is, of undefined \code{effective-D}, or length-\code{0} objects including \code{NULL}.
+\cr    \eqn{^{b.}} \verb{1x1 data.frames} and length-\verb{1 vectors}, \code{\link[=ivls]{vlists}}, and \code{arrays}.
+\cr    \eqn{^{c.}} \code{\link[=imvc]{multivecs}}, length-\code{2+ vlists}, \code{\link[=irow]{row}} \code{data.frames}, \code{\link[=icol]{col}} \code{data.frames}, and length-\verb{2+} arrays with \verb{2+} index positions in exactly \code{1} dimension.
+\cr    \eqn{^{d.}} \verb{2+ x 2+ data.frames} and length-\code{4+ arrays} with \verb{2+} positions in exactly \code{2} dimensions.
+\cr    \eqn{^{e.}} Length-\code{8+ arrays} with \verb{2+} positions in \verb{3+} dimensions.
+\cr\cr
 Effective dimensionality property functions are:
 \tabular{rl}{
-  \code{is_eee_spec}   \tab Is \code{spec} an \code{effective-D} specification?
-\cr  \code{eee_props}   \tab Gets all possible \code{effective-D} property values.
-\cr       \code{ixxx}   \tab Does \code{x} match \code{effective-D} property \code{'EEE'}
-\cr       \code{ieee}   \tab Does \code{x} match \code{effective-D} spec \code{spec}?
-\cr       \code{neee}   \tab Gets the number of effective dimensions of \code{x}.
-\cr        \code{eee}   \tab Gets all \code{effective-D} properties of \code{x}.
+  \code{is_eee_spec} \tab   Is \code{spec} an \code{effective-D} specification?
+\cr  \code{eee_props} \tab   Gets all possible \code{effective-D} property values.
+\cr       \code{neee} \tab   Gets the number of effective dimensions of \code{x}.
+\cr       \code{ieee} \tab   Does \code{x} match \code{effective-D} spec \code{spec}?
+\cr       \code{iEEE} \tab   Does \code{x} match \code{effective-D} property \code{'EEE'}
+\cr        \code{eee} \tab   Gets all \code{effective-D} properties of \code{x}.
 }
 }
 \section{Specifying count and value restrictions}{

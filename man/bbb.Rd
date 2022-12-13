@@ -12,7 +12,7 @@
 \alias{inll}
 \alias{ipop}
 \alias{ircr}
-\title{\code{Base} properties}
+\title{\code{base} properties}
 \usage{
 bbb(x)
 
@@ -50,11 +50,10 @@ ircr(x, ...)
 \value{
 \tabular{rl}{
   \code{is_bbb_spec}   \tab A logical scalar.
-\cr      \code{ibbb}   \tab   
-\cr      \code{iBBB}   \tab   
-\cr               \tab   
 \cr \code{bbb_props}   \tab A character vector.
-\cr       \code{bbb}   \tab   
+\cr      \code{ibbb}   \tab A logical scalar.
+\cr      \code{iBBB}   \tab A logical scalar.
+\cr       \code{bbb}   \tab A character vector.
 }
 }
 \description{

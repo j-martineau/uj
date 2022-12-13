@@ -57,7 +57,7 @@
 \alias{pop_str}
 \alias{pop_uno}
 \alias{pop_whl}
-\title{\code{Base} + \code{xmode} properties}
+\title{\code{base + xmode} properties}
 \usage{
 bbb_mmm(x, bbb, mmm, ...)
 
@@ -187,14 +187,13 @@ pop_whl(x, ...)
 \value{
 \tabular{rl}{
   \code{bbb_mmm_props}   \tab A character vector.
-\cr                 \tab   
-\cr     \code{bbb_mmm}   \tab A logical scalar.
-\cr     \code{BBB_MMM}   \tab   
+\cr     \code{bbb_mmm}   \tab A logical scalar.
+\cr     \code{BBB_MMM}   \tab A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{bbb_mmm_props}   \tab Gets all \link[=bbb]{\code{base}} + \link[=mmm]{\code{xmode}} properties.
+  \code{bbb_mmm_props}   \tab Gets all \code{\link[=bbb]{base} + \link[=mmm]{xmode}} properties.
 \cr                 \tab   
 \cr     \code{bbb_mmm}   \tab Does \code{x} match \code{base} and \code{xmode} specs in arguments \code{bbb} and \code{mmm}, respectively.
 \cr                 \tab   

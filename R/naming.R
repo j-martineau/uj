@@ -5,22 +5,22 @@
 #'   \cr             \tab   
 #'   \cr   `named`   \tab Evaluates whether an object's elements, rows, and/or columns are named, accounting for whether names must be unique, whether the object may contain empty elements, and whether names may be blank strings.
 #'   \cr             \tab   
-#'   \cr `rcnamed`   \tab Are both rows and columns named?
-#'   \cr  `enamed`   \tab Are elements of `x` named?
-#'   \cr  `rnamed`   \tab Are rows of `x` named?
-#'   \cr  `cnamed`   \tab Are columns of `x` named?
-#'   \cr  `dnamed`   \tab Are `...` arguments named?
+#'   \cr `rcnamed`   \tab Are both rows and columns named?
+#'   \cr  `enamed`   \tab Are elements of `x` named?
+#'   \cr  `rnamed`   \tab Are rows of `x` named?
+#'   \cr  `cnamed`   \tab Are columns of `x` named?
+#'   \cr  `dnamed`   \tab Are `...` arguments named?
 #'   \cr             \tab   
-#'   \cr  `namerc`   \tab Names rows and columns of `x`.
-#'   \cr   `namer`   \tab Names rows of `x`.
-#'   \cr   `namec`   \tab Names columns of `x`.
-#'   \cr   `namev`   \tab Names elements of a vector/\link[=ivls]{vlist}.
-#'   \cr   `namel`   \tab Creates and names a 1-element list.
+#'   \cr  `namerc`   \tab Names rows and columns of `x`.
+#'   \cr   `namer`   \tab Names rows of `x`.
+#'   \cr   `namec`   \tab Names columns of `x`.
+#'   \cr   `namev`   \tab Names elements of a `vector` or \code{\link[=ivls]{vlist}}.
+#'   \cr   `namel`   \tab Creates and names a `1`-element `list`.
 #'   \cr             \tab   
-#'   \cr     `rcn`   \tab Gets row and column names in a list.
-#'   \cr      `en`   \tab Gets element names.
-#'   \cr      `rn`   \tab Gets row names.
-#'   \cr      `cn`   \tab Get column names.
+#'   \cr     `rcn`   \tab Gets row and column names in a `list`.
+#'   \cr      `en`   \tab Gets element names.
+#'   \cr      `rn`   \tab Gets row names.
+#'   \cr      `cn`   \tab Gets column names.
 #' }
 #' @param x Vector or list for `namev` and `vn`; matrix or data.frame for `rn`, `namer`, `cn`, `namec`, and `namerc`; or any object for `namel`.
 #' @param ... Arbitrary number of arguments to be inspected for names.
@@ -32,26 +32,21 @@
 #' @param en A \link[=cmp_chr_vec]{complete character vec} of element names.
 #' @param rn,cn Complete character vecs of row or column names, respectively.
 #' @return \tabular{rl}{
-#'      `rcnamed`   \tab A logical
-#'   \cr `rnamed`   \tab scalar.
-#'   \cr `cnamed`   \tab   
-#'   \cr `enamed`   \tab   
-#'   \cr `dnamed`   \tab   
-#'   \cr ` named`   \tab   
-#'   \cr            \tab   
-#'   \cr `namerc`   \tab A matrix or
-#'   \cr  `namer`   \tab data.frame.
-#'   \cr  `namec`   \tab   
-#'   \cr            \tab   
-#'   \cr  `namev`   \tab A vector.
-#'   \cr            \tab   
-#'   \cr  `namel`   \tab A `1`-element list.
-#'   \cr            \tab   
-#'   \cr    `rcn`   \tab A list of `2` vectors.
-#'   \cr            \tab   
-#'   \cr     `en`   \tab A character
-#'   \cr     `rn`   \tab vector.
-#'   \cr     `cn`   \tab   
+#'      `rcnamed` \tab   A logical scalar.
+#'   \cr `rnamed` \tab   A logical scalar.
+#'   \cr `cnamed` \tab   A logical scalar.
+#'   \cr `enamed` \tab   A logical scalar.
+#'   \cr `dnamed` \tab   A logical scalar.
+#'   \cr ` named` \tab   A logical scalar.
+#'   \cr `namerc` \tab   A matrix or data.frame.
+#'   \cr  `namer` \tab   A matrix or data.frame.
+#'   \cr  `namec` \tab   A matrix or data.frame.
+#'   \cr  `namev` \tab   A vector.
+#'   \cr  `namel` \tab   A `1`-element list.
+#'   \cr    `rcn` \tab   A list of `2` vectors.
+#'   \cr     `en` \tab   A character vector.
+#'   \cr     `rn` \tab   A character vector.
+#'   \cr     `cn` \tab   A character vector.
 #' }
 #' @export
 namev <- function(x, en) {

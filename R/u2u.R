@@ -2,10 +2,10 @@
 #' @title Convert plotting units
 #' @description Unit functions take the following forms, where `aa` and `bb` are wildcard unit codes and `old` and `new` are user-supplied argument values.
 #' \tabular{rl}{
-#'      `aa2bb`   \tab Converts units from `aa` to `bb`.
-#'   \cr `aa2u`   \tab   `...`from `aa` to `new`.
-#'   \cr `u2bb`   \tab   `...`from `old` to `bb`.
-#'   \cr  `u2u`   \tab   `...`from `old` to `new`.
+#'      `aa2bb`   \tab Converts units *from* `aa` *to* `bb`.
+#'   \cr `aa2u`   \tab    *from* `aa` *to* `new`.
+#'   \cr `u2bb`   \tab    *from* `old` *to* `bb`.
+#'   \cr  `u2u`   \tab    *from* `old` *to* `new`.
 #' }
 #' Available units are:
 #' \tabular{rl}{

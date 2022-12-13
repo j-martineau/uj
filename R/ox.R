@@ -4,7 +4,7 @@
 #' @description Create Oxford-comma separated lists with a variety of templates (displayed below) where `{conj}` and `{n}` represent the values of arguments `conj` and `n`; `{pref}` and `{comp}` indicate the potentially-`NULL` values of arguments `pref` and `conj`; and `[a]`, `[b]`, and `[z]` represents elements of a list.
 #' \cr\cr **Functions and associated templates**
 #' \tabular{rl}{
-#'   \cr             `ox`   \tab`'(pref) [a], [b], ..., {conj} [z]'`
+#'                   `ox`   \tab`'(pref) [a], [b], ..., {conj} [z]'`
 #'   \cr                    \tab   
 #'   \cr           `ox_n`   \tab`'(pref) {n} of [a], [b], ..., {conj} [z]'`
 #'   \cr                    \tab`'(pref) {n} (comp) of [a], [b], ..., {conj} [z]'`

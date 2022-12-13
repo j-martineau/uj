@@ -672,15 +672,14 @@ whl_vls(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{mmm_ccc_props}   \tab A character vector.
-\cr                 \tab   
-\cr     \code{mmm_ccc}   \tab A logical scalar.
-\cr     \code{MMM_CCC}   \tab   
+  \code{mmm_ccc_props} \tab   A character vector.
+\cr     \code{mmm_ccc} \tab   A logical scalar.
+\cr     \code{MMM_CCC} \tab   A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{mmm_ccc_props}   \tab Gets all \link[=mmm]{\code{xmode}} + \link[=ccc]{\code{xclass}} properties.
+  \code{mmm_ccc_props}   \tab Gets all \code{\link[=mmm]{xmode}} + \code{\link[=ccc]{xclass}} properties.
 \cr                 \tab   
 \cr     \code{mmm_ccc}   \tab Does \code{x} match \code{xmode} and \code{xclass} specs in arguments \code{mmm} and \code{ccc}, respectively?
 \cr                 \tab   

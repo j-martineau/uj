@@ -9,16 +9,16 @@
 #' @param levs An atomic vec of `n` level labels.
 #' @return An atomic object of the same dimension as `x` and the same mode as `levs`.
 #' @examples
-#' num_vals <- -5:5
-#' chr_vals <- letters[1:11]
-#' ord_vals <- factor(chr_vals, levels = chr_vals, ordered = TRUE)
-#' num_cuts <- c(-3, 0, 3)
-#' chr_cuts <- c("c", "f", "i")
-#' ord_cuts <- factor(chr_cuts, levels = chr_vals, ordered = TRUE)
-#' rng_levs <- c("A", "B", "C", "D")
-#' rng2lev(num_vals, num_cuts, rng_levs)
-#' rng2lev(chr_vals, chr_cuts, rng_levs)
-#' rng2lev(ord_vals, ord_cuts, rng_levs)
+#' num_vals. <- -5:5
+#' chr_vals. <- letters[1:11]
+#' ord_vals. <- factor(chr_vals., levels = chr_vals., ordered = TRUE)
+#' num_cuts. <- c(-3, 0, 3)
+#' chr_cuts. <- c("c", "f", "i")
+#' ord_cuts. <- factor(chr_cuts., levels = chr_vals., ordered = TRUE)
+#' rng_levs. <- c("A", "B", "C", "D")
+#' rng2lev(num_vals., num_cuts., rng_levs.)
+#' rng2lev(chr_vals., chr_cuts., rng_levs.)
+#' rng2lev(ord_vals., ord_cuts., rng_levs.)
 #' @export
 rng2lev <- function(x, cuts, levs) {
   errs <- c(f0(pop_srt(x)       , NULL, "[x] must be an atomic sortable object (?isrt)."),
@@ -28,9 +28,8 @@ rng2lev <- function(x, cuts, levs) {
   errs <- c(f0(all(sort(cuts) == cuts)             , NULL, "[cuts] must be sorted in increasing order."),
             f0(length(unique(cuts)) == length(cuts), NULL, "[cuts] contains duplicate values."),
             f0(length(cuts) == length(levs) - 1    , NULL, "length(cuts) must equal length(levs) - 1."),
-            f0(comparable(x, cuts, recycle. = F)   , NULL, "[x] and [cuts] must be of comparable modes (?comparable)."))
+            f0(comparable(x, cuts)                 , NULL, "[x] and [cuts] must be of comparable modes (?comparable)."))
   if (!is.null(errs)) {stop(.errs(errs))}
-  browser()
   y <- x
   y[1:length(y)] <- NA
   if (   is.character(levs)) {y <- as.character(y)}

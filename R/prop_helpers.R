@@ -13,7 +13,7 @@
 .imat <- function(x) {is.matrix(x)}
 .imvc <- function(x) {f0(length(x) < 2, F, f0(is.vector(x), T, is.array(x) & length(which(dim(x) > 1)) == 1))}
 .iscl <- function(x) {f0(length(x) != 1, F, is.array(x) | is.vector(x))}
-.ivec <- function(x) {f0(length(x) == 0, F, f0(is.vector(x), T, is.array(x) & length(which(dim(x) > 1)) < 2))}
+.ivec <- function(x) {f0(length(x) == 0, F, f0(is.vector(x), T, f0(is.array(x) & length(which(dim(x) > 1)) < 2, T, is.atomic(x) & !is.vector(x) & !is.array(x))))}
 .ivls <- function(x) {is.list(x) & !is.data.frame(x)}
 .cccs <- c("arr", "dtf", "gen", "mat", "mvc", "scl", "vec", "vls")
 

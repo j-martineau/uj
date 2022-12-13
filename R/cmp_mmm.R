@@ -1,7 +1,7 @@
 #' @family props
-#' @title Complete + `xmode` properties
+#' @title `complete + xmode` properties
 #' @description \tabular{rl}{
-#'     `cmp_mmm_props`   \tab Gets all possible \link[=icmp]{complete} + \link[=mmm]{`xmode`} properties.
+#'     `cmp_mmm_props`   \tab Gets all possible \code{\link[=icmp]{complete}} + \code{\link[=mmm]{xmode}} properties.
 #'   \cr                 \tab  
 #'   \cr     `cmp_mmm`   \tab Is `x` complete and does it match the `xmode` spec in argument `mmm`?
 #'   \cr                 \tab  
@@ -13,9 +13,8 @@
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `cmp_mmm_props`   \tab A character vector.
-#'   \cr                 \tab   
-#'   \cr     `cmp_mmm`   \tab A logical scalar.
-#'   \cr     `cmp_MMM`   \tab   
+#'   \cr     `cmp_mmm`   \tab A logical scalar.
+#'   \cr     `cmp_MMM`   \tab A logical scalar.
 #' }
 #' @examples
 #' cmp_mmm_props()

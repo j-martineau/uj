@@ -23,26 +23,26 @@ continue()
 \description{
 \tabular{rl}{
 \code{continue}   \tab Prints \code{"Hit [enter] or [return] to continue"} to the console and pausse execution until the user hits the enter or return key.
-\cr          \tab  
+\cr          \tab   
 \cr \code{cat0}   \tab Collapses \code{...} to a character scalar message prefixed and suffixed with newlines and prints it to the console (ensures the message occurs on its own line of the console).
-\cr          \tab  
+\cr          \tab   
 \cr  \code{say}   \tab Collapses the message in \code{...} to a character scalar and either (a) prints it to the console or (b) structures it as a certain level of update and then prints it to the console. See details.
 }
 }
 \details{
 The function \code{say} allows for structuring user update messages at six hierarchical levels as explained in the following table where \verb{___} is a placeholder for the character scalar message created when collapsing \code{...}:
-\tabular{rcl}{
-MESSAGE    \tab    VALUE     \tab    UPDATE
-\cr  SUPPLIED    \tab OF THE \code{lev} \tab    PRINTED
-\cr IN \code{...}?    \tab   ARGUMENT   \tab    TO CONSOLE
-\cr       yes    \tab     \code{NA}     \tab    \code{'___'}
-\cr       yes    \tab     \code{1}      \tab    newline + \code{'___'}
-\cr       yes    \tab     \code{2}      \tab    newline + \code{'| ___'}
-\cr       yes    \tab     \code{3}      \tab    newline + \code{'| > ___'}
-\cr       yes    \tab     \code{4}      \tab    \code{' > ___'}
-\cr       yes    \tab     \code{5}      \tab    \code{'..(___)'}
-\cr        no    \tab     \code{6}      \tab    \code{'.'}
-\cr        no    \tab     \code{NA}     \tab    \code{'.'}
+\tabular{ccl}{
+MESSAGE    \tab    VALUE     \tab    UPDATE
+\cr     SUPPLIED    \tab OF THE \code{lev} \tab    PRINTED
+\cr    IN \code{...}?    \tab   ARGUMENT   \tab    TO CONSOLE
+\cr       yes       \tab     \code{NA}     \tab    \code{'___'}
+\cr       yes       \tab     \code{1}      \tab    newline + \code{'___'}
+\cr       yes       \tab     \code{2}      \tab    newline + \code{'| ___'}
+\cr       yes       \tab     \code{3}      \tab    newline + \code{'| > ___'}
+\cr       yes       \tab     \code{4}      \tab    \code{' > ___'}
+\cr       yes       \tab     \code{5}      \tab    \code{'..(___)'}
+\cr        no       \tab     \code{6}      \tab    \code{'.'}
+\cr        no       \tab     \code{NA}     \tab    \code{'.'}
 }
 Other combinations not represented in the table above will result in an error.
 }

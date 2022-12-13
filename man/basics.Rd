@@ -102,9 +102,9 @@ For a vector, an object of the same type of \code{x}, but with only
   \cr  \code{p0}   \tab Calls \code{\link[base:paste]{paste(..., sep = "")}}.
   \cr   \code{p}   \tab Calls \code{\link[base:paste]{paste(..., sep = p)}}
 }
-\eqn{^{1.}} Calls \verb{paste0(av(...), }
-\eqn{^{2.}} Differs from \code{\link{uv}}, which calls \code{unique(av(...))}.
-\eqn{^{3.}} Differs from \code{\link{wv}}, which calls \code{which(av(...))}.
+   \eqn{^{1.}} Calls \verb{paste0(av(...), }
+\cr    \eqn{^{2.}} Differs from \code{\link{uv}}, which calls \code{unique(av(...))}.
+\cr    \eqn{^{3.}} Differs from \code{\link{wv}}, which calls \code{which(av(...))}.
 }
 \details{
 This is a generic function with methods for vectors, data frames and

@@ -30,8 +30,8 @@ Numeric vector with the same length as \code{s}, giving the estimate of
 }
 \description{
 \tabular{rl}{
-  \code{strh}   \tab Thinly wraps \code{\link[graphics]{strheight}}.
-\cr \code{strw}   \tab Thinly wraps \code{\link[graphics]{strwidth}}.
+  \code{strh} \tab   Thinly wraps \code{\link[graphics]{strheight}}.
+\cr \code{strw} \tab   Thinly wraps \code{\link[graphics]{strwidth}}.
 }
 }
 \details{

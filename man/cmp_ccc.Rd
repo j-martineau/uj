@@ -47,17 +47,16 @@ cmp_vls(x, ...)
 \value{
 \tabular{rl}{
   \code{cmp_ccc_props}   \tab A character vector.
-\cr                 \tab   
-\cr     \code{cmp_ccc}   \tab A logical scalar.
-\cr     \code{cmp_CCC}   \tab   
+\cr     \code{cmp_ccc}   \tab A logical scalar.
+\cr     \code{cmp_CCC}   \tab A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{cmp_ccc_props}   \tab Gets all possible \link[=icmp]{complete} + \link[=ccc]{\code{xclass}} properties.
-\cr                 \tab  
+  \code{cmp_ccc_props}   \tab Gets all possible \link[=icmp]{complete} + \code{\link[=ccc]{xclass}} properties.
+\cr                 \tab   
 \cr     \code{cmp_ccc}   \tab Is \code{x} complete and does it match \code{xclass} spec \code{ccc}?
-\cr                 \tab  
+\cr                 \tab   
 \cr     \code{cmp_CCC}   \tab Is \code{x} complete and does it match \code{xclass} property \code{'CCC'}?
 }
 }

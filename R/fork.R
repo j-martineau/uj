@@ -8,11 +8,11 @@
 #'                     \item `FALSE` values of `test` are replaced by corresponding values of `no`.
 #'                     \item `NA` values of `test` are replaced by `na` (unless `na = 'err'`, in which case if there are any `NA` values in `test`, throws an error).
 #'                   }
-#'   \cr        \tab  
+#'   \cr        \tab   
 #'   \cr `f0`   \tab If `test` is scalar `TRUE`, returns `yes`. If `test` is anything else, returns `no`.
-#'   \cr        \tab  
+#'   \cr        \tab   
 #'   \cr `f1`   \tab Error-checked version of `f0`. Evaluates and processes logical scalar `test` in the following manner:
-#'   \cr        \tab \itemize{
+#'   \cr        \tab \itemize{
 #'                     \item If `test = TRUE`, returns `yes`.
 #'                     \item If `test = FALSE`, returns `no`.
 #'                     \item If `test = NA`, returns `na` unless `na = 'err'`, in which case, an error is thrown.
@@ -24,10 +24,9 @@
 #' @param na An object of any type for `f1`. An atomic scalar \link[=compatible]{compatible} with `yes` and `no` for `fork`, with the additional possibility of `na = 'err'` to indicate an error should be thrown if any values in `test` are `na`.
 #' @param err Either `'err'` or an object to be returned when `test` is not an atomic scalar in `c(TRUE, FALSE, NA)`.
 #' @return \tabular{rl}{
-#'     `fork`   \tab A length-`length(x)` atomic object.
-#'   \cr        \tab   
-#'   \cr `f0`   \tab An R
-#'   \cr `f1`   \tab object.
+#'     `fork` \tab   A length-`length(x)` atomic object.
+#'   \cr `f0` \tab   An R object.
+#'   \cr `f1` \tab   An R object.
 #' }
 #' @examples
 #' Vec. <- sample(c(TRUE, FALSE, NA), 10, replace = TRUE)

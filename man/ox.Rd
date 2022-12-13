@@ -101,7 +101,7 @@ A character scalar containing all atomic elements of \code{...} formatted as an 
 Create Oxford-comma separated lists with a variety of templates (displayed below) where \code{{conj}} and \code{{n}} represent the values of arguments \code{conj} and \code{n}; \code{{pref}} and \code{{comp}} indicate the potentially-\code{NULL} values of arguments \code{pref} and \code{conj}; and \verb{[a]}, \verb{[b]}, and \verb{[z]} represents elements of a list.
 \cr\cr \strong{Functions and associated templates}
 \tabular{rl}{
-\cr             \code{ox}   \tab\code{'(pref) [a], [b], ..., {conj} [z]'}
+\code{ox}   \tab\code{'(pref) [a], [b], ..., {conj} [z]'}
 \cr                    \tab   
 \cr           \code{ox_n}   \tab\code{'(pref) {n} of [a], [b], ..., {conj} [z]'}
 \cr                    \tab\code{'(pref) {n} (comp) of [a], [b], ..., {conj} [z]'}

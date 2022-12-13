@@ -43,32 +43,29 @@ nddd(x)
 }
 \value{
 \tabular{rl}{
-  \code{ddd_vals}   \tab A character vector.
-\cr    \code{ddd}   \tab   
-\cr            \tab   
-\cr   \code{iddd}   \tab A logical scalar.
-\cr   \code{iDDD}   \tab   
-\cr            \tab   
-\cr   \code{nddd}   \tab A numeric scalar.
+  \code{ddd_vals}   \tab A character vector
+\cr   \code{nddd}   \tab A numeric scalar
+\cr   \code{iddd}   \tab A logical scalar
+\cr   \code{iDDD}   \tab A logical scalar
+\cr    \code{ddd}   \tab A character vector
 }
 }
 \description{
-An object's defined dimensionality is the number of dimensions on which its elements can be indexed.
-\cr\cr \strong{\code{Defined-D} properties}
+An object's defined dimensionality (\code{defined-D}) is the number of dimensions on which its elements can be indexed. The associated property values are:
 \tabular{rcl}{
-  \code{'d0D'}   \tab \code{0}-D   \tab   The \code{NULL} object.
-\cr \code{'d1D'}   \tab \code{1}-D   \tab   Vectors, \link[=ivls]{vlists}, \verb{1D} arrays.
-\cr \code{'d2D'}   \tab \code{2}-D   \tab   Data.frames and matrices.
-\cr \code{'dHD'}   \tab Hyper-D \tab   Arrays with  \verb{3+} dimensions.
+  \code{'d0D'} \tab   \verb{0D} \tab   The \code{NULL} object.
+\cr \code{'d1D'} \tab   \verb{1D} \tab   Vectors, \link[=ivls]{vlists}, \verb{1D} arrays.
+\cr \code{'d2D'} \tab   \verb{2D} \tab   Data.frames and matrices.
+\cr \code{'dHD'} \tab   \code{HD} \tab   Hyper-dimensional arrays (of \verb{3+} dimensions).
 }
-\strong{\code{Defined-D} functions}
+\strong{Functions}
 \tabular{rl}{
-  \code{is_ddd_spec}   \tab Is \code{spec} a \code{defined-D} property spec?
-\cr \code{ddd_props}   \tab Gets all possible \code{defined-D} property values.
-\cr      \code{nddd}   \tab Gets the number of defined dimensions of \code{x}.
-\cr      \code{iddd}   \tab Does \code{x} match \code{defined-D} spec \code{spec}?
-\cr      \code{iDDD}   \tab Does \code{x} match \code{defined-D} property \code{DDD}?
-\cr       \code{ddd}   \tab Gets all \code{defined-D} properties pf \code{x}.
+  \code{is_ddd_spec} \tab   Is \code{spec} a \code{defined-D} property spec?
+\cr \code{ddd_props} \tab   Gets all possible \code{defined-D} property values.
+\cr      \code{nddd} \tab   Gets the number of defined dimensions of \code{x}.
+\cr      \code{iddd} \tab   Does \code{x} match \code{defined-D} spec \code{spec}?
+\cr      \code{iDDD} \tab   Does \code{x} match \code{defined-D} property \code{DDD}?
+\cr       \code{ddd} \tab   Gets all \code{defined-D} properties of \code{x}.
 }
 }
 \section{Specifying count and value restrictions}{

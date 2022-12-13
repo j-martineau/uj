@@ -1,7 +1,7 @@
 #' @title Error-checked row and column binding
 #' @description Error-checked extensions of \code{\link[base:rbind]{base::rbind}} and/or \code{\link[base:cbind]{base::cbind}}:\tabular{rl}{
 #'       `cb`   \tab Column binds an arbitrary number of atomic matrices or \link[=atm_dtf]{atomic data.frames}.
-#'   \cr        \tab  
+#'   \cr        \tab   
 #'   \cr `rb`   \tab Row binds an arbitrary number of atomic matrices or atomic data.frames.
 #' }
 #' @param ... Multiple \code{\link{compatible}} atomic matrices or multiple compatible \link[=atm_dtf]{atomic data.frames}.

@@ -25,10 +25,10 @@ A scalar, vector, or \link[=ivls]{vlist}.
 }
 \description{
 \tabular{rl}{
-  \code{n_th_last}   \tab Gets \code{n}-th-from-last element(s).
-\cr    \code{n_th}   \tab Gets the \code{n}-th element(s) .
-\cr             \tab   
-\cr \code{first_n}   \tab Gets the first \verb{n`` elements. \\cr  }last_n\verb{   \\tab Gets the last }n` elements.
+  \code{n_th_last} \tab   Gets the \code{n}-th-from-last element(s).
+\cr \code{first_n} \tab   Gets the first \code{n} elements.
+\cr  \code{last_n} \tab   Gets the last \code{n} elements.
+\cr    \code{n_th} \tab   Gets the \code{n}-th element(s) .
 }
 }
 \examples{

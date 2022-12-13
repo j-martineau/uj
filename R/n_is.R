@@ -2,37 +2,37 @@
 #' @title Dedicated counting functions
 #' @description Counting functions can be used with a single unnamed argument, multiple unnamed arguments, and with restrictions in named arguments, in any combination. The functions in this family answer the questions described below.
 #' \tabular{rl}{
-#'   \cr `nu,nuv`   \tab Number of unique atomic values.
-#'   \cr  `nw,nt`   \tab   `TRUE` values.
-#'   \cr     `nf`   \tab   `FALSE` values.
-#'   \cr    `nna`   \tab   atomic `NA...` values.
-#'   \cr    `nok`   \tab   atomic non-`NA...` values.
-#'   \cr    `nch`   \tab   characters in each element.
-#'   \cr     `nr`   \tab   rows.
-#'   \cr     `nc`   \tab   columns.
+#'   \cr `nu,nuv`   \tab Number of unique atomic values.
+#'   \cr  `nw,nt`   \tab Number of `TRUE` values.
+#'   \cr     `nf`   \tab Number of `FALSE` values.
+#'   \cr    `nna`   \tab Number of atomic `NA` values.
+#'   \cr    `nok`   \tab Number of atomic non-`NA` values.
+#'   \cr    `nch`   \tab Number of characters in each element.
+#'   \cr     `nr`   \tab Number of rows.
+#'   \cr     `nc`   \tab Number of columns.
 #'   \cr            \tab   
-#'   \cr     `nd`   \tab Number of `...` args.
+#'   \cr     `nd`   \tab Gets the number of `...` args.
 #'   \cr    `nd0`   \tab Are there `0 ...` args?
-#'   \cr    `nd1`   \tab   `1 ...` args?
-#'   \cr    `nd2`   \tab   `2 ...` arg?
-#'   \cr    `nd3`   \tab   `3 ...` args?
-#'   \cr   `nd1p`   \tab   `1+ ...` args?
-#'   \cr   `nd2p`   \tab   `2+ ...` args?
-#'   \cr   `nd3p`   \tab   `3+ ...` args?
+#'   \cr    `nd1`   \tab Are there `1 ...` args?
+#'   \cr    `nd2`   \tab Are there `2 ...` args?
+#'   \cr    `nd3`   \tab Are there `3 ...` args?
+#'   \cr   `nd1p`   \tab Are there `1+ ...` args?
+#'   \cr   `nd2p`   \tab Are there `2+ ...` args?
+#'   \cr   `nd3p`   \tab Are there `3+ ...` args?
 #'   \cr            \tab   
 #'   \cr     `n0`   \tab Is length `0`?
-#'   \cr     `n1`   \tab   `1`?
-#'   \cr     `n2`   \tab   `2`?
-#'   \cr     `n3`   \tab   `3`?
-#'   \cr    `n1p`   \tab   `1+`?
-#'   \cr    `n2p`   \tab   `2+`?
-#'   \cr    `n3p`   \tab   `3+`?
+#'   \cr     `n1`   \tab Is length `1`?
+#'   \cr     `n2`   \tab Is length `2`?
+#'   \cr     `n3`   \tab Is length `3`?
+#'   \cr    `n1p`   \tab Is length `1+`?
+#'   \cr    `n2p`   \tab Is length `2+`?
+#'   \cr    `n3p`   \tab Is length `3+`?
 #'   \cr            \tab   
 #'   \cr   `nmin`   \tab Min `...` arg length.
 #'   \cr   `nmax`   \tab Max `...` arg length.
 #'   \cr            \tab   
 #'   \cr  `nsame`   \tab Are `...` arg lengths the same?
-#'   \cr    `nat`   \tab Length after \link[=av]{atomizing}.
+#'   \cr    `nat`   \tab Length after \link[=av]{atomizing}.
 #'   \cr            \tab   
 #'   \cr     `nx`   \tab Length(s) of `...` args.
 #'   \cr     `ns`   \tab Lengths of `...` args.

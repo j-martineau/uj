@@ -13,7 +13,7 @@
 #' }
 #' \eqn{^{1.}} i.e., a non-data.frame list.
 #' \cr\cr
-#' **xclass functions**
+#' **Functions**
 #' \tabular{rl}{
 #'     `is_ccc_spec`   \tab Is `spec` an `xclass` spec?
 #'   \cr `ccc_props`   \tab Gets all possible `xclass` values.
@@ -26,12 +26,11 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_ccc_spec`   \tab A logical scalar.
-#'   \cr      `iccc`   \tab   
-#'   \cr      `iCCC`   \tab   
-#'   \cr               \tab   
+#'     `is_ccc_spec`   \tab A logical scalar.
 #'   \cr `ccc_props`   \tab A character vector.
-#'   \cr       `ccc`   \tab   
+#'   \cr      `iccc`   \tab A logical scalar.
+#'   \cr      `iCCC`   \tab A logical scalar.
+#'   \cr       `ccc`   \tab A character vector.
 #' }
 #' @examples
 #' is_ccc_spec("scl|vls")

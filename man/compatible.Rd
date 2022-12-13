@@ -25,9 +25,9 @@ A logical scalar.
 \description{
 \tabular{rl}{
 \code{compatible}   \tab Evaluates whether all \code{...} arguments are compatible, meaning all numeric, all character, all logical, all unordered factor with the same levels, or ordered factor with the same levels in the same order.
-\cr                       \tab
+\cr                       \tab   
 \cr   \code{compatible_dtfs}   \tab Evaluates whether all \code{...} arguments are \link[=atm_dtf]{atomic data.frames}. For row binding, also evaluates whether they have the same number of columns and all corresponding columns are compatible. For column binding, also evaluates whether they have the same number of rows.
-\cr                       \tab
+\cr                       \tab   
 \cr   \code{compatible_atms}   \tab Evaluates whether all \code{...} arguments are compatible matrices and (for row binding) have the same number of columns or (for column binding) have the same number of rows.
 }
 }

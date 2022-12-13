@@ -10,95 +10,89 @@
 #'   \cr \code{\link{mmm}}   \tab `xmode`
 #'   \cr \code{\link{sss}}   \tab `shape`
 #' }
-#' **single property specs** are character scalars containing exactly `3` characters (e.g., `'ord', 'dtf', 'd1D', 'rct'`).
+#' **Single property specs** are character scalars containing exactly `3` characters (e.g., `'ord', 'dtf', 'd1D', 'rct'`).
 #' \cr\cr
 #' **Combination (conjunctive) property specs** are for properties that must co-occur. They are constructed by delimiting multiple single properties with underscores (e.g., `'ord_dtf_d1D_rct'` or an equivalent underscore-delimited permutation).
 #' \cr\cr
-#' **Alternate (compensatory) property specs** are to indicate that if any one (single or combination) property spec is satisfied the entire spec is satisfied. They are constructed by pipe-delimiting multiple single or combination properties. For example, the spec `'ord|dtf_d1D||dtf_rct'` would be satisfied by an object with single property `'ord'`, combined property `'dtf_d1D'`, or combined property `'dtf_rct'`.
+#' **Alternate (compensatory) property specs** contain multiple single or combo specs, and are used to indicate that if any one spec is satisfied the entire spec is satisfied. They are constructed by pipe-delimiting multiple single or combination properties. For example, the spec `'ord|dtf_d1D||dtf_rct'` would be satisfied by an object with single property `'ord'`, combined property `'dtf_d1D'`, or combined property `'dtf_rct'`.
 #' \cr\cr
 #' **Property and property spec manipulation functions**
 #' \tabular{rl}{
-#'       `combos_from_spec`   \tab Convert spec to constituent combos.
-#'   \cr `props_from_combo`   \tab Convert combo to constituent properties.
-#'   \cr  `props_from_spec`   \tab Convert spec to constituent properties.
+#'       `combos_from_spec` \tab   Convert spec to constituent combos.
+#'   \cr `props_from_combo` \tab   Convert combo to constituent properties.
+#'   \cr  `props_from_spec` \tab   Convert spec to constituent properties.
 #' }
 #' **Property and property spec validation functions**
 #' \tabular{rl}{
-#'      `is_prop_combo`   \tab Is `combo` a combo/conjunctive spec?
-#'   \cr `is_prop_spec`   \tab Is `spec` a property spec of any type?
-#'   \cr  `is_prop_fun`   \tab Is `fun` a property-function name?
-#'   \cr      `is_prop`   \tab Is `prop` a value from `prop_vals()`?
+#'      `is_prop_combo` \tab   Is `combo` a combo/conjunctive spec?
+#'   \cr `is_prop_spec` \tab   Is `spec` a property spec of any type?
+#'   \cr  `is_prop_fun` \tab   Is `fun` a property-function name?
+#'   \cr      `is_prop` \tab   Is `prop` a value from `all_props()`?
 #' }
-#' **Comprehensive property and common property-specs**
+#' **Property-checking function names**
 #' \tabular{rl}{
-#'      `prop_funs`   \tab Names of functions checking for specific single and combo properties matched to `x`.
+#'      `prop_funs` \tab   Names of functions checking for specific single and combo properties matched to `x`.
 #' }
-#' **Family-specific object property listing functions**
+#' **Family-specific functions listing an object's properties**
 #' \tabular{rl}{
-#'       `ppp`   \tab gets all single properties matching `x`.
-#'   \cr `bbb`   \tab    `base` properties
-#'   \cr `ccc`   \tab    `xclass` properties
-#'   \cr `ddd`   \tab    `defined-D` properties
-#'   \cr `eee`   \tab    `effective-D` properties
-#'   \cr `iii`   \tab    `integrity` properties
-#'   \cr `mmm`   \tab    `xmode` properties
-#'   \cr `sss`   \tab    `shape` properties
+#'       `ppp` \tab   Gets all single properties of `x`.
+#'   \cr `bbb` \tab   Gets all `base` properties of `x`.
+#'   \cr `ccc` \tab   Gets all `xclass` properties of `x`.
+#'   \cr `ddd` \tab   Gets all `defined-D` properties of `x`.
+#'   \cr `eee` \tab   Gets all `effective-D` properties of `x`.
+#'   \cr `iii` \tab   Gets all `integrity` properties of `x`.
+#'   \cr `mmm` \tab   Gets all `xmode` properties of `x`.
+#'   \cr `sss` \tab   Gets all `shape` properties of `x`.
 #' }
 #' **Property and property spec definition functions**
 #' \tabular{rl}{
-#'      `combo_concise`   \tab Concisely define a combo/conjunctive property.
-#'   \cr `spec_concise`   \tab Concisely define a property spec.
-#'   \cr `prop_verbose`   \tab Verbosely define a single property.
-#'   \cr    `prop_defs`   \tab Gets a table of property definitions.
+#'      `combo_concise` \tab   Concisely define a combo property spec.
+#'   \cr `spec_concise` \tab   Concisely define a property spec.
+#'   \cr `prop_verbose` \tab   Verbosely define a single property.
+#'   \cr    `prop_defs` \tab   Gets a table of property definitions.
 #' }
-#' **Multi-family property spec matching functions**
+#' **Single-property checking functions**
 #' \tabular{rl}{
-#'       `nll_or`   \tab Is `x` either `NULL` or a match to `spec`?
-#'   \cr `nas_or`   \tab Is `x` either scalar `NA` or a match to `spec`?
-#'   \cr   `ippp`   \tab Is `x` a match to property spec `spec`?
+#'     `iPPP` \tab   Does `x` match single property `'PPP'`.
 #' }
-#' **Single-property  matching functions**
+#' **Single-family property-checking functions**
 #' \tabular{rl}{
-#'     `iPPP`   \tab does `x` match single property `'PPP'`.
-#' }
-#' **Single-family, single-property matching functions**
-#' \tabular{rl}{
-#'       `ibbb`   \tab Does `x` match `base` property spec `spec`?
-#'   \cr `iccc`   \tab    `xclass`
-#'   \cr `iddd`   \tab    `defined-D`
-#'   \cr `ieee`   \tab    `effective-D`
-#'   \cr `iiii`   \tab    `integrity`
-#'   \cr `immm`   \tab    `xmode`
-#'   \cr `isss`   \tab    `shape`
+#'       `ibbb` \tab   Does `x` match `base` spec `spec`?
+#'   \cr `iccc` \tab   Does `x` match `xclass` spec `spec`?
+#'   \cr `iddd` \tab   Does `x` match `defined-D` spec `spec`?
+#'   \cr `ieee` \tab   Does `x` match `effective-D` spec `spec`?
+#'   \cr `iiii` \tab   Does `x` match `integrity` spec `spec`?
+#'   \cr `immm` \tab   Does `x` match `xmode` spec `spec`?
+#'   \cr `isss` \tab   Does `x` match `shape` spec `spec`?
 #' }
 #' **Functions testing for combination/conjunctive properties**
 #' \tabular{rl}{
-#'     `cmp_MMM_CCC`   \tab Complete` + xmode 'MMM' + xclass 'CCC'`.
-#'   \cr   `cmp_MMM`   \tab Complete` + xmode 'MMM'`.
-#'   \cr   `cmp_CCC`   \tab Complete` + xclass 'CCC'`
-#'   \cr   `BBB_CCC`   \tab `Base` property` 'BBB' + xclass 'CCC'`.
-#'   \cr   `BBB_MMM`   \tab `Base` property` 'BBB' + xmode 'MMM'`.
-#'   \cr   `MMM_CCC`   \tab `xmode 'MMM' + xclass 'CCC'`.
+#'     `cmp_MMM_CCC` \tab   `complete + xmode 'MMM' + xclass 'CCC'`.
+#'   \cr   `cmp_MMM` \tab   `complete + xmode 'MMM'`.
+#'   \cr   `cmp_CCC` \tab   `complete + xclass 'CCC'`
+#'   \cr   `BBB_CCC` \tab   `base` property `'BBB' + xclass 'CCC'`.
+#'   \cr   `BBB_MMM` \tab   `base` property `'BBB' + xmode 'MMM'`.
+#'   \cr   `MMM_CCC` \tab   `xmode 'MMM' + xclass 'CCC'`.
+#'   \cr    `nll_or` \tab   Is `x NULL` or a match to `spec`?
+#'   \cr    `nas_or` \tab   Is `x NA` or a match to `spec`?
+#'   \cr      `ippp` \tab   Does `x` match spec `spec`?
 #' }
 #' **Comprehensive lists of single and common combination properties**
 #' \tabular{rl}{
-#'     `cmp_mmm_ccc_props`   \tab Complete` emode + xclass `properties.
-#'   \cr                     \tab   
-#'   \cr   `cmp_ccc_props`   \tab Complete`+ xclass `properties.
-#'   \cr   `cmp_mmm_props`   \tab Complete`+ xmode `properties.
-#'   \cr   `bbb_ccc_props`   \tab `Basic + xclass `properties.
-#'   \cr   `bbb_mmm_props`   \tab `Basic + xmode `properties.
-#'   \cr   `mmm_ccc_props`   \tab `xmode + xclass `properties.
-#'   \cr                     \tab   
-#'   \cr       `bbb_props`   \tab Single` basic `properties.
-#'   \cr       `ccc_props`   \tab Single` xclass `properties.
-#'   \cr       `ddd_props`   \tab Single` defined-D `properties.
-#'   \cr       `eee_props`   \tab single` effective-D `properties.
-#'   \cr       `iii_props`   \tab single` integrity` properties.
-#'   \cr       `mmm_props`   \tab single` xmode` properties.
-#'   \cr       `sss_props`   \tab single` shape` properties.
-#'   \cr                     \tab   
-#'   \cr       `prop_vals`   \tab All possible single properties.
+#'     `cmp_mmm_ccc_props` \tab   `complete + xmode + xclass` properties.
+#'   \cr   `cmp_ccc_props` \tab   `complete + xclass` properties.
+#'   \cr   `cmp_mmm_props` \tab   `complete + xmode` properties.
+#'   \cr   `bbb_ccc_props` \tab   `basic + xclass` properties.
+#'   \cr   `bbb_mmm_props` \tab   `basic + xmode` properties.
+#'   \cr   `mmm_ccc_props` \tab   `xmode + xclass` properties.
+#'   \cr       `bbb_props` \tab   `basic` properties.
+#'   \cr       `ccc_props` \tab   `xclass` properties.
+#'   \cr       `ddd_props` \tab   `defined-D` properties.
+#'   \cr       `eee_props` \tab   `effective-D` properties.
+#'   \cr       `iii_props` \tab   `integrity` properties.
+#'   \cr       `mmm_props` \tab   `xmode` properties.
+#'   \cr       `sss_props` \tab   `shape` properties.
+#'   \cr       `all_props` \tab   All single properties.
 #' }
 #' @param as.dtf A non-`NA` logical scalar indicating whether to return the result as a data.frame with column `1` containing property values and column `2` containing the property families.
 #' @param x An R object.
@@ -108,29 +102,26 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'       `combos_from_spec`   \tab A character vector.
-#'   \cr `props_from_combo`   \tab   
-#'   \cr  `props_from_spec`   \tab   
-#'   \cr        `prop_funs`   \tab   
-#'   \cr        `prop_vals`   \tab   
-#'   \cr              `ppp`   \tab   
-#'   \cr                      \tab   
-#'   \cr   `is_valid_combo`   \tab A logical scalar.
-#'   \cr    `is_valid_spec`   \tab   
-#'   \cr    `is_valid_prop`   \tab   
-#'   \cr      `is_prop_fun`   \tab   
-#'   \cr           `nas_or`   \tab   
-#'   \cr           `nll_or`   \tab   
-#'   \cr             `ippp`   \tab   
-#'   \cr                      \tab   
-#'   \cr    `combo_concise`   \tab A character scalar.
-#'   \cr     `spec_concise`   \tab   
-#'   \cr     `prop_verbose`   \tab   
-#'   \cr                      \tab   
-#'   \cr        `prop_defs`   \tab A \link[=tb]{tibble}.
+#'       `combos_from_spec` \tab   A character vector.
+#'   \cr `props_from_combo` \tab   A character vector.
+#'   \cr  `props_from_spec` \tab   A character vector.
+#'   \cr   `is_valid_combo` \tab   A logical scalar.
+#'   \cr    `is_valid_spec` \tab   A logical scalar.
+#'   \cr    `is_valid_prop` \tab   A logical scalar.
+#'   \cr    `combo_concise` \tab   A character scalar.
+#'   \cr     `spec_concise` \tab   A character scalar.
+#'   \cr     `prop_verbose` \tab   A character scalar.
+#'   \cr      `is_prop_fun` \tab   A logical scalar.
+#'   \cr        `prop_defs` \tab   A \link[=tb]{tibble}.
+#'   \cr        `prop_funs` \tab   A character vector.
+#'   \cr        `all_props` \tab   A character vector.
+#'   \cr           `nas_or` \tab   A logical scalar.
+#'   \cr           `nll_or` \tab   A logical scalar.
+#'   \cr             `ippp` \tab   A logical scalar.
+#'   \cr              `ppp` \tab   A character vector.
 #' }
 #' @examples
-#' prop_vals()
+#' all_props()
 #' prop_funs()
 #' prop_verbose("srt")
 #' prop_verbose("nnw")
@@ -161,7 +152,7 @@ ppp <- function(x) {sort(c(bbb(x), ccc(x), ddd(x), eee(x), iii(x), mmm(x), sss(x
 
 #' @rdname ppp
 #' @export
-prop_vals <- function(as.dtf = F) {
+all_props <- function(as.dtf = F) {
   if (!isTF(as.dtf)) {stop(.errs("[as.dtf] must be TRUE or FALSE."))}
   bval <- bbb_props(); bfam <- rep("bbb", length(bval)); blab <- paste0("b_", bval)
   cval <- ccc_props(); cfam <- rep("ccc", length(cval)); clab <- paste0("c_", cval)
@@ -205,7 +196,7 @@ prop_funs <- function(as.dtf = F) {
 #' @export
 is_prop <- function(prop) {
   if (!cmp_ch3_scl(prop)) {return(FALSE)}
-  prop %in% prop_vals()
+  prop %in% all_props()
 }
 
 #' @rdname ppp
@@ -225,7 +216,7 @@ is_prop_spec <- function(spec) {
   spec <- spec[spec != ""]
   spec <- .drop_iprefix(spec)
   if (length(spec) == 0) {return(FALSE)}
-  all(spec %in% prop_vals())
+  all(spec %in% all_props())
 }
 
 #' @rdname ppp
@@ -237,13 +228,13 @@ is_prop_combo <- function(combo) {
   combo <- combo[combo != ""]
   combo <- .drop_iprefix(combo)
   if (length(combo) == 0) {return(FALSE)}
-  all(combo %in% prop_vals())
+  all(combo %in% all_props())
 }
 
 #' @rdname ppp
 #' @export
-props_from_spec <- function(spec, valid = prop_vals()) {
-  ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% prop_vals()), F)
+props_from_spec <- function(spec, valid = all_props()) {
+  ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% all_props()), F)
   errs <- c(f0(cmp_chr_scl(spec), NULL, "[spec] must be a complete character scalar (?cmp_chr_scl)."),
             f0(ok.valid         , NULL, "[valid] must be a complete character vector (?cmp_chr_vec) containing only values from ppp_vals()."))
   if (!is.null(errs)) {stop(.errs(errs))}
@@ -258,10 +249,10 @@ props_from_spec <- function(spec, valid = prop_vals()) {
 
 #' @rdname ppp
 #' @export
-combos_from_spec <- function(spec, valid = prop_vals()) {
-  ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% prop_vals()), F)
+combos_from_spec <- function(spec, valid = all_props()) {
+  ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% all_props()), F)
   errs <- c(f0(cmp_chr_scl(spec), NULL, "[spec] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(ok.valid         , NULL, "[valid] must be a complete character vec (?cpm_chr_vec) containing only values from prop_vals()."))
+            f0(ok.valid         , NULL, "[valid] must be a complete character vec (?cpm_chr_vec) containing only values from all_props()."))
   if (!is.null(errs)) {stop(.errs(errs))}
   ppp.singles <- props_from_spec(spec, valid)
   if (!all(ppp.singles %in% valid)) {stop(.errs(p0("[spec] contains a property not in c(", g(p0("'", valid, "'"), g = ", "), ").")))}
@@ -273,10 +264,10 @@ combos_from_spec <- function(spec, valid = prop_vals()) {
 
 #' @rdname ppp
 #' @export
-props_from_combo <- function(combo, valid = prop_vals()) {
-  ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% prop_vals()), F)
+props_from_combo <- function(combo, valid = all_props()) {
+  ok.valid <- f0(cmp_chr_vec(valid), all(valid %in% all_props()), F)
   errs <- c(f0(cmp_chr_scl(combo), NULL, "[combo] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(ok.valid          , NULL, "[valid] must be a complete character vec (?cpm_chr_vec) containing only values from prop_vals()."))
+            f0(ok.valid          , NULL, "[valid] must be a complete character vec (?cpm_chr_vec) containing only values from all_props()."))
   if (!is.null(errs)) {stop(.errs(errs))}
   if (length(combo) != length(av(strsplit(combo, "|", fixed = T)))) {stop(.errs("[combo] contains multiple alternate property specs."))}
   out <- trimws(av(strsplit(combo, "_", fixed = T)))
@@ -292,7 +283,7 @@ props_from_combo <- function(combo, valid = prop_vals()) {
 ippp <- function(x, spec, ...) {
   if (!is_prop_spec(spec)) {stop(.errs("[spec] specifies a property not in ppp_props()."))}
   if (!meets(x, ...)) {return(F)}
-  all.props <- prop_vals()
+  all.props <- all_props()
   combos <- combos_from_spec(spec)
   for (combo in combos) {
     is.one <- combo %in% all.props

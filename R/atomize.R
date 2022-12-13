@@ -1,8 +1,13 @@
 #' @title Atomize (reduce arguments to an atomic vector)
-#' @description \tabular{rr}{
-#'     `a, av, atoms, atomize`   \tab Gets a vector of all atomic values in all `...` arguments.
-#'   \cr                         \tab   
-#'   \cr                 `sav`   \tab Gets a sorted vector of all atomic values in all `...` arguments
+#' @description \tabular{rl}{
+#'     `atomize`   \tab Gets a vector of all
+#'   \cr `atoms`   \tab atomic values in all
+#'   \cr    `av`   \tab `...` arguments.
+#'   \cr     `a`   \tab   
+#'   \cr           \tab   
+#'   \cr   `sav`   \tab Gets a sorted vector of
+#'   \cr           \tab all atomic values in all
+#'   \cr           \tab `...` arguments.
 #' }
 #' @param ... Arguments to be atomized.
 #' @return A single atomic vector containing all constituent atomic values in the full set of arguments supplied in `...`.

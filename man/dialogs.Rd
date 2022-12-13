@@ -81,25 +81,22 @@ asknew(old, what, unq = T)
 }
 \value{
 \tabular{rl}{
-\cr \code{choose_dir}   \tab A character scalar.
-\cr \code{choose_doc}   \tab   
-\cr      \code{asks1}   \tab   
-\cr       \code{ask1}   \tab   
-\cr        \code{ask}   \tab   
-\cr        \code{okx}   \tab   
-\cr        \code{msg}   \tab   
-\cr                \tab   
-\cr     \code{ansbox}   \tab An environment.
-\cr     \code{docbox}   \tab   
-\cr     \code{dirbox}   \tab   
-\cr     \code{msgbox}   \tab   
-\cr                \tab   
-\cr     \code{asknew}   \tab A character vector.
-\cr      \code{asksn}   \tab   
-\cr       \code{askn}   \tab   
-\cr                \tab   
-\cr        \code{yes}   \tab A logical scalar.
-\cr         \code{no}   \tab   
+  \code{choose_dir}   \tab   A character scalar.
+\cr \code{choose_doc}   \tab   A character scalar.
+\cr      \code{asks1}   \tab   A character scalar.
+\cr       \code{ask1}   \tab   A character scalar.
+\cr        \code{ask}   \tab   A character scalar.
+\cr        \code{okx}   \tab   A character scalar.
+\cr        \code{msg}   \tab   A character scalar.
+\cr     \code{ansbox}   \tab   An environment.
+\cr     \code{docbox}   \tab   An environment.
+\cr     \code{dirbox}   \tab   An environment.
+\cr     \code{msgbox}   \tab   An environment.
+\cr     \code{asknew}   \tab   A character vector.
+\cr      \code{asksn}   \tab   A character vector.
+\cr       \code{askn}   \tab   A character vector.
+\cr        \code{yes}   \tab   A logical scalar.
+\cr         \code{no}   \tab   A logical scalar.
 }
 }
 \description{

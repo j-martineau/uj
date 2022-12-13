@@ -7,8 +7,8 @@
 #' }
 #' @param gens A \link[cmp_psw_vec]{complete positive whole-number vec} giving the number(s) of generations back in the function call stack to go.
 #' @return \tabular{rl}{
-#'      `ncallers`   \tab An integer scalar.
-#'   \cr `callers`   \tab A character vector.
+#'      `ncallers`   \tab An integer scalar.
+#'   \cr `callers`   \tab A character vector.
 #'   \cr  `caller`   \tab A character scalar.
 #' }
 #' @examples

@@ -36,15 +36,14 @@ xcon()
 }
 \value{
 \tabular{rl}{
-  \code{xplot}   \tab \code{NULL}.
-\cr \code{xwarn}   \tab   
-\cr  \code{xcon}   \tab   
-\cr  \code{xall}   \tab   
-\cr     \code{x}   \tab   
-\cr           \tab   
-\cr  \code{xcls}   \tab An R
-\cr  \code{xat0}   \tab object.
-\cr   \code{xat}   \tab   
+  \code{xplot}   \tab \code{NULL}
+\cr \code{xwarn}   \tab \code{NULL}
+\cr  \code{xcon}   \tab \code{NULL}
+\cr  \code{xall}   \tab \code{NULL}
+\cr     \code{x}   \tab \code{NULL}
+\cr  \code{xcls}   \tab An R object.
+\cr  \code{xat0}   \tab An R object.
+\cr   \code{xat}   \tab An R object.
 }
 }
 \description{
@@ -53,13 +52,11 @@ xcon()
 \cr \code{xwarn}   \tab Purges warnings.
 \cr  \code{xcon}   \tab Purges console.
 \cr  \code{xall}   \tab ((PURGES THE GLOBAL ENVIRONMENT))
-\cr           \tab   
 \cr  \code{xcls}   \tab Removes classes by name.
 \cr  \code{xat0}   \tab Removes all attributes.
 \cr   \code{xat}   \tab Removes attributes by name.
-\cr           \tab   
-\cr     \code{x}   \tab Deletes \code{...} objects in calling
-\cr           \tab environment with garbage collections.
+\cr     \code{x}   \tab Deletes \code{...} objects from calling
+\cr           \tab    environment + garbage collection.
 }
 }
 \examples{

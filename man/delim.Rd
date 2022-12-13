@@ -683,17 +683,19 @@ dwwTT(...)
 }
 \value{
 \tabular{rl}{
-  \code{dawXY}   \tab A character
-\cr \code{dwwXY}   \tab scalar.
-\cr   \code{daw}   \tab   
-\cr   \code{dww}   \tab   
-\cr \verb{        \\tab    \\cr  }daX\verb{   \\tab A character \\cr    }da\verb{   \\tab vector \\cr    }dw`   \tab   
+  \code{dawXY}   \tab A character scalar
+\cr \code{dwwXY}   \tab A character scalar
+\cr   \code{daw}   \tab A character scalar
+\cr   \code{dww}   \tab A character scalar
+\cr   \code{daX}   \tab A character vector
+\cr    \code{da}   \tab A character vector
+\cr    \code{dw}   \tab A character vector
 }
 }
 \description{
 Simplified and extended \code{base::paste} and \code{base::paste0}. There are both primary functions with user-specified delimiters and convenience functions for common delimiters.
 \cr\cr
-\strong{Primary Functions}
+\strong{Primary functions}
 \tabular{rl}{
   \code{dww}   \tab Delimit elements within each (atomic vector) \code{...} argument using delimiter \code{d}, then delimit elements within the resulting vector using delimiter \code{D}. Produces a character scalar of \code{...length()} substrings delimited by \code{D} where each substring contains sub-substrings delimited by \code{d}.
 \cr         \tab   
@@ -703,19 +705,17 @@ Simplified and extended \code{base::paste} and \code{base::paste0}. There are bo
 \cr         \tab   
 \cr  \code{da}   \tab Delimits across corresponding elements of (recyclable atomic vector) \code{...} arguments using delimiter \code{d}. Produces a character vector of \code{max(lengths(list(...)))} substrings delimited by \code{d}.
 }
-\strong{Common-Delimiter Convenience Functions}
+\strong{Common-delimiter convenience functions}
 \cr Convenience function names are constructed by append \code{1} or \code{2} codes for common delimiters to the function name as follows (where \code{X} and \code{Y} are placeholders for common-delimiter codes):
 \tabular{rl}{
-  \code{dawXY}   \tab Delimits across with \code{X} then within with \code{Y}.
-\cr           \tab   
+  \code{dawXY}   \tab Delimits across with \code{X} then within with \code{Y}.
 \cr \code{dwwXY}   \tab Delimits within with \code{X} then again with \code{Y}.
-\cr           \tab   
-\cr   \code{daX}   \tab Delimits across with \code{X}.
-\cr   \code{dwX}   \tab Delimits within with \code{X}.
+\cr   \code{daX}   \tab Delimits across with \code{X}.
+\cr   \code{dwX}   \tab Delimits within with \code{X}.
 }
 Common delimiters are encoded as:
-\tabular{lll}{
-  CODE        \tab NAME                        \tab DELIMITER INVOKED
+\tabular{cll}{
+  CODE        \tab NAME                        \tab DELIMITER
 \cr   \code{'0'}   \tab blank                       \tab \code{''}
 \cr \code{'1'}     \tab space                       \tab \code{' '}
 \cr \code{'B'}     \tab broken pipe                 \tab \code{'¦'}

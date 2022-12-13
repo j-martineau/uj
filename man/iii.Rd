@@ -43,33 +43,32 @@ iprt(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_iii_spec}   \tab A logical scalar.
-\cr      \code{iiii}   \tab   
-\cr      \code{iIII}   \tab   
-\cr               \tab   
-\cr \code{iii_props}   \tab A character vector.
-\cr       \code{iii}   \tab   
+  \code{is_iii_spec} \tab   A logical scalar.
+\cr \code{iii_props} \tab   A character vector.
+\cr      \code{iiii} \tab   A logical scalar.
+\cr      \code{iIII} \tab   A logical scalar.
+\cr       \code{iii} \tab   A character vector.
 }
 }
 \description{
-\code{Integrity} properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frame}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
-\cr\cr
-\strong{\code{Integrity} properties}
+\code{Integrity} properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frameS}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
 \tabular{rll}{
   \code{'cmp'}   \tab Complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing \strong{no} \code{NA} values.
-\cr \code{'mss'}   \tab Missing       \tab    containing \strong{only} \code{NA} values.
-\cr \code{'prt'}   \tab Partial       \tab    containing \code{NA} \strong{and} non-\code{NA} values.
 \cr           \tab               \tab   
-\cr \code{'nas'}   \tab \code{NA} scalar   \tab Atomic scalar \code{NA}.
+\cr \code{'mss'}   \tab Missing       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \strong{only} \code{NA} values.
+\cr           \tab               \tab   
+\cr \code{'prt'}   \tab Partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \code{NA} \strong{and} non-\code{NA} values.
+\cr           \tab               \tab   
+\cr \code{'nas'}   \tab \code{NA} scalar   \tab Atomic scalar \code{NA}.
 \cr \code{'oks'}   \tab \code{OK} scalar   \tab Non-\code{NA} atomic scalar.
 }
 \strong{\code{Integrity} property functions}
 \tabular{rl}{
-  \code{is_iii_spec}   \tab Is \code{spec} an \code{integrity} property spec?
-\cr \code{iii_props}   \tab Gets all possible \code{integrity} property values.
-\cr      \code{iiii}   \tab Dpes \code{x} match \code{integrity} spec \code{spec}?
-\cr      \code{iIII}   \tab Does \code{x} match \code{integrity} property \code{'III'}?
-\cr       \code{iii}   \tab Gets all \code{integrity} properties possessed by \code{x}.
+  \code{is_iii_spec} \tab   Is \code{spec} an \code{integrity} property spec?
+\cr \code{iii_props} \tab   Gets all possible \code{integrity} property values.
+\cr      \code{iiii} \tab   Does \code{x} match \code{integrity} spec \code{spec}?
+\cr      \code{iIII} \tab   Does \code{x} match \code{integrity} property \code{'III'}?
+\cr       \code{iii} \tab   Gets all of \code{x}'s \code{integrity} properties.
 }
 }
 \section{Specifying count and value restrictions}{

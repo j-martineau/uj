@@ -6,7 +6,7 @@
 #' @return `NULL`. Called for its side effect of executing code in the environment where `run(...)` was called.
 #' @export
 #' @examples
-#' CallVec <- paste0("'". 0:3, "'")
+#' CallVec <- paste0("'", 0:3, "'")
 #' CallVec <- c("paste0(", CallVec, ", collapse = '')")
 #' CallVec <- c("ResultVec <- ", CallVec)
 #' run(CallVec)

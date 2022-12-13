@@ -16,15 +16,14 @@ vtable()
 v(...)
 }
 \arguments{
-\item{...}{Unquoted, comma-separated list of the names of constants to return. If multiple constants are specified, they are coerced into a single atomic vector result.}
+\item{...}{Unquoted, comma-separated list of names of constants to return. If multiple constants are specified, they are coerced into a single atomic vector result.}
 }
 \value{
 \tabular{rl}{
-  \code{vtable}   \tab A data.frame.
-\cr \code{values}   \tab A \link[=ivls]{vlist}.
-\cr            \tab   
-\cr \code{vnames}   \tab A character
-\cr      \code{v}   \tab vector.
+  \code{values}   \tab A \code{\link[=ivls]{vlist}}.
+\cr \code{vtable}   \tab A data.frame.
+\cr \code{vnames}   \tab A character vector.
+\cr      \code{v}   \tab A character vector.
 }
 }
 \description{
@@ -34,7 +33,7 @@ v(...)
 \cr \code{values}   \tab Gets a named list where names are the arguments submitted to \code{v(...)}, element values are the values of the contents of the named element, and the attribute \code{'descriptions'} gives verbose descriptions if needed.
 \cr            \tab   
 \cr \code{vnames}   \tab Gets names of all package values.
-\cr      \code{v}   \tab Gets package values by name.
+\cr      \code{v}   \tab Gets package values by name.
 }
 }
 \examples{

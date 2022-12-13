@@ -4,17 +4,16 @@
 #' @description \tabular{rl}{
 #'        `pgrid`   \tab Converts the `n` `...` arguments to character (with additional optional pre-processing) and create a character vector with each element consisting of sub-strings from across `...` arguments pasted together using the 'paste' `p`. See the *value* section for how the value of `crossed` affects the return value.
 #'   \cr            \tab   
-#'   \cr `pgrid0`   \tab Calls `pgrid` with `p = ""` (blank).
+#'   \cr `pgrid0`   \tab Calls `pgrid` with `p = ""` (blank).
 #'   \cr `pgrid1`   \tab Calls `pgrid` with `p = " "` (space).
-#'   \cr            \tab   
-#'   \cr `pgridn`   \tab Calls `pgrid` with `crossed = FALSE` to produce only `n`-way combinations from across the `n` `...` arguments.
-#'   \cr            \tab   
-#'   \cr `pgridx`   \tab Calls `pgrid` with `crossed = TRUE` to produce all possible `1`-way, `2`-way, ..., `n`-way combinations from across the `...` arguments (i.e. fully-crossed combinations).
+#'   \cr `pgridn`   \tab Calls `pgrid` with `crossed = FALSE`\eqn{^1}.
+#'   \cr `pgridx`   \tab Calls `pgrid` with `crossed = TRUE`\eqn{^1}.
 #' }
+#' \eqn{^{1.}} See the section entitled *the* `crossed` *argument*.
 #' @param ... Non-empty atomic objects.
 #' @param p A \link[=cmp_chr_scl]{complete character scalar} to use as the 'paste'.
 #' @param ch,na.err Non-`NA` logical scalars indicating, respectively, whether to split each `...` arguments into its constituent characters after conversion to mode 'character' and whether to throw an error if an argument in `...` contains an `NA` value.
-#' @param crossed A non-`NA` logical scalar indicating whether to construct the result to look like a fully-crossed model. See the *the* `crossed` *argument* section for details.
+#' @param crossed A non-`NA` logical scalar indicating whether to construct the result to look like a fully-crossed model. See the section entitled *the* `crossed` *argument* section for details.
 #' @section The `crossed` Argument: The following console excerpt shows the effect of the value of `crossed`:
 #' ```
 #' > x <- c("A", "B", "C")

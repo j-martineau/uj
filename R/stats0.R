@@ -3,38 +3,36 @@
 #' @family missingness
 #' @title Compute stats ignoring `NA` values
 #' @description \tabular{rl}{
-#'       `cmeans0`   \tab Calls `colMeans(x, na.rm = T)`.
-#'   \cr `rmeans0`   \tab Calls `rowMeans(x, na.rm = T)`.
-#'   \cr  `csums0`   \tab Calls `colSums(x, na.rm = T)`.
-#'   \cr  `rsums0`   \tab Calls `rowSums(x, na.rm = T)`.
-#'   \cr   `csds0`   \tab Calls `apply(x, 2, sd, na.rm = T)`.
-#'   \cr   `rsds0`   \tab Calls `apply(x, 1, sd, na.rm = T)`.
-#'   \cr   `pmin0`   \tab Calls `pmin(..., na.rm = T)`.
-#'   \cr   `pmax0`   \tab Calls `pmax(..., na.rm = T)`.
-#'   \cr   `mean0`   \tab Calls `mean(av(...), na.rm = T)`.
-#'   \cr    `min0`   \tab Calls `min(av(...), na.rm = T)`.
-#'   \cr    `max0`   \tab Calls `max(av(...), na.rm = T)`.
-#'   \cr    `sum0`   \tab Calls `sum(av(...), na.rm = T)`.
-#'   \cr    `var0`   \tab Calls `var(av(...), na.rm = T)`.
-#'   \cr     `sd0`   \tab Calls `sd(av(...), na.rm = T)`.
-#'   \cr    `cor0`   \tab Calls `cor(x, y, use = "complete.obs")`.
-#'   \cr    `cov0`   \tab Calls `cov(x, y, use = "complete.obs")`.
+#'       `cmeans0` \tab   Calls `colMeans(x, na.rm = T)`
+#'   \cr `rmeans0` \tab   Calls `rowMeans(x, na.rm = T)`
+#'   \cr  `csums0` \tab   Calls `colSums(x, na.rm = T)`
+#'   \cr  `rsums0` \tab   Calls `rowSums(x, na.rm = T)`
+#'   \cr   `csds0` \tab   Calls `apply(x, 2, sd, na.rm = T)`
+#'   \cr   `rsds0` \tab   Calls `apply(x, 1, sd, na.rm = T)`
+#'   \cr   `pmin0` \tab   Calls `pmin(..., na.rm = T)`
+#'   \cr   `pmax0` \tab   Calls `pmax(..., na.rm = T)`
+#'   \cr   `mean0` \tab   Calls `mean(av(...), na.rm = T)`
+#'   \cr    `min0` \tab   Calls `min(av(...), na.rm = T)`
+#'   \cr    `max0` \tab   Calls `max(av(...), na.rm = T)`
+#'   \cr    `sum0` \tab   Calls `sum(av(...), na.rm = T)`
+#'   \cr    `var0` \tab   Calls `var(av(...), na.rm = T)`
+#'   \cr     `sd0` \tab   Calls `sd(av(...), na.rm = T)`
+#'   \cr    `cor0` \tab   Calls `cor(x, y, use = 'complete.obs')`
+#'   \cr    `cov0` \tab   Calls `cov(x, y, use = 'complete.obs')`
 #' }
 #' @param ... Scalars, vectors, or matrices. Reduced a single vector of atomic values for `sd0`, `min0`, `max0`, and `mean0`.
 #' @param n Positive whole-number scalar size of the complete set each subset is drawn from.
 #' @param x A \link[=cmp_num_vec]{complete numeric vec} or a \link[=cmp_num_mat]{complete numeric matrix}.
 #' @param y An optional complete numeric vec or a complete numeric matrix.
 #' @return \tabular{rl}{
-#'     `cmeans0,rmeans0`   \tab A numeric vector.
-#'   \cr `csums0,rsums0`   \tab  
-#'   \cr   `csds0,rsds0`   \tab  
-#'   \cr   `pmin0,pmax0`   \tab  
-#'   \cr                   \tab  
-#'   \cr    `mean0,sum0`   \tab A numeric scalar.
-#'   \cr     `min0,max0`   \tab  
-#'   \cr      `sd0,var0`   \tab  
-#'   \cr                   \tab  
-#'   \cr     `cor0,cov0`   \tab A numeric vector/matrix.
+#'     `cmeans0,rmeans0` \tab   A numeric vector.
+#'   \cr `csums0,rsums0` \tab   A numeric vector.
+#'   \cr   `csds0,rsds0` \tab   A numeric vector.
+#'   \cr   `pmin0,pmax0` \tab   A numeric vector.
+#'   \cr    `mean0,sum0` \tab   A numeric scalar.
+#'   \cr     `min0,max0` \tab   A numeric scalar.
+#'   \cr      `sd0,var0` \tab   A numeric scalar.
+#'   \cr     `cor0,cov0` \tab   A numeric vector/matrix.
 #' }
 #' @examples
 #' vec1. <- sample(0:99, 10)

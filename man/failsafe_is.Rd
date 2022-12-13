@@ -241,37 +241,41 @@ twoBL(x)
 \item{...}{Objects to check \code{x} against for functions with the suffix \code{IN} or \code{OUT}.}
 }
 \value{
-Scalar \code{TRUE} or scalar \code{FALSE}.
+Scalar \code{TRUE} or \code{FALSE}.
 }
 \description{
 These functions \emph{always} produce \code{TRUE} or \code{FALSE} results unless calling \code{identity(.)} produce an error.
 \cr\cr Function names are constructed of prefixes and suffixes, where the suffix specifies what kind of check is conducted and prefix specifies how the check is modified or applied and swept across multiple values.
-\cr\cr \strong{Type-of-check suffixes} \tabular{rl}{
-   \code{NAS}   \tab \code{NA} scalar.
-\cr \code{OKS}   \tab Non-\code{NA} scalar.
-\cr \code{OUT}   \tab Atomic scalar \code{x} is \emph{not} in \code{...}.\eqn{^1}
-\cr  \code{IN}   \tab Atomic scalar \code{x} is in \code{...}.\eqn{^1}
-\cr  \code{EQ}   \tab Calls \code{\link[base:setequal]{setequal(x, y)}}.
-\cr  \code{ID}   \tab Calls \code{\link[base:identical]{identical(x, y)}}.
-\cr  \code{LG}   \tab Scalar logical \code{TRUE}, \code{FALSE}, or \code{NA}.
-\cr  \code{TF}   \tab Scalar \code{TRUE} or \code{FALSE}.
-\cr  \code{BL}   \tab Scalar blank (\code{""}).
-\cr   \code{F}   \tab Scalar \code{FALSE}.
-\cr   \code{T}   \tab Scalar \code{TRUE}.
+\cr\cr \strong{Type-of-check suffixes}
+\tabular{rl}{
+   \code{NAS} \tab   \code{NA} scalar.
+\cr \code{OKS} \tab   Non-\code{NA} scalar.
+\cr \code{OUT} \tab   Atomic scalar \code{x} is \emph{not} in \code{...}.\eqn{^1}
+\cr  \code{IN} \tab   Atomic scalar \code{x} is in \code{...}.\eqn{^1}
+\cr  \code{EQ} \tab   Calls \code{\link[base:setequal]{setequal(x, y)}}.
+\cr  \code{ID} \tab   Calls \code{\link[base:identical]{identical(x, y)}}.
+\cr  \code{LG} \tab   Scalar logical \code{TRUE}, \code{FALSE}, or \code{NA}.
+\cr  \code{TF} \tab   Scalar \code{TRUE} or \code{FALSE}.
+\cr  \code{BL} \tab   Scalar blank (\code{""}).
+\cr   \code{F} \tab   Scalar \code{FALSE}.
+\cr   \code{T} \tab   Scalar \code{TRUE}.
 }
    \eqn{^{1.}} That is, evaluates membership in any \link[=av]{atomized} \code{...} argument.
-\cr\cr \strong{Modifying prefixes}:\tabular{rl}{
-   \code{not}   \tab Negation.
-\cr  \code{is}   \tab Identity.
+\cr\cr \strong{Modifying prefixes}
+\tabular{rl}{
+   \code{not} \tab   Negation.
+\cr  \code{is} \tab   Identity.
 }
-\strong{Apply-and-sweep prefixes}\tabular{rl}{
-   \code{nor}   \tab No value is \code{TRUE}.
-\cr \code{one}   \tab 1 value is \code{TRUE}.
-\cr \code{any}   \tab 1+ value is \code{TRUE}.
-\cr \code{two}   \tab 2+ values are \code{TRUE}.
-\cr \code{all}   \tab Every value is \code{TRUE}.
+\strong{Apply-and-sweep prefixes}
+\tabular{rl}{
+   \code{nor} \tab   \code{0} values are \code{TRUE}.
+\cr \code{one} \tab   \code{1} value is \code{TRUE}.
+\cr \code{any} \tab   \verb{1+} value is \code{TRUE}.
+\cr \code{two} \tab   \verb{2+} values are \code{TRUE}.
+\cr \code{all} \tab   All values are \code{TRUE}.
 }
-\strong{Combining prefixes and suffix} \cr\cr All prefixes combine with all suffixes to create function names.
+\strong{Combining prefixes and suffix}
+\cr\cr All prefixes combine with all suffixes to create function names.
 }
 \examples{
 Blank. <- ""

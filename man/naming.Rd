@@ -73,26 +73,21 @@ rcn(x, u = T, err = F)
 }
 \value{
 \tabular{rl}{
-   \code{rcnamed}   \tab A logical
-\cr \code{rnamed}   \tab scalar.
-\cr \code{cnamed}   \tab   
-\cr \code{enamed}   \tab   
-\cr \code{dnamed}   \tab   
-\cr \code{ named}   \tab   
-\cr            \tab   
-\cr \code{namerc}   \tab A matrix or
-\cr  \code{namer}   \tab data.frame.
-\cr  \code{namec}   \tab   
-\cr            \tab   
-\cr  \code{namev}   \tab A vector.
-\cr            \tab   
-\cr  \code{namel}   \tab A \code{1}-element list.
-\cr            \tab   
-\cr    \code{rcn}   \tab A list of \code{2} vectors.
-\cr            \tab   
-\cr     \code{en}   \tab A character
-\cr     \code{rn}   \tab vector.
-\cr     \code{cn}   \tab   
+   \code{rcnamed} \tab   A logical scalar.
+\cr \code{rnamed} \tab   A logical scalar.
+\cr \code{cnamed} \tab   A logical scalar.
+\cr \code{enamed} \tab   A logical scalar.
+\cr \code{dnamed} \tab   A logical scalar.
+\cr \code{ named} \tab   A logical scalar.
+\cr \code{namerc} \tab   A matrix or data.frame.
+\cr  \code{namer} \tab   A matrix or data.frame.
+\cr  \code{namec} \tab   A matrix or data.frame.
+\cr  \code{namev} \tab   A vector.
+\cr  \code{namel} \tab   A \code{1}-element list.
+\cr    \code{rcn} \tab   A list of \code{2} vectors.
+\cr     \code{en} \tab   A character vector.
+\cr     \code{rn} \tab   A character vector.
+\cr     \code{cn} \tab   A character vector.
 }
 }
 \description{
@@ -101,21 +96,21 @@ rcn(x, u = T, err = F)
 \cr             \tab   
 \cr   \code{named}   \tab Evaluates whether an object's elements, rows, and/or columns are named, accounting for whether names must be unique, whether the object may contain empty elements, and whether names may be blank strings.
 \cr             \tab   
-\cr \code{rcnamed}   \tab Are both rows and columns named?
-\cr  \code{enamed}   \tab Are elements of \code{x} named?
-\cr  \code{rnamed}   \tab Are rows of \code{x} named?
-\cr  \code{cnamed}   \tab Are columns of \code{x} named?
-\cr  \code{dnamed}   \tab Are \code{...} arguments named?
+\cr \code{rcnamed}   \tab Are both rows and columns named?
+\cr  \code{enamed}   \tab Are elements of \code{x} named?
+\cr  \code{rnamed}   \tab Are rows of \code{x} named?
+\cr  \code{cnamed}   \tab Are columns of \code{x} named?
+\cr  \code{dnamed}   \tab Are \code{...} arguments named?
 \cr             \tab   
-\cr  \code{namerc}   \tab Names rows and columns of \code{x}.
-\cr   \code{namer}   \tab Names rows of \code{x}.
-\cr   \code{namec}   \tab Names columns of \code{x}.
-\cr   \code{namev}   \tab Names elements of a vector/\link[=ivls]{vlist}.
-\cr   \code{namel}   \tab Creates and names a 1-element list.
+\cr  \code{namerc}   \tab Names rows and columns of \code{x}.
+\cr   \code{namer}   \tab Names rows of \code{x}.
+\cr   \code{namec}   \tab Names columns of \code{x}.
+\cr   \code{namev}   \tab Names elements of a \code{vector} or \code{\link[=ivls]{vlist}}.
+\cr   \code{namel}   \tab Creates and names a \code{1}-element \code{list}.
 \cr             \tab   
-\cr     \code{rcn}   \tab Gets row and column names in a list.
-\cr      \code{en}   \tab Gets element names.
-\cr      \code{rn}   \tab Gets row names.
-\cr      \code{cn}   \tab Get column names.
+\cr     \code{rcn}   \tab Gets row and column names in a \code{list}.
+\cr      \code{en}   \tab Gets element names.
+\cr      \code{rn}   \tab Gets row names.
+\cr      \code{cn}   \tab Gets column names.
 }
 }

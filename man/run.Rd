@@ -16,7 +16,7 @@ run(...)
 Collapses \code{...} into a character scalar and evaluates it as code in the environment of the calling function.
 }
 \examples{
-CallVec <- paste0("'". 0:3, "'")
+CallVec <- paste0("'", 0:3, "'")
 CallVec <- c("paste0(", CallVec, ", collapse = '')")
 CallVec <- c("ResultVec <- ", CallVec)
 run(CallVec)

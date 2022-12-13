@@ -24,18 +24,18 @@ vset(name, val, gens = 1)
 }
 \value{
 \tabular{rl}{
-  \code{vexists}   \tab A logical scalar.
-\cr  \code{vget}   \tab An R object.
-\cr  \code{vset}   \tab \code{NULL}
+  \code{vexists} \tab   A logical scalar.
+\cr  \code{vget} \tab   An R object.
+\cr  \code{vset} \tab   \code{NULL}
 }
 }
 \description{
 All functions in this family operate in the environment of the calling function \code{gens} generations back in the call stack.
 \tabular{rl}{
   \code{vexists}   \tab Checks for the existence of an object in the environment of the \code{gens}-specified calling function.
-\cr           \tab  
+\cr           \tab   
 \cr  \code{vget}   \tab Gets the value of an object in the environment of the \code{gens}-specified calling function.
-\cr           \tab  
+\cr           \tab   
 \cr  \code{vset}   \tab Sets the value of an object in the environment of the \code{gens}-specified calling function.
 }
 }

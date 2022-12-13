@@ -342,43 +342,43 @@ A markdown-styled character vector.
 }
 \description{
 \emph{Subscript/superscript} functions are:\tabular{rl}{
-  \code{subs}   \tab subscript
-\cr \code{sups}   \tab superscript
+  \code{subs} \tab   subscript
+\cr \code{sups} \tab   superscript
 }
 \emph{All remaining functions} in this family start with a prefix character as follows:\tabular{rl}{
-  prefix = \code{b}   \tab bold
-\cr prefix = \code{p}   \tab plain
+  prefix = \code{b} \tab   bold
+\cr prefix = \code{p} \tab   plain
 }
 \emph{Black, white, and invisible text} functions suffixes are:\tabular{rl}{
-  \code{blk}   \tab black
-\cr \code{wht}   \tab white
-\cr \code{inv}   \tab invisible
+  \code{blk} \tab   black
+\cr \code{wht} \tab   white
+\cr \code{inv} \tab   invisible
 }
 For example, the function \code{bwht} styles markdown text as bold and white.
 \cr\cr
 \emph{Greyscale} text suffixes take the form:\tabular{rl}{
-  \code{g05}   \tab \verb{5\%} white greyscale
-\cr \code{g10}   \tab \verb{10\%} white greyscale
-\cr \code{...}   \tab ...
-\cr \code{g95}   \tab \verb{95\%} white greyscale
+  \code{g05} \tab   \verb{ 5\%} white greyscale
+\cr \code{g10} \tab   \verb{10\%} white greyscale
+\cr \code{...} \tab   ...
+\cr \code{g95} \tab   \verb{95\%} white greyscale
 }
 For example, the function \code{pg45} styles markdown text as plain and \verb{45\%} white greyscale.
 \cr\cr
 \emph{Other common-color text} function names append an infix and a suffix to the selected prefix, as follows:
 \tabular{rl}{
-  suffix = \code{blu}   \tab blue
-\cr suffix = \code{cyn}   \tab cyan
-\cr suffix = \code{grn}   \tab green
-\cr suffix = \code{mag}   \tab magenta
-\cr suffix = \code{orn}   \tab orange
-\cr suffix = \code{red}   \tab red
-\cr suffix = \code{vlt}   \tab violet
-\cr suffix = \code{ylw}   \tab yellow
-\cr                  \tab   
-\cr    infix = \code{f}   \tab full-intensity
-\cr    infix = \code{l}   \tab light
-\cr    infix = \code{m}   \tab medium
-\cr    infix = \code{d}   \tab dark
+  suffix = \code{blu} \tab   blue
+\cr suffix = \code{cyn} \tab   cyan
+\cr suffix = \code{grn} \tab   green
+\cr suffix = \code{mag} \tab   magenta
+\cr suffix = \code{orn} \tab   orange
+\cr suffix = \code{red} \tab   red
+\cr suffix = \code{vlt} \tab   violet
+\cr suffix = \code{ylw} \tab   yellow
+\cr                \tab   
+\cr    infix = \code{f} \tab   full-intensity
+\cr    infix = \code{l} \tab   light
+\cr    infix = \code{m} \tab   medium
+\cr    infix = \code{d} \tab   dark
 }
 For example, the function \code{pfred} markdown-styles text as plain and full-intensity red.
 }

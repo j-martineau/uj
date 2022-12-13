@@ -22,9 +22,9 @@
 #'   \cr  `p0`   \tab Calls \code{\link[base:paste]{paste(..., sep = "")}}.
 #'   \cr   `p`   \tab Calls \code{\link[base:paste]{paste(..., sep = p)}}
 #' }
-#' \eqn{^{1.}} Calls `paste0(av(...), `
-#' \eqn{^{2.}} Differs from \code{\link{uv}}, which calls `unique(av(...))`.
-#' \eqn{^{3.}} Differs from \code{\link{wv}}, which calls `which(av(...))`.
+#'    \eqn{^{1.}} Calls `paste0(av(...), `
+#' \cr    \eqn{^{2.}} Differs from \code{\link{uv}}, which calls `unique(av(...))`.
+#' \cr    \eqn{^{3.}} Differs from \code{\link{wv}}, which calls `which(av(...))`.
 #' @examples
 #' vals <- c(1:3, 2:4) / 3
 #' vars <- c("a", "bb", "ccc", "dddd", "ccc", "bb")

@@ -49,25 +49,22 @@
 #' @param per A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the maximum number of options to present in a single dialog box interaction.
 #' @param unq A non-`NA` logical scalar indicating whether new values must be unique.
 #' @return \tabular{rl}{
-#'   \cr `choose_dir`   \tab A character scalar.
-#'   \cr `choose_doc`   \tab   
-#'   \cr      `asks1`   \tab   
-#'   \cr       `ask1`   \tab   
-#'   \cr        `ask`   \tab   
-#'   \cr        `okx`   \tab   
-#'   \cr        `msg`   \tab   
-#'   \cr                \tab   
-#'   \cr     `ansbox`   \tab An environment.
-#'   \cr     `docbox`   \tab   
-#'   \cr     `dirbox`   \tab   
-#'   \cr     `msgbox`   \tab   
-#'   \cr                \tab   
-#'   \cr     `asknew`   \tab A character vector.
-#'   \cr      `asksn`   \tab   
-#'   \cr       `askn`   \tab   
-#'   \cr                \tab   
-#'   \cr        `yes`   \tab A logical scalar.
-#'   \cr         `no`   \tab   
+#'       `choose_dir`   \tab   A character scalar.
+#'   \cr `choose_doc`   \tab   A character scalar.
+#'   \cr      `asks1`   \tab   A character scalar.
+#'   \cr       `ask1`   \tab   A character scalar.
+#'   \cr        `ask`   \tab   A character scalar.
+#'   \cr        `okx`   \tab   A character scalar.
+#'   \cr        `msg`   \tab   A character scalar.
+#'   \cr     `ansbox`   \tab   An environment.
+#'   \cr     `docbox`   \tab   An environment.
+#'   \cr     `dirbox`   \tab   An environment.
+#'   \cr     `msgbox`   \tab   An environment.
+#'   \cr     `asknew`   \tab   A character vector.
+#'   \cr      `asksn`   \tab   A character vector.
+#'   \cr       `askn`   \tab   A character vector.
+#'   \cr        `yes`   \tab   A logical scalar.
+#'   \cr         `no`   \tab   A logical scalar.
 #' }
 #' @export
 msgbox <- function(..., t = "ok") {

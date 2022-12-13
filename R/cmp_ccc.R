@@ -1,10 +1,10 @@
 #' @family props
 #' @title Complete + `xclass` properties
 #' @description \tabular{rl}{
-#'     `cmp_ccc_props`   \tab Gets all possible \link[=icmp]{complete} + \link[=ccc]{`xclass`} properties.
-#'   \cr                 \tab  
+#'     `cmp_ccc_props`   \tab Gets all possible \link[=icmp]{complete} + \code{\link[=ccc]{xclass}} properties.
+#'   \cr                 \tab   
 #'   \cr     `cmp_ccc`   \tab Is `x` complete and does it match `xclass` spec `ccc`?
-#'   \cr                 \tab  
+#'   \cr                 \tab   
 #'   \cr     `cmp_CCC`   \tab Is `x` complete and does it match `xclass` property `'CCC'`?
 #' }
 #' @param x An R object.
@@ -13,9 +13,8 @@
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `cmp_ccc_props`   \tab A character vector.
-#'   \cr                 \tab   
-#'   \cr     `cmp_ccc`   \tab A logical scalar.
-#'   \cr     `cmp_CCC`   \tab   
+#'   \cr     `cmp_ccc`   \tab A logical scalar.
+#'   \cr     `cmp_CCC`   \tab A logical scalar.
 #' }
 #' @examples
 #' cmp_ccc_props()

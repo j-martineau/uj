@@ -109,69 +109,68 @@ iwhl(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_mmm_spec}   \tab A logical scalar.
-\cr      \code{iMMM}   \tab   
-\cr      \code{immm}   \tab   
-\cr               \tab   
-\cr \code{mmm_props}   \tab A character vector.
-\cr       \code{mmm}   \tab   
+  \code{is_mmm_spec} \tab   A logical scalar.
+\cr \code{mmm_props} \tab   A character vector.
+\cr      \code{immm} \tab   A logical scalar.
+\cr      \code{iMMM} \tab   A logical scalar.
+\cr       \code{mmm} \tab   A character vector.
 }
 }
 \description{
 \code{xmodes} are defined for non-empty atomic objects. For all other objects, the \code{xmode} is \code{NULL}. These are not formally defined modes, but are evaluated dynamically based on the current characteristics of an object.
 \cr\cr Atomic objects that contain only \code{NA} values are of every \code{xmode} (they can be coerced to any mode without introducing new \code{NA} values).
-\cr\cr \strong{Character \code{xmodes}}
+\cr\cr \strong{Character} \code{xmodes}
 \tabular{rl}{
-  \code{'chr'}   \tab character
-\cr \code{'ch1'}   \tab onechar (\code{1}-character values)
-\cr \code{'ch3'}   \tab threechar (\code{3}-character values)
-\cr \code{'clr'}   \tab color (valid color values)
-\cr \code{'str'}   \tab string (no blanks)
+  \code{'chr'} \tab   character
+\cr \code{'ch1'} \tab   1-char, or \verb{all(nchar(x) == 1)}
+\cr \code{'ch3'} \tab   3-char, or \verb{all(nchar(x) == 3)}
+\cr \code{'clr'} \tab   color (valid color values)
+\cr \code{'str'} \tab   string (no blanks)
 }
-\strong{Categorical \code{xmodes}}
+\strong{Categorical} \code{xmodes}
 \tabular{rl}{
-  \code{'fac'}   \tab factor
-\cr \code{'lgl'}   \tab logical
-\cr \code{'ord'}   \tab ordered factor
-\cr \code{'uno'}   \tab unordered factor
+  \code{'fac'} \tab   factor
+\cr \code{'lgl'} \tab   logical
+\cr \code{'ord'} \tab   ordered factor
+\cr \code{'uno'} \tab   unordered factor
 }
-\strong{Basic numeric \code{xmodes}}
+\strong{Basic numeric} \code{xmodes}
 \tabular{rl}{
-  \code{'num'}   \tab numeric
-\cr \code{'frc'}   \tab fractional
-\cr \code{'whl'}   \tab whole number
+  \code{'num'} \tab   numeric
+\cr \code{'frc'} \tab   fractional
+\cr \code{'whl'} \tab   whole number
 }
-\strong{Value-restricted numeric \code{xmodes}}
+\strong{Value-restricted numeric} \code{xmodes}
 \tabular{rl}{
-  \code{'pct'}   \tab percentage (\code{0-100})
-\cr \code{'ppn'}   \tab proportion (\code{0-1})
-\cr \code{'pos'}   \tab positive
-\cr \code{'neg'}   \tab negative
-\cr \code{'nng'}   \tab non-negative
-\cr \code{'nps'}   \tab non-positive
+  \code{'pct'} \tab   percentage (\code{0-100})
+\cr \code{'ppn'} \tab   proportion (\code{0-1})
+\cr \code{'pos'} \tab   positive
+\cr \code{'neg'} \tab   negative
+\cr \code{'nng'} \tab   non-negative
+\cr \code{'nps'} \tab   non-positive
 }
-\strong{Whole-number value-restricted \code{xmodes}}
+\strong{Whole-number value-restricted} \code{xmodes}
 \tabular{rl}{
-  \code{'evn'}   \tab even
-\cr \code{'odd'}   \tab odd
-\cr \code{'ngw'}   \tab negative whole
-\cr \code{'psw'}   \tab positive whole
-\cr \code{'nnw'}   \tab non-negative whole
-\cr \code{'npw'}   \tab non-positive whole
+  \code{'evn'} \tab   even
+\cr \code{'odd'} \tab   odd
+\cr \code{'ngw'} \tab   negative whole
+\cr \code{'psw'} \tab   positive whole
+\cr \code{'nnw'} \tab   non-negative whole
+\cr \code{'npw'} \tab   non-positive whole
 }
-\strong{Combination \code{xmodes}}
+\strong{Combination} \code{xmodes}
 \tabular{rl}{
-  \code{'ind'}   \tab indexer (\code{lgl}, \code{psw})
-\cr \code{'srt'}   \tab sortable (\code{chr}, \code{num}, \code{ord})
-\cr \code{'nst'}   \tab non-sortable atomic
+  \code{'ind'} \tab   indexer (\code{lgl}, \code{psw})
+\cr \code{'srt'} \tab   sortable (\code{chr}, \code{num}, \code{ord})
+\cr \code{'nst'} \tab   non-sortable atomic
 }
 \strong{\code{xmode} functions}
 \tabular{rl}{
-  \code{is_mmm_spec}   \tab Is \code{spec} an \code{xmode} spec?
-\cr \code{mmm_props}   \tab Gets all possible \code{xmode} properties.
-\cr      \code{immm}   \tab Does \code{x} match \code{xmode} spec \code{spec}?
-\cr      \code{iMMM}   \tab Does \code{x} match \code{xmode} property \code{MMM}?
-\cr       \code{mmm}   \tab Gets all \code{xmode} properties matching \code{x}.
+  \code{is_mmm_spec} \tab   Is \code{spec} an \code{xmode} spec?
+\cr \code{mmm_props} \tab   Gets all possible \code{xmode} properties.
+\cr      \code{immm} \tab   Does \code{x} match \code{xmode} spec \code{spec}?
+\cr      \code{iMMM} \tab   Does \code{x} match \code{xmode} property \code{MMM}?
+\cr       \code{mmm} \tab   Gets all \code{xmode} properties matching \code{x}.
 }
 }
 \section{Specifying count and value restrictions}{

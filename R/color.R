@@ -4,20 +4,20 @@
 #' @title Simple color creation
 #' @description Simple color creation with a wide variety of options (intensity, blending, lightening, darkening, opacity). This family of functions uses three-letter codes for common colors as follows:
 #' \tabular{lll}{
-#'   **Color**    \tab **Color**    \tab **RGB channel values of**
-#'   \cr **code** \tab **name**     \tab **default color version**
-#'   \cr `wht`    \tab white        \tab `c(r = 1  , g = 1  , b = 1  )`
-#'   \cr `blk`    \tab black        \tab `c(r = 0  , g = 0  , b = 0  )`
-#'   \cr `gry`    \tab grey         \tab `c(r = 0.5, g = 0.5, b = 0.5)`
-#'   \cr `red`    \tab red          \tab `c(r = 1  , g = 0  , b = 0  )`
-#'   \cr `grn`    \tab green        \tab `c(r = 0  , g = 1  , b = 0  )`
-#'   \cr `blu`    \tab blue         \tab `c(r = 0  , g = 0  , b = 1  )`
-#'   \cr `ylw`    \tab yellow       \tab `c(r = 1  , g = 1  , b = 0  )`
-#'   \cr `cyn`    \tab cyan         \tab `c(r = 0  , g = 1  , b = 1  )`
-#'   \cr `mag`    \tab magenta      \tab `c(r = 1  , g = 0  , b = 1  )`
-#'   \cr `vlt`    \tab violet       \tab `c(r = 1  , g = 0  , b = 1  )`
-#'   \cr `ppl`    \tab purple       \tab a `1:2` blend of red:blue.
-#'   \cr `orn`    \tab orange       \tab a `33:51` blend of red:yellow.
+#'     **Color**    \tab **Color**    \tab **RGB channel values of**
+#'   \cr   **code** \tab **name**     \tab **default color version**
+#'   \cr   `wht`    \tab white        \tab `c(r = 1  , g = 1  , b = 1  )`
+#'   \cr   `blk`    \tab black        \tab `c(r = 0  , g = 0  , b = 0  )`
+#'   \cr   `gry`    \tab grey         \tab `c(r = 0.5, g = 0.5, b = 0.5)`
+#'   \cr   `red`    \tab red          \tab `c(r = 1  , g = 0  , b = 0  )`
+#'   \cr   `grn`    \tab green        \tab `c(r = 0  , g = 1  , b = 0  )`
+#'   \cr   `blu`    \tab blue         \tab `c(r = 0  , g = 0  , b = 1  )`
+#'   \cr   `ylw`    \tab yellow       \tab `c(r = 1  , g = 1  , b = 0  )`
+#'   \cr   `cyn`    \tab cyan         \tab `c(r = 0  , g = 1  , b = 1  )`
+#'   \cr   `mag`    \tab magenta      \tab `c(r = 1  , g = 0  , b = 1  )`
+#'   \cr   `vlt`    \tab violet       \tab `c(r = 1  , g = 0  , b = 1  )`
+#'   \cr   `ppl`    \tab purple       \tab a `1:2` blend of red:blue.
+#'   \cr   `orn`    \tab orange       \tab a `33:51` blend of red:yellow.
 #' }
 #' Functions in this family are:
 #' \itemize{

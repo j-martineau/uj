@@ -63,36 +63,34 @@ rmeans0(x)
 }
 \value{
 \tabular{rl}{
-  \verb{cmeans0,rmeans0}   \tab A numeric vector.
-\cr \verb{csums0,rsums0}   \tab  
-\cr   \verb{csds0,rsds0}   \tab  
-\cr   \verb{pmin0,pmax0}   \tab  
-\cr                   \tab  
-\cr    \verb{mean0,sum0}   \tab A numeric scalar.
-\cr     \verb{min0,max0}   \tab  
-\cr      \verb{sd0,var0}   \tab  
-\cr                   \tab  
-\cr     \verb{cor0,cov0}   \tab A numeric vector/matrix.
+  \verb{cmeans0,rmeans0} \tab   A numeric vector.
+\cr \verb{csums0,rsums0} \tab   A numeric vector.
+\cr   \verb{csds0,rsds0} \tab   A numeric vector.
+\cr   \verb{pmin0,pmax0} \tab   A numeric vector.
+\cr    \verb{mean0,sum0} \tab   A numeric scalar.
+\cr     \verb{min0,max0} \tab   A numeric scalar.
+\cr      \verb{sd0,var0} \tab   A numeric scalar.
+\cr     \verb{cor0,cov0} \tab   A numeric vector/matrix.
 }
 }
 \description{
 \tabular{rl}{
-  \code{cmeans0}   \tab Calls \verb{colMeans(x, na.rm = T)}.
-\cr \code{rmeans0}   \tab Calls \verb{rowMeans(x, na.rm = T)}.
-\cr  \code{csums0}   \tab Calls \verb{colSums(x, na.rm = T)}.
-\cr  \code{rsums0}   \tab Calls \verb{rowSums(x, na.rm = T)}.
-\cr   \code{csds0}   \tab Calls \verb{apply(x, 2, sd, na.rm = T)}.
-\cr   \code{rsds0}   \tab Calls \verb{apply(x, 1, sd, na.rm = T)}.
-\cr   \code{pmin0}   \tab Calls \verb{pmin(..., na.rm = T)}.
-\cr   \code{pmax0}   \tab Calls \verb{pmax(..., na.rm = T)}.
-\cr   \code{mean0}   \tab Calls \verb{mean(av(...), na.rm = T)}.
-\cr    \code{min0}   \tab Calls \verb{min(av(...), na.rm = T)}.
-\cr    \code{max0}   \tab Calls \verb{max(av(...), na.rm = T)}.
-\cr    \code{sum0}   \tab Calls \verb{sum(av(...), na.rm = T)}.
-\cr    \code{var0}   \tab Calls \verb{var(av(...), na.rm = T)}.
-\cr     \code{sd0}   \tab Calls \verb{sd(av(...), na.rm = T)}.
-\cr    \code{cor0}   \tab Calls \verb{cor(x, y, use = "complete.obs")}.
-\cr    \code{cov0}   \tab Calls \verb{cov(x, y, use = "complete.obs")}.
+  \code{cmeans0} \tab   Calls \code{colMeans(x, na.rm = T)}
+\cr \code{rmeans0} \tab   Calls \code{rowMeans(x, na.rm = T)}
+\cr  \code{csums0} \tab   Calls \code{colSums(x, na.rm = T)}
+\cr  \code{rsums0} \tab   Calls \code{rowSums(x, na.rm = T)}
+\cr   \code{csds0} \tab   Calls \code{apply(x, 2, sd, na.rm = T)}
+\cr   \code{rsds0} \tab   Calls \code{apply(x, 1, sd, na.rm = T)}
+\cr   \code{pmin0} \tab   Calls \code{pmin(..., na.rm = T)}
+\cr   \code{pmax0} \tab   Calls \code{pmax(..., na.rm = T)}
+\cr   \code{mean0} \tab   Calls \code{mean(av(...), na.rm = T)}
+\cr    \code{min0} \tab   Calls \code{min(av(...), na.rm = T)}
+\cr    \code{max0} \tab   Calls \code{max(av(...), na.rm = T)}
+\cr    \code{sum0} \tab   Calls \code{sum(av(...), na.rm = T)}
+\cr    \code{var0} \tab   Calls \code{var(av(...), na.rm = T)}
+\cr     \code{sd0} \tab   Calls \code{sd(av(...), na.rm = T)}
+\cr    \code{cor0} \tab   Calls \code{cor(x, y, use = 'complete.obs')}
+\cr    \code{cov0} \tab   Calls \verb{cov(x, y, use = 'complete.obs')}
 }
 }
 \examples{

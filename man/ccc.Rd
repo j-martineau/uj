@@ -52,12 +52,11 @@ ivls(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_ccc_spec}   \tab A logical scalar.
-\cr      \code{iccc}   \tab   
-\cr      \code{iCCC}   \tab   
-\cr               \tab   
+  \code{is_ccc_spec}   \tab A logical scalar.
 \cr \code{ccc_props}   \tab A character vector.
-\cr       \code{ccc}   \tab   
+\cr      \code{iccc}   \tab A logical scalar.
+\cr      \code{iCCC}   \tab A logical scalar.
+\cr       \code{ccc}   \tab A character vector.
 }
 }
 \description{
@@ -74,7 +73,7 @@ ivls(x, ...)
 }
 \eqn{^{1.}} i.e., a non-data.frame list.
 \cr\cr
-\strong{xclass functions}
+\strong{Functions}
 \tabular{rl}{
   \code{is_ccc_spec}   \tab Is \code{spec} an \code{xclass} spec?
 \cr \code{ccc_props}   \tab Gets all possible \code{xclass} values.

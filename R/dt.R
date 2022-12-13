@@ -2,10 +2,10 @@
 #' @family wraps
 #' @title Wrappers of `data.table` functions
 #' @description \tabular{rl}{
-#'      `dtmerge`   \tab Thinly wraps \code{\link[data.table]{merge}}.
-#'   \cr `dtwide`   \tab Thinly wraps \code{\link[data.table]{dcast}}.
+#'      `dtmerge`   \tab Thinly wraps \code{\link[data.table]{merge}}.
+#'   \cr `dtwide`   \tab Thinly wraps \code{\link[data.table]{dcast}}.
 #'   \cr   `dtas`   \tab Thinly wraps \code{\link[data.table]{as.data.table}}.
-#'   \cr   `dtis`   \tab Thinly wraps \code{\link[data.table]{is.data.table}}.
+#'   \cr   `dtis`   \tab Thinly wraps \code{\link[data.table]{is.data.table}}.
 #'   \cr            \tab   
 #'   \cr `dtrows`   \tab Selects rows.
 #'   \cr            \tab   

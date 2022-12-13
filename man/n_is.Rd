@@ -154,37 +154,37 @@ An integer or logical scalar or vector.
 \description{
 Counting functions can be used with a single unnamed argument, multiple unnamed arguments, and with restrictions in named arguments, in any combination. The functions in this family answer the questions described below.
 \tabular{rl}{
-\cr \verb{nu,nuv}   \tab Number of unique atomic values.
-\cr  \verb{nw,nt}   \tab   \code{TRUE} values.
-\cr     \code{nf}   \tab   \code{FALSE} values.
-\cr    \code{nna}   \tab   atomic \code{NA...} values.
-\cr    \code{nok}   \tab   atomic non-\code{NA...} values.
-\cr    \code{nch}   \tab   characters in each element.
-\cr     \code{nr}   \tab   rows.
-\cr     \code{nc}   \tab   columns.
+\cr \verb{nu,nuv}   \tab Number of unique atomic values.
+\cr  \verb{nw,nt}   \tab Number of \code{TRUE} values.
+\cr     \code{nf}   \tab Number of \code{FALSE} values.
+\cr    \code{nna}   \tab Number of atomic \code{NA} values.
+\cr    \code{nok}   \tab Number of atomic non-\code{NA} values.
+\cr    \code{nch}   \tab Number of characters in each element.
+\cr     \code{nr}   \tab Number of rows.
+\cr     \code{nc}   \tab Number of columns.
 \cr            \tab   
-\cr     \code{nd}   \tab Number of \code{...} args.
+\cr     \code{nd}   \tab Gets the number of \code{...} args.
 \cr    \code{nd0}   \tab Are there \verb{0 ...} args?
-\cr    \code{nd1}   \tab   \verb{1 ...} args?
-\cr    \code{nd2}   \tab   \verb{2 ...} arg?
-\cr    \code{nd3}   \tab   \verb{3 ...} args?
-\cr   \code{nd1p}   \tab   \code{1+ ...} args?
-\cr   \code{nd2p}   \tab   \code{2+ ...} args?
-\cr   \code{nd3p}   \tab   \code{3+ ...} args?
+\cr    \code{nd1}   \tab Are there \verb{1 ...} args?
+\cr    \code{nd2}   \tab Are there \verb{2 ...} args?
+\cr    \code{nd3}   \tab Are there \verb{3 ...} args?
+\cr   \code{nd1p}   \tab Are there \code{1+ ...} args?
+\cr   \code{nd2p}   \tab Are there \code{2+ ...} args?
+\cr   \code{nd3p}   \tab Are there \code{3+ ...} args?
 \cr            \tab   
 \cr     \code{n0}   \tab Is length \code{0}?
-\cr     \code{n1}   \tab   \code{1}?
-\cr     \code{n2}   \tab   \code{2}?
-\cr     \code{n3}   \tab   \code{3}?
-\cr    \code{n1p}   \tab   \verb{1+}?
-\cr    \code{n2p}   \tab   \verb{2+}?
-\cr    \code{n3p}   \tab   \verb{3+}?
+\cr     \code{n1}   \tab Is length \code{1}?
+\cr     \code{n2}   \tab Is length \code{2}?
+\cr     \code{n3}   \tab Is length \code{3}?
+\cr    \code{n1p}   \tab Is length \verb{1+}?
+\cr    \code{n2p}   \tab Is length \verb{2+}?
+\cr    \code{n3p}   \tab Is length \verb{3+}?
 \cr            \tab   
 \cr   \code{nmin}   \tab Min \code{...} arg length.
 \cr   \code{nmax}   \tab Max \code{...} arg length.
 \cr            \tab   
 \cr  \code{nsame}   \tab Are \code{...} arg lengths the same?
-\cr    \code{nat}   \tab Length after \link[=av]{atomizing}.
+\cr    \code{nat}   \tab Length after \link[=av]{atomizing}.
 \cr            \tab   
 \cr     \code{nx}   \tab Length(s) of \code{...} args.
 \cr     \code{ns}   \tab Lengths of \code{...} args.

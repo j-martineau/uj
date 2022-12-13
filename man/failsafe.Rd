@@ -20,11 +20,11 @@ msgERR(x)
 }
 \value{
 \tabular{rl}{
-\verb{isERR,notERR}   \tab A logical scalar.
-\cr            \tab  
-\cr \code{failsafe}   \tab Either \code{x}, an object of class \code{'error'}, or an object of class \code{'simpleError'}.
-\cr            \tab  
-\cr   \code{msgERR}   \tab Either \code{NULL} or a character scalar.
+  \code{failsafe}   \tab Either \code{x}, an object of class \code{'error'}, or an object of class \code{'simpleError'}.
+\cr            \tab   
+\cr \code{msgERR}   \tab \code{NULL} or a character scalar.
+\cr \code{notERR}   \tab A logical scalar.
+\cr  \code{isERR}   \tab A logical scalar.
 }
 }
 \description{

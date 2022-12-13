@@ -1,39 +1,38 @@
 #' @name sss
 #' @family props
 #' @title `Shape` properties
-#' @description `Shape` properties are as defined in the following table: \tabular{rcl}{
-#'       `'emp'`   \tab empty  \tab   `0` length (but not `NULL`).
-#'   \cr `'pnt'`   \tab point  \tab   `1` element or cell\eqn{^1}.
-#'   \cr `'col'`   \tab column \tab   `1` row by `2+` columns.
-#'   \cr `'row'`   \tab row    \tab   `2+` rows by `1` column.
-#'   \cr `'lin'`   \tab linear \tab   `2+` positions in 1 dimension\eqn{^2}.
-#'   \cr `'rct'`   \tab rect   \tab   `2+` positions in `2` dimensions.
-#'   \cr `'sqr'`   \tab square \tab   `N × N` matrix where `N ≥ 2`.
-#'   \cr `'sld'`   \tab solid  \tab   `2+` positions in `3+` dimensions.
+#' @description `Shape` properties are as defined in the following table: \tabular{rll}{
+#'       `'emp'` \tab   empty  \tab   `0` length (but not `NULL`).
+#'   \cr `'pnt'` \tab   point  \tab   `1` element or cell\eqn{^1}.
+#'   \cr `'col'` \tab   column \tab   `1` row by `2+` columns.
+#'   \cr `'row'` \tab   row    \tab   `2+` rows by `1` column.
+#'   \cr `'lin'` \tab   linear \tab   `2+` positions in 1 dimension\eqn{^2}.
+#'   \cr `'rct'` \tab   rect   \tab   `2+` positions in `2` dimensions.
+#'   \cr `'sqr'` \tab   square \tab   `N × N` matrix where `N ≥ 2`.
+#'   \cr `'sld'` \tab   solid  \tab   `2+` positions in `3+` dimensions.
 #' }
-#'   \eqn{^{1.}} `1x1` data.frames; length-`1` arrays, vectors, \link[=ivls]{vlists}.
-#' \cr
-#'   \eqn{^{2.}} Length-`2+` vectors, arrays of `2+` positions in `1` dimension, row/column data.frames.
+#'     \eqn{^{1.}} `1x1` data.frames; length-`1` arrays, vectors, \link[=ivls]{vlists}.
+#'     \eqn{^{2.}} Length-`2+` vectors, arrays of `2+` positions in `1` dimension, row/column data.frames.
 #' \cr\cr
 #' **Shape property functions**
 #' \tabular{rl}{
-#'     `is_sss_spec`   \tab Is `spec` a `shape` property spec?
-#'   \cr `sss_props`   \tab Gets all possible `shape` properties.
-#'   \cr      `isss`   \tab Does `x` match `shape` spec `spec`?
-#'   \cr      `iSSS`   \tab Does `x` match the `shape` property `SSS`?
-#'   \cr       `sss`   \tab Gets all `shape` properties matched to `x`.
+#'     `is_sss_spec` \tab   Is `spec` a `shape` property spec?
+#'   \cr `sss_props` \tab   Gets all possible `shape` properties.
+#'   \cr      `isss` \tab   Does `x` match `shape` spec `spec`?
+#'   \cr      `iSSS` \tab   Does `x` match the `shape` property `SSS`?
+#'   \cr       `sss` \tab   Gets all `shape` properties matched to `x`.
 #' }
 #' @param x An R object.
 #' @param spec Either `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `shape` properties (i.e., from `sss_vals()`). `Shape` properties in `spec` may be pipe-delimited. If there are multiple `shape` properties in `spec`, `x` is inspected for any match to any shape property in `spec`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_sss_spec`   \tab A logical scalar.
-#'   \cr      `iSSS`   \tab   
-#'   \cr      `isss`   \tab   
+#'     `is_sss_spec` \tab   A logical scalar.
+#'   \cr      `iSSS` \tab     
+#'   \cr      `isss` \tab     
 #'   \cr               \tab   
-#'   \cr  `sss_vals`   \tab A character vector.
-#'   \cr       `sss`   \tab   
+#'   \cr  `sss_vals` \tab   A character vector.
+#'   \cr       `sss` \tab     
 #' }
 #' @examples
 #' is_sss_spec("emp|pnt")

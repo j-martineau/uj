@@ -111,13 +111,13 @@ This function splits strings using the delimiter(s) in \code{d} following this s
 \strong{Extension functions}
 \cr Extension functions are supplied for common delimiters, signified by codes appended to \code{ss} function names:
 \tabular{rll}{
-  \emph{Code}   \tab \emph{Name} \tab   \emph{Delimiter}
-\cr\code{'0'}   \tab blank  \tab   \code{''}
-\cr\code{'1'}   \tab space  \tab   \code{' '}
-\cr\code{'P'}   \tab pipe   \tab   \code{'|'}
-\cr\code{'D'}   \tab dot    \tab   \code{'.'}
-\cr\code{'B'}   \tab broken \tab   \code{'¦'}
-\cr        \tab pipe   \tab   
+  \emph{Code} \tab   \emph{Name} \tab   \emph{Delimiter}
+\cr\code{'0'} \tab   blank  \tab   \code{''}
+\cr\code{'1'} \tab   space  \tab   \code{' '}
+\cr\code{'P'} \tab   pipe   \tab   \code{'|'}
+\cr\code{'D'} \tab   dot    \tab   \code{'.'}
+\cr\code{'B'} \tab   broken \tab   \code{'¦'}
+\cr      \tab   pipe   \tab   
 }
 In addition, \code{ch} aliases \code{ss0}.
 \cr\cr

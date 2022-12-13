@@ -7,26 +7,23 @@
 #'   \cr `xwarn`   \tab Purges warnings.
 #'   \cr  `xcon`   \tab Purges console.
 #'   \cr  `xall`   \tab ((PURGES THE GLOBAL ENVIRONMENT))
-#'   \cr           \tab   
 #'   \cr  `xcls`   \tab Removes classes by name.
 #'   \cr  `xat0`   \tab Removes all attributes.
 #'   \cr   `xat`   \tab Removes attributes by name.
-#'   \cr           \tab   
-#'   \cr     `x`   \tab Deletes `...` objects in calling
-#'   \cr           \tab environment with garbage collections.
+#'   \cr     `x`   \tab Deletes `...` objects from calling
+#'   \cr           \tab    environment + garbage collection.
 #' }
 #' @param x An R object.
 #' @param ... One or more \link[=cmp_chr_vec]{complete character vecs} containing names of attributes or classes to remove.
 #' @return \tabular{rl}{
-#'       `xplot`   \tab `NULL`.
-#'   \cr `xwarn`   \tab   
-#'   \cr  `xcon`   \tab   
-#'   \cr  `xall`   \tab   
-#'   \cr     `x`   \tab   
-#'   \cr           \tab   
-#'   \cr  `xcls`   \tab An R
-#'   \cr  `xat0`   \tab object.
-#'   \cr   `xat`   \tab   
+#'       `xplot`   \tab `NULL`
+#'   \cr `xwarn`   \tab `NULL`
+#'   \cr  `xcon`   \tab `NULL`
+#'   \cr  `xall`   \tab `NULL`
+#'   \cr     `x`   \tab `NULL`
+#'   \cr  `xcls`   \tab An R object.
+#'   \cr  `xat0`   \tab An R object.
+#'   \cr   `xat`   \tab An R object.
 #'  }
 #' @examples
 #' x. <- data.frame(x = -5:5, y = sqrt(abs(-5:5)))

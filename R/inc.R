@@ -1,7 +1,7 @@
 #' @title Increment or decrement a variable
 #' @description \tabular{rl}{
-#'      `inc`   \tab Increments `x` by `i`.
-#'  \cr `dec`   \tab Decrements `x` by `d`.
+#'      `inc` \tab   Increments `x` by `i`.
+#'  \cr `dec` \tab   Decrements `x` by `d`.
 #' }
 #' @param x An \link[=atm_num]{atomic numeric} object.
 #' @param i,d \link[=cmp_num_scl]{Complete numeric scalars} giving the value by which to increment or decrement, respectively.

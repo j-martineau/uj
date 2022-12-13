@@ -42,15 +42,13 @@ newdirs(dirs, path = NULL)
 }
 \value{
 \tabular{rl}{
-  \code{object_path}   \tab A character scalar.
-\cr \code{folder_path}   \tab   
-\cr \code{object_name}   \tab   
-\cr \code{folder_name}   \tab   
-\cr                 \tab   
-\cr \code{object_dirs}   \tab A character vector.
-\cr \code{folder_dirs}   \tab   
-\cr                 \tab   
-\cr     \code{is_path}   \tab A logical scalar.
+  \code{object_path} \tab   A character scalar.
+\cr \code{folder_path} \tab   A character scalar.
+\cr \code{object_name} \tab   A character scalar.
+\cr \code{folder_name} \tab   A character scalar.
+\cr \code{object_dirs} \tab   A character vector.
+\cr \code{folder_dirs} \tab   A character vector.
+\cr     \code{is_path} \tab   A logical scalar.
 }
 }
 \description{

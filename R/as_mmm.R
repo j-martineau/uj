@@ -1,7 +1,7 @@
 #' @name as_mmm
 #' @family props
 #' @title Coerce to base mode or `xmode`
-#' @description Functions to coerce objects to \link[base:mode]{base mode} or \link[=mmm]{`xmode`}:
+#' @description Functions to coerce objects to \link[base:mode]{base mode} or \code{\link[=mmm]{xmode}}:
 #' \tabular{rl}{
 #'   \cr `as_chr`   \tab Thinly wraps \code{\link[base:as.character]{base::as.character}}.
 #'   \cr `as_int`   \tab Thinly wraps \code{\link[base:as.integer]{base::as.integer}}.

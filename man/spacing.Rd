@@ -29,11 +29,10 @@ trm(...)
 }
 \value{
 \tabular{rl}{
-  \code{spaces}   \tab A character scalar.
-\cr          \tab   
-\cr  \code{pad}   \tab A character
-\cr  \code{trm}   \tab object.
-\cr  \code{sqz}   \tab   
+  \code{spaces} \tab   A character scalar.
+\cr  \code{pad} \tab   A character object.
+\cr  \code{trm} \tab   A character object.
+\cr  \code{sqz} \tab   A character object.
 }
 }
 \description{
@@ -41,14 +40,12 @@ trm(...)
 }
 \details{
 \tabular{rl}{
-\code{spaces}   \tab Creates a character vector of \code{n} spaces.
-\cr         \tab  
-\cr \code{sqz}   \tab Trims leading, trailing, and extra internal spaces with \code{\link[stringr]{str_squish}}.
-\cr         \tab  
-\cr \code{pad}   \tab Pads a string with leading and/or trailing spaces with \code{\link[stringr]{str_pad}}.
-\cr         \tab  
-\cr \code{trm}   \tab Trims leading and trailing spaces with \code{\link[stringr]{str_trim}}.
+  \code{spaces}   \tab Creates a character scalar of \code{n} spaces.
+\cr  \code{pad}   \tab Pads strings with leading, trailing white space\eqn{^1}.
+\cr  \code{sqz}   \tab Trims leading, trailing, extra internal white/space\eqn{^1}.
+\cr  \code{trm}   \tab Trims leading and trailing white space\eqn{^1}.
 }
+\eqn{^{1.}}These functions use \code{\link[stringr:str_squish]{stringr::str_squish}}, \code{\link[stringr:str_pad]{stringr::str_pad}}, and \code{\link[stringr:str_trim]{stringr::str_trim}}, respectively.
 }
 \examples{
 spaces(0)

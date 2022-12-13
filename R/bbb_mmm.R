@@ -1,7 +1,7 @@
 #' @family props
-#' @title `Base` + `xmode` properties
+#' @title `base + xmode` properties
 #' @description \tabular{rl}{
-#'     `bbb_mmm_props`   \tab Gets all \link[=bbb]{`base`} + \link[=mmm]{`xmode`} properties.
+#'     `bbb_mmm_props`   \tab Gets all \code{\link[=bbb]{base} + \link[=mmm]{xmode}} properties.
 #'   \cr                 \tab   
 #'   \cr     `bbb_mmm`   \tab Does `x` match `base` and `xmode` specs in arguments `bbb` and `mmm`, respectively.
 #'   \cr                 \tab   
@@ -14,9 +14,8 @@
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `bbb_mmm_props`   \tab A character vector.
-#'   \cr                 \tab   
-#'   \cr     `bbb_mmm`   \tab A logical scalar.
-#'   \cr     `BBB_MMM`   \tab   
+#'   \cr     `bbb_mmm`   \tab A logical scalar.
+#'   \cr     `BBB_MMM`   \tab A logical scalar.
 #' }
 #' @examples
 #' bbb_mmm_props()

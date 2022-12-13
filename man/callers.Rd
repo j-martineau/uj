@@ -17,8 +17,8 @@ ncallers()
 }
 \value{
 \tabular{rl}{
-  \code{ncallers}   \tab An integer scalar.
-\cr \code{callers}   \tab A character vector.
+  \code{ncallers}   \tab An integer scalar.
+\cr \code{callers}   \tab A character vector.
 \cr  \code{caller}   \tab A character scalar.
 }
 }

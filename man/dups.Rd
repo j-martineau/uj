@@ -18,16 +18,16 @@ idups(x, int = F)
 }
 \value{
 \tabular{rl}{
-   \code{idups}   \tab A logical vector (when \code{int = FALSE}) or an integer vector (when \code{int = TRUE}).
-\cr          \tab  
-\cr \code{dups}   \tab An atomic vector.
+\code{dups} \tab   An atomic vector.
+\cr   \code{idups} \tab   A logical vector (when \code{int = FALSE})
+\cr           \tab   or an integer vector (when \verb{int = TRUE}).
 }
 }
 \description{
 Extended functionality for \code{\link[base]{duplicated}}.
 \tabular{rl}{
    \code{idups}   \tab Indexes all elements of \code{x} that are duplicates of its earlier element, either as a logical vector of the same length as \code{x} (when \code{int = FALSE}) or as an integer vector whose length is the same as the number of elements in \code{x} that are duplicates of earlier elements (when \code{int = TRUE}).
-\cr          \tab  
+\cr          \tab   
 \cr \code{dups}   \tab \link[=av]{Atomizes} \code{...}, then reduce the resulting vector to contain one copy of each duplicated element.
 }
 }

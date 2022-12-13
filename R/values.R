@@ -5,15 +5,14 @@
 #'   \cr `values`   \tab Gets a named list where names are the arguments submitted to `v(...)`, element values are the values of the contents of the named element, and the attribute `'descriptions'` gives verbose descriptions if needed.
 #'   \cr            \tab   
 #'   \cr `vnames`   \tab Gets names of all package values.
-#'   \cr      `v`   \tab Gets package values by name.
+#'   \cr      `v`   \tab Gets package values by name.
 #' }
-#' @param ... Unquoted, comma-separated list of the names of constants to return. If multiple constants are specified, they are coerced into a single atomic vector result.
+#' @param ... Unquoted, comma-separated list of names of constants to return. If multiple constants are specified, they are coerced into a single atomic vector result.
 #' @return \tabular{rl}{
-#'       `vtable`   \tab A data.frame.
-#'   \cr `values`   \tab A \link[=ivls]{vlist}.
-#'   \cr            \tab   
-#'   \cr `vnames`   \tab A character
-#'   \cr      `v`   \tab vector.
+#'       `values`   \tab A \code{\link[=ivls]{vlist}}.
+#'   \cr `vtable`   \tab A data.frame.
+#'   \cr `vnames`   \tab A character vector.
+#'   \cr      `v`   \tab A character vector.
 #' }
 #' @examples
 #' v(.)

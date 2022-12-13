@@ -23,14 +23,14 @@ Convert values of \code{x} to the \code{n} levels in \code{levs} distinguished b
 \cr\cr Otherwise, the level assigned is the upper of the levels distinguished by that value of \code{cuts}.
 }
 \examples{
-num_vals <- -5:5
-chr_vals <- letters[1:11]
-ord_vals <- factor(chr_vals, levels = chr_vals, ordered = TRUE)
-num_cuts <- c(-3, 0, 3)
-chr_cuts <- c("c", "f", "i")
-ord_cuts <- factor(chr_cuts, levels = chr_vals, ordered = TRUE)
-rng_levs <- c("A", "B", "C", "D")
-rng2lev(num_vals, num_cuts, rng_levs)
-rng2lev(chr_vals, chr_cuts, rng_levs)
-rng2lev(ord_vals, ord_cuts, rng_levs)
+num_vals. <- -5:5
+chr_vals. <- letters[1:11]
+ord_vals. <- factor(chr_vals., levels = chr_vals., ordered = TRUE)
+num_cuts. <- c(-3, 0, 3)
+chr_cuts. <- c("c", "f", "i")
+ord_cuts. <- factor(chr_cuts., levels = chr_vals., ordered = TRUE)
+rng_levs. <- c("A", "B", "C", "D")
+rng2lev(num_vals., num_cuts., rng_levs.)
+rng2lev(chr_vals., chr_cuts., rng_levs.)
+rng2lev(ord_vals., ord_cuts., rng_levs.)
 }

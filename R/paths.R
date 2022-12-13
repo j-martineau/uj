@@ -26,15 +26,13 @@
 #' @param dirs A \link[=cmp_chr_vec]{complete character vec} of new sub-directory names.
 #' @param path A \link[=cmp_chr_scl]{complete character scalar} path to either a directory or a file.
 #' @return \tabular{rl}{
-#'       `object_path`   \tab A character scalar.
-#'   \cr `folder_path`   \tab   
-#'   \cr `object_name`   \tab   
-#'   \cr `folder_name`   \tab   
-#'   \cr                 \tab   
-#'   \cr `object_dirs`   \tab A character vector.
-#'   \cr `folder_dirs`   \tab   
-#'   \cr                 \tab   
-#'   \cr     `is_path`   \tab A logical scalar.
+#'       `object_path` \tab   A character scalar.
+#'   \cr `folder_path` \tab   A character scalar.
+#'   \cr `object_name` \tab   A character scalar.
+#'   \cr `folder_name` \tab   A character scalar.
+#'   \cr `object_dirs` \tab   A character vector.
+#'   \cr `folder_dirs` \tab   A character vector.
+#'   \cr     `is_path` \tab   A logical scalar.
 #' }
 #' @examples
 #' path. <- path.expand("~")

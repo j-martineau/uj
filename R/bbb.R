@@ -1,5 +1,5 @@
 #' @family props
-#' @title `Base` properties
+#' @title `base` properties
 #' @description  An object's `base` properties are defined by its most basic structural properties as described in the following table:
 #' \tabular{rll}{
 #'       `'atm'`   \tab Atomic      \tab Atomic objects.
@@ -27,11 +27,10 @@
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `is_bbb_spec`   \tab A logical scalar.
-#'   \cr      `ibbb`   \tab   
-#'   \cr      `iBBB`   \tab   
-#'   \cr               \tab   
 #'   \cr `bbb_props`   \tab A character vector.
-#'   \cr       `bbb`   \tab   
+#'   \cr      `ibbb`   \tab A logical scalar.
+#'   \cr      `iBBB`   \tab A logical scalar.
+#'   \cr       `bbb`   \tab A character vector.
 #' }
 #' @examples
 #' is_bbb_spec("nil|nll")

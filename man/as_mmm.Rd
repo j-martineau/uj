@@ -54,7 +54,7 @@ as_uno(x, levs)
 }
 }
 \description{
-Functions to coerce objects to \link[base:mode]{base mode} or \link[=mmm]{\code{xmode}}:
+Functions to coerce objects to \link[base:mode]{base mode} or \code{\link[=mmm]{xmode}}:
 \tabular{rl}{
 \cr \code{as_chr}   \tab Thinly wraps \code{\link[base:as.character]{base::as.character}}.
 \cr \code{as_int}   \tab Thinly wraps \code{\link[base:as.integer]{base::as.integer}}.

@@ -30,7 +30,7 @@
 \alias{cmp_str}
 \alias{cmp_uno}
 \alias{cmp_whl}
-\title{Complete + \code{xmode} properties}
+\title{\code{complete + xmode} properties}
 \usage{
 cmp_mmm(x, mmm, ...)
 
@@ -104,14 +104,13 @@ cmp_whl(x, ...)
 \value{
 \tabular{rl}{
   \code{cmp_mmm_props}   \tab A character vector.
-\cr                 \tab   
-\cr     \code{cmp_mmm}   \tab A logical scalar.
-\cr     \code{cmp_MMM}   \tab   
+\cr     \code{cmp_mmm}   \tab A logical scalar.
+\cr     \code{cmp_MMM}   \tab A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{cmp_mmm_props}   \tab Gets all possible \link[=icmp]{complete} + \link[=mmm]{\code{xmode}} properties.
+  \code{cmp_mmm_props}   \tab Gets all possible \code{\link[=icmp]{complete}} + \code{\link[=mmm]{xmode}} properties.
 \cr                 \tab  
 \cr     \code{cmp_mmm}   \tab Is \code{x} complete and does it match the \code{xmode} spec in argument \code{mmm}?
 \cr                 \tab  

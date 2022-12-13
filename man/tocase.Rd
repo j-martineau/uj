@@ -34,15 +34,15 @@ A character vector.
 }
 \description{
 Functions in this family convert string case as follows:\tabular{rl}{
-  \code{tocase}   \tab Convert among cases.
-\cr             \tab   
-\cr \code{totitle}   \tab Convert to \link[stringr:str_to_sentence]{title case}.
-\cr  \code{tosent}   \tab Convert to \link[stringr:str_to_sentence]{sentence case}.
-\cr             \tab   
-\cr      \code{lc}   \tab Convert to \link[base:tolower]{lower case}.
-\cr      \code{sc}   \tab Convert to \link[stringr:str_to_sentence]{sentence case}.
-\cr      \code{tc}   \tab Convert to \link[stringr:str_to_title]{title case}.
-\cr      \code{uc}   \tab Convert to \link[base:toupper]{upper case}.
+  \code{tocase} \tab   Convert among cases.
+\cr           \tab   
+\cr \code{totitle} \tab   Convert to \link[stringr:str_to_sentence]{title case}.
+\cr  \code{tosent} \tab   Convert to \link[stringr:str_to_sentence]{sentence case}.
+\cr           \tab   
+\cr      \code{lc} \tab   Convert to \link[base:tolower]{lower case}.
+\cr      \code{sc} \tab   Convert to \link[stringr:str_to_sentence]{sentence case}.
+\cr      \code{tc} \tab   Convert to \link[stringr:str_to_title]{title case}.
+\cr      \code{uc} \tab   Convert to \link[base:toupper]{upper case}.
 }
 }
 \examples{

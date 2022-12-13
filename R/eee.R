@@ -1,40 +1,42 @@
 #' @name eee
 #' @family props
 #' @title Effective dimensionality (`effective-D`) properties
-#' @description Effective dimensionality (`effective-D`) of a non-empty object is defined as the number of dimensions with `2+` positions. `Effective-D` is undefined for empty objects.
+#' @description An object's `effective-D` is defined as the number of dimensions in which it has multiple populated index positions (i.e., if a dimension has only one index position, that is not an effective dimension).
 #' \tabular{rl}{
-#'         `'eUD'`   \tab Effectively `NaN`-dimensional (`NULL` or otherwise of length-`0` objects; `effective-D` is undefined).
-#'   \cr             \tab  
-#'   \cr   `'e0D'`   \tab Effectively `0`-dimensional (vectors, vlists, and arrays of length `1` and `1 × 1` data.frames).
-#'   \cr             \tab  
-#'   \cr   `'e1D'`   \tab Effectively `1`-dimensional (vectors or vlists of length `2+`, length `2+` arrays with `2+` positions in `1` dimension, and `1 x 2+` or `2+ x 1` data.frames).
-#'   \cr             \tab  
-#'   \cr   `'e2D'`   \tab Effectively `2`-dimensional (`2+ x 2+` data frames or matrices and length `4+` arrays with `2+` positions in `2` dimensions).
-#'   \cr             \tab  
-#'   \cr   `'eHD'`   \tab Effectively hyper-dimensional (length-`8+` array with `2+` positions in `3+` dimensions).
+#'         `'eUD'` \tab   Effectively `NaN`-dimensional\eqn{^a}.
+#'   \cr   `'e0D'` \tab   Effectively `0D`\eqn{^b}.
+#'   \cr   `'e1D'` \tab   Effectively `1D`\eqn{^c}.
+#'   \cr   `'e2D'` \tab   Effectively `2D`\eqn{^d}.
+#'   \cr   `'eHD'` \tab   Effectively `HD`\eqn{^e}.
 #' }
+#'        \eqn{^{a.}} That is, of undefined `effective-D`, or length-`0` objects including `NULL`.
+#' \cr    \eqn{^{b.}} `1x1 data.frames` and length-`1 vectors`, \code{\link[=ivls]{vlists}}, and `arrays`.
+#' \cr    \eqn{^{c.}} \code{\link[=imvc]{multivecs}}, length-`2+ vlists`, \code{\link[=irow]{row}} `data.frames`, \code{\link[=icol]{col}} `data.frames`, and length-`2+` arrays with `2+` index positions in exactly `1` dimension.
+#' \cr    \eqn{^{d.}} `2+ x 2+ data.frames` and length-`4+ arrays` with `2+` positions in exactly `2` dimensions.
+#' \cr    \eqn{^{e.}} Length-`8+ arrays` with `2+` positions in `3+` dimensions.
+#' \cr\cr
 #' Effective dimensionality property functions are:
 #' \tabular{rl}{
-#'      `is_eee_spec`   \tab Is `spec` an `effective-D` specification?
-#'   \cr  `eee_props`   \tab Gets all possible `effective-D` property values.
-#'   \cr       `ixxx`   \tab Does `x` match `effective-D` property `'EEE'`
-#'   \cr       `ieee`   \tab Does `x` match `effective-D` spec `spec`?
-#'   \cr       `neee`   \tab Gets the number of effective dimensions of `x`.
-#'   \cr        `eee`   \tab Gets all `effective-D` properties of `x`.
+#'      `is_eee_spec` \tab   Is `spec` an `effective-D` specification?
+#'   \cr  `eee_props` \tab   Gets all possible `effective-D` property values.
+#'   \cr       `neee` \tab   Gets the number of effective dimensions of `x`.
+#'   \cr       `ieee` \tab   Does `x` match `effective-D` spec `spec`?
+#'   \cr       `iEEE` \tab   Does `x` match `effective-D` property `'EEE'`
+#'   \cr        `eee` \tab   Gets all `effective-D` properties of `x`.
 #' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `effective-D` properties (i.e., from `eee_props()`). `Effective-D` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `effective-D` properties from `eee_props()`. `Effective-D` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_eee_spec`   \tab A logical scalar.
+#'     `is_eee_spec`   \tab A logical scalar.
 #'   \cr      `ieee`   \tab   
-#'   \cr      `ixxx`   \tab   
+#'   \cr      `iEEE`   \tab   
 #'   \cr               \tab   
 #'   \cr `eee_props`   \tab A character vector.
 #'   \cr       `eee`   \tab   
 #'   \cr               \tab   
-#'   \cr      `neee`   \tab A numeric scalar.
+#'   \cr      `neee`   \tab A numeric scalar.
 #' }
 #' @examples
 #' a. <- "a"

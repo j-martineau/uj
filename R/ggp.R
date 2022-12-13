@@ -3,47 +3,47 @@
 #' @family plotting
 #' @title Thin wrappers of `ggplot2` and `ggtext` functions
 #' @description These functions wrap `ggplot2` functions unless otherwise noted:\tabular{rl}{
-#'             `ggp`   \tab Thinly wraps \code{\link[ggplot2]{ggplot}}
-#'   \cr      `ggsv`   \tab Thinly wraps \code{\link[ggplot2]{ggsave}}
-#'   \cr               \tab  
-#'   \cr     `ggaes`   \tab Thinly wraps \code{\link[ggplot2]{aes}}
-#'   \cr     `ggexp`   \tab Thinly wraps \code{\link[ggplot2]{expansion}}
-#'   \cr     `ggmar`   \tab Thinly wraps \code{\link[ggplot2]{margin}}
-#'   \cr    `ggunit`   \tab Thinly wraps \code{\link[ggplot2]{unit}}
-#'   \cr    `ggvars`   \tab Thinly wraps \code{\link[ggplot2]{vars}}
-#'   \cr               \tab  
-#'   \cr    `gglabs`   \tab Thinly wraps \code{\link[ggplot2]{labs}}
-#'   \cr    `ggxlab`   \tab Thinly wraps \code{\link[ggplot2]{xlab}}
-#'   \cr    `ggylab`   \tab Thinly wraps \code{\link[ggplot2]{ylab}}
-#'   \cr               \tab  
-#'   \cr     `ggdot`   \tab Thinly wraps \code{\link[ggplot2]{geom_point}}
-#'   \cr     `gghln`   \tab Thinly wraps \code{\link[ggplot2]{geom_hline}}
-#'   \cr     `gglab`   \tab Thinly wraps \code{\link[ggplot2]{geom_label}}
-#'   \cr     `gglin`   \tab Thinly wraps \code{\link[ggplot2]{geom_line}}
-#'   \cr     `ggtxt`   \tab Thinly wraps \code{\link[ggplot2]{geom_text}}
-#'   \cr     `ggvln`   \tab Thinly wraps \code{\link[ggplot2]{geom_vline}}
-#'   \cr               \tab  
-#'   \cr    `gggrid`   \tab Thinly wraps \code{\link[ggplot2]{facet_grid}}
-#'   \cr    `ggwrap`   \tab Thinly wraps \code{\link[ggplot2]{facet_wrap}}
-#'   \cr               \tab  
-#'   \cr     `ggthm`   \tab Thinly wraps \code{\link[ggplot2]{theme}}
-#'   \cr    `ggtmin`   \tab Thinly wraps \code{\link[ggplot2]{theme_minimal}}
-#'   \cr               \tab  
-#'   \cr     `ggsac`   \tab Thinly wraps \code{\link[ggplot2]{scale_alpha_continuous}}
-#'   \cr     `ggscm`   \tab Thinly wraps \code{\link[ggplot2]{scale_color_manual}}
-#'   \cr     `ggsdm`   \tab Thinly wraps \code{\link[ggplot2]{scale_shape_manual}}
-#'   \cr     `ggslm`   \tab Thinly wraps \code{\link[ggplot2]{scale_linetype_manual}}
-#'   \cr     `ggsxc`   \tab Thinly wraps \code{\link[ggplot2]{scale_x_continuous}}
-#'   \cr     `ggsyc`   \tab Thinly wraps \code{\link[ggplot2]{scale_y_continuous}}
-#'   \cr               \tab  
-#'   \cr    `ggerct`   \tab Thinly wraps \code{\link[ggplot2]{element_rect}}
-#'   \cr    `ggetxt`   \tab Thinly wraps \code{\link[ggplot2]{element_text}}
-#'   \cr    `ggelin`   \tab Thinly wraps \code{\link[ggplot2]{element_line}}
-#'   \cr   `ggenull`   \tab Thinly wraps \code{\link[ggplot2]{element_blank}}
-#'   \cr               \tab  
-#'   \cr     `ggemd`   \tab Thinly wraps \code{\link[ggtext]{element_markdown}}\eqn{^1}
+#'             `ggp` \tab   Thinly wraps \code{\link[ggplot2]{ggplot}}
+#'   \cr      `ggsv` \tab   Thinly wraps \code{\link[ggplot2]{ggsave}}
+#'   \cr             \tab   
+#'   \cr     `ggaes` \tab   Thinly wraps \code{\link[ggplot2]{aes}}
+#'   \cr     `ggexp` \tab   Thinly wraps \code{\link[ggplot2]{expansion}}
+#'   \cr     `ggmar` \tab   Thinly wraps \code{\link[ggplot2]{margin}}
+#'   \cr    `ggunit` \tab   Thinly wraps \code{\link[ggplot2]{unit}}
+#'   \cr    `ggvars` \tab   Thinly wraps \code{\link[ggplot2]{vars}}
+#'   \cr               \tab   
+#'   \cr    `gglabs` \tab   Thinly wraps \code{\link[ggplot2]{labs}}
+#'   \cr    `ggxlab` \tab   Thinly wraps \code{\link[ggplot2]{xlab}}
+#'   \cr    `ggylab` \tab   Thinly wraps \code{\link[ggplot2]{ylab}}
+#'   \cr             \tab   
+#'   \cr     `ggdot` \tab   Thinly wraps \code{\link[ggplot2]{geom_point}}
+#'   \cr     `gghln` \tab   Thinly wraps \code{\link[ggplot2]{geom_hline}}
+#'   \cr     `gglab` \tab   Thinly wraps \code{\link[ggplot2]{geom_label}}
+#'   \cr     `gglin` \tab   Thinly wraps \code{\link[ggplot2]{geom_line}}
+#'   \cr     `ggtxt` \tab   Thinly wraps \code{\link[ggplot2]{geom_text}}
+#'   \cr     `ggvln` \tab   Thinly wraps \code{\link[ggplot2]{geom_vline}}
+#'   \cr             \tab   
+#'   \cr    `gggrid` \tab   Thinly wraps \code{\link[ggplot2]{facet_grid}}
+#'   \cr    `ggwrap` \tab   Thinly wraps \code{\link[ggplot2]{facet_wrap}}
+#'   \cr             \tab   
+#'   \cr     `ggthm` \tab   Thinly wraps \code{\link[ggplot2]{theme}}
+#'   \cr    `ggtmin` \tab   Thinly wraps \code{\link[ggplot2]{theme_minimal}}
+#'   \cr             \tab   
+#'   \cr     `ggsac` \tab   Thinly wraps \code{\link[ggplot2]{scale_alpha_continuous}}
+#'   \cr     `ggscm` \tab   Thinly wraps \code{\link[ggplot2]{scale_color_manual}}
+#'   \cr     `ggsdm` \tab   Thinly wraps \code{\link[ggplot2]{scale_shape_manual}}
+#'   \cr     `ggslm` \tab   Thinly wraps \code{\link[ggplot2]{scale_linetype_manual}}
+#'   \cr     `ggsxc` \tab   Thinly wraps \code{\link[ggplot2]{scale_x_continuous}}
+#'   \cr     `ggsyc` \tab   Thinly wraps \code{\link[ggplot2]{scale_y_continuous}}
+#'   \cr             \tab   
+#'   \cr    `ggerct` \tab   Thinly wraps \code{\link[ggplot2]{element_rect}}
+#'   \cr    `ggetxt` \tab   Thinly wraps \code{\link[ggplot2]{element_text}}
+#'   \cr    `ggelin` \tab   Thinly wraps \code{\link[ggplot2]{element_line}}
+#'   \cr   `ggenull` \tab   Thinly wraps \code{\link[ggplot2]{element_blank}}
+#'   \cr             \tab   
+#'   \cr     `ggemd` \tab   Thinly wraps \code{\link[ggtext]{element_markdown}}\eqn{^1}
 #' }
-#' \eqn{1.} A `ggtext` function.
+#' \eqn{1.} A `ggtext` package function.
 #' @inherit ggplot2::ggplot
 #' @export
 ggp <- function(data = NULL, mapping = ggplot2::aes(), ..., environment = parent.frame()) {ggplot2::ggplot(data = data, mapping = mapping, ..., environment = environment)}

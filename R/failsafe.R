@@ -13,11 +13,11 @@
 #' }
 #' @param x An object or a call to evaluate in the environment of a parent function where the initial call was made.
 #' @return \tabular{rl}{
-#'   `isERR,notERR`   \tab A logical scalar.
-#'   \cr            \tab  
-#'   \cr `failsafe`   \tab Either `x`, an object of class `'error'`, or an object of class `'simpleError'`.
-#'   \cr            \tab  
-#'   \cr   `msgERR`   \tab Either `NULL` or a character scalar.
+#'     `failsafe`   \tab Either `x`, an object of class `'error'`, or an object of class `'simpleError'`.
+#'   \cr            \tab   
+#'   \cr `msgERR`   \tab `NULL` or a character scalar.
+#'   \cr `notERR`   \tab A logical scalar.
+#'   \cr  `isERR`   \tab A logical scalar.
 #' }
 #' @examples
 #' failsafe(pi)

@@ -35,7 +35,7 @@
 \alias{rcr_scl}
 \alias{rcr_vec}
 \alias{rcr_vls}
-\title{\code{Base} + \code{xclass} properties}
+\title{\code{base + xclass} properties}
 \usage{
 bbb_ccc(x, bbb, ccc, ...)
 
@@ -121,14 +121,13 @@ rcr_vls(x, ...)
 \value{
 \tabular{rl}{
   \code{bbb_ccc_props}   \tab A character vector.
-\cr                 \tab   
-\cr     \code{bbb_ccc}   \tab A logical scalar
-\cr     \code{BBB_CCC}   \tab   
+\cr     \code{bbb_ccc}   \tab A logical scalar
+\cr     \code{BBB_CCC}   \tab A logical scalar
 }
 }
 \description{
 \tabular{rl}{
-  \code{bbb_ccc_props}   \tab Gets all possible \link[=bbb]{\code{base}} + \link[=ccc]{\code{xclass}} properties.
+  \code{bbb_ccc_props}   \tab Gets all possible \code{\link[=bbb]{base} + \link[=ccc]{xclass}} properties.
 \cr                 \tab   
 \cr     \code{bbb_ccc}   \tab Does \code{x} match \code{base} and \code{xclass} specs in \code{bbb} and \code{ccc}, respectively?
 \cr                 \tab   

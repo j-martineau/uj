@@ -25,10 +25,15 @@ sav(...)
 A single atomic vector containing all constituent atomic values in the full set of arguments supplied in \code{...}.
 }
 \description{
-\tabular{rr}{
-  \verb{a, av, atoms, atomize}   \tab Gets a vector of all atomic values in all \code{...} arguments.
-\cr                         \tab   
-\cr                 \code{sav}   \tab Gets a sorted vector of all atomic values in all \code{...} arguments
+\tabular{rl}{
+  \code{atomize}   \tab Gets a vector of all
+\cr \code{atoms}   \tab atomic values in all
+\cr    \code{av}   \tab \code{...} arguments.
+\cr     \code{a}   \tab   
+\cr           \tab   
+\cr   \code{sav}   \tab Gets a sorted vector of
+\cr           \tab all atomic values in all
+\cr           \tab \code{...} arguments.
 }
 }
 \examples{

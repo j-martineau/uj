@@ -673,14 +673,13 @@ cmp_whl_vls(x, ...)
 \value{
 \tabular{rl}{
   \code{cmp_mmm_ccc_props}   \tab A character vector.
-\cr                     \tab   
-\cr     \code{cmp_mmm_ccc}   \tab A logical scalar.
-\cr     \code{cmp_MMM_CCC}   \tab   
+\cr     \code{cmp_mmm_ccc}   \tab A logical scalar.
+\cr     \code{cmp_MMM_CCC}   \tab A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{cmp_mmm_ccc_props}   \tab Gets all possible \link[=icmp]{complete} + \link[=mmm]{\code{xmode}} + \link[=ccc]{\code{xclass}} properties.
+  \code{cmp_mmm_ccc_props}   \tab Gets all possible \link[=icmp]{complete} + \code{\link[=mmm]{xmode}} + \code{\link[=ccc]{xclass}} properties.
 \cr                     \tab   
 \cr     \code{cmp_mmm_ccc}   \tab Is \code{x} complete and does it match \code{xmode} and \code{xclass} specs in arguments \code{mmm} and \code{ccc}, respectively?
 \cr                     \tab   

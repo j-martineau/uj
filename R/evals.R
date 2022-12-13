@@ -10,43 +10,39 @@
 #' @title Enhancements of `base` logical functions
 #' @description The following are extensions of base logical functions:
 #' \tabular{rl}{
-#'               `TEST(x, ...)`   \tab Extension of  `isTRUE(x)`.
-#'   \cr          `not(x, ...)`   \tab Extension of  `!x`.
-#'   \cr        `or(x, y, ...)`   \tab Extension of  `x | y`.
-#'   \cr       `and(x, y, ...)`   \tab Extension of  `x & y`.
-#'   \cr       `nor(x, y, ...)`   \tab Extension of  `!(x | y)`.
-#'   \cr       `one(x, y, ...)`   \tab Extension of  `xor(x, y)`.
-#'   \cr                          \tab  
-#'   \cr      `isin(x, y, ...)`   \tab Extension of
-#'   \cr     `is_in(x, y, ...)`   \tab ... `x %in% y`. 
-#'   \cr                          \tab  
-#'   \cr     `isout(x, y, ...)`   \tab Extension of
-#'   \cr     `notin(x, y, ...)`   \tab ... `!(x %in% y)`.
-#'   \cr    `is_out(x, y, ...)`   \tab  
-#'   \cr    `not_in(x, y, ...)`   \tab  
-#'   \cr                          \tab  
-#'   \cr       `has(x, y, ...)`   \tab Extension of  `y %in% x`.
-#'   \cr     `lacks(x, y, ...)`   \tab Extension of  `!(y %in% x)`.
+#'          **Function Usage** \tab   **Extends**
+#'   \cr   `not_in(x, y, ...)` \tab   `!(x %in% y)`
+#'   \cr   `is_out(x, y, ...)` \tab   `!(x %in% y)`
+#'   \cr    `isout(x, y, ...)` \tab   `!(x %in% y)`
+#'   \cr    `notin(x, y, ...)` \tab   `!(x %in% y)`
+#'   \cr    `lacks(x, y, ...)` \tab   `!(y %in% x)`
+#'   \cr    `is_in(x, y, ...)` \tab   `x %in% y`
+#'   \cr     `isin(x, y, ...)` \tab   `x %in% y`
+#'   \cr      `has(x, y, ...)` \tab   `y %in% x`
+#'   \cr      `nor(x, y, ...)` \tab   `!(x | y)`
+#'   \cr      `one(x, y, ...)` \tab   `xor(x, y)`
+#'   \cr      `and(x, y, ...)` \tab   `x & y`
+#'   \cr       `or(x, y, ...)` \tab   `x | y`
+#'   \cr        `TEST(x, ...)` \tab   `isTRUE(x)`
+#'   \cr         `not(x, ...)` \tab   `!x`
 #' }
 #' The next set of functions evaluate an arbitrary number of `...` arguments expected to be logical scalars for whether:
 #' \tabular{rl}{
-#'       `ANY(.)`   \tab Any `...` argument is scalar `TRUE`.
-#'   \cr `ALL(.)`   \tab All `...` arguments are scalar `TRUE`.
-#'   \cr `NOR(.)`   \tab `0` `...` arguments are scalar `TRUE`.
-#'   \cr `ONE(.)`   \tab `1` `...` argument is scalar `TRUE`.
-#'   \cr `TWO(.)`   \tab `2+` `...` arguments are scalar `TRUE`.
+#'       `ANY` \tab   Any `...` argument is scalar `TRUE`.
+#'   \cr `ALL` \tab   All `...` argument are scalar `TRUE`.
+#'   \cr `NOR` \tab   `0 ...` arguments are scalar `TRUE`.
+#'   \cr `ONE` \tab   `1 ...` argument is scalar `TRUE`.
+#'   \cr `TWO` \tab   `2+ ...` arguments are scalar `TRUE`.
 #' }
 #' The remainder of functions in this family sweep across or within `...` arguments, as specified by the arguments `across` and `within`:
 #' \tabular{rl}{
-#'      `tests(.)`   \tab Logically indexes `TRUE` values in each sweep.
-#'   \cr             \tab  
-#'   \cr    `w(.)`   \tab Numerically indexes `TRUE` values in each sweep (a swept \code{\link[base]{which}}).
-#'   \cr             \tab  
-#'   \cr `nors(.)`   \tab Evaluates each sweep for `0` `TRUE` values.
-#'   \cr `anys(.)`   \tab \code{...}*any*\code{...}.
-#'   \cr `alls(.)`   \tab \code{...}*only*\code{...}.
-#'   \cr `ones(.)`   \tab \code{...}*exactly `1`*\code{...}.
-#'   \cr `twos(.)`   \tab \code{...}*`2` or more*\code{...}.
+#'      `tests` \tab   Logically indexes `TRUE` values.
+#'   \cr    `w` \tab   Numerically indexes `TRUE` values.
+#'   \cr `anys` \tab   Checks for any `TRUE` values.
+#'   \cr `alls` \tab   Checks for only `TRUE` values.
+#'   \cr `nors` \tab   Checks for `0 TRUE` values.
+#'   \cr `ones` \tab   Checks for exactly `1 TRUE` value.
+#'   \cr `twos` \tab   Checks for `2+ TRUE` values.
 #' }
 #' @param x An \link[=atm_lgl]{atomic logical object} for all functions other than `is_in`, `not_in`, `has`, and `lacks`. Otherwise, an atomic object.
 #' @param y An atomic logical object. for all functions other than `is_in`, `not_in`, `has`, and `lacks`. Otherwise, an atomic object \link[=compatible]{compatible} with `x`.

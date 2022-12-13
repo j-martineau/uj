@@ -55,47 +55,40 @@ vlsply(x, fun, ..., proc. = NULL)
 }
 \description{
 \tabular{rl}{
-  \code{norply}   \tab Checks for \code{0} resulting \code{TRUE} values\eqn{^1}.
-\cr \code{anyply}   \tab     any
-\cr \code{allply}   \tab     only
-\cr \code{oneply}   \tab     exactly \code{1}
-\cr \code{twoply}   \tab     \code{2} or more
-\cr            \tab   
-\cr \code{atmply}   \tab \link[=av]{Atomizes} \code{x} and applies \code{fun} to elements of the result.
-\cr            \tab   
-\cr \code{mvcply}   \tab Applies \code{fun} to elements of \link[=atm_vec]{atomic multivec} \code{x}.
-\cr \code{vecply}   \tab     \link[=atm_vec]{atomic vec}
-\cr \code{vlsply}   \tab     \link[=ivls]{vlist}
-\cr            \tab   
-\cr \code{rowply}   \tab Applies \code{fun} to rows of \code{x}.
-\cr \code{colply}   \tab     columns
-\cr \code{dimply}   \tab     cells
+  \code{norply}   \tab Checks for \code{0} resulting \code{TRUE} values\eqn{^1}.
+\cr \code{oneply}   \tab Checks for \code{1} resulting \code{TRUE} values\eqn{^1}.
+\cr \code{twoply}   \tab Checks for \verb{2+} resulting \code{TRUE} values\eqn{^1}.
+\cr \code{anyply}   \tab Checks for \emph{any} resulting \code{TRUE} values\eqn{^1}.
+\cr \code{allply}   \tab Checks for \emph{only} resulting \code{TRUE} values\eqn{^1}.
+\cr \code{atmply}   \tab Applies \code{fun} to \link[=av]{atomized} \code{x}.
+\cr \code{mvcply}   \tab Applies \code{fun} to elements of \link[=atm_mvc]{atomic multivec} \code{x}.
+\cr \code{vecply}   \tab Applies \code{fun} to elements of \link[=atm_vec]{atomic vec} \code{x}.
+\cr \code{vlsply}   \tab Applies \code{fun} to elements of \link[=atm_vls]{atomic vlist} \code{x}.
+\cr \code{rowply}   \tab Applies \code{fun} to rows of \code{x}.
+\cr \code{colply}   \tab Applies \code{fun} to columns of \code{x}.
+\cr \code{dimply}   \tab Applies \code{fun} to cells of \code{x}.
 \cr            \tab   
 \cr    \code{ply}   \tab Offers all functionality of the above specialized \code{ply} functions.
 }
+   \eqn{^{1.}} These functions assume that applying \code{fun} produces \code{'logical'} results.
 }
 \section{The \code{proc} Argument}{
  When not \code{NULL}, the \code{proc} argument is an optional list with up to seven named elements, which give processing instructions as follows:
 \tabular{rll}{
-  \strong{Name} \tab   \strong{Value}   \tab \strong{Instructions}
-\cr  \code{arg} \tab   \code{'***'}     \tab Inspect \code{x} for a match to \link[=ppp]{property spec} \code{'***'}.
-\cr        \tab               \tab   
-\cr  \code{out} \tab   \code{'***'}     \tab Inspect result for a match to property spec \code{'***'}.
-\cr        \tab               \tab   
-\cr  \code{agg} \tab   \code{'nor'}     \tab Inspect result for \code{0} \code{TRUE} values.
-\cr  \code{agg} \tab   \code{'any'}     \tab     any
-\cr  \code{agg} \tab   \code{'all'}     \tab     only
-\cr  \code{agg} \tab   \code{'one'}     \tab     exactly \code{1}
-\cr  \code{agg} \tab   \code{'two'}     \tab     \code{2} or more
-\cr        \tab               \tab   
-\cr   \code{na} \tab   \code{'err'}     \tab Throw error if result has any \code{NA}s.
-\cr        \tab               \tab   
-\cr   \code{na} \tab   \code{FALSE}     \tab Replace resulting \code{NA}s with \code{FALSE}.
-\cr   \code{na} \tab   \code{TRUE}      \tab     \code{TRUE}.
-\cr        \tab               \tab   
-\cr   \code{a1} \tab   \code{TRUE}      \tab \link[=av]{Atomize} \code{x}.
-\cr   \code{a2} \tab   \code{TRUE}      \tab Atomize the result.
-\cr    \code{s} \tab   \code{TRUE}      \tab \link[base:simplify2array]{Simplify} the result.
+  \strong{Name} \tab   \strong{Value} \tab   \strong{Instructions}
+\cr  \code{arg} \tab   \code{'***'}   \tab   Checks \code{x} for match to \link[=ppp]{spec} \code{'***'}.
+\cr  \code{out} \tab   \code{'***'}   \tab   Checks result for match to spec \code{'***'}.
+\cr  \code{agg} \tab   \code{'nor'}   \tab   Inspect result for \code{0} \code{TRUE} values.
+\cr  \code{agg} \tab   \code{'one'}   \tab   Inspect result for \code{1} \code{TRUE} values.
+\cr  \code{agg} \tab   \code{'two'}   \tab   Inspect result for \verb{2+} \code{TRUE} values.
+\cr  \code{agg} \tab   \code{'any'}   \tab   Inspect result for \emph{any} \code{TRUE} values.
+\cr  \code{agg} \tab   \code{'all'}   \tab   Inspect result for \emph{only} \code{TRUE} values.
+\cr   \code{na} \tab   \code{'err'}   \tab   Throw error if result has any \code{NA}s.
+\cr   \code{na} \tab   \code{FALSE}   \tab   Replace resulting \code{NA}s with \code{FALSE}.
+\cr   \code{na} \tab   \code{TRUE}    \tab   Replace resulting \code{NA}s with \code{TRUE}.
+\cr   \code{a1} \tab   \code{TRUE}    \tab   \link[=av]{Atomize} \code{x}.
+\cr   \code{a2} \tab   \code{TRUE}    \tab   Atomize the result.
+\cr    \code{s} \tab   \code{TRUE}    \tab   \link[base:simplify2array]{Simplify} the result.
 }
 }
 

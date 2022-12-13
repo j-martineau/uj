@@ -77,10 +77,10 @@ An atomic, numeric object.
 \description{
 Unit functions take the following forms, where \code{aa} and \code{bb} are wildcard unit codes and \code{old} and \code{new} are user-supplied argument values.
 \tabular{rl}{
-  \code{aa2bb}   \tab Converts units from \code{aa} to \code{bb}.
-\cr \code{aa2u}   \tab   \code{...}from \code{aa} to \code{new}.
-\cr \code{u2bb}   \tab   \code{...}from \code{old} to \code{bb}.
-\cr  \code{u2u}   \tab   \code{...}from \code{old} to \code{new}.
+  \code{aa2bb}   \tab Converts units \emph{from} \code{aa} \emph{to} \code{bb}.
+\cr \code{aa2u}   \tab    \emph{from} \code{aa} \emph{to} \code{new}.
+\cr \code{u2bb}   \tab    \emph{from} \code{old} \emph{to} \code{bb}.
+\cr  \code{u2u}   \tab    \emph{from} \code{old} \emph{to} \code{new}.
 }
 Available units are:
 \tabular{rl}{
