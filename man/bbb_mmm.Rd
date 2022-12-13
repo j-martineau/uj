@@ -57,7 +57,7 @@
 \alias{pop_str}
 \alias{pop_uno}
 \alias{pop_whl}
-\title{Base + xmode properties}
+\title{\code{Base} + \code{xmode} properties}
 \usage{
 bbb_mmm(x, bbb, mmm, ...)
 
@@ -174,9 +174,9 @@ pop_whl(x, ...)
 \arguments{
 \item{x}{An R object}
 
-\item{bbb}{A character scalar containing an base property from \code{bbb_props()}.}
+\item{bbb}{A character scalar containing a \code{base} property from \code{bbb_props()}.}
 
-\item{mmm}{A character scalar containing an xmode property from \code{mmm_props()}.}
+\item{mmm}{A character scalar containing an \code{xmode} property from \code{mmm_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -188,18 +188,17 @@ pop_whl(x, ...)
 \tabular{rl}{
   \code{bbb_mmm_props}   \tab A character vector.
 \cr                 \tab   
-\cr     \code{bbb_mmm}   \tab A logical.
-\cr     \code{BBB_MMM}   \tab scalar.
+\cr     \code{bbb_mmm}   \tab A logical scalar.
+\cr     \code{BBB_MMM}   \tab   
 }
-\eqn{^{3.}} \code{xxx} and \code{yyy} represent base and extended mode properties, respectively.
 }
 \description{
 \tabular{rl}{
-  \code{bbb_mmm_props}   \tab Gets all possible base + xmode properties.
+  \code{bbb_mmm_props}   \tab Gets all \link[=bbb]{\code{base}} + \link[=mmm]{\code{xmode}} properties.
 \cr                 \tab   
-\cr     \code{bbb_mmm}   \tab Does \code{x} match base and xmode specs in arguments \code{bbb} and \code{mmm}.
+\cr     \code{bbb_mmm}   \tab Does \code{x} match \code{base} and \code{xmode} specs in arguments \code{bbb} and \code{mmm}, respectively.
 \cr                 \tab   
-\cr     \code{BBB_MMM}   \tab Does \code{x} matches base and xmode properties \code{BBB} and \code{MMM}.
+\cr     \code{BBB_MMM}   \tab Does \code{x} match \code{base} and \code{xmode} properties \code{'BBB'} and \code{'MMM'}, respectively?
 }
 }
 \section{Specifying count and value restrictions}{

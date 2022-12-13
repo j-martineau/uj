@@ -1,11 +1,11 @@
 #' @family props
-#' @title Base + xclass properties
+#' @title `Base` + `xclass` properties
 #' @description \tabular{rl}{
-#'     `bbb_ccc_props`   \tab Gets a character vector of all possible \link[=bbb]{`base`} + \link[=ccc]{`xclass`} properties.
-#'   \cr                 \tab  
-#'   \cr     `bbb_ccc`   \tab Evaluates whether `x` matches `base` and `xclass` specs in `bbb` and `ccc`
-#'   \cr                 \tab  
-#'   \cr     `BBB_CCC`   \tab Evaluates whether `x` matches `base` and `xclass` properties `'BBB'` and `'CCC'`.
+#'     `bbb_ccc_props`   \tab Gets all possible \link[=bbb]{`base`} + \link[=ccc]{`xclass`} properties.
+#'   \cr                 \tab   
+#'   \cr     `bbb_ccc`   \tab Does `x` match `base` and `xclass` specs in `bbb` and `ccc`, respectively?
+#'   \cr                 \tab   
+#'   \cr     `BBB_CCC`   \tab Does `x` match `base` and `xclass` properties `'BBB'` and `'CCC'`, respectively?
 #' }
 #' @param x An R object
 #' @param bbb A character scalar containing a `base` property from `bbb_props()`.

@@ -11,7 +11,7 @@
 \alias{ieHD}
 \alias{ieUD}
 \alias{neee}
-\title{Effective dimensionality properties}
+\title{Effective dimensionality (\code{effective-D}) properties}
 \usage{
 eee(x)
 
@@ -36,7 +36,7 @@ neee(x)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more effective dimensionality properties (i.e., from \code{eee_props()}). Effective dimensionality properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more \code{effective-D} properties (i.e., from \code{eee_props()}). \code{Effective-D} properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -47,17 +47,19 @@ neee(x)
 \value{
 \tabular{rl}{
   \code{is_eee_spec}   \tab A logical scalar.
+\cr      \code{ieee}   \tab   
+\cr      \code{ixxx}   \tab   
+\cr               \tab   
 \cr \code{eee_props}   \tab A character vector.
+\cr       \code{eee}   \tab   
+\cr               \tab   
 \cr      \code{neee}   \tab A numeric scalar.
-\cr      \code{ieee}   \tab A logical scalar.
-\cr      \code{ixxx}   \tab A logical scalar.
-\cr       \code{eee}   \tab A character vector.
 }
 }
 \description{
-Effective dimensionality of a non-empty object is defined as the number of dimensions with \verb{2+} positions. Effective dimensionality is undefined for empty objects.
+Effective dimensionality (\code{effective-D}) of a non-empty object is defined as the number of dimensions with \verb{2+} positions. \code{Effective-D} is undefined for empty objects.
 \tabular{rl}{
-  \code{'eUD'}   \tab Effectively \code{NaN}-dimensional (\code{NULL} or otherwise of length-\code{0} objects; effective dimensionality is undefined).
+  \code{'eUD'}   \tab Effectively \code{NaN}-dimensional (\code{NULL} or otherwise of length-\code{0} objects; \code{effective-D} is undefined).
 \cr             \tab  
 \cr   \code{'e0D'}   \tab Effectively \code{0}-dimensional (vectors, vlists, and arrays of length \code{1} and \verb{1 × 1} data.frames).
 \cr             \tab  
@@ -69,17 +71,12 @@ Effective dimensionality of a non-empty object is defined as the number of dimen
 }
 Effective dimensionality property functions are:
 \tabular{rl}{
-  \code{is_eee_spec}   \tab Evaluates whether \code{spec} is a valid effective dimensionality property specification.
-\cr                \tab  
-\cr  \code{eee_props}   \tab Gets a character vector of all possible effective dimensionality property values.
-\cr                \tab  
-\cr       \code{ixxx}   \tab Evaluates whether \code{x} possesses the effective dimensionality property \code{xxx} (a placeholder for any given effective dimensionality property value), subject to any restrictions in \code{...}.
-\cr                \tab  
-\cr       \code{ieee}   \tab Evaluates whether \code{x} possesses one or more (possibly pipe-delimited) effective dimensionality properties in \code{spec}, subject to any restrictions in \code{...}.
-\cr                \tab  
+  \code{is_eee_spec}   \tab Is \code{spec} an \code{effective-D} specification?
+\cr  \code{eee_props}   \tab Gets all possible \code{effective-D} property values.
+\cr       \code{ixxx}   \tab Does \code{x} match \code{effective-D} property \code{'EEE'}
+\cr       \code{ieee}   \tab Does \code{x} match \code{effective-D} spec \code{spec}?
 \cr       \code{neee}   \tab Gets the number of effective dimensions of \code{x}.
-\cr                \tab  
-\cr        \code{eee}   \tab Gets a character vector of all effective dimensionality properties of \code{x}.
+\cr        \code{eee}   \tab Gets all \code{effective-D} properties of \code{x}.
 }
 }
 \section{Specifying count and value restrictions}{
@@ -135,7 +132,6 @@ c(ieee(one1, "eUD"), ieee(one1, "e0D"), ieee(one1, "e1D"), ieee(one1, "e2D"), ie
 c(ieUD(one1), ie0D(one1), ie1D(one1), ie2D(one1), ieHD(one1))
 
 c(eee(udf1), eee(zro1), eee(one1), eee(two1), eee(hyp1), eee(hyp4))
-
 }
 \seealso{
 Other props: 

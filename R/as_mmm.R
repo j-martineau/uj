@@ -1,38 +1,38 @@
 #' @name as_mmm
 #' @family props
-#' @title Coerce to base or extended mode.
-#' @description Functions to coerce objects to \link[base:mode]{base mode} or \link[=mmm]{extended mode}:
+#' @title Coerce to base mode or `xmode`
+#' @description Functions to coerce objects to \link[base:mode]{base mode} or \link[=mmm]{`xmode`}:
 #' \tabular{rl}{
 #'   \cr `as_chr`   \tab Thinly wraps \code{\link[base:as.character]{base::as.character}}.
 #'   \cr `as_int`   \tab Thinly wraps \code{\link[base:as.integer]{base::as.integer}}.
 #'   \cr `as_num`   \tab Thinly wraps \code{\link[base:as.numeric]{base::as.numeric}}.
 #'   \cr `as_lgl`   \tab Thinly wraps \code{\link[base:as.logical]{base::as.logical}}.
-#'   \cr            \tab  
+#'   \cr            \tab   
 #'   \cr `as_clr`   \tab Coerces valid R character color representation values to hexadecimal character RGB color values.
-#'   \cr            \tab  
+#'   \cr            \tab   
 #'   \cr `as_fun`   \tab Returns `x` if it is a function, otherwise, search for a function named `x` and return it.
-#'   \cr            \tab  
-#'   \cr `as_ord`   \tab As extended mode ordered factor. Wraps `base::factor(x, levels = levs, ordered = TRUE)`.
-#'   \cr            \tab  
-#'   \cr `as_uno`   \tab As extended mode unordered factor. Wraps `base::factor(x, levels = levs, ordered = FALSE)`.
+#'   \cr            \tab   
+#'   \cr `as_ord`   \tab As `xmode 'ord'` (ordered factor). Wraps `base::factor(x, levels = levs, ordered = TRUE)`.
+#'   \cr            \tab   
+#'   \cr `as_uno`   \tab As `xmode 'uno'` (unordered factor). Wraps `base::factor(x, levels = levs, ordered = FALSE)`.
 #' }
 #' @param x For `as_clr`, an object of mode character; for `as_fun`, a character scalar function name or a function object; for `as_ord` and `as_uno`, an atomic object; and for all others, any R object.
 #' @param na A non-`NA` logical scalar indicating whether `NA` values are acceptable.
 #' @param levs A \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for `as_ord`).
 #' @param ... Further arguments passed to or from other methods.
 #' @return \tabular{rl}{
-#'       `as_fun`   \tab A function object.
-#'   \cr            \tab  
-#'       `as_chr`   \tab An object of mode `'character'`.
-#'   \cr `as_int`   \tab An object of mode `'integer'`.
-#'   \cr `as_lgl`   \tab An object of mode `'logical'`.
-#'   \cr `as_num`   \tab An object of mode `'numeric'`.
-#'   \cr            \tab  
-#'   \cr `as_clr`   \tab An object of extended mode `'clr'` (color valued character).
-#'   \cr            \tab  
-#'   \cr `as_ord`   \tab An object of extended mode `'ord'` (ordered factor).
-#'   \cr            \tab  
-#'   \cr `as_ord`   \tab An object of extended mode `'uno'` (unordered factor).
+#'       `as_fun`   \tab A function.
+#'   \cr            \tab   
+#'   \cr `as_chr`   \tab Object of mode `'character'`.
+#'   \cr `as_int`   \tab Object of mode `'integer'`.
+#'   \cr `as_lgl`   \tab Object of mode `'logical'`.
+#'   \cr `as_num`   \tab Object of mode `'numeric'`.
+#'   \cr            \tab   
+#'   \cr `as_clr`   \tab Object of `xmode 'clr'` (color valued character).
+#'   \cr            \tab   
+#'   \cr `as_ord`   \tab Object of `xmode 'ord'` (ordered factor).
+#'   \cr            \tab   
+#'   \cr `as_ord`   \tab Object of `xmode 'uno'` (unordered factor).
 #' }
 #' @examples
 #' bins. <- sample(c(0, 1), 10, replace = T)

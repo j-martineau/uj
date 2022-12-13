@@ -1,41 +1,36 @@
 #' @name ddd
 #' @family props
-#' @title Defined dimensionality properties
+#' @title Defined dimensionality (`defined-D`) properties
 #' @description An object's defined dimensionality is the number of dimensions on which its elements can be indexed.
-#' \cr\cr **Defined dimensioanlity properties**
+#' \cr\cr **`Defined-D` properties**
 #' \tabular{rcl}{
 #'       `'d0D'`   \tab `0`-D   \tab   The `NULL` object.
 #'   \cr `'d1D'`   \tab `1`-D   \tab   Vectors, \link[=ivls]{vlists}, `1D` arrays.
 #'   \cr `'d2D'`   \tab `2`-D   \tab   Data.frames and matrices.
 #'   \cr `'dHD'`   \tab Hyper-D \tab   Arrays with  `3+` dimensions.
 #' }
-#' **Defined dimensioanlity functions**
+#' **`Defined-D` functions**
 #' \tabular{rl}{
-#'     `is_ddd_spec`   \tab Evaluates whether `spec` is a valid defined dimensionality property specification.
-#'   \cr               \tab  
-#'   \cr `ddd_props`   \tab Gets a character vector of all possible defined dimensionality property values.
-#'   \cr               \tab  
+#'     `is_ddd_spec`   \tab Is `spec` a `defined-D` property spec?
+#'   \cr `ddd_props`   \tab Gets all possible `defined-D` property values.
 #'   \cr      `nddd`   \tab Gets the number of defined dimensions of `x`.
-#'   \cr               \tab  
-#'   \cr      `iddd`   \tab Evaluates whether `x` possesses one or more (possibly pipe-delimited) defined dimensionality properties in `spec` (subject to any restrictions in `...`).
-#'   \cr               \tab  
-#'   \cr      `ixxx`   \tab Evaluates whether `x` possesses the defined dimensionality property `xxx`\eqn{^1} (subject to any restrictions in `...`).
-#'   \cr               \tab  
-#'   \cr       `ddd`   \tab Gets a character vector containing all defined dimensionality properties possessed by `x`.
+#'   \cr      `iddd`   \tab Does `x` match `defined-D` spec `spec`?
+#'   \cr      `iDDD`   \tab Does `x` match `defined-D` property `DDD`?
+#'   \cr       `ddd`   \tab Gets all `defined-D` properties pf `x`.
 #' }
-#' \eqn{^{1.}} A defined dimensionality property.
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more defined dimensionality properties from `ddd_props()`. Defined dimensionality properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `defined-D` properties from `ddd_props()`. `defined-D` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `ddd_vals`   \tab A character vector.
-#'   \cr   `nddd`   \tab A numeric scalar.
+#'   \cr    `ddd`   \tab   
+#'   \cr            \tab   
 #'   \cr   `iddd`   \tab A logical scalar.
-#'   \cr   `ixxx`   \tab A logical scalar\eqn{^2}.
-#'   \cr    `ddd`   \tab A character vector.
+#'   \cr   `iDDD`   \tab   
+#'   \cr            \tab   
+#'   \cr   `nddd`   \tab A numeric scalar.
 #' }
-#' \eqn{^{2.}} `xxx` is a defined dimensionality property.
 #' @examples
 #' is_ddd_spec("d1D|d2D")
 #' nddd(matrix(1))

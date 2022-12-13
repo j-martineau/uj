@@ -219,7 +219,7 @@
 \alias{cmp_whl_scl}
 \alias{cmp_whl_vec}
 \alias{cmp_whl_vls}
-\title{Completeness + extended mode + extended class properties}
+\title{Complete + \code{xmode} + \code{xclass} properties}
 \usage{
 cmp_mmm_ccc(x, mmm, ccc, ...)
 
@@ -660,9 +660,9 @@ cmp_whl_vls(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{mmm}{A character scalar extended mode property from \code{mmm_props()}.}
+\item{mmm}{A character scalar \code{xmode} property from \code{mmm_props()}.}
 
-\item{ccc}{A character scalar extended class property from \code{ccc_props()}.}
+\item{ccc}{A character scalar \code{xclass} property from \code{ccc_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -673,21 +673,19 @@ cmp_whl_vls(x, ...)
 \value{
 \tabular{rl}{
   \code{cmp_mmm_ccc_props}   \tab A character vector.
+\cr                     \tab   
 \cr     \code{cmp_mmm_ccc}   \tab A logical scalar.
-\cr     \code{cmp_xxx_yyy}   \tab A logical scalar\eqn{^3}.
+\cr     \code{cmp_MMM_CCC}   \tab   
 }
-\eqn{^{3.}} \code{xxx} is an extended mode property; \code{yyy} is an extended class property.
 }
 \description{
 \tabular{rl}{
-  \code{cmp_mmm_ccc_props}   \tab Gets a character vector of all possible completeness + extended mode + extended class properties.
+  \code{cmp_mmm_ccc_props}   \tab Gets all possible \link[=icmp]{complete} + \link[=mmm]{\code{xmode}} + \link[=ccc]{\code{xclass}} properties.
 \cr                     \tab   
-\cr     \code{cmp_mmm_ccc}   \tab Evaluates whether \code{x} is complete and matches properties in arguments \code{mmm\eqn{^1}} and \code{ccc\eqn{^2}} (subject to any restrictions in \code{...}).
+\cr     \code{cmp_mmm_ccc}   \tab Is \code{x} complete and does it match \code{xmode} and \code{xclass} specs in arguments \code{mmm} and \code{ccc}, respectively?
 \cr                     \tab   
-\cr     \code{cmp_xxx_yyy}   \tab Evaluates whether \code{x} is complete and matches properties \code{xxx\eqn{^1}} and \code{yyy\eqn{^2}} (subject to any restrictions in \code{...}).
+\cr     \code{cmp_MMM_CCC}   \tab Is \code{x} complete and does it match \code{xmode} and \code{xclass} properties \code{'MMM'} and \code{'CCC'}, respectively?
 }
-\eqn{^{1.}} An extended mode property.
-\cr \eqn{^{2.}} An extended class property.
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:

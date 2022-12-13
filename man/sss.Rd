@@ -13,7 +13,7 @@
 \alias{irow}
 \alias{isld}
 \alias{isqr}
-\title{Shape properties}
+\title{\code{Shape} properties}
 \usage{
 sss(x)
 
@@ -42,7 +42,7 @@ isqr(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{Either \code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more shape properties (i.e., from \code{sss_vals()}). Shape properties in \code{spec} may be pipe-delimited. If there are multiple shape properties in \code{spec}, \code{x} is inspected for any match to any shape property in \code{spec}.}
+\item{spec}{Either \code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more \code{shape} properties (i.e., from \code{sss_vals()}). \code{Shape} properties in \code{spec} may be pipe-delimited. If there are multiple \code{shape} properties in \code{spec}, \code{x} is inspected for any match to any shape property in \code{spec}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -52,16 +52,16 @@ isqr(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_sss_spec}   \tab A logical
-\cr      \code{iSSS}   \tab scalar.
+  \code{is_sss_spec}   \tab A logical scalar.
+\cr      \code{iSSS}   \tab   
 \cr      \code{isss}   \tab   
 \cr               \tab   
-\cr  \code{sss_vals}   \tab A character
-\cr       \code{sss}   \tab vector.
+\cr  \code{sss_vals}   \tab A character vector.
+\cr       \code{sss}   \tab   
 }
 }
 \description{
-\strong{Shape properties} \tabular{rcl}{
+\code{Shape} properties are as defined in the following table: \tabular{rcl}{
   \code{'emp'}   \tab empty  \tab   \code{0} length (but not \code{NULL}).
 \cr \code{'pnt'}   \tab point  \tab   \code{1} element or cell\eqn{^1}.
 \cr \code{'col'}   \tab column \tab   \code{1} row by \verb{2+} columns.
@@ -72,13 +72,16 @@ isqr(x, ...)
 \cr \code{'sld'}   \tab solid  \tab   \verb{2+} positions in \verb{3+} dimensions.
 }
   \eqn{^{1.}} \verb{1x1} data.frames; length-\code{1} arrays, vectors, \link[=ivls]{vlists}.
-\cr   \eqn{^{2.}} Length-\verb{2+} vectors, arrays of \verb{2+} positions in \code{1} dimension, row/column data.frames.
-\cr\cr \strong{Shape property functions} \tabular{rl}{
-  \code{is_sss_spec}   \tab Is \code{spec} is a shape property spec?
-\cr \code{sss_props}   \tab Gets all possible shape properties.
-\cr      \code{isss}   \tab Does \code{x} match shape spec \code{spec}?
-\cr      \code{iSSS}   \tab Does \code{x} match shape property \code{SSS}?
-\cr       \code{sss}   \tab Gets all shape properties matched to \code{x}.
+\cr
+  \eqn{^{2.}} Length-\verb{2+} vectors, arrays of \verb{2+} positions in \code{1} dimension, row/column data.frames.
+\cr\cr
+\strong{Shape property functions}
+\tabular{rl}{
+  \code{is_sss_spec}   \tab Is \code{spec} a \code{shape} property spec?
+\cr \code{sss_props}   \tab Gets all possible \code{shape} properties.
+\cr      \code{isss}   \tab Does \code{x} match \code{shape} spec \code{spec}?
+\cr      \code{iSSS}   \tab Does \code{x} match the \code{shape} property \code{SSS}?
+\cr       \code{sss}   \tab Gets all \code{shape} properties matched to \code{x}.
 }
 }
 \section{Specifying count and value restrictions}{

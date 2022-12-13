@@ -219,7 +219,7 @@
 \alias{whl_scl}
 \alias{whl_vec}
 \alias{whl_vls}
-\title{\code{xmode + xclass} properties}
+\title{\code{xmode} + \code{xclass} properties}
 \usage{
 mmm_ccc(x, mmm, ccc, ...)
 
@@ -660,9 +660,9 @@ whl_vls(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{mmm}{A character scalar extended mode property from \code{mmm_props()}.}
+\item{mmm}{A character scalar \code{xmode} property from \code{mmm_props()}.}
 
-\item{ccc}{A character scalar extended class property from \code{ccc_props()}.}
+\item{ccc}{A character scalar \code{xclass} property from \code{ccc_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -674,19 +674,18 @@ whl_vls(x, ...)
 \tabular{rl}{
   \code{mmm_ccc_props}   \tab A character vector.
 \cr                 \tab   
-\cr     \code{MMM_CCC}   \tab A logical
-\cr     \code{mmm_ccc}   \tab scalar.
+\cr     \code{mmm_ccc}   \tab A logical scalar.
+\cr     \code{MMM_CCC}   \tab   
 }
 }
 \description{
 \tabular{rl}{
-  \code{mmm_ccc_props}   \tab Gets all \code{\link[=mmm]{xmode} + \link[=ccc]{xclass}} properties.
+  \code{mmm_ccc_props}   \tab Gets all \link[=mmm]{\code{xmode}} + \link[=ccc]{\code{xclass}} properties.
 \cr                 \tab   
-\cr     \code{MMM_CCC}   \tab Does \code{x} match \verb{xmode MMM} and \verb{xclass CCC}?
+\cr     \code{mmm_ccc}   \tab Does \code{x} match \code{xmode} and \code{xclass} specs in arguments \code{mmm} and \code{ccc}, respectively?
 \cr                 \tab   
-\cr     \code{mmm_ccc}   \tab Does \code{x} match xmode argument \code{mmm} and xclass argument \code{ccc}?
+\cr     \code{MMM_CCC}   \tab Does \code{x} match \code{xmode} and \code{xclass} properties \code{ MMM} and \code{CCC}, respectively?
 }
-\eqn{^{1.}} subject to any restrictions in \code{...}.
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:

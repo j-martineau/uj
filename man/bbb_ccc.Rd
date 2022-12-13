@@ -35,7 +35,7 @@
 \alias{rcr_scl}
 \alias{rcr_vec}
 \alias{rcr_vls}
-\title{Base + xclass properties}
+\title{\code{Base} + \code{xclass} properties}
 \usage{
 bbb_ccc(x, bbb, ccc, ...)
 
@@ -128,11 +128,11 @@ rcr_vls(x, ...)
 }
 \description{
 \tabular{rl}{
-  \code{bbb_ccc_props}   \tab Gets a character vector of all possible \link[=bbb]{\code{base}} + \link[=ccc]{\code{xclass}} properties.
-\cr                 \tab  
-\cr     \code{bbb_ccc}   \tab Evaluates whether \code{x} matches \code{base} and \code{xclass} specs in \code{bbb} and \code{ccc}
-\cr                 \tab  
-\cr     \code{BBB_CCC}   \tab Evaluates whether \code{x} matches \code{base} and \code{xclass} properties \code{'BBB'} and \code{'CCC'}.
+  \code{bbb_ccc_props}   \tab Gets all possible \link[=bbb]{\code{base}} + \link[=ccc]{\code{xclass}} properties.
+\cr                 \tab   
+\cr     \code{bbb_ccc}   \tab Does \code{x} match \code{base} and \code{xclass} specs in \code{bbb} and \code{ccc}, respectively?
+\cr                 \tab   
+\cr     \code{BBB_CCC}   \tab Does \code{x} match \code{base} and \code{xclass} properties \code{'BBB'} and \code{'CCC'}, respectively?
 }
 }
 \section{Specifying count and value restrictions}{

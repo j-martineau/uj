@@ -12,7 +12,7 @@
 \alias{inll}
 \alias{ipop}
 \alias{ircr}
-\title{Base properties}
+\title{\code{Base} properties}
 \usage{
 bbb(x)
 
@@ -39,7 +39,7 @@ ircr(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more base properties (i.e., from \code{bbb_props()}). Base properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more \code{base} properties (i.e., from \code{bbb_props()}). \code{Base} properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -49,35 +49,35 @@ ircr(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_bbb_spec}   \tab A logical
-\cr      \code{ibbb}   \tab scalar.
+  \code{is_bbb_spec}   \tab A logical scalar.
+\cr      \code{ibbb}   \tab   
 \cr      \code{iBBB}   \tab   
 \cr               \tab   
-\cr \code{bbb_props}   \tab A character
-\cr       \code{bbb}   \tab vector.
+\cr \code{bbb_props}   \tab A character vector.
+\cr       \code{bbb}   \tab   
 }
-\eqn{^{2.}} \code{xxx} represents a base property.
 }
 \description{
-\strong{Base property values}
-An object's base properties are defined by its most basic structural properties as described in the following table:
+An object's \code{base} properties are defined by its most basic structural properties as described in the following table:
 \tabular{rll}{
-  \code{'atm'}   \tab Atomic      \tab Atomic objects.
-\cr \code{'def'}   \tab Defined     \tab Non-\code{NULL} objects.
+  \code{'atm'}   \tab Atomic      \tab Atomic objects.
+\cr \code{'rcr'}   \tab Recursive   \tab Data.frames and lists.
+\cr           \tab             \tab   
+\cr \code{'def'}   \tab Defined     \tab Non-\code{NULL} objects.
+\cr \code{'nll'}   \tab Null        \tab The \code{NULL} object.
+\cr           \tab             \tab   
 \cr \code{'nil'}   \tab Nil         \tab \code{0}-length, non-\code{NULL} objects..
-\cr \code{'nll'}   \tab Null        \tab The \code{NULL} object.
-\cr \code{'pop'}   \tab Populated   \tab Length-\verb{1+} objects.
-\cr \code{'rcr'}   \tab Recursive   \tab Data.frames and lists.
+\cr \code{'pop'}   \tab Populated   \tab Length-\verb{1+} objects.
 \cr           \tab             \tab   
 \cr \code{'fun'}   \tab Function    \tab Function objects or character scalar names of functions accessible to the calling function.
 }
-\strong{Base property functions}
+\strong{Functions}
 \tabular{rl}{
-  \code{is_bbb_spec}   \tab Is \code{spec} is a base property spec?
-\cr \code{bbb_props}   \tab Gets all base property values.
-\cr      \code{ibbb}   \tab Does \code{x} match base property spec \code{spec}?
-\cr      \code{iBBB}   \tab Does \code{x} match property \code{BBB}?
-\cr       \code{bbb}   \tab Gets all of \code{x}'s base properties.
+  \code{is_bbb_spec}   \tab Is \code{spec} a \code{base} property spec?
+\cr \code{bbb_props}   \tab Gets all \code{base} property values.
+\cr      \code{ibbb}   \tab Does \code{x} match \code{base} property spec \code{spec}?
+\cr      \code{iBBB}   \tab Does \code{x} match \code{base} property \code{'BBB'}?
+\cr       \code{bbb}   \tab Gets all of \code{x}'s \code{base} properties.
 }
 }
 \section{Specifying count and value restrictions}{

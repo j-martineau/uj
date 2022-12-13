@@ -10,7 +10,7 @@
 \alias{inas}
 \alias{ioks}
 \alias{iprt}
-\title{Integrity properties}
+\title{\code{Integrity} properties}
 \usage{
 iii(x)
 
@@ -33,7 +33,7 @@ iprt(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more integrity properties (i.e., from \code{iii_props()}). Integrity properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more \code{integrity} properties (i.e., from \code{iii_props()}). \code{Integrity} properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -43,30 +43,33 @@ iprt(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_iii_spec}   \tab A logical
-\cr      \code{iiii}   \tab scalar.
+  \code{is_iii_spec}   \tab A logical scalar.
+\cr      \code{iiii}   \tab   
 \cr      \code{iIII}   \tab   
 \cr               \tab   
-\cr \code{iii_props}   \tab A character
-\cr       \code{iii}   \tab vector.
+\cr \code{iii_props}   \tab A character vector.
+\cr       \code{iii}   \tab   
 }
 }
 \description{
-Integrity properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frame}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
-\cr\cr \strong{Integrity properties} \tabular{rll}{
-  \code{'cmp'}   \tab Complete    \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing \strong{no} \code{NA} values.
-\cr \code{'mss'}   \tab Missing     \tab   \code{...}containing \strong{only} \code{NA} values.
-\cr \code{'prt'}   \tab Partial     \tab    \code{...}containing \strong{both} \code{NA} and non-\code{NA} values.
-\cr           \tab             \tab  
-\cr \code{'nas'}   \tab NA scalar   \tab Atomic scalar \code{NA}.
-\cr \code{'oks'}   \tab OK scalar   \tab Non-\code{NA} atomic scalar.
+\code{Integrity} properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frame}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
+\cr\cr
+\strong{\code{Integrity} properties}
+\tabular{rll}{
+  \code{'cmp'}   \tab Complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing \strong{no} \code{NA} values.
+\cr \code{'mss'}   \tab Missing       \tab    containing \strong{only} \code{NA} values.
+\cr \code{'prt'}   \tab Partial       \tab    containing \code{NA} \strong{and} non-\code{NA} values.
+\cr           \tab               \tab   
+\cr \code{'nas'}   \tab \code{NA} scalar   \tab Atomic scalar \code{NA}.
+\cr \code{'oks'}   \tab \code{OK} scalar   \tab Non-\code{NA} atomic scalar.
 }
-\strong{Integrity property functions} \tabular{rl}{
-  \code{is_iii_spec}   \tab Is \code{spec} an integrity property specification?
-\cr \code{iii_props}   \tab Gets all possible integrity property values.
-\cr      \code{iIII}   \tab Does \code{x} match integrity property \code{'III'}?
-\cr      \code{iiii}   \tab Dpes \code{x} match integrity spec \code{spec}?
-\cr       \code{iii}   \tab Gets all integrity properties possessed by \code{x}.
+\strong{\code{Integrity} property functions}
+\tabular{rl}{
+  \code{is_iii_spec}   \tab Is \code{spec} an \code{integrity} property spec?
+\cr \code{iii_props}   \tab Gets all possible \code{integrity} property values.
+\cr      \code{iiii}   \tab Dpes \code{x} match \code{integrity} spec \code{spec}?
+\cr      \code{iIII}   \tab Does \code{x} match \code{integrity} property \code{'III'}?
+\cr       \code{iii}   \tab Gets all \code{integrity} properties possessed by \code{x}.
 }
 }
 \section{Specifying count and value restrictions}{

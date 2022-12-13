@@ -13,7 +13,7 @@
 \alias{iscl}
 \alias{ivec}
 \alias{ivls}
-\title{Extended class (\code{exclass}) properties}
+\title{Extended class (\code{xclass}) properties}
 \usage{
 ccc(x)
 
@@ -42,7 +42,7 @@ ivls(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more \code{exclass} properties (i.e., from \code{ccc_props()}). \code{exclass} properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more \code{xclass} properties (i.e., from \code{ccc_props()}). \code{xclass} properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -52,37 +52,36 @@ ivls(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_ccc_spec}   \tab A logical
-\cr      \code{iCCC}   \tab scalar.
+  \code{is_ccc_spec}   \tab A logical scalar.
 \cr      \code{iccc}   \tab   
+\cr      \code{iCCC}   \tab   
 \cr               \tab   
-\cr \code{ccc_props}   \tab A character
-\cr       \code{ccc}   \tab vector.
+\cr \code{ccc_props}   \tab A character vector.
+\cr       \code{ccc}   \tab   
 }
 }
 \description{
-NOTE: \code{exclass}es are dynamically evaluated rather than formally defined.
-\cr\cr \strong{exclass properties}
+\code{xclass} properties are defined as follows:
 \tabular{rll}{
-   \code{arr}   \tab array    \tab   Arrays.
-\cr \code{mat}   \tab matrix   \tab   Matrices.
-\cr \code{dtf}   \tab dtf      \tab   Data.frames.
-\cr \code{vls}   \tab vlist    \tab   Vector-lists\eqn{^1}.
-\cr \code{gen}   \tab generic  \tab   Vectors, vlists, & arrays.
-\cr \code{scl}   \tab scalar   \tab   Length-\code{1} generics
-\cr \code{mvc}   \tab multivec \tab   Length-\verb{2+}, \link[=ilin]{linear} generics.
-\cr \code{vec}   \tab vec      \tab   Scalars, multivecs.
+   \code{arr}   \tab \code{array}    \tab   Arrays.
+\cr \code{mat}   \tab \code{matrix}   \tab   Matrices.
+\cr \code{dtf}   \tab \code{dtf}      \tab   Data.frames.
+\cr \code{vls}   \tab \code{vlist}    \tab   Vector-lists\eqn{^1}.
+\cr \code{gen}   \tab \code{generic}  \tab   Vectors, vlists, and arrays.
+\cr \code{scl}   \tab \code{scalar}   \tab   Length-\code{1} generics
+\cr \code{mvc}   \tab \code{multivec} \tab   Length-\verb{2+}, \link[=ilin]{linear} generics.
+\cr \code{vec}   \tab \code{vec}      \tab   Scalars and multivecs.
 }
 \eqn{^{1.}} i.e., a non-data.frame list.
-\cr\cr \strong{exclass functions}
+\cr\cr
+\strong{xclass functions}
 \tabular{rl}{
-  \code{is_ccc_spec}   \tab Is \code{spec} is an \code{exclass} spec?
-\cr \code{ccc_props}   \tab Gets all possible \code{exclass} values.
-\cr      \code{iCCC}   \tab Does \code{x} match \code{exclass} property \code{CCC}\eqn{^2}?
-\cr      \code{iccc}   \tab Does \code{x} match \code{exclass} spec \code{spec}\eqn{^2}?
-\cr       \code{ccc}   \tab Gets all \code{exclass} properties matching \code{x}.
+  \code{is_ccc_spec}   \tab Is \code{spec} an \code{xclass} spec?
+\cr \code{ccc_props}   \tab Gets all possible \code{xclass} values.
+\cr      \code{iccc}   \tab Does \code{x} match \code{xclass} spec \code{spec}?
+\cr      \code{iCCC}   \tab Does \code{x} match \code{xclass} property \code{'CCC'}?
+\cr       \code{ccc}   \tab Gets all \code{xclass} properties matching \code{x}.
 }
-\eqn{^{2.}} subject to any restrictions in \code{...}.
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:

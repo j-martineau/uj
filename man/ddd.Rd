@@ -10,7 +10,7 @@
 \alias{id2D}
 \alias{idHD}
 \alias{nddd}
-\title{Defined dimensionality properties}
+\title{Defined dimensionality (\code{defined-D}) properties}
 \usage{
 ddd(x)
 
@@ -33,7 +33,7 @@ nddd(x)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more defined dimensionality properties from \code{ddd_props()}. Defined dimensionality properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more \code{defined-D} properties from \code{ddd_props()}. \code{defined-D} properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -44,37 +44,32 @@ nddd(x)
 \value{
 \tabular{rl}{
   \code{ddd_vals}   \tab A character vector.
-\cr   \code{nddd}   \tab A numeric scalar.
+\cr    \code{ddd}   \tab   
+\cr            \tab   
 \cr   \code{iddd}   \tab A logical scalar.
-\cr   \code{ixxx}   \tab A logical scalar\eqn{^2}.
-\cr    \code{ddd}   \tab A character vector.
+\cr   \code{iDDD}   \tab   
+\cr            \tab   
+\cr   \code{nddd}   \tab A numeric scalar.
 }
-\eqn{^{2.}} \code{xxx} is a defined dimensionality property.
 }
 \description{
 An object's defined dimensionality is the number of dimensions on which its elements can be indexed.
-\cr\cr \strong{Defined dimensioanlity properties}
+\cr\cr \strong{\code{Defined-D} properties}
 \tabular{rcl}{
   \code{'d0D'}   \tab \code{0}-D   \tab   The \code{NULL} object.
 \cr \code{'d1D'}   \tab \code{1}-D   \tab   Vectors, \link[=ivls]{vlists}, \verb{1D} arrays.
 \cr \code{'d2D'}   \tab \code{2}-D   \tab   Data.frames and matrices.
 \cr \code{'dHD'}   \tab Hyper-D \tab   Arrays with  \verb{3+} dimensions.
 }
-\strong{Defined dimensioanlity functions}
+\strong{\code{Defined-D} functions}
 \tabular{rl}{
-  \code{is_ddd_spec}   \tab Evaluates whether \code{spec} is a valid defined dimensionality property specification.
-\cr               \tab  
-\cr \code{ddd_props}   \tab Gets a character vector of all possible defined dimensionality property values.
-\cr               \tab  
+  \code{is_ddd_spec}   \tab Is \code{spec} a \code{defined-D} property spec?
+\cr \code{ddd_props}   \tab Gets all possible \code{defined-D} property values.
 \cr      \code{nddd}   \tab Gets the number of defined dimensions of \code{x}.
-\cr               \tab  
-\cr      \code{iddd}   \tab Evaluates whether \code{x} possesses one or more (possibly pipe-delimited) defined dimensionality properties in \code{spec} (subject to any restrictions in \code{...}).
-\cr               \tab  
-\cr      \code{ixxx}   \tab Evaluates whether \code{x} possesses the defined dimensionality property \code{xxx}\eqn{^1} (subject to any restrictions in \code{...}).
-\cr               \tab  
-\cr       \code{ddd}   \tab Gets a character vector containing all defined dimensionality properties possessed by \code{x}.
+\cr      \code{iddd}   \tab Does \code{x} match \code{defined-D} spec \code{spec}?
+\cr      \code{iDDD}   \tab Does \code{x} match \code{defined-D} property \code{DDD}?
+\cr       \code{ddd}   \tab Gets all \code{defined-D} properties pf \code{x}.
 }
-\eqn{^{1.}} A defined dimensionality property.
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:

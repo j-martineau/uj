@@ -1,23 +1,22 @@
 #' @family props
-#' @title Completeness + extended mode properties
+#' @title Complete + `xmode` properties
 #' @description \tabular{rl}{
-#'     `cmp_mmm_props`   \tab Gets a character vector of all possible \link[=icmp]{completeness} + \link[=mmm]{extended mode} properties.
+#'     `cmp_mmm_props`   \tab Gets all possible \link[=icmp]{complete} + \link[=mmm]{`xmode`} properties.
 #'   \cr                 \tab  
-#'   \cr     `cmp_mmm`   \tab Evaluates whether `x` is complete and matches the extended mode spec in argument `mmm` (subject to any restrictions in `...`).
+#'   \cr     `cmp_mmm`   \tab Is `x` complete and does it match the `xmode` spec in argument `mmm`?
 #'   \cr                 \tab  
-#'   \cr     `cmp_xxx`   \tab Evaluates whether `x` is complete and matches extended mode \code{xxx\eqn{^1}} (subject to any restrictions in `...`).
+#'   \cr     `cmp_MMM`   \tab Is `x` complete and does it match `xmode` property `'MMM'`?
 #' }
-#' \eqn{^{1.}} An extended mode property.
 #' @param x An R object
-#' @param mmm A character scalar containing an extended mode property from `mmm_props()`.
+#' @param mmm A character scalar containing an `xmode` property from `mmm_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `cmp_mmm_props`   \tab A character vector.
+#'   \cr                 \tab   
 #'   \cr     `cmp_mmm`   \tab A logical scalar.
-#'   \cr     `cmp_xxx`   \tab A logical  calar\eqn{^1}.
+#'   \cr     `cmp_MMM`   \tab   
 #' }
-#' \eqn{^{2.}} `xxx` is an extended mode property.
 #' @examples
 #' cmp_mmm_props()
 #' cmp_mmm(letters, "ch1")

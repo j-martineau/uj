@@ -1,25 +1,23 @@
 #' @family props
-#' @title Completeness + extended mode + extended class properties
+#' @title Complete + `xmode` + `xclass` properties
 #' @description \tabular{rl}{
-#'     `cmp_mmm_ccc_props`   \tab Gets a character vector of all possible completeness + extended mode + extended class properties.
+#'     `cmp_mmm_ccc_props`   \tab Gets all possible \link[=icmp]{complete} + \link[=mmm]{`xmode`} + \link[=ccc]{`xclass`} properties.
 #'   \cr                     \tab   
-#'   \cr     `cmp_mmm_ccc`   \tab Evaluates whether `x` is complete and matches properties in arguments \code{mmm\eqn{^1}} and \code{ccc\eqn{^2}} (subject to any restrictions in `...`).
+#'   \cr     `cmp_mmm_ccc`   \tab Is `x` complete and does it match `xmode` and `xclass` specs in arguments `mmm` and `ccc`, respectively?
 #'   \cr                     \tab   
-#'   \cr     `cmp_xxx_yyy`   \tab Evaluates whether `x` is complete and matches properties \code{xxx\eqn{^1}} and \code{yyy\eqn{^2}} (subject to any restrictions in `...`).
+#'   \cr     `cmp_MMM_CCC`   \tab Is `x` complete and does it match `xmode` and `xclass` properties `'MMM'` and `'CCC'`, respectively?
 #' }
-#' \eqn{^{1.}} An extended mode property.
-#' \cr \eqn{^{2.}} An extended class property.
 #' @param x An R object.
-#' @param mmm A character scalar extended mode property from `mmm_props()`.
-#' @param ccc A character scalar extended class property from `ccc_props()`.
+#' @param mmm A character scalar `xmode` property from `mmm_props()`.
+#' @param ccc A character scalar `xclass` property from `ccc_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `cmp_mmm_ccc_props`   \tab A character vector.
+#'   \cr                     \tab   
 #'   \cr     `cmp_mmm_ccc`   \tab A logical scalar.
-#'   \cr     `cmp_xxx_yyy`   \tab A logical scalar\eqn{^3}.
+#'   \cr     `cmp_MMM_CCC`   \tab   
 #' }
-#' \eqn{^{3.}} `xxx` is an extended mode property; `yyy` is an extended class property.
 #' @examples
 #' cmp_mmm_ccc_props()
 #' cmp_mmm_ccc(letters, "ch1", "vec")

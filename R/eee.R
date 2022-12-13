@@ -1,9 +1,9 @@
 #' @name eee
 #' @family props
-#' @title Effective dimensionality properties
-#' @description Effective dimensionality of a non-empty object is defined as the number of dimensions with `2+` positions. Effective dimensionality is undefined for empty objects.
+#' @title Effective dimensionality (`effective-D`) properties
+#' @description Effective dimensionality (`effective-D`) of a non-empty object is defined as the number of dimensions with `2+` positions. `Effective-D` is undefined for empty objects.
 #' \tabular{rl}{
-#'         `'eUD'`   \tab Effectively `NaN`-dimensional (`NULL` or otherwise of length-`0` objects; effective dimensionality is undefined).
+#'         `'eUD'`   \tab Effectively `NaN`-dimensional (`NULL` or otherwise of length-`0` objects; `effective-D` is undefined).
 #'   \cr             \tab  
 #'   \cr   `'e0D'`   \tab Effectively `0`-dimensional (vectors, vlists, and arrays of length `1` and `1 × 1` data.frames).
 #'   \cr             \tab  
@@ -15,29 +15,26 @@
 #' }
 #' Effective dimensionality property functions are:
 #' \tabular{rl}{
-#'      `is_eee_spec`   \tab Evaluates whether `spec` is a valid effective dimensionality property specification.
-#'   \cr                \tab  
-#'   \cr  `eee_props`   \tab Gets a character vector of all possible effective dimensionality property values.
-#'   \cr                \tab  
-#'   \cr       `ixxx`   \tab Evaluates whether `x` possesses the effective dimensionality property `xxx` (a placeholder for any given effective dimensionality property value), subject to any restrictions in `...`.
-#'   \cr                \tab  
-#'   \cr       `ieee`   \tab Evaluates whether `x` possesses one or more (possibly pipe-delimited) effective dimensionality properties in `spec`, subject to any restrictions in `...`.
-#'   \cr                \tab  
+#'      `is_eee_spec`   \tab Is `spec` an `effective-D` specification?
+#'   \cr  `eee_props`   \tab Gets all possible `effective-D` property values.
+#'   \cr       `ixxx`   \tab Does `x` match `effective-D` property `'EEE'`
+#'   \cr       `ieee`   \tab Does `x` match `effective-D` spec `spec`?
 #'   \cr       `neee`   \tab Gets the number of effective dimensions of `x`.
-#'   \cr                \tab  
-#'   \cr        `eee`   \tab Gets a character vector of all effective dimensionality properties of `x`.
+#'   \cr        `eee`   \tab Gets all `effective-D` properties of `x`.
 #' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more effective dimensionality properties (i.e., from `eee_props()`). Effective dimensionality properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `effective-D` properties (i.e., from `eee_props()`). `Effective-D` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `is_eee_spec`   \tab A logical scalar.
+#'   \cr      `ieee`   \tab   
+#'   \cr      `ixxx`   \tab   
+#'   \cr               \tab   
 #'   \cr `eee_props`   \tab A character vector.
+#'   \cr       `eee`   \tab   
+#'   \cr               \tab   
 #'   \cr      `neee`   \tab A numeric scalar.
-#'   \cr      `ieee`   \tab A logical scalar.
-#'   \cr      `ixxx`   \tab A logical scalar.
-#'   \cr       `eee`   \tab A character vector.
 #' }
 #' @examples
 #' a. <- "a"
@@ -77,7 +74,6 @@
 #' c(ieUD(one1), ie0D(one1), ie1D(one1), ie2D(one1), ieHD(one1))
 #'
 #' c(eee(udf1), eee(zro1), eee(one1), eee(two1), eee(hyp1), eee(hyp4))
-#'
 #' @export
 eee <- function(x) {
   out <- NULL

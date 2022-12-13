@@ -11,9 +11,9 @@
 \alias{cmp_scl}
 \alias{cmp_vec}
 \alias{cmp_vls}
-\title{Completeness + extended class properties}
+\title{Complete + \code{xclass} properties}
 \usage{
-cmp_ccc(x, ccc, ...)
+cmp_ccc(x, spec, ...)
 
 cmp_ccc_props()
 
@@ -36,7 +36,7 @@ cmp_vls(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{ccc}{A character scalar extended class property from \code{ccc_props()}.}
+\item{spec}{A character scalar \code{xclass} spec built from values in \code{ccc_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -47,17 +47,18 @@ cmp_vls(x, ...)
 \value{
 \tabular{rl}{
   \code{cmp_ccc_props}   \tab A character vector.
+\cr                 \tab   
 \cr     \code{cmp_ccc}   \tab A logical scalar.
-\cr     \code{cmp_CCC}   \tab A logical scalar\eqn{^2}.
+\cr     \code{cmp_CCC}   \tab   
 }
 }
 \description{
 \tabular{rl}{
-  \code{cmp_ccc_props}   \tab Gets a character vector of all possible completeness + extended class properties.
+  \code{cmp_ccc_props}   \tab Gets all possible \link[=icmp]{complete} + \link[=ccc]{\code{xclass}} properties.
 \cr                 \tab  
-\cr     \code{cmp_ccc}   \tab Evaluates whether \code{x} is complete and matches the extended class in argument \code{ccc}.
+\cr     \code{cmp_ccc}   \tab Is \code{x} complete and does it match \code{xclass} spec \code{ccc}?
 \cr                 \tab  
-\cr     \code{cmp_CCC}   \tab Evaluates whether \code{x} is complete and matches property \code{'CCC'}.
+\cr     \code{cmp_CCC}   \tab Is \code{x} complete and does it match \code{xclass} property \code{'CCC'}?
 }
 }
 \section{Specifying count and value restrictions}{

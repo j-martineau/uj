@@ -30,7 +30,7 @@
 \alias{cmp_str}
 \alias{cmp_uno}
 \alias{cmp_whl}
-\title{Completeness + extended mode properties}
+\title{Complete + \code{xmode} properties}
 \usage{
 cmp_mmm(x, mmm, ...)
 
@@ -93,7 +93,7 @@ cmp_whl(x, ...)
 \arguments{
 \item{x}{An R object}
 
-\item{mmm}{A character scalar containing an extended mode property from \code{mmm_props()}.}
+\item{mmm}{A character scalar containing an \code{xmode} property from \code{mmm_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -104,20 +104,19 @@ cmp_whl(x, ...)
 \value{
 \tabular{rl}{
   \code{cmp_mmm_props}   \tab A character vector.
+\cr                 \tab   
 \cr     \code{cmp_mmm}   \tab A logical scalar.
-\cr     \code{cmp_xxx}   \tab A logical  calar\eqn{^1}.
+\cr     \code{cmp_MMM}   \tab   
 }
-\eqn{^{2.}} \code{xxx} is an extended mode property.
 }
 \description{
 \tabular{rl}{
-  \code{cmp_mmm_props}   \tab Gets a character vector of all possible \link[=icmp]{completeness} + \link[=mmm]{extended mode} properties.
+  \code{cmp_mmm_props}   \tab Gets all possible \link[=icmp]{complete} + \link[=mmm]{\code{xmode}} properties.
 \cr                 \tab  
-\cr     \code{cmp_mmm}   \tab Evaluates whether \code{x} is complete and matches the extended mode spec in argument \code{mmm} (subject to any restrictions in \code{...}).
+\cr     \code{cmp_mmm}   \tab Is \code{x} complete and does it match the \code{xmode} spec in argument \code{mmm}?
 \cr                 \tab  
-\cr     \code{cmp_xxx}   \tab Evaluates whether \code{x} is complete and matches extended mode \code{xxx\eqn{^1}} (subject to any restrictions in \code{...}).
+\cr     \code{cmp_MMM}   \tab Is \code{x} complete and does it match \code{xmode} property \code{'MMM'}?
 }
-\eqn{^{1.}} An extended mode property.
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:

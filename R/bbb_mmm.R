@@ -1,24 +1,23 @@
 #' @family props
-#' @title Base + xmode properties
+#' @title `Base` + `xmode` properties
 #' @description \tabular{rl}{
-#'     `bbb_mmm_props`   \tab Gets all possible base + xmode properties.
+#'     `bbb_mmm_props`   \tab Gets all \link[=bbb]{`base`} + \link[=mmm]{`xmode`} properties.
 #'   \cr                 \tab   
-#'   \cr     `bbb_mmm`   \tab Does `x` match base and xmode specs in arguments `bbb` and `mmm`.
+#'   \cr     `bbb_mmm`   \tab Does `x` match `base` and `xmode` specs in arguments `bbb` and `mmm`, respectively.
 #'   \cr                 \tab   
-#'   \cr     `BBB_MMM`   \tab Does `x` matches base and xmode properties `BBB` and `MMM`.
+#'   \cr     `BBB_MMM`   \tab Does `x` match `base` and `xmode` properties `'BBB'` and `'MMM'`, respectively?
 #' }
 #' @param x An R object
-#' @param bbb A character scalar containing an base property from `bbb_props()`.
-#' @param mmm A character scalar containing an xmode property from `mmm_props()`.
+#' @param bbb A character scalar containing a `base` property from `bbb_props()`.
+#' @param mmm A character scalar containing an `xmode` property from `mmm_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `bbb_mmm_props`   \tab A character vector.
 #'   \cr                 \tab   
-#'   \cr     `bbb_mmm`   \tab A logical.
-#'   \cr     `BBB_MMM`   \tab scalar.
+#'   \cr     `bbb_mmm`   \tab A logical scalar.
+#'   \cr     `BBB_MMM`   \tab   
 #' }
-#' \eqn{^{3.}} `xxx` and `yyy` represent base and extended mode properties, respectively.
 #' @examples
 #' bbb_mmm_props()
 #' bbb_mmm(letters, "atm", "ch1")

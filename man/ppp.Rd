@@ -73,38 +73,38 @@ spec_concise(spec)
 }
 \value{
 \tabular{rl}{
-  \code{combos_from_spec}   \tab A character
-\cr \code{props_from_combo}   \tab vector.
+  \code{combos_from_spec}   \tab A character vector.
+\cr \code{props_from_combo}   \tab   
 \cr  \code{props_from_spec}   \tab   
 \cr        \code{prop_funs}   \tab   
 \cr        \code{prop_vals}   \tab   
 \cr              \code{ppp}   \tab   
 \cr                      \tab   
-\cr   \code{is_valid_combo}   \tab A logical
-\cr    \code{is_valid_spec}   \tab scalar.
+\cr   \code{is_valid_combo}   \tab A logical scalar.
+\cr    \code{is_valid_spec}   \tab   
 \cr    \code{is_valid_prop}   \tab   
 \cr      \code{is_prop_fun}   \tab   
 \cr           \code{nas_or}   \tab   
 \cr           \code{nll_or}   \tab   
 \cr             \code{ippp}   \tab   
 \cr                      \tab   
-\cr    \code{combo_concise}   \tab A character
-\cr     \code{spec_concise}   \tab scalar.
+\cr    \code{combo_concise}   \tab A character scalar.
+\cr     \code{spec_concise}   \tab   
 \cr     \code{prop_verbose}   \tab   
 \cr                      \tab   
-\cr        \code{prop_defs}   \tab A \link[=tb]{tibble}.
+\cr        \code{prop_defs}   \tab A \link[=tb]{tibble}.
 }
 }
 \description{
 This set of functions provide utilities that bring together seven families of object properties defined by this package:
 \tabular{rl}{
-  \code{\link{bbb}}   \tab basic.
-\cr \code{\link{ccc}}   \tab xclass.
-\cr \code{\link{ddd}}   \tab defined dimensionality.
-\cr \code{\link{eee}}   \tab effective dimensionality.
-\cr \code{\link{iii}}   \tab integrity.
-\cr \code{\link{mmm}}   \tab xmode.
-\cr \code{\link{sss}}   \tab shape.
+  \code{\link{bbb}}   \tab \code{basic}
+\cr \code{\link{ccc}}   \tab \code{xclass}
+\cr \code{\link{ddd}}   \tab \code{defined-D}
+\cr \code{\link{eee}}   \tab \code{effective-D}
+\cr \code{\link{iii}}   \tab \code{integrity}
+\cr \code{\link{mmm}}   \tab \code{xmode}
+\cr \code{\link{sss}}   \tab \code{shape}
 }
 \strong{single property specs} are character scalars containing exactly \code{3} characters (e.g., \verb{'ord', 'dtf', 'd1D', 'rct'}).
 \cr\cr
@@ -114,15 +114,15 @@ This set of functions provide utilities that bring together seven families of ob
 \cr\cr
 \strong{Property and property spec manipulation functions}
 \tabular{rl}{
-  \code{combos_from_spec}   \tab Convert spec to constituent combos.
+  \code{combos_from_spec}   \tab Convert spec to constituent combos.
 \cr \code{props_from_combo}   \tab Convert combo to constituent properties.
-\cr  \code{props_from_spec}   \tab Convert spec to constituent properties.
+\cr  \code{props_from_spec}   \tab Convert spec to constituent properties.
 }
 \strong{Property and property spec validation functions}
 \tabular{rl}{
-  \code{is_prop_combo}   \tab Is \code{combo} a combo/conjunctive spec?
+  \code{is_prop_combo}   \tab Is \code{combo} a combo/conjunctive spec?
 \cr \code{is_prop_spec}   \tab Is \code{spec} a property spec of any type?
-\cr  \code{is_prop_fun}   \tab Is \code{fun} a property-function name?
+\cr  \code{is_prop_fun}   \tab Is \code{fun} a property-function name?
 \cr      \code{is_prop}   \tab Is \code{prop} a value from \code{prop_vals()}?
 }
 \strong{Comprehensive property and common property-specs}
@@ -132,26 +132,26 @@ This set of functions provide utilities that bring together seven families of ob
 \strong{Family-specific object property listing functions}
 \tabular{rl}{
    \code{ppp}   \tab gets all single properties matching \code{x}.
-\cr \code{bbb}   \tab   base
-\cr \code{ccc}   \tab   extended class
-\cr \code{ddd}   \tab   defined dimensionality
-\cr \code{eee}   \tab   effective dimensionality
-\cr \code{iii}   \tab   integrity
-\cr \code{mmm}   \tab   extended mode
-\cr \code{sss}   \tab   shape
+\cr \code{bbb}   \tab    \code{base} properties
+\cr \code{ccc}   \tab    \code{xclass} properties
+\cr \code{ddd}   \tab    \code{defined-D} properties
+\cr \code{eee}   \tab    \code{effective-D} properties
+\cr \code{iii}   \tab    \code{integrity} properties
+\cr \code{mmm}   \tab    \code{xmode} properties
+\cr \code{sss}   \tab    \code{shape} properties
 }
 \strong{Property and property spec definition functions}
 \tabular{rl}{
   \code{combo_concise}   \tab Concisely define a combo/conjunctive property.
-\cr \code{spec_concise}   \tab Concisely define a property spec.
-\cr \code{prop_verbose}   \tab Verbosely define an single property.
-\cr    \code{prop_defs}   \tab Table of single property definitions.
+\cr \code{spec_concise}   \tab Concisely define a property spec.
+\cr \code{prop_verbose}   \tab Verbosely define a single property.
+\cr    \code{prop_defs}   \tab Gets a table of property definitions.
 }
 \strong{Multi-family property spec matching functions}
 \tabular{rl}{
-  \code{nll_or}   \tab Is \code{x} \code{NULL} or a match to \code{spec}?
-\cr \code{nas_or}   \tab Is \code{x} scalar \code{NA} or a match to \code{spec}?
-\cr   \code{ippp}   \tab Is \code{x} a match to \code{spec}?
+  \code{nll_or}   \tab Is \code{x} either \code{NULL} or a match to \code{spec}?
+\cr \code{nas_or}   \tab Is \code{x} either scalar \code{NA} or a match to \code{spec}?
+\cr   \code{ippp}   \tab Is \code{x} a match to property spec \code{spec}?
 }
 \strong{Single-property  matching functions}
 \tabular{rl}{
@@ -159,42 +159,42 @@ This set of functions provide utilities that bring together seven families of ob
 }
 \strong{Single-family, single-property matching functions}
 \tabular{rl}{
-  \code{ibbb}   \tab Does  \code{x} match base property spec \code{spec}?
-\cr \code{iccc}   \tab   extended class
-\cr \code{iddd}   \tab   defined dimensionality
-\cr \code{ieee}   \tab   effective dimensionality
-\cr \code{iiii}   \tab   integrity
-\cr \code{immm}   \tab   extended mode
-\cr \code{isss}   \tab   shape
+  \code{ibbb}   \tab Does \code{x} match \code{base} property spec \code{spec}?
+\cr \code{iccc}   \tab    \code{xclass}
+\cr \code{iddd}   \tab    \code{defined-D}
+\cr \code{ieee}   \tab    \code{effective-D}
+\cr \code{iiii}   \tab    \code{integrity}
+\cr \code{immm}   \tab    \code{xmode}
+\cr \code{isss}   \tab    \code{shape}
 }
 \strong{Functions testing for combination/conjunctive properties}
 \tabular{rl}{
   \code{cmp_MMM_CCC}   \tab Complete\verb{ + xmode 'MMM' + xclass 'CCC'}.
-\cr   \code{cmp_MMM}   \tab Complete\verb{ + xmode 'MMM'}.
-\cr   \code{cmp_CCC}   \tab Complete\verb{ + xclass 'CCC'}
-\cr   \code{BBB_CCC}   \tab Base property\verb{ 'BBB' + xclass 'CCC'}.
-\cr   \code{BBB_MMM}   \tab Base property\verb{ 'BBB' + xmode 'MMM'}.
-\cr   \code{MMM_CCC}   \tab \verb{xmode 'MMM' + xclass 'CCC'}.
+\cr   \code{cmp_MMM}   \tab Complete\verb{ + xmode 'MMM'}.
+\cr   \code{cmp_CCC}   \tab Complete\verb{ + xclass 'CCC'}
+\cr   \code{BBB_CCC}   \tab \code{Base} property\verb{ 'BBB' + xclass 'CCC'}.
+\cr   \code{BBB_MMM}   \tab \code{Base} property\verb{ 'BBB' + xmode 'MMM'}.
+\cr   \code{MMM_CCC}   \tab \verb{xmode 'MMM' + xclass 'CCC'}.
 }
 \strong{Comprehensive lists of single and common combination properties}
 \tabular{rl}{
   \code{cmp_mmm_ccc_props}   \tab Complete\verb{ emode + xclass }properties.
 \cr                     \tab   
-\cr   \code{cmp_ccc_props}   \tab Complete\verb{ xclass }properties.
-\cr   \code{cmp_mmm_props}   \tab Complete\verb{ xmode }properties.
-\cr   \code{bbb_ccc_props}   \tab Basic\verb{ + xclass }properties.
-\cr   \code{bbb_mmm_props}   \tab Basic\verb{ + xmode }properties.
-\cr   \code{mmm_ccc_props}   \tab \verb{xmode + xclass} properties.
+\cr   \code{cmp_ccc_props}   \tab Complete\code{+ xclass }properties.
+\cr   \code{cmp_mmm_props}   \tab Complete\code{+ xmode }properties.
+\cr   \code{bbb_ccc_props}   \tab \code{Basic + xclass }properties.
+\cr   \code{bbb_mmm_props}   \tab \code{Basic + xmode }properties.
+\cr   \code{mmm_ccc_props}   \tab \code{xmode + xclass }properties.
 \cr                     \tab   
-\cr       \code{bbb_props}   \tab Single basic properties.
-\cr       \code{ccc_props}   \tab Single \code{xclass} properties.
-\cr       \code{ddd_props}   \tab Single defined dimension properties.
-\cr       \code{eee_props}   \tab single effective dimension properties.
-\cr       \code{iii_props}   \tab single integrity properties.
-\cr       \code{mmm_props}   \tab single \code{xmode} properties.
-\cr       \code{sss_props}   \tab single shape properties.
+\cr       \code{bbb_props}   \tab Single\code{basic}properties.
+\cr       \code{ccc_props}   \tab Single\code{xclass}properties.
+\cr       \code{ddd_props}   \tab Single\code{defined-D}properties.
+\cr       \code{eee_props}   \tab single\code{effective-D}properties.
+\cr       \code{iii_props}   \tab single\code{ integrity} properties.
+\cr       \code{mmm_props}   \tab single\code{ xmode} properties.
+\cr       \code{sss_props}   \tab single\code{ shape} properties.
 \cr                     \tab   
-\cr       \code{prop_vals}   \tab All possible single properties.
+\cr       \code{prop_vals}   \tab All possible single properties.
 }
 }
 \section{Specifying count and value restrictions}{

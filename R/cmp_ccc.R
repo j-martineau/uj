@@ -1,20 +1,21 @@
 #' @family props
-#' @title Completeness + extended class properties
+#' @title Complete + `xclass` properties
 #' @description \tabular{rl}{
-#'     `cmp_ccc_props`   \tab Gets a character vector of all possible completeness + extended class properties.
+#'     `cmp_ccc_props`   \tab Gets all possible \link[=icmp]{complete} + \link[=ccc]{`xclass`} properties.
 #'   \cr                 \tab  
-#'   \cr     `cmp_ccc`   \tab Evaluates whether `x` is complete and matches the extended class in argument `ccc`.
+#'   \cr     `cmp_ccc`   \tab Is `x` complete and does it match `xclass` spec `ccc`?
 #'   \cr                 \tab  
-#'   \cr     `cmp_CCC`   \tab Evaluates whether `x` is complete and matches property `'CCC'`.
+#'   \cr     `cmp_CCC`   \tab Is `x` complete and does it match `xclass` property `'CCC'`?
 #' }
 #' @param x An R object.
-#' @param ccc A character scalar extended class property from `ccc_props()`.
+#' @param spec A character scalar `xclass` spec built from values in `ccc_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `cmp_ccc_props`   \tab A character vector.
+#'   \cr                 \tab   
 #'   \cr     `cmp_ccc`   \tab A logical scalar.
-#'   \cr     `cmp_CCC`   \tab A logical scalar\eqn{^2}.
+#'   \cr     `cmp_CCC`   \tab   
 #' }
 #' @examples
 #' cmp_ccc_props()
@@ -24,10 +25,10 @@
 #' cmp_scl(1)
 #' cmp_mvc(letters)
 #' @export
-cmp_ccc <- function(x, ccc, ...) {
-  errs <- c(.meets_errs(x, ...), f0(f0(length(ccc) != 1 | !is.character(ccc), F, f0(is.na(ccc), F, ccc %in% .cccs)), NULL, '[ccc] is not a scalar value from ccc_props().'))
+cmp_ccc <- function(x, spec, ...) {
+  errs <- c(.meets_errs(x, ...), f0(f0(length(spec) != 1 | !is.character(spec), F, f0(is.na(spec), F, spec %in% .cccs)), NULL, '[ccc] is not a scalar value from ccc_props().'))
   if (!is.null(errs)) {stop(.errs(errs))}
-  if (!iccc(x, ccc, ...)) {F} else {x <- av(x); !any(is.na(x))}
+  if (!iccc(x, spec, ...)) {F} else {x <- av(x); !any(is.na(x))}
 }
 
 #' @rdname cmp_ccc
