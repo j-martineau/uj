@@ -52,35 +52,39 @@ isqr(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_sss_spec} \tab   A logical scalar.
-\cr      \code{iSSS} \tab     
-\cr      \code{isss} \tab     
-\cr               \tab   
+  \code{is_sss_spec} \tab   A logical scalar.
 \cr  \code{sss_vals} \tab   A character vector.
-\cr       \code{sss} \tab     
+\cr      \code{iSSS} \tab   A logical scalar.
+\cr      \code{isss} \tab   A logical scalar.
+\cr       \code{sss} \tab   A character vector.
 }
 }
 \description{
 \code{Shape} properties are as defined in the following table: \tabular{rll}{
   \code{'emp'} \tab   empty  \tab   \code{0} length (but not \code{NULL}).
-\cr \code{'pnt'} \tab   point  \tab   \code{1} element or cell\eqn{^1}.
+\cr \code{'pnt'} \tab   point  \tab   \code{1} element or cell\eqn{^a}.
 \cr \code{'col'} \tab   column \tab   \code{1} row by \verb{2+} columns.
 \cr \code{'row'} \tab   row    \tab   \verb{2+} rows by \code{1} column.
-\cr \code{'lin'} \tab   linear \tab   \verb{2+} positions in 1 dimension\eqn{^2}.
+\cr \code{'lin'} \tab   linear \tab   \verb{2+} positions in \code{1} dimension\eqn{^b}.
 \cr \code{'rct'} \tab   rect   \tab   \verb{2+} positions in \code{2} dimensions.
 \cr \code{'sqr'} \tab   square \tab   \verb{N × N} matrix where \verb{N ≥ 2}.
 \cr \code{'sld'} \tab   solid  \tab   \verb{2+} positions in \verb{3+} dimensions.
 }
-    \eqn{^{1.}} \verb{1x1} data.frames; length-\code{1} arrays, vectors, \link[=ivls]{vlists}.
-    \eqn{^{2.}} Length-\verb{2+} vectors, arrays of \verb{2+} positions in \code{1} dimension, row/column data.frames.
+\eqn{^{a.}} \verb{1x1} data.frames; length-\code{1} arrays, vectors, \link[=ivls]{vlists}.
+\cr\cr
+\eqn{^{b.}} Length-\verb{2+} vectors, arrays of \verb{2+} positions in \code{1} dimension, row/column data.frames.
 \cr\cr
 \strong{Shape property functions}
 \tabular{rl}{
-  \code{is_sss_spec} \tab   Is \code{spec} a \code{shape} property spec?
-\cr \code{sss_props} \tab   Gets all possible \code{shape} properties.
-\cr      \code{isss} \tab   Does \code{x} match \code{shape} spec \code{spec}?
-\cr      \code{iSSS} \tab   Does \code{x} match the \code{shape} property \code{SSS}?
-\cr       \code{sss} \tab   Gets all \code{shape} properties matched to \code{x}.
+  \code{is_sss_spec}   \tab Is \code{spec} a \code{shape} specification?
+\cr               \tab   
+\cr \code{sss_props}   \tab What \code{shape} properties are there?
+\cr               \tab   
+\cr      \code{isss}   \tab Does \code{x} a match to the \code{shape} specification in \code{spec}?
+\cr               \tab   
+\cr      \code{iSSS}   \tab Is \code{x} a match to the single \code{shape} property \code{'SSS'}?
+\cr               \tab   
+\cr       \code{sss}   \tab What are \code{x}'s \code{shape} properties?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -113,13 +117,13 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
+\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

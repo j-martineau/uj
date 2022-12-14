@@ -88,7 +88,8 @@ dirbox <- function(..., d = getwd()) {
             f0(cmp_chr_scl(d)  , NULL, "No default directory provided in [d]."),
             f0(dir.exists(d)   , NULL, da0("[d = '", d, "'] is not an existing directory/folder.")))
   if (!is.null(errs)) {stop(.errs(errs))}
-  msgbox(da0("In the next dialog box, ", msg)); svDialogs::dlg_dir(default = d, title = msg)
+  msgbox(da0("In the next dialog box, ", msg))
+  svDialogs::dlg_dir(default = d, title = msg)
 }
 
 #' @rdname dialogs
@@ -97,7 +98,8 @@ docbox <- function(...) {
   msg <- paste0(av(...), collapse = "")
   if (inll(msg)) {msg <- "choose a document"}
   if (!cmp_chr_scl(msg)) {stop(.errs("[...] must be empty or must be collapsible to a character scalar."))}
-  msgbox(da0("In the next dialog box, ", msg)); svDialogs::dlg_open(title = msg)
+  msgbox(da0("In the next dialog box, ", msg))
+  svDialogs::dlg_open(title = msg)
 }
 
 #' @rdname dialogs
@@ -122,11 +124,11 @@ okx <- function(x) {x <- msg(x, "okcancel"); if (x != "ok") {stop("canceled")}}
 
 #' @rdname dialogs
 #' @export
-choose_dir <- function(type = "file") {dirbox(okx(da1("Select a", type, "directory")))$res}
+choose_dir <- function(type = "file") {dirbox(da1("Select a", type, "directory"))$res}
 
 #' @rdname dialogs
 #' @export
-choose_doc <- function(type = "document") {docbox(okx(da1("Select a", type, "file")))$res}
+choose_doc <- function(type = "document") {docbox(da1("Select a", type, "file"))$res}
 
 #' @rdname dialogs
 #' @export
@@ -144,9 +146,9 @@ ask1 <- function(opts, what, more = FALSE) {
   suffix <- f0(more, "\n(more options may be presented next)", NULL)             # suffix if more options are available
   nums <- as_chr(1:nx(opts))                                                     # valid responses
   list <- paste(nums, "=", opts)                                                 # list of options with preceding numbers separated by newlines
-  list <- f0(inll(suffix), list, paste0(list, "\n\nnone = none of these options", collapse = ""))
-  prompt <- paste0("Enter the number of one ", what, " from these options:\n\n", collapse = "")
-  prompt <- paste0(prompt, "\n", list, "\n", suffix)                             # build the question separated by newlines
+  list <- f0(inll(suffix), list, c(list, "\nnone = none of these options"))
+  prompt <- paste0(c("Enter the number of one ", what, " from these options:\n\n"), collapse = "")
+  prompt <- paste0(prompt, "\n", paste0(list, collapse = "\n"), "\n", suffix)    # build the question separated by newlines
   answer <- ask(prompt, cancel = ".stop")                                        # ask the question
   if (answer %in% as_chr(nums)) {opts[as_int(answer)]}                           # IF answer is the number of an option, return that option
   else if (ipop(suffix) & answer == "none") {return(NULL)}                       # BUT IF there is a suffix and selection is none, return NULL
@@ -156,8 +158,8 @@ ask1 <- function(opts, what, more = FALSE) {
 #' @rdname dialogs
 #' @export
 askn <- function(opts, what, all = TRUE, none = TRUE, more = FALSE) {
-  suffix <- f0(more, "\n(more options may be presented next)", NULL)             # IF there are potentially more options, put in suffix
-  nums <- as_chr(1:nx(opts))                                                     # valid option numbers
+  suffix <- f0(more, "(more options may be presented next)", NULL)               # IF there are potentially more options, put in suffix
+  nums <- as_chr(1:length(opts))                                                 # valid option numbers
   list <- paste0(c("\n", paste0(nums, " = ", opts)), collapse = "\n")            # options preceded by numbers
   question <- spf("Enter a sequence of 1 or more numbers of %s from these options:\n\n", what)
   if (all | none) {                                                              # IF all or none are valid responses
@@ -174,7 +176,7 @@ askn <- function(opts, what, all = TRUE, none = TRUE, more = FALSE) {
       list <- c(list, spf("DONE = stop selecting %s", what))
       nums <- c(nums, "done")
   }}                                                                             # END
-  question <- paste0(question, paste0(list, collapse = "\n"), f0(inll(suffix), suffix, c("\n\n", suffix)))
+  question <- paste0(question, paste0(list, collapse = "\n"), f0(inll(suffix), suffix, paste0("\n\n", suffix)))
   answer <- tolower(ask(question))                                                                # ask the question
   if (all  & answer == "all" ) {answer <- opts; attr(answer, "done") <- !more; return(answer)} # return all options if appropriate
   if (none & answer == "none") {answer <- ""[-1]; attr(answer, "done") <- FALSE; return(answer)} # return no options if appropriate
@@ -200,8 +202,8 @@ asksn <- function(opts, what, per = 9) {
   round <- 1                                                                         # round counter
   out <- NULL                                                                        # results
   while (!done) {                                                                    # WHILE not yet done
-    n <- nx(opts)                                                                    # : number of options remaining available
-    what <- paste0(f0(round > 1 & ipop(out), "additional ", "blank"), what)          # : add "additional" as prefix to [whats] if this is not the first round
+    n <- length(opts)                                                                # : number of options remaining available
+    what <- paste0(f0(round > 1 & ipop(out), "additional ", ""), what)               # : add "additional" as prefix to [whats] if this is not the first round
     list <- opts[1:min(per, n)]                                                      # : take the first [per] options (or all options, if not more than per)
     answer <- askn(list, what, all = T, none = T, more = n > per)                    # : ask user to select from among those options, indicating whether more options may be coming
     out <- c(out, av(answer))                                                        # : append the answers to the running results

@@ -1,3 +1,104 @@
+.iatm <- function(x) {is.atomic(x) & !is.null(x)}
+.idef <- function(x) {!is.null(x)}
+.ifun <- function(x) {f0(is.function(x), T, f0(length(x) != 1 | !is.character(x), F, f0(is.na(x), F, !isERR(match.fun(x)))))}
+.inil <- function(x) {length(x) == 0}
+.inll <- function(x) {is.null(x)}
+.ipop <- function(x) {length(x) > 0}
+.ircr <- function(x) {is.recursive(x)}
+.bbbs <- c("atm", "def", "fun", "nil", "nll", "pop", "rcr")
+
+.iarr <- function(x) {is.array(x)}
+.idtf <- function(x) {is.data.frame(x)}
+.igen <- function(x) {is.array(x) | is.vector(x)}
+.imat <- function(x) {is.matrix(x)}
+.imvc <- function(x) {f0(length(x) < 2, F, f0(is.vector(x), T, is.array(x) & length(which(dim(x) > 1)) == 1))}
+.iscl <- function(x) {f0(length(x) != 1, F, is.array(x) | is.vector(x))}
+.ivec <- function(x) {f0(length(x) == 0, F, f0(is.vector(x), T, f0(is.array(x) & length(which(dim(x) > 1)) < 2, T, is.atomic(x) & !is.vector(x) & !is.array(x))))}
+.ivls <- function(x) {is.list(x) & !is.data.frame(x)}
+.cccs <- c("arr", "dtf", "gen", "mat", "mvc", "scl", "vec", "vls")
+
+.id0D <- function(x) {is.null(x)}
+.id1D <- function(x) {is.vector(x)}
+.id2D <- function(x) {is.matrix(x) | is.data.frame(x)}
+.idHD <- function(x) {length(dim(x)) > 2}
+.ddds <- c("d0D", "d1D", "d2D", "dHD")
+
+.ie0D <- function(x) {NROW(x) * NCOL(x) == 1 & length(x) == 1}
+.ie1D <- function(x) {1 %in% c(NROW(x), NCOL(x)) & NROW(x) * NCOL(x) > 1}
+.ie2D <- function(x) {f0(!is.array(x) & !is.data.frame(x), F, length(which(dim(x) > 1)) == 2)}
+.ieHD <- function(x) {f0(!is.array(x), F, length(which(dim(x) > 1)) > 2)}
+.ieUD <- function(x) {length(x) == 0}
+.eees <- c("e0D", "e1D", "e2D", "eHD", "eUD")
+
+.icmp <- function(x) {f0(length(x) == 0 | !is.atomic(x), F, !any(is.na(x)))}
+.imss <- function(x) {f0(length(x) == 0 | !is.atomic(x), F, all(is.na(x)))}
+.inas <- function(x) {f0(length(x) != 1 | !is.atomic(x), F, is.na(x))}
+.ioks <- function(x) {f0(length(x) != 1 | !is.atomic(x), F, !is.na(x))}
+.iprt <- function(x) {f0(length(x) < 2 | !is.atomic(x), F, {x <- is.na(x); any(x) & !all(x)})}
+.iiis <- c("cmp", "mss", "nas", "oks", "prt")
+
+.is_mmm <- function(x) {!is.null(x) | !is.atomic(x)}
+.is_MMM <- function(x) {f0(length(x) == 0, T, all(is.na(x)))}
+.ich1 <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.character(x), F, all(nchar(x[!is.na(x)]) == 1))))}
+.ich3 <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.character(x), F, all(nchar(x[!is.na(x)]) == 3))))}
+.ichr <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.character(x)))}
+.iclr <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.character(x), F, !any(c("error", "simpleError") %in% class(failsafe(col2rgb(x[!is.na(x)])))))))}
+.ievn <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(round(x / 2) == x / 2)})))}
+.ifac <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.factor(x)))}
+.ifrc <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; any(round(x) != round(x))})))}
+.iind <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.logical(x) | all()))}
+.ilgl <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.logical(x)))}
+.ineg <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, all(x[!is.na(x)] < 0))))}
+.ingw <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x < 0 & round(x) == x)})))}
+.inng <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, !any(x[!is.na(x)] < 0))))}
+.innw <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x >= 0 & round(x) == x)})))}
+.inps <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, !any(x[!is.na(x)] > 0))))}
+.inpw <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x <= 0 & round(x) == x)})))}
+.inst <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, !(is.character(x) | is.numeric(x) | is.ordered(x))))}
+.inum <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.numeric(x)))}
+.iodd <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)] + 1; all(round(x / 2) == x / 2)})))}
+.iord <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.ordered(x)))}
+.ipct <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x >= 0 & x <= 100)})))}
+.ipos <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, all(x[!is.na(x)] > 0))))}
+.ippn <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x >= 0 & x <= 1)})))}
+.ipsw <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x > 0 & round(x) == x)})))}
+.isrt <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.character(x) | is.numeric(x) | is.ordered(x)))}
+.istr <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.character(x), F, !any(x[!is.na(x)] == ""))))}
+.iuno <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.factor(x) & !is.ordered(x)))}
+.iwhl <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(round(x) == x)})))}
+.mmms <- c("atm", "ch1", "ch3", "chr", "clr", "evn", "fac", "frc", "ind", "lgl", "neg", "ngw", "nng", "nnw", "nps", "npw", "nst", "num", "odd", "ord", "pct", "pos", "ppn", "psw", "srt", "str", "uno", "whl")
+
+.icol <- function(x) {f0(!(is.matrix(x) | is.data.frame(x)), F, nrow(x) > 1 & ncol(x) == 1)}
+.iemp <- function(x) {length(x) == 0 & !is.null(x)}
+.ilin <- function(x) {.ie1D(x)}
+.ipnt <- function(x) {.ie0D(x)}
+.irct <- function(x) {f0(!.ie2D(x), F, is.matrix(x) | is.data.frame(x))}
+.irow <- function(x) {f0(!(is.matrix(x) | is.data.frame(x)), F, nrow(x) == 1 & ncol(x) > 1)}
+.isld <- function(x) {.ieUD(x)}
+.isqr <- function(x) {is.matrix(x) & NROW(x) > 1 & NCOL(x) > 1 & NROW(x) == NCOL(x)}
+.ssss <- c("col", "emp", "lin", "pnt", "rct", "row", "sld", "sqr")
+
+.ppps <- unique(sort(c(.bbbs, .cccs, .ddds, .eees, .iiis, .mmms, .ssss)))
+
+.combo_ppps <- function(arg) {
+  arg <- av(strsplit(arg, "_", fixed = T))
+  cmp <- "cmp" %in% arg
+  arg <- arg[arg != "cmp"]
+  out <- paste0(arg, " = .", arg, "s")
+  out <- paste0(out, collapse = ", ")
+  out <- paste0("expand.grid(", out, ", stringsAsFactors = F)")
+  out <- run(out)
+  bad <- av(out[ , 2]) == "atm"
+  out <- out[!bad, ]
+  out <- av(apply(out, 1, paste0, collapse = "_"))
+  out <- f0(cmp, paste0("cmp_", out), out)
+  sort(unique(out))
+}
+
+.spec_vals <- function(x) {if (!is.character(x)) {return(NULL)} else {x <- unname(unlist(strsplit(x, "|", fixed = T))); x[x != ""]}}
+.drop_iprefix <- function(x) {i <- nchar(x) == 4 & substr(x, 1, 1) == "i"; x[i] <- substr(x[i], 2, 4); x}
+
+
 #' @family props
 #' @title All purpose property checking
 #' @description This set of functions provide utilities that bring together seven families of object properties defined by this package:
@@ -57,13 +158,13 @@
 #' }
 #' **Single-family property-checking functions**
 #' \tabular{rl}{
-#'       `ibbb` \tab   Does `x` match `base` spec `spec`?
-#'   \cr `iccc` \tab   Does `x` match `xclass` spec `spec`?
-#'   \cr `iddd` \tab   Does `x` match `defined-D` spec `spec`?
-#'   \cr `ieee` \tab   Does `x` match `effective-D` spec `spec`?
-#'   \cr `iiii` \tab   Does `x` match `integrity` spec `spec`?
-#'   \cr `immm` \tab   Does `x` match `xmode` spec `spec`?
-#'   \cr `isss` \tab   Does `x` match `shape` spec `spec`?
+#'       `ibbb` \tab   Is `x` a match to `base`-family `spec`?
+#'   \cr `iccc` \tab   Is `x` a match to `xclass`-family `spec`?
+#'   \cr `iddd` \tab   Is `x` a match to `defined-D`-family `spec`?
+#'   \cr `ieee` \tab   Is `x` a match to `effective-D`-family `spec`?
+#'   \cr `iiii` \tab   Is `x` a match to `integrity`-family `spec`?
+#'   \cr `immm` \tab   Is `x` a match to `xmode`-family `spec`?
+#'   \cr `isss` \tab   Is `x` a match to `shape`-family `spec`?
 #' }
 #' **Functions testing for combination/conjunctive properties**
 #' \tabular{rl}{
@@ -73,9 +174,9 @@
 #'   \cr   `BBB_CCC` \tab   `base` property `'BBB' + xclass 'CCC'`.
 #'   \cr   `BBB_MMM` \tab   `base` property `'BBB' + xmode 'MMM'`.
 #'   \cr   `MMM_CCC` \tab   `xmode 'MMM' + xclass 'CCC'`.
-#'   \cr    `nll_or` \tab   Is `x NULL` or a match to `spec`?
-#'   \cr    `nas_or` \tab   Is `x NA` or a match to `spec`?
-#'   \cr      `ippp` \tab   Does `x` match spec `spec`?
+#'   \cr    `nll_or` \tab   Is `x` `NULL` or a match to `spec`?
+#'   \cr    `nas_or` \tab   Is `x` `NA` or a match to `spec`?
+#'   \cr      `ippp` \tab   Is `x` a match to `spec`?
 #' }
 #' **Comprehensive lists of single and common combination properties**
 #' \tabular{rl}{
@@ -181,13 +282,20 @@ prop_funs <- function(as.dtf = F) {
   s_fun <- paste0("i", sss_props()); s_fam <- rep("sss", length(s_fun)); s_lab <- paste0("1_", s_fam, sss_props())
   bc_fun <- bbb_ccc_props(); bc_fam <- rep("bbb_ccc", length(bc_fun)); bc_lab <- paste0("2_", bc_fam, "_", bc_fun)
   bm_fun <- bbb_mmm_props(); bm_fam <- rep("bbb_mmm", length(bm_fun)); bm_lab <- paste0("2_", bm_fam, "_", bm_fun)
-  mc_fun <- mmm_ccc_props(); mc_fam <- rep("mmm_ccc", length(mc_fun)); mc_lab <- paste0("2_", mc_fam, "_", mc_fun)
   cc_fun <- cmp_ccc_props(); cc_fam <- rep("cmp_ccc", length(cc_fun)); cc_lab <- paste0("3_", cc_fam, "_", cc_fun)
   cm_fun <- cmp_mmm_props(); cm_fam <- rep("cmp_mmm", length(cc_fun)); cm_lab <- paste0("3_", cm_fam, "_", cm_fun)
+  cs_fun <- cmp_sss_props(); cs_fam <- rep("cmp_sss", length(cs_fun)); cs_lab <- paste0("3_", cs_fam, "_", cs_fun)
+  mc_fun <- mmm_ccc_props(); mc_fam <- rep("mmm_ccc", length(mc_fun)); mc_lab <- paste0("2_", mc_fam, "_", mc_fun)
+  sc_fun <- sss_ccc_props(); sc_fam <- rep("sss_ccc", length(sc_fun)); sc_lab <- paste0("3_", sc_fam, "_", sc_fun)
+  sm_fun <- sss_mmm_props(); sm_fam <- rep("sss_mmm", length(sm_fun)); sm_lab <- paste0("3_", sm_fam, "_", sm_fun)
   cmc_fun <- cmp_mmm_ccc_props(); cmc_fam <- rep("cmp_mmm_ccc", length(cmc_fun)); cmc_lab <- paste0("4_", cmc_fam, "_", cmc_fun)
-  fun <-       c(b_fun, c_fun, d_fun, e_fun, i_fun, m_fun, s_fun, bc_fun, bm_fun, mc_fun, cc_fun, cm_fun, cmc_fun)
-  fam <-       c(b_fam, c_fam, d_fam, e_fam, i_fam, m_fam, s_fam, bc_fam, bm_fam, mc_fam, cc_fam, cm_fam, cmc_fam)
-  ord <- order(c(b_lab, c_lab, d_lab, e_lab, i_lab, m_lab, s_lab, bc_lab, bm_lab, mc_lab, cc_lab, cm_lab, cmc_lab))
+  csc_fun <- cmp_sss_ccc_props(); csc_fam <- rep("cmp_sss_ccc", length(csc_fun)); csc_lab <- paste0("4_", csc_fam, "_", csc_fun)
+  csm_fun <- cmp_sss_mmm_props(); csm_fam <- rep("cmp_sss_mmm", length(csm_fun)); csm_lab <- paste0("4_", csm_fam, "_", csm_fun)
+  smc_fun <- sss_mmm_ccc_props(); smc_fam <- rep("sss_mmm_ccc", length(smc_fun)); smc_lab <- paste0("4_", smc_fam, "_", smc_fun)
+  csmc_fun <- cmp_sss_mmm_ccc_props(); csmc_fam <- rep("cmp_sss_mmm_ccc", length(csmc_fun)); csmc_lab <- paste0("5_", csmc_fam, "_", csmc_fun)
+  fun <-       unique(c(b_fun, c_fun, d_fun, e_fun, i_fun, m_fun, s_fun, bc_fun, bm_fun, cc_fun, cm_fun, cs_fun, mc_fun, sc_fun, sm_fun, cmc_fun, csc_fun, smc_fun, csmc_fun))
+  fam <-       unique(c(b_fam, c_fam, d_fam, e_fam, i_fam, m_fam, s_fam, bc_fam, bm_fam, cc_fam, cm_fam, cs_fam, mc_fam, sc_fam, sm_fam, cmc_fam, csc_fam, smc_fam, csmc_fam))
+  ord <- order(unique(c(b_lab, c_lab, d_lab, e_lab, i_lab, m_lab, s_lab, bc_lab, bm_lab, cc_lab, cm_lab, cs_lab, mc_lab, sc_lab, sm_lab, cmc_lab, csc_lab, smc_lab, csmc_lab)))
   if (!as.dtf) {return(fun[ord])}
   tibble::tibble(family = fam[ord], fun = fun[ord])
 }

@@ -2,22 +2,26 @@
 #' @title `Integrity` properties
 #' @description `Integrity` properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frameS}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
 #' \tabular{rll}{
-#'       `'cmp'`   \tab Complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing **no** `NA` values.
+#'       `'cmp'`   \tab complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing **no** `NA` values.
 #'   \cr           \tab               \tab   
-#'   \cr `'mss'`   \tab Missing       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing **only** `NA` values.
+#'   \cr `'mss'`   \tab missing       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing **only** `NA` values.
 #'   \cr           \tab               \tab   
-#'   \cr `'prt'`   \tab Partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing `NA` **and** non-`NA` values.
+#'   \cr `'prt'`   \tab partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing `NA` **and** non-`NA` values.
 #'   \cr           \tab               \tab   
-#'   \cr `'nas'`   \tab `NA` scalar   \tab Atomic scalar `NA`.
+#'   \cr `'nas'`   \tab `NA` scalar   \tab Atomic scalar `NA`.
 #'   \cr `'oks'`   \tab `OK` scalar   \tab Non-`NA` atomic scalar.
 #' }
 #' **`Integrity` property functions**
 #' \tabular{rl}{
-#'     `is_iii_spec` \tab   Is `spec` an `integrity` property spec?
-#'   \cr `iii_props` \tab   Gets all possible `integrity` property values.
-#'   \cr      `iiii` \tab   Does `x` match `integrity` spec `spec`?
-#'   \cr      `iIII` \tab   Does `x` match `integrity` property `'III'`?
-#'   \cr       `iii` \tab   Gets all of `x`'s `integrity` properties.
+#'     `is_iii_spec`   \tab Is `spec` an `integrity` specification?
+#'   \cr               \tab   
+#'   \cr `iii_props`   \tab What `integrity` properties have dedicated functions?
+#'   \cr               \tab   
+#'   \cr      `iiii`   \tab Is `x` a match to the `integrity` specification `spec`?
+#'   \cr               \tab   
+#'   \cr      `iIII`   \tab Is `x` a match to the single `integrity` property `'III'`?
+#'   \cr               \tab   
+#'   \cr       `iii`   \tab Gets all of `x`'s `integrity` properties.
 #' }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `integrity` properties (i.e., from `iii_props()`). `Integrity` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.

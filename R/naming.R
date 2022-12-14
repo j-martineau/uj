@@ -48,6 +48,49 @@
 #'   \cr     `rn` \tab   A character vector.
 #'   \cr     `cn` \tab   A character vector.
 #' }
+#' @examples
+#' dots_named. <- function(...) {dnamed(...)}
+#'
+#' Vec. <- 1:5
+#' Vls. <- list(num = 1:5, ae = letters[1:5])
+#' Mat. <- matrix(letters[1:25], nrow = 5)
+#' Dtf. <- data.frame(ae = letters[1:5], AE = LETTERS[1:5])
+#'
+#' Vec.
+#' Vls.
+#' Mat.
+#' Dtf.
+#'
+#' named(Vec.)
+#' named(Vls.)
+#' named(Mat., d = 12)
+#' named(Dtf., d = 2)
+#'
+#' enamed(Vls.)
+#' rnamed(Mat.)
+#' cnamed(Dtf.)
+#' rcnamed(Dtf.)
+#'
+#' dots_named.(Vec., Vls.)
+#' dots_named.(var1 = Vec., var2 = Vls.)
+#'
+#' getnames(Vls.)
+#' getnames(Mat., d = 1)
+#' getnames(Dtf., d = 2)
+#'
+#' en(Vec.)
+#' en(Vls.)
+#'
+#' rn(Mat.)
+#' cn(Dtf.)
+#' rcn(Dtf.)
+#'
+#' namel(Dtf., "a data.frame")
+#' namev(Vec., letters[Vec.])
+#' namer(Mat., letters[Vec.])
+#' namec(Dtf., c("letters", "LETTERS"))
+#' namerc(Mat., letters[Vec.], Vec.)
+#'
 #' @export
 namev <- function(x, en) {
   ok.en <- cmp_vec(en) & length(x) == length(en)
@@ -61,8 +104,8 @@ namev <- function(x, en) {
 #' @rdname naming
 #' @export
 namer <- function(x, rn) {
-  ok.rn <- cmp_vec(rn) & nrow(x) == nrow(en)
-  errs <- c(f0(imvc(x), NULL, "[x] must be an multivec (?imvc)."),
+  ok.rn <- cmp_vec(rn) & nrow(x) == length(rn)
+  errs <- c(f0(id2D(x), NULL, "[x] must be a matrix or data.frame."),
             f0(ok.rn  , NULL, "[rn] must be a complete atomic vec (?cmp_vec) of length equal to the number of rows in [x]."))
   if (!is.null(errs)) {stop(.errs(errs))}
   rownames(x) <- rn
@@ -72,8 +115,8 @@ namer <- function(x, rn) {
 #' @rdname naming
 #' @export
 namec <- function(x, cn) {
-  ok.cn <- cmp_vec(rn) & ncol(x) == ncol(en)
-  errs <- c(f0(imvc(x), NULL, "[x] must be an multivec (?imvc)."),
+  ok.cn <- cmp_vec(cn) & ncol(x) == length(cn)
+  errs <- c(f0(id2D(x), NULL, "[x] must be a matrix or data.frame."),
             f0(ok.cn  , NULL, "[cn] must be a complete atomic vec (?cmp_vec) of length equal to the number of columns in [x]."))
   if (!is.null(errs)) {stop(.errs(errs))}
   colnames(x) <- cn
@@ -84,6 +127,7 @@ namec <- function(x, cn) {
 #' @export
 namel <- function(x, ln) {
   if (!cmp_scl(ln)) {stop(.errs("[ln] must be a complete atomic scalar (?cmp_scl)."))}
+  x <- list(x)
   names(x) <- ln
   x
 }
@@ -95,10 +139,10 @@ namerc <- function(x, rn, cn) {namer(namec(x, cn), rn)}
 #' @rdname naming
 #' @export
 named <- function(x, d = 0, u = T, blank = F) {
-  ok.x <- ivec(x) | pop_vls(x) | (is.array(x) & length(dim(x)) == 1)
+  ok.x <- pop_vec(x) | pop_vls(x) | pop_mat(x) | pop_dtf(x)
   ok.d <- isIN(d, c(0, 1, 2, 12))
-  ok.d1D <- ANY(isEQ(d, 0), id1D(x))
-  ok.d2D <- ANY(isIN(d, c(1, 2, 12)), id2D(x))
+  ok.d1D <- f0(!id1D(x), T, d == 0)
+  ok.d2D <- f0(!id2D(x), T, d %in% c(1, 2, 12))
   errs <- c(f0(ok.x       , NULL, "[x] must be a vector, populated vlist (?pop_vls), matrix, or data.frame."),
             f0(ok.d       , NULL, "[d] must be 0, 1, 2, or 12."),
             f0(ok.d1D     , NULL, "[d] must be 0 when [x] is a vector, vlist (?is_vls), or 1D array."),
@@ -107,24 +151,23 @@ named <- function(x, d = 0, u = T, blank = F) {
             f0(isTF(blank), NULL, "[blank] must be TRUE or FALSE."))
   if (!is.null(errs)) {stop(.errs(errs))}
   leOK <- ueOK <- beOK <- lrOK <- urOK <- brOK <- lcOK <- ucOK <- bcOK <- T      # initialize result scalars
-  if (length(x) == 0) {return(F)}                                                # length 0 is unnamed by default
   if (d == 0) {                                                                  # if inspecting for element names
     elabs <- names(x)                                                            # > get element names
     leOK <- length(elabs) > 0                                                    # > are elements named?
-    ueOK <- f0(leOK & u, isEQ(elabs, uv(elabs)), F)                              # > do names meet uniqueness specification?
-    beOK <- f0(leOK & blank, !any(elabs == ""), F)                               # > do names meet blankness specification?
+    ueOK <- f0(leOK & u, isEQ(elabs, uv(elabs)), T)                              # > do names meet uniqueness specification?
+    beOK <- f0(leOK & blank, !any(elabs == ""), T)                               # > do names meet blankness specification?
   }
   if (d %in% c(1, 12)) {
     rlabs <- rownames(x)
     lrOK <- length(rlabs) > 0
-    urOK <- f0(lrOK & u, isEQ(rlabs, uv(rlabs)), F)
-    brOK <- f0(lrOK & blank, !any(rlabs == ""), F)
+    urOK <- f0(lrOK & u, isEQ(rlabs, uv(rlabs)), T)
+    brOK <- f0(lrOK & blank, !any(rlabs == ""), T)
   }
   if (d %in% c(2, 12)) {
     clabs <- colnames(x)
     lcOK <- length(clabs) > 0
-    ucOK <- f0(lcOK & u, isEQ(clabs, uv(clabs)), F)
-    bcOK <- f0(lcOK & blank, !any(clabs == ""), F)
+    ucOK <- f0(lcOK & u, isEQ(clabs, uv(clabs)), T)
+    bcOK <- f0(lcOK & blank, !any(clabs == ""), T)
   }
   leOK & ueOK & beOK & lrOK & urOK & brOK & lcOK & ucOK & bcOK
 }
@@ -159,24 +202,31 @@ getnames <- function(x, d = 0, u = T, err = F) {
   if (!is.null(errs)) {stop(.errs(errs))}
   if (d == 0) {
     en <- names(x)
-    if (err & length(en) > 0) {stop(.errs("elements of [x] are not named."))}
-    if (u & !is_unq(en))      {stop(.errs("element names of [x] are not unique."))}
-    return(en)
-  }
-  if (!id2D(x)) {stop(.errs("[x] must be a matrix or a dtf (?is_dtf)"))}
-  if (d %in% c(1, 12)) {
+    if (length(en) == 0 & !err) {return(NULL)}
+    else if (err & length(en) == 0) {stop(.errs("elements of [x] are not named."))}
+    else if (u & !is_unq(en))       {stop(.errs("element names of [x] are not unique."))}
+    en
+  } else if (!id2D(x)) {
+    stop(.errs("[x] must be a matrix or a data.frame when d is 1, 2, or 12."))
+  } else if (d == 12) {
     rn <- rownames(x)
-    if (err & length(rn) > 0) {stop(.errs("row of [x] are not named."))}
-    if (u & !is_unq(rn))      {stop(.errs("row names of [x] are not unique."))}
-    if (d == 1) {return(rn)}
-  }
-  if (d %in% c(2, 12)) {
     cn <- colnames(x)
-    if (err & length(cn) > 0) {stop(.errs("column of [x] are not named."))}
-    if (u & !is_unq(cn))      {stop(.errs("column names of [x] are not unique."))}
-    if (d == 2) {return(cn)}
+    if      (err & (length(rn) == 0 | length(cn) == 0)) {stop(.errs("rows and/or columns of [x] are not named."))}
+    else if (u   & (!is_unq(rn)     | !is_unq(cn)    )) {stop(.errs("row and/or column names of [x] are not unique."))}
+    list(rows = rn, cols = cn)
+  } else if (d == 1) {
+    rn <- rownames(x)
+    if (length(rn) == 0 & !err) {return(NULL)}
+    else if (err & length(rn) == 0) {stop(.errs("rows of [x] are not named."))}
+    else if (u & !is_unq(rn))       {stop(.errs("row names of [x] are not unique."))}
+    rn
+  } else if (d == 2) {
+    cn <- colnames(x)
+    if (length(cn) == 0 & !err) {return(NULL)}
+    else if (err & length(cn) == 0) {stop(.errs("columns of [x] are not named."))}
+    else if (u & !is_unq(cn))       {stop(.errs("column names of [x] are not unique."))}
+    cn
   }
-  list(r = rn, c = cn)
 }
 
 #' @rdname naming

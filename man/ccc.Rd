@@ -62,24 +62,28 @@ ivls(x, ...)
 \description{
 \code{xclass} properties are defined as follows:
 \tabular{rll}{
-   \code{arr}   \tab \code{array}    \tab   Arrays.
-\cr \code{mat}   \tab \code{matrix}   \tab   Matrices.
-\cr \code{dtf}   \tab \code{dtf}      \tab   Data.frames.
-\cr \code{vls}   \tab \code{vlist}    \tab   Vector-lists\eqn{^1}.
-\cr \code{gen}   \tab \code{generic}  \tab   Vectors, vlists, and arrays.
-\cr \code{scl}   \tab \code{scalar}   \tab   Length-\code{1} generics
-\cr \code{mvc}   \tab \code{multivec} \tab   Length-\verb{2+}, \link[=ilin]{linear} generics.
-\cr \code{vec}   \tab \code{vec}      \tab   Scalars and multivecs.
+   \code{arr}   \tab \code{array}    \tab   \code{arrays}.
+\cr \code{mat}   \tab \code{matrix}   \tab   \code{matrices}.
+\cr \code{dtf}   \tab \code{dtf}      \tab   \code{data.frames}.
+\cr \code{vls}   \tab \code{vlist}    \tab   \code{vector-lists}\eqn{^a}.
+\cr \code{gen}   \tab \code{generic}  \tab   \code{vectors}, \code{vlists}, and \code{arrays.}
+\cr \code{scl}   \tab \code{scalar}   \tab   Length-\code{1} \code{generics}
+\cr \code{mvc}   \tab \code{multivec} \tab   Length-\verb{2+} \link[=ilin]{linear} \code{generics.}
+\cr \code{vec}   \tab \code{vec}      \tab   \code{scalars} and \code{multivecs.}
 }
-\eqn{^{1.}} i.e., a non-data.frame list.
+\eqn{^{a.}} A non-data.frame list.
 \cr\cr
 \strong{Functions}
 \tabular{rl}{
-  \code{is_ccc_spec}   \tab Is \code{spec} an \code{xclass} spec?
-\cr \code{ccc_props}   \tab Gets all possible \code{xclass} values.
-\cr      \code{iccc}   \tab Does \code{x} match \code{xclass} spec \code{spec}?
-\cr      \code{iCCC}   \tab Does \code{x} match \code{xclass} property \code{'CCC'}?
-\cr       \code{ccc}   \tab Gets all \code{xclass} properties matching \code{x}.
+  \code{is_ccc_spec}   \tab Is \code{spec} an \code{xclass} specification?
+\cr               \tab   
+\cr \code{ccc_props}   \tab What \code{xclass} properties are there?
+\cr               \tab   
+\cr      \code{iccc}   \tab Is \code{x} a match to the \code{xclass} specification \code{spec}?
+\cr               \tab   
+\cr      \code{iCCC}   \tab Is \code{x} a match to the single \code{xclass} property \code{'CCC'}?
+\cr               \tab   
+\cr       \code{ccc}   \tab What are \code{x}'s \code{xclass} properties?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -111,13 +115,13 @@ Other props:
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
+\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

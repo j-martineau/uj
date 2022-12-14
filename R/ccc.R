@@ -2,24 +2,28 @@
 #' @title Extended class (`xclass`) properties
 #' @description `xclass` properties are defined as follows:
 #' \tabular{rll}{
-#'       `arr`   \tab `array`    \tab   Arrays.
-#'   \cr `mat`   \tab `matrix`   \tab   Matrices.
-#'   \cr `dtf`   \tab `dtf`      \tab   Data.frames.
-#'   \cr `vls`   \tab `vlist`    \tab   Vector-lists\eqn{^1}.
-#'   \cr `gen`   \tab `generic`  \tab   Vectors, vlists, and arrays.
-#'   \cr `scl`   \tab `scalar`   \tab   Length-`1` generics
-#'   \cr `mvc`   \tab `multivec` \tab   Length-`2+`, \link[=ilin]{linear} generics.
-#'   \cr `vec`   \tab `vec`      \tab   Scalars and multivecs.
+#'       `arr`   \tab `array`    \tab   `arrays`.
+#'   \cr `mat`   \tab `matrix`   \tab   `matrices`.
+#'   \cr `dtf`   \tab `dtf`      \tab   `data.frames`.
+#'   \cr `vls`   \tab `vlist`    \tab   `vector-lists`\eqn{^a}.
+#'   \cr `gen`   \tab `generic`  \tab   `vectors`, `vlists`, and `arrays.`
+#'   \cr `scl`   \tab `scalar`   \tab   Length-`1` `generics`
+#'   \cr `mvc`   \tab `multivec` \tab   Length-`2+` \link[=ilin]{linear} `generics.`
+#'   \cr `vec`   \tab `vec`      \tab   `scalars` and `multivecs.`
 #' }
-#' \eqn{^{1.}} i.e., a non-data.frame list.
+#' \eqn{^{a.}} A non-data.frame list.
 #' \cr\cr
 #' **Functions**
 #' \tabular{rl}{
-#'     `is_ccc_spec`   \tab Is `spec` an `xclass` spec?
-#'   \cr `ccc_props`   \tab Gets all possible `xclass` values.
-#'   \cr      `iccc`   \tab Does `x` match `xclass` spec `spec`?
-#'   \cr      `iCCC`   \tab Does `x` match `xclass` property `'CCC'`?
-#'   \cr       `ccc`   \tab Gets all `xclass` properties matching `x`.
+#'     `is_ccc_spec`   \tab Is `spec` an `xclass` specification?
+#'   \cr               \tab   
+#'   \cr `ccc_props`   \tab What `xclass` properties are there?
+#'   \cr               \tab   
+#'   \cr      `iccc`   \tab Is `x` a match to the `xclass` specification `spec`?
+#'   \cr               \tab   
+#'   \cr      `iCCC`   \tab Is `x` a match to the single `xclass` property `'CCC'`?
+#'   \cr               \tab   
+#'   \cr       `ccc`   \tab What are `x`'s `xclass` properties?
 #' }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `xclass` properties (i.e., from `ccc_props()`). `xclass` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.

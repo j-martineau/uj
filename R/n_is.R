@@ -42,10 +42,16 @@
 #' @param x \link[=innw]{non-negative whole-number} object.
 #' @param ... One or more arguments to be examined for counts.
 #' @param n Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec} of valid element, row, or column counts.
-#' @param min,max Optional \link[=cmp_nnw_scl]{complete non-negative whole-number scalars} giving minimum and maximum valid element, row, or column counts.
-#' @param eq,na,a Non-`NA` scalars indicating, respectively, whether all counts must be equal, whether `NA` values are allowed, and whether to \link[=av]{atomize} `...` to create a single atomic vector before processing. If `a = FALSE`, each argument in `...` is processed separately.
+#' @param min Optional complete non-negative whole-number scalar giving minimum valid element, row, or column counts.
+#' @param max Optional complete non-negative whole-number scalar giving maximum valid element, row, or column counts.
+#' @param eq Non-`NA` scalar indicating whether all counts must be equal.
+#' @param na Non-`NA` scalar whether `NA` values are allowed.
+#' @param a Non-`NA` scalar indicating whether to \link[=av]{atomize} `...` to create a single atomic vector before processing. If `a = FALSE`, each argument in `...` is processed separately.
 #' @param vals Optional \link[=atm_vec]{atomic vec} indicating specific values to be counted.
-#' @param lt,le,ge,gt Optional \link[=cmp_srt_scl]{complete sortable scalars} indicating specific values elements of `...` arguments must be less than, less than or equal to, greater than or equal to, or greater than, respectively, to be counted.
+#' @param lt Optional \link[=cmp_srt_scl]{complete sortable scalar} indicating specific values elements of `...` arguments must be less than in order to be counted.
+#' @param le Optional complete sortable scalar indicating specific values elements of `...` arguments must be less than or equal to in order to be counted
+#' @param ge Optional complete sortable scalar indicating specific values elements of `...` arguments must be greater than or equal to in order to be counted.
+#' @param gt Optional complete sortable scalar indicating specific values elements of `...` arguments must be greater than in order to be counted.
 #' @return An integer or logical scalar or vector.
 #' @export
 #' @examples
@@ -83,7 +89,7 @@
 #' nch(letters, eq = T)
 #' nch(letters, "a string")
 #' nch(letters, "a string", a = T)
-n_is <- function(x, n = NULL, min = NULL, max = NULL, eq = F) {
+n_is <- function(x, n = NULL, min = NULL, max = NULL, eq = FALSE) {
   errs <- c(f0(cmp_nnw(x)                  , NULL, "[x] must contain only non-negative whole numbers."),
             f0(inll(n) | cmp_nnw_vec(n)    , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
             f0(inll(min) | cmp_nnw_scl(min), NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
@@ -100,7 +106,7 @@ n_is <- function(x, n = NULL, min = NULL, max = NULL, eq = F) {
 
 #' @rdname n_is
 #' @export
-nx <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = F, na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {
+nx <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, a = FALSE, na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {
   dots <- list(...)
   atoms <- av(dots)
   ok.d <- ...length() > 0
@@ -137,30 +143,30 @@ nx <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = F, na = F, val
     if (idef(le)) {dot <- dot[dot <= le]}
     if (idef(ge)) {dot <- dot[dot >= ge]}
     if (idef(gt)) {dot <- dot[dot >  gt]}
-    dots[[i]] <- dot
+    if (!is.null(dot)) {dots[[i]] <- dot}
   }
   n_is(lengths(dots, F), n = n, min = min, max = max, eq = eq)
 }
 
 #' @rdname n_is
 #' @export
-ns <- function(..., n = NULL, min = NULL, max = NULL, na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {nx(..., n = n, min = min, max = max, na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt)}
+ns <- function(..., n = NULL, min = NULL, max = NULL, na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {nx(..., n = n, min = min, max = max, na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt)}
 
 #' @rdname n_is
 #' @export
-nmin <- function(..., na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {min(nx(..., na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt))}
+nmin <- function(..., na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {min(nx(..., na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt))}
 
 #' @rdname n_is
 #' @export
-nmax <- function(..., na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {max(nx(..., na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt))}
+nmax <- function(..., na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {max(nx(..., na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt))}
 
 #' @rdname n_is
 #' @export
-nsame <- function(..., min = NULL, max = NULL, na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {nx(..., min = min, max = max, eq = T, na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt)}
+nsame <- function(..., min = NULL, max = NULL, na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {nx(..., min = min, max = max, eq = T, na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt)}
 
 #' @rdname n_is
 #' @export
-nw <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
+nw <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = FALSE, a = TRUE) {
   dots <- list(...)
   atoms <- av(dots)
   errs <- c(f0(all(sapply(dots, pop_lgl))         , NULL, "[...] must contain only non-empty logical objects."),
@@ -182,7 +188,7 @@ nt <- nw
 
 #' @rdname n_is
 #' @export
-nf <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
+nf <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = FALSE, a = TRUE) {
   dots <- list(...)
   atoms <- av(dots)
   errs <- c(f0(all(sapply(dots, pop_lgl))         , NULL, "[...] must contain only non-empty logical objects."),
@@ -200,7 +206,7 @@ nf <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
 
 #' @rdname n_is
 #' @export
-nu <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
+nu <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = TRUE, a = TRUE) {
   dots <- list(...)
   atoms <- av(dots)
   errs <- c(f0(all(sapply(dots, pop_lgl))         , NULL, "[...] must contain only non-empty logical objects."),
@@ -222,7 +228,7 @@ nuv <- nu
 
 #' @rdname n_is
 #' @export
-nr <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
+nr <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE) {
   dots <- list(...)
   errs <- c(f0(all(sapply(dots, id2D))     , NULL, "[...] must contain only matrices or dtfs (?is_dtf)."),
             f0(inll(n) | cmp_nnw_vec(n)    , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
@@ -235,7 +241,7 @@ nr <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
 
 #' @rdname n_is
 #' @export
-nc <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
+nc <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE) {
   dots <- list(...)
   errs <- c(f0(all(sapply(dots, id2D))     , NULL, "[...] must contain only matrices or dtfs (?is_dtf)."),
             f0(inll(n) | cmp_nnw_vec(n)    , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
@@ -248,7 +254,7 @@ nc <- function(..., n = NULL, min = NULL, max = NULL, eq = F) {
 
 #' @rdname n_is
 #' @export
-nch <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
+nch <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = FALSE, a = TRUE) {
   dots <- list(...)
   av.dots <- av(dots)
   errs <- c(f0(isTF(a)                        , NULL, "[a] must be TRUE or FALSE."),
@@ -267,7 +273,7 @@ nch <- function(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T) {
 
 #' @rdname n_is
 #' @export
-nna <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {
+nna <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, a = TRUE) {
   dots <- list(...)
   av.dots <- av(dots)
   errs <- c(f0(isTF(a)                        , NULL, "[a] must be TRUE or FALSE."),
@@ -284,7 +290,7 @@ nna <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {
 
 #' @rdname n_is
 #' @export
-nok <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {
+nok <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, a = TRUE) {
   dots <- list(...)
   av.dots <- av(dots)
   errs <- c(f0(isTF(a)                        , NULL, "[a] must be TRUE or FALSE."),
@@ -301,35 +307,35 @@ nok <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {
 
 #' @rdname n_is
 #' @export
-nat <- function(..., n = NULL, min = NULL, max = NULL, eq = F, a = T) {nx(..., n = n, min = min, max = max, eq = eq, a = T)}
+nat <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, a = TRUE) {nx(..., n = n, min = min, max = max, eq = eq, a = T)}
 
 #' @rdname n_is
 #' @export
-n0 <- function(..., na = F, a = T) {nx(..., n = 0, na = na, a = a)}
+n0 <- function(..., na = TRUE, a = TRUE) {nx(..., n = 0, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-n1 <- function(..., na = F, a = T) {nx(..., n = 1, na = na, a = a)}
+n1 <- function(..., na = TRUE, a = TRUE) {nx(..., n = 1, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-n2 <- function(..., na = F, a = T) {nx(..., n = 2, na = na, a = a)}
+n2 <- function(..., na = TRUE, a = TRUE) {nx(..., n = 2, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-n3 <- function(..., na = F, a = T) {nx(..., n = 3, na = na, a = a)}
+n3 <- function(..., na = TRUE, a = TRUE) {nx(..., n = 3, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-n1p <- function(..., na = F, eq = T, a = T) {nx(..., min = 1, na = na, a = a)}
+n1p <- function(..., na = TRUE, eq = FALSE, a = TRUE) {nx(..., min = 1, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-n2p <- function(..., na = F, eq = T, a = T) {nx(..., min = 2, na = na, a = a)}
+n2p <- function(..., na = TRUE, eq = FALSE, a = TRUE) {nx(..., min = 2, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-n3p <- function(..., na = F, eq = T, a = T) {nx(..., min = 3, na = na, a = a)}
+n3p <- function(..., na = TRUE, eq = FALSE, a = TRUE) {nx(..., min = 3, na = na, a = a)}
 
 #' @rdname n_is
 #' @export

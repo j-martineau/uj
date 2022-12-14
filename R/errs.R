@@ -1,4 +1,4 @@
-.errs <- function(x) {g0(p0("", x))}
+.errs <- function(x) {g0(p0("\n \u2022 ", x))}
 
 #' @family errs
 #' @title Error checking, banking, and processing
@@ -52,11 +52,12 @@
 #' @param nas. A non-`NA` logical scalar indicating whether atomic scalar `NA` values qualify.
 #' @param extras `NUlL` or an \link[=icmp]{complete atomic object} containing additional atomic values that qualify as valid.
 #' @param funs A \link[=cmp_chr_scl]{complete character scalar} containing a \link[=ppp_funs]{property function} name or multiple property function names separated by pipes, which are used to check if named arguments in `...` satisfy the property specification in any of the function names.
-#' @param ppp A complete character scalar containing one or more property combos (combos are created by separating one or more \link[=all_props]{property values} with underscores. Multiple combos are separated by pipes.
+#' @param spec. A complete character scalar containing a \link[=is_prop_spec]{property specification}.
 #' @param named. A non-`NA` logical scalar indicating whether `...` arguments must be uniquely named without using blank strings.
-#' @param whens.,values. \link[=ipop]{Populated atomic objects}.
+#' @param whens. A \link[=ipop]{Populated atomic object}.
+#' @param values. A \link[=ipop]{Populated atomic object}.
 #' @param pats. An \link[=ivls]{atomic vlist} containing multiple elements, each of which must be a \link[=cmp_chr_mvc]{complete character multivec} of the same length as the number of `...` arguments. Each element gives a pattern of valid properties for the argument in `...` in the form of one property specification per argument in `...` in the same order of those arguments.
-#' @return `NULL` (called for the side effect of banking and/or processing error messages).
+#' @return `NULL`
 #' @export
 err_check <- function(gens. = 0) {
   ok.gens <- f0(!cmp_nnw_scl(gens.), F, gens. <= ncallers() - 1)
@@ -67,7 +68,7 @@ err_check <- function(gens. = 0) {
   if (errs) {
     fun.name <- callers(gens.)
     err.bank <- get(bank.name, envir = parent.frame(gens.), inherits = F)
-    err.bank <- paste0(paste0("", err.bank), collapse = "")
+    err.bank <- .errs(err.bank)
     err.bank <- paste0("\nIN [", fun.name, "]", err.bank)
     stop(err.bank)
   }
@@ -185,13 +186,12 @@ bank_pop <- function(...) {
 
 #' @rdname err_check
 #' @export
-bank_funs <- function(funs., ...) {
+bank_funs <- function(funs., ..., vals. = NULL) {
   if (cmp_chr_vec(funs.)) {
     funs. <- av(strsplit(funs., "|", TRUE))
     len3 <- nchar(funs.) == 3
     funs.[len3] <- paste0("i", funs.[len3])
-  }
-  else {stop(.errs("[funs.] must be a complete character vec (?cmp_chr_vec)."))}
+  } else {stop(.errs("[funs.] must be a complete character vec (?cmp_chr_vec)."))}
   labs <- ...names()
   n.dots <- ...length()
   n.labs <- length(labs)
@@ -205,7 +205,10 @@ bank_funs <- function(funs., ...) {
   errs <- paste0("[", labs, "] must be ", spec_concise(funs.))
   for (i in 1:n.dots) {
     ok <- FALSE
-    for (fun in funs.) {ok <- ok | eval(parse(text = paste0(fun, "(...elt(i))")))}
+    for (fun in funs.) {
+      ok <- ok | eval(parse(text = paste0(fun, "(...elt(i))")))
+      ok <- ok & f0(is.null(vals.), T, all(...elt(i) %in% vals.))
+    }
     if (!ok) {bank_err(errs[i], gens. = 1)}
   }
   NULL
@@ -213,24 +216,24 @@ bank_funs <- function(funs., ...) {
 
 #' @rdname err_check
 #' @export
-bank_ppp <- function(ppp., ..., nas. = F) {
+bank_spec <- function(spec., ..., nas. = F) {
   labs <- ...names()
   n.dots <- ...length()
   n.labs <- length(labs)
-  ok.ppp <- f0(!cmp_chr_scl(ppp.), F, is_prop_spec(ppp.))
+  ok.spec <- f0(!cmp_chr_scl(spec.), F, is_prop_spec(spec.))
   ok.n <- n.dots > 0
   ok.labs <- f0(n.dots != n.labs, F, !any(labs == "") & isEQ(labs, unique(labs)))
   ok.nas <- isTF(nas.)
-  errs <- c(f0(ok.ppp , NULL, "[ppp.] is not a valid property specification."),
+  errs <- c(f0(ok.spec, NULL, "[spec.] is not a valid property specification (?is_prop_spec)."),
             f0(ok.n   , NULL, "[...] is empty."),
             f0(ok.labs, NULL, "All arguments in [...] must be uniquely named without using blank strings."),
             f0(ok.nas , NULL, "[nas.] must be TRUE or FALSE."))
   if (!is.null(errs)) {stop(.errs(errs))}
-  errs <- paste0("[", labs, "] must be ", alt_ppp_concise(ppp.), ".")
+  errs <- paste0("[", labs, "] must be ", spec_concise(spec.), ".")
   for (i in 1:n.dots) {
     val <- F
-    if (nas.) {val <- isNa(...elt(i))}
-    if (!val) {val <- ippp(...elt(i), ppp.)}
+    if (nas.) {val <- isNAS(...elt(i))}
+    if (!val) {val <- ippp(...elt(i), spec.)}
     if (!val) {bank_err(errs[i], gens. = 1)}
   }
   NULL
@@ -283,22 +286,22 @@ bank_vals <- function(...) {
 
 #' @rdname err_check
 #' @export
-bank_dots <- function(ppp., ..., named. = F) {
+bank_dots <- function(spec., ..., named. = F) {
   dots  <- list(...)
   named <- named_dots(...)
   blank <- unnamed_dots(...)
   labs <- names(named)
-  ok.ppp <- f0(!cmp_chr_scl(ppp), F, is_valid_ppp(ppp))
+  ok.spec <- f0(!cmp_chr_scl(spec.), F, is_prop_spec(spec.))
   ok.0 <- ...length() > 0
   ok.named <- isTF(named.)
   ok.labs <- f0(!ok.0 | !ok.named, T, f0(!named., T, f0(length(blank) > 0, F, f0(any(names(labs) == ""), F, isEQ(labs, unique(labs))))))
-  errs <- c(f0(ok.ppp  , NULL, "[ppp.] must be a character scalar containing a valid property specification (?is_valid_ppp)."),
+  errs <- c(f0(ok.spec , NULL, "[spec.] must be a character scalar containing a valid property specification (?is_prop_spec)."),
             f0(ok.0    , NULL, "[...] is empty."),
             f0(ok.named, NULL, "[named.] must be TRUE or FALSE."),
             f0(ok.labs , NULL, "When [named. = TRUE], all arguments in [...] must be uniquely named without using blank strings."))
   if (!is.null(errs)) {stop(.errs(errs))}
-  ok.dots <- sapply(dots, ippp, ppp = ppp.)
-  if (!ok.dots) {bank_err("All arguments in [...] must be ", alt_ppp_concise(ppp.), ".", gens. = 1)}
+  ok.dots <- sapply(dots, ippp, spec = spec.)
+  if (!ok.dots) {bank_err("All arguments in [...] must be ", spec_concise(spec.), ".", gens. = 1)}
   NULL
 }
 
@@ -353,13 +356,13 @@ bank_pats <- function(pats., ...) {
   ok.vls <- cmp_chr_vls(pats.)
   pat.ns <- f0(ok.vls, lengths(pats.), 0)
   nu.labs <- length(unique(labs))
-  ok.pats <- f0(ok.vls, all(sapply(av(pats.), is_valid_ppp)), F)
+  ok.pats <- f0(ok.vls, all(sapply(av(pats.), is_prop_spec)), F)
   ok.ns <- all(pat.ns == n.dots)
   ok.nu <- n.dots == nu.labs
   errs <- c(f0(ok.vls     , NULL, "[pats.] must be a complate atomic vlist (?cmp_vls)."),
             f0(ok.nu      , NULL, "Arguments in [...] must be uniquely named."),
             f0(ok.ns      , NULL, "Elements of [pats.] must have length equal to the number of arguments in [...]."),
-            f0(ok.pats    , NULL, "All values in [pats.] must be valid property specification (see is_valid_xxx)"),
+            f0(ok.pats    , NULL, "All values in [pats.] must be valid property specification (see is_prop_spec)"),
             f0(n.pats < 2 , NULL, "The number of patterns in [pats.] is less than 2."),
             f0(n.dots < 2 , NULL, "The number of arguments in [...] is less than 2."),
             f0(n.blank > 0, NULL, "All arguments in [...] must be named."))

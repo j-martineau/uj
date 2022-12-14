@@ -150,13 +150,13 @@ This set of functions provide utilities that bring together seven families of ob
 }
 \strong{Single-family property-checking functions}
 \tabular{rl}{
-  \code{ibbb} \tab   Does \code{x} match \code{base} spec \code{spec}?
-\cr \code{iccc} \tab   Does \code{x} match \code{xclass} spec \code{spec}?
-\cr \code{iddd} \tab   Does \code{x} match \code{defined-D} spec \code{spec}?
-\cr \code{ieee} \tab   Does \code{x} match \code{effective-D} spec \code{spec}?
-\cr \code{iiii} \tab   Does \code{x} match \code{integrity} spec \code{spec}?
-\cr \code{immm} \tab   Does \code{x} match \code{xmode} spec \code{spec}?
-\cr \code{isss} \tab   Does \code{x} match \code{shape} spec \code{spec}?
+  \code{ibbb} \tab   Is \code{x} a match to \code{base}-family \code{spec}?
+\cr \code{iccc} \tab   Is \code{x} a match to \code{xclass}-family \code{spec}?
+\cr \code{iddd} \tab   Is \code{x} a match to \code{defined-D}-family \code{spec}?
+\cr \code{ieee} \tab   Is \code{x} a match to \code{effective-D}-family \code{spec}?
+\cr \code{iiii} \tab   Is \code{x} a match to \code{integrity}-family \code{spec}?
+\cr \code{immm} \tab   Is \code{x} a match to \code{xmode}-family \code{spec}?
+\cr \code{isss} \tab   Is \code{x} a match to \code{shape}-family \code{spec}?
 }
 \strong{Functions testing for combination/conjunctive properties}
 \tabular{rl}{
@@ -166,9 +166,9 @@ This set of functions provide utilities that bring together seven families of ob
 \cr   \code{BBB_CCC} \tab   \code{base} property \verb{'BBB' + xclass 'CCC'}.
 \cr   \code{BBB_MMM} \tab   \code{base} property \verb{'BBB' + xmode 'MMM'}.
 \cr   \code{MMM_CCC} \tab   \verb{xmode 'MMM' + xclass 'CCC'}.
-\cr    \code{nll_or} \tab   Is \verb{x NULL} or a match to \code{spec}?
-\cr    \code{nas_or} \tab   Is \verb{x NA} or a match to \code{spec}?
-\cr      \code{ippp} \tab   Does \code{x} match spec \code{spec}?
+\cr    \code{nll_or} \tab   Is \code{x} \code{NULL} or a match to \code{spec}?
+\cr    \code{nas_or} \tab   Is \code{x} \code{NA} or a match to \code{spec}?
+\cr      \code{ippp} \tab   Is \code{x} a match to \code{spec}?
 }
 \strong{Comprehensive lists of single and common combination properties}
 \tabular{rl}{
@@ -239,13 +239,13 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
+\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

@@ -12,7 +12,7 @@
 \alias{inll}
 \alias{ipop}
 \alias{ircr}
-\title{\code{base} properties}
+\title{\code{basic} properties}
 \usage{
 bbb(x)
 
@@ -28,9 +28,9 @@ idef(x, ...)
 
 ifun(x, ...)
 
-inil(x, ...)
+inil(x)
 
-inll(x, ...)
+inll(x)
 
 ipop(x, ...)
 
@@ -39,7 +39,7 @@ ircr(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more \code{base} properties (i.e., from \code{bbb_props()}). \code{Base} properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more \code{basic} properties from \code{bbb_props()}. \code{basic} properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -49,34 +49,39 @@ ircr(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_bbb_spec}   \tab A logical scalar.
-\cr \code{bbb_props}   \tab A character vector.
-\cr      \code{ibbb}   \tab A logical scalar.
-\cr      \code{iBBB}   \tab A logical scalar.
-\cr       \code{bbb}   \tab A character vector.
+  \code{is_bbb_spec} \tab   A logical scalar.
+\cr \code{bbb_props} \tab   A character vector.
+\cr      \code{ibbb} \tab   A logical scalar.
+\cr      \code{iBBB} \tab   A logical scalar.
+\cr       \code{bbb} \tab   A character vector.
 }
 }
 \description{
-An object's \code{base} properties are defined by its most basic structural properties as described in the following table:
+An object's \code{basic} properties are defined by its fundamental structure as follows:
 \tabular{rll}{
-  \code{'atm'}   \tab Atomic      \tab Atomic objects.
-\cr \code{'rcr'}   \tab Recursive   \tab Data.frames and lists.
-\cr           \tab             \tab   
-\cr \code{'def'}   \tab Defined     \tab Non-\code{NULL} objects.
-\cr \code{'nll'}   \tab Null        \tab The \code{NULL} object.
-\cr           \tab             \tab   
-\cr \code{'nil'}   \tab Nil         \tab \code{0}-length, non-\code{NULL} objects..
-\cr \code{'pop'}   \tab Populated   \tab Length-\verb{1+} objects.
-\cr           \tab             \tab   
-\cr \code{'fun'}   \tab Function    \tab Function objects or character scalar names of functions accessible to the calling function.
+  \code{'atm'} \tab   atomic \tab Atomic (but not \code{NULL}). Both a \code{basic} and an \code{\link[=mmm]{xmode}} property.
+\cr         \tab                  \tab   
+\cr \code{'rcr'} \tab   recursive      \tab \code{data.frame} or \code{list}.
+\cr \code{'pop'} \tab   populated      \tab Length \code{1} or greater.
+\cr \code{'def'} \tab   defined        \tab Not \code{NULL}.
+\cr \code{'nll'} \tab   null           \tab \code{NULL}.
+\cr \code{'nil'} \tab   nil            \tab Length \code{0} but not \code{NULL}.
+\cr         \tab                  \tab   
+\cr \code{'fun'} \tab   function       \tab A function or a character scalar name of a function accessible from the environment of the calling function.
 }
+\eqn{^{a.}} \code{'atm'} \emph{is both a} \code{basic} \emph{and an} \code{\link[=mmm]{xmode}} \emph{property.}
+\cr\cr
 \strong{Functions}
 \tabular{rl}{
-  \code{is_bbb_spec}   \tab Is \code{spec} a \code{base} property spec?
-\cr \code{bbb_props}   \tab Gets all \code{base} property values.
-\cr      \code{ibbb}   \tab Does \code{x} match \code{base} property spec \code{spec}?
-\cr      \code{iBBB}   \tab Does \code{x} match \code{base} property \code{'BBB'}?
-\cr       \code{bbb}   \tab Gets all of \code{x}'s \code{base} properties.
+  \code{is_bbb_spec}   \tab Is \code{spec} a \code{basic} property specification?
+\cr               \tab   
+\cr \code{bbb_props}   \tab What \code{basic} properties are there?
+\cr               \tab   
+\cr      \code{ibbb}   \tab Is \code{x} a match to the \code{basic} property specification \code{spec}?
+\cr               \tab   
+\cr      \code{iBBB}   \tab Is \code{x} a match to the \code{basic} property \code{'BBB'}?
+\cr               \tab   
+\cr       \code{bbb}   \tab What are \code{x}'s basic properties?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -109,13 +114,13 @@ Other props:
 \code{\link{bbb_mmm}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
+\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

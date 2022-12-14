@@ -114,3 +114,47 @@ rcn(x, u = T, err = F)
 \cr      \code{cn}   \tab Gets column names.
 }
 }
+\examples{
+dots_named. <- function(...) {dnamed(...)}
+
+Vec. <- 1:5
+Vls. <- list(num = 1:5, ae = letters[1:5])
+Mat. <- matrix(letters[1:25], nrow = 5)
+Dtf. <- data.frame(ae = letters[1:5], AE = LETTERS[1:5])
+
+Vec.
+Vls.
+Mat.
+Dtf.
+
+named(Vec.)
+named(Vls.)
+named(Mat., d = 12)
+named(Dtf., d = 2)
+
+enamed(Vls.)
+rnamed(Mat.)
+cnamed(Dtf.)
+rcnamed(Dtf.)
+
+dots_named.(Vec., Vls.)
+dots_named.(var1 = Vec., var2 = Vls.)
+
+getnames(Vls.)
+getnames(Mat., d = 1)
+getnames(Dtf., d = 2)
+
+en(Vec.)
+en(Vls.)
+
+rn(Mat.)
+cn(Dtf.)
+rcn(Dtf.)
+
+namel(Dtf., "a data.frame")
+namev(Vec., letters[Vec.])
+namer(Mat., letters[Vec.])
+namec(Dtf., c("letters", "LETTERS"))
+namerc(Mat., letters[Vec.], Vec.)
+
+}

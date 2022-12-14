@@ -35,7 +35,7 @@
 \alias{rcr_scl}
 \alias{rcr_vec}
 \alias{rcr_vls}
-\title{\code{base + xclass} properties}
+\title{\code{basic + xclass} combination properties}
 \usage{
 bbb_ccc(x, bbb, ccc, ...)
 
@@ -106,11 +106,11 @@ rcr_vec(x, ...)
 rcr_vls(x, ...)
 }
 \arguments{
-\item{x}{An R object}
+\item{x}{An R object.}
 
-\item{bbb}{A character scalar containing a \code{base} property from \code{bbb_props()}.}
+\item{bbb}{A character scalar single \code{basic} property from \code{c('atm', 'nil', 'pop', 'rcr')}.}
 
-\item{ccc}{A character scalar containing an \code{xclass} property from \code{ccc_props()}.}
+\item{ccc}{A character scalar single \code{xclass} property from \code{ccc_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -120,18 +120,21 @@ rcr_vls(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{bbb_ccc_props}   \tab A character vector.
-\cr     \code{bbb_ccc}   \tab A logical scalar
-\cr     \code{BBB_CCC}   \tab A logical scalar
+  \code{is_bbb_ccc_prop} \tab   A logical scalar.
+\cr \code{bbb_ccc_props} \tab   A character vector.
+\cr       \code{bbb_ccc} \tab   A logical scalar.
+\cr       \code{BBB_CCC} \tab   A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{bbb_ccc_props}   \tab Gets all possible \code{\link[=bbb]{base} + \link[=ccc]{xclass}} properties.
-\cr                 \tab   
-\cr     \code{bbb_ccc}   \tab Does \code{x} match \code{base} and \code{xclass} specs in \code{bbb} and \code{ccc}, respectively?
-\cr                 \tab   
-\cr     \code{BBB_CCC}   \tab Does \code{x} match \code{base} and \code{xclass} properties \code{'BBB'} and \code{'CCC'}, respectively?
+  \code{is_bbb_ccc_prop}   \tab Is \code{x} an \code{\link[=bbb]{basic} + \link[=ccc]{xclass}} combination property?
+\cr                   \tab   
+\cr \code{bbb_ccc_props}   \tab What \code{basic + xclass} combination properties have dedicated functions?
+\cr                   \tab   
+\cr       \code{bbb_ccc}   \tab Is \code{x} a match to the single \code{basic} and \code{xclass} properties in \code{bbb} and \code{ccc}, respectively?
+\cr                   \tab   
+\cr       \code{BBB_CCC}   \tab Is \code{x} a match to single \code{basic} and \code{xclass} properties \code{'BBB'} and \code{'CCC'}, respectively?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -163,13 +166,13 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
+\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

@@ -1,21 +1,24 @@
 #' @family props
-#' @title `base + xmode` properties
+#' @title `basic + xmode` combination properties
 #' @description \tabular{rl}{
-#'     `bbb_mmm_props`   \tab Gets all \code{\link[=bbb]{base} + \link[=mmm]{xmode}} properties.
-#'   \cr                 \tab   
-#'   \cr     `bbb_mmm`   \tab Does `x` match `base` and `xmode` specs in arguments `bbb` and `mmm`, respectively.
-#'   \cr                 \tab   
-#'   \cr     `BBB_MMM`   \tab Does `x` match `base` and `xmode` properties `'BBB'` and `'MMM'`, respectively?
+#'     `is_bbb_mmm_prop`   \tab Is `x` a \code{\link[=bbb]{basic} + \link[=mmm]{xmode}} combination property?
+#'   \cr                   \tab   
+#'   \cr `bbb_mmm_props`   \tab What `basic + xmode` combination properties have dedicated functions?
+#'   \cr                   \tab   
+#'   \cr       `bbb_mmm`   \tab Is `x` a match to the single `basic` and `xmode` properties in `bbb` and `mmm`, respectively?
+#'   \cr                   \tab   
+#'   \cr       `BBB_MMM`   \tab Is `x` a match to single `basic` and `xmode` properties `'BBB'` and `'MMM'`, respectively?
 #' }
-#' @param x An R object
-#' @param bbb A character scalar containing a `base` property from `bbb_props()`.
-#' @param mmm A character scalar containing an `xmode` property from `mmm_props()`.
+#' @param x An R object.
+#' @param bbb A character scalar single `basic` property from `c('atm', 'pop')`.
+#' @param mmm A character scalar single `xmode` property from `mmm_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `bbb_mmm_props`   \tab A character vector.
-#'   \cr     `bbb_mmm`   \tab A logical scalar.
-#'   \cr     `BBB_MMM`   \tab A logical scalar.
+#'     `is_bbb_mmm_prop` \tab   A logical scalar.
+#'   \cr `bbb_mmm_props` \tab   A character vector.
+#'   \cr       `bbb_mmm` \tab   A logical scalar.
+#'   \cr       `BBB_MMM` \tab   A logical scalar.
 #' }
 #' @examples
 #' bbb_mmm_props()
@@ -38,8 +41,15 @@ bbb_mmm <- function(x, bbb, mmm, ...) {
 
 #' @rdname bbb_mmm
 #' @export
-bbb_mmm_props <- function() {sort(av(apply(expand.grid(bbb = c("atm", "pop"), mmm = .mmms), 1, paste0, collapse = '_')))}
+bbb_mmm_props <- function() {
+  mmm <- .mmms
+  mmm <- mmm[mmm != "atm"]
+  c(paste0("atm_", mmm), paste0("pop_", mmm))
+}
 
+#' @rdname cmp_mmm_ccc
+#' @export
+is_cmp_mmm_ccc_prop <- function(prop) {f0(is.atomic(prop) & length(prop) == 1, isIN(prop, cmp_mmm_ccc_props()), F)}
 
 #' @rdname bbb_mmm
 #' @export
@@ -149,6 +159,9 @@ atm_uno <- function(x, ...) {bbb_mmm(x, 'atm', 'uno', ...)}
 #' @export
 atm_whl <- function(x, ...) {bbb_mmm(x, 'atm', 'whl', ...)}
 
+#' @rdname bbb_mmm
+#' @export
+pop_atm <- function(x, ...) {bbb_mmm(x, 'pop', 'atm', ...)}
 
 #' @rdname bbb_mmm
 #' @export

@@ -30,6 +30,7 @@
 \alias{atm_str}
 \alias{atm_uno}
 \alias{atm_whl}
+\alias{pop_atm}
 \alias{pop_ch1}
 \alias{pop_ch3}
 \alias{pop_chr}
@@ -57,7 +58,7 @@
 \alias{pop_str}
 \alias{pop_uno}
 \alias{pop_whl}
-\title{\code{base + xmode} properties}
+\title{\code{basic + xmode} combination properties}
 \usage{
 bbb_mmm(x, bbb, mmm, ...)
 
@@ -117,6 +118,8 @@ atm_uno(x, ...)
 
 atm_whl(x, ...)
 
+pop_atm(x, ...)
+
 pop_ch1(x, ...)
 
 pop_ch3(x, ...)
@@ -172,11 +175,11 @@ pop_uno(x, ...)
 pop_whl(x, ...)
 }
 \arguments{
-\item{x}{An R object}
+\item{x}{An R object.}
 
-\item{bbb}{A character scalar containing a \code{base} property from \code{bbb_props()}.}
+\item{bbb}{A character scalar single \code{basic} property from \code{c('atm', 'pop')}.}
 
-\item{mmm}{A character scalar containing an \code{xmode} property from \code{mmm_props()}.}
+\item{mmm}{A character scalar single \code{xmode} property from \code{mmm_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -186,18 +189,21 @@ pop_whl(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{bbb_mmm_props}   \tab A character vector.
-\cr     \code{bbb_mmm}   \tab A logical scalar.
-\cr     \code{BBB_MMM}   \tab A logical scalar.
+  \code{is_bbb_mmm_prop} \tab   A logical scalar.
+\cr \code{bbb_mmm_props} \tab   A character vector.
+\cr       \code{bbb_mmm} \tab   A logical scalar.
+\cr       \code{BBB_MMM} \tab   A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{bbb_mmm_props}   \tab Gets all \code{\link[=bbb]{base} + \link[=mmm]{xmode}} properties.
-\cr                 \tab   
-\cr     \code{bbb_mmm}   \tab Does \code{x} match \code{base} and \code{xmode} specs in arguments \code{bbb} and \code{mmm}, respectively.
-\cr                 \tab   
-\cr     \code{BBB_MMM}   \tab Does \code{x} match \code{base} and \code{xmode} properties \code{'BBB'} and \code{'MMM'}, respectively?
+  \code{is_bbb_mmm_prop}   \tab Is \code{x} a \code{\link[=bbb]{basic} + \link[=mmm]{xmode}} combination property?
+\cr                   \tab   
+\cr \code{bbb_mmm_props}   \tab What \code{basic + xmode} combination properties have dedicated functions?
+\cr                   \tab   
+\cr       \code{bbb_mmm}   \tab Is \code{x} a match to the single \code{basic} and \code{xmode} properties in \code{bbb} and \code{mmm}, respectively?
+\cr                   \tab   
+\cr       \code{BBB_MMM}   \tab Is \code{x} a match to single \code{basic} and \code{xmode} properties \code{'BBB'} and \code{'MMM'}, respectively?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -229,13 +235,13 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
+\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

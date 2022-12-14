@@ -3,6 +3,7 @@
 \name{cmp_ccc}
 \alias{cmp_ccc}
 \alias{cmp_ccc_props}
+\alias{is_cmp_ccc_prop}
 \alias{cmp_arr}
 \alias{cmp_dtf}
 \alias{cmp_gen}
@@ -11,11 +12,13 @@
 \alias{cmp_scl}
 \alias{cmp_vec}
 \alias{cmp_vls}
-\title{Complete + \code{xclass} properties}
+\title{\code{complete + xclass} combination properties}
 \usage{
 cmp_ccc(x, spec, ...)
 
 cmp_ccc_props()
+
+is_cmp_ccc_prop(prop)
 
 cmp_arr(x, ...)
 
@@ -36,28 +39,33 @@ cmp_vls(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{spec}{A character scalar \code{xclass} spec built from values in \code{ccc_props()}.}
-
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
   \describe{
     \item{\code{}}{}
   }}
+
+\item{prop}{A character scalar.}
+
+\item{ccc}{A character scalar single \code{xclass} property from \code{ccc_props()}.}
 }
 \value{
 \tabular{rl}{
-  \code{cmp_ccc_props}   \tab A character vector.
-\cr     \code{cmp_ccc}   \tab A logical scalar.
-\cr     \code{cmp_CCC}   \tab A logical scalar.
+  \code{is_cmp_ccc_prop} \tab   A logical scalar.
+\cr \code{cmp_ccc_props} \tab   A character vector.
+\cr       \code{cmp_ccc} \tab   A logical scalar.
+\cr       \code{cmp_CCC} \tab   A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{cmp_ccc_props}   \tab Gets all possible \link[=icmp]{complete} + \code{\link[=ccc]{xclass}} properties.
-\cr                 \tab   
-\cr     \code{cmp_ccc}   \tab Is \code{x} complete and does it match \code{xclass} spec \code{ccc}?
-\cr                 \tab   
-\cr     \code{cmp_CCC}   \tab Is \code{x} complete and does it match \code{xclass} property \code{'CCC'}?
+  \code{is_cmp_ccc_prop}   \tab Is \code{prop} a \code{\link[=icmp]{complete} + \link[=ccc]{xclass}} combination property?
+\cr                   \tab   
+\cr \code{cmp_ccc_props}   \tab What \code{complete + xclass} combination properties have dedicated functions?
+\cr                   \tab   
+\cr       \code{cmp_ccc}   \tab Is \code{x} both \code{complete} and a match the single \code{xclass} property in \code{ccc}?
+\cr                   \tab   
+\cr       \code{cmp_CCC}   \tab Is \code{x} both \code{complete} and a match the single \code{xclass} property \code{'CCC'}?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -90,13 +98,13 @@ Other props:
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{ccc}()},
-\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
+\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

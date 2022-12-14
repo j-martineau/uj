@@ -1,36 +1,41 @@
 #' @family props
-#' @title `base` properties
-#' @description  An object's `base` properties are defined by its most basic structural properties as described in the following table:
+#' @title `basic` properties
+#' @description An object's `basic` properties are defined by its fundamental structure as follows:
 #' \tabular{rll}{
-#'       `'atm'`   \tab Atomic      \tab Atomic objects.
-#'   \cr `'rcr'`   \tab Recursive   \tab Data.frames and lists.
-#'   \cr           \tab             \tab   
-#'   \cr `'def'`   \tab Defined     \tab Non-`NULL` objects.
-#'   \cr `'nll'`   \tab Null        \tab The `NULL` object.
-#'   \cr           \tab             \tab   
-#'   \cr `'nil'`   \tab Nil         \tab `0`-length, non-`NULL` objects..
-#'   \cr `'pop'`   \tab Populated   \tab Length-`1+` objects.
-#'   \cr           \tab             \tab   
-#'   \cr `'fun'`   \tab Function    \tab Function objects or character scalar names of functions accessible to the calling function.
+#'       `'atm'` \tab   atomic \tab Atomic (but not `NULL`). Both a `basic` and an \code{\link[=mmm]{xmode}} property.
+#'   \cr         \tab                  \tab   
+#'   \cr `'rcr'` \tab   recursive      \tab `data.frame` or `list`.
+#'   \cr `'pop'` \tab   populated      \tab Length `1` or greater.
+#'   \cr `'def'` \tab   defined        \tab Not `NULL`.
+#'   \cr `'nll'` \tab   null           \tab `NULL`.
+#'   \cr `'nil'` \tab   nil            \tab Length `0` but not `NULL`.
+#'   \cr         \tab                  \tab   
+#'   \cr `'fun'` \tab   function       \tab A function or a character scalar name of a function accessible from the environment of the calling function.
 #' }
+#' \eqn{^{a.}} `'atm'` *is both a* `basic` *and an* \code{\link[=mmm]{xmode}} *property.*
+#' \cr\cr
 #' **Functions**
 #' \tabular{rl}{
-#'     `is_bbb_spec`   \tab Is `spec` a `base` property spec?
-#'   \cr `bbb_props`   \tab Gets all `base` property values.
-#'   \cr      `ibbb`   \tab Does `x` match `base` property spec `spec`?
-#'   \cr      `iBBB`   \tab Does `x` match `base` property `'BBB'`?
-#'   \cr       `bbb`   \tab Gets all of `x`'s `base` properties.
+#'     `is_bbb_spec`   \tab Is `spec` a `basic` property specification?
+#'   \cr               \tab   
+#'   \cr `bbb_props`   \tab What `basic` properties are there?
+#'   \cr               \tab   
+#'   \cr      `ibbb`   \tab Is `x` a match to the `basic` property specification `spec`?
+#'   \cr               \tab   
+#'   \cr      `iBBB`   \tab Is `x` a match to the `basic` property `'BBB'`?
+#'   \cr               \tab   
+#'   \cr       `bbb`   \tab What are `x`'s basic properties?
 #' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `base` properties (i.e., from `bbb_props()`). `Base` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `basic` properties from `bbb_props()`. `basic` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_bbb_spec`   \tab A logical scalar.
-#'   \cr `bbb_props`   \tab A character vector.
-#'   \cr      `ibbb`   \tab A logical scalar.
-#'   \cr      `iBBB`   \tab A logical scalar.
-#'   \cr       `bbb`   \tab A character vector.
+#'     `is_bbb_spec` \tab   A logical scalar.
+#'   \cr `bbb_props` \tab   A character vector.
+#'   \cr      `ibbb` \tab   A logical scalar.
+#'   \cr      `iBBB` \tab   A logical scalar.
+#'   \cr       `bbb` \tab   A character vector.
 #' }
 #' @examples
 #' is_bbb_spec("nil|nll")
@@ -52,7 +57,10 @@ bbb_props <- function() {.bbbs}
 
 #' @rdname bbb
 #' @export
-is_bbb_spec <- function(spec) {spec <- .spec_vals(spec); f0(length(spec) == 0, F, all(spec %in% .bbbs))}
+is_bbb_spec <- function(spec) {
+  spec <- .spec_vals(spec)
+  f0(length(spec) == 0, F, all(spec %in% bbb_props()))
+}
 
 #' @rdname bbb
 #' @export
@@ -78,11 +86,11 @@ ifun <- function(x, ...) {ibbb(x, 'fun', ...)}
 
 #' @rdname bbb
 #' @export
-inil <- function(x, ...) {ibbb(x, 'nill', ...)}
+inil <- function(x) {ibbb(x, 'nil')}
 
 #' @rdname bbb
 #' @export
-inll <- function(x, ...) {ibbb(x, 'nll', ...)}
+inll <- function(x) {ibbb(x, 'nll')}
 
 #' @rdname bbb
 #' @export

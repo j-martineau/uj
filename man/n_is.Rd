@@ -35,16 +35,16 @@
 \alias{nd3p}
 \title{Dedicated counting functions}
 \usage{
-n_is(x, n = NULL, min = NULL, max = NULL, eq = F)
+n_is(x, n = NULL, min = NULL, max = NULL, eq = FALSE)
 
 nx(
   ...,
   n = NULL,
   min = NULL,
   max = NULL,
-  eq = F,
-  a = F,
-  na = F,
+  eq = FALSE,
+  a = FALSE,
+  na = TRUE,
   vals = NULL,
   lt = NULL,
   le = NULL,
@@ -57,7 +57,7 @@ ns(
   n = NULL,
   min = NULL,
   max = NULL,
-  na = F,
+  na = TRUE,
   vals = NULL,
   lt = NULL,
   le = NULL,
@@ -65,15 +65,15 @@ ns(
   gt = NULL
 )
 
-nmin(..., na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL)
+nmin(..., na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL)
 
-nmax(..., na = F, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL)
+nmax(..., na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL)
 
 nsame(
   ...,
   min = NULL,
   max = NULL,
-  na = F,
+  na = TRUE,
   vals = NULL,
   lt = NULL,
   le = NULL,
@@ -81,41 +81,41 @@ nsame(
   gt = NULL
 )
 
-nw(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T)
+nw(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = FALSE, a = TRUE)
 
-nt(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T)
+nt(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = FALSE, a = TRUE)
 
-nf(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T)
+nf(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = FALSE, a = TRUE)
 
-nu(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T)
+nu(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = TRUE, a = TRUE)
 
-nuv(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T)
+nuv(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = TRUE, a = TRUE)
 
-nr(..., n = NULL, min = NULL, max = NULL, eq = F)
+nr(..., n = NULL, min = NULL, max = NULL, eq = FALSE)
 
-nc(..., n = NULL, min = NULL, max = NULL, eq = F)
+nc(..., n = NULL, min = NULL, max = NULL, eq = FALSE)
 
-nch(..., n = NULL, min = NULL, max = NULL, eq = F, na = F, a = T)
+nch(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = FALSE, a = TRUE)
 
-nna(..., n = NULL, min = NULL, max = NULL, eq = F, a = T)
+nna(..., n = NULL, min = NULL, max = NULL, eq = FALSE, a = TRUE)
 
-nok(..., n = NULL, min = NULL, max = NULL, eq = F, a = T)
+nok(..., n = NULL, min = NULL, max = NULL, eq = FALSE, a = TRUE)
 
-nat(..., n = NULL, min = NULL, max = NULL, eq = F, a = T)
+nat(..., n = NULL, min = NULL, max = NULL, eq = FALSE, a = TRUE)
 
-n0(..., na = F, a = T)
+n0(..., na = TRUE, a = TRUE)
 
-n1(..., na = F, a = T)
+n1(..., na = TRUE, a = TRUE)
 
-n2(..., na = F, a = T)
+n2(..., na = TRUE, a = TRUE)
 
-n3(..., na = F, a = T)
+n3(..., na = TRUE, a = TRUE)
 
-n1p(..., na = F, eq = T, a = T)
+n1p(..., na = TRUE, eq = FALSE, a = TRUE)
 
-n2p(..., na = F, eq = T, a = T)
+n2p(..., na = TRUE, eq = FALSE, a = TRUE)
 
-n3p(..., na = F, eq = T, a = T)
+n3p(..., na = TRUE, eq = FALSE, a = TRUE)
 
 nd()
 
@@ -138,15 +138,27 @@ nd3p()
 
 \item{n}{Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec} of valid element, row, or column counts.}
 
-\item{min, max}{Optional \link[=cmp_nnw_scl]{complete non-negative whole-number scalars} giving minimum and maximum valid element, row, or column counts.}
+\item{min}{Optional complete non-negative whole-number scalar giving minimum valid element, row, or column counts.}
 
-\item{eq, na, a}{Non-\code{NA} scalars indicating, respectively, whether all counts must be equal, whether \code{NA} values are allowed, and whether to \link[=av]{atomize} \code{...} to create a single atomic vector before processing. If \code{a = FALSE}, each argument in \code{...} is processed separately.}
+\item{max}{Optional complete non-negative whole-number scalar giving maximum valid element, row, or column counts.}
+
+\item{eq}{Non-\code{NA} scalar indicating whether all counts must be equal.}
 
 \item{...}{One or more arguments to be examined for counts.}
 
+\item{a}{Non-\code{NA} scalar indicating whether to \link[=av]{atomize} \code{...} to create a single atomic vector before processing. If \code{a = FALSE}, each argument in \code{...} is processed separately.}
+
+\item{na}{Non-\code{NA} scalar whether \code{NA} values are allowed.}
+
 \item{vals}{Optional \link[=atm_vec]{atomic vec} indicating specific values to be counted.}
 
-\item{lt, le, ge, gt}{Optional \link[=cmp_srt_scl]{complete sortable scalars} indicating specific values elements of \code{...} arguments must be less than, less than or equal to, greater than or equal to, or greater than, respectively, to be counted.}
+\item{lt}{Optional \link[=cmp_srt_scl]{complete sortable scalar} indicating specific values elements of \code{...} arguments must be less than in order to be counted.}
+
+\item{le}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be less than or equal to in order to be counted}
+
+\item{ge}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be greater than or equal to in order to be counted.}
+
+\item{gt}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be greater than in order to be counted.}
 }
 \value{
 An integer or logical scalar or vector.

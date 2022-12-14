@@ -3,6 +3,15 @@
 \name{mmm_ccc}
 \alias{mmm_ccc}
 \alias{mmm_ccc_props}
+\alias{is_mmm_ccc_prop}
+\alias{atm_arr}
+\alias{atm_dtf}
+\alias{atm_gen}
+\alias{atm_mat}
+\alias{atm_mvc}
+\alias{atm_scl}
+\alias{atm_vec}
+\alias{atm_vls}
 \alias{ch1_arr}
 \alias{ch1_dtf}
 \alias{ch1_gen}
@@ -219,11 +228,29 @@
 \alias{whl_scl}
 \alias{whl_vec}
 \alias{whl_vls}
-\title{\code{xmode} + \code{xclass} properties}
+\title{\code{xmode + xclass} combination properties}
 \usage{
 mmm_ccc(x, mmm, ccc, ...)
 
 mmm_ccc_props()
+
+is_mmm_ccc_prop(prop)
+
+atm_arr(x, ...)
+
+atm_dtf(x, ...)
+
+atm_gen(x, ...)
+
+atm_mat(x, ...)
+
+atm_mvc(x, ...)
+
+atm_scl(x, ...)
+
+atm_vec(x, ...)
+
+atm_vls(x, ...)
 
 ch1_arr(x, ...)
 
@@ -660,30 +687,35 @@ whl_vls(x, ...)
 \arguments{
 \item{x}{An R object.}
 
-\item{mmm}{A character scalar \code{xmode} property from \code{mmm_props()}.}
+\item{mmm}{A character scalar single \code{xmode} property from \code{mmm_props()}.}
 
-\item{ccc}{A character scalar \code{xclass} property from \code{ccc_props()}.}
+\item{ccc}{A character scalar single \code{xclass} property from \code{ccc_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
   \describe{
     \item{\code{}}{}
   }}
+
+\item{prop}{A character scalar.}
 }
 \value{
 \tabular{rl}{
-  \code{mmm_ccc_props} \tab   A character vector.
-\cr     \code{mmm_ccc} \tab   A logical scalar.
-\cr     \code{MMM_CCC} \tab   A logical scalar.
+  \code{is_mmm_ccc_prop} \tab   A logical scalar.
+\cr \code{mmm_ccc_props} \tab   A character vector.
+\cr       \code{mmm_ccc} \tab   A logical scalar.
+\cr       \code{MMM_CCC} \tab   A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{mmm_ccc_props}   \tab Gets all \code{\link[=mmm]{xmode}} + \code{\link[=ccc]{xclass}} properties.
-\cr                 \tab   
-\cr     \code{mmm_ccc}   \tab Does \code{x} match \code{xmode} and \code{xclass} specs in arguments \code{mmm} and \code{ccc}, respectively?
-\cr                 \tab   
-\cr     \code{MMM_CCC}   \tab Does \code{x} match \code{xmode} and \code{xclass} properties \code{ MMM} and \code{CCC}, respectively?
+  \code{is_mmm_ccc_prop}   \tab Is \code{prop} an \code{\link[=mmm]{xmode} + \link[=ccc]{xclass}} combination property?
+\cr                   \tab   
+\cr \code{mmm_ccc_props}   \tab What \code{xmode + xclass} combination properties have dedicated functions?
+\cr                   \tab   
+\cr       \code{mmm_ccc}   \tab Does \code{x} match the single \code{xmode} and single \code{xclass} properties in \code{mmm} and \code{ccc}, respectively?
+\cr                   \tab   
+\cr       \code{MMM_CCC}   \tab Does \code{x} match the single \code{xmode} and single \code{xclass} properties \code{'MMM'} and \code{'CCC'}, respectively?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -719,13 +751,13 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
+\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},

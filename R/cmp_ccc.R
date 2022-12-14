@@ -1,20 +1,24 @@
 #' @family props
-#' @title Complete + `xclass` properties
+#' @title `complete + xclass` combination properties
 #' @description \tabular{rl}{
-#'     `cmp_ccc_props`   \tab Gets all possible \link[=icmp]{complete} + \code{\link[=ccc]{xclass}} properties.
-#'   \cr                 \tab   
-#'   \cr     `cmp_ccc`   \tab Is `x` complete and does it match `xclass` spec `ccc`?
-#'   \cr                 \tab   
-#'   \cr     `cmp_CCC`   \tab Is `x` complete and does it match `xclass` property `'CCC'`?
+#'     `is_cmp_ccc_prop`   \tab Is `prop` a \code{\link[=icmp]{complete} + \link[=ccc]{xclass}} combination property?
+#'   \cr                   \tab   
+#'   \cr `cmp_ccc_props`   \tab What `complete + xclass` combination properties have dedicated functions?
+#'   \cr                   \tab   
+#'   \cr       `cmp_ccc`   \tab Is `x` both `complete` and a match the single `xclass` property in `ccc`?
+#'   \cr                   \tab   
+#'   \cr       `cmp_CCC`   \tab Is `x` both `complete` and a match the single `xclass` property `'CCC'`?
 #' }
 #' @param x An R object.
-#' @param spec A character scalar `xclass` spec built from values in `ccc_props()`.
+#' @param ccc A character scalar single `xclass` property from `ccc_props()`.
+#' @param prop A character scalar.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `cmp_ccc_props`   \tab A character vector.
-#'   \cr     `cmp_ccc`   \tab A logical scalar.
-#'   \cr     `cmp_CCC`   \tab A logical scalar.
+#'     `is_cmp_ccc_prop` \tab   A logical scalar.
+#'   \cr `cmp_ccc_props` \tab   A character vector.
+#'   \cr       `cmp_ccc` \tab   A logical scalar.
+#'   \cr       `cmp_CCC` \tab   A logical scalar.
 #' }
 #' @examples
 #' cmp_ccc_props()
@@ -33,6 +37,10 @@ cmp_ccc <- function(x, spec, ...) {
 #' @rdname cmp_ccc
 #' @export
 cmp_ccc_props <- function() {paste0('cmp_', .cccs)}
+
+#' @rdname cmp_ccc
+#' @export
+is_cmp_ccc_prop <- function(prop) {f0(is.atomic(prop) & length(prop) == 1, isIN(prop, cmp_ccc_props()), F)}
 
 #' @rdname cmp_ccc
 #' @export

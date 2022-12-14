@@ -1,20 +1,24 @@
 #' @family props
-#' @title `complete + xmode` properties
+#' @title `complete + xmode` combination properties
 #' @description \tabular{rl}{
-#'     `cmp_mmm_props`   \tab Gets all possible \code{\link[=icmp]{complete}} + \code{\link[=mmm]{xmode}} properties.
-#'   \cr                 \tab  
-#'   \cr     `cmp_mmm`   \tab Is `x` complete and does it match the `xmode` spec in argument `mmm`?
-#'   \cr                 \tab  
-#'   \cr     `cmp_MMM`   \tab Is `x` complete and does it match `xmode` property `'MMM'`?
+#'     `is_cmp_mmm_prop`   \tab Is `prop` a \code{\link[=icmp]{complete} + \link[=mmm]{xmode}} combination property?
+#'   \cr                   \tab   
+#'   \cr `cmp_mmm_props`   \tab What `complete + xmode` combination properties have dedicated functions?
+#'   \cr                   \tab   
+#'   \cr       `cmp_mmm`   \tab Is `x` both `complete` and a match to the single `xmode` property in `mmm`?
+#'   \cr                   \tab   
+#'   \cr       `cmp_MMM`   \tab Is `x` both `complete` and a match to single `xmode` property `'MMM'`?
 #' }
-#' @param x An R object
-#' @param mmm A character scalar containing an `xmode` property from `mmm_props()`.
+#' @param x An R object.
+#' @param mmm A character scalar `xmode` property from `mmm_props()`.
+#' @param prop A character scalar.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `cmp_mmm_props`   \tab A character vector.
-#'   \cr     `cmp_mmm`   \tab A logical scalar.
-#'   \cr     `cmp_MMM`   \tab A logical scalar.
+#'     `is_cmp_mmm_prop` \tab   A logical scalar.
+#'   \cr `cmp_mmm_props` \tab   A character vector.
+#'   \cr       `cmp_mmm` \tab   A logical scalar.
+#'   \cr       `cmp_MMM` \tab   A logical scalar.
 #' }
 #' @examples
 #' cmp_mmm_props()
@@ -33,6 +37,10 @@ cmp_mmm <- function(x, mmm, ...) {
 #' @rdname cmp_mmm
 #' @export
 cmp_mmm_props <- function() {paste0('cmp_', .mmms)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+is_cmp_mmm_prop <- function(prop) {f0(is.atomic(prop) & length(prop) == 1, isIN(prop, cmp_mmm_props()), F)}
 
 #' @rdname cmp_mmm
 #' @export

@@ -53,22 +53,26 @@ iprt(x, ...)
 \description{
 \code{Integrity} properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frameS}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
 \tabular{rll}{
-  \code{'cmp'}   \tab Complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing \strong{no} \code{NA} values.
+  \code{'cmp'}   \tab complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing \strong{no} \code{NA} values.
 \cr           \tab               \tab   
-\cr \code{'mss'}   \tab Missing       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \strong{only} \code{NA} values.
+\cr \code{'mss'}   \tab missing       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \strong{only} \code{NA} values.
 \cr           \tab               \tab   
-\cr \code{'prt'}   \tab Partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \code{NA} \strong{and} non-\code{NA} values.
+\cr \code{'prt'}   \tab partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \code{NA} \strong{and} non-\code{NA} values.
 \cr           \tab               \tab   
-\cr \code{'nas'}   \tab \code{NA} scalar   \tab Atomic scalar \code{NA}.
+\cr \code{'nas'}   \tab \code{NA} scalar   \tab Atomic scalar \code{NA}.
 \cr \code{'oks'}   \tab \code{OK} scalar   \tab Non-\code{NA} atomic scalar.
 }
 \strong{\code{Integrity} property functions}
 \tabular{rl}{
-  \code{is_iii_spec} \tab   Is \code{spec} an \code{integrity} property spec?
-\cr \code{iii_props} \tab   Gets all possible \code{integrity} property values.
-\cr      \code{iiii} \tab   Does \code{x} match \code{integrity} spec \code{spec}?
-\cr      \code{iIII} \tab   Does \code{x} match \code{integrity} property \code{'III'}?
-\cr       \code{iii} \tab   Gets all of \code{x}'s \code{integrity} properties.
+  \code{is_iii_spec}   \tab Is \code{spec} an \code{integrity} specification?
+\cr               \tab   
+\cr \code{iii_props}   \tab What \code{integrity} properties have dedicated functions?
+\cr               \tab   
+\cr      \code{iiii}   \tab Is \code{x} a match to the \code{integrity} specification \code{spec}?
+\cr               \tab   
+\cr      \code{iIII}   \tab Is \code{x} a match to the single \code{integrity} property \code{'III'}?
+\cr               \tab   
+\cr       \code{iii}   \tab Gets all of \code{x}'s \code{integrity} properties.
 }
 }
 \section{Specifying count and value restrictions}{
@@ -107,12 +111,12 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
+\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

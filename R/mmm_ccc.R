@@ -1,21 +1,25 @@
 #' @family props
-#' @title `xmode` + `xclass` properties
+#' @title `xmode + xclass` combination properties
 #' @description \tabular{rl}{
-#'     `mmm_ccc_props`   \tab Gets all \code{\link[=mmm]{xmode}} + \code{\link[=ccc]{xclass}} properties.
-#'   \cr                 \tab   
-#'   \cr     `mmm_ccc`   \tab Does `x` match `xmode` and `xclass` specs in arguments `mmm` and `ccc`, respectively?
-#'   \cr                 \tab   
-#'   \cr     `MMM_CCC`   \tab Does `x` match `xmode` and `xclass` properties ` MMM` and `CCC`, respectively?
+#'     `is_mmm_ccc_prop`   \tab Is `prop` an \code{\link[=mmm]{xmode} + \link[=ccc]{xclass}} combination property?
+#'   \cr                   \tab   
+#'   \cr `mmm_ccc_props`   \tab What `xmode + xclass` combination properties have dedicated functions?
+#'   \cr                   \tab   
+#'   \cr       `mmm_ccc`   \tab Does `x` match the single `xmode` and single `xclass` properties in `mmm` and `ccc`, respectively?
+#'   \cr                   \tab   
+#'   \cr       `MMM_CCC`   \tab Does `x` match the single `xmode` and single `xclass` properties `'MMM'` and `'CCC'`, respectively?
 #' }
 #' @param x An R object.
-#' @param mmm A character scalar `xmode` property from `mmm_props()`.
-#' @param ccc A character scalar `xclass` property from `ccc_props()`.
+#' @param mmm A character scalar single `xmode` property from `mmm_props()`.
+#' @param ccc A character scalar single `xclass` property from `ccc_props()`.
+#' @param prop A character scalar.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `mmm_ccc_props` \tab   A character vector.
-#'   \cr     `mmm_ccc` \tab   A logical scalar.
-#'   \cr     `MMM_CCC` \tab   A logical scalar.
+#'     `is_mmm_ccc_prop` \tab   A logical scalar.
+#'   \cr `mmm_ccc_props` \tab   A character vector.
+#'   \cr       `mmm_ccc` \tab   A logical scalar.
+#'   \cr       `MMM_CCC` \tab   A logical scalar.
 #' }
 #' @examples
 #' scalar1 <- "a"
@@ -44,6 +48,42 @@ mmm_ccc <- function(x, mmm, ccc, ...) {
 #' @rdname mmm_ccc
 #' @export
 mmm_ccc_props <- function() {sort(av(apply(expand.grid(mmm = .mmms, ccc = .cccs), 1, paste0, collapse = '_')))}
+
+#' @rdname mmm_ccc
+#' @export
+is_mmm_ccc_prop <- function(prop) {f0(is.atomic(prop) & length(prop) == 1, isIN(prop, mmm_ccc_props()), F)}
+
+#' @rdname mmm_ccc
+#' @export
+atm_arr <- function(x, ...) {mmm_ccc(x, "atm", "arr", ...)}
+
+#' @rdname mmm_ccc
+#' @export
+atm_dtf <- function(x, ...) {mmm_ccc(x, "atm", "dtf", ...)}
+
+#' @rdname mmm_ccc
+#' @export
+atm_gen <- function(x, ...) {mmm_ccc(x, "atm", "gen", ...)}
+
+#' @rdname mmm_ccc
+#' @export
+atm_mat <- function(x, ...) {mmm_ccc(x, "atm", "mat", ...)}
+
+#' @rdname mmm_ccc
+#' @export
+atm_mvc <- function(x, ...) {mmm_ccc(x, "atm", "mvc", ...)}
+
+#' @rdname mmm_ccc
+#' @export
+atm_scl <- function(x, ...) {mmm_ccc(x, "atm", "scl", ...)}
+
+#' @rdname mmm_ccc
+#' @export
+atm_vec <- function(x, ...) {mmm_ccc(x, "atm", "vec", ...)}
+
+#' @rdname mmm_ccc
+#' @export
+atm_vls <- function(x, ...) {mmm_ccc(x, "atm", "vls", ...)}
 
 #' @rdname mmm_ccc
 #' @export

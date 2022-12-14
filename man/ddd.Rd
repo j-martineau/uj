@@ -56,16 +56,21 @@ An object's defined dimensionality (\code{defined-D}) is the number of dimension
   \code{'d0D'} \tab   \verb{0D} \tab   The \code{NULL} object.
 \cr \code{'d1D'} \tab   \verb{1D} \tab   Vectors, \link[=ivls]{vlists}, \verb{1D} arrays.
 \cr \code{'d2D'} \tab   \verb{2D} \tab   Data.frames and matrices.
-\cr \code{'dHD'} \tab   \code{HD} \tab   Hyper-dimensional arrays (of \verb{3+} dimensions).
+\cr \code{'dHD'} \tab   \code{HD} \tab   Hyper (3+) dimensional arrays
 }
 \strong{Functions}
 \tabular{rl}{
-  \code{is_ddd_spec} \tab   Is \code{spec} a \code{defined-D} property spec?
-\cr \code{ddd_props} \tab   Gets all possible \code{defined-D} property values.
-\cr      \code{nddd} \tab   Gets the number of defined dimensions of \code{x}.
-\cr      \code{iddd} \tab   Does \code{x} match \code{defined-D} spec \code{spec}?
-\cr      \code{iDDD} \tab   Does \code{x} match \code{defined-D} property \code{DDD}?
-\cr       \code{ddd} \tab   Gets all \code{defined-D} properties of \code{x}.
+  \code{is_ddd_spec}   \tab Is \code{spec} a \code{defined-D} property specification?
+\cr               \tab   
+\cr \code{ddd_props}   \tab What \code{defined-D} properties are there?
+\cr               \tab   
+\cr      \code{nddd}   \tab How many defined dimensions does \code{x} have?
+\cr               \tab   
+\cr      \code{iddd}   \tab Is \code{x} a match to the \code{defined-D}-specific \code{spec}?
+\cr               \tab   
+\cr      \code{iDDD}   \tab is \code{x} a match to the single \code{defined-D} property \code{'DDD'}?
+\cr               \tab   
+\cr       \code{ddd}   \tab What are \code{x}'s \code{defined-D} properties?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -102,12 +107,12 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
+\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

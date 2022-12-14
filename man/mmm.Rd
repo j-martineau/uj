@@ -119,7 +119,11 @@ iwhl(x, ...)
 \description{
 \code{xmodes} are defined for non-empty atomic objects. For all other objects, the \code{xmode} is \code{NULL}. These are not formally defined modes, but are evaluated dynamically based on the current characteristics of an object.
 \cr\cr Atomic objects that contain only \code{NA} values are of every \code{xmode} (they can be coerced to any mode without introducing new \code{NA} values).
-\cr\cr \strong{Character} \code{xmodes}
+\cr\cr \strong{Generic} \code{xmode}
+\tabular{rll}{
+  \code{'atm'}   \tab atomic   \tab Both a \code{\link[=bbb]{basic}} and an \code{xmode} property.
+}
+\strong{Character} \code{xmodes}
 \tabular{rl}{
   \code{'chr'} \tab   character
 \cr \code{'ch1'} \tab   1-char, or \verb{all(nchar(x) == 1)}
@@ -166,11 +170,15 @@ iwhl(x, ...)
 }
 \strong{\code{xmode} functions}
 \tabular{rl}{
-  \code{is_mmm_spec} \tab   Is \code{spec} an \code{xmode} spec?
-\cr \code{mmm_props} \tab   Gets all possible \code{xmode} properties.
-\cr      \code{immm} \tab   Does \code{x} match \code{xmode} spec \code{spec}?
-\cr      \code{iMMM} \tab   Does \code{x} match \code{xmode} property \code{MMM}?
-\cr       \code{mmm} \tab   Gets all \code{xmode} properties matching \code{x}.
+  \code{is_mmm_spec}   \tab Is \code{spec} an \code{xmode} specification?
+\cr               \tab   
+\cr \code{mmm_props}   \tab What \code{xmode} properties are there?
+\cr               \tab   
+\cr      \code{immm}   \tab Is \code{x} a match to the \code{xmode} specification in \code{spec}?
+\cr               \tab   
+\cr      \code{iMMM}   \tab Is \code{x} a match to the single \code{xmode} property \code{'MMM'}?
+\cr               \tab   
+\cr       \code{mmm}   \tab What are \code{x}'s \code{xmode} properties?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -213,13 +221,13 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
+\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{ppp}()},

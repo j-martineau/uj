@@ -30,7 +30,7 @@
 \alias{cmp_str}
 \alias{cmp_uno}
 \alias{cmp_whl}
-\title{\code{complete + xmode} properties}
+\title{\code{complete + xmode} combination properties}
 \usage{
 cmp_mmm(x, mmm, ...)
 
@@ -91,30 +91,35 @@ cmp_uno(x, ...)
 cmp_whl(x, ...)
 }
 \arguments{
-\item{x}{An R object}
+\item{x}{An R object.}
 
-\item{mmm}{A character scalar containing an \code{xmode} property from \code{mmm_props()}.}
+\item{mmm}{A character scalar \code{xmode} property from \code{mmm_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
   \describe{
     \item{\code{}}{}
   }}
+
+\item{prop}{A character scalar.}
 }
 \value{
 \tabular{rl}{
-  \code{cmp_mmm_props}   \tab A character vector.
-\cr     \code{cmp_mmm}   \tab A logical scalar.
-\cr     \code{cmp_MMM}   \tab A logical scalar.
+  \code{is_cmp_mmm_prop} \tab   A logical scalar.
+\cr \code{cmp_mmm_props} \tab   A character vector.
+\cr       \code{cmp_mmm} \tab   A logical scalar.
+\cr       \code{cmp_MMM} \tab   A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{cmp_mmm_props}   \tab Gets all possible \code{\link[=icmp]{complete}} + \code{\link[=mmm]{xmode}} properties.
-\cr                 \tab  
-\cr     \code{cmp_mmm}   \tab Is \code{x} complete and does it match the \code{xmode} spec in argument \code{mmm}?
-\cr                 \tab  
-\cr     \code{cmp_MMM}   \tab Is \code{x} complete and does it match \code{xmode} property \code{'MMM'}?
+  \code{is_cmp_mmm_prop}   \tab Is \code{prop} a \code{\link[=icmp]{complete} + \link[=mmm]{xmode}} combination property?
+\cr                   \tab   
+\cr \code{cmp_mmm_props}   \tab What \code{complete + xmode} combination properties have dedicated functions?
+\cr                   \tab   
+\cr       \code{cmp_mmm}   \tab Is \code{x} both \code{complete} and a match to the single \code{xmode} property in \code{mmm}?
+\cr                   \tab   
+\cr       \code{cmp_MMM}   \tab Is \code{x} both \code{complete} and a match to single \code{xmode} property \code{'MMM'}?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -147,12 +152,12 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm_ccc}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
+\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

@@ -59,7 +59,7 @@ values <- function() {
     colon    = ": ",
     colon0   = ":",
     comma    = ", ",
-    comma0   = "",
+    comma0   = ",",
     slash    = " / ",
     slash0   = "/",
     tilde    = " ~ ",

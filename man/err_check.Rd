@@ -7,7 +7,7 @@
 \alias{bank_not}
 \alias{bank_pop}
 \alias{bank_funs}
-\alias{bank_ppp}
+\alias{bank_spec}
 \alias{bank_vals}
 \alias{bank_dots}
 \alias{bank_when}
@@ -25,13 +25,13 @@ bank_not(...)
 
 bank_pop(...)
 
-bank_funs(funs., ...)
+bank_funs(funs., ..., vals. = NULL)
 
-bank_ppp(ppp., ..., nas. = F)
+bank_spec(spec., ..., nas. = F)
 
 bank_vals(...)
 
-bank_dots(ppp., ..., named. = F)
+bank_dots(spec., ..., named. = F)
 
 bank_when(whens., values., ...)
 
@@ -53,9 +53,13 @@ bank_fail(x)
 
 \item{nas.}{A non-\code{NA} logical scalar indicating whether atomic scalar \code{NA} values qualify.}
 
+\item{spec.}{A complete character scalar containing a \link[=is_prop_spec]{property specification}.}
+
 \item{named.}{A non-\code{NA} logical scalar indicating whether \code{...} arguments must be uniquely named without using blank strings.}
 
-\item{whens., values.}{\link[=ipop]{Populated atomic objects}.}
+\item{whens.}{A \link[=ipop]{Populated atomic object}.}
+
+\item{values.}{A \link[=ipop]{Populated atomic object}.}
 
 \item{pats.}{An \link[=ivls]{atomic vlist} containing multiple elements, each of which must be a \link[=cmp_chr_mvc]{complete character multivec} of the same length as the number of \code{...} arguments. Each element gives a pattern of valid properties for the argument in \code{...} in the form of one property specification per argument in \code{...} in the same order of those arguments.}
 
@@ -64,11 +68,9 @@ bank_fail(x)
 \item{extras}{\code{NUlL} or an \link[=icmp]{complete atomic object} containing additional atomic values that qualify as valid.}
 
 \item{funs}{A \link[=cmp_chr_scl]{complete character scalar} containing a \link[=ppp_funs]{property function} name or multiple property function names separated by pipes, which are used to check if named arguments in \code{...} satisfy the property specification in any of the function names.}
-
-\item{ppp}{A complete character scalar containing one or more property combos (combos are created by separating one or more \link[=all_props]{property values} with underscores. Multiple combos are separated by pipes.}
 }
 \value{
-\code{NULL} (called for the side effect of banking and/or processing error messages).
+\code{NULL}
 }
 \description{
 Bank error messages in the immediate environment of a function to allow for exhaustive error checking before throwing an exception. Results in a combined, multiple-error message to be reported at the completion of all error checks.

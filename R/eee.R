@@ -3,26 +3,35 @@
 #' @title Effective dimensionality (`effective-D`) properties
 #' @description An object's `effective-D` is defined as the number of dimensions in which it has multiple populated index positions (i.e., if a dimension has only one index position, that is not an effective dimension).
 #' \tabular{rl}{
-#'         `'eUD'` \tab   Effectively `NaN`-dimensional\eqn{^a}.
-#'   \cr   `'e0D'` \tab   Effectively `0D`\eqn{^b}.
-#'   \cr   `'e1D'` \tab   Effectively `1D`\eqn{^c}.
-#'   \cr   `'e2D'` \tab   Effectively `2D`\eqn{^d}.
-#'   \cr   `'eHD'` \tab   Effectively `HD`\eqn{^e}.
+#'         `'eUD'`   \tab *Effectively* `NaN` *dimensional*.
+#'   \cr             \tab Length-`0` objects including `NULL` (of undefined `effective-D`).
+#'   \cr             \tab   
+#'   \cr   `'e0D'`   \tab *Effectively* `0` *dimensional*
+#'   \cr             \tab `1x1 data.frames` and length-`1 vectors`, \code{\link[=ivls]{vlists}}, and `arrays`.
+#'   \cr             \tab   
+#'   \cr   `'e1D'`   \tab *Effectively* `1` *dimensional*
+#'   \cr             \tab \code{\link[=imvc]{multivecs}}, length-`2+ vlists`, \code{\link[=irow]{row}} `data.frames`, \code{\link[=icol]{col}} `data.frames`, and length-`2+` arrays with `2+` index positions in exactly `1` dimension.
+#'   \cr             \tab   
+#'   \cr   `'e2D'`   \tab *Effectively* `2` *dimensional*
+#'   \cr             \tab `2+ x 2+ data.frames` and length-`4+ arrays` with `2+` positions in exactly `2` dimensions.
+#'   \cr             \tab   
+#'   \cr   `'eHD'`   \tab *Effectively* `hyper` *dimensional*
+#'   \cr             \tab Length-`8+ arrays` with `2+` positions in `3+` dimensions.
 #' }
-#'        \eqn{^{a.}} That is, of undefined `effective-D`, or length-`0` objects including `NULL`.
-#' \cr    \eqn{^{b.}} `1x1 data.frames` and length-`1 vectors`, \code{\link[=ivls]{vlists}}, and `arrays`.
-#' \cr    \eqn{^{c.}} \code{\link[=imvc]{multivecs}}, length-`2+ vlists`, \code{\link[=irow]{row}} `data.frames`, \code{\link[=icol]{col}} `data.frames`, and length-`2+` arrays with `2+` index positions in exactly `1` dimension.
-#' \cr    \eqn{^{d.}} `2+ x 2+ data.frames` and length-`4+ arrays` with `2+` positions in exactly `2` dimensions.
-#' \cr    \eqn{^{e.}} Length-`8+ arrays` with `2+` positions in `3+` dimensions.
 #' \cr\cr
 #' Effective dimensionality property functions are:
 #' \tabular{rl}{
-#'      `is_eee_spec` \tab   Is `spec` an `effective-D` specification?
-#'   \cr  `eee_props` \tab   Gets all possible `effective-D` property values.
-#'   \cr       `neee` \tab   Gets the number of effective dimensions of `x`.
-#'   \cr       `ieee` \tab   Does `x` match `effective-D` spec `spec`?
-#'   \cr       `iEEE` \tab   Does `x` match `effective-D` property `'EEE'`
-#'   \cr        `eee` \tab   Gets all `effective-D` properties of `x`.
+#'      `is_eee_spec`   \tab Is `spec` an `effective-D` specification?
+#'   \cr                \tab   
+#'   \cr  `eee_props`   \tab What `effective-D` properties are there?
+#'   \cr                \tab   
+#'   \cr       `neee`   \tab How many effective dimensions does `x` have?
+#'   \cr                \tab   
+#'   \cr       `ieee`   \tab Is `x` a match to the `effective-D` specification`spec`?
+#'   \cr                \tab   
+#'   \cr       `iEEE`   \tab Is `x` a match to the single `effective-D` property `'EEE'`?
+#'   \cr                \tab   
+#'   \cr        `eee`   \tab What are `x`'s `effective-D` properties?
 #' }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `effective-D` properties from `eee_props()`. `Effective-D` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
@@ -30,13 +39,11 @@
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `is_eee_spec`   \tab A logical scalar.
-#'   \cr      `ieee`   \tab   
-#'   \cr      `iEEE`   \tab   
-#'   \cr               \tab   
 #'   \cr `eee_props`   \tab A character vector.
-#'   \cr       `eee`   \tab   
-#'   \cr               \tab   
+#'   \cr      `ieee`   \tab A logical scalar.
+#'   \cr      `iEEE`   \tab A logical scalar.
 #'   \cr      `neee`   \tab A numeric scalar.
+#'   \cr       `eee`   \tab A character vector.
 #' }
 #' @examples
 #' a. <- "a"

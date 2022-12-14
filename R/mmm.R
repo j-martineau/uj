@@ -2,7 +2,11 @@
 #' @title Extended mode (`xmode`) properties
 #' @description `xmodes` are defined for non-empty atomic objects. For all other objects, the `xmode` is `NULL`. These are not formally defined modes, but are evaluated dynamically based on the current characteristics of an object.
 #' \cr\cr Atomic objects that contain only `NA` values are of every `xmode` (they can be coerced to any mode without introducing new `NA` values).
-#' \cr\cr **Character** `xmodes`
+#' \cr\cr **Generic** `xmode`
+#' \tabular{rll}{
+#'     `'atm'`   \tab atomic   \tab Both a \code{\link[=bbb]{basic}} and an `xmode` property.
+#' }
+#' **Character** `xmodes`
 #' \tabular{rl}{
 #'       `'chr'` \tab   character
 #'   \cr `'ch1'` \tab   1-char, or `all(nchar(x) == 1)`
@@ -49,11 +53,15 @@
 #' }
 #' **`xmode` functions**
 #' \tabular{rl}{
-#'     `is_mmm_spec` \tab   Is `spec` an `xmode` spec?
-#'   \cr `mmm_props` \tab   Gets all possible `xmode` properties.
-#'   \cr      `immm` \tab   Does `x` match `xmode` spec `spec`?
-#'   \cr      `iMMM` \tab   Does `x` match `xmode` property `MMM`?
-#'   \cr       `mmm` \tab   Gets all `xmode` properties matching `x`.
+#'     `is_mmm_spec`   \tab Is `spec` an `xmode` specification?
+#'   \cr               \tab   
+#'   \cr `mmm_props`   \tab What `xmode` properties are there?
+#'   \cr               \tab   
+#'   \cr      `immm`   \tab Is `x` a match to the `xmode` specification in `spec`?
+#'   \cr               \tab   
+#'   \cr      `iMMM`   \tab Is `x` a match to the single `xmode` property `'MMM'`?
+#'   \cr               \tab   
+#'   \cr       `mmm`   \tab What are `x`'s `xmode` properties?
 #' }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `xmode` properties from `mmm_props()`. `xmode` specs may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
