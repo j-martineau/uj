@@ -2,6 +2,7 @@
 % Please edit documentation in R/iii.R
 \name{iii}
 \alias{iii}
+\alias{iii_funs}
 \alias{iii_props}
 \alias{is_iii_spec}
 \alias{iiii}
@@ -13,6 +14,8 @@
 \title{\code{Integrity} properties}
 \usage{
 iii(x)
+
+iii_funs()
 
 iii_props()
 
@@ -43,11 +46,12 @@ iprt(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_iii_spec} \tab   A logical scalar.
+  \code{is_iii_spec} \tab   A character vector.
 \cr \code{iii_props} \tab   A character vector.
+\cr  \code{iii_funs} \tab   A character vector.
 \cr      \code{iiii} \tab   A logical scalar.
 \cr      \code{iIII} \tab   A logical scalar.
-\cr       \code{iii} \tab   A character vector.
+\cr       \code{iii} \tab   A character vector.
 }
 }
 \description{
@@ -66,7 +70,9 @@ iprt(x, ...)
 \tabular{rl}{
   \code{is_iii_spec}   \tab Is \code{spec} an \code{integrity} specification?
 \cr               \tab   
-\cr \code{iii_props}   \tab What \code{integrity} properties have dedicated functions?
+\cr \code{iii_props}   \tab What \code{integrity} properties are there?
+\cr               \tab   
+\cr  \code{iii_funs}   \tab What \code{integrity} property functions are there?
 \cr               \tab   
 \cr      \code{iiii}   \tab Is \code{x} a match to the \code{integrity} specification \code{spec}?
 \cr               \tab   
@@ -91,8 +97,9 @@ iprt(x, ...)
 }
 
 \examples{
-is_iii_spec("nas|mss")
+iii_funs()
 iii_props()
+is_iii_spec("nas|mss")
 icmp(NA)
 icmp(NULL)
 inas(NA)
@@ -111,12 +118,12 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

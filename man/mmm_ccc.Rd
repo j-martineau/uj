@@ -2,8 +2,7 @@
 % Please edit documentation in R/mmm_ccc.R
 \name{mmm_ccc}
 \alias{mmm_ccc}
-\alias{mmm_ccc_props}
-\alias{is_mmm_ccc_prop}
+\alias{mmm_ccc_funs}
 \alias{atm_arr}
 \alias{atm_dtf}
 \alias{atm_gen}
@@ -232,9 +231,7 @@
 \usage{
 mmm_ccc(x, mmm, ccc, ...)
 
-mmm_ccc_props()
-
-is_mmm_ccc_prop(prop)
+mmm_ccc_funs()
 
 atm_arr(x, ...)
 
@@ -701,21 +698,18 @@ whl_vls(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_mmm_ccc_prop} \tab   A logical scalar.
-\cr \code{mmm_ccc_props} \tab   A character vector.
-\cr       \code{mmm_ccc} \tab   A logical scalar.
-\cr       \code{MMM_CCC} \tab   A logical scalar.
+  \code{mmm_ccc_funs} \tab   A character vector.
+\cr    \code{mmm_ccc} \tab   A logical scalar.
+\cr    \code{MMM_CCC} \tab   A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{is_mmm_ccc_prop}   \tab Is \code{prop} an \code{\link[=mmm]{xmode} + \link[=ccc]{xclass}} combination property?
-\cr                   \tab   
-\cr \code{mmm_ccc_props}   \tab What \code{xmode + xclass} combination properties have dedicated functions?
-\cr                   \tab   
-\cr       \code{mmm_ccc}   \tab Does \code{x} match the single \code{xmode} and single \code{xclass} properties in \code{mmm} and \code{ccc}, respectively?
-\cr                   \tab   
-\cr       \code{MMM_CCC}   \tab Does \code{x} match the single \code{xmode} and single \code{xclass} properties \code{'MMM'} and \code{'CCC'}, respectively?
+  \code{mmm_ccc_funs}   \tab What \code{xmode + xclass} combination property functions are there?
+\cr                \tab   
+\cr    \code{mmm_ccc}   \tab Does \code{x} match the single \code{xmode} and single \code{xclass} properties in \code{mmm} and \code{ccc}, respectively?
+\cr                \tab   
+\cr    \code{MMM_CCC}   \tab Does \code{x} match the single \code{xmode} and single \code{xclass} properties \code{'MMM'} and \code{'CCC'}, respectively?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -736,7 +730,7 @@ whl_vls(x, ...)
 \examples{
 scalar1 <- "a"
 lst2x26 <- list(letters = letters, LETTERS = LETTERS)
-mmm_ccc_props()
+mmm_ccc_funs()
 c(mmm_ccc(lst2x26, "chr", "vls"), chr_vls(lst2x26))
 c(mmm_ccc(lst2x26, "num", "mat"), num_mat(lst2x26))
 c(mmm_ccc(scalar1, "ch1", "scl"), ch1_scl(scalar1))
@@ -751,13 +745,13 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},

@@ -124,7 +124,7 @@ This set of functions provide utilities that bring together seven families of ob
 }
 \strong{Property-checking function names}
 \tabular{rl}{
-  \code{prop_funs} \tab   Names of functions checking for specific single and combo properties matched to \code{x}.
+  \code{prop_funs}   \tab Names of functions checking for specific single and combo properties matched to \code{x}.
 }
 \strong{Family-specific functions listing an object's properties}
 \tabular{rl}{
@@ -239,13 +239,13 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

@@ -15,7 +15,9 @@
 #' \tabular{rl}{
 #'     `is_iii_spec`   \tab Is `spec` an `integrity` specification?
 #'   \cr               \tab   
-#'   \cr `iii_props`   \tab What `integrity` properties have dedicated functions?
+#'   \cr `iii_props`   \tab What `integrity` properties are there?
+#'   \cr               \tab   
+#'   \cr  `iii_funs`   \tab What `integrity` property functions are there?
 #'   \cr               \tab   
 #'   \cr      `iiii`   \tab Is `x` a match to the `integrity` specification `spec`?
 #'   \cr               \tab   
@@ -28,15 +30,17 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_iii_spec` \tab   A logical scalar.
+#'     `is_iii_spec` \tab   A character vector.
 #'   \cr `iii_props` \tab   A character vector.
+#'   \cr  `iii_funs` \tab   A character vector.
 #'   \cr      `iiii` \tab   A logical scalar.
 #'   \cr      `iIII` \tab   A logical scalar.
-#'   \cr       `iii` \tab   A character vector.
+#'   \cr       `iii` \tab   A character vector.
 #' }
 #' @examples
-#' is_iii_spec("nas|mss")
+#' iii_funs()
 #' iii_props()
+#' is_iii_spec("nas|mss")
 #' icmp(NA)
 #' icmp(NULL)
 #' inas(NA)
@@ -52,6 +56,10 @@ iii <- function(x) {
   for (i in .iiis) {out <- c(out, f0(run('.i', i, '(x)'), i, NULL))}
   out
 }
+
+#' @rdname iii
+#' @export
+iii_funs <- function() {paste0("i", .iiis)}
 
 #' @rdname iii
 #' @export

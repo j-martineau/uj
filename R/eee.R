@@ -6,32 +6,34 @@
 #'         `'eUD'`   \tab *Effectively* `NaN` *dimensional*.
 #'   \cr             \tab Length-`0` objects including `NULL` (of undefined `effective-D`).
 #'   \cr             \tab   
-#'   \cr   `'e0D'`   \tab *Effectively* `0` *dimensional*
+#'   \cr   `'e0D'`   \tab *Effectively* `0` *dimensional*
 #'   \cr             \tab `1x1 data.frames` and length-`1 vectors`, \code{\link[=ivls]{vlists}}, and `arrays`.
 #'   \cr             \tab   
-#'   \cr   `'e1D'`   \tab *Effectively* `1` *dimensional*
+#'   \cr   `'e1D'`   \tab *Effectively* `1` *dimensional*
 #'   \cr             \tab \code{\link[=imvc]{multivecs}}, length-`2+ vlists`, \code{\link[=irow]{row}} `data.frames`, \code{\link[=icol]{col}} `data.frames`, and length-`2+` arrays with `2+` index positions in exactly `1` dimension.
 #'   \cr             \tab   
-#'   \cr   `'e2D'`   \tab *Effectively* `2` *dimensional*
+#'   \cr   `'e2D'`   \tab *Effectively* `2` *dimensional*
 #'   \cr             \tab `2+ x 2+ data.frames` and length-`4+ arrays` with `2+` positions in exactly `2` dimensions.
 #'   \cr             \tab   
-#'   \cr   `'eHD'`   \tab *Effectively* `hyper` *dimensional*
+#'   \cr   `'eHD'`   \tab *Effectively* `hyper` *dimensional*
 #'   \cr             \tab Length-`8+ arrays` with `2+` positions in `3+` dimensions.
 #' }
 #' \cr\cr
 #' Effective dimensionality property functions are:
 #' \tabular{rl}{
-#'      `is_eee_spec`   \tab Is `spec` an `effective-D` specification?
-#'   \cr                \tab   
-#'   \cr  `eee_props`   \tab What `effective-D` properties are there?
-#'   \cr                \tab   
-#'   \cr       `neee`   \tab How many effective dimensions does `x` have?
-#'   \cr                \tab   
-#'   \cr       `ieee`   \tab Is `x` a match to the `effective-D` specification`spec`?
-#'   \cr                \tab   
-#'   \cr       `iEEE`   \tab Is `x` a match to the single `effective-D` property `'EEE'`?
-#'   \cr                \tab   
-#'   \cr        `eee`   \tab What are `x`'s `effective-D` properties?
+#'     `is_eee_spec`   \tab Is `spec` an `effective-D` specification?
+#'   \cr               \tab   
+#'   \cr `eee_props`   \tab What `effective-D` properties are there?
+#'   \cr               \tab   
+#'   \cr  `eee_funs`   \tab What `effective-D` property functions are there?
+#'   \cr               \tab   
+#'   \cr      `neee`   \tab How many effective dimensions does `x` have?
+#'   \cr               \tab   
+#'   \cr      `ieee`   \tab Is `x` a match to the `effective-D` specification`spec`?
+#'   \cr               \tab   
+#'   \cr      `iEEE`   \tab Is `x` a match to the single `effective-D` property `'EEE'`?
+#'   \cr               \tab   
+#'   \cr       `eee`   \tab What are `x`'s `effective-D` properties?
 #' }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `effective-D` properties from `eee_props()`. `Effective-D` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
@@ -40,6 +42,7 @@
 #' @return \tabular{rl}{
 #'     `is_eee_spec`   \tab A logical scalar.
 #'   \cr `eee_props`   \tab A character vector.
+#'   \cr  `eee_funs`   \tab A logical scalar.
 #'   \cr      `ieee`   \tab A logical scalar.
 #'   \cr      `iEEE`   \tab A logical scalar.
 #'   \cr      `neee`   \tab A numeric scalar.
@@ -69,10 +72,10 @@
 #' hyp3 <- array(1:8, dim = c(1, 2, 2, 2, 1))
 #' hyp4 <- array(1:16, dim = c(2, 2, 2, 2))
 #'
+#' eee_funs()
+#' eee_props()
 #' is_eee_spec("eUD")
 #' is_eee_spec("d1D")
-#' eee_props()
-#'
 #' c(neee(udf1), neee(udf2), neee(udf3), neee(udf4))
 #' c(neee(zro1), neee(zro2), neee(zro3), neee(zro4))
 #' c(neee(one1), neee(one2), neee(one3), neee(one4))
@@ -89,6 +92,10 @@ eee <- function(x) {
   for (e in .eees) {out <- c(out, f0(run('.i', e, '(x)'), e, NULL))}
   out
 }
+
+#' @rdname eee
+#' @export
+eee_funs <- function() {paste0("i", .eees)}
 
 #' @rdname eee
 #' @export

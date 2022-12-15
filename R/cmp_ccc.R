@@ -1,32 +1,28 @@
 #' @family props
 #' @title `complete + xclass` combination properties
 #' @description \tabular{rl}{
-#'     `is_cmp_ccc_prop`   \tab Is `prop` a \code{\link[=icmp]{complete} + \link[=ccc]{xclass}} combination property?
-#'   \cr                   \tab   
-#'   \cr `cmp_ccc_props`   \tab What `complete + xclass` combination properties have dedicated functions?
-#'   \cr                   \tab   
-#'   \cr       `cmp_ccc`   \tab Is `x` both `complete` and a match the single `xclass` property in `ccc`?
-#'   \cr                   \tab   
-#'   \cr       `cmp_CCC`   \tab Is `x` both `complete` and a match the single `xclass` property `'CCC'`?
+#'     `cmp_ccc_funs`   \tab What `complete + xclass` combination property functions are there?
+#'   \cr                \tab   
+#'   \cr    `cmp_ccc`   \tab Is `x` both `complete` and a match to the single `xclass` property in `ccc`?
+#'   \cr                \tab   
+#'   \cr    `cmp_CCC`   \tab Is `x` both `complete` and a match to the single `xclass` property `'CCC'`?
 #' }
 #' @param x An R object.
 #' @param ccc A character scalar single `xclass` property from `ccc_props()`.
-#' @param prop A character scalar.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_cmp_ccc_prop` \tab   A logical scalar.
-#'   \cr `cmp_ccc_props` \tab   A character vector.
-#'   \cr       `cmp_ccc` \tab   A logical scalar.
-#'   \cr       `cmp_CCC` \tab   A logical scalar.
+#'     `cmp_ccc_funs` \tab   A character vector.
+#'   \cr    `cmp_ccc` \tab   A logical scalar.
+#'   \cr    `cmp_CCC` \tab   A logical scalar.
 #' }
 #' @examples
-#' cmp_ccc_props()
+#' cmp_ccc_fun()
 #' cmp_ccc(letters, "mvc")
 #' cmp_ccc(1, "scl")
 #' cmp_ccc(NA, "gen")
-#' cmp_scl(1)
 #' cmp_mvc(letters)
+#' cmp_scl(1)
 #' @export
 cmp_ccc <- function(x, spec, ...) {
   errs <- c(.meets_errs(x, ...), f0(f0(length(spec) != 1 | !is.character(spec), F, f0(is.na(spec), F, spec %in% .cccs)), NULL, '[ccc] is not a scalar value from ccc_props().'))
@@ -36,11 +32,7 @@ cmp_ccc <- function(x, spec, ...) {
 
 #' @rdname cmp_ccc
 #' @export
-cmp_ccc_props <- function() {paste0('cmp_', .cccs)}
-
-#' @rdname cmp_ccc
-#' @export
-is_cmp_ccc_prop <- function(prop) {f0(is.atomic(prop) & length(prop) == 1, isIN(prop, cmp_ccc_props()), F)}
+cmp_ccc_funs <- function() {paste0('cmp_', .cccs)}
 
 #' @rdname cmp_ccc
 #' @export

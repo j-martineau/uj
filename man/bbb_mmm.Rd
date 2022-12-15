@@ -2,7 +2,7 @@
 % Please edit documentation in R/bbb_mmm.R
 \name{bbb_mmm}
 \alias{bbb_mmm}
-\alias{bbb_mmm_props}
+\alias{bbb_mmm_funs}
 \alias{atm_ch1}
 \alias{atm_ch3}
 \alias{atm_chr}
@@ -62,7 +62,7 @@
 \usage{
 bbb_mmm(x, bbb, mmm, ...)
 
-bbb_mmm_props()
+bbb_mmm_funs()
 
 atm_ch1(x, ...)
 
@@ -189,21 +189,18 @@ pop_whl(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_bbb_mmm_prop} \tab   A logical scalar.
-\cr \code{bbb_mmm_props} \tab   A character vector.
-\cr       \code{bbb_mmm} \tab   A logical scalar.
-\cr       \code{BBB_MMM} \tab   A logical scalar.
+  \code{bbb_mmm_funs} \tab   A character vector.
+\cr    \code{bbb_mmm} \tab   A logical scalar.
+\cr    \code{BBB_MMM} \tab   A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{is_bbb_mmm_prop}   \tab Is \code{x} a \code{\link[=bbb]{basic} + \link[=mmm]{xmode}} combination property?
-\cr                   \tab   
-\cr \code{bbb_mmm_props}   \tab What \code{basic + xmode} combination properties have dedicated functions?
-\cr                   \tab   
-\cr       \code{bbb_mmm}   \tab Is \code{x} a match to the single \code{basic} and \code{xmode} properties in \code{bbb} and \code{mmm}, respectively?
-\cr                   \tab   
-\cr       \code{BBB_MMM}   \tab Is \code{x} a match to single \code{basic} and \code{xmode} properties \code{'BBB'} and \code{'MMM'}, respectively?
+  \code{bbb_mmm_funs}   \tab What \code{basic + xmode} combination property functions are there?
+\cr                \tab   
+\cr    \code{bbb_mmm}   \tab Is \code{x} a match to the single \code{basic} and \code{xmode} properties in \code{bbb} and \code{mmm}, respectively?
+\cr                \tab   
+\cr    \code{BBB_MMM}   \tab Is \code{x} a match to single \code{basic} and \code{xmode} properties \code{'BBB'} and \code{'MMM'}, respectively?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -222,6 +219,7 @@ pop_whl(x, ...)
 }
 
 \examples{
+bbb_mmm_funs()
 bbb_mmm_props()
 bbb_mmm(letters, "atm", "ch1")
 atm_ch1(letters)
@@ -235,13 +233,13 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

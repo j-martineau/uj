@@ -2,7 +2,7 @@
 % Please edit documentation in R/cmp_mmm.R
 \name{cmp_mmm}
 \alias{cmp_mmm}
-\alias{cmp_mmm_props}
+\alias{cmp_mmm_funs}
 \alias{cmp_ch1}
 \alias{cmp_ch3}
 \alias{cmp_chr}
@@ -34,7 +34,7 @@
 \usage{
 cmp_mmm(x, mmm, ...)
 
-cmp_mmm_props()
+cmp_mmm_funs()
 
 cmp_ch1(x, ...)
 
@@ -100,26 +100,21 @@ cmp_whl(x, ...)
   \describe{
     \item{\code{}}{}
   }}
-
-\item{prop}{A character scalar.}
 }
 \value{
 \tabular{rl}{
-  \code{is_cmp_mmm_prop} \tab   A logical scalar.
-\cr \code{cmp_mmm_props} \tab   A character vector.
-\cr       \code{cmp_mmm} \tab   A logical scalar.
-\cr       \code{cmp_MMM} \tab   A logical scalar.
+  \code{cmp_mmm_funs} \tab   A character vector.
+\cr    \code{cmp_mmm} \tab   A logical scalar.
+\cr    \code{cmp_MMM} \tab   A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{is_cmp_mmm_prop}   \tab Is \code{prop} a \code{\link[=icmp]{complete} + \link[=mmm]{xmode}} combination property?
-\cr                   \tab   
-\cr \code{cmp_mmm_props}   \tab What \code{complete + xmode} combination properties have dedicated functions?
-\cr                   \tab   
-\cr       \code{cmp_mmm}   \tab Is \code{x} both \code{complete} and a match to the single \code{xmode} property in \code{mmm}?
-\cr                   \tab   
-\cr       \code{cmp_MMM}   \tab Is \code{x} both \code{complete} and a match to single \code{xmode} property \code{'MMM'}?
+  \code{cmp_mmm_funs}   \tab What \code{complete + xmode} combination property functions are there?
+\cr                \tab   
+\cr    \code{cmp_mmm}   \tab Is \code{x} both \code{complete} and a match to the single \code{xmode} property in \code{mmm}?
+\cr                \tab   
+\cr    \code{cmp_MMM}   \tab Is \code{x} both \code{complete} and a match to single \code{xmode} property \code{'MMM'}?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -138,7 +133,7 @@ cmp_whl(x, ...)
 }
 
 \examples{
-cmp_mmm_props()
+cmp_mmm_funs()
 cmp_mmm(letters, "ch1")
 cmp_mmm(c("abc", "def"), "ch3")
 cmp_psw(0:10)
@@ -152,12 +147,12 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

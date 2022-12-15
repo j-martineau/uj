@@ -21,6 +21,8 @@
 #'   \cr               \tab   
 #'   \cr `sss_props`   \tab What `shape` properties are there?
 #'   \cr               \tab   
+#'   \cr  `sss_funs`   \tab What `shape` property functions are there?
+#'   \cr               \tab   
 #'   \cr      `isss`   \tab Does `x` a match to the `shape` specification in `spec`?
 #'   \cr               \tab   
 #'   \cr      `iSSS`   \tab Is `x` a match to the single `shape` property `'SSS'`?
@@ -33,14 +35,16 @@
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
 #'     `is_sss_spec` \tab   A logical scalar.
-#'   \cr  `sss_vals` \tab   A character vector.
+#'   \cr `sss_props` \tab   A character vector.
+#'   \cr  `sss_funs` \tab   A character vector.
 #'   \cr      `iSSS` \tab   A logical scalar.
 #'   \cr      `isss` \tab   A logical scalar.
 #'   \cr       `sss` \tab   A character vector.
 #' }
 #' @examples
-#' is_sss_spec("emp|pnt")
+#' sss_funs()
 #' sss_props()
+#' is_sss_spec("emp|pnt")
 #' sss(matrix(letters, nrow = 1))
 #' isss(matrix(letters, nrow = 2), "rct")
 #' ipnt(data.frame(a = 1))
@@ -54,6 +58,10 @@ sss <- function(x) {
 #' @rdname sss
 #' @export
 sss_props <- function() {.ssss}
+
+#' @rdname sss
+#' @export
+sss_funs <- function() {paste0("i", .ssss)}
 
 #' @rdname sss
 #' @export

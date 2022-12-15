@@ -20,11 +20,13 @@
 #'   \cr               \tab   
 #'   \cr `bbb_props`   \tab What `basic` properties are there?
 #'   \cr               \tab   
+#'   \cr  `bbb_funs`   \tab What `basic` properties functions are there?
+#'   \cr               \tab   
 #'   \cr      `ibbb`   \tab Is `x` a match to the `basic` property specification `spec`?
 #'   \cr               \tab   
 #'   \cr      `iBBB`   \tab Is `x` a match to the `basic` property `'BBB'`?
 #'   \cr               \tab   
-#'   \cr       `bbb`   \tab What are `x`'s basic properties?
+#'   \cr       `bbb`   \tab What are `x`'s `basic` properties?
 #' }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `basic` properties from `bbb_props()`. `basic` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
@@ -33,13 +35,15 @@
 #' @return \tabular{rl}{
 #'     `is_bbb_spec` \tab   A logical scalar.
 #'   \cr `bbb_props` \tab   A character vector.
+#'   \cr  `bbb_funs` \tab   A character vector.
 #'   \cr      `ibbb` \tab   A logical scalar.
 #'   \cr      `iBBB` \tab   A logical scalar.
 #'   \cr       `bbb` \tab   A character vector.
 #' }
 #' @examples
-#' is_bbb_spec("nil|nll")
+#' bbb_funs()
 #' bbb_props()
+#' is_bbb_spec("nil|nll")
 #' ibbb(NULL, "nil|nll")
 #' ipop(NA)
 #' iatm(list(letters))
@@ -50,6 +54,10 @@ bbb <- function(x) {
   for (b in .bbbs) {out <- c(out, f0(run('.i', b, '(x)'), b, NULL))}
   out
 }
+
+#' @rdname bbb
+#' @export
+bbb_funs <- function() {paste0("i", .bbbs)}
 
 #' @rdname bbb
 #' @export

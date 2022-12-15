@@ -79,22 +79,6 @@
 .ssss <- c("col", "emp", "lin", "pnt", "rct", "row", "sld", "sqr")
 
 .ppps <- unique(sort(c(.bbbs, .cccs, .ddds, .eees, .iiis, .mmms, .ssss)))
-
-.combo_ppps <- function(arg) {
-  arg <- av(strsplit(arg, "_", fixed = T))
-  cmp <- "cmp" %in% arg
-  arg <- arg[arg != "cmp"]
-  out <- paste0(arg, " = .", arg, "s")
-  out <- paste0(out, collapse = ", ")
-  out <- paste0("expand.grid(", out, ", stringsAsFactors = F)")
-  out <- run(out)
-  bad <- av(out[ , 2]) == "atm"
-  out <- out[!bad, ]
-  out <- av(apply(out, 1, paste0, collapse = "_"))
-  out <- f0(cmp, paste0("cmp_", out), out)
-  sort(unique(out))
-}
-
 .spec_vals <- function(x) {if (!is.character(x)) {return(NULL)} else {x <- unname(unlist(strsplit(x, "|", fixed = T))); x[x != ""]}}
 .drop_iprefix <- function(x) {i <- nchar(x) == 4 & substr(x, 1, 1) == "i"; x[i] <- substr(x[i], 2, 4); x}
 
@@ -132,7 +116,7 @@
 #' }
 #' **Property-checking function names**
 #' \tabular{rl}{
-#'      `prop_funs` \tab   Names of functions checking for specific single and combo properties matched to `x`.
+#'      `prop_funs`   \tab Names of functions checking for specific single and combo properties matched to `x`.
 #' }
 #' **Family-specific functions listing an object's properties**
 #' \tabular{rl}{
@@ -273,31 +257,27 @@ all_props <- function(as.dtf = F) {
 #' @export
 prop_funs <- function(as.dtf = F) {
   if (!isTF(as.dtf)) {stop(.errs("[as.dtf] must be TRUE or FALSE."))}
-  b_fun <- paste0("i", bbb_props()); b_fam <- rep("bbb", length(b_fun)); b_lab <- paste0("1_", b_fam, bbb_props())
-  c_fun <- paste0("i", ccc_props()); c_fam <- rep("ccc", length(c_fun)); c_lab <- paste0("1_", c_fam, ccc_props())
-  d_fun <- paste0("i", ddd_props()); d_fam <- rep("ddd", length(d_fun)); d_lab <- paste0("1_", d_fam, ddd_props())
-  e_fun <- paste0("i", eee_props()); e_fam <- rep("eee", length(e_fun)); e_lab <- paste0("1_", e_fam, eee_props())
-  i_fun <- paste0("i", iii_props()); i_fam <- rep("iii", length(i_fun)); i_lab <- paste0("1_", i_fam, iii_props())
-  m_fun <- paste0("i", mmm_props()); m_fam <- rep("mmm", length(m_fun)); m_lab <- paste0("1_", m_fam, mmm_props())
-  s_fun <- paste0("i", sss_props()); s_fam <- rep("sss", length(s_fun)); s_lab <- paste0("1_", s_fam, sss_props())
-  bc_fun <- bbb_ccc_props(); bc_fam <- rep("bbb_ccc", length(bc_fun)); bc_lab <- paste0("2_", bc_fam, "_", bc_fun)
-  bm_fun <- bbb_mmm_props(); bm_fam <- rep("bbb_mmm", length(bm_fun)); bm_lab <- paste0("2_", bm_fam, "_", bm_fun)
-  cc_fun <- cmp_ccc_props(); cc_fam <- rep("cmp_ccc", length(cc_fun)); cc_lab <- paste0("3_", cc_fam, "_", cc_fun)
-  cm_fun <- cmp_mmm_props(); cm_fam <- rep("cmp_mmm", length(cc_fun)); cm_lab <- paste0("3_", cm_fam, "_", cm_fun)
-  cs_fun <- cmp_sss_props(); cs_fam <- rep("cmp_sss", length(cs_fun)); cs_lab <- paste0("3_", cs_fam, "_", cs_fun)
-  mc_fun <- mmm_ccc_props(); mc_fam <- rep("mmm_ccc", length(mc_fun)); mc_lab <- paste0("2_", mc_fam, "_", mc_fun)
-  sc_fun <- sss_ccc_props(); sc_fam <- rep("sss_ccc", length(sc_fun)); sc_lab <- paste0("3_", sc_fam, "_", sc_fun)
-  sm_fun <- sss_mmm_props(); sm_fam <- rep("sss_mmm", length(sm_fun)); sm_lab <- paste0("3_", sm_fam, "_", sm_fun)
-  cmc_fun <- cmp_mmm_ccc_props(); cmc_fam <- rep("cmp_mmm_ccc", length(cmc_fun)); cmc_lab <- paste0("4_", cmc_fam, "_", cmc_fun)
-  csc_fun <- cmp_sss_ccc_props(); csc_fam <- rep("cmp_sss_ccc", length(csc_fun)); csc_lab <- paste0("4_", csc_fam, "_", csc_fun)
-  csm_fun <- cmp_sss_mmm_props(); csm_fam <- rep("cmp_sss_mmm", length(csm_fun)); csm_lab <- paste0("4_", csm_fam, "_", csm_fun)
-  smc_fun <- sss_mmm_ccc_props(); smc_fam <- rep("sss_mmm_ccc", length(smc_fun)); smc_lab <- paste0("4_", smc_fam, "_", smc_fun)
-  csmc_fun <- cmp_sss_mmm_ccc_props(); csmc_fam <- rep("cmp_sss_mmm_ccc", length(csmc_fun)); csmc_lab <- paste0("5_", csmc_fam, "_", csmc_fun)
-  fun <-       unique(c(b_fun, c_fun, d_fun, e_fun, i_fun, m_fun, s_fun, bc_fun, bm_fun, cc_fun, cm_fun, cs_fun, mc_fun, sc_fun, sm_fun, cmc_fun, csc_fun, smc_fun, csmc_fun))
-  fam <-       unique(c(b_fam, c_fam, d_fam, e_fam, i_fam, m_fam, s_fam, bc_fam, bm_fam, cc_fam, cm_fam, cs_fam, mc_fam, sc_fam, sm_fam, cmc_fam, csc_fam, smc_fam, csmc_fam))
-  ord <- order(unique(c(b_lab, c_lab, d_lab, e_lab, i_lab, m_lab, s_lab, bc_lab, bm_lab, cc_lab, cm_lab, cs_lab, mc_lab, sc_lab, sm_lab, cmc_lab, csc_lab, smc_lab, csmc_lab)))
-  if (!as.dtf) {return(fun[ord])}
-  tibble::tibble(family = fam[ord], fun = fun[ord])
+    b_fun <-         bbb_funs();   b_fam <- rep(        "bbb", length(  b_fun));   b_lab <- paste0("1_",   b_fam, "_", bbb_funs())
+    c_fun <-         ccc_funs();   c_fam <- rep(        "ccc", length(  c_fun));   c_lab <- paste0("1_",   c_fam, "_", ccc_funs())
+    d_fun <-         ddd_funs();   d_fam <- rep(        "ddd", length(  d_fun));   d_lab <- paste0("1_",   d_fam, "_", ddd_funs())
+    e_fun <-         eee_funs();   e_fam <- rep(        "eee", length(  e_fun));   e_lab <- paste0("1_",   e_fam, "_", eee_funs())
+    i_fun <-         iii_funs();   i_fam <- rep(        "iii", length(  i_fun));   i_lab <- paste0("1_",   i_fam, "_", iii_funs())
+    m_fun <-         mmm_funs();   m_fam <- rep(        "mmm", length(  m_fun));   m_lab <- paste0("1_",   m_fam, "_", mmm_funs())
+    s_fun <-         sss_funs();   s_fam <- rep(        "sss", length(  s_fun));   s_lab <- paste0("1_",   s_fam, "_", sss_funs())
+   bc_fun <-     bbb_ccc_funs();  bc_fam <- rep(    "bbb_ccc", length( bc_fun));  bc_lab <- paste0("2_",  bc_fam, "_",  bc_fun)
+   bm_fun <-     bbb_mmm_funs();  bm_fam <- rep(    "bbb_mmm", length( bm_fun));  bm_lab <- paste0("2_",  bm_fam, "_",  bm_fun)
+   mc_fun <-     mmm_ccc_funs();  mc_fam <- rep(    "mmm_ccc", length( mc_fun));  mc_lab <- paste0("2_",  mc_fam, "_",  mc_fun)
+   cc_fun <-     cmp_ccc_funs();  cc_fam <- rep(    "cmp_ccc", length( cc_fun));  cc_lab <- paste0("3_",  cc_fam, "_",  cc_fun)
+   cm_fun <-     cmp_mmm_funs();  cm_fam <- rep(    "cmp_mmm", length( cm_fun));  cm_lab <- paste0("3_",  cm_fam, "_",  cm_fun)
+  cmc_fun <- cmp_mmm_ccc_funs(); cmc_fam <- rep("cmp_mmm_ccc", length(cmc_fun)); cmc_lab <- paste0("4_", cmc_fam, "_", cmc_fun)
+  fun <- c(b_fun, c_fun, d_fun, e_fun, i_fun, m_fun, s_fun, bc_fun, bm_fun, cc_fun, cm_fun, mc_fun, cmc_fun)
+  fam <- c(b_fam, c_fam, d_fam, e_fam, i_fam, m_fam, s_fam, bc_fam, bm_fam, cc_fam, cm_fam, mc_fam, cmc_fam)
+  ord <- c(b_lab, c_lab, d_lab, e_lab, i_lab, m_lab, s_lab, bc_lab, bm_lab, cc_lab, cm_lab, mc_lab, cmc_lab)
+  ord <- order(ord)
+  fun <- fun[ord]
+  fam <- fam[ord]
+  if (!as.dtf) {unique(fun[ord])}
+  else {unique(tibble::tibble(family = fam[ord], fun = fun[ord]))}
 }
 
 #' @rdname ppp

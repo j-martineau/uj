@@ -57,6 +57,8 @@
 #'   \cr               \tab   
 #'   \cr `mmm_props`   \tab What `xmode` properties are there?
 #'   \cr               \tab   
+#'   \cr  `mmm_funs`   \tab What `xmode` property functions are there?
+#'   \cr               \tab   
 #'   \cr      `immm`   \tab Is `x` a match to the `xmode` specification in `spec`?
 #'   \cr               \tab   
 #'   \cr      `iMMM`   \tab Is `x` a match to the single `xmode` property `'MMM'`?
@@ -70,11 +72,13 @@
 #' @return \tabular{rl}{
 #'     `is_mmm_spec` \tab   A logical scalar.
 #'   \cr `mmm_props` \tab   A character vector.
+#'   \cr  `mmm_funs` \tab   A character vector.
 #'   \cr      `immm` \tab   A logical scalar.
 #'   \cr      `iMMM` \tab   A logical scalar.
 #'   \cr       `mmm` \tab   A character vector.
 #' }
 #' @examples
+#' mmm_funs()
 #' mmm_props()
 #' mmm(letters)
 #' mmm(1:10)
@@ -96,6 +100,10 @@ mmm <- function(x) {
   for (m in .mmms) {out <- c(out, f0(run('.i', m, '(x)'), m, NULL))}
   out
 }
+
+#' @rdname mmm
+#' @export
+mmm_funs <- function() {paste0("i", .mmms)}
 
 #' @rdname mmm
 #' @export

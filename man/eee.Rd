@@ -2,6 +2,7 @@
 % Please edit documentation in R/eee.R
 \name{eee}
 \alias{eee}
+\alias{eee_funs}
 \alias{eee_props}
 \alias{is_eee_spec}
 \alias{ieee}
@@ -14,6 +15,8 @@
 \title{Effective dimensionality (\code{effective-D}) properties}
 \usage{
 eee(x)
+
+eee_funs()
 
 eee_props()
 
@@ -48,6 +51,7 @@ neee(x)
 \tabular{rl}{
   \code{is_eee_spec}   \tab A logical scalar.
 \cr \code{eee_props}   \tab A character vector.
+\cr  \code{eee_funs}   \tab A logical scalar.
 \cr      \code{ieee}   \tab A logical scalar.
 \cr      \code{iEEE}   \tab A logical scalar.
 \cr      \code{neee}   \tab A numeric scalar.
@@ -60,32 +64,34 @@ An object's \code{effective-D} is defined as the number of dimensions in which i
   \code{'eUD'}   \tab \emph{Effectively} \code{NaN} \emph{dimensional}.
 \cr             \tab Length-\code{0} objects including \code{NULL} (of undefined \code{effective-D}).
 \cr             \tab   
-\cr   \code{'e0D'}   \tab \emph{Effectively} \code{0} \emph{dimensional}
+\cr   \code{'e0D'}   \tab \emph{Effectively} \code{0} \emph{dimensional}
 \cr             \tab \verb{1x1 data.frames} and length-\verb{1 vectors}, \code{\link[=ivls]{vlists}}, and \code{arrays}.
 \cr             \tab   
-\cr   \code{'e1D'}   \tab \emph{Effectively} \code{1} \emph{dimensional}
+\cr   \code{'e1D'}   \tab \emph{Effectively} \code{1} \emph{dimensional}
 \cr             \tab \code{\link[=imvc]{multivecs}}, length-\code{2+ vlists}, \code{\link[=irow]{row}} \code{data.frames}, \code{\link[=icol]{col}} \code{data.frames}, and length-\verb{2+} arrays with \verb{2+} index positions in exactly \code{1} dimension.
 \cr             \tab   
-\cr   \code{'e2D'}   \tab \emph{Effectively} \code{2} \emph{dimensional}
+\cr   \code{'e2D'}   \tab \emph{Effectively} \code{2} \emph{dimensional}
 \cr             \tab \verb{2+ x 2+ data.frames} and length-\code{4+ arrays} with \verb{2+} positions in exactly \code{2} dimensions.
 \cr             \tab   
-\cr   \code{'eHD'}   \tab \emph{Effectively} \code{hyper} \emph{dimensional}
+\cr   \code{'eHD'}   \tab \emph{Effectively} \code{hyper} \emph{dimensional}
 \cr             \tab Length-\code{8+ arrays} with \verb{2+} positions in \verb{3+} dimensions.
 }
 \cr\cr
 Effective dimensionality property functions are:
 \tabular{rl}{
   \code{is_eee_spec}   \tab Is \code{spec} an \code{effective-D} specification?
-\cr                \tab   
-\cr  \code{eee_props}   \tab What \code{effective-D} properties are there?
-\cr                \tab   
-\cr       \code{neee}   \tab How many effective dimensions does \code{x} have?
-\cr                \tab   
-\cr       \code{ieee}   \tab Is \code{x} a match to the \code{effective-D} specification\code{spec}?
-\cr                \tab   
-\cr       \code{iEEE}   \tab Is \code{x} a match to the single \code{effective-D} property \code{'EEE'}?
-\cr                \tab   
-\cr        \code{eee}   \tab What are \code{x}'s \code{effective-D} properties?
+\cr               \tab   
+\cr \code{eee_props}   \tab What \code{effective-D} properties are there?
+\cr               \tab   
+\cr  \code{eee_funs}   \tab What \code{effective-D} property functions are there?
+\cr               \tab   
+\cr      \code{neee}   \tab How many effective dimensions does \code{x} have?
+\cr               \tab   
+\cr      \code{ieee}   \tab Is \code{x} a match to the \code{effective-D} specification\code{spec}?
+\cr               \tab   
+\cr      \code{iEEE}   \tab Is \code{x} a match to the single \code{effective-D} property \code{'EEE'}?
+\cr               \tab   
+\cr       \code{eee}   \tab What are \code{x}'s \code{effective-D} properties?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -127,10 +133,10 @@ hyp2 <- array(1:8, dim = c(2, 2, 2, 1))
 hyp3 <- array(1:8, dim = c(1, 2, 2, 2, 1))
 hyp4 <- array(1:16, dim = c(2, 2, 2, 2))
 
+eee_funs()
+eee_props()
 is_eee_spec("eUD")
 is_eee_spec("d1D")
-eee_props()
-
 c(neee(udf1), neee(udf2), neee(udf3), neee(udf4))
 c(neee(zro1), neee(zro2), neee(zro3), neee(zro4))
 c(neee(one1), neee(one2), neee(one3), neee(one4))
@@ -150,12 +156,12 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{iii}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

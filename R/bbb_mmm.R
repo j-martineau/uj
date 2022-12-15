@@ -1,13 +1,11 @@
 #' @family props
 #' @title `basic + xmode` combination properties
 #' @description \tabular{rl}{
-#'     `is_bbb_mmm_prop`   \tab Is `x` a \code{\link[=bbb]{basic} + \link[=mmm]{xmode}} combination property?
-#'   \cr                   \tab   
-#'   \cr `bbb_mmm_props`   \tab What `basic + xmode` combination properties have dedicated functions?
-#'   \cr                   \tab   
-#'   \cr       `bbb_mmm`   \tab Is `x` a match to the single `basic` and `xmode` properties in `bbb` and `mmm`, respectively?
-#'   \cr                   \tab   
-#'   \cr       `BBB_MMM`   \tab Is `x` a match to single `basic` and `xmode` properties `'BBB'` and `'MMM'`, respectively?
+#'     `bbb_mmm_funs`   \tab What `basic + xmode` combination property functions are there?
+#'   \cr                \tab   
+#'   \cr    `bbb_mmm`   \tab Is `x` a match to the single `basic` and `xmode` properties in `bbb` and `mmm`, respectively?
+#'   \cr                \tab   
+#'   \cr    `BBB_MMM`   \tab Is `x` a match to single `basic` and `xmode` properties `'BBB'` and `'MMM'`, respectively?
 #' }
 #' @param x An R object.
 #' @param bbb A character scalar single `basic` property from `c('atm', 'pop')`.
@@ -15,12 +13,12 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_bbb_mmm_prop` \tab   A logical scalar.
-#'   \cr `bbb_mmm_props` \tab   A character vector.
-#'   \cr       `bbb_mmm` \tab   A logical scalar.
-#'   \cr       `BBB_MMM` \tab   A logical scalar.
+#'     `bbb_mmm_funs` \tab   A character vector.
+#'   \cr    `bbb_mmm` \tab   A logical scalar.
+#'   \cr    `BBB_MMM` \tab   A logical scalar.
 #' }
 #' @examples
+#' bbb_mmm_funs()
 #' bbb_mmm_props()
 #' bbb_mmm(letters, "atm", "ch1")
 #' atm_ch1(letters)
@@ -41,15 +39,11 @@ bbb_mmm <- function(x, bbb, mmm, ...) {
 
 #' @rdname bbb_mmm
 #' @export
-bbb_mmm_props <- function() {
+bbb_mmm_funs <- function() {
   mmm <- .mmms
   mmm <- mmm[mmm != "atm"]
   c(paste0("atm_", mmm), paste0("pop_", mmm))
 }
-
-#' @rdname cmp_mmm_ccc
-#' @export
-is_cmp_mmm_ccc_prop <- function(prop) {f0(is.atomic(prop) & length(prop) == 1, isIN(prop, cmp_mmm_ccc_props()), F)}
 
 #' @rdname bbb_mmm
 #' @export

@@ -2,6 +2,7 @@
 % Please edit documentation in R/ddd.R
 \name{ddd}
 \alias{ddd}
+\alias{ddd_funs}
 \alias{ddd_props}
 \alias{is_ddd_spec}
 \alias{iddd}
@@ -13,6 +14,8 @@
 \title{Defined dimensionality (\code{defined-D}) properties}
 \usage{
 ddd(x)
+
+ddd_funs()
 
 ddd_props()
 
@@ -43,11 +46,13 @@ nddd(x)
 }
 \value{
 \tabular{rl}{
-  \code{ddd_vals}   \tab A character vector
-\cr   \code{nddd}   \tab A numeric scalar
-\cr   \code{iddd}   \tab A logical scalar
-\cr   \code{iDDD}   \tab A logical scalar
-\cr    \code{ddd}   \tab A character vector
+  \code{is_ddd_spec}   \tab A logical scalar.
+\cr \code{ddd_props}   \tab A character vector
+\cr  \code{ddd_funs}   \tab A character vector
+\cr      \code{nddd}   \tab A numeric scalar
+\cr      \code{iddd}   \tab A logical scalar
+\cr      \code{iDDD}   \tab A logical scalar
+\cr       \code{ddd}   \tab A character vector
 }
 }
 \description{
@@ -63,6 +68,8 @@ An object's defined dimensionality (\code{defined-D}) is the number of dimension
   \code{is_ddd_spec}   \tab Is \code{spec} a \code{defined-D} property specification?
 \cr               \tab   
 \cr \code{ddd_props}   \tab What \code{defined-D} properties are there?
+\cr               \tab   
+\cr  \code{ddd_funs}   \tab What \code{defined-D} property functions are there?
 \cr               \tab   
 \cr      \code{nddd}   \tab How many defined dimensions does \code{x} have?
 \cr               \tab   
@@ -89,11 +96,12 @@ An object's defined dimensionality (\code{defined-D}) is the number of dimension
 }
 
 \examples{
+ddd_funs()
+ddd_props()
 is_ddd_spec("d1D|d2D")
 nddd(matrix(1))
 nddd(letters)
 nddd(1)
-ddd_props()
 iddd(data.frame(letters), "d2D|dHD")
 id0D(NULL)
 id1D(NULL)
@@ -107,12 +115,12 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

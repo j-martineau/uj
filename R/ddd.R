@@ -14,6 +14,8 @@
 #'   \cr               \tab   
 #'   \cr `ddd_props`   \tab What `defined-D` properties are there?
 #'   \cr               \tab   
+#'   \cr  `ddd_funs`   \tab What `defined-D` property functions are there?
+#'   \cr               \tab   
 #'   \cr      `nddd`   \tab How many defined dimensions does `x` have?
 #'   \cr               \tab   
 #'   \cr      `iddd`   \tab Is `x` a match to the `defined-D`-specific `spec`?
@@ -27,18 +29,21 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `ddd_vals`   \tab A character vector
-#'   \cr   `nddd`   \tab A numeric scalar
-#'   \cr   `iddd`   \tab A logical scalar
-#'   \cr   `iDDD`   \tab A logical scalar
-#'   \cr    `ddd`   \tab A character vector
+#'     `is_ddd_spec`   \tab A logical scalar.
+#'   \cr `ddd_props`   \tab A character vector
+#'   \cr  `ddd_funs`   \tab A character vector
+#'   \cr      `nddd`   \tab A numeric scalar
+#'   \cr      `iddd`   \tab A logical scalar
+#'   \cr      `iDDD`   \tab A logical scalar
+#'   \cr       `ddd`   \tab A character vector
 #' }
 #' @examples
+#' ddd_funs()
+#' ddd_props()
 #' is_ddd_spec("d1D|d2D")
 #' nddd(matrix(1))
 #' nddd(letters)
 #' nddd(1)
-#' ddd_props()
 #' iddd(data.frame(letters), "d2D|dHD")
 #' id0D(NULL)
 #' id1D(NULL)
@@ -49,6 +54,10 @@ ddd <- function(x) {
   for (d in .ddds) {out <- c(out, f0(run('.i', d, '(x)'), d, NULL))}
   out
 }
+
+#' @rdname ddd
+#' @export
+ddd_funs <- function() {paste0("i", .ddds)}
 
 #' @rdname ddd
 #' @export

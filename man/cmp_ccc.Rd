@@ -2,8 +2,7 @@
 % Please edit documentation in R/cmp_ccc.R
 \name{cmp_ccc}
 \alias{cmp_ccc}
-\alias{cmp_ccc_props}
-\alias{is_cmp_ccc_prop}
+\alias{cmp_ccc_funs}
 \alias{cmp_arr}
 \alias{cmp_dtf}
 \alias{cmp_gen}
@@ -16,9 +15,7 @@
 \usage{
 cmp_ccc(x, spec, ...)
 
-cmp_ccc_props()
-
-is_cmp_ccc_prop(prop)
+cmp_ccc_funs()
 
 cmp_arr(x, ...)
 
@@ -45,27 +42,22 @@ cmp_vls(x, ...)
     \item{\code{}}{}
   }}
 
-\item{prop}{A character scalar.}
-
 \item{ccc}{A character scalar single \code{xclass} property from \code{ccc_props()}.}
 }
 \value{
 \tabular{rl}{
-  \code{is_cmp_ccc_prop} \tab   A logical scalar.
-\cr \code{cmp_ccc_props} \tab   A character vector.
-\cr       \code{cmp_ccc} \tab   A logical scalar.
-\cr       \code{cmp_CCC} \tab   A logical scalar.
+  \code{cmp_ccc_funs} \tab   A character vector.
+\cr    \code{cmp_ccc} \tab   A logical scalar.
+\cr    \code{cmp_CCC} \tab   A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{is_cmp_ccc_prop}   \tab Is \code{prop} a \code{\link[=icmp]{complete} + \link[=ccc]{xclass}} combination property?
-\cr                   \tab   
-\cr \code{cmp_ccc_props}   \tab What \code{complete + xclass} combination properties have dedicated functions?
-\cr                   \tab   
-\cr       \code{cmp_ccc}   \tab Is \code{x} both \code{complete} and a match the single \code{xclass} property in \code{ccc}?
-\cr                   \tab   
-\cr       \code{cmp_CCC}   \tab Is \code{x} both \code{complete} and a match the single \code{xclass} property \code{'CCC'}?
+  \code{cmp_ccc_funs}   \tab What \code{complete + xclass} combination property functions are there?
+\cr                \tab   
+\cr    \code{cmp_ccc}   \tab Is \code{x} both \code{complete} and a match to the single \code{xclass} property in \code{ccc}?
+\cr                \tab   
+\cr    \code{cmp_CCC}   \tab Is \code{x} both \code{complete} and a match to the single \code{xclass} property \code{'CCC'}?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -84,12 +76,12 @@ cmp_vls(x, ...)
 }
 
 \examples{
-cmp_ccc_props()
+cmp_ccc_fun()
 cmp_ccc(letters, "mvc")
 cmp_ccc(1, "scl")
 cmp_ccc(NA, "gen")
-cmp_scl(1)
 cmp_mvc(letters)
+cmp_scl(1)
 }
 \seealso{
 Other props: 
@@ -98,13 +90,13 @@ Other props:
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

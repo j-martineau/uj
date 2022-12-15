@@ -3,6 +3,7 @@
 \name{sss}
 \alias{sss}
 \alias{sss_props}
+\alias{sss_funs}
 \alias{is_sss_spec}
 \alias{isss}
 \alias{icol}
@@ -18,6 +19,8 @@
 sss(x)
 
 sss_props()
+
+sss_funs()
 
 is_sss_spec(spec)
 
@@ -53,7 +56,8 @@ isqr(x, ...)
 \value{
 \tabular{rl}{
   \code{is_sss_spec} \tab   A logical scalar.
-\cr  \code{sss_vals} \tab   A character vector.
+\cr \code{sss_props} \tab   A character vector.
+\cr  \code{sss_funs} \tab   A character vector.
 \cr      \code{iSSS} \tab   A logical scalar.
 \cr      \code{isss} \tab   A logical scalar.
 \cr       \code{sss} \tab   A character vector.
@@ -80,6 +84,8 @@ isqr(x, ...)
 \cr               \tab   
 \cr \code{sss_props}   \tab What \code{shape} properties are there?
 \cr               \tab   
+\cr  \code{sss_funs}   \tab What \code{shape} property functions are there?
+\cr               \tab   
 \cr      \code{isss}   \tab Does \code{x} a match to the \code{shape} specification in \code{spec}?
 \cr               \tab   
 \cr      \code{iSSS}   \tab Is \code{x} a match to the single \code{shape} property \code{'SSS'}?
@@ -103,8 +109,9 @@ isqr(x, ...)
 }
 
 \examples{
-is_sss_spec("emp|pnt")
+sss_funs()
 sss_props()
+is_sss_spec("emp|pnt")
 sss(matrix(letters, nrow = 1))
 isss(matrix(letters, nrow = 2), "rct")
 ipnt(data.frame(a = 1))
@@ -117,13 +124,13 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

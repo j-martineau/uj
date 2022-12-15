@@ -2,6 +2,7 @@
 % Please edit documentation in R/ccc.R
 \name{ccc}
 \alias{ccc}
+\alias{ccc_funs}
 \alias{ccc_props}
 \alias{is_ccc_spec}
 \alias{iccc}
@@ -16,6 +17,8 @@
 \title{Extended class (\code{xclass}) properties}
 \usage{
 ccc(x)
+
+ccc_funs()
 
 ccc_props()
 
@@ -54,6 +57,7 @@ ivls(x, ...)
 \tabular{rl}{
   \code{is_ccc_spec}   \tab A logical scalar.
 \cr \code{ccc_props}   \tab A character vector.
+\cr  \code{ccc_funs}   \tab A character vector.
 \cr      \code{iccc}   \tab A logical scalar.
 \cr      \code{iCCC}   \tab A logical scalar.
 \cr       \code{ccc}   \tab A character vector.
@@ -71,13 +75,15 @@ ivls(x, ...)
 \cr \code{mvc}   \tab \code{multivec} \tab   Length-\verb{2+} \link[=ilin]{linear} \code{generics.}
 \cr \code{vec}   \tab \code{vec}      \tab   \code{scalars} and \code{multivecs.}
 }
-\eqn{^{a.}} A non-data.frame list.
+\eqn{^{a.}} Non-\code{data.frame} lists.
 \cr\cr
 \strong{Functions}
 \tabular{rl}{
   \code{is_ccc_spec}   \tab Is \code{spec} an \code{xclass} specification?
 \cr               \tab   
 \cr \code{ccc_props}   \tab What \code{xclass} properties are there?
+\cr               \tab   
+\cr  \code{ccc_funs}   \tab What \code{xclass} property functions are there?
 \cr               \tab   
 \cr      \code{iccc}   \tab Is \code{x} a match to the \code{xclass} specification \code{spec}?
 \cr               \tab   
@@ -102,8 +108,9 @@ ivls(x, ...)
 }
 
 \examples{
-is_ccc_spec("scl|vls")
+ccc_funs()
 ccc_props()
+is_ccc_spec("scl|vls")
 iccc(letters, "vec|dtf")
 ivec(letters)
 ccc(letters)
@@ -115,13 +122,13 @@ Other props:
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{cmp_ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

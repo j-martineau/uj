@@ -2,6 +2,7 @@
 % Please edit documentation in R/mmm.R
 \name{mmm}
 \alias{mmm}
+\alias{mmm_funs}
 \alias{mmm_props}
 \alias{is_mmm_spec}
 \alias{immm}
@@ -35,6 +36,8 @@
 \title{Extended mode (\code{xmode}) properties}
 \usage{
 mmm(x)
+
+mmm_funs()
 
 mmm_props()
 
@@ -111,6 +114,7 @@ iwhl(x, ...)
 \tabular{rl}{
   \code{is_mmm_spec} \tab   A logical scalar.
 \cr \code{mmm_props} \tab   A character vector.
+\cr  \code{mmm_funs} \tab   A character vector.
 \cr      \code{immm} \tab   A logical scalar.
 \cr      \code{iMMM} \tab   A logical scalar.
 \cr       \code{mmm} \tab   A character vector.
@@ -174,6 +178,8 @@ iwhl(x, ...)
 \cr               \tab   
 \cr \code{mmm_props}   \tab What \code{xmode} properties are there?
 \cr               \tab   
+\cr  \code{mmm_funs}   \tab What \code{xmode} property functions are there?
+\cr               \tab   
 \cr      \code{immm}   \tab Is \code{x} a match to the \code{xmode} specification in \code{spec}?
 \cr               \tab   
 \cr      \code{iMMM}   \tab Is \code{x} a match to the single \code{xmode} property \code{'MMM'}?
@@ -197,6 +203,7 @@ iwhl(x, ...)
 }
 
 \examples{
+mmm_funs()
 mmm_props()
 mmm(letters)
 mmm(1:10)
@@ -221,13 +228,13 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{ppp}()},

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bbb_ccc.R
 \name{bbb_ccc}
 \alias{bbb_ccc}
-\alias{bbb_ccc_props}
+\alias{bbb_ccc_funs}
 \alias{atm_arr}
 \alias{atm_dtf}
 \alias{atm_gen}
@@ -39,7 +39,7 @@
 \usage{
 bbb_ccc(x, bbb, ccc, ...)
 
-bbb_ccc_props()
+bbb_ccc_funs()
 
 atm_arr(x, ...)
 
@@ -120,21 +120,18 @@ rcr_vls(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_bbb_ccc_prop} \tab   A logical scalar.
-\cr \code{bbb_ccc_props} \tab   A character vector.
-\cr       \code{bbb_ccc} \tab   A logical scalar.
-\cr       \code{BBB_CCC} \tab   A logical scalar.
+  \code{bbb_ccc_funs}   \tab A character vector.
+\cr    \code{bbb_ccc}   \tab A logical scalar.
+\cr    \code{BBB_CCC}   \tab A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{is_bbb_ccc_prop}   \tab Is \code{x} an \code{\link[=bbb]{basic} + \link[=ccc]{xclass}} combination property?
-\cr                   \tab   
-\cr \code{bbb_ccc_props}   \tab What \code{basic + xclass} combination properties have dedicated functions?
-\cr                   \tab   
-\cr       \code{bbb_ccc}   \tab Is \code{x} a match to the single \code{basic} and \code{xclass} properties in \code{bbb} and \code{ccc}, respectively?
-\cr                   \tab   
-\cr       \code{BBB_CCC}   \tab Is \code{x} a match to single \code{basic} and \code{xclass} properties \code{'BBB'} and \code{'CCC'}, respectively?
+  \code{bbb_ccc_funs}   \tab What \code{basic + xclass} combination property functions are there?
+\cr                \tab   
+\cr    \code{bbb_ccc}   \tab Is \code{x} a match to the single \code{basic} and \code{xclass} properties in \code{bbb} and \code{ccc}, respectively?
+\cr                \tab   
+\cr    \code{BBB_CCC}   \tab Is \code{x} a match to single \code{basic} and \code{xclass} properties \code{'BBB'} and \code{'CCC'}, respectively?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -153,6 +150,7 @@ rcr_vls(x, ...)
 }
 
 \examples{
+bbb_ccc_funs()
 bbb_ccc_props()
 bbb_ccc(letters, "atm", "mvc")
 bbb_ccc(1, "nil", "vec")
@@ -166,13 +164,13 @@ Other props:
 \code{\link{bbb}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},

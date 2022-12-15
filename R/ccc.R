@@ -11,13 +11,15 @@
 #'   \cr `mvc`   \tab `multivec` \tab   Length-`2+` \link[=ilin]{linear} `generics.`
 #'   \cr `vec`   \tab `vec`      \tab   `scalars` and `multivecs.`
 #' }
-#' \eqn{^{a.}} A non-data.frame list.
+#' \eqn{^{a.}} Non-`data.frame` lists.
 #' \cr\cr
 #' **Functions**
 #' \tabular{rl}{
 #'     `is_ccc_spec`   \tab Is `spec` an `xclass` specification?
 #'   \cr               \tab   
 #'   \cr `ccc_props`   \tab What `xclass` properties are there?
+#'   \cr               \tab   
+#'   \cr  `ccc_funs`   \tab What `xclass` property functions are there?
 #'   \cr               \tab   
 #'   \cr      `iccc`   \tab Is `x` a match to the `xclass` specification `spec`?
 #'   \cr               \tab   
@@ -32,13 +34,15 @@
 #' @return \tabular{rl}{
 #'     `is_ccc_spec`   \tab A logical scalar.
 #'   \cr `ccc_props`   \tab A character vector.
+#'   \cr  `ccc_funs`   \tab A character vector.
 #'   \cr      `iccc`   \tab A logical scalar.
 #'   \cr      `iCCC`   \tab A logical scalar.
 #'   \cr       `ccc`   \tab A character vector.
 #' }
 #' @examples
-#' is_ccc_spec("scl|vls")
+#' ccc_funs()
 #' ccc_props()
+#' is_ccc_spec("scl|vls")
 #' iccc(letters, "vec|dtf")
 #' ivec(letters)
 #' ccc(letters)
@@ -48,6 +52,10 @@ ccc <- function(x) {
   for (C in .cccs) {out <- c(out, f0(run('.i', C, '(x)'), C, NULL))}
   out
 }
+
+#' @rdname ccc
+#' @export
+ccc_funs <- function() {paste0("i", .cccs)}
 
 #' @rdname ccc
 #' @export

@@ -1,13 +1,11 @@
 #' @family props
 #' @title `complete + xmode + xclass` combination properties
 #' @description \tabular{rl}{
-#'     `is_cmp_mmm_ccc_prop`   \tab Is `prop` a \code{\link[=icmp]{complete} + \link[=mmm]{xmode} + \link[=ccc]{xclass}} combination property?
-#'   \cr                       \tab   
-#'   \cr `cmp_mmm_ccc_props`   \tab What `complete + xmode + xclass` combination properties have dedicated functions?
-#'   \cr                       \tab   
-#'   \cr       `cmp_mmm_ccc`   \tab Is `x` both `complete` and a match to the single `xmode` and `xclass` properties in `mmm` and `ccc`, respectively?
-#'   \cr                       \tab   
-#'   \cr       `cmp_MMM_CCC`   \tab Is `x` both `complete` and a match to the single `xmode` and `xclass` properties `'MMM'` and `'CCC'`, respectively?
+#'     `cmp_mmm_ccc_funs`   \tab What `complete + xmode + xclass` combination property functions are there?
+#'   \cr                    \tab   
+#'   \cr    `cmp_mmm_ccc`   \tab Is `x` both `complete` and a match to the single `xmode` and `xclass` properties in `mmm` and `ccc`, respectively?
+#'   \cr                    \tab   
+#'   \cr    `cmp_MMM_CCC`   \tab Is `x` both `complete` and a match to the single `xmode` and `xclass` properties `'MMM'` and `'CCC'`, respectively?
 #' }
 #' @param x An R object.
 #' @param mmm A character scalar single `xmode` property from `mmm_props()`.
@@ -16,13 +14,12 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_cmp_mmm_ccc_prop`   \tab A logical scalar.
-#'   \cr `cmp_mmm_ccc_props`   \tab A character vector.
-#'   \cr       `cmp_mmm_ccc`   \tab A logical scalar.
-#'   \cr       `cmp_MMM_CCC`   \tab A logical scalar.
+#'     `cmp_mmm_ccc_funs`   \tab A character vector.
+#'   \cr    `cmp_mmm_ccc`   \tab A logical scalar.
+#'   \cr    `cmp_MMM_CCC`   \tab A logical scalar.
 #' }
 #' @examples
-#' cmp_mmm_ccc_props()
+#' cmp_mmm_ccc_funs()
 #' cmp_mmm_ccc(letters, "ch1", "vec")
 #' cmp_mmm_ccc(letters, "str", "scl")
 #' cmp_ch1_vec(letters)
@@ -44,11 +41,7 @@ cmp_mmm_ccc <- function(x, mmm, ccc, ...) {
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_mmm_ccc_props <- function() {paste0('cmp_', sort(av(apply(expand.grid(mmm = .mmms, ccc = .cccs), 1, paste0, collapse = '_'))))}
-
-#' @rdname cmp_mmm_ccc
-#' @export
-is_cmp_mmm_ccc_prop <- function(prop) {f0(is.atomic(prop) & length(prop) == 1, isIN(prop, cmp_mmm_ccc_props()), F)}
+cmp_mmm_ccc_funs <- function() {paste0('cmp_', sort(av(apply(expand.grid(mmm = .mmms, ccc = .cccs), 1, paste0, collapse = '_'))))}
 
 #' @rdname cmp_mmm_ccc
 #' @export

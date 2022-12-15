@@ -2,6 +2,7 @@
 % Please edit documentation in R/bbb.R
 \name{bbb}
 \alias{bbb}
+\alias{bbb_funs}
 \alias{bbb_props}
 \alias{is_bbb_spec}
 \alias{ibbb}
@@ -15,6 +16,8 @@
 \title{\code{basic} properties}
 \usage{
 bbb(x)
+
+bbb_funs()
 
 bbb_props()
 
@@ -51,6 +54,7 @@ ircr(x, ...)
 \tabular{rl}{
   \code{is_bbb_spec} \tab   A logical scalar.
 \cr \code{bbb_props} \tab   A character vector.
+\cr  \code{bbb_funs} \tab   A character vector.
 \cr      \code{ibbb} \tab   A logical scalar.
 \cr      \code{iBBB} \tab   A logical scalar.
 \cr       \code{bbb} \tab   A character vector.
@@ -77,11 +81,13 @@ An object's \code{basic} properties are defined by its fundamental structure as 
 \cr               \tab   
 \cr \code{bbb_props}   \tab What \code{basic} properties are there?
 \cr               \tab   
+\cr  \code{bbb_funs}   \tab What \code{basic} properties functions are there?
+\cr               \tab   
 \cr      \code{ibbb}   \tab Is \code{x} a match to the \code{basic} property specification \code{spec}?
 \cr               \tab   
 \cr      \code{iBBB}   \tab Is \code{x} a match to the \code{basic} property \code{'BBB'}?
 \cr               \tab   
-\cr       \code{bbb}   \tab What are \code{x}'s basic properties?
+\cr       \code{bbb}   \tab What are \code{x}'s \code{basic} properties?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -100,8 +106,9 @@ An object's \code{basic} properties are defined by its fundamental structure as 
 }
 
 \examples{
-is_bbb_spec("nil|nll")
+bbb_funs()
 bbb_props()
+is_bbb_spec("nil|nll")
 ibbb(NULL, "nil|nll")
 ipop(NA)
 iatm(list(letters))
@@ -114,13 +121,13 @@ Other props:
 \code{\link{bbb_mmm}()},
 \code{\link{ccc}()},
 \code{\link{cmp_ccc}()},
+\code{\link{cmp_mmm_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{iii}()},
-\code{\link{is_bbb_ccc_prop}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
