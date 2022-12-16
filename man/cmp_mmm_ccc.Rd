@@ -3,6 +3,14 @@
 \name{cmp_mmm_ccc}
 \alias{cmp_mmm_ccc}
 \alias{cmp_mmm_ccc_funs}
+\alias{cmp_atm_arr}
+\alias{cmp_atm_dtf}
+\alias{cmp_atm_gen}
+\alias{cmp_atm_mat}
+\alias{cmp_atm_mvc}
+\alias{cmp_atm_scl}
+\alias{cmp_atm_vec}
+\alias{cmp_atm_vls}
 \alias{cmp_ch1_arr}
 \alias{cmp_ch1_dtf}
 \alias{cmp_ch1_gen}
@@ -224,6 +232,22 @@
 cmp_mmm_ccc(x, mmm, ccc, ...)
 
 cmp_mmm_ccc_funs()
+
+cmp_atm_arr(x, ...)
+
+cmp_atm_dtf(x, ...)
+
+cmp_atm_gen(x, ...)
+
+cmp_atm_mat(x, ...)
+
+cmp_atm_mvc(x, ...)
+
+cmp_atm_scl(x, ...)
+
+cmp_atm_vec(x, ...)
+
+cmp_atm_vls(x, ...)
 
 cmp_ch1_arr(x, ...)
 

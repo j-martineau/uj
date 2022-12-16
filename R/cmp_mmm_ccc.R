@@ -45,6 +45,38 @@ cmp_mmm_ccc_funs <- function() {paste0('cmp_', sort(av(apply(expand.grid(mmm = .
 
 #' @rdname cmp_mmm_ccc
 #' @export
+cmp_atm_arr <- function(x, ...) {cmp_mmm_ccc(x, 'atm', 'arr', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_atm_dtf <- function(x, ...) {cmp_mmm_ccc(x, 'atm', 'dtf', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_atm_gen <- function(x, ...) {cmp_mmm_ccc(x, 'atm', 'gen', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_atm_mat <- function(x, ...) {cmp_mmm_ccc(x, 'atm', 'mat', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_atm_mvc <- function(x, ...) {cmp_mmm_ccc(x, 'atm', 'mvc', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_atm_scl <- function(x, ...) {cmp_mmm_ccc(x, 'atm', 'scl', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_atm_vec <- function(x, ...) {cmp_mmm_ccc(x, 'atm', 'vec', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
+cmp_atm_vls <- function(x, ...) {cmp_mmm_ccc(x, 'atm', 'vls', ...)}
+
+#' @rdname cmp_mmm_ccc
+#' @export
 cmp_ch1_arr <- function(x, ...) {cmp_mmm_ccc(x, 'ch1', 'arr', ...)}
 
 #' @rdname cmp_mmm_ccc

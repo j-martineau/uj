@@ -36,6 +36,10 @@ cmp_mmm_funs <- function() {paste0('cmp_', .mmms)}
 
 #' @rdname cmp_mmm
 #' @export
+cmp_atm <- function(x, ...) {f0(is.atomic(x), icmp(x, ...), F)}
+
+#' @rdname cmp_mmm
+#' @export
 cmp_ch1 <- function(x, ...) {cmp_mmm(x, 'ch1', ...)}
 
 #' @rdname cmp_mmm

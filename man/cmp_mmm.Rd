@@ -3,6 +3,7 @@
 \name{cmp_mmm}
 \alias{cmp_mmm}
 \alias{cmp_mmm_funs}
+\alias{cmp_atm}
 \alias{cmp_ch1}
 \alias{cmp_ch3}
 \alias{cmp_chr}
@@ -35,6 +36,8 @@
 cmp_mmm(x, mmm, ...)
 
 cmp_mmm_funs()
+
+cmp_atm(x, ...)
 
 cmp_ch1(x, ...)
 
