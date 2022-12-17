@@ -52,7 +52,7 @@ ircr(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_bbb_spec} \tab   A logical scalar.
+\code{is_bbb_spec} \tab   A logical scalar.
 \cr \code{bbb_props} \tab   A character vector.
 \cr  \code{bbb_funs} \tab   A character vector.
 \cr      \code{ibbb} \tab   A logical scalar.
@@ -63,45 +63,32 @@ ircr(x, ...)
 \description{
 An object's \code{basic} properties are defined by its fundamental structure as follows:
 \tabular{rll}{
-  \code{'atm'} \tab   atomic \tab Atomic (but not \code{NULL}). Both a \code{basic} and an \code{\link[=mmm]{xmode}} property.
-\cr         \tab                  \tab   
-\cr \code{'rcr'} \tab   recursive      \tab \code{data.frame} or \code{list}.
-\cr \code{'pop'} \tab   populated      \tab Length \code{1} or greater.
-\cr \code{'def'} \tab   defined        \tab Not \code{NULL}.
-\cr \code{'nll'} \tab   null           \tab \code{NULL}.
-\cr \code{'nil'} \tab   nil            \tab Length \code{0} but not \code{NULL}.
-\cr         \tab                  \tab   
-\cr \code{'fun'} \tab   function       \tab A function or a character scalar name of a function accessible from the environment of the calling function.
+\code{'atm'} \tab   \code{atomic}      \tab Atomic (but not \code{NULL}). Both a \code{basic} and an \code{\link[=mmm]{xmode}} property.
+\cr \code{'rcr'} \tab   \code{recursive}   \tab \code{data.frame} or \code{list}.
+\cr \code{'pop'} \tab   \code{populated}   \tab Length \code{1} or greater.
+\cr \code{'def'} \tab   \code{defined}     \tab Not \code{NULL}.
+\cr \code{'nll'} \tab   \code{null}        \tab \code{NULL}.
+\cr \code{'nil'} \tab   \code{nil}         \tab Length \code{0} but not \code{NULL}.
+\cr \code{'fun'} \tab   \code{function}    \tab A function or a character scalar name of a function accessible from the environment of the calling function.
 }
-\eqn{^{a.}} \code{'atm'} \emph{is both a} \code{basic} \emph{and an} \code{\link[=mmm]{xmode}} \emph{property.}
-\cr\cr
 \strong{Functions}
 \tabular{rl}{
-  \code{is_bbb_spec}   \tab Is \code{spec} a \code{basic} property specification?
-\cr               \tab   
+\code{is_bbb_spec}   \tab Is \code{spec} a \code{basic} property specification?
 \cr \code{bbb_props}   \tab What \code{basic} properties are there?
-\cr               \tab   
 \cr  \code{bbb_funs}   \tab What \code{basic} properties functions are there?
-\cr               \tab   
 \cr      \code{ibbb}   \tab Is \code{x} a match to the \code{basic} property specification \code{spec}?
-\cr               \tab   
 \cr      \code{iBBB}   \tab Is \code{x} a match to the \code{basic} property \code{'BBB'}?
-\cr               \tab   
 \cr       \code{bbb}   \tab What are \code{x}'s \code{basic} properties?
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr  \verb{lt, le, ge, gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab   
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab   
-\cr            \code{vals}   \tab A vector of valid values.
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr          \code{vals}   \tab A vector of valid values.
 }
 }
 

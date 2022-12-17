@@ -3,7 +3,7 @@
 #' @encoding UTF-8
 #' @title Remove objects or object characteristics
 #' @description \tabular{rl}{
-#'       `xplot`   \tab Purges plots and prints `x`.
+#'       `xplot`   \tab Purges plots and prints `x`.
 #'   \cr `xwarn`   \tab Purges warnings.
 #'   \cr  `xcon`   \tab Purges console.
 #'   \cr  `xall`   \tab ((PURGES THE GLOBAL ENVIRONMENT))
@@ -16,14 +16,14 @@
 #' @param x An R object.
 #' @param ... One or more \link[=cmp_chr_vec]{complete character vecs} containing names of attributes or classes to remove.
 #' @return \tabular{rl}{
-#'       `xplot`   \tab `NULL`
+#'       `xplot`   \tab `NULL`
 #'   \cr `xwarn`   \tab `NULL`
 #'   \cr  `xcon`   \tab `NULL`
 #'   \cr  `xall`   \tab `NULL`
-#'   \cr     `x`   \tab `NULL`
 #'   \cr  `xcls`   \tab An R object.
 #'   \cr  `xat0`   \tab An R object.
 #'   \cr   `xat`   \tab An R object.
+#'   \cr     `x`   \tab `NULL`
 #'  }
 #' @examples
 #' x. <- data.frame(x = -5:5, y = sqrt(abs(-5:5)))

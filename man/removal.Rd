@@ -36,19 +36,19 @@ xcon()
 }
 \value{
 \tabular{rl}{
-  \code{xplot}   \tab \code{NULL}
+\code{xplot}   \tab \code{NULL}
 \cr \code{xwarn}   \tab \code{NULL}
 \cr  \code{xcon}   \tab \code{NULL}
 \cr  \code{xall}   \tab \code{NULL}
-\cr     \code{x}   \tab \code{NULL}
 \cr  \code{xcls}   \tab An R object.
 \cr  \code{xat0}   \tab An R object.
 \cr   \code{xat}   \tab An R object.
+\cr     \code{x}   \tab \code{NULL}
 }
 }
 \description{
 \tabular{rl}{
-  \code{xplot}   \tab Purges plots and prints \code{x}.
+\code{xplot}   \tab Purges plots and prints \code{x}.
 \cr \code{xwarn}   \tab Purges warnings.
 \cr  \code{xcon}   \tab Purges console.
 \cr  \code{xall}   \tab ((PURGES THE GLOBAL ENVIRONMENT))

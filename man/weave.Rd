@@ -23,34 +23,38 @@ This function relies on a template containing escape sequences which in turn con
 \cr\cr \strong{\code{decimal}} switches specify number of decimal places for numeric arguments, taking the values \code{'0'} to \code{'9'}
 \cr\cr \strong{\code{quote}} switches specify quoting argument elements in various ways:
 \tabular{cll}{
-  \strong{Switch}   \tab \strong{Style} \tab   \strong{Type}
-\cr \code{'q'}       \tab straight  \tab   single
-\cr \code{'Q'}       \tab straight  \tab   double
-\cr \code{'t'}       \tab typeset   \tab   single
-\cr \code{'T'}       \tab typeset   \tab   typeset
+\strong{Switch}   \tab \strong{Style} \tab   \strong{Type}
+\cr \code{'q'}    \tab straight  \tab   single
+\cr \code{'Q'}    \tab straight  \tab   double
+\cr \code{'t'}    \tab typeset   \tab   single
+\cr \code{'T'}    \tab typeset   \tab   typeset
 }
 \strong{\code{list}} switches specify formatting arguments as comma-separated lists:
 \tabular{cll}{
-  \strong{Switch}   \tab \strong{Type}  \tab   \strong{Result: \code{arg = 1:3}}
-\cr \code{'a'}         \tab and       \tab   \code{'1, 2, and 3'}
-\cr \code{'b'}         \tab braces    \tab   \code{'{1, 2, 3}'}
-\cr \code{'c'}         \tab concat    \tab   \code{'c(1, 2, 3)' }
-\cr \code{'l'}         \tab simple    \tab   \code{'1, 2, 3'}
-\cr \code{'o'}         \tab or        \tab   \code{'1, 2, or 3'}
-\cr \code{'p'}         \tab parens    \tab   \code{'(1, 2, 3)'}
-\cr \code{'s'}         \tab square    \tab   \code{'[1, 2, 3]'}
+\strong{Switch}   \tab \strong{Type}  \tab   \strong{Result: \code{arg = 1:3}}
+\cr \code{'a'}    \tab and       \tab   \code{'1, 2, and 3'}
+\cr \code{'b'}    \tab braces    \tab   \code{'{1, 2, 3}'}
+\cr \code{'c'}    \tab concat    \tab   \code{'c(1, 2, 3)' }
+\cr \code{'l'}    \tab simple    \tab   \code{'1, 2, 3'}
+\cr \code{'o'}    \tab or        \tab   \code{'1, 2, or 3'}
+\cr \code{'p'}    \tab parens    \tab   \code{'(1, 2, 3)'}
+\cr \code{'s'}    \tab square    \tab   \code{'[1, 2, 3]'}
 }
 \strong{Building escape sequences}
 \cr Escape sequences are formatted as \code{'{@_}'} where \verb{_} is a placeholder for \code{0} to \code{3} formatting switches, but with no more than \code{1} switch from each family. What each format signals is described below.
-\cr\cr \code{'{@}'} insert \link[=atm_scl]{atomic scalar} arg \emph{as is}.
-\cr\cr \code{'{@x}'} insert \link[=atm_vec]{atomic vec} arg \emph{after applying formatting switch} \code{x}.
-\cr\cr \code{'{@xy}'} insert \link[=atm_vec]{atomic vec} arg \emph{after applying formatting switches} \code{x} and \code{y}.
-\cr\cr \code{'{@xyz}'} insert \link[=atm_vec]{atomic vec} arg \emph{after applying formatting switches} \code{x}, \code{y}, and \code{z}.
-\cr\cr
-\strong{Order of switches}
+\cr
+\cr \code{'{@}'}: insert \link[=atm_scl]{atomic scalar} arg \emph{as is}.
+\cr
+\cr \code{'{@x}'}: insert \link[=atm_vec]{atomic vec} arg \emph{after applying formatting switch} \code{x}.
+\cr
+\cr \code{'{@xy}'}: insert \link[=atm_vec]{atomic vec} arg \emph{after applying formatting switches} \code{x} and \code{y}.
+\cr
+\cr \code{'{@xyz}'}: insert \link[=atm_vec]{atomic vec} arg \emph{after applying formatting switches} \code{x}, \code{y}, and \code{z}.
+\cr
+\cr \strong{Order of switches}
 \cr Order of switches in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:
 \tabular{rl}{
-  1.  \tab Decimal switch (if any).
+1.  \tab Decimal switch (if any).
 \cr 2.  \tab Quote switch (if any).
 \cr 3.  \tab List switch (if any).
 }

@@ -23,9 +23,7 @@ continue()
 \description{
 \tabular{rl}{
 \code{continue}   \tab Prints \code{"Hit [enter] or [return] to continue"} to the console and pausse execution until the user hits the enter or return key.
-\cr          \tab   
 \cr \code{cat0}   \tab Collapses \code{...} to a character scalar message prefixed and suffixed with newlines and prints it to the console (ensures the message occurs on its own line of the console).
-\cr          \tab   
 \cr  \code{say}   \tab Collapses the message in \code{...} to a character scalar and either (a) prints it to the console or (b) structures it as a certain level of update and then prints it to the console. See details.
 }
 }

@@ -36,15 +36,12 @@ unnamed_dots(...)
 }
 \description{
 \tabular{rl}{
-  \code{unnamed_dots}   \tab Extracts unnamed \code{...} arguments as an unnamed list (includes any named with blank strings).
-\cr                \tab   
+\code{unnamed_dots}   \tab Extracts unnamed \code{...} arguments as an unnamed list (includes any named with blank strings).
 \cr \code{named_dots}   \tab Extracts named \code{...} arguments as a named list (does not include with blank-string names).
-\cr                \tab   
 \cr       \code{dots}   \tab Extracts one or more\code{...} arguments based on matching values supplied in \code{names.}. If a supplied name matches the name of a \code{...} argument, that argument is returned. Otherwise, the element of \code{defs.} with a matching name is returned. \code{names. = NULL} and \code{names. = NA} are converted to \code{'NULL'} and \code{'NA'}. Reserved words in \code{names.} should be backtick quoted.
-\cr                \tab   
 \cr        \code{dot}   \tab A convenience version of \code{dots} for extracting a single named \code{...} argument (or if a matching \code{...} argument name is not found, its default value \code{def.}).
-\cr                \tab   
-\cr  \code{dot_names}   \tab If \code{names. = NULL}, the return value is \code{...names()}, otherwise, \code{names.} is returned. Throws an error in the following cases:\itemize{
+\cr  \code{dot_names}   \tab If \code{names. = NULL}, the return value is \code{...names()}, otherwise, \code{names.} is returned. Throws an error in the following cases:
+\itemize{
 \item \verb{0 ...} Arguments are supplied.
 \item \code{names. != NULL} and \code{length(names.) != ...length()}.
 \item \code{req. = TRUE}, \code{names. = NULL}, and no \code{...} arguments are named.

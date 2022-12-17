@@ -1,11 +1,9 @@
 #' @family props
 #' @title `complete + xmode + xclass` combination properties
 #' @description \tabular{rl}{
-#'     `cmp_mmm_ccc_funs`   \tab What `complete + xmode + xclass` combination property functions are there?
-#'   \cr                    \tab   
-#'   \cr    `cmp_mmm_ccc`   \tab Is `x` both `complete` and a match to the single `xmode` and `xclass` properties in `mmm` and `ccc`, respectively?
-#'   \cr                    \tab   
-#'   \cr    `cmp_MMM_CCC`   \tab Is `x` both `complete` and a match to the single `xmode` and `xclass` properties `'MMM'` and `'CCC'`, respectively?
+#'   `cmp_mmm_ccc_funs`   \tab What `complete + xmode + xclass` combination property functions are there?
+#'   \cr  `cmp_mmm_ccc`   \tab Is `x` both `complete` and a match to the single `xmode` and `xclass` properties in `mmm` and `ccc`, respectively?
+#'   \cr  `cmp_MMM_CCC`   \tab Is `x` both `complete` and a match to the single `xmode` and `xclass` properties `'MMM'` and `'CCC'`, respectively?
 #' }
 #' @param x An R object.
 #' @param mmm A character scalar single `xmode` property from `mmm_props()`.
@@ -14,9 +12,9 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `cmp_mmm_ccc_funs`   \tab A character vector.
-#'   \cr    `cmp_mmm_ccc`   \tab A logical scalar.
-#'   \cr    `cmp_MMM_CCC`   \tab A logical scalar.
+#'   `cmp_mmm_ccc_funs`   \tab A character vector.
+#'   \cr  `cmp_mmm_ccc`   \tab A logical scalar.
+#'   \cr  `cmp_MMM_CCC`   \tab A logical scalar.
 #' }
 #' @examples
 #' cmp_mmm_ccc_funs()

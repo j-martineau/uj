@@ -2,39 +2,24 @@
 #' @title Dialog boxes using package `svDialogs`
 #' @description All functions in this family take `...` arguments, which are \link[=av]{atomized} and collapsed into a prompt to be displayed in a dialog box.
 #' \tabular{rl}{
-#'       `choose_doc`   \tab asks user to select a document/file.
-#'   \cr                \tab   
+#'       `choose_doc`   \tab asks user to select a document/file.
 #'   \cr `choose_dir`   \tab asks user to select a directory/folder.
-#'   \cr                \tab   
 #'   \cr     `msgbox`   \tab launches a simple dialog box to give the message.
-#'   \cr                \tab   
-#'   \cr     `dirbox`   \tab asks user to select a directory/folder\eqn{^1}.
-#'   \cr                \tab   
-#'   \cr     `docbox`   \tab asks user to select a document\eqn{^1}.
-#'   \cr                \tab   
+#'   \cr     `dirbox`   \tab asks user to select a directory/folder\eqn{^a}.
+#'   \cr     `docbox`   \tab asks user to select a document\eqn{^a}.
 #'   \cr     `ansbox`   \tab asks user to input a text response.
-#'   \cr                \tab   
 #'   \cr     `asknew`   \tab asks user to enter a space- or comma-separated list of replacement values for existing values.
-#'   \cr                \tab   
 #'   \cr      `asks1`   \tab asks user to select `1` option from a list, possibly across multiple rounds.
-#'   \cr                \tab   
 #'   \cr      `asksn`   \tab asks user to select a `1+` options from a list of possible options, possibly across multiple rounds.
-#'   \cr                \tab   
 #'   \cr       `ask1`   \tab asks user to select a single option from a list.
-#'   \cr                \tab   
 #'   \cr       `askn`   \tab asks user to select `1+` options from a list.
-#'   \cr                \tab   
 #'   \cr        `ask`   \tab asks user for typed input.
-#'   \cr                \tab   
 #'   \cr        `msg`   \tab returns the name of the button clicked.
-#'   \cr                \tab   
 #'   \cr        `okx`   \tab checks for user selecting the `ok` button of an `okcancel` dialog.
-#'   \cr                \tab   
 #'   \cr        `yes`   \tab checks for user selecting the `yes` button of a `yesno` dialog.
-#'   \cr                \tab   
 #'   \cr         `no`   \tab checks for user selecting the `no` button of a `yesno` dialog.
 #' }
-#' \eqn{^{1.}} Failsafe feature launches a message dialog box prompting the user to take an action in the next dialog box. After user acknowledges, only then launches the selection dialog to avoid problems with prompts not showing up on all operating systems.
+#' \eqn{^{a.}} Failsafe feature launches a message dialog box prompting the user to take an action in the next dialog box. After user acknowledges, only then launches the selection dialog to avoid problems with prompts not showing up on all operating systems.
 #' @param x A \link[=cmp_chr_scl]{complete character scalar} message.
 #' @param d A complete character scalar default directory.
 #' @param t A complete character scalar type of dialog box (valid values are `'ok'`, `'okcancel'`, `'yesno'`, and `'yesnocancel'`).
@@ -49,20 +34,20 @@
 #' @param per A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the maximum number of options to present in a single dialog box interaction.
 #' @param unq A non-`NA` logical scalar indicating whether new values must be unique.
 #' @return \tabular{rl}{
-#'       `choose_dir`   \tab   A character scalar.
+#'       `choose_dir`   \tab   A character scalar.
 #'   \cr `choose_doc`   \tab   A character scalar.
-#'   \cr      `asks1`   \tab   A character scalar.
-#'   \cr       `ask1`   \tab   A character scalar.
-#'   \cr        `ask`   \tab   A character scalar.
-#'   \cr        `okx`   \tab   A character scalar.
-#'   \cr        `msg`   \tab   A character scalar.
 #'   \cr     `ansbox`   \tab   An environment.
 #'   \cr     `docbox`   \tab   An environment.
 #'   \cr     `dirbox`   \tab   An environment.
 #'   \cr     `msgbox`   \tab   An environment.
 #'   \cr     `asknew`   \tab   A character vector.
 #'   \cr      `asksn`   \tab   A character vector.
+#'   \cr      `asks1`   \tab   A character scalar.
 #'   \cr       `askn`   \tab   A character vector.
+#'   \cr       `ask1`   \tab   A character scalar.
+#'   \cr        `ask`   \tab   A character scalar.
+#'   \cr        `okx`   \tab   A character scalar.
+#'   \cr        `msg`   \tab   A character scalar.
 #'   \cr        `yes`   \tab   A logical scalar.
 #'   \cr         `no`   \tab   A logical scalar.
 #' }

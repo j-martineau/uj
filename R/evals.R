@@ -10,25 +10,25 @@
 #' @title Enhancements of `base` logical functions
 #' @description The following are extensions of base logical functions:
 #' \tabular{rl}{
-#'          **Function Usage** \tab   **Extends**
-#'   \cr   `not_in(x, y, ...)` \tab   `!(x %in% y)`
-#'   \cr   `is_out(x, y, ...)` \tab   `!(x %in% y)`
-#'   \cr    `isout(x, y, ...)` \tab   `!(x %in% y)`
-#'   \cr    `notin(x, y, ...)` \tab   `!(x %in% y)`
-#'   \cr    `lacks(x, y, ...)` \tab   `!(y %in% x)`
-#'   \cr    `is_in(x, y, ...)` \tab   `x %in% y`
-#'   \cr     `isin(x, y, ...)` \tab   `x %in% y`
-#'   \cr      `has(x, y, ...)` \tab   `y %in% x`
-#'   \cr      `nor(x, y, ...)` \tab   `!(x | y)`
-#'   \cr      `one(x, y, ...)` \tab   `xor(x, y)`
-#'   \cr      `and(x, y, ...)` \tab   `x & y`
-#'   \cr       `or(x, y, ...)` \tab   `x | y`
-#'   \cr        `TEST(x, ...)` \tab   `isTRUE(x)`
-#'   \cr         `not(x, ...)` \tab   `!x`
+#'        **Function Usage** \tab   **Extends**
+#'   \cr `not_in(x, y, ...)` \tab   `!(x %in% y)`
+#'   \cr `is_out(x, y, ...)` \tab   `!(x %in% y)`
+#'   \cr  `isout(x, y, ...)` \tab   `!(x %in% y)`
+#'   \cr  `notin(x, y, ...)` \tab   `!(x %in% y)`
+#'   \cr  `lacks(x, y, ...)` \tab   `!(y %in% x)`
+#'   \cr  `is_in(x, y, ...)` \tab   `x %in% y`
+#'   \cr   `isin(x, y, ...)` \tab   `x %in% y`
+#'   \cr    `has(x, y, ...)` \tab   `y %in% x`
+#'   \cr    `nor(x, y, ...)` \tab   `!(x | y)`
+#'   \cr    `one(x, y, ...)` \tab   `xor(x, y)`
+#'   \cr    `and(x, y, ...)` \tab   `x & y`
+#'   \cr     `or(x, y, ...)` \tab   `x | y`
+#'   \cr      `TEST(x, ...)` \tab   `isTRUE(x)`
+#'   \cr       `not(x, ...)` \tab   `!x`
 #' }
 #' The next set of functions evaluate an arbitrary number of `...` arguments expected to be logical scalars for whether:
 #' \tabular{rl}{
-#'       `ANY` \tab   Any `...` argument is scalar `TRUE`.
+#'       `ANY` \tab   Any `...` argument is scalar `TRUE`.
 #'   \cr `ALL` \tab   All `...` argument are scalar `TRUE`.
 #'   \cr `NOR` \tab   `0 ...` arguments are scalar `TRUE`.
 #'   \cr `ONE` \tab   `1 ...` argument is scalar `TRUE`.
@@ -36,7 +36,7 @@
 #' }
 #' The remainder of functions in this family sweep across or within `...` arguments, as specified by the arguments `across` and `within`:
 #' \tabular{rl}{
-#'      `tests` \tab   Logically indexes `TRUE` values.
+#'      `tests` \tab   Logically indexes `TRUE` values.
 #'   \cr    `w` \tab   Numerically indexes `TRUE` values.
 #'   \cr `anys` \tab   Checks for any `TRUE` values.
 #'   \cr `alls` \tab   Checks for only `TRUE` values.

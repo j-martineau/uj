@@ -1,6 +1,6 @@
 #' @title Atomize (reduce arguments to an atomic vector)
 #' @description \tabular{rl}{
-#'     `atomize`   \tab Gets a vector of all
+#'     `atomize`   \tab Gets a vector of all
 #'   \cr `atoms`   \tab atomic values in all
 #'   \cr    `av`   \tab `...` arguments.
 #'   \cr     `a`   \tab   

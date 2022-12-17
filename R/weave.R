@@ -6,34 +6,38 @@
 #' \cr\cr **`decimal`** switches specify number of decimal places for numeric arguments, taking the values `'0'` to `'9'`
 #' \cr\cr **`quote`** switches specify quoting argument elements in various ways:
 #' \tabular{cll}{
-#'      **Switch**   \tab **Style** \tab   **Type**
-#'   \cr `'q'`       \tab straight  \tab   single
-#'   \cr `'Q'`       \tab straight  \tab   double
-#'   \cr `'t'`       \tab typeset   \tab   single
-#'   \cr `'T'`       \tab typeset   \tab   typeset
+#'   **Switch**   \tab **Style** \tab   **Type**
+#'   \cr `'q'`    \tab straight  \tab   single
+#'   \cr `'Q'`    \tab straight  \tab   double
+#'   \cr `'t'`    \tab typeset   \tab   single
+#'   \cr `'T'`    \tab typeset   \tab   typeset
 #' }
 #' **`list`** switches specify formatting arguments as comma-separated lists:
 #' \tabular{cll}{
-#'        **Switch**   \tab **Type**  \tab   **Result: `arg = 1:3`**
-#'   \cr `'a'`         \tab and       \tab   `'1, 2, and 3'`
-#'   \cr `'b'`         \tab braces    \tab   `'{1, 2, 3}'`
-#'   \cr `'c'`         \tab concat    \tab   `'c(1, 2, 3)' `
-#'   \cr `'l'`         \tab simple    \tab   `'1, 2, 3'`
-#'   \cr `'o'`         \tab or        \tab   `'1, 2, or 3'`
-#'   \cr `'p'`         \tab parens    \tab   `'(1, 2, 3)'`
-#'   \cr `'s'`         \tab square    \tab   `'[1, 2, 3]'`
+#'   **Switch**   \tab **Type**  \tab   **Result: `arg = 1:3`**
+#'   \cr `'a'`    \tab and       \tab   `'1, 2, and 3'`
+#'   \cr `'b'`    \tab braces    \tab   `'{1, 2, 3}'`
+#'   \cr `'c'`    \tab concat    \tab   `'c(1, 2, 3)' `
+#'   \cr `'l'`    \tab simple    \tab   `'1, 2, 3'`
+#'   \cr `'o'`    \tab or        \tab   `'1, 2, or 3'`
+#'   \cr `'p'`    \tab parens    \tab   `'(1, 2, 3)'`
+#'   \cr `'s'`    \tab square    \tab   `'[1, 2, 3]'`
 #' }
 #' **Building escape sequences**
 #' \cr Escape sequences are formatted as `'{@@_}'` where `_` is a placeholder for `0` to `3` formatting switches, but with no more than `1` switch from each family. What each format signals is described below.
-#' \cr\cr `'{@@}'` insert \link[=atm_scl]{atomic scalar} arg *as is*.
-#' \cr\cr `'{@@x}'` insert \link[=atm_vec]{atomic vec} arg *after applying formatting switch* `x`.
-#' \cr\cr `'{@@xy}'` insert \link[=atm_vec]{atomic vec} arg *after applying formatting switches* `x` and `y`.
-#' \cr\cr `'{@@xyz}'` insert \link[=atm_vec]{atomic vec} arg *after applying formatting switches* `x`, `y`, and `z`.
-#' \cr\cr
-#' **Order of switches**
+#' \cr
+#' \cr `'{@@}'`: insert \link[=atm_scl]{atomic scalar} arg *as is*.
+#' \cr
+#' \cr `'{@@x}'`: insert \link[=atm_vec]{atomic vec} arg *after applying formatting switch* `x`.
+#' \cr
+#' \cr `'{@@xy}'`: insert \link[=atm_vec]{atomic vec} arg *after applying formatting switches* `x` and `y`.
+#' \cr
+#' \cr `'{@@xyz}'`: insert \link[=atm_vec]{atomic vec} arg *after applying formatting switches* `x`, `y`, and `z`.
+#' \cr
+#' \cr **Order of switches**
 #' \cr Order of switches in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:
 #' \tabular{rl}{
-#'       1.  \tab Decimal switch (if any).
+#'       1.  \tab Decimal switch (if any).
 #'   \cr 2.  \tab Quote switch (if any).
 #'   \cr 3.  \tab List switch (if any).
 #' }

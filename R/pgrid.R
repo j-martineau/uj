@@ -2,14 +2,13 @@
 #' @family strings
 #' @title `expand.grid` for `paste` and `paste0`
 #' @description \tabular{rl}{
-#'        `pgrid`   \tab Converts the `n` `...` arguments to character (with additional optional pre-processing) and create a character vector with each element consisting of sub-strings from across `...` arguments pasted together using the 'paste' `p`. See the *value* section for how the value of `crossed` affects the return value.
-#'   \cr            \tab   
-#'   \cr `pgrid0`   \tab Calls `pgrid` with `p = ""` (blank).
+#'       `pgrid0`   \tab Calls `pgrid` with `p = ""` (blank).
 #'   \cr `pgrid1`   \tab Calls `pgrid` with `p = " "` (space).
-#'   \cr `pgridn`   \tab Calls `pgrid` with `crossed = FALSE`\eqn{^1}.
-#'   \cr `pgridx`   \tab Calls `pgrid` with `crossed = TRUE`\eqn{^1}.
+#'   \cr `pgridn`   \tab Calls `pgrid` with `crossed = FALSE`\eqn{^a}.
+#'   \cr `pgridx`   \tab Calls `pgrid` with `crossed = TRUE`\eqn{^a}.
+#'   \cr  `pgrid`   \tab Converts the `n` `...` arguments to character (with additional optional pre-processing) and create a character vector with each element consisting of sub-strings from across `...` arguments pasted together using the 'paste' `p`. See the *value* section for how the value of `crossed` affects the return value.
 #' }
-#' \eqn{^{1.}} See the section entitled *the* `crossed` *argument*.
+#' \eqn{^{a.}} See *the* `crossed` *argument* section.
 #' @param ... Non-empty atomic objects.
 #' @param p A \link[=cmp_chr_scl]{complete character scalar} to use as the 'paste'.
 #' @param ch,na.err Non-`NA` logical scalars indicating, respectively, whether to split each `...` arguments into its constituent characters after conversion to mode 'character' and whether to throw an error if an argument in `...` contains an `NA` value.

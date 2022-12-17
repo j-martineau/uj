@@ -16,29 +16,30 @@
 #' @name declare
 #' @title Declare basic R objects with extended functionality
 #' @description This family of functions enforces the restrictions that names must (a) contain only ASCII letters, numerals, `'.'`, and `'_'`; (b) begin with a letter or `'.'` followed by a letter; and (c) end with a letter or numeral.
-#'  \cr\cr Functions declaring \link[=atm_dtf]{atomic data.frames}:\tabular{rl}{
-#'             `dtf` \tab   Declares a data.frame.
-#'    \cr     `dtf.` \tab   Declares a data.frame concisely\eqn{^1}.
-#'    \cr     `dtf0` \tab   Declares a `0`-row data.frame.
-#'    \cr   `dtf_na` \tab   Declares a data.frame of `NA` values.
-#'  }
-#'  Functions declaring matrices:\tabular{rl}{
-#'           `mat` \tab   Declares a matrix.
-#'    \cr   `matd` \tab   Declares a square diagonal matrix\eqn{^2}.
-#'  }
-#'  Functions declaring atomic vectors:\tabular{rl}{
-#'             `vec` \tab   Declares a vector.
-#'    \cr     `vec.` \tab   Declares a named atomic vector concisely\eqn{^3}.
-#'    \cr `  vec_na` \tab   Declares a vector of `NA` values.
-#'  }
-#'  Functions declaring \link[=ivls]{vlists}:\tabular{rl}{
-#'           `vls` \tab   Declares a \link[=ivls]{vlist}.
-#'    \cr   `vls.` \tab   Declares a named \link[=ivls]{vlist} concisely\eqn{^4}.
-#'  }
-#'             \eqn{^{1.}} `dtf.(a, b)` is identical to `data.frame(a = a, b = b, stringsAsFactors = F)`.
-#'  \cr\cr     \eqn{^{2.}} Off-diags are `0`, `FALSE`, `""` for `x` of mode `'numeric'`, `'logical'`, `'character'`, respectively.
-#'  \cr\cr     \eqn{^{3.}} `vec.(a, b)` is identical to `c(a = a, b = b)`.
-#'  \cr\cr     \eqn{^{4.}} `vls.(a, b)` is identical to `list(a = a, b = b)`.
+#' \cr
+#' \cr Functions declaring \link[=atm_dtf]{atomic data.frames}:\tabular{rl}{
+#'          `dtf` \tab   Declares a data.frame.
+#'   \cr   `dtf.` \tab   Declares a data.frame concisely\eqn{^a}.
+#'   \cr   `dtf0` \tab   Declares a `0`-row data.frame.
+#'   \cr `dtf_na` \tab   Declares a data.frame of `NA` values.
+#' }
+#' Functions declaring matrices:\tabular{rl}{
+#'        `mat` \tab   Declares a matrix.
+#'   \cr `matd` \tab   Declares a square diagonal matrix\eqn{^b}.
+#' }
+#' Functions declaring atomic vectors:\tabular{rl}{
+#'          `vec` \tab   Declares a vector.
+#'   \cr   `vec.` \tab   Declares a named atomic vector concisely\eqn{^c}.
+#'   \cr `vec_na` \tab   Declares a vector of `NA` values.
+#' }
+#' Functions declaring \link[=ivls]{vlists}:\tabular{rl}{
+#'        `vls` \tab   Declares a \link[=ivls]{vlist}.
+#'   \cr `vls.` \tab   Declares a named \link[=ivls]{vlist} concisely\eqn{^d}.
+#' }
+#'      \eqn{^{a.}} `dtf.(a, b)` is identical to `data.frame(a = a, b = b, stringsAsFactors = F)`.
+#'  \cr \eqn{^{b.}} Off-diags are `0`, `FALSE`, `""` for `x` of mode `'numeric'`, `'logical'`, `'character'`, respectively.
+#'  \cr \eqn{^{c.}} `vec.(a, b)` is identical to `c(a = a, b = b)`.
+#'  \cr \eqn{^{d.}} `vls.(a, b)` is identical to `list(a = a, b = b)`.
 #' @param ... Objects to placed in an atomic vec, atomic matrix, atomic data.frame, vlist, or square atomic diagonal matrix. \link[=a]{Atomized} for vec and matrix creation.
 #' @param x A non-empty vector of mode `'numeric'`, `'character'`, or `'logical'`.
 #' @param r A non-`NA` numeric scalar number of replications.
@@ -48,7 +49,7 @@
 #' @param nr,nc Complete positive whole-number scalars giving number of rows and columns, respectively.
 #' @param br A non-`NA` logical scalar indicating whether to fill matrices by row.
 #' @return \tabular{rl}{
-#'       `dtf_na` \tab   An atomic data.frame
+#'       `dtf_na` \tab   An atomic data.frame
 #'   \cr `vec_na` \tab   An atomic vector.
 #'   \cr   `dmat` \tab   A square matrix.
 #'   \cr   `dtf0` \tab   An atomic data.frame

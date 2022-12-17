@@ -97,8 +97,7 @@ sstb(d, ..., name = "string", part = "part")
 All functions return a character vector except for \code{sstb}, which returns a data.frame.
 }
 \description{
-\strong{\code{ss}}
-This function splits strings using the delimiter(s) in \code{d} following this sequence:
+\strong{\code{ss}} splits strings using the delimiter(s) in \code{d} following this sequence:
 \enumerate{
 \item Reduce \code{...} to an atomic vector of all collective atomic values.
 \item Convert the result to mode character.
@@ -111,7 +110,7 @@ This function splits strings using the delimiter(s) in \code{d} following this s
 \strong{Extension functions}
 \cr Extension functions are supplied for common delimiters, signified by codes appended to \code{ss} function names:
 \tabular{rll}{
-  \emph{Code} \tab   \emph{Name} \tab   \emph{Delimiter}
+\emph{Code} \tab   \emph{Name} \tab   \emph{Delimiter}
 \cr\code{'0'} \tab   blank  \tab   \code{''}
 \cr\code{'1'} \tab   space  \tab   \code{' '}
 \cr\code{'P'} \tab   pipe   \tab   \code{'|'}
@@ -119,13 +118,12 @@ This function splits strings using the delimiter(s) in \code{d} following this s
 \cr\code{'B'} \tab   broken \tab   \code{'¦'}
 \cr      \tab   pipe   \tab   
 }
-In addition, \code{ch} aliases \code{ss0}.
-\cr\cr
-\strong{Unique-value functions}
+\code{ch} aliases \code{ss0}.
+\cr
+\cr \strong{Unique-value functions}
 \cr Prepending \code{u} to a function name reduces the result of calling that function to unique values.
-\cr\cr
-\strong{\code{sstb}}
-\cr Assumes that splitting each element of \code{x} along the delimiter \code{d} results vectors of the same length, which are placed into a data.frame. For example, the following console excerpt demonstrates a call to \code{sstb} and its result.
+\cr
+\cr \strong{\code{sstb}} Assumes that splitting each element of \code{x} along the delimiter \code{d} results vectors of the same length, which are placed into a data.frame. For example, the following console excerpt demonstrates a call to \code{sstb} and its result.
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{> sstb('|', 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p', name = 'original', part = 'letter')
 

@@ -1,8 +1,7 @@
 #' @title Unique atomic values
 #' @description \tabular{rl}{
-#'     `uv,uav`   \tab Gets set of unique atomic values contained in all `...` arguments..
-#'   \cr          \tab   
-#'   \cr  `suv`   \tab Gets sorted set of`...`
+#'    `uv,uav`   \tab Gets set of unique atomic values contained in all `...` arguments..
+#'   \cr `suv`   \tab Gets sorted set of`...`
 #' }
 #' @param ... One or more objects to be reduced to a single atomic vector and then further reduced to unique atomic values.
 #' @return An atomic vector.

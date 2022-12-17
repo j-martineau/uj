@@ -32,14 +32,13 @@ A character vector.
 }
 \description{
 \tabular{rl}{
-  \code{pgrid}   \tab Converts the \code{n} \code{...} arguments to character (with additional optional pre-processing) and create a character vector with each element consisting of sub-strings from across \code{...} arguments pasted together using the 'paste' \code{p}. See the \emph{value} section for how the value of \code{crossed} affects the return value.
-\cr            \tab   
-\cr \code{pgrid0}   \tab Calls \code{pgrid} with \code{p = ""} (blank).
+\code{pgrid0}   \tab Calls \code{pgrid} with \code{p = ""} (blank).
 \cr \code{pgrid1}   \tab Calls \code{pgrid} with \verb{p = " "} (space).
-\cr \code{pgridn}   \tab Calls \code{pgrid} with \verb{crossed = FALSE}\eqn{^1}.
-\cr \code{pgridx}   \tab Calls \code{pgrid} with \code{crossed = TRUE}\eqn{^1}.
+\cr \code{pgridn}   \tab Calls \code{pgrid} with \verb{crossed = FALSE}\eqn{^a}.
+\cr \code{pgridx}   \tab Calls \code{pgrid} with \code{crossed = TRUE}\eqn{^a}.
+\cr  \code{pgrid}   \tab Converts the \code{n} \code{...} arguments to character (with additional optional pre-processing) and create a character vector with each element consisting of sub-strings from across \code{...} arguments pasted together using the 'paste' \code{p}. See the \emph{value} section for how the value of \code{crossed} affects the return value.
 }
-\eqn{^{1.}} See the section entitled \emph{the} \code{crossed} \emph{argument}.
+\eqn{^{a.}} See \emph{the} \code{crossed} \emph{argument} section.
 }
 \section{The \code{crossed} Argument}{
  The following console excerpt shows the effect of the value of \code{crossed}:

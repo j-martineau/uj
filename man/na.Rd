@@ -28,7 +28,7 @@ rm_na(x)
 }
 \value{
 \tabular{rl}{
-  \code{sub_na} \tab   \code{x} with \code{NA} values replaced.
+\code{sub_na} \tab   \code{x} with \code{NA} values replaced.
 \cr \code{rm_na} \tab   Either an atomic vector or \code{x}.
 \cr   \code{nas} \tab   A logical scalar.
 \cr   \code{oks} \tab   A logical scalar.
@@ -41,9 +41,7 @@ rm_na(x)
 All functions in this group take objects of atomic mode, \link[=atm_dtf]{atomic dtfs}, or \link[=atm_vls]{atomic vlists}:
 \tabular{rl}{
 \code{sub_na}   \tab Substitutes \code{s} for \code{NA} values of\code{x} Modes of \code{x} and \code{s} must be \link[=compatible]{compatible}.
-\cr           \tab   
 \cr \code{rm_na}   \tab Removes \code{NA} values of \code{x} If there are no \code{NA} values in \code{x}, returns \code{x} unchanged. If there are \code{NA} values in \code{x}, removing them may change the dimensions and/or class of \code{x}.
-\cr           \tab   
 \cr   \code{nas}   \tab Evaluates whether \code{x} is an \code{NA} scalar.
 \cr   \code{oks}   \tab Evaluates whether \code{x} is a non-\code{NA} scalar.
 \cr    \code{na}   \tab Indexes \code{NA} values of \code{x}.

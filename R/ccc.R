@@ -2,7 +2,7 @@
 #' @title Extended class (`xclass`) properties
 #' @description `xclass` properties are defined as follows:
 #' \tabular{rll}{
-#'       `arr`   \tab `array`    \tab   `arrays`.
+#'       `arr`   \tab `array`    \tab   `arrays`.
 #'   \cr `mat`   \tab `matrix`   \tab   `matrices`.
 #'   \cr `dtf`   \tab `dtf`      \tab   `data.frames`.
 #'   \cr `vls`   \tab `vlist`    \tab   `vector-lists`\eqn{^a}.
@@ -15,16 +15,11 @@
 #' \cr\cr
 #' **Functions**
 #' \tabular{rl}{
-#'     `is_ccc_spec`   \tab Is `spec` an `xclass` specification?
-#'   \cr               \tab   
+#'     `is_ccc_spec`   \tab Is `spec` an `xclass` specification?
 #'   \cr `ccc_props`   \tab What `xclass` properties are there?
-#'   \cr               \tab   
 #'   \cr  `ccc_funs`   \tab What `xclass` property functions are there?
-#'   \cr               \tab   
 #'   \cr      `iccc`   \tab Is `x` a match to the `xclass` specification `spec`?
-#'   \cr               \tab   
 #'   \cr      `iCCC`   \tab Is `x` a match to the single `xclass` property `'CCC'`?
-#'   \cr               \tab   
 #'   \cr       `ccc`   \tab What are `x`'s `xclass` properties?
 #' }
 #' @param x An R object.
@@ -32,7 +27,7 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_ccc_spec`   \tab A logical scalar.
+#'     `is_ccc_spec`   \tab A logical scalar.
 #'   \cr `ccc_props`   \tab A character vector.
 #'   \cr  `ccc_funs`   \tab A character vector.
 #'   \cr      `iccc`   \tab A logical scalar.

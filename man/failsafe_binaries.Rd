@@ -48,28 +48,30 @@ A logical scalar.
 }
 \description{
 Binary functions that always produce either \code{TRUE} or \code{FALSE} unless calling \code{identity(x)} or \code{identity(y)} produces an error.
-\cr\cr These functions evaluate whether two variables meet requirements as defined in the following table:\tabular{rl}{
-\verb{\%HAS\%}   \tab Atomic object \code{x} has (contains) atomic scalar \code{y}.\eqn{^1}
-\cr   \verb{\%LACKS\%}   \tab Atomic object \code{x} lacks (does not contain) atomic scalar \code{y}.\eqn{^1}
-\cr               \tab   
-\cr      \verb{\%IN\%}   \tab Atomic scalar \code{x} is contained in atomic object \code{y}.\eqn{^3}
-\cr     \verb{\%OUT\%}   \tab Atomic scalar \code{x} is outside of (not contained in) atomic object \code{y}.\eqn{^3}
-\cr               \tab   
-\cr      \verb{\%IS\%}   \tab \code{x} and \code{y} are \code{\link[base]{identical}}.
-\cr    \verb{\%ISNT\%}   \tab \code{x} and \code{y} are not \code{\link[base]{identical}}.
-\cr               \tab   
-\cr      \verb{\%EQ\%}   \tab \code{x} and \code{y} are \code{\link[base]{setequal}}.\eqn{^2}
-\cr     \verb{\%NEQ\%}   \tab \code{x} and \code{y} are not \code{\link[base]{setequal}}.\eqn{^2}
-\cr               \tab   
-\cr     \verb{\%NOR\%}   \tab Neither \code{x} nor \code{y} is scalar \code{TRUE}.
-\cr     \verb{\%AND\%}   \tab Both \code{x} and \code{y} are scalar \code{TRUE}.
-\cr               \tab   
-\cr     \verb{\%ONE\%}   \tab Either \code{x} is scalar \code{TRUE}, \code{y} is scalar \code{TRUE}, but not both.
-\cr      \verb{\%OR\%}   \tab \code{x} is scalar \code{TRUE}, \code{y} is scalar \code{TRUE}, or both.
+\cr
+\cr These functions evaluate whether two variables meet requirements as defined in the following table:
+\tabular{rl}{
+\verb{\%HAS\%}   \tab Atomic object \code{x} has (contains) atomic scalar \code{y}\eqn{^a}.
+\cr \verb{\%LACKS\%}   \tab Atomic object \code{x} lacks (does not contain) atomic scalar \code{y}\eqn{^a}.
+\cr             \tab   
+\cr    \verb{\%IN\%}   \tab Atomic scalar \code{x} is contained in atomic object \code{y}\eqn{^b}.
+\cr   \verb{\%OUT\%}   \tab Atomic scalar \code{x} is outside of (not contained in) atomic object \code{y}\eqn{^b}.
+\cr             \tab   
+\cr    \verb{\%IS\%}   \tab \code{x} and \code{y} are \code{\link[base]{identical}}.
+\cr  \verb{\%ISNT\%}   \tab \code{x} and \code{y} are \emph{not} \code{\link[base]{identical}}.
+\cr             \tab   
+\cr    \verb{\%EQ\%}   \tab \code{x} and \code{y} are \code{\link[base]{setequal}}\eqn{^c}.
+\cr   \verb{\%NEQ\%}   \tab \code{x} and \code{y} are \emph{not} \code{\link[base]{setequal}}\eqn{^c}.
+\cr             \tab   
+\cr   \verb{\%NOR\%}   \tab Neither \code{x} nor \code{y} is scalar \code{TRUE}.
+\cr   \verb{\%AND\%}   \tab Both \code{x} and \code{y} are scalar \code{TRUE}.
+\cr             \tab   
+\cr   \verb{\%ONE\%}   \tab Either \code{x} is scalar \code{TRUE}, \code{y} is scalar \code{TRUE}, but not both.
+\cr    \verb{\%OR\%}   \tab \code{x} is scalar \code{TRUE}, \code{y} is scalar \code{TRUE}, or both.
 }
-   \eqn{^{1.}} If \code{x} is not atomic scalar, \code{y} is not atomic, or \code{x} and \code{y} are not compatible, \verb{\%HAS\%} and \verb{\%LACKS\%} return \code{FALSE} and \code{TRUE}, respectively.
-\cr    \eqn{^{2.}} If \code{x} and \code{y} are not \code{\link{compatible}}, \verb{\%EQ\%} and \verb{\%NEQ\%} return \code{FALSE} and \code{TRUE}, respectively.
-\cr    \eqn{^{3.}} If \code{x} is not atomic, \code{y} is not atomic scalar, or \code{x} and \code{y} are not compatible, \verb{\%IN\%} and \verb{\%OUT\%} return \code{FALSE} and \code{TRUE}, respectively.
+\eqn{^{a.}} If \code{x} is not atomic scalar, \code{y} is not atomic, or \code{x} and \code{y} are not compatible, \verb{\%HAS\%} and \verb{\%LACKS\%} return \code{FALSE} and \code{TRUE}, respectively.
+\cr \eqn{^{b.}} If \code{x} is not atomic, \code{y} is not atomic scalar, or \code{x} and \code{y} are not compatible, \verb{\%IN\%} and \verb{\%OUT\%} return \code{FALSE} and \code{TRUE}, respectively.
+\cr \eqn{^{c.}} If \code{x} and \code{y} are not \code{\link{compatible}}, \verb{\%EQ\%} and \verb{\%NEQ\%} return \code{FALSE} and \code{TRUE}, respectively.
 }
 \examples{
 abc <- c("a", "b", "c")

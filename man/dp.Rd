@@ -107,15 +107,15 @@ A data.frame.
 }
 \description{
 \tabular{rl}{
-  \code{dpjoin} \tab   Thinly wraps \code{\link[dplyr]{left_join}}.
+\code{dpjoin} \tab   Thinly wraps \code{\link[dplyr]{left_join}}.
 \cr \code{dpagg} \tab   Thinly wraps \code{\link[dplyr]{summarize}}.
 \cr \code{dpall} \tab   Thinly wraps \code{\link[dplyr]{all_of}}.
 \cr \code{dplab} \tab   Thinly wraps \code{\link[dplyr]{rename}}.
 \cr \code{dpmod} \tab   Thinly wraps \code{\link[dplyr]{mutate}}.
-\cr \code{dpgrp} \tab   Limitedly wraps \code{\link[dplyr]{group_by}}\eqn{^1}.
+\cr \code{dpgrp} \tab   Limitedly wraps \code{\link[dplyr]{group_by}}\eqn{^a}.
 \cr   \code{dpn} \tab   Thinly wraps \code{\link[dplyr]{n}}.
 }
-   \eqn{^{1.}} Accepts as argument only a data.frame (\code{x}) and a character vector naming grouping variables (\code{keys}).
+\eqn{^{a.}} Accepts as argument only a data.frame (\code{x}) and a character vector naming grouping variables (\code{keys}).
 }
 \section{Useful functions}{
 

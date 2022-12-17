@@ -2,7 +2,7 @@
 #' @family strings
 #' @title Convert string case
 #' @description Functions in this family convert string case as follows:\tabular{rl}{
-#'        `tocase` \tab   Convert among cases.
+#'        `tocase` \tab   Convert among cases.
 #'   \cr           \tab   
 #'   \cr `totitle` \tab   Convert to \link[stringr:str_to_sentence]{title case}.
 #'   \cr  `tosent` \tab   Convert to \link[stringr:str_to_sentence]{sentence case}.

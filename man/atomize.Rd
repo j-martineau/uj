@@ -26,7 +26,7 @@ A single atomic vector containing all constituent atomic values in the full set 
 }
 \description{
 \tabular{rl}{
-  \code{atomize}   \tab Gets a vector of all
+\code{atomize}   \tab Gets a vector of all
 \cr \code{atoms}   \tab atomic values in all
 \cr    \code{av}   \tab \code{...} arguments.
 \cr     \code{a}   \tab   

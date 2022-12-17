@@ -28,27 +28,22 @@ ppats(x, pat)
 }
 \value{
 \tabular{rl}{
-  \code{has_pat} \tab   A logical scalar.
-\cr  \code{ipat} \tab   A logical scalar.
+\code{has_pat} \tab   A logical scalar.
+\cr \code{ppats} \tab   A positive whole number vector.
 \cr  \code{wpat} \tab   A positive whole number vector.
 \cr  \code{npat} \tab   A positive whole number vector.
 \cr  \code{ppat} \tab   A positive whole number vector.
-\cr \code{ppats} \tab   A positive whole number vector.
+\cr  \code{ipat} \tab   A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{has_pat}   \tab Evaluate whether each element of \code{x} contains the string in \code{pat}.
-\cr           \tab   
-\cr  \code{ipat}   \tab Logically indexes character vector elements containing a pattern as \code{TRUE} or \code{FALSE}.
-\cr           \tab   
-\cr  \code{wpat}   \tab Numerically indexes character vector elements containing a pattern as integer element numbers.
-\cr           \tab   
-\cr  \code{npat}   \tab Counts the number of times a pattern appears in each element of a character vector.
-\cr           \tab   
-\cr  \code{ppat}   \tab Identifies the position of \emph{the first} character of the first instance of a pattern in each element of a character vector.
-\cr           \tab   
+\code{has_pat}   \tab Evaluates whether each element of \code{x} contains the string in \code{pat}.
 \cr \code{ppats}   \tab Identifies the position of the first character of \emph{every} instance of a pattern in each element of a character vector.
+\cr  \code{ppat}   \tab Identifies the position of \emph{the first} character of the first instance of a pattern in each element of a character vector.
+\cr  \code{npat}   \tab Counts the number of times a pattern appears in each element of a character vector.
+\cr  \code{ipat}   \tab Logically indexes character vector elements containing a pattern as \code{TRUE} or \code{FALSE}.
+\cr  \code{wpat}   \tab Numerically indexes character vector elements containing a pattern as integer element numbers.
 }
 }
 \details{

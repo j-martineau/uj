@@ -112,7 +112,7 @@ iwhl(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_mmm_spec} \tab   A logical scalar.
+\code{is_mmm_spec} \tab   A logical scalar.
 \cr \code{mmm_props} \tab   A character vector.
 \cr  \code{mmm_funs} \tab   A character vector.
 \cr      \code{immm} \tab   A logical scalar.
@@ -125,11 +125,11 @@ iwhl(x, ...)
 \cr\cr Atomic objects that contain only \code{NA} values are of every \code{xmode} (they can be coerced to any mode without introducing new \code{NA} values).
 \cr\cr \strong{Generic} \code{xmode}
 \tabular{rll}{
-  \code{'atm'}   \tab atomic   \tab Both a \code{\link[=bbb]{basic}} and an \code{xmode} property.
+\code{'atm'}   \tab atomic   \tab Both a \code{\link[=bbb]{basic}} and an \code{xmode} property.
 }
 \strong{Character} \code{xmodes}
 \tabular{rl}{
-  \code{'chr'} \tab   character
+\code{'chr'} \tab   character
 \cr \code{'ch1'} \tab   1-char, or \verb{all(nchar(x) == 1)}
 \cr \code{'ch3'} \tab   3-char, or \verb{all(nchar(x) == 3)}
 \cr \code{'clr'} \tab   color (valid color values)
@@ -137,20 +137,20 @@ iwhl(x, ...)
 }
 \strong{Categorical} \code{xmodes}
 \tabular{rl}{
-  \code{'fac'} \tab   factor
+\code{'fac'} \tab   factor
 \cr \code{'lgl'} \tab   logical
 \cr \code{'ord'} \tab   ordered factor
 \cr \code{'uno'} \tab   unordered factor
 }
 \strong{Basic numeric} \code{xmodes}
 \tabular{rl}{
-  \code{'num'} \tab   numeric
+\code{'num'} \tab   numeric
 \cr \code{'frc'} \tab   fractional
 \cr \code{'whl'} \tab   whole number
 }
 \strong{Value-restricted numeric} \code{xmodes}
 \tabular{rl}{
-  \code{'pct'} \tab   percentage (\code{0-100})
+\code{'pct'} \tab   percentage (\code{0-100})
 \cr \code{'ppn'} \tab   proportion (\code{0-1})
 \cr \code{'pos'} \tab   positive
 \cr \code{'neg'} \tab   negative
@@ -159,7 +159,7 @@ iwhl(x, ...)
 }
 \strong{Whole-number value-restricted} \code{xmodes}
 \tabular{rl}{
-  \code{'evn'} \tab   even
+\code{'evn'} \tab   even
 \cr \code{'odd'} \tab   odd
 \cr \code{'ngw'} \tab   negative whole
 \cr \code{'psw'} \tab   positive whole
@@ -168,37 +168,28 @@ iwhl(x, ...)
 }
 \strong{Combination} \code{xmodes}
 \tabular{rl}{
-  \code{'ind'} \tab   indexer (\code{lgl}, \code{psw})
+\code{'ind'} \tab   indexer (\code{lgl}, \code{psw})
 \cr \code{'srt'} \tab   sortable (\code{chr}, \code{num}, \code{ord})
 \cr \code{'nst'} \tab   non-sortable atomic
 }
 \strong{\code{xmode} functions}
 \tabular{rl}{
-  \code{is_mmm_spec}   \tab Is \code{spec} an \code{xmode} specification?
-\cr               \tab   
+\code{is_mmm_spec}   \tab Is \code{spec} an \code{xmode} specification?
 \cr \code{mmm_props}   \tab What \code{xmode} properties are there?
-\cr               \tab   
 \cr  \code{mmm_funs}   \tab What \code{xmode} property functions are there?
-\cr               \tab   
 \cr      \code{immm}   \tab Is \code{x} a match to the \code{xmode} specification in \code{spec}?
-\cr               \tab   
 \cr      \code{iMMM}   \tab Is \code{x} a match to the single \code{xmode} property \code{'MMM'}?
-\cr               \tab   
 \cr       \code{mmm}   \tab What are \code{x}'s \code{xmode} properties?
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr  \verb{lt, le, ge, gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab   
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab   
-\cr            \code{vals}   \tab A vector of valid values.
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr          \code{vals}   \tab A vector of valid values.
 }
 }
 

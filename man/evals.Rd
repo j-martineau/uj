@@ -102,24 +102,24 @@ lacks(x, y, na = TRUE, agg = NA)
 The following are extensions of base logical functions:
 \tabular{rl}{
 \strong{Function Usage} \tab   \strong{Extends}
-\cr   \verb{not_in(x, y, ...)} \tab   \verb{!(x \%in\% y)}
-\cr   \code{is_out(x, y, ...)} \tab   \code{!(x \%in\% y)}
-\cr    \code{isout(x, y, ...)} \tab   \code{!(x \%in\% y)}
-\cr    \code{notin(x, y, ...)} \tab   \code{!(x \%in\% y)}
-\cr    \code{lacks(x, y, ...)} \tab   \code{!(y \%in\% x)}
-\cr    \code{is_in(x, y, ...)} \tab   \code{x \%in\% y}
-\cr     \code{isin(x, y, ...)} \tab   \code{x \%in\% y}
-\cr      \code{has(x, y, ...)} \tab   \code{y \%in\% x}
-\cr      \code{nor(x, y, ...)} \tab   \code{!(x | y)}
-\cr      \code{one(x, y, ...)} \tab   \code{xor(x, y)}
-\cr      \code{and(x, y, ...)} \tab   \code{x & y}
-\cr       \code{or(x, y, ...)} \tab   \code{x | y}
-\cr        \code{TEST(x, ...)} \tab   \code{isTRUE(x)}
-\cr         \code{not(x, ...)} \tab   \code{!x}
+\cr \verb{not_in(x, y, ...)} \tab   \verb{!(x \%in\% y)}
+\cr \code{is_out(x, y, ...)} \tab   \code{!(x \%in\% y)}
+\cr  \code{isout(x, y, ...)} \tab   \code{!(x \%in\% y)}
+\cr  \code{notin(x, y, ...)} \tab   \code{!(x \%in\% y)}
+\cr  \code{lacks(x, y, ...)} \tab   \code{!(y \%in\% x)}
+\cr  \code{is_in(x, y, ...)} \tab   \code{x \%in\% y}
+\cr   \code{isin(x, y, ...)} \tab   \code{x \%in\% y}
+\cr    \code{has(x, y, ...)} \tab   \code{y \%in\% x}
+\cr    \code{nor(x, y, ...)} \tab   \code{!(x | y)}
+\cr    \code{one(x, y, ...)} \tab   \code{xor(x, y)}
+\cr    \code{and(x, y, ...)} \tab   \code{x & y}
+\cr     \code{or(x, y, ...)} \tab   \code{x | y}
+\cr      \code{TEST(x, ...)} \tab   \code{isTRUE(x)}
+\cr       \code{not(x, ...)} \tab   \code{!x}
 }
 The next set of functions evaluate an arbitrary number of \code{...} arguments expected to be logical scalars for whether:
 \tabular{rl}{
-  \code{ANY} \tab   Any \code{...} argument is scalar \code{TRUE}.
+\code{ANY} \tab   Any \code{...} argument is scalar \code{TRUE}.
 \cr \code{ALL} \tab   All \code{...} argument are scalar \code{TRUE}.
 \cr \code{NOR} \tab   \verb{0 ...} arguments are scalar \code{TRUE}.
 \cr \code{ONE} \tab   \verb{1 ...} argument is scalar \code{TRUE}.
@@ -127,7 +127,7 @@ The next set of functions evaluate an arbitrary number of \code{...} arguments e
 }
 The remainder of functions in this family sweep across or within \code{...} arguments, as specified by the arguments \code{across} and \code{within}:
 \tabular{rl}{
-  \code{tests} \tab   Logically indexes \code{TRUE} values.
+\code{tests} \tab   Logically indexes \code{TRUE} values.
 \cr    \code{w} \tab   Numerically indexes \code{TRUE} values.
 \cr \code{anys} \tab   Checks for any \code{TRUE} values.
 \cr \code{alls} \tab   Checks for only \code{TRUE} values.

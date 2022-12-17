@@ -189,32 +189,26 @@ pop_whl(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{bbb_mmm_funs} \tab   A character vector.
-\cr    \code{bbb_mmm} \tab   A logical scalar.
-\cr    \code{BBB_MMM} \tab   A logical scalar.
+\code{bbb_mmm_funs} \tab   A character vector.
+\cr  \code{bbb_mmm} \tab   A logical scalar.
+\cr  \code{BBB_MMM} \tab   A logical scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{bbb_mmm_funs}   \tab What \code{basic + xmode} combination property functions are there?
-\cr                \tab   
-\cr    \code{bbb_mmm}   \tab Is \code{x} a match to the single \code{basic} and \code{xmode} properties in \code{bbb} and \code{mmm}, respectively?
-\cr                \tab   
-\cr    \code{BBB_MMM}   \tab Is \code{x} a match to single \code{basic} and \code{xmode} properties \code{'BBB'} and \code{'MMM'}, respectively?
+\code{bbb_mmm_funs}   \tab What \code{basic + xmode} combination property functions are there?
+\cr  \code{bbb_mmm}   \tab Is \code{x} a match to the single \code{basic} and \code{xmode} properties in \code{bbb} and \code{mmm}, respectively?
+\cr  \code{BBB_MMM}   \tab Is \code{x} a match to single \code{basic} and \code{xmode} properties \code{'BBB'} and \code{'MMM'}, respectively?
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr  \verb{lt, le, ge, gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab   
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab   
-\cr            \code{vals}   \tab A vector of valid values.
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr          \code{vals}   \tab A vector of valid values.
 }
 }
 

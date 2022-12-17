@@ -2,30 +2,21 @@
 #' @title `basic` properties
 #' @description An object's `basic` properties are defined by its fundamental structure as follows:
 #' \tabular{rll}{
-#'       `'atm'` \tab   atomic \tab Atomic (but not `NULL`). Both a `basic` and an \code{\link[=mmm]{xmode}} property.
-#'   \cr         \tab                  \tab   
-#'   \cr `'rcr'` \tab   recursive      \tab `data.frame` or `list`.
-#'   \cr `'pop'` \tab   populated      \tab Length `1` or greater.
-#'   \cr `'def'` \tab   defined        \tab Not `NULL`.
-#'   \cr `'nll'` \tab   null           \tab `NULL`.
-#'   \cr `'nil'` \tab   nil            \tab Length `0` but not `NULL`.
-#'   \cr         \tab                  \tab   
-#'   \cr `'fun'` \tab   function       \tab A function or a character scalar name of a function accessible from the environment of the calling function.
+#'       `'atm'` \tab   `atomic`      \tab Atomic (but not `NULL`). Both a `basic` and an \code{\link[=mmm]{xmode}} property.
+#'   \cr `'rcr'` \tab   `recursive`   \tab `data.frame` or `list`.
+#'   \cr `'pop'` \tab   `populated`   \tab Length `1` or greater.
+#'   \cr `'def'` \tab   `defined`     \tab Not `NULL`.
+#'   \cr `'nll'` \tab   `null`        \tab `NULL`.
+#'   \cr `'nil'` \tab   `nil`         \tab Length `0` but not `NULL`.
+#'   \cr `'fun'` \tab   `function`    \tab A function or a character scalar name of a function accessible from the environment of the calling function.
 #' }
-#' \eqn{^{a.}} `'atm'` *is both a* `basic` *and an* \code{\link[=mmm]{xmode}} *property.*
-#' \cr\cr
 #' **Functions**
 #' \tabular{rl}{
-#'     `is_bbb_spec`   \tab Is `spec` a `basic` property specification?
-#'   \cr               \tab   
+#'     `is_bbb_spec`   \tab Is `spec` a `basic` property specification?
 #'   \cr `bbb_props`   \tab What `basic` properties are there?
-#'   \cr               \tab   
 #'   \cr  `bbb_funs`   \tab What `basic` properties functions are there?
-#'   \cr               \tab   
 #'   \cr      `ibbb`   \tab Is `x` a match to the `basic` property specification `spec`?
-#'   \cr               \tab   
 #'   \cr      `iBBB`   \tab Is `x` a match to the `basic` property `'BBB'`?
-#'   \cr               \tab   
 #'   \cr       `bbb`   \tab What are `x`'s `basic` properties?
 #' }
 #' @param x An R object.
@@ -33,7 +24,7 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_bbb_spec` \tab   A logical scalar.
+#'     `is_bbb_spec` \tab   A logical scalar.
 #'   \cr `bbb_props` \tab   A character vector.
 #'   \cr  `bbb_funs` \tab   A character vector.
 #'   \cr      `ibbb` \tab   A logical scalar.

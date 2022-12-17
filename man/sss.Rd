@@ -55,7 +55,7 @@ isqr(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_sss_spec} \tab   A logical scalar.
+\code{is_sss_spec} \tab   A logical scalar.
 \cr \code{sss_props} \tab   A character vector.
 \cr  \code{sss_funs} \tab   A character vector.
 \cr      \code{iSSS} \tab   A logical scalar.
@@ -65,7 +65,7 @@ isqr(x, ...)
 }
 \description{
 \code{Shape} properties are as defined in the following table: \tabular{rll}{
-  \code{'emp'} \tab   empty  \tab   \code{0} length (but not \code{NULL}).
+\code{'emp'} \tab   empty  \tab   \code{0} length (but not \code{NULL}).
 \cr \code{'pnt'} \tab   point  \tab   \code{1} element or cell\eqn{^a}.
 \cr \code{'col'} \tab   column \tab   \code{1} row by \verb{2+} columns.
 \cr \code{'row'} \tab   row    \tab   \verb{2+} rows by \code{1} column.
@@ -75,36 +75,26 @@ isqr(x, ...)
 \cr \code{'sld'} \tab   solid  \tab   \verb{2+} positions in \verb{3+} dimensions.
 }
 \eqn{^{a.}} \verb{1x1} data.frames; length-\code{1} arrays, vectors, \link[=ivls]{vlists}.
-\cr\cr
-\eqn{^{b.}} Length-\verb{2+} vectors, arrays of \verb{2+} positions in \code{1} dimension, row/column data.frames.
+\cr \eqn{^{b.}} Length-\verb{2+} vectors, arrays of \verb{2+} positions in \code{1} dimension, row/column data.frames.
 \cr\cr
 \strong{Shape property functions}
 \tabular{rl}{
-  \code{is_sss_spec}   \tab Is \code{spec} a \code{shape} specification?
-\cr               \tab   
+\code{is_sss_spec}   \tab Is \code{spec} a \code{shape} specification?
 \cr \code{sss_props}   \tab What \code{shape} properties are there?
-\cr               \tab   
 \cr  \code{sss_funs}   \tab What \code{shape} property functions are there?
-\cr               \tab   
 \cr      \code{isss}   \tab Does \code{x} a match to the \code{shape} specification in \code{spec}?
-\cr               \tab   
 \cr      \code{iSSS}   \tab Is \code{x} a match to the single \code{shape} property \code{'SSS'}?
-\cr               \tab   
 \cr       \code{sss}   \tab What are \code{x}'s \code{shape} properties?
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr  \verb{lt, le, ge, gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab   
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab   
-\cr            \code{vals}   \tab A vector of valid values.
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr          \code{vals}   \tab A vector of valid values.
 }
 }
 

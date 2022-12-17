@@ -21,18 +21,12 @@
 #' \cr\cr
 #' Effective dimensionality property functions are:
 #' \tabular{rl}{
-#'     `is_eee_spec`   \tab Is `spec` an `effective-D` specification?
-#'   \cr               \tab   
+#'     `is_eee_spec`   \tab Is `spec` an `effective-D` specification?
 #'   \cr `eee_props`   \tab What `effective-D` properties are there?
-#'   \cr               \tab   
 #'   \cr  `eee_funs`   \tab What `effective-D` property functions are there?
-#'   \cr               \tab   
 #'   \cr      `neee`   \tab How many effective dimensions does `x` have?
-#'   \cr               \tab   
 #'   \cr      `ieee`   \tab Is `x` a match to the `effective-D` specification`spec`?
-#'   \cr               \tab   
 #'   \cr      `iEEE`   \tab Is `x` a match to the single `effective-D` property `'EEE'`?
-#'   \cr               \tab   
 #'   \cr       `eee`   \tab What are `x`'s `effective-D` properties?
 #' }
 #' @param x An R object.
@@ -40,7 +34,7 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_eee_spec`   \tab A logical scalar.
+#'     `is_eee_spec`   \tab A logical scalar.
 #'   \cr `eee_props`   \tab A character vector.
 #'   \cr  `eee_funs`   \tab A logical scalar.
 #'   \cr      `ieee`   \tab A logical scalar.

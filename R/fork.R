@@ -8,9 +8,7 @@
 #'                     \item `FALSE` values of `test` are replaced by corresponding values of `no`.
 #'                     \item `NA` values of `test` are replaced by `na` (unless `na = 'err'`, in which case if there are any `NA` values in `test`, throws an error).
 #'                   }
-#'   \cr        \tab   
 #'   \cr `f0`   \tab If `test` is scalar `TRUE`, returns `yes`. If `test` is anything else, returns `no`.
-#'   \cr        \tab   
 #'   \cr `f1`   \tab Error-checked version of `f0`. Evaluates and processes logical scalar `test` in the following manner:
 #'   \cr        \tab \itemize{
 #'                     \item If `test = TRUE`, returns `yes`.
@@ -24,7 +22,7 @@
 #' @param na An object of any type for `f1`. An atomic scalar \link[=compatible]{compatible} with `yes` and `no` for `fork`, with the additional possibility of `na = 'err'` to indicate an error should be thrown if any values in `test` are `na`.
 #' @param err Either `'err'` or an object to be returned when `test` is not an atomic scalar in `c(TRUE, FALSE, NA)`.
 #' @return \tabular{rl}{
-#'     `fork` \tab   A length-`length(x)` atomic object.
+#'     `fork` \tab   A length-`length(x)` atomic object.
 #'   \cr `f0` \tab   An R object.
 #'   \cr `f1` \tab   An R object.
 #' }

@@ -1,7 +1,7 @@
 #' @family wraps
 #' @title Thin wrappers of `tibble` functions
 #' @description \tabular{rl}{
-#'       `tbas` \tab   Thinly wraps \code{\link[tibble]{as_tibble}}.
+#'       `tbas` \tab   Thinly wraps \code{\link[tibble]{as_tibble}}.
 #'   \cr `tbis` \tab   Thinly wraps \code{\link[tibble]{is_tibble}}.
 #'   \cr  `tbr` \tab   Thinly wraps \code{\link[tibble]{tribble}}.
 #'   \cr  `trb` \tab   Thinly wraps \code{\link[tibble]{tibble_row}}.

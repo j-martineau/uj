@@ -46,7 +46,7 @@ iprt(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_iii_spec} \tab   A character vector.
+\code{is_iii_spec} \tab   A character vector.
 \cr \code{iii_props} \tab   A character vector.
 \cr  \code{iii_funs} \tab   A character vector.
 \cr      \code{iiii} \tab   A logical scalar.
@@ -57,42 +57,30 @@ iprt(x, ...)
 \description{
 \code{Integrity} properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frameS}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
 \tabular{rll}{
-  \code{'cmp'}   \tab complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing \strong{no} \code{NA} values.
-\cr           \tab               \tab   
+\code{'cmp'}   \tab complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing \strong{no} \code{NA} values.
 \cr \code{'mss'}   \tab missing       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \strong{only} \code{NA} values.
-\cr           \tab               \tab   
 \cr \code{'prt'}   \tab partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \code{NA} \strong{and} non-\code{NA} values.
-\cr           \tab               \tab   
 \cr \code{'nas'}   \tab \code{NA} scalar   \tab Atomic scalar \code{NA}.
 \cr \code{'oks'}   \tab \code{OK} scalar   \tab Non-\code{NA} atomic scalar.
 }
 \strong{\code{Integrity} property functions}
 \tabular{rl}{
-  \code{is_iii_spec}   \tab Is \code{spec} an \code{integrity} specification?
-\cr               \tab   
+\code{is_iii_spec}   \tab Is \code{spec} an \code{integrity} specification?
 \cr \code{iii_props}   \tab What \code{integrity} properties are there?
-\cr               \tab   
 \cr  \code{iii_funs}   \tab What \code{integrity} property functions are there?
-\cr               \tab   
 \cr      \code{iiii}   \tab Is \code{x} a match to the \code{integrity} specification \code{spec}?
-\cr               \tab   
 \cr      \code{iIII}   \tab Is \code{x} a match to the single \code{integrity} property \code{'III'}?
-\cr               \tab   
 \cr       \code{iii}   \tab Gets all of \code{x}'s \code{integrity} properties.
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr  \verb{lt, le, ge, gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab   
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab   
-\cr            \code{vals}   \tab A vector of valid values.
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr          \code{vals}   \tab A vector of valid values.
 }
 }
 

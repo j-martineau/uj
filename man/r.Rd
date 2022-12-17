@@ -28,10 +28,9 @@ An atomic vector.
 \description{
 These functions \link[=av]{atomize} \code{...} arguments, converting them to an atomic vector (represented here as \code{dots}) before replication.
 \tabular{rl}{
-  \code{re} \tab   Calls \verb{rep(dots, times = r, each = e)}.
-\cr \code{er} \tab   Calls \code{rep(dots, times = r, each = e)}.
-\cr  \code{r} \tab   Calls \code{rep.int(dots, r)}.
+\verb{re,er} \tab   Calls \verb{rep(dots, times = r, each = e)}.
 \cr  \code{e} \tab   Calls \code{rep.int(dots, each = e)}.
+\cr  \code{r} \tab   Calls \code{rep.int(dots, r)}.
 }
 }
 \examples{

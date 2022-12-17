@@ -107,12 +107,12 @@ A character scalar or vector
 \description{
 Build strings where function names are composed of a single-letter prefix and a longer suffix. Prefixes and their meanings are
 \tabular{rl}{
-  \code{g}   \tab Glue/collapse \code{...} args
+\code{g}   \tab Glue/collapse \code{...} args
 \cr \code{p}   \tab Paste across corresponding element of \code{...}.
 }
 Suffixes and their meanings are
 \tabular{rl}{
-  \code{bracket}   \tab Enclose in square brackets
+\code{bracket}   \tab Enclose in square brackets
 \cr \code{quote2}   \tab Enclose in double quotes
 \cr  \code{quote}   \tab Enclose in single quotes
 \cr  \code{paren}   \tab Enclose in parentheses

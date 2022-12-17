@@ -3,20 +3,18 @@
 #' @title Objects in environments of calling functions
 #' @description All functions in this family operate in the environment of the calling function `gens` generations back in the call stack.
 #' \tabular{rl}{
-#'     `vexists`   \tab Checks for the existence of an object in the environment of the `gens`-specified calling function.
-#'   \cr           \tab   
-#'   \cr  `vget`   \tab Gets the value of an object in the environment of the `gens`-specified calling function.
-#'   \cr           \tab   
-#'   \cr  `vset`   \tab Sets the value of an object in the environment of the `gens`-specified calling function.
+#'    `vexists`   \tab Checks for the existence of an object in the environment of the `gens`-specified calling function.
+#'   \cr `vget`   \tab Gets the value of an object in the environment of the `gens`-specified calling function.
+#'   \cr `vset`   \tab Sets the value of an object in the environment of the `gens`-specified calling function.
 #' }
 #' @param name A \link[=cmp_chr_scl]{complete character scalar} giving the name of an object.
 #' @param val A value to place into the object specified by `name`.
 #' @param err A non`NA` logical scalar indicating whether to throw an error if the object specified by `name` does not exist (i.e., rather than returning `FALSE`).
 #' @param gens A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of generations back in the function call stack to go.
 #' @return \tabular{rl}{
-#'     `vexists` \tab   A logical scalar.
-#'   \cr  `vget` \tab   An R object.
-#'   \cr  `vset` \tab   `NULL`
+#'    `vexists` \tab   A logical scalar.
+#'   \cr `vget` \tab   An R object.
+#'   \cr `vset` \tab   `NULL`
 #' }
 #' @examples
 #' fun.a <- function() {A <- 0; fun.b()}

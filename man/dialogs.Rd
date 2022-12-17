@@ -81,20 +81,20 @@ asknew(old, what, unq = T)
 }
 \value{
 \tabular{rl}{
-  \code{choose_dir}   \tab   A character scalar.
+\code{choose_dir}   \tab   A character scalar.
 \cr \code{choose_doc}   \tab   A character scalar.
-\cr      \code{asks1}   \tab   A character scalar.
-\cr       \code{ask1}   \tab   A character scalar.
-\cr        \code{ask}   \tab   A character scalar.
-\cr        \code{okx}   \tab   A character scalar.
-\cr        \code{msg}   \tab   A character scalar.
 \cr     \code{ansbox}   \tab   An environment.
 \cr     \code{docbox}   \tab   An environment.
 \cr     \code{dirbox}   \tab   An environment.
 \cr     \code{msgbox}   \tab   An environment.
 \cr     \code{asknew}   \tab   A character vector.
 \cr      \code{asksn}   \tab   A character vector.
+\cr      \code{asks1}   \tab   A character scalar.
 \cr       \code{askn}   \tab   A character vector.
+\cr       \code{ask1}   \tab   A character scalar.
+\cr        \code{ask}   \tab   A character scalar.
+\cr        \code{okx}   \tab   A character scalar.
+\cr        \code{msg}   \tab   A character scalar.
 \cr        \code{yes}   \tab   A logical scalar.
 \cr         \code{no}   \tab   A logical scalar.
 }
@@ -102,37 +102,22 @@ asknew(old, what, unq = T)
 \description{
 All functions in this family take \code{...} arguments, which are \link[=av]{atomized} and collapsed into a prompt to be displayed in a dialog box.
 \tabular{rl}{
-  \code{choose_doc}   \tab asks user to select a document/file.
-\cr                \tab   
+\code{choose_doc}   \tab asks user to select a document/file.
 \cr \code{choose_dir}   \tab asks user to select a directory/folder.
-\cr                \tab   
 \cr     \code{msgbox}   \tab launches a simple dialog box to give the message.
-\cr                \tab   
-\cr     \code{dirbox}   \tab asks user to select a directory/folder\eqn{^1}.
-\cr                \tab   
-\cr     \code{docbox}   \tab asks user to select a document\eqn{^1}.
-\cr                \tab   
+\cr     \code{dirbox}   \tab asks user to select a directory/folder\eqn{^a}.
+\cr     \code{docbox}   \tab asks user to select a document\eqn{^a}.
 \cr     \code{ansbox}   \tab asks user to input a text response.
-\cr                \tab   
 \cr     \code{asknew}   \tab asks user to enter a space- or comma-separated list of replacement values for existing values.
-\cr                \tab   
 \cr      \code{asks1}   \tab asks user to select \code{1} option from a list, possibly across multiple rounds.
-\cr                \tab   
 \cr      \code{asksn}   \tab asks user to select a \verb{1+} options from a list of possible options, possibly across multiple rounds.
-\cr                \tab   
 \cr       \code{ask1}   \tab asks user to select a single option from a list.
-\cr                \tab   
 \cr       \code{askn}   \tab asks user to select \verb{1+} options from a list.
-\cr                \tab   
 \cr        \code{ask}   \tab asks user for typed input.
-\cr                \tab   
 \cr        \code{msg}   \tab returns the name of the button clicked.
-\cr                \tab   
 \cr        \code{okx}   \tab checks for user selecting the \code{ok} button of an \code{okcancel} dialog.
-\cr                \tab   
 \cr        \code{yes}   \tab checks for user selecting the \code{yes} button of a \code{yesno} dialog.
-\cr                \tab   
 \cr         \code{no}   \tab checks for user selecting the \code{no} button of a \code{yesno} dialog.
 }
-\eqn{^{1.}} Failsafe feature launches a message dialog box prompting the user to take an action in the next dialog box. After user acknowledges, only then launches the selection dialog to avoid problems with prompts not showing up on all operating systems.
+\eqn{^{a.}} Failsafe feature launches a message dialog box prompting the user to take an action in the next dialog box. After user acknowledges, only then launches the selection dialog to avoid problems with prompts not showing up on all operating systems.
 }

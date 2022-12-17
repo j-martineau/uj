@@ -20,8 +20,7 @@ msgERR(x)
 }
 \value{
 \tabular{rl}{
-  \code{failsafe}   \tab Either \code{x}, an object of class \code{'error'}, or an object of class \code{'simpleError'}.
-\cr            \tab   
+\code{failsafe}   \tab Either \code{x}, an object of class \code{'error'}, or an object of class \code{'simpleError'}.
 \cr \code{msgERR}   \tab \code{NULL} or a character scalar.
 \cr \code{notERR}   \tab A logical scalar.
 \cr  \code{isERR}   \tab A logical scalar.
@@ -30,11 +29,8 @@ msgERR(x)
 \description{
 \tabular{rl}{
 \code{failsafe}   \tab Calls \code{identity(x)}. If an error is produced in doing so, returns an object of class \code{'error'} or of class \code{'simpleError'}. If an error is not generated, returns the safely evaluated value of \code{x}.
-\cr            \tab  
 \cr \code{notERR}   \tab Evaluates whether calling \code{identity(x)} \emph{does not} produce an error.
-\cr            \tab  
 \cr \code{msgERR}   \tab Gets any error message associated with calling \code{identity(x)}. If there is none, returns \code{NULL}.
-\cr            \tab  
 \cr  \code{isERR}   \tab Evaluates whether calling \code{identity(x)} produced an error.
 }
 }

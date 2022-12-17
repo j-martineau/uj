@@ -2,7 +2,7 @@
 #' @family props
 #' @title `Shape` properties
 #' @description `Shape` properties are as defined in the following table: \tabular{rll}{
-#'       `'emp'` \tab   empty  \tab   `0` length (but not `NULL`).
+#'       `'emp'` \tab   empty  \tab   `0` length (but not `NULL`).
 #'   \cr `'pnt'` \tab   point  \tab   `1` element or cell\eqn{^a}.
 #'   \cr `'col'` \tab   column \tab   `1` row by `2+` columns.
 #'   \cr `'row'` \tab   row    \tab   `2+` rows by `1` column.
@@ -11,22 +11,16 @@
 #'   \cr `'sqr'` \tab   square \tab   `N × N` matrix where `N ≥ 2`.
 #'   \cr `'sld'` \tab   solid  \tab   `2+` positions in `3+` dimensions.
 #' }
-#' \eqn{^{a.}} `1x1` data.frames; length-`1` arrays, vectors, \link[=ivls]{vlists}.
-#' \cr\cr
-#' \eqn{^{b.}} Length-`2+` vectors, arrays of `2+` positions in `1` dimension, row/column data.frames.
+#'     \eqn{^{a.}} `1x1` data.frames; length-`1` arrays, vectors, \link[=ivls]{vlists}.
+#' \cr \eqn{^{b.}} Length-`2+` vectors, arrays of `2+` positions in `1` dimension, row/column data.frames.
 #' \cr\cr
 #' **Shape property functions**
 #' \tabular{rl}{
-#'     `is_sss_spec`   \tab Is `spec` a `shape` specification?
-#'   \cr               \tab   
+#'     `is_sss_spec`   \tab Is `spec` a `shape` specification?
 #'   \cr `sss_props`   \tab What `shape` properties are there?
-#'   \cr               \tab   
 #'   \cr  `sss_funs`   \tab What `shape` property functions are there?
-#'   \cr               \tab   
 #'   \cr      `isss`   \tab Does `x` a match to the `shape` specification in `spec`?
-#'   \cr               \tab   
 #'   \cr      `iSSS`   \tab Is `x` a match to the single `shape` property `'SSS'`?
-#'   \cr               \tab   
 #'   \cr       `sss`   \tab What are `x`'s `shape` properties?
 #' }
 #' @param x An R object.
@@ -34,7 +28,7 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_sss_spec` \tab   A logical scalar.
+#'     `is_sss_spec` \tab   A logical scalar.
 #'   \cr `sss_props` \tab   A character vector.
 #'   \cr  `sss_funs` \tab   A character vector.
 #'   \cr      `iSSS` \tab   A logical scalar.

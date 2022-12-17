@@ -20,9 +20,8 @@ An atomic vector.
 }
 \description{
 \tabular{rl}{
-  \verb{uv,uav}   \tab Gets set of unique atomic values contained in all \code{...} arguments..
-\cr          \tab   
-\cr  \code{suv}   \tab Gets sorted set of\code{...}
+\verb{uv,uav}   \tab Gets set of unique atomic values contained in all \code{...} arguments..
+\cr \code{suv}   \tab Gets sorted set of\code{...}
 }
 }
 \examples{

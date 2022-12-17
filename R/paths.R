@@ -2,22 +2,14 @@
 #' @family files
 #' @title Evaluate and manipulate paths to files or folders
 #' @description \tabular{rl}{
-#'       `parent_dirs`   \tab Calls `parent_path` and split the resulting character scalar into a character vector containing the name of the root folder, the names of any intermediate folders, and the name of the parent folder of the object specified by `...`.
-#'   \cr                 \tab   
+#'       `parent_dirs`   \tab Calls `parent_path` and split the resulting character scalar into a character vector containing the name of the root folder, the names of any intermediate folders, and the name of the parent folder of the object specified by `...`.
 #'   \cr `object_path`   \tab Collapses `...` into a character scalar and expand the path to the object indicated by the result to account for relative paths.
-#'   \cr                 \tab   
 #'   \cr `parent_path`   \tab Calls `object_path` and extract from the resulting character scalar just the path to the parent folder of the object specified by `...` (i.e., discarding the name of the object itself).
-#'   \cr                 \tab   
 #'   \cr `object_name`   \tab Calls `object_path` and extract from the resulting character scalar just the name of the object, discarding the path to its parent.
-#'   \cr                 \tab   
 #'   \cr `parent_name`   \tab Calls `parent_path` and extract from the resulting character scalar just the name of last folder in the path.
-#'   \cr                 \tab   
 #'   \cr `object_dirs`   \tab Calls `object_path` and split the resulting character scalar into a character vector containing the name of the root folder, the names of any intermediate folders, the name of the parent folder of the object, and the name of the object.
-#'   \cr                 \tab   
 #'   \cr    `new_dirs`   \tab Creates sub-directories within an existing directory, optionally asking the user to choose that existing directory.
-#'   \cr                 \tab   
 #'   \cr     `is_path`   \tab Checks whether `...` resolves to a valid path for an object (file or folder) when `...` arguments are collapsed into a character scalar.
-#'   \cr                 \tab   
 #'   \cr     `as_path`   \tab Collapses `...` into a path using the current platform file path separator `.Platform$file.sep`.
 #' }
 #' @details In most cases, if (optionally) specified, functions throw an error if `...` does not resolve to a valid object path.
@@ -26,7 +18,7 @@
 #' @param dirs A \link[=cmp_chr_vec]{complete character vec} of new sub-directory names.
 #' @param path A \link[=cmp_chr_scl]{complete character scalar} path to either a directory or a file.
 #' @return \tabular{rl}{
-#'       `object_path` \tab   A character scalar.
+#'       `object_path` \tab   A character scalar.
 #'   \cr `folder_path` \tab   A character scalar.
 #'   \cr `object_name` \tab   A character scalar.
 #'   \cr `folder_name` \tab   A character scalar.

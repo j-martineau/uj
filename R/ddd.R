@@ -3,25 +3,19 @@
 #' @title Defined dimensionality (`defined-D`) properties
 #' @description An object's defined dimensionality (`defined-D`) is the number of dimensions on which its elements can be indexed. The associated property values are:
 #' \tabular{rcl}{
-#'       `'d0D'` \tab   `0D` \tab   The `NULL` object.
+#'       `'d0D'` \tab   `0D` \tab   The `NULL` object.
 #'   \cr `'d1D'` \tab   `1D` \tab   Vectors, \link[=ivls]{vlists}, `1D` arrays.
 #'   \cr `'d2D'` \tab   `2D` \tab   Data.frames and matrices.
 #'   \cr `'dHD'` \tab   `HD` \tab   Hyper (3+) dimensional arrays
 #' }
 #' **Functions**
 #' \tabular{rl}{
-#'     `is_ddd_spec`   \tab Is `spec` a `defined-D` property specification?
-#'   \cr               \tab   
+#'     `is_ddd_spec`   \tab Is `spec` a `defined-D` property specification?
 #'   \cr `ddd_props`   \tab What `defined-D` properties are there?
-#'   \cr               \tab   
 #'   \cr  `ddd_funs`   \tab What `defined-D` property functions are there?
-#'   \cr               \tab   
 #'   \cr      `nddd`   \tab How many defined dimensions does `x` have?
-#'   \cr               \tab   
 #'   \cr      `iddd`   \tab Is `x` a match to the `defined-D`-specific `spec`?
-#'   \cr               \tab   
 #'   \cr      `iDDD`   \tab is `x` a match to the single `defined-D` property `'DDD'`?
-#'   \cr               \tab   
 #'   \cr       `ddd`   \tab What are `x`'s `defined-D` properties?
 #' }
 #' @param x An R object.
@@ -29,7 +23,7 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_ddd_spec`   \tab A logical scalar.
+#'     `is_ddd_spec`   \tab A logical scalar.
 #'   \cr `ddd_props`   \tab A character vector
 #'   \cr  `ddd_funs`   \tab A character vector
 #'   \cr      `nddd`   \tab A numeric scalar

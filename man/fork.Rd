@@ -23,7 +23,7 @@ f1(x, y, n, na = n, err = n)
 }
 \value{
 \tabular{rl}{
-  \code{fork} \tab   A length-\code{length(x)} atomic object.
+\code{fork} \tab   A length-\code{length(x)} atomic object.
 \cr \code{f0} \tab   An R object.
 \cr \code{f1} \tab   An R object.
 }
@@ -36,9 +36,7 @@ f1(x, y, n, na = n, err = n)
 \item \code{FALSE} values of \code{test} are replaced by corresponding values of \code{no}.
 \item \code{NA} values of \code{test} are replaced by \code{na} (unless \code{na = 'err'}, in which case if there are any \code{NA} values in \code{test}, throws an error).
 }
-\cr        \tab   
 \cr \code{f0}   \tab If \code{test} is scalar \code{TRUE}, returns \code{yes}. If \code{test} is anything else, returns \code{no}.
-\cr        \tab   
 \cr \code{f1}   \tab Error-checked version of \code{f0}. Evaluates and processes logical scalar \code{test} in the following manner:
 \cr        \tab \itemize{
 \item If \code{test = TRUE}, returns \code{yes}.

@@ -21,7 +21,7 @@ An atomic numeric object of the same dimension as \code{x}.
 }
 \description{
 \tabular{rl}{
-  \code{inc} \tab   Increments \code{x} by \code{i}.
+\code{inc} \tab   Increments \code{x} by \code{i}.
 \cr \code{dec} \tab   Decrements \code{x} by \code{d}.
 }
 }

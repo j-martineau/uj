@@ -46,7 +46,7 @@ nddd(x)
 }
 \value{
 \tabular{rl}{
-  \code{is_ddd_spec}   \tab A logical scalar.
+\code{is_ddd_spec}   \tab A logical scalar.
 \cr \code{ddd_props}   \tab A character vector
 \cr  \code{ddd_funs}   \tab A character vector
 \cr      \code{nddd}   \tab A numeric scalar
@@ -58,40 +58,30 @@ nddd(x)
 \description{
 An object's defined dimensionality (\code{defined-D}) is the number of dimensions on which its elements can be indexed. The associated property values are:
 \tabular{rcl}{
-  \code{'d0D'} \tab   \verb{0D} \tab   The \code{NULL} object.
+\code{'d0D'} \tab   \verb{0D} \tab   The \code{NULL} object.
 \cr \code{'d1D'} \tab   \verb{1D} \tab   Vectors, \link[=ivls]{vlists}, \verb{1D} arrays.
 \cr \code{'d2D'} \tab   \verb{2D} \tab   Data.frames and matrices.
 \cr \code{'dHD'} \tab   \code{HD} \tab   Hyper (3+) dimensional arrays
 }
 \strong{Functions}
 \tabular{rl}{
-  \code{is_ddd_spec}   \tab Is \code{spec} a \code{defined-D} property specification?
-\cr               \tab   
+\code{is_ddd_spec}   \tab Is \code{spec} a \code{defined-D} property specification?
 \cr \code{ddd_props}   \tab What \code{defined-D} properties are there?
-\cr               \tab   
 \cr  \code{ddd_funs}   \tab What \code{defined-D} property functions are there?
-\cr               \tab   
 \cr      \code{nddd}   \tab How many defined dimensions does \code{x} have?
-\cr               \tab   
 \cr      \code{iddd}   \tab Is \code{x} a match to the \code{defined-D}-specific \code{spec}?
-\cr               \tab   
 \cr      \code{iDDD}   \tab is \code{x} a match to the single \code{defined-D} property \code{'DDD'}?
-\cr               \tab   
 \cr       \code{ddd}   \tab What are \code{x}'s \code{defined-D} properties?
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr  \verb{lt, le, ge, gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab   
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab   
-\cr            \code{vals}   \tab A vector of valid values.
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr          \code{vals}   \tab A vector of valid values.
 }
 }
 

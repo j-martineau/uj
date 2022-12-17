@@ -112,20 +112,20 @@ A character vector of \code{1} or more hexadecimal RGB + alpha color representat
 \description{
 Simple color creation with a wide variety of options (intensity, blending, lightening, darkening, opacity). This family of functions uses three-letter codes for common colors as follows:
 \tabular{lll}{
-  \strong{Color}    \tab \strong{Color}    \tab \strong{RGB channel values of}
-\cr   \strong{code} \tab \strong{name}     \tab \strong{default color version}
-\cr   \code{wht}    \tab white        \tab \verb{c(r = 1  , g = 1  , b = 1  )}
-\cr   \code{blk}    \tab black        \tab \code{c(r = 0  , g = 0  , b = 0  )}
-\cr   \code{gry}    \tab grey         \tab \code{c(r = 0.5, g = 0.5, b = 0.5)}
-\cr   \code{red}    \tab red          \tab \code{c(r = 1  , g = 0  , b = 0  )}
-\cr   \code{grn}    \tab green        \tab \code{c(r = 0  , g = 1  , b = 0  )}
-\cr   \code{blu}    \tab blue         \tab \code{c(r = 0  , g = 0  , b = 1  )}
-\cr   \code{ylw}    \tab yellow       \tab \code{c(r = 1  , g = 1  , b = 0  )}
-\cr   \code{cyn}    \tab cyan         \tab \code{c(r = 0  , g = 1  , b = 1  )}
-\cr   \code{mag}    \tab magenta      \tab \code{c(r = 1  , g = 0  , b = 1  )}
-\cr   \code{vlt}    \tab violet       \tab \code{c(r = 1  , g = 0  , b = 1  )}
-\cr   \code{ppl}    \tab purple       \tab a \code{1:2} blend of red:blue.
-\cr   \code{orn}    \tab orange       \tab a \code{33:51} blend of red:yellow.
+\strong{Color}    \tab   \strong{Color}    \tab \strong{RGB channel values of}
+\cr \strong{code} \tab   \strong{name}     \tab \strong{default color version}
+\cr \code{wht}    \tab   white        \tab \verb{c(r = 1  , g = 1  , b = 1  )}
+\cr \code{blk}    \tab   black        \tab \code{c(r = 0  , g = 0  , b = 0  )}
+\cr \code{gry}    \tab   grey         \tab \code{c(r = 0.5, g = 0.5, b = 0.5)}
+\cr \code{red}    \tab   red          \tab \code{c(r = 1  , g = 0  , b = 0  )}
+\cr \code{grn}    \tab   green        \tab \code{c(r = 0  , g = 1  , b = 0  )}
+\cr \code{blu}    \tab   blue         \tab \code{c(r = 0  , g = 0  , b = 1  )}
+\cr \code{ylw}    \tab   yellow       \tab \code{c(r = 1  , g = 1  , b = 0  )}
+\cr \code{cyn}    \tab   cyan         \tab \code{c(r = 0  , g = 1  , b = 1  )}
+\cr \code{mag}    \tab   magenta      \tab \code{c(r = 1  , g = 0  , b = 1  )}
+\cr \code{vlt}    \tab   violet       \tab \code{c(r = 1  , g = 0  , b = 1  )}
+\cr \code{ppl}    \tab   purple       \tab a \code{1:2} blend of red:blue.
+\cr \code{orn}    \tab   orange       \tab a \code{33:51} blend of red:yellow.
 }
 Functions in this family are:
 \itemize{

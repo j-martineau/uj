@@ -683,7 +683,7 @@ dwwTT(...)
 }
 \value{
 \tabular{rl}{
-  \code{dawXY}   \tab A character scalar
+\code{dawXY}   \tab A character scalar
 \cr \code{dwwXY}   \tab A character scalar
 \cr   \code{daw}   \tab A character scalar
 \cr   \code{dww}   \tab A character scalar
@@ -697,7 +697,7 @@ Simplified and extended \code{base::paste} and \code{base::paste0}. There are bo
 \cr\cr
 \strong{Primary functions}
 \tabular{rl}{
-  \code{dww}   \tab Delimit elements within each (atomic vector) \code{...} argument using delimiter \code{d}, then delimit elements within the resulting vector using delimiter \code{D}. Produces a character scalar of \code{...length()} substrings delimited by \code{D} where each substring contains sub-substrings delimited by \code{d}.
+\code{dww}   \tab Delimit elements within each (atomic vector) \code{...} argument using delimiter \code{d}, then delimit elements within the resulting vector using delimiter \code{D}. Produces a character scalar of \code{...length()} substrings delimited by \code{D} where each substring contains sub-substrings delimited by \code{d}.
 \cr         \tab   
 \cr \code{daw}   \tab Delimit across corresponding elements of (recyclable atomic vector) \code{...} arguments using delimiter \code{d}, then delimit elements within the resulting character vector using delimiter \code{D}. Produces a character scalar of \code{...length()} substrings delimited by \code{D} where each substring contains \code{max(lengths(list(...)))} sub-substrings delimited by \code{d}.
 \cr         \tab   
@@ -708,26 +708,26 @@ Simplified and extended \code{base::paste} and \code{base::paste0}. There are bo
 \strong{Common-delimiter convenience functions}
 \cr Convenience function names are constructed by append \code{1} or \code{2} codes for common delimiters to the function name as follows (where \code{X} and \code{Y} are placeholders for common-delimiter codes):
 \tabular{rl}{
-  \code{dawXY}   \tab Delimits across with \code{X} then within with \code{Y}.
+\code{dawXY}   \tab Delimits across with \code{X} then within with \code{Y}.
 \cr \code{dwwXY}   \tab Delimits within with \code{X} then again with \code{Y}.
 \cr   \code{daX}   \tab Delimits across with \code{X}.
 \cr   \code{dwX}   \tab Delimits within with \code{X}.
 }
 Common delimiters are encoded as:
 \tabular{cll}{
-  CODE        \tab NAME                        \tab DELIMITER
+  CODE    \tab NAME                        \tab DELIMITER
 \cr   \code{'0'}   \tab blank                       \tab \code{''}
 \cr \code{'1'}     \tab space                       \tab \code{' '}
 \cr \code{'B'}     \tab broken pipe                 \tab \code{'¦'}
 \cr \code{'C'}     \tab colon                       \tab \code{':'}
 \cr \code{'D'}     \tab dot                         \tab \code{'.'}
-\cr \code{'G'}     \tab grammatical comma\eqn{^1}   \tab \code{', '}
+\cr \code{'G'}     \tab grammatical comma\eqn{^a}   \tab \code{', '}
 \cr \code{'P'}     \tab pipe                        \tab \code{'|'}
 \cr \code{'Q'}     \tab back-tick                   \tab \code{'``'}
-\cr \code{'S'}     \tab simple comma\eqn{^1}        \tab \code{','}
+\cr \code{'S'}     \tab simple comma\eqn{^a}        \tab \code{','}
 \cr \code{'T'}     \tab tilde                       \tab \code{'~'}
 }
-\eqn{^{1.}} 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., \code{'1, 2, 3'} vs. \code{'1,2,3'}).
+\eqn{^{a.}} 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., \code{'1, 2, 3'} vs. \code{'1,2,3'}).
 }
 \examples{
 # delimit across using delimiter '|'.

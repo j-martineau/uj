@@ -73,7 +73,7 @@ rcn(x, u = T, err = F)
 }
 \value{
 \tabular{rl}{
-   \code{rcnamed} \tab   A logical scalar.
+\code{rcnamed} \tab   A logical scalar.
 \cr \code{rnamed} \tab   A logical scalar.
 \cr \code{cnamed} \tab   A logical scalar.
 \cr \code{enamed} \tab   A logical scalar.
@@ -92,7 +92,7 @@ rcn(x, u = T, err = F)
 }
 \description{
 \tabular{rl}{
-  \code{getnames}   \tab Gets element, row, and/or column names with optional restrictions.
+\code{getnames}   \tab Gets element, row, and/or column names with optional restrictions.
 \cr             \tab   
 \cr   \code{named}   \tab Evaluates whether an object's elements, rows, and/or columns are named, accounting for whether names must be unique, whether the object may contain empty elements, and whether names may be blank strings.
 \cr             \tab   

@@ -1,20 +1,18 @@
 #' @family props
 #' @title `complete + xclass` combination properties
 #' @description \tabular{rl}{
-#'     `cmp_ccc_funs`   \tab What `complete + xclass` combination property functions are there?
-#'   \cr                \tab   
-#'   \cr    `cmp_ccc`   \tab Is `x` both `complete` and a match to the single `xclass` property in `ccc`?
-#'   \cr                \tab   
-#'   \cr    `cmp_CCC`   \tab Is `x` both `complete` and a match to the single `xclass` property `'CCC'`?
+#'   `cmp_ccc_funs`   \tab What `complete + xclass` combination property functions are there?
+#'   \cr  `cmp_ccc`   \tab Is `x` both `complete` and a match to the single `xclass` property in `ccc`?
+#'   \cr  `cmp_CCC`   \tab Is `x` both `complete` and a match to the single `xclass` property `'CCC'`?
 #' }
 #' @param x An R object.
 #' @param ccc A character scalar single `xclass` property from `ccc_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `cmp_ccc_funs` \tab   A character vector.
-#'   \cr    `cmp_ccc` \tab   A logical scalar.
-#'   \cr    `cmp_CCC` \tab   A logical scalar.
+#'   `cmp_ccc_funs` \tab   A character vector.
+#'   \cr  `cmp_ccc` \tab   A logical scalar.
+#'   \cr  `cmp_CCC` \tab   A logical scalar.
 #' }
 #' @examples
 #' cmp_ccc_fun()

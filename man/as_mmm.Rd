@@ -40,33 +40,25 @@ as_uno(x, levs)
 \value{
 \tabular{rl}{
 \code{as_fun}   \tab A function.
-\cr            \tab   
 \cr \code{as_chr}   \tab Object of mode \code{'character'}.
 \cr \code{as_int}   \tab Object of mode \code{'integer'}.
 \cr \code{as_lgl}   \tab Object of mode \code{'logical'}.
 \cr \code{as_num}   \tab Object of mode \code{'numeric'}.
-\cr            \tab   
 \cr \code{as_clr}   \tab Object of \verb{xmode 'clr'} (color valued character).
-\cr            \tab   
 \cr \code{as_ord}   \tab Object of \verb{xmode 'ord'} (ordered factor).
-\cr            \tab   
 \cr \code{as_ord}   \tab Object of \verb{xmode 'uno'} (unordered factor).
 }
 }
 \description{
 Functions to coerce objects to \link[base:mode]{base mode} or \code{\link[=mmm]{xmode}}:
 \tabular{rl}{
-\cr \code{as_chr}   \tab Thinly wraps \code{\link[base:as.character]{base::as.character}}.
+\code{as_chr}   \tab Thinly wraps \code{\link[base:as.character]{base::as.character}}.
 \cr \code{as_int}   \tab Thinly wraps \code{\link[base:as.integer]{base::as.integer}}.
 \cr \code{as_num}   \tab Thinly wraps \code{\link[base:as.numeric]{base::as.numeric}}.
 \cr \code{as_lgl}   \tab Thinly wraps \code{\link[base:as.logical]{base::as.logical}}.
-\cr            \tab   
 \cr \code{as_clr}   \tab Coerces valid R character color representation values to hexadecimal character RGB color values.
-\cr            \tab   
 \cr \code{as_fun}   \tab Returns \code{x} if it is a function, otherwise, search for a function named \code{x} and return it.
-\cr            \tab   
 \cr \code{as_ord}   \tab As \verb{xmode 'ord'} (ordered factor). Wraps \code{base::factor(x, levels = levs, ordered = TRUE)}.
-\cr            \tab   
 \cr \code{as_uno}   \tab As \verb{xmode 'uno'} (unordered factor). Wraps \code{base::factor(x, levels = levs, ordered = FALSE)}.
 }
 }

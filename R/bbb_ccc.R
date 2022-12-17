@@ -1,11 +1,9 @@
 #' @family props
 #' @title `basic + xclass` combination properties
 #' @description \tabular{rl}{
-#'     `bbb_ccc_funs`   \tab What `basic + xclass` combination property functions are there?
-#'   \cr                \tab   
-#'   \cr    `bbb_ccc`   \tab Is `x` a match to the single `basic` and `xclass` properties in `bbb` and `ccc`, respectively?
-#'   \cr                \tab   
-#'   \cr    `BBB_CCC`   \tab Is `x` a match to single `basic` and `xclass` properties `'BBB'` and `'CCC'`, respectively?
+#'   `bbb_ccc_funs`   \tab What `basic + xclass` combination property functions are there?
+#'   \cr  `bbb_ccc`   \tab Is `x` a match to the single `basic` and `xclass` properties in `bbb` and `ccc`, respectively?
+#'   \cr  `BBB_CCC`   \tab Is `x` a match to single `basic` and `xclass` properties `'BBB'` and `'CCC'`, respectively?
 #' }
 #' @param x An R object.
 #' @param bbb A character scalar single `basic` property from `c('atm', 'nil', 'pop', 'rcr')`.
@@ -13,9 +11,9 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `bbb_ccc_funs`   \tab A character vector.
-#'   \cr    `bbb_ccc`   \tab A logical scalar.
-#'   \cr    `BBB_CCC`   \tab A logical scalar.
+#'   `bbb_ccc_funs`   \tab A character vector.
+#'   \cr  `bbb_ccc`   \tab A logical scalar.
+#'   \cr  `BBB_CCC`   \tab A logical scalar.
 #' }
 #' @examples
 #' bbb_ccc_funs()

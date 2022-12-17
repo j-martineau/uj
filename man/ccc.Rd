@@ -55,7 +55,7 @@ ivls(x, ...)
 }
 \value{
 \tabular{rl}{
-  \code{is_ccc_spec}   \tab A logical scalar.
+\code{is_ccc_spec}   \tab A logical scalar.
 \cr \code{ccc_props}   \tab A character vector.
 \cr  \code{ccc_funs}   \tab A character vector.
 \cr      \code{iccc}   \tab A logical scalar.
@@ -66,7 +66,7 @@ ivls(x, ...)
 \description{
 \code{xclass} properties are defined as follows:
 \tabular{rll}{
-   \code{arr}   \tab \code{array}    \tab   \code{arrays}.
+\code{arr}   \tab \code{array}    \tab   \code{arrays}.
 \cr \code{mat}   \tab \code{matrix}   \tab   \code{matrices}.
 \cr \code{dtf}   \tab \code{dtf}      \tab   \code{data.frames}.
 \cr \code{vls}   \tab \code{vlist}    \tab   \code{vector-lists}\eqn{^a}.
@@ -79,31 +79,22 @@ ivls(x, ...)
 \cr\cr
 \strong{Functions}
 \tabular{rl}{
-  \code{is_ccc_spec}   \tab Is \code{spec} an \code{xclass} specification?
-\cr               \tab   
+\code{is_ccc_spec}   \tab Is \code{spec} an \code{xclass} specification?
 \cr \code{ccc_props}   \tab What \code{xclass} properties are there?
-\cr               \tab   
 \cr  \code{ccc_funs}   \tab What \code{xclass} property functions are there?
-\cr               \tab   
 \cr      \code{iccc}   \tab Is \code{x} a match to the \code{xclass} specification \code{spec}?
-\cr               \tab   
 \cr      \code{iCCC}   \tab Is \code{x} a match to the single \code{xclass} property \code{'CCC'}?
-\cr               \tab   
 \cr       \code{ccc}   \tab What are \code{x}'s \code{xclass} properties?
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr  \verb{lt, le, ge, gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab   
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab   
-\cr            \code{vals}   \tab A vector of valid values.
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr          \code{vals}   \tab A vector of valid values.
 }
 }
 

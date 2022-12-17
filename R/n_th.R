@@ -10,7 +10,7 @@
 
 #' @title Extract elements by numeric position
 #' @description \tabular{rl}{
-#'     `n_th_last` \tab   Gets the `n`-th-from-last element(s).
+#'     `n_th_last` \tab   Gets the `n`-th-from-last element(s).
 #'   \cr `first_n` \tab   Gets the first `n` elements.
 #'   \cr  `last_n` \tab   Gets the last `n` elements.
 #'   \cr    `n_th` \tab   Gets the `n`-th element(s) .

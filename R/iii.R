@@ -2,27 +2,19 @@
 #' @title `Integrity` properties
 #' @description `Integrity` properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frameS}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
 #' \tabular{rll}{
-#'       `'cmp'`   \tab complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing **no** `NA` values.
-#'   \cr           \tab               \tab   
+#'       `'cmp'`   \tab complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing **no** `NA` values.
 #'   \cr `'mss'`   \tab missing       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing **only** `NA` values.
-#'   \cr           \tab               \tab   
 #'   \cr `'prt'`   \tab partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing `NA` **and** non-`NA` values.
-#'   \cr           \tab               \tab   
 #'   \cr `'nas'`   \tab `NA` scalar   \tab Atomic scalar `NA`.
 #'   \cr `'oks'`   \tab `OK` scalar   \tab Non-`NA` atomic scalar.
 #' }
 #' **`Integrity` property functions**
 #' \tabular{rl}{
-#'     `is_iii_spec`   \tab Is `spec` an `integrity` specification?
-#'   \cr               \tab   
+#'     `is_iii_spec`   \tab Is `spec` an `integrity` specification?
 #'   \cr `iii_props`   \tab What `integrity` properties are there?
-#'   \cr               \tab   
 #'   \cr  `iii_funs`   \tab What `integrity` property functions are there?
-#'   \cr               \tab   
 #'   \cr      `iiii`   \tab Is `x` a match to the `integrity` specification `spec`?
-#'   \cr               \tab   
 #'   \cr      `iIII`   \tab Is `x` a match to the single `integrity` property `'III'`?
-#'   \cr               \tab   
 #'   \cr       `iii`   \tab Gets all of `x`'s `integrity` properties.
 #' }
 #' @param x An R object.
@@ -30,7 +22,7 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `is_iii_spec` \tab   A character vector.
+#'     `is_iii_spec` \tab   A character vector.
 #'   \cr `iii_props` \tab   A character vector.
 #'   \cr  `iii_funs` \tab   A character vector.
 #'   \cr      `iiii` \tab   A logical scalar.

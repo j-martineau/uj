@@ -127,7 +127,7 @@ Create Oxford-comma separated lists with a variety of templates (displayed below
 \cr     \code{ox_exactly}   \tab\code{'(pref) exactly {n} of [a], [b], ..., {conj} [z]'}
 \cr     \code{ox_greater}   \tab\code{'(pref) greater than {n} of [a], [b], ..., {conj} [z]'}
 \cr     \code{ox_nofewer}   \tab\code{'(pref) no fewer than {n} of [a], [b], ..., {conj} [z]'}
-\cr   \code{ox_nogreater}   \tab\code{'(pref) no greater than {n} of [a], [b], ..., {conj} [z]'}
+\cr   \code{ox_nogreater}   \tab\code{'(pref) no greater than {n} of [a], [b], ..., {conj} [z]'}
 \cr                    \tab   
 \cr      \code{ox_orless}   \tab\code{'(pref) {n} or less of [a], [b], ..., {conj} [z]'}
 \cr      \code{ox_ormore}   \tab\code{'(pref) {n} or more of [a], [b], ..., {conj} [z]'}

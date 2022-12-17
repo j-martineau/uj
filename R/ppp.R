@@ -103,24 +103,24 @@
 #' \cr\cr
 #' **Property and property spec manipulation functions**
 #' \tabular{rl}{
-#'       `combos_from_spec` \tab   Convert spec to constituent combos.
+#'       `combos_from_spec` \tab   Convert spec to constituent combos.
 #'   \cr `props_from_combo` \tab   Convert combo to constituent properties.
 #'   \cr  `props_from_spec` \tab   Convert spec to constituent properties.
 #' }
 #' **Property and property spec validation functions**
 #' \tabular{rl}{
-#'      `is_prop_combo` \tab   Is `combo` a combo/conjunctive spec?
+#'      `is_prop_combo` \tab   Is `combo` a combo/conjunctive spec?
 #'   \cr `is_prop_spec` \tab   Is `spec` a property spec of any type?
 #'   \cr  `is_prop_fun` \tab   Is `fun` a property-function name?
 #'   \cr      `is_prop` \tab   Is `prop` a value from `all_props()`?
 #' }
 #' **Property-checking function names**
 #' \tabular{rl}{
-#'      `prop_funs`   \tab Names of functions checking for specific single and combo properties matched to `x`.
+#'   `prop_funs`   \tab Names of functions checking for specific single and combo properties matched to `x`.
 #' }
 #' **Family-specific functions listing an object's properties**
 #' \tabular{rl}{
-#'       `ppp` \tab   Gets all single properties of `x`.
+#'       `ppp` \tab   Gets all single properties of `x`.
 #'   \cr `bbb` \tab   Gets all `base` properties of `x`.
 #'   \cr `ccc` \tab   Gets all `xclass` properties of `x`.
 #'   \cr `ddd` \tab   Gets all `defined-D` properties of `x`.
@@ -131,18 +131,18 @@
 #' }
 #' **Property and property spec definition functions**
 #' \tabular{rl}{
-#'      `combo_concise` \tab   Concisely define a combo property spec.
+#'      `combo_concise` \tab   Concisely define a combo property spec.
 #'   \cr `spec_concise` \tab   Concisely define a property spec.
 #'   \cr `prop_verbose` \tab   Verbosely define a single property.
 #'   \cr    `prop_defs` \tab   Gets a table of property definitions.
 #' }
 #' **Single-property checking functions**
 #' \tabular{rl}{
-#'     `iPPP` \tab   Does `x` match single property `'PPP'`.
+#'   `iPPP` \tab   Does `x` match single property `'PPP'`.
 #' }
 #' **Single-family property-checking functions**
 #' \tabular{rl}{
-#'       `ibbb` \tab   Is `x` a match to `base`-family `spec`?
+#'       `ibbb` \tab   Is `x` a match to `base`-family `spec`?
 #'   \cr `iccc` \tab   Is `x` a match to `xclass`-family `spec`?
 #'   \cr `iddd` \tab   Is `x` a match to `defined-D`-family `spec`?
 #'   \cr `ieee` \tab   Is `x` a match to `effective-D`-family `spec`?
@@ -152,32 +152,32 @@
 #' }
 #' **Functions testing for combination/conjunctive properties**
 #' \tabular{rl}{
-#'     `cmp_MMM_CCC` \tab   `complete + xmode 'MMM' + xclass 'CCC'`.
-#'   \cr   `cmp_MMM` \tab   `complete + xmode 'MMM'`.
-#'   \cr   `cmp_CCC` \tab   `complete + xclass 'CCC'`
-#'   \cr   `BBB_CCC` \tab   `base` property `'BBB' + xclass 'CCC'`.
-#'   \cr   `BBB_MMM` \tab   `base` property `'BBB' + xmode 'MMM'`.
-#'   \cr   `MMM_CCC` \tab   `xmode 'MMM' + xclass 'CCC'`.
-#'   \cr    `nll_or` \tab   Is `x` `NULL` or a match to `spec`?
-#'   \cr    `nas_or` \tab   Is `x` `NA` or a match to `spec`?
-#'   \cr      `ippp` \tab   Is `x` a match to `spec`?
+#'   `cmp_MMM_CCC` \tab   `complete + xmode 'MMM' + xclass 'CCC'`.
+#'   \cr `cmp_MMM` \tab   `complete + xmode 'MMM'`.
+#'   \cr `cmp_CCC` \tab   `complete + xclass 'CCC'`
+#'   \cr `BBB_CCC` \tab   `base` property `'BBB' + xclass 'CCC'`.
+#'   \cr `BBB_MMM` \tab   `base` property `'BBB' + xmode 'MMM'`.
+#'   \cr `MMM_CCC` \tab   `xmode 'MMM' + xclass 'CCC'`.
+#'   \cr  `nll_or` \tab   Is `x` `NULL` or a match to `spec`?
+#'   \cr  `nas_or` \tab   Is `x` `NA` or a match to `spec`?
+#'   \cr    `ippp` \tab   Is `x` a match to `spec`?
 #' }
 #' **Comprehensive lists of single and common combination properties**
 #' \tabular{rl}{
-#'     `cmp_mmm_ccc_props` \tab   `complete + xmode + xclass` properties.
-#'   \cr   `cmp_ccc_props` \tab   `complete + xclass` properties.
-#'   \cr   `cmp_mmm_props` \tab   `complete + xmode` properties.
-#'   \cr   `bbb_ccc_props` \tab   `basic + xclass` properties.
-#'   \cr   `bbb_mmm_props` \tab   `basic + xmode` properties.
-#'   \cr   `mmm_ccc_props` \tab   `xmode + xclass` properties.
-#'   \cr       `bbb_props` \tab   `basic` properties.
-#'   \cr       `ccc_props` \tab   `xclass` properties.
-#'   \cr       `ddd_props` \tab   `defined-D` properties.
-#'   \cr       `eee_props` \tab   `effective-D` properties.
-#'   \cr       `iii_props` \tab   `integrity` properties.
-#'   \cr       `mmm_props` \tab   `xmode` properties.
-#'   \cr       `sss_props` \tab   `shape` properties.
-#'   \cr       `all_props` \tab   All single properties.
+#'   `cmp_mmm_ccc_props` \tab   `complete + xmode + xclass` properties.
+#'   \cr `cmp_ccc_props` \tab   `complete + xclass` properties.
+#'   \cr `cmp_mmm_props` \tab   `complete + xmode` properties.
+#'   \cr `bbb_ccc_props` \tab   `basic + xclass` properties.
+#'   \cr `bbb_mmm_props` \tab   `basic + xmode` properties.
+#'   \cr `mmm_ccc_props` \tab   `xmode + xclass` properties.
+#'   \cr     `bbb_props` \tab   `basic` properties.
+#'   \cr     `ccc_props` \tab   `xclass` properties.
+#'   \cr     `ddd_props` \tab   `defined-D` properties.
+#'   \cr     `eee_props` \tab   `effective-D` properties.
+#'   \cr     `iii_props` \tab   `integrity` properties.
+#'   \cr     `mmm_props` \tab   `xmode` properties.
+#'   \cr     `sss_props` \tab   `shape` properties.
+#'   \cr     `all_props` \tab   All single properties.
 #' }
 #' @param as.dtf A non-`NA` logical scalar indicating whether to return the result as a data.frame with column `1` containing property values and column `2` containing the property families.
 #' @param x An R object.
@@ -187,7 +187,7 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'       `combos_from_spec` \tab   A character vector.
+#'       `combos_from_spec` \tab   A character vector.
 #'   \cr `props_from_combo` \tab   A character vector.
 #'   \cr  `props_from_spec` \tab   A character vector.
 #'   \cr   `is_valid_combo` \tab   A logical scalar.

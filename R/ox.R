@@ -30,7 +30,7 @@
 #'   \cr     `ox_exactly`   \tab`'(pref) exactly {n} of [a], [b], ..., {conj} [z]'`
 #'   \cr     `ox_greater`   \tab`'(pref) greater than {n} of [a], [b], ..., {conj} [z]'`
 #'   \cr     `ox_nofewer`   \tab`'(pref) no fewer than {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr   `ox_nogreater`   \tab`'(pref) no greater than {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr   `ox_nogreater`   \tab`'(pref) no greater than {n} of [a], [b], ..., {conj} [z]'`
 #'   \cr                    \tab   
 #'   \cr      `ox_orless`   \tab`'(pref) {n} or less of [a], [b], ..., {conj} [z]'`
 #'   \cr      `ox_ormore`   \tab`'(pref) {n} or more of [a], [b], ..., {conj} [z]'`

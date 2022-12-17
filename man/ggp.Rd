@@ -703,9 +703,9 @@ These functions wrap \code{ggplot2} functions unless otherwise noted:\tabular{rl
 \cr    \code{ggelin} \tab   Thinly wraps \code{\link[ggplot2]{element_line}}
 \cr   \code{ggenull} \tab   Thinly wraps \code{\link[ggplot2]{element_blank}}
 \cr             \tab   
-\cr     \code{ggemd} \tab   Thinly wraps \code{\link[ggtext]{element_markdown}}\eqn{^1}
+\cr     \code{ggemd} \tab   Thinly wraps \code{\link[ggtext]{element_markdown}}\eqn{^a}
 }
-\eqn{1.} A \code{ggtext} package function.
+\eqn{{a.}} A \code{ggtext} package function.
 }
 \details{
 \code{ggplot()} is used to construct the initial plot object,

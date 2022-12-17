@@ -3,7 +3,7 @@
 #' @family missingness
 #' @title Compute stats ignoring `NA` values
 #' @description \tabular{rl}{
-#'       `cmeans0` \tab   Calls `colMeans(x, na.rm = T)`
+#'       `cmeans0` \tab   Calls `colMeans(x, na.rm = T)`
 #'   \cr `rmeans0` \tab   Calls `rowMeans(x, na.rm = T)`
 #'   \cr  `csums0` \tab   Calls `colSums(x, na.rm = T)`
 #'   \cr  `rsums0` \tab   Calls `rowSums(x, na.rm = T)`
@@ -25,7 +25,7 @@
 #' @param x A \link[=cmp_num_vec]{complete numeric vec} or a \link[=cmp_num_mat]{complete numeric matrix}.
 #' @param y An optional complete numeric vec or a complete numeric matrix.
 #' @return \tabular{rl}{
-#'     `cmeans0,rmeans0` \tab   A numeric vector.
+#'     `cmeans0,rmeans0` \tab   A numeric vector.
 #'   \cr `csums0,rsums0` \tab   A numeric vector.
 #'   \cr   `csds0,rsds0` \tab   A numeric vector.
 #'   \cr   `pmin0,pmax0` \tab   A numeric vector.

@@ -27,7 +27,7 @@ pal_sdots(n)
 }
 \value{
 \tabular{rl}{
-  \code{pal_colors} \tab   A character vector.
+\code{pal_colors} \tab   A character vector.
 \cr \code{pal_lines} \tab   A character vector.
 \cr \code{pal_edots} \tab   A positive whole number vector.
 \cr \code{pal_fdots} \tab   A positive whole number vector.
@@ -37,20 +37,21 @@ pal_sdots(n)
 }
 \description{
 This family of functions refers to \code{points} and \code{shapes} as dots.
-\cr\cr The functions in this family create palettes of various types from the first \code{n}\eqn{^1} values of source vectors as defined below:
+\cr
+\cr The functions in this family create palettes of various types from the first \code{n}\eqn{^a} values of source vectors as defined below:
 \tabular{rll}{
-  \strong{Function} \tab   \strong{Type}       \tab   \strong{Source}
-\cr    \code{pal_colors} \tab   colors              \tab   \code{v(colors)}
-\cr     \code{pal_lines} \tab   line types          \tab   \code{v(lines)}
-\cr     \code{pal_sdots} \tab   solid dots          \tab   \code{v(sdots)}
-\cr     \code{pal_ldots} \tab   line dots\eqn{^2}   \tab   \code{v(ldots)}
-\cr     \code{pal_edots} \tab   empty dots\eqn{^3}  \tab   \code{v(edots)}
-\cr     \code{pal_fdots} \tab   filled dots\eqn{^4} \tab   \code{v(fdots)}
+\strong{Function} \tab   \strong{Type}            \tab   \strong{Source}
+\cr \code{pal_colors} \tab   colors              \tab   \code{v(colors)}
+\cr  \code{pal_lines} \tab   line types          \tab   \code{v(lines)}
+\cr  \code{pal_sdots} \tab   solid dots          \tab   \code{v(sdots)}
+\cr  \code{pal_ldots} \tab   line dots\eqn{^b}   \tab   \code{v(ldots)}
+\cr  \code{pal_edots} \tab   empty dots\eqn{^c}  \tab   \code{v(edots)}
+\cr  \code{pal_fdots} \tab   filled dots\eqn{^d} \tab   \code{v(fdots)}
 }
-    \eqn{^{1.}} Recycled if \code{n > length(v(.))}.
-\cr     \eqn{^{2.}} Non-enclosing shape.
-\cr     \eqn{^{3.}} Enclosing shape with empty interior.
-\cr     \eqn{^{4.}} Enclosing shape with filled interior.
+\eqn{^{a.}} Recycled if \code{n > length(v(.))}.
+\cr \eqn{^{b.}} Non-enclosing shape.
+\cr \eqn{^{c.}} Enclosing shape with empty interior.
+\cr \eqn{^{d.}} Enclosing shape with filled interior.
 }
 \seealso{
 Other colors: 

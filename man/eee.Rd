@@ -49,7 +49,7 @@ neee(x)
 }
 \value{
 \tabular{rl}{
-  \code{is_eee_spec}   \tab A logical scalar.
+\code{is_eee_spec}   \tab A logical scalar.
 \cr \code{eee_props}   \tab A character vector.
 \cr  \code{eee_funs}   \tab A logical scalar.
 \cr      \code{ieee}   \tab A logical scalar.
@@ -79,33 +79,23 @@ An object's \code{effective-D} is defined as the number of dimensions in which i
 \cr\cr
 Effective dimensionality property functions are:
 \tabular{rl}{
-  \code{is_eee_spec}   \tab Is \code{spec} an \code{effective-D} specification?
-\cr               \tab   
+\code{is_eee_spec}   \tab Is \code{spec} an \code{effective-D} specification?
 \cr \code{eee_props}   \tab What \code{effective-D} properties are there?
-\cr               \tab   
 \cr  \code{eee_funs}   \tab What \code{effective-D} property functions are there?
-\cr               \tab   
 \cr      \code{neee}   \tab How many effective dimensions does \code{x} have?
-\cr               \tab   
 \cr      \code{ieee}   \tab Is \code{x} a match to the \code{effective-D} specification\code{spec}?
-\cr               \tab   
 \cr      \code{iEEE}   \tab Is \code{x} a match to the single \code{effective-D} property \code{'EEE'}?
-\cr               \tab   
 \cr       \code{eee}   \tab What are \code{x}'s \code{effective-D} properties?
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr  \verb{lt, le, ge, gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab   
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab   
-\cr            \code{vals}   \tab A vector of valid values.
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr          \code{vals}   \tab A vector of valid values.
 }
 }
 

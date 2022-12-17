@@ -23,7 +23,7 @@
 #' \cr\cr
 #' **Primary functions**
 #' \tabular{rl}{
-#'       `dww`   \tab Delimit elements within each (atomic vector) `...` argument using delimiter `d`, then delimit elements within the resulting vector using delimiter `D`. Produces a character scalar of `...length()` substrings delimited by `D` where each substring contains sub-substrings delimited by `d`.
+#'       `dww`   \tab Delimit elements within each (atomic vector) `...` argument using delimiter `d`, then delimit elements within the resulting vector using delimiter `D`. Produces a character scalar of `...length()` substrings delimited by `D` where each substring contains sub-substrings delimited by `d`.
 #'   \cr         \tab   
 #'   \cr `daw`   \tab Delimit across corresponding elements of (recyclable atomic vector) `...` arguments using delimiter `d`, then delimit elements within the resulting character vector using delimiter `D`. Produces a character scalar of `...length()` substrings delimited by `D` where each substring contains `max(lengths(list(...)))` sub-substrings delimited by `d`.
 #'   \cr         \tab   
@@ -34,30 +34,30 @@
 #' **Common-delimiter convenience functions**
 #' \cr Convenience function names are constructed by append `1` or `2` codes for common delimiters to the function name as follows (where `X` and `Y` are placeholders for common-delimiter codes):
 #' \tabular{rl}{
-#'       `dawXY`   \tab Delimits across with `X` then within with `Y`.
+#'       `dawXY`   \tab Delimits across with `X` then within with `Y`.
 #'   \cr `dwwXY`   \tab Delimits within with `X` then again with `Y`.
 #'   \cr   `daX`   \tab Delimits across with `X`.
 #'   \cr   `dwX`   \tab Delimits within with `X`.
 #' }
 #' Common delimiters are encoded as:
 #' \tabular{cll}{
-#'     CODE        \tab NAME                        \tab DELIMITER
+#'         CODE    \tab NAME                        \tab DELIMITER
 #'   \cr   `'0'`   \tab blank                       \tab `''`
 #'   \cr `'1'`     \tab space                       \tab `' '`
 #'   \cr `'B'`     \tab broken pipe                 \tab `'¦'`
 #'   \cr `'C'`     \tab colon                       \tab `':'`
 #'   \cr `'D'`     \tab dot                         \tab `'.'`
-#'   \cr `'G'`     \tab grammatical comma\eqn{^1}   \tab `', '`
+#'   \cr `'G'`     \tab grammatical comma\eqn{^a}   \tab `', '`
 #'   \cr `'P'`     \tab pipe                        \tab `'|'`
 #'   \cr `'Q'`     \tab back-tick                   \tab `'``'`
-#'   \cr `'S'`     \tab simple comma\eqn{^1}        \tab `','`
+#'   \cr `'S'`     \tab simple comma\eqn{^a}        \tab `','`
 #'   \cr `'T'`     \tab tilde                       \tab `'~'`
 #' }
-#' \eqn{^{1.}} 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., `'1, 2, 3'` vs. `'1,2,3'`).
+#' \eqn{^{a.}} 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., `'1, 2, 3'` vs. `'1,2,3'`).
 #' @param ... An arbitrary number of atomic vector arguments to be delimited. Argument in `...` must be recyclable for functions that delimit across `...` arguments as the first or only step (i.e., functions with names beginning with `da`).
 #' @param d,D \link[=chr_scl]{Character scalar} delimiters.
 #' @return \tabular{rl}{
-#'       `dawXY`   \tab A character scalar
+#'       `dawXY`   \tab A character scalar
 #'   \cr `dwwXY`   \tab A character scalar
 #'   \cr   `daw`   \tab A character scalar
 #'   \cr   `dww`   \tab A character scalar

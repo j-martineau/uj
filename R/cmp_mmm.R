@@ -1,20 +1,18 @@
 #' @family props
 #' @title `complete + xmode` combination properties
 #' @description \tabular{rl}{
-#'     `cmp_mmm_funs`   \tab What `complete + xmode` combination property functions are there?
-#'   \cr                \tab   
-#'   \cr    `cmp_mmm`   \tab Is `x` both `complete` and a match to the single `xmode` property in `mmm`?
-#'   \cr                \tab   
-#'   \cr    `cmp_MMM`   \tab Is `x` both `complete` and a match to single `xmode` property `'MMM'`?
+#'   `cmp_mmm_funs`   \tab What `complete + xmode` combination property functions are there?
+#'   \cr  `cmp_mmm`   \tab Is `x` both `complete` and a match to the single `xmode` property in `mmm`?
+#'   \cr  `cmp_MMM`   \tab Is `x` both `complete` and a match to single `xmode` property `'MMM'`?
 #' }
 #' @param x An R object.
 #' @param mmm A character scalar `xmode` property from `mmm_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `cmp_mmm_funs` \tab   A character vector.
-#'   \cr    `cmp_mmm` \tab   A logical scalar.
-#'   \cr    `cmp_MMM` \tab   A logical scalar.
+#'   `cmp_mmm_funs` \tab   A character vector.
+#'   \cr  `cmp_mmm` \tab   A logical scalar.
+#'   \cr  `cmp_MMM` \tab   A logical scalar.
 #' }
 #' @examples
 #' cmp_mmm_funs()

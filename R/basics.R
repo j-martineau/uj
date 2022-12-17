@@ -2,7 +2,7 @@
 #' @family wraps
 #' @title Wrappers for `base` functions
 #' @description \tabular{rl}{
-#'      `levs`   \tab Thinly wraps \code{\link[base]{levels}}.
+#'      `levs`   \tab Thinly wraps \code{\link[base]{levels}}.
 #'   \cr         \tab   
 #'   \cr `spf`   \tab Thinly wraps \code{\link[base]{sprintf}}.
 #'   \cr `mid`   \tab Thinly wraps \code{\link[base]{substr}}.
@@ -11,8 +11,8 @@
 #'   \cr  `up`   \tab Thinly wraps \code{\link[base]{ceiling}}.
 #'   \cr  `dn`   \tab Thinly wraps \code{\link[base]{floor}}.
 #'   \cr         \tab   
-#'   \cr   `u`   \tab Thinly wraps \code{\link[base]{unique}}\eqn{^1}.
-#'   \cr   `w`   \tab Thinly Wraps \code{\link[base]{which}}\eqn{^1}.
+#'   \cr   `u`   \tab Thinly wraps \code{\link[base]{unique}}\eqn{^a}.
+#'   \cr   `w`   \tab Thinly Wraps \code{\link[base]{which}}\eqn{^b}.
 #'   \cr         \tab   
 #'   \cr  `g1`   \tab Calls \code{\link[base:paste0]{paste0(av(...), collapse = " ")}}.
 #'   \cr  `g0`   \tab Calls \code{\link[base:paste0]{paste0(av(...), collapse = "")}}.
@@ -22,9 +22,8 @@
 #'   \cr  `p0`   \tab Calls \code{\link[base:paste]{paste(..., sep = "")}}.
 #'   \cr   `p`   \tab Calls \code{\link[base:paste]{paste(..., sep = p)}}
 #' }
-#'    \eqn{^{1.}} Calls `paste0(av(...), `
-#' \cr    \eqn{^{2.}} Differs from \code{\link{uv}}, which calls `unique(av(...))`.
-#' \cr    \eqn{^{3.}} Differs from \code{\link{wv}}, which calls `which(av(...))`.
+#'     \eqn{^{a.}} Differs from \code{\link{uv}}, which calls `unique(av(...))`.
+#' \cr \eqn{^{b.}} Differs from \code{\link{wv}}, which calls `which(av(...))`.
 #' @examples
 #' vals <- c(1:3, 2:4) / 3
 #' vars <- c("a", "bb", "ccc", "dddd", "ccc", "bb")

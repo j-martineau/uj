@@ -88,15 +88,11 @@
 #' @param ... Optional named arguments count and/or value restrictions for `x`. See the *specifying count and value restrictions* section.
 #' @section Specifying count and value restrictions: Specifying restrictions in `...` is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 #' \tabular{rl}{
-#'       `max, maxr, maxc`   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-#'   \cr                     \tab   
-#'   \cr `min, minr, minc`   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-#'   \cr                     \tab   
-#'   \cr  `lt, le, ge, gt`   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-#'   \cr                     \tab   
-#'   \cr       `n, nr, nc`   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-#'   \cr                     \tab   
-#'   \cr            `vals`   \tab A vector of valid values.
+#'       `max,maxr,maxc`   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+#'   \cr `min,minr,minc`   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+#'   \cr   `lt,le,ge,gt`   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+#'   \cr       `n,nr,nc`   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+#'   \cr          `vals`   \tab A vector of valid values.
 #' }
 #' @return A logical scalar.
 #' @examples

@@ -1,7 +1,7 @@
 #' @name naming
 #' @title Get names, set names, determine whether named
 #' @description \tabular{rl}{
-#'      `getnames`   \tab Gets element, row, and/or column names with optional restrictions.
+#'      `getnames`   \tab Gets element, row, and/or column names with optional restrictions.
 #'   \cr             \tab   
 #'   \cr   `named`   \tab Evaluates whether an object's elements, rows, and/or columns are named, accounting for whether names must be unique, whether the object may contain empty elements, and whether names may be blank strings.
 #'   \cr             \tab   
@@ -32,7 +32,7 @@
 #' @param en A \link[=cmp_chr_vec]{complete character vec} of element names.
 #' @param rn,cn Complete character vecs of row or column names, respectively.
 #' @return \tabular{rl}{
-#'      `rcnamed` \tab   A logical scalar.
+#'      `rcnamed` \tab   A logical scalar.
 #'   \cr `rnamed` \tab   A logical scalar.
 #'   \cr `cnamed` \tab   A logical scalar.
 #'   \cr `enamed` \tab   A logical scalar.

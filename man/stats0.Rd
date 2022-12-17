@@ -63,7 +63,7 @@ rmeans0(x)
 }
 \value{
 \tabular{rl}{
-  \verb{cmeans0,rmeans0} \tab   A numeric vector.
+\verb{cmeans0,rmeans0} \tab   A numeric vector.
 \cr \verb{csums0,rsums0} \tab   A numeric vector.
 \cr   \verb{csds0,rsds0} \tab   A numeric vector.
 \cr   \verb{pmin0,pmax0} \tab   A numeric vector.
@@ -75,7 +75,7 @@ rmeans0(x)
 }
 \description{
 \tabular{rl}{
-  \code{cmeans0} \tab   Calls \code{colMeans(x, na.rm = T)}
+\code{cmeans0} \tab   Calls \code{colMeans(x, na.rm = T)}
 \cr \code{rmeans0} \tab   Calls \code{rowMeans(x, na.rm = T)}
 \cr  \code{csums0} \tab   Calls \code{colSums(x, na.rm = T)}
 \cr  \code{rsums0} \tab   Calls \code{rowSums(x, na.rm = T)}

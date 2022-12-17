@@ -12,7 +12,7 @@ existing alpha values are preserved.}
 }
 \description{
 \tabular{rl}{
-  \code{sca} \tab   Thinly wraps \code{\link[scales]{alpha}}.
+\code{sca} \tab   Thinly wraps \code{\link[scales]{alpha}}.
 }
 }
 \examples{

@@ -2,17 +2,13 @@
 #' @family wraps
 #' @title Wrappers of `data.table` functions
 #' @description \tabular{rl}{
-#'      `dtmerge`   \tab Thinly wraps \code{\link[data.table]{merge}}.
+#'      `dtmerge`   \tab Thinly wraps \code{\link[data.table]{merge}}.
 #'   \cr `dtwide`   \tab Thinly wraps \code{\link[data.table]{dcast}}.
+#'   \cr `dtrows`   \tab Selects rows.
+#'   \cr `dtcols`   \tab Selects columns without non-standard `[` (i.e., `x[ , ..var]`).
+#'   \cr  `dtsub`   \tab Selects a sub-`data.table` without non-standard `[` (i.e., `x[row.var, ..col.var]`).
 #'   \cr   `dtas`   \tab Thinly wraps \code{\link[data.table]{as.data.table}}.
 #'   \cr   `dtis`   \tab Thinly wraps \code{\link[data.table]{is.data.table}}.
-#'   \cr            \tab   
-#'   \cr `dtrows`   \tab Selects rows.
-#'   \cr            \tab   
-#'   \cr `dtcols`   \tab Selects columns without non-standard `[` (i.e., `x[ , ..var]`).
-#'   \cr            \tab   
-#'   \cr  `dtsub`   \tab Selects a sub-`data.table` without non-standard `[` (i.e., `x[row.var, ..col.var]`).
-#'   \cr            \tab   
 #'   \cr   `dtie`   \tab Evaluates whether `x` is a `data.table`. If so, returns as is, otherwise converts to a `data.table`.
 #' }
 #' @param x An R object for `dtas`, `dtis`, and `dtie`. A \code{\link[data.table]{data.table}} for all others.

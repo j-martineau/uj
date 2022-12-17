@@ -56,7 +56,7 @@ vls.(...)
 }
 \value{
 \tabular{rl}{
-  \code{dtf_na} \tab   An atomic data.frame
+\code{dtf_na} \tab   An atomic data.frame
 \cr \code{vec_na} \tab   An atomic vector.
 \cr   \code{dmat} \tab   A square matrix.
 \cr   \code{dtf0} \tab   An atomic data.frame
@@ -71,29 +71,30 @@ vls.(...)
 }
 \description{
 This family of functions enforces the restrictions that names must (a) contain only ASCII letters, numerals, \code{'.'}, and \code{'_'}; (b) begin with a letter or \code{'.'} followed by a letter; and (c) end with a letter or numeral.
-\cr\cr Functions declaring \link[=atm_dtf]{atomic data.frames}:\tabular{rl}{
+\cr
+\cr Functions declaring \link[=atm_dtf]{atomic data.frames}:\tabular{rl}{
 \code{dtf} \tab   Declares a data.frame.
-\cr     \code{dtf.} \tab   Declares a data.frame concisely\eqn{^1}.
-\cr     \code{dtf0} \tab   Declares a \code{0}-row data.frame.
-\cr   \code{dtf_na} \tab   Declares a data.frame of \code{NA} values.
+\cr   \code{dtf.} \tab   Declares a data.frame concisely\eqn{^a}.
+\cr   \code{dtf0} \tab   Declares a \code{0}-row data.frame.
+\cr \code{dtf_na} \tab   Declares a data.frame of \code{NA} values.
 }
 Functions declaring matrices:\tabular{rl}{
 \code{mat} \tab   Declares a matrix.
-\cr   \code{matd} \tab   Declares a square diagonal matrix\eqn{^2}.
+\cr \code{matd} \tab   Declares a square diagonal matrix\eqn{^b}.
 }
 Functions declaring atomic vectors:\tabular{rl}{
 \code{vec} \tab   Declares a vector.
-\cr     \code{vec.} \tab   Declares a named atomic vector concisely\eqn{^3}.
-\cr \verb{  vec_na} \tab   Declares a vector of \code{NA} values.
+\cr   \code{vec.} \tab   Declares a named atomic vector concisely\eqn{^c}.
+\cr \code{vec_na} \tab   Declares a vector of \code{NA} values.
 }
 Functions declaring \link[=ivls]{vlists}:\tabular{rl}{
 \code{vls} \tab   Declares a \link[=ivls]{vlist}.
-\cr   \code{vls.} \tab   Declares a named \link[=ivls]{vlist} concisely\eqn{^4}.
+\cr \code{vls.} \tab   Declares a named \link[=ivls]{vlist} concisely\eqn{^d}.
 }
-    \eqn{^{1.}} \code{dtf.(a, b)} is identical to \code{data.frame(a = a, b = b, stringsAsFactors = F)}.
-\cr\cr     \eqn{^{2.}} Off-diags are \code{0}, \code{FALSE}, \code{""} for \code{x} of mode \code{'numeric'}, \code{'logical'}, \code{'character'}, respectively.
-\cr\cr     \eqn{^{3.}} \code{vec.(a, b)} is identical to \code{c(a = a, b = b)}.
-\cr\cr     \eqn{^{4.}} \code{vls.(a, b)} is identical to \code{list(a = a, b = b)}.
+\eqn{^{a.}} \code{dtf.(a, b)} is identical to \code{data.frame(a = a, b = b, stringsAsFactors = F)}.
+\cr \eqn{^{b.}} Off-diags are \code{0}, \code{FALSE}, \code{""} for \code{x} of mode \code{'numeric'}, \code{'logical'}, \code{'character'}, respectively.
+\cr \eqn{^{c.}} \code{vec.(a, b)} is identical to \code{c(a = a, b = b)}.
+\cr \eqn{^{d.}} \code{vls.(a, b)} is identical to \code{list(a = a, b = b)}.
 }
 \examples{
 a <- "a"

@@ -4,7 +4,7 @@
 #' @family plotting
 #' @title Thin wrappers of `graphics` functions.
 #' @description \tabular{rl}{
-#'       `strh` \tab   Thinly wraps \code{\link[graphics]{strheight}}.
+#'       `strh` \tab   Thinly wraps \code{\link[graphics]{strheight}}.
 #'   \cr `strw` \tab   Thinly wraps \code{\link[graphics]{strwidth}}.
 #' }
 #' @inherit graphics::strheight

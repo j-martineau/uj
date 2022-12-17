@@ -1,19 +1,16 @@
 #' @name dots_uj
 #' @title Manage `...` arguments
 #' @description \tabular{rl}{
-#'     `unnamed_dots`   \tab Extracts unnamed `...` arguments as an unnamed list (includes any named with blank strings).
-#'   \cr                \tab   
+#'     `unnamed_dots`   \tab Extracts unnamed `...` arguments as an unnamed list (includes any named with blank strings).
 #'   \cr `named_dots`   \tab Extracts named `...` arguments as a named list (does not include with blank-string names).
-#'   \cr                \tab   
 #'   \cr       `dots`   \tab Extracts one or more`...` arguments based on matching values supplied in `names.`. If a supplied name matches the name of a `...` argument, that argument is returned. Otherwise, the element of `defs.` with a matching name is returned. `names. = NULL` and `names. = NA` are converted to `'NULL'` and `'NA'`. Reserved words in `names.` should be backtick quoted.
-#'   \cr                \tab   
 #'   \cr        `dot`   \tab A convenience version of `dots` for extracting a single named `...` argument (or if a matching `...` argument name is not found, its default value `def.`).
-#'   \cr                \tab   
-#'   \cr  `dot_names`   \tab If `names. = NULL`, the return value is `...names()`, otherwise, `names.` is returned. Throws an error in the following cases:\itemize{
-#'     \item `0 ...` Arguments are supplied.
-#'     \item `names. != NULL` and `length(names.) != ...length()`.
-#'     \item `req. = TRUE`, `names. = NULL`, and no `...` arguments are named.
-#'     \item `names. = NULL` and either (a) `blank. = TRUE` and any `...` argument is unnamed or its name is blank or (b) \item `u. = TRUE` and any `...` argument name is duplicated.
+#'   \cr  `dot_names`   \tab If `names. = NULL`, the return value is `...names()`, otherwise, `names.` is returned. Throws an error in the following cases:
+#'     \itemize{
+#'       \item `0 ...` Arguments are supplied.
+#'       \item `names. != NULL` and `length(names.) != ...length()`.
+#'       \item `req. = TRUE`, `names. = NULL`, and no `...` arguments are named.
+#'       \item `names. = NULL` and either (a) `blank. = TRUE` and any `...` argument is unnamed or its name is blank or (b) \item `u. = TRUE` and any `...` argument name is duplicated.
 #' }}
 #' @param ... An arbitrary number of arguments.
 #' @param names. `NULL` or an \link[=atm_vec]{atomic vec} (may include `NA` values). Is split along the delimiter `'|'` to allow for compactness in submitting multiple names. `NULL` will match either an argument in `...` or element of `defs.` with the name `'NULL'`. `NA` values will match an argument in `...` or an element of `defs.` with the name `'NA'`.

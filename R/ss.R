@@ -2,8 +2,7 @@
 #' @family chars
 #' @family strings
 #' @title Split Strings and Select/Check for Elements
-#' @description **`ss`**
-#' This function splits strings using the delimiter(s) in `d` following this sequence:
+#' @description **`ss`** splits strings using the delimiter(s) in `d` following this sequence:
 #' \enumerate{
 #'   \item Reduce `...` to an atomic vector of all collective atomic values.
 #'   \item Convert the result to mode character.
@@ -16,7 +15,7 @@
 #' **Extension functions**
 #' \cr Extension functions are supplied for common delimiters, signified by codes appended to `ss` function names:
 #' \tabular{rll}{
-#'     *Code* \tab   *Name* \tab   *Delimiter*
+#'     *Code* \tab   *Name* \tab   *Delimiter*
 #'   \cr`'0'` \tab   blank  \tab   `''`
 #'   \cr`'1'` \tab   space  \tab   `' '`
 #'   \cr`'P'` \tab   pipe   \tab   `'|'`
@@ -24,13 +23,12 @@
 #'   \cr`'B'` \tab   broken \tab   `'¦'`
 #'   \cr      \tab   pipe   \tab   
 #' }
-#' In addition, `ch` aliases `ss0`.
-#' \cr\cr
-#' **Unique-value functions**
+#' `ch` aliases `ss0`.
+#' \cr
+#' \cr **Unique-value functions**
 #' \cr Prepending `u` to a function name reduces the result of calling that function to unique values.
-#' \cr\cr
-#' **`sstb`**
-#' \cr Assumes that splitting each element of `x` along the delimiter `d` results vectors of the same length, which are placed into a data.frame. For example, the following console excerpt demonstrates a call to `sstb` and its result.
+#' \cr
+#' \cr **`sstb`** Assumes that splitting each element of `x` along the delimiter `d` results vectors of the same length, which are placed into a data.frame. For example, the following console excerpt demonstrates a call to `sstb` and its result.
 #' ```
 #' > sstb('|', 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p', name = 'original', part = 'letter')
 #'

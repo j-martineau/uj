@@ -77,14 +77,14 @@ An atomic, numeric object.
 \description{
 Unit functions take the following forms, where \code{aa} and \code{bb} are wildcard unit codes and \code{old} and \code{new} are user-supplied argument values.
 \tabular{rl}{
-  \code{aa2bb}   \tab Converts units \emph{from} \code{aa} \emph{to} \code{bb}.
+\code{aa2bb}   \tab Converts units \emph{from} \code{aa} \emph{to} \code{bb}.
 \cr \code{aa2u}   \tab    \emph{from} \code{aa} \emph{to} \code{new}.
 \cr \code{u2bb}   \tab    \emph{from} \code{old} \emph{to} \code{bb}.
 \cr  \code{u2u}   \tab    \emph{from} \code{old} \emph{to} \code{new}.
 }
 Available units are:
 \tabular{rl}{
-  \code{'cm'}   \tab centimeters.
+\code{'cm'}   \tab centimeters.
 \cr \code{'in'}   \tab inches.
 \cr \code{'mm'}   \tab millimeters.
 \cr \code{'pt'}   \tab points (72/inch).

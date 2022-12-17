@@ -3,7 +3,7 @@
 #' @title Recycling and recyclability
 #' @description Arguments are recyclable if all of their lengths are divisors of the argument with the greatest length subject to any settings in the optional arguments `ns.`, `min.`, `max.`, and/or `targ.`.
 #' \cr\cr Functions in this family are:\tabular{rl}{
-#'     `recyclable_n` \tab   Are lengths in `...` recyclable?.
+#'     `recyclable_n` \tab   Are lengths in `...` recyclable?.
 #'   \cr `recyclable` \tab   Are `...` arguments are recyclable?
 #'   \cr    `recycle` \tab   Recycles `...` arguments in the calling function.
 #' }
@@ -14,8 +14,8 @@
 #' @param err. A non-`NA` logical scalar indicating whether to throw an error if the `...` arguments are not recyclable.
 #' @param targ. A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the target length of recycled arguments. May be greater than `length(av(...))`.
 #' @return \tabular{rl}{
-#'     `recyclable_n` \tab   A logical scalar.
-#'   \cr `recyclable` \tab   A logical scalar.
+#'     `recyclable_n` \tab   A logical scalar.
+#'   \cr `recyclable` \tab   A logical scalar.
 #'   \cr    `recycle` \tab   `NULL`.
 #' }
 #' @examples

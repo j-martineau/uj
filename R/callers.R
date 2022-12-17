@@ -1,13 +1,13 @@
 #' @family environments
 #' @title Generations of functions in the call stack
 #' @description \tabular{rl}{
-#'      `ncallers`   \tab Gets the number of functions in the call stack.
+#'      `ncallers`   \tab Gets the number of functions in the call stack.
 #'   \cr `callers`   \tab Gets names of all calling functions, with the immediate calling function in position `1`, optionally selecting the `gens.`-th element(s).
 #'   \cr  `caller`   \tab Gets the name of the immediate calling function.
 #' }
 #' @param gens A \link[cmp_psw_vec]{complete positive whole-number vec} giving the number(s) of generations back in the function call stack to go.
 #' @return \tabular{rl}{
-#'      `ncallers`   \tab An integer scalar.
+#'      `ncallers`   \tab An integer scalar.
 #'   \cr `callers`   \tab A character vector.
 #'   \cr  `caller`   \tab A character scalar.
 #' }

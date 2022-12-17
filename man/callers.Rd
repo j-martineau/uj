@@ -17,14 +17,14 @@ ncallers()
 }
 \value{
 \tabular{rl}{
-  \code{ncallers}   \tab An integer scalar.
+\code{ncallers}   \tab An integer scalar.
 \cr \code{callers}   \tab A character vector.
 \cr  \code{caller}   \tab A character scalar.
 }
 }
 \description{
 \tabular{rl}{
-  \code{ncallers}   \tab Gets the number of functions in the call stack.
+\code{ncallers}   \tab Gets the number of functions in the call stack.
 \cr \code{callers}   \tab Gets names of all calling functions, with the immediate calling function in position \code{1}, optionally selecting the \code{gens.}-th element(s).
 \cr  \code{caller}   \tab Gets the name of the immediate calling function.
 }

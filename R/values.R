@@ -1,15 +1,13 @@
 #' @title Package `uj` defined values
 #' @description \tabular{rl}{
-#'       `vtable`   \tab Gets a data.frame of all `uj` named values with three columns: `name`, `value`, and `description`, where named values with multiple elements are pipe-delimited and all values are converted to mode character.
-#'   \cr            \tab   
+#'       `vtable`   \tab Gets a data.frame of all `uj` named values with three columns: `name`, `value`, and `description`, where named values with multiple elements are pipe-delimited and all values are converted to mode character.
 #'   \cr `values`   \tab Gets a named list where names are the arguments submitted to `v(...)`, element values are the values of the contents of the named element, and the attribute `'descriptions'` gives verbose descriptions if needed.
-#'   \cr            \tab   
-#'   \cr `vnames`   \tab Gets names of all package values.
+#'   \cr `vnames`   \tab Gets names of all package values.
 #'   \cr      `v`   \tab Gets package values by name.
 #' }
 #' @param ... Unquoted, comma-separated list of names of constants to return. If multiple constants are specified, they are coerced into a single atomic vector result.
 #' @return \tabular{rl}{
-#'       `values`   \tab A \code{\link[=ivls]{vlist}}.
+#'       `values`   \tab A \code{\link[=ivls]{vlist}}.
 #'   \cr `vtable`   \tab A data.frame.
 #'   \cr `vnames`   \tab A character vector.
 #'   \cr      `v`   \tab A character vector.

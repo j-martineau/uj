@@ -28,15 +28,15 @@ recycle(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL)
 }
 \value{
 \tabular{rl}{
-  \code{recyclable_n} \tab   A logical scalar.
-\cr \code{recyclable} \tab   A logical scalar.
+\code{recyclable_n} \tab   A logical scalar.
+\cr \code{recyclable} \tab   A logical scalar.
 \cr    \code{recycle} \tab   \code{NULL}.
 }
 }
 \description{
 Arguments are recyclable if all of their lengths are divisors of the argument with the greatest length subject to any settings in the optional arguments \code{ns.}, \code{min.}, \code{max.}, and/or \code{targ.}.
 \cr\cr Functions in this family are:\tabular{rl}{
-  \code{recyclable_n} \tab   Are lengths in \code{...} recyclable?.
+\code{recyclable_n} \tab   Are lengths in \code{...} recyclable?.
 \cr \code{recyclable} \tab   Are \code{...} arguments are recyclable?
 \cr    \code{recycle} \tab   Recycles \code{...} arguments in the calling function.
 }

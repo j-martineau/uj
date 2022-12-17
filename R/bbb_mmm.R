@@ -1,11 +1,9 @@
 #' @family props
 #' @title `basic + xmode` combination properties
 #' @description \tabular{rl}{
-#'     `bbb_mmm_funs`   \tab What `basic + xmode` combination property functions are there?
-#'   \cr                \tab   
-#'   \cr    `bbb_mmm`   \tab Is `x` a match to the single `basic` and `xmode` properties in `bbb` and `mmm`, respectively?
-#'   \cr                \tab   
-#'   \cr    `BBB_MMM`   \tab Is `x` a match to single `basic` and `xmode` properties `'BBB'` and `'MMM'`, respectively?
+#'   `bbb_mmm_funs`   \tab What `basic + xmode` combination property functions are there?
+#'   \cr  `bbb_mmm`   \tab Is `x` a match to the single `basic` and `xmode` properties in `bbb` and `mmm`, respectively?
+#'   \cr  `BBB_MMM`   \tab Is `x` a match to single `basic` and `xmode` properties `'BBB'` and `'MMM'`, respectively?
 #' }
 #' @param x An R object.
 #' @param bbb A character scalar single `basic` property from `c('atm', 'pop')`.
@@ -13,9 +11,9 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return \tabular{rl}{
-#'     `bbb_mmm_funs` \tab   A character vector.
-#'   \cr    `bbb_mmm` \tab   A logical scalar.
-#'   \cr    `BBB_MMM` \tab   A logical scalar.
+#'   `bbb_mmm_funs` \tab   A character vector.
+#'   \cr  `bbb_mmm` \tab   A logical scalar.
+#'   \cr  `BBB_MMM` \tab   A logical scalar.
 #' }
 #' @examples
 #' bbb_mmm_funs()

@@ -41,9 +41,9 @@
 #'   \cr    `ggelin` \tab   Thinly wraps \code{\link[ggplot2]{element_line}}
 #'   \cr   `ggenull` \tab   Thinly wraps \code{\link[ggplot2]{element_blank}}
 #'   \cr             \tab   
-#'   \cr     `ggemd` \tab   Thinly wraps \code{\link[ggtext]{element_markdown}}\eqn{^1}
+#'   \cr     `ggemd` \tab   Thinly wraps \code{\link[ggtext]{element_markdown}}\eqn{^a}
 #' }
-#' \eqn{1.} A `ggtext` package function.
+#' \eqn{{a.}} A `ggtext` package function.
 #' @inherit ggplot2::ggplot
 #' @export
 ggp <- function(data = NULL, mapping = ggplot2::aes(), ..., environment = parent.frame()) {ggplot2::ggplot(data = data, mapping = mapping, ..., environment = environment)}

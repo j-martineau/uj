@@ -82,7 +82,7 @@ For a vector, an object of the same type of \code{x}, but with only
 }
 \description{
 \tabular{rl}{
-  \code{levs}   \tab Thinly wraps \code{\link[base]{levels}}.
+\code{levs}   \tab Thinly wraps \code{\link[base]{levels}}.
 \cr         \tab   
 \cr \code{spf}   \tab Thinly wraps \code{\link[base]{sprintf}}.
 \cr \code{mid}   \tab Thinly wraps \code{\link[base]{substr}}.
@@ -91,8 +91,8 @@ For a vector, an object of the same type of \code{x}, but with only
 \cr  \code{up}   \tab Thinly wraps \code{\link[base]{ceiling}}.
 \cr  \code{dn}   \tab Thinly wraps \code{\link[base]{floor}}.
 \cr         \tab   
-\cr   \code{u}   \tab Thinly wraps \code{\link[base]{unique}}\eqn{^1}.
-\cr   \code{w}   \tab Thinly Wraps \code{\link[base]{which}}\eqn{^1}.
+\cr   \code{u}   \tab Thinly wraps \code{\link[base]{unique}}\eqn{^a}.
+\cr   \code{w}   \tab Thinly Wraps \code{\link[base]{which}}\eqn{^b}.
 \cr         \tab   
 \cr  \code{g1}   \tab Calls \code{\link[base:paste0]{paste0(av(...), collapse = " ")}}.
   \cr  \code{g0}   \tab Calls \code{\link[base:paste0]{paste0(av(...), collapse = "")}}.
@@ -102,9 +102,8 @@ For a vector, an object of the same type of \code{x}, but with only
   \cr  \code{p0}   \tab Calls \code{\link[base:paste]{paste(..., sep = "")}}.
   \cr   \code{p}   \tab Calls \code{\link[base:paste]{paste(..., sep = p)}}
 }
-   \eqn{^{1.}} Calls \verb{paste0(av(...), }
-\cr    \eqn{^{2.}} Differs from \code{\link{uv}}, which calls \code{unique(av(...))}.
-\cr    \eqn{^{3.}} Differs from \code{\link{wv}}, which calls \code{which(av(...))}.
+    \eqn{^{a.}} Differs from \code{\link{uv}}, which calls \code{unique(av(...))}.
+\cr \eqn{^{b.}} Differs from \code{\link{wv}}, which calls \code{which(av(...))}.
 }
 \details{
 This is a generic function with methods for vectors, data frames and

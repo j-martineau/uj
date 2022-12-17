@@ -1,8 +1,7 @@
 #' @title Duplicate values.
 #' @description Extended functionality for \code{\link[base]{duplicated}}.
 #' \tabular{rl}{
-#'      `idups`   \tab Indexes all elements of `x` that are duplicates of its earlier element, either as a logical vector of the same length as `x` (when `int = FALSE`) or as an integer vector whose length is the same as the number of elements in `x` that are duplicates of earlier elements (when `int = TRUE`).
-#'   \cr          \tab   
+#'      `idups`   \tab Indexes all elements of `x` that are duplicates of its earlier element, either as a logical vector of the same length as `x` (when `int = FALSE`) or as an integer vector whose length is the same as the number of elements in `x` that are duplicates of earlier elements (when `int = TRUE`).
 #'   \cr `dups`   \tab \link[=av]{Atomizes} `...`, then reduce the resulting vector to contain one copy of each duplicated element.
 #' }
 #' @param ... One or more atomic vectors to be evaluated for duplicated values.

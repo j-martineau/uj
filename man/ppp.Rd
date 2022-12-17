@@ -73,7 +73,7 @@ spec_concise(spec)
 }
 \value{
 \tabular{rl}{
-  \code{combos_from_spec} \tab   A character vector.
+\code{combos_from_spec} \tab   A character vector.
 \cr \code{props_from_combo} \tab   A character vector.
 \cr  \code{props_from_spec} \tab   A character vector.
 \cr   \code{is_valid_combo} \tab   A logical scalar.
@@ -111,24 +111,24 @@ This set of functions provide utilities that bring together seven families of ob
 \cr\cr
 \strong{Property and property spec manipulation functions}
 \tabular{rl}{
-  \code{combos_from_spec} \tab   Convert spec to constituent combos.
+\code{combos_from_spec} \tab   Convert spec to constituent combos.
 \cr \code{props_from_combo} \tab   Convert combo to constituent properties.
 \cr  \code{props_from_spec} \tab   Convert spec to constituent properties.
 }
 \strong{Property and property spec validation functions}
 \tabular{rl}{
-  \code{is_prop_combo} \tab   Is \code{combo} a combo/conjunctive spec?
+\code{is_prop_combo} \tab   Is \code{combo} a combo/conjunctive spec?
 \cr \code{is_prop_spec} \tab   Is \code{spec} a property spec of any type?
 \cr  \code{is_prop_fun} \tab   Is \code{fun} a property-function name?
 \cr      \code{is_prop} \tab   Is \code{prop} a value from \code{all_props()}?
 }
 \strong{Property-checking function names}
 \tabular{rl}{
-  \code{prop_funs}   \tab Names of functions checking for specific single and combo properties matched to \code{x}.
+\code{prop_funs}   \tab Names of functions checking for specific single and combo properties matched to \code{x}.
 }
 \strong{Family-specific functions listing an object's properties}
 \tabular{rl}{
-   \code{ppp} \tab   Gets all single properties of \code{x}.
+\code{ppp} \tab   Gets all single properties of \code{x}.
 \cr \code{bbb} \tab   Gets all \code{base} properties of \code{x}.
 \cr \code{ccc} \tab   Gets all \code{xclass} properties of \code{x}.
 \cr \code{ddd} \tab   Gets all \code{defined-D} properties of \code{x}.
@@ -139,18 +139,18 @@ This set of functions provide utilities that bring together seven families of ob
 }
 \strong{Property and property spec definition functions}
 \tabular{rl}{
-  \code{combo_concise} \tab   Concisely define a combo property spec.
+\code{combo_concise} \tab   Concisely define a combo property spec.
 \cr \code{spec_concise} \tab   Concisely define a property spec.
 \cr \code{prop_verbose} \tab   Verbosely define a single property.
 \cr    \code{prop_defs} \tab   Gets a table of property definitions.
 }
 \strong{Single-property checking functions}
 \tabular{rl}{
-  \code{iPPP} \tab   Does \code{x} match single property \code{'PPP'}.
+\code{iPPP} \tab   Does \code{x} match single property \code{'PPP'}.
 }
 \strong{Single-family property-checking functions}
 \tabular{rl}{
-  \code{ibbb} \tab   Is \code{x} a match to \code{base}-family \code{spec}?
+\code{ibbb} \tab   Is \code{x} a match to \code{base}-family \code{spec}?
 \cr \code{iccc} \tab   Is \code{x} a match to \code{xclass}-family \code{spec}?
 \cr \code{iddd} \tab   Is \code{x} a match to \code{defined-D}-family \code{spec}?
 \cr \code{ieee} \tab   Is \code{x} a match to \code{effective-D}-family \code{spec}?
@@ -160,46 +160,42 @@ This set of functions provide utilities that bring together seven families of ob
 }
 \strong{Functions testing for combination/conjunctive properties}
 \tabular{rl}{
-  \code{cmp_MMM_CCC} \tab   \verb{complete + xmode 'MMM' + xclass 'CCC'}.
-\cr   \code{cmp_MMM} \tab   \verb{complete + xmode 'MMM'}.
-\cr   \code{cmp_CCC} \tab   \verb{complete + xclass 'CCC'}
-\cr   \code{BBB_CCC} \tab   \code{base} property \verb{'BBB' + xclass 'CCC'}.
-\cr   \code{BBB_MMM} \tab   \code{base} property \verb{'BBB' + xmode 'MMM'}.
-\cr   \code{MMM_CCC} \tab   \verb{xmode 'MMM' + xclass 'CCC'}.
-\cr    \code{nll_or} \tab   Is \code{x} \code{NULL} or a match to \code{spec}?
-\cr    \code{nas_or} \tab   Is \code{x} \code{NA} or a match to \code{spec}?
-\cr      \code{ippp} \tab   Is \code{x} a match to \code{spec}?
+\code{cmp_MMM_CCC} \tab   \verb{complete + xmode 'MMM' + xclass 'CCC'}.
+\cr \code{cmp_MMM} \tab   \verb{complete + xmode 'MMM'}.
+\cr \code{cmp_CCC} \tab   \verb{complete + xclass 'CCC'}
+\cr \code{BBB_CCC} \tab   \code{base} property \verb{'BBB' + xclass 'CCC'}.
+\cr \code{BBB_MMM} \tab   \code{base} property \verb{'BBB' + xmode 'MMM'}.
+\cr \code{MMM_CCC} \tab   \verb{xmode 'MMM' + xclass 'CCC'}.
+\cr  \code{nll_or} \tab   Is \code{x} \code{NULL} or a match to \code{spec}?
+\cr  \code{nas_or} \tab   Is \code{x} \code{NA} or a match to \code{spec}?
+\cr    \code{ippp} \tab   Is \code{x} a match to \code{spec}?
 }
 \strong{Comprehensive lists of single and common combination properties}
 \tabular{rl}{
-  \code{cmp_mmm_ccc_props} \tab   \verb{complete + xmode + xclass} properties.
-\cr   \code{cmp_ccc_props} \tab   \code{complete + xclass} properties.
-\cr   \code{cmp_mmm_props} \tab   \code{complete + xmode} properties.
-\cr   \code{bbb_ccc_props} \tab   \code{basic + xclass} properties.
-\cr   \code{bbb_mmm_props} \tab   \code{basic + xmode} properties.
-\cr   \code{mmm_ccc_props} \tab   \code{xmode + xclass} properties.
-\cr       \code{bbb_props} \tab   \code{basic} properties.
-\cr       \code{ccc_props} \tab   \code{xclass} properties.
-\cr       \code{ddd_props} \tab   \code{defined-D} properties.
-\cr       \code{eee_props} \tab   \code{effective-D} properties.
-\cr       \code{iii_props} \tab   \code{integrity} properties.
-\cr       \code{mmm_props} \tab   \code{xmode} properties.
-\cr       \code{sss_props} \tab   \code{shape} properties.
-\cr       \code{all_props} \tab   All single properties.
+\code{cmp_mmm_ccc_props} \tab   \verb{complete + xmode + xclass} properties.
+\cr \code{cmp_ccc_props} \tab   \code{complete + xclass} properties.
+\cr \code{cmp_mmm_props} \tab   \code{complete + xmode} properties.
+\cr \code{bbb_ccc_props} \tab   \code{basic + xclass} properties.
+\cr \code{bbb_mmm_props} \tab   \code{basic + xmode} properties.
+\cr \code{mmm_ccc_props} \tab   \code{xmode + xclass} properties.
+\cr     \code{bbb_props} \tab   \code{basic} properties.
+\cr     \code{ccc_props} \tab   \code{xclass} properties.
+\cr     \code{ddd_props} \tab   \code{defined-D} properties.
+\cr     \code{eee_props} \tab   \code{effective-D} properties.
+\cr     \code{iii_props} \tab   \code{integrity} properties.
+\cr     \code{mmm_props} \tab   \code{xmode} properties.
+\cr     \code{sss_props} \tab   \code{shape} properties.
+\cr     \code{all_props} \tab   All single properties.
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab   
-\cr  \verb{lt, le, ge, gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab   
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab   
-\cr            \code{vals}   \tab A vector of valid values.
+\verb{max,maxr,maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min,minr,minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr   \verb{lt,le,ge,gt}   \tab Scalar less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n,nr,nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
+\cr          \code{vals}   \tab A vector of valid values.
 }
 }
 

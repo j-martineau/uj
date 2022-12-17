@@ -3,22 +3,22 @@
 #' @family strings
 #' @title `stringr`-based spacing functions
 #' @details \tabular{rl}{
-#'     `spaces`   \tab Creates a character scalar of `n` spaces.
-#'   \cr  `pad`   \tab Pads strings with leading, trailing white space\eqn{^1}.
-#'   \cr  `sqz`   \tab Trims leading, trailing, extra internal white/space\eqn{^1}.
-#'   \cr  `trm`   \tab Trims leading and trailing white space\eqn{^1}.
+#'    `spaces`   \tab Creates a character scalar of `n` spaces.
+#'   \cr `pad`   \tab Pads strings with leading, trailing white space\eqn{^a}.
+#'   \cr `sqz`   \tab Trims leading, trailing, extra internal white/space\eqn{^a}.
+#'   \cr `trm`   \tab Trims leading and trailing white space\eqn{^a}.
 #' }
-#' \eqn{^{1.}}These functions use \code{\link[stringr:str_squish]{stringr::str_squish}}, \code{\link[stringr:str_pad]{stringr::str_pad}}, and \code{\link[stringr:str_trim]{stringr::str_trim}}, respectively.
+#' \eqn{^{a.}}These functions use \code{\link[stringr:str_squish]{stringr::str_squish}}, \code{\link[stringr:str_pad]{stringr::str_pad}}, and \code{\link[stringr:str_trim]{stringr::str_trim}}, respectively.
 #' @param ... An arbitrary number of atomic arguments to be processed.
 #' @param n A link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of spaces.
 #' @param n. A complete positive whole-number scalar indicating the number of pad characters.
 #' @param s. A \link[=cmp_ch1_scl]{complete onechar scalar} indicating side(s) to pad: `'l'`, `'r'`, or `'b'` for left, right, or both, respectively.
 #' @param p. A complete onechar scalar containing a single character used to pad strings.
 #' @return \tabular{rl}{
-#'     `spaces` \tab   A character scalar.
-#'   \cr  `pad` \tab   A character object.
-#'   \cr  `trm` \tab   A character object.
-#'   \cr  `sqz` \tab   A character object.
+#'    `spaces` \tab   A character scalar.
+#'   \cr `pad` \tab   A character object.
+#'   \cr `trm` \tab   A character object.
+#'   \cr `sqz` \tab   A character object.
 #' }
 #' @examples
 #' spaces(0)
