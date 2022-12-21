@@ -1,9 +1,12 @@
+#' @encoding UTF-8
+#' @family extensions
+#' @family properties
 #' @title Evaluate whether an object has only unique atomic values
 #' @description Evaluates whether `x` contains only only unique atomic values, with options for for atomizing before evaluation and for handling `NA` values.
 #' @param x An atomic object.
 #' @param a A non-`NA` logical scalar indicating whether to reduce `x` to an atomic vector containing all of its atomic values. When `FALSE` and `x` is not atomic, throws an error.
 #' @param na A non-`NA` logical scalar indicating whether `NA` values are allowed.
-#' @return `TRUE` or `FALSE`.
+#' @return Scalar `TRUE` or scalar `FALSE`.
 #' @examples
 #' is_unq(letters)
 #' is_unq(sample(letters, 27, replace = T))

@@ -1,22 +1,24 @@
-#' @family plotting
+#' @encoding UTF-8
+#' @family conversions
+#' @family plots
 #' @title Convert plotting units
-#' @description Unit functions take the following forms, where `aa` and `bb` are wildcard unit codes and `old` and `new` are user-supplied argument values.
+#' @description Unit functions take the following forms, where `AA` and `BB` are wildcard unit codes and `old` and `new` are user-supplied argument values.
 #' \tabular{rl}{
-#'      `aa2bb`   \tab Converts units *from* `aa` *to* `bb`.
-#'   \cr `aa2u`   \tab    *from* `aa` *to* `new`.
-#'   \cr `u2bb`   \tab    *from* `old` *to* `bb`.
-#'   \cr  `u2u`   \tab    *from* `old` *to* `new`.
+#'      `BB2BB`   \tab Converts units *from* `'AA'` *to* `'BB'`.
+#'   \cr `AA2u`   \tab Converts units *from* `'AA'` *to* `new`.
+#'   \cr `u2BB`   \tab Converts units *from* `old` *to* `'BB'`.
+#'   \cr  `u2u`   \tab Converts units *from* `old` *to* `new`.
 #' }
-#' Available units are:
+#' Available units/unit codes are:
 #' \tabular{rl}{
-#'       `'cm'`   \tab centimeters.
+#'       `'cm'`   \tab centimeters.
 #'   \cr `'in'`   \tab inches.
 #'   \cr `'mm'`   \tab millimeters.
 #'   \cr `'pt'`   \tab points (72/inch).
 #' }
 #' @param x \link[=atm_num]{Atomic, numeric object}.
 #' @param old,new \link[=cmp_chr_scl]{Complete character scalars} giving old and new units of distance, respectively: `'cm'`, `'in'`, `'mm'`, `'pt'` for centimeters, inches, millimeters, and points, respectively.
-#' @return An atomic, numeric object.
+#' @return An atomic numeric object.
 #' @examples
 #' u2u(1:3, "cm", "pt")
 #' u2u(1:3, "in", "mm")

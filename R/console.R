@@ -1,9 +1,13 @@
-#' @name say
+#' @encoding UTF-8
+#' @family meta
+#' @family user
 #' @title User updates and interaction via the console
 #' @description \tabular{rl}{
-#'   `continue`   \tab Prints `"Hit [enter] or [return] to continue"` to the console and pausse execution until the user hits the enter or return key.
-#'   \cr `cat0`   \tab Collapses `...` to a character scalar message prefixed and suffixed with newlines and prints it to the console (ensures the message occurs on its own line of the console).
-#'   \cr  `say`   \tab Collapses the message in `...` to a character scalar and either (a) prints it to the console or (b) structures it as a certain level of update and then prints it to the console. See details.
+#'     `continue`   \tab Prints `"Hit [enter] or [return] to continue"` to the console and pausse execution until the user hits the enter or return key.
+#'   \cr            \tab  
+#'   \cr   `cat0`   \tab Collapses `...` to a character scalar message prefixed and suffixed with newlines and prints it to the console (ensures the message occurs on its own line of the console).
+#'   \cr            \tab  
+#'   \cr    `say`   \tab Collapses the message in `...` to a character scalar and either (a) prints it to the console or (b) structures it as a certain level of update and then prints it to the console. See details.
 #' }
 #' @details The function `say` allows for structuring user update messages at six hierarchical levels as explained in the following table where `___` is a placeholder for the character scalar message created when collapsing `...`:
 #' \tabular{ccl}{

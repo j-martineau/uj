@@ -1,4 +1,6 @@
-#' @family props
+#' @encoding UTF-8
+#' @family extensions
+#' @family properties
 #' @title Are objects comparable?
 #' @description Determines whether modes of all `...` arguments are comparable (i.e., sortable and compatible with each other), meaning that the are either all character, all logical, all numeric, or all ordered factor with the same set of levels (in the same order).
 #' @param ... An arbitrary number of arguments to be checked for comparability with each other.

@@ -1,29 +1,33 @@
+#' @encoding UTF-8
 #' @name basics
 #' @family wraps
 #' @title Wrappers for `base` functions
 #' @description \tabular{rl}{
-#'      `levs`   \tab Thinly wraps \code{\link[base]{levels}}.
-#'   \cr         \tab   
-#'   \cr `spf`   \tab Thinly wraps \code{\link[base]{sprintf}}.
-#'   \cr `mid`   \tab Thinly wraps \code{\link[base]{substr}}.
-#'   \cr `len`   \tab Thinly wraps \code{\link[base]{nchar}}.
-#'   \cr         \tab   
-#'   \cr  `up`   \tab Thinly wraps \code{\link[base]{ceiling}}.
-#'   \cr  `dn`   \tab Thinly wraps \code{\link[base]{floor}}.
-#'   \cr         \tab   
-#'   \cr   `u`   \tab Thinly wraps \code{\link[base]{unique}}\eqn{^a}.
-#'   \cr   `w`   \tab Thinly Wraps \code{\link[base]{which}}\eqn{^b}.
-#'   \cr         \tab   
-#'   \cr  `g1`   \tab Calls \code{\link[base:paste0]{paste0(av(...), collapse = " ")}}.
-#'   \cr  `g0`   \tab Calls \code{\link[base:paste0]{paste0(av(...), collapse = "")}}.
+#'      `levs`   \tab Thinly wraps \code{\link[base]{levels}}
+#'   \cr         \tab  
+#'   \cr `spf`   \tab Thinly wraps \code{\link[base]{sprintf}}
+#'   \cr `mid`   \tab Thinly wraps \code{\link[base]{substr}}
+#'   \cr `len`   \tab Thinly wraps \code{\link[base]{nchar}}
+#'   \cr         \tab  
+#'   \cr  `na`   \tab Thinly wraps \code{\link[base]{is.na}}
+#'   \cr  `ok`   \tab Thinly wraps \code{\link[base]{!is.na}}
+#'   \cr         \tab  
+#'   \cr  `up`   \tab Thinly wraps \code{\link[base]{ceiling}}
+#'   \cr  `dn`   \tab Thinly wraps \code{\link[base]{floor}}
+#'   \cr         \tab  
+#'   \cr  `g1`   \tab Calls \code{\link[base:paste0]{paste0(av(...), collapse = " ")}}
+#'   \cr  `g0`   \tab Calls \code{\link[base:paste0]{paste0(av(...), collapse = "")}}
 #'   \cr   `g`   \tab Calls \code{\link[base:paste0]{paste0(av(...), collapse = g)}}
-#'   \cr         \tab   
-#'   \cr  `p1`   \tab Calls \code{\link[base:paste]{paste(..., sep = " ")}}.
-#'   \cr  `p0`   \tab Calls \code{\link[base:paste]{paste(..., sep = "")}}.
+#'   \cr         \tab  
+#'   \cr  `p1`   \tab Calls \code{\link[base:paste]{paste(..., sep = " ")}}
+#'   \cr  `p0`   \tab Calls \code{\link[base:paste]{paste(..., sep = "")}}
 #'   \cr   `p`   \tab Calls \code{\link[base:paste]{paste(..., sep = p)}}
+#'   \cr         \tab  
+#'   \cr   `u`   \tab Thinly wraps \code{\link[base]{unique}}\eqn{^a}
+#'   \cr   `w`   \tab Thinly Wraps \code{\link[base]{which}}\eqn{^b}
 #' }
-#'     \eqn{^{a.}} Differs from \code{\link{uv}}, which calls `unique(av(...))`.
-#' \cr \eqn{^{b.}} Differs from \code{\link{wv}}, which calls `which(av(...))`.
+#' \eqn{^{a.}} Differs from \code{\link{uv}}, which calls `unique(av(...))`.
+#' \cr\eqn{^{b.}} Differs from \code{\link{wv}}, which calls `which(av(...))`.
 #' @examples
 #' vals <- c(1:3, 2:4) / 3
 #' vars <- c("a", "bb", "ccc", "dddd", "ccc", "bb")
@@ -108,3 +112,11 @@ p0 <- function(...) {paste(..., sep = "")}
 #' @rdname basics
 #' @export
 p1 <- function(...) {paste(..., sep = " ")}
+
+#' @rdname basics
+#' @export
+na <- function(x) {is.na(x)}
+
+#' @rdname basics
+#' @export
+ok <- function(...) {!is.na(x)}

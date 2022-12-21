@@ -1,8 +1,10 @@
+#' @encoding UTF-8
 #' @family strings
 #' @title Fixed-value string substitution
 #' @description Finds strings from `pats` in `x` and replaces them with corresponding values of (possibly recycled) `subs`.
 #' @param x An \link[=atm_chr]{atomic character object}.
-#' @param pats,subs \link[=cmp_chr_vec]{Complete character vecs} containing patterns to replace and their associated replacement strings.
+#' @param pats A \link[=cmp_chr_vec]{complete character vec} of patterns to replace.
+#' @param subs A complete character vec of replacement strings
 #' @return Atomic character object.
 #' @examples
 #' arg1. <- c("a", "few", "words", "in", "a string")

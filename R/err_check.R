@@ -2,7 +2,7 @@
 .has_dots <- function(...) {...length() > 0}
 .pop_dots <- function(...) {all(lengths(list(...)) > 0)}
 .unq_named <- function(...) {x <- ...names(); length(x) == length(unique(x))}
-.all_named <- function(...) {f0(length(...names()) == 0, F, f0(length(...names()) != ...length(), F, f0(!any(...names() == ""), F, .unq_named(...))))}
+.all_named <- function(...) {f0(length(...names()) == 0, F, f0(length(...names()) != ...length(), F, f0(any(...names() == ""), F, .unq_named(...))))}
 .ox_vals <- function(x, join) {
   n <- length(x)
   if (n == 1) {x}
@@ -10,55 +10,68 @@
   else {paste0(paste0(x[1:(n - 1)], collapse = ", "), ", ", join, " ", x[n])}
 }
 
+#' @encoding UTF-8
+#' @family properties
 #' @family errs
 #' @title Error checking, banking, and processing
 #' @description Bank error messages in the immediate environment of a function to allow for exhaustive error checking before throwing an exception. Results in a possibly multiple-error, accumulated message to be processed upon completion of error checking.
 #' \cr\cr
 #' **General purpose functions**
 #' \tabular{rl}{
-#'      `err_check`   \tab Checks for banked error messages in the environment of the function `gens.` generations back in the call stack, and if there are any, processes them, stopping execution. If there are none, takes no action.
+#'      `err_check`   \tab Checks for banked error messages in the environment of the function `gens.` generations back in the call stack, and if there are any, processes them, stopping execution. If there are none, takes no action.
 #'   \cr `bank_err`   \tab Banks an arbitrary error message (built by collapsing `...` args) in the environment of the function `gens.` generations back in the call stack.
 #' }
 #' **Condition-based functions**
 #' \tabular{rl}{
-#'       **Function**   \tab **Condition for banking an error message**
-#'   \cr `bank_class`   \tab A named `...` arg is not of any class named in the `class.` argument.
-#'   \cr `bank_chars`   \tab A named `...` arg contains characters not supplied in the `chars.` argument.
-#'   \cr  `bank_when`   \tab The first named `...` arg is the `n`-th value in the `whens.` argument, but the second *is not* the `n`-th value in the `values.` argument.
-#'   \cr  `bank_dots`   \tab A `...` arg\eqn{^a} fails to satisfy the \link[=is_prop_spec]{property spec} in the `spec.` argument.
-#'   \cr  `bank_spec`   \tab A named `...` arg fails to satisfy the \link[=is_prop_spec]{property spec} in the `spec.` argument\eqn{^b}.
-#'   \cr  `bank_funs`   \tab A named `...` arg fails to satisfy *any* of the \link[=prop_funs]{property function(s)} named in the `funs.` argument.
-#'   \cr  `bank_vals`   \tab A named `...` arg contains values not supplied in the `vals.` argument.
-#'   \cr  `bank_fail`   \tab A named `...` arg produces an error when submitted to \code{\link[base]{identity}}.
-#'   \cr   `bank_lgl`   \tab A named `...` arg is neither `TRUE`, `FALSE`, `NA`\eqn{^c}, nor contained in the `extras.` argument\eqn{^d}.
-#'   \cr   `bank_not`   \tab A named `...` arg is `FALSE`\eqn{^e}.
-#'   \cr   `bank_pop`   \tab A named `...` arg is either `NULL` or otherwise of length `0`.
+#'         **Function**   \tab **Condition for banking an error message**
+#'   \cr                  \tab  
+#'   \cr   `bank_class`   \tab A named `...` arg is not of any class named in the `class.` argument.
+#'   \cr                  \tab  
+#'   \cr   `bank_chars`   \tab A named `...` arg contains characters not supplied in the `chars.` argument.
+#'   \cr                  \tab  
+#'   \cr    `bank_when`   \tab The first named `...` arg is the `n`-th value in the `whens.` argument, but the second *is not* the `n`-th value in the `values.` argument.
+#'   \cr                  \tab  
+#'   \cr    `bank_dots`   \tab A `...` arg\eqn{^a} fails to satisfy the \link[=is_prop_spec]{property spec} in the `spec.` argument.
+#'   \cr                  \tab  
+#'   \cr    `bank_spec`   \tab A named `...` arg fails to satisfy the \link[=is_prop_spec]{property spec} in the `spec.` argument\eqn{^b}.
+#'   \cr                  \tab  
+#'   \cr    `bank_funs`   \tab A named `...` arg fails to satisfy *any* of the \link[=prop_funs]{property function(s)} named in the `funs.` argument.
+#'   \cr                  \tab  
+#'   \cr    `bank_vals`   \tab A named `...` arg contains values not supplied in the `vals.` argument.
+#'   \cr                  \tab  
+#'   \cr    `bank_fail`   \tab A named `...` arg produces an error when submitted to \code{\link[base]{identity}}.
+#'   \cr                  \tab  
+#'   \cr     `bank_lgl`   \tab A named `...` arg is neither `TRUE`, `FALSE`, `NA`\eqn{^c}, nor contained in the `extras.` argument\eqn{^d}.
+#'   \cr                  \tab  
+#'   \cr     `bank_not`   \tab A named `...` arg is `FALSE`\eqn{^e}.
+#'   \cr                  \tab  
+#'   \cr     `bank_pop`   \tab A named `...` arg is either `NULL` or otherwise of length `0`.
 #' }
-#'     \eqn{^{a.}} Named when `named. = TRUE`.
-#' \cr \eqn{^{b.}} May be scalar `NA` when `nas. = TRUE`.
-#' \cr \eqn{^{c.}} When `nas. = TRUE`.
-#' \cr \eqn{^{d.}} When `extras.` is non-`NULL`.
-#' \cr \eqn{^{e.}} Collapses *unnamed* `...` args to an error message template, replacing the escape sequence `'{@@}'` with the named `...` arg's name.
+#' \eqn{^{a.}} Named when `named. = TRUE`.
+#' \cr\eqn{^{b.}} May also be scalar `NA` when `nas. = TRUE`.
+#' \cr\eqn{^{c.}} When `nas. = TRUE`.
+#' \cr\eqn{^{d.}} When `extras.` is non-`NULL`.
+#' \cr\eqn{^{e.}} Collapses *unnamed* `...` args to an error message template, replacing the escape sequence `'{@@}'` with the named `...` arg's name.
 #' @section The `...` arguments: Arguments supplied in `...` differ across functions in terms of whether they are named, how many named and/or unnamed `...` args there are, and their \link[=ppp]{property requirements} as follows:
 #' \tabular{rlll}{
-#'       **Function** \tab    **Number of**        \tab `...` **args**       \tab   **Property**
-#'   \cr     **Name** \tab    **(named)**          \tab  **(unnamed)**       \tab   **requirement**
-#'   \cr `bank_class` \tab    `1+`                 \tab  `0`                 \tab   *none*
-#'   \cr `bank_chars` \tab    `1+`                 \tab  `1+`                \tab   `atomic`\eqn{^b}
-#'   \cr  `bank_when` \tab    `2`                  \tab  `2`                 \tab   \link[=atm_scl]{atomic scalar}
-#'   \cr  `bank_vals` \tab    `1+`                 \tab  `1+`                \tab   `atomic`\eqn{^b}
-#'   \cr  `bank_dots` \tab    `1+`\eqn{^c} or `0+` \tab  `0`\eqn{^c} or `0+` \tab   *none*
-#'   \cr  `bank_fail` \tab    `1+`                 \tab  `0`                 \tab   *none*
-#'   \cr  `bank_funs` \tab    `1+`                 \tab  `0`                 \tab   *none*
-#'   \cr  `bank_spec` \tab    `1+`                 \tab  `0`                 \tab   *none*
-#'   \cr   `bank_err` \tab    `0+`\eqn{^a}         \tab  `0+`\eqn{^a}        \tab   \link[=pop_atm]{populated and atomic}
-#'   \cr   `bank_lgl` \tab    `1+`                 \tab  `1+`                \tab   \link[=atm_scl]{logical scalar}
-#'   \cr   `bank_not` \tab    `1+`                 \tab  `0`                 \tab   logical scalar
-#'   \cr   `bank_pop` \tab    `1+`                 \tab  `0`                 \tab   *none*
+#'         **Function** \tab    **Number of**        \tab `...` **args**       \tab   **Property**
+#'   \cr       **Name** \tab    **(named)**          \tab  **(unnamed)**       \tab   **requirement**
+#'   \cr   `bank_class` \tab    `1+`                 \tab  `0`                 \tab   *none*
+#'   \cr   `bank_chars` \tab    `1+`                 \tab  `1+`                \tab   `atomic`\eqn{^b}
+#'   \cr    `bank_when` \tab    `2`                  \tab  `2`                 \tab   \link[=atm_scl]{atomic scalar}
+#'   \cr    `bank_vals` \tab    `1+`                 \tab  `1+`                \tab   `atomic`\eqn{^b}
+#'   \cr    `bank_dots` \tab    `1+`\eqn{^c} or `0+` \tab  `0`\eqn{^c} or `0+` \tab   *none*
+#'   \cr    `bank_fail` \tab    `1+`                 \tab  `0`                 \tab   *none*
+#'   \cr    `bank_funs` \tab    `1+`                 \tab  `0`                 \tab   *none*
+#'   \cr    `bank_spec` \tab    `1+`                 \tab  `0`                 \tab   *none*
+#'   \cr     `bank_err` \tab    `0+`\eqn{^a}         \tab  `0+`\eqn{^a}        \tab   \link[=pop_atm]{populated and atomic}
+#'   \cr     `bank_lgl` \tab    `1+`                 \tab  `1+`                \tab   \link[=atm_scl]{logical scalar}
+#'   \cr     `bank_not` \tab    `1+`                 \tab  `0`                 \tab   logical scalar
+#'   \cr     `bank_pop` \tab    `1+`                 \tab  `0`                 \tab   *none*
 #' }
-#'     \eqn{^{a.}} At least `1 ...` arg in total.
-#' \cr \eqn{^{b.}} When `atm. = TRUE`.
-#' \cr \eqn{^{c.}} When `named. = TRUE`.
+#' \eqn{^{a.}} At least `1 ...` arg in total.
+#' \cr\eqn{^{b.}} When `atm. = TRUE`.
+#' \cr\eqn{^{c.}} When `named. = TRUE`.
 #' @param gens. A \link[=cmp_nnw_scl]{complete non-negative whole-number scalar} indicating the number of generations back in the call stack in which to bank and/or check for error messages.
 #' @param ... Differs by function in terms of whether they are named, how many there are, and their \link[=ppp]{property requirements} as described in the section entitled *the* `...` *arguments*.
 #' @param nas. `TRUE` or `FALSE` indicating whether `NA` values qualify as `'logical'`.
@@ -221,11 +234,11 @@ bank_funs <- function(funs., ..., vals. = NULL) {
   labs <- ...names()
   n.dots <- ...length()
   ok.dots <- n.dots > 0
-  ok.labs <- .all_named(...)
+  ok.labs <- f0(!ok.dots, T, .all_named(...))
   ok.funs <- all(sapply(funs., is_prop_fun))
   ok.vals <- f0(is.null(vals.), T, pop_atm(vals.))
-  errs <- c(f0(ok.dots, NULL, "There are no [...] arguments."),
-            f0(ok.labs, NULL, "All [...] args must be uniquely named without using blank strings."),
+  errs <- c(f0(ok.dots, NULL, "[...] arguments must be supplied."),
+            f0(ok.labs, NULL, "[...] args must be uniquely named without using blank strings."),
             f0(ok.funs, NULL, "[funs.] contains a function name not found in prop_funs()."),
             f0(ok.vals, NULL, "[vals.] must be NULL or complete and atomic (?cmp_atm)."))
   if (!is.null(errs)) {stop(.errs(errs))}

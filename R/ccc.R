@@ -1,39 +1,45 @@
+#' @encoding UTF-8
 #' @family props
-#' @title Extended class (`xclass`) properties
+#' @title Extended class (xclass) properties
 #' @description `xclass` properties are defined as follows:
 #' \tabular{rll}{
-#'       `arr`   \tab `array`    \tab   `arrays`.
-#'   \cr `mat`   \tab `matrix`   \tab   `matrices`.
-#'   \cr `dtf`   \tab `dtf`      \tab   `data.frames`.
-#'   \cr `vls`   \tab `vlist`    \tab   `vector-lists`\eqn{^a}.
-#'   \cr `gen`   \tab `generic`  \tab   `vectors`, `vlists`, and `arrays.`
-#'   \cr `scl`   \tab `scalar`   \tab   Length-`1` `generics`
-#'   \cr `mvc`   \tab `multivec` \tab   Length-`2+` \link[=ilin]{linear} `generics.`
-#'   \cr `vec`   \tab `vec`      \tab   `scalars` and `multivecs.`
+#'       `arr`   \tab array    \tab   arrays
+#'   \cr `mat`   \tab matrix   \tab   matrices`
+#'   \cr `dtf`   \tab dtf      \tab   data.frames`
+#'   \cr `vls`   \tab vlist    \tab   vector-lists`\eqn{^a}
+#'   \cr `gen`   \tab generic  \tab   vectors, vlists, and arrays
+#'   \cr `scl`   \tab scalar   \tab   Length-`1` generics
+#'   \cr `mvc`   \tab multivec \tab   Length-`2+` \link[=ilin]{linear} generics
+#'   \cr `vec`   \tab vec      \tab   scalars and multivecs
 #' }
-#' \eqn{^{a.}} Non-`data.frame` lists.
+#' \eqn{^{a.}} Non-`data.frame` lists.
 #' \cr\cr
 #' **Functions**
 #' \tabular{rl}{
-#'     `is_ccc_spec`   \tab Is `spec` an `xclass` specification?
-#'   \cr `ccc_props`   \tab What `xclass` properties are there?
-#'   \cr  `ccc_funs`   \tab What `xclass` property functions are there?
-#'   \cr      `iccc`   \tab Is `x` a match to the `xclass` specification `spec`?
-#'   \cr      `iCCC`   \tab Is `x` a match to the single `xclass` property `'CCC'`?
-#'   \cr       `ccc`   \tab What are `x`'s `xclass` properties?
+#'     `is_ccc_spec`   \tab Is `spec` an xclass specification?
+#'   \cr               \tab  
+#'   \cr `ccc_props`   \tab What xclass properties are there?
+#'   \cr               \tab  
+#'   \cr  `ccc_funs`   \tab What xclass property functions are there?
+#'   \cr               \tab  
+#'   \cr      `iccc`   \tab Is `x` a match to the xclass specification `spec`?
+#'   \cr               \tab  
+#'   \cr      `iCCC`   \tab Is `x` a match to the single xclass property `'CCC'`?
+#'   \cr               \tab  
+#'   \cr       `ccc`   \tab What are `x`'s xclass properties?
 #' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `xclass` properties (i.e., from `ccc_props()`). `xclass` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more xclass properties (i.e., from \code{\link{ccc_props}()}). Properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return \tabular{rl}{
-#'     `is_ccc_spec`   \tab A logical scalar.
-#'   \cr `ccc_props`   \tab A character vector.
-#'   \cr  `ccc_funs`   \tab A character vector.
-#'   \cr      `iccc`   \tab A logical scalar.
-#'   \cr      `iCCC`   \tab A logical scalar.
-#'   \cr       `ccc`   \tab A character vector.
-#' }
+#' @return *A character vector*
+#'  \cr    `ccc_props`
+#'  \cr    `ccc_funs`
+#'  \cr    `ccc`
+#'  \cr\cr *A logical vector*
+#'  \cr    `is_ccc_spec`
+#'  \cr    `iCCC`
+#'  \cr    `iccc`
 #' @examples
 #' ccc_funs()
 #' ccc_props()

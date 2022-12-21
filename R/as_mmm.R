@@ -1,31 +1,42 @@
 #' @name as_mmm
-#' @family props
+#' @encoding UTF-8
+#' @family properties
 #' @title Coerce to base mode or `xmode`
 #' @description Functions to coerce objects to \link[base:mode]{base mode} or \code{\link[=mmm]{xmode}}:
 #' \tabular{rl}{
-#'       `as_chr`   \tab Thinly wraps \code{\link[base:as.character]{base::as.character}}.
-#'   \cr `as_int`   \tab Thinly wraps \code{\link[base:as.integer]{base::as.integer}}.
-#'   \cr `as_num`   \tab Thinly wraps \code{\link[base:as.numeric]{base::as.numeric}}.
-#'   \cr `as_lgl`   \tab Thinly wraps \code{\link[base:as.logical]{base::as.logical}}.
-#'   \cr `as_clr`   \tab Coerces valid R character color representation values to hexadecimal character RGB color values.
-#'   \cr `as_fun`   \tab Returns `x` if it is a function, otherwise, search for a function named `x` and return it.
-#'   \cr `as_ord`   \tab As `xmode 'ord'` (ordered factor). Wraps `base::factor(x, levels = levs, ordered = TRUE)`.
-#'   \cr `as_uno`   \tab As `xmode 'uno'` (unordered factor). Wraps `base::factor(x, levels = levs, ordered = FALSE)`.
+#'       `as_chr`   \tab Thinly wraps \code{\link[base:as.character]{base::as.character}}.
+#'   \cr `as_int`   \tab Thinly wraps \code{\link[base:as.integer]{base::as.integer}}.
+#'   \cr `as_num`   \tab Thinly wraps \code{\link[base:as.numeric]{base::as.numeric}}.
+#'   \cr `as_lgl`   \tab Thinly wraps \code{\link[base:as.logical]{base::as.logical}}.
+#'   \cr `as_clr`   \tab Coerces R character colors to hexadecimal character RGB colors.
+#'   \cr            \tab  
+#'   \cr `as_fun`   \tab If `x` is a character scalar function return that function, but if `x` is a function object, return it.
+#'   \cr            \tab  
+#'   \cr `as_ord`   \tab As xmode `'ord'` (ordered factor). Wraps `base::factor(x, levels = levs, ordered = TRUE)`.
+#'   \cr            \tab  
+#'   \cr `as_uno`   \tab As xmode `'uno'` (unordered factor). Wraps `base::factor(x, levels = levs, ordered = FALSE)`.
 #' }
 #' @param x For `as_clr`, an object of mode character; for `as_fun`, a character scalar function name or a function object; for `as_ord` and `as_uno`, an atomic object; and for all others, any R object.
 #' @param na A non-`NA` logical scalar indicating whether `NA` values are acceptable.
 #' @param levs A \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for `as_ord`).
 #' @param ... Further arguments passed to or from other methods.
-#' @return \tabular{rl}{
-#'       `as_fun`   \tab A function.
-#'   \cr `as_chr`   \tab Object of mode `'character'`.
-#'   \cr `as_int`   \tab Object of mode `'integer'`.
-#'   \cr `as_lgl`   \tab Object of mode `'logical'`.
-#'   \cr `as_num`   \tab Object of mode `'numeric'`.
-#'   \cr `as_clr`   \tab Object of `xmode 'clr'` (color valued character).
-#'   \cr `as_ord`   \tab Object of `xmode 'ord'` (ordered factor).
-#'   \cr `as_ord`   \tab Object of `xmode 'uno'` (unordered factor).
-#' }
+#' @return *An object of base mode* `'character'`
+#'  \cr    `as_chr`
+#'  \cr\cr *An object of base mode* `'integer'`
+#'  \cr    `as_int`
+#'  \cr\cr *An object of base mode* `'logical'`
+#'  \cr    `as_lgl`
+#'  \cr\cr *An object of base mode* `'numeric'`
+#'  \cr    `as_num`
+#'  \cr\cr *An object of \link[=mmm]{xmode}* `'ord'`\eqn{^a}
+#'  \cr    `as_ord`
+#'  \cr\cr *An object of xmode* `'uno'`\eqn{^b}
+#'  \cr    `as_uno`
+#'  \cr\cr *An object of xmode* `'clr'`\eqn{^c}
+#'  \cr    `as_clr`
+#'  \cr\cr\eqn{^{a.}} Ordered factor.
+#'  \cr\eqn{^{b.}} Unordered factor.
+#'  \cr\eqn{^{c.}} Character hexadecimal RGB color values in the form `'#RRGGBBAA'`.
 #' @examples
 #' bins. <- sample(c(0, 1), 10, replace = T)
 #' chrs. <- c("3.14", "2.72", "1.41")

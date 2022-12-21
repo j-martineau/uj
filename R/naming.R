@@ -1,53 +1,57 @@
 #' @name naming
+#' @encoding UTF-8
+#' @family extensions
 #' @title Get names, set names, determine whether named
 #' @description \tabular{rl}{
-#'      `getnames`   \tab Gets element, row, and/or column names with optional restrictions.
-#'   \cr             \tab   
-#'   \cr   `named`   \tab Evaluates whether an object's elements, rows, and/or columns are named, accounting for whether names must be unique, whether the object may contain empty elements, and whether names may be blank strings.
-#'   \cr             \tab   
+#'      `getnames`   \tab General name retrieval function (with optional restrictions).
+#'   \cr     `rcn`   \tab Gets matrix and data.frame row and column names.
+#'   \cr      `rn`   \tab Gets matrix and data.frame row names.
+#'   \cr      `cn`   \tab Gets matrix and data.frame row names.
+#'   \cr      `en`   \tab Gets vector abd \link[=ivls]{vlist} element names.
+#'   \cr      `dn`   \tab Gets `...` argument names.
+#'   \cr             \tab  
+#'   \cr   `named`   \tab General name existence check function (with optional restrictions).
 #'   \cr `rcnamed`   \tab Are both rows and columns named?
-#'   \cr  `enamed`   \tab Are elements of `x` named?
 #'   \cr  `rnamed`   \tab Are rows of `x` named?
 #'   \cr  `cnamed`   \tab Are columns of `x` named?
+#'   \cr  `enamed`   \tab Are elements of `x` named?
 #'   \cr  `dnamed`   \tab Are `...` arguments named?
-#'   \cr             \tab   
+#'   \cr             \tab  
+#'   \cr    `name`   \tab General naming function
 #'   \cr  `namerc`   \tab Names rows and columns of `x`.
 #'   \cr   `namer`   \tab Names rows of `x`.
 #'   \cr   `namec`   \tab Names columns of `x`.
-#'   \cr   `namev`   \tab Names elements of a `vector` or \code{\link[=ivls]{vlist}}.
-#'   \cr   `namel`   \tab Creates and names a `1`-element `list`.
-#'   \cr             \tab   
-#'   \cr     `rcn`   \tab Gets row and column names in a `list`.
-#'   \cr      `en`   \tab Gets element names.
-#'   \cr      `rn`   \tab Gets row names.
-#'   \cr      `cn`   \tab Gets column names.
+#'   \cr   `namev`   \tab Names elements of a vector or \code{\link[=ivls]{vlist}}.
+#'   \cr   `namel`   \tab Creates and names a `1`-element list.
 #' }
 #' @param x Vector or list for `namev` and `vn`; matrix or data.frame for `rn`, `namer`, `cn`, `namec`, and `namerc`; or any object for `namel`.
-#' @param ... Arbitrary number of arguments to be inspected for names.
-#' @param err A non-`NA` logical scalar indicating whether names must be non-missing.
+#' @param ... An arbitrary number of arguments.
 #' @param d A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the dimension(s) to name: `0` for elements (of atomic or list vectors only), `1` for rows of matrices or tibbles, `2` for columns of matrices or data.frames, or `12` for rows and columns of matrices or data.frames.
 #' @param u A non-`NA` logical scalar indicating whether names must be unique.
+#' @param u. A non-`NA` logical scalar indicating whether `...` arg names must be unique.
+#' @param ln A non-`NA` character scalar to name the single elemnt of the resulting \link[=ivls]{vlist}.
+#' @param cn A \link[=cmp_chr_vec]{complete character vec} of column names.
+#' @param en A complete character vec of element names.
+#' @param rn A complete character vec of row names.
+#' @param err A non-`NA` logical scalar indicating whether names must exist.
+#' @param err. A non-`NA` logical scalar indicating whether `...` args must have names.
 #' @param blank A non-`NA` logical scalar indicating whether blank strings (`""`) are allowed as names.
-#' @param ln A \link[=cmp_chr_scl]{complete character scalar} element name.
-#' @param en A \link[=cmp_chr_vec]{complete character vec} of element names.
-#' @param rn,cn Complete character vecs of row or column names, respectively.
-#' @return \tabular{rl}{
-#'      `rcnamed` \tab   A logical scalar.
-#'   \cr `rnamed` \tab   A logical scalar.
-#'   \cr `cnamed` \tab   A logical scalar.
-#'   \cr `enamed` \tab   A logical scalar.
-#'   \cr `dnamed` \tab   A logical scalar.
-#'   \cr ` named` \tab   A logical scalar.
-#'   \cr `namerc` \tab   A matrix or data.frame.
-#'   \cr  `namer` \tab   A matrix or data.frame.
-#'   \cr  `namec` \tab   A matrix or data.frame.
-#'   \cr  `namev` \tab   A vector.
-#'   \cr  `namel` \tab   A `1`-element list.
-#'   \cr    `rcn` \tab   A list of `2` vectors.
-#'   \cr     `en` \tab   A character vector.
-#'   \cr     `rn` \tab   A character vector.
-#'   \cr     `cn` \tab   A character vector.
-#' }
+#' @return *A logical scalar*
+#'   \cr    `rcnamed, rnamed, cnamed`
+#'   \cr    `dnamed, enamed`
+#'   \cr    `named`
+#'   \cr\cr *A matrix or data.frame*
+#'   \cr    `namerc, namer, namec`
+#'   \cr\cr *A character vector*
+#'   \cr    `rn, cn, en`
+#'   \cr\cr *A \link[=ivec]{vec} or \link[=ivls]{vlist}*
+#'   \cr    `namev`
+#'   \cr\cr*A vec, vlist, matrix, or data.frame*
+#'   \cr    `name`
+#'   \cr\cr *A `1`-element vlist*
+#'   \cr    `namel`
+#'   \cr\cr *A `2`-element vlist*
+#'   \cr    `rcn`
 #' @examples
 #' dots_named. <- function(...) {dnamed(...)}
 #'
@@ -138,6 +142,10 @@ namerc <- function(x, rn, cn) {namer(namec(x, cn), rn)}
 
 #' @rdname naming
 #' @export
+name <- function(x, en = NULL, rn = NULL, cn = NULL) {if (id1D(x)) {namev(x, en)} else if (id2D) {namerc(x, rn, cn)} else {stop(.errs("[x] must be a vec (?ivec), vlist (?ivls), matrix, or data.frame."))}}
+
+#' @rdname naming
+#' @export
 named <- function(x, d = 0, u = T, blank = F) {
   ok.x <- pop_vec(x) | pop_vls(x) | pop_mat(x) | pop_dtf(x)
   ok.d <- isIN(d, c(0, 1, 2, 12))
@@ -202,7 +210,7 @@ getnames <- function(x, d = 0, u = T, err = F) {
   if (!is.null(errs)) {stop(.errs(errs))}
   if (d == 0) {
     en <- names(x)
-    if (length(en) == 0 & !err) {return(NULL)}
+    if (length(en) == 0 & !err)     {return(NULL)}
     else if (err & length(en) == 0) {stop(.errs("elements of [x] are not named."))}
     else if (u & !is_unq(en))       {stop(.errs("element names of [x] are not unique."))}
     en
@@ -216,17 +224,28 @@ getnames <- function(x, d = 0, u = T, err = F) {
     list(rows = rn, cols = cn)
   } else if (d == 1) {
     rn <- rownames(x)
-    if (length(rn) == 0 & !err) {return(NULL)}
+    if (length(rn) == 0 & !err)     {return(NULL)}
     else if (err & length(rn) == 0) {stop(.errs("rows of [x] are not named."))}
     else if (u & !is_unq(rn))       {stop(.errs("row names of [x] are not unique."))}
     rn
   } else if (d == 2) {
     cn <- colnames(x)
-    if (length(cn) == 0 & !err) {return(NULL)}
+    if (length(cn) == 0 & !err)     {return(NULL)}
     else if (err & length(cn) == 0) {stop(.errs("columns of [x] are not named."))}
     else if (u & !is_unq(cn))       {stop(.errs("column names of [x] are not unique."))}
     cn
   }
+}
+
+#' @rdname naming
+#' @export
+dn <- function(..., u. = T, err. = F) {
+  if (...length() == 0) {stop(.errs("No [...] args were supplied."))}
+  en <- ...names()
+  if (length(en) == 0 & !err.)     {return(NULL)}
+  else if (err. & length(en) == 0) {stop(.errs("[...] args are not named"))}
+  else if (u. & !is_unq(en))       {stop(.errs("[...] arg names are not unique."))}
+  en
 }
 
 #' @rdname naming

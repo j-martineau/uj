@@ -1,5 +1,8 @@
-#' @family chars
+#' @encoding UTF-8
+#' @family base_extensions
 #' @family strings
+#' @family counts
+#' @family chars
 #' @title Length of longest string
 #' @description Gets the number of characters in the longest string in `x`.
 #' @param ... An arbitrary number of objects of mode character.

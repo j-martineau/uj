@@ -1,4 +1,6 @@
+#' @encoding UTF-8
 #' @title Pause execution.
+#' @family meta
 #' @description Pause for `x` seconds, then resume execution.
 #' @param x A \link[=cmp_num_scl]{complete mumeric scalar} indicating the number of seconds to pause.
 #' @return `NULL` (called for its side effect).

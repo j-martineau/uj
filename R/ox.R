@@ -1,50 +1,52 @@
-#' @name ox
+#' @encoding UTF-8
 #' @family strings
 #' @title Oxford-comma separated lists
 #' @description Create Oxford-comma separated lists with a variety of templates (displayed below) where `{conj}` and `{n}` represent the values of arguments `conj` and `n`; `{pref}` and `{comp}` indicate the potentially-`NULL` values of arguments `pref` and `conj`; and `[a]`, `[b]`, and `[z]` represents elements of a list.
+#' \cr\cr  With the exception of `{n} > length(av(...))`, these functions appropriately process lists of length `1` and `2`.
 #' \cr\cr **Functions and associated templates**
 #' \tabular{rl}{
-#'                   `ox`   \tab`'(pref) [a], [b], ..., {conj} [z]'`
-#'   \cr                    \tab   
-#'   \cr           `ox_n`   \tab`'(pref) {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr                    \tab`'(pref) {n} (comp) of [a], [b], ..., {conj} [z]'`
-#'   \cr                    \tab`'(pref) (comp) {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr                    \tab   
-#'   \cr          `ox_or`   \tab`'(pref) [a], [b], ..., or [z]'`
-#'   \cr         `ox_and`   \tab`'(pref) [a], [b], ..., and [z]'`
-#'   \cr      `ox_either`   \tab`'(pref) either [a], [b], ..., or [z]'`
-#'   \cr     `ox_neither`   \tab`'(pref) neither [a], [b], ..., nor [z]'`
-#'   \cr                    \tab   
-#'   \cr         `ox_any`   \tab`'(pref) any of [a], [b], ..., {conj} [z]'`
-#'   \cr         `ox_all`   \tab`'(pref) all of [a], [b], ..., {conj} [z]'`
-#'   \cr        `ox_none`   \tab`'(pref) none of [a], [b], ..., {conj} [z]'`
-#'   \cr        `ox_some`   \tab`'(pref) some of [a], [b], ..., {conj} [z]'`
-#'   \cr                    \tab   
-#'   \cr        `ox_less`   \tab`'(pref) less than {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr        `ox_more`   \tab`'(pref) more than {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr       `ox_fewer`   \tab`'(pref) fewer than {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr      `ox_noless`   \tab`'(pref) no less than {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr      `ox_nomore`   \tab`'(pref) no more than {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr      `ox_atmost`   \tab`'(pref) at most {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr     `ox_atleast`   \tab`'(pref) at least {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr     `ox_exactly`   \tab`'(pref) exactly {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr     `ox_greater`   \tab`'(pref) greater than {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr     `ox_nofewer`   \tab`'(pref) no fewer than {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr   `ox_nogreater`   \tab`'(pref) no greater than {n} of [a], [b], ..., {conj} [z]'`
-#'   \cr                    \tab   
-#'   \cr      `ox_orless`   \tab`'(pref) {n} or less of [a], [b], ..., {conj} [z]'`
-#'   \cr      `ox_ormore`   \tab`'(pref) {n} or more of [a], [b], ..., {conj} [z]'`
-#'   \cr     `ox_orfewer`   \tab`'(pref) {n} or fewer of [a], [b], ..., {conj} [z]'`
-#'   \cr   `ox_orgreater`   \tab`'(pref) {n} or greater of [a], [b], ..., {conj} [z]'`
+#'           **Function**   \tab **Associated template**
+#'   \cr                    \tab   
+#'   \cr             `ox`   \tab `'(pref) [a], [b], ..., {conj} [z]'`
+#'   \cr                    \tab   
+#'   \cr           `ox_n`   \tab `'(pref) {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr                    \tab `'(pref) {n} (comp) of [a], [b], ..., {conj} [z]'`
+#'   \cr                    \tab `'(pref) (comp) {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr                    \tab   
+#'   \cr          `ox_or`   \tab `'(pref) [a], [b], ..., or [z]'`
+#'   \cr         `ox_and`   \tab `'(pref) [a], [b], ..., and [z]'`
+#'   \cr      `ox_either`   \tab `'(pref) either [a], [b], ..., or [z]'`
+#'   \cr     `ox_neither`   \tab `'(pref) neither [a], [b], ..., nor [z]'`
+#'   \cr                    \tab   
+#'   \cr         `ox_any`   \tab `'(pref) any of [a], [b], ..., {conj} [z]'`
+#'   \cr         `ox_all`   \tab `'(pref) all of [a], [b], ..., {conj} [z]'`
+#'   \cr        `ox_none`   \tab `'(pref) none of [a], [b], ..., {conj} [z]'`
+#'   \cr        `ox_some`   \tab `'(pref) some of [a], [b], ..., {conj} [z]'`
+#'   \cr                    \tab   
+#'   \cr      `ox_atmost`   \tab `'(pref) at most {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr     `ox_exactly`   \tab `'(pref) exactly {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr     `ox_atleast`   \tab `'(pref) at least {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr        `ox_less`   \tab `'(pref) less than {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr        `ox_more`   \tab `'(pref) more than {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr       `ox_fewer`   \tab `'(pref) fewer than {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr      `ox_noless`   \tab `'(pref) no less than {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr      `ox_nomore`   \tab `'(pref) no more than {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr     `ox_greater`   \tab `'(pref) greater than {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr     `ox_nofewer`   \tab `'(pref) no fewer than {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr   `ox_nogreater`   \tab `'(pref) no greater than {n} of [a], [b], ..., {conj} [z]'`
+#'   \cr                    \tab   
+#'   \cr      `ox_orless`   \tab `'(pref) {n} or less of [a], [b], ..., {conj} [z]'`
+#'   \cr      `ox_ormore`   \tab `'(pref) {n} or more of [a], [b], ..., {conj} [z]'`
+#'   \cr     `ox_orfewer`   \tab `'(pref) {n} or fewer of [a], [b], ..., {conj} [z]'`
+#'   \cr   `ox_orgreater`   \tab `'(pref) {n} or greater of [a], [b], ..., {conj} [z]'`
 #' }
-#' NOTE: where it makes sense these functions appropriately process lists of length `1` and `2`.
 #' @param ... Any number of arguments coerceable to mode character.
 #' @param pref A \link[=cmp_chr_scl]{complete character scalar} prefix to prepend to the list.
 #' @param conj A complete character scalar conjunction to use between the next to last and last elements of the list. Typical values are `and`, `or` and `nor`.
 #' @param n A \link[=cmp_psw_scl]{complete positive whole-number scalar}.
 #' @param comp A complete character scalar used for comparing to `n`, such as `'at least'` or `'or fewer'`.
-#' @param first A complete non-`NA` scalar used to determine whether `comp` is placed in front of `n` rather than after `n`.
-#' @return A character scalar containing all atomic elements of `...` formatted as an Oxford-comma separated list.
+#' @param first A non-`NA` logical scalar used to determine whether `comp` is placed in front of `n` rather than after `n`.
+#' @return A character scalar.
 #' @export
 #' @examples
 #' Fruits <- c("apples", "bananas", "oranges")
@@ -122,6 +124,14 @@ ox <- function(..., conj = "and", pref = "", quote = 0) {
 
 #' @rdname ox
 #' @export
+oxford <- ox
+
+#' @rdname ox
+#' @export
+oxford_comma <- ox
+
+#' @rdname ox
+#' @export
 ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, first = TRUE) {
   vals <- av(...)
   errs <- c(f0(length(vals) > 0 , NULL, "[...] is empty."),
@@ -162,7 +172,7 @@ ox_all <- function(..., conj = "and") {ox(..., pref = "all of", conj = conj)}
 
 #' @rdname ox
 #' @export
-ox_any <- function(..., conj = "and") {ox(..., pref = "any of", conj = conj)}
+ox_any <- function(..., conj = "or") {ox(..., pref = "any of", conj = conj)}
 
 #' @rdname ox
 #' @export

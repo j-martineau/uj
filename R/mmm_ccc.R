@@ -1,21 +1,23 @@
-#' @family props
-#' @title `xmode + xclass` combination properties
+#' @encoding UTF-8
+#' @family properties
+#' @title xmode + xclass combination properties
 #' @description \tabular{rl}{
-#'   `mmm_ccc_funs`   \tab What `xmode + xclass` combination property functions are there?
-#'   \cr  `mmm_ccc`   \tab Does `x` match the single `xmode` and single `xclass` properties in `mmm` and `ccc`, respectively?
-#'   \cr  `MMM_CCC`   \tab Does `x` match the single `xmode` and single `xclass` properties `'MMM'` and `'CCC'`, respectively?
+#'     `mmm_ccc_funs`   \tab What \link[=mmm]{xmode} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?
+#'   \cr                \tab  
+#'   \cr    `mmm_ccc`   \tab Does `x` match the single xmode and xclass properties in arguments `mmm` and `ccc`, respectively?
+#'   \cr                \tab  
+#'   \cr    `MMM_CCC`   \tab Does `x` match the single xmode and xclass properties `'MMM'` and `'CCC'`, respectively?
 #' }
 #' @param x An R object.
-#' @param mmm A character scalar single `xmode` property from `mmm_props()`.
-#' @param ccc A character scalar single `xclass` property from `ccc_props()`.
-#' @param prop A character scalar.
+#' @param mmm A character scalar single xmode property from \code{\link{mmm_props}()}.
+#' @param ccc A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return \tabular{rl}{
-#'   `mmm_ccc_funs` \tab   A character vector.
-#'   \cr  `mmm_ccc` \tab   A logical scalar.
-#'   \cr  `MMM_CCC` \tab   A logical scalar.
-#' }
+#' @return *A character scalar*
+#'   \cr    `mmm_ccc_funs`
+#'   \cr\cr *A logical scalar*
+#'   \cr    `MMM_CCC`
+#'   \cr    `mmm_ccc`
 #' @examples
 #' scalar1 <- "a"
 #' lst2x26 <- list(letters = letters, LETTERS = LETTERS)
@@ -27,17 +29,15 @@
 #' c(mmm_ccc(letters, "num", "dtf"), num_dtf(letters))
 #' @export
 mmm_ccc <- function(x, mmm, ccc, ...) {
+  cfun <- function(cx) {run("i", ccc, "(cx)")}
+  mfun <- function(mx) {run("i", mmm, "(mx)")}
+  dfun <- function(dx) {f0(NROW(dx) * NCOL(dx) == 0, F, all(apply(dx, 2, mfun)))}
+  vfun <- function(vx) {f0(length(vx) == 0, F, all(sapply(x, mfun)))}
   errs <- c(.meets_errs(x, ...),
             f0(f0(length(mmm) != 1 | !is.character(mmm), F, f0(is.na(mmm), F, mmm %in% .mmms)), NULL, '[mmm] is not a scalar value from mmm_props().'),
             f0(f0(length(ccc) != 1 | !is.character(ccc), F, f0(is.na(ccc), F, ccc %in% .cccs)), NULL, '[ccc] is not a scalar value from ccc_props().'))
   if (!is.null(errs)) {stop(.errs(errs))}
-  if (!meets(x, ...)) {return(F)}
-  if (!run(paste0('.i', ccc, '(x)'))) {return(F)}
-  mfun <- paste0('.i', mmm)
-  if (ccc == 'dtf') {all(apply(x, 2, mfun))}
-  else if (ccc == 'vls') {all(sapply(x, mfun))}
-  else if (!is.atomic(x)) {F}
-  else {run(mfun, "(x)")}
+  f0(!meets(x, ...), F, f0(!cfun(x), F, f0(ccc == 'dtf', dfun(x), f0(ccc == "vls", vfun(x), mfun(x)))))
 }
 
 #' @rdname mmm_ccc

@@ -1,47 +1,55 @@
 #' @name eee
-#' @family props
-#' @title Effective dimensionality (`effective-D`) properties
-#' @description An object's `effective-D` is defined as the number of dimensions in which it has multiple populated index positions (i.e., if a dimension has only one index position, that is not an effective dimension).
+#' @encoding UTF-8
+#' @family properties
+#' @title Effective dimensionality (effective.d) properties
+#' @description An object's effective.d is defined as the number of dimensions in which it has multiple populated index positions (i.e., if a dimension has only one index position, that is not an effective dimension).
 #' \tabular{rl}{
-#'         `'eUD'`   \tab *Effectively* `NaN` *dimensional*.
-#'   \cr             \tab Length-`0` objects including `NULL` (of undefined `effective-D`).
-#'   \cr             \tab   
-#'   \cr   `'e0D'`   \tab *Effectively* `0` *dimensional*
-#'   \cr             \tab `1x1 data.frames` and length-`1 vectors`, \code{\link[=ivls]{vlists}}, and `arrays`.
-#'   \cr             \tab   
-#'   \cr   `'e1D'`   \tab *Effectively* `1` *dimensional*
-#'   \cr             \tab \code{\link[=imvc]{multivecs}}, length-`2+ vlists`, \code{\link[=irow]{row}} `data.frames`, \code{\link[=icol]{col}} `data.frames`, and length-`2+` arrays with `2+` index positions in exactly `1` dimension.
-#'   \cr             \tab   
-#'   \cr   `'e2D'`   \tab *Effectively* `2` *dimensional*
-#'   \cr             \tab `2+ x 2+ data.frames` and length-`4+ arrays` with `2+` positions in exactly `2` dimensions.
-#'   \cr             \tab   
-#'   \cr   `'eHD'`   \tab *Effectively* `hyper` *dimensional*
-#'   \cr             \tab Length-`8+ arrays` with `2+` positions in `3+` dimensions.
+#'       `'eUD'`   \tab *Effectively* `NaN` *dimensional*.
+#'   \cr           \tab Length-`0` objects including `NULL` (of undefined effective.d).
+#'   \cr           \tab  
+#'   \cr `'e0D'`   \tab *Effectively* `0` *dimensional*
+#'   \cr           \tab `1x1` data.frames and length-`1` vectors, \code{\link[=ivls]{vlists}}, and arrays.
+#'   \cr           \tab  
+#'   \cr `'e1D'`   \tab *Effectively* `1` *dimensional*
+#'   \cr           \tab \code{\link[=imvc]{multivecs}}, length-`2+` vlists, \code{\link[=irow]{row}} data.frames, \code{\link[=icol]{col}} data.frames, and length-`2+` arrays with `2+` index positions in exactly `1` dimension.
+#'   \cr           \tab  
+#'   \cr `'e2D'`   \tab *Effectively* `2` *dimensional*
+#'   \cr           \tab `2+ x 2+ `data.frames and length-`4+` arrays with `2+` positions in exactly `2` dimensions.
+#'   \cr           \tab  
+#'   \cr `'eHD'`   \tab *Effectively hyper dimensional*
+#'   \cr           \tab Length-`8+` arrays with `2+` positions in `3+` dimensions.
 #' }
 #' \cr\cr
 #' Effective dimensionality property functions are:
 #' \tabular{rl}{
-#'     `is_eee_spec`   \tab Is `spec` an `effective-D` specification?
-#'   \cr `eee_props`   \tab What `effective-D` properties are there?
-#'   \cr  `eee_funs`   \tab What `effective-D` property functions are there?
+#'     `is_eee_spec`   \tab Is `spec` an effective.d specification?
+#'   \cr               \tab  
+#'   \cr `eee_props`   \tab What effective.d properties are there?
+#'   \cr               \tab  
+#'   \cr  `eee_funs`   \tab What effective.d property functions are there?
+#'   \cr               \tab  
 #'   \cr      `neee`   \tab How many effective dimensions does `x` have?
-#'   \cr      `ieee`   \tab Is `x` a match to the `effective-D` specification`spec`?
-#'   \cr      `iEEE`   \tab Is `x` a match to the single `effective-D` property `'EEE'`?
-#'   \cr       `eee`   \tab What are `x`'s `effective-D` properties?
+#'   \cr               \tab  
+#'   \cr      `ieee`   \tab Is `x` a match to the effective.d specification`spec`?
+#'   \cr               \tab  
+#'   \cr      `iEEE`   \tab Is `x` a match to the single effective.d property `'EEE'`?
+#'   \cr               \tab  
+#'   \cr       `eee`   \tab What are `x`'s effective.d properties?
 #' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `effective-D` properties from `eee_props()`. `Effective-D` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more effective.d properties from `eee_props()`. Effective.d properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return \tabular{rl}{
-#'     `is_eee_spec`   \tab A logical scalar.
-#'   \cr `eee_props`   \tab A character vector.
-#'   \cr  `eee_funs`   \tab A logical scalar.
-#'   \cr      `ieee`   \tab A logical scalar.
-#'   \cr      `iEEE`   \tab A logical scalar.
-#'   \cr      `neee`   \tab A numeric scalar.
-#'   \cr       `eee`   \tab A character vector.
-#' }
+#' @return *A character vector*
+#'  \cr    `eee_props`
+#'  \cr    `eee_funs`
+#'  \cr    `eee`
+#'  \cr\cr *A logical scalar*
+#'  \cr    `is_eee_spec`
+#'  \cr    `iEEE`
+#'  \cr    `ieee`
+#'  \cr\cr *A numeric scalar*
+#'  \cr    `neee`
 #' @examples
 #' a. <- "a"
 #' abc. <- c("a", "b", "c")

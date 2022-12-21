@@ -1,51 +1,55 @@
 #' @name color
-#' @family colors
-#' @family plotting
+#' @encoding UTF-8
+#' @family color
+#' @family plots
 #' @title Simple color creation
 #' @description Simple color creation with a wide variety of options (intensity, blending, lightening, darkening, opacity). This family of functions uses three-letter codes for common colors as follows:
 #' \tabular{lll}{
-#'   **Color**    \tab   **Color**    \tab **RGB channel values of**
-#'   \cr **code** \tab   **name**     \tab **default color version**
-#'   \cr `wht`    \tab   white        \tab `c(r = 1  , g = 1  , b = 1  )`
-#'   \cr `blk`    \tab   black        \tab `c(r = 0  , g = 0  , b = 0  )`
-#'   \cr `gry`    \tab   grey         \tab `c(r = 0.5, g = 0.5, b = 0.5)`
-#'   \cr `red`    \tab   red          \tab `c(r = 1  , g = 0  , b = 0  )`
-#'   \cr `grn`    \tab   green        \tab `c(r = 0  , g = 1  , b = 0  )`
-#'   \cr `blu`    \tab   blue         \tab `c(r = 0  , g = 0  , b = 1  )`
-#'   \cr `ylw`    \tab   yellow       \tab `c(r = 1  , g = 1  , b = 0  )`
-#'   \cr `cyn`    \tab   cyan         \tab `c(r = 0  , g = 1  , b = 1  )`
-#'   \cr `mag`    \tab   magenta      \tab `c(r = 1  , g = 0  , b = 1  )`
-#'   \cr `vlt`    \tab   violet       \tab `c(r = 1  , g = 0  , b = 1  )`
-#'   \cr `ppl`    \tab   purple       \tab a `1:2` blend of red:blue.
-#'   \cr `orn`    \tab   orange       \tab a `33:51` blend of red:yellow.
+#'      **Color** \tab   **Color**   \tab **RGB channel values of**
+#'   \cr **code** \tab   **name**    \tab **default color version**
+#'   \cr `wht`    \tab   white       \tab `c(r = 1  , g = 1  , b = 1  )`
+#'   \cr `blk`    \tab   black       \tab `c(r = 0  , g = 0  , b = 0  )`
+#'   \cr `gry`    \tab   grey        \tab `c(r = 0.5, g = 0.5, b = 0.5)`
+#'   \cr `red`    \tab   red         \tab `c(r = 1  , g = 0  , b = 0  )`
+#'   \cr `grn`    \tab   green       \tab `c(r = 0  , g = 1  , b = 0  )`
+#'   \cr `blu`    \tab   blue        \tab `c(r = 0  , g = 0  , b = 1  )`
+#'   \cr `ylw`    \tab   yellow      \tab `c(r = 1  , g = 1  , b = 0  )`
+#'   \cr `cyn`    \tab   cyan        \tab `c(r = 0  , g = 1  , b = 1  )`
+#'   \cr `mag`    \tab   magenta     \tab `c(r = 1  , g = 0  , b = 1  )`
+#'   \cr `vlt`    \tab   violet      \tab `c(r = 1  , g = 0  , b = 1  )`
+#'   \cr `ppl`    \tab   purple      \tab a `1:2` blend of red:blue.
+#'   \cr `orn`    \tab   orange      \tab a `33:51` blend of red:yellow.
 #' }
-#' Functions in this family are:
-#' \itemize{
-#'   \item **`color`**: takes any valid color representation and lightens, darkens, adds opacity levels, and/or gets the complementary color.
-#'   \item **`rgba`**: creates colors from `r` = red, `g` = green, `b` = blue, and `a` = alpha weights, each in the interval `[0, 1]`.
-#'   \item **`hsva`**: creates colors from `h` = hue, `s` = saturation, `v` = value, and `a` = alpha weights, each in the interval `[0, 1]`.
-#'   \item **`blend`**: blends colors `x` and `y` using non-negative numeric weights `wx` and `wy`, and proportional numeric `a` = alpha values. Each corresponding pair of values of these arguments is normalized to sum to 1 to give the proportions of the resulting color that should come from `x` and `y`, respectively.
-#' }\cr\itemize{
-#'   \item **`xxx`**: creates versions of common color `xxx` by `p` = primary intensity, `s` = secondary intensity, and `a` = alpha, each in the interval `[0, 1]`.
-#'   \item **`xxx_yyy`**: creates versions of 50/50 blends of the common colors `xxx` and `yyy` by `p` = primary intensity, `s` = secondary intensity, and `a` = alpha, each in the interval `[0, 1]`.
-#' }\cr\itemize{
-#'   \item **`pal_cb`**: creates colorblind-friendly palettes of `2` to `20` Colors `1-10` vs. `11-20` are bright vs. `50%` darkened versions. Bright/darkened differences may be insufficient for some audiences.
-#'   \item **`pal_swatch`**: draws swatches for a collection/palette of colors.
+#' **Functions in this family**
+#' \tabular{rl}{
+#'     `pal_swatch`   \tab Draws swatches for a collection/palette of colors.
+#'   \cr   `pal_cb`   \tab Creates colorblind-friendly palettes of `2` to `20` Colors `1-10` vs. `11-20` are bright vs. `50%` darkened versions. Bright/darkened differences may be insufficient for some audiences.
+#'   \cr              \tab  
+#'   \cr    `color`   \tab Takes any valid color representation and lightens, darkens, adds opacity levels, and/or gets the complementary color.
+#'   \cr              \tab  
+#'   \cr    `blend`   \tab Blends colors `x` and `y` using non-negative numeric weights `wx` and `wy`, and proportional numeric `a` = alpha values. Each corresponding pair of values of these arguments is normalized to sum to 1 to give the proportions of the resulting color that should come from `x` and `y`, respectively.
+#'   \cr              \tab  
+#'   \cr     `rgba`   \tab Creates colors from `r` = red, `g` = green, `b` = blue, and `a` = alpha weights, each in the interval `[0, 1]`.
+#'   \cr              \tab  
+#'   \cr     `hsva`   \tab Creates colors from `h` = hue, `s` = saturation, `v` = value, and `a` = alpha weights, each in the interval `[0, 1]`.
+#'   \cr              \tab  
+#'   \cr      `XXX`   \tab Creates versions of common color `'XXX` by `p` = primary intensity, `s` = secondary intensity, and `a` = alpha, each in the interval `[0, 1]`.
+#'   \cr              \tab  
+#'   \cr  `XXX_YYY`   \tab Creates versions of 50/50 blends of the common colors `'XXX'` and `'YYY'` by `p` = primary intensity, `s` = secondary intensity, and `a` = alpha, each in the interval `[0, 1]`.
 #' }
-#' NOTE: `xxx` and `yyy` are placeholders for 3-letter color codes.
 #' @section Recycling: The only arguments not recycled are `na, nc`, and `ng`.
 #' @section The Arguments `p` and `s`: `p` is used to indicate the proportion of the RGB values of the most intense version of a hue should be present in a resulting color. `s` is used to indicate how much of complement of each RGB value should be present in a resulting color. The table below gives a helpful heuristic for setting values of `p` and `s`:
 #' \tabular{ll}{
-#'   **argument values**   \tab **resulting color**
-#'   \cr `p = 1, s = 0`    \tab intense
-#'   \cr `p > s > 0`       \tab lighter
-#'   \cr `s < p < 1`       \tab darker
-#'   \cr `p = s = 1`       \tab white
-#'   \cr `p = s = 0`       \tab black
-#'   \cr `p = s = 0.5`     \tab grey
-#'   \cr `s = 1, p = 0`    \tab intense, complementary
-#'   \cr `s > p > 0`       \tab lighter, complementary
-#'   \cr `p < s < 1`       \tab darker, complementary
+#'     **Argument values**   \tab **Resulting color**
+#'   \cr   `p = 1, s = 0`    \tab intense
+#'   \cr   `p > s > 0`       \tab lighter
+#'   \cr   `s < p < 1`       \tab darker
+#'   \cr   `p = s = 1`       \tab white
+#'   \cr   `p = s = 0`       \tab black
+#'   \cr   `p = s = 0.5`     \tab grey
+#'   \cr   `s = 1, p = 0`    \tab intense, complementary
+#'   \cr   `s > p > 0`       \tab lighter, complementary
+#'   \cr   `p < s < 1`       \tab darker, complementary
 #' }
 #' A concrete numeric example is that calling
 #' ```
@@ -57,7 +61,7 @@
 #' sec = c(r = 0, g = 0, b = 1)
 #' ```
 #' To get final RGB values, the primary RGB values are multiplied by `p = 0.7`, secondary RGB values are multiple by `s = 0.3`, and the results are summed pairwise giving
-#' ````
+#' ```
 #' final = c(r = 0.7, g = 0.7, b = 0.3)
 #' ```
 #'  

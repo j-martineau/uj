@@ -1,9 +1,10 @@
 #' @name stats0
-#' @family unchecked
+#' @encoding UTF-8
 #' @family missingness
+#' @family extensions
 #' @title Compute stats ignoring `NA` values
 #' @description \tabular{rl}{
-#'       `cmeans0` \tab   Calls `colMeans(x, na.rm = T)`
+#'       `cmeans0` \tab   Calls `colMeans(x, na.rm = T)`
 #'   \cr `rmeans0` \tab   Calls `rowMeans(x, na.rm = T)`
 #'   \cr  `csums0` \tab   Calls `colSums(x, na.rm = T)`
 #'   \cr  `rsums0` \tab   Calls `rowSums(x, na.rm = T)`
@@ -24,16 +25,15 @@
 #' @param n Positive whole-number scalar size of the complete set each subset is drawn from.
 #' @param x A \link[=cmp_num_vec]{complete numeric vec} or a \link[=cmp_num_mat]{complete numeric matrix}.
 #' @param y An optional complete numeric vec or a complete numeric matrix.
-#' @return \tabular{rl}{
-#'     `cmeans0,rmeans0` \tab   A numeric vector.
-#'   \cr `csums0,rsums0` \tab   A numeric vector.
-#'   \cr   `csds0,rsds0` \tab   A numeric vector.
-#'   \cr   `pmin0,pmax0` \tab   A numeric vector.
-#'   \cr    `mean0,sum0` \tab   A numeric scalar.
-#'   \cr     `min0,max0` \tab   A numeric scalar.
-#'   \cr      `sd0,var0` \tab   A numeric scalar.
-#'   \cr     `cor0,cov0` \tab   A numeric vector/matrix.
-#' }
+#' @return *A numeric vector*
+#'   \cr    `cmeans0, csums0, cvars0, csds0`
+#'   \cr    `rmeans0, rsums0, rvars0, rsds0`
+#'   \cr    `mean0, sum0, var0, sd0`
+#'   \cr    `pmin0, min0`
+#'   \cr    `pmax0, max0`
+#'   \cr
+#'   \cr *A numeric vector or matrix*
+#'   \cr    `cor0, cov0`
 #' @examples
 #' vec1. <- sample(0:99, 10)
 #' vec2. <- sample(0:99, 20)
@@ -120,6 +120,14 @@ csds0 <- function(x) {apply(x, 2, sd, na.rm = T)}
 #' @rdname stats0
 #' @export
 rsds0 <- function(x) {apply(x, 1, sd, na.rm = T)}
+
+#' @rdname stats0
+#' @export
+cvars0 <- function(x) {apply(x, 2, var, na.rm = T)}
+
+#' @rdname stats0
+#' @export
+rvars0 <- function(x) {apply(x, 1, var, na.rm = T)}
 
 #' @rdname stats0
 #' @export

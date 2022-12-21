@@ -4,12 +4,14 @@
     f0(fun == "r" , NULL, f0(cmp_psw_scl(e), NULL, "[e] must be a positive whole-number scalar (?cmp_psw_scl).")))
 }
 
+#' @encoding UTF-8
+#' @family extensions
 #' @title Error-checked wrappers for `base::rep`
 #' @description These functions \link[=av]{atomize} `...` arguments, converting them to an atomic vector (represented here as `dots`) before replication.
 #' \tabular{rl}{
-#'    `re,er` \tab   Calls `rep(dots, times = r, each = e)`.
-#'   \cr  `e` \tab   Calls `rep.int(dots, each = e)`.
-#'   \cr  `r` \tab   Calls `rep.int(dots, r)`.
+#'     `re, er`   \tab Calls `rep(dots, times = r, each = e)`.
+#'   \cr    `e`   \tab Calls `rep.int(dots, each = e)`.
+#'   \cr    `r`   \tab Calls `rep.int(dots, r)`.
 #' }
 #' @param ... One or more atomic vectors to be replicated (\link[=a]{atomized} before replication).
 #' @param r A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of replications of entire vectors.

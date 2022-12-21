@@ -1,22 +1,24 @@
 #' @name rd
+#' @encoding UTF-8
+#' @family extensions
 #' @family wraps
 #' @family files
 #' @title Thin and extended functionality wrappers of `readr` functions.
 #' @description \tabular{rl}{
-#'      `rdclip` \tab   Thinly wraps \code{\link[readr]{clipboard}}.
-#'   \cr `rdcsv` \tab   Extends \code{\link[readr]{read_csv}}\eqn{^a}.
-#'   \cr `rdtsv` \tab   Extends \code{\link[readr]{read_tsv}}\eqn{^a}.
-#'   \cr `rdxsv` \tab   Extends \code{\link[readr]{read_delim}}\eqn{^a}.
+#'      `rdclip`   \tab Thinly wraps \code{\link[readr]{clipboard}}
+#'   \cr `rdcsv`   \tab Extends \code{\link[readr]{read_csv}}\eqn{^a}
+#'   \cr `rdtsv`   \tab Extends \code{\link[readr]{read_tsv}}\eqn{^a}
+#'   \cr `rdxsv`   \tab Extends \code{\link[readr]{read_delim}}\eqn{^a}
 #' }
-#' \eqn{^a} Prompts user to select a file if `file = NULL`.
+#' \eqn{^{a.}} `file = NULL` prompts user to select a file.
 #' @param file Either `NULL` or a \link[=chr_vec]{character vector} that resolves to a file path. When `file = NULL` the user is asked to select a file using a system dialog box.
 #' @inherit readr::read_csv
-#' @return \tabular{rl}{
-#'      `rdclip` \tab   Varies.
-#'   \cr `rdcsv` \tab   A `data.frame`.
-#'   \cr `rdtsv` \tab   A `data.frame`.
-#'   \cr `rdxsv` \tab   A `data.frame`.
-#' }
+#' @return *Varies*
+#'   \cr    `rdclip`
+#'   \cr\cr *A data.frame*
+#'   \cr    `rdcsv`
+#'   \cr    `rdtsv`
+#'   \cr    `rdxsv`
 #' @export
 rdcsv <- function(file = NULL, col_names = TRUE, col_types = NULL, col_select = NULL, id = NULL, locale = readr::default_locale(), na = c("", "NA"), quoted_na = TRUE, quote = "\"", comment = "", trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max), name_repair = "unique", num_threads = readr::readr_threads(), progress = readr::show_progress(), show_col_types = readr::should_show_types(), skip_empty_rows = TRUE, lazy = readr::should_read_lazy()) {
   if (inll(file)) {file <- choose_doc("comma separated values text file")}

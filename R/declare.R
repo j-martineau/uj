@@ -14,53 +14,60 @@
 # exported ####
 
 #' @name declare
+#' @encoding UTF-8
+#' @family extensions
 #' @title Declare basic R objects with extended functionality
 #' @description This family of functions enforces the restrictions that names must (a) contain only ASCII letters, numerals, `'.'`, and `'_'`; (b) begin with a letter or `'.'` followed by a letter; and (c) end with a letter or numeral.
 #' \cr
 #' \cr Functions declaring \link[=atm_dtf]{atomic data.frames}:\tabular{rl}{
-#'          `dtf` \tab   Declares a data.frame.
-#'   \cr   `dtf.` \tab   Declares a data.frame concisely\eqn{^a}.
-#'   \cr   `dtf0` \tab   Declares a `0`-row data.frame.
-#'   \cr `dtf_na` \tab   Declares a data.frame of `NA` values.
+#'            `dtf` \tab   Declares a data.frame.
+#'   \cr     `dtf.` \tab   Declares a data.frame concisely\eqn{^a}.
+#'   \cr     `dtf0` \tab   Declares a `0`-row data.frame.
+#'   \cr   `dtf_na` \tab   Declares a data.frame of `NA` values.
 #' }
 #' Functions declaring matrices:\tabular{rl}{
-#'        `mat` \tab   Declares a matrix.
-#'   \cr `matd` \tab   Declares a square diagonal matrix\eqn{^b}.
+#'          `mat` \tab   Declares a matrix.
+#'   \cr   `matd` \tab   Declares a square diagonal matrix\eqn{^b}.
 #' }
 #' Functions declaring atomic vectors:\tabular{rl}{
-#'          `vec` \tab   Declares a vector.
-#'   \cr   `vec.` \tab   Declares a named atomic vector concisely\eqn{^c}.
-#'   \cr `vec_na` \tab   Declares a vector of `NA` values.
+#'            `vec` \tab   Declares a vector.
+#'   \cr     `vec.` \tab   Declares a named atomic vector concisely\eqn{^c}.
+#'   \cr   `vec_na` \tab   Declares a vector of `NA` values.
 #' }
 #' Functions declaring \link[=ivls]{vlists}:\tabular{rl}{
-#'        `vls` \tab   Declares a \link[=ivls]{vlist}.
-#'   \cr `vls.` \tab   Declares a named \link[=ivls]{vlist} concisely\eqn{^d}.
+#'          `vls` \tab   Declares a \link[=ivls]{vlist}.
+#'   \cr   `vls.` \tab   Declares a named \link[=ivls]{vlist} concisely\eqn{^d}.
 #' }
-#'      \eqn{^{a.}} `dtf.(a, b)` is identical to `data.frame(a = a, b = b, stringsAsFactors = F)`.
-#'  \cr \eqn{^{b.}} Off-diags are `0`, `FALSE`, `""` for `x` of mode `'numeric'`, `'logical'`, `'character'`, respectively.
-#'  \cr \eqn{^{c.}} `vec.(a, b)` is identical to `c(a = a, b = b)`.
-#'  \cr \eqn{^{d.}} `vls.(a, b)` is identical to `list(a = a, b = b)`.
+#' \eqn{^{a.}} `dtf.(a, b)` is identical to `data.frame(a = a, b = b, stringsAsFactors = F)`.
+#' \cr\cr\eqn{^{b.}} Off-diags are `0`, `FALSE`, `""` for `x` of mode `'numeric'`, `'logical'`, `'character'`, respectively.
+#' \cr\cr\eqn{^{c.}} `vec.(a, b)` is identical to `c(a = a, b = b)`.
+#' \cr\cr\eqn{^{d.}} `vls.(a, b)` is identical to `list(a = a, b = b)`.
 #' @param ... Objects to placed in an atomic vec, atomic matrix, atomic data.frame, vlist, or square atomic diagonal matrix. \link[=a]{Atomized} for vec and matrix creation.
 #' @param x A non-empty vector of mode `'numeric'`, `'character'`, or `'logical'`.
 #' @param r A non-`NA` numeric scalar number of replications.
+#' @param rn Possibly pipe-delimited complete character vec of matrix row names.
+#' @param cn Possibly pipe-delimited complete character vec of matrix column names.
+#' @param nr Complete positive whole-number scalars giving number of matrix rows.
+#' @param nc Complete positive whole-number scalars giving number of matrix columns.
+#' @param br A non-`NA` logical scalar indicating whether to fill matrices by row.
 #' @param en. A possibly pipe-delimited, \link[=cmp_chr_vec]{complete character vec} of names to apply to vector or list elements
 #' @param cn. A possibly pipe-delimited complete character vec of column names (respectively) for a data.frame.
-#' @param rn,cn Possibly pipe-delimited complete character vecs of row and column names (respectively) for a matrix.
-#' @param nr,nc Complete positive whole-number scalars giving number of rows and columns, respectively.
-#' @param br A non-`NA` logical scalar indicating whether to fill matrices by row.
-#' @return \tabular{rl}{
-#'       `dtf_na` \tab   An atomic data.frame
-#'   \cr `vec_na` \tab   An atomic vector.
-#'   \cr   `dmat` \tab   A square matrix.
-#'   \cr   `dtf0` \tab   An atomic data.frame
-#'   \cr   `dtf.` \tab   An atomic data.frame
-#'   \cr   `vec.` \tab   An atomic vector.
-#'   \cr   `vls.` \tab   A \link[=ivls]{vlist}.
-#'   \cr    `dtf` \tab   An atomic data.frame
-#'   \cr    `mat` \tab   A matrix.
-#'   \cr    `vec` \tab   An atomic vector.
-#'   \cr    `vls` \tab   A \link[=ivls]{vlist}.
-#' }
+#' @return *An atomic data.frame*
+#'  \cr    `dtf`
+#'  \cr    `dtf.`
+#'  \cr    `dtf0`
+#'  \cr    `dtf_na`
+#'  \cr\cr *An atomic vector*
+#'  \cr    `vec`
+#'  \cr    `vec.`
+#'  \cr    `vec_na`
+#'  \cr\cr *A square matrix*
+#'  \cr    `dmat`
+#'  \cr\cr *A matrix*
+#'  \cr    `mat`
+#'  \cr\cr *A \link[=ivls]{vlist}*
+#'  \cr    `vls.`
+#'  \cr    `vls`
 #' @examples
 #' a <- "a"
 #' b <- "b"
@@ -294,7 +301,7 @@ vls <- function(..., en. = NULL) {
             f0(ok.en     , NULL, "[en.] must be NULL or match the number of arguments in [...]."))
   if (!is.null(errs)) {stop(.errs(errs))}
   if (!is.null(en.)) {if (!.labs_ok(en.)) {stop(.errs("element names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral."))}}
-  if (idef(en.)) {names(dots) <- en.}
+  names(dots) <- en.
   dots
 }
 

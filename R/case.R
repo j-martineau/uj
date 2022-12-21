@@ -1,3 +1,5 @@
+#' @encoding UTF-8
+#' @family extensions
 #' @family forks
 #' @title Case as an extension of switch
 #' @description Takes a name (i.e., any atomic scalar) and matches that name to the name matching an element of `...` where matching can be achieved by matching the name of an argument in `...`. When names are supplied via `names.`, they substituted for the names of arguments in `...`. When no match is found and `def. = 'err'` an error is thrown, otherwise, the value of `def.` is returned.
@@ -18,7 +20,7 @@ case <- function(name., ..., names. = NULL, def. = "err") {
             f0(...length() > 0, NULL, "[...] is empty."),
             f0(ok.names,        NULL, "[names.] must be NULL or an atomic vector of length equal to ...length()"))
   if (!is.null(errs)) {stop(.errs(errs))}
-  names. <- dot_names(..., subs. = names., req. = T, bl. = F, u. = T)           # get {names.} supplied for arguments in {...}
+  names. <- dot_names(..., subs. = names., req. = T, bl. = F, u. = T)            # get {names.} supplied for arguments in {...}
   i <- which(names. == name.)                                                    # index any matches
   i1 <- length(i) == 1                                                           # whether there is a match
   err <- isEQ(def., 'err')

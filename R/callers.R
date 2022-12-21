@@ -1,16 +1,21 @@
+#' @encoding UTF-8
 #' @family environments
+#' @family meta
 #' @title Generations of functions in the call stack
 #' @description \tabular{rl}{
-#'      `ncallers`   \tab Gets the number of functions in the call stack.
+#'      `ncallers`   \tab Gets the number of functions in the call stack.
+#'   \cr             \tab  
 #'   \cr `callers`   \tab Gets names of all calling functions, with the immediate calling function in position `1`, optionally selecting the `gens.`-th element(s).
+#'   \cr             \tab  
 #'   \cr  `caller`   \tab Gets the name of the immediate calling function.
 #' }
 #' @param gens A \link[cmp_psw_vec]{complete positive whole-number vec} giving the number(s) of generations back in the function call stack to go.
-#' @return \tabular{rl}{
-#'      `ncallers`   \tab An integer scalar.
-#'   \cr `callers`   \tab A character vector.
-#'   \cr  `caller`   \tab A character scalar.
-#' }
+#' @return *A character vector*
+#'  \cr    `callers`
+#'  \cr\cr *A character scalar*
+#'  \cr    `caller`
+#'  \cr\cr *A numeric scalar*
+#'  \cr    `ncallers`
 #' @examples
 #' fun.a <- function() {A <- 0; fun.b()}
 #' fun.b <- function() {B <- 1; fun.c()}

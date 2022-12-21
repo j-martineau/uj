@@ -1,16 +1,20 @@
 #' @name n_is
+#' @encoding UTF-8
+#' @family extensions
+#' @family counts
+#' @family dots
 #' @title Dedicated counting functions
 #' @description Counting functions can be used with a single unnamed argument, multiple unnamed arguments, and with restrictions in named arguments, in any combination. The functions in this family answer the questions described below.
 #' \tabular{rl}{
-#'   \cr `nu,nuv`   \tab Number of unique atomic values.
-#'   \cr  `nw,nt`   \tab Number of `TRUE` values.
+#'      `nu, nuv`   \tab Number of unique atomic values.
+#'   \cr `nw, nt`   \tab Number of `TRUE` values.
 #'   \cr     `nf`   \tab Number of `FALSE` values.
 #'   \cr    `nna`   \tab Number of atomic `NA` values.
 #'   \cr    `nok`   \tab Number of atomic non-`NA` values.
-#'   \cr    `nch`   \tab Number of characters in each element.
-#'   \cr     `nr`   \tab Number of rows.
+#'   \cr    `nch`   \tab Number of characters in each element.
 #'   \cr     `nc`   \tab Number of columns.
-#'   \cr            \tab   
+#'   \cr     `nr`   \tab Number of rows.
+#'   \cr            \tab  
 #'   \cr     `nd`   \tab Gets the number of `...` args.
 #'   \cr    `nd0`   \tab Are there `0 ...` args?
 #'   \cr    `nd1`   \tab Are there `1 ...` args?
@@ -19,7 +23,7 @@
 #'   \cr   `nd1p`   \tab Are there `1+ ...` args?
 #'   \cr   `nd2p`   \tab Are there `2+ ...` args?
 #'   \cr   `nd3p`   \tab Are there `3+ ...` args?
-#'   \cr            \tab   
+#'   \cr            \tab  
 #'   \cr     `n0`   \tab Is length `0`?
 #'   \cr     `n1`   \tab Is length `1`?
 #'   \cr     `n2`   \tab Is length `2`?
@@ -27,17 +31,17 @@
 #'   \cr    `n1p`   \tab Is length `1+`?
 #'   \cr    `n2p`   \tab Is length `2+`?
 #'   \cr    `n3p`   \tab Is length `3+`?
-#'   \cr            \tab   
+#'   \cr            \tab  
 #'   \cr   `nmin`   \tab Min `...` arg length.
 #'   \cr   `nmax`   \tab Max `...` arg length.
-#'   \cr            \tab   
-#'   \cr  `nsame`   \tab Are `...` arg lengths the same?
+#'   \cr            \tab  
+#'   \cr  `nsame`   \tab Are `...` arg lengths the same?
 #'   \cr    `nat`   \tab Length after \link[=av]{atomizing}.
-#'   \cr            \tab   
+#'   \cr            \tab  
 #'   \cr     `nx`   \tab Length(s) of `...` args.
 #'   \cr     `ns`   \tab Lengths of `...` args.
-#'   \cr            \tab   
-#'   \cr   `n_is`   \tab Do counts in `x` meet criteria in `n, min, max, eq`?
+#'   \cr            \tab  
+#'   \cr   `n_is`   \tab Do counts meet criteria in `n, min, max, eq`?
 #' }
 #' @param x \link[=innw]{non-negative whole-number} object.
 #' @param ... One or more arguments to be examined for counts.
@@ -52,7 +56,7 @@
 #' @param le Optional complete sortable scalar indicating specific values elements of `...` arguments must be less than or equal to in order to be counted
 #' @param ge Optional complete sortable scalar indicating specific values elements of `...` arguments must be greater than or equal to in order to be counted.
 #' @param gt Optional complete sortable scalar indicating specific values elements of `...` arguments must be greater than in order to be counted.
-#' @return An integer or logical scalar or vector.
+#' @return May be non-negative integer or a logical scalar or vector, depending the properties of primary argument(s) (i.e., `x` and `...`) and optional arguments (i.e., all others).
 #' @export
 #' @examples
 #' N <- 0:15

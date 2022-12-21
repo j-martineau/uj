@@ -8,16 +8,16 @@
 .a_scl_dot <- function(x, ...) {.a_scl(x) & length(av(...)) > 0}
 
 #' @name failsafe_is
+#' @encoding UTF-8
+#' @family extensions
 #' @family failsafe
 #' @family logicals
 #' @title Failsafe `is` functions
 #' @description These functions *always* produce `TRUE` or `FALSE` results unless calling `identity(.)` produce an error.
-#' \cr
-#' \cr Function names are constructed of prefixes and suffixes, where the suffix specifies what kind of check is conducted and prefix specifies how the check is modified or applied and swept across multiple values.
-#' \cr
-#' \cr **Type-of-check suffixes**
+#' \cr\cr Function names are constructed of prefixes and suffixes, where the suffix specifies what type of check is conducted and the prefix specifies how the check is modified or applied and swept across multiple values.
+#' \cr\cr **Type-of-check suffixes**
 #' \tabular{rl}{
-#'       `NAS` \tab   `NA` scalar.
+#'       `NAS` \tab   `NA` scalar.
 #'   \cr `OKS` \tab   Non-`NA` scalar.
 #'   \cr `OUT` \tab   Atomic scalar `x` is *not* in `...`.\eqn{^a}
 #'   \cr  `IN` \tab   Atomic scalar `x` is in `...`.\eqn{^a}
@@ -29,23 +29,22 @@
 #'   \cr   `F` \tab   Scalar `FALSE`.
 #'   \cr   `T` \tab   Scalar `TRUE`.
 #' }
-#' \eqn{^{a.}} That is, evaluates membership in any \link[=av]{atomized} `...` argument.
+#' \eqn{^{a.}} Evaluates membership in any \link[=av]{atomized} `...` argument.
 #' \cr\cr **Modifying prefixes**
 #' \tabular{rl}{
-#'      `not` \tab   Negation.
+#'      `not` \tab   Negation.
 #'   \cr `is` \tab   Identity.
 #' }
 #' **Apply-and-sweep prefixes**
 #' \tabular{rl}{
-#'       `nor` \tab   `0` values are `TRUE`.
+#'       `nor` \tab   `0` values are `TRUE`.
 #'   \cr `one` \tab   `1` value is `TRUE`.
 #'   \cr `any` \tab   `1+` value is `TRUE`.
 #'   \cr `two` \tab   `2+` values are `TRUE`.
 #'   \cr `all` \tab   All values are `TRUE`.
 #' }
 #' **Combining prefixes and suffix**
-#' \cr
-#' \cr All prefixes combine with all suffixes to create function names.
+#' \cr\cr All prefixes combine with all suffixes to create function names.
 #' @param x,y Any R object.
 #' @param ... Objects to check `x` against for functions with the suffix `IN` or `OUT`.
 #' @return Scalar `TRUE` or `FALSE`.

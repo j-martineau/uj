@@ -16,43 +16,40 @@ weave(x, ...)
 A character scalar.
 }
 \description{
-A reformulation of \code{\link[base]{sprintf}}. See details.
+A reformulation of \code{\link[base]{sprintf}} relying on a template containing escape sequences which in turn contain formatting switches. Escape sequences specify where to insert inlay arguments. Switches specify how to format arguments to be inlaid, and come in three families.
+\cr\cr \strong{Decimal switches} specify number of decimal places for numeric arguments, taking the values \code{'0'} to \code{'9'}
+\cr\cr \strong{Quote switches} specify quoting argument elements as follows:
+\tabular{lcll}{
+   \tab \strong{Switch} \tab \strong{Style} \tab   \strong{Type}
+\cr    \tab            \tab           \tab  
+\cr    \tab   \code{'q'}    \tab straight  \tab   single
+\cr    \tab   \code{'Q'}    \tab           \tab   double
+\cr    \tab            \tab           \tab  
+\cr    \tab   \code{'t'}    \tab typeset   \tab   single
+\cr    \tab   \code{'T'}    \tab           \tab   typeset
 }
-\details{
-This function relies on a template containing escape sequences which in turn contain formatting switches. Escape sequences specify where to insert inlay arguments. Switches specify how to format arguments to be inlaid, and come in three families
-\cr\cr \strong{\code{decimal}} switches specify number of decimal places for numeric arguments, taking the values \code{'0'} to \code{'9'}
-\cr\cr \strong{\code{quote}} switches specify quoting argument elements in various ways:
-\tabular{cll}{
-\strong{Switch}   \tab \strong{Style} \tab   \strong{Type}
-\cr \code{'q'}    \tab straight  \tab   single
-\cr \code{'Q'}    \tab straight  \tab   double
-\cr \code{'t'}    \tab typeset   \tab   single
-\cr \code{'T'}    \tab typeset   \tab   typeset
+\strong{List switches} specify formatting arguments as comma-separated lists:
+\tabular{lclll}{
+   \tab \strong{Switch} \tab   \strong{Type of List} \tab   \strong{Subtype}     \tab   \strong{Result with \verb{arg = 1:3}}
+\cr    \tab.           \tab                    \tab                   \tab  
+\cr    \tab   \code{'l'}    \tab   \emph{list}           \tab   simple          \tab   \code{'1, 2, 3'}
+\cr    \tab.           \tab                    \tab                   \tab  
+\cr    \tab   \code{'|'}    \tab   \emph{Oxford-comma}   \tab   or              \tab   \code{'1, 2, or 3'}
+\cr    \tab   \code{'&'}    \tab                    \tab   and             \tab   \code{'1, 2, and 3'}
+\cr    \tab   \code{'a'}    \tab                    \tab   all of          \tab   \verb{any of 1, 2, or 3}
+\cr    \tab   \code{'A'}    \tab                    \tab   any of          \tab   \verb{all of 1, 2, and 3}
+\cr    \tab   \code{'e'}    \tab                    \tab   either/or       \tab   \verb{either 1, 2, or 3}
+\cr    \tab   \code{'n'}    \tab                    \tab   neither/nor     \tab   \verb{neither 1, 2, nor 3}
+\cr    \tab.           \tab                    \tab                   \tab  
+\cr    \tab   \code{'b'}    \tab   \emph{enclosed}       \tab   braces          \tab   \code{'{1, 2, 3}'}
+\cr    \tab   \code{'c'}    \tab                    \tab   concatenated    \tab   \code{'c(1, 2, 3)'}
+\cr    \tab   \code{'p'}    \tab                    \tab   parentheses     \tab   \code{'(1, 2, 3)'}
+\cr    \tab   \code{'s'}    \tab                    \tab   square brackets \tab   \code{'[1, 2, 3]'}
 }
-\strong{\code{list}} switches specify formatting arguments as comma-separated lists:
-\tabular{cll}{
-\strong{Switch}   \tab \strong{Type}  \tab   \strong{Result: \code{arg = 1:3}}
-\cr \code{'a'}    \tab and       \tab   \code{'1, 2, and 3'}
-\cr \code{'b'}    \tab braces    \tab   \code{'{1, 2, 3}'}
-\cr \code{'c'}    \tab concat    \tab   \code{'c(1, 2, 3)' }
-\cr \code{'l'}    \tab simple    \tab   \code{'1, 2, 3'}
-\cr \code{'o'}    \tab or        \tab   \code{'1, 2, or 3'}
-\cr \code{'p'}    \tab parens    \tab   \code{'(1, 2, 3)'}
-\cr \code{'s'}    \tab square    \tab   \code{'[1, 2, 3]'}
-}
-\strong{Building escape sequences}
-\cr Escape sequences are formatted as \code{'{@_}'} where \verb{_} is a placeholder for \code{0} to \code{3} formatting switches, but with no more than \code{1} switch from each family. What each format signals is described below.
-\cr
-\cr \code{'{@}'}: insert \link[=atm_scl]{atomic scalar} arg \emph{as is}.
-\cr
-\cr \code{'{@x}'}: insert \link[=atm_vec]{atomic vec} arg \emph{after applying formatting switch} \code{x}.
-\cr
-\cr \code{'{@xy}'}: insert \link[=atm_vec]{atomic vec} arg \emph{after applying formatting switches} \code{x} and \code{y}.
-\cr
-\cr \code{'{@xyz}'}: insert \link[=atm_vec]{atomic vec} arg \emph{after applying formatting switches} \code{x}, \code{y}, and \code{z}.
-\cr
-\cr \strong{Order of switches}
-\cr Order of switches in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:
+\strong{Escape sequences} are formatted as \verb{'\{@\}', '\{@x\}', '\{@xy\}',} and \verb{'\{@xyz\}} where \code{x}, \code{y}, and \code{z} are formatting switches and where there may only be \code{1} formatting switch per family.
+\cr\cr Escape sequences in format \code{'{@}'} mean 'insert \link[=atm_scl]{atomic scalar} arg \emph{as is}.
+\cr\cr Escape sequences in formats \verb{'\{@x\}', '\{@xy\}',} and \code{'{@xyz}'} mean 'insert \link[=atm_scl]{atomic vec} arg \emph{after applying}, respectively, switch \code{x}; switches \code{x} and \code{y}; and switches \code{x}, \code{y}, and \code{z}.
+\cr\cr \strong{Ordering of switches} in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:
 \tabular{rl}{
 1.  \tab Decimal switch (if any).
 \cr 2.  \tab Quote switch (if any).
@@ -78,13 +75,13 @@ Other strings:
 \code{\link{fsub}()},
 \code{\link{gr}},
 \code{\link{ipat}()},
+\code{\link{makestr}},
+\code{\link{markdown}},
 \code{\link{max_nch}()},
-\code{\link{mkd}},
-\code{\link{mkstr}},
 \code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{revstr}()},
-\code{\link{spacing}},
+\code{\link{spaces}()},
 \code{\link{ss}()},
 \code{\link{tocase}()}
 }

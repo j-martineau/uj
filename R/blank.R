@@ -1,3 +1,4 @@
+#' @encoding UTF-8
 #' @family strings
 #' @title Blank strings
 #' @description Evaluate whether `x` is a blank string scalar (i.e., `""`).

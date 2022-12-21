@@ -1,8 +1,8 @@
+#' @encoding UTF-8
 #' @family environments
 #' @title Identify the current operating system.
 #' @return A character scalar (either `mac`, `unix`, or `win`).
-#' @examples
-#' os()
+#' @examples os()
 #' @export
 os <- function() {
   type <- .Platform$OS.type

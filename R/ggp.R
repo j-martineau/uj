@@ -1,8 +1,10 @@
 #' @name ggp
+#' @encoding UTF-8
+#' @family plots
 #' @family wraps
-#' @family plotting
 #' @title Thin wrappers of `ggplot2` and `ggtext` functions
-#' @description These functions wrap `ggplot2` functions unless otherwise noted:\tabular{rl}{
+#' @description These functions wrap `ggplot2` functions unless otherwise noted:
+#' \tabular{rl}{
 #'             `ggp` \tab   Thinly wraps \code{\link[ggplot2]{ggplot}}
 #'   \cr      `ggsv` \tab   Thinly wraps \code{\link[ggplot2]{ggsave}}
 #'   \cr             \tab   
@@ -43,7 +45,7 @@
 #'   \cr             \tab   
 #'   \cr     `ggemd` \tab   Thinly wraps \code{\link[ggtext]{element_markdown}}\eqn{^a}
 #' }
-#' \eqn{{a.}} A `ggtext` package function.
+#' \eqn{{a.}} A `ggtext` package function.
 #' @inherit ggplot2::ggplot
 #' @export
 ggp <- function(data = NULL, mapping = ggplot2::aes(), ..., environment = parent.frame()) {ggplot2::ggplot(data = data, mapping = mapping, ..., environment = environment)}

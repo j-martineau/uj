@@ -1,5 +1,6 @@
-#' @family chars
+#' @encoding UTF-8
 #' @family strings
+#' @family chars
 #' @title Get the `n`-th character element-wise.
 #' @param x A \link[=pop_chr]{populated character object}.
 #' @param n A \link[=cmp_psw_scl]{positive whole-number scalar} or a \link[=cmp_psw]{complete positive whole-number object} of the same dimensions as `x`.

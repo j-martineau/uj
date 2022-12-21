@@ -1,13 +1,12 @@
+#' @encoding UTF-8
+#' @family extensions
+#' @family values
 #' @title Atomize (reduce arguments to an atomic vector)
 #' @description \tabular{rl}{
-#'     `atomize`   \tab Gets a vector of all
-#'   \cr `atoms`   \tab atomic values in all
-#'   \cr    `av`   \tab `...` arguments.
-#'   \cr     `a`   \tab   
-#'   \cr           \tab   
-#'   \cr   `sav`   \tab Gets a sorted vector of
-#'   \cr           \tab all atomic values in all
-#'   \cr           \tab `...` arguments.
+#'      `atomize, a`   \tab Gets a vector of all atomic
+#'   \cr `atoms, av`   \tab values in all `...` arguments.
+#'   \cr               \tab   
+#'   \cr       `sav`   \tab Gets `sort(a(...))`.
 #' }
 #' @param ... Arguments to be atomized.
 #' @return A single atomic vector containing all constituent atomic values in the full set of arguments supplied in `...`.

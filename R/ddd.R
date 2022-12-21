@@ -1,36 +1,38 @@
 #' @name ddd
-#' @family props
-#' @title Defined dimensionality (`defined-D`) properties
-#' @description An object's defined dimensionality (`defined-D`) is the number of dimensions on which its elements can be indexed. The associated property values are:
+#' @encoding UTF-8
+#' @family properties
+#' @title Defined dimensionality (defined.d) properties
+#' @description An object's defined dimensionality (defined.d) is the number of dimensions on which its elements can be indexed. The associated property values are:
 #' \tabular{rcl}{
-#'       `'d0D'` \tab   `0D` \tab   The `NULL` object.
-#'   \cr `'d1D'` \tab   `1D` \tab   Vectors, \link[=ivls]{vlists}, `1D` arrays.
-#'   \cr `'d2D'` \tab   `2D` \tab   Data.frames and matrices.
-#'   \cr `'dHD'` \tab   `HD` \tab   Hyper (3+) dimensional arrays
+#'       `'d0D'` \tab   `0D`   \tab The `NULL` object.
+#'   \cr `'d1D'` \tab   `1D`   \tab Vectors, \link[=ivls]{vlists}, `1D` arrays.
+#'   \cr `'d2D'` \tab   `2D`   \tab Data.frames and matrices.
+#'   \cr `'dHD'` \tab   `HD`   \tab Hyper (3+) dimensional arrays
 #' }
 #' **Functions**
 #' \tabular{rl}{
-#'     `is_ddd_spec`   \tab Is `spec` a `defined-D` property specification?
-#'   \cr `ddd_props`   \tab What `defined-D` properties are there?
-#'   \cr  `ddd_funs`   \tab What `defined-D` property functions are there?
+#'     `is_ddd_spec`   \tab Is `spec` a defined.d property specification?
+#'   \cr `ddd_props`   \tab What defined.d properties are there?
+#'   \cr  `ddd_funs`   \tab What defined.d property functions are there?
 #'   \cr      `nddd`   \tab How many defined dimensions does `x` have?
-#'   \cr      `iddd`   \tab Is `x` a match to the `defined-D`-specific `spec`?
-#'   \cr      `iDDD`   \tab is `x` a match to the single `defined-D` property `'DDD'`?
-#'   \cr       `ddd`   \tab What are `x`'s `defined-D` properties?
+#'   \cr      `iddd`   \tab Does `x` match defined.d specification `spec`?
+#'   \cr      `iDDD`   \tab Does `x` match single defined.d property `'DDD'`?
+#'   \cr       `ddd`   \tab What are `x`'s defined.d properties?
 #' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `defined-D` properties from `ddd_props()`. `defined-D` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more defined.d properties from `ddd_props()`. defined.d properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return \tabular{rl}{
-#'     `is_ddd_spec`   \tab A logical scalar.
-#'   \cr `ddd_props`   \tab A character vector
-#'   \cr  `ddd_funs`   \tab A character vector
-#'   \cr      `nddd`   \tab A numeric scalar
-#'   \cr      `iddd`   \tab A logical scalar
-#'   \cr      `iDDD`   \tab A logical scalar
-#'   \cr       `ddd`   \tab A character vector
-#' }
+#' @return *A character vector*
+#'  \cr    `ddd_props`
+#'  \cr    `ddd_funs`
+#'  \cr    `ddd`
+#'  \cr\cr *A logical scalar*
+#'  \cr    `is_ddd_spec`
+#'  \cr    `iDDD`
+#'  \cr    `iddd`
+#'  \cr\cr *A numeric scalar*
+#'  \cr    `nddd`
 #' @examples
 #' ddd_funs()
 #' ddd_props()

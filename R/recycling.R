@@ -1,11 +1,13 @@
+#' @encoding UTF-8
 #' @name recycling
 #' @family environments
+#' @family meta
 #' @title Recycling and recyclability
 #' @description Arguments are recyclable if all of their lengths are divisors of the argument with the greatest length subject to any settings in the optional arguments `ns.`, `min.`, `max.`, and/or `targ.`.
 #' \cr\cr Functions in this family are:\tabular{rl}{
-#'     `recyclable_n` \tab   Are lengths in `...` recyclable?.
-#'   \cr `recyclable` \tab   Are `...` arguments are recyclable?
-#'   \cr    `recycle` \tab   Recycles `...` arguments in the calling function.
+#'     `recyclable_n`   \tab Are lengths in `...` recyclable?.
+#'   \cr `recyclable`   \tab Are `...` arguments are recyclable?
+#'   \cr    `recycle`   \tab Recycles `...` arguments in the calling function.
 #' }
 #' @param ... For `recycle`, named arguments to be recycled in the environment of the calling function. For `recyclable_n`, one or more objects containing only positive whole number values (\link[=av]{atomized} before processing).
 #' @param n. Either `NULL` or a complete positive whole-number vec giving the set of valid recycled argument lengths.
@@ -13,11 +15,12 @@
 #' @param max. `NULL` or complete positive whole-number scalar giving the maximum valid recycled argument length.
 #' @param err. A non-`NA` logical scalar indicating whether to throw an error if the `...` arguments are not recyclable.
 #' @param targ. A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the target length of recycled arguments. May be greater than `length(av(...))`.
-#' @return \tabular{rl}{
-#'     `recyclable_n` \tab   A logical scalar.
-#'   \cr `recyclable` \tab   A logical scalar.
-#'   \cr    `recycle` \tab   `NULL`.
-#' }
+#' @return *A logical scalar*
+#'   \cr    `recyclable_n`
+#'   \cr    `recyclable`
+#'   \cr
+#'   \cr `NULL`
+#'   \cr    `recycle`
 #' @examples
 #' n1. <- 1
 #' n2. <- 1:2

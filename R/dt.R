@@ -1,8 +1,9 @@
 #' @name dt
+#' @encoding UTF-8
 #' @family wraps
 #' @title Wrappers of `data.table` functions
 #' @description \tabular{rl}{
-#'      `dtmerge`   \tab Thinly wraps \code{\link[data.table]{merge}}.
+#'      `dtmerge`   \tab Thinly wraps \code{\link[data.table]{merge}}.
 #'   \cr `dtwide`   \tab Thinly wraps \code{\link[data.table]{dcast}}.
 #'   \cr `dtrows`   \tab Selects rows.
 #'   \cr `dtcols`   \tab Selects columns without non-standard `[` (i.e., `x[ , ..var]`).
@@ -64,4 +65,3 @@ dtwide <- function(data, formula, fun.aggregate = NULL, sep = "_", ..., margins 
   )
   run(code)
 }
-

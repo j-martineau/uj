@@ -6,11 +6,13 @@
 }
 
 #' @name evals
+#' @encoding UTF-8
+#' @family extensions
 #' @family logicals
 #' @title Enhancements of `base` logical functions
 #' @description The following are extensions of base logical functions:
 #' \tabular{rl}{
-#'        **Function Usage** \tab   **Extends**
+#'        **Function usage** \tab   **Extends**
 #'   \cr `not_in(x, y, ...)` \tab   `!(x %in% y)`
 #'   \cr `is_out(x, y, ...)` \tab   `!(x %in% y)`
 #'   \cr  `isout(x, y, ...)` \tab   `!(x %in% y)`
@@ -28,7 +30,7 @@
 #' }
 #' The next set of functions evaluate an arbitrary number of `...` arguments expected to be logical scalars for whether:
 #' \tabular{rl}{
-#'       `ANY` \tab   Any `...` argument is scalar `TRUE`.
+#'       `ANY` \tab   Any `...` argument is scalar `TRUE`.
 #'   \cr `ALL` \tab   All `...` argument are scalar `TRUE`.
 #'   \cr `NOR` \tab   `0 ...` arguments are scalar `TRUE`.
 #'   \cr `ONE` \tab   `1 ...` argument is scalar `TRUE`.
@@ -36,7 +38,7 @@
 #' }
 #' The remainder of functions in this family sweep across or within `...` arguments, as specified by the arguments `across` and `within`:
 #' \tabular{rl}{
-#'      `tests` \tab   Logically indexes `TRUE` values.
+#'      `tests` \tab   Logically indexes `TRUE` values.
 #'   \cr    `w` \tab   Numerically indexes `TRUE` values.
 #'   \cr `anys` \tab   Checks for any `TRUE` values.
 #'   \cr `alls` \tab   Checks for only `TRUE` values.
@@ -179,7 +181,7 @@ ANY <- function(..., err = NA) {
     vx <- cmp_lgl_scl(x)
     if (!vx) {
       if (isTF(err)) {x <- err}
-      else {stop(.errs(p0("[..", i, "] did not resolve to TRUE or FALSE.")))}
+      else {stop(.errs(paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}
     }
     if (x) {return(T)}
   }
@@ -195,7 +197,7 @@ ALL <- function(..., err = NA) {
   for (i in 1:...length()) {
     x <- tryCatch(...elt(i) == T, error = function(e) NA, finally = NULL)
     vx <- cmp_lgl_scl(x)
-    if (!vx) {if (isTF(err)) {x <- err} else {stop(.errs(p0("[..", i, "] did not resolve to TRUE or FALSE.")))}}
+    if (!vx) {if (isTF(err)) {x <- err} else {stop(.errs(paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}}
     if (!x) {return(F)}
   }
   T
@@ -212,7 +214,7 @@ NOR <- function(..., err = NA) {
     vx <- cmp_lgl_scl(x)
     if (!vx) {
       if (isTF(err)) {x <- err}
-      else {stop(.errs(p0("[..", i, "] did not resolve to TRUE or FALSE.")))}
+      else {stop(.errs(paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}
     }
     if (x) {return(F)}
   }
@@ -231,7 +233,7 @@ ONE <- function(..., err = NA) {
     vx <- cmp_lgl_scl(x)
     if (!vx) {
       if (isTF(err)) {x <- err}
-      else {stop(.errs(p0("[..", i, "] did not resolve to TRUE or FALSE.")))}
+      else {stop(.errs(paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}
     }
     if (x) {n <- n + 1}
     if (n > 1) {return(F)}
@@ -251,7 +253,7 @@ TWO <- function(..., err = NA) {
     vx <- cmp_lgl_scl(x)
     if (!vx) {
       if (isTF(err)) {x <- err}
-      else {stop(.errs(p0("[..", i, "] did not resolve to TRUE or FALSE.")))}
+      else {stop(.errs(paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}
     }
     if (x) {n <- n + 1}
     if (n > 1) {return(T)}

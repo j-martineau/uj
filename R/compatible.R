@@ -1,10 +1,13 @@
-#' @name compatible
-#' @family props
+#' @encoding UTF-8
+#' @family extensions
+#' @family properties
 #' @title Are objects compatible?
 #' @description \tabular{rl}{
-#'            `compatible`   \tab Evaluates whether all `...` arguments are compatible, meaning all numeric, all character, all logical, all unordered factor with the same levels, or ordered factor with the same levels in the same order.
-#'   \cr `compatible_dtfs`   \tab Evaluates whether all `...` arguments are \link[=atm_dtf]{atomic data.frames}. For row binding, also evaluates whether they have the same number of columns and all corresponding columns are compatible. For column binding, also evaluates whether they have the same number of rows.
-#'   \cr `compatible_atms`   \tab Evaluates whether all `...` arguments are compatible matrices and (for row binding) have the same number of columns or (for column binding) have the same number of rows.
+#'              `compatible`   \tab Evaluates whether all `...` arguments are compatible, meaning all numeric, all character, all logical, all unordered factor with the same levels, or ordered factor with the same levels in the same order.
+#'   \cr                       \tab  
+#'   \cr   `compatible_dtfs`   \tab Evaluates whether all `...` arguments are \link[=atm_dtf]{atomic data.frames}. For row binding, also evaluates whether they have the same number of columns and all corresponding columns are compatible. For column binding, also evaluates whether they have the same number of rows.
+#'   \cr                       \tab  
+#'   \cr   `compatible_atms`   \tab Evaluates whether all `...` arguments are compatible matrices and (for row binding) have the same number of columns or (for column binding) have the same number of rows.
 #' }
 #' @param ... An arbitrary number of arguments to be checked for compatibility with each other.
 #' @param rec. A non-\code{NA} logical scalar indicating whether arguments in `...` must be recyclable to be compatible.

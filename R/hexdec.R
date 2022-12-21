@@ -1,14 +1,18 @@
 #' @name hexdec
+#' @encoding UTF-8
+#' @family conversions
 #' @title Convert non-negative whole numbers between decimal and hexadecimal
 #' @description \tabular{rl}{
-#'       `todec`   \tab Converts hexadecimal \link[=cmp_chr]{complete character object} `x` from hexadecimal to decimal. `x` may be formatted as either `'hhh...'` or `'#hhh...'` where `h` is a placeholder for a hexidecimal digit in either upper or lower case.
+#'       `todec`   \tab Converts hexadecimal \link[=cmp_chr]{complete character object} `x` from hexadecimal to decimal. `x` may be formatted as either `'hhh...'` or `'#hhh...'` where `h` is a placeholder for a hexidecimal digit in either upper or lower case.
+#'   \cr           \tab  
 #'   \cr `tohex`   \tab Converts \link[=cmp_psw]{complete positive whole-number} `x` to hexadecimal formatted as `'#HHH...'` where `H` is a placeholder for an uppercase hexadecimal digit.
 #' }
 #' @param x A \link[=cmp_nnw]{complete non-negative whole-number object} or a \link[=cmp_chr]{complete character vec} containing only non-negative whole-number hexademical values.
-#' @return \tabular{rl}{
-#'       `todec`   \tab A non-negative whole-number object.
-#'   \cr `tohex`   \tab A character object of non-negative whole-number hexadecimal values.
-#' }
+#' @return *A non-negative whole number object*
+#'   \cr    `todec`
+#'   \cr\cr *A character object of non-negative*
+#'   \cr    *whole number hexadecimal values*
+#'   \cr    `tohex`
 #' @examples
 #' dec. <- sample(1:100, 5)
 #' hex. <- c("10", "#B25", "2bc4a", "#FF")

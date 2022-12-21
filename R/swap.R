@@ -1,3 +1,5 @@
+#' @encoding UTF-8
+#' @family extensions
 #' @family forks
 #' @title Swap atomic values.
 #' @param x An atomic object.

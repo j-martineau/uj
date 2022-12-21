@@ -1,24 +1,25 @@
-#' @name mkstr
+#' @name makestr
+#' @encoding UTF-8
 #' @family strings
 #' @title Specialized string building functions
 #' @description Build strings where function names are composed of a single-letter prefix and a longer suffix. Prefixes and their meanings are
 #' \tabular{rl}{
-#'       `g`   \tab Glue/collapse `...` args
+#'       `g`   \tab Glue/collapse `...` args
 #'   \cr `p`   \tab Paste across corresponding element of `...`.
 #' }
 #' Suffixes and their meanings are
 #' \tabular{rl}{
-#'      `bracket`   \tab Enclose in square brackets
+#'      `bracket`   \tab Enclose in square brackets
 #'   \cr `quote2`   \tab Enclose in double quotes
 #'   \cr  `quote`   \tab Enclose in single quotes
 #'   \cr  `paren`   \tab Enclose in parentheses
 #'   \cr  `brace`   \tab Enclose in braces
 #'   \cr   `tick`   \tab Enclose in backticks
 #'   \cr   `wrap`   \tab Enclose left and right
-#'   \cr            \tab    
+#'   \cr            \tab  
 #'   \cr  `colon`   \tab Delimit with colons
 #'   \cr    `lst`   \tab Delimit with comma + space
-#'   \cr            \tab    
+#'   \cr            \tab  
 #'   \cr   `form`   \tab Formula statement
 #'   \cr    `elt`   \tab Element extraction statement
 #'   \cr    `fun`   \tab Function call statement
@@ -79,118 +80,118 @@
 #' @export
 geq <- function(x, ...) {paste0(c(av(x), " = ", av(...)), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 geq0 <- function(x, ...) {paste0(c(av(x), "=", av(...)), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 gcat <- function(...) {paste0(c("c(", av(...), ")"), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 gelt <- function(x, ...) {paste0(c(av(x), "[", av(...), "]"), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 gfun <- function(x, ...) {paste0(c(av(x), "(", av(...), ")"), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 glst <- function(...) {paste0(av(...), collapse = ", ")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 gform <- function(x, ...) {paste0(c(av(x), " ~ ", paste0(av(...), collapse = " + ")), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 gtick <- function(...) {paste0(c("`" , av(...), "`"), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 gwrap <- function(l, r, ...) {paste0(c(av(l), av(...), av(r)), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 gbrace <- function(...) {paste0(c("{" , av(...), "}"), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 gcolon <- function(...) {paste0(av(...), collapse = ":")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 gparen <- function(...) {paste0(c("(" , av(...), ")"), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 gquote <- function(...) {paste0(c("'" , av(...), "'"), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 gquote2 <- function(...) {paste0(c("\"", av(...), "\""), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 gbracket <- function(...) {paste0(c("[", av(...), "]"), collapse = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 pcat <- function(...) {paste0("c(", paste(..., sep = ", "), ")")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 peq <- function(x, ...) {paste(x, " = ", ..., sep = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 peq0 <- function(x, ...) {paste(x, "=", ..., sep = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 pelt <- function(x, ...) {paste(x, "[", ..., "]", sep = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 pfun <- function(x, ...) {paste(x, "(", ..., ")", sep = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 plst <- function(...) {paste(..., sep = ", ")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 pform <- function(x, ...) {paste0(x, " ~ ",  paste(..., sep = " + "))}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 ptick <- function(...) {paste("`" , ..., "`", sep = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 pwrap <- function(l, r, ...) {paste(l, ..., r, sep = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 pbrace <- function(...) {paste("[" , ..., "]", sep = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 pcolon <- function(...) {paste(..., sep = ":")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 pparen <- function(...) {paste("(" , ..., ")", sep = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 pquote <- function(...) {paste("'" , ..., "'", sep = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 pquote2 <- function(...) {paste("\"", ..., "\"", sep = "")}
 
-#' @rdname mkstr
+#' @rdname makestr
 #' @export
 pbracket <- function(...) {paste("[" , ..., "]", sep = "")}

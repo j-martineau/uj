@@ -1,34 +1,40 @@
-#' @family props
-#' @title `Integrity` properties
-#' @description `Integrity` properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frameS}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
+#' @encoding UTF-8
+#' @family properties
+#' @title Integrity properties
+#' @description Integrity properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frameS}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered `FALSE`. The following table summarizes valid integrity properties.
 #' \tabular{rll}{
-#'       `'cmp'`   \tab complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing **no** `NA` values.
+#'       `'cmp'`   \tab complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing **no** `NA` values.
+#'   \cr           \tab               \tab  
 #'   \cr `'mss'`   \tab missing       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing **only** `NA` values.
+#'   \cr           \tab               \tab  
 #'   \cr `'prt'`   \tab partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing `NA` **and** non-`NA` values.
+#'   \cr           \tab               \tab  
+#'   \cr `'dup'`   \tab duplicates    \tab Complete and containing duplicate values.
+#'   \cr `'unq'`   \tab unique.       \tab Complete and containing only unique values.
 #'   \cr `'nas'`   \tab `NA` scalar   \tab Atomic scalar `NA`.
-#'   \cr `'oks'`   \tab `OK` scalar   \tab Non-`NA` atomic scalar.
+#'   \cr `'oks'`   \tab `OK` scalar   \tab Non-`NA` atomic scalar.
 #' }
-#' **`Integrity` property functions**
+#' **Integrity property functions**
 #' \tabular{rl}{
-#'     `is_iii_spec`   \tab Is `spec` an `integrity` specification?
-#'   \cr `iii_props`   \tab What `integrity` properties are there?
-#'   \cr  `iii_funs`   \tab What `integrity` property functions are there?
-#'   \cr      `iiii`   \tab Is `x` a match to the `integrity` specification `spec`?
-#'   \cr      `iIII`   \tab Is `x` a match to the single `integrity` property `'III'`?
-#'   \cr       `iii`   \tab Gets all of `x`'s `integrity` properties.
+#'     `is_iii_spec`   \tab Is `spec` an integrity specification?
+#'   \cr `iii_props`   \tab What integrity properties are there?
+#'   \cr  `iii_funs`   \tab What integrity property functions are there?
+#'   \cr      `iiii`   \tab Does `x` match integrity specification `spec`?
+#'   \cr      `iIII`   \tab Does `x` match single integrity property `'III'`?
+#'   \cr       `iii`   \tab Gets all of `x`'s integrity properties.
 #' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `integrity` properties (i.e., from `iii_props()`). `Integrity` properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more integrity properties (i.e., from `iii_props()`). Integrity properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return \tabular{rl}{
-#'     `is_iii_spec` \tab   A character vector.
-#'   \cr `iii_props` \tab   A character vector.
-#'   \cr  `iii_funs` \tab   A character vector.
-#'   \cr      `iiii` \tab   A logical scalar.
-#'   \cr      `iIII` \tab   A logical scalar.
-#'   \cr       `iii` \tab   A character vector.
-#' }
+#' @return *A character vector*
+#'   \cr    `iii_props`
+#'   \cr    `iii_funs`
+#'   \cr    `iii`
+#'   \cr\cr *A logical scalar*
+#'   \cr    `is_iii{spec`
+#'   \cr    `iIII`
+#'   \cr    `iiii`
 #' @examples
 #' iii_funs()
 #' iii_props()

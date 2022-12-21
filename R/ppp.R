@@ -1,3 +1,16 @@
+# PPP ####
+
+.mmms <- c("atm", "ch1", "ch3", "chr", "clr", "evn", "fac", "frc", "ind", "lgl", "neg", "ngw", "nng", "nnw", "nps", "npw", "nst", "num", "odd", "ord", "pct", "pos", "ppn", "psw", "srt", "str", "uno", "whl")
+.cccs <- c("arr", "dtf", "gen", "mat", "mvc", "scl", "vec", "vls")
+.ssss <- c("col", "emp", "lin", "pnt", "rct", "row", "sld", "sqr")
+.bbbs <- c("atm", "def", "fun", "nil", "nll", "pop", "rcr")
+.iiis <- c("cmp", "dup", "mss", "nas", "oks", "prt", "unq")
+.eees <- c("e0D", "e1D", "e2D", "eHD", "eUD")
+.ddds <- c("d0D", "d1D", "d2D", "dHD")
+.ppps <- unique(sort(c(.bbbs, .cccs, .ddds, .eees, .iiis, .mmms, .ssss)))
+
+# BBB ####
+
 .iatm <- function(x) {is.atomic(x) & !is.null(x)}
 .idef <- function(x) {!is.null(x)}
 .ifun <- function(x) {f0(is.function(x), T, f0(length(x) != 1 | !is.character(x), F, f0(is.na(x), F, !isERR(match.fun(x)))))}
@@ -5,68 +18,76 @@
 .inll <- function(x) {is.null(x)}
 .ipop <- function(x) {length(x) > 0}
 .ircr <- function(x) {is.recursive(x)}
-.bbbs <- c("atm", "def", "fun", "nil", "nll", "pop", "rcr")
+
+# CCC ####
 
 .iarr <- function(x) {is.array(x)}
 .idtf <- function(x) {is.data.frame(x)}
 .igen <- function(x) {is.array(x) | is.vector(x)}
 .imat <- function(x) {is.matrix(x)}
-.imvc <- function(x) {f0(length(x) < 2, F, f0(is.vector(x), T, is.array(x) & length(which(dim(x) > 1)) == 1))}
-.iscl <- function(x) {f0(length(x) != 1, F, is.array(x) | is.vector(x))}
+.imvc <- function(x) {f0(is.array(x) & length(which(dim(x) > 1)) == 1, T, f0(length(x) < 2, F, f0(is.vector(x), T, is.atomic(x) & !is.vector(x) & !is.array(x))))}
+.iscl <- function(x) {NROW(x) * NCOL(x) == 1}
 .ivec <- function(x) {f0(length(x) == 0, F, f0(is.vector(x), T, f0(is.array(x) & length(which(dim(x) > 1)) < 2, T, is.atomic(x) & !is.vector(x) & !is.array(x))))}
 .ivls <- function(x) {is.list(x) & !is.data.frame(x)}
-.cccs <- c("arr", "dtf", "gen", "mat", "mvc", "scl", "vec", "vls")
+
+# DDD ####
 
 .id0D <- function(x) {is.null(x)}
 .id1D <- function(x) {is.vector(x)}
 .id2D <- function(x) {is.matrix(x) | is.data.frame(x)}
 .idHD <- function(x) {length(dim(x)) > 2}
-.ddds <- c("d0D", "d1D", "d2D", "dHD")
+
+# EEE ####
 
 .ie0D <- function(x) {NROW(x) * NCOL(x) == 1 & length(x) == 1}
 .ie1D <- function(x) {1 %in% c(NROW(x), NCOL(x)) & NROW(x) * NCOL(x) > 1}
+.ieUD <- function(x) {length(x) == 0}
 .ie2D <- function(x) {f0(!is.array(x) & !is.data.frame(x), F, length(which(dim(x) > 1)) == 2)}
 .ieHD <- function(x) {f0(!is.array(x), F, length(which(dim(x) > 1)) > 2)}
-.ieUD <- function(x) {length(x) == 0}
-.eees <- c("e0D", "e1D", "e2D", "eHD", "eUD")
 
-.icmp <- function(x) {f0(length(x) == 0 | !is.atomic(x), F, !any(is.na(x)))}
-.imss <- function(x) {f0(length(x) == 0 | !is.atomic(x), F, all(is.na(x)))}
-.inas <- function(x) {f0(length(x) != 1 | !is.atomic(x), F, is.na(x))}
-.ioks <- function(x) {f0(length(x) != 1 | !is.atomic(x), F, !is.na(x))}
-.iprt <- function(x) {f0(length(x) < 2 | !is.atomic(x), F, {x <- is.na(x); any(x) & !all(x)})}
-.iiis <- c("cmp", "mss", "nas", "oks", "prt")
+# III ####
 
-.is_mmm <- function(x) {!is.null(x) | !is.atomic(x)}
-.is_MMM <- function(x) {f0(length(x) == 0, T, all(is.na(x)))}
-.ich1 <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.character(x), F, all(nchar(x[!is.na(x)]) == 1))))}
-.ich3 <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.character(x), F, all(nchar(x[!is.na(x)]) == 3))))}
-.ichr <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.character(x)))}
-.iclr <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.character(x), F, !any(c("error", "simpleError") %in% class(failsafe(col2rgb(x[!is.na(x)])))))))}
-.ievn <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(round(x / 2) == x / 2)})))}
-.ifac <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.factor(x)))}
-.ifrc <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; any(round(x) != round(x))})))}
-.iind <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.logical(x) | all()))}
-.ilgl <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.logical(x)))}
-.ineg <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, all(x[!is.na(x)] < 0))))}
-.ingw <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x < 0 & round(x) == x)})))}
-.inng <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, !any(x[!is.na(x)] < 0))))}
-.innw <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x >= 0 & round(x) == x)})))}
-.inps <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, !any(x[!is.na(x)] > 0))))}
-.inpw <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x <= 0 & round(x) == x)})))}
-.inst <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, !(is.character(x) | is.numeric(x) | is.ordered(x))))}
-.inum <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.numeric(x)))}
-.iodd <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)] + 1; all(round(x / 2) == x / 2)})))}
-.iord <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.ordered(x)))}
-.ipct <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x >= 0 & x <= 100)})))}
-.ipos <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, all(x[!is.na(x)] > 0))))}
-.ippn <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x >= 0 & x <= 1)})))}
-.ipsw <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x > 0 & round(x) == x)})))}
-.isrt <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.character(x) | is.numeric(x) | is.ordered(x)))}
-.istr <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.character(x), F, !any(x[!is.na(x)] == ""))))}
-.iuno <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, is.factor(x) & !is.ordered(x)))}
-.iwhl <- function(x) {f0(!.is_mmm(x), F, f0(.is_MMM(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(round(x) == x)})))}
-.mmms <- c("atm", "ch1", "ch3", "chr", "clr", "evn", "fac", "frc", "ind", "lgl", "neg", "ngw", "nng", "nnw", "nps", "npw", "nst", "num", "odd", "ord", "pct", "pos", "ppn", "psw", "srt", "str", "uno", "whl")
+.icmp <- function(x) {f0(!is.atomic(x) | length(x) == 0, F, !any(is.na(x))                 )}
+.imss <- function(x) {f0(!is.atomic(x) | length(x) == 0, F,                 !any(!is.na(x)))}
+.iprt <- function(x) {f0(!is.atomic(x) | length(x) == 0, F,  any(is.na(x)) & any(!is.na(x)))}
+.inas <- function(x) {f0(!is.atomic(x) | length(x) != 1, F,  is.na(x))}
+.ioks <- function(x) {f0(!is.atomic(x) | length(x) != 1, F, !is.na(x))}
+.idup <- function(x) {f0(!icmp(x), F, length(x) != length(unique(x)))}
+.iunq <- function(x) {f0(!icmp(x), F, length(x) == length(unique(x)))}
+
+# MMM ####
+
+.wild_mmm <- function(x) {f0(length(x) == 0, T, all(is.na(x)))} # wildcard (is of every xmode)
+.not_mmm <- function(x) {is.null(x) | !is.atomic(x)}            # is not of a non-empty atomic mode
+.ich1 <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.character(x), F, all(nchar(x[!is.na(x)]) == 1))))}
+.ich3 <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.character(x), F, all(nchar(x[!is.na(x)]) == 3))))}
+.ichr <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, is.character(x)))}
+.iclr <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.character(x), F, !any(c("error", "simpleError") %in% class(failsafe(col2rgb(x[!is.na(x)])))))))}
+.ievn <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(round(x / 2) == x / 2)})))}
+.ifac <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, is.factor(x)))}
+.ifrc <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; any(round(x) != round(x))})))}
+.iind <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, is.logical(x) | all()))}
+.ilgl <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, is.logical(x)))}
+.ineg <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, all(x[!is.na(x)] < 0))))}
+.ingw <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x < 0 & round(x) == x)})))}
+.inng <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, !any(x[!is.na(x)] < 0))))}
+.innw <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x >= 0 & round(x) == x)})))}
+.inps <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, !any(x[!is.na(x)] > 0))))}
+.inpw <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x <= 0 & round(x) == x)})))}
+.inst <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, !(is.character(x) | is.numeric(x) | is.ordered(x))))}
+.inum <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, is.numeric(x)))}
+.iodd <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)] + 1; all(round(x / 2) == x / 2)})))}
+.iord <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, is.ordered(x)))}
+.ipct <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x >= 0 & x <= 100)})))}
+.ipos <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, all(x[!is.na(x)] > 0))))}
+.ippn <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x >= 0 & x <= 1)})))}
+.ipsw <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(x > 0 & round(x) == x)})))}
+.isrt <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, is.character(x) | is.numeric(x) | is.ordered(x)))}
+.istr <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.character(x), F, !any(x[!is.na(x)] == ""))))}
+.iuno <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, is.factor(x) & !is.ordered(x)))}
+.iwhl <- function(x) {f0(.not_mmm(x), F, f0(.wild_mmm(x), T, f0(!is.numeric(x), F, {x <- x[!is.na(x)]; all(round(x) == x)})))}
+
+# sss ###
 
 .icol <- function(x) {f0(!(is.matrix(x) | is.data.frame(x)), F, nrow(x) > 1 & ncol(x) == 1)}
 .iemp <- function(x) {length(x) == 0 & !is.null(x)}
@@ -76,164 +97,255 @@
 .irow <- function(x) {f0(!(is.matrix(x) | is.data.frame(x)), F, nrow(x) == 1 & ncol(x) > 1)}
 .isld <- function(x) {.ieUD(x)}
 .isqr <- function(x) {is.matrix(x) & NROW(x) > 1 & NCOL(x) > 1 & NROW(x) == NCOL(x)}
-.ssss <- c("col", "emp", "lin", "pnt", "rct", "row", "sld", "sqr")
 
-.ppps <- unique(sort(c(.bbbs, .cccs, .ddds, .eees, .iiis, .mmms, .ssss)))
+# PPP ####
+
 .spec_vals <- function(x) {if (!is.character(x)) {return(NULL)} else {x <- unname(unlist(strsplit(x, "|", fixed = T))); x[x != ""]}}
 .drop_iprefix <- function(x) {i <- nchar(x) == 4 & substr(x, 1, 1) == "i"; x[i] <- substr(x[i], 2, 4); x}
 
-
-#' @family props
+#' @encoding UTF-8
+#' @family properties
 #' @title All purpose property checking
-#' @description This set of functions provide utilities that bring together seven families of object properties defined by this package:
+#' @description *Property families defined by this package*
 #' \tabular{rl}{
-#'       \code{\link{bbb}}   \tab `basic`
-#'   \cr \code{\link{ccc}}   \tab `xclass`
-#'   \cr \code{\link{ddd}}   \tab `defined-D`
-#'   \cr \code{\link{eee}}   \tab `effective-D`
-#'   \cr \code{\link{iii}}   \tab `integrity`
-#'   \cr \code{\link{mmm}}   \tab `xmode`
-#'   \cr \code{\link{sss}}   \tab `shape`
+#'       \code{\link{bbb}}   \tab basic properties
+#'   \cr \code{\link{ccc}}   \tab xclass (extended class)
+#'   \cr \code{\link{ddd}}   \tab defined.d (defined dimensionality)
+#'   \cr \code{\link{eee}}   \tab effective.d (effective dimensionality)
+#'   \cr \code{\link{iii}}   \tab integrity (completeness, uniqueness)
+#'   \cr \code{\link{mmm}}   \tab xmode (extended modes)
+#'   \cr \code{\link{sss}}   \tab shape (geometric shape)
 #' }
-#' **Single property specs** are character scalars containing exactly `3` characters (e.g., `'ord', 'dtf', 'd1D', 'rct'`).
-#' \cr\cr
-#' **Combination (conjunctive) property specs** are for properties that must co-occur. They are constructed by delimiting multiple single properties with underscores (e.g., `'ord_dtf_d1D_rct'` or an equivalent underscore-delimited permutation).
-#' \cr\cr
-#' **Alternate (compensatory) property specs** contain multiple single or combo specs, and are used to indicate that if any one spec is satisfied the entire spec is satisfied. They are constructed by pipe-delimiting multiple single or combination properties. For example, the spec `'ord|dtf_d1D||dtf_rct'` would be satisfied by an object with single property `'ord'`, combined property `'dtf_d1D'`, or combined property `'dtf_rct'`.
-#' \cr\cr
-#' **Property and property spec manipulation functions**
+#' *Types of property specs*
 #' \tabular{rl}{
-#'       `combos_from_spec` \tab   Convert spec to constituent combos.
-#'   \cr `props_from_combo` \tab   Convert combo to constituent properties.
-#'   \cr  `props_from_spec` \tab   Convert spec to constituent properties.
+#'       *single*   \tab \link[=ich3]{3-char} scalars (i.e., `all(nchar(.) == 3)` with all values in `all_props()`. For example, `'ord', 'dtf', 'd1D',` and `'rct'` are *single* property specs.
+#'   \cr            \tab  
+#'   \cr  *combo*   \tab Character scalars containing multiple underscore-delimited *single* properties, indicating that those *single* properties must co-occur. For example, the *combo* property spec `'ord_dtf_d1D_rct'` (or an equivalent underscore-delimited permutation) indicates that all four *single* properties must co-occur to satisfy the spec.
+#'   \cr            \tab  
+#'   \cr *option*   \tab Character scalars containing multiple pipe-delimited *combo* and/or *single* property specs. For example, the *option* property spec `'ord|dtf_d1D|dtf_rct'` would be satisfied by an object with *single* property `'ord'`, *combo* property `'dtf_d1D'`, **or** *combo* property `'dtf_rct'`.
+#'   \cr            \tab  
+#'   \cr   *flex*   \tab A *single*, *combo*, or *option* property spec as defined above.
 #' }
-#' **Property and property spec validation functions**
+#' *Functions for property spec decomposition*
 #' \tabular{rl}{
-#'      `is_prop_combo` \tab   Is `combo` a combo/conjunctive spec?
-#'   \cr `is_prop_spec` \tab   Is `spec` a property spec of any type?
-#'   \cr  `is_prop_fun` \tab   Is `fun` a property-function name?
-#'   \cr      `is_prop` \tab   Is `prop` a value from `all_props()`?
+#'       `props_from_combo`   \tab What are the constituent *single* properties of a *combo* property spec?
+#'   \cr                      \tab  
+#'   \cr `combos_from_spec`   \tab What are the constituent *combo* properties in a *flex* property spec?
+#'   \cr                      \tab  
+#'   \cr  `props_from_spec`   \tab What are the *unique* constituent *single* properties in a *flex* property spec?
 #' }
-#' **Property-checking function names**
+#' *Functions to check whether a value is a valid property spec*
 #' \tabular{rl}{
-#'   `prop_funs`   \tab Names of functions checking for specific single and combo properties matched to `x`.
+#'      `is_prop_combo`   \tab Is `combo` a valid *combo* property spec?
+#'   \cr                  \tab  
+#'   \cr `is_prop_spec`   \tab Is `spec` a valid *flex* property spec?
+#'   \cr                  \tab  
+#'   \cr  `is_prop_fun`   \tab Is `fun` the name of a dedicated property checking function?
+#'   \cr                  \tab  
+#'   \cr      `is_prop`   \tab Is `prop` a valid *single* property?
 #' }
-#' **Family-specific functions listing an object's properties**
+#' *Functions to define properties and property specs*
 #' \tabular{rl}{
-#'       `ppp` \tab   Gets all single properties of `x`.
-#'   \cr `bbb` \tab   Gets all `base` properties of `x`.
-#'   \cr `ccc` \tab   Gets all `xclass` properties of `x`.
-#'   \cr `ddd` \tab   Gets all `defined-D` properties of `x`.
-#'   \cr `eee` \tab   Gets all `effective-D` properties of `x`.
-#'   \cr `iii` \tab   Gets all `integrity` properties of `x`.
-#'   \cr `mmm` \tab   Gets all `xmode` properties of `x`.
-#'   \cr `sss` \tab   Gets all `shape` properties of `x`.
+#'      `combo_concise`   \tab How is a *combo* property spec (concisely) defined?
+#'   \cr                  \tab  
+#'   \cr `spec_concise`   \tab How is an *options* property spec (concisely) defined?
+#'   \cr                  \tab  
+#'   \cr `prop_verbose`   \tab How is a *single* property (verbosely) defined?
+#'   \cr                  \tab  
+#'   \cr    `prop_defs`   \tab What are the definitions of all possible *single* properties (returned as a data.frame)?
 #' }
-#' **Property and property spec definition functions**
+#' *Functions to list names of dedicated property-checking functions*
 #' \tabular{rl}{
-#'      `combo_concise` \tab   Concisely define a combo property spec.
-#'   \cr `spec_concise` \tab   Concisely define a property spec.
-#'   \cr `prop_verbose` \tab   Verbosely define a single property.
-#'   \cr    `prop_defs` \tab   Gets a table of property definitions.
+#'     `ppp_or_funs`   \tab What dedicated functions check `x` for either special values or a match to a *flex* property spec?
+#'   \cr               \tab  
+#'   \cr `prop_funs`   \tab What dedicated functions check `x` for a match to a specific *single* or *combo* property?
+#'   \cr               \tab  
+#'   \cr `all_props`   \tab What is the complete set of all possible *single* properties?
 #' }
-#' **Single-property checking functions**
+#' *Functions to check object against arbitrary property specs*
 #' \tabular{rl}{
-#'   `iPPP` \tab   Does `x` match single property `'PPP'`.
+#'       `nas_or`   \tab Is `x` either `NA` or a match to the *flex* property spec in `spec`?
+#'   \cr            \tab  
+#'   \cr `nll_or`   \tab Is `x` either `NULL` or a match to the *flex* property spec in `spec`
+#'   \cr            \tab  
+#'   \cr   `ippp`   \tab Is `x` a match to the *flex* property spec in `spec`?
 #' }
-#' **Single-family property-checking functions**
+#' *Function to list all of an object's* single *properties across property families*
+#' \tabular{rl}{  `ppp`   \tab What are all of `x`'s *single* properties compiled from all property families?}
+#' For convenience, property functions from other function families are described in *details*.
+#' @details *Functions to list all* single *properties in a property family*
 #' \tabular{rl}{
-#'       `ibbb` \tab   Is `x` a match to `base`-family `spec`?
-#'   \cr `iccc` \tab   Is `x` a match to `xclass`-family `spec`?
-#'   \cr `iddd` \tab   Is `x` a match to `defined-D`-family `spec`?
-#'   \cr `ieee` \tab   Is `x` a match to `effective-D`-family `spec`?
-#'   \cr `iiii` \tab   Is `x` a match to `integrity`-family `spec`?
-#'   \cr `immm` \tab   Is `x` a match to `xmode`-family `spec`?
-#'   \cr `isss` \tab   Is `x` a match to `shape`-family `spec`?
+#'       `bbb_props`   \tab \link[=bbb]{basic}
+#'   \cr `ccc_props`   \tab \link[=ccc]{xclass}
+#'   \cr `ddd_props`   \tab \link[=ddd]{defined.d}
+#'   \cr `eee_props`   \tab \link[=eee]{effective.d}
+#'   \cr `iii_props`   \tab \link[=iii]{integrity}
+#'   \cr `mmm_props`   \tab \link[=mmm]{xmode}
+#'   \cr `sss_props`   \tab \link[=sss]{shape}
 #' }
-#' **Functions testing for combination/conjunctive properties**
+#' *Functions to list names of dedicated property-checking functions*
 #' \tabular{rl}{
-#'   `cmp_MMM_CCC` \tab   `complete + xmode 'MMM' + xclass 'CCC'`.
-#'   \cr `cmp_MMM` \tab   `complete + xmode 'MMM'`.
-#'   \cr `cmp_CCC` \tab   `complete + xclass 'CCC'`
-#'   \cr `BBB_CCC` \tab   `base` property `'BBB' + xclass 'CCC'`.
-#'   \cr `BBB_MMM` \tab   `base` property `'BBB' + xmode 'MMM'`.
-#'   \cr `MMM_CCC` \tab   `xmode 'MMM' + xclass 'CCC'`.
-#'   \cr  `nll_or` \tab   Is `x` `NULL` or a match to `spec`?
-#'   \cr  `nas_or` \tab   Is `x` `NA` or a match to `spec`?
-#'   \cr    `ippp` \tab   Is `x` a match to `spec`?
+#'       `cmp_mmm_ccc_funs`   \tab integrity = `'cmp'` + xmode + xclass
+#'   \cr `unq_mmm_ccc_funs`   \tab integrity = `'unq'` + xmode + xclass
+#' } \tabular{rl}{
+#'                          \tab  
+#'   \cr   `cmp_ccc_funs`   \tab integrity = `'cmp'` + xclass
+#'   \cr   `cmp_mmm_funs`   \tab integrity = `'cmp'` + xmode
+#'   \cr   `unq_ccc_funs`   \tab integrity = `'unq'` + xclass
+#'   \cr   `unq_mmm_funs`   \tab integrity = `'unq'` + xmode
+#' } \tabular{rl}{
+#'                          \tab  
+#'   \cr   `bbb_ccc_funs`   \tab basic + xclass
+#'   \cr   `bbb_mmm_funs`   \tab basic + xmode
+#'   \cr   `mmm_ccc_funs`   \tab xmode + xclass
+#' } \tabular{rl}{
+#'                      \tab  
+#'   \cr   `bbb_funs`   \tab \link[=bbb]{basic}
+#'   \cr   `ccc_funs`   \tab \link[=ccc]{xclass}
+#'   \cr   `ddd_funs`   \tab \link[=ddd]{defined.d}
+#'   \cr   `eee_funs`   \tab \link[=eee]{effective.d}
+#'   \cr   `iii_funs`   \tab \link[=iii]{integrity}
+#'   \cr   `mmm_funs`   \tab \link[=mmm]{xmode}
+#'   \cr   `sss_funs`   \tab \link[=sss]{shape}
 #' }
-#' **Comprehensive lists of single and common combination properties**
+#' *Dedicated functions to check an object for a specific* combo *or* single *property*
+#' \cr\cr For these functions, an uppercase letter repeated three times is a placeholder for the value of an arbitrary single property from the associated property family.
 #' \tabular{rl}{
-#'   `cmp_mmm_ccc_props` \tab   `complete + xmode + xclass` properties.
-#'   \cr `cmp_ccc_props` \tab   `complete + xclass` properties.
-#'   \cr `cmp_mmm_props` \tab   `complete + xmode` properties.
-#'   \cr `bbb_ccc_props` \tab   `basic + xclass` properties.
-#'   \cr `bbb_mmm_props` \tab   `basic + xmode` properties.
-#'   \cr `mmm_ccc_props` \tab   `xmode + xclass` properties.
-#'   \cr     `bbb_props` \tab   `basic` properties.
-#'   \cr     `ccc_props` \tab   `xclass` properties.
-#'   \cr     `ddd_props` \tab   `defined-D` properties.
-#'   \cr     `eee_props` \tab   `effective-D` properties.
-#'   \cr     `iii_props` \tab   `integrity` properties.
-#'   \cr     `mmm_props` \tab   `xmode` properties.
-#'   \cr     `sss_props` \tab   `shape` properties.
-#'   \cr     `all_props` \tab   All single properties.
+#'       `cmp_MMM_CCC`   \tab integrity = `'cmp'` + xmode=`'MMM'` + xclass = `'CCC'`
+#'   \cr `unq_MMM_CCC`   \tab integrity = `'unq'` + xmode=`'MMM'` + xclass = `'CCC'`
+#' } \tabular{rl}{
+#'                     \tab  
+#'   \cr   `cmp_CCC`   \tab integrity = `'cmp'` + xclass = `'CCC'`
+#'   \cr   `cmp_MMM`   \tab integrity = `'cmp'` + xmode = `'MMM'`
+#' } \tabular{rl}{
+#'                     \tab  
+#'   \cr   `unq_CCC`   \tab integrity = `'unq'` + xclass = `'CCC'`
+#'   \cr   `unq_MMM`   \tab integrity = `'unq'` + xmode = `'MMM'`
+#' } \tabular{rl}{
+#'                     \tab  
+#'   \cr   `BBB_CCC`   \tab basic = `'BBB'` + xclass = `'CCC'`
+#'   \cr   `BBB_MMM`   \tab basic = `'BBB'` + xmode = `'MMM'`
+#'   \cr   `MMM_CCC`   \tab xmode = `'MMM'` + xclass = `'CCC'`
+#' } \tabular{rl}{
+#'                  \tab  
+#'   \cr   `iBBB`   \tab \link[=bbb]{basic} = `'BBB'`
+#'   \cr   `iCCC`   \tab \link[=ccc]{xclass} = `'CCC'`
+#'   \cr   `iDDD`   \tab \link[=ddd]{defined.d} = `'DDD'`
+#'   \cr   `iEEE`   \tab \link[=eee]{effective.d} = `'EEE'`
+#'   \cr   `iIII`   \tab \link[=iii]{integrity} = `'III'`
+#'   \cr   `iMMM`   \tab \link[=mmm]{xmode} = `'MMM'`
+#'   \cr   `iSSS`   \tab \link[=sss]{shape} = `'SSS'`
+#' }
+#' *Functions to check an object against an arbitrary* combo *property specs*
+#' \cr\cr For these functions, an uppercase letter repeated three times is a placeholder for the value of an arbitrary single property from the associated property family.
+#' \tabular{rl}{
+#'       `cmp_mmm_ccc`   \tab integrity = `'cmp'` + arbitrary xmode + arbitrary xclass
+#'   \cr `unq_mmm_ccc`   \tab integrity = `'unq'` + arbitrary xmode + arbitrary xclass
+#' } \tabular{rl}{
+#'                     \tab  
+#'   \cr   `bbb_ccc`   \tab arbitrary basic property + arbitrary xclass
+#'   \cr   `bbb_mmm`   \tab arbitrary basic property + arbitrary xmode
+#'   \cr   `mmm_ccc`   \tab arbitrary xmode + arbitrary xclass
+#' } \tabular{rl}{
+#'                     \tab  
+#'   \cr   `cmp_ccc`   \tab integrity = `'cmp'` + arbitrary xclass
+#'   \cr   `cmp_mmm`   \tab integrity = `'cmp'` + arbitrary xmode
+#' } \tabular{rl}{
+#'                     \tab  
+#'   \cr   `unq_ccc`   \tab integrity = `'unq'` + arbitrary xclass
+#'   \cr   `unq_mmm`   \tab integrity = `'unq'` + arbitrary xmode
+#' }
+#' *Functions to check objects against* flex *property specs in a single family*
+#' \tabular{rl}{
+#'       `ibbb`   \tab \link[=bbb]{basic}
+#'   \cr `iccc`   \tab \link[=ccc]{xclass}
+#'   \cr `iddd`   \tab \link[=ddd]{defined.d}
+#'   \cr `ieee`   \tab \link[=eee]{effective.d}
+#'   \cr `iiii`   \tab \link[=iii]{integrity}
+#'   \cr `immm`   \tab \link[=mmm]{xmode}
+#'   \cr `isss`   \tab \link[=sss]{shape}
+#' }
+#' *Functions to retrieve all of an object's* single *properties of a specific family*
+#' \tabular{rl}{
+#'       `bbb`   \tab \link[=bbb]{basic}
+#'   \cr `ccc`   \tab \link[=ccc]{xclass}
+#'   \cr `ddd`   \tab \link[=ddd]{defined.d}
+#'   \cr `eee`   \tab \link[=eee]{effective.d}
+#'   \cr `iii`   \tab \link[=iii]{integrity}
+#'   \cr `mmm`   \tab \link[=mmm]{xmode}
+#'   \cr `sss`   \tab \link[=sss]{shape}
 #' }
 #' @param as.dtf A non-`NA` logical scalar indicating whether to return the result as a data.frame with column `1` containing property values and column `2` containing the property families.
 #' @param x An R object.
-#' @param ppp A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from `ppp_vals()` separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of `TRUE` if any of them applies to `x`.
+#' @param spec A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from `ppp_vals()` separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of `TRUE` if any of them applies to `x`.
 #' @param valid A \link[=cmp_chr_vec]{complete character vec} containing all properties considered valid.
 #' @param print A non-`NA` logical scalar indicating whether to print the property definition to the console.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return \tabular{rl}{
-#'       `combos_from_spec` \tab   A character vector.
-#'   \cr `props_from_combo` \tab   A character vector.
-#'   \cr  `props_from_spec` \tab   A character vector.
-#'   \cr   `is_valid_combo` \tab   A logical scalar.
-#'   \cr    `is_valid_spec` \tab   A logical scalar.
-#'   \cr    `is_valid_prop` \tab   A logical scalar.
-#'   \cr    `combo_concise` \tab   A character scalar.
-#'   \cr     `spec_concise` \tab   A character scalar.
-#'   \cr     `prop_verbose` \tab   A character scalar.
-#'   \cr      `is_prop_fun` \tab   A logical scalar.
-#'   \cr        `prop_defs` \tab   A \link[=tb]{tibble}.
-#'   \cr        `prop_funs` \tab   A character vector.
-#'   \cr        `all_props` \tab   A character vector.
-#'   \cr           `nas_or` \tab   A logical scalar.
-#'   \cr           `nll_or` \tab   A logical scalar.
-#'   \cr             `ippp` \tab   A logical scalar.
-#'   \cr              `ppp` \tab   A character vector.
-#' }
+#' @return *A character vector*
+#'   \cr    `combos_from_spec`
+#'   \cr    `props_from_combo`
+#'   \cr    `props_from_spec`
+#'   \cr    `ppp_or_funs`
+#'   \cr    `all_props`
+#'   \cr    `prop_funs`
+#'   \cr    `ppp`
+#'   \cr\cr *A character scalar*
+#'   \cr    `combo_concise`
+#'   \cr    `prop_verbose`
+#'   \cr    `spec_concise`
+#'   \cr\cr *A logical scalar*
+#'   \cr    `is_valid_combo`
+#'   \cr    `is_valid_prop`
+#'   \cr    `is_valid_spec`
+#'   \cr    `is_prop_fun`
+#'   \cr    `nas_or`
+#'   \cr    `nll_or`
+#'   \cr    `ippp`
 #' @examples
+#' nas_or("5", "ch1")
+#' nas_or(NA, "ch1")
+#'
+#' nll_or(NULL, "ch1")
+#' nll_or("1", "ch1")
+#' nll_or(7, "ch1")
+#'
 #' all_props()
 #' prop_funs()
+#'
+#' spec_concise("nll|cmp_psw_vls|ch1_scl")
+#' combo_concise("cmp_psw_vls")
 #' prop_verbose("srt")
 #' prop_verbose("nnw")
-#' combo_concise("cmp_psw_vls")
-#' spec_concise("nll|cmp_psw_vls|ch1_scl")
-#' props_from_spec("nll|cmp_psw_vls|ch1_scl")
+#'
 #' combos_from_spec("nll|cmp_psw_vls|ch1_scl")
+#' props_from_spec("nll|cmp_psw_vls|ch1_scl")
 #' props_from_combo("cmp_psw_vls")
-#' nll_or("1", "ch1")
-#' nll_or(NULL, "ch1")
-#' nll_or(7, "ch1")
-#' nas_or(NA, "ch1")
-#' nas_or("5", "ch1")
+#'
 #' ippp("7", "nll|cmp_psw_vls|ch1_scl")
 #' ippp(NULL, "nll|cmp_psw_vls|ch1_scl")
 #' ippp("35", "nll|cmp_psw_vls|ch1_scl")
+#'
 #' is_prop_combo("letter")
 #' is_prop_combo("cmp_psw_vls")
 #' is_prop_spec("nll|cmp_psw_vls|ch1_scl")
-#' is_prop_fun("18")
-#' is_prop_fun("cmp_psw_vls")
-#' is_prop("18")
+#'
 #' is_prop("vls")
+#' is_prop("18")
+#'
+#' is_prop_fun("cmp_psw_vls")
+#' is_prop_fun("18")
+#'
 #' ppp(letters)
 #' prop_defs()
 #' @export
 ppp <- function(x) {sort(c(bbb(x), ccc(x), ddd(x), eee(x), iii(x), mmm(x), sss(x)))}
+
+# exported ####
+
+#' @rdname ppp
+#' @export
+ppp_or_funs <- function() {c("nas_or", "nll_or")}
 
 #' @rdname ppp
 #' @export
@@ -257,22 +369,26 @@ all_props <- function(as.dtf = F) {
 #' @export
 prop_funs <- function(as.dtf = F) {
   if (!isTF(as.dtf)) {stop(.errs("[as.dtf] must be TRUE or FALSE."))}
-    b_fun <-         bbb_funs();   b_fam <- rep(        "bbb", length(  b_fun));   b_lab <- paste0("1_",   b_fam, "_", bbb_funs())
-    c_fun <-         ccc_funs();   c_fam <- rep(        "ccc", length(  c_fun));   c_lab <- paste0("1_",   c_fam, "_", ccc_funs())
-    d_fun <-         ddd_funs();   d_fam <- rep(        "ddd", length(  d_fun));   d_lab <- paste0("1_",   d_fam, "_", ddd_funs())
-    e_fun <-         eee_funs();   e_fam <- rep(        "eee", length(  e_fun));   e_lab <- paste0("1_",   e_fam, "_", eee_funs())
-    i_fun <-         iii_funs();   i_fam <- rep(        "iii", length(  i_fun));   i_lab <- paste0("1_",   i_fam, "_", iii_funs())
-    m_fun <-         mmm_funs();   m_fam <- rep(        "mmm", length(  m_fun));   m_lab <- paste0("1_",   m_fam, "_", mmm_funs())
-    s_fun <-         sss_funs();   s_fam <- rep(        "sss", length(  s_fun));   s_lab <- paste0("1_",   s_fam, "_", sss_funs())
-   bc_fun <-     bbb_ccc_funs();  bc_fam <- rep(    "bbb_ccc", length( bc_fun));  bc_lab <- paste0("2_",  bc_fam, "_",  bc_fun)
-   bm_fun <-     bbb_mmm_funs();  bm_fam <- rep(    "bbb_mmm", length( bm_fun));  bm_lab <- paste0("2_",  bm_fam, "_",  bm_fun)
-   mc_fun <-     mmm_ccc_funs();  mc_fam <- rep(    "mmm_ccc", length( mc_fun));  mc_lab <- paste0("2_",  mc_fam, "_",  mc_fun)
-   cc_fun <-     cmp_ccc_funs();  cc_fam <- rep(    "cmp_ccc", length( cc_fun));  cc_lab <- paste0("3_",  cc_fam, "_",  cc_fun)
-   cm_fun <-     cmp_mmm_funs();  cm_fam <- rep(    "cmp_mmm", length( cm_fun));  cm_lab <- paste0("3_",  cm_fam, "_",  cm_fun)
-  cmc_fun <- cmp_mmm_ccc_funs(); cmc_fam <- rep("cmp_mmm_ccc", length(cmc_fun)); cmc_lab <- paste0("4_", cmc_fam, "_", cmc_fun)
-  fun <- c(b_fun, c_fun, d_fun, e_fun, i_fun, m_fun, s_fun, bc_fun, bm_fun, cc_fun, cm_fun, mc_fun, cmc_fun)
-  fam <- c(b_fam, c_fam, d_fam, e_fam, i_fam, m_fam, s_fam, bc_fam, bm_fam, cc_fam, cm_fam, mc_fam, cmc_fam)
-  ord <- c(b_lab, c_lab, d_lab, e_lab, i_lab, m_lab, s_lab, bc_lab, bm_lab, cc_lab, cm_lab, mc_lab, cmc_lab)
+    b_fun <-         bbb_funs();   b_fam <- rep(        "bbb", length(  b_fun));   b_lab <- paste0("1_",   b_fam, "_",   b_fun)
+    c_fun <-         ccc_funs();   c_fam <- rep(        "ccc", length(  c_fun));   c_lab <- paste0("1_",   c_fam, "_",   c_fun)
+    d_fun <-         ddd_funs();   d_fam <- rep(        "ddd", length(  d_fun));   d_lab <- paste0("1_",   d_fam, "_",   d_fun)
+    e_fun <-         eee_funs();   e_fam <- rep(        "eee", length(  e_fun));   e_lab <- paste0("1_",   e_fam, "_",   e_fun)
+    i_fun <-         iii_funs();   i_fam <- rep(        "iii", length(  i_fun));   i_lab <- paste0("1_",   i_fam, "_",   i_fun)
+    m_fun <-         mmm_funs();   m_fam <- rep(        "mmm", length(  m_fun));   m_lab <- paste0("1_",   m_fam, "_",   m_fun)
+    s_fun <-         sss_funs();   s_fam <- rep(        "sss", length(  s_fun));   s_lab <- paste0("1_",   s_fam, "_",   s_fun)
+   or_fun <-      ppp_or_funs();  or_fam <- rep(     "ppp_or", length( or_fun));  or_lab <- paste0("2_",  or_fam, "_",  or_fun)
+   bc_fun <-     bbb_ccc_funs();  bc_fam <- rep(    "bbb_ccc", length( bc_fun));  bc_lab <- paste0("3_",  bc_fam, "_",  bc_fun)
+   bm_fun <-     bbb_mmm_funs();  bm_fam <- rep(    "bbb_mmm", length( bm_fun));  bm_lab <- paste0("3_",  bm_fam, "_",  bm_fun)
+   mc_fun <-     mmm_ccc_funs();  mc_fam <- rep(    "mmm_ccc", length( mc_fun));  mc_lab <- paste0("3_",  mc_fam, "_",  mc_fun)
+   cc_fun <-     cmp_ccc_funs();  cc_fam <- rep(    "cmp_ccc", length( cc_fun));  cc_lab <- paste0("4_",  cc_fam, "_",  cc_fun)
+   cm_fun <-     cmp_mmm_funs();  cm_fam <- rep(    "cmp_mmm", length( cm_fun));  cm_lab <- paste0("4_",  cm_fam, "_",  cm_fun)
+   uc_fun <-     unq_mmm_funs();  uc_fam <- rep(    "unq_ccc", length( uc_fun));  uc_lab <- paste0("4_",  uc_fam, "_",  uc_fun)
+   um_fun <-     unq_mmm_funs();  um_fam <- rep(    "unq_mmm", length( um_fun));  um_lab <- paste0("4_",  um_fam, "_",  um_fun)
+  cmc_fun <- cmp_mmm_ccc_funs(); cmc_fam <- rep("cmp_mmm_ccc", length(cmc_fun)); cmc_lab <- paste0("5_", cmc_fam, "_", cmc_fun)
+  umc_fun <- unq_mmm_ccc_funs(); umc_fam <- rep("unq_mmm_ccc", length(umc_fun)); umc_lab <- paste0("5_", umc_fam, "_", umc_fun)
+  fun <- c(b_fun, c_fun, d_fun, e_fun, i_fun, m_fun, s_fun, or_fun, bc_fun, bm_fun, mc_fun, cc_fun, cm_fun, uc_fun, um_fun, cmc_fun, umc_fun)
+  fam <- c(b_fam, c_fam, d_fam, e_fam, i_fam, m_fam, s_fam, or_fam, bc_fam, bm_fam, mc_fam, cc_fam, cm_fam, uc_fam, um_fam, cmc_fam, umc_fam)
+  ord <- c(b_lab, c_lab, d_lab, e_lab, i_lab, m_lab, s_lab, or_lab, bc_lab, bm_lab, mc_lab, cc_lab, cm_lab, uc_lab, um_lab, cmc_lab, umc_lab)
   ord <- order(ord)
   fun <- fun[ord]
   fam <- fam[ord]
@@ -331,7 +447,7 @@ props_from_spec <- function(spec, valid = all_props()) {
   singles <- singles[singles != ""]
   singles <- .drop_iprefix(singles)
   if (length(singles) == 0)     {stop(.errs("The property spec [spec] is empty after splitting on pipes and underscores."))}
-  if (!all(singles %in% valid)) {stop(.errs("The property spec [spec] contains a property not in ppp_props()."))}
+  if (!all(singles %in% valid)) {stop(.errs("The property spec [spec] contains a property not in all_props()."))}
   sort(unique(singles))
 }
 
@@ -357,7 +473,7 @@ props_from_combo <- function(combo, valid = all_props()) {
   errs <- c(f0(cmp_chr_scl(combo), NULL, "[combo] must be a complete character scalar (?cmp_chr_scl)."),
             f0(ok.valid          , NULL, "[valid] must be a complete character vec (?cpm_chr_vec) containing only values from all_props()."))
   if (!is.null(errs)) {stop(.errs(errs))}
-  if (length(combo) != length(av(strsplit(combo, "|", fixed = T)))) {stop(.errs("[combo] contains multiple alternate property specs."))}
+  if (length(combo) != length(av(strsplit(combo, "|", fixed = T)))) {stop(.errs("[combo] contains multiple alternative property specs."))}
   out <- trimws(av(strsplit(combo, "_", fixed = T)))
   out <- out[out != ""]
   out <- .drop_iprefix(out)
@@ -369,7 +485,7 @@ props_from_combo <- function(combo, valid = all_props()) {
 #' @rdname ppp
 #' @export
 ippp <- function(x, spec, ...) {
-  if (!is_prop_spec(spec)) {stop(.errs("[spec] specifies a property not in ppp_props()."))}
+  if (!is_prop_spec(spec)) {stop(.errs("[spec] specifies a property not in all_props()."))}
   if (!meets(x, ...)) {return(F)}
   all.props <- all_props()
   combos <- combos_from_spec(spec)
@@ -390,11 +506,11 @@ ippp <- function(x, spec, ...) {
 
 #' @rdname ppp
 #' @export
-nll_or <- function(x, spec, ...) {f0(inll(x), T, ippp(x, spec, ...))}
+nll_or <- function(x, spec, ...) {f0(is.null(x), T, ippp(x, spec, ...))}
 
 #' @rdname ppp
 #' @export
-nas_or <- function(x, spec, ...) {f0(inas(x), T, ippp(x, spec, ...))}
+nas_or <- function(x, spec, ...) {f0(isNAS(x), T, ippp(x, spec, ...))}
 
 #' @rdname ppp
 #' @export
@@ -425,11 +541,13 @@ prop_defs <- function() {
     "eee"  , "e2D"   , "effectively 2-dimensional"         , "An effectively 2D object (matrix/data.frame with 2+ rows and 2+ columns or populated array with multiple index positions in exactly 2 dimensions)",
     "eee"  , "eHD"   , "effectively hyper-dimensional"     , "An effectively 3D+ object (populated array with multiple index positions in 3+ dimensions)",
     "eee"  , "eUD"   , "effectively non-dimensional"       , "An effectively non-dimensional object (of length 0)",
-    "iii"  , "cmp"   , "atomic and complete"               , "A complete atomic object, complete atomic vlist, or complete atomic data.frame (without any NA values)",
-    "iii"  , "mss"   , "atomic and missing"                , "A missing atomic object, missing atomic vlist, or missing atomic data.frame (without any non-NA values)",
+    "iii"  , "cmp"   , "atomic and complete"               , "An complete atomic object (containing no NA values)",
+    "iii"  , "ddd"   , "atomic, complete, with duplicates" , "A complete dup atomic object (containing no NA values, containing duplicate values)",
+    "iii"  , "mss"   , "atomic and missing"                , "A missing atomic object (containing only non-NA values)",
     "iii"  , "nas"   , "atomic NA scalar"                  , "An atomic NA scalar object",
     "iii"  , "oks"   , "atomic non-NA scalar"              , "An atomic non-NA scalar object",
-    "iii"  , "prt"   , "atomic and partial"                , "A partial atomic object, partial atomic vlist, or partial atomic data.frame (with both NA and non-NA values)",
+    "iii"  , "prt"   , "atomic and partial"                , "A partial atomic object (containing both NA and non-NA values)",
+    "iii"  , "unq"   , "atomic, complete, and unique"      , "A unique, complete atomic object (containing no NA or duplicate values)",
     "mmm"  , "ch1"   , "onechar"                           , "Any non-NA values are character scalars containing exactly 1 character",
     "mmm"  , "ch3"   , "threechar"                         , "Any non-NA values are character scalars containing exactly 3 characters",
     "mmm"  , "chr"   , "character"                         , "A character object",

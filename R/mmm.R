@@ -1,77 +1,78 @@
-#' @family props
-#' @title Extended mode (`xmode`) properties
-#' @description `xmodes` are defined for non-empty atomic objects. For all other objects, the `xmode` is `NULL`. These are not formally defined modes, but are evaluated dynamically based on the current characteristics of an object.
-#' \cr\cr Atomic objects that contain only `NA` values are of every `xmode` (they can be coerced to any mode without introducing new `NA` values).
-#' \cr\cr **Generic** `xmode`
+#' @encoding UTF-8
+#' @family properties
+#' @title Extended mode (xmode) properties
+#' @description xmodes are defined for non-empty atomic objects. For all other objects, the xmode is `NULL`. These are not formally defined modes, but are evaluated dynamically based on the current characteristics of an object.
+#' \cr\cr Atomic objects that contain only `NA` values are of every xmode (they can be coerced to any mode without introducing new `NA` values).
+#' \cr\cr **Generic xmode**
 #' \tabular{rll}{
-#'     `'atm'`   \tab atomic   \tab Both a \code{\link[=bbb]{basic}} and an `xmode` property.
+#'      `'atm'`   \tab atomic   \tab Both a \code{\link[=bbb]{basic}} and an xmode property.
 #' }
-#' **Character** `xmodes`
+#' **Character xmodes**
 #' \tabular{rl}{
-#'       `'chr'` \tab   character
+#'       `'chr'` \tab   character
 #'   \cr `'ch1'` \tab   1-char, or `all(nchar(x) == 1)`
 #'   \cr `'ch3'` \tab   3-char, or `all(nchar(x) == 3)`
 #'   \cr `'clr'` \tab   color (valid color values)
 #'   \cr `'str'` \tab   string (no blanks)
 #' }
-#' **Categorical** `xmodes`
+#' **Categorical xmodes**
 #' \tabular{rl}{
-#'       `'fac'` \tab   factor
+#'       `'fac'` \tab   factor
 #'   \cr `'lgl'` \tab   logical
 #'   \cr `'ord'` \tab   ordered factor
 #'   \cr `'uno'` \tab   unordered factor
 #' }
-#' **Basic numeric** `xmodes`
+#' **Basic numeric xmodes**
 #' \tabular{rl}{
-#'       `'num'` \tab   numeric
+#'       `'num'` \tab   numeric
 #'   \cr `'frc'` \tab   fractional
 #'   \cr `'whl'` \tab   whole number
 #' }
-#' **Value-restricted numeric** `xmodes`
+#' **Value-restricted numeric xmodes**
 #' \tabular{rl}{
-#'       `'pct'` \tab   percentage (`0-100`)
+#'       `'pct'` \tab   percentage (`0-100`)
 #'   \cr `'ppn'` \tab   proportion (`0-1`)
 #'   \cr `'pos'` \tab   positive
 #'   \cr `'neg'` \tab   negative
 #'   \cr `'nng'` \tab   non-negative
 #'   \cr `'nps'` \tab   non-positive
 #' }
-#' **Whole-number value-restricted** `xmodes`
+#' **Whole-number value-restricted xmodes**
 #' \tabular{rl}{
-#'       `'evn'` \tab   even
+#'       `'evn'` \tab   even
 #'   \cr `'odd'` \tab   odd
 #'   \cr `'ngw'` \tab   negative whole
 #'   \cr `'psw'` \tab   positive whole
 #'   \cr `'nnw'` \tab   non-negative whole
 #'   \cr `'npw'` \tab   non-positive whole
 #' }
-#' **Combination** `xmodes`
+#' **Combination xmodes**
 #' \tabular{rl}{
-#'       `'ind'` \tab   indexer (`lgl`, `psw`)
+#'       `'ind'` \tab   indexer (`lgl`, `psw`)
 #'   \cr `'srt'` \tab   sortable (`chr`, `num`, `ord`)
 #'   \cr `'nst'` \tab   non-sortable atomic
 #' }
-#' **`xmode` functions**
+#' **xmode functions**
 #' \tabular{rl}{
-#'     `is_mmm_spec`   \tab Is `spec` an `xmode` specification?
-#'   \cr `mmm_props`   \tab What `xmode` properties are there?
-#'   \cr  `mmm_funs`   \tab What `xmode` property functions are there?
-#'   \cr      `immm`   \tab Is `x` a match to the `xmode` specification in `spec`?
-#'   \cr      `iMMM`   \tab Is `x` a match to the single `xmode` property `'MMM'`?
-#'   \cr       `mmm`   \tab What are `x`'s `xmode` properties?
+#'     `is_mmm_spec`   \tab Is `spec` an xmode specification?
+#'   \cr `mmm_props`   \tab What xmode properties are there?
+#'   \cr  `mmm_funs`   \tab What xmode property functions are there?
+#'   \cr      `immm`   \tab Is `x` a match to the xmode property spec in `spec`?
+#'   \cr      `iMMM`   \tab Is `x` a match to the single xmode property `'MMM'`?
+#'   \cr       `mmm`   \tab What are `x`'s xmode properties?
 #' }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more `xmode` properties from `mmm_props()`. `xmode` specs may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more xmode properties from `mmm_props()`. xmode specs may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return \tabular{rl}{
-#'     `is_mmm_spec` \tab   A logical scalar.
-#'   \cr `mmm_props` \tab   A character vector.
-#'   \cr  `mmm_funs` \tab   A character vector.
-#'   \cr      `immm` \tab   A logical scalar.
-#'   \cr      `iMMM` \tab   A logical scalar.
-#'   \cr       `mmm` \tab   A character vector.
-#' }
+#' @return *A character vector*
+#'   \cr    `mmm_props`
+#'   \cr    `mmm_funs`
+#'   \cr    `mmm`
+#'   \cr\cr *A logical scalar 
+#'   \cr    `is_mmm_spec`
+#'   \cr    `iMMM`
+#'   \cr    `immm`
 #' @examples
 #' mmm_funs()
 #' mmm_props()

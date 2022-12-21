@@ -1,16 +1,17 @@
-#' @name tocase
+#' @encoding UTF-8
+#' @family conversions
 #' @family strings
 #' @title Convert string case
-#' @description Functions in this family convert string case as follows:\tabular{rl}{
-#'        `tocase` \tab   Convert among cases.
-#'   \cr           \tab   
-#'   \cr `totitle` \tab   Convert to \link[stringr:str_to_sentence]{title case}.
-#'   \cr  `tosent` \tab   Convert to \link[stringr:str_to_sentence]{sentence case}.
-#'   \cr           \tab   
-#'   \cr      `lc` \tab   Convert to \link[base:tolower]{lower case}.
-#'   \cr      `sc` \tab   Convert to \link[stringr:str_to_sentence]{sentence case}.
-#'   \cr      `tc` \tab   Convert to \link[stringr:str_to_title]{title case}.
-#'   \cr      `uc` \tab   Convert to \link[base:toupper]{upper case}.
+#' @description Functions in this family convert string case as follows:
+#' \tabular{rl}{
+#'      `totitle, tc` \tab   Convert to \link[stringr:str_to_sentence]{title case}.
+#'   \cr              \tab  
+#'   \cr `tosent, ts` \tab   Convert to \link[stringr:str_to_sentence]{sentence case}.
+#'   \cr              \tab  
+#'   \cr         `lc` \tab   Convert to \link[base:tolower]{lower case}.
+#'   \cr         `uc` \tab   Convert to \link[base:toupper]{upper case}.
+#'   \cr              \tab  
+#'   \cr     `tocase` \tab   Convert to case in argument `case.`.
 #' }
 #' @param ... An arbitrary number of non-empty character arguments.
 #' @param case. A \link[=cmp_ch1_scl]{complete onechar scalar}. Either `'l'`, `'s'`, `'t'`, or `'u'` to indicate lower, sentence, title, or upper case, respectively (case insensitive).

@@ -1,4 +1,5 @@
-#' @name reclass
+#' @encoding UTF-8
+#' @family properties
 #' @title Set object class
 #' @param x An R object.
 #' @param cls A \link[=cmp_chr_vec]{complete character vec} of classes to apply.

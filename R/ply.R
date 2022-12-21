@@ -1,11 +1,12 @@
-#' @name ply
+#' @encoding UTF-8
+#' @family meta
 #' @title Variations on `apply` functions
 #' @description \tabular{rl}{
-#'       `norply`   \tab Checks for `0` resulting `TRUE` values\eqn{^a}.
+#'       `norply`   \tab Checks for `0` resulting `TRUE` values\eqn{^a}.
 #'   \cr `oneply`   \tab Checks for `1` resulting `TRUE` values\eqn{^a}.
 #'   \cr `twoply`   \tab Checks for `2+` resulting `TRUE` values\eqn{^a}.
 #'   \cr `anyply`   \tab Checks for *any* resulting `TRUE` values\eqn{^a}.
-#'   \cr `allply`   \tab Checks for *only* resulting `TRUE` values\eqn{^a}.
+#'   \cr `allply`   \tab Checks for *only* resulting `TRUE` values\eqn{^a}.
 #'   \cr `atmply`   \tab Applies `fun` to \link[=av]{atomized} `x`.
 #'   \cr `mvcply`   \tab Applies `fun` to elements of \link[=atm_mvc]{atomic multivec} `x`.
 #'   \cr `vecply`   \tab Applies `fun` to elements of \link[=atm_vec]{atomic vec} `x`.
@@ -13,23 +14,22 @@
 #'   \cr `rowply`   \tab Applies `fun` to rows of `x`.
 #'   \cr `colply`   \tab Applies `fun` to columns of `x`.
 #'   \cr `dimply`   \tab Applies `fun` to cells of `x`.
-#'   \cr            \tab   
-#'   \cr    `ply`   \tab Offers all functionality of the above specialized `ply` functions.
+#'   \cr    `ply`   \tab Generalized `ply` function.
 #' }
-#' \eqn{^{a.}} These functions assume that applying `fun` produces `'logical'` results.
+#' \eqn{^{a.}} These functions assume that applying `fun` produces `'logical'` results.
 #' @section The `proc` Argument: When not `NULL`, the `proc` argument is an optional list with up to seven named elements, which give processing instructions as follows:
 #' \tabular{rll}{
-#'    **Name** \tab   **Value** \tab   **Instructions**
-#'   \cr `$arg` \tab   `'***'`   \tab   Checks `x` for match to \link[=ppp]{spec} `'***'`.
-#'   \cr `$out` \tab   `'***'`   \tab   Checks result for match to spec `'***'`.
+#'     **Name** \tab   **Value** \tab   **Instructions**
+#'   \cr `$arg` \tab   `'XXX'`   \tab   Checks `x` for match to \link[=ppp]{spec} `'XXX'`.
+#'   \cr `$out` \tab   `'XXX'`   \tab   Checks result for match to spec `'XXX'`.
 #'   \cr `$agg` \tab   `'nor'`   \tab   Inspect result for `0` `TRUE` values.
 #'   \cr `$agg` \tab   `'one'`   \tab   Inspect result for `1` `TRUE` values.
 #'   \cr `$agg` \tab   `'two'`   \tab   Inspect result for `2+` `TRUE` values.
 #'   \cr `$agg` \tab   `'any'`   \tab   Inspect result for *any* `TRUE` values.
-#'   \cr `$agg` \tab   `'all'`   \tab   Inspect result for *only* `TRUE` values.
-#'   \cr  `$na` \tab   `'err'`   \tab   Throw error if result has any `NA`s.
-#'   \cr  `$na` \tab   `FALSE`   \tab   Replace resulting `NA`s with `FALSE`.
-#'   \cr  `$na` \tab   `TRUE`    \tab   Replace resulting `NA`s with `TRUE`.
+#'   \cr `$agg` \tab   `'all'`   \tab   Inspect result for *only* `TRUE` values.
+#'   \cr  `$na` \tab   `'err'`   \tab   Throw error if result has any `NA`'s.
+#'   \cr  `$na` \tab   `FALSE`   \tab   Replace resulting `NA`'s with `FALSE`.
+#'   \cr  `$na` \tab   `TRUE`    \tab   Replace resulting `NA`'s with `TRUE`.
 #'   \cr  `$a1` \tab   `TRUE`    \tab   \link[=av]{Atomize} `x`.
 #'   \cr  `$a2` \tab   `TRUE`    \tab   Atomize the result.
 #'   \cr   `$s` \tab   `TRUE`    \tab   \link[base:simplify2array]{Simplify} the result.

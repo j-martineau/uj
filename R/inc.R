@@ -1,6 +1,8 @@
+#' @encoding UTF-8
+#' @family to_std_fun_form
 #' @title Increment or decrement a variable
 #' @description \tabular{rl}{
-#'      `inc` \tab   Increments `x` by `i`.
+#'      `inc` \tab   Increments `x` by `i`.
 #'  \cr `dec` \tab   Decrements `x` by `d`.
 #' }
 #' @param x An \link[=atm_num]{atomic numeric} object.

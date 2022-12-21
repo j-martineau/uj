@@ -1,9 +1,14 @@
+#' @encoding UTF-8
 #' @family missingness
+#' @family extensions
+#' @family values
 #' @title Manage `NA` and non-`NA` values
 #' @description All functions in this group take objects of atomic mode, \link[=atm_dtf]{atomic dtfs}, or \link[=atm_vls]{atomic vlists}:
 #' \tabular{rl}{
-#'     `sub_na`   \tab Substitutes `s` for `NA` values of`x` Modes of `x` and `s` must be \link[=compatible]{compatible}.
+#'     `sub_na`   \tab Substitutes `s` for `NA` values of`x` Modes of `x` and `s` must be \link[=compatible]{compatible}.
+#'  \cr           \tab  
 #'  \cr `rm_na`   \tab Removes `NA` values of `x` If there are no `NA` values in `x`, returns `x` unchanged. If there are `NA` values in `x`, removing them may change the dimensions and/or class of `x`.
+#'  \cr           \tab  
 #'  \cr   `nas`   \tab Evaluates whether `x` is an `NA` scalar.
 #'  \cr   `oks`   \tab Evaluates whether `x` is a non-`NA` scalar.
 #'  \cr    `na`   \tab Indexes `NA` values of `x`.
@@ -11,15 +16,16 @@
 #' }
 #' @param x The argument to be inspected/managed.
 #' @param s An \link[=atm_scl]{atomic scalar} to replace `NA` values. Mode must be \link[=compatible]{compatible} with`x`
-#' @return \tabular{rl}{
-#'     `sub_na` \tab   `x` with `NA` values replaced.
-#'  \cr `rm_na` \tab   Either an atomic vector or `x`.
-#'  \cr   `nas` \tab   A logical scalar.
-#'  \cr   `oks` \tab   A logical scalar.
-#'  \cr    `na` \tab   A logical object of the same dimension as `x`.
-#'  \cr    `ok` \tab   A logical object of the same dimension as `x`.
-#'
-#' }
+#' @return *A logical object of the same dimension as `x`*
+#'  \cr    `na, ok`
+#'  \cr\cr *`x` with `NA` values replaced*
+#'  \cr (properties may change with `NA` replacement)
+#'  \cr    `sub_na`
+#'  \cr\cr *`x` with `NA` values removed*
+#'  \cr (properties may change with `NA` removal)
+#'  \cr    `rm_na`
+#'  \cr\cr *A logical scalaqr*
+#'  \cr    `nas, oks`
 #' @examples
 #' na_scl <- NA
 #' ok_scl <- "a"

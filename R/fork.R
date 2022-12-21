@@ -1,31 +1,33 @@
 #' @name fork
+#' @encoding UTF-8
+#' @family extensions
 #' @family forks
 #' @title Robust extended functionality for \code{\link[base]{ifelse}}.
 #' @description \tabular{rl}{
-#'     `fork`   \tab Evaluates logical scalar or logical vector `test` and return an object of the same length as `test` where:
-#'   \cr        \tab \itemize{
-#'                     \item `TRUE` values of `test` are replaced by corresponding values of `yes`.
-#'                     \item `FALSE` values of `test` are replaced by corresponding values of `no`.
-#'                     \item `NA` values of `test` are replaced by `na` (unless `na = 'err'`, in which case if there are any `NA` values in `test`, throws an error).
-#'                   }
-#'   \cr `f0`   \tab If `test` is scalar `TRUE`, returns `yes`. If `test` is anything else, returns `no`.
-#'   \cr `f1`   \tab Error-checked version of `f0`. Evaluates and processes logical scalar `test` in the following manner:
-#'   \cr        \tab \itemize{
-#'                     \item If `test = TRUE`, returns `yes`.
-#'                     \item If `test = FALSE`, returns `no`.
-#'                     \item If `test = NA`, returns `na` unless `na = 'err'`, in which case, an error is thrown.
-#'                     \item If `test` is neither a logical scalar nor scalar `NA`, returns `err` unless `err = 'err'`, in which case an error is thrown.
-#'                   }
-#' }
+#'           `f0`   \tab If `test` is scalar `TRUE`, returns `yes`. If `test` is anything else, returns `no`.
+#'   \cr            \tab  
+#'   \cr     `f1`   \tab Error-checked version of `f0`. Evaluates and processes logical scalar `test` in the following manner:
+#'   \cr            \tab \itemize{
+#'                         \item If `test = TRUE`, returns `yes`.
+#'                         \item If `test = FALSE`, returns `no`.
+#'                         \item If `test = NA`, returns `na` unless `na = 'err'`, in which case, an error is thrown.
+#'                         \item If `test` is neither a logical scalar nor scalar `NA`, returns `err` unless `err = 'err'`, in which case an error is thrown.
+#'                       }
+#'   \cr   `fork`   \tab Evaluates logical scalar or logical vector `test` and return an object of the same length as `test` where:
+#'   \cr            \tab \itemize{
+#'                         \item `TRUE` values of `test` are replaced by corresponding values of `yes`.
+#'                         \item `FALSE` values of `test` are replaced by corresponding values of `no`.
+#'                         \item `NA` values of `test` are replaced by `na` (unless `na = 'err'`, in which case if there are any `NA` values in `test`, throws an error).
+#' }}
 #' @param x A logical scalar or vector is anticipated for `f0` and `f1` vs. `fork` respectively, but this argument may be any R object.
 #' @param y,n Objects of any type for `f0` and `f1`. \link[=atm_scl]{Atomic scalars} or \link[=atm_vec]{atomic vecs} of the same length as `test` for `fork`.
 #' @param na An object of any type for `f1`. An atomic scalar \link[=compatible]{compatible} with `yes` and `no` for `fork`, with the additional possibility of `na = 'err'` to indicate an error should be thrown if any values in `test` are `na`.
 #' @param err Either `'err'` or an object to be returned when `test` is not an atomic scalar in `c(TRUE, FALSE, NA)`.
-#' @return \tabular{rl}{
-#'     `fork` \tab   A length-`length(x)` atomic object.
-#'   \cr `f0` \tab   An R object.
-#'   \cr `f1` \tab   An R object.
-#' }
+#' @return *A length-`length(x)` atomic object*
+#'   \cr    `fork`
+#'   \cr\cr *An* R *object*
+#'   \cr    `f0`
+#'   \cr    `f1`
 #' @examples
 #' Vec. <- sample(c(TRUE, FALSE, NA), 10, replace = TRUE)
 #' Yes. <- list(a = "yes", b = "yes")

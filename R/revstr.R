@@ -1,6 +1,6 @@
-#' @name revstr
-#' @family chars
+#' @encoding UTF-8
 #' @family strings
+#' @family chars
 #' @title Reverse strings
 #' @description Reverses the order of characters in each element of a non-empty \link[=pop_chr]{atomic character object}, \link[=chr_vls]{character vlist} or \link[=chr_dtf]{character data.frame}.
 #' @param x A \link[=cmp_chr_vec]{character vec}.

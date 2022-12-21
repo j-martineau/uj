@@ -1,20 +1,26 @@
 #' @name failsafe
-#' @family errs
+#' @encoding UTF-8
+#' @family extensions
 #' @family failsafe
+#' @family errs
 #' @title Evaluate objects and flag any errors
 #' @description \tabular{rl}{
-#'     `failsafe`   \tab Calls `identity(x)`. If an error is produced in doing so, returns an object of class `'error'` or of class `'simpleError'`. If an error is not generated, returns the safely evaluated value of `x`.
+#'     `failsafe`   \tab Calls `identity(x)`. If an error is produced in doing so, returns an object of class `'error'` or of class `'simpleError'`. If an error is not generated, returns the safely evaluated value of `x`.
+#'   \cr            \tab  
 #'   \cr `notERR`   \tab Evaluates whether calling `identity(x)` *does not* produce an error.
+#'   \cr            \tab  
 #'   \cr `msgERR`   \tab Gets any error message associated with calling `identity(x)`. If there is none, returns `NULL`.
+#'   \cr            \tab  
 #'   \cr  `isERR`   \tab Evaluates whether calling `identity(x)` produced an error.
 #' }
 #' @param x An object or a call to evaluate in the environment of a parent function where the initial call was made.
-#' @return \tabular{rl}{
-#'     `failsafe`   \tab Either `x`, an object of class `'error'`, or an object of class `'simpleError'`.
-#'   \cr `msgERR`   \tab `NULL` or a character scalar.
-#'   \cr `notERR`   \tab A logical scalar.
-#'   \cr  `isERR`   \tab A logical scalar.
-#' }
+#' @return *Either* `x`, *an object of class* `'error'` *or of class* `'simpleError'`
+#'   \cr    `failsafe`
+#'   \cr\cr `NULL` *or a character scalar*
+#'   \cr    `msgERR`
+#'   \cr\cr *A logical scalar*
+#'   \cr    `notERR`
+#'   \cr    `isERR`
 #' @examples
 #' failsafe(pi)
 #' notERR(pi)
