@@ -73,9 +73,9 @@ Bank error messages in the immediate environment of a function to allow for exha
 \cr\cr
 \strong{General purpose functions}
 \tabular{rl}{
-  \code{banked_errs}   \tab Retrieves the bank of error message stored in the environment of the function \code{gens.} generations back in the calls stack.
+  \code{banked_errs}   \tab Retrieves the bank of error message stored in the environment of the function \code{gens.} generations back in the call stack.
 \cr               \tab  
-\cr \code{err_check}   \tab Checks for banked error messages in the environment of the function \code{gens.} generations back in the call stack, and if there are any, processes them, stopping execution. If there are none, takes no action.
+\cr \code{err_check}   \tab Checks for banked error messages in the environment of the function \code{gens.} generations back in the call stack, and if there are any, processes them, communicates them, purges them, and stops execution. If there are none, takes no action.
 \cr               \tab  
 \cr  \code{bank_err}   \tab Banks an arbitrary error message (built by collapsing \code{...} args) in the environment of the function \code{gens.} generations back in the call stack.
 }
