@@ -18,9 +18,9 @@
 #' \cr\cr
 #' **General purpose functions**
 #' \tabular{rl}{
-#'     `banked_errs`   \tab Retrieves the bank of error message stored in the environment of the function `gens.` generations back in the calls stack.
+#'     `banked_errs`   \tab Retrieves the bank of error message stored in the environment of the function `gens.` generations back in the call stack.
 #'   \cr               \tab  
-#'   \cr `err_check`   \tab Checks for banked error messages in the environment of the function `gens.` generations back in the call stack, and if there are any, processes them, stopping execution. If there are none, takes no action.
+#'   \cr `err_check`   \tab Checks for banked error messages in the environment of the function `gens.` generations back in the call stack, and if there are any, processes them, communicates them, purges them, and stops execution. If there are none, takes no action.
 #'   \cr               \tab  
 #'   \cr  `bank_err`   \tab Banks an arbitrary error message (built by collapsing `...` args) in the environment of the function `gens.` generations back in the call stack.
 #' }
@@ -178,7 +178,7 @@ bank_not <- function(...) {
   labs <- names(named)
   ok.nnd <- length(named) > 0
   ok.nbd <- length(blank) > 0
-  ok.bln <- f0(!ok.nnd, T, !any(names == ""))
+  ok.bln <- f0(!ok.nnd, T, !any(labs == ""))
   ok.unq <- length(labs) == length(unique(labs))
   ok.msg <- any(grepl("{@}", mssg, fixed = TRUE))
   errs <- c(f0(ok.nnd, NULL, "There are no named [...] args."),
@@ -188,7 +188,7 @@ bank_not <- function(...) {
             f0(ok.msg, NULL, "At least 1 unnamed [...] arg must contain the escape sequence '{@} for inserting the names of named [...] args."))
   if (!is.null(errs)) {stop(.errs(errs))}
   for (i in 1:length(named)) {if (!named[[1]]) {
-    err <- gsub("{@}", paste0("[", names[i], "]"), mssg)
+    err <- gsub("{@}", paste0("[", labs[i], "]"), mssg)
     bank_err(err, gens = 1)
   }}
   NULL

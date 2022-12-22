@@ -47,7 +47,7 @@ unnamed_dots(...)
 \cr                \tab  
 \cr  \code{dot_names}   \tab If \code{names. = NULL}, the return value is \code{...names()}, otherwise, \code{names.} is returned. Throws an error in the following cases:
 \cr                \tab   —  \code{...length() == 0}
-\cr                \tab   —  \code{!is.null(names.) & length(names.) < ...length()}
+\cr                \tab   —  \code{length(names.) > 0 & length(names.) < ...length()}
 \cr                \tab   —  \code{is.null(names.) & blank. & any(...names() == "")}
 \cr                \tab   —  \code{is.null(names.) & req. & !any(...names() != "")}
 \cr                \tab   —  \verb{is.null(names.) & u. & any(duplicated(...names()))}

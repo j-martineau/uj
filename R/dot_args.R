@@ -11,7 +11,7 @@
 #'   \cr                \tab  
 #'   \cr  `dot_names`   \tab If `names. = NULL`, the return value is `...names()`, otherwise, `names.` is returned. Throws an error in the following cases:
 #'   \cr                \tab   —  `...length() == 0`
-#'   \cr                \tab   —  `!is.null(names.) & length(names.) < ...length()`
+#'   \cr                \tab   —  `length(names.) > 0 & length(names.) < ...length()`
 #'   \cr                \tab   —  `is.null(names.) & blank. & any(...names() == "")`
 #'   \cr                \tab   —  `is.null(names.) & req. & !any(...names() != "")`
 #'   \cr                \tab   —  `is.null(names.) & u. & any(duplicated(...names()))`
@@ -103,6 +103,6 @@ unnamed_dots <- function(...) {
   dot.names <- ...names()
   n.dots <- ...length()
   n.names <- length(dot.names)
-  ok.names <- is.na(dot.names) | dn == ""
+  ok.names <- is.na(dot.names) | dot.names == ""
   f0(n.dots == 0, NULL, f0(n.names == 0, list(...), f0(!any(ok.names), NULL, list(...)[ok.names])))
 }
