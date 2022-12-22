@@ -274,7 +274,7 @@ Other counts:
 \code{\link{meets}()}
 
 Other dots: 
-\code{\link{dots_uj}}
+\code{\link{dot_args}}
 }
 \concept{counts}
 \concept{dots}

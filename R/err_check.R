@@ -18,34 +18,36 @@
 #' \cr\cr
 #' **General purpose functions**
 #' \tabular{rl}{
-#'      `err_check`   \tab Checks for banked error messages in the environment of the function `gens.` generations back in the call stack, and if there are any, processes them, stopping execution. If there are none, takes no action.
-#'   \cr `bank_err`   \tab Banks an arbitrary error message (built by collapsing `...` args) in the environment of the function `gens.` generations back in the call stack.
+#'     `banked_errs`   \tab Retrieves the bank of error message stored in the environment of the function `gens.` generations back in the calls stack.
+#'   \cr               \tab  
+#'   \cr `err_check`   \tab Checks for banked error messages in the environment of the function `gens.` generations back in the call stack, and if there are any, processes them, stopping execution. If there are none, takes no action.
+#'   \cr               \tab  
+#'   \cr  `bank_err`   \tab Banks an arbitrary error message (built by collapsing `...` args) in the environment of the function `gens.` generations back in the call stack.
 #' }
 #' **Condition-based functions**
 #' \tabular{rl}{
-#'         **Function**   \tab **Condition for banking an error message**
-#'   \cr                  \tab  
-#'   \cr   `bank_class`   \tab A named `...` arg is not of any class named in the `class.` argument.
-#'   \cr                  \tab  
-#'   \cr   `bank_chars`   \tab A named `...` arg contains characters not supplied in the `chars.` argument.
-#'   \cr                  \tab  
-#'   \cr    `bank_when`   \tab The first named `...` arg is the `n`-th value in the `whens.` argument, but the second *is not* the `n`-th value in the `values.` argument.
-#'   \cr                  \tab  
-#'   \cr    `bank_dots`   \tab A `...` arg\eqn{^a} fails to satisfy the \link[=is_prop_spec]{property spec} in the `spec.` argument.
-#'   \cr                  \tab  
-#'   \cr    `bank_spec`   \tab A named `...` arg fails to satisfy the \link[=is_prop_spec]{property spec} in the `spec.` argument\eqn{^b}.
-#'   \cr                  \tab  
-#'   \cr    `bank_funs`   \tab A named `...` arg fails to satisfy *any* of the \link[=prop_funs]{property function(s)} named in the `funs.` argument.
-#'   \cr                  \tab  
-#'   \cr    `bank_vals`   \tab A named `...` arg contains values not supplied in the `vals.` argument.
-#'   \cr                  \tab  
-#'   \cr    `bank_fail`   \tab A named `...` arg produces an error when submitted to \code{\link[base]{identity}}.
-#'   \cr                  \tab  
-#'   \cr     `bank_lgl`   \tab A named `...` arg is neither `TRUE`, `FALSE`, `NA`\eqn{^c}, nor contained in the `extras.` argument\eqn{^d}.
-#'   \cr                  \tab  
-#'   \cr     `bank_not`   \tab A named `...` arg is `FALSE`\eqn{^e}.
-#'   \cr                  \tab  
-#'   \cr     `bank_pop`   \tab A named `...` arg is either `NULL` or otherwise of length `0`.
+#'       **Function**   \tab **Condition for banking an error message**
+#'   \cr `bank_class`   \tab A named `...` arg is not of any class named in the `class.` argument.
+#'   \cr                \tab  
+#'   \cr `bank_chars`   \tab A named `...` arg contains characters not supplied in the `chars.` argument.
+#'   \cr                \tab  
+#'   \cr  `bank_when`   \tab The first named `...` arg is the `n`-th value in the `whens.` argument, but the second *is not* the `n`-th value in the `values.` argument.
+#'   \cr                \tab  
+#'   \cr  `bank_dots`   \tab A `...` arg\eqn{^a} fails to satisfy the \link[=is_prop_spec]{property spec} in the `spec.` argument.
+#'   \cr                \tab  
+#'   \cr  `bank_spec`   \tab A named `...` arg fails to satisfy the \link[=is_prop_spec]{property spec} in the `spec.` argument\eqn{^b}.
+#'   \cr                \tab  
+#'   \cr  `bank_funs`   \tab A named `...` arg fails to satisfy *any* of the \link[=prop_funs]{property function(s)} named in the `funs.` argument.
+#'   \cr                \tab  
+#'   \cr  `bank_vals`   \tab A named `...` arg contains values not supplied in the `vals.` argument.
+#'   \cr                \tab  
+#'   \cr  `bank_fail`   \tab A named `...` arg produces an error when submitted to \code{\link[base]{identity}}.
+#'   \cr                \tab  
+#'   \cr   `bank_lgl`   \tab A named `...` arg is neither `TRUE`, `FALSE`, `NA`\eqn{^c}, nor contained in the `extras.` argument\eqn{^d}.
+#'   \cr                \tab  
+#'   \cr   `bank_not`   \tab A named `...` arg is `FALSE`\eqn{^e}.
+#'   \cr                \tab  
+#'   \cr   `bank_pop`   \tab A named `...` arg is either `NULL` or otherwise of length `0`.
 #' }
 #' \eqn{^{a.}} Named when `named. = TRUE`.
 #' \cr\eqn{^{b.}} May also be scalar `NA` when `nas. = TRUE`.
@@ -98,6 +100,23 @@ err_check <- function(gens. = 0) {
     stop(bank)
   }
   NULL
+}
+
+#' @rdname err_check
+#' @export
+banked_errs <- function(gens. = 0) {
+  ok.g <- f0(!cmp_nnw_scl(gens.), F, gens. <= ncallers() - 1)
+  if (!ok.g) {stop(.errs("[gens.] doesn't point to a function in the call stack."))}
+  gens. <- gens. + 1
+  name <- "._ERR_._BANK_."
+  errs <- exists(name, envir = parent.frame(gens.), inherits = F)
+  if (errs) {
+    func <- callers(gens.)
+    bank <- get(name, envir = parent.frame(gens.), inherits = F)
+    bank <- .errs(bank)
+    bank <- paste0("\nIN [", func, "]", bank)
+  } else {bank <- NULL}
+  bank
 }
 
 #' @rdname err_check

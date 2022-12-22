@@ -3,6 +3,7 @@
 \encoding{UTF-8}
 \name{err_check}
 \alias{err_check}
+\alias{banked_errs}
 \alias{bank_err}
 \alias{bank_lgl}
 \alias{bank_not}
@@ -18,6 +19,8 @@
 \title{Error checking, banking, and processing}
 \usage{
 err_check(gens. = 0)
+
+banked_errs(gens. = 0)
 
 bank_err(..., gens. = 0)
 
@@ -70,34 +73,36 @@ Bank error messages in the immediate environment of a function to allow for exha
 \cr\cr
 \strong{General purpose functions}
 \tabular{rl}{
-  \code{err_check}   \tab Checks for banked error messages in the environment of the function \code{gens.} generations back in the call stack, and if there are any, processes them, stopping execution. If there are none, takes no action.
-\cr \code{bank_err}   \tab Banks an arbitrary error message (built by collapsing \code{...} args) in the environment of the function \code{gens.} generations back in the call stack.
+  \code{banked_errs}   \tab Retrieves the bank of error message stored in the environment of the function \code{gens.} generations back in the calls stack.
+\cr               \tab  
+\cr \code{err_check}   \tab Checks for banked error messages in the environment of the function \code{gens.} generations back in the call stack, and if there are any, processes them, stopping execution. If there are none, takes no action.
+\cr               \tab  
+\cr  \code{bank_err}   \tab Banks an arbitrary error message (built by collapsing \code{...} args) in the environment of the function \code{gens.} generations back in the call stack.
 }
 \strong{Condition-based functions}
 \tabular{rl}{
   \strong{Function}   \tab \strong{Condition for banking an error message}
-\cr                  \tab  
-\cr   \code{bank_class}   \tab A named \code{...} arg is not of any class named in the \code{class.} argument.
-\cr                  \tab  
-\cr   \code{bank_chars}   \tab A named \code{...} arg contains characters not supplied in the \code{chars.} argument.
-\cr                  \tab  
-\cr    \code{bank_when}   \tab The first named \code{...} arg is the \code{n}-th value in the \code{whens.} argument, but the second \emph{is not} the \code{n}-th value in the \code{values.} argument.
-\cr                  \tab  
-\cr    \code{bank_dots}   \tab A \code{...} arg\eqn{^a} fails to satisfy the \link[=is_prop_spec]{property spec} in the \code{spec.} argument.
-\cr                  \tab  
-\cr    \code{bank_spec}   \tab A named \code{...} arg fails to satisfy the \link[=is_prop_spec]{property spec} in the \code{spec.} argument\eqn{^b}.
-\cr                  \tab  
-\cr    \code{bank_funs}   \tab A named \code{...} arg fails to satisfy \emph{any} of the \link[=prop_funs]{property function(s)} named in the \code{funs.} argument.
-\cr                  \tab  
-\cr    \code{bank_vals}   \tab A named \code{...} arg contains values not supplied in the \code{vals.} argument.
-\cr                  \tab  
-\cr    \code{bank_fail}   \tab A named \code{...} arg produces an error when submitted to \code{\link[base]{identity}}.
-\cr                  \tab  
-\cr     \code{bank_lgl}   \tab A named \code{...} arg is neither \code{TRUE}, \code{FALSE}, \code{NA}\eqn{^c}, nor contained in the \code{extras.} argument\eqn{^d}.
-\cr                  \tab  
-\cr     \code{bank_not}   \tab A named \code{...} arg is \code{FALSE}\eqn{^e}.
-\cr                  \tab  
-\cr     \code{bank_pop}   \tab A named \code{...} arg is either \code{NULL} or otherwise of length \code{0}.
+\cr \code{bank_class}   \tab A named \code{...} arg is not of any class named in the \code{class.} argument.
+\cr                \tab  
+\cr \code{bank_chars}   \tab A named \code{...} arg contains characters not supplied in the \code{chars.} argument.
+\cr                \tab  
+\cr  \code{bank_when}   \tab The first named \code{...} arg is the \code{n}-th value in the \code{whens.} argument, but the second \emph{is not} the \code{n}-th value in the \code{values.} argument.
+\cr                \tab  
+\cr  \code{bank_dots}   \tab A \code{...} arg\eqn{^a} fails to satisfy the \link[=is_prop_spec]{property spec} in the \code{spec.} argument.
+\cr                \tab  
+\cr  \code{bank_spec}   \tab A named \code{...} arg fails to satisfy the \link[=is_prop_spec]{property spec} in the \code{spec.} argument\eqn{^b}.
+\cr                \tab  
+\cr  \code{bank_funs}   \tab A named \code{...} arg fails to satisfy \emph{any} of the \link[=prop_funs]{property function(s)} named in the \code{funs.} argument.
+\cr                \tab  
+\cr  \code{bank_vals}   \tab A named \code{...} arg contains values not supplied in the \code{vals.} argument.
+\cr                \tab  
+\cr  \code{bank_fail}   \tab A named \code{...} arg produces an error when submitted to \code{\link[base]{identity}}.
+\cr                \tab  
+\cr   \code{bank_lgl}   \tab A named \code{...} arg is neither \code{TRUE}, \code{FALSE}, \code{NA}\eqn{^c}, nor contained in the \code{extras.} argument\eqn{^d}.
+\cr                \tab  
+\cr   \code{bank_not}   \tab A named \code{...} arg is \code{FALSE}\eqn{^e}.
+\cr                \tab  
+\cr   \code{bank_pop}   \tab A named \code{...} arg is either \code{NULL} or otherwise of length \code{0}.
 }
 \eqn{^{a.}} Named when \verb{named. = TRUE}.
 \cr\eqn{^{b.}} May also be scalar \code{NA} when \verb{nas. = TRUE}.

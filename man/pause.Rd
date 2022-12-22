@@ -32,7 +32,7 @@ cat("\n done")
 \seealso{
 Other meta: 
 \code{\link{callers}()},
-\code{\link{dots_uj}},
+\code{\link{dot_args}},
 \code{\link{ply}()},
 \code{\link{recycling}},
 \code{\link{run}()},

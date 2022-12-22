@@ -92,7 +92,7 @@ dirbox <- function(..., d = getwd()) {
             f0(cmp_chr_scl(d)  , NULL, "No default directory provided in [d]."),
             f0(dir.exists(d)   , NULL, paste0("[d = '", d, "'] is not an existing directory/folder.")))
   if (!is.null(errs)) {stop(.errs(errs))}
-  msgbox(paste0("In the next dialog box, ", msg), rstudio = FALSE)
+  msgbox(paste0("In the next dialog box, ", msg))
   svDialogs::dlg_dir(default = d, title = msg, rstudio = FALSE)
 }
 
@@ -102,7 +102,7 @@ docbox <- function(...) {
   msg <- paste0(av(...), collapse = "")
   if (inll(msg)) {msg <- "choose a document"}
   if (!cmp_chr_scl(msg)) {stop(.errs("[...] must be empty or must be collapsible to a character scalar."))}
-  msgbox(paste0("In the next dialog box, ", msg), rstudio = FALSE)
+  msgbox(paste0("In the next dialog box, ", msg))
   svDialogs::dlg_open(title = msg, rstudio = FALSE)
 }
 

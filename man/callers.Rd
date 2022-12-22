@@ -58,7 +58,7 @@ Other environments:
 \code{\link{recycling}}
 
 Other meta: 
-\code{\link{dots_uj}},
+\code{\link{dot_args}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{recycling}},

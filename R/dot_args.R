@@ -1,32 +1,34 @@
-#' @name dots_uj
+#' @name dot_args
 #' @encoding UTF-8
 #' @family meta
 #' @family dots
 #' @family args
 #' @title Manage `...` arguments
 #' @description \tabular{rl}{
-#'     `unnamed_dots`   \tab Extracts unnamed `...` arguments as an unnamed list (includes any named with blank strings).
+#'     `unnamed_dots`   \tab Extracts unnamed `...` arguments as an unnamed list (includes any `...` args with blank-string names).
 #'   \cr                \tab  
-#'   \cr `named_dots`   \tab Extracts named `...` arguments as a named list (does not include with blank-string names).
+#'   \cr `named_dots`   \tab Extracts named `...` arguments as a named list (excludes any `...` args with blank-string names).
+#'   \cr                \tab  
+#'   \cr  `dot_names`   \tab If `names. = NULL`, the return value is `...names()`, otherwise, `names.` is returned. Throws an error in the following cases:
+#'   \cr                \tab   —  `...length() == 0`
+#'   \cr                \tab   —  `!is.null(names.) & length(names.) < ...length()`
+#'   \cr                \tab   —  `is.null(names.) & blank. & any(...names() == "")`
+#'   \cr                \tab   —  `is.null(names.) & req. & !any(...names() != "")`
+#'   \cr                \tab   —  `is.null(names.) & u. & any(duplicated(...names()))`
 #'   \cr                \tab  
 #'   \cr       `dots`   \tab Extracts one or more`...` arguments based on matching values supplied in `names.`. If a supplied name matches the name of a `...` argument, that argument is returned. Otherwise, the element of `defs.` with a matching name is returned. `names. = NULL` and `names. = NA` are converted to `'NULL'` and `'NA'`. Reserved words in `names.` should be backtick quoted.
 #'   \cr                \tab  
-#'   \cr        `dot`   \tab A convenience version of `dots` for extracting a single named `...` argument (or if a matching `...` argument name is not found, its default value `def.`).
-#'   \cr                \tab  
-#'   \cr  `dot_names`   \tab If `names. = NULL`, the return value is `...names()`, otherwise, `names.` is returned. Throws an error in the following cases:
-#'                           \itemize{
-#'                             \item `0 ...` Arguments are supplied.
-#'                             \item `names. != NULL` and `length(names.) != ...length()`.
-#'                             \item `req. = TRUE`, `names. = NULL`, and no `...` arguments are named.
-#'                             \item `names. = NULL` and either (a) `blank. = TRUE` and any `...` argument is unnamed or its name is blank or (b) \item `u. = TRUE` and any `...` argument name is duplicated.
-#' }}
+#'   \cr        `dot`   \tab A convenience version of `dots` for extracting a single named `...` argument (or if a matching `...` argument name is not found, substituting its default value `def.`).
+#' }
 #' @param ... An arbitrary number of arguments.
+#' @param blank. Non-`NA` logical scalar indicating whether blank names are allowed.
 #' @param names. `NULL` or an \link[=atm_vec]{atomic vec} (may include `NA` values). Is split along the delimiter `'|'` to allow for compactness in submitting multiple names. `NULL` will match either an argument in `...` or element of `defs.` with the name `'NULL'`. `NA` values will match an argument in `...` or an element of `defs.` with the name `'NA'`.
 #' @param name. `NULL` or \link[=cmp_scl]{complete atomic scalar}. `NULL` is replaced with `'NULL'` and `NA` is replaced with `'NA'`.
 #' @param subs. `NULL` or \link[=cmp_chr_vec]{complete character vec}. If not `NULL`, it is split using pipes `'|'` as a delimiter. If there are no pipes contained in `names.`, it remains unchanged. When this argument is not `NULL`, it is substituted for the names of `...` arguments; thus, after splitting, its length must equal the number of `...` arguments. For example, `names. = c('one', 'two', 'three|four|five')` indicates that there should be five `...` arguments and the vector `c('one', 'two', 'three', 'four', 'five')` is substituted for their names.
 #' @param defs. A named \link[=ivls]{vlist} of default objects/values to return if the specified arguments are not in `...`. Elements of `defs.` must be uniquely named. If `defs.` is a tibble, columns with matching names are returned.
 #' @param def. A default object/value to return if a specified argument is not in `...`. Can be, but does not need to be, a list.
-#' @param req.,blank.,u. Non-`NA` logical scalars indicating whether names are required, whether lank names are allowed, and whether names must be unique.
+#' @param req. Non-`NA` logical scalar indicating whether names are required.
+#' @param u. Non-`NA` logical scalar indicating whether names must be unique.
 #' @export
 dots <- function(names., defs., ...) {
   dots  <- list(...)
@@ -54,14 +56,14 @@ dots <- function(names., defs., ...) {
   out
 }
 
-#' @rdname dots_uj
+#' @rdname dot_args
 #' @export
 dot <- function(name., def., ...) {
   if (!cmp_scl(name.)) {stop("[name.] must be a complete atomic scalar (?cmp_scl).")}
   dots(name., def., ...)
 }
 
-#' @rdname dots_uj
+#' @rdname dot_args
 #' @export
 dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
   dots <- list(...)
@@ -85,22 +87,22 @@ dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
   subs.
 }
 
-#' @rdname dots_uj
+#' @rdname dot_args
 #' @export
 named_dots <- function(...) {
-  if (...length() == 0) {return(NULL)}
-  dots <- list(...)
   dot.names <- ...names()
-  ok.names <- !is.na(dot.names)
-  if (any(ok.names)) {dots[ok.names]} else {NULL}
+  n.dots <- ...length()
+  n.names <- length(dot.names)
+  ok.names <- !is.na(dot.names) & dot.names != ""
+  f0(n.dots == 0 | n.names == 0, NULL, f0(!any(ok.names), NULL, list(...)[ok.names]))
 }
 
-#' @rdname dots_uj
+#' @rdname dot_args
 #' @export
 unnamed_dots <- function(...) {
-  if (...length() == 0) {return(NULL)}
-  dots <- list(...)
   dot.names <- ...names()
-  na.names <- is.na(dot.names)
-  if (any(na.names)) {dots[na.names]} else {NULL}
+  n.dots <- ...length()
+  n.names <- length(dot.names)
+  ok.names <- is.na(dot.names) | dn == ""
+  f0(n.dots == 0, NULL, f0(n.names == 0, list(...), f0(!any(ok.names), NULL, list(...)[ok.names])))
 }

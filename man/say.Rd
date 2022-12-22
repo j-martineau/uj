@@ -77,7 +77,7 @@ chat.()
 \seealso{
 Other meta: 
 \code{\link{callers}()},
-\code{\link{dots_uj}},
+\code{\link{dot_args}},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{recycling}},
