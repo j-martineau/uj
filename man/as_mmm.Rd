@@ -30,7 +30,7 @@ as_ord(x, levs)
 as_uno(x, levs)
 }
 \arguments{
-\item{x}{For \code{as_clr}, an object of mode character; for \code{as_fun}, a character scalar function name or a function object; for \code{as_ord} and \code{as_uno}, an atomic object; and for all others, any R object.}
+\item{x}{For \code{as_clr}, an object of mode character; for \code{as_fun}, a character scalar function name or a function object; for \code{as_ord} and \code{as_uno}, an atomic object; and for all others, base::any R object.}
 
 \item{na}{A non-\code{NA} logical scalar indicating whether \code{NA} values are acceptable.}
 
@@ -40,22 +40,31 @@ as_uno(x, levs)
 }
 \value{
 \emph{An object of base mode} \code{'character'}
-\cr    \code{as_chr}
-\cr\cr \emph{An object of base mode} \code{'integer'}
-\cr    \code{as_int}
-\cr\cr \emph{An object of base mode} \code{'logical'}
-\cr    \code{as_lgl}
-\cr\cr \emph{An object of base mode} \code{'numeric'}
-\cr    \code{as_num}
-\cr\cr \emph{An object of \link[=mmm]{xmode}} \code{'ord'}\eqn{^a}
-\cr    \code{as_ord}
-\cr\cr \emph{An object of xmode} \code{'uno'}\eqn{^b}
-\cr    \code{as_uno}
-\cr\cr \emph{An object of xmode} \code{'clr'}\eqn{^c}
-\cr    \code{as_clr}
-\cr\cr\eqn{^{a.}} Ordered factor.
-\cr\eqn{^{b.}} Unordered factor.
-\cr\eqn{^{c.}} Character hexadecimal RGB color values in the form \code{'#RRGGBBAA'}.
+\cr   \code{as_chr}
+\cr
+\cr \emph{An object of base mode} \code{'integer'}
+\cr   \code{as_int}
+\cr
+\cr \emph{An object of base mode} \code{'logical'}
+\cr   \code{as_lgl}
+\cr
+\cr \emph{An object of base mode} \code{'numeric'}
+\cr   \code{as_num}
+\cr
+\cr \emph{An object of \link[=mmm]{xmode}} \code{'ord'}\eqn{^a}
+\cr   \code{as_ord}
+\cr
+\cr \emph{An object of xmode} \code{'uno'}\eqn{^b}
+\cr   \code{as_uno}
+\cr
+\cr \emph{An object of xmode} \code{'clr'}\eqn{^c}
+\cr   \code{as_clr}
+\cr
+\cr    \eqn{^{a.}} Ordered factor.
+\cr
+\cr    \eqn{^{b.}} Unordered factor.
+\cr
+\cr    \eqn{^{c.}} Character hexadecimal RGB color values in the form \code{'#RRGGBBAA'}.
 }
 \description{
 Functions to coerce objects to \link[base:mode]{base mode} or \code{\link[=mmm]{xmode}}:
@@ -102,6 +111,7 @@ as_ord(clrs., levs = sort(unique(clrs.)))
 Other properties: 
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
+\code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -110,12 +120,11 @@ Other properties:
 \code{\link{eee}()},
 \code{\link{err_check}()},
 \code{\link{iii}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
-\code{\link{reclass}()},
 \code{\link{sss}()},
 \code{\link{unq_ccc}()}
 }

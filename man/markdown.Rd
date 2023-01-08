@@ -347,11 +347,13 @@ A markdown-styled character vector.
   \code{subs} \tab   subscript
 \cr \code{sups} \tab   superscript
 }
+\cr
 \emph{All remaining functions} in this family start with a prefix character as follows:
 \tabular{rl}{
   prefix = \code{b} \tab   bold
 \cr prefix = \code{p} \tab   plain
 }
+\cr
 \emph{Black, white, and invisible text} functions suffixes are:
 \tabular{rl}{
   \code{blk} \tab   black
@@ -359,7 +361,8 @@ A markdown-styled character vector.
 \cr \code{inv} \tab   invisible
 }
 For example, the function \code{bwht} styles markdown text as bold and white.
-\cr\cr \emph{Greyscale} text suffixes take the form:
+\cr
+\cr \emph{Greyscale} text suffixes take the form:
 \tabular{rl}{
   \code{g05} \tab   \code{ 5:95} white:black ratio
 \cr \code{g10} \tab   \code{10:90} white:black ratio
@@ -368,7 +371,8 @@ For example, the function \code{bwht} styles markdown text as bold and white.
 \cr \code{g95} \tab   \code{95:5 } white:black ratio
 }
 For example, the function \code{pg45} styles markdown text as plain and grey with a \code{45:55} white:black ratio.
-\cr\cr \emph{Other common-color text} function names append an infix and a suffix to the selected prefix, as follows:
+\cr
+\cr \emph{Other common-color text} function names append an infix and a suffix to the selected prefix, as follows:
 \tabular{rl}{
   suffix = \code{blu} \tab   blue
 \cr suffix = \code{cyn} \tab   cyan

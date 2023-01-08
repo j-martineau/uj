@@ -12,6 +12,8 @@ run(...)
 }
 \value{
 \code{NULL}. Called for its side effect of executing code in the environment where \code{run(...)} was called.
+
+The value returned upon evaluating the character scalar created from collapsing \code{...} arguments.
 }
 \description{
 Collapses \code{...} into a character scalar and evaluates it as code in the environment of the calling function.
@@ -39,6 +41,6 @@ Other meta:
 \code{\link{ply}()},
 \code{\link{recycling}},
 \code{\link{say}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 }
 \concept{meta}

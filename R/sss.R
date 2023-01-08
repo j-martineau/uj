@@ -28,13 +28,13 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return *A logical scalar*
-#'   \cr    `is_sss_spec`
-#'   \cr    `iSSS`
-#'   \cr    `isss`
+#'   \cr   `is_sss_spec`
+#'   \cr   `iSSS`
+#'   \cr   `isss`
 #'   \cr
 #'   \cr *A character vector*
-#'   \cr    `sss_props`
-#'   \cr    `sss_funs`
+#'   \cr   `sss_props`
+#'   \cr   `sss_funs`
 #' @examples
 #' sss_funs()
 #' sss_props()
@@ -45,60 +45,60 @@
 #' @export
 sss <- function(x) {
   out <- NULL
-  for (s in .ssss) {out <- c(out, f0(run('.i', s, '(x)'), s, NULL))}
+  for (s in uj:::.ssss) {out <- base::c(out, uj::f0(uj::run('uj:::.i', s, '(x)'), s, NULL))}
   out
 }
 
 #' @rdname sss
 #' @export
-sss_props <- function() {.ssss}
+sss_props <- function() {uj:::.ssss}
 
 #' @rdname sss
 #' @export
-sss_funs <- function() {paste0("i", .ssss)}
+sss_funs <- function() {base::paste0("i", uj:::.ssss)}
 
 #' @rdname sss
 #' @export
-is_sss_spec <- function(spec) {spec <- .spec_vals(spec); f0(length(spec) == 0, F, all(spec %in% .ssss))}
+is_sss_spec <- function(spec) {spec <- uj:::.spec_vals(spec); uj::f0(base::length(spec) == 0, F, base::all(spec %in% .ssss))}
 
 #' @rdname sss
 #' @export
 isss <- function(x, spec, ...) {
-  errs <- c(.meets_errs(x, ...), f0(is_sss_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from sss_props().'))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (!meets(x, ...)) {return(F)}
-  for (prop in .spec_vals(spec)) {if (run('.i', prop, '(x)')) {return(T)}}
+  errs <- base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_sss_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from sss_props().'))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!uj::meets(x, ...)) {base::return(F)}
+  for (prop in uj:::.spec_vals(spec)) {if (uj::run('uj:::.i', prop, '(x)')) {base::return(T)}}
   F
 }
 
 #' @rdname sss
 #' @export
-icol <- function(x, ...) {isss(x, 'col', ...)}
+icol <- function(x, ...) {uj::isss(x, 'col', ...)}
 
 #' @rdname sss
 #' @export
-iemp <- function(x, ...) {isss(x, 'emp', ...)}
+iemp <- function(x, ...) {uj::isss(x, 'emp', ...)}
 
 #' @rdname sss
 #' @export
-ilin <- function(x, ...) {isss(x, 'lin', ...)}
+ilin <- function(x, ...) {uj::isss(x, 'lin', ...)}
 
 #' @rdname sss
 #' @export
-ipnt <- function(x, ...) {isss(x, 'pnt', ...)}
+ipnt <- function(x, ...) {uj::isss(x, 'pnt', ...)}
 
 #' @rdname sss
 #' @export
-irct <- function(x, ...) {isss(x, 'rct', ...)}
+irct <- function(x, ...) {uj::isss(x, 'rct', ...)}
 
 #' @rdname sss
 #' @export
-irow <- function(x, ...) {isss(x, 'row', ...)}
+irow <- function(x, ...) {uj::isss(x, 'row', ...)}
 
 #' @rdname sss
 #' @export
-isld <- function(x, ...) {isss(x, 'sld', ...)}
+isld <- function(x, ...) {uj::isss(x, 'sld', ...)}
 
 #' @rdname sss
 #' @export
-isqr <- function(x, ...) {isss(x, 'sqr', ...)}
+isqr <- function(x, ...) {uj::isss(x, 'sqr', ...)}

@@ -5,8 +5,8 @@
 #' @examples os()
 #' @export
 os <- function() {
-  type <- .Platform$OS.type
-  name <- Sys.info()["sysname"]
+  type <- base::.Platform$OS.type
+  name <- base::Sys.info()["sysname"]
   if      (type == "windows") {return("win" )}
   else if (name == "Darwin" ) {return("mac" )}
   else if (type == "unix"   ) {return("unix")}

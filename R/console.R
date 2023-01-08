@@ -55,26 +55,26 @@
 #' \dontrun{continue()}
 #' @export
 say <- function(..., lev = NA) {
-  msg <- paste(av(...), collapse = "")
-  dot <- isID(msg, "") | isID(as.numeric(lev), as.numeric("6"))
-  less <- isIN(as.numeric(lev), as.numeric(as.character(1:5)))
-  if (dot & less) {stop(.errs("[...] must not resolve to a blank string when [lev] is in c(1, 2, 3, 4, 5)."))}
-  if (!isID(msg, ""))
-  if (notID(msg, "") & notID(lev, 6)) {
-    if (!nas(lev)) {
-      if (isIN(lev, 1:5)) {
-        prefix <- c("\n", "\n| ", "\n| > ", " > ", "..(")
-        suffix <- c(""   , ""    , ""      , ""   ,   ")")
-        cat(paste0(prefix[lev], msg, suffix[lev]))
-      } else {stop(.errs("[lev] must be scalar NA or a positive whole-number scalar from c(1, 2, 3, 4, 5)."))}
-    } else {cat(msg)}
-  } else {cat(".")}
+  msg <- base::paste(uj::av(...), collapse = "")
+  dot <- uj::isID(msg, "") | uj::isID(base::as.numeric(lev), base::as.numeric("6"))
+  less <- uj::isIN(base::as.numeric(lev), base::as.numeric( base::as.character(1:5)))
+  if (dot & less) {stop(uj:::.errs("[...] must not resolve to a blank string when [lev] is in c(1, 2, 3, 4, 5)."))}
+  if (!uj::isID(msg, ""))
+  if (uj::notID(msg, "") & uj::notID(lev, 6)) {
+    if (!uj::nas(lev)) {
+      if (uj::isIN(lev, 1:5)) {
+        prefix <- base::c("\n", "\n| ", "\n| > ", " > ", "..(")
+        suffix <- base::c(""   , ""    , ""      , ""   ,   ")")
+        base::cat(base::paste0(prefix[lev], msg, suffix[lev]))
+      } else {stop(uj:::.errs("[lev] must be scalar NA or a positive whole-number scalar from c(1, 2, 3, 4, 5)."))}
+    } else {base::cat(msg)}
+  } else {base::cat(".")}
 }
 
 #' @rdname say
 #' @export
-cat0 <- function(...) {say("\n", ..., "\n")}
+cat0 <- function(...) {uj::say("\n", ..., "\n")}
 
 #' @rdname say
 #' @export
-continue <- function() {readline("Hit [enter] or [return] to continue")}
+continue <- function() {base::readline("Hit [enter] or [return] to continue")}

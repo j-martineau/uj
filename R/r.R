@@ -1,7 +1,7 @@
 .r.errs <- function(fun, ..., r = NULL, e = NULL, R = NULL) {
-  c(f0(all(sapply(list(...), ivec))        , NULL, "Arguments in [...] must be atomic vecs (?atm_vec)."),
-    f0(fun == "e" , NULL, f0(cmp_psw_scl(r), NULL, "[r] must be a positive whole-number scalar (?cmp_psw_scl).")),
-    f0(fun == "r" , NULL, f0(cmp_psw_scl(e), NULL, "[e] must be a positive whole-number scalar (?cmp_psw_scl).")))
+  base::c(f0(base::all(base::sapply(base::list(...), uj::ivec)), NULL, "Arguments in [...] must be atomic vecs (?atm_vec)."),
+          uj::f0(fun == "e" , NULL, uj::f0(uj::cmp_psw_scl(r)  , NULL, "[r] must be a positive whole-number scalar (?cmp_psw_scl).")),
+          uj::f0(fun == "r" , NULL, uj::f0(uj::cmp_psw_scl(e)  , NULL, "[e] must be a positive whole-number scalar (?cmp_psw_scl).")))
 }
 
 #' @encoding UTF-8
@@ -23,31 +23,31 @@
 #' re(2, 3, 0:2, 3)
 #' @export
 r <- function(r, ...) {
-  errs <- .r.errs("r", ..., r = r)
-  if (!is.null(errs)) {stop(.errs(errs))}
-  rep.int(av(...), r)
+  errs <- uj:::.r.errs("r", ..., r = r)
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  base::rep.int(uj::av(...), r)
 }
 
 #' @rdname r
 #' @export
 e <- function(e, ...) {
-  errs <- .r.errs("e", ..., e = e)
-  if (!is.null(errs)) {stop(.errs(errs))}
-  rep(av(...), each = e)
+  errs <- uj:::.r.errs("e", ..., e = e)
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  base::rep(uj::av(...), each = e)
 }
 
 #' @rdname r
 #' @export
 re <- function(r, e, ...) {
-  errs <- .r.errs("re", ..., r = r, e = e)
-  if (!is.null(errs)) {stop(.errs(errs))}
-  rep(rep(av(...), times = r), each = e)
+  errs <- uj:::.r.errs("re", ..., r = r, e = e)
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  base::rep(base::rep(uj::av(...), times = r), each = e)
 }
 
 #' @rdname r
 #' @export
 er <- function(e, r, ...) {
-  errs <- .r.errs("er", ..., r = r, e = e)
-  if (!is.null(errs)) {stop(.errs(errs))}
-  rep(rep(av(...), times = r), each = e)
+  errs <- uj:::.r.errs("er", ..., r = r, e = e)
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  base::rep(base::rep(uj::av(...), times = r), each = e)
 }

@@ -1,8 +1,8 @@
-.pals_errs <- function(n) {f0(cmp_psw_scl(n), NULL, .errs("[n] must be a positive whole-number scalar."))}
+.pals_errs <- function(n) {uj::f0(uj::cmp_psw_scl(n), NULL, uj:::.errs("[n] must be a positive whole-number scalar."))}
 
 .pals_vals <- function(type, n) {
-  x <- run("v(", type, ")")
-  while (length(x) < n) {x <- c(x, x)}
+  x <- uj::run("v(", type, ")")
+  while (base::length(x) < n) {x <- c(x, x)}
   x[1:n]
 }
 
@@ -29,37 +29,41 @@
 #'   \cr    `pal_ldots`   \tab   line dots\eqn{^b}   \tab   `v(ldots)`
 #'   \cr    `pal_sdots`   \tab   solid dots          \tab   `v(sdots)`
 #' }
-#' \eqn{^{a.}} Recycled if `n > length(v(.))`.
-#' \cr\eqn{^{b.}} Non-enclosing shape.
-#' \cr\eqn{^{c.}} Enclosing shape with empty interior.
-#' \cr\eqn{^{d.}} Enclosing shape with filled interior.
+#'    \eqn{^{a.}} Recycled if `n > length(v(.))`.
+#' \cr
+#' \cr    \eqn{^{b.}} Non-enclosing shape.
+#' \cr
+#' \cr    \eqn{^{c.}} Enclosing shape with empty interior.
+#' \cr
+#' \cr    \eqn{^{d.}} Enclosing shape with filled interior.
 #' @param n A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of unique values to return.
 #' @return *A character vector*
-#'   \cr    `pal_colors, pal_lines`
-#'   \cr    `pal_adots, pal_Adots`
-#'   \cr    `pal_ndots, pal_pdots`
-#'   \cr\cr *A positive whole number vector*
-#'   \cr    `pal_edots, pal_fdots`
-#'   \cr    `pal_ldots, pal_sdots`
+#'   \cr   `pal_colors, pal_lines`
+#'   \cr   `pal_adots,  pal_Adots`
+#'   \cr   `pal_ndots,  pal_pdots`
+#'   \cr
+#'   \cr *A positive whole number vector*
+#'   \cr   `pal_edots, pal_fdots`
+#'   \cr   `pal_ldots, pal_sdots`
 #' @export
-pal_colors <- function(n) {f0(is.null(.pals_errs(n)), .pals_vals("colors", n), stop(.pals_errs(n)))}
+pal_colors <- function(n) {uj::f0(base::is.null(uj:::.pals_errs(n)), uj:::.pals_vals("colors", n), stop(uj:::.pals_errs(n)))}
 
 #' @rdname pals
 #' @export
-pal_lines <- function(n) {f0(is.null(.pals_errs(n)), .pals_vals("lines", n), stop(.pals_errs(n)))}
+pal_lines <- function(n) {uj::f0(base::is.null(uj:::.pals_errs(n)), uj:::.pals_vals("lines", n), stop(uj:::.pals_errs(n)))}
 
 #' @rdname pals
 #' @export
-pal_fdots <- function(n) {f0(is.null(.pals_errs(n)), .pals_vals("fdots", n), stop(.pals_errs(n)))}
+pal_fdots <- function(n) {uj::f0(base::is.null(uj:::.pals_errs(n)), uj:::.pals_vals("fdots", n), stop(uj:::.pals_errs(n)))}
 
 #' @rdname pals
 #' @export
-pal_ldots <- function(n) {f0(is.null(.pals_errs(n)), .pals_vals("ldots", n), stop(.pals_errs(n)))}
+pal_ldots <- function(n) {uj::f0(base::is.null(uj:::.pals_errs(n)), uj:::.pals_vals("ldots", n), stop(uj:::.pals_errs(n)))}
 
 #' @rdname pals
 #' @export
-pal_edots <- function(n) {f0(is.null(.pals_errs(n)), .pals_vals("edots", n), stop(.pals_errs(n)))}
+pal_edots <- function(n) {uj::f0(base::is.null(uj:::.pals_errs(n)), uj:::.pals_vals("edots", n), stop(uj:::.pals_errs(n)))}
 
 #' @rdname pals
 #' @export
-pal_sdots <- function(n) {f0(is.null(.pals_errs(n)), .pals_vals("sdots", n), stop(.pals_errs(n)))}
+pal_sdots <- function(n) {uj::f0(base::is.null(uj:::.pals_errs(n)), uj:::.pals_vals("sdots", n), stop(uj:::.pals_errs(n)))}

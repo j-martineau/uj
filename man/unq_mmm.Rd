@@ -107,10 +107,10 @@ unq_whl(x, ...)
 }
 \value{
 \emph{A character vector}
-\cr    \code{unq_mmm_funs}
+\cr   \code{unq_mmm_funs}
 \cr\cr \emph{A logical scalar}
-\cr    \code{unq_mmm}
-\cr    \code{unq_MMM}
+\cr   \code{unq_mmm}
+\cr   \code{unq_MMM}
 }
 \description{
 \tabular{rl}{
@@ -148,6 +148,7 @@ Other props:
 \code{\link{bbb_ccc}()},
 \code{\link{ccc}()},
 \code{\link{cmp_mmm_ccc}()},
+\code{\link{sss_ccc}()},
 \code{\link{unq_mmm_ccc}()}
 }
 \concept{props}

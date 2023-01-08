@@ -86,25 +86,31 @@ rcn(x, u = T, err = F)
 }
 \value{
 \emph{A logical scalar}
-\cr    \verb{rcnamed, rnamed, cnamed}
-\cr    \verb{dnamed, enamed}
-\cr    \code{named}
-\cr\cr \emph{A matrix or data.frame}
-\cr    \verb{namerc, namer, namec}
-\cr\cr \emph{A character vector}
-\cr    \verb{rn, cn, en}
-\cr\cr \emph{A \link[=ivec]{vec} or \link[=ivls]{vlist}}
-\cr    \code{namev}
-\cr\cr\emph{A vec, vlist, matrix, or data.frame}
-\cr    \code{name}
-\cr\cr \emph{A \code{1}-element vlist}
-\cr    \code{namel}
-\cr\cr \emph{A \code{2}-element vlist}
-\cr    \code{rcn}
+\cr   \verb{rcnamed, rnamed, cnamed}
+\cr   \verb{dnamed,  enamed}
+\cr   \code{named}
+\cr
+\cr \emph{A matrix or data.frame}
+\cr   \verb{namerc, namer, namec}
+\cr
+\cr \emph{A character vector}
+\cr   \verb{rn, cn, en}
+\cr
+\cr \emph{A \link[=ivec]{vec} or \link[=ivls]{vlist}}
+\cr   \code{namev}
+\cr
+\cr\emph{A vec, vlist, matrix, or data.frame}
+\cr   \code{name}
+\cr
+\cr \emph{A \code{1}-element vlist}
+\cr   \code{namel}
+\cr
+\cr \emph{A \code{2}-element vlist}
+\cr   \code{rcn}
 }
 \description{
 \tabular{rl}{
-  \code{getnames}   \tab General name retrieval function (with optional restrictions).
+  \code{uj::getnames}   \tab General name retrieval function (with optional restrictions).
 \cr     \code{rcn}   \tab Gets matrix and data.frame row and column names.
 \cr      \code{rn}   \tab Gets matrix and data.frame row names.
 \cr      \code{cn}   \tab Gets matrix and data.frame row names.
@@ -152,9 +158,9 @@ rcnamed(Dtf.)
 dots_named.(Vec., Vls.)
 dots_named.(var1 = Vec., var2 = Vls.)
 
-getnames(Vls.)
-getnames(Mat., d = 1)
-getnames(Dtf., d = 2)
+uj::getnames(Vls.)
+uj::getnames(Mat., d = 1)
+uj::getnames(Dtf., d = 2)
 
 en(Vec.)
 en(Vls.)
@@ -185,7 +191,7 @@ Other extensions:
 \code{\link{failsafe_is}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{n_is}()},
 \code{\link{na}()},
 \code{\link{paths}},
@@ -196,6 +202,6 @@ Other extensions:
 \code{\link{swap}()},
 \code{\link{uv}()},
 \code{\link{wv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 }
 \concept{extensions}

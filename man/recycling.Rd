@@ -29,11 +29,11 @@ recycle(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL)
 }
 \value{
 \emph{A logical scalar}
-\cr    \code{recyclable_n}
-\cr    \code{recyclable}
+\cr   \code{recyclable_n}
+\cr   \code{recyclable}
 \cr
 \cr \code{NULL}
-\cr    \code{recycle}
+\cr   \code{recycle}
 }
 \description{
 Arguments are recyclable if all of their lengths are divisors of the argument with the greatest length subject to any settings in the optional arguments \code{ns.}, \code{min.}, \code{max.}, and/or \code{targ.}.
@@ -90,7 +90,7 @@ Other meta:
 \code{\link{ply}()},
 \code{\link{run}()},
 \code{\link{say}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 }
 \concept{environments}
 \concept{meta}

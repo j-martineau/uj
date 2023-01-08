@@ -31,9 +31,11 @@
 #'   \cr               \tab  
 #'   \cr      `%OR%`   \tab `x` is scalar `TRUE`, `y` is scalar `TRUE`, or both.
 #' }
-#' \eqn{^{a.}} If `x` is not atomic scalar, `y` is not atomic, or `x` and `y` are not compatible, `%HAS%` and `%LACKS%` return `FALSE` and `TRUE`, respectively.
-#' \cr\cr \eqn{^{b.}} If `x` is not atomic, `y` is not atomic scalar, or `x` and `y` are not compatible, `%IN%` and `%OUT%` return `FALSE` and `TRUE`, respectively.
-#' \cr\cr \eqn{^{c.}} If `x` and `y` are not \code{\link{compatible}}, `%EQ%` and `%NEQ%` return `FALSE` and `TRUE`, respectively.
+#'    \eqn{^{a.}} If `x` is not atomic scalar, `y` is not atomic, or `x` and `y` are not compatible, `%HAS%` and `%LACKS%` return `FALSE` and `TRUE`, respectively.
+#' \cr
+#' \cr    \eqn{^{b.}} If `x` is not atomic, `y` is not atomic scalar, or `x` and `y` are not compatible, `%IN%` and `%OUT%` return `FALSE` and `TRUE`, respectively.
+#' \cr
+#' \cr    \eqn{^{c.}} If `x` and `y` are not \code{\link{compatible}}, `%EQ%` and `%NEQ%` return `FALSE` and `TRUE`, respectively.
 #' @param x,y Any R objects.
 #' @return A logical scalar.
 #' @examples
@@ -85,48 +87,48 @@
 #' TRUE %ONE% 42
 #' "A" %ONE% FALSE
 #' @export
-`%IS%` <- function(x, y) {identical(x, y)}
+`%IS%` <- function(x, y) {base::identical(x, y)}
 
 #' @rdname failsafe_binaries
 #' @export
-`%ISNT%` <- function(x, y) {!identical(x, y)}
+`%ISNT%` <- function(x, y) {!base::identical(x, y)}
 
 #' @rdname failsafe_binaries
 #' @export
-`%EQ%` <- function(x, y) {isEQ(x, y)}
+`%EQ%` <- function(x, y) {uj::isEQ(x, y)}
 
 #' @rdname failsafe_binaries
 #' @export
-`%NEQ%` <- function(x, y) {!isEQ(x, y)}
+`%NEQ%` <- function(x, y) {!uj::isEQ(x, y)}
 
 #' @rdname failsafe_binaries
 #' @export
-`%NOR%` <- function(x, y) {!isTRUE(x) & !isTRUE(y)}
+`%NOR%` <- function(x, y) {!base::isTRUE(x) & !base::isTRUE(y)}
 
 #' @rdname failsafe_binaries
 #' @export
-`%AND%` <- function(x, y) {isTRUE(x) & isTRUE(y)}
+`%AND%` <- function(x, y) {base::isTRUE(x) & base::isTRUE(y)}
 
 #' @rdname failsafe_binaries
 #' @export
-`%OR%` <- function(x, y) {isTRUE(x) | isTRUE(y)}
+`%OR%` <- function(x, y) {base::isTRUE(x) | base::isTRUE(y)}
 
 #' @rdname failsafe_binaries
 #' @export
-`%ONE%` <- function(x, y) {sum(isTRUE(x), isTRUE(y)) == 1}
+`%ONE%` <- function(x, y) {base::sum(base::isTRUE(x), base::isTRUE(y)) == 1}
 
 #' @rdname failsafe_binaries
 #' @export
-`%IN%` <- function(x, y) {isIN(x, y)}
+`%IN%` <- function(x, y) {uj::isIN(x, y)}
 
 #' @rdname failsafe_binaries
 #' @export
-`%OUT%` <- function(x, y) {notIN(x, y)}
+`%OUT%` <- function(x, y) {uj::notIN(x, y)}
 
 #' @rdname failsafe_binaries
 #' @export
-`%HAS%` <- function(x, y) {isIN(y, x)}
+`%HAS%` <- function(x, y) {uj::isIN(y, x)}
 
 #' @rdname failsafe_binaries
 #' @export
-`%LACKS%` <- function(x, y) {notIN(y, x)}
+`%LACKS%` <- function(x, y) {uj::notIN(y, x)}

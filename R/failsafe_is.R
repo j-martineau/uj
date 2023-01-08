@@ -1,11 +1,11 @@
-.pop <- function(x) {length(x) > 0}
-.a_scl <- function(x) {is.atomic(x) & length(x) == 1}
-.a_pop <- function(x) {is.atomic(x) & length(x) > 0}
-.pop_pop <- function(x, y) {length(x) > 0 & length(y) > 0}
-.a_pop_pop <- function(x, y) {.a_pop(x) & .a_pop(y)}
-.a_pop_scl <- function(x, y) {.a_pop(x) & .a_scl(y)}
-.a_pop_dot <- function(x, ...) {.a_pop(x) & length(av(...)) > 0}
-.a_scl_dot <- function(x, ...) {.a_scl(x) & length(av(...)) > 0}
+.pop <- function(x) {base::length(x) > 0}
+.a_scl <- function(x) {base::is.atomic(x) & base::length(x) == 1}
+.a_pop <- function(x) {base::is.atomic(x) & base::length(x) > 0}
+.pop_pop <- function(x, y) {base::length(x) > 0 & base::length(y) > 0}
+.a_pop_pop <- function(x, y) {uj:::.a_pop(x) & uj:::.a_pop(y)}
+.a_pop_scl <- function(x, y) {uj:::.a_pop(x) & uj:::.a_scl(y)}
+.a_pop_dot <- function(x, ...) {uj:::.a_pop(x) & base::length(uj::av(...)) > 0}
+.a_scl_dot <- function(x, ...) {uj:::.a_scl(x) & base::length(uj::av(...)) > 0}
 
 #' @name failsafe_is
 #' @encoding UTF-8
@@ -19,8 +19,8 @@
 #' \tabular{rl}{
 #'       `NAS` \tab   `NA` scalar.
 #'   \cr `OKS` \tab   Non-`NA` scalar.
-#'   \cr `OUT` \tab   Atomic scalar `x` is *not* in `...`.\eqn{^a}
-#'   \cr  `IN` \tab   Atomic scalar `x` is in `...`.\eqn{^a}
+#'   \cr `OUT` \tab   Atomic scalar `x` is *not* in `...`.`*`
+#'   \cr  `IN` \tab   Atomic scalar `x` is in `...`.`*`
 #'   \cr  `EQ` \tab   Calls \code{\link[base:setequal]{setequal(x, y)}}.
 #'   \cr  `ID` \tab   Calls \code{\link[base:identical]{identical(x, y)}}.
 #'   \cr  `LG` \tab   Scalar logical `TRUE`, `FALSE`, or `NA`.
@@ -29,12 +29,14 @@
 #'   \cr   `F` \tab   Scalar `FALSE`.
 #'   \cr   `T` \tab   Scalar `TRUE`.
 #' }
-#' \eqn{^{a.}} Evaluates membership in any \link[=av]{atomized} `...` argument.
-#' \cr\cr **Modifying prefixes**
+#' `*` Evaluates membership in any \link[=av]{atomized} `...` argument.
+#' \cr
+#' \cr **Modifying prefixes**
 #' \tabular{rl}{
 #'      `not` \tab   Negation.
 #'   \cr `is` \tab   Identity.
 #' }
+#' \cr
 #' **Apply-and-sweep prefixes**
 #' \tabular{rl}{
 #'       `nor` \tab   `0` values are `TRUE`.
@@ -43,8 +45,10 @@
 #'   \cr `two` \tab   `2+` values are `TRUE`.
 #'   \cr `all` \tab   All values are `TRUE`.
 #' }
+#' \cr
 #' **Combining prefixes and suffix**
-#' \cr\cr All prefixes combine with all suffixes to create function names.
+#' \cr
+#' \cr All prefixes combine with all suffixes to create function names.
 #' @param x,y Any R object.
 #' @param ... Objects to check `x` against for functions with the suffix `IN` or `OUT`.
 #' @return Scalar `TRUE` or `FALSE`.
@@ -147,7 +151,7 @@
 #' oneBL(c(list(Blank.), Combo.))
 #' twoBL(c(list(Blank.), Combo.))
 #'
-#' isNAS(ChrMat.)
+#' uj::isNAS(ChrMat.)
 #' notNAS(ChrMat.)
 #' norNAS(ChrMat.)
 #' anyNAS(ChrMat.)
@@ -163,316 +167,316 @@
 #' oneOKS(ChrMat.)
 #' twoOKS(ChrMat.)
 #' @export
-isNAS <- function(x) {f0(!.a_scl(x), F, is.na(x))}
+isNAS <- function(x) {uj::f0(!uj:::.a_scl(x), F, base::is.na(x))}
 
 #' @rdname failsafe_is
 #' @export
-isOKS <- function(x) {f0(!.a_scl(x), F, !is.na(x))}
+isOKS <- function(x) {uj::f0(!uj:::.a_scl(x), F, !base::is.na(x))}
 
 #' @rdname failsafe_is
 #' @export
 isOUT <- function(x, ...) {
-  if (!.a_scl_dot(x, ...)) {return(FALSE)}
-  for (i in 1:...length()) {if (is.atomic(...elt(i))) {if (compatible(x, ...elt(i))) {if (x %in% av(...elt(i))) {return(FALSE)}}}}
+  if (!uj:::.a_scl_dot(x, ...)) {return(FALSE)}
+  for (i in 1:base::...length()) {if (base::is.atomic(base::...elt(i))) {if (uj::compatible(x, base::...elt(i))) {if (x %in% uj::av(base::...elt(i))) {return(FALSE)}}}}
   TRUE
 }
 
 #' @rdname failsafe_is
 #' @export
 isIN <- function(x, ...) {
-  if (!.a_scl_dot(x, ...)) {return(FALSE)}
-  for (i in 1:...length()) {if (is.atomic(...elt(i))) {if (compatible(x, ...elt(i))) {if (x %in% av(...elt(i))) {return(TRUE)}}}}
+  if (!uj:::.a_scl_dot(x, ...)) {return(FALSE)}
+  for (i in 1:base::...length()) {if (base::is.atomic(base::...elt(i))) {if (uj::compatible(x, base::...elt(i))) {if (x %in% uj::av(base::...elt(i))) {return(TRUE)}}}}
   FALSE
 }
 
 #' @rdname failsafe_is
 #' @export
-isID <- function(x, y) {identical(x, y)}
+isID <- function(x, y) {base::identical(x, y)}
 
 #' @rdname failsafe_is
 #' @export
-isEQ <- function(x, y) {f0(!.a_pop_dot(x, y), FALSE, tryCatch(setequal(x, y), error = function(e) F, finally = NULL))}
+isEQ <- function(x, y) {uj::f0(!uj:::.a_pop_dot(x, y), FALSE, tryCatch(base::setequal(x, y), error = function(e) F, finally = NULL))}
 
 #' @rdname failsafe_is
 #' @export
-isT <- function(x) {isTRUE(x)}
+isT <- function(x) {base::isTRUE(x)}
 
 #' @rdname failsafe_is
 #' @export
-isF <- function(x) {isFALSE(x)}
+isF <- function(x) {base::isFALSE(x)}
 
 #' @rdname failsafe_is
 #' @export
-isTF <- function(x) {isTRUE(x) | isFALSE(x)}
+isTF <- function(x) {base::isTRUE(x) | base::isFALSE(x)}
 
 #' @rdname failsafe_is
 #' @export
-isLG <- function(x) {isTRUE(x) | isFALSE(x) | isNAS(x)}
+isLG <- function(x) {base::isTRUE(x) | base::isFALSE(x) | uj::isNAS(x)}
 
 #' @rdname failsafe_is
 #' @export
-isBL <- function(x) {f0(!.a_scl(x), F, isEQ(x, ""))}
+isBL <- function(x) {uj::f0(!uj:::.a_scl(x), F, uj::isEQ(x, ""))}
 
 #' @rdname failsafe_is
 #' @export
-notIN <- function(x, ...) {!isIN(x, ...)}
+notIN <- function(x, ...) {!uj::isIN(x, ...)}
 
 #' @rdname failsafe_is
 #' @export
-notOUT <- function(x, ...) {!isOUT(x, ...)}
+notOUT <- function(x, ...) {!uj::isOUT(x, ...)}
 
 #' @rdname failsafe_is
 #' @export
-notID <- function(x, y) {!isID(x, y)}
+notID <- function(x, y) {!uj::isID(x, y)}
 
 #' @rdname failsafe_is
 #' @export
-notEQ <- function(x, y) {!isEQ(x, y)}
+notEQ <- function(x, y) {!uj::isEQ(x, y)}
 
 #' @rdname failsafe_is
 #' @export
-notTF <- function(x) {!isTF(x)}
+notTF <- function(x) {!uj::isTF(x)}
 
 #' @rdname failsafe_is
 #' @export
-notLG <- function(x) {!isLG(x)}
+notLG <- function(x) {!uj::isLG(x)}
 
 #' @rdname failsafe_is
 #' @export
-notT <- function(x) {!isT(x)}
+notT <- function(x) {!uj::isT(x)}
 
 #' @rdname failsafe_is
 #' @export
-notF <- function(x) {!isF(x)}
+notF <- function(x) {!uj::isF(x)}
 
 #' @rdname failsafe_is
 #' @export
-notNAS <- function(x) {!isNAS(x)}
+notNAS <- function(x) {!uj::isNAS(x)}
 
 #' @rdname failsafe_is
 #' @export
-notOKS <- function(x) {!isOKS(x)}
+notOKS <- function(x) {!uj::isOKS(x)}
 
 #' @rdname failsafe_is
 #' @export
-notBL <- function(x) {!isBL(x)}
+notBL <- function(x) {!uj::isBL(x)}
 
 #' @rdname failsafe_is
 #' @export
-norIN <- function(x, ...) {f0(!.a_pop_dot(x, ...), F, !any(sapply(x, isIN, ...)))}
+norIN <- function(x, ...) {uj::f0(!uj:::.a_pop_dot(x, ...), F, !base::any(base::sapply(x, uj::isIN, ...)))}
 
 #' @rdname failsafe_is
 #' @export
-norOUT <- function(x, ...) {f0(!.a_pop_dot(x, ...), F, !any(sapply(x, isOUT, ...)))}
+norOUT <- function(x, ...) {uj::f0(!uj:::.a_pop_dot(x, ...), F, !base::any(sbase::apply(x, uj::isOUT, ...)))}
 
 #' @rdname failsafe_is
 #' @export
-norID <- function(x, y) {f0(!.pop_pop(x, y), F, !any(sapply(x, isID, y = y)))}
+norID <- function(x, y) {uj::f0(!uj:::.pop_pop(x, y), F, !base::any(base::sapply(x, uj::isID, y = y)))}
 
 #' @rdname failsafe_is
 #' @export
-norEQ <- function(x, y) {f0(!.pop_pop(x, y), F, !any(sapply(x, isEQ, y = y)))}
+norEQ <- function(x, y) {uj::f0(!uj:::.pop_pop(x, y), F, !base::any(base::sapply(x, uj::isEQ, y = y)))}
 
 #' @rdname failsafe_is
 #' @export
-norT <- function(x) {f0(!.pop(x), T, !any(sapply(x, isTRUE)))}
+norT <- function(x) {uj::f0(!uj:::.pop(x), T, !base::any(base::sapply(x, base::isTRUE)))}
 
 #' @rdname failsafe_is
 #' @export
-norF <- function(x) {f0(!.pop(x), T, !any(sapply(x, isFALSE)))}
+norF <- function(x) {uj::f0(!uj:::.pop(x), T, !base::any(base::sapply(x, base::isFALSE)))}
 
 #' @rdname failsafe_is
 #' @export
-norNAS <- function(x) {f0(!.pop(x), T, !any(sapply(x, isNAS)))}
+norNAS <- function(x) {uj::f0(!uj:::.pop(x), T, !base::any(base::sapply(x, uj::isNAS)))}
 
 #' @rdname failsafe_is
 #' @export
-norOKS <- function(x) {f0(!.pop(x), T, !any(sapply(x, isNAS)))}
+norOKS <- function(x) {uj::f0(!uj:::.pop(x), T, !base::any(base::sapply(x, uj::isNAS)))}
 
 #' @rdname failsafe_is
 #' @export
-norTF <- function(x) {f0(!.pop(x), T, !any(sapply(x, isTF)))}
+norTF <- function(x) {uj::f0(!uj:::.pop(x), T, !base::any(base::sapply(x, uj::isTF)))}
 
 #' @rdname failsafe_is
 #' @export
-norLG <- function(x) {f0(!.pop(x), T, !any(sapply(x, isLG)))}
+norLG <- function(x) {uj::f0(!uj:::.pop(x), T, !base::any(base::sapply(x, uj::isLG)))}
 
 #' @rdname failsafe_is
 #' @export
-norBL <- function(x) {f0(!.pop(x), T, !any(sapply(x, isBL)))}
+norBL <- function(x) {uj::f0(!uj:::.pop(x), T, !base::any(base::sapply(x, uj::isBL)))}
 
 #' @rdname failsafe_is
 #' @export
-anyIN <- function(x, ...) {f0(!.a_pop_dot(x, ...), F, any(sapply(x, isIN, ...)))}
+anyIN <- function(x, ...) {uj::f0(!uj:::.a_pop_dot(x, ...), F, base::any(base::sapply(x, uj::isIN, ...)))}
 
 #' @rdname failsafe_is
 #' @export
-anyOUT <- function(x, ...) {f0(!.a_pop_dot(x, ...), F, any(sapply(x, isOUT, ...)))}
+anyOUT <- function(x, ...) {uj::f0(!uj:::.a_pop_dot(x, ...), F, base::any(base::sapply(x, uj::isOUT, ...)))}
 
 #' @rdname failsafe_is
 #' @export
-anyID <- function(x, y) {f0(!.pop_pop(x, y), F, any(sapply(x, isID, y = y)))}
+anyID <- function(x, y) {uj::f0(!uj:::.pop_pop(x, y), F, base::any(base::sapply(x, uj::isID, y = y)))}
 
 #' @rdname failsafe_is
 #' @export
-anyEQ <- function(x, y) {f0(!.pop_pop(x, y), F, any(sapply(x, isEQ, y = y)))}
+anyEQ <- function(x, y) {uj::f0(!uj:::.pop_pop(x, y), F, base::any(base::sapply(x, uj::isEQ, y = y)))}
 
 #' @rdname failsafe_is
 #' @export
-anyT <- function(x) {f0(!.pop(x), F, any(sapply(x, isTRUE)))}
+anyT <- function(x) {uj::f0(!uj:::.pop(x), F, base::any(base::sapply(x, base::isTRUE)))}
 
 #' @rdname failsafe_is
 #' @export
-anyF <- function(x) {f0(!.pop(x), F, any(sapply(x, isFALSE)))}
+anyF <- function(x) {uj::f0(!uj:::.pop(x), F, base::any(base::sapply(x, base::isFALSE)))}
 
 #' @rdname failsafe_is
 #' @export
-anyNAS <- function(x) {f0(!.pop(x), F, any(sapply(x, isNAS)))}
+anyNAS <- function(x) {uj::f0(!uj:::.pop(x), F, base::any(base::sapply(x, uj::isNAS)))}
 
 #' @rdname failsafe_is
 #' @export
-anyOKS <- function(x) {f0(!.pop(x), F, any(sapply(x, isNAS)))}
+anyOKS <- function(x) {uj::f0(!uj:::.pop(x), F, base::any(base::sapply(x, uj::isNAS)))}
 
 #' @rdname failsafe_is
 #' @export
-anyTF <- function(x) {f0(!.pop(x), F, any(sapply(x, isTF)))}
+anyTF <- function(x) {uj::f0(!uj:::.pop(x), F, base::any(base::sapply(x, uj::isTF)))}
 
 #' @rdname failsafe_is
 #' @export
-anyLG <- function(x) {f0(!.pop(x), F, any(sapply(x, isLG)))}
+anyLG <- function(x) {uj::f0(!uj:::.pop(x), F, base::any(base::sapply(x, uj::isLG)))}
 
 #' @rdname failsafe_is
 #' @export
-anyBL <- function(x) {f0(!.pop(x), F, any(sapply(x, isBL)))}
+anyBL <- function(x) {uj::f0(!uj:::.pop(x), F, base::any(base::sapply(x, uj::isBL)))}
 
 #' @rdname failsafe_is
 #' @export
-allIN <- function(x, ...) {f0(!.a_pop_dot(x, ...), F, all(sapply(x, isIN, ...)))}
+allIN <- function(x, ...) {uj::f0(!uj:::.a_pop_dot(x, ...), F, uj::all(uj::sapply(x, uj::isIN, ...)))}
 
 #' @rdname failsafe_is
 #' @export
-allOUT <- function(x, ...) {f0(!.a_pop_dot(x, ...), F, all(sapply(x, isOUT, ...)))}
+allOUT <- function(x, ...) {uj::f0(!uj:::.a_pop_dot(x, ...), F, uj::all(uj::sapply(x, uj::isOUT, ...)))}
 
 #' @rdname failsafe_is
 #' @export
-allID <- function(x, y) {f0(!.pop_pop(x, y), F, all(sapply(x, isID, y = y)))}
+allID <- function(x, y) {uj::f0(!uj:::.pop_pop(x, y), F, uj::all(uj::sapply(x, uj::isID, y = y)))}
 
 #' @rdname failsafe_is
 #' @export
-allEQ <- function(x, y) {f0(!.pop_pop(x, y), F, all(sapply(x, isEQ, y = y)))}
+allEQ <- function(x, y) {uj::f0(!uj:::.pop_pop(x, y), F, uj::all(uj::sapply(x, uj::isEQ, y = y)))}
 
 #' @rdname failsafe_is
 #' @export
-allT <- function(x) {f0(!.pop(x), F, all(sapply(x, isTRUE)))}
+allT <- function(x) {uj::f0(!uj:::.pop(x), F, uj::all(uj::sapply(x, base::isTRUE)))}
 
 #' @rdname failsafe_is
 #' @export
-allF <- function(x) {f0(!.pop(x), F, all(sapply(x, isFALSE)))}
+allF <- function(x) {uj::f0(!uj:::.pop(x), F, uj::all(uj::sapply(x, base::isFALSE)))}
 
 #' @rdname failsafe_is
 #' @export
-allNAS <- function(x) {f0(!.pop(x), F, all(sapply(x, isNAS)))}
+allNAS <- function(x) {uj::f0(!uj:::.pop(x), F, uj::all(uj::sapply(x, uj::isNAS)))}
 
 #' @rdname failsafe_is
 #' @export
-allOKS <- function(x) {f0(!.pop(x), F, all(sapply(x, isNAS)))}
+allOKS <- function(x) {uj::f0(!uj:::.pop(x), F, uj::all(uj::sapply(x, uj::isNAS)))}
 
 #' @rdname failsafe_is
 #' @export
-allTF <- function(x) {f0(!.pop(x), F, all(sapply(x, isTF)))}
+allTF <- function(x) {uj::f0(!uj:::.pop(x), F, uj::all(uj::sapply(x, uj::isTF)))}
 
 #' @rdname failsafe_is
 #' @export
-allLG <- function(x) {f0(!.pop(x), T, all(sapply(x, isLG)))}
+allLG <- function(x) {uj::f0(!uj:::.pop(x), T, uj::all(uj::sapply(x, uj::isLG)))}
 
 #' @rdname failsafe_is
 #' @export
-allBL <- function(x) {f0(!.pop(x), T, all(sapply(x, isBL)))}
+allBL <- function(x) {uj::f0(!uj:::.pop(x), T, uj::all(uj::sapply(x, uj::isBL)))}
 
 #' @rdname failsafe_is
 #' @export
-oneIN <- function(x, ...) {f0(!.a_pop_dot(x, ...), F, length(which(sapply(x, isIN, ...))) == 1)}
+oneIN <- function(x, ...) {uj::f0(!uj:::.a_pop_dot(x, ...), F, uj::length(uj::which(uj::sapply(x, uj::isIN, ...))) == 1)}
 
 #' @rdname failsafe_is
 #' @export
-oneOUT <- function(x, ...) {f0(!.a_pop_dot(x, ...), F, length(which(sapply(x, isOUT, ...))) == 1)}
+oneOUT <- function(x, ...) {uj::f0(!uj:::.a_pop_dot(x, ...), F, uj::length(uj::which(uj::sapply(x, uj::isOUT, ...))) == 1)}
 
 #' @rdname failsafe_is
 #' @export
-oneID <- function(x, y) {f0(!.pop_pop(x, y), F, length(which(sapply(x, isID, y = y))) == 1)}
+oneID <- function(x, y) {uj::f0(!uj:::.pop_pop(x, y), F, uj::length(uj::which(uj::sapply(x, uj::isID, y = y))) == 1)}
 
 #' @rdname failsafe_is
 #' @export
-oneEQ <- function(x, y) {f0(!.pop_pop(x, y), F, length(which(sapply(x, isEQ, y = y))) == 1)}
+oneEQ <- function(x, y) {uj::f0(!uj:::.pop_pop(x, y), F, uj::length(uj::which(uj::sapply(x, uj::isEQ, y = y))) == 1)}
 
 #' @rdname failsafe_is
 #' @export
-oneT <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isTRUE))) == 1)}
+oneT <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, base::isTRUE))) == 1)}
 
 #' @rdname failsafe_is
 #' @export
-oneF <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isFALSE))) == 1)}
+oneF <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, base::isFALSE))) == 1)}
 
 #' @rdname failsafe_is
 #' @export
-oneNAS <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isNAS))) == 1)}
+oneNAS <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, uj::isNAS))) == 1)}
 
 #' @rdname failsafe_is
 #' @export
-oneOKS <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isOKS))) == 1)}
+oneOKS <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, uj::isOKS))) == 1)}
 
 #' @rdname failsafe_is
 #' @export
-oneTF <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isTF))) == 1)}
+oneTF <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, uj::isTF))) == 1)}
 
 #' @rdname failsafe_is
 #' @export
-oneLG <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isLG))) == 1)}
+oneLG <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, uj::isLG))) == 1)}
 
 #' @rdname failsafe_is
 #' @export
-oneBL <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isBL))) == 1)}
+oneBL <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, uj::isBL))) == 1)}
 
 #' @rdname failsafe_is
 #' @export
-twoIN <- function(x, ...) {f0(!.a_pop_dot(x, ...), F, length(which(sapply(x, isIN, ...))) > 1)}
+twoIN <- function(x, ...) {uj::f0(!uj:::.a_pop_dot(x, ...), F, uj::length(uj::which(uj::sapply(x, uj::isIN, ...))) > 1)}
 
 #' @rdname failsafe_is
 #' @export
-twoOUT <- function(x, ...) {f0(!.a_pop_dot(x, ...), F, length(which(sapply(x, isOUT, ...))) > 1)}
+twoOUT <- function(x, ...) {uj::f0(!uj:::.a_pop_dot(x, ...), F, uj::length(uj::which(uj::sapply(x, uj::isOUT, ...))) > 1)}
 
 #' @rdname failsafe_is
 #' @export
-twoID <- function(x, y) {f0(!.pop_pop(x, y), F, length(which(sapply(x, isID, y = y))) > 1)}
+twoID <- function(x, y) {uj::f0(!uj:::.pop_pop(x, y), F, uj::length(uj::which(uj::sapply(x, uj::isID, y = y))) > 1)}
 
 #' @rdname failsafe_is
 #' @export
-twoEQ <- function(x, y) {f0(!.pop_pop(x, y), F, length(which(sapply(x, isEQ, y = y))) > 1)}
+twoEQ <- function(x, y) {uj::f0(!uj:::.pop_pop(x, y), F, uj::length(uj::which(uj::sapply(x, uj::isEQ, y = y))) > 1)}
 
 #' @rdname failsafe_is
 #' @export
-twoT <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isTRUE))) > 1)}
+twoT <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, base::isTRUE))) > 1)}
 
 #' @rdname failsafe_is
 #' @export
-twoF <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isFALSE))) > 1)}
+twoF <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, base::isFALSE))) > 1)}
 
 #' @rdname failsafe_is
 #' @export
-twoNAS <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isNAS))) > 1)}
+twoNAS <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, uj::isNAS))) > 1)}
 
 #' @rdname failsafe_is
 #' @export
-twoOKS <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isOKS))) > 1)}
+twoOKS <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, uj::isOKS))) > 1)}
 
 #' @rdname failsafe_is
 #' @export
-twoTF <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isTF))) > 1)}
+twoTF <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, uj::isTF))) > 1)}
 
 #' @rdname failsafe_is
 #' @export
-twoLG <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isLG))) > 1)}
+twoLG <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, uj::isLG))) > 1)}
 
 #' @rdname failsafe_is
 #' @export
-twoBL <- function(x) {f0(!.pop(x), F, length(which(sapply(x, isBL))) > 1)}
+twoBL <- function(x) {uj::f0(!uj:::.pop(x), F, uj::length(uj::which(uj::sapply(x, uj::isBL))) > 1)}

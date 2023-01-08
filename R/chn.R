@@ -11,11 +11,15 @@
 #'
 #'  chn(words, 1)
 #'  chn(words, 3)
-#'  chn(words, 10)
+#'  charn(words, 10)
 #' @export
 chn <- function(x, n) {
-  errs <- c(f0(ichr(x)                                 , NULL, "[x] must be an atomic object of mode 'character' (?ichr)."),
-            f0(cmp_psw(n) | (iscl(n) & identical(x, n)), NULL, "[n] must be a complete positive whole-number valued scalar (?cmp_psw_scl) or of the same dimension as [x]."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  substr(x, n, n)
+  errs <- base::c(uj::f0(uj::ichr(x)                                           , NULL, "[x] must be an atomic object of mode 'character' (?ichr)."),
+                  uj::f0(uj::cmp_psw(n) | (uj::iscl(n) & base::identical(x, n)), NULL, "[n] must be a complete positive whole-number valued scalar (?cmp_psw_scl) or of the same dimension as [x]."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  base::substr(x, n, n)
 }
+
+#' @rdname chn
+#' @export
+charn <- chn

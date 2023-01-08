@@ -69,43 +69,43 @@
 #' compatible_dtfs("c", dtf7.ncl., dtf7.cln.)
 #' @export
 compatible <- function(..., rec. = FALSE) {
-  x <- list(...)
-  n <- length(x)
-  errs <- c(f0(n >= 2    , NULL, "[...] must contain multiple arguments."),
-            f0(isTF(rec.), NULL, "[rec.] must be TRUE or FALSE."         ))
-  if (!is.null(errs)) {stop(.errs(errs))}
+  x <- base::list(...)
+  n <- base::length(x)
+  errs <- base::c(uj::f0(n >= 2        , NULL, "[...] must contain multiple arguments."),
+                  uj::f0(uj::isTF(rec.), NULL, "[rec.] must be TRUE or FALSE."         ))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
   if (rec.) {
-    un <- unique(lengths(x))
-    nr <- max(un) / un
-    if (any(nr != round(nr))) {return(F)}
+    un <- base::unique(base::lengths(x))
+    nr <- base::max(un) / un
+    if (base::any(nr != base::round(nr))) {return(F)}
   }
-  chr <- all(sapply(x, is.character))
-  lgl <- all(sapply(x, is.logical))
-  num <- all(sapply(x, is.numeric))
-  ord <- all(sapply(x, is.ordered))
-  uno <- all(sapply(x, is.factor)) & !any(sapply(x, is.ordered))
+  chr <- base::all(base::sapply(x, is.character))
+  lgl <- base::all(base::sapply(x, is.logical))
+  num <- base::all(base::sapply(x, is.numeric))
+  ord <- base::all(base::sapply(x, is.ordered))
+  uno <- base::all(base::sapply(x, is.factor)) & !base::any(base::sapply(x, is.ordered))
   if (chr | lgl | num) {return(T)}
   if (!ord & !uno) {return(F)}
-  levs <- sapply(x, levels)
-  if (ord) {for (i in 2:n) {if (!identical(levs[[i]], levs[[i - 1]])) {return(F)}}}
-  if (uno) {for (i in 2:n) {if (!setequal( levs[[i]], levs[[i - 1]])) {return(F)}}}
+  levs <- base::sapply(x, levels)
+  if (ord) {for (i in 2:n) {if (!base::identical(levs[[i]], levs[[i - 1]])) {return(F)}}}
+  if (uno) {for (i in 2:n) {if (!base::setequal( levs[[i]], levs[[i - 1]])) {return(F)}}}
   T
 }
 
 #' @rdname compatible
 #' @export
 compatible_mats <- function(b, ...) {
-  x <- list(...)
-  n <- length(x)
-  errs <- c(f0(f0(!ch1_scl(b), F, isIN(b, c("c", "r"))), NULL, "[b] must be character scalar 'c' or 'r'."         ),
-            f0(f0(n < 2, F, all(sapply(x, atm_mat   ))), NULL, "[...] must contain 2+ atomic matrices (?atm_mat)."))
-  if (!is.null(errs)) {stop(.errs(errs))}
+  x <- base::list(...)
+  n <- base::length(x)
+  errs <- base::c(uj::f0(uj::f0(!uj::ch1_scl(b), F, uj::isIN(b, c("c", "r" )))    , NULL, "[b] must be character scalar 'c' or 'r'."         ),
+                  uj::f0(uj::f0(n < 2, F, base::all(base::sapply(x, uj::atm_mat))), NULL, "[...] must contain 2+ atomic matrices (?atm_mat)."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
   for (i in 2:n) {
     curr <- x[[i]]
     prev <- x[[i - 1]]
-    if (b == "r" & ncol(prev) != ncol(curr)) {return(F)}
-    if (b == "c" & nrow(prev) != nrow(curr)) {return(F)}
-    if (!compatible(prev, curr)) {return(F)}
+    if (b == "r" & base::ncol(prev) != base::ncol(curr)) {return(F)}
+    if (b == "c" & base::nrow(prev) != base::nrow(curr)) {return(F)}
+    if (!uj::compatible(prev, curr)) {return(F)}
   }
   T
 }
@@ -113,19 +113,19 @@ compatible_mats <- function(b, ...) {
 #' @rdname compatible
 #' @export
 compatible_dtfs <- function(b, ...) {
-  x <- list(...)
-  n <- length(x)
-  errs <- c(f0(f0(!cmp_ch1_scl(b), F, b %in% c("c", "r")), NULL, "[b] must be character scalar 'c' or 'r'."                  ),
-            f0(f0(n < 2, F,  all(sapply(x, atm_dtf))    ), NULL, "[...] must contain multiple atomic data.frames (?atm_dtf)."))
-  if (!is.null(errs)) {stop(.errs(errs))}
+  x <- base::list(...)
+  n <- base::length(x)
+  errs <- base::c(uj::f0(uj::f0(!uj::cmp_ch1_scl(b), F, b %in% c("c", "r"))        , NULL, "[b] must be character scalar 'c' or 'r'."                  ),
+                  uj::f0(uj::f0(n < 2, F,  base::all(base::sapply(x, uj::atm_dtf))), NULL, "[...] must contain multiple atomic data.frames (?atm_dtf)."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
   for (i in 2:n) {
     curr <- x[[i]]
     prev <- x[[i - 1]]
-    if (b == "c" & nrow(curr) != nrow(prev)) {return(F)}
+    if (b == "c" & base::nrow(curr) != nbase::row(prev)) {return(F)}
     if (b == "r") {
-      if (ncol(curr) != ncol(prev)) {return(F)}
-      if (!identical(colnames(curr), colnames(prev))) {return(F)}
-      for (j in 1:ncol(curr)) {if (!compatible(curr[[j]], prev[[j]])) {return(F)}}
+      if (base::ncol(curr) != base::ncol(prev)) {return(F)}
+      if (!base::identical(base::colnames(curr), base::colnames(prev))) {return(F)}
+      for (j in 1:base::ncol(curr)) {if (!uj::compatible(curr[[j]], prev[[j]])) {return(F)}}
   }}
   T
 }

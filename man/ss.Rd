@@ -121,24 +121,25 @@ ussPDB(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 }
 \value{
 \emph{A character vector}
-\cr    \verb{ssPDB, ussPDB}
-\cr    \verb{ssDB, ussDB}
-\cr    \verb{ssPB, ussPB}
-\cr    \verb{ssPD, ussPD}
-\cr    \verb{ssB, ussB}
-\cr    \verb{ssD, ussD}
-\cr    \verb{ssP, ussP}
-\cr    \verb{ss1, uss1}
-\cr    \verb{ss, uss}
+\cr   \verb{ssPDB, ussPDB}
+\cr   \verb{ssDB,  ussDB}
+\cr   \verb{ssPB,  ussPB}
+\cr   \verb{ssPD,  ussPD}
+\cr   \verb{ssB,   ussB}
+\cr   \verb{ssD,   ussD}
+\cr   \verb{ssP,   ussP}
+\cr   \verb{ss1,   uss1}
+\cr   \verb{ss,    uss}
 \cr\cr \emph{A \link[=ich1]{1-char} vector}
-\cr    \verb{ss0, uss0}
-\cr    \verb{ch, uch}
+\cr   \verb{ss0, uss0}
+\cr   \verb{ch,  uch}
 \cr\cr *A data.frame *
-\cr    \verb{sstb, usstb}
+\cr   \verb{sstb, usstb}
 }
 \description{
 All functions in this family follow the same order of operations when performing string splitting:
-\cr\cr \strong{Order of operations}
+\cr
+\cr \strong{Order of operations}
 \tabular{rl}{
   \code{1.}  \tab \link[=av]{Atomize} \code{...}, collapsing
 \cr       \tab it to a simple atomic  vector.
@@ -159,12 +160,20 @@ All functions in this family follow the same order of operations when performing
 \cr \code{7.}  \tab If \verb{u = TRUE}, reduce the result to
 \cr       \tab unique values.
 }
-\strong{The function \code{ss}}
-\cr\cr Performs the operations as described in the \emph{order of operations} section.
-\cr\cr \strong{The functions \code{ch} and \code{chars}}
-\cr\cr Split strings in constituent characters (by using a blank-string delimiter).
-\cr\cr \strong{The function \code{sstb}}
-\cr\cr Requires that splitting each element of \code{x} along the delimiter \code{d} and post-processing the results based on optional args \code{trm}, \code{sqz}, \code{drop}, \code{n}, and \code{u} will result in vectors of the same length. Those resulting same-length vectors are then placed into a data.frame. For example, the following console excerpt demonstrates a call to \code{sstb} and its result.
+\cr
+**The function **\code{ss}
+\cr
+\cr Performs the operations as described in the \emph{order of operations} section.
+\cr
+\cr
+\cr \strong{The functions \strong{\code{ch}} and} \code{chars}
+\cr
+\cr Split strings in constituent characters (by using a blank-string delimiter).
+\cr
+\cr
+\cr **The function **\code{sstb}
+\cr
+\cr Requires that splitting each element of \code{x} along the delimiter \code{d} and post-processing the results based on optional args \code{trm}, \code{sqz}, \code{drop}, \code{n}, and \code{u} will result in vectors of the same length. Those resulting same-length vectors are then placed into a data.frame. For example, the following console excerpt demonstrates a call to \code{sstb} and its result.
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{> sstb('|', 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p', name = 'original', part = 'letter')
 
@@ -175,19 +184,24 @@ All functions in this family follow the same order of operations when performing
 4  m|n|o|p        m        n        o        p
 }\if{html}{\out{</div>}}
 
-\strong{Functions extending \code{ss} for common delimiters}
-\cr\cr Extension functions are supplied for common delimiters, signified by codes appended to \code{ss} function names:
+\cr
+\strong{Functions extending \strong{\code{ss}} for common delimiters}
+\cr
+\cr Extension functions are supplied for common delimiters, signified by codes appended to \code{ss} function names:
 \tabular{cll}{
   \emph{Code}   \tab \emph{Name}        \tab   \emph{Common delimiter}
-\cr \code{'0'} \tab blank\eqn{^a} \tab   \code{''}
+\cr \code{'0'} \tab blank\code{*}      \tab   \code{''}
 \cr \code{'1'} \tab space         \tab   \code{' '}
 \cr \code{'P'} \tab pipe          \tab   \code{'|'}
 \cr \code{'D'} \tab dot           \tab   \code{'.'}
 \cr \code{'B'} \tab broken pipe   \tab   \code{'¦'}
 }
-\eqn{^{a.}} Splits strings into constituent characters, making \code{ss0(.)} functionally equivalent to \code{ch(.)}.
-\cr\cr \strong{Functions filtering for unique values}
-\cr\cr Prepending \code{u} to a function name reduces the result of calling the original function to unique values.
+\code{*} Splits strings into constituent characters, making \code{ss0(.)} functionally equivalent to \code{ch(.)}.
+\cr
+\cr
+\cr \strong{Functions filtering for unique values}
+\cr
+\cr Prepending \code{u} to a function name reduces the result of calling the original function to unique values.
 }
 \examples{
 ss("", "super-cooled")

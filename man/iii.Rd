@@ -12,6 +12,8 @@
 \alias{inas}
 \alias{ioks}
 \alias{iprt}
+\alias{idup}
+\alias{iunq}
 \title{Integrity properties}
 \usage{
 iii(x)
@@ -33,6 +35,10 @@ inas(x, ...)
 ioks(x, ...)
 
 iprt(x, ...)
+
+idup(x, ...)
+
+iunq(x, ...)
 }
 \arguments{
 \item{x}{An R object.}
@@ -47,13 +53,14 @@ iprt(x, ...)
 }
 \value{
 \emph{A character vector}
-\cr    \code{iii_props}
-\cr    \code{iii_funs}
-\cr    \code{iii}
-\cr\cr \emph{A logical scalar}
-\cr    \verb{is_iii\{spec}
-\cr    \code{iIII}
-\cr    \code{iiii}
+\cr   \code{iii_props}
+\cr   \code{iii_funs}
+\cr   \code{iii}
+\cr
+\cr \emph{A logical scalar}
+\cr   \code{is_iii}
+\cr   \code{iIII}
+\cr   \code{iiii}
 }
 \description{
 Integrity properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frameS}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
@@ -65,7 +72,7 @@ Integrity properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{ato
 \cr \code{'prt'}   \tab partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \code{NA} \strong{and} non-\code{NA} values.
 \cr           \tab               \tab  
 \cr \code{'dup'}   \tab duplicates    \tab Complete and containing duplicate values.
-\cr \code{'unq'}   \tab unique.       \tab Complete and containing only unique values.
+\cr \code{'unq'}   \tab unique        \tab Complete and containing only unique values.
 \cr \code{'nas'}   \tab \code{NA} scalar   \tab Atomic scalar \code{NA}.
 \cr \code{'oks'}   \tab \code{OK} scalar   \tab Non-\code{NA} atomic scalar.
 }
@@ -113,6 +120,7 @@ Other properties:
 \code{\link{as_mmm}},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
+\code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -120,12 +128,11 @@ Other properties:
 \code{\link{ddd}()},
 \code{\link{eee}()},
 \code{\link{err_check}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
-\code{\link{reclass}()},
 \code{\link{sss}()},
 \code{\link{unq_ccc}()}
 }

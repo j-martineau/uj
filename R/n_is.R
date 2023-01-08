@@ -6,7 +6,7 @@
 #' @title Dedicated counting functions
 #' @description Counting functions can be used with a single unnamed argument, multiple unnamed arguments, and with restrictions in named arguments, in any combination. The functions in this family answer the questions described below.
 #' \tabular{rl}{
-#'      `nu, nuv`   \tab Number of unique atomic values.
+#'      `nu, nuv`   \tab Number of unique atomic values.
 #'   \cr `nw, nt`   \tab Number of `TRUE` values.
 #'   \cr     `nf`   \tab Number of `FALSE` values.
 #'   \cr    `nna`   \tab Number of atomic `NA` values.
@@ -94,96 +94,97 @@
 #' nch(letters, "a string")
 #' nch(letters, "a string", a = T)
 n_is <- function(x, n = NULL, min = NULL, max = NULL, eq = FALSE) {
-  errs <- c(f0(cmp_nnw(x)                  , NULL, "[x] must contain only non-negative whole numbers."),
-            f0(inll(n) | cmp_nnw_vec(n)    , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(inll(min) | cmp_nnw_scl(min), NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(inll(max) | cmp_nnw_scl(max), NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(isTF(eq)                    , NULL, "[eq] must be TRUE or FALSE."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (length(c(n, min, max)) == 0 & !eq) {return(x)}                             # if no restrictions are specified, return the raw counts
-  ok.n <- f0(inll(n), T, all(x %in% n))                                          # whether exact argument length restriction is met
-  ok.min <- f0(inll(min), T, all(x >= min))                                      # whether min argument length restriction is met
-  ok.max <- f0(inll(max), T, all(x <= max))                                      # whether max argument length restriction is met
-  ok.eq <- f0(eq, length(unique(x)) == 1, T)                                     # whether argument length equality restriction is met
-  ok.n & ok.min & ok.max & ok.eq                                                 # whether all argument length restrictions are met
+  errs <- base::c(uj::f0(uj::cmp_nnw(x)                , NULL, "[x] must contain only non-negative whole numbers."),
+            uj::f0(uj::inll(n) | uj::cmp_nnw_vec(n)    , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
+            uj::f0(uj::inll(min) | uj::cmp_nnw_scl(min), NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+            uj::f0(uj::inll(max) | uj::cmp_nnw_scl(max), NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+            uj::f0(uj::isTF(eq)                        , NULL, "[eq] must be TRUE or FALSE."))
+  if (!base::is.null(errs)) {stop(uj::.errs(errs))}
+  if (base::length(base::c(n, min, max)) == 0 & !eq) {return(x)}
+  ok.n <- uj::f0(uj::inll(n), T, base::all(x %in% n))
+  ok.min <- uj::f0(uj::inll(min), T, base::all(x >= min))
+  ok.max <- uj::f0(uj::inll(max), T, base::all(x <= max))
+  ok.eq <- uj::f0(eq, base::length(base::unique(x)) == 1, T)
+  ok.n & ok.min & ok.max & ok.eq
 }
 
 #' @rdname n_is
 #' @export
 nx <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, a = FALSE, na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {
-  dots <- list(...)
-  atoms <- av(dots)
-  ok.d <- ...length() > 0
-  ok.n <- inll(n) | cmp_nnw_vec(n)
-  ok.min <- inll(min) | cmp_nnw_scl(min)
-  ok.max <- inll(max) | cmp_nnw_scl(max)
-  ok.mm <- f0(!ok.min | !ok.max, T, f0(inll(min) | inll(max), T, max >= min))
-  ok.vals <- f0(is.null(vals), T, all(for (dot in dots) {compatible(dot, vals)}))
-  ok.lt <- f0(is.null(vals), T, all(for (dot in dots) {comparable(lt, vals)}))
-  ok.le <- f0(is.null(vals), T, all(for (dot in dots) {comparable(le, vals)}))
-  ok.ge <- f0(is.null(vals), T, all(for (dot in dots) {comparable(ge, vals)}))
-  ok.gt <- f0(is.null(vals), T, all(for (dot in dots) {comparable(gt, vals)}))
-  ok.na <- f0(!isF(na), T, !any(is.na(atoms)))
-  errs <- c(f0(ok.d    , NULL, "[...] is empty."),
-            f0(isTF(a) , NULL, "[a] must be TRUE or FALSE."),
-            f0(ok.n    , NULL, "[n] must be NULL or contain only non-negative whole numbers."),
-            f0(ok.min  , NULL, "[min] must be NULL or a non-negative whole number."),
-            f0(ok.max  , NULL, "[max] must be NULL or a non-negative whole number."),
-            f0(ok.mm   , NULL, "[max] must be greater than or equal to [min]."),
-            f0(isTF(eq), NULL, "[eq] must be TRUE or FALSE."),
-            f0(isTF(na), NULL, "[na] must be TRUE or FALSE."),
-            f0(ok.na   , NULL, "[na = FALSE] but arguments in [...] contains NA values."),
-            f0(ok.vals , NULL, "[vals] must be NULL or compatible with arguments in [...]."),
-            f0(ok.lt   , NULL, "[lt] must be NULL or comparable with arguments in [...]."),
-            f0(ok.le   , NULL, "[le] must be NULL or comparable with arguments in [...]."),
-            f0(ok.ge   , NULL, "[ge] must be NULL or comparable with arguments in [...]."),
-            f0(ok.gt   , NULL, "[gt] must be NULL or comparable with arguments in [...]."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (a) {dots <- list(atoms)}
-  for (i in 1:length(dots)) {
+  dots <- base::list(...)
+  atoms <- uj::av(dots)
+  ok.d <- base::...length() > 0
+  ok.n <- uj::inll(n) | uj::cmp_nnw_vec(n)
+  ok.min <- uj::inll(min) | uj::cmp_nnw_scl(min)
+  ok.max <- uj::inll(max) | uj::cmp_nnw_scl(max)
+  ok.mm <- uj::f0(!ok.min | !ok.max, T, uj::f0(uj::inll(min) | uj::inll(max), T, max >= min))
+  ok.vals <- uj::f0(base::is.null(vals), T, base::all(for (dot in dots) {uj::compatible(dot, vals)}))
+  ok.lt <- uj::f0(base::is.null(vals), T, base::all(for (dot in dots) {uj::comparable(lt, vals)}))
+  ok.le <- uj::f0(base::is.null(vals), T, base::all(for (dot in dots) {uj::comparable(le, vals)}))
+  ok.ge <- uj::f0(base::is.null(vals), T, base::all(for (dot in dots) {uj::comparable(ge, vals)}))
+  ok.gt <- uj::f0(base::is.null(vals), T, base::all(for (dot in dots) {uj::comparable(gt, vals)}))
+  ok.na <- uj::f0(!uj::isF(na), T, !base::any(base::is.na(atoms)))
+  errs <- base::c(uj::f0(ok.d        , NULL, "[...] is empty."),
+                  uj::f0(uj::isTF(a) , NULL, "[a] must be TRUE or FALSE."),
+                  uj::f0(ok.n        , NULL, "[n] must be NULL or contain only non-negative whole numbers."),
+                  uj::f0(ok.min      , NULL, "[min] must be NULL or a non-negative whole number."),
+                  uj::f0(ok.max      , NULL, "[max] must be NULL or a non-negative whole number."),
+                  uj::f0(ok.mm       , NULL, "[max] must be greater than or equal to [min]."),
+                  uj::f0(uj::isTF(eq), NULL, "[eq] must be TRUE or FALSE."),
+                  uj::f0(uj::isTF(na), NULL, "[na] must be TRUE or FALSE."),
+                  uj::f0(ok.na       , NULL, "[na = FALSE] but arguments in [...] contains NA values."),
+                  uj::f0(ok.vals     , NULL, "[vals] must be NULL or compatible with arguments in [...]."),
+                  uj::f0(ok.lt       , NULL, "[lt] must be NULL or comparable with arguments in [...]."),
+                  uj::f0(ok.le       , NULL, "[le] must be NULL or comparable with arguments in [...]."),
+                  uj::f0(ok.ge       , NULL, "[ge] must be NULL or comparable with arguments in [...]."),
+                  uj::f0(ok.gt       , NULL, "[gt] must be NULL or comparable with arguments in [...]."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (a) {dots <- base::list(atoms)}
+  for (i in 1:base::length(dots)) {
     dot <- dots[[i]]
-    if (idef(vals)) {dot <- dot[dot %in% vals]}
-    if (idef(lt)) {dot <- dot[dot <  lt]}
-    if (idef(le)) {dot <- dot[dot <= le]}
-    if (idef(ge)) {dot <- dot[dot >= ge]}
-    if (idef(gt)) {dot <- dot[dot >  gt]}
-    if (!is.null(dot)) {dots[[i]] <- dot}
+    if (uj::idef(vals)) {dot <- dot[dot %in% vals]}
+    if (uj::idef(lt)) {dot <- dot[dot <  lt]}
+    if (uj::idef(le)) {dot <- dot[dot <= le]}
+    if (uj::idef(ge)) {dot <- dot[dot >= ge]}
+    if (uj::idef(gt)) {dot <- dot[dot >  gt]}
+    if (!base::is.null(dot)) {dots[[i]] <- dot}
   }
-  n_is(lengths(dots, F), n = n, min = min, max = max, eq = eq)
+  uj::n_is(base::lengths(dots, F), n = n, min = min, max = max, eq = eq)
 }
 
 #' @rdname n_is
 #' @export
-ns <- function(..., n = NULL, min = NULL, max = NULL, na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {nx(..., n = n, min = min, max = max, na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt)}
+ns <- function(..., n = NULL, min = NULL, max = NULL, na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {uj::nx(..., n = n, min = min, max = max, na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt)}
 
 #' @rdname n_is
 #' @export
-nmin <- function(..., na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {min(nx(..., na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt))}
+nmin <- function(..., na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {base::min(uj::nx(..., na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt))}
 
 #' @rdname n_is
 #' @export
-nmax <- function(..., na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {max(nx(..., na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt))}
+nmax <- function(..., na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {base::max(uj::nx(..., na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt))}
 
 #' @rdname n_is
 #' @export
-nsame <- function(..., min = NULL, max = NULL, na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {nx(..., min = min, max = max, eq = T, na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt)}
+nsame <- function(..., min = NULL, max = NULL, na = TRUE, vals = NULL, lt = NULL, le = NULL, ge = NULL, gt = NULL) {uj::nx(..., min = min, max = max, eq = T, na = na, a = F, vals = vals, lt = lt, le = le, ge = ge, gt = gt)}
 
 #' @rdname n_is
 #' @export
 nw <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = FALSE, a = TRUE) {
   dots <- list(...)
-  atoms <- av(dots)
-  errs <- c(f0(all(sapply(dots, pop_lgl))         , NULL, "[...] must contain only non-empty logical objects."),
-            f0(isTF(a)                            , NULL, "[a] must be TRUE or FALSE."),
-            f0(inll(n) | cmp_nnw_vec(n)           , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(inll(min) | cmp_nnw_scl(min)       , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(inll(max) | cmp_nnw_scl(max)       , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(isTF(eq)                           , NULL, "[eq] must be TRUE or FALSE."),
-            f0(isTF(na)                           , NULL, "[na] must be TRUE or FALSE."),
-            f0(f0(!isF(na), T, !any(is.na(atoms))), NULL, "[na = FALSE] but arguments in [...] contains NA values."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (isT(a)) {dots <- list(atoms)}
-  n_is(sapply(lapply(dots, which), length), n = n, min = min, max = max, eq = eq)
+  atoms <- uj::av(dots)
+  errs <- c(uj::f0(base::all(base::sapply(dots, pop_lgl))                 , NULL, "[...] must contain only non-empty logical objects."),
+            uj::f0(uj::isTF(a)                                            , NULL, "[a] must be TRUE or FALSE."),
+            uj::f0(uj::inll(n) | uj::cmp_nnw_vec(n)                       , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
+            uj::f0(uj::inll(min) | uj::cmp_nnw_scl(min)                   , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+            uj::f0(uj::inll(max) | uj::cmp_nnw_scl(max)                   , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+            uj::f0(uj::isTF(eq)                                           , NULL, "[eq] must be TRUE or FALSE."),
+            uj::f0(uj::isTF(na)                                           , NULL, "[na] must be TRUE or FALSE."),
+            uj::f0(uj::f0(!uj::isF(na), T, !base::any(base::is.na(atoms))), NULL, "[na = FALSE] but arguments in [...] contains NA values."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (uj::isT(a)) {dots <- base::list(atoms)}
+  x <- uj::av(base::sapply(dots, function(x) {base::length(base::which(x))}))
+  uj::n_is(x, n = n, min = min, max = max, eq = eq)
 }
 
 #' @rdname n_is
@@ -193,37 +194,39 @@ nt <- nw
 #' @rdname n_is
 #' @export
 nf <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = FALSE, a = TRUE) {
-  dots <- list(...)
-  atoms <- av(dots)
-  errs <- c(f0(all(sapply(dots, pop_lgl))         , NULL, "[...] must contain only non-empty logical objects."),
-            f0(isTF(a)                            , NULL, "[a] must be TRUE or FALSE."),
-            f0(inll(n) | cmp_nnw_vec(n)           , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(inll(min) | cmp_nnw_scl(min)       , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(inll(max) | cmp_nnw_scl(max)       , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(isTF(eq)                           , NULL, "[eq] must be TRUE or FALSE."),
-            f0(isTF(na)                           , NULL, "[na] must be TRUE or FALSE."),
-            f0(f0(!isF(na), T, !any(is.na(atoms))), NULL, "[na = FALSE] but arguments in [...] contains NA values."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (isT(a)) {dots <- list(av(dots))}
-  n_is(sapply(lapply(lapply(dots, not), which), length), n = n, min = min, max = max, eq = eq)
+  dots <- base::list(...)
+  atoms <- uj::av(dots)
+  errs <- base::c(f0(base::all(base::sapply(dots, uj::pop_lgl)), NULL, "[...] must contain only non-empty logical objects."),
+                  uj::f0(uj::isTF(a)                           , NULL, "[a] must be TRUE or FALSE."),
+                  uj::f0(uj::inll(n) | uj::cmp_nnw_vec(n)      , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
+                  uj::f0(uj::inll(min) | uj::cmp_nnw_scl(min)  , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::inll(max) | uj::cmp_nnw_scl(max)  , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::isTF(eq)                          , NULL, "[eq] must be TRUE or FALSE."),
+                  uj::f0(uj::isTF(na)                          , NULL, "[na] must be TRUE or FALSE."),
+                  uj::f0(uj::f0(!uj::isF(na), T, !base::any(base::is.na(atoms))), NULL, "[na = FALSE] but arguments in [...] contains NA values."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (uj::isT(a)) {dots <- base::list(uj::av(dots))}
+  x <- uj::av(base::sapply(dots, function(x) {base::length(base::which(!x))}))
+  uj::n_is(x, n = n, min = min, max = max, eq = eq)
 }
 
 #' @rdname n_is
 #' @export
 nu <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = TRUE, a = TRUE) {
-  dots <- list(...)
-  atoms <- av(dots)
-  errs <- c(f0(all(sapply(dots, pop_lgl))         , NULL, "[...] must contain only non-empty logical objects."),
-            f0(isTF(a)                            , NULL, "[a] must be TRUE or FALSE."),
-            f0(inll(n) | cmp_nnw_vec(n)           , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(inll(min) | cmp_nnw_scl(min)       , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(inll(max) | cmp_nnw_scl(max)       , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(isTF(eq)                           , NULL, "[eq] must be TRUE or FALSE."),
-            f0(isTF(na)                           , NULL, "[na] must be TRUE or FALSE."),
-            f0(f0(!isF(na), T, !any(is.na(atoms))), NULL, "[na = FALSE] but arguments in [...] contains NA values."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (isT(a)) {dots <- list(av(dots))}
-  n_is(sapply(lapply(dots, unique), length), n = n, min = min, max = max, eq = eq)
+  dots <- base::list(...)
+  atoms <- uj::av(dots)
+  errs <- base::c(uj::f0(base::all(base::sapply(dots, uj::pop_lgl)), NULL, "[...] must contain only non-empty logical objects."),
+                  uj::f0(uj::isTF(a)                               , NULL, "[a] must be TRUE or FALSE."),
+                  uj::f0(uj::inll(n) | uj::cmp_nnw_vec(n)          , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
+                  uj::f0(uj::inll(min) | uj::cmp_nnw_scl(min)      , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::inll(max) | uj::cmp_nnw_scl(max)      , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::isTF(eq)                              , NULL, "[eq] must be TRUE or FALSE."),
+                  uj::f0(uj::isTF(na)                              , NULL, "[na] must be TRUE or FALSE."),
+                  uj::f0(uj::f0(!uj::isF(na), T, !base::any(base::is.na(atoms))), NULL, "[na = FALSE] but arguments in [...] contains NA values."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (uj::isT(a)) {dots <- base::list(uj::av(dots))}
+  x <- uj::av(base::sapply(dots, function(x) {base::length(base::unique(x))}))
+  uj::n_is(x, n = n, min = min, max = max, eq = eq)
 }
 
 #' @rdname n_is
@@ -233,142 +236,144 @@ nuv <- nu
 #' @rdname n_is
 #' @export
 nr <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE) {
-  dots <- list(...)
-  errs <- c(f0(all(sapply(dots, id2D))     , NULL, "[...] must contain only matrices or dtfs (?is_dtf)."),
-            f0(inll(n) | cmp_nnw_vec(n)    , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(inll(min) | cmp_nnw_scl(min), NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(inll(max) | cmp_nnw_scl(max), NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(isTF(eq)                    , NULL, "[eq] must be TRUE or FALSE."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  n_is(sapply(dots, nrow), n = n, min = min, max = max, eq = eq)
+  dots <- base::list(...)
+  errs <- base::c(uj::f0(base::all(base::sapply(dots, uj::id2D)), NULL, "[...] must contain only matrices or dtfs (?is_dtf)."),
+                  uj::f0(uj::inll(n) | uj::cmp_nnw_vec(n)       , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
+                  uj::f0(uj::inll(min) | uj::cmp_nnw_scl(min)   , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::inll(max) | uj::cmp_nnw_scl(max)   , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::isTF(eq)                           , NULL, "[eq] must be TRUE or FALSE."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  x <- uj::av(base::sapply(dots, nrow))
+  uj::n_is(x, n = n, min = min, max = max, eq = eq)
 }
 
 #' @rdname n_is
 #' @export
 nc <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE) {
-  dots <- list(...)
-  errs <- c(f0(all(sapply(dots, id2D))     , NULL, "[...] must contain only matrices or dtfs (?is_dtf)."),
-            f0(inll(n) | cmp_nnw_vec(n)    , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(inll(min) | cmp_nnw_scl(min), NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(inll(max) | cmp_nnw_scl(max), NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(isTF(eq)                    , NULL, "[eq] must be TRUE or FALSE."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  n_is(sapply(dots, ncol), n = n, min = min, max = max, eq = eq)
+  dots <- base::list(...)
+  errs <- base::c(uj::f0(base::all(base::sapply(dots, uj::id2D)), NULL, "[...] must contain only matrices or dtfs (?is_dtf)."),
+                  uj::f0(uj::inll(n) | uj::cmp_nnw_vec(n)       , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
+                  uj::f0(uj::inll(min) | uj::cmp_nnw_scl(min)   , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::inll(max) | uj::cmp_nnw_scl(max)   , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::isTF(eq)                           , NULL, "[eq] must be TRUE or FALSE."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  x <- uj::av(base::sapply(dots, ncol))
+  uj::n_is(x, n = n, min = min, max = max, eq = eq)
 }
 
 #' @rdname n_is
 #' @export
 nch <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, na = FALSE, a = TRUE) {
-  dots <- list(...)
-  av.dots <- av(dots)
-  errs <- c(f0(isTF(a)                        , NULL, "[a] must be TRUE or FALSE."),
-            f0(all(sapply(dots, ichr))        , NULL, "[...] must contain only non-empty character objects."),
-            f0(inll(n) | cmp_nnw_vec(n)       , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(inll(min) | cmp_nnw_scl(min)   , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(inll(max) | cmp_nnw_scl(max)   , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(isTF(eq)                       , NULL, "[eq] must be TRUE or FALSE."),
-            f0(isTF(na)                       , NULL, "[na] must be TRUE or FALSE."),
-            f0(!isF(na) | !any(is.na(av.dots)), NULL, "[na = FALSE] but arguments in [...] contains NA values."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (isT(a)) {dots <- list(av.dots)}
-  ns <- sapply(lapply(dots, ch), length)
-  n_is(ns, n = n, min = min, max = max, eq = eq)
+  dots <- base::list(...)
+  av.dots <- uj::av(dots)
+  errs <- base::c(uj::f0(uj::isTF(a)                         , NULL, "[a] must be TRUE or FALSE."),
+                  uj::f0(base::all(base::sapply(dots, ichr)) , NULL, "[...] must contain only non-empty character objects."),
+                  uj::f0(uj::inll(n) | uj::cmp_nnw_vec(n)    , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
+                  uj::f0(uj::inll(min) | uj::cmp_nnw_scl(min), NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::inll(max) | uj::cmp_nnw_scl(max), NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::isTF(eq)                        , NULL, "[eq] must be TRUE or FALSE."),
+                  uj::f0(uj::isTF(na)                        , NULL, "[na] must be TRUE or FALSE."),
+                  uj::f0(!uj::isF(na) | !base::any(base::is.na(av.dots)), NULL, "[na = FALSE] but arguments in [...] contains NA values."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (uj::isT(a)) {dots <- base::list(av.dots)}
+  x <- uj::av(base::sapply(dots, nchar))
+  uj::n_is(x, n = n, min = min, max = max, eq = eq)
 }
 
 #' @rdname n_is
 #' @export
 nna <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, a = TRUE) {
-  dots <- list(...)
-  av.dots <- av(dots)
-  errs <- c(f0(isTF(a)                        , NULL, "[a] must be TRUE or FALSE."),
-            f0(all(sapply(dots, ichr))        , NULL, "[...] must contain only non-empty character objects."),
-            f0(inll(n) | cmp_nnw_vec(n)       , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(inll(min) | cmp_nnw_scl(min)   , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(inll(max) | cmp_nnw_scl(max)   , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(isTF(eq)                       , NULL, "[eq] must be TRUE or FALSE."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (isT(a)) {dots <- list(av.dots)}
-  ns <- sapply(lapply(dots, is.na), length)
-  n_is(ns, n = n, min = min, max = max, eq = eq)
+  dots <- base::list(...)
+  av.dots <- uj::av(dots)
+  errs <- base::c(uj::f0(uj::isTF(a)                            , NULL, "[a] must be TRUE or FALSE."),
+                  uj::f0(base::all(base::sapply(dots, uj::ichr)), NULL, "[...] must contain only non-empty character objects."),
+                  uj::f0(uj::inll(n) | uj::cmp_nnw_vec(n)       , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
+                  uj::f0(uj::inll(min) | uj::cmp_nnw_scl(min)   , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::inll(max) | uj::cmp_nnw_scl(max)   , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::isTF(eq)                           , NULL, "[eq] must be TRUE or FALSE."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (uj::isT(a)) {dots <- base::list(av.dots)}
+  x <- uj::av(base::sapply(dots, function(x) {base::length(base::which(base::is.na(x)))}))
+  uj::n_is(x, n = n, min = min, max = max, eq = eq)
 }
 
 #' @rdname n_is
 #' @export
 nok <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, a = TRUE) {
-  dots <- list(...)
-  av.dots <- av(dots)
-  errs <- c(f0(isTF(a)                        , NULL, "[a] must be TRUE or FALSE."),
-            f0(all(sapply(dots, ichr))        , NULL, "[...] must contain only non-empty character objects."),
-            f0(inll(n) | cmp_nnw_vec(n)       , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
-            f0(inll(min) | cmp_nnw_scl(min)   , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(inll(max) | cmp_nnw_scl(max)   , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
-            f0(isTF(eq)                       , NULL, "[eq] must be TRUE or FALSE."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (isT(a)) {dots <- list(av.dots)}
-  ns <- sapply(lapply(lapply(dots, is.na), not), length)
-  n_is(ns, n = n, min = min, max = max, eq = eq)
+  dots <- base::list(...)
+  av.dots <- uj::av(dots)
+  errs <- base::c(uj::f0(uj::isTF(a)                            , NULL, "[a] must be TRUE or FALSE."),
+                  uj::f0(base::all(base::sapply(dots, uj::ichr)), NULL, "[...] must contain only non-empty character objects."),
+                  uj::f0(uj::inll(n) | uj::cmp_nnw_vec(n)       , NULL, "[n] must be NULL or a non-negative whole-number vec (?cmp_nnw_vec)."),
+                  uj::f0(uj::inll(min) | uj::cmp_nnw_scl(min)   , NULL, "[min] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::inll(max) | uj::cmp_nnw_scl(max)   , NULL, "[max] must be NULL or a non-negative whole-number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::isTF(eq)                           , NULL, "[eq] must be TRUE or FALSE."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (uj::isT(a)) {dots <- base::list(av.dots)}
+  x <- uj::av(base::sapply(dots, function(x) {base::length(base::which(!base::is.na(x)))}))
+  uj::n_is(x, n = n, min = min, max = max, eq = eq)
 }
 
 #' @rdname n_is
 #' @export
-nat <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, a = TRUE) {nx(..., n = n, min = min, max = max, eq = eq, a = T)}
+nat <- function(..., n = NULL, min = NULL, max = NULL, eq = FALSE, a = TRUE) {uj::nx(..., n = n, min = min, max = max, eq = eq, a = T)}
 
 #' @rdname n_is
 #' @export
-n0 <- function(..., na = TRUE, a = TRUE) {nx(..., n = 0, na = na, a = a)}
+n0 <- function(..., na = TRUE, a = TRUE) {uj::nx(..., n = 0, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-n1 <- function(..., na = TRUE, a = TRUE) {nx(..., n = 1, na = na, a = a)}
+n1 <- function(..., na = TRUE, a = TRUE) {uj::nx(..., n = 1, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-n2 <- function(..., na = TRUE, a = TRUE) {nx(..., n = 2, na = na, a = a)}
+n2 <- function(..., na = TRUE, a = TRUE) {uj::nx(..., n = 2, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-n3 <- function(..., na = TRUE, a = TRUE) {nx(..., n = 3, na = na, a = a)}
+n3 <- function(..., na = TRUE, a = TRUE) {uj::nx(..., n = 3, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-n1p <- function(..., na = TRUE, eq = FALSE, a = TRUE) {nx(..., min = 1, na = na, a = a)}
+n1p <- function(..., na = TRUE, eq = FALSE, a = TRUE) {uj::nx(..., min = 1, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-n2p <- function(..., na = TRUE, eq = FALSE, a = TRUE) {nx(..., min = 2, na = na, a = a)}
+n2p <- function(..., na = TRUE, eq = FALSE, a = TRUE) {uj::nx(..., min = 2, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-n3p <- function(..., na = TRUE, eq = FALSE, a = TRUE) {nx(..., min = 3, na = na, a = a)}
+n3p <- function(..., na = TRUE, eq = FALSE, a = TRUE) {uj::nx(..., min = 3, na = na, a = a)}
 
 #' @rdname n_is
 #' @export
-nd <- function() {eval.parent(...length())}
+nd <- function() {base::eval.parent(base::...length())}
 
 #' @rdname n_is
 #' @export
-nd0 <- function() {eval.parent(...length() == 0)}
+nd0 <- function() {base::eval.parent(base::...length() == 0)}
 
 #' @rdname n_is
 #' @export
-nd1 <- function() {eval.parent(...length() == 1)}
+nd1 <- function() {base::eval.parent(base::...length() == 1)}
 
 #' @rdname n_is
 #' @export
-nd2 <- function() {eval.parent(...length() == 2)}
+nd2 <- function() {base::eval.parent(base::...length() == 2)}
 
 #' @rdname n_is
 #' @export
-nd3 <- function() {eval.parent(...length() == 3)}
+nd3 <- function() {base::eval.parent(base::...length() == 3)}
 
 #' @rdname n_is
 #' @export
-nd1p <- function() {eval.parent(...length() >= 1)}
+nd1p <- function() {base::eval.parent(base::...length() >= 1)}
 
 #' @rdname n_is
 #' @export
-nd2p <- function() {eval.parent(...length() >= 2)}
+nd2p <- function() {base::eval.parent(base::...length() >= 2)}
 
 #' @rdname n_is
 #' @export
-nd3p <- function() {eval.parent(...length() >= 3)}
+nd3p <- function() {base::eval.parent(base::...length() >= 3)}

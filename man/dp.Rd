@@ -113,10 +113,10 @@ A data.frame.
 \cr \code{dpall} \tab   Thinly wraps \code{\link[dplyr]{all_of}}.
 \cr \code{dplab} \tab   Thinly wraps \code{\link[dplyr]{rename}}.
 \cr \code{dpmod} \tab   Thinly wraps \code{\link[dplyr]{mutate}}.
-\cr \code{dpgrp} \tab   Limitedly wraps \code{\link[dplyr]{group_by}}\eqn{^a}.
+\cr \code{dpgrp} \tab   Limitedly wraps \code{\link[dplyr]{group_by}}\code{*}
 \cr   \code{dpn} \tab   Thinly wraps \code{\link[dplyr]{n}}.
 }
-\eqn{^{a.}} Accepts as argument only a data.frame (\code{x}) and a character vector naming grouping variables (\code{keys}).
+\code{*} Accepts as argument only a data.frame (\code{x}) and a character vector naming grouping variables (\code{keys}).
 }
 \section{Useful functions}{
 

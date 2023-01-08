@@ -1,10 +1,10 @@
 .n_th_errs <- function(x, n, n.scl) {
-  ok.n <- f0(n.scl, cmp_psw_scl(n), cmp_psw_vec(n))
-  errs <- c(f0(pop_vec(x)         , NULL, "[x] is not a populated vector (?pop_vec)."),
-            f0(f0(!n.scl, T, ok.n), NULL, "[n] must be a complete positive whole-number scalar (?cmp_psw_scl)."),
-            f0(f0( n.scl, T, ok.n), NULL, "[n] must be a complete positive whole-number vector (?cmp_psw_vec)."))
-  if (idef(errs)) {.errs(errs)}
-  else if (any(n > length(x))) {stop(.errs(p0(f0(n.scl, "", "The largest value in")," [n] is greater than the number of elements in [x].")))}
+  ok.n <- uj::f0(n.scl, uj::cmp_psw_scl(n), uj::cmp_psw_vec(n))
+  errs <- base::c(uj::f0(uj::pop_vec(x)         , NULL, "[x] is not a populated vector (?pop_vec)."),
+                  uj::f0(uj::f0(!n.scl, T, ok.n), NULL, "[n] must be a complete positive whole-number scalar (?cmp_psw_scl)."),
+                  uj::f0(uj::f0( n.scl, T, ok.n), NULL, "[n] must be a complete positive whole-number vector (?cmp_psw_vec)."))
+  if (uj::idef(errs)) {uj:::.errs(errs)}
+  else if (base::any(n > base::length(x))) {stop(uj:::.errs(uj::p0(uj::f0(n.scl, "", "The largest value in")," [n] is greater than the number of elements in [x].")))}
   else {NULL}
 }
 
@@ -28,32 +28,32 @@
 #' n_th(letters, 5:7)
 #' @export
 n_th <- function(x, n) {
-  errs <- .n_th_errs(x, n, F)
-  if (!is.null(errs)) {stop(errs)}
+  errs <- uj:::.n_th_errs(x, n, F)
+  if (!base::is.null(errs)) {stop(errs)}
   x[n]
 }
 
 #' @rdname n_th
 #' @export
 n_th_last <- function(x, n) {
-  errs <- .n_th_errs(x, n, F)
-  if (!is.null(errs)) {stop(errs)}
-  x[length(x) - n + 1]
+  errs <- uj:::.n_th_errs(x, n, F)
+  if (!base::is.null(errs)) {stop(errs)}
+  x[base::length(x) - n + 1]
 }
 
 #' @rdname n_th
 #' @export
 first_n <- function(x, n) {
-  errs <- .n_th_errs(x, n, T)
-  if (!is.null(errs)) {stop(errs)}
+  errs <- uj:::.n_th_errs(x, n, T)
+  if (!base::is.null(errs)) {stop(errs)}
   x[1:n]
 }
 
 #' @rdname n_th
 #' @export
 last_n <- function(x, n) {
-  errs <- .n_th_errs(x, n, T)
-  if (!is.null(errs)) {stop(errs)}
+  errs <- uj:::.n_th_errs(x, n, T)
+  if (!base::is.null(errs)) {stop(errs)}
   n <- 1:n
-  rev(x[1 + length(x) - n])
+  base::rev(x[1 + base::length(x) - n])
 }

@@ -10,7 +10,7 @@
 #'   \cr `'prt'`   \tab partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing `NA` **and** non-`NA` values.
 #'   \cr           \tab               \tab  
 #'   \cr `'dup'`   \tab duplicates    \tab Complete and containing duplicate values.
-#'   \cr `'unq'`   \tab unique.       \tab Complete and containing only unique values.
+#'   \cr `'unq'`   \tab unique        \tab Complete and containing only unique values.
 #'   \cr `'nas'`   \tab `NA` scalar   \tab Atomic scalar `NA`.
 #'   \cr `'oks'`   \tab `OK` scalar   \tab Non-`NA` atomic scalar.
 #' }
@@ -28,13 +28,14 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return *A character vector*
-#'   \cr    `iii_props`
-#'   \cr    `iii_funs`
-#'   \cr    `iii`
-#'   \cr\cr *A logical scalar*
-#'   \cr    `is_iii{spec`
-#'   \cr    `iIII`
-#'   \cr    `iiii`
+#'   \cr   `iii_props`
+#'   \cr   `iii_funs`
+#'   \cr   `iii`
+#'   \cr
+#'   \cr *A logical scalar*
+#'   \cr   `is_iii`
+#'   \cr   `iIII`
+#'   \cr   `iiii`
 #' @examples
 #' iii_funs()
 #' iii_props()
@@ -51,48 +52,56 @@
 #' @export
 iii <- function(x) {
   out <- NULL
-  for (i in .iiis) {out <- c(out, f0(run('.i', i, '(x)'), i, NULL))}
+  for (i in uj:::.iiis) {out <- base::c(out, uj::f0(uj::run('.i', i, '(x)'), i, NULL))}
   out
 }
 
 #' @rdname iii
 #' @export
-iii_funs <- function() {paste0("i", .iiis)}
+iii_funs <- function() {base::paste0("i", uj:::.iiis)}
 
 #' @rdname iii
 #' @export
-iii_props <- function() {.iiis}
+iii_props <- function() {uj:::.iiis}
 
 #' @rdname iii
 #' @export
-is_iii_spec <- function(spec) {spec <- .spec_vals(spec); f0(length(spec) == 0, F, all(spec %in% .iiis))}
+is_iii_spec <- function(spec) {spec <- uj:::.spec_vals(spec); f0(base::length(spec) == 0, F, base::all(spec %in% uj:::.iiis))}
 
 #' @rdname iii
 #' @export
 iiii <- function(x, spec, ...) {
-  errs <- c(.meets_errs(x, ...), f0(is_iii_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from iii_props().'))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (!meets(x, ...)) {return(F)}
-  for (prop in .spec_vals(spec)) {if (run('.i', prop, '(x)')) {return(T)}}
+  errs <- base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_iii_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from iii_props().'))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!uj::meets(x, ...)) {return(F)}
+  for (prop in uj:::.spec_vals(spec)) {if (uj::run('uj:::.i', prop, '(x)')) {return(T)}}
   F
 }
 
 #' @rdname iii
 #' @export
-icmp <- function(x, ...) {iiii(x, 'cmp', ...)}
+icmp <- function(x, ...) {uj::iiii(x, 'cmp', ...)}
 
 #' @rdname iii
 #' @export
-imss <- function(x, ...) {iiii(x, 'mss', ...)}
+imss <- function(x, ...) {uj::iiii(x, 'mss', ...)}
 
 #' @rdname iii
 #' @export
-inas <- function(x, ...) {iiii(x, 'nas', ...)}
+inas <- function(x, ...) {uj::iiii(x, 'nas', ...)}
 
 #' @rdname iii
 #' @export
-ioks <- function(x, ...) {iiii(x, 'oks', ...)}
+ioks <- function(x, ...) {uj::iiii(x, 'oks', ...)}
 
 #' @rdname iii
 #' @export
-iprt <- function(x, ...) {iiii(x, 'prt', ...)}
+iprt <- function(x, ...) {uj::iiii(x, 'prt', ...)}
+
+#' @rdname iii
+#' @export
+idup <- function(x, ...) {uj::iiii(x, 'dup', ...)}
+
+#' @rdname iii
+#' @export
+iunq <- function(x, ...) {uj::iiii(x, 'unq', ...)}

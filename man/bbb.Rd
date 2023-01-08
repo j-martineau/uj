@@ -53,13 +53,14 @@ ircr(x, ...)
 }
 \value{
 \emph{A character vector}
-\cr    \code{bbb_props}
-\cr    \code{bbb_funs}
-\cr    \code{bbb}
-\cr\cr \emph{A logical scalar}
-\cr    \code{is_bbb_spec}
-\cr    \code{iBBB}
-\cr    \code{ibbb}
+\cr   \code{bbb_props}
+\cr   \code{bbb_funs}
+\cr   \code{bbb}
+\cr
+\cr \emph{A logical scalar}
+\cr   \code{is_bbb_spec}
+\cr   \code{iBBB}
+\cr   \code{ibbb}
 }
 \description{
 An object's basic properties are defined by its fundamental structure as follows:
@@ -72,6 +73,7 @@ An object's basic properties are defined by its fundamental structure as follows
 \cr \code{'nil'} \tab   \code{nil}         \tab Length \code{0} but not \code{NULL}.
 \cr \code{'fun'} \tab   \code{function}    \tab A function or a character scalar name of a function accessible from the environment of the calling function.
 }
+\cr
 \strong{Functions}
 \tabular{rl}{
   \code{is_bbb_spec}   \tab Is \code{spec} a basic property specification?
@@ -110,6 +112,7 @@ bbb(NA)
 Other properties: 
 \code{\link{as_mmm}},
 \code{\link{bbb_mmm}()},
+\code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -118,12 +121,11 @@ Other properties:
 \code{\link{eee}()},
 \code{\link{err_check}()},
 \code{\link{iii}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
-\code{\link{reclass}()},
 \code{\link{sss}()},
 \code{\link{unq_ccc}()}
 }

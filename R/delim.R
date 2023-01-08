@@ -1,19 +1,19 @@
 .delim_errs <- function(args, a) {
-  n <- length(args$dots)
-  ns <- lengths(args$dots)
-  two <- "D" %in% names(args)
+  n <- base::length(args$dots)
+  ns <- base::lengths(args$dots)
+  two <- "D" %in% base::names(args)
   dots <- n > 0
-  pops <- f0(!dots, T, all(ns > 0))
-  ccsd <- cmp_chr_scl(args$d)
-  ccsD <- f0(!two, T, cmp_chr_scl(args$D))
-  atms <- f0(!ccsd, T, all(sapply(args$dots, atm_vec)))
-  recs  <- f0(a | !pops, T, recyclable_n(max(ns) / ns))
-  c(f0(dots, NULL, "[...] is empty."),
-    f0(pops, NULL, "An argument in [...] is of length 0."),
-    f0(ccsd, NULL, "[d] must be a complete character scalar (?cmp_chr_scl)."),
-    f0(ccsD, NULL, "[D] must be a complete character scalar (?cmp_chr_scl)."),
-    f0(atms, NULL, "Arguments in [...] must be atomic vecs (?pop_vec)."),
-    f0(recs, NULL, "Arguments in [...] are not of recyclable lengths (?recyclable)."))
+  pops <- uj::f0(!dots, T, base::all(ns > 0))
+  ccsd <- uj::cmp_chr_scl(args$d)
+  ccsD <- uj::f0(!two, T, uj::cmp_chr_scl(args$D))
+  atms <- uj::f0(!ccsd, T, base::all(base::sapply(args$dots, uj::atm_vec)))
+  recs <- uj::f0(a | !pops, T, uj::recyclable_n(base::max(ns) / ns))
+  base::c(uj::f0(dots, NULL, "[...] is empty."),
+          uj::f0(pops, NULL, "An argument in [...] is of length 0."),
+          uj::f0(ccsd, NULL, "[d] must be a complete character scalar (?cmp_chr_scl)."),
+          uj::f0(ccsD, NULL, "[D] must be a complete character scalar (?cmp_chr_scl)."),
+          uj::f0(atms, NULL, "Arguments in [...] must be atomic vecs (?pop_vec)."),
+          uj::f0(recs, NULL, "Arguments in [...] are not of recyclable lengths (?recyclable)."))
 }
 
 #' @name delim
@@ -21,7 +21,8 @@
 #' @family strings
 #' @title Error-checked string delimiting
 #' @description Simplified and extended `base::paste` and `base::paste0`. There are both primary functions with user-specified delimiters and convenience functions for common delimiters.
-#' \cr\cr
+#' \cr
+#' \cr
 #' **Primary functions**
 #' \tabular{rl}{
 #'       `dww`   \tab Delimit elements within each (atomic vector) `...` argument using delimiter `d`, then delimit elements within the resulting vector using delimiter `D`. Produces a character scalar of `...length()` substrings delimited by `D` where each substring contains sub-substrings delimited by `d`.
@@ -32,6 +33,7 @@
 #'   \cr         \tab   
 #'   \cr  `da`   \tab Delimits across corresponding elements of (recyclable atomic vector) `...` arguments using delimiter `d`. Produces a character vector of `max(lengths(list(...)))` substrings delimited by `d`.
 #' }
+#' \cr
 #' **Common-delimiter convenience functions**
 #' \cr Convenience function names are constructed by append `1` or `2` codes for common delimiters to the function name as follows (where `X` and `Y` are placeholders for common-delimiter codes):
 #' \tabular{rl}{
@@ -40,32 +42,34 @@
 #'   \cr   `daX`   \tab Delimits across with `X`.
 #'   \cr   `dwX`   \tab Delimits within with `X`.
 #' }
+#' \cr
 #' Common delimiters are encoded as:
 #' \tabular{cll}{
-#'      **Code**   \tab **Name**                    \tab **Delimiter**
-#'   \cr   `'0'`   \tab blank                       \tab `''`
-#'   \cr `'1'`     \tab space                       \tab `' '`
-#'   \cr `'B'`     \tab broken pipe                 \tab `'¦'`
-#'   \cr `'C'`     \tab colon                       \tab `':'`
-#'   \cr `'D'`     \tab dot                         \tab `'.'`
-#'   \cr `'G'`     \tab grammatical comma\eqn{^a}   \tab `', '`
-#'   \cr `'P'`     \tab pipe                        \tab `'|'`
-#'   \cr `'Q'`     \tab back-tick                   \tab `'``'`
-#'   \cr `'S'`     \tab simple comma\eqn{^a}        \tab `','`
-#'   \cr `'T'`     \tab tilde                       \tab `'~'`
+#'      **Code**   \tab **Name**               \tab **Delimiter**
+#'   \cr   `'0'`   \tab blank                  \tab `''`
+#'   \cr `'1'`     \tab space                  \tab `' '`
+#'   \cr `'B'`     \tab broken pipe            \tab `'¦'`
+#'   \cr `'C'`     \tab colon                  \tab `':'`
+#'   \cr `'D'`     \tab dot                    \tab `'.'`
+#'   \cr `'G'`     \tab grammatical comma`*`   \tab `', '`
+#'   \cr `'P'`     \tab pipe                   \tab `'|'`
+#'   \cr `'Q'`     \tab back-tick              \tab `'``'`
+#'   \cr `'S'`     \tab simple comma`*`        \tab `','`
+#'   \cr `'T'`     \tab tilde                  \tab `'~'`
 #' }
-#' \eqn{^{a.}} 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., `'1, 2, 3'` vs. `'1,2,3'`).
+#' `*` 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., `'1, 2, 3'` vs. `'1,2,3'`).
 #' @param ... An arbitrary number of atomic vector arguments to be delimited. Argument in `...` must be recyclable for functions that delimit across `...` arguments as the first or only step (i.e., functions with names beginning with `da`).
 #' @param d,D \link[=chr_scl]{Character scalar} delimiters.
 #' @return *A character vector*
-#'  \cr    `daX`
-#'  \cr    `da`
-#'  \cr    `dw`
-#'  \cr\cr *A character scalar*
-#'  \cr    `dawXY`
-#'  \cr    `dwwXY`
-#'  \cr    `daw`
-#'  \cr    `dww`
+#'  \cr   `daX`
+#'  \cr   `da`
+#'  \cr   `dw`
+#'  \cr
+#'  \cr *A character scalar*
+#'  \cr   `dawXY`
+#'  \cr   `dwwXY`
+#'  \cr   `daw`
+#'  \cr   `dww`
 #' @examples
 #' # delimit across using delimiter '|'.
 #' # aliases paste(1:3, 4:6, sep = '|').
@@ -96,915 +100,915 @@
 #' dwwCP(1:3, 4:6)
 #' @export
 da <- function(d, ...) {
-  args <- list(d = d, dots = list(...))
-  errs <- .delim_errs(args, TRUE)
-  if (!is.null(errs)) {stop(.errs(errs))}
-  paste(..., sep = d)
+  args <- base::list(d = d, dots =  base::list(...))
+  errs <- uj:::.delim_errs(args, TRUE)
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  base::paste(..., sep = d)
 }
 
 #' @rdname delim
 #' @export
 dw <- function(d, ...) {
-  args <- list(d = d, dots = list(...))
-  errs <- .delim_errs(args, TRUE)
-  if (!is.null(errs)) {stop(.errs(errs))}
-  sapply(list(...), paste0, collapse = d)
+  args <- base::list(d = d, dots = base::list(...))
+  errs <- uj:::.delim_errs(args, TRUE)
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  base::sapply(base::list(...), base::paste0, collapse = d)
 }
 
 #' @rdname delim
 #' @export
 daw <- function(d, D, ...) {
-  args <- list(d = d, D = D, dots = list(...))
-  errs <- .delim_errs(args, TRUE)
-  if (!is.null(errs)) {stop(.errs(errs))}
-  paste0(paste(..., sep = d), collapse = D)
+  args <- base::list(d = d, D = D, dots = base::list(...))
+  errs <- uj:::.delim_errs(args, TRUE)
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  base::paste0(base::paste(..., sep = d), collapse = D)
 }
 
 #' @rdname delim
 #' @export
 dww <- function(d, D, ...) {
-  args <- list(d = d, D = D, dots = list(...))
-  errs <- .delim_errs(args, TRUE)
-  if (!is.null(errs)) {stop(.errs(errs))}
-  paste(sapply(list(...), paste0, collapse = d), collapse = D)
+  args <- base::list(d = d, D = D, dots = base::list(...))
+  errs <- uj:::.delim_errs(args, TRUE)
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  base::paste(base::sapply(base::list(...), paste0, collapse = d), collapse = D)
 }
 
 #' @rdname delim
 #' @export
-da0 <- function(...) {da('', ...)}
+da0 <- function(...) {uj::da('', ...)}
 
 #' @rdname delim
 #' @export
-da1 <- function(...) {da(' ', ...)}
+da1 <- function(...) {uj::da(' ', ...)}
 
 #' @rdname delim
 #' @export
-daB <- function(...) {da('¦', ...)}
+daB <- function(...) {uj::da('¦', ...)}
 
 #' @rdname delim
 #' @export
-daC <- function(...) {da(':', ...)}
+daC <- function(...) {uj::da(':', ...)}
 
 #' @rdname delim
 #' @export
-daD <- function(...) {da('.', ...)}
+daD <- function(...) {uj::da('.', ...)}
 
 #' @rdname delim
 #' @export
-daG <- function(...) {da(', ', ...)}
+daG <- function(...) {uj::da(', ', ...)}
 
 #' @rdname delim
 #' @export
-daP <- function(...) {da('|', ...)}
+daP <- function(...) {uj::da('|', ...)}
 
 #' @rdname delim
 #' @export
-daQ <- function(...) {da('`', ...)}
+daQ <- function(...) {uj::da('`', ...)}
 
 #' @rdname delim
 #' @export
-daS <- function(...) {da(',', ...)}
+daS <- function(...) {uj::da(',', ...)}
 
 #' @rdname delim
 #' @export
-daT <- function(...) {da('~', ...)}
+daT <- function(...) {uj::da('~', ...)}
 
 #' @rdname delim
 #' @export
-dw0 <- function(...) {dw('', ...)}
+dw0 <- function(...) {uj::dw('', ...)}
 
 #' @rdname delim
 #' @export
-dw1 <- function(...) {dw(' ', ...)}
+dw1 <- function(...) {uj::dw(' ', ...)}
 
 #' @rdname delim
 #' @export
-dwB <- function(...) {dw('¦', ...)}
+dwB <- function(...) {uj::dw('¦', ...)}
 
 #' @rdname delim
 #' @export
-dwC <- function(...) {dw(':', ...)}
+dwC <- function(...) {uj::dw(':', ...)}
 
 #' @rdname delim
 #' @export
-dwD <- function(...) {dw('.', ...)}
+dwD <- function(...) {uj::dw('.', ...)}
 
 #' @rdname delim
 #' @export
-dwG <- function(...) {dw(', ', ...)}
+dwG <- function(...) {uj::dw(', ', ...)}
 
 #' @rdname delim
 #' @export
-dwP <- function(...) {dw('|', ...)}
+dwP <- function(...) {uj::dw('|', ...)}
 
 #' @rdname delim
 #' @export
-dwQ <- function(...) {dw('`', ...)}
+dwQ <- function(...) {uj::dw('`', ...)}
 
 #' @rdname delim
 #' @export
-dwS <- function(...) {dw(',', ...)}
+dwS <- function(...) {uj::dw(',', ...)}
 
 #' @rdname delim
 #' @export
-dwT <- function(...) {dw('~', ...)}
+dwT <- function(...) {uj::dw('~', ...)}
 
 #' @rdname delim
 #' @export
-daw00 <- function(...) {daw('', '', ...)}
+daw00 <- function(...) {uj::daw('', '', ...)}
 
 #' @rdname delim
 #' @export
-daw01 <- function(...) {daw('', ' ', ...)}
+daw01 <- function(...) {uj::daw('', ' ', ...)}
 
 #' @rdname delim
 #' @export
-daw0B <- function(...) {daw('', '¦', ...)}
+daw0B <- function(...) {uj::daw('', '¦', ...)}
 
 #' @rdname delim
 #' @export
-daw0C <- function(...) {daw('', ':', ...)}
+daw0C <- function(...) {uj::daw('', ':', ...)}
 
 #' @rdname delim
 #' @export
-daw0D <- function(...) {daw('', '.', ...)}
+daw0D <- function(...) {uj::daw('', '.', ...)}
 
 #' @rdname delim
 #' @export
-daw0G <- function(...) {daw('', ', ', ...)}
+daw0G <- function(...) {uj::daw('', ', ', ...)}
 
 #' @rdname delim
 #' @export
-daw0P <- function(...) {daw('', '|', ...)}
+daw0P <- function(...) {uj::daw('', '|', ...)}
 
 #' @rdname delim
 #' @export
-daw0Q <- function(...) {daw('', '`', ...)}
+daw0Q <- function(...) {uj::daw('', '`', ...)}
 
 #' @rdname delim
 #' @export
-daw0S <- function(...) {daw('', ',', ...)}
+daw0S <- function(...) {uj::daw('', ',', ...)}
 
 #' @rdname delim
 #' @export
-daw0T <- function(...) {daw('', '~', ...)}
+daw0T <- function(...) {uj::daw('', '~', ...)}
 
 #' @rdname delim
 #' @export
-daw10 <- function(...) {daw(' ', '', ...)}
+daw10 <- function(...) {uj::daw(' ', '', ...)}
 
 #' @rdname delim
 #' @export
-daw11 <- function(...) {daw(' ', ' ', ...)}
+daw11 <- function(...) {uj::daw(' ', ' ', ...)}
 
 #' @rdname delim
 #' @export
-daw1B <- function(...) {daw(' ', '¦', ...)}
+daw1B <- function(...) {uj::daw(' ', '¦', ...)}
 
 #' @rdname delim
 #' @export
-daw1C <- function(...) {daw(' ', ':', ...)}
+daw1C <- function(...) {uj::daw(' ', ':', ...)}
 
 #' @rdname delim
 #' @export
-daw1D <- function(...) {daw(' ', '.', ...)}
+daw1D <- function(...) {uj::daw(' ', '.', ...)}
 
 #' @rdname delim
 #' @export
-daw1G <- function(...) {daw(' ', ', ', ...)}
+daw1G <- function(...) {uj::daw(' ', ', ', ...)}
 
 #' @rdname delim
 #' @export
-daw1P <- function(...) {daw(' ', '|', ...)}
+daw1P <- function(...) {uj::daw(' ', '|', ...)}
 
 #' @rdname delim
 #' @export
-daw1Q <- function(...) {daw(' ', '`', ...)}
+daw1Q <- function(...) {uj::daw(' ', '`', ...)}
 
 #' @rdname delim
 #' @export
-daw1S <- function(...) {daw(' ', ',', ...)}
+daw1S <- function(...) {uj::daw(' ', ',', ...)}
 
 #' @rdname delim
 #' @export
-daw1T <- function(...) {daw(' ', '~', ...)}
+daw1T <- function(...) {uj::daw(' ', '~', ...)}
 
 #' @rdname delim
 #' @export
-dawB0 <- function(...) {daw('¦', '', ...)}
+dawB0 <- function(...) {uj::daw('¦', '', ...)}
 
 #' @rdname delim
 #' @export
-dawB1 <- function(...) {daw('¦', ' ', ...)}
+dawB1 <- function(...) {uj::daw('¦', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dawBB <- function(...) {daw('¦', '¦', ...)}
+dawBB <- function(...) {uj::daw('¦', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dawBC <- function(...) {daw('¦', ':', ...)}
+dawBC <- function(...) {uj::daw('¦', ':', ...)}
 
 #' @rdname delim
 #' @export
-dawBD <- function(...) {daw('¦', '.', ...)}
+dawBD <- function(...) {uj::daw('¦', '.', ...)}
 
 #' @rdname delim
 #' @export
-dawBG <- function(...) {daw('¦', ', ', ...)}
+dawBG <- function(...) {uj::daw('¦', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dawBP <- function(...) {daw('¦', '|', ...)}
+dawBP <- function(...) {uj::daw('¦', '|', ...)}
 
 #' @rdname delim
 #' @export
-dawBQ <- function(...) {daw('¦', '`', ...)}
+dawBQ <- function(...) {uj::daw('¦', '`', ...)}
 
 #' @rdname delim
 #' @export
-dawBS <- function(...) {daw('¦', ',', ...)}
+dawBS <- function(...) {uj::daw('¦', ',', ...)}
 
 #' @rdname delim
 #' @export
-dawBT <- function(...) {daw('¦', '~', ...)}
+dawBT <- function(...) {uj::daw('¦', '~', ...)}
 
 #' @rdname delim
 #' @export
-dawC0 <- function(...) {daw(':', '', ...)}
+dawC0 <- function(...) {uj::daw(':', '', ...)}
 
 #' @rdname delim
 #' @export
-dawC1 <- function(...) {daw(':', ' ', ...)}
+dawC1 <- function(...) {uj::daw(':', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dawCB <- function(...) {daw(':', '¦', ...)}
+dawCB <- function(...) {uj::daw(':', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dawCC <- function(...) {daw(':', ':', ...)}
+dawCC <- function(...) {uj::daw(':', ':', ...)}
 
 #' @rdname delim
 #' @export
-dawCD <- function(...) {daw(':', '.', ...)}
+dawCD <- function(...) {uj::daw(':', '.', ...)}
 
 #' @rdname delim
 #' @export
-dawCG <- function(...) {daw(':', ', ', ...)}
+dawCG <- function(...) {uj::daw(':', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dawCP <- function(...) {daw(':', '|', ...)}
+dawCP <- function(...) {uj::daw(':', '|', ...)}
 
 #' @rdname delim
 #' @export
-dawCQ <- function(...) {daw(':', '`', ...)}
+dawCQ <- function(...) {uj::daw(':', '`', ...)}
 
 #' @rdname delim
 #' @export
-dawCS <- function(...) {daw(':', ',', ...)}
+dawCS <- function(...) {uj::daw(':', ',', ...)}
 
 #' @rdname delim
 #' @export
-dawCT <- function(...) {daw(':', '~', ...)}
+dawCT <- function(...) {uj::daw(':', '~', ...)}
 
 #' @rdname delim
 #' @export
-dawD0 <- function(...) {daw('.', '', ...)}
+dawD0 <- function(...) {uj::daw('.', '', ...)}
 
 #' @rdname delim
 #' @export
-dawD1 <- function(...) {daw('.', ' ', ...)}
+dawD1 <- function(...) {uj::daw('.', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dawDB <- function(...) {daw('.', '¦', ...)}
+dawDB <- function(...) {uj::daw('.', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dawDC <- function(...) {daw('.', ':', ...)}
+dawDC <- function(...) {uj::daw('.', ':', ...)}
 
 #' @rdname delim
 #' @export
-dawDD <- function(...) {daw('.', '.', ...)}
+dawDD <- function(...) {uj::daw('.', '.', ...)}
 
 #' @rdname delim
 #' @export
-dawDG <- function(...) {daw('.', ', ', ...)}
+dawDG <- function(...) {uj::daw('.', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dawDP <- function(...) {daw('.', '|', ...)}
+dawDP <- function(...) {uj::daw('.', '|', ...)}
 
 #' @rdname delim
 #' @export
-dawDQ <- function(...) {daw('.', '`', ...)}
+dawDQ <- function(...) {uj::daw('.', '`', ...)}
 
 #' @rdname delim
 #' @export
-dawDS <- function(...) {daw('.', ',', ...)}
+dawDS <- function(...) {uj::daw('.', ',', ...)}
 
 #' @rdname delim
 #' @export
-dawDT <- function(...) {daw('.', '~', ...)}
+dawDT <- function(...) {uj::daw('.', '~', ...)}
 
 #' @rdname delim
 #' @export
-dawG0 <- function(...) {daw(', ', '', ...)}
+dawG0 <- function(...) {uj::daw(', ', '', ...)}
 
 #' @rdname delim
 #' @export
-dawG1 <- function(...) {daw(', ', ' ', ...)}
+dawG1 <- function(...) {uj::daw(', ', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dawGB <- function(...) {daw(', ', '¦', ...)}
+dawGB <- function(...) {uj::daw(', ', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dawGC <- function(...) {daw(', ', ':', ...)}
+dawGC <- function(...) {uj::daw(', ', ':', ...)}
 
 #' @rdname delim
 #' @export
-dawGD <- function(...) {daw(', ', '.', ...)}
+dawGD <- function(...) {uj::daw(', ', '.', ...)}
 
 #' @rdname delim
 #' @export
-dawGG <- function(...) {daw(', ', ', ', ...)}
+dawGG <- function(...) {uj::daw(', ', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dawGP <- function(...) {daw(', ', '|', ...)}
+dawGP <- function(...) {uj::daw(', ', '|', ...)}
 
 #' @rdname delim
 #' @export
-dawGQ <- function(...) {daw(', ', '`', ...)}
+dawGQ <- function(...) {uj::daw(', ', '`', ...)}
 
 #' @rdname delim
 #' @export
-dawGS <- function(...) {daw(', ', ',', ...)}
+dawGS <- function(...) {uj::daw(', ', ',', ...)}
 
 #' @rdname delim
 #' @export
-dawGT <- function(...) {daw(', ', '~', ...)}
+dawGT <- function(...) {uj::daw(', ', '~', ...)}
 
 #' @rdname delim
 #' @export
-dawP0 <- function(...) {daw('|', '', ...)}
+dawP0 <- function(...) {uj::daw('|', '', ...)}
 
 #' @rdname delim
 #' @export
-dawP1 <- function(...) {daw('|', ' ', ...)}
+dawP1 <- function(...) {uj::daw('|', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dawPB <- function(...) {daw('|', '¦', ...)}
+dawPB <- function(...) {uj::daw('|', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dawPC <- function(...) {daw('|', ':', ...)}
+dawPC <- function(...) {uj::daw('|', ':', ...)}
 
 #' @rdname delim
 #' @export
-dawPD <- function(...) {daw('|', '.', ...)}
+dawPD <- function(...) {uj::daw('|', '.', ...)}
 
 #' @rdname delim
 #' @export
-dawPG <- function(...) {daw('|', ', ', ...)}
+dawPG <- function(...) {uj::daw('|', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dawPP <- function(...) {daw('|', '|', ...)}
+dawPP <- function(...) {uj::daw('|', '|', ...)}
 
 #' @rdname delim
 #' @export
-dawPQ <- function(...) {daw('|', '`', ...)}
+dawPQ <- function(...) {uj::daw('|', '`', ...)}
 
 #' @rdname delim
 #' @export
-dawPS <- function(...) {daw('|', ',', ...)}
+dawPS <- function(...) {uj::daw('|', ',', ...)}
 
 #' @rdname delim
 #' @export
-dawPT <- function(...) {daw('|', '~', ...)}
+dawPT <- function(...) {uj::daw('|', '~', ...)}
 
 #' @rdname delim
 #' @export
-dawQ0 <- function(...) {daw('`', '', ...)}
+dawQ0 <- function(...) {uj::daw('`', '', ...)}
 
 #' @rdname delim
 #' @export
-dawQ1 <- function(...) {daw('`', ' ', ...)}
+dawQ1 <- function(...) {uj::daw('`', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dawQB <- function(...) {daw('`', '¦', ...)}
+dawQB <- function(...) {uj::daw('`', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dawQC <- function(...) {daw('`', ':', ...)}
+dawQC <- function(...) {uj::daw('`', ':', ...)}
 
 #' @rdname delim
 #' @export
-dawQD <- function(...) {daw('`', '.', ...)}
+dawQD <- function(...) {uj::daw('`', '.', ...)}
 
 #' @rdname delim
 #' @export
-dawQG <- function(...) {daw('`', ', ', ...)}
+dawQG <- function(...) {uj::daw('`', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dawQP <- function(...) {daw('`', '|', ...)}
+dawQP <- function(...) {uj::daw('`', '|', ...)}
 
 #' @rdname delim
 #' @export
-dawQQ <- function(...) {daw('`', '`', ...)}
+dawQQ <- function(...) {uj::daw('`', '`', ...)}
 
 #' @rdname delim
 #' @export
-dawQS <- function(...) {daw('`', ',', ...)}
+dawQS <- function(...) {uj::daw('`', ',', ...)}
 
 #' @rdname delim
 #' @export
-dawQT <- function(...) {daw('`', '~', ...)}
+dawQT <- function(...) {uj::daw('`', '~', ...)}
 
 #' @rdname delim
 #' @export
-dawS0 <- function(...) {daw(',', '', ...)}
+dawS0 <- function(...) {uj::daw(',', '', ...)}
 
 #' @rdname delim
 #' @export
-dawS1 <- function(...) {daw(',', ' ', ...)}
+dawS1 <- function(...) {uj::daw(',', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dawSB <- function(...) {daw(',', '¦', ...)}
+dawSB <- function(...) {uj::daw(',', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dawSC <- function(...) {daw(',', ':', ...)}
+dawSC <- function(...) {uj::daw(',', ':', ...)}
 
 #' @rdname delim
 #' @export
-dawSD <- function(...) {daw(',', '.', ...)}
+dawSD <- function(...) {uj::daw(',', '.', ...)}
 
 #' @rdname delim
 #' @export
-dawSG <- function(...) {daw(',', ', ', ...)}
+dawSG <- function(...) {uj::daw(',', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dawSP <- function(...) {daw(',', '|', ...)}
+dawSP <- function(...) {uj::daw(',', '|', ...)}
 
 #' @rdname delim
 #' @export
-dawSQ <- function(...) {daw(',', '`', ...)}
+dawSQ <- function(...) {uj::daw(',', '`', ...)}
 
 #' @rdname delim
 #' @export
-dawSS <- function(...) {daw(',', ',', ...)}
+dawSS <- function(...) {uj::daw(',', ',', ...)}
 
 #' @rdname delim
 #' @export
-dawST <- function(...) {daw(',', '~', ...)}
+dawST <- function(...) {uj::daw(',', '~', ...)}
 
 #' @rdname delim
 #' @export
-dawT0 <- function(...) {daw('~', '', ...)}
+dawT0 <- function(...) {uj::daw('~', '', ...)}
 
 #' @rdname delim
 #' @export
-dawT1 <- function(...) {daw('~', ' ', ...)}
+dawT1 <- function(...) {uj::daw('~', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dawTB <- function(...) {daw('~', '¦', ...)}
+dawTB <- function(...) {uj::daw('~', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dawTC <- function(...) {daw('~', ':', ...)}
+dawTC <- function(...) {uj::daw('~', ':', ...)}
 
 #' @rdname delim
 #' @export
-dawTD <- function(...) {daw('~', '.', ...)}
+dawTD <- function(...) {uj::daw('~', '.', ...)}
 
 #' @rdname delim
 #' @export
-dawTG <- function(...) {daw('~', ', ', ...)}
+dawTG <- function(...) {uj::daw('~', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dawTP <- function(...) {daw('~', '|', ...)}
+dawTP <- function(...) {uj::daw('~', '|', ...)}
 
 #' @rdname delim
 #' @export
-dawTQ <- function(...) {daw('~', '`', ...)}
+dawTQ <- function(...) {uj::daw('~', '`', ...)}
 
 #' @rdname delim
 #' @export
-dawTS <- function(...) {daw('~', ',', ...)}
+dawTS <- function(...) {uj::daw('~', ',', ...)}
 
 #' @rdname delim
 #' @export
-dawTT <- function(...) {daw('~', '~', ...)}
+dawTT <- function(...) {uj::daw('~', '~', ...)}
 
 #' @rdname delim
 #' @export
-dww00 <- function(...) {dww('', '', ...)}
+dww00 <- function(...) {uj::dww('', '', ...)}
 
 #' @rdname delim
 #' @export
-dww01 <- function(...) {dww('', ' ', ...)}
+dww01 <- function(...) {uj::dww('', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dww0B <- function(...) {dww('', '¦', ...)}
+dww0B <- function(...) {uj::dww('', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dww0C <- function(...) {dww('', ':', ...)}
+dww0C <- function(...) {uj::dww('', ':', ...)}
 
 #' @rdname delim
 #' @export
-dww0D <- function(...) {dww('', '.', ...)}
+dww0D <- function(...) {uj::dww('', '.', ...)}
 
 #' @rdname delim
 #' @export
-dww0G <- function(...) {dww('', ', ', ...)}
+dww0G <- function(...) {uj::dww('', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dww0P <- function(...) {dww('', '|', ...)}
+dww0P <- function(...) {uj::dww('', '|', ...)}
 
 #' @rdname delim
 #' @export
-dww0Q <- function(...) {dww('', '`', ...)}
+dww0Q <- function(...) {uj::dww('', '`', ...)}
 
 #' @rdname delim
 #' @export
-dww0S <- function(...) {dww('', ',', ...)}
+dww0S <- function(...) {uj::dww('', ',', ...)}
 
 #' @rdname delim
 #' @export
-dww0T <- function(...) {dww('', '~', ...)}
+dww0T <- function(...) {uj::dww('', '~', ...)}
 
 #' @rdname delim
 #' @export
-dww10 <- function(...) {dww(' ', '', ...)}
+dww10 <- function(...) {uj::dww(' ', '', ...)}
 
 #' @rdname delim
 #' @export
-dww11 <- function(...) {dww(' ', ' ', ...)}
+dww11 <- function(...) {uj::dww(' ', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dww1B <- function(...) {dww(' ', '¦', ...)}
+dww1B <- function(...) {uj::dww(' ', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dww1C <- function(...) {dww(' ', ':', ...)}
+dww1C <- function(...) {uj::dww(' ', ':', ...)}
 
 #' @rdname delim
 #' @export
-dww1D <- function(...) {dww(' ', '.', ...)}
+dww1D <- function(...) {uj::dww(' ', '.', ...)}
 
 #' @rdname delim
 #' @export
-dww1G <- function(...) {dww(' ', ', ', ...)}
+dww1G <- function(...) {uj::dww(' ', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dww1P <- function(...) {dww(' ', '|', ...)}
+dww1P <- function(...) {uj::dww(' ', '|', ...)}
 
 #' @rdname delim
 #' @export
-dww1Q <- function(...) {dww(' ', '`', ...)}
+dww1Q <- function(...) {uj::dww(' ', '`', ...)}
 
 #' @rdname delim
 #' @export
-dww1S <- function(...) {dww(' ', ',', ...)}
+dww1S <- function(...) {uj::dww(' ', ',', ...)}
 
 #' @rdname delim
 #' @export
-dww1T <- function(...) {dww(' ', '~', ...)}
+dww1T <- function(...) {uj::dww(' ', '~', ...)}
 
 #' @rdname delim
 #' @export
-dwwB0 <- function(...) {dww('¦', '', ...)}
+dwwB0 <- function(...) {uj::dww('¦', '', ...)}
 
 #' @rdname delim
 #' @export
-dwwB1 <- function(...) {dww('¦', ' ', ...)}
+dwwB1 <- function(...) {uj::dww('¦', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dwwBB <- function(...) {dww('¦', '¦', ...)}
+dwwBB <- function(...) {uj::dww('¦', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dwwBC <- function(...) {dww('¦', ':', ...)}
+dwwBC <- function(...) {uj::dww('¦', ':', ...)}
 
 #' @rdname delim
 #' @export
-dwwBD <- function(...) {dww('¦', '.', ...)}
+dwwBD <- function(...) {uj::dww('¦', '.', ...)}
 
 #' @rdname delim
 #' @export
-dwwBG <- function(...) {dww('¦', ', ', ...)}
+dwwBG <- function(...) {uj::dww('¦', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dwwBP <- function(...) {dww('¦', '|', ...)}
+dwwBP <- function(...) {uj::dww('¦', '|', ...)}
 
 #' @rdname delim
 #' @export
-dwwBQ <- function(...) {dww('¦', '`', ...)}
+dwwBQ <- function(...) {uj::dww('¦', '`', ...)}
 
 #' @rdname delim
 #' @export
-dwwBS <- function(...) {dww('¦', ',', ...)}
+dwwBS <- function(...) {uj::dww('¦', ',', ...)}
 
 #' @rdname delim
 #' @export
-dwwBT <- function(...) {dww('¦', '~', ...)}
+dwwBT <- function(...) {uj::dww('¦', '~', ...)}
 
 #' @rdname delim
 #' @export
-dwwC0 <- function(...) {dww(':', '', ...)}
+dwwC0 <- function(...) {uj::dww(':', '', ...)}
 
 #' @rdname delim
 #' @export
-dwwC1 <- function(...) {dww(':', ' ', ...)}
+dwwC1 <- function(...) {uj::dww(':', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dwwCB <- function(...) {dww(':', '¦', ...)}
+dwwCB <- function(...) {uj::dww(':', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dwwCC <- function(...) {dww(':', ':', ...)}
+dwwCC <- function(...) {uj::dww(':', ':', ...)}
 
 #' @rdname delim
 #' @export
-dwwCD <- function(...) {dww(':', '.', ...)}
+dwwCD <- function(...) {uj::dww(':', '.', ...)}
 
 #' @rdname delim
 #' @export
-dwwCG <- function(...) {dww(':', ', ', ...)}
+dwwCG <- function(...) {uj::dww(':', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dwwCP <- function(...) {dww(':', '|', ...)}
+dwwCP <- function(...) {uj::dww(':', '|', ...)}
 
 #' @rdname delim
 #' @export
-dwwCQ <- function(...) {dww(':', '`', ...)}
+dwwCQ <- function(...) {uj::dww(':', '`', ...)}
 
 #' @rdname delim
 #' @export
-dwwCS <- function(...) {dww(':', ',', ...)}
+dwwCS <- function(...) {uj::dww(':', ',', ...)}
 
 #' @rdname delim
 #' @export
-dwwCT <- function(...) {dww(':', '~', ...)}
+dwwCT <- function(...) {uj::dww(':', '~', ...)}
 
 #' @rdname delim
 #' @export
-dwwD0 <- function(...) {dww('.', '', ...)}
+dwwD0 <- function(...) {uj::dww('.', '', ...)}
 
 #' @rdname delim
 #' @export
-dwwD1 <- function(...) {dww('.', ' ', ...)}
+dwwD1 <- function(...) {uj::dww('.', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dwwDB <- function(...) {dww('.', '¦', ...)}
+dwwDB <- function(...) {uj::dww('.', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dwwDC <- function(...) {dww('.', ':', ...)}
+dwwDC <- function(...) {uj::dww('.', ':', ...)}
 
 #' @rdname delim
 #' @export
-dwwDD <- function(...) {dww('.', '.', ...)}
+dwwDD <- function(...) {uj::dww('.', '.', ...)}
 
 #' @rdname delim
 #' @export
-dwwDG <- function(...) {dww('.', ', ', ...)}
+dwwDG <- function(...) {uj::dww('.', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dwwDP <- function(...) {dww('.', '|', ...)}
+dwwDP <- function(...) {uj::dww('.', '|', ...)}
 
 #' @rdname delim
 #' @export
-dwwDQ <- function(...) {dww('.', '`', ...)}
+dwwDQ <- function(...) {uj::dww('.', '`', ...)}
 
 #' @rdname delim
 #' @export
-dwwDS <- function(...) {dww('.', ',', ...)}
+dwwDS <- function(...) {uj::dww('.', ',', ...)}
 
 #' @rdname delim
 #' @export
-dwwDT <- function(...) {dww('.', '~', ...)}
+dwwDT <- function(...) {uj::dww('.', '~', ...)}
 
 #' @rdname delim
 #' @export
-dwwG0 <- function(...) {dww(', ', '', ...)}
+dwwG0 <- function(...) {uj::dww(', ', '', ...)}
 
 #' @rdname delim
 #' @export
-dwwG1 <- function(...) {dww(', ', ' ', ...)}
+dwwG1 <- function(...) {uj::dww(', ', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dwwGB <- function(...) {dww(', ', '¦', ...)}
+dwwGB <- function(...) {uj::dww(', ', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dwwGC <- function(...) {dww(', ', ':', ...)}
+dwwGC <- function(...) {uj::dww(', ', ':', ...)}
 
 #' @rdname delim
 #' @export
-dwwGD <- function(...) {dww(', ', '.', ...)}
+dwwGD <- function(...) {uj::dww(', ', '.', ...)}
 
 #' @rdname delim
 #' @export
-dwwGG <- function(...) {dww(', ', ', ', ...)}
+dwwGG <- function(...) {uj::dww(', ', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dwwGP <- function(...) {dww(', ', '|', ...)}
+dwwGP <- function(...) {uj::dww(', ', '|', ...)}
 
 #' @rdname delim
 #' @export
-dwwGQ <- function(...) {dww(', ', '`', ...)}
+dwwGQ <- function(...) {uj::dww(', ', '`', ...)}
 
 #' @rdname delim
 #' @export
-dwwGS <- function(...) {dww(', ', ',', ...)}
+dwwGS <- function(...) {uj::dww(', ', ',', ...)}
 
 #' @rdname delim
 #' @export
-dwwGT <- function(...) {dww(', ', '~', ...)}
+dwwGT <- function(...) {uj::dww(', ', '~', ...)}
 
 #' @rdname delim
 #' @export
-dwwP0 <- function(...) {dww('|', '', ...)}
+dwwP0 <- function(...) {uj::dww('|', '', ...)}
 
 #' @rdname delim
 #' @export
-dwwP1 <- function(...) {dww('|', ' ', ...)}
+dwwP1 <- function(...) {uj::dww('|', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dwwPB <- function(...) {dww('|', '¦', ...)}
+dwwPB <- function(...) {uj::dww('|', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dwwPC <- function(...) {dww('|', ':', ...)}
+dwwPC <- function(...) {uj::dww('|', ':', ...)}
 
 #' @rdname delim
 #' @export
-dwwPD <- function(...) {dww('|', '.', ...)}
+dwwPD <- function(...) {uj::dww('|', '.', ...)}
 
 #' @rdname delim
 #' @export
-dwwPG <- function(...) {dww('|', ', ', ...)}
+dwwPG <- function(...) {uj::dww('|', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dwwPP <- function(...) {dww('|', '|', ...)}
+dwwPP <- function(...) {uj::dww('|', '|', ...)}
 
 #' @rdname delim
 #' @export
-dwwPQ <- function(...) {dww('|', '`', ...)}
+dwwPQ <- function(...) {uj::dww('|', '`', ...)}
 
 #' @rdname delim
 #' @export
-dwwPS <- function(...) {dww('|', ',', ...)}
+dwwPS <- function(...) {uj::dww('|', ',', ...)}
 
 #' @rdname delim
 #' @export
-dwwPT <- function(...) {dww('|', '~', ...)}
+dwwPT <- function(...) {uj::dww('|', '~', ...)}
 
 #' @rdname delim
 #' @export
-dwwQ0 <- function(...) {dww('`', '', ...)}
+dwwQ0 <- function(...) {uj::dww('`', '', ...)}
 
 #' @rdname delim
 #' @export
-dwwQ1 <- function(...) {dww('`', ' ', ...)}
+dwwQ1 <- function(...) {uj::dww('`', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dwwQB <- function(...) {dww('`', '¦', ...)}
+dwwQB <- function(...) {uj::dww('`', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dwwQC <- function(...) {dww('`', ':', ...)}
+dwwQC <- function(...) {uj::dww('`', ':', ...)}
 
 #' @rdname delim
 #' @export
-dwwQD <- function(...) {dww('`', '.', ...)}
+dwwQD <- function(...) {uj::dww('`', '.', ...)}
 
 #' @rdname delim
 #' @export
-dwwQG <- function(...) {dww('`', ', ', ...)}
+dwwQG <- function(...) {uj::dww('`', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dwwQP <- function(...) {dww('`', '|', ...)}
+dwwQP <- function(...) {uj::dww('`', '|', ...)}
 
 #' @rdname delim
 #' @export
-dwwQQ <- function(...) {dww('`', '`', ...)}
+dwwQQ <- function(...) {uj::dww('`', '`', ...)}
 
 #' @rdname delim
 #' @export
-dwwQS <- function(...) {dww('`', ',', ...)}
+dwwQS <- function(...) {uj::dww('`', ',', ...)}
 
 #' @rdname delim
 #' @export
-dwwQT <- function(...) {dww('`', '~', ...)}
+dwwQT <- function(...) {uj::dww('`', '~', ...)}
 
 #' @rdname delim
 #' @export
-dwwS0 <- function(...) {dww(',', '', ...)}
+dwwS0 <- function(...) {uj::dww(',', '', ...)}
 
 #' @rdname delim
 #' @export
-dwwS1 <- function(...) {dww(',', ' ', ...)}
+dwwS1 <- function(...) {uj::dww(',', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dwwSB <- function(...) {dww(',', '¦', ...)}
+dwwSB <- function(...) {uj::dww(',', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dwwSC <- function(...) {dww(',', ':', ...)}
+dwwSC <- function(...) {uj::dww(',', ':', ...)}
 
 #' @rdname delim
 #' @export
-dwwSD <- function(...) {dww(',', '.', ...)}
+dwwSD <- function(...) {uj::dww(',', '.', ...)}
 
 #' @rdname delim
 #' @export
-dwwSG <- function(...) {dww(',', ', ', ...)}
+dwwSG <- function(...) {uj::dww(',', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dwwSP <- function(...) {dww(',', '|', ...)}
+dwwSP <- function(...) {uj::dww(',', '|', ...)}
 
 #' @rdname delim
 #' @export
-dwwSQ <- function(...) {dww(',', '`', ...)}
+dwwSQ <- function(...) {uj::dww(',', '`', ...)}
 
 #' @rdname delim
 #' @export
-dwwSS <- function(...) {dww(',', ',', ...)}
+dwwSS <- function(...) {uj::dww(',', ',', ...)}
 
 #' @rdname delim
 #' @export
-dwwST <- function(...) {dww(',', '~', ...)}
+dwwST <- function(...) {uj::dww(',', '~', ...)}
 
 #' @rdname delim
 #' @export
-dwwT0 <- function(...) {dww('~', '', ...)}
+dwwT0 <- function(...) {uj::dww('~', '', ...)}
 
 #' @rdname delim
 #' @export
-dwwT1 <- function(...) {dww('~', ' ', ...)}
+dwwT1 <- function(...) {uj::dww('~', ' ', ...)}
 
 #' @rdname delim
 #' @export
-dwwTB <- function(...) {dww('~', '¦', ...)}
+dwwTB <- function(...) {uj::dww('~', '¦', ...)}
 
 #' @rdname delim
 #' @export
-dwwTC <- function(...) {dww('~', ':', ...)}
+dwwTC <- function(...) {uj::dww('~', ':', ...)}
 
 #' @rdname delim
 #' @export
-dwwTD <- function(...) {dww('~', '.', ...)}
+dwwTD <- function(...) {uj::dww('~', '.', ...)}
 
 #' @rdname delim
 #' @export
-dwwTG <- function(...) {dww('~', ', ', ...)}
+dwwTG <- function(...) {uj::dww('~', ', ', ...)}
 
 #' @rdname delim
 #' @export
-dwwTP <- function(...) {dww('~', '|', ...)}
+dwwTP <- function(...) {uj::dww('~', '|', ...)}
 
 #' @rdname delim
 #' @export
-dwwTQ <- function(...) {dww('~', '`', ...)}
+dwwTQ <- function(...) {uj::dww('~', '`', ...)}
 
 #' @rdname delim
 #' @export
-dwwTS <- function(...) {dww('~', ',', ...)}
+dwwTS <- function(...) {uj::dww('~', ',', ...)}
 
 #' @rdname delim
 #' @export
-dwwTT <- function(...) {dww('~', '~', ...)}
+dwwTT <- function(...) {uj::dww('~', '~', ...)}

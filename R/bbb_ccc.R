@@ -8,16 +8,20 @@
 #'   \cr                \tab  
 #'   \cr    `BBB_CCC`   \tab Is `x` a match to single basic and xclass properties `'BBB'` and `'CCC'`, respectively?
 #' }
+#' Some combinations of basic + xclass properties are non-sensical. For this reason, the basic properties represented in this family of functions are `c('atm', 'nil',  'pop')`.
+#' \cr
+#' \cr In addition, the base property `'nil'` is nonsensical in combination with xclasses `'mvc'` and `'scl'` (which thus do not have combined `BBB_CCC` property functions).
 #' @param x An R object.
-#' @param bbb A character scalar single basic property from `c('atm', 'nil', 'pop', 'rcr')`.
-#' @param ccc A character scalar single xclass property from `ccc_props()`.
+#' @param bbb A character scalar single basic property from \code{\link{bbb_props}()}.
+#' @param ccc A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return *A character vector*
-#'  \cr    `bbb_ccc_funs`
-#'  \cr\cr *A logical scalar*
-#'  \cr    `BBB_CCC`
-#'  \cr    `bbb_ccc`
+#'  \cr   `bbb_ccc_funs`
+#'  \cr
+#'  \cr *A logical scalar*
+#'  \cr   `BBB_CCC`
+#'  \cr   `bbb_ccc`
 #' @examples
 #' bbb_ccc_funs()
 #' bbb_ccc_props()
@@ -27,155 +31,119 @@
 #' atm_scl(1)
 #' @export
 bbb_ccc <- function(x, bbb, ccc, ...) {
-  BBB <- c("atm", "nil", "pop", "rcr")
-  errs <- c(.meets_errs(x, ...),
-            f0(f0(length(bbb) != 1 | !is.character(bbb), F, f0(is.na(bbb), F, bbb %in% BBB  )), NULL, "[bbb] is not a scalar value from c('atm', 'nil', 'pop', 'rcr'."),
-            f0(f0(length(ccc) != 1 | !is.character(ccc), F, f0(is.na(ccc), F, ccc %in% .cccs)), NULL, '[ccc] is not a scalar value from ccc_props().'))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  else if (!meets(x, ...)) {F}
-  else if (!run(paste0('.i', ccc, '(x)'))) {F}
-  else if (bbb == "nil") {length(x) == 0}
-  else if (length(x) == 0) {F}
-  else if (bbb == "pop") {T}
-  else if (bbb == "atm") {
-    if (ccc == "dtf") {all(apply(x, 2, is.atomic))}
-    else if (ccc == "vls") {if (all(lengths(x) > 0)) {all(sapply(x, is.atomic))}}
-    else {is.atomic(x)}
-  } else if (bbb == "rcr") {
-    if (ccc == "dtf") {any(apply(x, 2, is.recursive))}
-    else if (ccc == "vls") {any(sapply(x, is.recursive))}
-    else {is.recursive(x)}
-  }
+  errs <- c(uj:::.meets_errs(x, ...),
+            uj::f0(uj::isIN(bbb, .bbbs), NULL, "[bbb] is not a scalar value from bbb_props()."),
+            uj::f0(uj::isIN(ccc, .cccs), NULL, "[ccc] is not a scalar value from ccc_props()."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  arr <- ccc == "arr"; ARR <- uj::iarr(x)
+  dtf <- ccc == "dtf"; DTF <- uj::idtf(x)
+  gen <- ccc == "gen"; GEN <- uj::igen(x)
+  mat <- ccc == "mat"; MAT <- uj::imat(x)
+  mvc <- ccc == "mvc"; MVC <- uj::imvc(x)
+  scl <- ccc == "scl"; SCL <- uj::iscl(x)
+  vec <- ccc == "vec"; VEC <- uj::ivec(x)
+  vls <- ccc == "vls"; VLS <- uj::ivls(x)
+  pop <- bbb == "pop"; POP <- uj::f0(DTF, base::NROW(x) * base::NCOL(x) > 0, base::length(x) > 0)
+  nil <- bbb == "nil"; NIL <- !POP
+  atm <- bbb == "atm"
+  if (!uj::meets(x, ...)) {F}
+  else if ((pop & !POP) | (nil & !NIL) | (arr & !ARR) | (dtf & !DTF) | (gen & !GEN) | (mat & !MAT) | (mvc & !MVC) | (scl & !SCL) | (vec & !VEC) | (vls & !VLS)) {F}
+  else if (atm & dtf) {base::all(base::apply(x, 2, base::is.atomic))}
+  else if (atm & vls) {base::all(base::sapply(x, base::is.atomic))}
+  else if (atm) {base::is.atomic(x)}
+  else {uj::run("uj::i", bbb)}
 }
 
 #' @rdname bbb_ccc
 #' @export
-bbb_ccc_funs <- function() {c(paste0("atm_", .cccs), paste0("nil_", .cccs), paste0("pop_", .cccs), paste0("rcr_", .cccs))}
+bbb_ccc_funs <- function() {base::sort(base::c("atm_arr", "atm_dtf", "atm_gen", "atm_mat", "atm_mvc", "atm_scl", "atm_vec", "atm_vls",
+                                               "nil_arr", "nil_dtf", "nil_gen", "nil_mat",                       "nil_vec", "nil_vls",
+                                               "pop_arr", "pop_dtf", "pop_gen", "pop_mat", "pop_mvc", "pop_scl", "pop_vec", "pop_vls"))}
 
 #' @rdname bbb_ccc
 #' @export
-atm_arr <- function(x, ...) {bbb_ccc(x, 'atm', 'arr', ...)}
+atm_arr <- function(x, ...) {uj::bbb_ccc(x, 'atm', 'arr', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-atm_dtf <- function(x, ...) {bbb_ccc(x, 'atm', 'dtf', ...)}
+atm_dtf <- function(x, ...) {uj::bbb_ccc(x, 'atm', 'dtf', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-atm_gen <- function(x, ...) {bbb_ccc(x, 'atm', 'gen', ...)}
+atm_gen <- function(x, ...) {uj::bbb_ccc(x, 'atm', 'gen', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-atm_mat <- function(x, ...) {bbb_ccc(x, 'atm', 'mat', ...)}
+atm_mat <- function(x, ...) {uj::bbb_ccc(x, 'atm', 'mat', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-atm_mvc <- function(x, ...) {bbb_ccc(x, 'atm', 'mvc', ...)}
+atm_mvc <- function(x, ...) {uj::bbb_ccc(x, 'atm', 'mvc', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-atm_scl <- function(x, ...) {bbb_ccc(x, 'atm', 'scl', ...)}
+atm_scl <- function(x, ...) {uj::bbb_ccc(x, 'atm', 'scl', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-atm_vec <- function(x, ...) {bbb_ccc(x, 'atm', 'vec', ...)}
+atm_vec <- function(x, ...) {uj::bbb_ccc(x, 'atm', 'vec', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-atm_vls <- function(x, ...) {bbb_ccc(x, 'atm', 'vls', ...)}
+atm_vls <- function(x, ...) {uj::bbb_ccc(x, 'atm', 'vls', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-nil_arr <- function(x, ...) {bbb_ccc(x, 'nil', 'arr', ...)}
+nil_arr <- function(x, ...) {uj::bbb_ccc(x, "nil", "arr", ...)}
 
 #' @rdname bbb_ccc
 #' @export
-nil_dtf <- function(x, ...) {bbb_ccc(x, 'nil', 'dtf', ...)}
+nil_dtf <- function(x, ...) {uj::bbb_ccc(x, "nil", "dtf", ...)}
 
 #' @rdname bbb_ccc
 #' @export
-nil_gen <- function(x, ...) {bbb_ccc(x, 'nil', 'gen', ...)}
+nil_gen <- function(x, ...) {uj::bbb_ccc(x, "nil", "gen", ...)}
 
 #' @rdname bbb_ccc
 #' @export
-nil_mat <- function(x, ...) {bbb_ccc(x, 'nil', 'mat', ...)}
+nil_mat <- function(x, ...) {uj::bbb_ccc(x, "nil", "mat", ...)}
 
 #' @rdname bbb_ccc
 #' @export
-nil_mvc <- function(x, ...) {bbb_ccc(x, 'nil', 'mvc', ...)}
+nil_vec <- function(x, ...) {uj::bbb_ccc(x, "nil", "vec", ...)}
 
 #' @rdname bbb_ccc
 #' @export
-nil_scl <- function(x, ...) {bbb_ccc(x, 'nil', 'scl', ...)}
+nil_vls <- function(x, ...) {uj::bbb_ccc(x, "nil", "vls", ...)}
 
 #' @rdname bbb_ccc
 #' @export
-nil_vec <- function(x, ...) {bbb_ccc(x, 'nil', 'vec', ...)}
+pop_arr <- function(x, ...) {uj::bbb_ccc(x, 'pop', 'arr', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-nil_vls <- function(x, ...) {bbb_ccc(x, 'nil', 'vls', ...)}
+pop_dtf <- function(x, ...) {uj::bbb_ccc(x, 'pop', 'dtf', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-pop_arr <- function(x, ...) {bbb_ccc(x, 'pop', 'arr', ...)}
+pop_gen <- function(x, ...) {uj::bbb_ccc(x, 'pop', 'gen', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-pop_dtf <- function(x, ...) {bbb_ccc(x, 'pop', 'dtf', ...)}
+pop_mat <- function(x, ...) {uj::bbb_ccc(x, 'pop', 'mat', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-pop_gen <- function(x, ...) {bbb_ccc(x, 'pop', 'gen', ...)}
+pop_mvc <- function(x, ...) {uj::bbb_ccc(x, 'pop', 'mvc', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-pop_mat <- function(x, ...) {bbb_ccc(x, 'pop', 'mat', ...)}
+pop_scl <- function(x, ...) {uj::bbb_ccc(x, 'pop', 'scl', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-pop_mvc <- function(x, ...) {bbb_ccc(x, 'pop', 'mvc', ...)}
+pop_vec <- function(x, ...) {uj::bbb_ccc(x, 'pop', 'vec', ...)}
 
 #' @rdname bbb_ccc
 #' @export
-pop_scl <- function(x, ...) {bbb_ccc(x, 'pop', 'scl', ...)}
-
-#' @rdname bbb_ccc
-#' @export
-pop_vec <- function(x, ...) {bbb_ccc(x, 'pop', 'vec', ...)}
-
-#' @rdname bbb_ccc
-#' @export
-pop_vls <- function(x, ...) {bbb_ccc(x, 'pop', 'vls', ...)}
-
-#' @rdname bbb_ccc
-#' @export
-rcr_arr <- function(x, ...) {bbb_ccc(x, 'rcr', 'arr', ...)}
-
-#' @rdname bbb_ccc
-#' @export
-rcr_dtf <- function(x, ...) {bbb_ccc(x, 'rcr', 'dtf', ...)}
-
-#' @rdname bbb_ccc
-#' @export
-rcr_gen <- function(x, ...) {bbb_ccc(x, 'rcr', 'gen', ...)}
-
-#' @rdname bbb_ccc
-#' @export
-rcr_mat <- function(x, ...) {bbb_ccc(x, 'rcr', 'mat', ...)}
-
-#' @rdname bbb_ccc
-#' @export
-rcr_mvc <- function(x, ...) {bbb_ccc(x, 'rcr', 'mvc', ...)}
-
-#' @rdname bbb_ccc
-#' @export
-rcr_scl <- function(x, ...) {bbb_ccc(x, 'rcr', 'scl', ...)}
-
-#' @rdname bbb_ccc
-#' @export
-rcr_vec <- function(x, ...) {bbb_ccc(x, 'rcr', 'vec', ...)}
-
-#' @rdname bbb_ccc
-#' @export
-rcr_vls <- function(x, ...) {bbb_ccc(x, 'rcr', 'vls', ...)}
+pop_vls <- function(x, ...) {uj::bbb_ccc(x, 'pop', 'vls', ...)}

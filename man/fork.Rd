@@ -24,10 +24,10 @@ f1(x, y, n, na = n, err = n)
 }
 \value{
 \emph{A length-\code{length(x)} atomic object}
-\cr    \code{fork}
-\cr\cr \emph{An} R \emph{object}
-\cr    \code{f0}
-\cr    \code{f1}
+\cr   \code{fork}
+\cr\cr \emph{An} R \emph{object}
+\cr   \code{f0}
+\cr   \code{f1}
 }
 \description{
 \tabular{rl}{
@@ -88,7 +88,7 @@ Other extensions:
 \code{\link{failsafe_binaries}},
 \code{\link{failsafe_is}},
 \code{\link{failsafe}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{na}()},
@@ -100,7 +100,7 @@ Other extensions:
 \code{\link{swap}()},
 \code{\link{uv}()},
 \code{\link{wv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 
 Other forks: 
 \code{\link{case}()},

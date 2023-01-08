@@ -61,21 +61,25 @@ vls.(...)
 }
 \value{
 \emph{An atomic data.frame}
-\cr    \code{dtf}
-\cr    \code{dtf.}
-\cr    \code{dtf0}
-\cr    \code{dtf_na}
-\cr\cr \emph{An atomic vector}
-\cr    \code{vec}
-\cr    \code{vec.}
-\cr    \code{vec_na}
-\cr\cr \emph{A square matrix}
-\cr    \code{dmat}
-\cr\cr \emph{A matrix}
-\cr    \code{mat}
-\cr\cr \emph{A \link[=ivls]{vlist}}
-\cr    \code{vls.}
-\cr    \code{vls}
+\cr   \code{dtf}
+\cr   \code{dtf.}
+\cr   \code{dtf0}
+\cr   \code{dtf_na}
+\cr
+\cr \emph{An atomic vector}
+\cr   \code{vec}
+\cr   \code{vec.}
+\cr   \code{vec_na}
+\cr
+\cr \emph{A square matrix}
+\cr   \code{dmat}
+\cr
+\cr \emph{A matrix}
+\cr   \code{mat}
+\cr
+\cr \emph{A \link[=ivls]{vlist}}
+\cr   \code{vls.}
+\cr   \code{vls}
 }
 \description{
 This family of functions enforces the restrictions that names must (a) contain only ASCII letters, numerals, \code{'.'}, and \code{'_'}; (b) begin with a letter or \code{'.'} followed by a letter; and (c) end with a letter or numeral.
@@ -99,10 +103,13 @@ Functions declaring \link[=ivls]{vlists}:\tabular{rl}{
 \code{vls} \tab   Declares a \link[=ivls]{vlist}.
 \cr   \code{vls.} \tab   Declares a named \link[=ivls]{vlist} concisely\eqn{^d}.
 }
-\eqn{^{a.}} \code{dtf.(a, b)} is identical to \code{data.frame(a = a, b = b, stringsAsFactors = F)}.
-\cr\cr\eqn{^{b.}} Off-diags are \code{0}, \code{FALSE}, \code{""} for \code{x} of mode \code{'numeric'}, \code{'logical'}, \code{'character'}, respectively.
-\cr\cr\eqn{^{c.}} \code{vec.(a, b)} is identical to \code{c(a = a, b = b)}.
-\cr\cr\eqn{^{d.}} \code{vls.(a, b)} is identical to \code{list(a = a, b = b)}.
+   \eqn{^{a.}} \code{dtf.(a, b)} is identical to \code{data.frame(a = a, b = b, stringsAsFactors = F)}.
+\cr
+\cr    \eqn{^{b.}} Off-diags are \code{0}, \code{FALSE}, \code{""} for \code{x} of mode \code{'numeric'}, \code{'logical'}, \code{'character'}, respectively.
+\cr
+\cr    \eqn{^{c.}} \code{vec.(a, b)} is identical to \code{c(a = a, b = b)}.
+\cr
+\cr    \eqn{^{d.}} \code{vls.(a, b)} is identical to \code{list(a = a, b = b)}.
 }
 \examples{
 a <- "a"
@@ -161,7 +168,7 @@ Other extensions:
 \code{\link{failsafe_is}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{na}()},
@@ -173,6 +180,6 @@ Other extensions:
 \code{\link{swap}()},
 \code{\link{uv}()},
 \code{\link{wv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 }
 \concept{extensions}

@@ -684,18 +684,20 @@ dwwTT(...)
 }
 \value{
 \emph{A character vector}
-\cr    \code{daX}
-\cr    \code{da}
-\cr    \code{dw}
-\cr\cr \emph{A character scalar}
-\cr    \code{dawXY}
-\cr    \code{dwwXY}
-\cr    \code{daw}
-\cr    \code{dww}
+\cr   \code{daX}
+\cr   \code{da}
+\cr   \code{dw}
+\cr
+\cr \emph{A character scalar}
+\cr   \code{dawXY}
+\cr   \code{dwwXY}
+\cr   \code{daw}
+\cr   \code{dww}
 }
 \description{
 Simplified and extended \code{base::paste} and \code{base::paste0}. There are both primary functions with user-specified delimiters and convenience functions for common delimiters.
-\cr\cr
+\cr
+\cr
 \strong{Primary functions}
 \tabular{rl}{
   \code{dww}   \tab Delimit elements within each (atomic vector) \code{...} argument using delimiter \code{d}, then delimit elements within the resulting vector using delimiter \code{D}. Produces a character scalar of \code{...length()} substrings delimited by \code{D} where each substring contains sub-substrings delimited by \code{d}.
@@ -706,6 +708,7 @@ Simplified and extended \code{base::paste} and \code{base::paste0}. There are bo
 \cr         \tab   
 \cr  \code{da}   \tab Delimits across corresponding elements of (recyclable atomic vector) \code{...} arguments using delimiter \code{d}. Produces a character vector of \code{max(lengths(list(...)))} substrings delimited by \code{d}.
 }
+\cr
 \strong{Common-delimiter convenience functions}
 \cr Convenience function names are constructed by append \code{1} or \code{2} codes for common delimiters to the function name as follows (where \code{X} and \code{Y} are placeholders for common-delimiter codes):
 \tabular{rl}{
@@ -714,21 +717,22 @@ Simplified and extended \code{base::paste} and \code{base::paste0}. There are bo
 \cr   \code{daX}   \tab Delimits across with \code{X}.
 \cr   \code{dwX}   \tab Delimits within with \code{X}.
 }
+\cr
 Common delimiters are encoded as:
 \tabular{cll}{
-  \strong{Code}   \tab \strong{Name}                    \tab \strong{Delimiter}
-\cr   \code{'0'}   \tab blank                       \tab \code{''}
-\cr \code{'1'}     \tab space                       \tab \code{' '}
-\cr \code{'B'}     \tab broken pipe                 \tab \code{'¦'}
-\cr \code{'C'}     \tab colon                       \tab \code{':'}
-\cr \code{'D'}     \tab dot                         \tab \code{'.'}
-\cr \code{'G'}     \tab grammatical comma\eqn{^a}   \tab \code{', '}
-\cr \code{'P'}     \tab pipe                        \tab \code{'|'}
-\cr \code{'Q'}     \tab back-tick                   \tab \code{'``'}
-\cr \code{'S'}     \tab simple comma\eqn{^a}        \tab \code{','}
-\cr \code{'T'}     \tab tilde                       \tab \code{'~'}
+  \strong{Code}   \tab \strong{Name}               \tab \strong{Delimiter}
+\cr   \code{'0'}   \tab blank                  \tab \code{''}
+\cr \code{'1'}     \tab space                  \tab \code{' '}
+\cr \code{'B'}     \tab broken pipe            \tab \code{'¦'}
+\cr \code{'C'}     \tab colon                  \tab \code{':'}
+\cr \code{'D'}     \tab dot                    \tab \code{'.'}
+\cr \code{'G'}     \tab grammatical comma\code{*}   \tab \code{', '}
+\cr \code{'P'}     \tab pipe                   \tab \code{'|'}
+\cr \code{'Q'}     \tab back-tick              \tab \code{'``'}
+\cr \code{'S'}     \tab simple comma\code{*}        \tab \code{','}
+\cr \code{'T'}     \tab tilde                  \tab \code{'~'}
 }
-\eqn{^{a.}} 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., \code{'1, 2, 3'} vs. \code{'1,2,3'}).
+\code{*} 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., \code{'1, 2, 3'} vs. \code{'1,2,3'}).
 }
 \examples{
 # delimit across using delimiter '|'.

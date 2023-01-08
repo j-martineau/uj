@@ -20,9 +20,10 @@ idups(x, int = F)
 \value{
 \emph{A logical vector} (when \verb{int = FALSE)}
 \cr * or an integer vector* (when \verb{int = TRUE})
-\cr    \code{idups}
-\cr\cr \emph{An atomic vector}
-\cr    \code{dups}
+\cr   \code{idups}
+\cr
+\cr \emph{An atomic vector}
+\cr   \code{dups}
 }
 \description{
 Extensions of \code{\link[base]{duplicated}}.
@@ -51,7 +52,7 @@ Other extensions:
 \code{\link{failsafe_is}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{na}()},
@@ -63,6 +64,6 @@ Other extensions:
 \code{\link{swap}()},
 \code{\link{uv}()},
 \code{\link{wv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 }
 \concept{extensions}

@@ -11,6 +11,7 @@
 #'   \cr `'nil'` \tab   `nil`         \tab Length `0` but not `NULL`.
 #'   \cr `'fun'` \tab   `function`    \tab A function or a character scalar name of a function accessible from the environment of the calling function.
 #' }
+#' \cr
 #' **Functions**
 #' \tabular{rl}{
 #'     `is_bbb_spec`   \tab Is `spec` a basic property specification?
@@ -25,13 +26,14 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return *A character vector*
-#'  \cr    `bbb_props`
-#'  \cr    `bbb_funs`
-#'  \cr    `bbb`
-#'  \cr\cr *A logical scalar*
-#'  \cr    `is_bbb_spec`
-#'  \cr    `iBBB`
-#'  \cr    `ibbb`
+#'  \cr   `bbb_props`
+#'  \cr   `bbb_funs`
+#'  \cr   `bbb`
+#'  \cr
+#'  \cr *A logical scalar*
+#'  \cr   `is_bbb_spec`
+#'  \cr   `iBBB`
+#'  \cr   `ibbb`
 #' @examples
 #' bbb_funs()
 #' bbb_props()
@@ -43,59 +45,59 @@
 #' @export
 bbb <- function(x) {
   out <- NULL
-  for (b in .bbbs) {out <- c(out, f0(run('.i', b, '(x)'), b, NULL))}
+  for (b in .bbbs) {out <- base::c(out, uj::f0(uj::run('uj:::.i', b, '(x)'), b, NULL))}
   out
 }
 
 #' @rdname bbb
 #' @export
-bbb_funs <- function() {paste0("i", .bbbs)}
+bbb_funs <- function() {base::paste0("i", .bbbs)}
 
 #' @rdname bbb
 #' @export
-bbb_props <- function() {.bbbs}
+bbb_props <- function() {uj:::.bbbs}
 
 #' @rdname bbb
 #' @export
 is_bbb_spec <- function(spec) {
-  spec <- .spec_vals(spec)
-  f0(length(spec) == 0, F, all(spec %in% bbb_props()))
+  spec <- uj:::.spec_vals(spec)
+  f0(base::length(spec) == 0, F, base::all(spec %in% uj::bbb_props()))
 }
 
 #' @rdname bbb
 #' @export
 ibbb <- function(x, spec, ...) {
-  errs <- c(.meets_errs(x, ...), f0(is_bbb_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from bbb_props().'))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (!meets(x, ...)) {return(F)}
-  for (prop in .spec_vals(spec)) {if (run('.i', prop, '(x)')) {return(T)}}
+  errs <- base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_bbb_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from bbb_props().'))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!uj::meets(x, ...)) {return(F)}
+  for (prop in uj:::.spec_vals(spec)) {if (uj::run('uj:::.i', prop, '(x)')) {return(T)}}
   F
 }
 
 #' @rdname bbb
 #' @export
-iatm <- function(x, ...) {ibbb(x, 'atm', ...)}
+iatm <- function(x, ...) {uj::ibbb(x, 'atm', ...)}
 
 #' @rdname bbb
 #' @export
-idef <- function(x, ...) {ibbb(x, 'def', ...)}
+idef <- function(x, ...) {uj::ibbb(x, 'def', ...)}
 
 #' @rdname bbb
 #' @export
-ifun <- function(x, ...) {ibbb(x, 'fun', ...)}
+ifun <- function(x, ...) {uj::ibbb(x, 'fun', ...)}
 
 #' @rdname bbb
 #' @export
-inil <- function(x) {ibbb(x, 'nil')}
+inil <- function(x) {uj::ibbb(x, 'nil')}
 
 #' @rdname bbb
 #' @export
-inll <- function(x) {ibbb(x, 'nll')}
+inll <- function(x) {uj::ibbb(x, 'nll')}
 
 #' @rdname bbb
 #' @export
-ipop <- function(x, ...) {ibbb(x, 'pop', ...)}
+ipop <- function(x, ...) {uj::ibbb(x, 'pop', ...)}
 
 #' @rdname bbb
 #' @export
-ircr <- function(x, ...) {ibbb(x, 'rcr', ...)}
+ircr <- function(x, ...) {uj::ibbb(x, 'rcr', ...)}

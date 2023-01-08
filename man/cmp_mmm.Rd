@@ -107,10 +107,11 @@ cmp_whl(x, ...)
 }
 \value{
 \emph{A character vector}
-\cr    \code{cmp_mmm_funs}
-\cr\cr \emph{A logical scalar}
-\cr    \code{cmp_MMM}
-\cr    \code{cmp_mmm}
+\cr   \code{cmp_mmm_funs}
+\cr
+\cr \emph{A logical scalar}
+\cr   \code{cmp_MMM}
+\cr   \code{cmp_mmm}
 }
 \description{
 \tabular{rl}{
@@ -148,6 +149,7 @@ Other properties:
 \code{\link{as_mmm}},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
+\code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
@@ -155,12 +157,11 @@ Other properties:
 \code{\link{eee}()},
 \code{\link{err_check}()},
 \code{\link{iii}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
-\code{\link{reclass}()},
 \code{\link{sss}()},
 \code{\link{unq_ccc}()}
 }

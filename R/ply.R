@@ -76,57 +76,57 @@
 #' vlsply(ChrVls., paste0, collapse = "")
 #' @export
 ply <- function(x, fun, ..., dim. = 0, proc. = NULL) {
-  if (length(x) == 0) {stop("[x] is empty.")}
-  vnames <- c("a1", "a2", "s", "na", "arg", "out", "agg")
-  vaggs <- c("nor", "any", "all", "one", "two")
-  names <- names(proc.)
-  procn <- length(proc.)
-  namen <- length(names)
-  namev <- f0(procn == 0, T, procn == namen & all(names %in% vnames))
-  d0 <- isEQ(dim., 0)
-  s <- f0(idef(proc.$s), proc.$s, F)
-  a1 <- f0(idef(proc.$a1), proc.$a1, F)
-  a2 <- f0(idef(proc.$a1), proc.$a2, F)
-  na <- f0(idef(proc.$na), proc.$na, F)
+  if (base::length(x) == 0) {stop("[x] is empty.")}
+  vnames <- base::c("a1", "a2", "s", "na", "arg", "out", "agg")
+  vaggs <- base::c("nor", "any", "all", "one", "two")
+  names <- base::names(proc.)
+  procn <- base::length(proc.)
+  namen <- base::length(names)
+  namev <- uj::f0(procn == 0, T, procn == namen & base::all(names %in% vnames))
+  d0 <- uj::isEQ(dim., 0)
+  s <- uj::f0(uj::idef(proc.$s), proc.$s, F)
+  a1 <- uj::f0(uj::idef(proc.$a1), proc.$a1, F)
+  a2 <- uj::f0(uj::idef(proc.$a1), proc.$a2, F)
+  na <- uj::f0(uj::idef(proc.$na), proc.$na, F)
   agg <- proc.$agg
   arg <- proc.$arg
   out <- proc.$out
-  ok.dim <- d0 | cmp_psw_vec(dim.)
-  ok.xdim <- f0(d0 | !ok.dim, T, allIN(dim., 1:length(dim(x))))
-  ok.proc <- f0(inll(proc.), T, is.list(proc.) & namev)
-  ok.na <- f0(isLG(na), T, isEQ(na, "err"))
-  ok.agg <- f0(inll(agg), T, isIN(agg, vaggs))
-  ok.arg <- f0(inll(arg), T, is_prop_spec(arg))
-  ok.out <- f0(inll(out), T, is_prop_spec(out))
-  errs <- c(f0(ifun(fun), NULL, "[fun] is not a function or the name of function."),
-            f0(ok.dim   , NULL, "[dim.] must be 0 or a complete positive whole-number vec (?cmp_psw_vec)."),
-            f0(ok.xdim  , NULL, "[dim.] contains a value larger than the number of defined dimensions of [x]."),
-            f0(ok.proc  , NULL, "Elements of [proc.] must be uniquely named with names from c('a1', 'a2', 's', 'na', 'arg', 'out')."),
-            f0(ok.na    , NULL, "When supplied, [proc.$na] must be TRUE, FALSE, NA, or 'err'."),
-            f0(ok.agg   , NULL, "When supplied, [proc.$agg] must be 'nor', 'any', 'all', 'one', or 'two'."),
-            f0(ok.arg   , NULL, "When supplied, [proc.$arg] must be a valid property specification as validated by is_valid_spec(.)."),
-            f0(ok.out   , NULL, "When supplied, [proc.$out] must be a valid property specification as validated by is_valid_spec(.)."),
-            f0(isTF(s)  , NULL, "When supplied, [proc.$s] must be TRUE or FALSE."),
-            f0(isTF(a1) , NULL, "When supplied, [proc.$a1] must be TRUE or FALSE."),
-            f0(isTF(a2) , NULL, "When supplied, [proc.$a2] must be TRUE or FALSE."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (a1) {x <- av(x)}
-  if (idef(arg)) {if (!ippp(x, arg)) {stop(.errs(p0("[x] does not match [proc.$arg = '", arg, "'].")))}}
-  if (isEQ(dim., 0)) {
-    x <- f0(iarr(x) | is.data.frame(x), apply(x, 1:length(dim(x)), fun, ...),
-            f0(inll(x) | ivec(x), sapply(x, fun, ...),
-               f0(ivls(x), lapply(x, fun, ...), x)))
-  } else {x <- apply(x, dim., fun, ...)}
-  if (s) {x <- simplify2array(x)}
-  if (a2) {x <- av(x)}
-  if (idef(out)) {if (!ippp(x, out)) {stop(.errs(p0("[x] does not match [proc.$out = '", out, "'].")))}}
-  if (idef(agg)) {
-    err <- isEQ(na, 'err')
-    errs <- c(f0(ilgl(x)              , NULL, "[proc.$agg] is not NULL, but results of applying [fun] are not of mode logical."),
-              f0(!err | !any(is.na(x)), NULL, "Applying [fun] produced NA values, but [proc.$na = 'err']."))
-    if (!is.null(errs)) {stop(.errs(errs))}
-    if (!err) {x[is.na(x)] <- na}
-    x <- f0(agg == "nor", norT(x), f0(agg == "any", anyT(x), f0(agg == "all", allT(x), f0(agg == "one", oneT(x), f0(agg == "two", twoT(x), x)))))
+  ok.dim <- d0 | uj::cmp_psw_vec(dim.)
+  ok.xdim <- uj::f0(d0 | !ok.dim, T, uj::allIN(dim., 1:base::length(base::dim(x))))
+  ok.proc <- uj::f0(uj::inll(proc.), T, base::is.list(proc.) & namev)
+  ok.na <- uj::f0(uj::isLG(na), T, uj::isEQ(na, "err"))
+  ok.agg <- uj::f0(uj::inll(agg), T, uj::isIN(agg, vaggs))
+  ok.arg <- uj::f0(uj::inll(arg), T, uj::is_prop_spec(arg))
+  ok.out <- uj::f0(uj::inll(out), T, uj::is_prop_spec(out))
+  errs <- base::c(uj::f0(uj::ifun(fun), NULL, "[fun] is not a function or the name of function."),
+            uj::f0(ok.dim       , NULL, "[dim.] must be 0 or a complete positive whole-number vec (?cmp_psw_vec)."),
+            uj::f0(ok.xdim      , NULL, "[dim.] contains a value larger than the number of defined dimensions of [x]."),
+            uj::f0(ok.proc      , NULL, "Elements of [proc.] must be uniquely named with names from c('a1', 'a2', 's', 'na', 'arg', 'out')."),
+            uj::f0(ok.na        , NULL, "When supplied, [proc.$na] must be TRUE, FALSE, NA, or 'err'."),
+            uj::f0(ok.agg       , NULL, "When supplied, [proc.$agg] must be 'nor', 'any', 'all', 'one', or 'two'."),
+            uj::f0(ok.arg       , NULL, "When supplied, [proc.$arg] must be a valid property specification as validated by is_valid_spec(.)."),
+            uj::f0(ok.out       , NULL, "When supplied, [proc.$out] must be a valid property specification as validated by is_valid_spec(.)."),
+            uj::f0(uj::isTF(s)  , NULL, "When supplied, [proc.$s] must be TRUE or FALSE."),
+            uj::f0(uj::isTF(a1) , NULL, "When supplied, [proc.$a1] must be TRUE or FALSE."),
+            uj::f0(uj::isTF(a2) , NULL, "When supplied, [proc.$a2] must be TRUE or FALSE."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (a1) {x <- uj::av(x)}
+  if (uj::idef(arg)) {if (!uj::ippp(x, arg)) {stop(uj:::.errs(uj::p0("[x] does not match [proc.$arg = '", arg, "'].")))}}
+  if (uj::isEQ(dim., 0)) {
+    x <- uj::f0(uj::iarr(x) | base::is.data.frame(x), base::apply(x, 1:base::length(base::dim(x)), fun, ...),
+            uj::f0(uj::inll(x) | uj::ivec(x), base::sapply(x, fun, ...),
+               uj::f0(uj::ivls(x), base::lapply(x, fun, ...), x)))
+  } else {x <- base::apply(x, dim., fun, ...)}
+  if (s) {x <- base::simplify2array(x)}
+  if (a2) {x <- uj::av(x)}
+  if (uj::idef(out)) {if (!uj::ippp(x, out)) {stop(uj:::.errs(uj::p0("[x] does not match [proc.$out = '", out, "'].")))}}
+  if (uj::idef(agg)) {
+    err <- uj::isEQ(na, 'err')
+    errs <- base::c(uj::f0(uj::ilgl(x)                      , NULL, "[proc.$agg] is not NULL, but results of applying [fun] are not of mode logical."),
+                    uj::f0(!err | !base::any(base::is.na(x)), NULL, "Applying [fun] produced NA values, but [proc.$na = 'err']."))
+    if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+    if (!err) {x[base::is.na(x)] <- na}
+    x <- uj::f0(agg == "nor", uj::norT(x), uj::f0(agg == "any", uj::anyT(x), uj::f0(agg == "all", uj::allT(x), uj::f0(agg == "one", uj::oneT(x), uj::f0(agg == "two", uj::twoT(x), x)))))
   }
   x
 }
@@ -135,82 +135,82 @@ ply <- function(x, fun, ..., dim. = 0, proc. = NULL) {
 #' @export
 norply <- function(x, fun, ..., dim. = 0, proc. = NULL) {
   proc.$agg <- "nor"
-  ply(x, fun, ..., dim. = dim., proc. = proc.)
+  uj::ply(x, fun, ..., dim. = dim., proc. = proc.)
 }
 
 #' @rdname ply
 #' @export
 anyply <- function(x, fun, ..., dim. = 0, proc. = NULL) {
   proc.$agg <- "any"
-  ply(x, fun, ..., dim. = dim., proc. = proc.)
+  uj::ply(x, fun, ..., dim. = dim., proc. = proc.)
 }
 
 #' @rdname ply
 #' @export
 allply <- function(x, fun, ..., dim. = 0, proc. = NULL) {
   proc.$agg <- "all"
-  ply(x, fun, ..., dim. = dim., proc. = proc.)
+  uj::ply(x, fun, ..., dim. = dim., proc. = proc.)
 }
 
 #' @rdname ply
 #' @export
 oneply <- function(x, fun, ..., dim. = 0, proc. = NULL) {
   proc.$agg <- "one"
-  ply(x, fun, ..., dim. = dim., proc. = proc.)
+  uj::ply(x, fun, ..., dim. = dim., proc. = proc.)
 }
 
 #' @rdname ply
 #' @export
 twoply <- function(x, fun, ..., dim. = 0, proc. = NULL) {
   proc.$agg <- "two"
-  ply(x, fun, ..., dim. = dim., proc. = proc.)
+  uj::ply(x, fun, ..., dim. = dim., proc. = proc.)
 }
 
 #' @rdname ply
 #' @export
 atmply <- function(x, fun, ..., proc. = NULL) {
   proc.$a1 <- TRUE
-  ply(x, fun, ..., dim. = 0, proc. = proc.)
+  uj::ply(x, fun, ..., dim. = 0, proc. = proc.)
 }
 
 #' @rdname ply
 #' @export
 mvcply <- function(x, fun, ..., proc. = NULL) {
   proc.$arg <- 'mvc'
-  ply(x, fun, ..., dim. = 0, proc. = proc.)
+  uj::ply(x, fun, ..., dim. = 0, proc. = proc.)
 }
 
 #' @rdname ply
 #' @export
 vecply <- function(x, fun, ..., proc. = NULL) {
   proc.$arg <- 'vec'
-  ply(x, fun, ..., dim. = 0, proc. = proc.)
+  uj::ply(x, fun, ..., dim. = 0, proc. = proc.)
 }
 
 #' @rdname ply
 #' @export
 rowply <- function(x, fun, ..., proc. = NULL) {
   proc.$arg <- 'd2D'
-  ply(x, fun, ..., dim. = 1, proc. = proc.)
+  uj::ply(x, fun, ..., dim. = 1, proc. = proc.)
 }
 
 #' @rdname ply
 #' @export
 colply <- function(x, fun, ..., proc. = NULL) {
   proc.$arg <- 'd2D'
-  ply(x, fun, ..., dim. = 2, proc. = proc.)
+  uj::ply(x, fun, ..., dim. = 2, proc. = proc.)
 }
 
 #' @rdname ply
 #' @export
 dimply <- function(x, fun, ..., proc. = NULL) {
-  d <- f0(ddd(x) < 2, 0, 1:length(dim(x)))
-  ply(x, fun, ..., dim. = d, proc. = proc.)
+  d <- uj::f0(uj::ddd(x) < 2, 0, 1:base::length(base::dim(x)))
+  uj::ply(x, fun, ..., dim. = d, proc. = proc.)
 }
 
 #' @rdname ply
 #' @export
 vlsply <- function(x, fun, ..., proc. = NULL) {
   proc.$arg <- 'pop_vls'
-  ply(x, fun, ..., dim. = 0, proc. = proc.)
+  uj::ply(x, fun, ..., dim. = 0, proc. = proc.)
 }

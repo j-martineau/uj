@@ -50,15 +50,17 @@ neee(x)
 }
 \value{
 \emph{A character vector}
-\cr    \code{eee_props}
-\cr    \code{eee_funs}
-\cr    \code{eee}
-\cr\cr \emph{A logical scalar}
-\cr    \code{is_eee_spec}
-\cr    \code{iEEE}
-\cr    \code{ieee}
-\cr\cr \emph{A numeric scalar}
-\cr    \code{neee}
+\cr   \code{eee_props}
+\cr   \code{eee_funs}
+\cr   \code{eee}
+\cr
+\cr \emph{A logical scalar}
+\cr   \code{is_eee_spec}
+\cr   \code{iEEE}
+\cr   \code{ieee}
+\cr
+\cr \emph{A numeric scalar}
+\cr   \code{neee}
 }
 \description{
 An object's effective.d is defined as the number of dimensions in which it has multiple populated index positions (i.e., if a dimension has only one index position, that is not an effective dimension).
@@ -89,7 +91,7 @@ Effective dimensionality property functions are:
 \cr               \tab  
 \cr      \code{neee}   \tab How many effective dimensions does \code{x} have?
 \cr               \tab  
-\cr      \code{ieee}   \tab Is \code{x} a match to the effective.d specification\code{spec}?
+\cr      \code{ieee}   \tab Is \code{x} a match to the effective.d specification\code{spec}?
 \cr               \tab  
 \cr      \code{iEEE}   \tab Is \code{x} a match to the single effective.d property \code{'EEE'}?
 \cr               \tab  
@@ -155,6 +157,7 @@ Other properties:
 \code{\link{as_mmm}},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
+\code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -162,12 +165,11 @@ Other properties:
 \code{\link{ddd}()},
 \code{\link{err_check}()},
 \code{\link{iii}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
-\code{\link{reclass}()},
 \code{\link{sss}()},
 \code{\link{unq_ccc}()}
 }

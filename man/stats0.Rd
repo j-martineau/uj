@@ -70,14 +70,14 @@ rmeans0(x)
 }
 \value{
 \emph{A numeric vector}
-\cr    \verb{cmeans0, csums0, cvars0, csds0}
-\cr    \verb{rmeans0, rsums0, rvars0, rsds0}
-\cr    \verb{mean0, sum0, var0, sd0}
-\cr    \verb{pmin0, min0}
-\cr    \verb{pmax0, max0}
+\cr   \verb{cmeans0, csums0, cvars0, csds0}
+\cr   \verb{rmeans0, rsums0, rvars0, rsds0}
+\cr   \verb{mean0,   sum0,   var0,   sd0}
+\cr   \verb{pmin0,   min0}
+\cr   \verb{pmax0,   max0}
 \cr
 \cr \emph{A numeric vector or matrix}
-\cr    \verb{cor0, cov0}
+\cr   \verb{cor0, cov0}
 }
 \description{
 \tabular{rl}{
@@ -158,7 +158,7 @@ Other extensions:
 \code{\link{failsafe_is}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{na}()},
@@ -169,7 +169,7 @@ Other extensions:
 \code{\link{swap}()},
 \code{\link{uv}()},
 \code{\link{wv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 }
 \concept{extensions}
 \concept{missingness}

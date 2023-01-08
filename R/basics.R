@@ -23,11 +23,13 @@
 #'   \cr  `p0`   \tab Calls \code{\link[base:paste]{paste(..., sep = "")}}
 #'   \cr   `p`   \tab Calls \code{\link[base:paste]{paste(..., sep = p)}}
 #'   \cr         \tab  
-#'   \cr   `u`   \tab Thinly wraps \code{\link[base]{unique}}\eqn{^a}
-#'   \cr   `w`   \tab Thinly Wraps \code{\link[base]{which}}\eqn{^b}
+#'   \cr   `u`   \tab Thinly wraps \code{\link[base]{unique}}`*`
+#'   \cr   `w`   \tab Thinly Wraps \code{\link[base]{which}}`**`
 #' }
-#' \eqn{^{a.}} Differs from \code{\link{uv}}, which calls `unique(av(...))`.
-#' \cr\eqn{^{b.}} Differs from \code{\link{wv}}, which calls `which(av(...))`.
+#' `*` Differs from \code{\link{uv}}, which calls `unique(av(...))`.
+#' \cr
+#' \cr
+#' `**` Differs from \code{\link{wv}}, which calls `which(av(...))`.
 #' @examples
 #' vals <- c(1:3, 2:4) / 3
 #' vars <- c("a", "bb", "ccc", "dddd", "ccc", "bb")
@@ -90,33 +92,33 @@ levs <- function(x) {base::levels(x)}
 #' @rdname basics
 #' @inherit base::paste0
 #' @export
-g <- function(g, ...) {paste(av(...), collapse = g)}
+g <- function(g, ...) {base::paste(uj::av(...), collapse = g)}
 
 #' @rdname basics
 #' @export
-g0 <- function(...) {paste(av(...), collapse = "")}
+g0 <- function(...) {base::paste(uj::av(...), collapse = "")}
 
 #' @rdname basics
 #' @export
-g1 <- function(...) {paste(av(...), collapse = " ")}
+g1 <- function(...) {base::paste(uj::av(...), collapse = " ")}
 
 #' @rdname basics
 #' @inherit base::paste
 #' @export
-p <- function(p, ...) {paste(..., sep = p)}
+p <- function(p, ...) {base::paste(..., sep = p)}
 
 #' @rdname basics
 #' @export
-p0 <- function(...) {paste(..., sep = "")}
+p0 <- function(...) {base::paste(..., sep = "")}
 
 #' @rdname basics
 #' @export
-p1 <- function(...) {paste(..., sep = " ")}
+p1 <- function(...) {base::paste(..., sep = " ")}
 
 #' @rdname basics
 #' @export
-na <- function(x) {is.na(x)}
+na <- function(x) {base::is.na(x)}
 
 #' @rdname basics
 #' @export
-ok <- function(...) {!is.na(x)}
+ok <- function(...) {!base::is.na(x)}

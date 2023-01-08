@@ -26,14 +26,14 @@
 #' @param x A \link[=cmp_num_vec]{complete numeric vec} or a \link[=cmp_num_mat]{complete numeric matrix}.
 #' @param y An optional complete numeric vec or a complete numeric matrix.
 #' @return *A numeric vector*
-#'   \cr    `cmeans0, csums0, cvars0, csds0`
-#'   \cr    `rmeans0, rsums0, rvars0, rsds0`
-#'   \cr    `mean0, sum0, var0, sd0`
-#'   \cr    `pmin0, min0`
-#'   \cr    `pmax0, max0`
+#'   \cr   `cmeans0, csums0, cvars0, csds0`
+#'   \cr   `rmeans0, rsums0, rvars0, rsds0`
+#'   \cr   `mean0,   sum0,   var0,   sd0`
+#'   \cr   `pmin0,   min0`
+#'   \cr   `pmax0,   max0`
 #'   \cr
 #'   \cr *A numeric vector or matrix*
-#'   \cr    `cor0, cov0`
+#'   \cr   `cor0, cov0`
 #' @examples
 #' vec1. <- sample(0:99, 10)
 #' vec2. <- sample(0:99, 20)
@@ -75,72 +75,72 @@
 #'
 #' list(mean = mean0(x.), min = min0(x.), max = max0(x.), sum = sum0(x.), var = var0(x.), sd = sd0(x.))
 #' @export
-sum0 <- function(...) {sum(av(...), na.rm = T)}
+sum0 <- function(...) {base::sum(uj::av(...), na.rm = T)}
 
 #' @rdname stats0
 #' @export
-sd0 <- function(...) {sd(av(...), na.rm = T)}
+sd0 <- function(...) {base::sd(uj::av(...), na.rm = T)}
 
 #' @rdname stats0
 #' @export
-cor0 <- function(x, y = NULL) {cor(x, y, use = "complete.obs")}
+cor0 <- function(x, y = NULL) {base::cor(x, y, use = "complete.obs")}
 
 #' @rdname stats0
 #' @export
-cov0 <- function(x, y = NULL) {cov(x, y, use = "complete.obs")}
+cov0 <- function(x, y = NULL) {base::cov(x, y, use = "complete.obs")}
 
 #' @rdname stats0
 #' @export
-min0 <- function(...) {min(av(...), na.rm = T)}
+min0 <- function(...) {base::min(uj::av(...), na.rm = T)}
 
 #' @rdname stats0
 #' @export
-max0 <- function(...) {max(av(...), na.rm = T)}
+max0 <- function(...) {base::max(uj::av(...), na.rm = T)}
 
 #' @rdname stats0
 #' @export
-var0 <- function(...) {var(av(...), na.rm = T)}
+var0 <- function(...) {base::var(uj::av(...), na.rm = T)}
 
 #' @rdname stats0
 #' @export
-pmin0 <- function(...) {pmin(..., na.rm = T)}
+pmin0 <- function(...) {base::pmin(..., na.rm = T)}
 
 #' @rdname stats0
 #' @export
-pmax0 <- function(...) {pmax(..., na.rm = T)}
+pmax0 <- function(...) {base::pmax(..., na.rm = T)}
 
 #' @rdname stats0
 #' @export
-mean0 <- function(...) {mean(av(...), na.rm = T)}
+mean0 <- function(...) {base::mean(uj::av(...), na.rm = T)}
 
 #' @rdname stats0
 #' @export
-csds0 <- function(x) {apply(x, 2, sd, na.rm = T)}
+csds0 <- function(x) {base::apply(x, 2, base::sd, na.rm = T)}
 
 #' @rdname stats0
 #' @export
-rsds0 <- function(x) {apply(x, 1, sd, na.rm = T)}
+rsds0 <- function(x) {base::apply(x, 1, base::sd, na.rm = T)}
 
 #' @rdname stats0
 #' @export
-cvars0 <- function(x) {apply(x, 2, var, na.rm = T)}
+cvars0 <- function(x) {base::apply(x, 2, base::var, na.rm = T)}
 
 #' @rdname stats0
 #' @export
-rvars0 <- function(x) {apply(x, 1, var, na.rm = T)}
+rvars0 <- function(x) {base::apply(x, 1, base::var, na.rm = T)}
 
 #' @rdname stats0
 #' @export
-csums0 <- function(x) {colSums(x, na.rm = T)}
+csums0 <- function(x) {base::colSums(x, na.rm = T)}
 
 #' @rdname stats0
 #' @export
-rsums0 <- function(x) {rowSums(x, na.rm = T)}
+rsums0 <- function(x) {base::rowSums(x, na.rm = T)}
 
 #' @rdname stats0
 #' @export
-cmeans0 <- function(x) {colMeans(x, na.rm = T)}
+cmeans0 <- function(x) {base::colMeans(x, na.rm = T)}
 
 #' @rdname stats0
 #' @export
-rmeans0 <- function(x) {rowMeans(x, na.rm = T)}
+rmeans0 <- function(x) {base::rowMeans(x, na.rm = T)}

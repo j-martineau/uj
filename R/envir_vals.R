@@ -16,11 +16,13 @@
 #' @param err A non`NA` logical scalar indicating whether to throw an error if the object specified by `name` does not exist (i.e., rather than returning `FALSE`).
 #' @param gens A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of generations back in the function call stack to go.
 #' @return *A logical scalar*
-#' \cr    `vexists`
-#' \cr\cr *An R object*
-#' \cr    `vget`
-#' \cr\cr `NULL`
-#' \cr    `vset`
+#' \cr   `vexists`
+#' \cr
+#' \cr *An* R *object*
+#' \cr   `vget`
+#' \cr
+#' \cr `NULL`
+#' \cr   `vset`
 #' @examples
 #' fun.a <- function() {A <- 0; fun.b()}
 #' fun.b <- function() {B <- 1; fun.c()}
@@ -62,34 +64,34 @@
 #' fun.a()
 #' @export
 vexists <- function(name, err = T, gens = 1) {
-  errs <- c(f0(cmp_chr_scl(name), NULL, "[name] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(isTF(err)        , NULL, "[err] must be TRUE or FALSE."),
-            f0(cmp_psw_scl(gens), NULL, "[gens] must be a positive whole number scalar (?cmp_psw_scl)."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (exists(name, parent.frame(gens + 1), inherits = F)) {return(T)}
+  errs <- base::c(uj::f0(uj::cmp_chr_scl(name), NULL, "[name] must be a complete character scalar (?cmp_chr_scl)."),
+                  uj::f0(uj::isTF(err)        , NULL, "[err] must be TRUE or FALSE."),
+                  uj::f0(uj::cmp_psw_scl(gens), NULL, "[gens] must be a positive whole number scalar (?cmp_psw_scl)."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (base::exists(name, base::parent.frame(gens + 1), inherits = F)) {return(T)}
   if (!err) {return(F)}
-  if (gens > 1) {targ <- c("target function (", callers(gens + 1), ") ", gens, " generations back from the ")}
+  if (gens > 1) {targ <- c("target function (", uj::callers(gens + 1), ") ", gens, " generations back from the ")}
   else {targ <- ""}
-  call <- callers(1)
-  stop(.errs(p0("No object named [name = '", name, "'] exists in the environment of the ", targ, "calling function (", call, ").")))
+  call <- uj::callers(1)
+  stop(uj:::.errs(uj::p0("No object named [name = '", name, "'] exists in the environment of the ", targ, "calling function (", call, ").")))
 }
 
 #' @rdname envir_vals
 #' @export
 vget <- function(name, err = T, gens = 1) {
-  errs <- c(f0(cmp_chr_scl(name), NULL, "[name] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(isTF(err)        , NULL, "[err] must be TRUE or FALSE."),
-            f0(cmp_psw_scl(gens), NULL, "[gens] must be a positive whole number scalar (?cmp_psw_scl)."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (!vexists(name, err, gens + 1)) {NULL}
-  else {get(name, envir = parent.frame(gens + 1), inherits = F)}
+  errs <- base::c(uj::f0(uj::cmp_chr_scl(name), NULL, "[name] must be a complete character scalar (?cmp_chr_scl)."),
+                  uj::f0(uj::isTF(err)        , NULL, "[err] must be TRUE or FALSE."),
+                  uj::f0(uj::cmp_psw_scl(gens), NULL, "[gens] must be a positive whole number scalar (?cmp_psw_scl)."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!uj::vexists(name, err, gens + 1)) {NULL}
+  else {base::get(name, envir = base::parent.frame(gens + 1), inherits = F)}
 }
 
 #' @rdname envir_vals
 #' @export
 vset <- function(name, val, gens = 1) {
-  errs <- c(f0(cmp_chr_scl(name), NULL, "[name] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(cmp_psw_scl(gens), NULL, "[gens] must be a positive whole number scalar (?cmp_psw_scl)."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  assign(name, val, envir = parent.frame(gens + 1), inherits = F)
+  errs <- base::c(uj::f0(uj::cmp_chr_scl(name), NULL, "[name] must be a complete character scalar (?cmp_chr_scl)."),
+                  uj::f0(uj::cmp_psw_scl(gens), NULL, "[gens] must be a positive whole number scalar (?cmp_psw_scl)."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  base::assign(name, val, envir = base::parent.frame(gens + 1), inherits = F)
 }

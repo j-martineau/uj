@@ -251,8 +251,8 @@ These functions \emph{always} produce \code{TRUE} or \code{FALSE} results unless
 \tabular{rl}{
   \code{NAS} \tab   \code{NA} scalar.
 \cr \code{OKS} \tab   Non-\code{NA} scalar.
-\cr \code{OUT} \tab   Atomic scalar \code{x} is \emph{not} in \code{...}.\eqn{^a}
-\cr  \code{IN} \tab   Atomic scalar \code{x} is in \code{...}.\eqn{^a}
+\cr \code{OUT} \tab   Atomic scalar \code{x} is \emph{not} in \code{...}.\code{*}
+\cr  \code{IN} \tab   Atomic scalar \code{x} is in \code{...}.\code{*}
 \cr  \code{EQ} \tab   Calls \code{\link[base:setequal]{setequal(x, y)}}.
 \cr  \code{ID} \tab   Calls \code{\link[base:identical]{identical(x, y)}}.
 \cr  \code{LG} \tab   Scalar logical \code{TRUE}, \code{FALSE}, or \code{NA}.
@@ -261,12 +261,14 @@ These functions \emph{always} produce \code{TRUE} or \code{FALSE} results unless
 \cr   \code{F} \tab   Scalar \code{FALSE}.
 \cr   \code{T} \tab   Scalar \code{TRUE}.
 }
-\eqn{^{a.}} Evaluates membership in any \link[=av]{atomized} \code{...} argument.
-\cr\cr \strong{Modifying prefixes}
+\code{*} Evaluates membership in any \link[=av]{atomized} \code{...} argument.
+\cr
+\cr \strong{Modifying prefixes}
 \tabular{rl}{
   \code{not} \tab   Negation.
 \cr \code{is} \tab   Identity.
 }
+\cr
 \strong{Apply-and-sweep prefixes}
 \tabular{rl}{
   \code{nor} \tab   \code{0} values are \code{TRUE}.
@@ -275,8 +277,10 @@ These functions \emph{always} produce \code{TRUE} or \code{FALSE} results unless
 \cr \code{two} \tab   \verb{2+} values are \code{TRUE}.
 \cr \code{all} \tab   All values are \code{TRUE}.
 }
+\cr
 \strong{Combining prefixes and suffix}
-\cr\cr All prefixes combine with all suffixes to create function names.
+\cr
+\cr All prefixes combine with all suffixes to create function names.
 }
 \examples{
 Blank. <- ""
@@ -377,7 +381,7 @@ allBL(c(list(Blank.), Combo.))
 oneBL(c(list(Blank.), Combo.))
 twoBL(c(list(Blank.), Combo.))
 
-isNAS(ChrMat.)
+uj::isNAS(ChrMat.)
 notNAS(ChrMat.)
 norNAS(ChrMat.)
 anyNAS(ChrMat.)
@@ -407,7 +411,7 @@ Other extensions:
 \code{\link{failsafe_binaries}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{na}()},
@@ -419,7 +423,7 @@ Other extensions:
 \code{\link{swap}()},
 \code{\link{uv}()},
 \code{\link{wv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 
 Other failsafe: 
 \code{\link{failsafe_binaries}},

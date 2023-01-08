@@ -7,6 +7,9 @@
 \usage{
 wv(...)
 }
+\value{
+An integer vector.
+}
 \description{
 Calls \code{which(av(x))}.
 }
@@ -25,7 +28,7 @@ Other extensions:
 \code{\link{failsafe_is}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{na}()},
@@ -36,7 +39,7 @@ Other extensions:
 \code{\link{stats0}},
 \code{\link{swap}()},
 \code{\link{uv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 
 Other values: 
 \code{\link{atomize}()},

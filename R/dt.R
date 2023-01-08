@@ -18,7 +18,7 @@
 #' @return A data.table.
 #' @inherit data.table::as.data.table
 #' @export
-dtas <- function(x,keep.rownames = FALSE, ..., say = TRUE) {if (say) {say("\n| coerce to data.table")}; data.table::as.data.table(x)}
+dtas <- function(x,keep.rownames = FALSE, ..., say = TRUE) {if (say) {uj::say("\n| coerce to data.table")}; data.table::as.data.table(x)}
 
 #' @rdname dt
 #' @inherit data.table::is.data.table
@@ -27,7 +27,7 @@ dtis <- function(x) {data.table::is.data.table(x)}
 
 #' @rdname dt
 #' @export
-dtie <- function(x, say = TRUE) {if (data.table::is.data.table(x)) {x} else {dtas(x, say)}}
+dtie <- function(x, say = TRUE) {if (data.table::is.data.table(x)) {x} else {uj::dtas(x, say)}}
 
 #' @rdname dt
 #' @export
@@ -40,11 +40,11 @@ dtcols <- function(x, ic) {x[ , ic, with = FALSE]}
 #' @rdname dt
 #' @inherit data.table::merge
 #' @export
-dtmerge <- function(x, y, by = NULL, by.x = NULL, by.y = NULL, all = FALSE, all.x = all, all.y = all, sort = TRUE, suffixes = c(".x", ".y"), no.dups = TRUE, allow.cartesian = getOption("datatable.allow.cartesian"), say = TRUE) {
-  if (say) {say("\n| merge data.tables")}
-  if (is.null(by) & is.null(by.x) & is.null(by.y)) {data.table::merge.data.table(x, y,                                    all = all, all.x = all.x, all.y = all.y, sort = sort, suffixes = suffixes, no.dups = no.dups, allow.cartesian = allow.cartesian)}
-  else if (!is.null(by))                           {data.table::merge.data.table(x, y, by = by,                           all = all, all.x = all.x, all.y = all.y, sort = sort, suffixes = suffixes, no.dups = no.dups, allow.cartesian = allow.cartesian)}
-  else                                             {data.table::merge.data.table(x, y,          by.x = by.x, by.y = by.y, all = all, all.x = all.x, all.y = all.y, sort = sort, suffixes = suffixes, no.dups = no.dups, allow.cartesian = allow.cartesian)}
+dtmerge <- function(x, y, by = NULL, by.x = NULL, by.y = NULL, all = FALSE, all.x = all, all.y = all, sort = TRUE, suffixes = c(".x", ".y"), no.dups = TRUE, allow.cartesian = base::getOption("datatable.allow.cartesian"), say = TRUE) {
+  if (say) {uj::say("\n| merge data.tables")}
+  if (base::is.null(by) & base::is.null(by.x) & base::is.null(by.y)) {data.table::merge.data.table(x, y,                                    all = all, all.x = all.x, all.y = all.y, sort = sort, suffixes = suffixes, no.dups = no.dups, allow.cartesian = allow.cartesian)}
+  else if (!base::is.null(by))                                       {data.table::merge.data.table(x, y, by = by,                           all = all, all.x = all.x, all.y = all.y, sort = sort, suffixes = suffixes, no.dups = no.dups, allow.cartesian = allow.cartesian)}
+  else                                                               {data.table::merge.data.table(x, y,          by.x = by.x, by.y = by.y, all = all, all.x = all.x, all.y = all.y, sort = sort, suffixes = suffixes, no.dups = no.dups, allow.cartesian = allow.cartesian)}
 }
 
 #' @rdname dt
@@ -54,14 +54,14 @@ dtrows <- function(x, ir) {x[ir, ]}
 #' @rdname dt
 #' @inherit data.table::dcast
 #' @export
-dtwide <- function(data, formula, fun.aggregate = NULL, sep = "_", ..., margins = NULL, subset = NULL, fill = NULL, drop = TRUE, value.var = data.table:::guess(data), verbose = getOption("datatable.verbose"), say = TRUE) {
-  if (say) {say("\n| reshape data.table from long to wide")}
-  code <- paste0(
+dtwide <- function(data, formula, fun.aggregate = NULL, sep = "_", ..., margins = NULL, subset = NULL, fill = NULL, drop = TRUE, value.var = data.table:::guess(data), verbose = base::getOption("datatable.verbose"), say = TRUE) {
+  if (say) {uj::say("\n| reshape data.table from long to wide")}
+  code <- base::paste0(
     "data.table::dcast.data.table(data, formula, sep = sep, ..., drop = drop, value.var = value.var, verbose = verbose",
-    f0(is.null(fun.aggregate), "", ", fun.aggregate = fun.aggregate"),
-    f0(is.null(margins      ), "", ", margins = margins"),
-    f0(is.null(subset       ), "", ", subset = subset"),
-    f0(is.null(fill         ), "", ", fill = fill"), ")"
+    uj::f0(base::is.null(fun.aggregate), "", ", fun.aggregate = fun.aggregate"),
+    uj::f0(base::is.null(margins      ), "", ", margins = margins"),
+    uj::f0(base::is.null(subset       ), "", ", subset = subset"),
+    uj::f0(base::is.null(fill         ), "", ", fill = fill"), ")"
   )
-  run(code)
+  uj::run(code)
 }

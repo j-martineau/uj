@@ -29,23 +29,23 @@
 #' rb(d2x4, d4x4, d4x4b)
 #' @export
 cb <- function(...) {
-  if (...length() < 2) {stop(.errs("[...] contains fewer than 2 arguments."))}
-  x <- list(...)
-  dtf <- all(sapply(x, atm_dtf))
-  mat <- all(sapply(x, atm_mat))
+  if (base::...length() < 2) {stop(uj:::.errs("[...] contains fewer than 2 arguments."))}
+  x <- base::list(...)
+  dtf <- base::all(base::sapply(x, atm_dtf))
+  mat <- base::all(base::sapply(x, atm_mat))
   if (!dtf & !mat) {stop(.errs("[...] must contain only atomic matrices or only atomic data.frames."))}
-  if (f0(dtf, compatible_dtfs("c", ...), compatible_mats("c", ...))) {cbind(...)}
-  else {stop(.errs("Arguments in [...] are not compatible for column binding."))}
+  if (uj::f0(dtf, uj::compatible_dtfs("c", ...), uj::compatible_mats("c", ...))) {base::cbind(...)}
+  else {stop(uj:::.errs("Arguments in [...] are not compatible for column binding."))}
 }
 
 #' @rdname cb
 #' @export
 rb <- function(...) {
-  if (...length() < 2) {stop(.errs("[...] contains fewer than 2 arguments."))}
-  x <- list(...)
-  dtf <- all(sapply(x, atm_dtf))
-  mat <- all(sapply(x, atm_mat))
+  if (base::...length() < 2) {stop(uj:::.errs("[...] contains fewer than 2 arguments."))}
+  x <- base::list(...)
+  dtf <- base::all(base::sapply(x, atm_dtf))
+  mat <- base::all(base::sapply(x, atm_mat))
   if (!dtf & !mat) {stop(.errs("[...] must contain only atomic matrices or only atomic data.frames."))}
-  if (f0(dtf, compatible_dtfs("r", ...), compatible_mats("r", ...))) {rbind(...)}
-  else {stop(.errs("Arguments in [...] are not compatible for row binding."))}
+  if (uj::f0(dtf, uj::compatible_dtfs("r", ...), uj::compatible_mats("r", ...))) {base::rbind(...)}
+  else {stop(uj:::.errs("Arguments in [...] are not compatible for row binding."))}
 }

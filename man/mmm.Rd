@@ -113,21 +113,24 @@ iwhl(x, ...)
 }
 \value{
 \emph{A character vector}
-\cr    \code{mmm_props}
-\cr    \code{mmm_funs}
-\cr    \code{mmm}
+\cr   \code{mmm_props}
+\cr   \code{mmm_funs}
+\cr   \code{mmm}
 \cr\cr *A logical scalar 
-\cr    \code{is_mmm_spec}
-\cr    \code{iMMM}
-\cr    \code{immm}
+\cr   \code{is_mmm_spec}
+\cr   \code{iMMM}
+\cr   \code{immm}
 }
 \description{
 xmodes are defined for non-empty atomic objects. For all other objects, the xmode is \code{NULL}. These are not formally defined modes, but are evaluated dynamically based on the current characteristics of an object.
-\cr\cr Atomic objects that contain only \code{NA} values are of every xmode (they can be coerced to any mode without introducing new \code{NA} values).
-\cr\cr \strong{Generic xmode}
+\cr
+\cr Atomic objects that contain only \code{NA} values are of every xmode (they can be coerced to any mode without introducing new \code{NA} values).
+\cr
+\cr \strong{Generic xmode}
 \tabular{rll}{
   \code{'atm'}   \tab atomic   \tab Both a \code{\link[=bbb]{basic}} and an xmode property.
 }
+\cr
 \strong{Character xmodes}
 \tabular{rl}{
   \code{'chr'} \tab   character
@@ -136,6 +139,7 @@ xmodes are defined for non-empty atomic objects. For all other objects, the xmod
 \cr \code{'clr'} \tab   color (valid color values)
 \cr \code{'str'} \tab   string (no blanks)
 }
+\cr
 \strong{Categorical xmodes}
 \tabular{rl}{
   \code{'fac'} \tab   factor
@@ -143,12 +147,14 @@ xmodes are defined for non-empty atomic objects. For all other objects, the xmod
 \cr \code{'ord'} \tab   ordered factor
 \cr \code{'uno'} \tab   unordered factor
 }
+\cr
 \strong{Basic numeric xmodes}
 \tabular{rl}{
   \code{'num'} \tab   numeric
 \cr \code{'frc'} \tab   fractional
 \cr \code{'whl'} \tab   whole number
 }
+\cr
 \strong{Value-restricted numeric xmodes}
 \tabular{rl}{
   \code{'pct'} \tab   percentage (\code{0-100})
@@ -158,6 +164,7 @@ xmodes are defined for non-empty atomic objects. For all other objects, the xmod
 \cr \code{'nng'} \tab   non-negative
 \cr \code{'nps'} \tab   non-positive
 }
+\cr
 \strong{Whole-number value-restricted xmodes}
 \tabular{rl}{
   \code{'evn'} \tab   even
@@ -167,12 +174,14 @@ xmodes are defined for non-empty atomic objects. For all other objects, the xmod
 \cr \code{'nnw'} \tab   non-negative whole
 \cr \code{'npw'} \tab   non-positive whole
 }
+\cr
 \strong{Combination xmodes}
 \tabular{rl}{
   \code{'ind'} \tab   indexer (\code{lgl}, \code{psw})
 \cr \code{'srt'} \tab   sortable (\code{chr}, \code{num}, \code{ord})
 \cr \code{'nst'} \tab   non-sortable atomic
 }
+\cr
 \strong{xmode functions}
 \tabular{rl}{
   \code{is_mmm_spec}   \tab Is \code{spec} an xmode specification?
@@ -221,6 +230,7 @@ Other properties:
 \code{\link{as_mmm}},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
+\code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -229,11 +239,10 @@ Other properties:
 \code{\link{eee}()},
 \code{\link{err_check}()},
 \code{\link{iii}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{ppp}()},
-\code{\link{reclass}()},
 \code{\link{sss}()},
 \code{\link{unq_ccc}()}
 }

@@ -13,10 +13,11 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return *A character vector*
-#'  \cr    `cmp_ccc_funs`
-#'  \cr\cr *A logical scalar*
-#'  \cr    `cmp_CCC`
-#'  \cr    `cmp_ccc`
+#'  \cr   `cmp_ccc_funs`
+#'  \cr
+#'  \cr *A logical scalar*
+#'  \cr   `cmp_CCC`
+#'  \cr   `cmp_ccc`
 #' @examples
 #' cmp_ccc_fun()
 #' cmp_ccc(letters, "mvc")
@@ -26,47 +27,47 @@
 #' cmp_scl(1)
 #' @export
 cmp_ccc <- function(x, ccc, ...) {
-  cfun <- function(cx) {run("i", ccc, "(cx)")}
-  afun <- function(ax) {f0(!is.atomic(ax), F, f0(length(ax) == 0, F, !any(is.na(ax))))}
-  dfun <- function(dx) {all(apply(dx, 2, afun))}
-  vfun <- function(vx) {all(sapply(vx, afun))}
-  errs <- c(.meets_errs(x, ...), f0(f0(length(ccc) != 1 | !is.character(ccc), F, f0(is.na(ccc), F, ccc %in% .cccs)), NULL, '[ccc] is not a scalar value from ccc_props().'))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  f0(!meets(x, ...), F, f0(!cfun(x), F, f0(ccc == "dtf", dfun(x),  f0(ccc == "vls", vfun(x), afun(x)))))
+  cfun <- function(cx) {uj::run("uj::i", ccc, "(cx)")}
+  afun <- function(ax) {uj::f0(!base::is.atomic(ax), F, uj::f0(base::length(ax) == 0, F, !base::any(base::is.na(ax))))}
+  dfun <- function(dx) {base::all(base::apply(dx, 2, afun))}
+  vfun <- function(vx) {base::all(base::sapply(vx, afun))}
+  errs <- base::c(uj:::.meets_errs(x, ...), uj::f0(uj::f0(base::length(ccc) != 1 | !base::is.character(ccc), F, uj::f0(base::is.na(ccc), F, ccc %in% uj:::.cccs)), NULL, '[ccc] is not a scalar value from ccc_props().'))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  uj::f0(!uj::meets(x, ...), F, uj::f0(!cfun(x), F, uj::f0(ccc == "dtf", dfun(x),  uj::f0(ccc == "vls", vfun(x), afun(x)))))
 }
 
 #' @rdname cmp_ccc
 #' @export
-cmp_ccc_funs <- function() {paste0('cmp_', .cccs)}
+cmp_ccc_funs <- function() {base::paste0('cmp_', .cccs)}
 
 #' @rdname cmp_ccc
 #' @export
-cmp_arr <- function(x, ...) {cmp_ccc(x, 'arr', ...)}
+cmp_arr <- function(x, ...) {uj::cmp_ccc(x, 'arr', ...)}
 
 #' @rdname cmp_ccc
 #' @export
-cmp_dtf <- function(x, ...) {cmp_ccc(x, 'dtf', ...)}
+cmp_dtf <- function(x, ...) {uj::cmp_ccc(x, 'dtf', ...)}
 
 #' @rdname cmp_ccc
 #' @export
-cmp_gen <- function(x, ...) {cmp_ccc(x, 'gen', ...)}
+cmp_gen <- function(x, ...) {uj::cmp_ccc(x, 'gen', ...)}
 
 #' @rdname cmp_ccc
 #' @export
-cmp_mat <- function(x, ...) {cmp_ccc(x, 'mat', ...)}
+cmp_mat <- function(x, ...) {uj::cmp_ccc(x, 'mat', ...)}
 
 #' @rdname cmp_ccc
 #' @export
-cmp_mvc <- function(x, ...) {cmp_ccc(x, 'mvc', ...)}
+cmp_mvc <- function(x, ...) {uj::cmp_ccc(x, 'mvc', ...)}
 
 #' @rdname cmp_ccc
 #' @export
-cmp_scl <- function(x, ...) {cmp_ccc(x, 'scl', ...)}
+cmp_scl <- function(x, ...) {uj::cmp_ccc(x, 'scl', ...)}
 
 #' @rdname cmp_ccc
 #' @export
-cmp_vec <- function(x, ...) {cmp_ccc(x, 'vec', ...)}
+cmp_vec <- function(x, ...) {uj::cmp_ccc(x, 'vec', ...)}
 
 #' @rdname cmp_ccc
 #' @export
-cmp_vls <- function(x, ...) {cmp_ccc(x, 'vls', ...)}
+cmp_vls <- function(x, ...) {uj::cmp_ccc(x, 'vls', ...)}

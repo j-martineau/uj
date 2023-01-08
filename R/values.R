@@ -9,16 +9,16 @@
 #'   \cr `vnames`   \tab Gets names of all package values.
 #'   \cr      `v`   \tab Gets package values by name.
 #' }
-#' @param ... Unquoted, comma-separated list of names of constants to return. If multiple constants are specified, they are coerced into a single atomic vector result.
+#' @param ... Unquoted, comma-separated list of names of values to return. If multiple values are specified, they are coerced into a single atomic vector result.
 #' @return *A character vector*
-#'   \cr    `vnames`
-#'   \cr    `v`
+#'   \cr   `vnames`
+#'   \cr   `v`
 #'   \cr
 #'   \cr *A \link[ivls]{vlist}*
-#'   \cr    `values`
+#'   \cr   `values`
 #'   \cr
 #'   \cr *A data.frame*
-#'   \cr    `vtable`
+#'   \cr   `vtable`
 #' @examples
 #' v(.)
 #' v(pipe, pipe0, eq)
@@ -27,7 +27,7 @@
 #' vtable()
 #' @export
 values <- function() {
-  out <- list(
+  out <- base::list(
     yesno = "yesno",
     okx = "okcancel",
     int = "intercept",
@@ -410,30 +410,30 @@ values <- function() {
     NAC = NA_character_,
     one = 0.99999999,
     zero = 0.00000001,
-    colors = c('#600000FF', '#000060FF', '#6B006BFF', '#303030FF', '#6B3500FF', '#FF0000FF', '#0000FFFF', '#FF00FFFF', '#606060FF', '#FF8800FF'),
-    lines = c('solid', '42', '22', '11', '4111', '2111', '1114', '1112', '1441'),
-    edots = c(5, 0, 2, 6, 1),
-    fdots = c(21, 23, 24, 22, 25),
-    ldots = c(4, 8, 35, 36, 37, 38, 42, 43, 45, 47, 60, 61, 62, 64, 92, 94, 124, 126),
-    ndots = as.character(0:9),
-    pdots = c("!", "@", "#", "$", "%", "&", "?"),
-    sdots = c(16, 18, 17, 15),
+    colors = base::c('#600000FF', '#000060FF', '#6B006BFF', '#303030FF', '#6B3500FF', '#FF0000FF', '#0000FFFF', '#FF00FFFF', '#606060FF', '#FF8800FF'),
+    lines = base::c('solid', '42', '22', '11', '4111', '2111', '1114', '1112', '1441'),
+    edots = base::c(5, 0, 2, 6, 1),
+    fdots = base::c(21, 23, 24, 22, 25),
+    ldots = base::c(4, 8, 35, 36, 37, 38, 42, 43, 45, 47, 60, 61, 62, 64, 92, 94, 124, 126),
+    ndots = base::as.character(0:9),
+    pdots = base::c("!", "@", "#", "$", "%", "&", "?"),
+    sdots = base::c(16, 18, 17, 15),
     az.dots = letters,
     AZ.dots = LETTERS,
-    digits = as.character(0:9),
+    digits = base::as.character(0:9),
     az = letters,
     AZ = LETTERS,
-    azAZ = c(letters, LETTERS),
-    names = c(letters, LETTERS, 0:9, "_", "."),
-    names0 = c(letters, LETTERS, 0:9, "."),
-    files = c(letters, LETTERS, 0:9, "_", ".", " ", ",", "-", "(", ")"),
-    files0 = c(letters, LETTERS, 0:9, ".", " ", ",", "-", "(", ")"),
-    models = c(letters, LETTERS, 0:9, " ", "+", "*", "~", ":", "_", "."),
-    models0 = c(letters, LETTERS, 0:9, " ", "+", "*", "~"),
-    right = c(letters, LETTERS, 0:9, " ", "+" ,"*", ":", "_", "."),
-    right0 = c(letters, LETTERS, 0:9, " ", "+", "*"),
-    labels = c(letters, LETTERS, 0:9, ".", " ", ",", "-", "(", ")", "[", "_", "]", "{", "}"),
-    vowels = c("a", "e", "i", "o", "u", "A", "E", "I", "O", "U"),
+    azAZ = base::c(letters, LETTERS),
+    names = base::c(letters, LETTERS, 0:9, "_", "."),
+    names0 = base::c(letters, LETTERS, 0:9, "."),
+    files = base::c(letters, LETTERS, 0:9, "_", ".", " ", ",", "-", "(", ")"),
+    files0 = base::c(letters, LETTERS, 0:9, ".", " ", ",", "-", "(", ")"),
+    models = base::c(letters, LETTERS, 0:9, " ", "+", "*", "~", ":", "_", "."),
+    models0 = base::c(letters, LETTERS, 0:9, " ", "+", "*", "~"),
+    right = base::c(letters, LETTERS, 0:9, " ", "+" ,"*", ":", "_", "."),
+    right0 = base::c(letters, LETTERS, 0:9, " ", "+", "*"),
+    labels = base::c(letters, LETTERS, 0:9, ".", " ", ",", "-", "(", ")", "[", "_", "]", "{", "}"),
+    vowels = base::c("a", "e", "i", "o", "u", "A", "E", "I", "O", "U"),
     bbb = .bbbs,
     ccc = .cccs,
     ddd = .ddds,
@@ -442,7 +442,7 @@ values <- function() {
     mmm = .mmms,
     sss = .ssss
   )
-  descriptions <- c(
+  descriptions <- base::c(
     yesno = "yes/no spec for dialog box buttons in ?dialogs functions",
     okx = "ok/cancel spec for dialog box buttons in ?dialogs functions",
     int = "intercept",
@@ -857,26 +857,26 @@ values <- function() {
     mmm = "xmode property values // mmm_props() // aka extended mode properties",
     sss = "shape property values // sss_props() // aka geometric shape properties"
   )
-  attr(out, "descriptions") <- descriptions
+  base::attr(out, "descriptions") <- descriptions
   out
 }
 
 #' @rdname values
 #' @export
-vnames <- function() {names(values())}
+vnames <- function() {base::names(uj::values())}
 
 #' @rdname values
 #' @export
 vtable <- function() {
-  x <- values()
-  vals <- sapply(x, paste0, collapse = "|")
-  tibble::tibble(name = names(x), value = vals, description = attr(x, "descriptions"))
+  x <- uj::values()
+  vals <- base::sapply(x, paste0, collapse = "|")
+  tibble::tibble(name = base::names(x), value = vals, description = base::attr(x, "descriptions"))
 }
 
 #' @rdname values
 #' @export
 v <- function(...) {
-  x <- as.character(match.call())
-  x <- x[2:length(x)]
-  av(values()[x])
+  x <- base::as.character(base::match.call())
+  x <- x[2:base::length(x)]
+  uj::av(uj::values()[x])
 }

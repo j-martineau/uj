@@ -29,14 +29,14 @@ ppats(x, pat)
 }
 \value{
 \emph{A positive whole number \link[=ivls]{vlist}}
-\cr    \code{ppats}
+\cr   \code{ppats}
 \cr\cr \emph{A positive whole number vector}
-\cr    \code{wpat}
-\cr    \code{npat}
-\cr    \code{ppat}
+\cr   \code{wpat}
+\cr   \code{npat}
+\cr   \code{ppat}
 \cr\cr \emph{A logical scalar}
-\cr    \code{has_pat}
-\cr    \code{ipat}
+\cr   \code{has_pat}
+\cr   \code{ipat}
 }
 \description{
 \tabular{rl}{

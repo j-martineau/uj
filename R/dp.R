@@ -8,10 +8,10 @@
 #'   \cr `dpall` \tab   Thinly wraps \code{\link[dplyr]{all_of}}.
 #'   \cr `dplab` \tab   Thinly wraps \code{\link[dplyr]{rename}}.
 #'   \cr `dpmod` \tab   Thinly wraps \code{\link[dplyr]{mutate}}.
-#'   \cr `dpgrp` \tab   Limitedly wraps \code{\link[dplyr]{group_by}}\eqn{^a}.
+#'   \cr `dpgrp` \tab   Limitedly wraps \code{\link[dplyr]{group_by}}`*`
 #'   \cr   `dpn` \tab   Thinly wraps \code{\link[dplyr]{n}}.
 #' }
-#' \eqn{^{a.}} Accepts as argument only a data.frame (`x`) and a character vector naming grouping variables (`keys`).
+#' `*` Accepts as argument only a data.frame (`x`) and a character vector naming grouping variables (`keys`).
 #' @param x A data.frame
 #' @param keys A \link[=cmp_chr_vec]{complete character vec} naming grouping variables in `x`.
 #' @return A data.frame.
@@ -31,12 +31,12 @@ dpall <- function(x) {dplyr::all_of(x)}
 
 #' @rdname dp
 #' @export
-dpgrp <- function(x, keys) {run("dplyr::group_by(x, ", paste0(keys, collapse = ", "), ")")}
+dpgrp <- function(x, keys) {run("dplyr::group_by(x, ", base::paste0(keys, collapse = ", "), ")")}
 
 #' @rdname dp
 #' @inherit dplyr::left_join
 #' @export
-dpjoin <- function(x, y, by = NULL, copy = FALSE, suffix = c(".x", ".y"), ..., keep = FALSE) {dplyr::left_join(x, y, by - by, copy = copy, suffix = suffix, ..., keep = keep)}
+dpjoin <- function(x, y, by = NULL, copy = FALSE, suffix = c(".x", ".y"), ..., keep = FALSE) {dplyr::left_join(x, y, by = by, copy = copy, suffix = suffix, ..., keep = keep)}
 
 #' @rdname dp
 #' @inherit dplyr::rename

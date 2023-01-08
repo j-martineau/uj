@@ -17,4 +17,4 @@
 #' pause(1)
 #' cat("\n done")
 #' @export
-pause <- function(x = 0.0000001) {Sys.sleep(x)}
+pause <- function(x = 0.0000001) {base::Sys.sleep(x)}

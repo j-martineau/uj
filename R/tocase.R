@@ -38,38 +38,38 @@
 #' @export
 tocase <- function(case., ...) {
   library(stringr)
-  x <- av(...)
-  ok.case <- isIN(case., c("l", "s", "t", "u"))
-  ok.dots <- cmp_chr_vec(x)
-  errs <- c(f0(ok.case , NULL, "[case.] must be either 'l', 's', 't', or 'u'."),
-            f0(ok.dots , NULL, "[...] must be contain character values."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if      (case. == "l") {tolower(x)}
-  else if (case. == "u") {toupper(x)}
+  x <- uj::av(...)
+  ok.case <- uj::isIN(case., c("l", "s", "t", "u"))
+  ok.dots <- uj::cmp_chr_vec(x)
+  errs <- base::c(uj::f0(ok.case , NULL, "[case.] must be either 'l', 's', 't', or 'u'."),
+                  uj::f0(ok.dots , NULL, "[...] must be contain character values."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if      (case. == "l") {base::tolower(x)}
+  else if (case. == "u") {base::toupper(x)}
   else if (case. == "t") {stringr::str_to_title(x)}
   else if (case. == "s") {stringr::str_to_sentence(x)}
 }
 
 #' @rdname tocase
 #' @export
-tosent <- function(...) {tocase("s", ...)}
+tosent <- function(...) {uj::tocase("s", ...)}
 
 #' @rdname tocase
 #' @export
-totitle <- function(...) {tocase("t", ...)}
+totitle <- function(...) {uj::tocase("t", ...)}
 
 #' @rdname tocase
 #' @export
-lc <- function(...) {tocase("l", ...)}
+lc <- function(...) {uj::tocase("l", ...)}
 
 #' @rdname tocase
 #' @export
-sc <- function(...) {tocase("s", ...)}
+sc <- function(...) {uj::tocase("s", ...)}
 
 #' @rdname tocase
 #' @export
-tc <- function(...) {tocase("t", ...)}
+tc <- function(...) {uj::tocase("t", ...)}
 
 #' @rdname tocase
 #' @export
-uc <- function(...) {tocase("u", ...)}
+uc <- function(...) {uj::tocase("u", ...)}

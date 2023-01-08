@@ -5,18 +5,22 @@
 \alias{paths}
 \alias{is_path}
 \alias{as_path}
+\alias{object_dirs}
+\alias{parent_dirs}
 \alias{object_path}
 \alias{parent_path}
 \alias{object_name}
 \alias{parent_name}
-\alias{object_dirs}
-\alias{parent_dirs}
 \alias{newdirs}
 \title{Evaluate and manipulate paths to files or folders}
 \usage{
 is_path(..., err = F)
 
 as_path(..., err = T)
+
+object_dirs(path, err = T)
+
+parent_dirs(path, err = T)
 
 object_path(path, err = T)
 
@@ -25,10 +29,6 @@ parent_path(path, err = T)
 object_name(path, err = T)
 
 parent_name(path, err = T)
-
-object_dirs(path, err = T)
-
-parent_dirs(path, err = T)
 
 newdirs(dirs, path = NULL)
 }
@@ -43,12 +43,14 @@ newdirs(dirs, path = NULL)
 }
 \value{
 \emph{A character vector}
-\cr    \verb{object_dirs, folder_dirs}
-\cr\cr \emph{A character scalar}
-\cr    \verb{object_path, folder_path}
-\cr    \verb{object_name, folder_name}
-\cr\cr \emph{A logical scalar}
-\cr    \code{is_path}
+\cr   \verb{object_dirs, folder_dirs}
+\cr
+\cr \emph{A character scalar}
+\cr   \verb{object_path, folder_path}
+\cr   \verb{object_name, folder_name}
+\cr
+\cr \emph{A logical scalar}
+\cr   \code{is_path}
 }
 \description{
 \tabular{rl}{
@@ -116,7 +118,7 @@ Other extensions:
 \code{\link{failsafe_is}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{na}()},
@@ -127,7 +129,7 @@ Other extensions:
 \code{\link{swap}()},
 \code{\link{uv}()},
 \code{\link{wv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 
 Other files: 
 \code{\link{rd}}

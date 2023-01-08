@@ -12,9 +12,9 @@
 #' max_nch("a", "collection", "of", "words")
 #' @export
 max_nch <- function(...) {
-  x <- av(...)
-  x <- x[!is.na(x)]
-  if (length(x) == 0) {stop(.errs("[...] does not contain any non-NA values."))}
-  if (!ichr(x))       {stop(.errs("[...] does not contain any character objects."))}
-  max(nchar(x))
+  x <- uj::av(...)
+  x <- x[!base::is.na(x)]
+  if (base::length(x) == 0) {stop(uj:::.errs("[...] does not contain any non-NA values."))}
+  if (!uj::ichr(x))         {stop(uj:::.errs("[...] does not contain any character objects."))}
+  base::max(base::nchar(x))
 }

@@ -25,11 +25,13 @@ vset(name, val, gens = 1)
 }
 \value{
 \emph{A logical scalar}
-\cr    \code{vexists}
-\cr\cr \emph{An R object}
-\cr    \code{vget}
-\cr\cr \code{NULL}
-\cr    \code{vset}
+\cr   \code{vexists}
+\cr
+\cr \emph{An} R \emph{object}
+\cr   \code{vget}
+\cr
+\cr \code{NULL}
+\cr   \code{vset}
 }
 \description{
 All functions in this family operate in the environment of the calling function \code{gens} generations back in the call stack.
@@ -100,7 +102,7 @@ Other extensions:
 \code{\link{failsafe_is}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{na}()},
@@ -112,7 +114,7 @@ Other extensions:
 \code{\link{swap}()},
 \code{\link{uv}()},
 \code{\link{wv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 }
 \concept{environments}
 \concept{extensions}

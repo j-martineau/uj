@@ -22,7 +22,7 @@
 #' uav(abc, bcd, num)
 #' suv(abc, bcd, num)
 #' @export
-uv <- function(...) {unique(av(...))}
+uv <- function(...) {base::unique(uj::av(...))}
 
 #' @rdname uv
 #' @export
@@ -30,5 +30,5 @@ uav <- uv
 
 #' @rdname uv
 #' @export
-suv <- function(...) {sort(unique(av(...)))}
+suv <- function(...) {base::sort(base::unique(uj::av(...)))}
 

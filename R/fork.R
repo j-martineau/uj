@@ -24,10 +24,10 @@
 #' @param na An object of any type for `f1`. An atomic scalar \link[=compatible]{compatible} with `yes` and `no` for `fork`, with the additional possibility of `na = 'err'` to indicate an error should be thrown if any values in `test` are `na`.
 #' @param err Either `'err'` or an object to be returned when `test` is not an atomic scalar in `c(TRUE, FALSE, NA)`.
 #' @return *A length-`length(x)` atomic object*
-#'   \cr    `fork`
-#'   \cr\cr *An* R *object*
-#'   \cr    `f0`
-#'   \cr    `f1`
+#'   \cr   `fork`
+#'   \cr\cr *An* R *object*
+#'   \cr   `f0`
+#'   \cr   `f1`
 #' @examples
 #' Vec. <- sample(c(TRUE, FALSE, NA), 10, replace = TRUE)
 #' Yes. <- list(a = "yes", b = "yes")
@@ -55,40 +55,40 @@
 #' f1(7, Yes., No., err = Vec.)
 #' f1(7, Yes., No.)
 #' @export
-f0 <- function(x, y, n) {if (isTRUE(x)) {y} else {n}}
+f0 <- function(x, y, n) {if (base::isTRUE(x)) {y} else {n}}
 
 #' @rdname fork
 #' @export
 fork <- function(x, y, n, na = n) {
-  nx <- length(x)
-  ny <- length(y)
-  nn <- length(n)
-  nna <- length(na)
-  na.err <- isID(na, 'err')
-  inc.na <- na.err | isNAS(na)
-  ok.x <- lgl_vec(x)
-  ok.y <- f0(!ivec(y), F, f0(!ok.x, T, ny %in% c(1, max(1, nx))))
-  ok.n <- f0(!ivec(n), F, f0(!ok.x, T, nn %in% c(1, max(1, nx))))
-  ok.na <- f0(!ivec(na), F, f0(!ok.x, T, nna %in% c(1, max(1, nx))))
-  errs <- c(f0(ok.x , NULL, "[x] must be a complete logical vec (?cmp_lgl_vec)."),
-            f0(ok.y , NULL, "[y] must be of length 1 or a vector of the same length as [x]."),
-            f0(ok.n , NULL, "[n] must be of length 1 or a vector of the same length as [x]."),
-            f0(ok.na, NULL, "[na] must be of length 1 or a vector of the same length as [x]."))
-  if (!is.null(errs)) {stop(.errs(errs))}
+  nx <- base::length(x)
+  ny <- base::length(y)
+  nn <- base::length(n)
+  nna <- base::length(na)
+  na.err <- uj::isID(na, 'err')
+  inc.na <- na.err | uj::isNAS(na)
+  ok.x <- uj::lgl_vec(x)
+  ok.y <- uj::f0(!uj::ivec(y), F, uj::f0(!ok.x, T, ny %in% base::c(1, base::max(1, nx))))
+  ok.n <- uj::f0(!uj::ivec(n), F, uj::f0(!ok.x, T, nn %in% base::c(1, base::max(1, nx))))
+  ok.na <- uj::f0(!uj::ivec(na), F, uj::f0(!ok.x, T, nna %in% base::c(1, base::max(1, nx))))
+  errs <- base::c(uj::f0(ok.x , NULL, "[x] must be a complete logical vec (?cmp_lgl_vec)."),
+                  uj::f0(ok.y , NULL, "[y] must be of length 1 or a vector of the same length as [x]."),
+                  uj::f0(ok.n , NULL, "[n] must be of length 1 or a vector of the same length as [x]."),
+                  uj::f0(ok.na, NULL, "[na] must be of length 1 or a vector of the same length as [x]."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
   ok.tny <- ok.x & ok.y & ok.n
-  ok.arg <- f0(!na.err | !ok.x, T, cmp_lgl_vec(x))
-  ok.tny <- f0(!ok.tny, NULL, f0(inc.na, compatible(y, n, na), compatible(y, n)))
-  errs  <- c(f0(ok.arg, NULL,            "[na = 'err'] but [x] contains NA values."),
-             f0(ok.tny, NULL, f0(inc.na, "[y], [n], and [na] must be of compatible (?compatible) modes.",
-                                         "[y] and [n] must be of compatible (?compatible) modes.")))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (ny  == 1) {y  <- rep.int(y , nx)}
-  if (nn  == 1) {n  <- rep.int(n , nx)}
-  if (nna == 1) {na <- rep.int(na, nx)}
-  out <- rep.int(NA, nx)
-  iT <- sapply(x, isTRUE)
-  iF <- sapply(x, isFALSE)
-  iN <- is.na(x)
+  ok.arg <- uj::f0(!na.err | !ok.x, T, uj::cmp_lgl_vec(x))
+  ok.tny <- uj::f0(!ok.tny, NULL, uj::f0(inc.na, uj::compatible(y, n, na), uj::compatible(y, n)))
+  errs  <- base::c(uj::f0(ok.arg, NULL, "[na = 'err'] but [x] contains NA values."),
+                   uj::f0(ok.tny, NULL, uj::f0(inc.na, "[y], [n], and [na] must be of compatible (?compatible) modes.",
+                                                       "[y] and [n] must be of compatible (?compatible) modes.")))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (ny  == 1) {y  <- base::rep.int(y , nx)}
+  if (nn  == 1) {n  <- base::rep.int(n , nx)}
+  if (nna == 1) {na <- base::rep.int(na, nx)}
+  out <- base::rep.int(NA, nx)
+  iT <- base::sapply(x, isTRUE)
+  iF <- base::sapply(x, isFALSE)
+  iN <- base::is.na(x)
   out[iT] <-  y[iT]
   out[iF] <-  n[iF]
   out[iN] <- na[iN]
@@ -98,14 +98,12 @@ fork <- function(x, y, n, na = n) {
 #' @rdname fork
 #' @export
 f1 <- function(x, y, n, na = n, err = n) {
-  nas <- isNAS(x)
-  x <- failsafe(x)
-  f0(isTRUE(x), y,
-     f0(isFALSE(x), n,
-        f0(nas & !isID(na, 'err'), na,
-           f0(!isLG(x) & !isID(err, 'err'), err,
-              f0(nas, stop(.errs("[x] must be atomic, scalar, and TRUE, FALSE, or NA.")),
-                      stop(.errs("[x] must be atomic, scalar, and TRUE or FALSE." )))))))
+  nas <- uj::isNAS(x)
+  x <- uj::failsafe(x)
+  uj::f0(base::isTRUE(x), y,
+  uj::f0(base::isFALSE(x), n,
+  uj::f0(nas & !uj::isID(na, 'err'), na,
+  uj::f0(!uj::isLG(x) & !uj::isID(err, 'err'), err,
+  uj::f0(nas, stop(uj:::.errs("[x] must be atomic, scalar, and TRUE, FALSE, or NA.")),
+              stop(uj:::.errs("[x] must be atomic, scalar, and TRUE or FALSE." )))))))
 }
-
-

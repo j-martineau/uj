@@ -21,12 +21,14 @@ msgERR(x)
 }
 \value{
 \emph{Either} \code{x}, \emph{an object of class} \code{'error'} \emph{or of class} \code{'simpleError'}
-\cr    \code{failsafe}
-\cr\cr \code{NULL} \emph{or a character scalar}
-\cr    \code{msgERR}
-\cr\cr \emph{A logical scalar}
-\cr    \code{notERR}
-\cr    \code{isERR}
+\cr   \code{failsafe}
+\cr
+\cr \code{NULL} \emph{or a character scalar}
+\cr   \code{msgERR}
+\cr
+\cr \emph{A logical scalar}
+\cr   \code{notERR}
+\cr   \code{isERR}
 }
 \description{
 \tabular{rl}{
@@ -64,7 +66,7 @@ Other extensions:
 \code{\link{failsafe_binaries}},
 \code{\link{failsafe_is}},
 \code{\link{fork}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{na}()},
@@ -76,7 +78,7 @@ Other extensions:
 \code{\link{swap}()},
 \code{\link{uv}()},
 \code{\link{wv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 
 Other failsafe: 
 \code{\link{failsafe_binaries}},

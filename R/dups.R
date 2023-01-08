@@ -12,24 +12,25 @@
 #' @param int A non-`NA` logical scalar indicating whether to return a logical vector (`int = FALSE`) or an integer vector (`int = TRUE`).
 #' @return *A logical vector* (when `int = FALSE)`
 #' \cr * or an integer vector* (when `int = TRUE`)
-#' \cr    `idups`
-#' \cr\cr *An atomic vector*
-#' \cr    `dups`
+#' \cr   `idups`
+#' \cr
+#' \cr *An atomic vector*
+#' \cr   `dups`
 #' @examples
 #' dups(0:5, 5:10, 10:15, 15:20)
 #' idups(c(0:5, 5:10, 10:15, 15:20))
 #' idups(c(0:5, 5:10, 10:15, 15:20), int = T)
 #' @export
 dups <- function(...) {
-  x <- av(...)
-  unique(x[duplicated(x)])
+  x <- uj::av(...)
+  base::unique(x[base::duplicated(x)])
 }
 
 #' @rdname dups
 #' @export
 idups <- function(x, int = F) {
-  errs <- c(f0(atm_vec(x), NULL, "[x] must be an atomic vec (?atm_vec)."),
-            f0(isTF(int) , NULL, "[int] must be TRUE or FALSE."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  f0(int, which(duplicated(x)), duplicated(x))
+  errs <- base::c(uj::f0(uj::atm_vec(x), NULL, "[x] must be an atomic vec (?atm_vec)."),
+                  uj::f0(uj::isTF(int) , NULL, "[int] must be TRUE or FALSE."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  uj::f0(int, base::which(base::duplicated(x)), base::duplicated(x))
 }

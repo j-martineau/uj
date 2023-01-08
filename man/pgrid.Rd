@@ -37,10 +37,10 @@ A character vector.
 \cr            \tab  
 \cr \code{pgrid0}   \tab Calls \code{pgrid} with \code{p = ""} (blank).
 \cr \code{pgrid1}   \tab Calls \code{pgrid} with \verb{p = " "} (space).
-\cr \code{pgridn}   \tab Calls \code{pgrid} with \verb{crossed = FALSE}\eqn{^a}.
-\cr \code{pgridx}   \tab Calls \code{pgrid} with \code{crossed = TRUE}\eqn{^a}.
+\cr \code{pgridn}   \tab Calls \code{pgrid} with \verb{crossed = FALSE *}
+\cr \code{pgridx}   \tab Calls \code{pgrid} with \verb{crossed = TRUE *}
 }
-\eqn{^{a.}} See \emph{the} \code{crossed} \emph{argument} section.
+\code{*} See \emph{the} \code{crossed} \emph{argument} section.
 }
 \section{The \code{crossed} Argument}{
  The following console excerpt shows the effect of the value of \code{crossed}:

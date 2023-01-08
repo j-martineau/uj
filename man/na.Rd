@@ -29,15 +29,18 @@ rm_na(x)
 }
 \value{
 \emph{A logical object of the same dimension as \code{x}}
-\cr    \verb{na, ok}
-\cr\cr \emph{\code{x} with \code{NA} values replaced}
+\cr   \verb{na, ok}
+\cr
+\cr \emph{\code{x} with \code{NA} values replaced}
 \cr (properties may change with \code{NA} replacement)
-\cr    \code{sub_na}
-\cr\cr \emph{\code{x} with \code{NA} values removed}
+\cr   \code{sub_na}
+\cr
+\cr \emph{\code{x} with \code{NA} values removed}
 \cr (properties may change with \code{NA} removal)
-\cr    \code{rm_na}
-\cr\cr \emph{A logical scalaqr}
-\cr    \verb{nas, oks}
+\cr   \code{rm_na}
+\cr
+\cr \emph{A logical scalaqr}
+\cr   \verb{nas, oks}
 }
 \description{
 All functions in this group take objects of atomic mode, \link[=atm_dtf]{atomic dtfs}, or \link[=atm_vls]{atomic vlists}:
@@ -96,7 +99,7 @@ Other extensions:
 \code{\link{failsafe_is}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{paths}},
@@ -107,7 +110,7 @@ Other extensions:
 \code{\link{swap}()},
 \code{\link{uv}()},
 \code{\link{wv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 
 Other values: 
 \code{\link{atomize}()},

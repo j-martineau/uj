@@ -2,9 +2,12 @@
 #' @family conversions
 #' @title Convert sortable values in levels by range
 #' @description Convert values of `x` to the `n` levels in `levs` distinguished by the `n-1` thresholds in `cuts`.
-#' \cr\cr When values of `x` are equal to a value of `cuts`, assignment to level is dependent on whether the value of each element of `cut` is less than `0` vs. greater than or equal to `0`.
-#' \cr\cr For a value in `cuts` less than `0`, the level assigned is the lower of the levels distinguished by that value of `cuts`.
-#' \cr\cr Otherwise, the level assigned is the upper of the levels distinguished by that value of `cuts`.
+#' \cr
+#' \cr When values of `x` are equal to a value of `cuts`, assignment to level is dependent on whether the value of each element of `cut` is less than `0` vs. greater than or equal to `0`.
+#' \cr
+#' \cr For a value in `cuts` less than `0`, the level assigned is the lower of the levels distinguished by that value of `cuts`.
+#' \cr
+#' \cr Otherwise, the level assigned is the upper of the levels distinguished by that value of `cuts`.
 #' @param x An atomic object of \link[=isrt]{sortable} values.
 #' @param cuts An \link[=num_vec]{atomic vec} of `n-1` cuts for `n` levels.
 #' @param levs An atomic vec of `n` level labels.
@@ -22,25 +25,25 @@
 #' rng2lev(ord_vals., ord_cuts., rng_levs.)
 #' @export
 rng2lev <- function(x, cuts, levs) {
-  errs <- c(f0(pop_srt(x)       , NULL, "[x] must be an atomic sortable object (?isrt)."),
-            f0(cmp_srt_vec(cuts), NULL, "[cuts] must be a complete sortable vec (?cmp_srt_vec)."),
-            f0(cmp_srt_vec(levs), NULL, "[levs] must be a complete sortable vec (?cmp_srt_vec)."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  errs <- c(f0(all(sort(cuts) == cuts)             , NULL, "[cuts] must be sorted in increasing order."),
-            f0(length(unique(cuts)) == length(cuts), NULL, "[cuts] contains duplicate values."),
-            f0(length(cuts) == length(levs) - 1    , NULL, "length(cuts) must equal length(levs) - 1."),
-            f0(comparable(x, cuts)                 , NULL, "[x] and [cuts] must be of comparable modes (?comparable)."))
-  if (!is.null(errs)) {stop(.errs(errs))}
+  errs <- base::c(uj::f0(uj::pop_srt(x)       , NULL, "[x] must be an atomic sortable object (?isrt)."),
+                  uj::f0(uj::cmp_srt_vec(cuts), NULL, "[cuts] must be a complete sortable vec (?cmp_srt_vec)."),
+                  uj::f0(uj::cmp_srt_vec(levs), NULL, "[levs] must be a complete sortable vec (?cmp_srt_vec)."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  errs <- base::c(uj::f0(base::all(base::sort(cuts) == cuts)                   , NULL, "[cuts] must be sorted in increasing order."),
+                  uj::f0(base::length(base::unique(cuts)) == base::length(cuts), NULL, "[cuts] contains duplicate values."),
+                  uj::f0(base::length(cuts) == base::length(levs) - 1          , NULL, "length(cuts) must equal length(levs) - 1."),
+                  uj::f0(uj::comparable(x, cuts)                               , NULL, "[x] and [cuts] must be of comparable modes (?comparable)."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
   y <- x
-  y[1:length(y)] <- NA
-  if (   is.character(levs)) {y <- as.character(y)}
-  else if (is.ordered(levs)) {y <- ordered(y, levels = levels(levs))}
-  else if (is.numeric(levs)) {y <- as.numeric(y)}
-  for (i in 1:length(cuts)) {
+  y[1:base::length(y)] <- NA
+  if (base::is.character(levs)) {y <- base::as.character(y)}
+  else if (base::is.ordered(levs)) {y <- base::ordered(y, levels = base::levels(levs))}
+  else if (base::is.numeric(levs)) {y <- base::as.numeric(y)}
+  for (i in 1:base::length(cuts)) {
     cut <- cuts[i]
     lo <- levs[i]
     hi <- levs[i + 1]
-    eq <- f0(!is.numeric(x), hi, f0(x < 0, lo, hi))
+    eq <- uj::f0(!base::is.numeric(x), hi, uj::f0(x < 0, lo, hi))
     if (i == 1) {y[x < cut] <- lo}
     y[x > cut] <- hi
     y[x == cut] <- eq

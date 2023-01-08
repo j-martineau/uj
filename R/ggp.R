@@ -43,12 +43,12 @@
 #'   \cr    `ggelin` \tab   Thinly wraps \code{\link[ggplot2]{element_line}}
 #'   \cr   `ggenull` \tab   Thinly wraps \code{\link[ggplot2]{element_blank}}
 #'   \cr             \tab   
-#'   \cr     `ggemd` \tab   Thinly wraps \code{\link[ggtext]{element_markdown}}\eqn{^a}
+#'   \cr     `ggemd` \tab   Thinly wraps \code{\link[ggtext]{element_markdown}}`*`
 #' }
-#' \eqn{{a.}} A `ggtext` package function.
+#' `*` A `ggtext` package function.
 #' @inherit ggplot2::ggplot
 #' @export
-ggp <- function(data = NULL, mapping = ggplot2::aes(), ..., environment = parent.frame()) {ggplot2::ggplot(data = data, mapping = mapping, ..., environment = environment)}
+ggp <- function(data = NULL, mapping = ggplot2::aes(), ..., environment = base::parent.frame()) {ggplot2::ggplot(data = data, mapping = mapping, ..., environment = environment)}
 
 #' @rdname ggp
 #' @inherit ggplot2::aes

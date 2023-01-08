@@ -9,6 +9,7 @@
 #'   \cr `'d2D'` \tab   `2D`   \tab Data.frames and matrices.
 #'   \cr `'dHD'` \tab   `HD`   \tab Hyper (3+) dimensional arrays
 #' }
+#' \cr
 #' **Functions**
 #' \tabular{rl}{
 #'     `is_ddd_spec`   \tab Is `spec` a defined.d property specification?
@@ -24,15 +25,17 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return *A character vector*
-#'  \cr    `ddd_props`
-#'  \cr    `ddd_funs`
-#'  \cr    `ddd`
-#'  \cr\cr *A logical scalar*
-#'  \cr    `is_ddd_spec`
-#'  \cr    `iDDD`
-#'  \cr    `iddd`
-#'  \cr\cr *A numeric scalar*
-#'  \cr    `nddd`
+#'  \cr   `ddd_props`
+#'  \cr   `ddd_funs`
+#'  \cr   `ddd`
+#'  \cr
+#'  \cr *A logical scalar*
+#'  \cr   `is_ddd_spec`
+#'  \cr   `iDDD`
+#'  \cr   `iddd`
+#'  \cr
+#'  \cr *A numeric scalar*
+#'  \cr   `nddd`
 #' @examples
 #' ddd_funs()
 #' ddd_props()
@@ -47,48 +50,48 @@
 #' @export
 ddd <- function(x) {
   out <- NULL
-  for (d in .ddds) {out <- c(out, f0(run('.i', d, '(x)'), d, NULL))}
+  for (d in .ddds) {out <- base::c(out, uj::f0(run('uj:::.i', d, '(x)'), d, NULL))}
   out
 }
 
 #' @rdname ddd
 #' @export
-ddd_funs <- function() {paste0("i", .ddds)}
+ddd_funs <- function() {base::paste0("i", uj:::.ddds)}
 
 #' @rdname ddd
 #' @export
-ddd_props <- function() {.ddds}
+ddd_props <- function() {uj:::.ddds}
 
 #' @rdname ddd
 #' @export
-is_ddd_spec <- function(spec) {spec <- .spec_vals(spec); f0(length(spec) == 0, F, all(spec %in% .ddds))}
+is_ddd_spec <- function(spec) {spec <- uj:::.spec_vals(spec); uj::f0(base::length(spec) == 0, F, base::all(spec %in% .ddds))}
 
 #' @rdname ddd
 #' @export
 iddd <- function(x, spec, ...) {
-  errs <- c(.meets_errs(x, ...), f0(is_ddd_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from ddd_props().'))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (!meets(x, ...)) {return(F)}
-  for (prop in .spec_vals(spec)) {if (run('.i', prop, '(x)')) {return(T)}}
+  errs <- base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_ddd_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from ddd_props().'))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!uj::meets(x, ...)) {return(F)}
+  for (prop in uj:::.spec_vals(spec)) {if (uj::run('uj:::.i', prop, '(x)')) {return(T)}}
   F
 }
 
 #' @rdname ddd
 #' @export
-id0D <- function(x, ...) {iddd(x, 'd0D', ...)}
+id0D <- function(x, ...) {uj::iddd(x, 'd0D', ...)}
 
 #' @rdname ddd
 #' @export
-id1D <- function(x, ...) {iddd(x, 'd1D', ...)}
+id1D <- function(x, ...) {uj::iddd(x, 'd1D', ...)}
 
 #' @rdname ddd
 #' @export
-id2D <- function(x, ...) {iddd(x, 'd2D', ...)}
+id2D <- function(x, ...) {uj::iddd(x, 'd2D', ...)}
 
 #' @rdname ddd
 #' @export
-idHD <- function(x, ...) {iddd(x, 'dHD', ...)}
+idHD <- function(x, ...) {uj::iddd(x, 'dHD', ...)}
 
 #' @rdname ddd
 #' @export
-nddd <- function(x) {f0(is.null(x), 0, f0(is.vector(x), 1, length(dim(x))))}
+nddd <- function(x) {uj::f0(base::is.null(x), 0, uj::f0(base::is.vector(x), 1, base::length(base::dim(x))))}

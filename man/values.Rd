@@ -17,18 +17,18 @@ vtable()
 v(...)
 }
 \arguments{
-\item{...}{Unquoted, comma-separated list of names of constants to return. If multiple constants are specified, they are coerced into a single atomic vector result.}
+\item{...}{Unquoted, comma-separated list of names of values to return. If multiple values are specified, they are coerced into a single atomic vector result.}
 }
 \value{
 \emph{A character vector}
-\cr    \code{vnames}
-\cr    \code{v}
+\cr   \code{vnames}
+\cr   \code{v}
 \cr
 \cr \emph{A \link[ivls]{vlist}}
-\cr    \code{values}
+\cr   \code{values}
 \cr
 \cr \emph{A data.frame}
-\cr    \code{vtable}
+\cr   \code{vtable}
 }
 \description{
 \tabular{rl}{

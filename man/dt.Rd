@@ -35,7 +35,7 @@ dtmerge(
   sort = TRUE,
   suffixes = c(".x", ".y"),
   no.dups = TRUE,
-  allow.cartesian = getOption("datatable.allow.cartesian"),
+  allow.cartesian = base::getOption("datatable.allow.cartesian"),
   say = TRUE
 )
 
@@ -52,7 +52,7 @@ dtwide(
   fill = NULL,
   drop = TRUE,
   value.var = data.table:::guess(data),
-  verbose = getOption("datatable.verbose"),
+  verbose = base::getOption("datatable.verbose"),
   say = TRUE
 )
 }

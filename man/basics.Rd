@@ -109,11 +109,13 @@ For a vector, an object of the same type of \code{x}, but with only
   \cr  \code{p0}   \tab Calls \code{\link[base:paste]{paste(..., sep = "")}}
   \cr   \code{p}   \tab Calls \code{\link[base:paste]{paste(..., sep = p)}}
   \cr         \tab  
-\cr   \code{u}   \tab Thinly wraps \code{\link[base]{unique}}\eqn{^a}
-\cr   \code{w}   \tab Thinly Wraps \code{\link[base]{which}}\eqn{^b}
+\cr   \code{u}   \tab Thinly wraps \code{\link[base]{unique}}\code{*}
+\cr   \code{w}   \tab Thinly Wraps \code{\link[base]{which}}\verb{**}
 }
-\eqn{^{a.}} Differs from \code{\link{uv}}, which calls \code{unique(av(...))}.
-\cr\eqn{^{b.}} Differs from \code{\link{wv}}, which calls \code{which(av(...))}.
+\code{*} Differs from \code{\link{uv}}, which calls \code{unique(av(...))}.
+\cr
+\cr
+\verb{**} Differs from \code{\link{wv}}, which calls \code{which(av(...))}.
 }
 \details{
 This is a generic function with methods for vectors, data frames and

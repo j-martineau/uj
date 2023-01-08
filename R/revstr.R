@@ -37,15 +37,15 @@
 #' revstr(dtfNA., na = TRUE)
 #' @export
 revstr <- function(x, na = FALSE) {
-  .rev <- function(xxx) {paste0(rev(av(strsplit(xxx, "", fixed = T))), collapse = "")}
-  .revs <- function(xx) {sapply(xx, .rev)}
-  ok.x <- f0(chr_vec(x), T, f0(chr_arr(x), T, f0(length(x) == 0, F, f0(chr_vls(x), T, chr_dtf(x)))))
-  ok.na <- isTF(na)
-  ok.nax <- f0(!ok.na, T, f0(na, T, !any(is.na(av(x)))))
-  errs <- c(f0(ok.x  , NULL, "[x] must be an atomic character object, character vlist (?chr_vls), or character data.frame (?chr_dtf)."),
-            f0(ok.na , NULL, "[na] must be a non-NA logical scalar."),
-            f0(ok.nax, NULL, "[na = FALSE] but [x] contains one or more NA values."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  nd <- length(dim(x))
-  f0(idtf(x), apply(x, 2, .revs), f0(ivls(x), lapply(x, .revs), f0(nd > 0, apply(x, 1:nd, .revs), .revs(x))))
+  .rev <- function(xxx) {base::paste0(base::rev(uj::av(base::strsplit(xxx, "", fixed = T))), collapse = "")}
+  .revs <- function(xx) {base::sapply(xx, .rev)}
+  ok.x <- uj::f0(uj::chr_vec(x), T, uj::f0(uj::chr_arr(x), T, uj::f0(base::length(x) == 0, F, uj::f0(uj::chr_vls(x), T, uj::chr_dtf(x)))))
+  ok.na <- uj::isTF(na)
+  ok.nax <- uj::f0(!ok.na, T, uj::f0(na, T, !base::any(base::is.na(uj::av(x)))))
+  errs <- c(uj::f0(ok.x  , NULL, "[x] must be an atomic character object, character vlist (?chr_vls), or character data.frame (?chr_dtf)."),
+            uj::f0(ok.na , NULL, "[na] must be a non-NA logical scalar."),
+            uj::f0(ok.nax, NULL, "[na = FALSE] but [x] contains one or more NA values."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  nd <- base::length(base::dim(x))
+  uj::f0(uj::idtf(x), base::apply(x, 2, .revs), uj::f0(uj::ivls(x), base::lapply(x, .revs), uj::f0(nd > 0, base::apply(x, 1:nd, .revs), .revs(x))))
 }

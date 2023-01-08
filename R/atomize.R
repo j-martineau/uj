@@ -23,7 +23,7 @@
 #' atoms(x, y)
 #' atomize(x, "d", y, 4)
 #' sav(x, "d", y, 4)
-atomize <- function(...) {x <- as.vector(unlist(list(...), T, F)); attributes(x) <- NULL; x}
+atomize <- function(...) {x <- base::as.vector(base::unlist(base::list(...), T, F)); base::attributes(x) <- NULL; x}
 
 #' @rdname atomize
 #' @export
@@ -39,4 +39,4 @@ a <- atomize
 
 #' @rdname atomize
 #' @export
-sav <- function(...) {sort(atomize(...))}
+sav <- function(...) {base::sort(uj::atomize(...))}

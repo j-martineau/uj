@@ -2,7 +2,7 @@
 #' @family strings
 #' @title Oxford-comma separated lists
 #' @description Create Oxford-comma separated lists with a variety of templates (displayed below) where `{conj}` and `{n}` represent the values of arguments `conj` and `n`; `{pref}` and `{comp}` indicate the potentially-`NULL` values of arguments `pref` and `conj`; and `[a]`, `[b]`, and `[z]` represents elements of a list.
-#' \cr\cr  With the exception of `{n} > length(av(...))`, these functions appropriately process lists of length `1` and `2`.
+#' \cr\cr  With the exception of `{n} > length(uj::av(...))`, these functions appropriately process lists of length `1` and `2`.
 #' \cr\cr **Functions and associated templates**
 #' \tabular{rl}{
 #'           **Function**   \tab **Associated template**
@@ -100,26 +100,26 @@
 #' ox_orfewer(Fruits, n = 2)
 #' @export
 ox <- function(..., conj = "and", pref = "", quote = 0) {
-  vals <- av(...)
-  errs <- c(f0(length(vals) > 0 , NULL, "[...] is empty."),
-            f0(icmp(vals)       , NULL, "Arguments in [...] must be complete and atomic (?icmp)."),
-            f0(cmp_chr_scl(conj), NULL, "[conj] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(cmp_chr_scl(pref), NULL, "[pref] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(isIN(quote, 0:2) , NULL, "[quote] must be 0, 1, or 2."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  n.vals <- length(vals)
+  vals <- uj::av(...)
+  errs <- base::c(uj::f0(base::length(vals) > 0, NULL, "[...] is empty."),
+                  uj::f0(uj::icmp(vals)        , NULL, "Arguments in [...] must be complete and atomic (?icmp)."),
+                  uj::f0(uj::cmp_chr_scl(conj) , NULL, "[conj] must be a complete character scalar (?cmp_chr_scl)."),
+                  uj::f0(uj::cmp_chr_scl(pref) , NULL, "[pref] must be a complete character scalar (?cmp_chr_scl)."),
+                  uj::f0(uj::isIN(quote, 0:2)  , NULL, "[quote] must be 0, 1, or 2."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  n.vals <- base::length(vals)
   if (n.vals == 1) {
-    errs <- c(f0(conj != 'nor'                  , NULL, "[conj = 'nor'], but [...] contains only 1 atomic element."),
-              f0(conj != "or" | pref != "either", NULL, "[conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element."))
-    if (!is.null(errs)) {stop(.errs(errs))}
+    errs <- base::c(uj::f0(conj != 'nor'                  , NULL, "[conj = 'nor'], but [...] contains only 1 atomic element."),
+                    uj::f0(conj != "or" | pref != "either", NULL, "[conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element."))
+    if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
   }
-  if (pref != "") {pref <- paste0(pref, " ")}                                    # if pref(ix) is not empty, follow it with a space
+  if (pref != "") {pref <- base::paste0(pref, " ")}                              # if pref(ix) is not empty, follow it with a space
   last <- vals[n.vals]                                                           # get the last element of X
   if (n.vals > 1) {                                                              # if there is more than one element in the list
-    list <- paste0(vals[1:(n.vals - 1)], collapse = ", ")                        # : create a comma separated list with all but the last element of X
-    conj <- paste0(f0(n.vals == 2, " ", ", "), conj, " ")                        # : if there are only 2, no additional comma to conj the last element to the list
+    list <- base::paste0(vals[1:(n.vals - 1)], collapse = ", ")                  # : create a comma separated list with all but the last element of X
+    conj <- base::paste0(uj::f0(n.vals == 2, " ", ", "), conj, " ")              # : if there are only 2, no additional comma to conj the last element to the list
   } else {list <- conj <- ""}                                                    # ELSE the list of non-last elements and the conj for the last item aren't needed
-  paste0(pref, list, conj, last)                                                 # put everything together
+  base::paste0(pref, list, conj, last)                                           # put everything together
 }
 
 #' @rdname ox
@@ -133,111 +133,111 @@ oxford_comma <- ox
 #' @rdname ox
 #' @export
 ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, first = TRUE) {
-  vals <- av(...)
-  errs <- c(f0(length(vals) > 0 , NULL, "[...] is empty."),
-            f0(icmp(vals)       , NULL, "Arguments in [...] must be complete and atomic (?icmp)."),
-            f0(cmp_chr_scl(conj), NULL, "[conj] must be a complete character scalar (?cmp_chr_scl)."),
-            f0(cmp_chr_scl(comp), NULL, "[comp] must be a non-NA character scalar (?cmp_chr_scl)."),
-            f0(isIN(quote, 0:2) , NULL, "[quote] must be 0, 1, or 2."),
-            f0(cmp_nnw_scl(n)   , NULL, "[n] must be a non-negative whole number scalar (?cmp_nnw_scl)."),
-            f0(isTF(first)      , NULL, "[first] must be TRUE or FALSE."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  pref <- f0(comp == "", paste(n, "of"), f0(first, paste(comp, n, "of"), paste(n, comp, "of")))
-  ox(vals, conj = conj, pref = pref, quote = quote)
+  vals <- uj::av(...)
+  errs <- base::c(uj::f0(base::length(vals) > 0, NULL, "[...] is empty."),
+                  uj::f0(uj::icmp(vals)        , NULL, "Arguments in [...] must be complete and atomic (?icmp)."),
+                  uj::f0(uj::cmp_chr_scl(conj) , NULL, "[conj] must be a complete character scalar (?cmp_chr_scl)."),
+                  uj::f0(uj::cmp_chr_scl(comp) , NULL, "[comp] must be a non-NA character scalar (?cmp_chr_scl)."),
+                  uj::f0(uj::isIN(quote, 0:2)  , NULL, "[quote] must be 0, 1, or 2."),
+                  uj::f0(uj::cmp_nnw_scl(n)    , NULL, "[n] must be a non-negative whole number scalar (?cmp_nnw_scl)."),
+                  uj::f0(uj::isTF(first)       , NULL, "[first] must be TRUE or FALSE."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  pref <- uj::f0(comp == "", base::paste(n, "of"), uj::f0(first, base::paste(comp, n, "of"), base::paste(n, comp, "of")))
+  uj::ox(vals, conj = conj, pref = pref, quote = quote)
 }
 
 #' @rdname ox
 #' @export
-ox_and <- function(..., pref = "") {ox(..., pref = pref, conj = "and")}
+ox_and <- function(..., pref = "") {uj::ox(..., pref = pref, conj = "and")}
 
 #' @rdname ox
 #' @export
-ox_or <- function(..., pref = "") {ox(..., pref = pref, conj = "or")}
+ox_or <- function(..., pref = "") {uj::ox(..., pref = pref, conj = "or")}
 
 #' @rdname ox
 #' @export
-ox_nor <- function(..., pref = "neither") {ox(..., pref = pref, conj = "nor")}
+ox_nor <- function(..., pref = "neither") {uj::ox(..., pref = pref, conj = "nor")}
 
 #' @rdname ox
 #' @export
-ox_either <- function(...) {ox(..., pref = "either", conj = "or")}
+ox_either <- function(...) {uj::ox(..., pref = "either", conj = "or")}
 
 #' @rdname ox
 #' @export
-ox_neither <- function(...) {ox(..., pref = "neither", conj = "nor")}
+ox_neither <- function(...) {uj::ox(..., pref = "neither", conj = "nor")}
 
 #' @rdname ox
 #' @export
-ox_all <- function(..., conj = "and") {ox(..., pref = "all of", conj = conj)}
+ox_all <- function(..., conj = "and") {uj::ox(..., pref = "all of", conj = conj)}
 
 #' @rdname ox
 #' @export
-ox_any <- function(..., conj = "or") {ox(..., pref = "any of", conj = conj)}
+ox_any <- function(..., conj = "or") {uj::ox(..., pref = "any of", conj = conj)}
 
 #' @rdname ox
 #' @export
-ox_none <- function(..., conj = "or") {ox(..., pref = "none of", conj = conj)}
+ox_none <- function(..., conj = "or") {uj::ox(..., pref = "none of", conj = conj)}
 
 #' @rdname ox
 #' @export
-ox_some <- function(..., conj = "and") {ox(..., pref = "some of", conj = conj)}
+ox_some <- function(..., conj = "and") {uj::ox(..., pref = "some of", conj = conj)}
 
 #' @rdname ox
 #' @export
-ox_exactly <- function(..., conj = "or", n = 1) {ox_n(..., comp = "exactly", n = n, conj = conj)}
+ox_exactly <- function(..., conj = "or", n = 1) {uj::ox_n(..., comp = "exactly", n = n, conj = conj)}
 
 #' @rdname ox
 #' @export
-ox_less <- function(..., conj = "and", n = 2) {ox_n(..., comp = "less than", n = n)}
+ox_less <- function(..., conj = "and", n = 2) {uj::ox_n(..., comp = "less than", n = n)}
 
 #' @rdname ox
 #' @export
-ox_more <- function(..., conj = "and", n = 1) {ox_n(..., comp = "more than", n = n)}
+ox_more <- function(..., conj = "and", n = 1) {uj::ox_n(..., comp = "more than", n = n)}
 
 #' @rdname ox
 #' @export
-ox_fewer <- function(..., conj = "and", n = 2) {ox_n(..., comp = "fewer than", n = n)}
+ox_fewer <- function(..., conj = "and", n = 2) {uj::ox_n(..., comp = "fewer than", n = n)}
 
 #' @rdname ox
 #' @export
-ox_greater <- function(..., conj = "and", n = 2) {ox_n(..., comp = "greater than", n = n)}
+ox_greater <- function(..., conj = "and", n = 2) {uj::ox_n(..., comp = "greater than", n = n)}
 
 #' @rdname ox
 #' @export
-ox_atleast <- function(..., conj = "and", n = 1) {ox_n(..., comp = "at least", n = n)}
+ox_atleast <- function(..., conj = "and", n = 1) {uj::ox_n(..., comp = "at least", n = n)}
 
 #' @rdname ox
 #' @export
-ox_atmost <- function(..., conj = "and", n = 1) {ox_n(..., comp = "at most", n = n)}
+ox_atmost <- function(..., conj = "and", n = 1) {uj::ox_n(..., comp = "at most", n = n)}
 
 #' @rdname ox
 #' @export
-ox_nogreater <- function(..., conj = "and", n = 1) {ox_n(..., comp = "no greater than", n = n)}
+ox_nogreater <- function(..., conj = "and", n = 1) {uj::ox_n(..., comp = "no greater than", n = n)}
 
 #' @rdname ox
 #' @export
-ox_nofewer <- function(..., conj = "and", n = 1) {ox_n(..., comp = "no fewer than", n = n)}
+ox_nofewer <- function(..., conj = "and", n = 1) {uj::ox_n(..., comp = "no fewer than", n = n)}
 
 #' @rdname ox
 #' @export
-ox_nomore <- function(..., conj = "and", n = 1) {ox_n(..., comp = "no more than", n = n)}
+ox_nomore <- function(..., conj = "and", n = 1) {uj::ox_n(..., comp = "no more than", n = n)}
 
 #' @rdname ox
 #' @export
-ox_noless <- function(..., conj = "and", n = 1) {ox_n(..., comp = "no less than", n = n)}
+ox_noless <- function(..., conj = "and", n = 1) {uj::ox_n(..., comp = "no less than", n = n)}
 
 #' @rdname ox
 #' @export
-ox_ormore <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or more", n = n, first = F)}
+ox_ormore <- function(..., conj = "and", n = 1) {uj::ox_n(..., comp = "or more", n = n, first = F)}
 
 #' @rdname ox
 #' @export
-ox_orgreater <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or greater", n = n, first = F)}
+ox_orgreater <- function(..., conj = "and", n = 1) {uj::ox_n(..., comp = "or greater", n = n, first = F)}
 
 #' @rdname ox
 #' @export
-ox_orless <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or less", n = n, first = F)}
+ox_orless <- function(..., conj = "and", n = 1) {uj::ox_n(..., comp = "or less", n = n, first = F)}
 
 #' @rdname ox
 #' @export
-ox_orfewer <- function(..., conj = "and", n = 1) {ox_n(..., comp = "or fewer", n = n, first = F)}
+ox_orfewer <- function(..., conj = "and", n = 1) {uj::ox_n(..., comp = "or fewer", n = n, first = F)}

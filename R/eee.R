@@ -30,7 +30,7 @@
 #'   \cr               \tab  
 #'   \cr      `neee`   \tab How many effective dimensions does `x` have?
 #'   \cr               \tab  
-#'   \cr      `ieee`   \tab Is `x` a match to the effective.d specification`spec`?
+#'   \cr      `ieee`   \tab Is `x` a match to the effective.d specification`spec`?
 #'   \cr               \tab  
 #'   \cr      `iEEE`   \tab Is `x` a match to the single effective.d property `'EEE'`?
 #'   \cr               \tab  
@@ -41,15 +41,17 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return *A character vector*
-#'  \cr    `eee_props`
-#'  \cr    `eee_funs`
-#'  \cr    `eee`
-#'  \cr\cr *A logical scalar*
-#'  \cr    `is_eee_spec`
-#'  \cr    `iEEE`
-#'  \cr    `ieee`
-#'  \cr\cr *A numeric scalar*
-#'  \cr    `neee`
+#'  \cr   `eee_props`
+#'  \cr   `eee_funs`
+#'  \cr   `eee`
+#'  \cr
+#'  \cr *A logical scalar*
+#'  \cr   `is_eee_spec`
+#'  \cr   `iEEE`
+#'  \cr   `ieee`
+#'  \cr
+#'  \cr *A numeric scalar*
+#'  \cr   `neee`
 #' @examples
 #' a. <- "a"
 #' abc. <- c("a", "b", "c")
@@ -91,53 +93,53 @@
 #' @export
 eee <- function(x) {
   out <- NULL
-  for (e in .eees) {out <- c(out, f0(run('.i', e, '(x)'), e, NULL))}
+  for (e in uj:::.eees) {out <- base::c(out, uj::f0(uj::run('uj:::.i', e, '(x)'), e, NULL))}
   out
 }
 
 #' @rdname eee
 #' @export
-eee_funs <- function() {paste0("i", .eees)}
+eee_funs <- function() {base::paste0("i", uj:::.eees)}
 
 #' @rdname eee
 #' @export
-eee_props <- function() {.eees}
+eee_props <- function() {uj:::.eees}
 
 #' @rdname eee
 #' @export
-is_eee_spec <- function(spec) {spec <- .spec_vals(spec); f0(length(spec) == 0, F, all(spec %in% .eees))}
+is_eee_spec <- function(spec) {spec <- uj:::.spec_vals(spec); uj:::f0(base::length(spec) == 0, F, base::all(spec %in% .eees))}
 
 #' @rdname eee
 #' @export
 ieee <- function(x, spec, ...) {
-  errs <- c(.meets_errs(x, ...),
-            f0(is_eee_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from eee_props().'))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (!meets(x, ...)) {return(F)}
-  for (prop in .spec_vals(spec)) {if (run('.i', prop, '(x)')) {return(T)}}
+  errs <- c(uj:::.meets_errs(x, ...),
+            uj::f0(uj::is_eee_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from eee_props().'))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!uj::meets(x, ...)) {return(F)}
+  for (prop in uj:::.spec_vals(spec)) {if (uj::run('uj:::.i', prop, '(x)')) {return(T)}}
   F
 }
 
 #' @rdname eee
 #' @export
-ie0D <- function(x, ...) {ieee(x, 'e0D', ...)}
+ie0D <- function(x, ...) {uj::ieee(x, 'e0D', ...)}
 
 #' @rdname eee
 #' @export
-ie1D <- function(x, ...) {ieee(x, 'e1D', ...)}
+ie1D <- function(x, ...) {uj::ieee(x, 'e1D', ...)}
 
 #' @rdname eee
 #' @export
-ie2D <- function(x, ...) {ieee(x, 'e2D', ...)}
+ie2D <- function(x, ...) {uj::ieee(x, 'e2D', ...)}
 
 #' @rdname eee
 #' @export
-ieHD <- function(x, ...) {ieee(x, 'eHD', ...)}
+ieHD <- function(x, ...) {uj::ieee(x, 'eHD', ...)}
 
 #' @rdname eee
 #' @export
-ieUD <- function(x, ...) {ieee(x, 'eUD', ...)}
+ieUD <- function(x, ...) {uj::ieee(x, 'eUD', ...)}
 
 #' @rdname eee
 #' @export
-neee <- function(x) {f0(length(x) == 0, NaN, f0(NROW(x) * NCOL(x) == 1, 0, f0(is.vector(x), 1, length(which(dim(x) > 1)))))}
+neee <- function(x) {uj::f0(base::length(x) == 0, NaN, uj::f0(base::NROW(x) * Nbase::COL(x) == 1, 0, uj::f0(base::is.vector(x), 1, base::length(base::which(base::dim(x) > 1)))))}

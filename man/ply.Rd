@@ -136,6 +136,6 @@ Other meta:
 \code{\link{recycling}},
 \code{\link{run}()},
 \code{\link{say}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 }
 \concept{meta}

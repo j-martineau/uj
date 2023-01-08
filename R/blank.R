@@ -12,4 +12,4 @@
 #' blank(2)
 #' blank(NULL)
 #' @export
-blank <- function(x) {f0(length(x) != 1 | !is.character(x), F, f0(is.na(x), F, x == ""))}
+blank <- function(x) {uj::f0(base::length(x) != 1 | !base::is.character(x), F, uj::f0(base::is.na(x), F, x == ""))}

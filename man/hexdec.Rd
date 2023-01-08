@@ -16,10 +16,11 @@ tohex(x)
 }
 \value{
 \emph{A non-negative whole number object}
-\cr    \code{todec}
-\cr\cr \emph{A character object of non-negative}
-\cr    \emph{whole number hexadecimal values}
-\cr    \code{tohex}
+\cr   \code{todec}
+\cr
+\cr \emph{A character object of non-negative}
+\cr \emph{whole number hexadecimal values}
+\cr   \code{tohex}
 }
 \description{
 \tabular{rl}{

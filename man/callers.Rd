@@ -18,11 +18,13 @@ ncallers()
 }
 \value{
 \emph{A character vector}
-\cr    \code{callers}
-\cr\cr \emph{A character scalar}
-\cr    \code{caller}
-\cr\cr \emph{A numeric scalar}
-\cr    \code{ncallers}
+\cr   \code{callers}
+\cr
+\cr \emph{A character scalar}
+\cr   \code{caller}
+\cr
+\cr \emph{A numeric scalar}
+\cr   \code{ncallers}
 }
 \description{
 \tabular{rl}{
@@ -64,7 +66,7 @@ Other meta:
 \code{\link{recycling}},
 \code{\link{run}()},
 \code{\link{say}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 }
 \concept{environments}
 \concept{meta}

@@ -11,14 +11,16 @@
 #' is_unq(letters)
 #' is_unq(sample(letters, 27, replace = T))
 #' @export
-is_unq <- function(x, a = T, na = F) {
-  if (isTRUE(a)) {x <- unlist(x, T, F)}
-  ok.atm <- is.atomic(x)
-  errs <- c(f0(ok.atm                                     , NULL, "[x] must be atomic."),
-            f0(f0(ok.atm & isFALSE(na), !any(is.na(x)), T), NULL, "[x] contains NA but [na = FALSE]."),
-            f0(length(x) > 0                              , NULL, "[x] is of length 0."),
-            f0(isTF(a)                                    , NULL, "[a] must be TRUE or FALSE."),
-            f0(isTF(na)                                   , NULL, "[na] must be TRUE or FALSE."))
-  if (!is.null(errs)) {stop(errs)}
-  length(x) == length(unique(x))
+is_unique <- function(x, a = T, na = F) {
+  udtf <- function(D) {base::nrow(base::unique(D) == base::nrow(D))}
+  ugen <- function(G) {base::length(base::unique(G)) == base::length(G)}
+  errs <- base::c(uj::f0(isTRUE(a ) | isFALSE(a ), NULL, "[a] must be TRUE or FALSE."),
+                  uj::f0(isTRUE(na) | isFALSE(na), NULL, "[na] must be TRUE or FALSE."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  x.av <- base::unlist(x, T, F)
+  if (a) {x <- x.av}
+  if (base::length(x.av) > 0) {
+    if (na) {if (base::any(base::is.na(x.av))) {stop(uj:::.errs("[na = FALSE] but [x] contains NA values."))}}
+    uj::f0(base::is.data.frame(x), udtf(x), uj::f0(base::is.list(x), ugen(x), ugen(x.av)))
+  } else {F}
 }

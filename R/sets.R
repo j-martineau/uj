@@ -11,12 +11,12 @@
 #' sets(4)
 #' @export
 sets <- function(n) {
-  if (!cmp_psw_scl(n)) {stop(.errs("[n] must be a positive whole-number scalar."))}
-  x <- lapply(1:n, function(x) combn(n, x))                                      # : all possible combinations from size 1 to size [n]
+  if (!uj::cmp_psw_scl(n)) {stop(uj:::.errs("[n] must be a positive whole-number scalar."))}
+  x <- base::lapply(1:n, function(x) utils::combn(n, x))                         # : all possible combinations from size 1 to size [n]
   y <- NULL                                                                      # : initialize the result
-  for (i in 1:length(x)) {                                                       # : FOR EACH element of the list returned in [x]
+  for (i in 1:base::length(x)) {                                                 # : FOR EACH element of the list returned in [x]
     xi <- x[[i]]                                                                 # : : get that element and
-    for (j in 1:ncol(xi)) {y <- c(y, list(av(xi[ , j])))}                        # : : FOR EACH column (i.e., unique combination) > append as a list element to [y]
+    for (j in 1:base::ncol(xi)) {y <- base::c(y, base::list(uj::av(xi[ , j])))}  # : : FOR EACH column (i.e., unique combination) > append as a list element to [y]
   }                                                                              # : END
   y                                                                              # : return value
 }                                                                                # END

@@ -16,23 +16,23 @@
 #' comparable(factor(az., az., ordered = T), factor("q", az., ordered = T))
 #' @export
 comparable <- function(..., rec. = FALSE) {
-  x <- list(...)
-  n <- length(x)
-  errs <- c(f0(n < 2      , "[...] must contain multiple arguments.", NULL),
-            f0(!isTF(rec.), "[rec.] must be TRUE or FALSE."         , NULL))
-  if (!is.null(errs)) {stop(.errs(errs))}
+  x <- base::list(...)
+  n <- base::length(x)
+  errs <- base::c(uj::f0(n < 2          , "[...] must contain multiple arguments.", NULL),
+                  uj::f0(!uj::isTF(rec.), "[rec.] must be TRUE or FALSE."         , NULL))
+  if (!base::is.null(errs)) {stop(.uj::errs(errs))}
   if (rec.) {
-    unq.ns <- unique(lengths(x))
-    n.reps <- max(unq.ns) / unq.ns
-    if (any(n.reps != round(n.reps))) {return(F)}
+    unq.ns <- base::unique(base::lengths(x))
+    n.reps <- base::max(unq.ns) / unq.ns
+    if (base::any(n.reps != base::round(n.reps))) {return(F)}
   }
-  is.chr <- all(sapply(x, is.character))
-  is.lgl <- all(sapply(x, is.logical))
-  is.num <- all(sapply(x, is.numeric))
-  is.ord <- all(sapply(x, is.ordered))
+  is.chr <- base::all(base::sapply(x, base::is.character))
+  is.lgl <- base::all(base::sapply(x, base::is.logical))
+  is.num <- base::all(base::sapply(x, base::is.numeric))
+  is.ord <- base::all(base::sapply(x, base::is.ordered))
   if (is.chr | is.lgl | is.num) {return(T)}
   if (!is.ord) {return(F)}
-  fac.levs <- lapply(x, levels)
-  for (i in 2:n) {if (!identical(fac.levs[[i]], fac.levs[[i - 1]])) {return(F)}}
+  fac.levs <- base::lapply(x, levels)
+  for (i in 2:n) {if (!base::identical(fac.levs[[i]], fac.levs[[i - 1]])) {return(F)}}
   T
 }

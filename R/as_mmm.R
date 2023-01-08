@@ -16,27 +16,36 @@
 #'   \cr            \tab  
 #'   \cr `as_uno`   \tab As xmode `'uno'` (unordered factor). Wraps `base::factor(x, levels = levs, ordered = FALSE)`.
 #' }
-#' @param x For `as_clr`, an object of mode character; for `as_fun`, a character scalar function name or a function object; for `as_ord` and `as_uno`, an atomic object; and for all others, any R object.
+#' @param x For `as_clr`, an object of mode character; for `as_fun`, a character scalar function name or a function object; for `as_ord` and `as_uno`, an atomic object; and for all others, base::any R object.
 #' @param na A non-`NA` logical scalar indicating whether `NA` values are acceptable.
 #' @param levs A \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for `as_ord`).
 #' @param ... Further arguments passed to or from other methods.
 #' @return *An object of base mode* `'character'`
-#'  \cr    `as_chr`
-#'  \cr\cr *An object of base mode* `'integer'`
-#'  \cr    `as_int`
-#'  \cr\cr *An object of base mode* `'logical'`
-#'  \cr    `as_lgl`
-#'  \cr\cr *An object of base mode* `'numeric'`
-#'  \cr    `as_num`
-#'  \cr\cr *An object of \link[=mmm]{xmode}* `'ord'`\eqn{^a}
-#'  \cr    `as_ord`
-#'  \cr\cr *An object of xmode* `'uno'`\eqn{^b}
-#'  \cr    `as_uno`
-#'  \cr\cr *An object of xmode* `'clr'`\eqn{^c}
-#'  \cr    `as_clr`
-#'  \cr\cr\eqn{^{a.}} Ordered factor.
-#'  \cr\eqn{^{b.}} Unordered factor.
-#'  \cr\eqn{^{c.}} Character hexadecimal RGB color values in the form `'#RRGGBBAA'`.
+#'  \cr   `as_chr`
+#'  \cr
+#'  \cr *An object of base mode* `'integer'`
+#'  \cr   `as_int`
+#'  \cr
+#'  \cr *An object of base mode* `'logical'`
+#'  \cr   `as_lgl`
+#'  \cr
+#'  \cr *An object of base mode* `'numeric'`
+#'  \cr   `as_num`
+#'  \cr
+#'  \cr *An object of \link[=mmm]{xmode}* `'ord'`\eqn{^a}
+#'  \cr   `as_ord`
+#'  \cr
+#'  \cr *An object of xmode* `'uno'`\eqn{^b}
+#'  \cr   `as_uno`
+#'  \cr
+#'  \cr *An object of xmode* `'clr'`\eqn{^c}
+#'  \cr   `as_clr`
+#'  \cr
+#'  \cr    \eqn{^{a.}} Ordered factor.
+#'  \cr
+#'  \cr    \eqn{^{b.}} Unordered factor.
+#'  \cr
+#'  \cr    \eqn{^{c.}} Character hexadecimal RGB color values in the form `'#RRGGBBAA'`.
 #' @examples
 #' bins. <- sample(c(0, 1), 10, replace = T)
 #' chrs. <- c("3.14", "2.72", "1.41")
@@ -63,16 +72,16 @@
 #' as_ord(clrs., levs = sort(unique(clrs.)))
 #' @export
 as_clr <- function(x, na = FALSE) {
-  errs <- c(f0(ichr(x)                 , NULL, "[x] is not of mode character."),
-            f0(isTF(na)                , NULL, "[na] must be TRUE or FALSE."),
-            f0(isF(na) | !any(is.na(x)), NULL, "[x] contains NA values but [na = FALSE]."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  if (any(!is.na(x))) {
-    out <- tryCatch(col2rgb(x[!is.na(x)], T), error = function(e) e, finally = NULL)
-    if (isERR(out)) {stop(.errs("[x] does not contain only valid color values."))}
+  errs <- base::c(uj::f0(uj::ichr(x)                             , NULL, "[x] is not of mode character."),
+                  uj::f0(uj::isTF(na)                            , NULL, "[na] must be TRUE or FALSE."),
+                  uj::f0(uj::isF(na) | !base::any(base::is.na(x)), NULL, "[x] contains NA values but [na = FALSE]."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (base::any(!base::is.na(x))) {
+    out <- tryCatch(grDevices::col2rgb(x[!base::is.na(x)], T), error = function(e) e, finally = NULL)
+    if (uj::isERR(out)) {stop(uj:::.errs("[x] does not contain only valid color values."))}
     else {out <- out / 255}
-    out <- rgb(out[1, ], out[2, ], out[3, ], out[4, ])
-    x[!is.na(x)] <- out
+    out <- grDevices::rgb(out[1, ], out[2, ], out[3, ], out[4, ])
+    x[!base::is.na(x)] <- out
   }
   x
 }
@@ -80,9 +89,9 @@ as_clr <- function(x, na = FALSE) {
 #' @rdname as_mmm
 #' @export
 as_fun <- function(x) {
-  if (is.function(x)) {return(x)}
-  x <- tryCatch(match.fun(x), error = function(e) e, finally = NULL)
-  if (any(class(x) %in% c("error", "simpleError"))) {stop(.errs("[x] is neither a function nor a character scalar name of a function."))}
+  if (base::is.function(x)) {return(x)}
+  x <- tryCatch(base::match.fun(x), error = function(e) e, finally = NULL)
+  if (base::any(base::class(x) %in% base::c("error", "simpleError"))) {stop(uj::.errs("[x] is neither a function nor a character scalar name of a function."))}
   x
 }
 
@@ -104,8 +113,8 @@ as_lgl <- function(x, ...) {base::as.logical(x, ...)}
 
 #' @rdname as_mmm
 #' @export
-as_ord <- function(x, levs) {factor(x, levels = levs, ordered = T)}
+as_ord <- function(x, levs) {base::factor(x, levels = levs, ordered = T)}
 
 #' @rdname as_mmm
 #' @export
-as_uno <- function(x, levs) {factor(x, levels = levs, ordered = F)}
+as_uno <- function(x, levs) {base::factor(x, levels = levs, ordered = F)}

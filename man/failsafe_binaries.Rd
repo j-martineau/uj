@@ -75,9 +75,11 @@ Binary functions that always produce either \code{TRUE} or \code{FALSE} unless c
 \cr               \tab  
 \cr      \verb{\%OR\%}   \tab \code{x} is scalar \code{TRUE}, \code{y} is scalar \code{TRUE}, or both.
 }
-\eqn{^{a.}} If \code{x} is not atomic scalar, \code{y} is not atomic, or \code{x} and \code{y} are not compatible, \verb{\%HAS\%} and \verb{\%LACKS\%} return \code{FALSE} and \code{TRUE}, respectively.
-\cr\cr \eqn{^{b.}} If \code{x} is not atomic, \code{y} is not atomic scalar, or \code{x} and \code{y} are not compatible, \verb{\%IN\%} and \verb{\%OUT\%} return \code{FALSE} and \code{TRUE}, respectively.
-\cr\cr \eqn{^{c.}} If \code{x} and \code{y} are not \code{\link{compatible}}, \verb{\%EQ\%} and \verb{\%NEQ\%} return \code{FALSE} and \code{TRUE}, respectively.
+   \eqn{^{a.}} If \code{x} is not atomic scalar, \code{y} is not atomic, or \code{x} and \code{y} are not compatible, \verb{\%HAS\%} and \verb{\%LACKS\%} return \code{FALSE} and \code{TRUE}, respectively.
+\cr
+\cr    \eqn{^{b.}} If \code{x} is not atomic, \code{y} is not atomic scalar, or \code{x} and \code{y} are not compatible, \verb{\%IN\%} and \verb{\%OUT\%} return \code{FALSE} and \code{TRUE}, respectively.
+\cr
+\cr    \eqn{^{c.}} If \code{x} and \code{y} are not \code{\link{compatible}}, \verb{\%EQ\%} and \verb{\%NEQ\%} return \code{FALSE} and \code{TRUE}, respectively.
 }
 \examples{
 abc <- c("a", "b", "c")
@@ -142,7 +144,7 @@ Other extensions:
 \code{\link{failsafe_is}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{na}()},
@@ -154,7 +156,7 @@ Other extensions:
 \code{\link{swap}()},
 \code{\link{uv}()},
 \code{\link{wv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 
 Other failsafe: 
 \code{\link{failsafe_is}},

@@ -18,14 +18,14 @@
 #' @param x A \link[=chr_vec]{character vector}.
 #' @param pat A fixed value \link[=cmp_str_scl]{complete string scalar} pattern to search for in `x`.
 #' @return *A positive whole number \link[=ivls]{vlist}*
-#'   \cr    `ppats`
+#'   \cr   `ppats`
 #'   \cr\cr *A positive whole number vector*
-#'   \cr    `wpat`
-#'   \cr    `npat`
-#'   \cr    `ppat`
+#'   \cr   `wpat`
+#'   \cr   `npat`
+#'   \cr   `ppat`
 #'   \cr\cr *A logical scalar*
-#'   \cr    `has_pat`
-#'   \cr    `ipat`
+#'   \cr   `has_pat`
+#'   \cr   `ipat`
 #' @examples
 #' words <- c("apple", "banana", "carrot")
 #'
@@ -48,62 +48,62 @@
 #' ppats(words, "b")
 #' @export
 ipat <- function(x, pat) {
-  errs <- c(f0(cmp_chr_vec(x)  , NULL, "[x] must be a complete character vec (?cmp_chr_vec)."     ),
-            f0(cmp_str_scl(pat), NULL, "[pat] must be a complete string scalar (?cmp_str_scl)."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  av(grepl(pat, x, fixed = T))
+  errs <- base::c(uj::f0(uj::cmp_chr_vec(x)  , NULL, "[x] must be a complete character vec (?cmp_chr_vec)."     ),
+                  uj::f0(uj::cmp_str_scl(pat), NULL, "[pat] must be a complete string scalar (?cmp_str_scl)."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  uj::av(base::grepl(pat, x, fixed = T))
 }
 
 #' @rdname ipat
 #' @export
 has_pat <- function(x, pat) {
-  errs <- c(f0(cmp_chr_vec(x)  , NULL, "[x] must be a complete character vec (?cmp_chr_vec)."     ),
-            f0(cmp_str_scl(pat), NULL, "[pat] must be a complete string scalar (?cmp_str_scl)."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  av(nchar(x) != nchar(gsub(pat, "", x, fixed = T)))
+  errs <- base::c(uj::f0(uj::cmp_chr_vec(x)  , NULL, "[x] must be a complete character vec (?cmp_chr_vec)."     ),
+                  uj::f0(uj::cmp_str_scl(pat), NULL, "[pat] must be a complete string scalar (?cmp_str_scl)."))
+  if (!base::is.null(errs)) {stop(.errs(errs))}
+  uj::av(base::nchar(x) != base::nchar(base::gsub(pat, "", x, fixed = T)))
 }
 
 #' @rdname ipat
 #' @export
 wpat <- function(x, pat) {
-  errs <- c(f0(cmp_chr_vec(x)  , NULL, "[x] must be a complete character vec (?cmp_chr_vec)."),
-            f0(cmp_str_scl(pat), NULL, "[pat] must be a complete string scalar (?cmp_str_scl)."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  av(grep(pat, x, fixed = T))
+  errs <- base::c(uj::f0(uj::cmp_chr_vec(x)  , NULL, "[x] must be a complete character vec (?cmp_chr_vec)."),
+                  uj::f0(uj::cmp_str_scl(pat), NULL, "[pat] must be a complete string scalar (?cmp_str_scl)."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  uj::av(base::grep(pat, x, fixed = T))
 }
 
 #' @rdname ipat
 #' @export
 npat <- function(x, pat) {
-  errs <- c(f0(cmp_chr_vec(x)  , NULL, "[x] must be a complete character vec (?cmp_chr_vec)."),
-            f0(cmp_str_scl(pat), NULL, "[pat] must be a complete string scalar (?cmp_str_scl)."))
-  if (!is.null(errs)) {stop(.errs(errs))}
+  errs <- base::c(uj::f0(uj::cmp_chr_vec(x)  , NULL, "[x] must be a complete character vec (?cmp_chr_vec)."),
+                  uj::f0(uj::cmp_str_scl(pat), NULL, "[pat] must be a complete string scalar (?cmp_str_scl)."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
   grgxpr <- function(xx) {
-    yy <- av(gregexpr(pat, xx))
-    nn <- length(yy)
-    f0(nn > 1, nn, f0(yy == -1, 0, 1))
+    yy <- uj::av(base::gregexpr(pat, xx))
+    nn <- base::length(yy)
+    uj::f0(nn > 1, nn, uj::f0(yy == -1, 0, 1))
   }
-  av(sapply(x, grgxpr))
+  uj::av(base::sapply(x, grgxpr))
 }
 
 #' @rdname ipat
 #' @export
 ppat <- function(x, pat) {
-  errs <- c(f0(cmp_chr_vec(x)  , NULL, "[x] must be a complete character vec (?cmp_chr_vec)."),
-            f0(cmp_str_scl(pat), NULL, "[pat] must be a complete string scalar (?cmp_chr_vec)."))
-  if (!is.null(errs)) cmp_str_scl
-  out <- regexpr(pat, x, fixed = T)
+  errs <- base::c(uj::f0(uj::cmp_chr_vec(x)  , NULL, "[x] must be a complete character vec (?cmp_chr_vec)."),
+                  uj::f0(uj::cmp_str_scl(pat), NULL, "[pat] must be a complete string scalar (?cmp_chr_vec)."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  out <- base::regexpr(pat, x, fixed = T)
   out[out == -1] <- NA
-  if (all(is.na(out))) {out <- NA}
-  av(out)
+  if (base::all(base::is.na(out))) {out <- NA}
+  uj::av(out)
 }
 
 #' @rdname ipat
 #' @export
 ppats <- function(x, pat) {
-  errs <- c(f0(cmp_chr_vec(x)  , NULL, "[x] must be a complete character vec (?cmp_chr_vec)."),
-            f0(cmp_str_scl(pat), NULL, "[pat] must be a complete string scalar (?cmp_str_scl)."))
-  grgxpr <- function(xx) {yy <- av(gregexpr(pat, xx)); yy[yy == -1] <- NA; yy}
-  if (!is.null(errs)) {stop(.errs(errs))}
-  lapply(x, grgxpr)
+  errs <- base::c(uj::f0(uj::cmp_chr_vec(x)  , NULL, "[x] must be a complete character vec (?cmp_chr_vec)."),
+                  uj::f0(uj::cmp_str_scl(pat), NULL, "[pat] must be a complete string scalar (?cmp_str_scl)."))
+  grgxpr <- function(xx) {yy <- av(base::gregexpr(pat, xx)); yy[yy == -1] <- NA; yy}
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  base::lapply(x, grgxpr)
 }

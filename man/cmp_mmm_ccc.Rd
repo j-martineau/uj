@@ -699,10 +699,11 @@ cmp_whl_vls(x, ...)
 }
 \value{
 \emph{A character scalar}
-\cr    \code{cmp_mmm_ccc_funs}
-\cr\cr \emph{A logical scalar}
-\cr    \code{cmp_MMM_CCC}
-\cr    \code{cmp_mmm_ccc}
+\cr   \code{cmp_mmm_ccc_funs}
+\cr
+\cr \emph{A logical scalar}
+\cr   \code{cmp_MMM_CCC}
+\cr   \code{cmp_mmm_ccc}
 }
 \description{
 \tabular{rl}{
@@ -739,6 +740,7 @@ cmp_str_scl("a")
 Other props: 
 \code{\link{bbb_ccc}()},
 \code{\link{ccc}()},
+\code{\link{sss_ccc}()},
 \code{\link{unq_mmm_ccc}()},
 \code{\link{unq_mmm}()}
 }

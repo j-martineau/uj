@@ -82,10 +82,10 @@ Other meta:
 \code{\link{ply}()},
 \code{\link{recycling}},
 \code{\link{run}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 
 Other user: 
-\code{\link{dialogs}}
+\code{\link{dialog}}
 }
 \concept{meta}
 \concept{user}

@@ -4,14 +4,6 @@
 \name{mmm_ccc}
 \alias{mmm_ccc}
 \alias{mmm_ccc_funs}
-\alias{atm_arr}
-\alias{atm_dtf}
-\alias{atm_gen}
-\alias{atm_mat}
-\alias{atm_mvc}
-\alias{atm_scl}
-\alias{atm_vec}
-\alias{atm_vls}
 \alias{ch1_arr}
 \alias{ch1_dtf}
 \alias{ch1_gen}
@@ -233,22 +225,6 @@
 mmm_ccc(x, mmm, ccc, ...)
 
 mmm_ccc_funs()
-
-atm_arr(x, ...)
-
-atm_dtf(x, ...)
-
-atm_gen(x, ...)
-
-atm_mat(x, ...)
-
-atm_mvc(x, ...)
-
-atm_scl(x, ...)
-
-atm_vec(x, ...)
-
-atm_vls(x, ...)
 
 ch1_arr(x, ...)
 
@@ -697,10 +673,11 @@ whl_vls(x, ...)
 }
 \value{
 \emph{A character scalar}
-\cr    \code{mmm_ccc_funs}
-\cr\cr \emph{A logical scalar}
-\cr    \code{MMM_CCC}
-\cr    \code{mmm_ccc}
+\cr   \code{mmm_ccc_funs}
+\cr
+\cr \emph{A logical scalar}
+\cr   \code{MMM_CCC}
+\cr   \code{mmm_ccc}
 }
 \description{
 \tabular{rl}{
@@ -741,6 +718,7 @@ Other properties:
 \code{\link{as_mmm}},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
+\code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -749,11 +727,10 @@ Other properties:
 \code{\link{eee}()},
 \code{\link{err_check}()},
 \code{\link{iii}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{meets}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
-\code{\link{reclass}()},
 \code{\link{sss}()},
 \code{\link{unq_ccc}()}
 }

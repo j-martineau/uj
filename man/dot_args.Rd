@@ -8,6 +8,7 @@
 \alias{dot_names}
 \alias{named_dots}
 \alias{unnamed_dots}
+\alias{flex_dots}
 \title{Manage \code{...} arguments}
 \usage{
 dots(names., defs., ...)
@@ -19,6 +20,8 @@ dot_names(..., subs. = NULL, req. = T, blank. = F, u. = T)
 named_dots(...)
 
 unnamed_dots(...)
+
+flex_dots(...)
 }
 \arguments{
 \item{names.}{\code{NULL} or an \link[=atm_vec]{atomic vec} (may include \code{NA} values). Is split along the delimiter \code{'|'} to allow for compactness in submitting multiple names. \code{NULL} will match either an argument in \code{...} or element of \code{defs.} with the name \code{'NULL'}. \code{NA} values will match an argument in \code{...} or an element of \code{defs.} with the name \code{'NA'}.}
@@ -65,7 +68,7 @@ Other meta:
 \code{\link{recycling}},
 \code{\link{run}()},
 \code{\link{say}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 
 Other dots: 
 \code{\link{n_is}()}

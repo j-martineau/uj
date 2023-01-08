@@ -14,10 +14,11 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return *A character vector*
-#'  \cr    `bbb_mmm_funs`
-#'  \cr\cr *A logical scalar*
-#'  \cr    `BBB_MMM`
-#'  \cr    `bbb_mmm`
+#'  \cr   `bbb_mmm_funs`
+#'  \cr
+#'  \cr *A logical scalar*
+#'  \cr   `BBB_MMM`
+#'  \cr   `bbb_mmm`
 #' @examples
 #' bbb_mmm_funs()
 #' bbb_mmm_props()
@@ -27,14 +28,14 @@
 #' pop_psw(0:10)
 #' @export
 bbb_mmm <- function(x, bbb, mmm, ...) {
-  BBB <- c("atm", "pop")
-  errs <- c(.meets_errs(x, ...),
-            f0(f0(length(bbb) != 1 | !is.character(bbb), F, f0(is.na(bbb), F, bbb %in% BBB  )), NULL, "[bbb] is not a scalar value from c('atm', 'pop')."),
-            f0(f0(length(mmm) != 1 | !is.character(mmm), F, f0(is.na(mmm), F, mmm %in% .mmms)), NULL, '[mmm] is not a scalar value from mmm_props().'))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  else if (!meets(x, ...)) {return(F)}
-  else if (bbb == "atm") {if (!is.atomic(x)) {F} else {run(".i", mmm, "(x)")}}
-  else if (bbb == "pop") {if (!is.atomic(x)) {F} else if (length(x) == 0) {F} else {run(".i", mmm, "(x)")}}
+  BBB <- base::c("atm", "pop")
+  errs <- base::c(uj:::.meets_errs(x, ...),
+                  uj::f0(uj::f0(base::length(bbb) != 1 | !base::is.character(bbb), F, uj::f0(base::is.na(bbb), F, bbb %in% BBB  )), NULL, "[bbb] is not a scalar value from c('atm', 'pop')."),
+                  uj::f0(uj::f0(base::length(mmm) != 1 | !base::is.character(mmm), F, uj::f0(base::is.na(mmm), F, mmm %in% .mmms)), NULL, '[mmm] is not a scalar value from mmm_props().'))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  else if (!uj::meets(x, ...)) {return(F)}
+  else if (bbb == "atm") {if (!base::is.atomic(x)) {F} else {uj::run(".i", mmm, "(x)")}}
+  else if (bbb == "pop") {if (!base::is.atomic(x)) {F} else if (base::length(x) == 0) {F} else {uj::run(".i", mmm, "(x)")}}
   else {F}
 }
 
@@ -43,225 +44,225 @@ bbb_mmm <- function(x, bbb, mmm, ...) {
 bbb_mmm_funs <- function() {
   mmm <- .mmms
   mmm <- mmm[mmm != "atm"]
-  c(paste0("atm_", mmm), paste0("pop_", mmm))
+  base::c(base::paste0("atm_", mmm), "pop_atm", base::paste0("pop_", mmm))
 }
 
 #' @rdname bbb_mmm
 #' @export
-atm_ch1 <- function(x, ...) {bbb_mmm(x, 'atm', 'ch1', ...)}
+atm_ch1 <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'ch1', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_ch3 <- function(x, ...) {bbb_mmm(x, 'atm', 'ch3', ...)}
+atm_ch3 <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'ch3', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_chr <- function(x, ...) {bbb_mmm(x, 'atm', 'chr', ...)}
+atm_chr <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'chr', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_clr <- function(x, ...) {bbb_mmm(x, 'atm', 'clr', ...)}
+atm_clr <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'clr', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_evn <- function(x, ...) {bbb_mmm(x, 'atm', 'evn', ...)}
+atm_evn <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'evn', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_fac <- function(x, ...) {bbb_mmm(x, 'atm', 'fac', ...)}
+atm_fac <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'fac', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_frc <- function(x, ...) {bbb_mmm(x, 'atm', 'frc', ...)}
+atm_frc <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'frc', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_ind <- function(x, ...) {bbb_mmm(x, 'atm', 'ind', ...)}
+atm_ind <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'ind', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_lgl <- function(x, ...) {bbb_mmm(x, 'atm', 'lgl', ...)}
+atm_lgl <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'lgl', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_neg <- function(x, ...) {bbb_mmm(x, 'atm', 'neg', ...)}
+atm_neg <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'neg', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_ngw <- function(x, ...) {bbb_mmm(x, 'atm', 'ngw', ...)}
+atm_ngw <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'ngw', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_nng <- function(x, ...) {bbb_mmm(x, 'atm', 'nng', ...)}
+atm_nng <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'nng', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_nnw <- function(x, ...) {bbb_mmm(x, 'atm', 'nnw', ...)}
+atm_nnw <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'nnw', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_nps <- function(x, ...) {bbb_mmm(x, 'atm', 'nps', ...)}
+atm_nps <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'nps', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_npw <- function(x, ...) {bbb_mmm(x, 'atm', 'npw', ...)}
+atm_npw <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'npw', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_nst <- function(x, ...) {bbb_mmm(x, 'atm', 'nst', ...)}
+atm_nst <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'nst', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_num <- function(x, ...) {bbb_mmm(x, 'atm', 'num', ...)}
+atm_num <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'num', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_odd <- function(x, ...) {bbb_mmm(x, 'atm', 'odd', ...)}
+atm_odd <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'odd', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_ord <- function(x, ...) {bbb_mmm(x, 'atm', 'ord', ...)}
+atm_ord <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'ord', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_pct <- function(x, ...) {bbb_mmm(x, 'atm', 'pct', ...)}
+atm_pct <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'pct', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_pos <- function(x, ...) {bbb_mmm(x, 'atm', 'pos', ...)}
+atm_pos <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'pos', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_ppn <- function(x, ...) {bbb_mmm(x, 'atm', 'ppn', ...)}
+atm_ppn <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'ppn', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_psw <- function(x, ...) {bbb_mmm(x, 'atm', 'psw', ...)}
+atm_psw <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'psw', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_srt <- function(x, ...) {bbb_mmm(x, 'atm', 'srt', ...)}
+atm_srt <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'srt', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_str <- function(x, ...) {bbb_mmm(x, 'atm', 'str', ...)}
+atm_str <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'str', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_uno <- function(x, ...) {bbb_mmm(x, 'atm', 'uno', ...)}
+atm_uno <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'uno', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-atm_whl <- function(x, ...) {bbb_mmm(x, 'atm', 'whl', ...)}
+atm_whl <- function(x, ...) {uj::bbb_mmm(x, 'atm', 'whl', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_atm <- function(x, ...) {bbb_mmm(x, 'pop', 'atm', ...)}
+pop_atm <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'atm', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_ch1 <- function(x, ...) {bbb_mmm(x, 'pop', 'ch1', ...)}
+pop_ch1 <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'ch1', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_ch3 <- function(x, ...) {bbb_mmm(x, 'pop', 'ch3', ...)}
+pop_ch3 <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'ch3', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_chr <- function(x, ...) {bbb_mmm(x, 'pop', 'chr', ...)}
+pop_chr <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'chr', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_clr <- function(x, ...) {bbb_mmm(x, 'pop', 'clr', ...)}
+pop_clr <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'clr', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_evn <- function(x, ...) {bbb_mmm(x, 'pop', 'evn', ...)}
+pop_evn <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'evn', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_fac <- function(x, ...) {bbb_mmm(x, 'pop', 'fac', ...)}
+pop_fac <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'fac', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_frc <- function(x, ...) {bbb_mmm(x, 'pop', 'frc', ...)}
+pop_frc <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'frc', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_ind <- function(x, ...) {bbb_mmm(x, 'pop', 'ind', ...)}
+pop_ind <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'ind', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_lgl <- function(x, ...) {bbb_mmm(x, 'pop', 'lgl', ...)}
+pop_lgl <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'lgl', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_neg <- function(x, ...) {bbb_mmm(x, 'pop', 'neg', ...)}
+pop_neg <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'neg', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_ngw <- function(x, ...) {bbb_mmm(x, 'pop', 'ngw', ...)}
+pop_ngw <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'ngw', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_nng <- function(x, ...) {bbb_mmm(x, 'pop', 'nng', ...)}
+pop_nng <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'nng', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_nnw <- function(x, ...) {bbb_mmm(x, 'pop', 'nnw', ...)}
+pop_nnw <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'nnw', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_nps <- function(x, ...) {bbb_mmm(x, 'pop', 'nps', ...)}
+pop_nps <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'nps', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_npw <- function(x, ...) {bbb_mmm(x, 'pop', 'npw', ...)}
+pop_npw <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'npw', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_nst <- function(x, ...) {bbb_mmm(x, 'pop', 'nst', ...)}
+pop_nst <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'nst', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_num <- function(x, ...) {bbb_mmm(x, 'pop', 'num', ...)}
+pop_num <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'num', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_odd <- function(x, ...) {bbb_mmm(x, 'pop', 'odd', ...)}
+pop_odd <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'odd', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_ord <- function(x, ...) {bbb_mmm(x, 'pop', 'ord', ...)}
+pop_ord <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'ord', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_pct <- function(x, ...) {bbb_mmm(x, 'pop', 'pct', ...)}
+pop_pct <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'pct', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_pos <- function(x, ...) {bbb_mmm(x, 'pop', 'pos', ...)}
+pop_pos <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'pos', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_ppn <- function(x, ...) {bbb_mmm(x, 'pop', 'ppn', ...)}
+pop_ppn <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'ppn', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_psw <- function(x, ...) {bbb_mmm(x, 'pop', 'psw', ...)}
+pop_psw <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'psw', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_srt <- function(x, ...) {bbb_mmm(x, 'pop', 'srt', ...)}
+pop_srt <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'srt', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_str <- function(x, ...) {bbb_mmm(x, 'pop', 'str', ...)}
+pop_str <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'str', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_uno <- function(x, ...) {bbb_mmm(x, 'pop', 'uno', ...)}
+pop_uno <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'uno', ...)}
 
 #' @rdname bbb_mmm
 #' @export
-pop_whl <- function(x, ...) {bbb_mmm(x, 'pop', 'whl', ...)}
+pop_whl <- function(x, ...) {uj::bbb_mmm(x, 'pop', 'whl', ...)}

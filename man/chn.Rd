@@ -3,9 +3,12 @@
 \encoding{UTF-8}
 \name{chn}
 \alias{chn}
+\alias{charn}
 \title{Get the \code{n}-th character element-wise.}
 \usage{
 chn(x, n)
+
+charn(x, n)
 }
 \arguments{
 \item{x}{A \link[=pop_chr]{populated character object}.}
@@ -24,7 +27,7 @@ Get the \code{n}-th character element-wise.
 
  chn(words, 1)
  chn(words, 3)
- chn(words, 10)
+ charn(words, 10)
 }
 \seealso{
 Other strings: 

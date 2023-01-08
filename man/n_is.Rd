@@ -167,7 +167,7 @@ May be non-negative integer or a logical scalar or vector, depending the propert
 \description{
 Counting functions can be used with a single unnamed argument, multiple unnamed arguments, and with restrictions in named arguments, in any combination. The functions in this family answer the questions described below.
 \tabular{rl}{
-  \verb{nu, nuv}   \tab Number of unique atomic values.
+  \verb{nu, nuv}   \tab Number of unique atomic values.
 \cr \verb{nw, nt}   \tab Number of \code{TRUE} values.
 \cr     \code{nf}   \tab Number of \code{FALSE} values.
 \cr    \code{nna}   \tab Number of atomic \code{NA} values.
@@ -256,7 +256,7 @@ Other extensions:
 \code{\link{failsafe_is}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
@@ -267,7 +267,7 @@ Other extensions:
 \code{\link{swap}()},
 \code{\link{uv}()},
 \code{\link{wv}()},
-\code{\link{x}()}
+\code{\link{xat}()}
 
 Other counts: 
 \code{\link{max_nch}()},

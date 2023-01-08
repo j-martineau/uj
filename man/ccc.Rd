@@ -56,20 +56,43 @@ ivls(x, ...)
 }
 \value{
 \emph{A character vector}
-\cr    \code{ccc_props}
-\cr    \code{ccc_funs}
-\cr    \code{ccc}
-\cr\cr \emph{A logical vector}
-\cr    \code{is_ccc_spec}
-\cr    \code{iCCC}
-\cr    \code{iccc}
+\cr   \code{ccc_props}
+\cr   \code{ccc_funs}
+\cr   \code{ccc}
+\cr
+\cr \emph{A logical vector}
+\cr   \code{is_ccc_spec}
+\cr   \code{iCCC}
+\cr   \code{iccc}
 }
 \description{
 \code{xclass} properties are defined as follows:
 \tabular{rll}{
   \code{arr}   \tab array    \tab   arrays
-\cr \code{mat}   \tab matrix   \tab   matrices\verb{\\cr}dtf\verb{   \\tab dtf      \\tab   data.frames}
-\cr \code{vls}   \tab vlist    \tab   vector-lists\verb{\eqn{^a} \\cr }gen\verb{   \\tab generic  \\tab   vectors, vlists, and arrays \\cr }scl\verb{   \\tab scalar   \\tab   Length-}1\verb{generics \\cr}mvc\verb{   \\tab multivec \\tab   Length-}2+\verb{ \link[=ilin]\{linear\} generics \\cr }vec\verb{   \\tab vec      \\tab   scalars and multivecs \} \eqn{^{a.}} Non-}data.frame\verb{ lists. \\cr\\cr **Functions** \\tabular\{rl\}\{   }is_ccc_spec\verb{   \\tab Is }spec\verb{an xclass specification? \\cr               \\tab   \\cr}ccc_props\verb{   \\tab What xclass properties are there? \\cr               \\tab   \\cr  }ccc_funs\verb{   \\tab What xclass property functions are there? \\cr               \\tab   \\cr      }iccc\verb{   \\tab Is }x\verb{a match to the xclass specification}spec\verb{? \\cr               \\tab   \\cr      }iCCC\verb{   \\tab Is }x\verb{a match to the single xclass property}'CCC'\verb{? \\cr               \\tab   \\cr       }ccc\verb{   \\tab What are }x`'s xclass properties?
+\cr \code{mat}   \tab matrix   \tab   matrices
+\cr \code{dtf}   \tab dtf      \tab   data.frames
+\cr \code{vls}   \tab vlist    \tab   vector-lists\code{*}
+\cr \code{gen}   \tab generic  \tab   vectors, vlists, and arrays
+\cr \code{scl}   \tab scalar   \tab   Length-\code{1} generics
+\cr \code{mvc}   \tab multivec \tab   Length-\verb{2+} \link[=ilin]{linear} generics
+\cr \code{vec}   \tab vec      \tab   scalars and multivecs
+}
+\code{*} Non-\code{data.frame} lists.
+\cr
+\cr
+\strong{Functions}
+\tabular{rl}{
+  \code{is_ccc_spec}   \tab Is \code{spec} an xclass specification?
+\cr               \tab  
+\cr \code{ccc_props}   \tab What xclass properties are there?
+\cr               \tab  
+\cr  \code{ccc_funs}   \tab What xclass property functions are there?
+\cr               \tab  
+\cr      \code{iccc}   \tab Is \code{x} a match to the xclass specification \code{spec}?
+\cr               \tab  
+\cr      \code{iCCC}   \tab Is \code{x} a match to the single xclass property \code{'CCC'}?
+\cr               \tab  
+\cr       \code{ccc}   \tab What are \code{x}'s xclass properties?
 }
 }
 \section{Specifying count and value restrictions}{
@@ -99,6 +122,7 @@ ccc(letters)
 Other props: 
 \code{\link{bbb_ccc}()},
 \code{\link{cmp_mmm_ccc}()},
+\code{\link{sss_ccc}()},
 \code{\link{unq_mmm_ccc}()},
 \code{\link{unq_mmm}()}
 }

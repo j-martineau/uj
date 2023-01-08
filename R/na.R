@@ -17,15 +17,18 @@
 #' @param x The argument to be inspected/managed.
 #' @param s An \link[=atm_scl]{atomic scalar} to replace `NA` values. Mode must be \link[=compatible]{compatible} with`x`
 #' @return *A logical object of the same dimension as `x`*
-#'  \cr    `na, ok`
-#'  \cr\cr *`x` with `NA` values replaced*
+#'  \cr   `na, ok`
+#'  \cr
+#'  \cr *`x` with `NA` values replaced*
 #'  \cr (properties may change with `NA` replacement)
-#'  \cr    `sub_na`
-#'  \cr\cr *`x` with `NA` values removed*
+#'  \cr   `sub_na`
+#'  \cr
+#'  \cr *`x` with `NA` values removed*
 #'  \cr (properties may change with `NA` removal)
-#'  \cr    `rm_na`
-#'  \cr\cr *A logical scalaqr*
-#'  \cr    `nas, oks`
+#'  \cr   `rm_na`
+#'  \cr
+#'  \cr *A logical scalaqr*
+#'  \cr   `nas, oks`
 #' @examples
 #' na_scl <- NA
 #' ok_scl <- "a"
@@ -53,62 +56,62 @@
 #' rm_na(mat)
 #' @export
 na <- function(x) {
-  if (length(x) > 0) {
-    if (is.atomic(x)) {return(is.na(x))}
-    else if (is.data.frame(x)) {if (all(apply(x, 2, is.atomic))) {return(apply(x, 2, is.na))}}
-    if (ivls(x)) {if (all(lengths(x) > 0)) {if (all(sapply(x, is.atomic(x)))) {return(all(lapply(x, is.na)))}}}
+  if (base::length(x) > 0) {
+    if (base::is.atomic(x)) {return(base::is.na(x))}
+    else if (base::is.data.frame(x)) {if (base::all(base::apply(x, 2, base::is.atomic))) {return(base::apply(x, 2, base::is.na))}}
+    if (uj::ivls(x)) {if (base::all(base::lengths(x) > 0)) {if (base::all(base::sapply(x, base::is.atomic(x)))) {return(base::all(base::lapply(x, base::is.na)))}}}
   }
-  stop(.errs("[x] must be populated (?ipop) and atomic, a populated atomic vlist (?ivls), or a populated atomic tabular (?itab)."))
+  stop(uj:::.errs("[x] must be populated (?ipop) and atomic, a populated atomic vlist (?ivls), or a populated atomic tabular (?itab)."))
 }
 
 #' @rdname na
 #' @export
 ok <- function(x) {
-  if (length(x) > 0) {
-    if (is.atomic(x)) {return(!is.na(x))}
-    else if (is.data.frame(x)) {if (all(apply(x, 2, is.atomic))) {return(apply(apply(x, 2, is.na), not))}}
-    if (ivls(x)) {if (all(lengths(x) > 0)) {if (all(sapply(x, is.atomic(x)))) {return(all(lapply(lapply(x, is.na), not)))}}}
+  if (base::length(x) > 0) {
+    if (base::is.atomic(x)) {return(!base::is.na(x))}
+    else if (base::is.data.frame(x)) {if (base::all(base::apply(x, 2, base::is.atomic))) {return(base::apply(base::apply(x, 2, base::is.na), uj::not))}}
+    if (uj::ivls(x)) {if (base::all(base::lengths(x) > 0)) {if (base::all(base::sapply(x, base::is.atomic(x)))) {return(base::all(base::lapply(base::lapply(x, base::is.na), uj::not)))}}}
   }
-  stop(.errs("[x] must be populated (?ipop) and atomic, a populated atomic vlist (?ivls), or a populated atomic tabular (?itab)."))
+  stop(uj:::.errs("[x] must be populated (?ipop) and atomic, a populated atomic vlist (?ivls), or a populated atomic tabular (?itab)."))
 }
 
 #' @rdname na
 #' @export
 sub_na <- function(x, s) {
-  if (length(x) == 0) {return(x)}
-  if (is.atomic(x)) {
-    if (compatible(x, s)) {x[is.na(x)] <- s; return(x)}
-    else {stop(.errs("[x] and [s] are of incompatible modes (?compatible)."))}
-  } else if (is.data.frame(x)) {
-    if (all(apply(x, 2, is.atomic))) {
-      if (all(apply(x, 2, compatible, s))) {x[is.na(x)] <- s; return(x)}
-      else {stop(.errs("[s] is incompatible (?incompatible) with one or more columns of [x]."))}
-    } else {stop(.errs("When [x] is a dtf (?is_dtf), its columns must be atomic."))}
-  } else if (atm_vls(x)) {
-    if (all(sapply(x, is.atomic))) {
-      if (all(sapply(x, compatible, s))) {return(lapply(x, sub_na, s))}
-      else {stop(.errs("[s] is incompatible (?incompatible) with one or more elements of [x]."))}
-    } else {stop(.errs("When [x] is a vlist (?is_vls), its elements must be atomic."))}
-  } else {stop(.errs("[x] must be an atomic vlist (?atm_vls), atomic dtf (?idtf), or some other atomic object."))}
+  if (base::length(x) == 0) {return(x)}
+  if (base::is.atomic(x)) {
+    if (uj::compatible(x, s)) {x[base::is.na(x)] <- s; return(x)}
+    else {stop(uj:::.errs("[x] and [s] are of incompatible modes (?compatible)."))}
+  } else if (base::is.data.frame(x)) {
+    if (base::all(base::apply(x, 2, base::is.atomic))) {
+      if (base::all(base::apply(x, 2, uj::compatible, s))) {x[base::is.na(x)] <- s; return(x)}
+      else {stop(uj:::.errs("[s] is incompatible (?incompatible) with one or more columns of [x]."))}
+    } else {stop(uj:::.errs("When [x] is a dtf (?is_dtf), its columns must be atomic."))}
+  } else if (uj::atm_vls(x)) {
+    if (base::all(base::sapply(x, base::is.atomic))) {
+      if (base::all(base::sapply(x, uj::compatible, s))) {return(base::lapply(x, uj::sub_na, s))}
+      else {stop(uj:::.errs("[s] is incompatible (?incompatible) with one or more elements of [x]."))}
+    } else {stop(uj:::.errs("When [x] is a vlist (?is_vls), its elements must be atomic."))}
+  } else {stop(uj:::.errs("[x] must be an atomic vlist (?atm_vls), atomic dtf (?idtf), or some other atomic object."))}
 }
 
 #' @rdname na
 #' @export
-nas <- function(x) {if (length(x) == 1 & iatm(x)) {is.na(x)} else {F}}
+nas <- function(x) {uj::f0(base::length(x) == 1 & uj::iatm(x), base::is.na(x), F)}
 
 #' @rdname na
 #' @export
-oks <- function(x) {if (length(x) == 1 & iatm(x)) {!is.na(x)} else {F}}
+oks <- function(x) {uj::f0(base::length(x) == 1 & uj::iatm(x), !base::is.na(x), F)}
 
 #' @rdname na
 #' @export
 rm_na <- function(x) {
-  if (is.atomic(x)) {return(x[!is.na(x)])}
-  else if (is.data.frame(x)) {if (all(apply(x, 2, is.atomic))) {
-    if (!any(is.na(x))) {return(x)}
-    x <- av(x)
-    return(x[!is.na(x)])
+  if (base::is.atomic(x)) {return(x[!base::is.na(x)])}
+  else if (base::is.data.frame(x)) {if (base::all(base::apply(x, 2, base::is.atomic))) {
+    if (!base::any(base::is.na(x))) {return(x)}
+    x <- uj::av(x)
+    return(x[!base::is.na(x)])
   }}
-  else if (atm_vls(x)) {if (all(sapply(x, is.atomic))) {return(lapply(x, rm_na))}}
-  stop(.errs("[x] must be populated (?ipop) and either an atomic object, an atomic vlist (?atm_vls), or an atomic dtf (?atm_dtf)."))
+  else if (uj::atm_vls(x)) {if (base::all(base::sapply(x, base::is.atomic))) {return(base::lapply(x, uj::rm_na))}}
+  stop(uj:::.errs("[x] must be populated (?ipop) and either an atomic object, an atomic vlist (?atm_vls), or an atomic dtf (?atm_dtf)."))
 }

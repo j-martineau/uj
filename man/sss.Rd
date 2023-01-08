@@ -56,13 +56,13 @@ isqr(x, ...)
 }
 \value{
 \emph{A logical scalar}
-\cr    \code{is_sss_spec}
-\cr    \code{iSSS}
-\cr    \code{isss}
+\cr   \code{is_sss_spec}
+\cr   \code{iSSS}
+\cr   \code{isss}
 \cr
 \cr \emph{A character vector}
-\cr    \code{sss_props}
-\cr    \code{sss_funs}
+\cr   \code{sss_props}
+\cr   \code{sss_funs}
 }
 \description{
 Shape properties are defined as follows: \tabular{rll}{
@@ -116,6 +116,7 @@ Other properties:
 \code{\link{as_mmm}},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
+\code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -124,12 +125,11 @@ Other properties:
 \code{\link{eee}()},
 \code{\link{err_check}()},
 \code{\link{iii}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
 \code{\link{ppp}()},
-\code{\link{reclass}()},
 \code{\link{unq_ccc}()}
 }
 \concept{properties}

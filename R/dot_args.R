@@ -31,26 +31,26 @@
 #' @param u. Non-`NA` logical scalar indicating whether names must be unique.
 #' @export
 dots <- function(names., defs., ...) {
-  dots  <- list(...)
-  ok.names <- atm_vec(names.)
-  ok.n <- length(dots) > 0
-  errs <- c(f0(ok.names, NULL, "[names.] must be a complete atomic vec (?cmp_vec)."),
-            f0(ok.n    , NULL, "[...] must contain at least one argument."))
-  if (!is.null(errs)) {stop(errs)}
-  dot.names <- names(dots);
-  def.names <- names(defs.)                                                      # names of args in {...} and elements of {defs.}
-  names. <- ss("|", as.character(av(names.)))                                    # atomize {names.}, convert to character, and split along {'|'}
-  names.[is.na(names.)] <- 'NA'                                                  # change {NA}s to a {'NA'}
+  dots <- base::list(...)
+  ok.names <- uj::atm_vec(names.)
+  ok.n <- base::length(dots) > 0
+  errs <- base::c(uj::f0(ok.names, NULL, "[names.] must be a complete atomic vec (?cmp_vec)."),
+                  uj::f0(ok.n    , NULL, "[...] must contain at least one argument."))
+  if (!base::is.null(errs)) {stop(errs)}
+  dot.names <- base::names(dots);
+  def.names <- base::names(defs.)                                                      # names of args in {...} and elements of {defs.}
+  names. <- ss("|", base::as.character(uj::av(names.)))                                    # atomize {names.}, convert to character, and split along {'|'}
+  names.[base::is.na(names.)] <- 'NA'                                                  # change {NA}s to a {'NA'}
   in.dots <- names. %in% dot.names                                               # whether each value of {names.} is in the names of args in {...}
   in.defs <- names. %in% def.names                                               # whether each value of {names.} is in the names of {defs.}
-  match  <- all(in.dots | in.defs)                                               # validity check (does every value of {names.} have a match?)
-  if (!match) {stop(.errs("Values in [names.] must match elements of [...] or of [defs.]."))}
-  n.names <- length(names.)                                                      # number of arguments to match
-  out <- rep.int(list(NULL), n.names)                                            # initialize the results as a list of {NULL` elements
+  match <- base::all(in.dots | in.defs)                                               # validity check (does every value of {names.} have a match?)
+  if (!match) {stop(uj:::.errs("Values in [names.] must match elements of [...] or of [defs.]."))}
+  n.names <- base::length(names.)                                                      # number of arguments to match
+  out <- base::rep.int(base::list(NULL), n.names)                                            # initialize the results as a list of {NULL` elements
   for (i in 1:n.names) {                                                         # for each element of {names.}
     name.i <- names.[[i]]                                                        # : get the name to be matched
-    if (in.dots[i]) {out[[i]] <- dots[[ which(dot.names == name.i)]]}            # : if it matches an argument in {...}, store that argument
-    else            {out[[i]] <- defs.[[which(def.names == name.i)]]}            # ; otherwise, store the matching element of {defs.}
+    if (in.dots[i]) {out[[i]] <- dots[[base::which(dot.names == name.i)]]}            # : if it matches an argument in {...}, store that argument
+    else            {out[[i]] <- defs.[[base::which(def.names == name.i)]]}            # ; otherwise, store the matching element of {defs.}
   }
   if (n.names == 1) {out <- out[[1]]}                                            # if only 1 argument was extracted, un-nest it from the results list
   out
@@ -59,50 +59,64 @@ dots <- function(names., defs., ...) {
 #' @rdname dot_args
 #' @export
 dot <- function(name., def., ...) {
-  if (!cmp_scl(name.)) {stop("[name.] must be a complete atomic scalar (?cmp_scl).")}
-  dots(name., def., ...)
+  if (!uj::cmp_scl(name.)) {stop(uj:::.errs("[name.] must be a complete atomic scalar (?cmp_scl)."))}
+  uj::dots(name., def., ...)
 }
 
 #' @rdname dot_args
 #' @export
 dot_names <- function(..., subs. = NULL, req. = T, blank. = F, u. = T) {
-  dots <- list(...)
-  errs <- c(f0(length(dots) > 0               , NULL, "[...] is empty."),
-            f0(f0(inll(subs.), T, ivec(subs.)), NULL, "[subs.] must be NULL or an atomic vector with one value per argument in [...]."),
-            f0(isTF(req.)                     , NULL, "[req.] must be TRUE or FALSE."),
-            f0(isTF(blank.)                   , NULL, "[blank.] must be TRUE or FALSE."),
-            f0(isTF(u.)                       , NULL, "[u.] must be TRUE or FALSE."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  n.dots <- ...length()
-  n.names <- length(...names())
-  if (inll(subs.)) {subs. <- ...names()}
-  errs <- c(f0(n.names == n.dots | inll(subs.), NULL, "When [subs.] is not NULL, it must contain one value per argument in [...]."),
-            f0(n.names == n.dots | !req.      , NULL, "When [req. = TRUE], arguments in [...] must be named or [subs.] must contain one value per argument in [...]."))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  subs. <- av(strsplit(as.character(av(subs.)), "|", fixed = TRUE))
-  subs.[is.na(subs.)] <- 'NA'
-  errs <- c(f0(!blank. | notIN("", subs.), NULL, "A name is blank but [blank. = FALSE]."),
-            f0(!u.     | is_unq(subs.)   , NULL, "Names provided are not unique but [u. = TRUE]."))
-  if (!is.null(errs)) {stop(.errs(errs))}
+  dots <- base::list(...)
+  errs <- c(uj::f0(base::length(dots) > 0                     , NULL, "[...] is empty."),
+            uj::f0(uj::f0(uj::inll(subs.), T, uj::ivec(subs.)), NULL, "[subs.] must be NULL or an atomic vector with one value per argument in [...]."),
+            uj::f0(uj::isTF(req.)                             , NULL, "[req.] must be TRUE or FALSE."),
+            uj::f0(uj::isTF(blank.)                           , NULL, "[blank.] must be TRUE or FALSE."),
+            uj::f0(uj::isTF(u.)                               , NULL, "[u.] must be TRUE or FALSE."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  n.dots <- base::...length()
+  n.names <- base::length(base::...names())
+  if (uj::inll(subs.)) {subs. <- base::...names()}
+  errs <- base::c(uj::f0(n.names == n.dots | uj::inll(subs.), NULL, "When [subs.] is not NULL, it must contain one value per argument in [...]."),
+                  uj::f0(n.names == n.dots | !req.          , NULL, "When [req. = TRUE], arguments in [...] must be named or [subs.] must contain one value per argument in [...]."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  subs. <- av(base::strsplit(base::as.character(uj::av(subs.)), "|", fixed = TRUE))
+  subs.[base::is.na(subs.)] <- 'NA'
+  errs <- base::c(uj::f0(!blank. | uj::notIN("", subs.), NULL, "A name is blank but [blank. = FALSE]."),
+                  uj::f0(!u.     | uj::is_unq(subs.)   , NULL, "Names provided are not unique but [u. = TRUE]."))
+  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
   subs.
 }
 
 #' @rdname dot_args
 #' @export
 named_dots <- function(...) {
-  dot.names <- ...names()
-  n.dots <- ...length()
-  n.names <- length(dot.names)
-  ok.names <- !is.na(dot.names) & dot.names != ""
-  f0(n.dots == 0 | n.names == 0, NULL, f0(!any(ok.names), NULL, list(...)[ok.names]))
+  dot.names <- base::...names()
+  n.dots <- .base::..length()
+  n.names <- base::length(dot.names)
+  ok.names <- !base::is.na(dot.names) & dot.names != ""
+  uj::f0(n.dots == 0 | n.names == 0, NULL, uj::f0(!base::any(ok.names), NULL, base::list(...)[ok.names]))
 }
 
 #' @rdname dot_args
 #' @export
 unnamed_dots <- function(...) {
-  dot.names <- ...names()
-  n.dots <- ...length()
-  n.names <- length(dot.names)
-  ok.names <- is.na(dot.names) | dot.names == ""
-  f0(n.dots == 0, NULL, f0(n.names == 0, list(...), f0(!any(ok.names), NULL, list(...)[ok.names])))
+  dot.names <- base::...names()
+  n.dots <- base::...length()
+  n.names <- base::length(dot.names)
+  ok.names <- base::is.na(dot.names) | dot.names == ""
+  uj::f0(n.dots == 0, NULL, uj::f0(n.names == 0, base::list(...), uj::f0(!base::any(ok.names), NULL, base::list(...)[ok.names])))
+}
+
+#' @rdname dot_args
+#' @export
+flex_dots <- function(...) {
+  if (base::...length() == 0) {stop(uj:::.errs("There are no [...] args."))}
+  dot.names <- base::as.character(base::match.call())
+  dot.names <- dot.names[2:base::length(dot.names)]
+  out <- NULL
+  for (i in 1:base::length(dot.names)) {
+    arg <- uj::failsafe(base::...elt(i))
+    out <- base::c(out, uj::f0(uj::isERR(arg), dot.names[i], base::as.character(uj::av(arg))))
+  }
+  uj::uv(out)
 }

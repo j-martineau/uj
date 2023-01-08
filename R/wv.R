@@ -3,8 +3,9 @@
 #' @family values
 #' @title Which \link[=av]{atomized} values are `TRUE`?
 #' @description Calls `which(av(x))`.
+#' @return An integer vector.
 #' @export
 wv <- function(...) {
-  x <- av(...)
-  f0(ilgl(x), which(x), stop(.errs("[...] does not resolve to a logical object.")))
+  x <- uj::av(...)
+  uj::f0(uj::ilgl(x), base::which(x), stop(uj:::.errs("[...] does not resolve to a logical object.")))
 }

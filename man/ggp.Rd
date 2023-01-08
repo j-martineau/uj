@@ -35,7 +35,12 @@
 \alias{ggylab}
 \title{Thin wrappers of \code{ggplot2} and \code{ggtext} functions}
 \usage{
-ggp(data = NULL, mapping = ggplot2::aes(), ..., environment = parent.frame())
+ggp(
+  data = NULL,
+  mapping = ggplot2::aes(),
+  ...,
+  environment = base::parent.frame()
+)
 
 ggaes(x, y, ...)
 
@@ -705,9 +710,9 @@ These functions wrap \code{ggplot2} functions unless otherwise noted:
 \cr    \code{ggelin} \tab   Thinly wraps \code{\link[ggplot2]{element_line}}
 \cr   \code{ggenull} \tab   Thinly wraps \code{\link[ggplot2]{element_blank}}
 \cr             \tab   
-\cr     \code{ggemd} \tab   Thinly wraps \code{\link[ggtext]{element_markdown}}\eqn{^a}
+\cr     \code{ggemd} \tab   Thinly wraps \code{\link[ggtext]{element_markdown}}\code{*}
 }
-\eqn{{a.}} A \code{ggtext} package function.
+\code{*} A \code{ggtext} package function.
 }
 \details{
 \code{ggplot()} is used to construct the initial plot object,

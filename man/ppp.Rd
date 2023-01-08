@@ -38,11 +38,11 @@ is_prop_spec(spec)
 
 is_prop_combo(combo)
 
-props_from_spec(spec, valid = all_props())
+props_from_spec(spec, valid = uj::all_props())
 
-combos_from_spec(spec, valid = all_props())
+combos_from_spec(spec, valid = uj::all_props())
 
-props_from_combo(combo, valid = all_props())
+props_from_combo(combo, valid = uj::all_props())
 
 ippp(x, spec, ...)
 
@@ -77,25 +77,25 @@ spec_concise(spec)
 }
 \value{
 \emph{A character vector}
-\cr    \code{combos_from_spec}
-\cr    \code{props_from_combo}
-\cr    \code{props_from_spec}
-\cr    \code{ppp_or_funs}
-\cr    \code{all_props}
-\cr    \code{prop_funs}
-\cr    \code{ppp}
+\cr   \code{combos_from_spec}
+\cr   \code{props_from_combo}
+\cr   \code{props_from_spec}
+\cr   \code{ppp_or_funs}
+\cr   \code{all_props}
+\cr   \code{prop_funs}
+\cr   \code{ppp}
 \cr\cr \emph{A character scalar}
-\cr    \code{combo_concise}
-\cr    \code{prop_verbose}
-\cr    \code{spec_concise}
+\cr   \code{combo_concise}
+\cr   \code{prop_verbose}
+\cr   \code{spec_concise}
 \cr\cr \emph{A logical scalar}
-\cr    \code{is_valid_combo}
-\cr    \code{is_valid_prop}
-\cr    \code{is_valid_spec}
-\cr    \code{is_prop_fun}
-\cr    \code{nas_or}
-\cr    \code{nll_or}
-\cr    \code{ippp}
+\cr   \code{is_valid_combo}
+\cr   \code{is_valid_prop}
+\cr   \code{is_valid_spec}
+\cr   \code{is_prop_fun}
+\cr   \code{nas_or}
+\cr   \code{nll_or}
+\cr   \code{ippp}
 }
 \description{
 \emph{Property families defined by this package}
@@ -108,6 +108,7 @@ spec_concise(spec)
 \cr \code{\link{mmm}}   \tab xmode (extended modes)
 \cr \code{\link{sss}}   \tab shape (geometric shape)
 }
+\cr
 \emph{Types of property specs}
 \tabular{rl}{
   \emph{single}   \tab \link[=ich3]{3-char} scalars (i.e., \code{all(nchar(.) == 3)} with all values in \code{all_props()}. For example, \verb{'ord', 'dtf', 'd1D',} and \code{'rct'} are \emph{single} property specs.
@@ -118,6 +119,7 @@ spec_concise(spec)
 \cr            \tab  
 \cr   \emph{flex}   \tab A \emph{single}, \emph{combo}, or \emph{option} property spec as defined above.
 }
+\cr
 \emph{Functions for property spec decomposition}
 \tabular{rl}{
   \code{props_from_combo}   \tab What are the constituent \emph{single} properties of a \emph{combo} property spec?
@@ -126,6 +128,7 @@ spec_concise(spec)
 \cr                      \tab  
 \cr  \code{props_from_spec}   \tab What are the \emph{unique} constituent \emph{single} properties in a \emph{flex} property spec?
 }
+\cr
 \emph{Functions to check whether a value is a valid property spec}
 \tabular{rl}{
   \code{is_prop_combo}   \tab Is \code{combo} a valid \emph{combo} property spec?
@@ -136,6 +139,7 @@ spec_concise(spec)
 \cr                  \tab  
 \cr      \code{is_prop}   \tab Is \code{prop} a valid \emph{single} property?
 }
+\cr
 \emph{Functions to define properties and property specs}
 \tabular{rl}{
   \code{combo_concise}   \tab How is a \emph{combo} property spec (concisely) defined?
@@ -146,6 +150,7 @@ spec_concise(spec)
 \cr                  \tab  
 \cr    \code{prop_defs}   \tab What are the definitions of all possible \emph{single} properties (returned as a data.frame)?
 }
+\cr
 \emph{Functions to list names of dedicated property-checking functions}
 \tabular{rl}{
   \code{ppp_or_funs}   \tab What dedicated functions check \code{x} for either special values or a match to a \emph{flex} property spec?
@@ -154,6 +159,7 @@ spec_concise(spec)
 \cr               \tab  
 \cr \code{all_props}   \tab What is the complete set of all possible \emph{single} properties?
 }
+\cr
 \emph{Functions to check object against arbitrary property specs}
 \tabular{rl}{
   \code{nas_or}   \tab Is \code{x} either \code{NA} or a match to the \emph{flex} property spec in \code{spec}?
@@ -162,8 +168,10 @@ spec_concise(spec)
 \cr            \tab  
 \cr   \code{ippp}   \tab Is \code{x} a match to the \emph{flex} property spec in \code{spec}?
 }
-\emph{Function to list all of an object's} single \emph{properties across property families}
+\cr
+\emph{Functions to list all of an object's} single \emph{properties across property families}
 \tabular{rl}{  \code{ppp}   \tab What are all of \code{x}'s \emph{single} properties compiled from all property families?}
+\cr
 For convenience, property functions from other function families are described in \emph{details}.
 }
 \details{
@@ -177,6 +185,7 @@ For convenience, property functions from other function families are described i
 \cr \code{mmm_props}   \tab \link[=mmm]{xmode}
 \cr \code{sss_props}   \tab \link[=sss]{shape}
 }
+\cr
 \emph{Functions to list names of dedicated property-checking functions}
 \tabular{rl}{
   \code{cmp_mmm_ccc_funs}   \tab integrity = \code{'cmp'} + xmode + xclass
@@ -202,8 +211,10 @@ For convenience, property functions from other function families are described i
 \cr   \code{mmm_funs}   \tab \link[=mmm]{xmode}
 \cr   \code{sss_funs}   \tab \link[=sss]{shape}
 }
+\cr
 \emph{Dedicated functions to check an object for a specific} combo \emph{or} single \emph{property}
-\cr\cr For these functions, an uppercase letter repeated three times is a placeholder for the value of an arbitrary single property from the associated property family.
+\cr
+\cr For these functions, an uppercase letter repeated three times is a placeholder for the value of an arbitrary single property from the associated property family.
 \tabular{rl}{
   \code{cmp_MMM_CCC}   \tab integrity = \code{'cmp'} + xmode=\code{'MMM'} + xclass = \code{'CCC'}
 \cr \code{unq_MMM_CCC}   \tab integrity = \code{'unq'} + xmode=\code{'MMM'} + xclass = \code{'CCC'}
@@ -220,6 +231,7 @@ For convenience, property functions from other function families are described i
 \cr   \code{BBB_CCC}   \tab basic = \code{'BBB'} + xclass = \code{'CCC'}
 \cr   \code{BBB_MMM}   \tab basic = \code{'BBB'} + xmode = \code{'MMM'}
 \cr   \code{MMM_CCC}   \tab xmode = \code{'MMM'} + xclass = \code{'CCC'}
+\cr   \code{SSS_CCC}   \tab shape = \code{'SSS'} + xclass = \code{'CCC'}
 } \tabular{rl}{
   \tab  
 \cr   \code{iBBB}   \tab \link[=bbb]{basic} = \code{'BBB'}
@@ -230,8 +242,10 @@ For convenience, property functions from other function families are described i
 \cr   \code{iMMM}   \tab \link[=mmm]{xmode} = \code{'MMM'}
 \cr   \code{iSSS}   \tab \link[=sss]{shape} = \code{'SSS'}
 }
+\cr
 \emph{Functions to check an object against an arbitrary} combo \emph{property specs}
-\cr\cr For these functions, an uppercase letter repeated three times is a placeholder for the value of an arbitrary single property from the associated property family.
+\cr
+\cr For these functions, an uppercase letter repeated three times is a placeholder for the value of an arbitrary single property from the associated property family.
 \tabular{rl}{
   \code{cmp_mmm_ccc}   \tab integrity = \code{'cmp'} + arbitrary xmode + arbitrary xclass
 \cr \code{unq_mmm_ccc}   \tab integrity = \code{'unq'} + arbitrary xmode + arbitrary xclass
@@ -240,6 +254,7 @@ For convenience, property functions from other function families are described i
 \cr   \code{bbb_ccc}   \tab arbitrary basic property + arbitrary xclass
 \cr   \code{bbb_mmm}   \tab arbitrary basic property + arbitrary xmode
 \cr   \code{mmm_ccc}   \tab arbitrary xmode + arbitrary xclass
+\cr   \code{sss_ccc}   \tab arbitrary shape + arbitrary xclass
 } \tabular{rl}{
   \tab  
 \cr   \code{cmp_ccc}   \tab integrity = \code{'cmp'} + arbitrary xclass
@@ -249,6 +264,7 @@ For convenience, property functions from other function families are described i
 \cr   \code{unq_ccc}   \tab integrity = \code{'unq'} + arbitrary xclass
 \cr   \code{unq_mmm}   \tab integrity = \code{'unq'} + arbitrary xmode
 }
+\cr
 \emph{Functions to check objects against} flex \emph{property specs in a single family}
 \tabular{rl}{
   \code{ibbb}   \tab \link[=bbb]{basic}
@@ -259,6 +275,7 @@ For convenience, property functions from other function families are described i
 \cr \code{immm}   \tab \link[=mmm]{xmode}
 \cr \code{isss}   \tab \link[=sss]{shape}
 }
+\cr
 \emph{Functions to retrieve all of an object's} single \emph{properties of a specific family}
 \tabular{rl}{
   \code{bbb}   \tab \link[=bbb]{basic}
@@ -327,6 +344,7 @@ Other properties:
 \code{\link{as_mmm}},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
+\code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -335,11 +353,10 @@ Other properties:
 \code{\link{eee}()},
 \code{\link{err_check}()},
 \code{\link{iii}()},
-\code{\link{is_unq}()},
+\code{\link{is_unique}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
-\code{\link{reclass}()},
 \code{\link{sss}()},
 \code{\link{unq_ccc}()}
 }

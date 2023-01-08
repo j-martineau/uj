@@ -13,11 +13,11 @@
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return *A character vector*
-#'   \cr    `unq_ccc_funs`
+#'   \cr   `unq_ccc_funs`
 #'   \cr
 #'   \cr *A logical scalar*
-#'   \cr    `unq_ccc`
-#'   \cr    `unq_CCC`
+#'   \cr   `unq_ccc`
+#'   \cr   `unq_CCC`
 #' @examples
 #' unq_ccc_fun()
 #' unq_ccc(letters, "mvc")
@@ -27,47 +27,43 @@
 #' unq_scl(1)
 #' @export
 unq_ccc <- function(x, ccc, ...) {
-  cfun <- function(cx) {run("i", ccc, "(cx)")}
-  afun <- function(ax) {f0(!is.atomic(ax), F, f0(length(ax) == 0, F, f0(any(is.na(ax)), F, length(ax) == length(unique(ax)))))}
-  dfun <- function(dx) {all(apply(dx, 2, afun))}
-  vfun <- function(vx) {all(sapply(vx, afun))}
-  errs <- c(.meets_errs(x, ...), f0(f0(length(ccc) != 1 | !is.character(ccc), F, f0(is.na(ccc), F, ccc %in% .cccs)), NULL, '[ccc] is not a scalar value from ccc_props().'))
-  if (!is.null(errs)) {stop(.errs(errs))}
-  f0(!meets(x, ...), F, f0(!cfun(x), F, f0(ccc == "dtf", dfun(x),  f0(ccc == "vls", vfun(x), afun(x)))))
+  if (uj::cmp_ccc(x, ccc, ...)) {
+    uj::is_unique(x, a = !(ccc %in% base::c("dtf", "vls")), na = F)
+  } else {F}
 }
 
 #' @rdname unq_ccc
 #' @export
-unq_ccc_funs <- function() {paste0('unq_', .cccs)}
+unq_ccc_funs <- function() {base::paste0('unq_', uj:::.cccs)}
 
 #' @rdname unq_ccc
 #' @export
-unq_arr <- function(x, ...) {unq_ccc(x, 'arr', ...)}
+unq_arr <- function(x, ...) {uj::unq_ccc(x, 'arr', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_dtf <- function(x, ...) {unq_ccc(x, 'dtf', ...)}
+unq_dtf <- function(x, ...) {uj::unq_ccc(x, 'dtf', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_gen <- function(x, ...) {unq_ccc(x, 'gen', ...)}
+unq_gen <- function(x, ...) {uj::unq_ccc(x, 'gen', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_mat <- function(x, ...) {unq_ccc(x, 'mat', ...)}
+unq_mat <- function(x, ...) {uj::unq_ccc(x, 'mat', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_mvc <- function(x, ...) {unq_ccc(x, 'mvc', ...)}
+unq_mvc <- function(x, ...) {uj::unq_ccc(x, 'mvc', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_scl <- function(x, ...) {unq_ccc(x, 'scl', ...)}
+unq_scl <- function(x, ...) {uj::unq_ccc(x, 'scl', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_vec <- function(x, ...) {unq_ccc(x, 'vec', ...)}
+unq_vec <- function(x, ...) {uj::unq_ccc(x, 'vec', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_vls <- function(x, ...) {unq_ccc(x, 'vls', ...)}
+unq_vls <- function(x, ...) {uj::unq_ccc(x, 'vls', ...)}
