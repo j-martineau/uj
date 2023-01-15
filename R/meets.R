@@ -29,7 +29,7 @@
     obj.lgl <- base::is.logical(obj); dot.lgl <- base::is.logical(dot)
     obj.ord <- base::is.ordered(obj); dot.ord <- base::is.ordered(dot)
     obj.levs <- uj::f0(!obj.ord, NULL, base::levels(obj)); obj.nlevs <- base::length(obj.levs)
-    dot.levs <- uj::f0(!dot.ord, NULL, base::levels(dot)); dot.nlevs <- lbase::ength(dot.levs)
+    dot.levs <- uj::f0(!dot.ord, NULL, base::levels(dot)); dot.nlevs <- base::length(dot.levs)
     uj::f0(base::is.null(dot), T,
        uj::f0(!ok_vec(dot), F,
           uj::f0(!dot.num & !dot.lgl & !dot.chr & !dot.ord, F,
@@ -72,14 +72,10 @@
 #' @param ... Optional named arguments count and/or value restrictions for `x`. See the *specifying count and value restrictions* section.
 #' @section Specifying count and value restrictions: Specifying restrictions in `...` is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 #' \tabular{rl}{
-#'       `max, maxr, maxc`   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-#'   \cr                     \tab  
-#'   \cr `min, minr, minc`   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-#'   \cr                     \tab  
-#'   \cr  `lt, le, ge, gt`   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-#'   \cr                     \tab  
-#'   \cr       `n, nr, nc`   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-#'   \cr                     \tab  
+#'       `max, maxr, maxc`   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+#'   \cr `min, minr, minc`   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+#'   \cr  `lt, le, ge, gt`   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+#'   \cr       `n, nr, nc`   \tab A vector of valid numbers of elements, rows, and columns, respectively.
 #'   \cr            `vals`   \tab A vector of valid values.
 #' }
 #' @return A logical scalar.

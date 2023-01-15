@@ -3,8 +3,11 @@
 \encoding{UTF-8}
 \name{err_check}
 \alias{err_check}
+\alias{format_err}
+\alias{format_errs}
 \alias{banked_errs}
 \alias{bank_err}
+\alias{bank_errs}
 \alias{bank_lgl}
 \alias{bank_nll_or}
 \alias{bank_nas_or}
@@ -20,11 +23,17 @@
 \alias{bank_fail}
 \title{Error checking, banking, and processing}
 \usage{
-err_check(gens. = 0)
+format_err(fun = "", pkg = "", ...)
 
-banked_errs(gens. = 0)
+format_errs(fun = "", pkg = "", ...)
+
+err_check(gens. = 0, pkg = "")
+
+banked_errs(gens. = 0, pkg = "")
 
 bank_err(..., gens. = 0)
+
+bank_errs(errs, gens. = 0)
 
 bank_lgl(..., nas. = F, extras. = NULL)
 
@@ -42,9 +51,9 @@ bank_funs(funs., ..., vals. = NULL)
 
 bank_spec(spec., ..., nas. = F)
 
-bank_vals(vals., ..., atm. = TRUE, nas. = FALSE)
+bank_vals(vals., ..., a. = TRUE, nas. = FALSE)
 
-bank_chars(chars., ..., atm. = TRUE)
+bank_chars(chars., ..., a. = TRUE)
 
 bank_dots(spec., ..., named. = F)
 
@@ -53,9 +62,9 @@ bank_when(whens., values., ...)
 bank_fail(...)
 }
 \arguments{
-\item{gens.}{A \link[=cmp_nnw_scl]{complete non-negative whole-number scalar} indicating the number of generations back in the call stack in which to bank and/or check for error messages.}
-
 \item{...}{Differs by function in terms of whether they are named, how many there are, and their \link[=ppp]{property requirements} as described in the section entitled \emph{the} \code{...} \emph{arguments}.}
+
+\item{gens.}{A \link[=cmp_nnw_scl]{complete non-negative whole-number scalar} indicating the number of generations back in the call stack in which to bank and/or check for error messages.}
 
 \item{nas.}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values qualify as \code{'logical'}.}
 
@@ -72,84 +81,66 @@ bank_fail(...)
 \item{values.}{A \link[=cmp_atm]{complete atomic object} of length \code{length(whens.)}.}
 }
 \value{
-\code{NULL}
+\emph{A character scalar} \cr   \code{format_err}
+\cr\cr \emph{A character vector} \cr   \verb{format_errs, banked_err}
+\cr\cr \code{NULL} \cr   all others
 }
 \description{
 Bank error messages in the immediate environment of a function to allow for exhaustive error checking before throwing an exception. Results in a possibly multiple-error, accumulated message to be processed upon completion of error checking.
-\cr
-\cr
-\strong{General purpose functions}
-\tabular{rl}{
-  \code{banked_errs}   \tab Retrieves the bank of error message stored in the environment of the function \code{gens.} generations back in the call stack.
-\cr               \tab  
-\cr \code{err_check}   \tab Checks for banked error messages in the environment of the function \code{gens.} generations back in the call stack, and if there are any, processes them, communicates them, purges them, and stops execution. If there are none, takes no action.
-\cr               \tab  
-\cr  \code{bank_err}   \tab Banks an arbitrary error message (built by collapsing \code{...} args) in the environment of the function \code{gens.} generations back in the call stack.
+\cr\cr \emph{General purpose functions} \tabular{rl}{
+  \emph{Function}   \tab \emph{Purpose}
+\cr     \code{err_check}   \tab Checks for banked error messages in the environment of the function \code{gens.} generations back in the call stack, and if there are any, processes them, communicates them, purges them, and stops execution. If there are none, takes no action.
+\cr      \code{bank_err}   \tab Banks an arbitrary error message (built by \link[=collapse_dots]{collapsing} \code{...} args) in the environment of the function \code{gens.} generations back in the call stack.
+\cr     \code{bank_errs}   \tab Banks each element of \link[=cmp_chr_vec]{complete character vec} as an individual error message.
+\cr    \code{format_err}   \tab Collapses \code{...} args to an error message, prepends a newline and bullet, and attaches a prefix identifying the function where the error occurred. Usage is to stop execution with a single formatted error message as in \code{stop(format_err(...))}.
+\cr   \code{format_errs}   \tab Calls \code{banked_errs}, formats each error message by prepending a newline and a bullet, and attaches a prefix identifying the function where the error occurred.
+\cr   \code{banked_errs}   \tab Retrieves the bank of error message stored in the environment of the function \code{gens.} generations back in the call stack.
 }
-\cr
-\strong{Condition-based functions}
-\tabular{rl}{
-  \strong{Function}   \tab \strong{Condition for banking an error message}
-\cr                   \tab  
+\cr \emph{Condition-based functions} \tabular{rl}{
+\emph{Function}   \tab \emph{Condition for banking an error message}
 \cr   \code{bank_nas_or}   \tab A named \code{...} arg is neither \code{NULL} nor satisfies any property function in the \code{funs.} arg.
-\cr                   \tab  
 \cr   \code{bank_nll_or}   \tab A named \code{...} arg is neither scalar \code{NA} nor satisfies any property function in the \code{funs.} arg.
-\cr                   \tab  
 \cr    \code{bank_class}   \tab A named \code{...} arg is not of any class named in the \code{class.} arg.
-\cr                   \tab  
 \cr    \code{bank_class}   \tab A named \code{...} arg is not of any class named in the \code{class.} arg.
-\cr                   \tab  
 \cr    \code{bank_chars}   \tab A named \code{...} arg contains characters not supplied in the \code{chars.} arg.
-\cr                   \tab  
 \cr     \code{bank_when}   \tab The first named \code{...} arg is the \code{n}-th value in the \code{whens.} arg, but the second \emph{is not} the \code{n}-th value in the \code{values.} arg.
-\cr                   \tab  
-\cr     \code{bank_dots}   \tab A \code{...} arg\eqn{^a} fails to satisfy the \link[=is_prop_spec]{property spec} in the \code{spec.} arg.
-\cr                   \tab  
-\cr     \code{bank_spec}   \tab A named \code{...} arg fails to satisfy the \link[=is_prop_spec]{property spec} in the \code{spec.} argument\eqn{^b}.
-\cr                   \tab  
+\cr     \code{bank_dots}   \tab A \code{...} arg\eqn{^1} fails to satisfy the \link[=is_prop_spec]{property spec} in the \code{spec.} arg.
+\cr     \code{bank_spec}   \tab A named \code{...} arg fails to satisfy the \link[=is_prop_spec]{property spec} in the \code{spec.} argument\eqn{^2}.
 \cr     \code{bank_funs}   \tab A named \code{...} arg fails to satisfy \emph{any} of the \link[=prop_funs]{property function(s)} named in the \code{funs.} arg.
-\cr                   \tab  
 \cr     \code{bank_vals}   \tab A named \code{...} arg contains values not supplied in the \code{vals.} arg.
-\cr                   \tab  
 \cr     \code{bank_fail}   \tab A named \code{...} arg produces an error when submitted to \code{\link[base]{identity}}.
-\cr                   \tab  
-\cr      \code{bank_lgl}   \tab A named \code{...} arg is neither \code{TRUE}, \code{FALSE}, \code{NA}\eqn{^c}, nor contained in the \code{extras.} arg\eqn{^d}.
-\cr                   \tab  
-\cr      \code{bank_not}   \tab A named \code{...} arg is \code{FALSE}\eqn{^e}.
-\cr                   \tab  
+\cr      \code{bank_lgl}   \tab A named \code{...} arg is neither \code{TRUE}, \code{FALSE}, \code{NA}\eqn{^3}, nor contained in the \code{extras.} arg\eqn{^4}.
+\cr      \code{bank_not}   \tab A named \code{...} arg is \code{FALSE}\eqn{^5}.
 \cr      \code{bank_pop}   \tab A named \code{...} arg is either \code{NULL} or otherwise of length \code{0}.
 }
-   \eqn{^{a.}} Named when \verb{named. = TRUE}.
-\cr
-\cr    \eqn{^{b.}} May also be scalar \code{NA} when \verb{nas. = TRUE}.
-\cr
-\cr    \eqn{^{c.}} When \verb{nas. = TRUE}.
-\cr
-\cr    \eqn{^{d.}} When \code{extras.} is non-\code{NULL}.
-\cr
-\cr    \eqn{^{e.}} Collapses \emph{unnamed} \code{...} args to an error message template, replacing the escape sequence \code{'{@}'} with the named \code{...} arg's name.
+\verb{ }\eqn{^{1.}} Named when \code{named. = TRUE}.
+\cr \verb{ }\eqn{^{2.}} May also be scalar \code{NA} when \code{nas. = TRUE}.
+\cr \verb{ }\eqn{^{3.}} When \code{nas. = TRUE}.
+\cr \verb{ }\eqn{^{4.}} When \code{extras.} is non-\code{NULL}.
+\cr \verb{ }\eqn{^{5.}} Collapses \emph{unnamed} \code{...} args to an error message template, replacing the escape sequence \code{'{@}'} with the named \code{...} arg's name.
 }
 \section{The \code{...} arguments}{
  Arguments supplied in \code{...} differ across functions in terms of whether they are named, how many named and/or unnamed \code{...} args there are, and their \link[=ppp]{property requirements} as follows:
 \tabular{rlll}{
-  \strong{Function} \tab    \strong{Number of}        \tab \code{...} \strong{args}       \tab   \strong{Property}
-\cr       \strong{Name} \tab    \strong{(named)}          \tab  \strong{(unnamed)}       \tab   \strong{requirement}
-\cr   \code{bank_class} \tab    \verb{1+}                 \tab  \code{0}                 \tab   \emph{none}
-\cr   \code{bank_chars} \tab    \verb{1+}                 \tab  \verb{1+}                \tab   \code{atomic}\eqn{^b}
-\cr    \code{bank_when} \tab    \code{2}                  \tab  \code{2}                 \tab   \link[=atm_scl]{atomic scalar}
-\cr    \code{bank_vals} \tab    \verb{1+}                 \tab  \verb{1+}                \tab   \code{atomic}\eqn{^b}
-\cr    \code{bank_dots} \tab    \verb{1+}\eqn{^c} or \verb{0+} \tab  \code{0}\eqn{^c} or \verb{0+} \tab   \emph{none}
-\cr    \code{bank_fail} \tab    \verb{1+}                 \tab  \code{0}                 \tab   \emph{none}
-\cr    \code{bank_funs} \tab    \verb{1+}                 \tab  \code{0}                 \tab   \emph{none}
-\cr    \code{bank_spec} \tab    \verb{1+}                 \tab  \code{0}                 \tab   \emph{none}
-\cr     \code{bank_err} \tab    \verb{0+}\eqn{^a}         \tab  \verb{0+}\eqn{^a}        \tab   \link[=pop_atm]{populated and atomic}
-\cr     \code{bank_lgl} \tab    \verb{1+}                 \tab  \verb{1+}                \tab   \link[=atm_scl]{logical scalar}
-\cr     \code{bank_not} \tab    \verb{1+}                 \tab  \code{0}                 \tab   logical scalar
-\cr     \code{bank_pop} \tab    \verb{1+}                 \tab  \code{0}                 \tab   \emph{none}
+  \emph{Function} \tab    \emph{# of named}                      \tab \emph{# of unnamed}                        \tab   \emph{Total # of}
+\cr          \emph{Name} \tab    \code{...} \emph{args}                      \tab \code{...} \emph{args}                          \tab   \code{...} \emph{args}
+\cr   \code{format_errs} \tab    \verb{0+} (\code{\link{cmp_chr_vec}})  \tab  \verb{0+} (\code{\link{cmp_chr_vec}})     \tab   \verb{1+}
+\cr    \code{format_err} \tab    \verb{0+} (\code{\link{cmp_chr_vec}})  \tab  \verb{0+} (\code{\link{cmp_chr_vec}})     \tab   \verb{1+}
+\cr    \code{bank_class} \tab    \verb{1+} (any object)                 \tab  \code{0}                                  \tab   \verb{1+}
+\cr    \code{bank_chars} \tab    \verb{1+} (\code{\link{atm_str}})      \tab  \verb{1+} (\code{\link{atm_chr}}\eqn{^1}) \tab   \verb{2+}
+\cr     \code{bank_when} \tab    \verb{2 } (\code{\link{atm_scl}})      \tab  \verb{2 } (\code{\link{atm_scl}})         \tab   \code{4}
+\cr     \code{bank_vals} \tab    \verb{1+} (\code{\link{iatm}}\eqn{^1}) \tab  \verb{1+} (\code{\link{iatm}}\eqn{^1})    \tab   \verb{2+}
+\cr     \code{bank_dots} \tab    \verb{1+} (any object\eqn{^2})         \tab  \code{0} (any object\eqn{^2})             \tab   \verb{1+}
+\cr     \code{bank_fail} \tab    \verb{1+} (any object)                 \tab  \code{0}                                  \tab   \verb{1+}
+\cr     \code{bank_funs} \tab    \verb{1+} (any object)                 \tab  \code{0}                                  \tab   \verb{1+}
+\cr     \code{bank_spec} \tab    \verb{1+} (any object)                 \tab  \code{0}                                  \tab   \verb{1+}
+\cr      \code{bank_err} \tab    \verb{0+} (\code{\link{pop_atm}})      \tab  \verb{0+} (\code{\link{pop_atm}})         \tab   \verb{1+}
+\cr      \code{bank_lgl} \tab    \verb{1+} (\code{\link{atm_scl}})      \tab  \code{0}                                  \tab   \verb{1+}
+\cr      \code{bank_not} \tab    \verb{1+} (\code{\link{isTF}})         \tab  \code{0}                                  \tab   \verb{1+}
+\cr      \code{bank_pop} \tab    \verb{1+} (any object)                 \tab  \code{0}                                  \tab   \verb{1+}
 }
-   \eqn{^{a.}} At least \verb{1 ...} arg in total.
-\cr    \eqn{^{b.}} When \verb{atm. = TRUE}.
-\cr    \eqn{^{c.}} When \verb{named. = TRUE}.
+\verb{ }\eqn{^{1.}} When \code{a. = TRUE}.
+\verb{ }\eqn{^{2.}} When \code{named. = TRUE} (otherwise \verb{0+}).
 }
 
 \seealso{

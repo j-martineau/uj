@@ -2,11 +2,10 @@
 #' @family extensions
 #' @title Error-checked row and column binding
 #' @description Error-checked extensions of \code{\link[base:rbind]{base::rbind}} and/or \code{\link[base:cbind]{base::cbind}}:
-#'   \tabular{rl}{
-#'         `cb`   \tab Column binds an arbitrary number of atomic matrices or \link[=atm_dtf]{atomic data.frames}.
-#'     \cr        \tab  
-#'     \cr `rb`   \tab Row binds an arbitrary number of atomic matrices or atomic data.frames.
-#'   }
+#' \tabular{rl}{
+#'       `cb`   \tab Column binds an arbitrary number of atomic matrices or \link[=atm_dtf]{atomic data.frames}.
+#'   \cr `rb`   \tab Row binds an arbitrary number of atomic matrices or atomic data.frames.
+#' }
 #' @param ... Multiple \code{\link{compatible}} atomic matrices or multiple compatible \link[=atm_dtf]{atomic data.frames}.
 #' @return An \link[=atm_dtf]{atomic data.frame} or an atomic matrix.
 #' @examples
@@ -29,23 +28,23 @@
 #' rb(d2x4, d4x4, d4x4b)
 #' @export
 cb <- function(...) {
-  if (base::...length() < 2) {stop(uj:::.errs("[...] contains fewer than 2 arguments."))}
+  if (base::...length() < 2) {stop(uj::format_errs(pkg = "uj", "[...] contains fewer than 2 arguments."))}
   x <- base::list(...)
   dtf <- base::all(base::sapply(x, atm_dtf))
   mat <- base::all(base::sapply(x, atm_mat))
-  if (!dtf & !mat) {stop(.errs("[...] must contain only atomic matrices or only atomic data.frames."))}
+  if (!dtf & !mat) {stop(uj::format_errs(pkg = "uj", "[...] must contain only atomic matrices or only atomic data.frames."))}
   if (uj::f0(dtf, uj::compatible_dtfs("c", ...), uj::compatible_mats("c", ...))) {base::cbind(...)}
-  else {stop(uj:::.errs("Arguments in [...] are not compatible for column binding."))}
+  else {stop(uj::format_errs(pkg = "uj", "Arguments in [...] are not compatible for column binding."))}
 }
 
 #' @rdname cb
 #' @export
 rb <- function(...) {
-  if (base::...length() < 2) {stop(uj:::.errs("[...] contains fewer than 2 arguments."))}
+  if (base::...length() < 2) {stop(uj::format_errs(pkg = "uj", "[...] contains fewer than 2 arguments."))}
   x <- base::list(...)
   dtf <- base::all(base::sapply(x, atm_dtf))
   mat <- base::all(base::sapply(x, atm_mat))
-  if (!dtf & !mat) {stop(.errs("[...] must contain only atomic matrices or only atomic data.frames."))}
+  if (!dtf & !mat) {stop(uj::format_errs(pkg = "uj", "[...] must contain only atomic matrices or only atomic data.frames."))}
   if (uj::f0(dtf, uj::compatible_dtfs("r", ...), uj::compatible_mats("r", ...))) {base::rbind(...)}
-  else {stop(uj:::.errs("Arguments in [...] are not compatible for row binding."))}
+  else {stop(uj::format_errs(pkg = "uj", "Arguments in [...] are not compatible for row binding."))}
 }

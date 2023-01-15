@@ -8,12 +8,10 @@
 #'   \cr `'pop'` \tab   `populated`   \tab Length `1` or greater.
 #'   \cr `'def'` \tab   `defined`     \tab Not `NULL`.
 #'   \cr `'nll'` \tab   `null`        \tab `NULL`.
-#'   \cr `'nil'` \tab   `nil`         \tab Length `0` but not `NULL`.
+#'   \cr `'nil'` \tab   `nil`         \tab Length `0` but not `NULL`.
 #'   \cr `'fun'` \tab   `function`    \tab A function or a character scalar name of a function accessible from the environment of the calling function.
 #' }
-#' \cr
-#' **Functions**
-#' \tabular{rl}{
+#' \cr **Basic property functions** \tabular{rl}{
 #'     `is_bbb_spec`   \tab Is `spec` a basic property specification?
 #'   \cr `bbb_props`   \tab What basic properties are there?
 #'   \cr  `bbb_funs`   \tab What basic properties functions are there?
@@ -25,15 +23,8 @@
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more basic properties from `bbb_props()`. basic properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character vector*
-#'  \cr   `bbb_props`
-#'  \cr   `bbb_funs`
-#'  \cr   `bbb`
-#'  \cr
-#'  \cr *A logical scalar*
-#'  \cr   `is_bbb_spec`
-#'  \cr   `iBBB`
-#'  \cr   `ibbb`
+#' @return *A character vector* \cr    `bbb_props, bbb_funs, bbb`
+#'  \cr\cr *A logical scalar* \cr   `is_bbb_spec, iBBB, ibbb`
 #' @examples
 #' bbb_funs()
 #' bbb_props()
@@ -68,7 +59,7 @@ is_bbb_spec <- function(spec) {
 #' @export
 ibbb <- function(x, spec, ...) {
   errs <- base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_bbb_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from bbb_props().'))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (!uj::meets(x, ...)) {return(F)}
   for (prop in uj:::.spec_vals(spec)) {if (uj::run('uj:::.i', prop, '(x)')) {return(T)}}
   F

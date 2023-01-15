@@ -28,13 +28,8 @@ trm(...)
 \item{p.}{A complete onechar scalar containing a single character used to pad strings.}
 }
 \value{
-\emph{A character scalar}
-\cr   \code{spaces}
-\cr
-\cr \emph{A character object}
-\cr   \code{pad}
-\cr   \code{trm}
-\cr   \code{sqz}
+\emph{A character scalar} \cr   \code{spaces}
+\cr\cr \emph{A character object} \cr   \verb{pad, trm, sqz}
 }
 \description{
 String spacing functions
@@ -42,11 +37,8 @@ String spacing functions
 \details{
 \tabular{rl}{
   \code{spaces}   \tab Creates a character scalar of \code{n} spaces.
-\cr          \tab  
 \cr  \code{pad}   \tab Pads strings with leading, trailing white space using \code{\link[stringr:str_pad]{stringr::str_pad}}.
-\cr          \tab  
 \cr  \code{sqz}   \tab Trims leading, trailing, and extra internal white space using \code{\link[stringr:str_squish]{stringr::str_squish}}.
-\cr          \tab  
 \cr  \code{trm}   \tab Trims leading and trailing white space using \code{\link[stringr:str_trim]{stringr::str_trim}}.
 }
 }

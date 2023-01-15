@@ -117,7 +117,7 @@ rcn(x, u = T, err = F)
 \cr      \code{en}   \tab Gets vector abd \link[=ivls]{vlist} element names.
 \cr      \code{dn}   \tab Gets \code{...} argument names.
 \cr             \tab  
-\cr   \code{named}   \tab General name existence check function (with optional restrictions).
+\cr   \code{named}   \tab General name existence check (with optional restrictions).
 \cr \code{rcnamed}   \tab Are both rows and columns named?
 \cr  \code{rnamed}   \tab Are rows of \code{x} named?
 \cr  \code{cnamed}   \tab Are columns of \code{x} named?
@@ -195,13 +195,11 @@ Other extensions:
 \code{\link{n_is}()},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 }
 \concept{extensions}

@@ -19,12 +19,9 @@ An atomic object of the same dimension as \code{x} and the same mode as \code{le
 }
 \description{
 Convert values of \code{x} to the \code{n} levels in \code{levs} distinguished by the \code{n-1} thresholds in \code{cuts}.
-\cr
-\cr When values of \code{x} are equal to a value of \code{cuts}, assignment to level is dependent on whether the value of each element of \code{cut} is less than \code{0} vs. greater than or equal to \code{0}.
-\cr
-\cr For a value in \code{cuts} less than \code{0}, the level assigned is the lower of the levels distinguished by that value of \code{cuts}.
-\cr
-\cr Otherwise, the level assigned is the upper of the levels distinguished by that value of \code{cuts}.
+\cr\cr When values of \code{x} are equal to a value of \code{cuts}, assignment to level is dependent on whether the value of each element of \code{cut} is less than \code{0} vs. greater than or equal to \code{0}.
+\cr\cr For a value in \code{cuts} less than \code{0}, the level assigned is the lower of the levels distinguished by that value of \code{cuts}.
+\cr\cr Otherwise, the level assigned is the upper of the levels distinguished by that value of \code{cuts}.
 }
 \examples{
 num_vals. <- -5:5

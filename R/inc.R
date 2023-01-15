@@ -2,8 +2,8 @@
 #' @family to_std_fun_form
 #' @title Increment or decrement a variable
 #' @description \tabular{rl}{
-#'      `inc` \tab   Increments `x` by `i`.
-#'  \cr `dec` \tab   Decrements `x` by `d`.
+#'      `inc`   \tab Increments `x` by `i`.
+#'  \cr `dec`   \tab Decrements `x` by `d`.
 #' }
 #' @param x An \link[=atm_num]{atomic numeric} object.
 #' @param i,d \link[=cmp_num_scl]{Complete numeric scalars} giving the value by which to increment or decrement, respectively.
@@ -23,7 +23,7 @@ inc <- function(x, i = 1, na = F) {
                   uj::f0(uj::cmp_num_scl(i)                                                 , NULL, "[i] must be a complete numeric scalar (?cmp_num_scl)."),
                   uj::f0(uj::isTF(na)                                                       , NULL, "[na] must be TRUE or FALSE."),
                   uj::f0(uj::f0(!ok.x | !uj::isF(na), T, !base::any(base::is.na(uj::av(x)))), NULL, "[x] contains NA values but [na = FALSE]."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   x + i
 }
 
@@ -35,6 +35,6 @@ dec <- function(x, d = 1, na = F) {
                   uj::f0(uj::cmp_num_scl(d)                                                 , NULL, "[d] must be a complete numeric scalar (?cmp_num_scl)."),
                   uj::f0(uj::isTF(na)                                                       , NULL, "[na] must be TRUE or FALSE."),
                   uj::f0(uj::f0(!ok.x | !uj::isF(na), T, !base::any(base::is.na(uj::av(x)))), NULL, "[x] contains NA values but [na = FALSE]."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   x - d
 }

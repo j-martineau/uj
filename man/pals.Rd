@@ -28,41 +28,34 @@ pal_sdots(n)
 }
 \value{
 \emph{A character vector}
-\cr   \verb{pal_colors, pal_lines}
-\cr   \verb{pal_adots,  pal_Adots}
-\cr   \verb{pal_ndots,  pal_pdots}
+\cr   \verb{pal_colors, pal_lines}
+\cr   \verb{pal_adots,  pal_Adots}
+\cr   \verb{pal_ndots,  pal_pdots}
 \cr
 \cr \emph{A positive whole number vector}
-\cr   \verb{pal_edots, pal_fdots}
-\cr   \verb{pal_ldots, pal_sdots}
+\cr   \verb{pal_edots, pal_fdots}
+\cr   \verb{pal_ldots, pal_sdots}
 }
 \description{
 This family of functions uses \code{'dots'} to subsume plotting to \code{'points'}, \code{'shapes'}, and \code{'pch'}.
-\cr\cr The functions in this family create palettes of various types from the first \code{n}\eqn{^a} values of source vectors as defined below:
+\cr\cr The functions in this family create palettes of various types from the first \code{n}\eqn{^1} values of source vectors as defined below:
 \tabular{rll}{
-  \strong{Function}   \tab   \strong{Type}            \tab   \strong{Source}
-\cr                  \tab                       \tab  
+  \emph{Function}   \tab   \emph{Type}.             \tab   \emph{Source}
 \cr   \code{pal_colors}   \tab   colors              \tab   \code{v(colors)}
-\cr                  \tab                       \tab  
 \cr    \code{pal_lines}   \tab   line types          \tab   \code{v(lines)}
-\cr                  \tab                       \tab  
 \cr    \code{pal_adots}   \tab   alpha dots          \tab   \code{v(adots)}
 \cr    \code{pal_Adots}   \tab   ALPHA dots          \tab   \code{v(Adots)}
 \cr    \code{pal_ndots}   \tab   numeral dots        \tab   \code{v(ndots)}
 \cr    \code{pal_pdots}   \tab   punctuation dots    \tab   \code{v(pdots)}
-\cr                  \tab                       \tab  
-\cr    \code{pal_edots}   \tab   empty dots\eqn{^c}  \tab   \code{v(edots)}
-\cr    \code{pal_fdots}   \tab   filled dots\eqn{^d} \tab   \code{v(fdots)}
-\cr    \code{pal_ldots}   \tab   line dots\eqn{^b}   \tab   \code{v(ldots)}
+\cr    \code{pal_ldots}   \tab   line dots\eqn{^2}   \tab   \code{v(ldots)}
+\cr    \code{pal_edots}   \tab   empty dots\eqn{^3}  \tab   \code{v(edots)}
+\cr    \code{pal_fdots}   \tab   filled dots\eqn{^4} \tab   \code{v(fdots)}
 \cr    \code{pal_sdots}   \tab   solid dots          \tab   \code{v(sdots)}
 }
-   \eqn{^{a.}} Recycled if \verb{n > length(v(.))}.
-\cr
-\cr    \eqn{^{b.}} Non-enclosing shape.
-\cr
-\cr    \eqn{^{c.}} Enclosing shape with empty interior.
-\cr
-\cr    \eqn{^{d.}} Enclosing shape with filled interior.
+\verb{ }\eqn{^{1.}} Recycled if \code{n > length(v(.))}.
+\cr \verb{ }\eqn{^{2.}} Non-enclosing shape.
+\cr \verb{ }\eqn{^{3.}} Enclosing shape with empty interior.
+\cr \verb{ }\eqn{^{4.}} Enclosing shape with filled interior.
 }
 \seealso{
 Other plots: 

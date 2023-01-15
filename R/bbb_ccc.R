@@ -3,25 +3,18 @@
 #' @title basic + xclass combination properties
 #' @description \tabular{rl}{
 #'     `bbb_ccc_funs`   \tab What \link[=bbb]{basic} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?
-#'   \cr                \tab  
 #'   \cr    `bbb_ccc`   \tab Is `x` a match to the single basic and xclass properties in `bbb` and `ccc`, respectively?
-#'   \cr                \tab  
 #'   \cr    `BBB_CCC`   \tab Is `x` a match to single basic and xclass properties `'BBB'` and `'CCC'`, respectively?
 #' }
 #' Some combinations of basic + xclass properties are non-sensical. For this reason, the basic properties represented in this family of functions are `c('atm', 'nil',  'pop')`.
-#' \cr
-#' \cr In addition, the base property `'nil'` is nonsensical in combination with xclasses `'mvc'` and `'scl'` (which thus do not have combined `BBB_CCC` property functions).
+#' \cr\cr In addition, the base property `'nil'` is nonsensical in combination with xclasses `'mvc'` and `'scl'` (which thus do not have combined `BBB_CCC` property functions).
 #' @param x An R object.
 #' @param bbb A character scalar single basic property from \code{\link{bbb_props}()}.
 #' @param ccc A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character vector*
-#'  \cr   `bbb_ccc_funs`
-#'  \cr
-#'  \cr *A logical scalar*
-#'  \cr   `BBB_CCC`
-#'  \cr   `bbb_ccc`
+#' @return *A character vector* \cr   `bbb_ccc_funs`
+#'  \cr\cr *A logical scalar* \cr   `BBB_CCC, bbb_ccc`
 #' @examples
 #' bbb_ccc_funs()
 #' bbb_ccc_props()
@@ -34,7 +27,7 @@ bbb_ccc <- function(x, bbb, ccc, ...) {
   errs <- c(uj:::.meets_errs(x, ...),
             uj::f0(uj::isIN(bbb, .bbbs), NULL, "[bbb] is not a scalar value from bbb_props()."),
             uj::f0(uj::isIN(ccc, .cccs), NULL, "[ccc] is not a scalar value from ccc_props()."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   arr <- ccc == "arr"; ARR <- uj::iarr(x)
   dtf <- ccc == "dtf"; DTF <- uj::idtf(x)
   gen <- ccc == "gen"; GEN <- uj::igen(x)

@@ -24,22 +24,15 @@ vset(name, val, gens = 1)
 \item{val}{A value to place into the object specified by \code{name}.}
 }
 \value{
-\emph{A logical scalar}
-\cr   \code{vexists}
-\cr
-\cr \emph{An} R \emph{object}
-\cr   \code{vget}
-\cr
-\cr \code{NULL}
-\cr   \code{vset}
+\emph{A logical scalar} \cr   \code{vexists}
+\cr\cr \emph{An} R \emph{object} \cr   \code{vget}
+\cr\cr \code{NULL} \cr   \code{vset}
 }
 \description{
 All functions in this family operate in the environment of the calling function \code{gens} generations back in the call stack.
 \tabular{rl}{
   \code{vexists}   \tab Checks for the existence of an object in the environment of the \code{gens}-specified calling function.
-\cr           \tab  
 \cr  \code{vget}   \tab Gets the value of an object in the environment of the \code{gens}-specified calling function.
-\cr           \tab  
 \cr  \code{vset}   \tab Sets the value of an object in the environment of the \code{gens}-specified calling function.
 }
 }
@@ -107,14 +100,12 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 }
 \concept{environments}
 \concept{extensions}

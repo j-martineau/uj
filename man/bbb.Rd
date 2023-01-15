@@ -52,15 +52,8 @@ ircr(x, ...)
   }}
 }
 \value{
-\emph{A character vector}
-\cr   \code{bbb_props}
-\cr   \code{bbb_funs}
-\cr   \code{bbb}
-\cr
-\cr \emph{A logical scalar}
-\cr   \code{is_bbb_spec}
-\cr   \code{iBBB}
-\cr   \code{ibbb}
+\emph{A character vector} \cr    \verb{bbb_props, bbb_funs, bbb}
+\cr\cr \emph{A logical scalar} \cr   \verb{is_bbb_spec, iBBB, ibbb}
 }
 \description{
 An object's basic properties are defined by its fundamental structure as follows:
@@ -70,12 +63,10 @@ An object's basic properties are defined by its fundamental structure as follows
 \cr \code{'pop'} \tab   \code{populated}   \tab Length \code{1} or greater.
 \cr \code{'def'} \tab   \code{defined}     \tab Not \code{NULL}.
 \cr \code{'nll'} \tab   \code{null}        \tab \code{NULL}.
-\cr \code{'nil'} \tab   \code{nil}         \tab Length \code{0} but not \code{NULL}.
+\cr \code{'nil'} \tab   \code{nil}         \tab Length \code{0} but not \code{NULL}.
 \cr \code{'fun'} \tab   \code{function}    \tab A function or a character scalar name of a function accessible from the environment of the calling function.
 }
-\cr
-\strong{Functions}
-\tabular{rl}{
+\cr \strong{Basic property functions} \tabular{rl}{
   \code{is_bbb_spec}   \tab Is \code{spec} a basic property specification?
 \cr \code{bbb_props}   \tab What basic properties are there?
 \cr  \code{bbb_funs}   \tab What basic properties functions are there?
@@ -87,14 +78,10 @@ An object's basic properties are defined by its fundamental structure as follows
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab  
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab  
+  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
 \cr            \code{vals}   \tab A vector of valid values.
 }
 }

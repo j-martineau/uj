@@ -41,30 +41,21 @@ as_uno(x, levs)
 \value{
 \emph{An object of base mode} \code{'character'}
 \cr   \code{as_chr}
-\cr
-\cr \emph{An object of base mode} \code{'integer'}
+\cr\cr \emph{An object of base mode} \code{'integer'}
 \cr   \code{as_int}
-\cr
-\cr \emph{An object of base mode} \code{'logical'}
+\cr\cr \emph{An object of base mode} \code{'logical'}
 \cr   \code{as_lgl}
-\cr
-\cr \emph{An object of base mode} \code{'numeric'}
+\cr\cr \emph{An object of base mode} \code{'numeric'}
 \cr   \code{as_num}
-\cr
-\cr \emph{An object of \link[=mmm]{xmode}} \code{'ord'}\eqn{^a}
+\cr\cr \emph{An object of \link[=mmm]{xmode}} \code{'ord'}\eqn{^1}
 \cr   \code{as_ord}
-\cr
-\cr \emph{An object of xmode} \code{'uno'}\eqn{^b}
+\cr\cr \emph{An object of xmode} \code{'uno'}\eqn{^2}
 \cr   \code{as_uno}
-\cr
-\cr \emph{An object of xmode} \code{'clr'}\eqn{^c}
+\cr\cr \emph{An object of xmode} \code{'clr'}\eqn{^3}
 \cr   \code{as_clr}
-\cr
-\cr    \eqn{^{a.}} Ordered factor.
-\cr
-\cr    \eqn{^{b.}} Unordered factor.
-\cr
-\cr    \eqn{^{c.}} Character hexadecimal RGB color values in the form \code{'#RRGGBBAA'}.
+\cr\cr \verb{ }\eqn{^{1.}} Ordered factor.
+\cr \verb{ }\eqn{^{2.}} Unordered factor.
+\cr \verb{ }\eqn{^{3.}} Character hexadecimal RGB color values in the form \code{'#RRGGBBAA'}.
 }
 \description{
 Functions to coerce objects to \link[base:mode]{base mode} or \code{\link[=mmm]{xmode}}:
@@ -74,11 +65,8 @@ Functions to coerce objects to \link[base:mode]{base mode} or \code{\link[=mmm]{
 \cr \code{as_num}   \tab Thinly wraps \code{\link[base:as.numeric]{base::as.numeric}}.
 \cr \code{as_lgl}   \tab Thinly wraps \code{\link[base:as.logical]{base::as.logical}}.
 \cr \code{as_clr}   \tab Coerces R character colors to hexadecimal character RGB colors.
-\cr            \tab  
 \cr \code{as_fun}   \tab If \code{x} is a character scalar function return that function, but if \code{x} is a function object, return it.
-\cr            \tab  
 \cr \code{as_ord}   \tab As xmode \code{'ord'} (ordered factor). Wraps \code{base::factor(x, levels = levs, ordered = TRUE)}.
-\cr            \tab  
 \cr \code{as_uno}   \tab As xmode \code{'uno'} (unordered factor). Wraps \code{base::factor(x, levels = levs, ordered = FALSE)}.
 }
 }

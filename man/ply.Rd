@@ -52,7 +52,7 @@ vlsply(x, fun, ..., proc. = NULL)
 
 \item{dim.}{A \link[=cmp_nnw_vec]{complete non-negative whole-number vec} giving dimension(s) of \code{x} to apply the function \code{fun} to (\code{0} indicates applying to elements of a vector or \link[=ivls]{vlist} vs. applying to every cell for arrays and data.frames).}
 
-\item{proc.}{\code{NULL} or a list of named elements with processing instructions. See \emph{the \code{proc} argument} section.}
+\item{proc.}{\code{NULL} or a list of named elements with processing instructions. See \emph{the} \code{proc} \emph{argument} section.}
 }
 \description{
 \tabular{rl}{
@@ -62,7 +62,7 @@ vlsply(x, fun, ..., proc. = NULL)
 \cr \code{anyply}   \tab Checks for \emph{any} resulting \code{TRUE} values\eqn{^a}.
 \cr \code{allply}   \tab Checks for \emph{only} resulting \code{TRUE} values\eqn{^a}.
 \cr \code{atmply}   \tab Applies \code{fun} to \link[=av]{atomized} \code{x}.
-\cr \code{mvcply}   \tab Applies \code{fun} to elements of \link[=atm_mvc]{atomic multivec} \code{x}.
+\cr \code{mvcply}   \tab Applies \code{fun} to elements of \link[=atm_mvc]{atomic multivec} \code{x}.
 \cr \code{vecply}   \tab Applies \code{fun} to elements of \link[=atm_vec]{atomic vec} \code{x}.
 \cr \code{vlsply}   \tab Applies \code{fun} to elements of \link[=atm_vls]{atomic vlist} \code{x}.
 \cr \code{rowply}   \tab Applies \code{fun} to rows of \code{x}.
@@ -75,14 +75,14 @@ vlsply(x, fun, ..., proc. = NULL)
 \section{The \code{proc} Argument}{
  When not \code{NULL}, the \code{proc} argument is an optional list with up to seven named elements, which give processing instructions as follows:
 \tabular{rll}{
-  \strong{Name} \tab   \strong{Value} \tab   \strong{Instructions}
-\cr \verb{$arg} \tab   \code{'XXX'}   \tab   Checks \code{x} for match to \link[=ppp]{spec} \code{'XXX'}.
+  \emph{Name} \tab   \emph{Value}   \tab   \emph{Instructions}
+\cr \verb{$arg} \tab   \code{'XXX'}   \tab   Checks \code{x} for match to \link[=ppp]{spec} \code{'XXX'}.
 \cr \verb{$out} \tab   \code{'XXX'}   \tab   Checks result for match to spec \code{'XXX'}.
 \cr \verb{$agg} \tab   \code{'nor'}   \tab   Inspect result for \code{0} \code{TRUE} values.
 \cr \verb{$agg} \tab   \code{'one'}   \tab   Inspect result for \code{1} \code{TRUE} values.
 \cr \verb{$agg} \tab   \code{'two'}   \tab   Inspect result for \verb{2+} \code{TRUE} values.
 \cr \verb{$agg} \tab   \code{'any'}   \tab   Inspect result for \emph{any} \code{TRUE} values.
-\cr \verb{$agg} \tab   \code{'all'}   \tab   Inspect result for \emph{only} \code{TRUE} values.
+\cr \verb{$agg} \tab   \code{'all'}   \tab   Inspect result for \emph{only} \code{TRUE} values.
 \cr  \verb{$na} \tab   \code{'err'}   \tab   Throw error if result has any \code{NA}'s.
 \cr  \verb{$na} \tab   \code{FALSE}   \tab   Replace resulting \code{NA}'s with \code{FALSE}.
 \cr  \verb{$na} \tab   \code{TRUE}    \tab   Replace resulting \code{NA}'s with \code{TRUE}.
@@ -133,9 +133,9 @@ Other meta:
 \code{\link{callers}()},
 \code{\link{dot_args}},
 \code{\link{pause}()},
+\code{\link{purge}()},
 \code{\link{recycling}},
 \code{\link{run}()},
-\code{\link{say}()},
-\code{\link{xat}()}
+\code{\link{say}()}
 }
 \concept{meta}

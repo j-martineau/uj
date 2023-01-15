@@ -15,21 +15,42 @@
 \alias{asknew}
 \alias{choose_dir}
 \alias{choose_doc}
-\title{Dialog boxes using package \code{svDialogs}}
+\title{Dialog with users using package \code{svDialogs}}
 \usage{
 alert(
   ...,
   type = "alert",
   title = NULL,
-  style = NULL,
+  st = NULL,
   fg = NULL,
   bg = NULL,
-  stop = NULL
+  ST = NULL,
+  FG = NULL,
+  BG = NULL,
+  stop = NULL,
+  blank = ""
 )
 
-acknowledge(..., style = NULL, bg = NULL, fg = NULL)
+acknowledge(
+  ...,
+  st = NULL,
+  bg = NULL,
+  fg = NULL,
+  ST = NULL,
+  BG = NULL,
+  FG = NULL
+)
 
-choose1(options, ...)
+choose1(
+  options,
+  ...,
+  st = NULL,
+  bg = NULL,
+  fg = NULL,
+  ST = NULL,
+  BG = NULL,
+  FG = NULL
+)
 
 chooseN(
   options,
@@ -38,39 +59,78 @@ chooseN(
   none = FALSE,
   n = NULL,
   min.n = NULL,
-  max.n = NULL
+  max.n = NULL,
+  st = NULL,
+  bg = NULL,
+  fg = NULL,
+  ST = NULL,
+  BG = NULL,
+  FG = NULL
 )
 
-NO(...)
+NO(..., st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL)
 
-YES(...)
+YES(..., st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL)
 
-OK(...)
+OK(..., st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL)
 
-CANCEL(...)
+CANCEL(..., st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL)
 
-ask(...)
+ask(..., st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL)
 
-asknew(old, unq = TRUE)
+asknew(
+  old,
+  unq = TRUE,
+  st = NULL,
+  bg = NULL,
+  fg = NULL,
+  ST = NULL,
+  BG = NULL,
+  FG = NULL
+)
 
-choose_dir(dir.type = "directory")
+choose_dir(
+  dir.type = "directory",
+  st = NULL,
+  bg = NULL,
+  fg = NULL,
+  ST = NULL,
+  BG = NULL,
+  FG = NULL
+)
 
-choose_doc(doc.type = "document")
+choose_doc(
+  doc.type = "document",
+  st = NULL,
+  bg = NULL,
+  fg = NULL,
+  ST = NULL,
+  BG = NULL,
+  FG = NULL
+)
 }
 \arguments{
 \item{...}{An arbitrary, optional number of arguments which are \link[=av]{atomized} into a character scalar message to be posted to the console.}
 
-\item{type}{A character scalar type of alert to post to the console. Predefined alert types are \code{c('alert', 'error', 'update', 'warning')}. Custom types are also accepted.}
+\item{type}{A character scalar type of alert to post to the console. Predefined alert types are \code{c('alert', 'error', 'update', 'warning')}. Custom types are also accepted, but they should be short to avoid formatting problems.}
 
-\item{title}{An optional character scalar alert title to post to the console.}
+\item{title}{\code{NULL} or a character scalar alert title to post to the console. Should be relatively short to avoid formatting problems.}
 
-\item{style}{An optional character scalar style specification. Valid values are \code{c('bold', 'italic', 'plain', 'underline')}. Defaults to \code{'plain'}.}
+\item{st}{\code{NULL} or a character scalar alert style specification from \code{link{st_vals}()}.}
 
-\item{fg}{An optional character scalar foreground text color. Valid values are \code{c('black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'grey')}. Defaults to system default.}
+\item{fg}{\code{NULL} or a character scalar alert foreground text color specification from \code{\link{fg_vals}()}}
 
-\item{bg}{An optional character scalar background text color. Valid values are \code{c('black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white')}. Defaults to system default.}
+\item{bg}{\code{NULL} or an character scalar alert background text color specification from \code{\link{bg_vals}()}}
+
+\item{ST}{\code{NULL} or a character scalar message style specification from \code{link{st_vals}()}.}
+
+\item{FG}{\code{NULL} or a character scalar message foreground text color specification from \code{\link{fg_vals}()}}
+
+\item{BG}{\code{NULL} or an character scalar message background text color specification from \code{\link{bg_vals}()}}
 
 \item{stop}{An optional scalar \code{TRUE} or \code{FALSE} indicating whether to stop execution. Defaults to \code{TRUE} for \code{type = 'error'}, otherwise defaults to \code{FALSE}.}
+
+\item{blank}{A character scalar containing a default message if \link[=av]{atomizing} and collapsing \code{...} to a character scalar results in a blank string (\code{""}).}
 
 \item{options}{An atomic vector list of options to choose from.}
 
@@ -89,58 +149,31 @@ choose_doc(doc.type = "document")
 \item{unq}{Scalar \code{TRUE} or \code{FALSE} indicating whether replacement values must be unique.}
 }
 \value{
-\emph{A character scalar}
-\cr   \code{choose_dir} (a directory path)
-\cr   \code{choose_doc} (a document path)
-\cr   \code{ask}
-\cr
-\cr \emph{A character vector}
-\cr   \code{asknew}
-\cr
-\cr \emph{An atomic vector}
-\cr   \code{chooseN}
-\cr
-\cr \emph{An atomic scalar}
-\cr   \code{choose1}
-\cr
-\cr \emph{A logical scalar}
-\cr   \code{CANCEL}
-\cr   \code{YES}
-\cr   \code{NO}
-\cr   \code{OK}
-\cr
-\cr \code{NULL}
-\cr   \code{acknowledge}
-\cr   \code{alert}
+\emph{A character scalar} \cr   \code{choose_dir} (a directory path) \cr   \code{choose_doc} (a document path) \cr   \code{ask}
+\cr\cr \emph{A character vector} \cr   \code{asknew}
+\cr\cr \emph{An atomic vector} \cr   \code{chooseN}
+\cr\cr \emph{An atomic scalar} \cr   \code{choose1}
+\cr\cr \emph{A logical scalar} \cr   \verb{CANCEL, YES, NO, OK}
+\cr\cr \code{NULL} \cr   \verb{acknowledge, alert}
 }
 \description{
-All functions in this family take \code{...} arguments, which are \link[=av]{atomized} and collapsed into a prompt to be displayed in a dialog box.
-\tabular{rl}{ \code{alert}   \tab Posts an alert to the console. Default style, background color, and foreground color depend on the value of the argument \code{type}, which can be overridden using the arguments \code{style}, \code{fg}, and \code{bg}.
-\cr                   \tab  
-\cr   \code{acknowledge}   \tab Posts an alert, then posts a message requesting acknowledgement, After user acknowledges, launches file selection dialog box.
-\cr                   \tab  
-\cr    \code{choose_doc}   \tab Posts an acknowledgement alert. After user acknowledges, launches file selection dialog box.
-\cr                   \tab  
-\cr    \code{choose_dir}   \tab Posts an acknowledgement alert. After user acknowledges, launches directory selection dialog box.
-\cr                   \tab  
-\cr       \code{choose1}   \tab Posts an alert followed by a message asking user to select \code{1} option from a list. Stops execution if user select the always-included, always-first option \code{'{ CANCEL }'}.
-\cr                   \tab  
-\cr       \code{choosen}   \tab Posts an alert followed by a message asking user to select from among a list of options. Stops execution if user selects the always-included, always-first option \code{'{ CANCEL }'}.
-\cr                   \tab  
-\cr        \code{asknew}   \tab Posts an alert followed by a message asking user to enter a pipe-separated list of values to replace existing values.
-\cr                   \tab  
-\cr           \code{ask}   \tab Posts an alert followed by a message asking user for typed input.
-\cr                   \tab  
-\cr           \code{msg}   \tab Posts an alert followed by a message to hit enter to continue.
-\cr                   \tab  
-\cr           \code{YES}   \tab Posts an alert followed by a message offering choices  of \code{'{ CANCEL }'}, \code{'{ YES }'} and \code{'{ NO }'}. Stops execution if user selects \code{'{ CANCEL }'}, returns \code{TRUE} if user selects \code{'{ YES }'}, otherwise, returns \code{FALSE}.
-\cr                   \tab  
-\cr            \code{NO}   \tab Posts an alert followed by a message offering choices  of \code{'{ CANCEL }'}, \code{'{ YES }'} and \code{'{ NO }'}. Stops execution if user selects \code{'{ CANCEL }'}, returns \code{TRUE} if user selects \code{'{ NO }'}, otherwise, returns \code{FALSE}.
-\cr                   \tab  
-\cr            \code{OK}   \tab Posts an alert followed by a message offering choices of \code{'{ CANCEL }'} and \code{'{ OK }'}. Returns \code{TRUE} if user selects \code{{ OK }}, otherwise return \code{FALSE}.
-\cr                   \tab  
-\cr        \code{CANCEL}   \tab Posts an alert followed by a message offering choices of \code{'{ CANCEL }'} and \code{'{ OK }'}. Returns \code{TRUE} if user selects \code{{ CANCEL }}, otherwise return \code{FALSE}.
+All functions \link[=collapse_dots]{collapses} \code{...} args into a prompt. Each posts an alert to the console, posts the prompt (if any), followed by the actions detailed in the table below.
+\tabular{rl}{
+  \code{acknowledge}   \tab Waits for user to acknowledge.\eqn{^1}
+\cr \code{choose_doc}   \tab Asks user to choose a document.\eqn{^2}
+\cr \code{choose_dir}   \tab Asks user to choose a directory.\eqn{^2}
+\cr    \code{choose1}   \tab Asks user to choose \code{1} option.\eqn{^2}
+\cr    \code{chooseN}   \tab Asks user to choose \verb{1+} options.\eqn{^{2,3}}
+\cr      \code{alert}   \tab None.\eqn{^1}
+\cr        \code{ask}   \tab Asks for typed input.\eqn{^2}
+\cr     \code{asknew}   \tab Asks for a list of new values.\eqn{^2}
+\cr    \verb{YES, NO}   \tab Offers \code{YES/NO/CANCEL}.\eqn{^{2,4}}
+\cr \verb{OK, CANCEL}   \tab Offers \code{OK/CANCEL}.\eqn{^4}
 }
+\verb{ }\eqn{^{1.}} Default style, bg color, and fg color depend on \code{type}.
+\cr \verb{ }\eqn{^{2.}} Stops execution if user chooses \code{CANCEL}.
+\cr \verb{ }\eqn{^{3.}} Stops execution if \code{stop | (type = 'error' & is.null(stop))}.
+\cr \verb{ }\eqn{^{4.}} Returns \code{TRUE} if user choice matches the function name.
 }
 \seealso{
 Other user: 

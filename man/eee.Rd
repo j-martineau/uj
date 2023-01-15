@@ -49,18 +49,9 @@ neee(x)
   }}
 }
 \value{
-\emph{A character vector}
-\cr   \code{eee_props}
-\cr   \code{eee_funs}
-\cr   \code{eee}
-\cr
-\cr \emph{A logical scalar}
-\cr   \code{is_eee_spec}
-\cr   \code{iEEE}
-\cr   \code{ieee}
-\cr
-\cr \emph{A numeric scalar}
-\cr   \code{neee}
+\emph{A character vector} \cr   \verb{eee_props, eee_funs, eee}
+\cr\cr \emph{A logical scalar} \cr   \verb{is_eee_spec, iEEE, ieee}
+\cr\cr \emph{A numeric scalar} \cr   \code{neee}
 }
 \description{
 An object's effective.d is defined as the number of dimensions in which it has multiple populated index positions (i.e., if a dimension has only one index position, that is not an effective dimension).
@@ -80,35 +71,23 @@ An object's effective.d is defined as the number of dimensions in which it has m
 \cr \code{'eHD'}   \tab \emph{Effectively hyper dimensional}
 \cr           \tab Length-\verb{8+} arrays with \verb{2+} positions in \verb{3+} dimensions.
 }
-\cr\cr
-Effective dimensionality property functions are:
-\tabular{rl}{
+\cr\cr Effective dimensionality property functions are: \tabular{rl}{
   \code{is_eee_spec}   \tab Is \code{spec} an effective.d specification?
-\cr               \tab  
 \cr \code{eee_props}   \tab What effective.d properties are there?
-\cr               \tab  
 \cr  \code{eee_funs}   \tab What effective.d property functions are there?
-\cr               \tab  
 \cr      \code{neee}   \tab How many effective dimensions does \code{x} have?
-\cr               \tab  
-\cr      \code{ieee}   \tab Is \code{x} a match to the effective.d specification\code{spec}?
-\cr               \tab  
+\cr      \code{ieee}   \tab Is \code{x} a match to the effective.d specification\code{spec}?
 \cr      \code{iEEE}   \tab Is \code{x} a match to the single effective.d property \code{'EEE'}?
-\cr               \tab  
 \cr       \code{eee}   \tab What are \code{x}'s effective.d properties?
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab  
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab  
+  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
 \cr            \code{vals}   \tab A vector of valid values.
 }
 }

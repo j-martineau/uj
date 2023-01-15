@@ -29,7 +29,7 @@ An atomic vector.
 \description{
 These functions \link[=av]{atomize} \code{...} arguments, converting them to an atomic vector (represented here as \code{dots}) before replication.
 \tabular{rl}{
-  \verb{re, er}   \tab Calls \verb{rep(dots, times = r, each = e)}.
+  \verb{re, er}   \tab Calls \code{rep(dots, times = r, each = e)}.
 \cr    \code{e}   \tab Calls \code{rep.int(dots, each = e)}.
 \cr    \code{r}   \tab Calls \code{rep.int(dots, r)}.
 }
@@ -59,12 +59,10 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 }
 \concept{extensions}

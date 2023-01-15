@@ -26,10 +26,8 @@
 #'   \cr   `u`   \tab Thinly wraps \code{\link[base]{unique}}`*`
 #'   \cr   `w`   \tab Thinly Wraps \code{\link[base]{which}}`**`
 #' }
-#' `*` Differs from \code{\link{uv}}, which calls `unique(av(...))`.
-#' \cr
-#' \cr
-#' `**` Differs from \code{\link{wv}}, which calls `which(av(...))`.
+#' ` `\eqn{^{1.}} Differs from \code{\link{uv}}, which calls `unique(av(...))`.
+#' \cr ` `\eqn{^{2.}} Differs from \code{\link{wv}}, which calls `which(av(...))`.
 #' @examples
 #' vals <- c(1:3, 2:4) / 3
 #' vars <- c("a", "bb", "ccc", "dddd", "ccc", "bb")

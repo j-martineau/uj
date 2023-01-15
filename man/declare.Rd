@@ -60,56 +60,37 @@ vls.(...)
 \item{en.}{A possibly pipe-delimited, \link[=cmp_chr_vec]{complete character vec} of names to apply to vector or list elements}
 }
 \value{
-\emph{An atomic data.frame}
-\cr   \code{dtf}
-\cr   \code{dtf.}
-\cr   \code{dtf0}
-\cr   \code{dtf_na}
-\cr
-\cr \emph{An atomic vector}
-\cr   \code{vec}
-\cr   \code{vec.}
-\cr   \code{vec_na}
-\cr
-\cr \emph{A square matrix}
-\cr   \code{dmat}
-\cr
-\cr \emph{A matrix}
-\cr   \code{mat}
-\cr
-\cr \emph{A \link[=ivls]{vlist}}
-\cr   \code{vls.}
-\cr   \code{vls}
+\emph{An atomic data.frame} \cr   \verb{dtf, dtf., dtf0, dtf_na}
+\cr\cr \emph{An atomic vector} \cr   \verb{vec, vec., vec_na}
+\cr\cr \emph{A square matrix} \cr   \code{dmat}
+\cr\cr \emph{A matrix} \cr   \code{mat}
+\cr\cr \emph{A vlist} \code{\link{ivls}} \cr   \verb{vls, vls.}
 }
 \description{
 This family of functions enforces the restrictions that names must (a) contain only ASCII letters, numerals, \code{'.'}, and \code{'_'}; (b) begin with a letter or \code{'.'} followed by a letter; and (c) end with a letter or numeral.
-\cr
-\cr Functions declaring \link[=atm_dtf]{atomic data.frames}:\tabular{rl}{
+\cr\cr Functions declaring \link[=atm_dtf]{atomic data.frames}:\tabular{rl}{
 \code{dtf} \tab   Declares a data.frame.
-\cr     \code{dtf.} \tab   Declares a data.frame concisely\eqn{^a}.
+\cr     \code{dtf.} \tab   Declares a data.frame concisely\eqn{^1}.
 \cr     \code{dtf0} \tab   Declares a \code{0}-row data.frame.
-\cr   \code{dtf_na} \tab   Declares a data.frame of \code{NA} values.
+\cr   \code{dtf_na} \tab   Declares a data.frame of \code{NA} values.
 }
 Functions declaring matrices:\tabular{rl}{
 \code{mat} \tab   Declares a matrix.
-\cr   \code{matd} \tab   Declares a square diagonal matrix\eqn{^b}.
+\cr   \code{matd} \tab   Declares a square diagonal matrix\eqn{^2}.
 }
 Functions declaring atomic vectors:\tabular{rl}{
 \code{vec} \tab   Declares a vector.
-\cr     \code{vec.} \tab   Declares a named atomic vector concisely\eqn{^c}.
+\cr     \code{vec.} \tab   Declares a named atomic vector concisely\eqn{^3}.
 \cr   \code{vec_na} \tab   Declares a vector of \code{NA} values.
 }
 Functions declaring \link[=ivls]{vlists}:\tabular{rl}{
 \code{vls} \tab   Declares a \link[=ivls]{vlist}.
-\cr   \code{vls.} \tab   Declares a named \link[=ivls]{vlist} concisely\eqn{^d}.
+\cr   \code{vls.} \tab   Declares a named \link[=ivls]{vlist} concisely\eqn{^4}.
 }
-   \eqn{^{a.}} \code{dtf.(a, b)} is identical to \code{data.frame(a = a, b = b, stringsAsFactors = F)}.
-\cr
-\cr    \eqn{^{b.}} Off-diags are \code{0}, \code{FALSE}, \code{""} for \code{x} of mode \code{'numeric'}, \code{'logical'}, \code{'character'}, respectively.
-\cr
-\cr    \eqn{^{c.}} \code{vec.(a, b)} is identical to \code{c(a = a, b = b)}.
-\cr
-\cr    \eqn{^{d.}} \code{vls.(a, b)} is identical to \code{list(a = a, b = b)}.
+\verb{ }\eqn{^{1.}} \code{dtf.(a, b)} is identical to \code{data.frame(a = a, b = b, stringsAsFactors = F)}.
+\cr \verb{ }\eqn{^{2.}} Off-diags are \code{0}, \code{FALSE}, and \code{""} for \code{x} of mode \code{'numeric'}, \code{'logical'}, and \code{'character'}, respectively.
+\cr \verb{ }\eqn{^{3.}} \code{vec.(a, b)} is identical to \code{c(a = a, b = b)}.
+\cr \verb{ }\eqn{^{4.}} \code{vls.(a, b)} is identical to \code{list(a = a, b = b)}.
 }
 \examples{
 a <- "a"
@@ -173,13 +154,11 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 }
 \concept{extensions}

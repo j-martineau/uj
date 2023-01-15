@@ -16,14 +16,14 @@ swap <- function(x, old, new, all = FALSE) {
                   uj::g0(uj::atm_vec(old)         , NULL, "[old] must be populated and atomic (?ipop)."),
                   uj::f0(uj::atm_vec(new)         , NULL, "[new] must be populated and atomic (?ipop)."),
                   uj::f0(uj::isTF(all)            , NULL, "[all] must be scalar TRUE or scalar FALSE"))
-  if (!base::is.null(errs)) {stop(.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   n.old <- base::length(old)
   n.new <- base::length(new)
   errs <- base::c(uj::f0(uj::compatible(x, old, new)      , NULL, "[x], [old], and [new] are of incompatible modes (?compatible)."),
                   uj::f0(uj::is_unq(old)                  , NULL, "old] must contain only unique elements."),
                   uj::f0(n.new %in% base::c(1, n.old)     , NULL, "[length(new)] must be in [c(1, length(old))]."),
                   uj::f0(uj::f0(all, uj::allIN(x, old), T), NULL, "[all = TRUE] but not all elements of [x] are contained in [old]."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (n.new == 1) {new <- base::rep.int(new, n.old)}
   if (base::any(base::is.na(old))) {x[base::is.na(x)] <- new[base::which(base::is.na(old))]}
   for (i in 1:n.old) {x[x == old[i]] <- new[i]}

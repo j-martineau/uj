@@ -45,13 +45,11 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
-\code{\link{stats0}},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{stats0}}
 
 Other forks: 
 \code{\link{case}()},

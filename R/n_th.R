@@ -4,7 +4,7 @@
                   uj::f0(uj::f0(!n.scl, T, ok.n), NULL, "[n] must be a complete positive whole-number scalar (?cmp_psw_scl)."),
                   uj::f0(uj::f0( n.scl, T, ok.n), NULL, "[n] must be a complete positive whole-number vector (?cmp_psw_vec)."))
   if (uj::idef(errs)) {uj:::.errs(errs)}
-  else if (base::any(n > base::length(x))) {stop(uj:::.errs(uj::p0(uj::f0(n.scl, "", "The largest value in")," [n] is greater than the number of elements in [x].")))}
+  else if (base::any(n > base::length(x))) {stop(uj::format_errs(pkg = "uj", uj::p0(uj::f0(n.scl, "", "The largest value in")," [n] is greater than the number of elements in [x].")))}
   else {NULL}
 }
 
@@ -13,7 +13,7 @@
 #' @family values
 #' @title Extract elements by numeric position
 #' @description \tabular{rl}{
-#'     `n_th_last`   \tab Gets the `n`-th-from-last element(s).
+#'     `n_th_last`   \tab Gets the `n`-th-from-last element(s).
 #'   \cr `first_n`   \tab Gets the first `n` elements.
 #'   \cr  `last_n`   \tab Gets the last `n` elements.
 #'   \cr    `n_th`   \tab Gets the `n`-th element(s) .

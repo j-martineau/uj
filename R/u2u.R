@@ -5,12 +5,11 @@
 #' @description Unit functions take the following forms, where `AA` and `BB` are wildcard unit codes and `old` and `new` are user-supplied argument values.
 #' \tabular{rl}{
 #'      `BB2BB`   \tab Converts units *from* `'AA'` *to* `'BB'`.
-#'   \cr `AA2u`   \tab Converts units *from* `'AA'` *to* `new`.
-#'   \cr `u2BB`   \tab Converts units *from* `old` *to* `'BB'`.
-#'   \cr  `u2u`   \tab Converts units *from* `old` *to* `new`.
+#'   \cr `AA2u`   \tab Converts units *from* `'AA'` *to* `new`.
+#'   \cr `u2BB`   \tab Converts units *from* `old` *to* `'BB'`.
+#'   \cr  `u2u`   \tab Converts units *from* `old` *to* `new`.
 #' }
-#' Available units/unit codes are:
-#' \tabular{rl}{
+#' Available units/unit codes are: \tabular{rl}{
 #'       `'cm'`   \tab centimeters.
 #'   \cr `'in'`   \tab inches.
 #'   \cr `'mm'`   \tab millimeters.
@@ -36,7 +35,7 @@ u2u <- function(x, old, new) {
   errs <- base::c(uj::f0(uj::cmp_num(x)                             , NULL, "[x] must be a complete numeric object (?cmp_num)."),
                   uj::f0(uj::cmp_chr_scl(old) & uj::isIN(old, units), NULL, "[old] must be a character scalar in c('cm', 'in', 'mm', 'pt')."),
                   uj::f0(uj::cmp_chr_scl(new) & uj::isIN(new, units), NULL, "[new] must be a character scalar in c('cm', 'in', 'mm', 'pt')."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   x * conv[[base::paste0(old, "2", new)]]
 }
 

@@ -28,29 +28,18 @@ rm_na(x)
 \item{s}{An \link[=atm_scl]{atomic scalar} to replace \code{NA} values. Mode must be \link[=compatible]{compatible} with\code{x}}
 }
 \value{
-\emph{A logical object of the same dimension as \code{x}}
-\cr   \verb{na, ok}
-\cr
-\cr \emph{\code{x} with \code{NA} values replaced}
-\cr (properties may change with \code{NA} replacement)
-\cr   \code{sub_na}
-\cr
-\cr \emph{\code{x} with \code{NA} values removed}
-\cr (properties may change with \code{NA} removal)
-\cr   \code{rm_na}
-\cr
-\cr \emph{A logical scalaqr}
-\cr   \verb{nas, oks}
+\emph{A logical object of the same dimension as} \code{x} \cr   \verb{na, ok}
+\cr\cr \code{x} \emph{with \code{NA} values replaced} \cr (properties may change with \code{NA} replacement) \cr   \code{sub_na}
+\cr\cr \code{x} \emph{with \code{NA} values removed} \cr (properties may change with \code{NA} removal) \cr   \code{rm_na}
+\cr\cr \emph{A logical scalar} \cr   \verb{nas, oks}
 }
 \description{
 All functions in this group take objects of atomic mode, \link[=atm_dtf]{atomic dtfs}, or \link[=atm_vls]{atomic vlists}:
 \tabular{rl}{
   \code{sub_na}   \tab Substitutes \code{s} for \code{NA} values of\code{x} Modes of \code{x} and \code{s} must be \link[=compatible]{compatible}.
-\cr           \tab  
 \cr \code{rm_na}   \tab Removes \code{NA} values of \code{x} If there are no \code{NA} values in \code{x}, returns \code{x} unchanged. If there are \code{NA} values in \code{x}, removing them may change the dimensions and/or class of \code{x}.
-\cr           \tab  
 \cr   \code{nas}   \tab Evaluates whether \code{x} is an \code{NA} scalar.
-\cr   \code{oks}   \tab Evaluates whether \code{x} is a non-\code{NA} scalar.
+\cr   \code{oks}   \tab Evaluates whether \code{x} is a non-\code{NA} scalar.
 \cr    \code{na}   \tab Indexes \code{NA} values of \code{x}.
 \cr    \code{ok}   \tab Indexes non-\code{NA} values of \code{x}.
 }
@@ -103,21 +92,17 @@ Other extensions:
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 
 Other values: 
 \code{\link{atomize}()},
 \code{\link{n_th}()},
-\code{\link{uv}()},
-\code{\link{values}()},
-\code{\link{wv}()}
+\code{\link{values}()}
 }
 \concept{extensions}
 \concept{missingness}

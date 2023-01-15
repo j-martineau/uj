@@ -12,9 +12,7 @@ sca(color, alpha = NA)
 existing alpha values are preserved.}
 }
 \description{
-\tabular{rl}{
-  \code{sca}   \tab Thinly wraps \code{\link[scales]{alpha}}.
-}
+\tabular{rl}{  \code{sca}   \tab \code{\link[scales]{alpha}}}
 }
 \examples{
 alpha("red", 0.1)

@@ -9,9 +9,7 @@
 #'   \cr `'d2D'` \tab   `2D`   \tab Data.frames and matrices.
 #'   \cr `'dHD'` \tab   `HD`   \tab Hyper (3+) dimensional arrays
 #' }
-#' \cr
-#' **Functions**
-#' \tabular{rl}{
+#' \cr *Functions* \tabular{rl}{
 #'     `is_ddd_spec`   \tab Is `spec` a defined.d property specification?
 #'   \cr `ddd_props`   \tab What defined.d properties are there?
 #'   \cr  `ddd_funs`   \tab What defined.d property functions are there?
@@ -24,18 +22,9 @@
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more defined.d properties from `ddd_props()`. defined.d properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character vector*
-#'  \cr   `ddd_props`
-#'  \cr   `ddd_funs`
-#'  \cr   `ddd`
-#'  \cr
-#'  \cr *A logical scalar*
-#'  \cr   `is_ddd_spec`
-#'  \cr   `iDDD`
-#'  \cr   `iddd`
-#'  \cr
-#'  \cr *A numeric scalar*
-#'  \cr   `nddd`
+#' @return *A character vector* \cr   `ddd_props, ddd_funs, ddd`
+#'  \cr\cr *A logical scalar* \cr   `is_ddd_spec, iDDD, iddd`
+#'  \cr\cr *A numeric scalar* \cr   `nddd`
 #' @examples
 #' ddd_funs()
 #' ddd_props()
@@ -70,7 +59,7 @@ is_ddd_spec <- function(spec) {spec <- uj:::.spec_vals(spec); uj::f0(base::lengt
 #' @export
 iddd <- function(x, spec, ...) {
   errs <- base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_ddd_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from ddd_props().'))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (!uj::meets(x, ...)) {return(F)}
   for (prop in uj:::.spec_vals(spec)) {if (uj::run('uj:::.i', prop, '(x)')) {return(T)}}
   F

@@ -52,51 +52,37 @@ iunq(x, ...)
   }}
 }
 \value{
-\emph{A character vector}
-\cr   \code{iii_props}
-\cr   \code{iii_funs}
-\cr   \code{iii}
-\cr
-\cr \emph{A logical scalar}
-\cr   \code{is_iii}
-\cr   \code{iIII}
-\cr   \code{iiii}
+\emph{A character vector} \cr   \verb{iii_props, iii_funs, iii}
+\cr\cr \emph{A logical scalar} \cr   \verb{is_iii, iIII, iiii}
 }
 \description{
 Integrity properties are defined for \link[=ipop]{populated} \link[=atm_dtf]{atomic data.frameS}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
 \tabular{rll}{
-  \code{'cmp'}   \tab complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing \strong{no} \code{NA} values.
-\cr           \tab               \tab  
-\cr \code{'mss'}   \tab missing       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \strong{only} \code{NA} values.
-\cr           \tab               \tab  
-\cr \code{'prt'}   \tab partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \code{NA} \strong{and} non-\code{NA} values.
-\cr           \tab               \tab  
+  \code{'cmp'}   \tab complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing \emph{no} \code{NA} values.
+\cr \code{'mss'}   \tab missing       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \emph{only} \code{NA} values.
+\cr \code{'prt'}   \tab partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \code{NA} \emph{and} non-\code{NA} values.
 \cr \code{'dup'}   \tab duplicates    \tab Complete and containing duplicate values.
-\cr \code{'unq'}   \tab unique        \tab Complete and containing only unique values.
+\cr \code{'unq'}   \tab unique        \tab Complete and containing only unique values.
 \cr \code{'nas'}   \tab \code{NA} scalar   \tab Atomic scalar \code{NA}.
 \cr \code{'oks'}   \tab \code{OK} scalar   \tab Non-\code{NA} atomic scalar.
 }
-\strong{Integrity property functions}
+\emph{Integrity property functions}
 \tabular{rl}{
   \code{is_iii_spec}   \tab Is \code{spec} an integrity specification?
 \cr \code{iii_props}   \tab What integrity properties are there?
 \cr  \code{iii_funs}   \tab What integrity property functions are there?
 \cr      \code{iiii}   \tab Does \code{x} match integrity specification \code{spec}?
-\cr      \code{iIII}   \tab Does \code{x} match single integrity property \code{'III'}?
+\cr      \code{iIII}   \tab Does \code{x} match single integrity property \code{'III'}?
 \cr       \code{iii}   \tab Gets all of \code{x}'s integrity properties.
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab  
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab  
+  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
 \cr            \code{vals}   \tab A vector of valid values.
 }
 }

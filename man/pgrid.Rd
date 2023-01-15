@@ -26,7 +26,7 @@ pgridx(p, ..., ch = F, na.err = T)
 
 \item{ch, na.err}{Non-\code{NA} logical scalars indicating, respectively, whether to split each \code{...} arguments into its constituent characters after conversion to mode 'character' and whether to throw an error if an argument in \code{...} contains an \code{NA} value.}
 
-\item{crossed}{A non-\code{NA} logical scalar indicating whether to construct the result to look like a fully-crossed model. See the section entitled \emph{the} \code{crossed} \emph{argument} section for details.}
+\item{crossed}{A non-\code{NA} logical scalar indicating whether to construct the result to look like a fully-crossed model. See \emph{the} \code{crossed} \emph{argument} section for details.}
 }
 \value{
 A character vector.
@@ -37,10 +37,10 @@ A character vector.
 \cr            \tab  
 \cr \code{pgrid0}   \tab Calls \code{pgrid} with \code{p = ""} (blank).
 \cr \code{pgrid1}   \tab Calls \code{pgrid} with \verb{p = " "} (space).
-\cr \code{pgridn}   \tab Calls \code{pgrid} with \verb{crossed = FALSE *}
-\cr \code{pgridx}   \tab Calls \code{pgrid} with \verb{crossed = TRUE *}
+\cr \code{pgridn}   \tab Calls \code{pgrid} with \verb{crossed = FALSE}\eqn{^{ 1}}
+  \cr \code{pgridx}   \tab Calls \code{pgrid} with \code{crossed = TRUE}\eqn{^{ 1}}
 }
-\code{*} See \emph{the} \code{crossed} \emph{argument} section.
+\verb{ }\eqn{^{1.}} See \emph{the} \code{crossed} \emph{argument}.
 }
 \section{The \code{crossed} Argument}{
  The following console excerpt shows the effect of the value of \code{crossed}:

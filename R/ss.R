@@ -3,42 +3,18 @@
 #' @family chars
 #' @title Split strings and select/check for elements
 #' @description All functions in this family follow the same order of operations when performing string splitting:
-#' \cr
-#' \cr **Order of operations**
-#' \tabular{rl}{
-#'       `1.`  \tab \link[=av]{Atomize} `...`, collapsing
-#'   \cr       \tab it to a simple atomic  vector.
-#'   \cr `2.`  \tab Coerce the result to a character vector.
-#'   \cr `3.`  \tab Split each element of the vector along
-#'   \cr       \tab the delimiter(s) in `d`, producing a
-#'   \cr       \tab potentially longer character vector.
-#'   \cr `4.`  \tab If `n` is not `NULL`, extract the `n`-th
-#'   \cr       \tab elements(s) from the result.
-#'   \cr `5.`  \tab If `trm = TRUE`, trim white space
-#'   \cr       \tab (i.e., spaces, tabs, newlines) from both
-#'   \cr       \tab ends of each element of the result.
-#'   \cr `6.`  \tab If `sqz = TRUE`, remove leading and
-#'   \cr       \tab trailing white space and replace any
-#'   \cr       \tab multi character interior white-space
-#'   \cr       \tab sequences inside the result with a
-#'   \cr       \tab single space.
-#'   \cr `7.`  \tab If `u = TRUE`, reduce the result to
-#'   \cr       \tab unique values.
+#' \cr\cr *Order of operations* \itemize{
+#'   \item \link[=av]{Atomize} `...`, collapsing it to a simple atomic vector.
+#'   \item Coerce the result to a character vector.
+#'   \item Split each element of the vector along the delimiter(s) in `d`, producing a potentially longer character vector.
+#'   \item If `n` is not `NULL`, extract the `n`-th elements(s) from the result.
+#'   \item If `trm = TRUE`, trim white space (i.e., spaces, tabs, newlines) from both ends of each element of the result.
+#'   \item If `sqz = TRUE`, remove leading and trailing white space and replace any multi character interior white-space sequences inside the result with a single space.
+#'   \item If `u = TRUE`, reduce the result to unique values.
 #' }
-#' \cr
-#' **The function **`ss`
-#' \cr
-#' \cr Performs the operations as described in the *order of operations* section.
-#' \cr
-#' \cr
-#' \cr **The functions **`ch`** and** `chars`
-#' \cr
-#' \cr Split strings in constituent characters (by using a blank-string delimiter).
-#' \cr
-#' \cr
-#' \cr **The function **`sstb`
-#' \cr
-#' \cr Requires that splitting each element of `x` along the delimiter `d` and post-processing the results based on optional args `trm`, `sqz`, `drop`, `n`, and `u` will result in vectors of the same length. Those resulting same-length vectors are then placed into a data.frame. For example, the following console excerpt demonstrates a call to `sstb` and its result.
+#' \cr *The function* `ss` \cr\cr Performs the operations as described in the *order of operations* section.
+#' \cr\cr *The functions* `ch/chars` \cr\cr Split strings in constituent characters (by using a blank-string delimiter).
+#' \cr\cr *The function* `sstb` \cr\cr Requires that splitting each element of `x` along the delimiter `d` and post-processing the results based on optional args `trm`, `sqz`, `drop`, `n`, and `u` will result in vectors of the same length. Those resulting same-length vectors are then placed into a data.frame. For example, the following console excerpt demonstrates a call to `sstb` and its result.
 #' ```
 #' > sstb('|', 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p', name = 'original', part = 'letter')
 #'
@@ -48,24 +24,18 @@
 #' 3  i|j|k|l        i        j        k        l
 #' 4  m|n|o|p        m        n        o        p
 #' ```
-#' \cr
-#' **Functions extending **`ss`** for common delimiters**
-#' \cr
-#' \cr Extension functions are supplied for common delimiters, signified by codes appended to `ss` function names:
+#' \cr *Functions extending* `ss` * for common delimiters* \cr\cr Extension functions are supplied for common delimiters, signified by codes appended to `ss` function names:
 #' \tabular{cll}{
-#'    *Code*   \tab *Name*        \tab   *Common delimiter*
-#'   \cr `'0'` \tab blank`*`      \tab   `''`
-#'   \cr `'1'` \tab space         \tab   `' '`
-#'   \cr `'P'` \tab pipe          \tab   `'|'`
-#'   \cr `'D'` \tab dot           \tab   `'.'`
-#'   \cr `'B'` \tab broken pipe   \tab   `'¦'`
+#'    *Code*   \tab *Name*      \tab   *Common delimiter*
+#'   \cr `'0'` \tab blank`*`    \tab   `''`
+#'   \cr `'1'` \tab space       \tab   `' '`
+#'   \cr `'P'` \tab pipe        \tab   `'|'`
+#'   \cr `'D'` \tab dot         \tab   `'.'`
+#'   \cr `'B'` \tab broken pipe \tab   `'¦'`
 #' }
 #' `*` Splits strings into constituent characters, making `ss0(.)` functionally equivalent to `ch(.)`.
-#' \cr
-#' \cr
-#' \cr **Functions filtering for unique values**
-#' \cr
-#' \cr Prepending `u` to a function name reduces the result of calling the original function to unique values.
+#' \cr\cr **Functions filtering for unique values**
+#' \cr\cr Prepending `u` to a function name reduces the result of calling the original function to unique values.
 #' @param ... An arbitrary number of objects to be \link[=av]{atomized} before splitting.
 #' @param x A \link[=chr_vec]{character vec} of string(s) to be split.
 #' @param name A \link[=cmp_chr_scl]{complete character scalar} name of the variable to hold the original strings.
@@ -77,20 +47,20 @@
 #' @param n An optional \link[=cmp_psw_scl]{complete positive whole-number vec} specifying one or more elements to be extracted from the result.
 #' @param u complete non-`NA` scalar indicating whether to reduce the result to unique values.
 #' @return *A character vector*
-#'   \cr   `ssPDB, ussPDB`
-#'   \cr   `ssDB,  ussDB`
-#'   \cr   `ssPB,  ussPB`
-#'   \cr   `ssPD,  ussPD`
-#'   \cr   `ssB,   ussB`
-#'   \cr   `ssD,   ussD`
-#'   \cr   `ssP,   ussP`
-#'   \cr   `ss1,   uss1`
-#'   \cr   `ss,    uss`
-#'   \cr\cr *A \link[=ich1]{1-char} vector*
-#'   \cr   `ss0, uss0`
-#'   \cr   `ch,  uch`
-#'   \cr\cr *A data.frame *
-#'   \cr   `sstb, usstb`
+#' \cr   `ssPDB ussPDB`
+#' \cr   `ssDB, ussDB`
+#' \cr   `ssPB, ussPB`
+#' \cr   `ssPD, ussPD`
+#' \cr   `ssB, ussB`
+#' \cr   `ssD, ussD`
+#' \cr   `ssP, ussP`
+#' \cr   `ss1, uss1`
+#' \cr   `ss, uss`
+#' \cr\cr *A* \link[=ich1]{1-char} *vector*
+#' \cr   `ss0 uss0`
+#' \cr   `ch, uch`
+#' \cr\cr *A data.frame *
+#' \cr   `sstb, usstb`
 #' @examples
 #' ss("", "super-cooled")
 #' ss("|", "super||cooled", "super|heated")
@@ -129,7 +99,7 @@ ss <- function(d, ..., trm = TRUE, sqz = TRUE, drop = TRUE, u = FALSE, n = NULL)
                   uj::f0(uj::cmp_chr_vec(d)                        , NULL, "[d] must be a complete character vec (?cmp_chr_vec)."),
                   uj::f0(uj::isTF(u)                               , NULL, "[u] must be TRUE or FALSE."),
                   uj::f0(uj::f0(uj::inll(n), T, uj::cmp_psw_vec(n)), NULL, "[n] must be NULL or a complete positive whole-number vec (?cmp_psw_vec)."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   x <- uj::av(...)
   for (dd in d) {x <- uj::av(base::strsplit(base::as.character(uj::av(x)), dd, fixed = T))}
   if (trm) {x <- base::trimws(x)}
@@ -167,7 +137,7 @@ sstb <- function(d, ..., name = "string", part = "part", trm = TRUE, sqz = TRUE,
   y <- base::lapply(x, ss, d = d, trm = trm, sqz = sqz, drop = drop, n = n, u = u)
   nd <- base::length(x)
   if (nd > 1) {
-    if (!uj::recyclable_n(base::lengths(y))) {stop(uj:::.errs("[...] args must be recyclable upon splitting and post-processing using optional args."))}
+    if (!uj::recyclable_n(base::lengths(y))) {stop(uj::format_errs(pkg = "uj", "[...] args must be recyclable upon splitting and post-processing using optional args."))}
     ns <- base::lengths(y)
     if (base::length(base::unique(ns)) > 1) {
       reps <- base::max(base::lengths(y)) / base::lengths(y)

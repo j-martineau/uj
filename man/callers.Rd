@@ -17,21 +17,14 @@ ncallers()
 \item{gens}{A \link[cmp_psw_vec]{complete positive whole-number vec} giving the number(s) of generations back in the function call stack to go.}
 }
 \value{
-\emph{A character vector}
-\cr   \code{callers}
-\cr
-\cr \emph{A character scalar}
-\cr   \code{caller}
-\cr
-\cr \emph{A numeric scalar}
-\cr   \code{ncallers}
+\emph{A character vector} \cr   \code{callers}
+\cr\cr \emph{A character scalar} \cr   \code{caller}
+\cr\cr \emph{A numeric scalar} \cr   \code{ncallers}
 }
 \description{
 \tabular{rl}{
   \code{ncallers}   \tab Gets the number of functions in the call stack.
-\cr             \tab  
 \cr \code{callers}   \tab Gets names of all calling functions, with the immediate calling function in position \code{1}, optionally selecting the \code{gens.}-th element(s).
-\cr             \tab  
 \cr  \code{caller}   \tab Gets the name of the immediate calling function.
 }
 }
@@ -63,10 +56,10 @@ Other meta:
 \code{\link{dot_args}},
 \code{\link{pause}()},
 \code{\link{ply}()},
+\code{\link{purge}()},
 \code{\link{recycling}},
 \code{\link{run}()},
-\code{\link{say}()},
-\code{\link{xat}()}
+\code{\link{say}()}
 }
 \concept{environments}
 \concept{meta}

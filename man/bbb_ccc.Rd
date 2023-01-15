@@ -177,36 +177,25 @@ sld_arr(x, ...)
   }}
 }
 \value{
-\emph{A character vector}
-\cr   \code{bbb_ccc_funs}
-\cr
-\cr \emph{A logical scalar}
-\cr   \code{BBB_CCC}
-\cr   \code{bbb_ccc}
+\emph{A character vector} \cr   \code{bbb_ccc_funs}
+\cr\cr \emph{A logical scalar} \cr   \verb{BBB_CCC, bbb_ccc}
 }
 \description{
 \tabular{rl}{
   \code{bbb_ccc_funs}   \tab What \link[=bbb]{basic} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?
-\cr                \tab  
 \cr    \code{bbb_ccc}   \tab Is \code{x} a match to the single basic and xclass properties in \code{bbb} and \code{ccc}, respectively?
-\cr                \tab  
 \cr    \code{BBB_CCC}   \tab Is \code{x} a match to single basic and xclass properties \code{'BBB'} and \code{'CCC'}, respectively?
 }
 Some combinations of basic + xclass properties are non-sensical. For this reason, the basic properties represented in this family of functions are \code{c('atm', 'nil',  'pop')}.
-\cr
-\cr In addition, the base property \code{'nil'} is nonsensical in combination with xclasses \code{'mvc'} and \code{'scl'} (which thus do not have combined \code{BBB_CCC} property functions).
+\cr\cr In addition, the base property \code{'nil'} is nonsensical in combination with xclasses \code{'mvc'} and \code{'scl'} (which thus do not have combined \code{BBB_CCC} property functions).
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab  
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab  
+  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
 \cr            \code{vals}   \tab A vector of valid values.
 }
 }

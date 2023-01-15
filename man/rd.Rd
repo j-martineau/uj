@@ -234,22 +234,17 @@ i.e. If this option is \code{TRUE}, the value \verb{""""} represents
 a single quote, \verb{\\"}.}
 }
 \value{
-\emph{Varies}
-\cr   \code{rdclip}
-\cr
-\cr \emph{A data.frame}
-\cr   \code{rdcsv}
-\cr   \code{rdtsv}
-\cr   \code{rdxsv}
+\emph{Varies} \cr   \code{rdclip}
+\cr\cr \emph{A data.frame} \cr   \verb{rdcsv, rdtsv, rdxsv}
 }
 \description{
 \tabular{rl}{
   \code{rdclip}   \tab Thinly wraps \code{\link[readr]{clipboard}}
-\cr \code{rdcsv}   \tab Extends \code{\link[readr]{read_csv}}\code{*}
-\cr \code{rdtsv}   \tab Extends \code{\link[readr]{read_tsv}}\code{*}
-\cr \code{rdxsv}   \tab Extends \code{\link[readr]{read_delim}}\code{*}
+\cr \code{rdcsv}   \tab Extends \code{\link[readr]{read_csv}}\eqn{^1}
+\cr \code{rdtsv}   \tab Extends \code{\link[readr]{read_tsv}}\eqn{^1}
+\cr \code{rdxsv}   \tab Extends \code{\link[readr]{read_delim}}\eqn{^1}
 }
-\verb{* file = NULL} prompts the user to select a file.
+\verb{ }\eqn{^{1.}} \code{file = NULL} prompts the user to select a file.
 }
 \examples{
 # Input sources -------------------------------------------------------------
@@ -344,13 +339,11 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 
 Other wraps: 
 \code{\link{basics}},

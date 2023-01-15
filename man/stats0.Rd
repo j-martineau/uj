@@ -72,11 +72,10 @@ rmeans0(x)
 \emph{A numeric vector}
 \cr   \verb{cmeans0, csums0, cvars0, csds0}
 \cr   \verb{rmeans0, rsums0, rvars0, rsds0}
-\cr   \verb{mean0,   sum0,   var0,   sd0}
-\cr   \verb{pmin0,   min0}
-\cr   \verb{pmax0,   max0}
-\cr
-\cr \emph{A numeric vector or matrix}
+\cr   \verb{mean0, sum0, var0, sd0}
+\cr   \verb{pmin0, min0}
+\cr   \verb{pmax0, max0}
+\cr\cr \emph{A numeric vector or matrix}
 \cr   \verb{cor0, cov0}
 }
 \description{
@@ -96,7 +95,7 @@ rmeans0(x)
 \cr    \code{var0} \tab   Calls \code{var(av(...), na.rm = T)}
 \cr     \code{sd0} \tab   Calls \code{sd(av(...), na.rm = T)}
 \cr    \code{cor0} \tab   Calls \code{cor(x, y, use = 'complete.obs')}
-\cr    \code{cov0} \tab   Calls \verb{cov(x, y, use = 'complete.obs')}
+\cr    \code{cov0} \tab   Calls \code{cov(x, y, use = 'complete.obs')}
 }
 }
 \examples{
@@ -163,13 +162,11 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 }
 \concept{extensions}
 \concept{missingness}

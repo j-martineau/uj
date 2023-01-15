@@ -11,8 +11,6 @@ run(...)
 \item{...}{Arguments to be pasted into a character scalar command to be run (i.e., parsed and evaluated) in the environment where \code{run(...)} was called.}
 }
 \value{
-\code{NULL}. Called for its side effect of executing code in the environment where \code{run(...)} was called.
-
 The value returned upon evaluating the character scalar created from collapsing \code{...} arguments.
 }
 \description{
@@ -39,8 +37,8 @@ Other meta:
 \code{\link{dot_args}},
 \code{\link{pause}()},
 \code{\link{ply}()},
+\code{\link{purge}()},
 \code{\link{recycling}},
-\code{\link{say}()},
-\code{\link{xat}()}
+\code{\link{say}()}
 }
 \concept{meta}

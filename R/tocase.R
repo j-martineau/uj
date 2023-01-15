@@ -4,14 +4,11 @@
 #' @title Convert string case
 #' @description Functions in this family convert string case as follows:
 #' \tabular{rl}{
-#'      `totitle, tc` \tab   Convert to \link[stringr:str_to_sentence]{title case}.
-#'   \cr              \tab  
-#'   \cr `tosent, ts` \tab   Convert to \link[stringr:str_to_sentence]{sentence case}.
-#'   \cr              \tab  
+#'      `totitle, tc` \tab   Convert to \link[stringr:str_to_sentence]{title case}.
+#'   \cr `tosent, ts` \tab   Convert to \link[stringr:str_to_sentence]{sentence case}.
 #'   \cr         `lc` \tab   Convert to \link[base:tolower]{lower case}.
 #'   \cr         `uc` \tab   Convert to \link[base:toupper]{upper case}.
-#'   \cr              \tab  
-#'   \cr     `tocase` \tab   Convert to case in argument `case.`.
+#'   \cr     `tocase` \tab   Convert to case `case.`.
 #' }
 #' @param ... An arbitrary number of non-empty character arguments.
 #' @param case. A \link[=cmp_ch1_scl]{complete onechar scalar}. Either `'l'`, `'s'`, `'t'`, or `'u'` to indicate lower, sentence, title, or upper case, respectively (case insensitive).
@@ -43,7 +40,7 @@ tocase <- function(case., ...) {
   ok.dots <- uj::cmp_chr_vec(x)
   errs <- base::c(uj::f0(ok.case , NULL, "[case.] must be either 'l', 's', 't', or 'u'."),
                   uj::f0(ok.dots , NULL, "[...] must be contain character values."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if      (case. == "l") {base::tolower(x)}
   else if (case. == "u") {base::toupper(x)}
   else if (case. == "t") {stringr::str_to_title(x)}

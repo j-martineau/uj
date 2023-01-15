@@ -28,19 +28,15 @@ recycle(..., n. = NULL, min. = 1, max. = NULL, targ. = NULL)
 \item{err.}{A non-\code{NA} logical scalar indicating whether to throw an error if the \code{...} arguments are not recyclable.}
 }
 \value{
-\emph{A logical scalar}
-\cr   \code{recyclable_n}
-\cr   \code{recyclable}
-\cr
-\cr \code{NULL}
-\cr   \code{recycle}
+\emph{A logical scalar} \cr   \verb{recyclable_n, recyclable}
+\cr\cr \code{NULL} \cr   \code{recycle}
 }
 \description{
 Arguments are recyclable if all of their lengths are divisors of the argument with the greatest length subject to any settings in the optional arguments \code{ns.}, \code{min.}, \code{max.}, and/or \code{targ.}.
 \cr\cr Functions in this family are:\tabular{rl}{
   \code{recyclable_n}   \tab Are lengths in \code{...} recyclable?.
 \cr \code{recyclable}   \tab Are \code{...} arguments are recyclable?
-\cr    \code{recycle}   \tab Recycles \code{...} arguments in the calling function.
+\cr    \code{recycle}   \tab Recycles \code{...} arguments in the calling function.
 }
 }
 \examples{
@@ -88,9 +84,9 @@ Other meta:
 \code{\link{dot_args}},
 \code{\link{pause}()},
 \code{\link{ply}()},
+\code{\link{purge}()},
 \code{\link{run}()},
-\code{\link{say}()},
-\code{\link{xat}()}
+\code{\link{say}()}
 }
 \concept{environments}
 \concept{meta}

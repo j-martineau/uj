@@ -3,21 +3,16 @@
 #' @title Named values (unique to package `uj`)
 #' @description \tabular{rl}{
 #'       `vtable`   \tab Gets a data.frame of all `uj`-specific named values with three columns: `name`, `value`, and `description`, where named values with multiple elements are pipe-delimited and all values are converted to mode character.
-#'   \cr            \tab  
 #'   \cr `values`   \tab Gets a named list where names are the arguments submitted to `v(...)`, element values are the values of the contents of the named element, and the attribute `'descriptions'` gives associated verbose descriptions.
-#'   \cr            \tab  
-#'   \cr `vnames`   \tab Gets names of all package values.
-#'   \cr      `v`   \tab Gets package values by name.
+#'   \cr `vnames`   \tab Gets names of all package values.
+#'   \cr      `v`   \tab Gets package values by name.
 #' }
 #' @param ... Unquoted, comma-separated list of names of values to return. If multiple values are specified, they are coerced into a single atomic vector result.
 #' @return *A character vector*
-#'   \cr   `vnames`
-#'   \cr   `v`
-#'   \cr
-#'   \cr *A \link[ivls]{vlist}*
+#'   \cr   `vnames, v`
+#'   \cr\cr *A vlist* (\code{\link{ivls}})
 #'   \cr   `values`
-#'   \cr
-#'   \cr *A data.frame*
+#'   \cr\cr *A data.frame*
 #'   \cr   `vtable`
 #' @examples
 #' v(.)

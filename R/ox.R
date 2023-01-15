@@ -3,9 +3,9 @@
 #' @title Oxford-comma separated lists
 #' @description Create Oxford-comma separated lists with a variety of templates (displayed below) where `{conj}` and `{n}` represent the values of arguments `conj` and `n`; `{pref}` and `{comp}` indicate the potentially-`NULL` values of arguments `pref` and `conj`; and `[a]`, `[b]`, and `[z]` represents elements of a list.
 #' \cr\cr  With the exception of `{n} > length(uj::av(...))`, these functions appropriately process lists of length `1` and `2`.
-#' \cr\cr **Functions and associated templates**
+#' \cr\cr *Functions and associated templates*
 #' \tabular{rl}{
-#'           **Function**   \tab **Associated template**
+#'             *Function*   \tab *Associated template*
 #'   \cr                    \tab   
 #'   \cr             `ox`   \tab `'(pref) [a], [b], ..., {conj} [z]'`
 #'   \cr                    \tab   
@@ -106,12 +106,12 @@ ox <- function(..., conj = "and", pref = "", quote = 0) {
                   uj::f0(uj::cmp_chr_scl(conj) , NULL, "[conj] must be a complete character scalar (?cmp_chr_scl)."),
                   uj::f0(uj::cmp_chr_scl(pref) , NULL, "[pref] must be a complete character scalar (?cmp_chr_scl)."),
                   uj::f0(uj::isIN(quote, 0:2)  , NULL, "[quote] must be 0, 1, or 2."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   n.vals <- base::length(vals)
   if (n.vals == 1) {
     errs <- base::c(uj::f0(conj != 'nor'                  , NULL, "[conj = 'nor'], but [...] contains only 1 atomic element."),
                     uj::f0(conj != "or" | pref != "either", NULL, "[conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element."))
-    if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+    if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   }
   if (pref != "") {pref <- base::paste0(pref, " ")}                              # if pref(ix) is not empty, follow it with a space
   last <- vals[n.vals]                                                           # get the last element of X
@@ -141,7 +141,7 @@ ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, first = TRUE) {
                   uj::f0(uj::isIN(quote, 0:2)  , NULL, "[quote] must be 0, 1, or 2."),
                   uj::f0(uj::cmp_nnw_scl(n)    , NULL, "[n] must be a non-negative whole number scalar (?cmp_nnw_scl)."),
                   uj::f0(uj::isTF(first)       , NULL, "[first] must be TRUE or FALSE."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   pref <- uj::f0(comp == "", base::paste(n, "of"), uj::f0(first, base::paste(comp, n, "of"), base::paste(n, comp, "of")))
   uj::ox(vals, conj = conj, pref = pref, quote = quote)
 }

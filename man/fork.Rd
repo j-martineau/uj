@@ -23,11 +23,8 @@ f1(x, y, n, na = n, err = n)
 \item{err}{Either \code{'err'} or an object to be returned when \code{test} is not an atomic scalar in \code{c(TRUE, FALSE, NA)}.}
 }
 \value{
-\emph{A length-\code{length(x)} atomic object}
-\cr   \code{fork}
-\cr\cr \emph{An} R \emph{object}
-\cr   \code{f0}
-\cr   \code{f1}
+\emph{A length-\code{length(x)} atomic object} \cr   \code{fork}
+\cr\cr \emph{An} R \emph{object} \cr   \verb{f0, f1}
 }
 \description{
 \tabular{rl}{
@@ -93,14 +90,12 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 
 Other forks: 
 \code{\link{case}()},

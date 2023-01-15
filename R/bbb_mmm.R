@@ -3,9 +3,7 @@
 #' @title basic + xmode combination properties
 #' @description \tabular{rl}{
 #'     `bbb_mmm_funs`   \tab What \link[=bbb]{basic} + \link[=mmm]{xmode} combination property functions are there?
-#'   \cr                \tab  
 #'   \cr    `bbb_mmm`   \tab Is `x` a match to the single basic and xmode properties in `bbb` and `mmm`, respectively?
-#'   \cr                \tab  
 #'   \cr    `BBB_MMM`   \tab Is `x` a match to single basic and xmode properties `'BBB'` and `'MMM'`, respectively?
 #' }
 #' @param x An R object.
@@ -13,12 +11,8 @@
 #' @param mmm A character scalar single xmode property from `mmm_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character vector*
-#'  \cr   `bbb_mmm_funs`
-#'  \cr
-#'  \cr *A logical scalar*
-#'  \cr   `BBB_MMM`
-#'  \cr   `bbb_mmm`
+#' @return *A character vector* \cr   `bbb_mmm_funs`
+#'  \cr\cr *A logical scalar* \cr   `BBB_MMM, bbb_mmm`
 #' @examples
 #' bbb_mmm_funs()
 #' bbb_mmm_props()
@@ -32,7 +26,7 @@ bbb_mmm <- function(x, bbb, mmm, ...) {
   errs <- base::c(uj:::.meets_errs(x, ...),
                   uj::f0(uj::f0(base::length(bbb) != 1 | !base::is.character(bbb), F, uj::f0(base::is.na(bbb), F, bbb %in% BBB  )), NULL, "[bbb] is not a scalar value from c('atm', 'pop')."),
                   uj::f0(uj::f0(base::length(mmm) != 1 | !base::is.character(mmm), F, uj::f0(base::is.na(mmm), F, mmm %in% .mmms)), NULL, '[mmm] is not a scalar value from mmm_props().'))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   else if (!uj::meets(x, ...)) {return(F)}
   else if (bbb == "atm") {if (!base::is.atomic(x)) {F} else {uj::run(".i", mmm, "(x)")}}
   else if (bbb == "pop") {if (!base::is.atomic(x)) {F} else if (base::length(x) == 0) {F} else {uj::run(".i", mmm, "(x)")}}

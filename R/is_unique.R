@@ -16,11 +16,11 @@ is_unique <- function(x, a = T, na = F) {
   ugen <- function(G) {base::length(base::unique(G)) == base::length(G)}
   errs <- base::c(uj::f0(isTRUE(a ) | isFALSE(a ), NULL, "[a] must be TRUE or FALSE."),
                   uj::f0(isTRUE(na) | isFALSE(na), NULL, "[na] must be TRUE or FALSE."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   x.av <- base::unlist(x, T, F)
   if (a) {x <- x.av}
   if (base::length(x.av) > 0) {
-    if (na) {if (base::any(base::is.na(x.av))) {stop(uj:::.errs("[na = FALSE] but [x] contains NA values."))}}
+    if (na) {if (base::any(base::is.na(x.av))) {stop(uj::format_errs(pkg = "uj", "[na = FALSE] but [x] contains NA values."))}}
     uj::f0(base::is.data.frame(x), udtf(x), uj::f0(base::is.list(x), ugen(x), ugen(x.av)))
   } else {F}
 }

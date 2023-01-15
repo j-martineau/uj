@@ -98,85 +98,55 @@ spec_concise(spec)
 \cr   \code{ippp}
 }
 \description{
-\emph{Property families defined by this package}
-\tabular{rl}{
+\emph{Property families defined by this package} \tabular{rl}{
   \code{\link{bbb}}   \tab basic properties
 \cr \code{\link{ccc}}   \tab xclass (extended class)
 \cr \code{\link{ddd}}   \tab defined.d (defined dimensionality)
-\cr \code{\link{eee}}   \tab effective.d (effective dimensionality)
-\cr \code{\link{iii}}   \tab integrity (completeness, uniqueness)
+\cr \code{\link{eee}}   \tab effective.d (effective dimensionality)
+\cr \code{\link{iii}}   \tab integrity (completeness, uniqueness)
 \cr \code{\link{mmm}}   \tab xmode (extended modes)
 \cr \code{\link{sss}}   \tab shape (geometric shape)
 }
-\cr
-\emph{Types of property specs}
-\tabular{rl}{
+\cr \emph{Types of property specs} \tabular{rl}{
   \emph{single}   \tab \link[=ich3]{3-char} scalars (i.e., \code{all(nchar(.) == 3)} with all values in \code{all_props()}. For example, \verb{'ord', 'dtf', 'd1D',} and \code{'rct'} are \emph{single} property specs.
-\cr            \tab  
 \cr  \emph{combo}   \tab Character scalars containing multiple underscore-delimited \emph{single} properties, indicating that those \emph{single} properties must co-occur. For example, the \emph{combo} property spec \code{'ord_dtf_d1D_rct'} (or an equivalent underscore-delimited permutation) indicates that all four \emph{single} properties must co-occur to satisfy the spec.
-\cr            \tab  
 \cr \emph{option}   \tab Character scalars containing multiple pipe-delimited \emph{combo} and/or \emph{single} property specs. For example, the \emph{option} property spec \code{'ord|dtf_d1D|dtf_rct'} would be satisfied by an object with \emph{single} property \code{'ord'}, \emph{combo} property \code{'dtf_d1D'}, \strong{or} \emph{combo} property \code{'dtf_rct'}.
-\cr            \tab  
 \cr   \emph{flex}   \tab A \emph{single}, \emph{combo}, or \emph{option} property spec as defined above.
 }
-\cr
-\emph{Functions for property spec decomposition}
-\tabular{rl}{
+\cr \emph{Functions for property spec decomposition} \tabular{rl}{
   \code{props_from_combo}   \tab What are the constituent \emph{single} properties of a \emph{combo} property spec?
-\cr                      \tab  
 \cr \code{combos_from_spec}   \tab What are the constituent \emph{combo} properties in a \emph{flex} property spec?
-\cr                      \tab  
 \cr  \code{props_from_spec}   \tab What are the \emph{unique} constituent \emph{single} properties in a \emph{flex} property spec?
 }
-\cr
-\emph{Functions to check whether a value is a valid property spec}
-\tabular{rl}{
+\cr \emph{Functions to check whether a value is a valid property spec} \tabular{rl}{
   \code{is_prop_combo}   \tab Is \code{combo} a valid \emph{combo} property spec?
-\cr                  \tab  
 \cr \code{is_prop_spec}   \tab Is \code{spec} a valid \emph{flex} property spec?
-\cr                  \tab  
 \cr  \code{is_prop_fun}   \tab Is \code{fun} the name of a dedicated property checking function?
-\cr                  \tab  
 \cr      \code{is_prop}   \tab Is \code{prop} a valid \emph{single} property?
 }
-\cr
-\emph{Functions to define properties and property specs}
-\tabular{rl}{
+\cr \emph{Functions to define properties and property specs} \tabular{rl}{
   \code{combo_concise}   \tab How is a \emph{combo} property spec (concisely) defined?
-\cr                  \tab  
 \cr \code{spec_concise}   \tab How is an \emph{options} property spec (concisely) defined?
-\cr                  \tab  
 \cr \code{prop_verbose}   \tab How is a \emph{single} property (verbosely) defined?
-\cr                  \tab  
 \cr    \code{prop_defs}   \tab What are the definitions of all possible \emph{single} properties (returned as a data.frame)?
 }
-\cr
-\emph{Functions to list names of dedicated property-checking functions}
-\tabular{rl}{
+\cr \emph{Functions to list names of dedicated property-checking functions} \tabular{rl}{
   \code{ppp_or_funs}   \tab What dedicated functions check \code{x} for either special values or a match to a \emph{flex} property spec?
-\cr               \tab  
 \cr \code{prop_funs}   \tab What dedicated functions check \code{x} for a match to a specific \emph{single} or \emph{combo} property?
-\cr               \tab  
 \cr \code{all_props}   \tab What is the complete set of all possible \emph{single} properties?
 }
-\cr
-\emph{Functions to check object against arbitrary property specs}
-\tabular{rl}{
+\cr \emph{Functions to check object against arbitrary property specs} \tabular{rl}{
   \code{nas_or}   \tab Is \code{x} either \code{NA} or a match to the \emph{flex} property spec in \code{spec}?
-\cr            \tab  
 \cr \code{nll_or}   \tab Is \code{x} either \code{NULL} or a match to the \emph{flex} property spec in \code{spec}
-\cr            \tab  
 \cr   \code{ippp}   \tab Is \code{x} a match to the \emph{flex} property spec in \code{spec}?
 }
-\cr
-\emph{Functions to list all of an object's} single \emph{properties across property families}
-\tabular{rl}{  \code{ppp}   \tab What are all of \code{x}'s \emph{single} properties compiled from all property families?}
-\cr
-For convenience, property functions from other function families are described in \emph{details}.
+\cr \emph{Functions to list all of an object's} single \emph{properties across property families} \tabular{rl}{
+  \code{ppp}   \tab What are all of \code{x}'s \emph{single} properties compiled from all property families?
+}
+\cr For convenience, property functions from other function families are described in \emph{details}.
 }
 \details{
-\emph{Functions to list all} single \emph{properties in a property family}
-\tabular{rl}{
+\emph{Functions to list all} single \emph{properties in a property family} \tabular{rl}{
   \code{bbb_props}   \tab \link[=bbb]{basic}
 \cr \code{ccc_props}   \tab \link[=ccc]{xclass}
 \cr \code{ddd_props}   \tab \link[=ddd]{defined.d}
@@ -185,9 +155,7 @@ For convenience, property functions from other function families are described i
 \cr \code{mmm_props}   \tab \link[=mmm]{xmode}
 \cr \code{sss_props}   \tab \link[=sss]{shape}
 }
-\cr
-\emph{Functions to list names of dedicated property-checking functions}
-\tabular{rl}{
+\cr \emph{Functions to list names of dedicated property-checking functions} \tabular{rl}{
   \code{cmp_mmm_ccc_funs}   \tab integrity = \code{'cmp'} + xmode + xclass
 \cr \code{unq_mmm_ccc_funs}   \tab integrity = \code{'unq'} + xmode + xclass
 } \tabular{rl}{
@@ -211,10 +179,8 @@ For convenience, property functions from other function families are described i
 \cr   \code{mmm_funs}   \tab \link[=mmm]{xmode}
 \cr   \code{sss_funs}   \tab \link[=sss]{shape}
 }
-\cr
-\emph{Dedicated functions to check an object for a specific} combo \emph{or} single \emph{property}
-\cr
-\cr For these functions, an uppercase letter repeated three times is a placeholder for the value of an arbitrary single property from the associated property family.
+\cr \emph{Dedicated functions to check an object for a specific} combo \emph{or} single \emph{property}
+\cr\cr For these functions, an uppercase letter repeated three times is a placeholder for the value of an arbitrary single property from the associated property family.
 \tabular{rl}{
   \code{cmp_MMM_CCC}   \tab integrity = \code{'cmp'} + xmode=\code{'MMM'} + xclass = \code{'CCC'}
 \cr \code{unq_MMM_CCC}   \tab integrity = \code{'unq'} + xmode=\code{'MMM'} + xclass = \code{'CCC'}
@@ -242,10 +208,8 @@ For convenience, property functions from other function families are described i
 \cr   \code{iMMM}   \tab \link[=mmm]{xmode} = \code{'MMM'}
 \cr   \code{iSSS}   \tab \link[=sss]{shape} = \code{'SSS'}
 }
-\cr
-\emph{Functions to check an object against an arbitrary} combo \emph{property specs}
-\cr
-\cr For these functions, an uppercase letter repeated three times is a placeholder for the value of an arbitrary single property from the associated property family.
+\cr \emph{Functions to check an object against an arbitrary} combo \emph{property specs}
+\cr\cr For these functions, an uppercase letter repeated three times is a placeholder for the value of an arbitrary single property from the associated property family.
 \tabular{rl}{
   \code{cmp_mmm_ccc}   \tab integrity = \code{'cmp'} + arbitrary xmode + arbitrary xclass
 \cr \code{unq_mmm_ccc}   \tab integrity = \code{'unq'} + arbitrary xmode + arbitrary xclass
@@ -264,9 +228,7 @@ For convenience, property functions from other function families are described i
 \cr   \code{unq_ccc}   \tab integrity = \code{'unq'} + arbitrary xclass
 \cr   \code{unq_mmm}   \tab integrity = \code{'unq'} + arbitrary xmode
 }
-\cr
-\emph{Functions to check objects against} flex \emph{property specs in a single family}
-\tabular{rl}{
+\cr \emph{Functions to check objects against} flex \emph{property specs in a single family} \tabular{rl}{
   \code{ibbb}   \tab \link[=bbb]{basic}
 \cr \code{iccc}   \tab \link[=ccc]{xclass}
 \cr \code{iddd}   \tab \link[=ddd]{defined.d}
@@ -275,9 +237,7 @@ For convenience, property functions from other function families are described i
 \cr \code{immm}   \tab \link[=mmm]{xmode}
 \cr \code{isss}   \tab \link[=sss]{shape}
 }
-\cr
-\emph{Functions to retrieve all of an object's} single \emph{properties of a specific family}
-\tabular{rl}{
+\cr \emph{Functions to retrieve all of an object's} single \emph{properties of a specific family} \tabular{rl}{
   \code{bbb}   \tab \link[=bbb]{basic}
 \cr \code{ccc}   \tab \link[=ccc]{xclass}
 \cr \code{ddd}   \tab \link[=ddd]{defined.d}
@@ -290,14 +250,10 @@ For convenience, property functions from other function families are described i
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab  
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab  
+  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
 \cr            \code{vals}   \tab A vector of valid values.
 }
 }

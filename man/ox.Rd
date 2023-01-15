@@ -107,9 +107,9 @@ A character scalar.
 \description{
 Create Oxford-comma separated lists with a variety of templates (displayed below) where \code{{conj}} and \code{{n}} represent the values of arguments \code{conj} and \code{n}; \code{{pref}} and \code{{comp}} indicate the potentially-\code{NULL} values of arguments \code{pref} and \code{conj}; and \verb{[a]}, \verb{[b]}, and \verb{[z]} represents elements of a list.
 \cr\cr  With the exception of \code{{n} > length(uj::av(...))}, these functions appropriately process lists of length \code{1} and \code{2}.
-\cr\cr \strong{Functions and associated templates}
+\cr\cr \emph{Functions and associated templates}
 \tabular{rl}{
-  \strong{Function}   \tab \strong{Associated template}
+  \emph{Function}   \tab \emph{Associated template}
 \cr                    \tab   
 \cr             \code{ox}   \tab \code{'(pref) [a], [b], ..., {conj} [z]'}
 \cr                    \tab   

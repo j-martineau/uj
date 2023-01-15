@@ -1,47 +1,31 @@
 #' @encoding UTF-8
 #' @family props
 #' @title Extended class (xclass) properties
-#' @description `xclass` properties are defined as follows:
-#' \tabular{rll}{
+#' @description `xclass` properties are defined as follows: \tabular{rll}{
 #'       `arr`   \tab array    \tab   arrays
 #'   \cr `mat`   \tab matrix   \tab   matrices
 #'   \cr `dtf`   \tab dtf      \tab   data.frames
-#'   \cr `vls`   \tab vlist    \tab   vector-lists`*`
-#'   \cr `gen`   \tab generic  \tab   vectors, vlists, and arrays
+#'   \cr `vls`   \tab vlist    \tab   vector-lists\eqn{^1}
+#'   \cr `gen`   \tab generic  \tab   vectors, vlists, and arrays
 #'   \cr `scl`   \tab scalar   \tab   Length-`1` generics
-#'   \cr `mvc`   \tab multivec \tab   Length-`2+` \link[=ilin]{linear} generics
+#'   \cr `mvc`   \tab multivec \tab   Length-`2+` \link[=ilin]{linear} generics
 #'   \cr `vec`   \tab vec      \tab   scalars and multivecs
 #' }
-#' `*` Non-`data.frame` lists.
-#' \cr
-#' \cr
-#' **Functions**
-#' \tabular{rl}{
+#' \eqn{^{1.}} Non-`data.frame` lists.
+#' \cr\cr **Functions** \tabular{rl}{
 #'     `is_ccc_spec`   \tab Is `spec` an xclass specification?
-#'   \cr               \tab  
 #'   \cr `ccc_props`   \tab What xclass properties are there?
-#'   \cr               \tab  
 #'   \cr  `ccc_funs`   \tab What xclass property functions are there?
-#'   \cr               \tab  
 #'   \cr      `iccc`   \tab Is `x` a match to the xclass specification `spec`?
-#'   \cr               \tab  
 #'   \cr      `iCCC`   \tab Is `x` a match to the single xclass property `'CCC'`?
-#'   \cr               \tab  
 #'   \cr       `ccc`   \tab What are `x`'s xclass properties?
 #' }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more xclass properties (i.e., from \code{\link{ccc_props}()}). Properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character vector*
-#'  \cr   `ccc_props`
-#'  \cr   `ccc_funs`
-#'  \cr   `ccc`
-#'  \cr
-#'  \cr *A logical vector*
-#'  \cr   `is_ccc_spec`
-#'  \cr   `iCCC`
-#'  \cr   `iccc`
+#' @return *A character vector* \cr   `ccc_props, ccc_funs, ccc`
+#'  \cr\cr *A logical vector* \cr   `is_ccc_spec, iCCC, iccc`
 #' @examples
 #' ccc_funs()
 #' ccc_props()
@@ -72,7 +56,7 @@ is_ccc_spec <- function(spec) {spec <- uj:::.spec_vals(spec); f0(base::length(sp
 #' @export
 iccc <- function(x, spec, ...) {
   errs <- base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_ccc_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from ccc_props().'))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (!uj::meets(x, ...)) {return(F)}
   for (prop in uj:::.spec_vals(spec)) {if (uj::run('uj:::.i', prop, '(x)')) {return(T)}}
   F

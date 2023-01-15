@@ -3,9 +3,7 @@
 #' @title unique + xmode combination properties
 #' @description \tabular{rl}{
 #'     `unq_mmm_funs`   \tab What \link[=iunq]{unique} + link[=mmm]{xmode} combination \link[=prop_funs]{property functions} are there?
-#'   \cr                \tab  
 #'   \cr    `unq_mmm`   \tab Is `x` both unique and a match to the single xmode property in argument `mmm`?
-#'   \cr                \tab  
 #'   \cr    `unq_MMM`   \tab Is `x` both unique and a match to single xmode property `'MMM'`?
 #' }
 #' @param x An R object.
@@ -15,8 +13,7 @@
 #' @return *A character vector*
 #'  \cr   `unq_mmm_funs`
 #'  \cr\cr *A logical scalar*
-#'  \cr   `unq_mmm`
-#'  \cr   `unq_MMM`
+#'  \cr   `unq_MMM, unq_mmm`
 #' @examples
 #' unq_mmm_funs()
 #' unq_mmm(letters, "ch1")
@@ -24,11 +21,7 @@
 #' unq_psw(0:10)
 #' unq_ord(factor(letters, ordered = T))
 #' @export
-unq_mmm <- function(x, mmm, ...) {
-  if (uj::cmp_mmm(x, mmm, ...)) {
-    uj::is_unique(x, a = T)
-  } else {F}
-}
+unq_mmm <- function(x, mmm, ...) {if (uj::cmp_mmm(x, mmm, ...)) {uj::is_unique(x, a = T)} else {F}}
 
 #' @rdname unq_mmm
 #' @export

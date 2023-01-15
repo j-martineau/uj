@@ -112,10 +112,8 @@ For a vector, an object of the same type of \code{x}, but with only
 \cr   \code{u}   \tab Thinly wraps \code{\link[base]{unique}}\code{*}
 \cr   \code{w}   \tab Thinly Wraps \code{\link[base]{which}}\verb{**}
 }
-\code{*} Differs from \code{\link{uv}}, which calls \code{unique(av(...))}.
-\cr
-\cr
-\verb{**} Differs from \code{\link{wv}}, which calls \code{which(av(...))}.
+\verb{ }\eqn{^{1.}} Differs from \code{\link{uv}}, which calls \code{unique(av(...))}.
+\cr \verb{ }\eqn{^{2.}} Differs from \code{\link{wv}}, which calls \code{which(av(...))}.
 }
 \details{
 This is a generic function with methods for vectors, data frames and

@@ -23,11 +23,8 @@
 #' @param y,n Objects of any type for `f0` and `f1`. \link[=atm_scl]{Atomic scalars} or \link[=atm_vec]{atomic vecs} of the same length as `test` for `fork`.
 #' @param na An object of any type for `f1`. An atomic scalar \link[=compatible]{compatible} with `yes` and `no` for `fork`, with the additional possibility of `na = 'err'` to indicate an error should be thrown if any values in `test` are `na`.
 #' @param err Either `'err'` or an object to be returned when `test` is not an atomic scalar in `c(TRUE, FALSE, NA)`.
-#' @return *A length-`length(x)` atomic object*
-#'   \cr   `fork`
-#'   \cr\cr *An* R *object*
-#'   \cr   `f0`
-#'   \cr   `f1`
+#' @return *A length-`length(x)` atomic object* \cr   `fork`
+#'  \cr\cr *An* R *object* \cr   `f0, f1`
 #' @examples
 #' Vec. <- sample(c(TRUE, FALSE, NA), 10, replace = TRUE)
 #' Yes. <- list(a = "yes", b = "yes")
@@ -74,14 +71,14 @@ fork <- function(x, y, n, na = n) {
                   uj::f0(ok.y , NULL, "[y] must be of length 1 or a vector of the same length as [x]."),
                   uj::f0(ok.n , NULL, "[n] must be of length 1 or a vector of the same length as [x]."),
                   uj::f0(ok.na, NULL, "[na] must be of length 1 or a vector of the same length as [x]."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   ok.tny <- ok.x & ok.y & ok.n
   ok.arg <- uj::f0(!na.err | !ok.x, T, uj::cmp_lgl_vec(x))
   ok.tny <- uj::f0(!ok.tny, NULL, uj::f0(inc.na, uj::compatible(y, n, na), uj::compatible(y, n)))
   errs  <- base::c(uj::f0(ok.arg, NULL, "[na = 'err'] but [x] contains NA values."),
                    uj::f0(ok.tny, NULL, uj::f0(inc.na, "[y], [n], and [na] must be of compatible (?compatible) modes.",
                                                        "[y] and [n] must be of compatible (?compatible) modes.")))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (ny  == 1) {y  <- base::rep.int(y , nx)}
   if (nn  == 1) {n  <- base::rep.int(n , nx)}
   if (nna == 1) {na <- base::rep.int(na, nx)}
@@ -104,6 +101,6 @@ f1 <- function(x, y, n, na = n, err = n) {
   uj::f0(base::isFALSE(x), n,
   uj::f0(nas & !uj::isID(na, 'err'), na,
   uj::f0(!uj::isLG(x) & !uj::isID(err, 'err'), err,
-  uj::f0(nas, stop(uj:::.errs("[x] must be atomic, scalar, and TRUE, FALSE, or NA.")),
-              stop(uj:::.errs("[x] must be atomic, scalar, and TRUE or FALSE." )))))))
+  uj::f0(nas, stop(uj::format_errs(pkg = "uj", "[x] must be atomic, scalar, and TRUE, FALSE, or NA.")),
+              stop(uj::format_errs(pkg = "uj", "[x] must be atomic, scalar, and TRUE or FALSE." )))))))
 }

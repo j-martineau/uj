@@ -10,7 +10,7 @@
 #'   \cr      `en`   \tab Gets vector abd \link[=ivls]{vlist} element names.
 #'   \cr      `dn`   \tab Gets `...` argument names.
 #'   \cr             \tab  
-#'   \cr   `named`   \tab General name existence check function (with optional restrictions).
+#'   \cr   `named`   \tab General name existence check (with optional restrictions).
 #'   \cr `rcnamed`   \tab Are both rows and columns named?
 #'   \cr  `rnamed`   \tab Are rows of `x` named?
 #'   \cr  `cnamed`   \tab Are columns of `x` named?
@@ -106,7 +106,7 @@ namev <- function(x, en) {
   ok.en <- uj::cmp_vec(en) & base::length(x) == base::length(en)
   errs <- base::c(uj::f0(uj::imvc(x), NULL, "[x] must be an multivec (?imvc)."),
                   uj::f0(ok.en     , NULL, "[en] must be a complete atomic vec (?cmp_vec) of the same base::length as [x]."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   base::names(x) <- en
   x
 }
@@ -117,7 +117,7 @@ namer <- function(x, rn) {
   ok.rn <- uj::cmp_vec(rn) & base::nrow(x) == base::length(rn)
   errs <- base::c(uj::f0(uj::id2D(x), NULL, "[x] must be a matrix or data.frame."),
                   uj::f0(ok.rn      , NULL, "[rn] must be a complete atomic vec (?cmp_vec) of base::length equal to the number of rows in [x]."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   base::rownames(x) <- rn
   x
 }
@@ -128,7 +128,7 @@ namec <- function(x, cn) {
   ok.cn <- uj::cmp_vec(cn) & base::ncol(x) == base::length(cn)
   errs <- base::c(uj::f0(uj::id2D(x), NULL, "[x] must be a matrix or data.frame."),
                   uj::f0(ok.cn      , NULL, "[cn] must be a complete atomic vec (?cmp_vec) of base::length equal to the number of columns in [x]."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   base::colnames(x) <- cn
   x
 }
@@ -136,7 +136,7 @@ namec <- function(x, cn) {
 #' @rdname naming
 #' @export
 namel <- function(x, ln) {
-  if (!uj::cmp_scl(ln)) {stop(uj:::.errs("[ln] must be a complete atomic scalar (?cmp_scl)."))}
+  if (!uj::cmp_scl(ln)) {stop(uj::format_errs(pkg = "uj", "[ln] must be a complete atomic scalar (?cmp_scl)."))}
   x <- base::list(x)
   base::names(x) <- ln
   x
@@ -148,7 +148,7 @@ namerc <- function(x, rn, cn) {uj::namer(uj::namec(x, cn), rn)}
 
 #' @rdname naming
 #' @export
-name <- function(x, en = NULL, rn = NULL, cn = NULL) {if (uj::id1D(x)) {uj::namev(x, en)} else if (uj::id2D(x)) {uj::namerc(x, rn, cn)} else {stop(uj:::.errs("[x] must be a vec (?ivec), vlist (?ivls), matrix, or data.frame."))}}
+name <- function(x, en = NULL, rn = NULL, cn = NULL) {if (uj::id1D(x)) {uj::namev(x, en)} else if (uj::id2D(x)) {uj::namerc(x, rn, cn)} else {stop(uj::format_errs(pkg = "uj", "[x] must be a vec (?ivec), vlist (?ivls), matrix, or data.frame."))}}
 
 #' @rdname naming
 #' @export
@@ -163,7 +163,7 @@ named <- function(x, d = 0, u = T, blank = F) {
             uj::f0(ok.d2D         , NULL, "[d] must be 1, 2, or 12 when [x] is a matrix or data.frame."),
             uj::f0(uj::isTF(u)    , NULL, "[u] must be TRUE or FALSE."),
             uj::f0(uj::isTF(blank), NULL, "[blank] must be TRUE or FALSE."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   leOK <- ueOK <- beOK <- lrOK <- urOK <- brOK <- lcOK <- ucOK <- bcOK <- T      # initialize result scalars
   if (d == 0) {                                                                  # if inspecting for element names
     elabs <- base::names(x)                                                            # > get element names
@@ -213,32 +213,32 @@ getnames <- function(x, d = 0, u = T, err = F) {
                   uj::f0(uj::isIN(d, 0:2, 12), NULL, "[d] must be 0, 1, 2, or 12."),
                   uj::f0(uj::isTF(u)         , NULL, "[u] must be TRUE or FALSE."),
                   uj::f0(uj::isTF(err)       , NULL, "[err] must be TRUE or FALSE."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (d == 0) {
     en <- base::names(x)
     if (base::length(en) == 0 & !err)     {return(NULL)}
-    else if (err & base::length(en) == 0) {stop(uj:::.errs("elements of [x] are not named."))}
-    else if (u & !uj::iunq(en))           {stop(uj:::.errs("element names of [x] are not unique."))}
+    else if (err & base::length(en) == 0) {stop(uj::format_errs(pkg = "uj", "elements of [x] are not named."))}
+    else if (u & !uj::iunq(en))           {stop(uj::format_errs(pkg = "uj", "element names of [x] are not unique."))}
     en
   } else if (!uj::id2D(x)) {
-    stop(uj:::.errs("[x] must be a matrix or a data.frame when d is 1, 2, or 12."))
+    stop(uj::format_errs(pkg = "uj", "[x] must be a matrix or a data.frame when d is 1, 2, or 12."))
   } else if (d == 12) {
     rn <- base::rownames(x)
     cn <- base::colnames(x)
-    if      (err & (base::length(rn) == 0 | base::length(cn) == 0)) {stop(uj:::.errs("rows and/or columns of [x] are not named."))}
-    else if (u   & (!uj::iunq(rn)         | !uj::iunq(cn)        )) {stop(uj:::.errs("row and/or column names of [x] are not unique."))}
+    if      (err & (base::length(rn) == 0 | base::length(cn) == 0)) {stop(uj::format_errs(pkg = "uj", "rows and/or columns of [x] are not named."))}
+    else if (u   & (!uj::iunq(rn)         | !uj::iunq(cn)        )) {stop(uj::format_errs(pkg = "uj", "row and/or column names of [x] are not unique."))}
     base::list(rows = rn, cols = cn)
   } else if (d == 1) {
     rn <- base::rownames(x)
     if (base::length(rn) == 0 & !err)     {return(NULL)}
-    else if (err & base::length(rn) == 0) {stop(uj:::.errs("rows of [x] are not named."))}
-    else if (u & !uj::iunq(rn))           {stop(uj:::.errs("row names of [x] are not unique."))}
+    else if (err & base::length(rn) == 0) {stop(uj::format_errs(pkg = "uj", "rows of [x] are not named."))}
+    else if (u & !uj::iunq(rn))           {stop(uj::format_errs(pkg = "uj", "row names of [x] are not unique."))}
     rn
   } else if (d == 2) {
     cn <- base::colnames(x)
     if (base::length(cn) == 0 & !err)     {return(NULL)}
-    else if (err & base::length(cn) == 0) {stop(uj:::.errs("columns of [x] are not named."))}
-    else if (u & !uj::iunq(cn))           {stop(uj:::.errs("column names of [x] are not unique."))}
+    else if (err & base::length(cn) == 0) {stop(uj::format_errs(pkg = "uj", "columns of [x] are not named."))}
+    else if (u & !uj::iunq(cn))           {stop(uj::format_errs(pkg = "uj", "column names of [x] are not unique."))}
     cn
   }
 }
@@ -246,11 +246,11 @@ getnames <- function(x, d = 0, u = T, err = F) {
 #' @rdname naming
 #' @export
 dn <- function(..., u. = T, err. = F) {
-  if (...base::length() == 0) {stop(uj:::.errs("No [...] args were supplied."))}
+  if (...base::length() == 0) {stop(uj::format_errs(pkg = "uj", "No [...] args were supplied."))}
   en <- base::...names()
   if (base::length(en) == 0 & !err.)     {return(NULL)}
-  else if (err. & base::length(en) == 0) {stop(uj:::.errs("[...] args are not named"))}
-  else if (u. & !uj::iunq(en))           {stop(uj:::.errs("[...] arg names are not unique."))}
+  else if (err. & base::length(en) == 0) {stop(uj::format_errs(pkg = "uj", "[...] args are not named"))}
+  else if (u. & !uj::iunq(en))           {stop(uj::format_errs(pkg = "uj", "[...] arg names are not unique."))}
   en
 }
 

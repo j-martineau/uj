@@ -28,28 +28,17 @@ ppats(x, pat)
 \item{pat}{A fixed value \link[=cmp_str_scl]{complete string scalar} pattern to search for in \code{x}.}
 }
 \value{
-\emph{A positive whole number \link[=ivls]{vlist}}
-\cr   \code{ppats}
-\cr\cr \emph{A positive whole number vector}
-\cr   \code{wpat}
-\cr   \code{npat}
-\cr   \code{ppat}
-\cr\cr \emph{A logical scalar}
-\cr   \code{has_pat}
-\cr   \code{ipat}
+\emph{A positive whole number \link[=ivls]{vlist}} \cr   \code{ppats}
+\cr\cr \emph{A positive whole number vector} \cr   \verb{wpat, npat, ppat}
+\cr\cr \emph{A logical scalar} \cr   \verb{has_pat, ipat}
 }
 \description{
 \tabular{rl}{
   \code{has_pat}   \tab Evaluates whether each element of \code{x} contains the string in \code{pat}.
-\cr           \tab  
 \cr \code{ppats}   \tab Identifies the position of the first character of \emph{every} instance of a pattern in each element of a character vector.
-\cr           \tab  
 \cr  \code{ppat}   \tab Identifies the position of \emph{the first} character of the first instance of a pattern in each element of a character vector.
-\cr           \tab  
 \cr  \code{npat}   \tab Counts the number of times a pattern appears in each element of a character vector.
-\cr           \tab  
 \cr  \code{ipat}   \tab Logically indexes character vector elements containing a pattern as \code{TRUE} or \code{FALSE}.
-\cr           \tab  
 \cr  \code{wpat}   \tab Numerically indexes character vector elements containing a pattern as integer element numbers.
 }
 }

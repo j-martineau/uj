@@ -28,9 +28,7 @@ An object of the same class and dimension as \code{x}.
 \description{
 \tabular{rl}{
   \code{putc}   \tab Puts vector \code{v} into \code{c}-indexed column of \code{x} (assumed to be a data.frame or matrix).
-\cr          \tab  
 \cr \code{putr}   \tab Puts vector \code{v} into \code{r}-indexed row of \code{x} (assumed to be a data.frame or matrix).
-\cr          \tab  
 \cr  \code{put}   \tab Puts vector \code{v} into \code{e}-indexed elements of \code{x} (assumed to be a vector or \link[=ivls]{vlist}).
 }
 }

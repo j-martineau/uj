@@ -103,7 +103,7 @@ lacks(x, y, na = TRUE, agg = NA)
 The following are extensions of base logical functions:
 \tabular{rl}{
   \strong{Function usage} \tab   \strong{Extends}
-\cr \verb{not_in(x, y, ...)} \tab   \verb{!(x \%in\% y)}
+\cr \code{not_in(x, y, ...)} \tab   \code{!(x \%in\% y)}
 \cr \code{is_out(x, y, ...)} \tab   \code{!(x \%in\% y)}
 \cr  \code{isout(x, y, ...)} \tab   \code{!(x \%in\% y)}
 \cr  \code{notin(x, y, ...)} \tab   \code{!(x \%in\% y)}
@@ -206,14 +206,12 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 
 Other logicals: 
 \code{\link{failsafe_binaries}},

@@ -20,7 +20,6 @@ An \link[=atm_dtf]{atomic data.frame} or an atomic matrix.
 Error-checked extensions of \code{\link[base:rbind]{base::rbind}} and/or \code{\link[base:cbind]{base::cbind}}:
 \tabular{rl}{
   \code{cb}   \tab Column binds an arbitrary number of atomic matrices or \link[=atm_dtf]{atomic data.frames}.
-\cr        \tab  
 \cr \code{rb}   \tab Row binds an arbitrary number of atomic matrices or atomic data.frames.
 }
 }
@@ -62,13 +61,11 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 }
 \concept{extensions}

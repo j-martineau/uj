@@ -7,35 +7,26 @@
 #' @description Binary functions that always produce either `TRUE` or `FALSE` unless calling `identity(x)` or `identity(y)` produces an error.
 #' \cr\cr These functions evaluate whether two variables meet requirements as defined in the following table:
 #' \tabular{rl}{
-#'           `%HAS%`   \tab Atomic object `x` has (contains) atomic scalar `y`\eqn{^a}.
+#'           `%HAS%`   \tab Atomic object `x` has (contains) atomic scalar `y`\eqn{^1}.
+#'   \cr   `%LACKS%`   \tab Atomic object `x` lacks (does not contain) atomic scalar `y`\eqn{^1}.
 #'   \cr               \tab  
-#'   \cr   `%LACKS%`   \tab Atomic object `x` lacks (does not contain) atomic scalar `y`\eqn{^a}.
-#'   \cr               \tab  
-#'   \cr      `%IN%`   \tab Atomic scalar `x` is contained in atomic object `y`\eqn{^b}.
-#'   \cr               \tab  
-#'   \cr     `%OUT%`   \tab Atomic scalar `x` is outside of (not contained in) atomic object `y`\eqn{^b}.
+#'   \cr      `%IN%`   \tab Atomic scalar `x` is contained in atomic object `y`\eqn{^2}.
+#'   \cr     `%OUT%`   \tab Atomic scalar `x` is outside of (not contained in) atomic object `y`\eqn{^2}.
 #'   \cr               \tab  
 #'   \cr      `%IS%`   \tab `x` and `y` are \code{\link[base]{identical}}.
-#'   \cr               \tab  
 #'   \cr    `%ISNT%`   \tab `x` and `y` are *not* \code{\link[base]{identical}}.
 #'   \cr               \tab  
-#'   \cr      `%EQ%`   \tab `x` and `y` are \code{\link[base]{setequal}}\eqn{^c}.
-#'   \cr               \tab  
-#'   \cr     `%NEQ%`   \tab `x` and `y` are *not* \code{\link[base]{setequal}}\eqn{^c}.
+#'   \cr      `%EQ%`   \tab `x` and `y` are \code{\link[base]{setequal}}\eqn{^3}.
+#'   \cr     `%NEQ%`   \tab `x` and `y` are *not* \code{\link[base]{setequal}}\eqn{^3}.
 #'   \cr               \tab  
 #'   \cr     `%NOR%`   \tab Neither `x` nor `y` is scalar `TRUE`.
-#'   \cr               \tab  
 #'   \cr     `%AND%`   \tab Both `x` and `y` are scalar `TRUE`.
-#'   \cr               \tab  
 #'   \cr     `%ONE%`   \tab Either `x` is scalar `TRUE`, `y` is scalar `TRUE`, but not both.
-#'   \cr               \tab  
 #'   \cr      `%OR%`   \tab `x` is scalar `TRUE`, `y` is scalar `TRUE`, or both.
 #' }
-#'    \eqn{^{a.}} If `x` is not atomic scalar, `y` is not atomic, or `x` and `y` are not compatible, `%HAS%` and `%LACKS%` return `FALSE` and `TRUE`, respectively.
-#' \cr
-#' \cr    \eqn{^{b.}} If `x` is not atomic, `y` is not atomic scalar, or `x` and `y` are not compatible, `%IN%` and `%OUT%` return `FALSE` and `TRUE`, respectively.
-#' \cr
-#' \cr    \eqn{^{c.}} If `x` and `y` are not \code{\link{compatible}}, `%EQ%` and `%NEQ%` return `FALSE` and `TRUE`, respectively.
+#' ` `\eqn{^{1.}} If `x` is not atomic scalar, `y` is not atomic, or `x` and `y` are not compatible, `%HAS%` and `%LACKS%` return `FALSE` and `TRUE`, respectively.
+#' \cr ` `\eqn{^{2.}} If `x` is not atomic, `y` is not atomic scalar, or `x` and `y` are not compatible, `%IN%` and `%OUT%` return `FALSE` and `TRUE`, respectively.
+#' \cr ` `\eqn{^{3.}} If `x` and `y` are not \code{\link{compatible}}, `%EQ%` and `%NEQ%` return `FALSE` and `TRUE`, respectively.
 #' @param x,y Any R objects.
 #' @return A logical scalar.
 #' @examples

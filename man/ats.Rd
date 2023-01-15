@@ -5,6 +5,7 @@
 \alias{at}
 \alias{at_names}
 \alias{add_at}
+\alias{xat}
 \title{Manage attributes}
 \usage{
 at(x, ..., a = FALSE)
@@ -12,6 +13,8 @@ at(x, ..., a = FALSE)
 at_names(x)
 
 add_at(x, ...)
+
+xat(x, ...)
 }
 \arguments{
 \item{x}{An R object.}
@@ -21,22 +24,15 @@ add_at(x, ...)
 \item{a}{\code{TRUE} or \code{FALSE} indicating whether to \link[av]{atomize} the result and convert the resulting vector to character.}
 }
 \value{
-\emph{An R object}
-\cr   \code{add_ats}
-\cr   \code{xats}
-\cr   \code{ats}
-\cr
-\cr \code{NULL} \emph{or a character vector}
-\cr   \code{at_names}
+\emph{An R object} \cr   \verb{add_ats, xats, ats}
+\cr\cr \code{NULL} \emph{or a character vector} \cr   \code{at_names}
 }
 \description{
 \tabular{rl}{
-  \code{at_names}   \tab Thinly wraps \code{names(attributes(x))}.
-\cr  \code{add_at}   \tab Adds named \code{...} args to attributes of \code{x}.
-\cr             \tab  
-\cr     \code{xat}   \tab Removes attributes of \code{x} with names matching unquoted \code{...} args.\code{*}
-\cr             \tab  
-\cr      \code{at}   \tab Gets attributes of \code{x} with names matching unquoted \code{...} args.\code{*}
+  \code{at_names}   \tab Thinly wraps \code{names(attributes(x))}.
+\cr  \code{add_at}   \tab Adds named \code{...} args to attributes of \code{x}.
+\cr     \code{xat}   \tab Removes attributes of \code{x} with names matching unquoted \code{...} args\eqn{^1}.
+\cr      \code{at}   \tab Gets attributes of \code{x} with names matching unquoted \code{...} args\eqn{^1}.
 }
-\code{*} No \code{...} args indicates all attributes of \code{x}.
+\verb{ }\eqn{^{1.}} No \code{...} args indicates all attributes of \code{x}.
 }

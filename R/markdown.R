@@ -4,28 +4,21 @@
 #' @family colors
 #' @family plots
 #' @title Build markdown expressions for styled + colored `ggtext` strings
-#' @description *Subscript/superscript* functions are:
-#' \tabular{rl}{
+#' @description *Subscript/superscript* functions are: \tabular{rl}{
 #'       `subs` \tab   subscript
 #'   \cr `sups` \tab   superscript
 #' }
-#' \cr
-#' *All remaining functions* in this family start with a prefix character as follows:
-#' \tabular{rl}{
+#' \cr *All remaining functions* in this family start with a prefix character as follows: \tabular{rl}{
 #'       prefix = `b` \tab   bold
 #'   \cr prefix = `p` \tab   plain
 #' }
-#' \cr
-#' *Black, white, and invisible text* functions suffixes are:
-#' \tabular{rl}{
+#' \cr *Black, white, and invisible text* functions suffixes are: \tabular{rl}{
 #'       `blk` \tab   black
 #'   \cr `wht` \tab   white
 #'   \cr `inv` \tab   invisible
 #' }
 #' For example, the function `bwht` styles markdown text as bold and white.
-#' \cr
-#' \cr *Greyscale* text suffixes take the form:
-#' \tabular{rl}{
+#' \cr\cr *Greyscale* text suffixes take the form: \tabular{rl}{
 #'       `g05` \tab   ` 5:95` white:black ratio
 #'   \cr `g10` \tab   `10:90` white:black ratio
 #'   \cr `...` \tab   `...`
@@ -33,10 +26,9 @@
 #'   \cr `g95` \tab   `95:5 ` white:black ratio
 #' }
 #' For example, the function `pg45` styles markdown text as plain and grey with a `45:55` white:black ratio.
-#' \cr
-#' \cr *Other common-color text* function names append an infix and a suffix to the selected prefix, as follows:
+#' \cr\cr *Other common-color text* function names append an infix and a suffix to the selected prefix, as follows:
 #' \tabular{rl}{
-#'       suffix = `blu` \tab   blue
+#'       suffix = `blu` \tab   blue
 #'   \cr suffix = `cyn` \tab   cyan
 #'   \cr suffix = `grn` \tab   green
 #'   \cr suffix = `mag` \tab   magenta

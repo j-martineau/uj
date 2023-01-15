@@ -19,39 +19,22 @@
 #'   \cr `'eHD'`   \tab *Effectively hyper dimensional*
 #'   \cr           \tab Length-`8+` arrays with `2+` positions in `3+` dimensions.
 #' }
-#' \cr\cr
-#' Effective dimensionality property functions are:
-#' \tabular{rl}{
+#' \cr\cr Effective dimensionality property functions are: \tabular{rl}{
 #'     `is_eee_spec`   \tab Is `spec` an effective.d specification?
-#'   \cr               \tab  
 #'   \cr `eee_props`   \tab What effective.d properties are there?
-#'   \cr               \tab  
 #'   \cr  `eee_funs`   \tab What effective.d property functions are there?
-#'   \cr               \tab  
 #'   \cr      `neee`   \tab How many effective dimensions does `x` have?
-#'   \cr               \tab  
-#'   \cr      `ieee`   \tab Is `x` a match to the effective.d specification`spec`?
-#'   \cr               \tab  
+#'   \cr      `ieee`   \tab Is `x` a match to the effective.d specification`spec`?
 #'   \cr      `iEEE`   \tab Is `x` a match to the single effective.d property `'EEE'`?
-#'   \cr               \tab  
 #'   \cr       `eee`   \tab What are `x`'s effective.d properties?
 #' }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more effective.d properties from `eee_props()`. Effective.d properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character vector*
-#'  \cr   `eee_props`
-#'  \cr   `eee_funs`
-#'  \cr   `eee`
-#'  \cr
-#'  \cr *A logical scalar*
-#'  \cr   `is_eee_spec`
-#'  \cr   `iEEE`
-#'  \cr   `ieee`
-#'  \cr
-#'  \cr *A numeric scalar*
-#'  \cr   `neee`
+#' @return *A character vector* \cr   `eee_props, eee_funs, eee`
+#'  \cr\cr *A logical scalar* \cr   `is_eee_spec, iEEE, ieee`
+#'  \cr\cr *A numeric scalar* \cr   `neee`
 #' @examples
 #' a. <- "a"
 #' abc. <- c("a", "b", "c")
@@ -114,7 +97,7 @@ is_eee_spec <- function(spec) {spec <- uj:::.spec_vals(spec); uj:::f0(base::leng
 ieee <- function(x, spec, ...) {
   errs <- c(uj:::.meets_errs(x, ...),
             uj::f0(uj::is_eee_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from eee_props().'))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (!uj::meets(x, ...)) {return(F)}
   for (prop in uj:::.spec_vals(spec)) {if (uj::run('uj:::.i', prop, '(x)')) {return(T)}}
   F

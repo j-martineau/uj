@@ -134,7 +134,7 @@ A data.table.
 \cr \code{dtrows}   \tab Selects rows.
 \cr \code{dtcols}   \tab Selects columns without non-standard \code{[} (i.e., \code{x[ , ..var]}).
 \cr  \code{dtsub}   \tab Selects a sub-\code{data.table} without non-standard \code{[} (i.e., \code{x[row.var, ..col.var]}).
-\cr   \code{dtas}   \tab Thinly wraps \code{\link[data.table]{as.data.table}}.
+\cr   \code{dtas}   \tab Thinly wraps \code{\link[data.table]{as.data.table}}.
 \cr   \code{dtis}   \tab Thinly wraps \code{\link[data.table]{is.data.table}}.
 \cr   \code{dtie}   \tab Evaluates whether \code{x} is a \code{data.table}. If so, returns as is, otherwise converts to a \code{data.table}.
 }

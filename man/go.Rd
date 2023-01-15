@@ -21,9 +21,7 @@ rebuild()
 \description{
 \tabular{rl}{
   \code{rebuild}   \tab Rebuilds the current R project.
-\cr            \tab  
 \cr \code{reopen}   \tab Reopens the current R project.
-\cr            \tab  
 \cr     \code{go}   \tab Opens another project and loads the associated library if it exists. When \code{name = NULL}, launches a document selection dialog box and prompts user to select an existing R project. Otherwise, searches for an R project with name equal to the value of \code{name} in the parent directory of the current working directory, and if there is such a project, opens that project.
 }
 }

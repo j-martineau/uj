@@ -106,33 +106,23 @@ cmp_whl(x, ...)
   }}
 }
 \value{
-\emph{A character vector}
-\cr   \code{cmp_mmm_funs}
-\cr
-\cr \emph{A logical scalar}
-\cr   \code{cmp_MMM}
-\cr   \code{cmp_mmm}
+\emph{A character vector} \cr   \code{cmp_mmm_funs}
+\cr\cr \emph{A logical scalar} \cr   \verb{cmp_MMM, cmp_mmm}
 }
 \description{
 \tabular{rl}{
   \code{cmp_mmm_funs}   \tab What \link[=icmp]{complete} + \link[=mmm]{xmode} combination \link[=prop_funs]{property functions} are there?
-\cr                \tab  
 \cr    \code{cmp_mmm}   \tab Is \code{x} both complete and a match to the single xmode property in \code{mmm}?
-\cr                \tab  
 \cr    \code{cmp_MMM}   \tab Is \code{x} both complete and a match to single xmode property \code{'MMM'}?
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab  
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab  
+  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
 \cr            \code{vals}   \tab A vector of valid values.
 }
 }

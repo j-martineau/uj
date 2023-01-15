@@ -55,57 +55,37 @@ ivls(x, ...)
   }}
 }
 \value{
-\emph{A character vector}
-\cr   \code{ccc_props}
-\cr   \code{ccc_funs}
-\cr   \code{ccc}
-\cr
-\cr \emph{A logical vector}
-\cr   \code{is_ccc_spec}
-\cr   \code{iCCC}
-\cr   \code{iccc}
+\emph{A character vector} \cr   \verb{ccc_props, ccc_funs, ccc}
+\cr\cr \emph{A logical vector} \cr   \verb{is_ccc_spec, iCCC, iccc}
 }
 \description{
-\code{xclass} properties are defined as follows:
-\tabular{rll}{
+\code{xclass} properties are defined as follows: \tabular{rll}{
   \code{arr}   \tab array    \tab   arrays
 \cr \code{mat}   \tab matrix   \tab   matrices
 \cr \code{dtf}   \tab dtf      \tab   data.frames
-\cr \code{vls}   \tab vlist    \tab   vector-lists\code{*}
-\cr \code{gen}   \tab generic  \tab   vectors, vlists, and arrays
+\cr \code{vls}   \tab vlist    \tab   vector-lists\eqn{^1}
+\cr \code{gen}   \tab generic  \tab   vectors, vlists, and arrays
 \cr \code{scl}   \tab scalar   \tab   Length-\code{1} generics
-\cr \code{mvc}   \tab multivec \tab   Length-\verb{2+} \link[=ilin]{linear} generics
+\cr \code{mvc}   \tab multivec \tab   Length-\verb{2+} \link[=ilin]{linear} generics
 \cr \code{vec}   \tab vec      \tab   scalars and multivecs
 }
-\code{*} Non-\code{data.frame} lists.
-\cr
-\cr
-\strong{Functions}
-\tabular{rl}{
+\eqn{^{1.}} Non-\code{data.frame} lists.
+\cr\cr \strong{Functions} \tabular{rl}{
   \code{is_ccc_spec}   \tab Is \code{spec} an xclass specification?
-\cr               \tab  
 \cr \code{ccc_props}   \tab What xclass properties are there?
-\cr               \tab  
 \cr  \code{ccc_funs}   \tab What xclass property functions are there?
-\cr               \tab  
 \cr      \code{iccc}   \tab Is \code{x} a match to the xclass specification \code{spec}?
-\cr               \tab  
 \cr      \code{iCCC}   \tab Is \code{x} a match to the single xclass property \code{'CCC'}?
-\cr               \tab  
 \cr       \code{ccc}   \tab What are \code{x}'s xclass properties?
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab  
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab  
+  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
 \cr            \code{vals}   \tab A vector of valid values.
 }
 }

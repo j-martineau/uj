@@ -2,22 +2,18 @@
 #' @family strings
 #' @title Weave inlay values into a string
 #' @description A reformulation of \code{\link[base]{sprintf}} relying on a template containing escape sequences which in turn contain formatting switches. Escape sequences specify where to insert inlay arguments. Switches specify how to format arguments to be inlaid, and come in three families.
-#' \cr
-#' \cr **Decimal switches** specify number of decimal places for numeric arguments, taking the values `'0'` to `'9'`.
-#' \cr
-#' \cr **Quote switches** specify quoting argument elements as follows:
-#' \tabular{lcll}{
+#' \cr\cr **Decimal switches** specify number of decimal places for numeric arguments, taking the values `'0'` to `'9'`.
+#' \cr\cr **Quote switches** specify quoting argument elements as follows: \tabular{lcll}{
 #'          \tab **Switch** \tab **Style** \tab   **Type**
 #'   \cr    \tab   `'q'`    \tab straight  \tab   single
 #'   \cr    \tab   `'Q'`    \tab           \tab   double
 #'   \cr    \tab   `'t'`    \tab typeset   \tab   single
 #'   \cr    \tab   `'T'`    \tab           \tab   typeset
 #' }
-#' \cr **List switches** specify formatting arguments as comma-separated lists:
-#' \tabular{lclll}{
+#' \cr **List switches** specify formatting arguments as comma-separated lists: \tabular{lclll}{
 #'          \tab **Switch** \tab   **Type of List** \tab   **Subtype**     \tab   **Result with `arg = 1:3`**
 #'   \cr    \tab   `'l'`    \tab   *list*           \tab   simple          \tab   `'1, 2, 3'`
-#'   \cr    \tab   `'|'`    \tab   *Oxford-comma*   \tab   or              \tab   `'1, 2, or 3'`
+#'   \cr    \tab   `'|'`    \tab   *Oxford comma*   \tab   or              \tab   `'1, 2, or 3'`
 #'   \cr    \tab   `'&'`    \tab                    \tab   and             \tab   `'1, 2, and 3'`
 #'   \cr    \tab   `'a'`    \tab                    \tab   all of          \tab   `any of 1, 2, or 3`
 #'   \cr    \tab   `'A'`    \tab                    \tab   any of          \tab   `all of 1, 2, and 3`
@@ -29,12 +25,9 @@
 #'   \cr    \tab   `'s'`    \tab                    \tab   square brackets \tab   `'[1, 2, 3]'`
 #' }
 #' \cr **Escape sequences** are formatted as `'{@@}'`, `'{@@x}'`, `'{@@xy}'`, and `'{@@xyz}` where `x`, `y`, and `z` are formatting switches and where there may only be `1` formatting switch per family.
-#' \cr
-#' \cr Escape sequences in format `'{@@}'` mean 'insert \link[=atm_scl]{atomic scalar} arg *as is*.
-#' \cr
-#' \cr Escape sequences in formats `'{@@x}', '{@@xy}',` and `'{@@xyz}'` mean 'insert \link[=atm_scl]{atomic vec} arg *after applying*, respectively, switch `x`; switches `x` and `y`; and switches `x`, `y`, and `z`.
-#' \cr
-#' \cr **Ordering of switches** in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:
+#' \cr\cr Escape sequences in format `'{@@}'` mean 'insert \link[=atm_scl]{atomic scalar} arg *as is*.
+#' \cr\cr Escape sequences in formats `'{@@x}', '{@@xy}',` and `'{@@xyz}'` mean 'insert \link[=atm_scl]{atomic vec} arg *after applying*, respectively, switch `x`; switches `x` and `y`; and switches `x`, `y`, and `z`.
+#' \cr\cr **Ordering of switches** in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:
 #' \tabular{rl}{
 #'         1.  \tab Decimal switch (if any).
 #'   \cr   2.  \tab Quote switch (if any).
@@ -60,7 +53,7 @@ weave <- function(x, ...) {
   errs <- base::c(uj::f0(uj::cmp_chr_scl(x), NULL, "[x] must be a complate character scalar (?cmp_chr_scl)."),
                   uj::f0(ok.dots           , NULL, "[...] is empty."),
                   uj::f0(ok.props          , NULL, "Arguments in [...] must be complete character objects (?cmp_chr)."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   dots <- base::list(...)                                                        # The arguments to weave into {x}
   n.dots <- base::...length()                                                    # The number of such arguments
   code.prefix <- "[{][@]"                                                        # gregexpr pattern for switch code prefix, i.e., '{@'
@@ -93,7 +86,7 @@ weave <- function(x, ...) {
   switches <- switches[base::order(switches$pos, decreasing = T), ]              # sort by decreasing position of first letter of pattern in {x}
   n.switches <- base::nrow(switches)                                             # number of switch patterns found in {x}
   ok.n <- n.switches == n.dots                                                   # match between number of switch codes and args in {...}?
-  if (!ok.n) {stop(uj::.errs(uj::p0(count.mismatch, "(", n.switches, ") don't match.")))}
+  if (!ok.n) {stop(uj::format_err(pkg = "uj", count.mismatch, "(", n.switches, ") don't match."))}
   dots <- base::rev(dots)
   errs <- NULL
   for (i in 1:n.switches) {                                                      # for each switch code found in {x}
@@ -167,6 +160,6 @@ weave <- function(x, ...) {
           else if (is) {dot <- base::paste0( "[", base::paste0(dot, collapse = ", "), "]")}
           x <- uj::p0(prev.text, dot, next.text)                                 # : : : : append the plain text and formatted i-th arg to the result
   }}}}
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   x
 }

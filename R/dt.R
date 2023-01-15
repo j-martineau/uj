@@ -8,7 +8,7 @@
 #'   \cr `dtrows`   \tab Selects rows.
 #'   \cr `dtcols`   \tab Selects columns without non-standard `[` (i.e., `x[ , ..var]`).
 #'   \cr  `dtsub`   \tab Selects a sub-`data.table` without non-standard `[` (i.e., `x[row.var, ..col.var]`).
-#'   \cr   `dtas`   \tab Thinly wraps \code{\link[data.table]{as.data.table}}.
+#'   \cr   `dtas`   \tab Thinly wraps \code{\link[data.table]{as.data.table}}.
 #'   \cr   `dtis`   \tab Thinly wraps \code{\link[data.table]{is.data.table}}.
 #'   \cr   `dtie`   \tab Evaluates whether `x` is a `data.table`. If so, returns as is, otherwise converts to a `data.table`.
 #' }

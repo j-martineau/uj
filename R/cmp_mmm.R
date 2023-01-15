@@ -3,21 +3,15 @@
 #' @title complete + xmode combination properties
 #' @description \tabular{rl}{
 #'     `cmp_mmm_funs`   \tab What \link[=icmp]{complete} + \link[=mmm]{xmode} combination \link[=prop_funs]{property functions} are there?
-#'   \cr                \tab  
 #'   \cr    `cmp_mmm`   \tab Is `x` both complete and a match to the single xmode property in `mmm`?
-#'   \cr                \tab  
 #'   \cr    `cmp_MMM`   \tab Is `x` both complete and a match to single xmode property `'MMM'`?
 #' }
 #' @param x An R object.
 #' @param mmm A character scalar xmode property from `mmm_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character vector*
-#'  \cr   `cmp_mmm_funs`
-#'  \cr
-#'  \cr *A logical scalar*
-#'  \cr   `cmp_MMM`
-#'  \cr   `cmp_mmm`
+#' @return *A character vector* \cr   `cmp_mmm_funs`
+#'  \cr\cr *A logical scalar* \cr   `cmp_MMM, cmp_mmm`
 #' @examples
 #' cmp_mmm_funs()
 #' cmp_mmm(letters, "ch1")
@@ -28,7 +22,7 @@
 cmp_mmm <- function(x, mmm, ...) {
   errs <- base::c(uj:::.meets_errs(x, ...),
                   uj::f0(uj::f0(base::length(mmm) != 1 | !base::is.character(mmm), F, uj::f0(base::is.na(mmm), F, mmm %in% .mmms)), NULL, '[mmm] is not a scalar value from mmm_props().'))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   uj::f0(!uj::meets(x, ...), F, uj::f0(!base::is.atomic(x) | base::length(x) == 0, F, uj::f0(base::any(base::is.na(x)), F, uj::run("uj::i", mmm, "(x)"))))
 }
 

@@ -17,22 +17,18 @@ A character scalar.
 }
 \description{
 A reformulation of \code{\link[base]{sprintf}} relying on a template containing escape sequences which in turn contain formatting switches. Escape sequences specify where to insert inlay arguments. Switches specify how to format arguments to be inlaid, and come in three families.
-\cr
-\cr \strong{Decimal switches} specify number of decimal places for numeric arguments, taking the values \code{'0'} to \code{'9'}.
-\cr
-\cr \strong{Quote switches} specify quoting argument elements as follows:
-\tabular{lcll}{
+\cr\cr \strong{Decimal switches} specify number of decimal places for numeric arguments, taking the values \code{'0'} to \code{'9'}.
+\cr\cr \strong{Quote switches} specify quoting argument elements as follows: \tabular{lcll}{
    \tab \strong{Switch} \tab \strong{Style} \tab   \strong{Type}
 \cr    \tab   \code{'q'}    \tab straight  \tab   single
 \cr    \tab   \code{'Q'}    \tab           \tab   double
 \cr    \tab   \code{'t'}    \tab typeset   \tab   single
 \cr    \tab   \code{'T'}    \tab           \tab   typeset
 }
-\cr \strong{List switches} specify formatting arguments as comma-separated lists:
-\tabular{lclll}{
+\cr \strong{List switches} specify formatting arguments as comma-separated lists: \tabular{lclll}{
    \tab \strong{Switch} \tab   \strong{Type of List} \tab   \strong{Subtype}     \tab   \strong{Result with \verb{arg = 1:3}}
 \cr    \tab   \code{'l'}    \tab   \emph{list}           \tab   simple          \tab   \code{'1, 2, 3'}
-\cr    \tab   \code{'|'}    \tab   \emph{Oxford-comma}   \tab   or              \tab   \code{'1, 2, or 3'}
+\cr    \tab   \code{'|'}    \tab   \emph{Oxford comma}   \tab   or              \tab   \code{'1, 2, or 3'}
 \cr    \tab   \code{'&'}    \tab                    \tab   and             \tab   \code{'1, 2, and 3'}
 \cr    \tab   \code{'a'}    \tab                    \tab   all of          \tab   \verb{any of 1, 2, or 3}
 \cr    \tab   \code{'A'}    \tab                    \tab   any of          \tab   \verb{all of 1, 2, and 3}
@@ -44,12 +40,9 @@ A reformulation of \code{\link[base]{sprintf}} relying on a template containing 
 \cr    \tab   \code{'s'}    \tab                    \tab   square brackets \tab   \code{'[1, 2, 3]'}
 }
 \cr \strong{Escape sequences} are formatted as \code{'{@}'}, \code{'{@x}'}, \code{'{@xy}'}, and \verb{'\{@xyz\}} where \code{x}, \code{y}, and \code{z} are formatting switches and where there may only be \code{1} formatting switch per family.
-\cr
-\cr Escape sequences in format \code{'{@}'} mean 'insert \link[=atm_scl]{atomic scalar} arg \emph{as is}.
-\cr
-\cr Escape sequences in formats \verb{'\{@x\}', '\{@xy\}',} and \code{'{@xyz}'} mean 'insert \link[=atm_scl]{atomic vec} arg \emph{after applying}, respectively, switch \code{x}; switches \code{x} and \code{y}; and switches \code{x}, \code{y}, and \code{z}.
-\cr
-\cr \strong{Ordering of switches} in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:
+\cr\cr Escape sequences in format \code{'{@}'} mean 'insert \link[=atm_scl]{atomic scalar} arg \emph{as is}.
+\cr\cr Escape sequences in formats \verb{'\{@x\}', '\{@xy\}',} and \code{'{@xyz}'} mean 'insert \link[=atm_scl]{atomic vec} arg \emph{after applying}, respectively, switch \code{x}; switches \code{x} and \code{y}; and switches \code{x}, \code{y}, and \code{z}.
+\cr\cr \strong{Ordering of switches} in escape sequences is arbitrary. Regardless of order in escape sequences, formatting switches are always applied in this order:
 \tabular{rl}{
   1.  \tab Decimal switch (if any).
 \cr   2.  \tab Quote switch (if any).

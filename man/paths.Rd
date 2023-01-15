@@ -42,34 +42,20 @@ newdirs(dirs, path = NULL)
 \item{dirs}{A \link[=cmp_chr_vec]{complete character vec} of new sub-directory names.}
 }
 \value{
-\emph{A character vector}
-\cr   \verb{object_dirs, folder_dirs}
-\cr
-\cr \emph{A character scalar}
-\cr   \verb{object_path, folder_path}
-\cr   \verb{object_name, folder_name}
-\cr
-\cr \emph{A logical scalar}
-\cr   \code{is_path}
+\emph{A character scalar} \cr   \verb{object_path, folder_path, object_name, folder_name}
+\cr\cr \emph{A character vector} \cr   \verb{object_dirs, folder_dirs}
+\cr\cr \emph{A logical scalar} \cr   \code{is_path}
 }
 \description{
 \tabular{rl}{
   \code{parent_dirs}   \tab Calls \code{parent_path} and split the resulting character scalar into a character vector containing the name of the root folder, the names of any intermediate folders, and the name of the parent folder of the object specified by \code{...}.
-\cr                 \tab  
 \cr \code{object_path}   \tab Collapses \code{...} into a character scalar and expand the path to the object indicated by the result to account for relative paths.
-\cr                 \tab  
 \cr \code{parent_path}   \tab Calls \code{object_path} and extract from the resulting character scalar just the path to the parent folder of the object specified by \code{...} (i.e., discarding the name of the object itself).
-\cr                 \tab  
 \cr \code{object_name}   \tab Calls \code{object_path} and extract from the resulting character scalar just the name of the object, discarding the path to its parent.
-\cr                 \tab  
 \cr \code{parent_name}   \tab Calls \code{parent_path} and extract from the resulting character scalar just the name of last folder in the path.
-\cr                 \tab  
 \cr \code{object_dirs}   \tab Calls \code{object_path} and split the resulting character scalar into a character vector containing the name of the root folder, the names of any intermediate folders, the name of the parent folder of the object, and the name of the object.
-\cr                 \tab  
 \cr    \code{new_dirs}   \tab Creates sub-directories within an existing directory, optionally asking the user to choose that existing directory.
-\cr                 \tab  
 \cr     \code{is_path}   \tab Checks whether \code{...} resolves to a valid path for an object (file or folder) when \code{...} arguments are collapsed into a character scalar.
-\cr                 \tab  
 \cr     \code{as_path}   \tab Collapses \code{...} into a path using the current platform file path separator \code{.Platform$file.sep}.
 }
 }
@@ -122,14 +108,12 @@ Other extensions:
 \code{\link{n_is}()},
 \code{\link{naming}},
 \code{\link{na}()},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 
 Other files: 
 \code{\link{rd}}

@@ -16,7 +16,7 @@
 chn <- function(x, n) {
   errs <- base::c(uj::f0(uj::ichr(x)                                           , NULL, "[x] must be an atomic object of mode 'character' (?ichr)."),
                   uj::f0(uj::cmp_psw(n) | (uj::iscl(n) & base::identical(x, n)), NULL, "[n] must be a complete positive whole-number valued scalar (?cmp_psw_scl) or of the same dimension as [x]."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   base::substr(x, n, n)
 }
 

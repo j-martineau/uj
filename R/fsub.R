@@ -26,7 +26,7 @@ fsub <- function(x, pats, subs) {
                   uj::f0(uj::cmp_chr_vec(subs)                   , NULL, "[subs] must be a complete character vec (?cmp_chr_vec)."),
                   uj::f0(uj::recyclable(pats, subs)              , NULL, "[pats] and [subs] are not recyclable."),
                   uj::f0(base::length(subs) <= base::length(pats), NULL, "There are more substitute strings than patterns to replace: length(subs) > length(pats)."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   uj::recycle(pats = pats, subs = subs)
   for (i in 1:base::length(pats)) {x <- av(base::gsub(pats[i], subs[i], x, fixed = T))}
   x

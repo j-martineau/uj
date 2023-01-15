@@ -7,8 +7,7 @@
 #'       `g`   \tab Glue/collapse `...` args
 #'   \cr `p`   \tab Paste across corresponding element of `...`.
 #' }
-#' Suffixes and their meanings are
-#' \tabular{rl}{
+#' Suffixes and their meanings are \tabular{rl}{
 #'      `bracket`   \tab Enclose in square brackets
 #'   \cr `quote2`   \tab Enclose in double quotes
 #'   \cr  `quote`   \tab Enclose in single quotes

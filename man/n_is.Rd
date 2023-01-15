@@ -202,7 +202,7 @@ Counting functions can be used with a single unnamed argument, multiple unnamed 
 \cr     \code{nx}   \tab Length(s) of \code{...} args.
 \cr     \code{ns}   \tab Lengths of \code{...} args.
 \cr            \tab  
-\cr   \code{n_is}   \tab Do counts meet criteria in \verb{n, min, max, eq}?
+\cr   \code{n_is}   \tab Do counts meet criteria in \code{c(n, min, max, eq)} if any are specified?
 }
 }
 \examples{
@@ -260,14 +260,12 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 
 Other counts: 
 \code{\link{max_nch}()},

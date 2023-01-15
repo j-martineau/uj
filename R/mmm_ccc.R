@@ -3,9 +3,7 @@
 #' @title xmode + xclass combination properties
 #' @description \tabular{rl}{
 #'     `mmm_ccc_funs`   \tab What \link[=mmm]{xmode} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?
-#'   \cr                \tab  
 #'   \cr    `mmm_ccc`   \tab Does `x` match the single xmode and xclass properties in arguments `mmm` and `ccc`, respectively?
-#'   \cr                \tab  
 #'   \cr    `MMM_CCC`   \tab Does `x` match the single xmode and xclass properties `'MMM'` and `'CCC'`, respectively?
 #' }
 #' @param x An R object.
@@ -13,12 +11,8 @@
 #' @param ccc A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character scalar*
-#'   \cr   `mmm_ccc_funs`
-#'   \cr
-#'   \cr *A logical scalar*
-#'   \cr   `MMM_CCC`
-#'   \cr   `mmm_ccc`
+#' @return *A character scalar* \cr   `mmm_ccc_funs`
+#'   \cr\cr *A logical scalar* \cr   `MMM_CCC, mmm_ccc`
 #' @examples
 #' scalar1 <- "a"
 #' lst2x26 <- list(letters = letters, LETTERS = LETTERS)
@@ -37,7 +31,7 @@ mmm_ccc <- function(x, mmm, ccc, ...) {
   errs <- c(uj:::.meets_errs(x, ...),
             uj::f0(uj::f0(base::length(mmm) != 1 | !base::is.character(mmm), F, uj::f0(base::is.na(mmm), F, mmm %in% uj:::.mmms)), NULL, '[mmm] is not a scalar value from mmm_props().'),
             uj::f0(uj::f0(base::length(ccc) != 1 | !base::is.character(ccc), F, uj::f0(base::is.na(ccc), F, ccc %in% uj:::.cccs)), NULL, '[ccc] is not a scalar value from ccc_props().'))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   uj::f0(!uj::meets(x, ...), F, uj::f0(!cfun(x), F, uj::f0(ccc == 'dtf', dfun(x), uj::f0(ccc == "vls", vfun(x), mfun(x)))))
 }
 

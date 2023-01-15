@@ -3,9 +3,7 @@
 #' @title Shape + xclass combination properties
 #' @description \tabular{rl}{
 #'     `sss_ccc_funs`   \tab What \link[=sss]{shape} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?
-#'   \cr                \tab  
 #'   \cr    `sss_ccc`   \tab Is `x` a match to the single shape and xclass properties in `bbb` and `ccc`, respectively?
-#'   \cr                \tab  
 #'   \cr    `SSS_CCC`   \tab Is `x` a match to single shape and xclass properties `'SSS'` and `'CCC'`, respectively?
 #' }
 #' Some combinations of shape and xclass are nonsensical. That includes:\itemize{
@@ -19,11 +17,8 @@
 #' @param ccc A character scalar single xclass property from \code{link{ccc_props}()}
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character vector*
-#'  \cr   `sss_ccc_funs`
-#'  \cr\cr *A logical scalar*
-#'  \cr   `SSS_CCC`
-#'  \cr   `sss_ccc`
+#' @return *A character vector* \cr   `sss_ccc_funs`
+#'  \cr\cr *A logical scalar*   \cr   `SSS_CCC, sss_ccc`
 #' @examples
 #' sss_ccc_funs()
 #' sss_ccc_props()
@@ -36,7 +31,7 @@ sss_ccc <- function(x, sss, ccc, ...) {
   errs <- base::c(uj:::.meets_errs(x, ...),
                   uj::f0(isIN(sss, uj:::.ssss), NULL, "[sss] is not a scalar value from sss_props()."),
                   uj::f0(isIN(ccc, uj:::.cccs), NULL, "[ccc] is not a scalar value from ccc_props()."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   else if (!uj::meets(x, ...)) {F}
   else if (sss == "emp") {
     if (base::length(base::dim(x)) <= 2) {

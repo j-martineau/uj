@@ -26,50 +26,36 @@
 #' **Primary functions**
 #' \tabular{rl}{
 #'       `dww`   \tab Delimit elements within each (atomic vector) `...` argument using delimiter `d`, then delimit elements within the resulting vector using delimiter `D`. Produces a character scalar of `...length()` substrings delimited by `D` where each substring contains sub-substrings delimited by `d`.
-#'   \cr         \tab   
 #'   \cr `daw`   \tab Delimit across corresponding elements of (recyclable atomic vector) `...` arguments using delimiter `d`, then delimit elements within the resulting character vector using delimiter `D`. Produces a character scalar of `...length()` substrings delimited by `D` where each substring contains `max(lengths(list(...)))` sub-substrings delimited by `d`.
-#'   \cr         \tab   
 #'   \cr  `dw`   \tab Delimits elements within each (atomic vector) `...` argument using delimiter `d`. Produces a character vector of `...length()` substrings delimited by `d`.
-#'   \cr         \tab   
 #'   \cr  `da`   \tab Delimits across corresponding elements of (recyclable atomic vector) `...` arguments using delimiter `d`. Produces a character vector of `max(lengths(list(...)))` substrings delimited by `d`.
 #' }
-#' \cr
-#' **Common-delimiter convenience functions**
+#' \cr **Common-delimiter convenience functions**
 #' \cr Convenience function names are constructed by append `1` or `2` codes for common delimiters to the function name as follows (where `X` and `Y` are placeholders for common-delimiter codes):
 #' \tabular{rl}{
-#'       `dawXY`   \tab Delimits across with `X` then within with `Y`.
+#'       `dawXY`   \tab Delimits across with `X` then within with `Y`.
 #'   \cr `dwwXY`   \tab Delimits within with `X` then again with `Y`.
 #'   \cr   `daX`   \tab Delimits across with `X`.
 #'   \cr   `dwX`   \tab Delimits within with `X`.
 #' }
-#' \cr
-#' Common delimiters are encoded as:
-#' \tabular{cll}{
-#'      **Code**   \tab **Name**               \tab **Delimiter**
-#'   \cr   `'0'`   \tab blank                  \tab `''`
-#'   \cr `'1'`     \tab space                  \tab `' '`
-#'   \cr `'B'`     \tab broken pipe            \tab `'¦'`
-#'   \cr `'C'`     \tab colon                  \tab `':'`
-#'   \cr `'D'`     \tab dot                    \tab `'.'`
-#'   \cr `'G'`     \tab grammatical comma`*`   \tab `', '`
-#'   \cr `'P'`     \tab pipe                   \tab `'|'`
-#'   \cr `'Q'`     \tab back-tick              \tab `'``'`
-#'   \cr `'S'`     \tab simple comma`*`        \tab `','`
-#'   \cr `'T'`     \tab tilde                  \tab `'~'`
+#' \cr Common delimiters are encoded as: \tabular{cll}{
+#'        *Code*   \tab *Name*                      \tab *Delimiter*
+#'   \cr   `'0'`   \tab blank                       \tab `''`
+#'   \cr `'1'`     \tab space                       \tab `' '`
+#'   \cr `'B'`     \tab broken pipe                 \tab `'¦'`
+#'   \cr `'C'`     \tab colon                       \tab `':'`
+#'   \cr `'D'`     \tab dot                         \tab `'.'`
+#'   \cr `'G'`     \tab grammatical comma\eqn{^1}   \tab `', '`
+#'   \cr `'P'`     \tab pipe                        \tab `'|'`
+#'   \cr `'Q'`     \tab back-tick                   \tab `'``'`
+#'   \cr `'S'`     \tab simple comma\eqn{^1}        \tab `','`
+#'   \cr `'T'`     \tab tilde                       \tab `'~'`
 #' }
-#' `*` 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., `'1, 2, 3'` vs. `'1,2,3'`).
+#' ` `\eqn{^{1.}} 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., `'1, 2, 3'` vs. `'1,2,3'`).
 #' @param ... An arbitrary number of atomic vector arguments to be delimited. Argument in `...` must be recyclable for functions that delimit across `...` arguments as the first or only step (i.e., functions with names beginning with `da`).
 #' @param d,D \link[=chr_scl]{Character scalar} delimiters.
-#' @return *A character vector*
-#'  \cr   `daX`
-#'  \cr   `da`
-#'  \cr   `dw`
-#'  \cr
-#'  \cr *A character scalar*
-#'  \cr   `dawXY`
-#'  \cr   `dwwXY`
-#'  \cr   `daw`
-#'  \cr   `dww`
+#' @return *A character vector* \cr   `daX, da, dw`
+#'  \cr\cr *A character scalar* \cr   `dawXY, dwwXY, daw, dww`
 #' @examples
 #' # delimit across using delimiter '|'.
 #' # aliases paste(1:3, 4:6, sep = '|').
@@ -102,7 +88,7 @@
 da <- function(d, ...) {
   args <- base::list(d = d, dots =  base::list(...))
   errs <- uj:::.delim_errs(args, TRUE)
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   base::paste(..., sep = d)
 }
 
@@ -111,7 +97,7 @@ da <- function(d, ...) {
 dw <- function(d, ...) {
   args <- base::list(d = d, dots = base::list(...))
   errs <- uj:::.delim_errs(args, TRUE)
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   base::sapply(base::list(...), base::paste0, collapse = d)
 }
 
@@ -120,7 +106,7 @@ dw <- function(d, ...) {
 daw <- function(d, D, ...) {
   args <- base::list(d = d, D = D, dots = base::list(...))
   errs <- uj:::.delim_errs(args, TRUE)
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   base::paste0(base::paste(..., sep = d), collapse = D)
 }
 
@@ -129,7 +115,7 @@ daw <- function(d, D, ...) {
 dww <- function(d, D, ...) {
   args <- base::list(d = d, D = D, dots = base::list(...))
   errs <- uj:::.delim_errs(args, TRUE)
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   base::paste(base::sapply(base::list(...), paste0, collapse = d), collapse = D)
 }
 

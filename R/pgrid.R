@@ -6,14 +6,14 @@
 #'   \cr            \tab  
 #'   \cr `pgrid0`   \tab Calls `pgrid` with `p = ""` (blank).
 #'   \cr `pgrid1`   \tab Calls `pgrid` with `p = " "` (space).
-#'   \cr `pgridn`   \tab Calls `pgrid` with `crossed = FALSE *`
-#'   \cr `pgridx`   \tab Calls `pgrid` with `crossed = TRUE *`
+#'   \cr `pgridn`   \tab Calls `pgrid` with `crossed = FALSE`\eqn{^{ 1}}
+#'   \cr `pgridx`   \tab Calls `pgrid` with `crossed = TRUE`\eqn{^{ 1}}
 #' }
-#' `*` See *the* `crossed` *argument* section.
+#' ` `\eqn{^{1.}} See *the* `crossed` *argument*.
 #' @param ... Non-empty atomic objects.
 #' @param p A \link[=cmp_chr_scl]{complete character scalar} to use as the 'paste'.
 #' @param ch,na.err Non-`NA` logical scalars indicating, respectively, whether to split each `...` arguments into its constituent characters after conversion to mode 'character' and whether to throw an error if an argument in `...` contains an `NA` value.
-#' @param crossed A non-`NA` logical scalar indicating whether to construct the result to look like a fully-crossed model. See the section entitled *the* `crossed` *argument* section for details.
+#' @param crossed A non-`NA` logical scalar indicating whether to construct the result to look like a fully-crossed model. See *the* `crossed` *argument* section for details.
 #' @section The `crossed` Argument: The following console excerpt shows the effect of the value of `crossed`:
 #' ```
 #' > x <- c("A", "B", "C")
@@ -61,7 +61,7 @@ pgrid <- function(p, ..., ch = F, crossed = F, na.err = T) {
             uj::f0(uj::isTF(crossed)                                       , NULL, "[crossed] must be TRUE or FALSE."),
             uj::f0(uj::isTF(na.err)                                        , NULL, "[na.err] must be TRUE or FALSE."),
             uj::f0(!uj::isT(na.err) | !base::any(base::is.na(uj::av(dots))), NULL, "Arguments in [...] may not contain [NA] values when [na.err = TRUE]."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   call <- base::paste0("c(as.character(dots[[", 1:base::length(dots), "]]), f0(crossed, '', NULL))")
   call <- base::paste0(call, collapse = ", ")
   call <- base::paste0("expand.grid(", call, ", stringsAsFactors = F)")

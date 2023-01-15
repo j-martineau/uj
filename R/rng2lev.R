@@ -2,12 +2,9 @@
 #' @family conversions
 #' @title Convert sortable values in levels by range
 #' @description Convert values of `x` to the `n` levels in `levs` distinguished by the `n-1` thresholds in `cuts`.
-#' \cr
-#' \cr When values of `x` are equal to a value of `cuts`, assignment to level is dependent on whether the value of each element of `cut` is less than `0` vs. greater than or equal to `0`.
-#' \cr
-#' \cr For a value in `cuts` less than `0`, the level assigned is the lower of the levels distinguished by that value of `cuts`.
-#' \cr
-#' \cr Otherwise, the level assigned is the upper of the levels distinguished by that value of `cuts`.
+#' \cr\cr When values of `x` are equal to a value of `cuts`, assignment to level is dependent on whether the value of each element of `cut` is less than `0` vs. greater than or equal to `0`.
+#' \cr\cr For a value in `cuts` less than `0`, the level assigned is the lower of the levels distinguished by that value of `cuts`.
+#' \cr\cr Otherwise, the level assigned is the upper of the levels distinguished by that value of `cuts`.
 #' @param x An atomic object of \link[=isrt]{sortable} values.
 #' @param cuts An \link[=num_vec]{atomic vec} of `n-1` cuts for `n` levels.
 #' @param levs An atomic vec of `n` level labels.
@@ -28,12 +25,12 @@ rng2lev <- function(x, cuts, levs) {
   errs <- base::c(uj::f0(uj::pop_srt(x)       , NULL, "[x] must be an atomic sortable object (?isrt)."),
                   uj::f0(uj::cmp_srt_vec(cuts), NULL, "[cuts] must be a complete sortable vec (?cmp_srt_vec)."),
                   uj::f0(uj::cmp_srt_vec(levs), NULL, "[levs] must be a complete sortable vec (?cmp_srt_vec)."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   errs <- base::c(uj::f0(base::all(base::sort(cuts) == cuts)                   , NULL, "[cuts] must be sorted in increasing order."),
                   uj::f0(base::length(base::unique(cuts)) == base::length(cuts), NULL, "[cuts] contains duplicate values."),
                   uj::f0(base::length(cuts) == base::length(levs) - 1          , NULL, "length(cuts) must equal length(levs) - 1."),
                   uj::f0(uj::comparable(x, cuts)                               , NULL, "[x] and [cuts] must be of comparable modes (?comparable)."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   y <- x
   y[1:base::length(y)] <- NA
   if (base::is.character(levs)) {y <- base::as.character(y)}

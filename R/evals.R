@@ -13,7 +13,7 @@
 #' @description The following are extensions of base logical functions:
 #' \tabular{rl}{
 #'        **Function usage** \tab   **Extends**
-#'   \cr `not_in(x, y, ...)` \tab   `!(x %in% y)`
+#'   \cr `not_in(x, y, ...)` \tab   `!(x %in% y)`
 #'   \cr `is_out(x, y, ...)` \tab   `!(x %in% y)`
 #'   \cr  `isout(x, y, ...)` \tab   `!(x %in% y)`
 #'   \cr  `notin(x, y, ...)` \tab   `!(x %in% y)`
@@ -108,7 +108,7 @@
 not <- function(x, na = 'err') {
   errs <- base::c(uj::f0(uj::pop_lgl(x)                    , NULL, "[x] must be a populated logical object (?cmp_lgl)."),
                   uj::f0(uj::isLG(na) | uj::isEQ(na, 'err'), NULL, "[na] must be TRUE, FALSE, NA, or 'err'."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (uj::isTF(na)) {x[base::is.na(x)] <- na}
   !x
 }
@@ -120,7 +120,7 @@ and <- function(x, y, na = 'err') {
                   uj::f0(uj::pop_lgl(y)                    , NULL, "[x] must be a populated logical object (?cmp_lgl)."),
                   uj::f0(uj:::.conform(x, y)               , NULL, "[x] and y must be conformable."),
                   uj::f0(uj::isLG(na) | uj::isEQ(na, 'err'), NULL, "[na] must be TRUE, FALSE, NA, or 'err'."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (uj::isTF(na)) {x[base::is.na(x)] <- na; y[base::is.na(x)] <- na}
   x & y
 }
@@ -132,7 +132,7 @@ or <- function(x, y, na = 'err') {
                   uj::f0(uj::pop_lgl(y)                    , NULL, "[x] must be a populated logical object (?cmp_lgl)."),
                   uj::f0(uj:::.conform(x, y)               , NULL, "[x] and y must be conformable."),
                   uj::f0(uj::isLG(na) | uj::isEQ(na, 'err'), NULL, "[na] must be TRUE, FALSE, NA, or 'err'."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (uj::isTF(na)) {x[base::is.na(x)] <- na; y[base::is.na(x)] <- na}
   x | y
 }
@@ -144,7 +144,7 @@ nor <- function(x, y, na = 'err') {
                   uj::f0(uj::pop_lgl(y)                    , NULL, "[x] must be a populated logical object (?cmp_lgl)."),
                   uj::f0(uj:::.conform(x, y)               , NULL, "[x] and y must be conformable."),
                   uj::f0(uj::isLG(na) | uj::isEQ(na, 'err'), NULL, "[na] must be TRUE, FALSE, NA, or 'err'."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (uj::isTF(na)) {x[base::is.na(x)] <- na; y[base::is.na(x)] <- na}
   !(x | y)
 }
@@ -166,8 +166,8 @@ one <- function(x, y, na = 'err') {
 TEST <- function(x, na = FALSE, err = NA) {
   errs <- base::c(uj::f0(uj::isTF(na)                        , NULL, "[na] must be TRUE or FALSE."),
                   uj::f0(uj::isLG(err) | uj::isEQ(err, 'err'), NULL, "[err] must be TRUE, FALSE, NA, or 'err'."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
-  if (!uj::lgl_scl(x) & !uj::isLG(err)) {stop(uj:::.errs("[x] is not a logical scalar."))} else if (!uj::lgl_scl(x)) {err} else if (base::is.na(x)) {na} else {x}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
+  if (!uj::lgl_scl(x) & !uj::isLG(err)) {stop(uj::format_errs(pkg = "uj", "[x] is not a logical scalar."))} else if (!uj::lgl_scl(x)) {err} else if (base::is.na(x)) {na} else {x}
 }
 
 #' @rdname evals
@@ -175,13 +175,13 @@ TEST <- function(x, na = FALSE, err = NA) {
 ANY <- function(..., err = NA) {
   errs <- base::c(uj::f0(base::all(base::sapply(base::list(...), uj::lgl_scl)), NULL, "All arguments in [...] must be logical scalars (?lgl_scl)."),
                   uj::f0(uj::isLG(err) | uj::isEQ(err, 'na')                  , NULL, "[err] must be TRUE, FALSE, NA, or 'na'."))
-  if (!base::is.null(errs)) {stop(.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   for (i in 1:base::...length()) {
     x <- tryCatch(base::...elt(i) == T, error = function(e) NA, finally = NULL)
     vx <- uj::cmp_lgl_scl(x)
     if (!vx) {
       if (uj::isTF(err)) {x <- err}
-      else {stop(uj:::.errs(base::paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}
+      else {stop(uj::format_errs(pkg = "uj", base::paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}
     }
     if (x) {return(T)}
   }
@@ -193,11 +193,11 @@ ANY <- function(..., err = NA) {
 ALL <- function(..., err = NA) {
   errs <- base::c(uj::f0(base::all(base::sapply(base::list(...), uj::lgl_scl)), NULL, "All arguments in [...] must be logical scalars (?lgl_scl)."),
                   uj::f0(uj::isLG(err) | uj::isEQ(err, 'na')                  , NULL, "[err] must be TRUE, FALSE, NA, or 'na'."))
-  if (!base::is.null(errs)) {stop(.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   for (i in 1:base::...length()) {
     x <- tryCatch(base::...elt(i) == T, error = function(e) NA, finally = NULL)
     vx <- uj::cmp_lgl_scl(x)
-    if (!vx) {if (uj::isTF(err)) {x <- err} else {stop(uj:::.errs(base::paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}}
+    if (!vx) {if (uj::isTF(err)) {x <- err} else {stop(uj::format_errs(pkg = "uj", base::paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}}
     if (!x) {return(F)}
   }
   T
@@ -208,13 +208,13 @@ ALL <- function(..., err = NA) {
 NOR <- function(..., err = NA) {
   errs <- base::c(uj::f0(base::all(base::sapply(base::list(...), uj::lgl_scl)), NULL, "All arguments in [...] must be logical scalars (?lgl_scl)."),
                   uj::f0(uj::isLG(err) | uj::isEQ(err, 'na')                  , NULL, "[err] must be TRUE, FALSE, NA, or 'na'."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   for (i in 1:base::...length()) {
     x <- tryCatch(base::...elt(i) == T, error = function(e) NA, finally = NULL)
     vx <- uj::cmp_lgl_scl(x)
     if (!vx) {
       if (uj::isTF(err)) {x <- err}
-      else {stop(uj:::.errs(base::paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}
+      else {stop(uj::format_errs(pkg = "uj", base::paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}
     }
     if (x) {return(F)}
   }
@@ -226,14 +226,14 @@ NOR <- function(..., err = NA) {
 ONE <- function(..., err = NA) {
   errs <- base::c(uj::f0(base::all(base::sapply(base::list(...), uj::lgl_scl)), NULL, "All arguments in [...] must be logical scalars (?lgl_scl)."),
                   uj::f0(uj::isLG(err) | uj::isEQ(err, 'na')                  , NULL, "[err] must be TRUE, FALSE, NA, or 'na'."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   n <- 0
   for (i in 1:base::...length()) {
     x <- tryCatch(base::...elt(i) == T, error = function(e) NA, finally = NULL)
     vx <- uj::cmp_lgl_scl(x)
     if (!vx) {
       if (uj::isTF(err)) {x <- err}
-      else {stop(uj:::.errs(base::paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}
+      else {stop(uj::format_errs(pkg = "uj", base::paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}
     }
     if (x) {n <- n + 1}
     if (n > 1) {return(F)}
@@ -246,14 +246,14 @@ ONE <- function(..., err = NA) {
 TWO <- function(..., err = NA) {
   errs <- base::c(uj::f0(base::all(base::sapply(base::list(...), uj::lgl_scl)), NULL, "All arguments in [...] must be logical scalar (?lgl_scl)."),
                   uj::f0(isLG(err) | uj::isEQ(err, 'na')                      , NULL, "[err] must be TRUE, FALSE, NA, or 'na'."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   n <- 0
   for (i in 1:base::...length()) {
     x <- tryCatch(base::...elt(i) == T, error = function(e.) NA, finally = NULL)
     vx <- uj::cmp_lgl_scl(x)
     if (!vx) {
       if (uj::isTF(err)) {x <- err}
-      else {stop(uj:::.errs(base::paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}
+      else {stop(uj::format_errs(pkg = "uj", base::paste0("[..", i, "] did not resolve to TRUE or FALSE.")))}
     }
     if (x) {n <- n + 1}
     if (n > 1) {return(T)}
@@ -278,7 +278,7 @@ tests <- function(..., a = FALSE, na = FALSE, not = FALSE, agg = NA, sweep = NA)
                   uj::f0(ok.s         , NULL, "[sweep] must be NA, 'across', 'within', or 'both'."),
                   uj::f0(ok.a         , NULL, "[agg] must be NA, 'nor', 'one', 'any', 'two', 'all'."),
                   uj::f0(ok.sa        , NULL, "[agg] and [sweep] must both be NA or must both be non-NA."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   for (i in 1:base::length(x)) {
     arg <- x[[i]]
     arg[base::is.na(arg)] <- na
@@ -301,40 +301,41 @@ tests <- function(..., a = FALSE, na = FALSE, not = FALSE, agg = NA, sweep = NA)
 #' @export
 nors <- function(..., a = FALSE, na = FALSE, sweep = "across") {
   if (uj::isEQ(sweep, "across") | uj::isEQ(sweep, "both") | uj::isEQ(sweep, "within")) {uj::tests(..., a = a, na = na, agg = "nor", sweep = sweep)}
-  else {stop(uj:::.errs("[sweep] must be 'across', 'within', or 'both'."))}
+  else {stop(uj::format_errs(pkg = "uj", "[sweep] must be 'across', 'within', or 'both'."))}
 }
 
 #' @rdname evals
 #' @export
 anys <- function(..., a = FALSE, na = FALSE, sweep = "across") {
   if (uj::isEQ(sweep, "across") | uj::isEQ(sweep, "both") | uj::isEQ(sweep, "within")) {uj::tests(..., a = a, na = na, agg = "any", sweep = sweep)}
-  else {stop(uj:::.errs("[sweep] must be 'across', 'within', or 'both'."))}
+  else {stop(uj::format_errs(pkg = "uj", "[sweep] must be 'across', 'within', or 'both'."))}
 }
 
 #' @rdname evals
 #' @export
 alls <- function(..., a = FALSE, na = FALSE, sweep = "across") {
   if (uj::isEQ(sweep, "across") | uj::isEQ(sweep, "both") | uj::isEQ(sweep, "within")) {uj::tests(..., a = a, na = na, agg = "all", sweep = sweep)}
-  else {stop(uj:::.errs("[sweep] must be 'across', 'within', or 'both'."))}
+  else {stop(uj::format_errs(pkg = "uj", "[sweep] must be 'across', 'within', or 'both'."))}
 }
 
 #' @rdname evals
 #' @export
 ones <- function(..., a = FALSE, na = FALSE, sweep = "across") {
   if (uj::isEQ(sweep, "across") | uj::isEQ(sweep, "both") | uj::isEQ(sweep, "within")) {uj::tests(..., a = a, na = na, agg = "one", sweep = sweep)}
-  else {stop(uj:::.errs("[sweep] must be 'across', 'within', or 'both'."))}
+  else {stop(uj::format_errs(pkg = "uj", "[sweep] must be 'across', 'within', or 'both'."))}
 }
 
 #' @rdname evals
 #' @export
 twos <- function(..., a = FALSE, na = FALSE, sweep = "across") {
   if (uj::isEQ(sweep, "across") | uj::isEQ(sweep, "both") | uj::isEQ(sweep, "within")) {uj::tests(..., a = a, na = na, agg = "two", sweep = sweep)}
-  else {stop(uj:::.errs("[sweep] must be 'across', 'within', or 'both'."))}
+  else {stop(uj::format_errs(pkg = "uj", "[sweep] must be 'across', 'within', or 'both'."))}
 }
 
 #' @rdname evals
 #' @export
 isin <- function(x, y, na = FALSE, agg = NA, not = FALSE) {
+  if (base::is.null(x) | base::is.null(y)) {return(F)}
   ok.x <- uj::pop_vec(x) & uj::atm_vec(x)
   ok.y <- uj::pop_vec(y) & uj::atm_vec(y)
   ok.xy <- uj::f0(!ok.x | !ok.y, T, uj::compatible(x, y))
@@ -345,7 +346,7 @@ isin <- function(x, y, na = FALSE, agg = NA, not = FALSE) {
                   uj::f0(ok.agg       , NULL, "[agg] must be NA, 'nor', 'one', 'any', 'two', or 'all'."),
                   uj::f0(uj::isTF(not), NULL, "[not] must be TRUE or FALSE."),
                   uj::f0(ok.xy        , NULL, "[x] and [y] are not of compatible modes."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   out <- x %in% y
   out[x[base::is.na(x)]] <- na
   n <- base::length(base::which(out))
@@ -354,7 +355,7 @@ isin <- function(x, y, na = FALSE, agg = NA, not = FALSE) {
 
 #' @rdname evals
 #' @export
-is_in <- function(x, y, na = FALSE, agg = NA, not = FALSE) {uj::isin(x, y, na, agg, not)}
+is_in <- isin
 
 #' @rdname evals
 #' @export
@@ -362,15 +363,15 @@ isout <- function(x, y, na = FALSE, agg = NA) {!uj::isin(x, y, na = na, agg = ag
 
 #' @rdname evals
 #' @export
-is_out <- function(x, y, na = FALSE, agg = NA) {!uj::isin(x, y, na = na, agg = agg, not = T)}
+is_out <- isout
 
 #' @rdname evals
 #' @export
-not_in <- function(x, y, na = FALSE, agg = NA) {!uj::isin(x, y, na = na, agg = agg, not = T)}
+not_in <- isout
 
 #' @rdname evals
 #' @export
-notin <- function(x, y, na = FALSE, agg = NA) {!uj::isin(x, y, na = na, agg = agg, not = T)}
+notin <- isout
 
 #' @rdname evals
 #' @export

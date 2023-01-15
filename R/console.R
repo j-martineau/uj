@@ -4,10 +4,8 @@
 #' @title User updates and interaction via the console
 #' @description \tabular{rl}{
 #'     `continue`   \tab Prints `"Hit [enter] or [return] to continue"` to the console and pausse execution until the user hits the enter or return key.
-#'   \cr            \tab  
 #'   \cr   `cat0`   \tab Collapses `...` to a character scalar message prefixed and suffixed with newlines and prints it to the console (ensures the message occurs on its own line of the console).
-#'   \cr            \tab  
-#'   \cr    `say`   \tab Collapses the message in `...` to a character scalar and either (a) prints it to the console or (b) structures it as a certain level of update and then prints it to the console. See details.
+#'   \cr    `say`   \tab Collapses the message in `...` to a character scalar and either (a) prints it to the console or (b) structures it as a certain level of update and then prints it to the console. See *details*.
 #' }
 #' @details The function `say` allows for structuring user update messages at six hierarchical levels as explained in the following table where `___` is a placeholder for the character scalar message created when collapsing `...`:
 #' \tabular{ccl}{
@@ -58,7 +56,7 @@ say <- function(..., lev = NA) {
   msg <- base::paste(uj::av(...), collapse = "")
   dot <- uj::isID(msg, "") | uj::isID(base::as.numeric(lev), base::as.numeric("6"))
   less <- uj::isIN(base::as.numeric(lev), base::as.numeric( base::as.character(1:5)))
-  if (dot & less) {stop(uj:::.errs("[...] must not resolve to a blank string when [lev] is in c(1, 2, 3, 4, 5)."))}
+  if (dot & less) {stop(uj::format_errs(pkg = "uj", "[...] must not resolve to a blank string when [lev] is in c(1, 2, 3, 4, 5)."))}
   if (!uj::isID(msg, ""))
   if (uj::notID(msg, "") & uj::notID(lev, 6)) {
     if (!uj::nas(lev)) {
@@ -66,7 +64,7 @@ say <- function(..., lev = NA) {
         prefix <- base::c("\n", "\n| ", "\n| > ", " > ", "..(")
         suffix <- base::c(""   , ""    , ""      , ""   ,   ")")
         base::cat(base::paste0(prefix[lev], msg, suffix[lev]))
-      } else {stop(uj:::.errs("[lev] must be scalar NA or a positive whole-number scalar from c(1, 2, 3, 4, 5)."))}
+      } else {stop(uj::format_errs(pkg = "uj", "[lev] must be scalar NA or a positive whole-number scalar from c(1, 2, 3, 4, 5)."))}
     } else {base::cat(msg)}
   } else {base::cat(".")}
 }

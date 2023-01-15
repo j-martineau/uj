@@ -128,21 +128,14 @@ Simple color creation with a wide variety of options (intensity, blending, light
 \cr \code{ppl}    \tab   purple      \tab a \code{1:2} blend of red:blue.
 \cr \code{orn}    \tab   orange      \tab a \code{33:51} blend of red:yellow.
 }
-\strong{Functions in this family}
-\tabular{rl}{
+\strong{Functions in this family} \tabular{rl}{
   \code{pal_swatch}   \tab Draws swatches for a collection/palette of colors.
 \cr   \code{pal_cb}   \tab Creates colorblind-friendly palettes of \code{2} to \code{20} Colors \code{1-10} vs. \code{11-20} are bright vs. \verb{50\%} darkened versions. Bright/darkened differences may be insufficient for some audiences.
-\cr              \tab  
 \cr    \code{color}   \tab Takes any valid color representation and lightens, darkens, adds opacity levels, and/or gets the complementary color.
-\cr              \tab  
 \cr    \code{blend}   \tab Blends colors \code{x} and \code{y} using non-negative numeric weights \code{wx} and \code{wy}, and proportional numeric \code{a} = alpha values. Each corresponding pair of values of these arguments is normalized to sum to 1 to give the proportions of the resulting color that should come from \code{x} and \code{y}, respectively.
-\cr              \tab  
 \cr     \code{rgba}   \tab Creates colors from \code{r} = red, \code{g} = green, \code{b} = blue, and \code{a} = alpha weights, each in the interval \verb{[0, 1]}.
-\cr              \tab  
 \cr     \code{hsva}   \tab Creates colors from \code{h} = hue, \code{s} = saturation, \code{v} = value, and \code{a} = alpha weights, each in the interval \verb{[0, 1]}.
-\cr              \tab  
 \cr      \code{XXX}   \tab Creates versions of common color \verb{'XXX} by \code{p} = primary intensity, \code{s} = secondary intensity, and \code{a} = alpha, each in the interval \verb{[0, 1]}.
-\cr              \tab  
 \cr  \code{XXX_YYY}   \tab Creates versions of 50/50 blends of the common colors \code{'XXX'} and \code{'YYY'} by \code{p} = primary intensity, \code{s} = secondary intensity, and \code{a} = alpha, each in the interval \verb{[0, 1]}.
 }
 }

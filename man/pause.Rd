@@ -34,9 +34,9 @@ Other meta:
 \code{\link{callers}()},
 \code{\link{dot_args}},
 \code{\link{ply}()},
+\code{\link{purge}()},
 \code{\link{recycling}},
 \code{\link{run}()},
-\code{\link{say}()},
-\code{\link{xat}()}
+\code{\link{say}()}
 }
 \concept{meta}

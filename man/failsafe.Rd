@@ -4,42 +4,91 @@
 \name{failsafe}
 \alias{failsafe}
 \alias{isERR}
+\alias{failsafeOR}
+\alias{failsafeBLANK}
+\alias{failsafeNULL}
+\alias{failsafeC0}
+\alias{failsafeI0}
+\alias{failsafeL0}
+\alias{failsafeN0}
+\alias{failsafeNAC}
+\alias{failsafeNAI}
+\alias{failsafeNAL}
+\alias{failsafeNAR}
+\alias{failsafeNA}
 \alias{notERR}
 \alias{msgERR}
+\alias{makeERR}
 \title{Evaluate objects and flag any errors}
 \usage{
 failsafe(x)
 
 isERR(x)
 
+failsafeOR(x, OR = NULL)
+
+failsafeBLANK(x)
+
+failsafeNULL(x)
+
+failsafeC0(x)
+
+failsafeI0(x)
+
+failsafeL0(x)
+
+failsafeN0(x)
+
+failsafeNAC(x)
+
+failsafeNAI(x)
+
+failsafeNAL(x)
+
+failsafeNAR(x)
+
+failsafeNA(x)
+
 notERR(x)
 
 msgERR(x)
+
+makeERR()
 }
 \arguments{
 \item{x}{An object or a call to evaluate in the environment of a parent function where the initial call was made.}
+
+\item{OR}{An object to return if evaluating \code{x} produces an error.}
 }
 \value{
-\emph{Either} \code{x}, \emph{an object of class} \code{'error'} \emph{or of class} \code{'simpleError'}
-\cr   \code{failsafe}
-\cr
-\cr \code{NULL} \emph{or a character scalar}
-\cr   \code{msgERR}
-\cr
-\cr \emph{A logical scalar}
-\cr   \code{notERR}
-\cr   \code{isERR}
+See table in \emph{description}.
 }
 \description{
-\tabular{rl}{
-  \code{failsafe}   \tab Calls \code{identity(x)}. If an error is produced in doing so, returns an object of class \code{'error'} or of class \code{'simpleError'}. If an error is not generated, returns the safely evaluated value of \code{x}.
-\cr            \tab  
-\cr \code{notERR}   \tab Evaluates whether calling \code{identity(x)} \emph{does not} produce an error.
-\cr            \tab  
-\cr \code{msgERR}   \tab Gets any error message associated with calling \code{identity(x)}. If there is none, returns \code{NULL}.
-\cr            \tab  
-\cr  \code{isERR}   \tab Evaluates whether calling \code{identity(x)} produced an error.
+The function \code{makeErr} produces a \code{'simpleError'} object with a the error message \code{'Intentionally-generated error.'}.
+\cr\cr Every other function in this family calls \code{identity(x)} with return value depending on whether an error is produced as follows:
+\tabular{rll}{
+  \tab \emph{Value when} \tab \code{identity(x)} \emph{produces}
+\cr   \emph{Failsafe function}   \tab \emph{No error}   \tab   \emph{An error}
+\cr       \code{failsafeBLANK}   \tab \code{x}          \tab   \code{""} (a blank string)
+\cr        \code{failsafeNULL}   \tab \code{x}          \tab   \code{NULL}
+\cr         \code{failsafeNAC}   \tab \code{x}          \tab   \code{NA_character_}
+\cr         \code{failsafeNAI}   \tab \code{x}          \tab   \code{NA_integer_}
+\cr         \code{failsafeNAR}   \tab \code{x}          \tab   \code{NA_real_}
+\cr         \code{failsafeNAL}   \tab \code{x}          \tab   \code{NA }\eqn{^1}
+\cr          \code{failsafeNA}   \tab \code{x}          \tab   \code{NA }\eqn{^1}
+\cr          \code{failsafeC0}   \tab \code{x}          \tab   \code{character(0)}
+\cr          \code{failsafeI0}   \tab \code{x}          \tab   \code{integer(0)}
+\cr          \code{failsafeL0}   \tab \code{x}          \tab   \code{logical(0)}
+\cr          \code{failsafeN0}   \tab \code{x}          \tab   \code{numeric(0)}
+\cr          \code{failsafeOR}   \tab \code{x}          \tab   The \code{OR} arg
+\cr            \code{failsafe}   \tab \code{x}          \tab   An error object\eqn{^2}
+\cr              \code{msgERR}   \tab \code{NULL}       \tab   A character scalar\eqn{^3}
+\cr              \code{notERR}   \tab \code{TRUE}       \tab   \code{FALSE}
+\cr               \code{isERR}   \tab \code{FALSE}      \tab   \code{TRUE}
 }
+\verb{ }\eqn{^{1.}} \code{NA} is of mode \code{'logical'} but is harmlessly coerceable.
+\cr \verb{ }\eqn{^{2.}} Typically of class \code{'error'} and/or \code{'simpleErr'}
+\cr \verb{ }\eqn{^{3.}} The error message element of the error object produced.
 }
 \examples{
 failsafe(pi)
@@ -71,14 +120,12 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 
 Other failsafe: 
 \code{\link{failsafe_binaries}},

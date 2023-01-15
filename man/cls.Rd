@@ -25,27 +25,16 @@ has_cls(x, ...)
 \item{...}{Unquoted class names and/or names of variables whose contents are \link[=av]{atomized} and converted to character. When \code{...} args are names of variables in the calling environment, they are atomized, otherwise they are treated as unquoted class names.}
 }
 \value{
-\emph{A character vector}
-\cr   \code{cls}
-\cr
-\cr \emph{A logical scalar}
-\cr   \code{has_cls}
-\cr
-\cr \emph{An R object}
-\cr   \code{add_cls}
-\cr   \code{set_cls}
-\cr   \code{xcls}
+\emph{A character vector} \cr   \code{cls}
+\cr\cr \emph{A logical scalar} \cr   \code{has_cls}
+\cr\cr \emph{An R object} \cr   \verb{add_cls, set_cls, xcls}
 }
 \description{
 \tabular{rl}{
   \code{has_cls}   \tab Evaluate whether class(es) in \code{...} are (all) classes of \code{x}.
-\cr             \tab  
 \cr \code{add_cls}   \tab Add class(es) in \code{...} to classes of \code{x}.
-\cr             \tab  
 \cr \code{set_cls}   \tab Set class of \code{x} to class(es) in \code{...}.
-\cr             \tab  
 \cr    \code{xcls}   \tab Removes class(es) in \code{...} from classes of \code{x}.
-\cr             \tab  
 \cr     \code{cls}   \tab Gets class(es) of \code{x}.
 }
 }

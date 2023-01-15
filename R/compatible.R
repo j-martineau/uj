@@ -3,15 +3,13 @@
 #' @family properties
 #' @title Are objects compatible?
 #' @description \tabular{rl}{
-#'              `compatible`   \tab Evaluates whether all `...` arguments are compatible, meaning all numeric, all character, all logical, all unordered factor with the same levels, or ordered factor with the same levels in the same order.
-#'   \cr                       \tab  
-#'   \cr   `compatible_dtfs`   \tab Evaluates whether all `...` arguments are \link[=atm_dtf]{atomic data.frames}. For row binding, also evaluates whether they have the same number of columns and all corresponding columns are compatible. For column binding, also evaluates whether they have the same number of rows.
-#'   \cr                       \tab  
-#'   \cr   `compatible_atms`   \tab Evaluates whether all `...` arguments are compatible matrices and (for row binding) have the same number of columns or (for column binding) have the same number of rows.
+#'     `compatible`   \tab Evaluates whether all `...` arguments are compatible, meaning all numeric, all character, all logical, all unordered factor with the same levels, or ordered factor with the same levels in the same order.
+#' } \tabular{rl}{
+#'       `compatible_atms`   \tab Evaluates whether all `...` arguments are compatible matrices and (for row binding) have the same number of columns or (for column binding) have the same number of rows.
+#'   \cr `compatible_dtfs`   \tab Evaluates whether all `...` arguments are \link[=atm_dtf]{atomic data.frames}. For row binding, also evaluates whether they have the same number of columns and all corresponding columns are compatible. For column binding, also evaluates whether they have the same number of rows.
 #' }
 #' @param ... An arbitrary number of arguments to be checked for compatibility with each other.
 #' @param rec. A non-\code{NA} logical scalar indicating whether arguments in `...` must be recyclable to be compatible.
-#' @param b Either `'c'` for column binding or `'r'` for row binding.
 #' @return A logical scalar.
 #' @examples
 #' n0 <- 0
@@ -73,7 +71,7 @@ compatible <- function(..., rec. = FALSE) {
   n <- base::length(x)
   errs <- base::c(uj::f0(n >= 2        , NULL, "[...] must contain multiple arguments."),
                   uj::f0(uj::isTF(rec.), NULL, "[rec.] must be TRUE or FALSE."         ))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (rec.) {
     un <- base::unique(base::lengths(x))
     nr <- base::max(un) / un
@@ -99,7 +97,7 @@ compatible_mats <- function(b, ...) {
   n <- base::length(x)
   errs <- base::c(uj::f0(uj::f0(!uj::ch1_scl(b), F, uj::isIN(b, c("c", "r" )))    , NULL, "[b] must be character scalar 'c' or 'r'."         ),
                   uj::f0(uj::f0(n < 2, F, base::all(base::sapply(x, uj::atm_mat))), NULL, "[...] must contain 2+ atomic matrices (?atm_mat)."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   for (i in 2:n) {
     curr <- x[[i]]
     prev <- x[[i - 1]]
@@ -117,7 +115,7 @@ compatible_dtfs <- function(b, ...) {
   n <- base::length(x)
   errs <- base::c(uj::f0(uj::f0(!uj::cmp_ch1_scl(b), F, b %in% c("c", "r"))        , NULL, "[b] must be character scalar 'c' or 'r'."                  ),
                   uj::f0(uj::f0(n < 2, F,  base::all(base::sapply(x, uj::atm_dtf))), NULL, "[...] must contain multiple atomic data.frames (?atm_dtf)."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   for (i in 2:n) {
     curr <- x[[i]]
     prev <- x[[i - 1]]

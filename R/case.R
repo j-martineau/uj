@@ -19,11 +19,11 @@ case <- function(name., ..., names. = NULL, def. = "err") {
   errs <- base::c(uj::f0(uj::iscl(name.)      , NULL, "[name.] must be a non-NA atomic scalar (?cmp_scl)."),
                   uj::f0(base::...length() > 0, NULL, "[...] is empty."),
                   uj::f0(ok.names             , NULL, "[names.] must be NULL or an atomic vector of length equal to ...length()"))
-  if (!base::is.null(errs)) {stop(.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   names. <- uj::dot_names(..., subs. = names., req. = T, bl. = F, u. = T)        # get {names.} supplied for arguments in {...}
   i <- base::which(names. == name.)                                              # index any matches
   i1 <- base::length(i) == 1                                                     # whether there is a match
   err <- uj::isEQ(def., 'err')
-  if (err & !i1) {stop(uj:::.errs("[name.] does not match any argument in [...]."))}
+  if (err & !i1) {stop(uj::format_errs(pkg = "uj", "[name.] does not match any argument in [...]."))}
   uj::f0(i1, base::...elt(i), def.)                                              # return the matching elements of {...}, if any, otherwise, return {DEF}
 }

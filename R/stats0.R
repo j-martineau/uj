@@ -19,21 +19,20 @@
 #'   \cr    `var0` \tab   Calls `var(av(...), na.rm = T)`
 #'   \cr     `sd0` \tab   Calls `sd(av(...), na.rm = T)`
 #'   \cr    `cor0` \tab   Calls `cor(x, y, use = 'complete.obs')`
-#'   \cr    `cov0` \tab   Calls `cov(x, y, use = 'complete.obs')`
+#'   \cr    `cov0` \tab   Calls `cov(x, y, use = 'complete.obs')`
 #' }
 #' @param ... Scalars, vectors, or matrices. Reduced a single vector of atomic values for `sd0`, `min0`, `max0`, and `mean0`.
 #' @param n Positive whole-number scalar size of the complete set each subset is drawn from.
 #' @param x A \link[=cmp_num_vec]{complete numeric vec} or a \link[=cmp_num_mat]{complete numeric matrix}.
 #' @param y An optional complete numeric vec or a complete numeric matrix.
 #' @return *A numeric vector*
-#'   \cr   `cmeans0, csums0, cvars0, csds0`
-#'   \cr   `rmeans0, rsums0, rvars0, rsds0`
-#'   \cr   `mean0,   sum0,   var0,   sd0`
-#'   \cr   `pmin0,   min0`
-#'   \cr   `pmax0,   max0`
-#'   \cr
-#'   \cr *A numeric vector or matrix*
-#'   \cr   `cor0, cov0`
+#'  \cr   `cmeans0, csums0, cvars0, csds0`
+#'  \cr   `rmeans0, rsums0, rvars0, rsds0`
+#'  \cr   `mean0, sum0, var0, sd0`
+#'  \cr   `pmin0, min0`
+#'  \cr   `pmax0, max0`
+#'  \cr\cr *A numeric vector or matrix*
+#'  \cr   `cor0, cov0`
 #' @examples
 #' vec1. <- sample(0:99, 10)
 #' vec2. <- sample(0:99, 20)

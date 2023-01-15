@@ -21,23 +21,18 @@ v(...)
 }
 \value{
 \emph{A character vector}
-\cr   \code{vnames}
-\cr   \code{v}
-\cr
-\cr \emph{A \link[ivls]{vlist}}
+\cr   \verb{vnames, v}
+\cr\cr \emph{A vlist} (\code{\link{ivls}})
 \cr   \code{values}
-\cr
-\cr \emph{A data.frame}
+\cr\cr \emph{A data.frame}
 \cr   \code{vtable}
 }
 \description{
 \tabular{rl}{
   \code{vtable}   \tab Gets a data.frame of all \code{uj}-specific named values with three columns: \code{name}, \code{value}, and \code{description}, where named values with multiple elements are pipe-delimited and all values are converted to mode character.
-\cr            \tab  
 \cr \code{values}   \tab Gets a named list where names are the arguments submitted to \code{v(...)}, element values are the values of the contents of the named element, and the attribute \code{'descriptions'} gives associated verbose descriptions.
-\cr            \tab  
-\cr \code{vnames}   \tab Gets names of all package values.
-\cr      \code{v}   \tab Gets package values by name.
+\cr \code{vnames}   \tab Gets names of all package values.
+\cr      \code{v}   \tab Gets package values by name.
 }
 }
 \examples{
@@ -51,8 +46,6 @@ vtable()
 Other values: 
 \code{\link{atomize}()},
 \code{\link{n_th}()},
-\code{\link{na}()},
-\code{\link{uv}()},
-\code{\link{wv}()}
+\code{\link{na}()}
 }
 \concept{values}

@@ -8,7 +8,10 @@
 \alias{dot_names}
 \alias{named_dots}
 \alias{unnamed_dots}
-\alias{flex_dots}
+\alias{glue_dots}
+\alias{collapse_dots}
+\alias{str_dot}
+\alias{str_dots}
 \title{Manage \code{...} arguments}
 \usage{
 dots(names., defs., ...)
@@ -21,7 +24,13 @@ named_dots(...)
 
 unnamed_dots(...)
 
-flex_dots(...)
+glue_dots(..., blank = "")
+
+collapse_dots(..., blank = "")
+
+str_dot(..., n. = 1, def. = "", sep. = " ")
+
+str_dots(..., glue. = TRUE, def. = "", sep. = " ")
 }
 \arguments{
 \item{names.}{\code{NULL} or an \link[=atm_vec]{atomic vec} (may include \code{NA} values). Is split along the delimiter \code{'|'} to allow for compactness in submitting multiple names. \code{NULL} will match either an argument in \code{...} or element of \code{defs.} with the name \code{'NULL'}. \code{NA} values will match an argument in \code{...} or an element of \code{defs.} with the name \code{'NA'}.}
@@ -32,32 +41,45 @@ flex_dots(...)
 
 \item{name.}{\code{NULL} or \link[=cmp_scl]{complete atomic scalar}. \code{NULL} is replaced with \code{'NULL'} and \code{NA} is replaced with \code{'NA'}.}
 
-\item{def.}{A default object/value to return if a specified argument is not in \code{...}. Can be, but does not need to be, a list.}
+\item{def.}{A default object/value to return if a specified argument is not in \code{...}. For \code{str_dots} and \code{str_dot}, must be a \link[=cmp_chr_vec]{complete character vec}. For all others, may be, but does not need to be, a list.}
 
 \item{subs.}{\code{NULL} or \link[=cmp_chr_vec]{complete character vec}. If not \code{NULL}, it is split using pipes \code{'|'} as a delimiter. If there are no pipes contained in \code{names.}, it remains unchanged. When this argument is not \code{NULL}, it is substituted for the names of \code{...} arguments; thus, after splitting, its length must equal the number of \code{...} arguments. For example, \code{names. = c('one', 'two', 'three|four|five')} indicates that there should be five \code{...} arguments and the vector \code{c('one', 'two', 'three', 'four', 'five')} is substituted for their names.}
 
-\item{req.}{Non-\code{NA} logical scalar indicating whether names are required.}
+\item{req.}{A non-\code{NA} logical scalar indicating whether names are required.}
 
-\item{blank.}{Non-\code{NA} logical scalar indicating whether blank names are allowed.}
+\item{blank.}{A non-\code{NA} logical scalar indicating whether blank names are allowed.}
 
-\item{u.}{Non-\code{NA} logical scalar indicating whether names must be unique.}
+\item{u.}{A non-\code{NA} logical scalar indicating whether names must be unique.}
+
+\item{blank}{A non-\code{NA} character scalar indicating what to return when \code{...} args resolve to a blank string (\code{""}).}
+
+\item{n.}{A positive integer indicating which \code{...} arg to return.}
+
+\item{sep.}{A \link[=cmp_chr_scl]{complete character scalar} for collapsing results to a character scalar.}
+
+\item{glue.}{A non-\code{NA} logical scalar indicating whether to glue the result (collapse into a character scalar)}
 }
 \description{
 \tabular{rl}{
-  \code{unnamed_dots}   \tab Extracts unnamed \code{...} arguments as an unnamed list (includes any \code{...} args with blank-string names).
-\cr                \tab  
-\cr \code{named_dots}   \tab Extracts named \code{...} arguments as a named list (excludes any \code{...} args with blank-string names).
-\cr                \tab  
+  \verb{collapse_dots, glue_dots}   \tab Process \code{...} args by \link[=av]{atomizing} them and collapsing them to a character scalar.
+\cr                            \tab  
+} \tabular {rl}{
+  \code{unnamed_dots}   \tab Extracts unnamed \code{...} args as an unnamed list (includes any \code{...} args with blank-string names).
+\cr \code{named_dots}   \tab Extracts named \code{...} args as a named list (excludes any \code{...} args with blank-string names).
 \cr  \code{dot_names}   \tab If \code{names. = NULL}, the return value is \code{...names()}, otherwise, \code{names.} is returned. Throws an error in the following cases:
-\cr                \tab   —  \code{...length() == 0}
-\cr                \tab   —  \code{length(names.) > 0 & length(names.) < ...length()}
-\cr                \tab   —  \code{is.null(names.) & blank. & any(...names() == "")}
-\cr                \tab   —  \code{is.null(names.) & req. & !any(...names() != "")}
-\cr                \tab   —  \verb{is.null(names.) & u. & any(duplicated(...names()))}
+\cr                \tab   +  \code{...length() == 0}
+\cr                \tab   +  \code{length(names.) > 0 & length(names.) < ...length()}
+\cr                \tab   +  \code{is.null(names.) & blank. & any(...names() == "")}
+\cr                \tab   +  \code{is.null(names.) & req. & !any(...names() != "")}
+\cr                \tab   +  \verb{is.null(names.) & u. & any(duplicated(...names()))}
 \cr                \tab  
-\cr       \code{dots}   \tab Extracts one or more\code{...} arguments based on matching values supplied in \code{names.}. If a supplied name matches the name of a \code{...} argument, that argument is returned. Otherwise, the element of \code{defs.} with a matching name is returned. \code{names. = NULL} and \code{names. = NA} are converted to \code{'NULL'} and \code{'NA'}. Reserved words in \code{names.} should be backtick quoted.
+} \tabular{rl}{
+\code{str_dot}   \tab Get the value of the \code{n.}\eqn{^th} \code{...} arg if it evaluates to a complete character object, otherwise, return corresponding unquoted string from the calling argument.
+\cr   \code{str_dots}   \tab Calls \code{str_dot} for each \code{...} arg, returning either a character vector (when \code{glue. = FALSE}) or a character scalar (when \code{glue. = TRUE})
 \cr                \tab  
-\cr        \code{dot}   \tab A convenience version of \code{dots} for extracting a single named \code{...} argument (or if a matching \code{...} argument name is not found, substituting its default value \code{def.}).
+} \tabular{rl}{
+  \code{dots}   \tab Extracts one or more\code{...} args based on matching values supplied in \code{names.}. If a supplied name matches the name of a \code{...} arg, that arg is returned. Otherwise, the element of \code{defs.} with a matching name is returned. \code{names. = NULL} and \code{names. = NA} are converted to \code{'NULL'} and \code{'NA'}. Reserved words in \code{names.} should be backtick quoted.
+\cr \code{dot}   \tab A convenience version of \code{dots} for extracting a single named \code{...} arg (or if a matching \code{...} arg name is not found, substituting its default value \code{def.}).
 }
 }
 \seealso{
@@ -65,10 +87,10 @@ Other meta:
 \code{\link{callers}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
+\code{\link{purge}()},
 \code{\link{recycling}},
 \code{\link{run}()},
-\code{\link{say}()},
-\code{\link{xat}()}
+\code{\link{say}()}
 
 Other dots: 
 \code{\link{n_is}()}

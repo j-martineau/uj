@@ -8,7 +8,7 @@
 #'   \cr `anyply`   \tab Checks for *any* resulting `TRUE` values\eqn{^a}.
 #'   \cr `allply`   \tab Checks for *only* resulting `TRUE` values\eqn{^a}.
 #'   \cr `atmply`   \tab Applies `fun` to \link[=av]{atomized} `x`.
-#'   \cr `mvcply`   \tab Applies `fun` to elements of \link[=atm_mvc]{atomic multivec} `x`.
+#'   \cr `mvcply`   \tab Applies `fun` to elements of \link[=atm_mvc]{atomic multivec} `x`.
 #'   \cr `vecply`   \tab Applies `fun` to elements of \link[=atm_vec]{atomic vec} `x`.
 #'   \cr `vlsply`   \tab Applies `fun` to elements of \link[=atm_vls]{atomic vlist} `x`.
 #'   \cr `rowply`   \tab Applies `fun` to rows of `x`.
@@ -19,14 +19,14 @@
 #' \eqn{^{a.}} These functions assume that applying `fun` produces `'logical'` results.
 #' @section The `proc` Argument: When not `NULL`, the `proc` argument is an optional list with up to seven named elements, which give processing instructions as follows:
 #' \tabular{rll}{
-#'     **Name** \tab   **Value** \tab   **Instructions**
-#'   \cr `$arg` \tab   `'XXX'`   \tab   Checks `x` for match to \link[=ppp]{spec} `'XXX'`.
+#'       *Name* \tab   *Value*   \tab   *Instructions*
+#'   \cr `$arg` \tab   `'XXX'`   \tab   Checks `x` for match to \link[=ppp]{spec} `'XXX'`.
 #'   \cr `$out` \tab   `'XXX'`   \tab   Checks result for match to spec `'XXX'`.
 #'   \cr `$agg` \tab   `'nor'`   \tab   Inspect result for `0` `TRUE` values.
 #'   \cr `$agg` \tab   `'one'`   \tab   Inspect result for `1` `TRUE` values.
 #'   \cr `$agg` \tab   `'two'`   \tab   Inspect result for `2+` `TRUE` values.
 #'   \cr `$agg` \tab   `'any'`   \tab   Inspect result for *any* `TRUE` values.
-#'   \cr `$agg` \tab   `'all'`   \tab   Inspect result for *only* `TRUE` values.
+#'   \cr `$agg` \tab   `'all'`   \tab   Inspect result for *only* `TRUE` values.
 #'   \cr  `$na` \tab   `'err'`   \tab   Throw error if result has any `NA`'s.
 #'   \cr  `$na` \tab   `FALSE`   \tab   Replace resulting `NA`'s with `FALSE`.
 #'   \cr  `$na` \tab   `TRUE`    \tab   Replace resulting `NA`'s with `TRUE`.
@@ -38,7 +38,7 @@
 #' @param fun Function or character scalar name of a function to apply to `x`.
 #' @param ... An arbitrary number of additional arguments to be passed to the function `fun`.
 #' @param dim. A \link[=cmp_nnw_vec]{complete non-negative whole-number vec} giving dimension(s) of `x` to apply the function `fun` to (`0` indicates applying to elements of a vector or \link[=ivls]{vlist} vs. applying to every cell for arrays and data.frames).
-#' @param proc. `NULL` or a list of named elements with processing instructions. See *the `proc` argument* section.
+#' @param proc. `NULL` or a list of named elements with processing instructions. See *the* `proc` *argument* section.
 #' @examples
 #' NumVec. <- 1:5
 #' NumMat. <- matrix(1:25, nrow = 5)
@@ -109,9 +109,9 @@ ply <- function(x, fun, ..., dim. = 0, proc. = NULL) {
             uj::f0(uj::isTF(s)  , NULL, "When supplied, [proc.$s] must be TRUE or FALSE."),
             uj::f0(uj::isTF(a1) , NULL, "When supplied, [proc.$a1] must be TRUE or FALSE."),
             uj::f0(uj::isTF(a2) , NULL, "When supplied, [proc.$a2] must be TRUE or FALSE."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   if (a1) {x <- uj::av(x)}
-  if (uj::idef(arg)) {if (!uj::ippp(x, arg)) {stop(uj:::.errs(uj::p0("[x] does not match [proc.$arg = '", arg, "'].")))}}
+  if (uj::idef(arg)) {if (!uj::ippp(x, arg)) {stop(uj::format_errs(pkg = "uj", uj::p0("[x] does not match [proc.$arg = '", arg, "'].")))}}
   if (uj::isEQ(dim., 0)) {
     x <- uj::f0(uj::iarr(x) | base::is.data.frame(x), base::apply(x, 1:base::length(base::dim(x)), fun, ...),
             uj::f0(uj::inll(x) | uj::ivec(x), base::sapply(x, fun, ...),
@@ -119,12 +119,12 @@ ply <- function(x, fun, ..., dim. = 0, proc. = NULL) {
   } else {x <- base::apply(x, dim., fun, ...)}
   if (s) {x <- base::simplify2array(x)}
   if (a2) {x <- uj::av(x)}
-  if (uj::idef(out)) {if (!uj::ippp(x, out)) {stop(uj:::.errs(uj::p0("[x] does not match [proc.$out = '", out, "'].")))}}
+  if (uj::idef(out)) {if (!uj::ippp(x, out)) {stop(uj::format_errs(pkg = "uj", uj::p0("[x] does not match [proc.$out = '", out, "'].")))}}
   if (uj::idef(agg)) {
     err <- uj::isEQ(na, 'err')
     errs <- base::c(uj::f0(uj::ilgl(x)                      , NULL, "[proc.$agg] is not NULL, but results of applying [fun] are not of mode logical."),
                     uj::f0(!err | !base::any(base::is.na(x)), NULL, "Applying [fun] produced NA values, but [proc.$na = 'err']."))
-    if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+    if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
     if (!err) {x[base::is.na(x)] <- na}
     x <- uj::f0(agg == "nor", uj::norT(x), uj::f0(agg == "any", uj::anyT(x), uj::f0(agg == "all", uj::allT(x), uj::f0(agg == "one", uj::oneT(x), uj::f0(agg == "two", uj::twoT(x), x)))))
   }

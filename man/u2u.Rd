@@ -79,12 +79,11 @@ An atomic numeric object.
 Unit functions take the following forms, where \code{AA} and \code{BB} are wildcard unit codes and \code{old} and \code{new} are user-supplied argument values.
 \tabular{rl}{
   \code{BB2BB}   \tab Converts units \emph{from} \code{'AA'} \emph{to} \code{'BB'}.
-\cr \code{AA2u}   \tab Converts units \emph{from} \code{'AA'} \emph{to} \code{new}.
-\cr \code{u2BB}   \tab Converts units \emph{from} \code{old} \emph{to} \code{'BB'}.
-\cr  \code{u2u}   \tab Converts units \emph{from} \code{old} \emph{to} \code{new}.
+\cr \code{AA2u}   \tab Converts units \emph{from} \code{'AA'} \emph{to} \code{new}.
+\cr \code{u2BB}   \tab Converts units \emph{from} \code{old} \emph{to} \code{'BB'}.
+\cr  \code{u2u}   \tab Converts units \emph{from} \code{old} \emph{to} \code{new}.
 }
-Available units/unit codes are:
-\tabular{rl}{
+Available units/unit codes are: \tabular{rl}{
   \code{'cm'}   \tab centimeters.
 \cr \code{'in'}   \tab inches.
 \cr \code{'mm'}   \tab millimeters.

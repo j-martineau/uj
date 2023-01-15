@@ -45,7 +45,7 @@ revstr <- function(x, na = FALSE) {
   errs <- c(uj::f0(ok.x  , NULL, "[x] must be an atomic character object, character vlist (?chr_vls), or character data.frame (?chr_dtf)."),
             uj::f0(ok.na , NULL, "[na] must be a non-NA logical scalar."),
             uj::f0(ok.nax, NULL, "[na = FALSE] but [x] contains one or more NA values."))
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   nd <- base::length(base::dim(x))
   uj::f0(uj::idtf(x), base::apply(x, 2, .revs), uj::f0(uj::ivls(x), base::lapply(x, .revs), uj::f0(nd > 0, base::apply(x, 1:nd, .revs), .revs(x))))
 }

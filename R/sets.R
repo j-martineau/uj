@@ -11,7 +11,7 @@
 #' sets(4)
 #' @export
 sets <- function(n) {
-  if (!uj::cmp_psw_scl(n)) {stop(uj:::.errs("[n] must be a positive whole-number scalar."))}
+  if (!uj::cmp_psw_scl(n)) {stop(uj::format_errs(pkg = "uj", "[n] must be a positive whole-number scalar."))}
   x <- base::lapply(1:n, function(x) utils::combn(n, x))                         # : all possible combinations from size 1 to size [n]
   y <- NULL                                                                      # : initialize the result
   for (i in 1:base::length(x)) {                                                 # : FOR EACH element of the list returned in [x]

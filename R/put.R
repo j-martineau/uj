@@ -3,9 +3,7 @@
 #' @title Put values into objects
 #' @description \tabular{rl}{
 #'       `putc`   \tab Puts vector `v` into `c`-indexed column of `x` (assumed to be a data.frame or matrix).
-#'   \cr          \tab  
 #'   \cr `putr`   \tab Puts vector `v` into `r`-indexed row of `x` (assumed to be a data.frame or matrix).
-#'   \cr          \tab  
 #'   \cr  `put`   \tab Puts vector `v` into `e`-indexed elements of `x` (assumed to be a vector or \link[=ivls]{vlist}).
 #' }
 #' @param x For `put`, a vector or \link[=ccc]{vlist}. For `putc` and `putr`, a data.frame or matrix.

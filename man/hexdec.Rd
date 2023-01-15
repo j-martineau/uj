@@ -15,17 +15,12 @@ tohex(x)
 \item{x}{A \link[=cmp_nnw]{complete non-negative whole-number object} or a \link[=cmp_chr]{complete character vec} containing only non-negative whole-number hexademical values.}
 }
 \value{
-\emph{A non-negative whole number object}
-\cr   \code{todec}
-\cr
-\cr \emph{A character object of non-negative}
-\cr \emph{whole number hexadecimal values}
-\cr   \code{tohex}
+\emph{A non-negative whole number object} \cr   \code{todec}
+\cr\cr \emph{A character object of non-negative whole number hexadecimal values} \cr   \code{tohex}
 }
 \description{
 \tabular{rl}{
   \code{todec}   \tab Converts hexadecimal \link[=cmp_chr]{complete character object} \code{x} from hexadecimal to decimal. \code{x} may be formatted as either \code{'hhh...'} or \code{'#hhh...'} where \code{h} is a placeholder for a hexidecimal digit in either upper or lower case.
-\cr           \tab  
 \cr \code{tohex}   \tab Converts \link[=cmp_psw]{complete positive whole-number} \code{x} to hexadecimal formatted as \code{'#HHH...'} where \code{H} is a placeholder for an uppercase hexadecimal digit.
 }
 }

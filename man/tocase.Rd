@@ -36,14 +36,11 @@ A character vector.
 \description{
 Functions in this family convert string case as follows:
 \tabular{rl}{
-  \verb{totitle, tc} \tab   Convert to \link[stringr:str_to_sentence]{title case}.
-\cr              \tab  
-\cr \verb{tosent, ts} \tab   Convert to \link[stringr:str_to_sentence]{sentence case}.
-\cr              \tab  
+  \verb{totitle, tc} \tab   Convert to \link[stringr:str_to_sentence]{title case}.
+\cr \verb{tosent, ts} \tab   Convert to \link[stringr:str_to_sentence]{sentence case}.
 \cr         \code{lc} \tab   Convert to \link[base:tolower]{lower case}.
 \cr         \code{uc} \tab   Convert to \link[base:toupper]{upper case}.
-\cr              \tab  
-\cr     \code{tocase} \tab   Convert to case in argument \code{case.}.
+\cr     \code{tocase} \tab   Convert to case \code{case.}.
 }
 }
 \examples{

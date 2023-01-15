@@ -18,18 +18,13 @@ idups(x, int = F)
 \item{int}{A non-\code{NA} logical scalar indicating whether to return a logical vector (\code{int = FALSE}) or an integer vector (\code{int = TRUE}).}
 }
 \value{
-\emph{A logical vector} (when \verb{int = FALSE)}
-\cr * or an integer vector* (when \verb{int = TRUE})
-\cr   \code{idups}
-\cr
-\cr \emph{An atomic vector}
-\cr   \code{dups}
+\emph{A logical vector} (when \verb{int = FALSE)} \cr * or an integer vector* (when \verb{int = TRUE}) \cr   \code{idups}
+\cr\cr \emph{An atomic vector} \cr   \code{dups}
 }
 \description{
 Extensions of \code{\link[base]{duplicated}}.
 \tabular{rl}{
   \code{idups}   \tab Indexes all elements of \code{x} that are duplicates of its earlier element, either as a logical vector of the same length as \code{x} (when \code{int = FALSE}) or as an integer vector whose length is the same as the number of elements in \code{x} that are duplicates of earlier elements (when \code{int = TRUE}).
-\cr          \tab  
 \cr \code{dups}   \tab \link[=av]{Atomizes} \code{...}, then reduce the resulting vector to contain one copy of each duplicated element.
 }
 }
@@ -57,13 +52,11 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 }
 \concept{extensions}

@@ -78,11 +78,11 @@ A tibble.
 }
 \description{
 \tabular{rl}{
-  \code{tbas}   \tab Thinly wraps \code{\link[tibble]{as_tibble}}.
-\cr \code{tbis}   \tab Thinly wraps \code{\link[tibble]{is_tibble}}.
-\cr  \code{tbr}   \tab Thinly wraps \code{\link[tibble]{tribble}}.
-\cr  \code{trb}   \tab Thinly wraps \code{\link[tibble]{tibble_row}}.
-\cr   \code{tb}   \tab Thinly wraps \code{\link[tibble]{tibble}}.
+  \code{tbas}   \tab \code{\link[tibble]{as_tibble}}.
+\cr \code{tbis}   \tab \code{\link[tibble]{is_tibble}}.
+\cr  \code{tbr}   \tab \code{\link[tibble]{tribble}}.
+\cr  \code{trb}   \tab \code{\link[tibble]{tibble_row}}.
+\cr   \code{tb}   \tab \code{\link[tibble]{tibble}}.
 }
 }
 \section{Row names}{

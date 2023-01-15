@@ -6,7 +6,23 @@
 \alias{atoms}
 \alias{av}
 \alias{a}
+\alias{sort_av}
+\alias{sv}
 \alias{sav}
+\alias{glue_av}
+\alias{gv}
+\alias{gav}
+\alias{paste_av}
+\alias{pv}
+\alias{pav}
+\alias{unique_av}
+\alias{uav}
+\alias{uv}
+\alias{sort_uv}
+\alias{suv}
+\alias{which_av}
+\alias{wv}
+\alias{wav}
 \title{Atomize (reduce arguments to an atomic vector)}
 \usage{
 atomize(...)
@@ -17,20 +33,64 @@ av(...)
 
 a(...)
 
+sort_av(...)
+
+sv(...)
+
 sav(...)
+
+glue_av(..., g = "")
+
+gv(..., g = "")
+
+gav(..., g = "")
+
+paste_av(..., p = "", s = "")
+
+pv(..., p = "", s = "")
+
+pav(..., p = "", s = "")
+
+unique_av(...)
+
+uav(...)
+
+uv(...)
+
+sort_uv(...)
+
+suv(...)
+
+which_av(...)
+
+wv(...)
+
+wav(...)
 }
 \arguments{
-\item{...}{Arguments to be atomized.}
+\item{...}{Arguments to be atomized. Expected to atomize to a logical vector for \code{which_av} and its aliases \code{wav} and \code{wv}.}
+
+\item{g}{Character scalar glue.}
+
+\item{p}{Character scalar prefix.}
+
+\item{s}{Character scalar suffix.}
 }
 \value{
-A single atomic vector containing all constituent atomic values in the full set of arguments supplied in \code{...}.
+\emph{An character scalar} \cr   \verb{glue_av, gav, gv}
+\cr\cr \emph{A character vector} \cr   \verb{paste_av, pav, pv}
+\cr\cr \emph{An integer vector} \cr   \verb{which_av, wav, wv}
+\cr\cr \emph{An atomic vector} \cr   All others
 }
 \description{
 \tabular{rl}{
-  \verb{atomize, a}   \tab Gets a vector of all atomic
-\cr \verb{atoms, av}   \tab values in all \code{...} arguments.
-\cr               \tab   
-\cr       \code{sav}   \tab Gets \code{sort(a(...))}.
+  \verb{atomize, atoms, av, a}   \tab Get a vector of all atomic values in all \code{...} arguments.
+\cr  \verb{unique_av, uav, uv}   \tab Call \code{unique(av(...))}
+\cr   \verb{which_av, wav, wv}   \tab Call \code{which(av(...))}
+\cr   \verb{paste_av, pav, pv}   \tab Call \code{paste0(p, av(...), s)}
+\cr    \verb{sort_av, sav, sv}   \tab Call \code{sort(av(...))}.
+\cr    \verb{glue_av, gav, gv}   \tab Call \verb{paste0(av(...) collapse = g)}
+\cr        \verb{sort_uv, suv}   \tab Call \code{sort(unique(av(...)))}
 }
 }
 \examples{
@@ -44,7 +104,15 @@ a(x)
 av(y)
 atoms(x, y)
 atomize(x, "d", y, 4)
+
+gav(x, "d", y, 4)
+glue_av(letters, LETTERS, g = "-")
+
+pav(x, "d", y, 4)
+paste_av(letters, p = "\u2022 ", s = ".")
+
 sav(x, "d", y, 4)
+sort_av(letters, LETTERS, 0:9)
 }
 \seealso{
 Other extensions: 
@@ -65,21 +133,17 @@ Other extensions:
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
+\code{\link{purge}()},
 \code{\link{rd}},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{stats0}},
-\code{\link{swap}()},
-\code{\link{uv}()},
-\code{\link{wv}()},
-\code{\link{xat}()}
+\code{\link{swap}()}
 
 Other values: 
 \code{\link{n_th}()},
 \code{\link{na}()},
-\code{\link{uv}()},
-\code{\link{values}()},
-\code{\link{wv}()}
+\code{\link{values}()}
 }
 \concept{extensions}
 \concept{values}

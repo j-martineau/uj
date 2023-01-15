@@ -112,51 +112,34 @@ iwhl(x, ...)
   }}
 }
 \value{
-\emph{A character vector}
-\cr   \code{mmm_props}
-\cr   \code{mmm_funs}
-\cr   \code{mmm}
-\cr\cr *A logical scalar 
-\cr   \code{is_mmm_spec}
-\cr   \code{iMMM}
-\cr   \code{immm}
+\emph{A character vector} \cr   \verb{mmm_props, mmm_funs, mmm}
+\cr\cr \emph{A logical scalar} \cr   \verb{is_mmm_spec, iMMM, immm}
 }
 \description{
 xmodes are defined for non-empty atomic objects. For all other objects, the xmode is \code{NULL}. These are not formally defined modes, but are evaluated dynamically based on the current characteristics of an object.
-\cr
-\cr Atomic objects that contain only \code{NA} values are of every xmode (they can be coerced to any mode without introducing new \code{NA} values).
-\cr
-\cr \strong{Generic xmode}
-\tabular{rll}{
+\cr\cr Atomic objects that contain only \code{NA} values are of every xmode (they can be coerced to any mode without introducing new \code{NA} values).
+\cr\cr \strong{Generic xmode} \tabular{rll}{
   \code{'atm'}   \tab atomic   \tab Both a \code{\link[=bbb]{basic}} and an xmode property.
 }
-\cr
-\strong{Character xmodes}
-\tabular{rl}{
+\cr \strong{Character xmodes} \tabular{rl}{
   \code{'chr'} \tab   character
 \cr \code{'ch1'} \tab   1-char, or \verb{all(nchar(x) == 1)}
 \cr \code{'ch3'} \tab   3-char, or \verb{all(nchar(x) == 3)}
 \cr \code{'clr'} \tab   color (valid color values)
 \cr \code{'str'} \tab   string (no blanks)
 }
-\cr
-\strong{Categorical xmodes}
-\tabular{rl}{
+\cr \strong{Categorical xmodes} \tabular{rl}{
   \code{'fac'} \tab   factor
 \cr \code{'lgl'} \tab   logical
 \cr \code{'ord'} \tab   ordered factor
 \cr \code{'uno'} \tab   unordered factor
 }
-\cr
-\strong{Basic numeric xmodes}
-\tabular{rl}{
+\cr \strong{Basic numeric xmodes} \tabular{rl}{
   \code{'num'} \tab   numeric
 \cr \code{'frc'} \tab   fractional
 \cr \code{'whl'} \tab   whole number
 }
-\cr
-\strong{Value-restricted numeric xmodes}
-\tabular{rl}{
+\cr \strong{Value-restricted numeric xmodes} \tabular{rl}{
   \code{'pct'} \tab   percentage (\code{0-100})
 \cr \code{'ppn'} \tab   proportion (\code{0-1})
 \cr \code{'pos'} \tab   positive
@@ -164,9 +147,7 @@ xmodes are defined for non-empty atomic objects. For all other objects, the xmod
 \cr \code{'nng'} \tab   non-negative
 \cr \code{'nps'} \tab   non-positive
 }
-\cr
-\strong{Whole-number value-restricted xmodes}
-\tabular{rl}{
+\cr \strong{Whole-number value-restricted xmodes} \tabular{rl}{
   \code{'evn'} \tab   even
 \cr \code{'odd'} \tab   odd
 \cr \code{'ngw'} \tab   negative whole
@@ -174,35 +155,27 @@ xmodes are defined for non-empty atomic objects. For all other objects, the xmod
 \cr \code{'nnw'} \tab   non-negative whole
 \cr \code{'npw'} \tab   non-positive whole
 }
-\cr
-\strong{Combination xmodes}
-\tabular{rl}{
+\cr \strong{Combination xmodes} \tabular{rl}{
   \code{'ind'} \tab   indexer (\code{lgl}, \code{psw})
 \cr \code{'srt'} \tab   sortable (\code{chr}, \code{num}, \code{ord})
 \cr \code{'nst'} \tab   non-sortable atomic
 }
-\cr
-\strong{xmode functions}
-\tabular{rl}{
+\cr \strong{xmode functions} \tabular{rl}{
   \code{is_mmm_spec}   \tab Is \code{spec} an xmode specification?
 \cr \code{mmm_props}   \tab What xmode properties are there?
 \cr  \code{mmm_funs}   \tab What xmode property functions are there?
-\cr      \code{immm}   \tab Is \code{x} a match to the xmode property spec in \code{spec}?
-\cr      \code{iMMM}   \tab Is \code{x} a match to the single xmode property \code{'MMM'}?
+\cr      \code{immm}   \tab Is \code{x} a match to the xmode property spec in \code{spec}?
+\cr      \code{iMMM}   \tab Is \code{x} a match to the single xmode property \code{'MMM'}?
 \cr       \code{mmm}   \tab What are \code{x}'s xmode properties?
 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab  
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab  
+  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
 \cr            \code{vals}   \tab A vector of valid values.
 }
 }

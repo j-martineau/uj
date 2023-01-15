@@ -111,8 +111,7 @@ Build strings where function names are composed of a single-letter prefix and a 
   \code{g}   \tab Glue/collapse \code{...} args
 \cr \code{p}   \tab Paste across corresponding element of \code{...}.
 }
-Suffixes and their meanings are
-\tabular{rl}{
+Suffixes and their meanings are \tabular{rl}{
   \code{bracket}   \tab Enclose in square brackets
 \cr \code{quote2}   \tab Enclose in double quotes
 \cr  \code{quote}   \tab Enclose in single quotes

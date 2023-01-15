@@ -9,7 +9,7 @@
 #' @title Error-checked wrappers for `base::rep`
 #' @description These functions \link[=av]{atomize} `...` arguments, converting them to an atomic vector (represented here as `dots`) before replication.
 #' \tabular{rl}{
-#'     `re, er`   \tab Calls `rep(dots, times = r, each = e)`.
+#'     `re, er`   \tab Calls `rep(dots, times = r, each = e)`.
 #'   \cr    `e`   \tab Calls `rep.int(dots, each = e)`.
 #'   \cr    `r`   \tab Calls `rep.int(dots, r)`.
 #' }
@@ -24,7 +24,7 @@
 #' @export
 r <- function(r, ...) {
   errs <- uj:::.r.errs("r", ..., r = r)
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   base::rep.int(uj::av(...), r)
 }
 
@@ -32,7 +32,7 @@ r <- function(r, ...) {
 #' @export
 e <- function(e, ...) {
   errs <- uj:::.r.errs("e", ..., e = e)
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   base::rep(uj::av(...), each = e)
 }
 
@@ -40,7 +40,7 @@ e <- function(e, ...) {
 #' @export
 re <- function(r, e, ...) {
   errs <- uj:::.r.errs("re", ..., r = r, e = e)
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   base::rep(base::rep(uj::av(...), times = r), each = e)
 }
 
@@ -48,6 +48,6 @@ re <- function(r, e, ...) {
 #' @export
 er <- function(e, r, ...) {
   errs <- uj:::.r.errs("er", ..., r = r, e = e)
-  if (!base::is.null(errs)) {stop(uj:::.errs(errs))}
+  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
   base::rep(base::rep(uj::av(...), times = r), each = e)
 }

@@ -55,35 +55,28 @@ isqr(x, ...)
   }}
 }
 \value{
-\emph{A logical scalar}
-\cr   \code{is_sss_spec}
-\cr   \code{iSSS}
-\cr   \code{isss}
-\cr
-\cr \emph{A character vector}
-\cr   \code{sss_props}
-\cr   \code{sss_funs}
+\emph{A logical scalar}   \cr   \verb{is_sss_spec, iSSS, isss}
+\cr\cr \emph{A character vector} \cr   \verb{sss_props, sss_funs}
 }
 \description{
 Shape properties are defined as follows: \tabular{rll}{
-  \code{'emp'}   \tab empty  \tab   Of length \code{0} (but not \code{NULL}).
-\cr \code{'pnt'}   \tab point  \tab   Of length \code{1}\eqn{^a}.
-\cr \code{'col'}   \tab column \tab   \verb{1 × 2+} matrix/data.frame.
-\cr \code{'row'}   \tab row    \tab   \verb{2+ × 1} matrix/data.frame
-\cr \code{'lin'}   \tab linear \tab   \verb{2+} positions in \code{1} dimension\eqn{^b}.
-\cr \code{'rct'}   \tab rect   \tab   \verb{2+} positions in \code{2} dimensions.
-\cr \code{'sqr'}   \tab square \tab   \verb{N × N} matrix where \verb{N ≥ 2}.
-\cr \code{'sld'}   \tab solid  \tab   \verb{2+} positions in \verb{3+} dimensions.
+  \code{'emp'}   \tab empty    \tab Of length \code{0} (but not \code{NULL}).
+\cr \code{'pnt'}   \tab point    \tab Of length \code{1}\eqn{^a}.
+\cr \code{'col'}   \tab column   \tab \verb{1 × 2+} matrix/data.frame.
+\cr \code{'row'}   \tab row      \tab \verb{2+ × 1} matrix/data.frame
+\cr \code{'lin'}   \tab linear   \tab \verb{2+} positions in \code{1} dimension\eqn{^b}.
+\cr \code{'rct'}   \tab rect     \tab \verb{2+} positions in \code{2} dimensions.
+\cr \code{'sqr'}   \tab square   \tab \verb{N × N} matrix where \verb{N ≥ 2}.
+\cr \code{'sld'}   \tab solid    \tab \verb{2+} positions in \verb{3+} dimensions.
 }
-\eqn{^{a.}} Includes \verb{1x1} data.frames.
-\cr \eqn{^{b.}} Length-\verb{2+} vectors, arrays of \verb{2+} positions in \code{1} dimension, row/column data.frames.
+\verb{ }\eqn{^{a.}} Includes \verb{1x1} data.frames.
+\cr \verb{ }\eqn{^{b.}} Length-\verb{2+} vectors, arrays of \verb{2+} positions in \code{1} dimension, row/column data.frames.
 \cr\cr
-\strong{Shape property functions}
-\tabular{rl}{
+\strong{Shape property functions} \tabular{rl}{
   \code{is_sss_spec}   \tab Is \code{spec} a shape specification?
 \cr \code{sss_props}   \tab What shape properties are there?
 \cr  \code{sss_funs}   \tab What shape property functions are there?
-\cr      \code{isss}   \tab Does \code{x} match the shape spec in argument \code{spec}?
+\cr      \code{isss}   \tab Does \code{x} match the shape spec in argument \code{spec}?
 \cr      \code{iSSS}   \tab Does \code{x} match single shape property \code{'SSS'}?
 \cr       \code{sss}   \tab What are \code{x}'s shape properties?
 }
@@ -91,14 +84,10 @@ Shape properties are defined as follows: \tabular{rll}{
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 \tabular{rl}{
-  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-\cr                     \tab  
-\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-\cr                     \tab  
-\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-\cr                     \tab  
+  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
+\cr \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
+\cr  \verb{lt, le, ge, gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
+\cr       \verb{n, nr, nc}   \tab A vector of valid numbers of elements, rows, and columns, respectively.
 \cr            \code{vals}   \tab A vector of valid values.
 }
 }
