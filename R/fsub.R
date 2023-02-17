@@ -7,27 +7,24 @@
 #' @param subs A complete character vec of replacement strings
 #' @return Atomic character object.
 #' @examples
-#' arg1. <- c("a", "few", "words", "in", "a string")
-#' arg2. <- paste0(arg1., collapse = " ")
-#' pats. <- c("a", "f", "w", "i", "s", " ")
-#' subs. <- c("A", "F", "W", "I", "S", "_")
-#'
-#' arg1.
-#' arg2.
-#'
-#' fsub(arg1., pats., subs.)
-#' fsub(arg1., pats., "_")
-#' fsub(arg2., pats., subs.)
-#' fsub(arg2., pats., "_")
+#' egArg1 <- c("a", "few", "words", "in", "a string")
+#' agArg2 <- paste0(egArg1, collapse = " ")
+#' egPats <- c("a", "f", "w", "i", "s", " ")
+#' egSubs <- c("A", "F", "W", "I", "S", "_")
+#' egArg1
+#' egArg2
+#' fsub(egArg1, pats, subs)
+#' fsub(egArg2, pats, subs)
+#' fsub(egArg1, pats, "_")
+#' fsub(egArg2, pats, "_")
 #' @export
 fsub <- function(x, pats, subs) {
-  errs <- base::c(uj::f0(uj::cmp_chr_gen(x)                      , NULL, "[x] must be a complete character generic (?cmp_chr_gen)."),
-                  uj::f0(uj::cmp_chr_vec(pats)                   , NULL, "[pats] must be a complete character vec (?cmp_chr_vec)."),
-                  uj::f0(uj::cmp_chr_vec(subs)                   , NULL, "[subs] must be a complete character vec (?cmp_chr_vec)."),
-                  uj::f0(uj::recyclable(pats, subs)              , NULL, "[pats] and [subs] are not recyclable."),
-                  uj::f0(base::length(subs) <= base::length(pats), NULL, "There are more substitute strings than patterns to replace: length(subs) > length(pats)."))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
+  uj::errs_if_nots(uj::cmp_chr_gen(x)        , "[x] must be a complete character generic (?cmp_chr_gen)."                                ,
+                   uj::cmp_chr_vec(pats)     , "[pats] must be a complete character vec (?cmp_chr_vec)."                                 ,
+                   uj::cmp_chr_vec(subs)     , "[subs] must be a complete character vec (?cmp_chr_vec)."                                 ,
+                   uj::recyclable(pats, subs), "[pats] and [subs] are not recyclable."                                                   ,
+                   uj::N(subs) <= uj::N(pats), "There are more substitute strings than patterns to replace: length(subs) > length(pats).", PKG = "uj")
   uj::recycle(pats = pats, subs = subs)
-  for (i in 1:base::length(pats)) {x <- av(base::gsub(pats[i], subs[i], x, fixed = T))}
+  for (i in 1:uj::N(pats)) {x <- av(base::gsub(pats[i], subs[i], x, fixed = T))}
   x
 }

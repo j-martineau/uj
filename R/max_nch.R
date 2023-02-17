@@ -9,12 +9,16 @@
 #' @return An integer scalar.
 #' @examples
 #' max_nch(letters)
-#' max_nch("a", "collection", "of", "words")
+#' maxlen("a", "collection", "of", "words")
 #' @export
 max_nch <- function(...) {
   x <- uj::av(...)
-  x <- x[!base::is.na(x)]
-  if (base::length(x) == 0) {stop(uj::format_errs(pkg = "uj", "[...] does not contain any non-NA values."))}
-  if (!uj::ichr(x))         {stop(uj::format_errs(pkg = "uj", "[...] does not contain any character objects."))}
-  base::max(base::nchar(x))
+  x <- x[uj::ok(x)]
+  uj::err_if(uj::N0(x), "[...] does not contain any non-NA values.", PKG = "uj")
+  uj::err_if_not(uj::isCHR(x), "[...] does not contain any character objects.", PKG = "uj")
+  base::max(uj::LEN(x))
 }
+
+#' @rdname max_nch
+#' @export
+maxlen <- max_nch

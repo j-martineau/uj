@@ -6,14 +6,13 @@
 #' @param console Non-`NA` logical scalar indicating whether to bring the console to the front upon conclusion.
 #' @return `NULL`
 #' @export
-git_push <- function(message, add.all = T, console = T) {
-  errs <- base::c(uj::f0(uj::cmp_str_scl(message), NULL, "[message] must be a complete string scalar (?cmp_str_scl)."),
-                  uj::f0(uj::cmp_lgl_scl(add.all), NULL, "[add.all] must be scalar TRUE or scalar FALSE."))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
+gitPUSH <- function(message, add.all = T, console = T) {
+  uj::errs_if_nots(uj::cmp_str_scl(message), "[message] must be a complete string scalar (?cmp_str_scl).",
+                   uj::cmp_lgl_scl(add.all), "[add.all] must be scalar TRUE or scalar FALSE."            , PKG = "uj")
   rstudioapi::terminalActivate()
   wd <- base::getwd()
   if (add.all) {rstudioapi::terminalExecute("git add --all", workingDir = wd)}
-  rstudioapi::terminalExecute(base::paste0("git commit -am \"", message, "\""), workingDir = wd)
+  rstudioapi::terminalExecute(uj::p0("git commit -am \"", message, "\""), workingDir = wd)
   rstudioapi::terminalExecute("git push", workingDir = wd)
   if (console) {base::cat("")}
 }

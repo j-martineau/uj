@@ -1,19 +1,19 @@
 #' @encoding UTF-8
 #' @family values
 #' @title Named values (unique to package `uj`)
-#' @description \tabular{rl}{
-#'       `vtable`   \tab Gets a data.frame of all `uj`-specific named values with three columns: `name`, `value`, and `description`, where named values with multiple elements are pipe-delimited and all values are converted to mode character.
-#'   \cr `values`   \tab Gets a named list where names are the arguments submitted to `v(...)`, element values are the values of the contents of the named element, and the attribute `'descriptions'` gives associated verbose descriptions.
-#'   \cr `vnames`   \tab Gets names of all package values.
-#'   \cr      `v`   \tab Gets package values by name.
-#' }
+#' @description Get names, definitions, and values of special `uj` package named values.
+#' @details
+#' \tabular{ll}{  `value_names, val_names, vnames`   \tab Get names of all package values.                                                                            \cr   \tab   \cr
+#'                `value_table, val_table, vtable`   \tab Get a data.frame of all `uj`-specific named values with three columns: `name`, `value`, and `description`,
+#'                                                        where named values with multiple elements are pipe-delimited and all values are converted to mode character. \cr   \tab     }
+#'                `values, values, vs`                 \tab Get a named list where names are the arguments submitted to `v(...)`, element values are the values of
+#'                                                        the contents of the named element, and the attribute `'descriptions'` gives associated verbose descriptions. \cr   \tab   \cr
+#' \tabular{ll}{  `value, val, v`                    \tab Gets package values by name.                                                                                                }
 #' @param ... Unquoted, comma-separated list of names of values to return. If multiple values are specified, they are coerced into a single atomic vector result.
-#' @return *A character vector*
-#'   \cr   `vnames, v`
-#'   \cr\cr *A vlist* (\code{\link{ivls}})
-#'   \cr   `values`
-#'   \cr\cr *A data.frame*
-#'   \cr   `vtable`
+#' @return **A character vector**         \cr `value_names, val_names, vnames`
+#' \cr\cr  **A data.frame**               \cr `value_table, val_table, vtable`
+#' \cr\cr  **A \link[=VLS]{vlist}**       \cr `values, values, vs`
+#' \cr\cr  **An atomic scalar or vector** \cr `value, val, v`
 #' @examples
 #' v(.)
 #' v(pipe, pipe0, eq)
@@ -239,7 +239,7 @@ values <- function() {
     iOMEGA = "*\U03A9*",
     bALPHA = "**\U0391**",
     bBETA = "**\U0392**",
-    bGAMMA = "**\U0393**",
+    bgAMMA = "**\U0393**",
     bDELTA = "**\U0394**",
     bEPSILON = "**\U0395**",
     bZETA = "**\U0396**",
@@ -261,80 +261,80 @@ values <- function() {
     bCHI = "**\U03A7**",
     bPSI = "**\U03A8**",
     bOMEGA = "**\U03A9**",
-    chi2 = "*\U03C7*<sup>2</sup>",
-    brk = "<br />",
-    sub1 = "<sub>",
-    sub2 = "</sub>",
-    sup1 = "<sup>",
-    sup2 = "</sup>",
-    b1 = "<b style=color:'",
-    b2 = "</b>",
-    p1 = "<span style=color'",
-    p2 = "</span>",
-    c2 = ">",
-    blk = "#000000FF",
-    g10 = "#1A1A1AFF",
-    g20 = "#333333FF",
-    g30 = "#4D4D4DFF",
-    g40 = "#666666FF",
-    g50 = "#808080FF",
-    g60 = "#999999FF",
-    g70 = "#B3B3B3FF",
-    g80 = "#CCCCCCFF",
-    g85 = "#D9D9D9FF",
-    g90 = "#E6E6E6FF",
-    g95 = "#F2F2F2FF",
-    wht = "#FFFFFFFF",
-    inv = "#FFFFFF01",
-    blu = "#0000FFFF",
-    cyn = "#00FFFFFF",
-    grn = "#00FF00FF",
-    mag = "#FF00FFFF",
-    orn = "#FF8800FF",
-    red = "#AA0000FF",
-    ylw = "#FFFF00FF",
-    lblu = "#DDDDFFFF",
-    lcyn = "#FFDDFFFF",
-    lgrn = "#DDFFDDFF",
-    lmag = "#FFBBFFFF",
-    lorn = "#FFEEAAFF",
-    lred = "#FFDDDDFF",
-    lylw = "#FFFFDDFF",
-    mblu = "#AAAAFFFF",
-    mcyn = "#66FFFFFF",
-    mgrn = "#FFFF66FF",
-    mmag = "#FF66FFFF",
-    morn = "#FFAA66FF",
-    mred = "#AFFAAAFF",
-    mylw = "#FFFF66FF",
-    dblu = "#000080FF",
-    dcyn = "#008B8BFF",
-    dgrn = "#008B00FF",
-    dmag = "#8B008BFF",
-    dorn = "#8B4500FF",
-    dred = "#800000FF",
-    dylw = "#8B8B00FF",
-    bblk = "<b style=color:'#000000FF'>",
-    bg10 = "<b style=color:'#1A1A1AFF'>",
-    bg20 = "<b style=color:'#333333FF'>",
-    bg30 = "<b style=color:'#4D4D4DFF'>",
-    bg40 = "<b style=color:'#666666FF'>",
-    bg50 = "<b style=color:'#808080FF'>",
-    bg60 = "<b style=color:'#999999FF'>",
-    bg70 = "<b style=color:'#B3B3B3FF'>",
-    bg80 = "<b style=color:'#CCCCCCFF'>",
-    bg85 = "<b style=color:'#D9D9D9FF'>",
-    bg90 = "<b style=color:'#E6E6E6FF'>",
-    bg95 = "<b style=color:'#F2F2F2FF'>",
-    bwht = "<b style=color:'#FFFFFFFF'>",
-    binv = "<b style=color:'#FFFFFF01'>",
-    bblu = "<b style=color:'#0000FFFF'>",
-    bcyn = "<b style=color:'#00FFFFFF'>",
-    bgrn = "<b style=color:'#00FF00FF'>",
-    bmag = "<b style=color:'#FF00FFFF'>",
-    born = "<b style=color:'#FF8800FF'>",
-    bred = "<b style=color:'#AA0000FF'>",
-    bylw = "<b style=color:'#FFFF00FF'>",
+    chi2  = "*\U03C7*<sup>2</sup>",
+    brk   = "<br />",
+    sub1  = "<sub>",
+    sub2  = "</sub>",
+    sup1  = "<sup>",
+    sup2  = "</sup>",
+    b1    = "<b style=color:'",
+    b2    = "</b>",
+    p1    = "<span style=color'",
+    p2    = "</span>",
+    c2    = ">",
+    blk   = "#000000FF",
+    g10   = "#1A1A1AFF",
+    g20   = "#333333FF",
+    g30   = "#4D4D4DFF",
+    g40   = "#666666FF",
+    g50   = "#808080FF",
+    g60   = "#999999FF",
+    g70   = "#B3B3B3FF",
+    g80   = "#ccccccFF",
+    g85   = "#D9D9D9FF",
+    g90   = "#E6E6E6FF",
+    g95   = "#F2F2F2FF",
+    wht   = "#FFFFFFFF",
+    inv   = "#FFFFFF01",
+    blu   = "#0000FFFF",
+    cyn   = "#00FFFFFF",
+    grn   = "#00FF00FF",
+    mag   = "#FF00FFFF",
+    orn   = "#FF8800FF",
+    red   = "#AA0000FF",
+    ylw   = "#FFFF00FF",
+    lblu  = "#DDDDFFFF",
+    lcyn  = "#FFDDFFFF",
+    lgrn  = "#DDFFDDFF",
+    lmag  = "#FFBBFFFF",
+    lorn  = "#FFEEAAFF",
+    lred  = "#FFDDDDFF",
+    lylw  = "#FFFFDDFF",
+    mblu  = "#AAAAFFFF",
+    mcyn  = "#66FFFFFF",
+    mgrn  = "#FFFF66FF",
+    mmag  = "#FF66FFFF",
+    morn  = "#FFAA66FF",
+    mred  = "#AFFAAAFF",
+    mylw  = "#FFFF66FF",
+    dblu  = "#000080FF",
+    dcyn  = "#008B8BFF",
+    dgrn  = "#008B00FF",
+    dmag  = "#8B008BFF",
+    dorn  = "#8B4500FF",
+    dred  = "#800000FF",
+    dylw  = "#8B8B00FF",
+    bblk  = "<b style=color:'#000000FF'>",
+    bg10  = "<b style=color:'#1A1A1AFF'>",
+    bg20  = "<b style=color:'#333333FF'>",
+    bg30  = "<b style=color:'#4D4D4DFF'>",
+    bg40  = "<b style=color:'#666666FF'>",
+    bg50  = "<b style=color:'#808080FF'>",
+    bg60  = "<b style=color:'#999999FF'>",
+    bg70  = "<b style=color:'#B3B3B3FF'>",
+    bg80  = "<b style=color:'#ccccccFF'>",
+    bg85  = "<b style=color:'#D9D9D9FF'>",
+    bg90  = "<b style=color:'#E6E6E6FF'>",
+    bg95  = "<b style=color:'#F2F2F2FF'>",
+    bwht  = "<b style=color:'#FFFFFFFF'>",
+    binv  = "<b style=color:'#FFFFFF01'>",
+    bblu  = "<b style=color:'#0000FFFF'>",
+    bcyn  = "<b style=color:'#00FFFFFF'>",
+    bgrn  = "<b style=color:'#00FF00FF'>",
+    bmag  = "<b style=color:'#FF00FFFF'>",
+    born  = "<b style=color:'#FF8800FF'>",
+    bred  = "<b style=color:'#AA0000FF'>",
+    bylw  = "<b style=color:'#FFFF00FF'>",
     blblu = "<b style=color:'#DDDDFFFF'>",
     blcyn = "<b style=color:'#FFDDFFFF'>",
     blgrn = "<b style=color:'#DDFFDDFF'>",
@@ -356,86 +356,93 @@ values <- function() {
     bdorn = "<b style=color:'#8B4500FF'>",
     bdred = "<b style=color:'#800000FF'>",
     bdylw = "<b style=color:'#8B8B00FF'>",
-    pblk = "<span style=color:'#000000FF'>",
-    pg10 = "<span style=color:'#1A1A1AFF'>",
-    pg20 = "<span style=color:'#333333FF'>",
-    pg30 = "<span style=color:'#4D4D4DFF'>",
-    pg40 = "<span style=color:'#666666FF'>",
-    pg50 = "<span style=color:'#808080FF'>",
-    pg60 = "<span style=color:'#999999FF'>",
-    pg70 = "<span style=color:'#B3B3B3FF'>",
-    pg80 = "<span style=color:'#CCCCCCFF'>",
-    pg85 = "<span style=color:'#D9D9D9FF'>",
-    pg90 = "<span style=color:'#E6E6E6FF'>",
-    pg95 = "<span style=color:'#F2F2F2FF'>",
-    pwht = "<span style=color:'#FFFFFFFF'>",
-    pinv = "<span style=color:'#FFFFFF01'>",
-    pblu = "<span style=color:'#0000AAFF'>",
-    pcyn = "<span style=color:'#00FFFFFF'>",
-    pgrn = "<span style=color:'#00FF00FF'>",
-    pmag = "<span style=color:'#FF00FFFF'>",
-    porn = "<span style=color:'#FF8800FF'>",
-    pred = "<span style=color:'#AA0000FF'>",
-    pylw = "<span style=color:'#FFFF00FF'>",
-    plblu = "<span style=color:'#DDDDFFFF'>",
-    plcyn = "<span style=color:'#FFDDFFFF'>",
-    plgrn = "<span style=color:'#DDFFDDFF'>",
-    plmag = "<span style=color:'#FFBBFFFF'>",
-    plorn = "<span style=color:'#FFEEAAFF'>",
-    plred = "<span style=color:'#FFDDDDFF'>",
-    plylw = "<span style=color:'#FFFFDDFF'>",
-    pmblu = "<span style=color:'#AAAAFFFF'>",
-    pmcyn = "<span style=color:'#66FFFFFF'>",
-    pmgrn = "<span style=color:'#FFFF66FF'>",
-    pmmag = "<span style=color:'#FF66FFFF'>",
-    pmorn = "<span style=color:'#FFAA66FF'>",
-    pmred = "<span style=color:'#AFFAAAFF'>",
-    pmylw = "<span style=color:'#FFFF66FF'>",
-    pdblu = "<span style=color:'#000080FF'>",
-    pdcyn = "<span style=color:'#008B8BFF'>",
-    pdgrn = "<span style=color:'#008B00FF'>",
-    pdmag = "<span style=color:'#8B008BFF'>",
-    pdorn = "<span style=color:'#8B4500FF'>",
-    pdred = "<span style=color:'#800000FF'>",
-    pdylw = "<span style=color:'#8B8B00FF'>",
-    pt = ggplot2::.pt,
-    NAL = NA,
-    NAR = NA_real_,
-    NAI = NA_integer_,
-    NAC = NA_character_,
-    one = 0.99999999,
-    zero = 0.00000001,
-    colors = base::c('#600000FF', '#000060FF', '#6B006BFF', '#303030FF', '#6B3500FF', '#FF0000FF', '#0000FFFF', '#FF00FFFF', '#606060FF', '#FF8800FF'),
-    lines = base::c('solid', '42', '22', '11', '4111', '2111', '1114', '1112', '1441'),
-    edots = base::c(5, 0, 2, 6, 1),
-    fdots = base::c(21, 23, 24, 22, 25),
-    ldots = base::c(4, 8, 35, 36, 37, 38, 42, 43, 45, 47, 60, 61, 62, 64, 92, 94, 124, 126),
-    ndots = base::as.character(0:9),
-    pdots = base::c("!", "@", "#", "$", "%", "&", "?"),
-    sdots = base::c(16, 18, 17, 15),
-    az.dots = letters,
-    AZ.dots = LETTERS,
-    digits = base::as.character(0:9),
-    az = letters,
-    AZ = LETTERS,
-    azAZ = base::c(letters, LETTERS),
-    names = base::c(letters, LETTERS, 0:9, "_", "."),
-    names0 = base::c(letters, LETTERS, 0:9, "."),
-    files = base::c(letters, LETTERS, 0:9, "_", ".", " ", ",", "-", "(", ")"),
-    files0 = base::c(letters, LETTERS, 0:9, ".", " ", ",", "-", "(", ")"),
-    models = base::c(letters, LETTERS, 0:9, " ", "+", "*", "~", ":", "_", "."),
-    models0 = base::c(letters, LETTERS, 0:9, " ", "+", "*", "~"),
-    right = base::c(letters, LETTERS, 0:9, " ", "+" ,"*", ":", "_", "."),
-    right0 = base::c(letters, LETTERS, 0:9, " ", "+", "*"),
-    labels = base::c(letters, LETTERS, 0:9, ".", " ", ",", "-", "(", ")", "[", "_", "]", "{", "}"),
-    vowels = base::c("a", "e", "i", "o", "u", "A", "E", "I", "O", "U"),
-    bbb = .bbbs,
-    ccc = .cccs,
-    ddd = .ddds,
-    eee = .eees,
-    iii = .iiis,
-    mmm = .mmms,
-    sss = .ssss
+    pblk  = "<span style=color:'#000000FF'>",
+    pg10  = "<span style=color:'#1A1A1AFF'>",
+    pg20  = "<span style=color:'#333333FF'>",
+    pg30  = "<span style=color:'#4D4D4DFF'>",
+    pg40  = "<span style=color:'#666666FF'>",
+    pg50  = "<span style=color:'#808080FF'>",
+    pg60  = "<span style=color:'#999999FF'>",
+    pg70  = "<span style=color:'#B3B3B3FF'>",
+    pg80  = "<span style=color:'#ccccccFF'>",
+    pg85  = "<span style=color:'#D9D9D9FF'>",
+    pg90  = "<span style=color:'#E6E6E6FF'>",
+    pg95  = "<span style=color:'#F2F2F2FF'>",
+    pwht  = "<span style=color:'#FFFFFFFF'>",
+    pinv  = "<span style=color:'#FFFFFF01'>",
+    pblu  = "<span style=color:'#0000AAFF'>",
+    pcyn  = "<span style=color:'#00FFFFFF'>",
+    pgrn  = "<span style=color:'#00FF00FF'>",
+    pmag  = "<span style=color:'#FF00FFFF'>",
+    porn  = "<span style=color:'#FF8800FF'>",
+    pred  = "<span style=color:'#AA0000FF'>",
+    pylw  = "<span style=color:'#FFFF00FF'>",
+    plblu   = "<span style=color:'#DDDDFFFF'>",
+    plcyn   = "<span style=color:'#FFDDFFFF'>",
+    plgrn   = "<span style=color:'#DDFFDDFF'>",
+    plmag   = "<span style=color:'#FFBBFFFF'>",
+    plorn   = "<span style=color:'#FFEEAAFF'>",
+    plred   = "<span style=color:'#FFDDDDFF'>",
+    plylw   = "<span style=color:'#FFFFDDFF'>",
+    pmblu   = "<span style=color:'#AAAAFFFF'>",
+    pmcyn   = "<span style=color:'#66FFFFFF'>",
+    pmgrn   = "<span style=color:'#FFFF66FF'>",
+    pmmag   = "<span style=color:'#FF66FFFF'>",
+    pmorn   = "<span style=color:'#FFAA66FF'>",
+    pmred   = "<span style=color:'#AFFAAAFF'>",
+    pmylw   = "<span style=color:'#FFFF66FF'>",
+    pdblu   = "<span style=color:'#000080FF'>",
+    pdcyn   = "<span style=color:'#008B8BFF'>",
+    pdgrn   = "<span style=color:'#008B00FF'>",
+    pdmag   = "<span style=color:'#8B008BFF'>",
+    pdorn   = "<span style=color:'#8B4500FF'>",
+    pdred   = "<span style=color:'#800000FF'>",
+    pdylw   = "<span style=color:'#8B8B00FF'>",
+    pt      = ggplot2::.pt,
+    NAL     = NA,
+    NAR     = NA_real_,
+    NAI     = NA_integer_,
+    NAC     = NA_character_,
+    one     = 0.99999999,
+    zero    = 0.00000001,
+    colors  = base::c('#600000FF', '#000060FF', '#6B006BFF', '#303030FF', '#6B3500FF', '#FF0000FF', '#0000FFFF', '#FF00FFFF', '#606060FF', '#FF8800FF'),
+    lines   = base::c('solid', '42', '22', '11', '4111', '2111', '1114', '1112', '1441'),
+    edots   = base::c(5, 0, 2, 6, 1),
+    fdots   = base::c(21, 23, 24, 22, 25),
+    ldots   = base::c(4, 8, 35, 36, 37, 38, 42, 43, 45, 47, 60, 61, 62, 64, 92, 94, 124, 126),
+    ndots   = uj::asCHR(0:9),
+    pdots   = base::c("!", "@", "#", "$", "%", "&", "?"),
+    sdots   = base::c(16, 18, 17, 15),
+    azdots  = letters,
+    AZdots  = LETTERS,
+    digits  = uj::asCHR(0:9),
+    az      = letters,
+    AZ      = LETTERS,
+    azAZ    = base::c(letters, LETTERS),
+    vowels  = base::c('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'),
+    files   = base::c(letters, LETTERS, 0:9, '(', ')', '_', '.', ' ', ',', '-'),
+    models  = base::c(letters, LETTERS, 0:9, ' ', '+', '*', '~', ':', '_', '.'),
+    labels  = base::c(letters, LETTERS, 0:9, '(', ')', '[', '_', ']', '{', '}', '.', ' ', ',', '-'),
+    names   = base::c(letters, LETTERS, 0:9, '_', '.'),
+    right   = base::c(letters, LETTERS, 0:9, ' ', '+' ,'*', ':', '_', '.'),
+    files0  = base::c(letters, LETTERS, 0:9, '(', ')', '.', ' ', ',', '-'),
+    names0  = base::c(letters, LETTERS, 0:9, '.'),
+    models0 = base::c(letters, LETTERS, 0:9, ' ', '+', '*', '~'),
+    right0  = base::c(letters, LETTERS, 0:9, ' ', '+', '*'),
+    bbb = uj:::.bbb,
+    ccc = uj:::.ccc,
+    ddd = uj:::.ddd,
+    eee = uj:::.eee,
+    iii = uj:::.iii,
+    mmm = uj:::.mmm,
+    sss = uj:::.sss,
+    BBB = uj:::.BBB,
+    CCC = uj:::.CCC,
+    DDD = uj:::.DDD,
+    EEE = uj:::.EEE,
+    III = uj:::.III,
+    MMM = uj:::.MMM,
+    SSS = uj:::.SSS
   )
   descriptions <- base::c(
     yesno = "yes/no spec for dialog box buttons in ?dialogs functions",
@@ -654,7 +661,7 @@ values <- function() {
     iOMEGA = "italic OMEGA",
     bALPHA = "bold ALPHA",
     bBETA = "bold BETA",
-    bGAMMA = "bold GAMMA",
+    bgAMMA = "bold GAMMA",
     bDELTA = "bold DELTA",
     bEPSILON = "bold EPSILON",
     bZETA = "bold ZETA",
@@ -820,58 +827,96 @@ values <- function() {
     NAC = "character NA",
     one = "almost one",
     zero = "almost zero",
-    colors = "plot palette: colors // { dark.red, dark.blue, dark.magenta, black, dark.orange, full.red, full.blue, full.magenta, grey40, full.orange }",
-    lines = "plot palette: line.types // { solid 42 22 11 4111, 2111 1114 1112 1441 }",
-    edots = "plot palette: empty.dots // { circle, up.triangle, down.triangle, diamond, square }",
-    fdots = "plot palette: fill.dots  // { circle, up.triangle, down.triangle, diamond, square } ",
-    ldots = "plot palette: line.dots  // { × + < > ^ v ~ | / — \\ }",
-    ndots = "plot palette: digit.dots // { 0 1 2 3 4 5 6 7 8 9 }",
-    pdots = "plot palette: punc.dots  // { ! @ # $ % & ? }",
-    sdots = "plot palette: solid.dots // { circle, up.triangle, square, diamond }",
-    az.dots = "plot palette: az.dots // { a b c d e f g ... z }",
-    AZ.dots = "plot palette: AZ.dots // { A B C D E F G ... Z ]",
-    digits = "digits as character",
-    az = "letters",
-    AZ = "LETTERS",
-    azAZ = "lower and uppercase roman letters",
-    names = "valid characters for model element names // letters LETTERS 0:9 _.",
-    namesr = "valid characters for restricted model element names // letters LETTERS 0:9",
-    files = "valid characters for file names // letters LETTERS 0:9 space _.-()",
-    files0 = "valid characters for restricted file names // letters LETTERS 0:9 space .",
-    models = "valid characters for model specification // letters LETTERS 0:9 space _.:+*~" ,
-    models0 = "valid characters for restricted model specification // letters LETTERS 0:9 space +*~ " ,
-    right = "valid characters for right-side model specification // letters LETTERS 0:9 space _.:+*" ,
-    right0 = "valid characters for restricted right-side model specification // letters LETTERS 0:9 space +*" ,
-    labels = "valid characters for plotting labels // letters LETTERS 0:9 space _.-{[()]}",
-    vowels = "Roman vowels // aeiouAEIOU",
-    bbb = "basic property values // bbb_props() // aka basic structural properties",
-    ccc = "xclass property values // ccc_props() // aka extended class properties",
-    ddd = "defined-D property values // ddd_props() // aka defined dimensionality properties",
-    eee = "effective-D property values // eee_props() // aka effective dimensionality properties",
-    iii = "integrity property values // iii_props() // aka completeness and uniqueness properties",
-    mmm = "xmode property values // mmm_props() // aka extended mode properties",
-    sss = "shape property values // sss_props() // aka geometric shape properties"
+    colors = "plot palette: colors >> { dark.red, dark.blue, dark.magenta, black, dark.orange, full.red, full.blue, full.magenta, grey40, full.orange }",
+    lines  = "plot palette: line.types >> { solid 42 22 11 4111, 2111 1114 1112 1441 }",
+    edots  = "plot palette: empty.dots >> { circle, up.triangle, down.triangle, diamond, square }",
+    fdots  = "plot palette: fill.dots  >> { circle, up.triangle, down.triangle, diamond, square } ",
+    ldots  = "plot palette: line.dots  >> { × + < > ^ v ~ | / — \\ }",
+    ndots  = "plot palette: digit.dots >> { 0 1 2 3 4 5 6 7 8 9 }",
+    pdots  = "plot palette: punc.dots  >> { ! @ # $ % & ? }",
+    sdots  = "plot palette: solid.dots >> { circle, up.triangle, square, diamond }",
+    azdots = "plot palette: az.dots >> { a b c d e f g ... z }",
+    AZdots = "plot palette: AZ.dots >> { A B C D E F G ... Z ]",
+    digits  = "digits as character >> as.character(0:9)",
+    az      = "letters",
+    AZ      = "LETTERS",
+    azAZ    = "lower + uppercase letters >> c(letters, LETTERS)",
+    vowels  = "lower + uppercase vowels >> c('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')",
+    files   = "valid chars for file names >> c(letters, LETTERS, 0:9, '(', ')', ' ', '_', '.', '-')",
+    models  = "valid chars for model spec >> c(letters, LETTERS, 0:9, ' ', '_', '.', ':', '+', '*'. '~')",
+    labels  = "valid chars for plotting labels >> c(letters, LETTERS, 0:9, '{', '[', '(', ')', ']', '}', ' ', '_', '.', '-')",
+    names   = "valid chars for model element names >> c(letters, LETTERS, 0:9, '_' , '.')",
+    right   = "valid chars for right-side model spec >> c(letters, LETTERS, 0:9, ' ', '_', '.', ':', '+', '*')",
+    files0  = "valid chars for restricted file names >> c(letters, LETTERS, 0:9, ' ', '.')",
+    names0  = "valid chars for restricted model element names >> c(letters, LETTERS, 0:9)",
+    models0 = "valid chars for restricted model specification >> c(letters, LETTERS, 0:9, ' ', '+', '*', '~')",
+    right0  = "valid chars for restricted right-side model spec >> c(letters, LETTERS, 0:9, ' ', '+', '*')" ,
+    bbb = "basic property values >> bbb_props() >> AKA basic structural properties",
+    ccc = "xclass property values >> ccc_props() >> AKA extended class properties",
+    ddd = "defined-D property values >> ddd_props() >> AKA defined dimensionality properties",
+    eee = "effective-D property values >> eee_props() >> AKA effective dimensionality properties",
+    iii = "integrity property values >> iii_props() >> AKA degree of completeness and uniqueness properties",
+    mmm = "xmode property values >> mmm_props() >> AKA extended mode properties",
+    sss = "shape property values >> sss_props() >> AKA geometric shape properties",
+    BBB = "uppercase basic property values >> toupper(bbb_props()) >> AKA uppercase basic structural properties",
+    CCC = "uppercase xclass property values >> toupper(ccc_props()) >> AKA uppercase extended class properties",
+    DDD = "uppercase defined-D property values >> toupper(ddd_props()) >> AKA uppercase defined dimensionality properties",
+    EEE = "uppercase effective-D property values >> toupper(eee_props()) >> AKA uppercase effective dimensionality properties",
+    III = "uppercase integrity property values >> toupper(iii_props()) >> AKA uppercase completeness and uniqueness properties",
+    MMM = "uppercase xmode property values >> toupper(mmm_props()) >> AKA uppercase extended mode properties",
+    SSS = "uppercase shape property values >> toupper(sss_props()) >> AKA uppercase geometric shape properties"
   )
-  base::attr(out, "descriptions") <- descriptions
-  out
+  uj::add_at(out, descriptions = descriptions)
 }
 
 #' @rdname values
 #' @export
-vnames <- function() {base::names(uj::values())}
+value_names <- function() {uj::EN(uj::values())}
 
 #' @rdname values
 #' @export
-vtable <- function() {
+value_table <- function() {
   x <- uj::values()
-  vals <- base::sapply(x, paste0, collapse = "|")
-  tibble::tibble(name = base::names(x), value = vals, description = base::attr(x, "descriptions"))
+  values <- base::sapply(x, paste0, collapse = "|")
+  uj::tb(name = uj::EN(x), value = values, description = uj::at(x, "descriptions"))
 }
 
 #' @rdname values
 #' @export
-v <- function(...) {
-  x <- base::as.character(base::match.call())
-  x <- x[2:base::length(x)]
+value <- function(...) {
+  x <- uj::asCHR(base::match.call())
+  x <- x[2:uj::N(x)]
   uj::av(uj::values()[x])
 }
+
+#' @rdname values
+#' @export
+values <- values
+
+#' @rdname values
+#' @export
+val_names <- value_names
+
+#' @rdname values
+#' @export
+val_table <- value_table
+
+#' @rdname values
+#' @export
+val <- value
+
+#' @rdname values
+#' @export
+vs <- values
+
+#' @rdname values
+#' @export
+vnames <- value_names
+
+#' @rdname values
+#' @export
+vtable <- value_table
+
+#' @rdname values
+#' @export
+v <- value

@@ -1,50 +1,48 @@
 #' @encoding UTF-8
 #' @family props
 #' @title basic + xclass combination properties
-#' @description \tabular{rl}{
-#'     `bbb_ccc_funs`   \tab What \link[=bbb]{basic} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?
-#'   \cr    `bbb_ccc`   \tab Is `x` a match to the single basic and xclass properties in `bbb` and `ccc`, respectively?
-#'   \cr    `BBB_CCC`   \tab Is `x` a match to single basic and xclass properties `'BBB'` and `'CCC'`, respectively?
-#' }
-#' Some combinations of basic + xclass properties are non-sensical. For this reason, the basic properties represented in this family of functions are `c('atm', 'nil',  'pop')`.
-#' \cr\cr In addition, the base property `'nil'` is nonsensical in combination with xclasses `'mvc'` and `'scl'` (which thus do not have combined `BBB_CCC` property functions).
+#' @description Check for combinations of \link[=bbb]{basic} and \link[=ccc]{xclass} properties.
+#' @details
+#' \tabular{ll}{  `bbb_cccfuns`   \tab What \link[=bbb]{basic} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?                                                                                                  \cr   \tab  }
+#' \tabular{ll}{  `{bbb}_{ccc}`   \tab Is `x` a match to single basic property `'{bbb}'` and single xmode property `'{mmm}'`, where `{bbb}` and `{mmm}` are placeholders for any given basic property and any given xclass property, respectively? \cr   \tab  }
+#' \tabular{ll}{  `bbb_ccc`       \tab Is `x` a match to the single basic and xclass properties in `bbb` and `ccc`, respectively?                                                                                                                              }
+#' \cr\cr Some combinations of basic + xclass properties are nonsensical. For this reason, the basic properties represented in this family of functions are `c('atm', 'nil',  'pop')`, or atomic, nil (non-`NULL` and of length 0), and populated (of length `1+`).
+#' \cr\cr In addition, the base property `'nil'` is nonsensical in combination with xclasses `'mvc'` (multivec) and `'scl'` (scalar), which thus do not have combined `bbb_ccc` property functions.
 #' @param x An R object.
 #' @param bbb A character scalar single basic property from \code{\link{bbb_props}()}.
 #' @param ccc A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character vector* \cr   `bbb_ccc_funs`
-#'  \cr\cr *A logical scalar* \cr   `BBB_CCC, bbb_ccc`
+#' @return **A character vector** \cr `bbb_ccc_funs`
+#' \cr\cr  **A logical scalar**   \cr `bbb_ccc, {bbb}_{ccc}`
 #' @examples
 #' bbb_ccc_funs()
-#' bbb_ccc_props()
 #' bbb_ccc(letters, "atm", "mvc")
 #' bbb_ccc(1, "nil", "vec")
 #' atm_gen(letters)
 #' atm_scl(1)
 #' @export
 bbb_ccc <- function(x, bbb, ccc, ...) {
-  errs <- c(uj:::.meets_errs(x, ...),
-            uj::f0(uj::isIN(bbb, .bbbs), NULL, "[bbb] is not a scalar value from bbb_props()."),
-            uj::f0(uj::isIN(ccc, .cccs), NULL, "[ccc] is not a scalar value from ccc_props()."))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
-  arr <- ccc == "arr"; ARR <- uj::iarr(x)
-  dtf <- ccc == "dtf"; DTF <- uj::idtf(x)
-  gen <- ccc == "gen"; GEN <- uj::igen(x)
-  mat <- ccc == "mat"; MAT <- uj::imat(x)
-  mvc <- ccc == "mvc"; MVC <- uj::imvc(x)
-  scl <- ccc == "scl"; SCL <- uj::iscl(x)
-  vec <- ccc == "vec"; VEC <- uj::ivec(x)
-  vls <- ccc == "vls"; VLS <- uj::ivls(x)
-  pop <- bbb == "pop"; POP <- uj::f0(DTF, base::NROW(x) * base::NCOL(x) > 0, base::length(x) > 0)
-  nil <- bbb == "nil"; NIL <- !POP
+  if (uj::isCHR(bbb)) {bbb <- base::tolower(bbb)}
+  if (uj::isCHR(ccc)) {ccc <- base::tolower(ccc)}
+  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::f0(uj::isIN1(bbb, uj:::.bbb), NULL, "[bbb] is not a scalar value from bbb_props()."), uj::f0(uj::isIN1(ccc, uj:::.ccc), NULL, "[ccc] is not a scalar value from ccc_props().")), PKG = "uj")
+  arr <- ccc == "arr"; ARR <- uj::ARR(x)
+  dtf <- ccc == "dtf"; DTF <- uj::DTF(x)
+  gen <- ccc == "gen"; GEN <- uj::GEN(x)
+  mat <- ccc == "mat"; MAT <- uj::MAT(x)
+  mvc <- ccc == "mvc"; MVC <- uj::MVC(x)
+  scl <- ccc == "scl"; SCL <- uj::SCL(x)
+  vec <- ccc == "vec"; VEC <- uj::VEC(x)
+  vls <- ccc == "vls"; VLS <- uj::VLS(x)
+  pop <- bbb == "pop"; POP <- uj::POP(x)
+  nil <- bbb == "nil"; NIL <- !POP & !uj::NLL(x)
   atm <- bbb == "atm"
   if (!uj::meets(x, ...)) {F}
   else if ((pop & !POP) | (nil & !NIL) | (arr & !ARR) | (dtf & !DTF) | (gen & !GEN) | (mat & !MAT) | (mvc & !MVC) | (scl & !SCL) | (vec & !VEC) | (vls & !VLS)) {F}
-  else if (atm & dtf) {base::all(base::apply(x, 2, base::is.atomic))}
-  else if (atm & vls) {base::all(base::sapply(x, base::is.atomic))}
-  else if (atm) {base::is.atomic(x)}
-  else {uj::run("uj::i", bbb)}
+  else if (atm & dtf) {base::all(base::apply(x, 2, uj::isATM))}
+  else if (atm & vls) {base::all(base::sapply(x, uj::isATM))}
+  else if (atm) {uj::isATM(x)}
+  else {uj::run("uj::", base::toupper(bbb), "(x)")}
 }
 
 #' @rdname bbb_ccc

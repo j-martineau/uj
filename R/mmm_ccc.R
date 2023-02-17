@@ -1,43 +1,52 @@
 #' @encoding UTF-8
 #' @family properties
 #' @title xmode + xclass combination properties
-#' @description \tabular{rl}{
-#'     `mmm_ccc_funs`   \tab What \link[=mmm]{xmode} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?
-#'   \cr    `mmm_ccc`   \tab Does `x` match the single xmode and xclass properties in arguments `mmm` and `ccc`, respectively?
-#'   \cr    `MMM_CCC`   \tab Does `x` match the single xmode and xclass properties `'MMM'` and `'CCC'`, respectively?
-#' }
+#' @description Check for combinations of \link[=mmm]{xmode} and \link[=ccc]{xclass}.
+#' @details
+#' \tabular{ll}{  `mmm_ccc_funs`   \tab What \link[=mmm]{xmode} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?                                                                                   \cr   \tab     }
+#' \tabular{ll}{  `mmm_ccc`        \tab Does `x` match the single xmode and xclass properties in arguments `mmm` and `ccc`, respectively?                                                                                            \cr   \tab   \cr
+#'                `{mmm}_{ccc}`    \tab Does `x` match the single xmode property `'{mmm}''` and single xclass property `'{ccc}'`, where `'{mmm}'` and `'{ccc}'` are placeholders for any given xmode and any given xclass properties, respectively? }
 #' @param x An R object.
 #' @param mmm A character scalar single xmode property from \code{\link{mmm_props}()}.
 #' @param ccc A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character scalar* \cr   `mmm_ccc_funs`
-#'   \cr\cr *A logical scalar* \cr   `MMM_CCC, mmm_ccc`
+#' @return **A character scalar** \cr `mmm_ccc_funs`
+#' \cr\cr  **A logical scalar**   \cr `mmm_ccc, {mmm}_{ccc}`
 #' @examples
-#' scalar1 <- "a"
-#' lst2x26 <- list(letters = letters, LETTERS = LETTERS)
-#' mmm_ccc_funs()
-#' c(mmm_ccc(lst2x26, "chr", "vls"), chr_vls(lst2x26))
-#' c(mmm_ccc(lst2x26, "num", "mat"), num_mat(lst2x26))
-#' c(mmm_ccc(scalar1, "ch1", "scl"), ch1_scl(scalar1))
+#' egScl <- "a"
+#' egLst <- list(letters = letters, LETTERS = LETTERS)
+#' mmm_cccfuns()
+#' c(mmm_ccc(lst2x26, "chr", "vls"), chr_vls(egLst))
+#' c(mmm_ccc(lst2x26, "num", "mat"), num_mat(egLst))
+#' c(mmm_ccc(scalar1, "ch1", "scl"), ch1_scl(egScl))
 #' c(mmm_ccc(letters, "ch1", "vec"), ch1_vec(letters))
 #' c(mmm_ccc(letters, "num", "dtf"), num_dtf(letters))
 #' @export
 mmm_ccc <- function(x, mmm, ccc, ...) {
-  cfun <- function(cx) {uj::run("i", ccc, "(cx)")}
-  mfun <- function(mx) {uj::run("i", mmm, "(mx)")}
-  dfun <- function(dx) {uj::f0(base::NROW(dx) * base::NCOL(dx) == 0, F, base::all(base::apply(dx, 2, mfun)))}
-  vfun <- function(vx) {uj::f0(base::length(vx) == 0, F, base::all(base::sapply(x, mfun)))}
-  errs <- c(uj:::.meets_errs(x, ...),
-            uj::f0(uj::f0(base::length(mmm) != 1 | !base::is.character(mmm), F, uj::f0(base::is.na(mmm), F, mmm %in% uj:::.mmms)), NULL, '[mmm] is not a scalar value from mmm_props().'),
-            uj::f0(uj::f0(base::length(ccc) != 1 | !base::is.character(ccc), F, uj::f0(base::is.na(ccc), F, ccc %in% uj:::.cccs)), NULL, '[ccc] is not a scalar value from ccc_props().'))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
-  uj::f0(!uj::meets(x, ...), F, uj::f0(!cfun(x), F, uj::f0(ccc == 'dtf', dfun(x), uj::f0(ccc == "vls", vfun(x), mfun(x)))))
+  cfun <- function(cx) {uj::run("i", base::toupper(ccc), "(cx)")}
+  mfun <- function(mx) {uj::run("i", base::toupper(mmm), "(mx)")}
+  dfun <- function(dx) {uj::f0(uj::NRC0(dx), F, base::all(base::apply(dx, 2, mfun)))}
+  vfun <- function(vx) {uj::f0(uj::N0(vx), F, base::all(base::sapply(x, mfun)))}
+  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...),
+                          uj::f0(uj::f0(uj::notN1(mmm) | uj::notCHR(mmm), F,
+                          uj::f0(uj::na(mmm), F, uj::isIN1(base::toupper(mmm), uj:::.MMM))), NULL, '[mmm] is not a scalar value from mmm_props().'),
+                          uj::f0(uj::f0(uj::notN1(ccc) | uj::notCHR(ccc), F,
+                          uj::f0(uj::na(ccc), F, uj::isIN1(base::toupper(ccc), uj:::.CCC))), NULL, '[ccc] is not a scalar value from ccc_props().')), PKG = "uj")
+  ccc <- base::tolower(ccc)
+  uj::f0(!uj::meets(x, ...), F,
+    uj::f0(!cfun(x), F,
+      uj::f0(ccc == 'dtf', dfun(x),
+        uj::f0(ccc == "vls", vfun(x), mfun(x)))))
 }
 
 #' @rdname mmm_ccc
 #' @export
-mmm_ccc_funs <- function() {base::sort(uj::av(base::apply(base::expand.grid(mmm = .mmms, ccc = uj:::.cccs), 1, base::paste0, collapse = '_')))}
+mmm_ccc_funs <- function() {
+  y <- base::expand.grid(mmm = uj::.mmm, ccc = uj:::.ccc)
+  y <- base::apply(y, 1, base::paste0, collapse = "_")
+  uj::sav(y)
+}
 
 #' @rdname mmm_ccc
 #' @export

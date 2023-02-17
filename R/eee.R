@@ -1,40 +1,33 @@
 #' @name eee
 #' @encoding UTF-8
 #' @family properties
-#' @title Effective dimensionality (effective.d) properties
-#' @description An object's effective.d is defined as the number of dimensions in which it has multiple populated index positions (i.e., if a dimension has only one index position, that is not an effective dimension).
-#' \tabular{rl}{
-#'       `'eUD'`   \tab *Effectively* `NaN` *dimensional*.
-#'   \cr           \tab Length-`0` objects including `NULL` (of undefined effective.d).
-#'   \cr           \tab  
-#'   \cr `'e0D'`   \tab *Effectively* `0` *dimensional*
-#'   \cr           \tab `1x1` data.frames and length-`1` vectors, \code{\link[=ivls]{vlists}}, and arrays.
-#'   \cr           \tab  
-#'   \cr `'e1D'`   \tab *Effectively* `1` *dimensional*
-#'   \cr           \tab \code{\link[=imvc]{multivecs}}, length-`2+` vlists, \code{\link[=irow]{row}} data.frames, \code{\link[=icol]{col}} data.frames, and length-`2+` arrays with `2+` index positions in exactly `1` dimension.
-#'   \cr           \tab  
-#'   \cr `'e2D'`   \tab *Effectively* `2` *dimensional*
-#'   \cr           \tab `2+ x 2+ `data.frames and length-`4+` arrays with `2+` positions in exactly `2` dimensions.
-#'   \cr           \tab  
-#'   \cr `'eHD'`   \tab *Effectively hyper dimensional*
-#'   \cr           \tab Length-`8+` arrays with `2+` positions in `3+` dimensions.
-#' }
-#' \cr\cr Effective dimensionality property functions are: \tabular{rl}{
-#'     `is_eee_spec`   \tab Is `spec` an effective.d specification?
-#'   \cr `eee_props`   \tab What effective.d properties are there?
-#'   \cr  `eee_funs`   \tab What effective.d property functions are there?
-#'   \cr      `neee`   \tab How many effective dimensions does `x` have?
-#'   \cr      `ieee`   \tab Is `x` a match to the effective.d specification`spec`?
-#'   \cr      `iEEE`   \tab Is `x` a match to the single effective.d property `'EEE'`?
-#'   \cr       `eee`   \tab What are `x`'s effective.d properties?
-#' }
+#' @title Effective dimensionality (effective.D) properties
+#' @description An object's effective.D is defined as the number of dimensions in which it has multiple populated index positions (i.e., if a dimension has only one index position, that is not an effective dimension).
+#' \tabular{ll}{  `'eud', 'EUD'`   \tab *Effectively* `NaN` *dimensional*.                                                                                                                                                                                      \cr
+#'                                 \tab Length-`0` objects including `NULL` (of undefined effective.D).                                                                                                                                            \cr   \tab   \cr
+#'                `'e0d', 'E0D'`   \tab *Effectively* `0` *dimensional*                                                                                                                                                                                         \cr
+#'                                 \tab `1x1` data.frames and length-`1` vectors, \code{\link[=VLS]{vlists}}, and arrays.                                                                                                                          \cr   \tab   \cr
+#'                `'e1d', 'E1D'`   \tab *Effectively* `1` *dimensional*                                                                                                                                                                                         \cr
+#'                                 \tab \code{\link[=MVC]{multivecs}}, length-`2+` vlists, \code{\link[=ROW]{row}} data.frames, \code{\link[=COL]{column}} data.frames, and length-`2+` arrays with `2+` index positions in exactly `1` dimension. \cr   \tab   \cr
+#'                `'e2d', 'E2D'`   \tab *Effectively* `2` *dimensional*                                                                                                                                                                                         \cr
+#'                                 \tab `2+ x 2+ `data.frames and length-`4+` arrays with `2+` positions in exactly `2` dimensions.                                                                                                                \cr   \tab   \cr
+#'                `'ehd', 'EHD'`   \tab *Effectively hyper dimensional*                                                                                                                                                                            \cr   \tab   \cr
+#'                                 \tab Length-`8+` arrays with `2+` positions in `3+` dimensions.                                                                                                                                                                }
+#' \cr Effective dimensionality property functions are:
+#' \tabular{ll}{  `is_eee_spec`   \tab Is `spec` an effective.D specification?                                                                                                      \cr   \tab     }
+#' \tabular{ll}{  `eee_props`    \tab What effective.D properties are there?                                                                                                        \cr   \tab     }
+#' \tabular{ll}{  `eee_funs`     \tab What effective.D property functions are there?                                                                                                \cr   \tab     }
+#' \tabular{ll}{  `{eee}`          \tab Is `x` a match to the single effective.D property `'{eee}'` where `{eee}` is a placeholder for any given effective dimensionality property? \cr   \tab     }
+#' \tabular{ll}{  `neee`         \tab How many effective dimensions does `x` have?                                                                                                  \cr   \tab     }
+#' \tabular{ll}{  `eee`          \tab What are `x`'s effective.d properties?                                                                                                        \cr   \tab   \cr
+#'                `EEE`          \tab Is `x` a match to the effective.D specification in `spec`?                                                                                                   }
 #' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more effective.d properties from `eee_props()`. Effective.d properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more effective.D properties from `eee_props()`. Effective.D properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character vector* \cr   `eee_props, eee_funs, eee`
-#'  \cr\cr *A logical scalar* \cr   `is_eee_spec, iEEE, ieee`
-#'  \cr\cr *A numeric scalar* \cr   `neee`
+#' @return **A character vector** \cr `eee_props, eee_funs, eee`
+#' \cr\cr  **A logical scalar**   \cr `is_eee_spec, EEE, XXX`
+#' \cr\cr  **An integer scalar**  \cr `neee`
 #' @examples
 #' a. <- "a"
 #' abc. <- c("a", "b", "c")
@@ -68,61 +61,57 @@
 #' c(neee(one1), neee(one2), neee(one3), neee(one4))
 #' c(neee(two1), neee(two2), neee(two3), neee(two4))
 #' c(neee(hyp1), neee(hyp2), neee(hyp3), neee(hyp4))
-#'
-#' c(ieee(one1, "eUD"), ieee(one1, "e0D"), ieee(one1, "e1D"), ieee(one1, "e2D"), ieee(one1, "eHD"))
-#' c(ieUD(one1), ie0D(one1), ie1D(one1), ie2D(one1), ieHD(one1))
-#'
+#' c(EEE(one1, "eud"), EEE(one1, "e0d"), EEE(one1, "e1d"), EEE(one1, "e2d"), EEE(one1, "ehd"))
+#' c(EUD(one1), E0D(one1), E1D(one1), E2D(one1), EHD(one1))
 #' c(eee(udf1), eee(zro1), eee(one1), eee(two1), eee(hyp1), eee(hyp4))
 #' @export
 eee <- function(x) {
-  out <- NULL
-  for (e in uj:::.eees) {out <- base::c(out, uj::f0(uj::run('uj:::.i', e, '(x)'), e, NULL))}
-  out
+  y <- NULL
+  for (eee in uj:::.EEE) {y <- base::c(y, uj::f0(uj::run('uj::', eee, '(x)'), eee, NULL))}
+  y
 }
 
 #' @rdname eee
 #' @export
-eee_funs <- function() {base::paste0("i", uj:::.eees)}
+eee_funs <- function() {uj:::.EEE}
 
 #' @rdname eee
 #' @export
-eee_props <- function() {uj:::.eees}
+eee_props <- function() {uj:::.eee}
 
 #' @rdname eee
 #' @export
-is_eee_spec <- function(spec) {spec <- uj:::.spec_vals(spec); uj:::f0(base::length(spec) == 0, F, base::all(spec %in% .eees))}
+is_eee_spec <- function(spec) {spec <- uj:::.props_from_spec(spec); uj:::f0(uj::N0(spec), F, uj::allIN(spec, uj:::.EEEs))}
 
 #' @rdname eee
 #' @export
-ieee <- function(x, spec, ...) {
-  errs <- c(uj:::.meets_errs(x, ...),
-            uj::f0(uj::is_eee_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from eee_props().'))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
-  if (!uj::meets(x, ...)) {return(F)}
-  for (prop in uj:::.spec_vals(spec)) {if (uj::run('uj:::.i', prop, '(x)')) {return(T)}}
+EEE <- function(x, spec, ...) {
+  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_eee_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from eee_props().')), PKG = "uj")
+  if (uj::DEF(errs)) {uj::stopper(errs, PKG = "uj")}
+  if (uj::meets(x, ...)) {for (prop in base::toupper(uj:::.props_from_spec(spec))) {if (uj::run('uj::', prop, '(x)')) {return(T)}}}
   F
 }
 
 #' @rdname eee
 #' @export
-ie0D <- function(x, ...) {uj::ieee(x, 'e0D', ...)}
+E0D <- function(x, ...) {uj::EEE(x, 'e0D', ...)}
 
 #' @rdname eee
 #' @export
-ie1D <- function(x, ...) {uj::ieee(x, 'e1D', ...)}
+E1D <- function(x, ...) {uj::EEE(x, 'e1D', ...)}
 
 #' @rdname eee
 #' @export
-ie2D <- function(x, ...) {uj::ieee(x, 'e2D', ...)}
+E2D <- function(x, ...) {uj::EEE(x, 'e2D', ...)}
 
 #' @rdname eee
 #' @export
-ieHD <- function(x, ...) {uj::ieee(x, 'eHD', ...)}
+EHD <- function(x, ...) {uj::EEE(x, 'eHD', ...)}
 
 #' @rdname eee
 #' @export
-ieUD <- function(x, ...) {uj::ieee(x, 'eUD', ...)}
+EUD <- function(x, ...) {uj::EEE(x, 'eUD', ...)}
 
 #' @rdname eee
 #' @export
-neee <- function(x) {uj::f0(base::length(x) == 0, NaN, uj::f0(base::NROW(x) * Nbase::COL(x) == 1, 0, uj::f0(base::is.vector(x), 1, base::length(base::which(base::dim(x) > 1)))))}
+neee <- function(x) {uj::f0(uj::N0(x), NaN, uj::f0(uj::NRC1(x), 0, uj::f0(uje::isVEC(x), 1, uj::NW(base::dim(x) > 1))))}

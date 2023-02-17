@@ -1,95 +1,94 @@
 #' @encoding UTF-8
 #' @family props
 #' @title Extended class (xclass) properties
-#' @description `xclass` properties are defined as follows: \tabular{rll}{
-#'       `arr`   \tab array    \tab   arrays
-#'   \cr `mat`   \tab matrix   \tab   matrices
-#'   \cr `dtf`   \tab dtf      \tab   data.frames
-#'   \cr `vls`   \tab vlist    \tab   vector-lists\eqn{^1}
-#'   \cr `gen`   \tab generic  \tab   vectors, vlists, and arrays
-#'   \cr `scl`   \tab scalar   \tab   Length-`1` generics
-#'   \cr `mvc`   \tab multivec \tab   Length-`2+` \link[=ilin]{linear} generics
-#'   \cr `vec`   \tab vec      \tab   scalars and multivecs
-#' }
-#' \eqn{^{1.}} Non-`data.frame` lists.
-#' \cr\cr **Functions** \tabular{rl}{
-#'     `is_ccc_spec`   \tab Is `spec` an xclass specification?
-#'   \cr `ccc_props`   \tab What xclass properties are there?
-#'   \cr  `ccc_funs`   \tab What xclass property functions are there?
-#'   \cr      `iccc`   \tab Is `x` a match to the xclass specification `spec`?
-#'   \cr      `iCCC`   \tab Is `x` a match to the single xclass property `'CCC'`?
-#'   \cr       `ccc`   \tab What are `x`'s xclass properties?
-#' }
+#' @description `xclass` properties are defined as follows:
+#' \tabular{lll}{  `'arr', 'ARR'`   \tab array      \tab arrays                                   \cr
+#'                 `'mat', 'MAT'`   \tab matrix     \tab matrices                                 \cr
+#'                 `'dtf', 'DTF'`   \tab dtf        \tab data.frames                              \cr
+#'                 `'vls', 'VLS'`   \tab vlist      \tab vector-lists  \eqn{^{(1)}}               \cr
+#'                 `'gen', 'GEN'`   \tab generic    \tab vectors, vlists, and arrays              \cr
+#'                 `'scl', 'SCL'`   \tab scalar     \tab Length-`1` generics                      \cr
+#'                 `'mvc', 'MVC'`   \tab multivec   \tab Length-`2+` \link[=LIN]{linear} generics \cr
+#'                 `'vec', 'VEC'`   \tab vec        \tab scalars and multivecs                    \cr
+#'                                  \tab            \tab \eqn{^{(1)}} Non-`data.frame` lists.       }
+#' @details
+#' \tabular{ll}{  `is_ccc_spec`   \tab Is `spec` an xclass specification?                                                                                  \cr   \tab     }
+#' \tabular{ll}{  `ccc_props`     \tab What xclass properties are there?                                                                                   \cr   \tab     }
+#' \tabular{ll}{  `ccc_funs`      \tab What xclass property functions are there?                                                                           \cr   \tab     }
+#' \tabular{ll}{  `{CCC}`        \tab Is `x` a match to the single xclass property `'{CCC}'` where `{CCC}` is a placeholder for any given xclass property? \cr   \tab     }
+#' \tabular{ll}{  `ccc`           \tab What are `x`'s xclass properties?                                                                                   \cr   \tab   \cr
+#'                `CCC`           \tab Is `x` a match to the xclass specification `spec`?                                                                                 }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more xclass properties (i.e., from \code{\link{ccc_props}()}). Properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character vector* \cr   `ccc_props, ccc_funs, ccc`
-#'  \cr\cr *A logical vector* \cr   `is_ccc_spec, iCCC, iccc`
+#' @return **A character vector** \cr `ccc_props, ccc_funs, ccc`
+#' \cr\cr  **A logical vector**   \cr `is_ccc_spec, CCC, {CCC}`
 #' @examples
 #' ccc_funs()
 #' ccc_props()
 #' is_ccc_spec("scl|vls")
-#' iccc(letters, "vec|dtf")
-#' ivec(letters)
+#' CCC(letters, "vec|dtf")
+#' VEC(letters)
 #' ccc(letters)
 #' @export
 ccc <- function(x) {
-  out <- NULL
-  for (C in uj:::.cccs) {out <- base::c(out, uj::f0(uj::run('uj:::.i', C, '(x)'), C, NULL))}
-  out
+  y <- NULL
+  for (ccc in uj:::.CCC) {y <- base::c(y, uj::f0(uj::run('uj::', ccc, '(x)'), ccc, NULL))}
+  y
 }
 
 #' @rdname ccc
 #' @export
-ccc_funs <- function() {base::paste0("i", uj:::.cccs)}
+ccc_funs <- function() {uj:::.CCC}
 
 #' @rdname ccc
 #' @export
-ccc_props <- function() {uj:::.cccs}
+ccc_props <- function() {uj:::.ccc}
 
 #' @rdname ccc
 #' @export
-is_ccc_spec <- function(spec) {spec <- uj:::.spec_vals(spec); f0(base::length(spec) == 0, F, base::all(spec %in% .cccs))}
+is_ccc_spec <- function(spec) {
+  spec <- uj:::.props_from_spec(spec)
+  f0(uj::N0(spec), F, uj::allIN(spec, uj::.ccc))
+}
 
 #' @rdname ccc
 #' @export
-iccc <- function(x, spec, ...) {
-  errs <- base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_ccc_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from ccc_props().'))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
-  if (!uj::meets(x, ...)) {return(F)}
-  for (prop in uj:::.spec_vals(spec)) {if (uj::run('uj:::.i', prop, '(x)')) {return(T)}}
+CCC <- function(x, spec, ...) {
+  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_ccc_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing (possible pipe-separated) values from ccc_props().')), PKG = "uj" )
+  if (uj::meets(x, ...)) {for (prop in base::toupper(uj:::.props_from_spec(spec))) {if (uj::run('uj::', prop, '(x)')) {return(T)}}}
   F
 }
 
 #' @rdname ccc
 #' @export
-iarr <- function(x, ...) {uj::iccc(x, 'arr', ...)}
+ARR <- function(x, ...) {uj::ccc(x, 'arr', ...)}
 
 #' @rdname ccc
 #' @export
-idtf <- function(x, ...) {uj::iccc(x, 'dtf', ...)}
+DTF <- function(x, ...) {uj::ccc(x, 'dtf', ...)}
 
 #' @rdname ccc
 #' @export
-igen <- function(x, ...) {uj::iccc(x, 'gen', ...)}
+GEN <- function(x, ...) {uj::ccc(x, 'gen', ...)}
 
 #' @rdname ccc
 #' @export
-imat <- function(x, ...) {uj::iccc(x, 'mat', ...)}
+MAT <- function(x, ...) {uj::ccc(x, 'mat', ...)}
 
 #' @rdname ccc
 #' @export
-imvc <- function(x, ...) {uj::iccc(x, 'mvc', ...)}
+MVC <- function(x, ...) {uj::ccc(x, 'mvc', ...)}
 
 #' @rdname ccc
 #' @export
-iscl <- function(x, ...) {uj::iccc(x, 'scl', ...)}
+SCL <- function(x, ...) {uj::ccc(x, 'scl', ...)}
 
 #' @rdname ccc
 #' @export
-ivec <- function(x, ...) {uj::iccc(x, 'vec', ...)}
+VEC <- function(x, ...) {uj::ccc(x, 'vec', ...)}
 
 #' @rdname ccc
 #' @export
-ivls <- function(x, ...) {uj::iccc(x, 'vls', ...)}
+VLS <- function(x, ...) {uj::ccc(x, 'vls', ...)}

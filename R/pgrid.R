@@ -1,20 +1,22 @@
 #' @encoding UTF-8
 #' @family strings
 #' @title `expand.grid` for `paste` and `paste0`
-#' @description \tabular{rl}{
-#'        `pgrid`   \tab Converts the `n` `...` arguments to character (with additional optional pre-processing) and create a character vector with each element consisting of sub-strings from across `...` arguments pasted together using the 'paste' `p`. See the *value* section for how the value of `crossed` affects the return value.
-#'   \cr            \tab  
-#'   \cr `pgrid0`   \tab Calls `pgrid` with `p = ""` (blank).
-#'   \cr `pgrid1`   \tab Calls `pgrid` with `p = " "` (space).
-#'   \cr `pgridn`   \tab Calls `pgrid` with `crossed = FALSE`\eqn{^{ 1}}
-#'   \cr `pgridx`   \tab Calls `pgrid` with `crossed = TRUE`\eqn{^{ 1}}
-#' }
-#' ` `\eqn{^{1.}} See *the* `crossed` *argument*.
+#' @description Generate all combinations of the values of 2 or more vectors and glue the combinations into a single character vector.
+#' @details
+#' \tabular{ll}{  `pgrid`    \tab Converts the `n` `...` arguments to character (with additional optional pre-processing) and create a character vector with each element
+#'                                consisting of sub-strings from across `...` arguments pasted together using the 'paste' `p`. See the *value* section for how the value
+#'                                of `crossed` affects the return value.           \cr   \tab  }
+#' \tabular{ll}{  `pgridN`   \tab Calls `pgrid` with `crossed = FALSE`\eqn{^{(1)}} \cr
+#'                `pgridX`   \tab Calls `pgrid` with `crossed = TRUE`\eqn{^{(1)}}  \cr
+#'                `pgrid0`   \tab Calls `pgrid` with `p = ""` (blank).             \cr
+#'                `pgrid1`   \tab Calls `pgrid` with `p = " "` (space).            \cr
+#'                           \tab \eqn{^{(1)}} See *the* `crossed` *argument*.                 }
 #' @param ... Non-empty atomic objects.
 #' @param p A \link[=cmp_chr_scl]{complete character scalar} to use as the 'paste'.
 #' @param ch,na.err Non-`NA` logical scalars indicating, respectively, whether to split each `...` arguments into its constituent characters after conversion to mode 'character' and whether to throw an error if an argument in `...` contains an `NA` value.
-#' @param crossed A non-`NA` logical scalar indicating whether to construct the result to look like a fully-crossed model. See *the* `crossed` *argument* section for details.
-#' @section The `crossed` Argument: The following console excerpt shows the effect of the value of `crossed`:
+#' @param crossed `TRUE` or `FALSE` indicating whether to construct the result to look like a fully-crossed model. See *the* `crossed` *argument* section for details.
+#' @section The `crossed` Argument:
+#' The following console excerpt shows the effect of the value of `crossed`:
 #' ```
 #' > x <- c("A", "B", "C")
 #' > y <- c(1, 2)
@@ -41,34 +43,33 @@
 #' z <- c("a", "b")
 #' pgrid(".", x, y, z, crossed = F)
 #' pgrid(".", x, y, z, crossed = T)
-#' pgridn(".", x, y, y)
-#' pgridx(".", x, y, z)
+#' pgridN(".", x, y, y)
+#' pgridX(".", x, y, z)
 #' pgrid0(x, y, z)
 #' pgrid1(x, y, z)
 #' @export
 pgrid <- function(p, ..., ch = F, crossed = F, na.err = T) {
-  combo <- function(xx) {
-    xx <- uj::av(xx)
-    if (crossed) {xx <- xx[xx != ""]}
-    base::paste0(xx, collapse = p)
+  combo <- function(x) {
+    x <- uj::av(x)
+    if (crossed) {x <- x[x != ""]}
+    uj::g(D, x)
   }
   dots <- base::list(...)
-  errs <- c(uj::f0(base::length(dots) > 0                                  , NULL, "[...] is empty."),
-            uj::f0(base::all(base::sapply(dots, cmp_vec))                  , NULL, "All arguments in [...] must be complete atomic vector+'s (?cmp_vec)"),
-            uj::f0(base::all(base::sapply(dots, length) > 0)               , NULL, "[...] contains an empty element."),
-            uj::f0(uj::cmp_chr_scl(p)                                      , NULL, "[p] must be a complete character scalar (?cmp_chr_scl)."),
-            uj::f0(uj::isTF(ch)                                            , NULL, "[ch] must be TRUE or FALSE."),
-            uj::f0(uj::isTF(crossed)                                       , NULL, "[crossed] must be TRUE or FALSE."),
-            uj::f0(uj::isTF(na.err)                                        , NULL, "[na.err] must be TRUE or FALSE."),
-            uj::f0(!uj::isT(na.err) | !base::any(base::is.na(uj::av(dots))), NULL, "Arguments in [...] may not contain [NA] values when [na.err = TRUE]."))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
-  call <- base::paste0("c(as.character(dots[[", 1:base::length(dots), "]]), f0(crossed, '', NULL))")
-  call <- base::paste0(call, collapse = ", ")
-  call <- base::paste0("expand.grid(", call, ", stringsAsFactors = F)")
-  out <- uj::run(call)
-  out <- uj::av(base::apply(out, 1, combo))
-  if (crossed) {out <- out[out != ""]}
-  out
+  uj::errs_if_nots(uj::N1P(dots)                                , "[...] is empty."                                                                  ,
+                   base::all(base::sapply(dots, uj::cmp_vec))   , "All arguments in [...] must be complete atomic vector+'s (?cmp_vec)"               ,
+                   base::all(base::sapply(dots, uj::length) > 0), "[...] contains an empty element."                                                 ,
+                   uj::cmp_chr_scl(p)                           , "[p] must be a complete character scalar (?cmp_chr_scl)."                            ,
+                   uj::cmp_lgl_scl(ch)                          , "[ch] must be TRUE or FALSE."                                                      ,
+                   uj::cmp_lgl_scl(crossed)                     , "[crossed] must be TRUE or FALSE."                                                 ,
+                   uj::TF(na.err)                               , "[na.err] must be TRUE or FALSE."                                                  ,
+                   uj::notT1(na.err) | uj::noneNAS(uj::av(dots)), "Arguments in [...] may not contain [NA] values when [na.err = TRUE].", PKG = "uj" )
+  call <- uj::p0("base::c(base::as.character(dots[[", 1:uj::N(dots), "]]), uj::f0(crossed, '', NULL))")
+  call <- uj::g(", ", call)
+  call <- uj::p0("base::expand.grid(", call, ", stringsAsFactors = F)")
+  y <- uj::run(call)
+  y <- uj::av(base::apply(y, 1, combo))
+  if (crossed) {y <- y[y != ""]}
+  y
 }
 
 #' @rdname pgrid
@@ -81,8 +82,8 @@ pgrid1 <- function(..., ch = F, crossed = F, na.err = T) {uj::pgrid(" ", ..., ch
 
 #' @rdname pgrid
 #' @export
-pgridn <- function(p, ..., ch = F, na.err = T) {uj::pgrid(p, ..., ch = ch, crossed = F, na.err = na.err)}
+pgridN <- function(p, ..., ch = F, na.err = T) {uj::pgrid(p, ..., ch = ch, crossed = F, na.err = na.err)}
 
 #' @rdname pgrid
 #' @export
-pgridx <- function(p, ..., ch = F, na.err = T) {uj::pgrid(p, ..., ch = ch, crossed = T, na.err = na.err)}
+pgridX <- function(p, ..., ch = F, na.err = T) {uj::pgrid(p, ..., ch = ch, crossed = T, na.err = na.err)}

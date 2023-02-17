@@ -1,17 +1,17 @@
 #' @encoding UTF-8
 #' @family properties
 #' @title complete + xmode combination properties
-#' @description \tabular{rl}{
-#'     `cmp_mmm_funs`   \tab What \link[=icmp]{complete} + \link[=mmm]{xmode} combination \link[=prop_funs]{property functions} are there?
-#'   \cr    `cmp_mmm`   \tab Is `x` both complete and a match to the single xmode property in `mmm`?
-#'   \cr    `cmp_MMM`   \tab Is `x` both complete and a match to single xmode property `'MMM'`?
-#' }
+#' @description Check for combination of \link[=CMP]{completeness} and \link[=mmm]{xmode}.
+#' @details
+#' \tabular{ll}{  `cmp_mmm_funs`   \tab What \link[=CMP]{complete} + \link[=mmm]{xmode} combination \link[=prop_funs]{property functions} are there?                           \cr   \tab  }
+#' \tabular{ll}{  `cmp_{mmm}`      \tab Is `x` both complete and a match to the single xmode property `'{mmm}'` where `{mmm}` is a placeholder for any given xmode property?              }
+#' \tabular{ll}{  `cmp_mmm`        \tab Is `x` both complete and a match to single xmode property in arg `mmm`?                                                                \cr   \tab  }
 #' @param x An R object.
 #' @param mmm A character scalar xmode property from `mmm_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character vector* \cr   `cmp_mmm_funs`
-#'  \cr\cr *A logical scalar* \cr   `cmp_MMM, cmp_mmm`
+#' @return **A character vector** \cr `cmp_mmm_funs`
+#' \cr\cr  **A logical scalar**   \cr `cmp_mmm, cmp_{mmm}`
 #' @examples
 #' cmp_mmm_funs()
 #' cmp_mmm(letters, "ch1")
@@ -20,19 +20,18 @@
 #' cmp_ord(factor(letters, ordered = T))
 #' @export
 cmp_mmm <- function(x, mmm, ...) {
-  errs <- base::c(uj:::.meets_errs(x, ...),
-                  uj::f0(uj::f0(base::length(mmm) != 1 | !base::is.character(mmm), F, uj::f0(base::is.na(mmm), F, mmm %in% .mmms)), NULL, '[mmm] is not a scalar value from mmm_props().'))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
-  uj::f0(!uj::meets(x, ...), F, uj::f0(!base::is.atomic(x) | base::length(x) == 0, F, uj::f0(base::any(base::is.na(x)), F, uj::run("uj::i", mmm, "(x)"))))
+  if (uj::isCHR(mmm)) {mmm <- base::tolower(mmm)}
+  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::nll_if(uj::f0(uj::notN1(mmm) | uj::notCHR(mmm), F, uj::f0(uj::NAS(mmm), F, uj::isIN1(mmm, uj:::.mmms))), NULL, '[mmm] is not a scalar value from mmm_props().')), PKG = "uj")
+  uj::f0(!uj::meets(x, ...), F, uj::f0(uj::notATM(x) | uj::N0(x), F, uj::f0(uj::anyNA(x), F, uj::run("uj::", base::toupper(mmm), "(x)"))))
 }
 
 #' @rdname cmp_mmm
 #' @export
-cmp_mmm_funs <- function() {base::paste0('cmp_', .mmms)}
+cmp_mmm_funs <- function() {uj::p0('cmp', base::toupper(uj:::.mmms))}
 
 #' @rdname cmp_mmm
 #' @export
-cmp_atm <- function(x, ...) {uj::f0(base::is.atomic(x), uj::icmp(x, ...), F)}
+cmp_atm <- function(x, ...) {uj::f0(uj::isATM(x), uj::CMP(x, ...), F)}
 
 #' @rdname cmp_mmm
 #' @export
@@ -120,7 +119,7 @@ cmp_pos <- function(x, ...) {uj::cmp_mmm(x, 'pos', ...)}
 
 #' @rdname cmp_mmm
 #' @export
-cmp_ppn <- function(x, ...) {uj::cmp_mmm(x, 'ppn', ...)}
+cmp_pos <- function(x, ...) {uj::cmp_mmm(x, 'ppn', ...)}
 
 #' @rdname cmp_mmm
 #' @export

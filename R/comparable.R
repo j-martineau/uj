@@ -4,7 +4,7 @@
 #' @title Are objects comparable?
 #' @description Determines whether modes of all `...` arguments are comparable (i.e., sortable and compatible with each other), meaning that the are either all character, all logical, all numeric, or all ordered factor with the same set of levels (in the same order).
 #' @param ... An arbitrary number of arguments to be checked for comparability with each other.
-#' @param rec. A non-`NA` logical scalar indicating whether `...` arguments must be recyclable to be comparable.
+#' @param rec. `TRUE` or `FALSE` indicating whether `...` arguments must be recyclable to be comparable.
 #' @return A logical scalar.
 #' @examples
 #' az. <- letters
@@ -15,24 +15,25 @@
 #' comparable(list(az., 1:10), az., 1:10)
 #' comparable(factor(az., az., ordered = T), factor("q", az., ordered = T))
 #' @export
-comparable <- function(..., rec. = FALSE) {
+comparable <- function(..., REC = FALSE) {
   x <- base::list(...)
-  n <- base::length(x)
-  errs <- base::c(uj::f0(n < 2          , "[...] must contain multiple arguments.", NULL),
-                  uj::f0(!uj::isTF(rec.), "[rec.] must be TRUE or FALSE."         , NULL))
-  if (!base::is.null(errs)) {stop(.uj::errs(errs))}
-  if (rec.) {
-    unq.ns <- base::unique(base::lengths(x))
+  n <- uj::N(x)
+  uj::errs_if_nots(n >= 2        , "[...] must contain multiple arguments.",
+                   uj::isTF1(REC), "[REC] must be TRUE or FALSE."          , PKG = "uj")
+  if (REC) {
+    unq.ns <- uj::U(uj::NS(x))
     n.reps <- base::max(unq.ns) / unq.ns
-    if (base::any(n.reps != base::round(n.reps))) {return(F)}
+    if (base::any(!uj::rounded(n.reps))) {return(F)}
   }
-  is.chr <- base::all(base::sapply(x, base::is.character))
-  is.lgl <- base::all(base::sapply(x, base::is.logical))
-  is.num <- base::all(base::sapply(x, base::is.numeric))
-  is.ord <- base::all(base::sapply(x, base::is.ordered))
-  if (is.chr | is.lgl | is.num) {return(T)}
-  if (!is.ord) {return(F)}
-  fac.levs <- base::lapply(x, levels)
-  for (i in 2:n) {if (!base::identical(fac.levs[[i]], fac.levs[[i - 1]])) {return(F)}}
-  T
+  is.chr <- base::all(base::sapply(x, uj::isCHR))
+  is.lgl <- base::all(base::sapply(x, uj::isLGL))
+  is.num <- base::all(base::sapply(x, uj::isNUM))
+  is.ord <- base::all(base::sapply(x, uj::isORD))
+  if (!is.chr & !is.lgl & !is.num) {
+    if (is.ord) {
+      fac.levs <- base::lapply(x, levels)
+      for (i in 2:n) {if (uj::isDIF1(fac.levs[[i]], fac.levs[[i - 1]])) {return(F)}}
+      T
+    } else {F}
+  } else {T}
 }

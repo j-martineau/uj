@@ -1,225 +1,250 @@
+.chr <- function(..., d = " ") {uj::g(d, uj::av(...))}
+.trm <- function(..., d = " ") {base::trimws(.chr(..., d = d), which = "both")}
+.ssplit <- function(x) {uj:::.trm(uj::av(base::strsplit(x, "|", fixed = T)))}
+.ok_fmt <- function(x) {
+  if (!uj::DEF(x)) {return(F)}
+  x <- uj:::.ssplit(x)
+  uj::f0(uj::N(x) != 3, F, uj::f0(uj::isMF1(x[1], uj::bg_vals()), F, uj::f0(uj::isMF1(x[2], uj::fg_vals()), F, uj::isIN1(x[3], uj::st_vals()))))
+}
+
 #' @name dialog
 #' @encoding UTF-8
 #' @family dialogs
 #' @family user
 #' @title Dialog with users using package `svDialogs`
-#' @description All functions \link[=collapse_dots]{collapses} `...` args into a prompt. Each posts an alert to the console, posts the prompt (if any), followed by the actions detailed in the table below.
-#' \tabular{rl}{
-#'      `acknowledge`   \tab Waits for user to acknowledge.\eqn{^1}
-#'   \cr `choose_doc`   \tab Asks user to choose a document.\eqn{^2}
-#'   \cr `choose_dir`   \tab Asks user to choose a directory.\eqn{^2}
-#'   \cr    `choose1`   \tab Asks user to choose `1` option.\eqn{^2}
-#'   \cr    `chooseN`   \tab Asks user to choose `1+` options.\eqn{^{2,3}}
-#'   \cr      `alert`   \tab None.\eqn{^1}
-#'   \cr        `ask`   \tab Asks for typed input.\eqn{^2}
-#'   \cr     `asknew`   \tab Asks for a list of new values.\eqn{^2}
-#'   \cr    `YES, NO`   \tab Offers `YES/NO/CANCEL`.\eqn{^{2,4}}
-#'   \cr `OK, CANCEL`   \tab Offers `OK/CANCEL`.\eqn{^4}
-#' }
-#' ` `\eqn{^{1.}} Default style, bg color, and fg color depend on `type`.
-#' \cr ` `\eqn{^{2.}} Stops execution if user chooses `CANCEL`.
-#' \cr ` `\eqn{^{3.}} Stops execution if `stop | (type = 'error' & is.null(stop))`.
-#' \cr ` `\eqn{^{4.}} Returns `TRUE` if user choice matches the function name.
+#' @description All functions \link[=collapse_dots]{collapses} `...` args into a prompt. Each posts an alert to the console, posts the prompt (if any), followed by a specific action.
+#' @details
+#' \tabular{ll}{  `acknowledge`   \tab Waits for user to acknowledge.\eqn{^{(1)}}                                                           \cr   \tab     }
+#' \tabular{ll}{  `OK, CANCEL`    \tab Offers `OK/CANCEL`.\eqn{^{(1,4)}}                                                                    \cr   \tab     }
+#' \tabular{ll}{  `choose_doc`    \tab Asks user to choose a document.\eqn{^{(2)}}                                                          \cr
+#'                `choose_dir`    \tab Asks user to choose a directory.\eqn{^{(2)}}                                                         \cr   \tab     }
+#' \tabular{ll}{  `choose1`       \tab Asks user to choose `1` option.\eqn{^{(1,2)}}                                                        \cr
+#'                `chooseN`       \tab Asks user to choose `1+` options.\eqn{^{(1,2,3)}}                                                    \cr   \tab   \cr
+#'                `YES, NO`       \tab Offers `YES/NO/CANCEL`.\eqn{^{(1,2,4)}}                                                              \cr   \tab   \cr
+#'                `ask_new`       \tab Asks for a list of new values.\eqn{^{(1,2)}}                                                         \cr   \tab     }
+#' \tabular{ll}{  `alert`         \tab None.\eqn{^{(1)}}                                                                                    \cr   \tab     }
+#' \tabular{ll}{  `ask`           \tab Asks for typed input.\eqn{^{(1,2)}}                                                                  \cr
+#'                                \tab \eqn{^{(1)}} Default style, background color, and foreground color of console text depend on `type`. \cr
+#'                                \tab \eqn{^{(2)}} Stops execution if user chooses `CANCEL`.                                               \cr
+#'                                \tab \eqn{^{(3)}} Stops execution if `stop | (type = 'error' & is.null(stop))`.                           \cr
+#'                                \tab \eqn{^{(4)}} Returns `TRUE` if user choice matches the function name.                                  }
+#' @section Specifying formats: When not `NULL` format arguments (`bg.format`, `fg.format`, and `st.format`) must be \link[=cmp_str_vec]{complete string vecs} that when \link[=av]{atomized} and \link[=ssP]{split along pipes} results in a three-element character vector, the first element of which is used to specify \link[=bg]{text background color} and must be a value from \code{\link{bg_vals}()}, the second element of which is used to specify \link[=fg]{text foreground color} and must be a value from \code{\link{fg_vals}()}, and the last of which specifies \link[=st]{text style} and must be a value from \code{\link{st_vals}()}.
 #' @param ... An arbitrary, optional number of arguments which are \link[=av]{atomized} into a character scalar message to be posted to the console.
-#' @param type A character scalar type of alert to post to the console. Predefined alert types are `c('alert', 'error', 'update', 'warning')`. Custom types are also accepted, but they should be short to avoid formatting problems.
-#' @param title `NULL` or a character scalar alert title to post to the console. Should be relatively short to avoid formatting problems.
-#' @param st `NULL` or a character scalar alert style specification from \code{link{st_vals}()}.
-#' @param fg `NULL` or a character scalar alert foreground text color specification from \code{\link{fg_vals}()}
-#' @param bg `NULL` or an character scalar alert background text color specification from \code{\link{bg_vals}()}
-#' @param ST `NULL` or a character scalar message style specification from \code{link{st_vals}()}.
-#' @param FG `NULL` or a character scalar message foreground text color specification from \code{\link{fg_vals}()}
-#' @param BG `NULL` or an character scalar message background text color specification from \code{\link{bg_vals}()}
-#' @param stop An optional scalar `TRUE` or `FALSE` indicating whether to stop execution. Defaults to `TRUE` for `type = 'error'`, otherwise defaults to `FALSE`.
-#' @param options An atomic vector list of options to choose from.
-#' @param all Scalar `TRUE` or `FALSE` indicating whether to add an `{ ALL }` value to `options`.
-#' @param none Scalar `TRUE` or `FALSE` indicating whether to add a `{ NONE }` value to `options` (implying that it is valid to select none).
+#' @param d A character scalar delimiter for collapsing `...` args into a character scalar.
 #' @param n An optional \link[=cmp_psw_scl]{complete positive numeric whole-number scalar} (?cmp_psw_scl) indicating the number of options that must be selected. Must be contained in `1:length(options)`.
-#' @param min.n An optional \link[=icmp]{complete} \link[=ipsw]{positive numeric whole-number} \link[=iscl]{scalar} (?icmp, ?ipsw, ?iscl) indicating the minimum number of options that may be selected. Must be `NULL` when `n` is non-`NULL`.
-#' @param max.n An optional complete positive numeric whole-number scalar indicating the maximum number of options that may be selected. Must be `NULL` when `n` is non-`NULL`.
+#' @param all Scalar `TRUE` or `FALSE` indicating whether to add an `{ ALL }` value to `options`.
+#' @param lab A character scalar alert title to post to the console. Should be relatively short to avoid formatting problems.
 #' @param old A \link[=chr_vec]{character vec} of unique values to be replaced.
 #' @param unq Scalar `TRUE` or `FALSE` indicating whether replacement values must be unique.
+#' @param none Scalar `TRUE` or `FALSE` indicating whether to add a `{ NONE }` value to `options` (implying that it is valid to select none).
+#' @param type A character scalar type of alert to post to the console. `type = 'error'` results in stopping execution after raising the alert. Predefined alert types are `c('alert', 'error', 'update', 'warning')`. Custom types are also accepted, but they should be short to avoid formatting problems.
+#' @param flab A formatting value consistent with the description in the *specifying formats* section giving formatting instructions for the alert title.
+#' @param fmsg A formatting value consistent with the description in the *specifying formats* section giving formatting instructions for the alert message.
+#' @param ftype A formatting value consistent with the description in the *specifying formats* section giving formatting instructions for the alert type.
+#' @param min.n An optional \link[=CMP]{complete} \link[=PSW]{positive numeric whole-number} \link[=SCL]{scalar} indicating the minimum number of options that may be selected. Must be `NULL` when `n` is non-`NULL`.
+#' @param max.n An optional complete positive numeric whole-number scalar indicating the maximum number of options that may be selected. Must be `NULL` when `n` is non-`NULL`.
 #' @param blank A character scalar containing a default message if \link[=av]{atomizing} and collapsing `...` to a character scalar results in a blank string (`""`).
-#' @return *A character scalar* \cr   `choose_dir` (a directory path) \cr   `choose_doc` (a document path) \cr   `ask`
-#'  \cr\cr *A character vector* \cr   `asknew`
-#'  \cr\cr *An atomic vector* \cr   `chooseN`
-#'  \cr\cr *An atomic scalar* \cr   `choose1`
-#'  \cr\cr *A logical scalar* \cr   `CANCEL, YES, NO, OK`
-#'  \cr\cr `NULL` \cr   `acknowledge, alert`
+#' @param options An atomic vector list of options to choose from.
+#' @return **The** `NULL` **object** \cr `acknowledge, alert`
+#' \cr\cr  **A character scalar**    \cr `choose_dir` (a directory path) \cr `choose_doc` (a document path) \cr `ask`
+#' \cr\cr  **A character vector**    \cr `ask_new`
+#' \cr\cr  **An atomic vector**      \cr `chooseN`
+#' \cr\cr  **An atomic scalar**      \cr `choose1`
+#' \cr\cr  **A logical scalar**      \cr `CANCEL, YES, NO, OK`
+#' @examples
+#' egA <- "two-part"
+#' egB <- "message"
+#' egFT <- c("yellow", "red", "plain")
+#' egFL <- c("blk|wht", "und")
+#' egFM <- "b|y|i"
+#' egType = "type"
+#' egLab = "title"
+#' egOpts <- paste("option", letters[1:10])
+#' egMsg1 <- "Do you want to continue?"
+#' egMsg2 <- "Why do you want to continue?"
+#'
+#' alert(egA, egB, d = " ")
+#' alert(egA, egB, type = egType, d = " ")
+#' alert(egA, egB, lab = l, d = " ")
+#' alert(egA, egB, type = egType, lab = egLab, d = " ")
+#' alert(egA, egB, type = egType, lab = egLab, d = " ", fmsg = egFM)
+#' alert(egA, egB, type = egType, lab = egLab, d = " ", flab = egFL)
+#' alert(egA, egB, type = egType, lab = egLab, d = " ", ftype = egFT)
+#' alert(egA, egB, type = egType, lab = egLab, d = " ", ftype = egFT, flab = egFL, fmsg = egFM)
+#' alert(type = egType, lab = egLab, ftype = egFT, flab = egFL)
+#' alert(type = egType, ftype = egFT)
+#' alert(lab = egLab, flab = egFL)
+#' \dontrun{
+#'   acknowledge(egA, egB)
+#'   choose1(egOpts)
+#'   chooseN(egOpts)
+#'   chooseN(egOpts, all = T, none = F, min = 6, max = 10)
+#'   NO(egMsg1)
+#'   OK(egMsg2)
+#'   YES(egMsg1)
+#'   CANCEL(egMsg1)
+#'   ask(Msg2)
+#'   askNEW(egOpts)
+#'   choose_dir(dir.type = "directory for R scripts")
+#'   choose_doc(doc.type = "document to read")
+#' }
 #' @export
-alert <- function(..., type = "alert", title = NULL, st = NULL, fg = NULL, bg = NULL, ST = NULL, FG = NULL, BG = NULL, stop = NULL, blank = "") {
-  tl <- function(x) {uj::f0(uj::cmp_str_scl(x), base::tolower(base::trimws(x, which = "both")), x)}
-  type <- base::toupper(tl(type))
-  title <- tl(title)
-  st <- tl(st); ST <- tl(ST)
-  fg <- tl(fg); FG <- tl(FG)
-  bg <- tl(bg); BG <- tl(BG)
-  sts <- uj::st_vals()
-  bgs <- uj::bg_vals()
-  fgs <- uj::fg_vals()
-  css <- "cmp_str_scl"
-  cls <- "cmp_lgl_scl"
-  tf <- c(T, F)
-  errs  <- base::c(uj::f0(uj::cmp_str_scl(type    ), NULL, "[type] must be a complete charastring (?cmp_chr_str)."),
-                   uj::f0(uj::nll_or(title, css   ), NULL, "[title] must be NULL or a complete string (?cmp_chr_str)."),
-                   uj::f0(uj::nll_or(st, css, sts ), NULL, "[st] must be NULL or a character scalar from uj::st_vals()."),
-                   uj::f0(uj::nll_or(bg, css, bgs ), NULL, "[bg] must be NULL or a character scalar from uj::bg_vals()."),
-                   uj::f0(uj::nll_or(fg, css, fgs ), NULL, "[fg] must be NULL or a character scalar from uj::fg_vals()."),
-                   uj::f0(uj::nll_or(ST, css, sts ), NULL, "[ST] must be NULL or a character scalar from uj::st_vals()."),
-                   uj::f0(uj::nll_or(BG, css, bgs ), NULL, "[BG] must be NULL or a character scalar from uj::bg_vals()."),
-                   uj::f0(uj::nll_or(FG, css, fgs ), NULL, "[FG] must be NULL or a character scalar from uj::fg_vals()."),
-                   uj::f0(uj::nll_or(stop, cls, tf), NULL, "[stop] must be NULL, scalar TRUE, or scalar FALSE."))
-  if (!is.null(errs)) {base::stop(uj::format_errs(pkg = "uj", errs))}
-  title <- base::trimws(base::paste0(uj::av(title), collapse = ""), which = "both")
-  title <- uj::f0(title == "", "", base::paste0(": ", title))
-  title <- uj::p0(" ", type, title, " ")
-  spc <- base::gsub(" ", " ", uj::spaces(base::nchar(title)), fixed = T)
-  st <- uj::f0(uj::isIN(st, sts), st, uj::f0(type == "UPDATE", "pln", uj::f0(type == "ALERT", "itl", uj::f0(type == "WARNING", "und", uj::f0(type == "ERROR", "bld", "pln")))))
-  bg <- uj::f0(uj::isIN(bg, bgs), bg, uj::f0(type == "UPDATE", "blk", uj::f0(type == "ALERT", "red", uj::f0(type == "WARNING", "red", uj::f0(type == "ERROR", "ylw", "gry")))))
-  fg <- uj::f0(uj::isIN(fg, fgs), fg, uj::f0(type == "UPDATE", "gry", uj::f0(type == "ALERT", "wht", uj::f0(type == "WARNING", "ylw", uj::f0(type == "ERROR", "red", "blk")))))
-  stop <- uj::f0(base::is.null(stop), type == "error", stop)
-  buffer <- uj::bg(bg, spc)
-  title <- uj::txt(title, bg = bg, fg = fg, st = st)
-  mssg <- uj::txt(uj::collapse_dots(..., blank. = blank), bg = BG, fg = FG, st = ST)
-  base::cat(base::paste0("\n", buffer, "\n", title, "\n", buffer, "\n\n", uj::f0(mssg == "", "", base::paste0(mssg, "\n\n"))))
-  if (stop) {stop("", call. = F)}
+alert <- function(..., type = "alert", lab = "", blank = "", ftype = "r|y|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
+  lab <- uj:::.chr(lab)
+  msg <- uj:::.chr(...)
+  type <- base::tolower(uj:::.chr(type))
+  flab <- uj::f0(uj::NLL(flab), base::c("blk", "ylw", "itl"), uj::f0(uj::cmp_chr_vec(flab), uj:::.ssplit(flab), NULL))
+  fmsg <- uj::f0(uj::NLL(fmsg), base::c("def", "def", "def"), uj::f0(uj::cmp_chr_vec(fmsg), uj:::.ssplit(fmsg), NULL))
+  ftype <- uj::f0(uj::NLL(ftype), base::c("red", "wht", "bld"), uj::f0(uj::cmp_chr_vec(ftype), uj:::.ssplit(ftype), NULL))
+  blank <- uj:::.chr(blank)
+  uj::errs_if_nots(uj::cmp_chr_scl(type ), "[type] must be a complete character scalar (?cmp_chr_scl)."                                                                         ,
+                   uj::cmp_chr_scl(lab  ), "[lab] must be a complete character scalar (?cmp_chr_scl)."                                                                          ,
+                   uj::cmp_chr_scl(blank), "[blank] must be NULL or a complete character scalar (?cmp_chr_scl)."                                                                ,
+                   uj:::.ok_fmt(   ftype), "[ftype] must be consistent with the description the [specifying formats] section of the [alert] topic of package [uj] (?uj::alert).",
+                   uj:::.ok_fmt(   flab ), "[flab] must be consistent with the description the [specifying formats] section of the [alert] topic of package [uj] (?uj::alert)." ,
+                   uj:::.ok_fmt(   fmsg ), "[fmsg] must be consistent with the description the [specifying formats] section of the [alert] topic of package [uj] (?uj::alert)." ,
+                   uj::cmp_chr_scl(d    ), "[d] must be a complete character scalar (?cmp_chr_scl)."                                                                            , PKG = "uj")
+  if (type != "") {type <- uj::txt(base::toupper(type), bg = ftype[1], fg = ftype[2], st = ftype[3])}
+  if (lab != "") {lab <- uj::txt(lab, bg = flab[1], fg = flab[2], st = flab[3])}
+  if (msg != "") {msg <- uj::txt(msg, bg = fmsg[1], fg = fmsg[2], st = fmsg[3])}
+  base::cat(uj::p0("\n", type, uj::f0(type == "", "", "\n"), lab, uj::f0(lab == "", "", "\n"), msg, "\n"))
+  if (type == "error") {uj::stopperr("", FUN = uj::caller())}
 }
 
 #' @rdname dialog
 #' @export
-acknowledge <- function(..., st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL) {
-  uj::alert(..., title = "Acknowledgement required", st = st, bg = bg, fg = fg, ST = ST, BG = BG, FG = FG)
-  base::cat(uj::bg("w", uj::fg("r", "Hit [return] or [enter] to continue: ")))
+acknowledge <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
+  uj::alert(..., type = "alert", lab = "Acknowledgement required", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
+  base::cat(uj::txt("r", "Press [return] or [enter] to continue: ", bg = "yellow", fg = "red", st = "plain"))
   base::readline()
+  NULL
 }
 
 #' @rdname dialog
 #' @export
-choose1 <- function(options, ..., st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL) {
-  if (!uj::unq_atm_vec(options)) {base::stop(uj::format_errs(pkg = "uj", "[options] must be a unique atomic vec (?unq_atm_vec)."))}
-  uj::alert(..., title = "Response required", blank = "Select an option", st = st, bg = bg, fg = fg, ST = ST, BG = BG, FG = FG)
-  char.options <- base::c("{ CANCEL }", base::as.character(options))
+choose1 <- function(options, ..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
+  uj::err_if_not(uj::unq_atm_vec(options), "[options] must be a unique atomic vec (?unq_atm_vec).", PKG = "uj")
+  uj::alert(..., title = "Response required", blank = "", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
+  char.options <- base::c("{ CANCEL }", uj::asCHR(options))
   answer <- svDialogs::dlg_list(char.options)$res
-  if (base::length(answer) == 0 | uj::isEQ(answer, "{ CANCEL }")) {uj::alert(type = "warning", title = "Action canceled", stop = T)}
-  options[base::as.character(options) == answer]
+  if (uj::N0(answer) | uj::isEQ1(answer, "{ CANCEL }")) {uj::stopperr("Action cancelled by user choice.", FUN = uj::caller())}
+  options[uj::asCHR(options) == answer]
 }
 
 #' @rdname dialog
 #' @export
-chooseN <- function(options, ..., all = TRUE, none = FALSE, n = NULL, min.n = NULL, max.n = NULL, st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL) {
-  errs <- base::c(uj::f0(uj::unq_atm_mvc(options        ), NULL, "[options] must be a unique atomic multivec (?unq_atm_mvec)."                    ),
-                  uj::f0(uj::cmp_lgl_scl(all            ), NULL, "[all] must be TRUE or FALSE."                                                   ),
-                  uj::f0(uj::cmp_lgl_scl(none           ), NULL, "[none] must be TRUE or FALSE."                                                  ),
-                  uj::f0(uj::nll_or(n    , "cmp_psw_scl"), NULL, "[n] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl)."    ),
-                  uj::f0(uj::nll_or(min.n, "cmp_psw_scl"), NULL, "[min.n] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl)."),
-                  uj::f0(uj::nll_or(max.n, "cmp_psw_scl"), NULL, "[max.n] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl)."))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
-  mssg <- uj::collapse_dots(...)
-  n.opt <- base::length(options)
-  def.n <- !base::is.null(n)
-  def.min <- !base::is.null(min.n)
-  def.max <- !base::is.null(max.n)
+chooseN <- function(options, ..., all = TRUE, none = FALSE, n = NULL, min.n = NULL, max.n = NULL, ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
+  uj::errs_if_nots(uj::unq_atm_mvc(options        ), "[options] must be a unique atomic multivec (?unq_atm_mvc)."                     ,
+                   uj::cmp_lgl_scl(all            ), "[all] must be TRUE or FALSE."                                                   ,
+                   uj::cmp_lgl_scl(none           ), "[none] must be TRUE or FALSE."                                                  ,
+                   uj::nll_or(n    , "cmp_psw_scl"), "[n] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl)."    ,
+                   uj::nll_or(min.n, "cmp_psw_scl"), "[min.n] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).",
+                   uj::nll_or(max.n, "cmp_psw_scl"), "[max.n] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).", PKG = "uj")
+  def.min <- uj::DEF(min.n)
+  def.max <- uj::DEF(max.n)
+  def.n <- uj::DEF(n)
+  mssg <- uj::glue_dots(...)
+  n.opt <- uj::N(options)
   ok.lo <- uj::f0(!def.n, T, n >= 1)
   ok.hi <- uj::f0(!def.n, T, n <= n.opt)
   ok.min <- uj::f0(!def.min, T, min.n <= n.opt)
   ok.max <- uj::f0(!def.max, T, max.n <= n.opt)
   ok.combo <- (!def.min & !def.max) | !def.n
   ok.min.max <- uj::f0(!def.min | !def.max, T, min.n <= max.n)
-  errs <- base::c(uj::f0(ok.lo, NULL, "[n] is out of bounds ==> min(n) < 1."),
-                  uj::f0(ok.hi, NULL, "[n] is out of bounds ==> max(n) > length(options)."),
-                  uj::f0(ok.min, NULL, "[min.n] is out of bounds ==> min.n > length(options)."),
-                  uj::f0(ok.max, NULL, "[max.n] is out of bounds ==> max.n > length(options)."),
-                  uj::f0(ok.combo, NULL, "When [n] is supplied, [min.n] and [max.n] must be NULL."),
-                  uj::f0(ok.min.max, NULL, "[min.n] and [max.n] are inconsistent ==> min.n > max.n."))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
+  uj::errs_if_nots(ok.lo, "[n] is out of bounds ==> min(n) < 1."                        ,
+                   ok.hi, "[n] is out of bounds ==> max(n) > length(options)."          ,
+                   ok.min, "[min.n] is out of bounds ==> min.n > length(options)."      ,
+                   ok.max, "[max.n] is out of bounds ==> max.n > length(options)."      ,
+                   ok.combo, "When [n] is supplied, [min.n] and [max.n] must be NULL."  ,
+                   ok.min.max, "[min.n] and [max.n] are inconsistent ==> min.n > max.n.", PKG = "uj")
   min.n <- uj::f0(def.n, n, uj::f0(def.min, min.n, uj::f0(none, 0, 1)))
   max.n <- uj::f0(def.n, n, uj::f0(def.max, max.n, n.opt))
   n <- min.n:max.n
-  infix <- uj::f0(min.n == max.n, uj::p0("exactly ", max.n), base::paste0("from ", min.n, " to ", max.n))
-  all <- base::length(options) %in% n
-  none <- 0 %in% n
-  char.options <- base::c("{ CANCEL }", base::as.character(options), uj::f0(all, "{ ALL }", NULL), uj::f0(none, "{ NONE }", NULL))
-  mssg <- base::paste0(mssg, uj::f0(mssg == "", "", "\n\n"), "CHOOSE ", infix, " OPTIONS")
-  uj::alert(mssg, title = "Response required", st = st, bg = bg, fg = fg, ST = ST, BG = BG, FG = FG)
-  answer <- base::unique(svDialogs::dlg_list(char.options, title = "", multiple = T)$res)
-  if (uj::isEQ(answer, "{ CANCEL }")) {uj::alert(type = "warning", title = "Action canceled", stop = T)}
+  infix <- uj::f0(min.n == max.n, uj::p0("exactly ", max.n), uj::p0("from ", min.n, " to ", max.n))
+  all <- uj::isIN1(uj::N(options), n)
+  none <- uj::isIN1(0, n)
+  char.options <- base::c("{ CANCEL }", uj::asCHR(options), uj::f0(all, "{ ALL }", NULL), uj::f0(none, "{ NONE }", NULL))
+  mssg <- uj::p0(mssg, uj::f0(mssg == "", "", "\n\n"), "CHOOSE ", infix, " OPTIONS")
+  uj::alert(mssg, title = "Response required", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
+  answer <- uj::U(svDialogs::dlg_list(char.options, title = "", multiple = T)$res)
+  if (uj::N0(answer) | uj::isEQ1(answer, "{ CANCEL }")) {uj::stopperr("Action cancelled by user choice.", FUN = uj::caller())}
   answer <- answer[answer != "{ CANCEL }"]
-  if (none & base::length(answer) == 0 | uj::isEQ(answer, "{ NONE }")) {return(NULL)}
-  if (uj::isEQ("{ ALL }", answer)) {return(options[!(options == "{ CANCEL }")])}
-  else if (uj::anyIN(answer, c("{ ALL }", "{ NONE }"))) {uj::alert(type = "error", title = "Invalid selection")}
-  else if (!(base::length(answer) %in% n)) {uj::alert(type = "error", title = "Invalid number of options selected")}
-  else {options[base::as.character(options) %in% base::as.character(answer)]}
+  if (none & uj::N0(answer) | uj::isEQ1(answer, "{ NONE }")) {NULL}
+  else if (uj::isEQ1("{ ALL }", answer)) {options[!(options == "{ CANCEL }")]}
+  else if (uj::anyIN(answer, base::c("{ ALL }", "{ NONE }"))) {uj::stopperr("Invalid selection", FUN = uj::caller())}
+  else if (uj::isMF1(uj::N(answer), n)) {uj::stopperr("Invalid number of options selected", FUN = uj::caller())}
+  else {options[uj::asCHR(options) %in% uj::asCHR(answer)]}
 }
 
 #' @rdname dialog
 #' @export
-NO <- function(..., st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL) {
-  x <- uj::choose1(base::c("{ YES }", "{ NO }"), ..., st = st, bg = bg, fg = fg, ST = ST, BG = BG, FG = FG)
-  uj::f0(uj::isEQ(x, "{ YES }"), F, uj::f0(uj::isEQ(x, "{ NO }"), T, uj::alert(type = "warning", title = "Action canceled", stop = T)))
+NO <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
+  x <- uj::choose1(base::c("{ YES }", "{ NO }"), ..., ftype = ftype, flab = flab, fmsg = fmsg, d = d)
+  uj::f0(uj::isEQ1(x, "{ YES }"), F, uj::f0(uj::isEQ1(x, "{ NO }"), T, uj::stopperr("Action canceled by user choice.", FUN = uj::caller())))
 }
 
 #' @rdname dialog
 #' @export
-YES <- function(..., st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL) {
-  x <- uj::choose1(base::c("{ YES }", "{ NO }"), ..., st = st, bg = bg, fg = fg, ST = ST, BG = BG, FG = FG)
-  uj::f0(uj::isEQ(x, "{ YES }"), T, uj::f0(uj::isEQ(x, "{ NO }"), F, uj::alert(type = "warning", title = "Action canceled", stop = T)))
+YES <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
+  x <- uj::choose1(base::c("{ YES }", "{ NO }"), ..., ftype = ftype, flab = flab, fmsg = fmsg, d = d)
+  uj::f0(uj::isEQ1(x, "{ YES }"), T, uj::f0(uj::isEQ1(x, "{ NO }"), F, uj::stopperr("Action canceled by user choice.", FUN = uj::caller())))
 }
 
 #' @rdname dialog
 #' @export
-OK <- function(..., st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL) {uj::isEQ(uj::choose1("{ OK }", ..., st = st, bg = bg, fg = fg, ST = ST, BG = BG, FG = FG), "{ OK }")}
+OK <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {uj::isEQ1(uj::choose1("{ OK }", ..., ftype = ftype, flab = flab, fmsg = fmsg, d = d), "{ OK }")}
 
 #' @rdname dialog
 #' @export
-CANCEL <- function(..., st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL) {uj::isEQ(uj::choose1("{ OK }", ..., st = st, bg = bg, fg = fg, ST = ST, BG = BG, FG = FG), "{ CANCEL }")}
+CANCEL <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {uj::isEQ1(uj::choose1("{ OK }", ..., ftype = ftype, flab = flab, fmsg = fmsg, d = d), "{ CANCEL }")}
 
 #' @rdname dialog
 #' @export
-ask <- function(..., st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL) {
-  mssg <- base::trimws(base::paste0(uj::av(...), collapse = ""), which = "both")
-  uj::alert(mssg, title = "Response required", st = st, bg = bg, fg = fg, ST = ST, BG = BG, FG = FG)
+ask <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
+  mssg <- base::trimws(uj::g0(uj::av(...)), which = "both")
+  uj::alert(mssg, title = "Response required", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
   base::cat("\n\n")
   base::cat(crayon::bold(crayon::bgWhite(crayon::red("Enter your response: "))))
   answer <- base::readline()
-  if (base::length(answer) == 0) {uj::alert(type = "warning", title = "Action canceled", stop = T)}
-  answer
+  uj::f0(uj::N0(answer), uj::stopperr("Action canceled by user choice.", FUN = uj::caller()), answer)
 }
 
 #' @rdname dialog
 #' @export
-asknew <- function(old, unq = TRUE, st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL) {
-  errs <- base::c(uj::f0(uj::unq_atm_mvc(old), NULL, "[old] must be a unique atomic multivec (?unq_atm_mvec)."),
-                  uj::f0(uj::isTF(unq)       , NULL, "[unq] must be TRUE or FALSE."                           ))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
-  list <- base::paste0(old, collapse = " | ")
-  question <- uj::spf("Enter a pipe-separated list of %d replacement values for the following pipe-separated original values:\n\n%s\n\n", base::length(old), list)
-  uj::alert(question, title = "Response required", st = st, bg = bg, fg = fg, ST = ST, BG = BG, FG = FG)
+askNEW <- function(old, unq = TRUE, ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
+  uj::errs_if_nots(uj::unq_atm_vec(old), "[old] must be a unique atomic vec (?unq_atm_vec).",
+                   uj::isTF1(unq)      , "[unq] must be TRUE or FALSE."                     , PKG = "uj")
+  list <- uj::g(" | ", old)
+  question <- uj::spf("Enter a pipe-separated list of %d replacement values for the following pipe-separated original values:\n\n%s\n\n", uj::N(old), list)
+  uj::alert(question, title = "Response required", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
   base::cat(uj::bg_red(uj::fg_ylw(uj::st_bld("Enter your response: "))))
   answer <- base::readline()
   answer <- uj::av(base::strsplit(answer, "|", fixed = T))
   answer <- base::trimws(answer, which = "both")
   answer <- answer[answer != ""]
-  n.ans <- base::length(answer)
-  if (n.ans == base::length(old)) {uj::f0(!unq | uj::unq_vec(answer), answer, uj::alert(type = "error", title = "Replacement values are not unique"))}
-  else if (n.ans == 0) {uj::alert(type = "warning", title = "Action canceled", stop = T)}
-  else {uj::alert(type = "error", title = "Numbers of old and new values do not match", stop = T)}
+  n.ans <- uj::N(answer)
+  if (n.ans == 0) {uj::stopperr("Action cancelled by user", FUN = uj::caller())}
+  if (n.ans != uj::N(old)) {uj::stopperr("Numbers of old and new values do not match", FUN = uj::caller())}
+  if (unq & !uj::unq_vec(answer)) {uj::stopperr("Replacement values are not unique", FUN = uj::caller())}
+  answer
 }
 
 #' @rdname dialog
 #' @export
-choose_dir <- function(dir.type = "directory", st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL) {
-  if (!uj::cmp_chr_scl(dir.type)) {stop(uj::format_errs(pkg = "uj", "[dir.type] must be a complete character scalar (?cmp_chr_scl)"))}
-  uj::acknowledge("In the next dialog box, select a ", dir.type, ".", st = st, bg = bg, fg = fg, ST = ST, BG = BG, FG = FG)
+choose_dir <- function(dir.type = "directory", ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
+  uj::err_if_not(uj::cmp_chr_scl(dir.type), "[dir.type] must be a complete character scalar (?cmp_chr_scl)", PKG = "uj")
+  uj::acknowledge("In the next dialog box, select a ", dir.type, ".", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
   path <- svDialogs::dlg_dir(title = uj::p0("Select a ", dir.type, ":"))$res
-  if (base::length(path) == 0) {uj::alert(type = "warning", "Action canceled", stop = T)}
+  if (uj::N0(path)) {uj::stopperr("Action canceled by user choice", FUN = uj::caller())}
   path
 }
 
 #' @rdname dialog
 #' @export
-choose_doc <- function(doc.type = "document", st = NULL, bg = NULL, fg = NULL, ST = NULL, BG = NULL, FG = NULL) {
-  if (!uj::cmp_chr_scl(doc.type)) {stop(uj::format_errs(pkg = "uj", "[doc.type] must be a complete character scalar (?cmp_chr_scl)"))}
-  uj::acknowledge("In the next dialog box, select a ", doc.type, ".", st = st, bg = bg, fg = fg, ST = ST, BG = BG, FG = FG)
+choose_doc <- function(doc.type = "document", ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
+  uj::err_if_not(uj::cmp_chr_scl(doc.type), "[doc.type] must be a complete character scalar (?cmp_chr_scl)", PKG = "uj")
+  uj::acknowledge("In the next dialog box, select a ", doc.type, ".", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
   path <- svDialogs::dlg_open(title = uj::p0("Select a ", doc.type, ":"))$res
-  if (base::length(path) == 0) {uj::alert(type = "warning", title = "Action canceled", stop = T)}
+  if (uj::N0(path)) {uj::stopperr("Action canceled by user choice", FUN = uj::caller())}
   path
 }

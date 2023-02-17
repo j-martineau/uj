@@ -2,105 +2,181 @@
 #' @encoding UTF-8
 #' @family extensions
 #' @family forks
-#' @title Robust extended functionality for \code{\link[base]{ifelse}}.
-#' @description \tabular{rl}{
-#'           `f0`   \tab If `test` is scalar `TRUE`, returns `yes`. If `test` is anything else, returns `no`.
-#'   \cr            \tab  
-#'   \cr     `f1`   \tab Error-checked version of `f0`. Evaluates and processes logical scalar `test` in the following manner:
-#'   \cr            \tab \itemize{
-#'                         \item If `test = TRUE`, returns `yes`.
-#'                         \item If `test = FALSE`, returns `no`.
-#'                         \item If `test = NA`, returns `na` unless `na = 'err'`, in which case, an error is thrown.
-#'                         \item If `test` is neither a logical scalar nor scalar `NA`, returns `err` unless `err = 'err'`, in which case an error is thrown.
-#'                       }
-#'   \cr   `fork`   \tab Evaluates logical scalar or logical vector `test` and return an object of the same length as `test` where:
-#'   \cr            \tab \itemize{
-#'                         \item `TRUE` values of `test` are replaced by corresponding values of `yes`.
-#'                         \item `FALSE` values of `test` are replaced by corresponding values of `no`.
-#'                         \item `NA` values of `test` are replaced by `na` (unless `na = 'err'`, in which case if there are any `NA` values in `test`, throws an error).
-#' }}
-#' @param x A logical scalar or vector is anticipated for `f0` and `f1` vs. `fork` respectively, but this argument may be any R object.
-#' @param y,n Objects of any type for `f0` and `f1`. \link[=atm_scl]{Atomic scalars} or \link[=atm_vec]{atomic vecs} of the same length as `test` for `fork`.
+#' @title Enhancements of \code{\link[base]{ifelse}}.
+#' @description Return different types of objects for `TRUE` and `FALSE` and return `NULL`  conditional on the number of `TRUE` values.
+#' @details **`fork`**
+#' \cr\cr Evaluates logical scalar or logical vector `test` and return an object of the same length as `test` where:
+#' \itemize{\item `TRUE` values of `test` are replaced by corresponding values of `yes`.
+#'          \item `FALSE` values of `test` are replaced by corresponding values of `no`.
+#'          \item `NA` values of `test` are replaced by `na` (unless `na = 'err'`, in which case if there are any `NA` values in `test`, throws an error). }
+#' \cr\cr **`f0`**
+#' \cr\cr If `test` is scalar `TRUE`, returns `yes`. If `test` is anything else, returns `no`.
+#' \cr\cr **`f1`**
+#' \cr\cr Error-checked version of `f0`. Evaluates and processes logical scalar `test` in the following manner:
+#' \itemize{\item If `test = TRUE`, returns `yes`.
+#'          \item If `test = FALSE`, returns `no`.
+#'          \item If `test = NA`, returns `na` unless `na = 'err'`, in which case, an error is thrown.
+#'          \item If `test` is neither a logical scalar nor scalar `NA`, returns `err` unless `err = 'err'`, in which case an error is thrown. }
+#' \cr\cr **Functions beginning with `nll_if`**
+#' \cr\cr These functions are useful for compiling error messages. They thus return `NULL` if error checks are passed and a message if they are not.
+#' \cr\cr **`nll_if`**
+#' \cr\cr If `x` is scalar `TRUE`, returns `NULL`, otherwise collapses `...` args to a character scalar using delimiter `d` and returns the result.
+#' \cr\cr **`nll_if<cond.>`**
+#' \cr\cr These functions take both named and unnamed `...` args. Named `...` args other than `D` are evaluated for `TRUE`-ness (any value that is not scalar `TRUE` is considered `FALSE`). Unnamed `...` args are \link[=gDOTS]{collapsed} into a character scalar value named `D` using the delimiter in arg `d.`
+#' \tabular{ll}{  `nll_if_none`   \tab Returns `D` upon encountering a `TRUE` named `...` arg. Returns `NULL` if none is encountered. \cr   \tab     }
+#' \tabular{ll}{  `nll_if_any`    \tab Returns `NULL` upon encountering a `TRUE` named `...` arg. Returns `D` if none is encountered. \cr   \tab   \cr
+#'                `nll_if_all`    \tab Returns `D` upon encountering a non-`TRUE` named `...` arg. Returns `NULL` if none is encountered.            }
+#' \cr\cr **`nll_ifs`**
+#' \cr\cr Calls `nll_if_none(..., D = D)` when `COND = 'none'`. Calls `nll_if_any(..., D = D)` when `COND = 'any`. Calls `nll_if_all(..., D = D)` when `COND` takes any other value (including `'all'`)
+#' \cr\cr **`nlls_ifs`**
+#' \cr\cr Conditionally compiles messages into a character vector. Each non-`TRUE` odd-numbered `...` arg's message (\link[=collapse]{collapsed} from the following `...` arg) is added to the compilation. If all odd-numbered `...` args are `TRUE`, returns `NULL`.
+#' @param x A logical vector.
+#' @param y,n \link[=atm_scl]{Atomic scalars} or \link[=atm_vec]{atomic vecs} of the same length as `x`.
 #' @param na An object of any type for `f1`. An atomic scalar \link[=compatible]{compatible} with `yes` and `no` for `fork`, with the additional possibility of `na = 'err'` to indicate an error should be thrown if any values in `test` are `na`.
 #' @param err Either `'err'` or an object to be returned when `test` is not an atomic scalar in `c(TRUE, FALSE, NA)`.
-#' @return *A length-`length(x)` atomic object* \cr   `fork`
-#'  \cr\cr *An* R *object* \cr   `f0, f1`
+#' @param X A logical scalar (if not,`X` it is replaced by `FALSE`).
+#' @param Y,N Any valid R object.
+#' @param D A character scalar delimiter for collapsing objects into scalar character objects. If `D` is not a character scalar, it is replaced by `" "`.
+#' @param COND A character scalar in `c('all', 'any', 'none')`. If `COND` is not of an allowed value, it is replaced by `'all'`.
+#' @return **A length-**`length(x)` **atomic object**      \cr `fork`
+#' \cr\cr  **An arbitrary object**                         \cr `f0, f1`
+#' \cr\cr  **A character scalar or the** `NULL` **object** \cr `nll_if, nll_ifs, nll_if_all, nll_if_any, nll_if_none`
 #' @examples
-#' Vec. <- sample(c(TRUE, FALSE, NA), 10, replace = TRUE)
-#' Yes. <- list(a = "yes", b = "yes")
-#' No. <- data.frame(a = "no", b = "no")
+#' fork(c(TRUE, FALSE, TRUE, NA), 1, 2)
+#' fork(c(TRUE, FALSE, TRUE, NA), 1, 2, na = 0)
+#' fork(c(TRUE, FALSE, TRUE, NA), 1, 2, na = NA)
+#' fork(c(TRUE, FALSE, TRUE, NA), 1:4, 5:8)
 #'
-#' Vec.
-#' Yes.
-#' No.
+#' f0(NA, data.frame(letters = letters), 0:26)
+#' f0(TRUE, data.frame(letters = letters), 0:26)
+#' f0(FALSE, data.frame(letters = letters), 0:26)
+#' f0(list(1, "a"), data.frame(letters = letters), 0:26)
+#' f0(c(.bad.var.name.), data.frame(letters = letters), 0:26)
 #'
-#' fork(Vec., "y", "n", na = "NA")
-#' fork(Vec., "y", "n")
+#' f1(NA, data.frame(letters = letters), 0:26)
+#' f1(NA, data.frame(letters = letters), 0:26, na = NA)
+#' f1(TRUE, data.frame(letters = letters), 0:26)
+#' f1(FALSE, data.frame(letters = letters), 0:26)
+#' f1(list(1, "a"), data.frame(letters = letters), 0:26)
+#' f1(list(1, "a"), data.frame(letters = letters), 0:26)
+#' f1(c(.bad.var.name.), data.frame(letters = letters), 0:26)
+#' f1(list(1, "a"), data.frame(letters = letters), 0:26, err = "error")
+#' f1(c(.bad.var.name.), data.frame(letters = letters), 0:26, err = "error")
 #'
-#' f0(FALSE, Yes., No.)
-#' f0(TRUE, Yes., No.)
-#' f0(Vec., Yes., No.)
-#' f0(No., Yes., Vec.)
-#' f0(NA, Yes., No.)
+#' nll_if(TRUE, "an error", "message")
+#' nll_if(FALSE, "an error", "message")
+#' nll_if(41, "an error", "message")
 #'
-#' f1(FALSE, Yes., No.)
-#' f1(TRUE, Yes., No.)
-#'
-#' f1(NA, Yes., No., na = Vec.)
-#' f1(NA, Yes., No.)
-#'
-#' f1(7, Yes., No., err = Vec.)
-#' f1(7, Yes., No.)
+#' nll_ifs(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "any", COND = "all")
+#' nll_ifs(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "all", COND = "any")
+#' nll_ifs(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "none", COND = "none")
+#' nll_if_any(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "any")
+#' nll_if_all(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "all")
+#' nll_if_none(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "none")
 #' @export
-f0 <- function(x, y, n) {if (base::isTRUE(x)) {y} else {n}}
+f0 <- function(X, Y, N) {if (uj::isT1(uj::failsafe(X))) {uj::failsafe(Y)} else {uj::failsafe(N)}}
 
 #' @rdname fork
 #' @export
-fork <- function(x, y, n, na = n) {
-  nx <- base::length(x)
-  ny <- base::length(y)
-  nn <- base::length(n)
-  nna <- base::length(na)
-  na.err <- uj::isID(na, 'err')
-  inc.na <- na.err | uj::isNAS(na)
-  ok.x <- uj::lgl_vec(x)
-  ok.y <- uj::f0(!uj::ivec(y), F, uj::f0(!ok.x, T, ny %in% base::c(1, base::max(1, nx))))
-  ok.n <- uj::f0(!uj::ivec(n), F, uj::f0(!ok.x, T, nn %in% base::c(1, base::max(1, nx))))
-  ok.na <- uj::f0(!uj::ivec(na), F, uj::f0(!ok.x, T, nna %in% base::c(1, base::max(1, nx))))
-  errs <- base::c(uj::f0(ok.x , NULL, "[x] must be a complete logical vec (?cmp_lgl_vec)."),
-                  uj::f0(ok.y , NULL, "[y] must be of length 1 or a vector of the same length as [x]."),
-                  uj::f0(ok.n , NULL, "[n] must be of length 1 or a vector of the same length as [x]."),
-                  uj::f0(ok.na, NULL, "[na] must be of length 1 or a vector of the same length as [x]."))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
+fork <- function(X, Y, N, NAS = N) {
+  nx <- uj::N(X)
+  ny <- uj::N(Y)
+  nn <- uj::N(N)
+  nna <- uj::N(NAS)
+  nas.err <- uj::isEQ1(NAS, 'err')
+  inc.nas <- nas.err | uj::isNAS(NAS)
+  ok.x <- uj::cmp_lgl_vec(X)
+  ok.y <- uj::f0(!uj::VEC(Y), F, uj::f0(!ok.x, T, uj::isIN1(ny, 1, base::max(1, nx))))
+  ok.n <- uj::f0(!uj::VEC(N), F, uj::f0(!ok.x, T, uj::isIN1(nn, 1, base::max(1, nx))))
+  ok.na <- uj::f0(!uj::VEC(NAS), F, uj::f0(!ok.x, T, uj::isIN1(nna, 1, base::max(1, nx))))
+  uj::errs_if_nots(ok.x , "[X] must be a logical vec (?cmp_lgl_vec)."                       ,
+                   ok.y , "[Y] must be of length 1 or a vector of the same length as [x]."  ,
+                   ok.n , "[N] must be of length 1 or a vector of the same length as [x]."  ,
+                   ok.na, "[NAS] must be of length 1 or a vector of the same length as [x].", PKG = "uj")
   ok.tny <- ok.x & ok.y & ok.n
-  ok.arg <- uj::f0(!na.err | !ok.x, T, uj::cmp_lgl_vec(x))
-  ok.tny <- uj::f0(!ok.tny, NULL, uj::f0(inc.na, uj::compatible(y, n, na), uj::compatible(y, n)))
-  errs  <- base::c(uj::f0(ok.arg, NULL, "[na = 'err'] but [x] contains NA values."),
-                   uj::f0(ok.tny, NULL, uj::f0(inc.na, "[y], [n], and [na] must be of compatible (?compatible) modes.",
-                                                       "[y] and [n] must be of compatible (?compatible) modes.")))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
-  if (ny  == 1) {y  <- base::rep.int(y , nx)}
-  if (nn  == 1) {n  <- base::rep.int(n , nx)}
-  if (nna == 1) {na <- base::rep.int(na, nx)}
+  ok.arg <- uj::f0(!nas.err | !ok.x, T, uj::cmp_lgl_vec(X))
+  ok.tny <- uj::f0(!ok.tny, NULL, uj::f0(inc.nas, uj::compatible(Y, N, NAS), uj::compatible(Y, N)))
+  uj::errs_if_nots(ok.arg,                 "[NAS = 'err'] but [X] contains NA values."                      ,
+                   ok.tny, uj::f0(inc.nas, "[Y], [N], and [NAS] must be of compatible (?compatible) modes." ,
+                                           "[Y] and [N] must be of compatible (?compatible) modes."        ), PKG = "uj")
+  if (ny  == 1) {Y   <- base::rep.int(Y  , nx)}
+  if (nn  == 1) {N   <- base::rep.int(Y  , nx)}
+  if (nna == 1) {NAS <- base::rep.int(NAS, nx)}
   out <- base::rep.int(NA, nx)
-  iT <- base::sapply(x, isTRUE)
-  iF <- base::sapply(x, isFALSE)
-  iN <- base::is.na(x)
-  out[iT] <-  y[iT]
-  out[iF] <-  n[iF]
-  out[iN] <- na[iN]
+  iT <- base::sapply(X, isTRUE)
+  iF <- base::sapply(X, isFALSE)
+  iN <- uj::na(X)
+  out[iT] <-   Y[iT]
+  out[iF] <-   N[iF]
+  out[iN] <- NAS[iN]
   out
 }
 
 #' @rdname fork
 #' @export
-f1 <- function(x, y, n, na = n, err = n) {
-  nas <- uj::isNAS(x)
-  x <- uj::failsafe(x)
-  uj::f0(base::isTRUE(x), y,
-  uj::f0(base::isFALSE(x), n,
-  uj::f0(nas & !uj::isID(na, 'err'), na,
-  uj::f0(!uj::isLG(x) & !uj::isID(err, 'err'), err,
-  uj::f0(nas, stop(uj::format_errs(pkg = "uj", "[x] must be atomic, scalar, and TRUE, FALSE, or NA.")),
-              stop(uj::format_errs(pkg = "uj", "[x] must be atomic, scalar, and TRUE or FALSE." )))))))
+f1 <- function(X, Y, N, NAS = N, ERR = N) {
+  NAS <- uj::NAS(X)
+  X <- uj::failsafe(X)
+  if      (uj::isT1(X))                            {Y}
+  else if (uj::isF1(X))                            {N}
+  else if (uj::isNAS(X) & uj::isDIF1(NAS, 'err'))  {NAS}
+  else if (uj::notLG1(X) & uj::isDIF1(err, 'err')) {ERR}
+  else if (NAS)                                    {uj::stopperr("[x] must be atomic, scalar, and TRUE, FALSE, or NA.", FUN = "f1", PKG = "uj", STACK = uj::callers())}
+  else                                             {uj::stopperr("[x] must be atomic, scalar, and TRUE or FALSE."     , FUN = 'f1', PKG = "uj", STACK = uj::callers())}
+}
+
+#' @rdname fork
+#' @export
+nll_if <- function(X, ..., D = " ") {uj::f0(uj::isT1(X), NULL, uj::g(uj::f0(uj::cmp_chr_scl(D), D, " "), uj::av(...)))}
+
+#' @rdname fork
+#' @export
+nll_ifs <- function(..., D = " ", COND = "all") {
+  bad_dots <- function(STACK) {uj::stopperr("There must be both named and unnamed [...] args.", FUN = "nll_ifs", PKG = "uj", STACK = STACK)}
+  if (!uj::cmp_chr_scl(uj::failsafe(D))) {D <- " "}
+  if (uj::isMF1(COND, "all", "any", "none")) {COND <- "all"}
+  dots <- base::list(...)
+  labs <- uj::EN(dots)
+  if (uj::N0(labs)) {bad_dots(uj::callers())}
+  is.named <- uj::ok(labs)
+  is.named[is.named] <- labs[is.named] != ""
+  if (base::all(is.named) | !base::any(is.named)) {bad_dots(uj::callers())}
+  known <- dots[is.named]
+  anon <- uj::g(D, uj::av(dots[!is.named]))
+  for (i in 1:uj::N(known)) {
+    true <- uj::isT1(uj::failsafe(known[[i]]))
+    if      (COND == "any"  &  true) {return(NULL)}
+    else if (COND == "all"  & !true) {return(anon)}
+    else if (COND == "none" &  true) {return(anon)}
+  }
+  if (COND == "any") {NULL} else {anon}
+}
+
+#' @rdname fork
+#' @export
+nll_if_any <- function(..., D = " ") {uj::nll_ifs(..., D = " ", COND = "any")}
+
+#' @rdname fork
+#' @export
+nll_if_all <- function(..., D = " ") {uj::nll_ifs(..., D = " ", COND = "all")}
+
+#' @rdname fork
+#' @export
+nll_if_none <- function(..., D = " ") {uj::nll_ifs(..., D = " ", COND = "none")}
+
+#' @rdname fork
+#' @export
+nll_ifs <- function(..., D = " ") {
+  if (!uj::cmp_chr_scl(uj::failsafe(D))) {D <- " "}
+  ndots <- uj::ND()
+  npairs <- ndots / 2
+  has.pairs <- uj::rounded(npairs)
+  uj::err_if(ndots == 0 | !has.pairs, "The number of [...] args must be even and greater than 0.", FUN = "nlls_ifs", PKG = "uj", STACK = uj::callers())
+  y <- NULL
+  for (i in base::seq(from = 1, to = ndots - 1, by = 2)) {
+    test <- uj::failsafe(base::...elt(i))
+    mssg <- uj::failsafe(base::...elt(i + 1))
+    y <- base::c(y, uj::nll_if(test, mssg, D = D))
+  }
+  y
 }

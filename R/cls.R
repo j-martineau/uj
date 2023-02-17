@@ -1,47 +1,50 @@
 #' @encoding UTF-8
 #' @family properties
 #' @title Manage classes
-#' @description \tabular{rl}{
-#'       `has_cls`   \tab Evaluate whether class(es) in `...` are (all) classes of `x`.
-#'   \cr `add_cls`   \tab Add class(es) in `...` to classes of `x`.
-#'   \cr `set_cls`   \tab Set class of `x` to class(es) in `...`.
-#'   \cr    `xcls`   \tab Removes class(es) in `...` from classes of `x`.
-#'   \cr     `cls`   \tab Gets class(es) of `x`.
-#' }
+#' @details
+#' \tabular{ll}{  `rm_cls,xcls`   \tab Removes class(es) in `...` from classes of `x`.               \cr   \tab     }
+#' \tabular{ll}{  `has_cls`       \tab Evaluate whether class(es) in `...` are (all) classes of `x`. \cr   \tab   \cr
+#'                `add_cls`       \tab Add class(es) in `...` to classes of `x`.                     \cr   \tab   \cr
+#'                `set_cls`       \tab Set class of `x` to class(es) in `...`.                       \cr   \tab     }
+#' \tabular{ll}{  `cls`           \tab Gets class(es) of `x`.                                                       }
 #' @param x An R object.
 #' @param ... Unquoted class names and/or names of variables whose contents are \link[=av]{atomized} and converted to character. When `...` args are names of variables in the calling environment, they are atomized, otherwise they are treated as unquoted class names.
-#' @return *A character vector* \cr   `cls`
-#'   \cr\cr *A logical scalar* \cr   `has_cls`
-#'   \cr\cr *An R object* \cr   `add_cls, set_cls, xcls`
+#' @return **A character vector** \cr `cls`
+#' \cr\cr  **A logical scalar**   \cr `has_cls`
+#' \cr\cr  **An object**          \cr `add_cls, set_cls, rm_cls, xcls`
 #' @examples
-#' obj1. <- tb(letters = letters, numbers = 1:26)
-#' obj2. <- set_cls(obj1., c("new", cls(obj1.)))
-#' obj3. <- set_cls(obj1., "new")
-#' cls(obj1.)
-#' cls(obj2.)
-#' cls(obj3.)
+#' egObj1 <- data.frame(letters = letters, numbers = 1:26, stringsAsFactors = F)
+#' egObj2 <- setCLS(egObj1, c("new", cls(egObj1)))
+#' egObj3 <- setCLS(egObj1, "new")
+#' cls(egObj1)
+#' cls(egObj2)
+#' cls(egObj3)
 #' @export
 cls <- function(x) {base::class(x)}
 
 #' @rdname cls
 #' @export
-xcls <- function(x, ...) {
-  rm.cls <- uj::str_dots(..., glue. = F)
+rm_cls <- function(x, ...) {
+  rm.cls <- uj::flex_dots(..., GLUE = F)
   all.cls <- base::class(x)
-  keep.cls <- all.cls[uj::not_in(all.cls, rm.cls)]
-  if (base::length(keep.cls) == 0) {stop(uj::format_errs(pkg = "uj", "There are no classes remaining."))}
+  keep.cls <- all.cls[!(all.cls %in% rm.cls)]
+  uj::err_if_not(uj::N1P(keep.cls), "There are no classes remaining.", PKG = "uj")
   base::class <- keep.cls
   x
 }
 
 #' @rdname cls
 #' @export
-set_cls <- function(x, ...) {base::class(x) <- uj::str_dots(..., glue. = F)}
+xcls <- rm_cls
 
 #' @rdname cls
 #' @export
-add_cls <- function(x, ...) {base::class(x) <- uj::uv(base::c(base::class(x), uj::str_dots(..., glue. = F)))}
+set_cls <- function(x, ...) {uj::cls(x) <- uj::flex_dots(..., GLUE = F)}
 
 #' @rdname cls
 #' @export
-has_cls <- function(x, ...) {uj::allIN(uj::str_dots(..., glue. = F), base::class(x))}
+add_cls <- function(x, ...) {uj::cls(x) <- uj::UV(base::c(uj::cls(x), uj::flex_dots(..., GLUE = F)))}
+
+#' @rdname cls
+#' @export
+has_cls <- function(x, ...) {uj::allIN(uj::flex_dots(..., GLUE = F), uj::cls(x))}

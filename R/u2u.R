@@ -2,28 +2,44 @@
 #' @family conversions
 #' @family plots
 #' @title Convert plotting units
-#' @description Unit functions take the following forms, where `AA` and `BB` are wildcard unit codes and `old` and `new` are user-supplied argument values.
-#' \tabular{rl}{
-#'      `BB2BB`   \tab Converts units *from* `'AA'` *to* `'BB'`.
-#'   \cr `AA2u`   \tab Converts units *from* `'AA'` *to* `new`.
-#'   \cr `u2BB`   \tab Converts units *from* `old` *to* `'BB'`.
-#'   \cr  `u2u`   \tab Converts units *from* `old` *to* `new`.
-#' }
-#' Available units/unit codes are: \tabular{rl}{
-#'       `'cm'`   \tab centimeters.
-#'   \cr `'in'`   \tab inches.
-#'   \cr `'mm'`   \tab millimeters.
-#'   \cr `'pt'`   \tab points (72/inch).
-#' }
-#' @param x \link[=atm_num]{Atomic, numeric object}.
-#' @param old,new \link[=cmp_chr_scl]{Complete character scalars} giving old and new units of distance, respectively: `'cm'`, `'in'`, `'mm'`, `'pt'` for centimeters, inches, millimeters, and points, respectively.
+#' @description Functions in this family convert among common plotting units.
+#' @details Unit conversion functions take the following forms.
+#' \tabular{ll}{  **Function**   \tab **Type of**                                                                  \cr
+#'                **Form**       \tab **Conversion**                                                               \cr
+#'                `{aa}2{bb}`    \tab from `'{aa}'` units to `'{bb}'` units\eqn{^{(1)}}.                           \cr
+#'                `{aa}2u`       \tab from `'{aa}'` units to `new` units\eqn{^{(1,2)}}.                            \cr
+#'                `u2{bb}`       \tab from `old` units to `'{BB}'` units\eqn{^{(1,2)}}.                            \cr
+#'                `u2u`          \tab from `old` units to `new` units.\eqn{^{(2)}}                                 \cr
+#'                               \tab \eqn{^{(1)}} `{aa}` and `{bb}` are placeholders for any given plotting unit. \cr
+#'                               \tab \eqn{^{(2)}} `old` and `new` are user supplied arguments.                    }
+#' \cr\cr Available unit codes are:
+#' \tabular{ll}{  `'cm'`   \tab centimeters.     \cr
+#'                `'in'`   \tab inches.          \cr
+#'                `'mm'`   \tab millimeters.     \cr
+#'                `'pt'`   \tab points (72/inch) }
+#' @param x An \link[=atm_num]{atomic, numeric object}.
+#' @param old,new \link[=cmp_chr_scl]{Complete character scalars} giving old and new units of distance, respectively: `'cm'` for centimeters, `'in'` for inches, `'mm'` for millimeters, and `'pt'` for points.
 #' @return An atomic numeric object.
 #' @examples
 #' u2u(1:3, "cm", "pt")
 #' u2u(1:3, "in", "mm")
 #' u2cm(1:3, "in")
-#' in2u(1:3, "mm")
+#' u2in(1:3, "cm")
+#' u2pt(1:3, "cm")
+#' cm2u(1:3, "in")
+#' in2u(1:3, "cm")
+#' pt2u(1:3, "cm")
+#' cm2in(1:3)
+#' cm2mm(1:3)
+#' cm2pt(1:3)
 #' in2cm(1:3)
+#' in2mm(1:3)
+#' in2pt(1:3)
+#' mm2cm(1:3)
+#' mm2in(1:3)
+#' mm2pt(1:3)
+#' pt2cm(1:3)
+#' pt2in(1:3)
 #' pt2mm(1:3)
 #' @export
 u2u <- function(x, old, new) {
@@ -32,11 +48,10 @@ u2u <- function(x, old, new) {
                    in2cm = 2.54     , in2in = 1        , in2mm = 25.4    , in2pt = 72     ,
                    mm2cm = 0.1      , mm2in = 0.0393701, mm2mm = 1       , mm2pt = 2.83465,
                    pt2cm = 0.0352778, pt2in = 0.0138889, pt2mm = 0.352778, pt2pt = 1      )
-  errs <- base::c(uj::f0(uj::cmp_num(x)                             , NULL, "[x] must be a complete numeric object (?cmp_num)."),
-                  uj::f0(uj::cmp_chr_scl(old) & uj::isIN(old, units), NULL, "[old] must be a character scalar in c('cm', 'in', 'mm', 'pt')."),
-                  uj::f0(uj::cmp_chr_scl(new) & uj::isIN(new, units), NULL, "[new] must be a character scalar in c('cm', 'in', 'mm', 'pt')."))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
-  x * conv[[base::paste0(old, "2", new)]]
+  uj::errs_if_nots(uj::cmp_num(x)                              , "[x] must be a complete numeric object (?cmpNUM)."              ,
+                   uj::cmp_chr_scl(old) & uj::isIN1(old, units), "[old] must be a character scalar in c('cm', 'in', 'mm', 'pt').",
+                   uj::cmp_chr_scl(new) & uj::isIN1(new, units), "[new] must be a character scalar in c('cm', 'in', 'mm', 'pt').", PKG = "uj" )
+  x * conv[[uj::p0(old, "2", new)]]
 }
 
 #' @rdname u2u

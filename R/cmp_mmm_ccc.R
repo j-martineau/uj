@@ -1,41 +1,43 @@
 #' @encoding UTF-8
 #' @family props
-#' @title complete + xmode + xclass combination properties
-#' @description \tabular{rl}{
-#'     `cmp_mmm_ccc_funs`   \tab What complete + xmode + xclass combination property functions are there?
-#'   \cr    `cmp_mmm_ccc`   \tab Is `x` both complete and a match to the single xmode and xclass properties in `mmm` and `ccc`, respectively?
-#'   \cr    `cmp_MMM_CCC`   \tab Is `x` both complete and a match to the single xmode and xclass properties `'MMM'` and `'CCC'`, respectively?
-#' }
+#' @title Completeness + xmode + xclass combination properties
+#' @description Check for combinations of \link[=CMP]{completeness}, \link[=mmm]{xmode}, and \link[=ccc]{xclass}.
+#' @details
+#' \tabular{ll}{  `cmp_mmm_ccc_funs`   \tab What complete + xmode + xclass combination property functions are there?                                                                                                                                                          \cr   \tab  }
+#' \tabular{ll}{  `cmp_{mmm}_{ccc}`    \tab Is `x` both complete and a match to the single xmode property `'{mmm}'` and single xclass property `'{ccc}'` where `{mmm}` and `{ccc}` are placeholders for any given xmode property and any given xclass property, respectively. \cr   \tab  }
+#' \tabular{ll}{  `cmp_mmm_ccc`        \tab Is `x` both complete and a match to the single xmode and xclass properties in `MMM` and `ccc`, respectively?                                                                                                                                  }
 #' @param x An R object.
-#' @param mmm A character scalar single xmode property from `mmm_props()`.
+#' @param MMM A character scalar single xmode property from `mmm_props()`.
 #' @param ccc A character scalar single xclass property from `ccc_props()`.
 #' @param prop A character scalar.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return *A character scalar* \cr   `cmp_mmm_ccc_funs`
-#'  \cr\cr *A logical scalar* \cr   `cmp_MMM_CCC, cmp_mmm_ccc`
+#' @return **A character scalar** \cr `cmp_mmm_ccc_funs`
+#' \cr\cr  **A logical scalar**   \cr `cmp_mmm_ccc, cmp_{mmm}_{ccc}`
 #' @examples
-#' cmp_mmm_ccc_funs()
+#' cmp_mmm_cccFUNS()
 #' cmp_mmm_ccc(letters, "ch1", "vec")
 #' cmp_mmm_ccc(letters, "str", "scl")
 #' cmp_ch1_vec(letters)
 #' cmp_str_scl("a")
 #' @export
 cmp_mmm_ccc <- function(x, mmm, ccc, ...) {
-  cfun <- function(cx) {uj::run("uj::i", ccc, "(cx)")}
-  mfun <- function(mx) {uj::f0(!base::is.atomic(mx), F, uj::f0(base::length(mx) == 0, F, uj::f0(base::any(base::is.na(mx)), F, uj::run("uj::i", mmm, "(mx)"))))}
+  cfun <- function(cx) {uj::run("uj::i", base::toupper(ccc), "(cx)")}
+  mfun <- function(mx) {uj::f0(uj::notATM(mx), F, uj::f0(uj::N0(mx), F, uj::f0(uj::anyNAS(mx), F, uj::run("uj::", base::toupper(mmm), "(mx)"))))}
   dfun <- function(dx) {base::all(base::apply(dx, 2, mfun))}
   vfun <- function(vx) {base::all(base::sapply(vx, mfun))}
+  if (uj::isCHR(mmm)) {mmm <- base::tolower(mmm)}
+  if (uj::isCHR(ccc)) {ccc <- base::tolower(ccc)}
   errs <- base::c(uj:::.meets_errs(x, ...),
-                  uj::f0(uj::f0(base::length(mmm) != 1 | !base::is.character(mmm), F, uj::f0(base::is.na(mmm), F, mmm %in% uj:::.mmms)), NULL, '[mmm] is not a scalar value from mmm_props().'),
-                  uj::f0(uj::f0(base::length(ccc) != 1 | !base::is.character(ccc), F, uj::f0(base::is.na(ccc), F, ccc %in% uj:::.cccs)), NULL, '[ccc] is not a scalar value from ccc_props().'))
-  if (!base::is.null(errs)) {stop(uj::format_errs(pkg = "uj", errs))}
+                  uj::f0(uj::isIN(mmm, uj::mmm_props()), NULL, '[mmm] is not a scalar value from mmm_props().'),
+                  uj::f0(uj::isIN(ccc, uj::ccc_props()), NULL, '[ccc] is not a scalar value from ccc_props().'))
+  uj::errs_if_pop(errs, PKG = "uj")
   uj::f0(!uj::meets(x, ...), F, uj::f0(!cfun(x), F, uj::f0(ccc == "dtf", dfun(x), uj::f0(ccc == "vls", vfun(x), mfun(x)))))
 }
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_mmm_ccc_funs <- function() {base::paste0('cmp_', base::sort(uj::av(base::apply(base::expand.grid(mmm = .mmms, ccc = .cccs), 1, base::paste0, collapse = '_'))))}
+cmp_mmm_ccc_funs <- function() {uj::SUV(uj::p0('cmp', base::sort(uj::av(base::apply(base::expand.grid(mmm = base::toupper(uj:::.mmm), ccc = uj:::.ccc), 1, base::paste0, collapse = "_")))))}
 
 #' @rdname cmp_mmm_ccc
 #' @export
@@ -91,7 +93,7 @@ cmp_ch1_mvc <- function(x, ...) {uj::cmp_mmm_ccc(x, 'ch1', 'mvc', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_ch1_scl <- function(x, ...) {uj::cmp_mmm_ccc(x, 'ch1', 'scl', ...)}
+cmp_ch1_vec <- function(x, ...) {uj::cmp_mmm_ccc(x, 'ch1', 'scl', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
@@ -807,23 +809,23 @@ cmp_psw_vls <- function(x, ...) {uj::cmp_mmm_ccc(x, 'psw', 'vls', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_arr <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'arr', ...)}
+cmpSRTarr <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'arr', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_dtf <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'dtf', ...)}
+cmpSRTdtf <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'dtf', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_gen <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'gen', ...)}
+cmpSRTgen <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'gen', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_mat <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'mat', ...)}
+cmpSRTmat <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'mat', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_mvc <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'mvc', ...)}
+cmpSRTmvc <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'mvc', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
@@ -831,11 +833,11 @@ cmp_srt_scl <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'scl', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_vec <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'vec', ...)}
+cmpSRTvec <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'vec', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_srt_vls <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'vls', ...)}
+cmpSRTvls <- function(x, ...) {uj::cmp_mmm_ccc(x, 'srt', 'vls', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export

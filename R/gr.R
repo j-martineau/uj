@@ -4,15 +4,22 @@
 #' @family plots
 #' @family wraps
 #' @title Thin wrappers of `graphics` functions.
-#' @description \tabular{rl}{
-#'       `strh`   \tab \code{\link[graphics]{strheight}}.
-#'   \cr `strw`   \tab \code{\link[graphics]{strwidth}}.
-#' }
-#' @inherit graphics::strheight
+#' @details
+#' \tabular{ll}{  `strh`   \tab \code{\link[graphics]{strheight}}. \cr
+#'                `strw`   \tab \code{\link[graphics]{strwidth}}.    }
 #' @export
-strh <- function(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...) {graphics::strheight(s = s, units = units, cex = cex, font = font, vfont = vfont, ...)}
+#' @examples
+#' sent1 <- "First sentence."
+#' sent2 <- "Second sentence."
+#' sent12 <- paste0(sent1, "\n", sent2)
+#' strh(sent1)
+#' strh(sent2)
+#' strh(sent12)
+#' strw(sent1)
+#' strw(sent2)
+#' strw(sent12)
+strh <- function(...) {uj::run_alias("graphics", "strheight")}
 
 #' @rdname gr
-#' @inherit graphics::strwidth
 #' @export
-strw <- function(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...) {graphics::strwidth(s = s, units = units, cex = cex, font = font, vfont = vfont, ...)}
+strw <- function(...) {uj::run_alias("graphics", "strheight")}

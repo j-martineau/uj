@@ -1,65 +1,62 @@
 .meets_errs <- function(x, ...) {
-  if (base::...length() == 0) {return(NULL)}
+  if (uj::ND0()) {return(NULL)}
   vars <- base::c('n', 'nr', 'nc', 'min', 'minr', 'minc', 'max', 'maxr', 'maxc', 'vals', 'lt', 'le', 'le', 'ge', 'gt')
   dots <- base::list(...)
-  dot.names  <- base::names(dots)
+  dot.names  <- uj::EN(dots)
   pop.names  <- dot.names[dot.names != ""]
-  unq.names  <- base::unique(pop.names[pop.names != ""])
-  all.unique <- uj::f0(base::is.null(dot.names), T, base::setequal(pop.names, unq.names))
-  no.blanks  <- uj::f0(base::is.null(dot.names), T, !base::any(dot.names == ""))
-  all.valid  <- uj::f0(base::length(pop.names) == 0, T, base::all(dot.names %in% vars))
-  errs <- base::c(uj::f0(no.blanks , NULL, "\n \u2022 All arguments in [...] must be named."),
-                  uj::f0(all.unique, NULL, "\n \u2022 Arguments in [...] must be named uniquely."),
-                  uj::f0(all.valid , NULL, "\n \u2022 Names of arguments in [...] must be in c('n', 'nr', 'nc', 'min', 'minr', 'minc', 'max', 'maxr', 'maxc', 'vals', 'lt', 'le', 'le', 'ge', 'gt')."))
-  if (!base::is.null(errs)) {return(errs)}
-  ok_vec <- function(dot) {
-    uj::f0(base::is.null(dot), T,
-       uj::f0(!base::is.atomic(dot) | base::length(dot) == 0, F,
-         uj::f0(base::is.vector(dot), T,
-           uj::f0(!base::is.array(dot), F,
-              length(base::which(base::dim(dot) > 1)) < 2))))
+  unq.names  <- uj::UV(pop.names[pop.names != ""])
+  all.unique <- uj::f0(uj::NLL(dot.names), T, uj::isSEQ(pop.names, unq.names))
+  no.blanks  <- uj::f0(uj::NLL(dot.names), T, uj::noneBL(dot.names))
+  all.valid  <- uj::f0(uj::N0(pop.names), T, uj::allIN(dot.names, vars))
+  errs <- base::c(uj::f0(no.blanks , NULL, "All arguments in [...] must be named."),
+                  uj::f0(all.unique, NULL, "Arguments in [...] must be named uniquely."),
+                  uj::f0(all.valid , NULL, "Names of arguments in [...] must be in c('n', 'nr', 'nc', 'min', 'minr', 'minc', 'max', 'maxr', 'maxc', 'vals', 'lt', 'le', 'le', 'ge', 'gt')."))
+  if (uj::DEF(errs)) {return(errs)}
+  okVec <- function(dot) {uj::f0(uj::NLL(dot), T, uj::f0(uj::notATM(dot) | uj::N0(dot), F, uj::f0(uj::isVEC(dot), T, uj::f0(uj::notARR(dot), F, uj::notNDIM2P(dot)))))}
+  okScl <- function(dot) {uj::f0(uj::NLL(dot), T, uj::f0(!okVec(dot), F, uj::N1(dot)))}
+  okIndVec <- function(dot) {uj::f0(uj::NLL(dot), T, uj::f0(!okVec(dot), F, uj::noneNA(dot) & base::all(dot >= 0 & uj::rounded(dot))))}
+  okIndScl <- function(dot) {uj::f0(uj::NLL(dot), T, uj::f0(!okScl(dot), F, uj::ok(dot) & dot >= 0 & uj::rounded(dot)))}
+  okSrtVec <- function(obj, dot) {
+    obj.wild <- uj::f0(uj::NLL(obj), T, uj::f0(uj::notATM(obj), F, uj::f0(uj::N0(obj), T, base::allNAS(obj))))
+    obj.chr <- uj::isCHR(obj); dot.chr <- uj::isCHR(dot)
+    obj.num <- uj::isNUM(obj); dot.num <- uj::isNUM(dot)
+    obj.lgl <- uj::isLGL(obj); dot.lgl <- uj::isLGL(dot)
+    obj.ord <- uj::isORD(obj); dot.ord <- uj::isORD(dot)
+    obj.levs <- uj::f0(!obj.ord, NULL, uj::LEVS(obj)); obj.nlevs <- uj::N(obj.levs)
+    dot.levs <- uj::f0(!dot.ord, NULL, uj::LEVS(dot)); dot.nlevs <- uj::N(dot.levs)
+    uj::f0(uj::NLL(dot), T,
+           uj::f0(!okVec(dot), F,
+                  uj::f0(!dot.num & !dot.lgl & !dot.chr & !dot.ord, F,
+                         uj::f0(uj::notATM(obj), T,
+                                uj::f0(obj.wild, T,
+                                       uj::f0(obj.chr & dot.chr, T,
+                                              uj::f0(obj.num & dot.num, T,
+                                                     uj::f0(obj.lgl & dot.lgl, T,
+                                                            uj::f0(!obj.ord | !dot.ord, F,
+                                                                   uj::f0(obj.nlevs != dot.nlevs, F,
+                                                                          base::all(obj.levs == dot.levs)))))))))))
   }
-  ok_scl <- function(dot) {uj::f0(base::is.null(dot), T, uj::f0(!ok_vec(dot), F, base::length(dot) == 1))}
-  ok_ind_vec <- function(dot) {uj::f0(base::is.null(dot), T, uj::f0(!ok_vec(dot), F, !base::any(base::is.na(dot)) & base::all(dot >= 0 & base::round(dot) == dot)))}
-  ok_ind_scl <- function(dot) {uj::f0(base::is.null(dot), T, uj::f0(!ok_scl(dot), F, !base::is.na(dot) & dot >= 0 & base::round(dot) == dot ))}
-  ok_srt_vec <- function(obj, dot) {
-    obj.wild <- uj::f0(base::is.null(obj), T, uj::f0(!base::is.atomic(obj), F, uj::f0(base::length(obj) == 0, T, base::all(base::is.na(obj)))))
-    obj.chr <- base::is.character(obj); dot.chr <- base::is.character(dot)
-    obj.num <- base::is.numeric(obj); dot.num <- base::is.numeric(dot)
-    obj.lgl <- base::is.logical(obj); dot.lgl <- base::is.logical(dot)
-    obj.ord <- base::is.ordered(obj); dot.ord <- base::is.ordered(dot)
-    obj.levs <- uj::f0(!obj.ord, NULL, base::levels(obj)); obj.nlevs <- base::length(obj.levs)
-    dot.levs <- uj::f0(!dot.ord, NULL, base::levels(dot)); dot.nlevs <- base::length(dot.levs)
-    uj::f0(base::is.null(dot), T,
-       uj::f0(!ok_vec(dot), F,
-          uj::f0(!dot.num & !dot.lgl & !dot.chr & !dot.ord, F,
-             uj::f0(!base::is.atomic(obj), T,
-                uj::f0(obj.wild, T,
-                   uj::f0(obj.chr & dot.chr, T,
-                      uj::f0(obj.num & dot.num, T,
-                         uj::f0(obj.lgl & dot.lgl, T,
-                            uj::f0(!obj.ord | !dot.ord, F,
-                               uj::f0(obj.nlevs != dot.nlevs, F, base::all(obj.levs == dot.levs)))))))))))
-  }
-  ok_srt_scl <- function(obj, dot) {uj::f0(base::is.null(dot), T, uj::f0(!ok_srt_vec(obj, dot), F, base::length(dot) == 1))}
+  okSrtScl <- function(obj, dot) {uj::f0(uj::NLL(dot), T, uj::f0(!okSrtVec(obj, dot), F, uj::N1(dot)))}
   lt <- dots$lt; min  <- dots$min ; max  <- dots$max ; n  <- dots$n
   le <- dots$le; minr <- dots$minr; maxr <- dots$maxr; nr <- dots$nr
   ge <- dots$ge; minc <- dots$minc; maxc <- dots$maxc; nc <- dots$nc
   gt <- dots$gt; vals <- dots$vals
-  base::c(uj::f0(ok_ind_vec(n      ), NULL, "\n \u2022 [n] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
-          uj::f0(ok_ind_vec(nr     ), NULL, "\n \u2022 [nr] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
-          uj::f0(ok_ind_vec(nc     ), NULL, "\n \u2022 [nc] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
-          uj::f0(ok_ind_scl(min    ), NULL, "\n \u2022 [min] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-          uj::f0(ok_ind_scl(max    ), NULL, "\n \u2022 [max] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-          uj::f0(ok_ind_scl(minr   ), NULL, "\n \u2022 [minr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-          uj::f0(ok_ind_scl(minc   ), NULL, "\n \u2022 [minc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-          uj::f0(ok_ind_scl(maxr   ), NULL, "\n \u2022 [maxr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-          uj::f0(ok_ind_scl(maxc   ), NULL, "\n \u2022 [maxc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-          uj::f0(ok_srt_scl(x, lt  ), NULL, "\n \u2022 [lt] must be NULL or a non-NA sortable atomic scalar (?cmp_srt_scl) comparable with [x] (?comparable)."),
-          uj::f0(ok_srt_scl(x, le  ), NULL, "\n \u2022 [le] must be NULL or a non-NA sortable atomic scalar (?cmp_srt_scl) comparable with [x] (?comparable)."),
-          uj::f0(ok_srt_scl(x, ge  ), NULL, "\n \u2022 [ge] must be NULL or a non-NA sortable atomic scalar (?cmp_srt_scl) comparable with [x] (?comparable)."),
-          uj::f0(ok_srt_scl(x, gt  ), NULL, "\n \u2022 [gt] must be NULL or a non-NA sortable atomic scalar (?cmp_srt_scl) comparable with [x] (?comparable)."),
-          uj::f0(ok_srt_vec(x, vals), NULL, "\n \u2022 [vals] must be NULL or a complete atomic vec (?cmp_vec) comparable with [x] (?comparable)."))
+  base::c(
+    uj::f0(okIndVec(n      ), NULL, "[n] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
+    uj::f0(okIndVec(nr     ), NULL, "[nr] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
+    uj::f0(okIndVec(nc     ), NULL, "[nc] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
+    uj::f0(okIndScl(min    ), NULL, "[min] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+    uj::f0(okIndScl(max    ), NULL, "[max] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+    uj::f0(okIndScl(minr   ), NULL, "[minr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+    uj::f0(okIndScl(minc   ), NULL, "[minc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+    uj::f0(okIndScl(maxr   ), NULL, "[maxr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+    uj::f0(okIndScl(maxc   ), NULL, "[maxc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
+    uj::f0(okSrtScl(x, lt  ), NULL, "[lt] must be NULL or a non-NA sortable atomic scalar (?cmp_srt_scl) comparable with [x] (?comparable)."),
+    uj::f0(okSrtScl(x, le  ), NULL, "[le] must be NULL or a non-NA sortable atomic scalar (?cmp_srt_scl) comparable with [x] (?comparable)."),
+    uj::f0(okSrtScl(x, ge  ), NULL, "[ge] must be NULL or a non-NA sortable atomic scalar (?cmp_srt_scl) comparable with [x] (?comparable)."),
+    uj::f0(okSrtScl(x, gt  ), NULL, "[gt] must be NULL or a non-NA sortable atomic scalar (?cmp_srt_scl) comparable with [x] (?comparable)."),
+    uj::f0(okSrtVec(x, vals), NULL, "[vals] must be NULL or a complete atomic vec (?cmp_vec) comparable with [x] (?comparable).")
+  )
 }
 
 #' @encoding UTF-8
@@ -71,13 +68,11 @@
 #' @param x An object.
 #' @param ... Optional named arguments count and/or value restrictions for `x`. See the *specifying count and value restrictions* section.
 #' @section Specifying count and value restrictions: Specifying restrictions in `...` is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-#' \tabular{rl}{
-#'       `max, maxr, maxc`   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.
-#'   \cr `min, minr, minc`   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.
-#'   \cr  `lt, le, ge, gt`   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively.
-#'   \cr       `n, nr, nc`   \tab A vector of valid numbers of elements, rows, and columns, respectively.
-#'   \cr            `vals`   \tab A vector of valid values.
-#' }
+#' \tabular{ll}{  `max, maxr, maxc`   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+#'                `min, minr, minc`   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab     }
+#' \tabular{ll}{  `lt, le, ge, gt`    \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab     }
+#' \tabular{ll}{  `n, nr, nc`         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab     }
+#' \tabular{ll}{  `vals`              \tab A vector of valid values.                                                                                                                                 }
 #' @return A logical scalar.
 #' @examples
 #' chrs <- c("a", "b", "c")
@@ -93,29 +88,28 @@
 #' meets(sqrd, ge = 1, le = 16)
 #' @export
 meets <- function(x, ...) {
-  if (base::...length() == 0) {return(T)}
-  errs <- uj:::.meets_errs(x, ...)
-  if (!uj::inll(errs)) {stop(errs)}
-  atoms <- uj::av(x)                                                                 # atomic values from {x}
-  nx <- uj::f0(uj::id1D(x), base::length(x), base::prod(base::dim(x)))                   # length of {x}
-  nr <- base::NROW(x)                                                                  # number of rows in {x}
-  nc <- base::NCOL(x)                                                                  # number of columns in {x}
-  atoms <- atoms[!base::is.na(atoms)]                                                  # remove na values of {x}
+  if (uj::ND0()) {return(T)}
+  uj::errs_if_pop(uj:::.meets_errs(x, ...), PKG = "uj")
+  atoms <- uj::av(x)                                                             # atomic values from {x}
+  nx <- uj::f0(uj::D1D(x), uj::N(x), base::prod(base::dim(x)))                  # length of {x}
+  nr <- uj::NR(x)                                                                # number of rows in {x}
+  nc <- uj::NC(x)                                                                # number of columns in {x}
+  atoms <- atoms[uj::ok(atoms)]                                                 # remove na values of {x}
   d <- base::list(...)
-  if (base::length(atoms) == 0) {return(T)}                                            # if 0-length and has passed validation, meets requirements
-  if (!base::is.null(d$n   )) {if (   !(nx %in% d$n   )) {return(F)}}                  # check for not meeting element count requirements
-  if (!base::is.null(d$min )) {if (   !(nx  >=  d$min )) {return(F)}}
-  if (!base::is.null(d$max )) {if (   !(nx  <=  d$max )) {return(F)}}
-  if (!base::is.null(d$nr  )) {if (   !(nr %in% d$nr  )) {return(F)}}                  # check for not meeting row count requirements
-  if (!base::is.null(d$minr)) {if (   !(nr  >=  d$minr)) {return(F)}}
-  if (!base::is.null(d$maxr)) {if (   !(nr  <=  d$maxr)) {return(F)}}
-  if (!base::is.null(d$nc  )) {if (   !(nc %in% d$nc  )) {return(F)}}                  # check for not meeting column count requirements
-  if (!base::is.null(d$minc)) {if (   !(nc  >=  d$minc)) {return(F)}}
-  if (!base::is.null(d$maxc)) {if (   !(nc  <=  d$maxc)) {return(F)}}
-  if (!base::is.null(d$lt  )) {if ( base::any(atoms  >=  d$lt  )) {return(F)}}               # check for not meeting value requirements
-  if (!base::is.null(d$gt  )) {if ( base::any(atoms  <=  d$gt  )) {return(F)}}
-  if (!base::is.null(d$le  )) {if ( base::any(atoms  >   d$le  )) {return(F)}}
-  if (!base::is.null(d$ge  )) {if ( base::any(atoms  <   d$ge  )) {return(F)}}
-  if (!base::is.null(d$vals)) {if (!base::all(atoms %in% d$vals)) {return(F)}}
-  T                                                                              # meets all requirements
+  if (uj::N0(atoms)) {return(T)}
+  else if (uj::DEF(d$n)) {if (uj::isMF1(nx, d$n)) {return(F)}}
+  else if (uj::DEF(d$nr)) {if (uj::isMF1(nr, d$nr)) {return(F)}}
+  else if (uj::DEF(d$nc)) {if (uj::isMF1(nc, d$nc)) {return(F)}}
+  else if (uj::DEF(d$le)) {if (base::any(atoms > d$le)) {return(F)}}
+  else if (uj::DEF(d$ge)) {if (base::any(atoms < d$ge)) {return(F)}}
+  else if (uj::DEF(d$lt)) {if (base::any(atoms >= d$lt)) {return(F)}}
+  else if (uj::DEF(d$gt)) {if (base::any(atoms <= d$gt)) {return(F)}}
+  else if (uj::DEF(d$min)) {if (!(nx >= d$min)) {return(F)}}
+  else if (uj::DEF(d$max)) {if (!(nx <= d$max)) {return(F)}}
+  else if (uj::DEF(d$minr)) {if (!(nr >= d$minr)) {return(F)}}
+  else if (uj::DEF(d$maxr)) {if (!(nr <= d$maxr)) {return(F)}}
+  else if (uj::DEF(d$minc)) {if (!(nc >= d$minc)) {return(F)}}
+  else if (uj::DEF(d$maxc)) {if (!(nc <= d$maxc)) {return(F)}}
+  else if (uj::DEF(d$vals)) {if (uj::allIN(atoms, d$vals)) {return(F)}}
+  T
 }

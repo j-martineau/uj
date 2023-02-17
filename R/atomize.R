@@ -1,25 +1,24 @@
 #' @encoding UTF-8
 #' @family extensions
 #' @family values
-#' @title Atomize (reduce arguments to an atomic vector)
-#' @description \tabular{rl}{
-#'     `atomize, atoms, av, a`   \tab Get a vector of all atomic values in all `...` arguments.
-#'   \cr  `unique_av, uav, uv`   \tab Call `unique(av(...))`
-#'   \cr   `which_av, wav, wv`   \tab Call `which(av(...))`
-#'   \cr   `paste_av, pav, pv`   \tab Call `paste0(p, av(...), s)`
-#'   \cr    `sort_av, sav, sv`   \tab Call `sort(av(...))`.
-#'   \cr    `glue_av, gav, gv`   \tab Call `paste0(av(...) collapse = g)`
-#'   \cr        `sort_uv, suv`   \tab Call `sort(unique(av(...)))`
-#' }
+#' @title Atomize
+#' @description Get (and maybe process) a vector of all atoms contained in the full set of `...` args.
+#' @details Functions in this family are:
+#' \tabular{ll}{  `atomize, atoms, av, a`   \tab Gets a vector of all atomic values in all `...` arguments. \cr   \tab     }
+#' \tabular{ll}{  `unique_av, uav, uv`       \tab Calls `unique(av(...))`                                    \cr   \tab     }
+#' \tabular{ll}{  `which_av, wav, wv`        \tab Calls `which(av(...))`                                     \cr   \tab   \cr
+#'                `paste_av, pav, pv`        \tab Calls `paste0(p, av(...), s)`                              \cr   \tab     }
+#' \tabular{ll}{  `sort_av, sav, sv`         \tab Calls `sort(av(...))`.                                     \cr   \tab   \cr
+#'                `glue_av, gav, gv`         \tab Calls `paste0(av(...) collapse = g)`                       \cr   \tab     }
+#' \tabular{ll}{  `sort_uv, suv`             \tab Calls `sort(unique(av(...)))`                              \cr   \tab     }
 #' @param ... Arguments to be atomized. Expected to atomize to a logical vector for `which_av` and its aliases `wav` and `wv`.
 #' @param g Character scalar glue.
 #' @param p Character scalar prefix.
 #' @param s Character scalar suffix.
-#' @return *An character scalar* \cr   `glue_av, gav, gv`
-#' \cr\cr *A character vector* \cr   `paste_av, pav, pv`
-#' \cr\cr *An integer vector* \cr   `which_av, wav, wv`
-#' \cr\cr *An atomic vector* \cr   All others
-#' @export
+#' @return **A character scalar** \cr `glue_av, gav, gv`
+#' \cr\cr  **A character vector** \cr `paste_av, pav, pv`
+#' \cr\cr  **An integer vector**  \cr `which_av, wav, wv`
+#' \cr\cr  **An atomic vector**   \cr  All others
 #' @examples
 #' x <- list("a", "b", "c")
 #' y <- data.frame(1:3)
@@ -31,16 +30,17 @@
 #' av(y)
 #' atoms(x, y)
 #' atomize(x, "d", y, 4)
-#'
-#' gav(x, "d", y, 4)
 #' glue_av(letters, LETTERS, g = "-")
-#'
-#' pav(x, "d", y, 4)
 #' paste_av(letters, p = "\u2022 ", s = ".")
-#'
-#' sav(x, "d", y, 4)
 #' sort_av(letters, LETTERS, 0:9)
-atomize <- function(...) {x <- base::as.vector(base::unlist(base::list(...), T, F)); base::attributes(x) <- NULL; x}
+#' sort_uv(letters, LETTERS, 0:9)
+#' unique_av(letters, "d", 0:9, 5)
+#' @export
+atomize <- function(...) {
+  x <- base::as.vector(base::unlist(base::list(...), T, F))
+  base::attributes(x) <- NULL
+  x
+}
 
 #' @rdname atomize
 #' @export
@@ -48,7 +48,11 @@ atoms <- atomize
 
 #' @rdname atomize
 #' @export
-av <- atomize
+av <- function(...) {
+  x <- base::as.vector(base::unlist(base::list(...), T, F))
+  base::attributes(x) <- NULL
+  x
+}
 
 #' @rdname atomize
 #' @export
@@ -56,7 +60,7 @@ a <- atomize
 
 #' @rdname atomize
 #' @export
-sort_av <- function(...) {base::sort(uj::atomize(...))}
+sort_av <- function(...) {base::sort(uj::av(...))}
 
 #' @rdname atomize
 #' @export
@@ -69,8 +73,8 @@ sav <- sort_av
 #' @rdname atomize
 #' @export
 glue_av <- function(..., g = "") {
-  if (!uj::cmp_chr_scl(g)) {stop(uj::format_err("gav", "[g] must be a complete character scalar (?cmp_chr_scl).", pkg = "uj"))}
-  base::paste0(uj::atomize(...), collapse = "")
+  uj::err_if_not(uj::cmp_chr_scl(g), "[g] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
+  uj::g(g, uj::av(...))
 }
 
 #' @rdname atomize
@@ -84,19 +88,18 @@ gav <- glue_av
 #' @rdname atomize
 #' @export
 paste_av <- function(..., p = "", s = "") {
-  errs <- base::c(uj::f0(uj::cmp_chr_scl(p), NULL, "[p] must be a complete character scalar (?cmp_chr_scl)."),
-                  uj::f0(uj::cmp_chr_scl(s), NULL, "[g] must be a complete character scalar (?cmp_chr_scl)."))
-  if (!base::is.null(errs)) {stop(uj::format_errs("pav", errs, pkg = "uj"))}
-  base::paste0(p, uj::atomize(...), s)
+  uj::errs_if_nots(uj::cmp_chr_scl(p), "[p] must be a complete character scalar (?cmp_chr_scl).",
+                   uj::cmp_chr_scl(s), "[s] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
+  uj::p0(uj::p(p, uj::av(...)), s)
 }
 
 #' @rdname atomize
 #' @export
-pv <- paste_av
+pav <- paste_av
 
 #' @rdname atomize
 #' @export
-pav <- paste_av
+pv <- paste_av
 
 #' @rdname atomize
 #' @export
@@ -112,7 +115,7 @@ uv <- unique_av
 
 #' @rdname atomize
 #' @export
-sort_uv <- function(...) {base::sort(base::unique(uj::av(...)))}
+sort_uv <- function(...) {base::sort(uj::UV(...))}
 
 #' @rdname atomize
 #' @export
@@ -122,13 +125,14 @@ suv <- sort_uv
 #' @export
 which_av <- function(...) {
   x <- uj::av(...)
-  uj::f0(uj::ilgl(x), base::which(x), stop(uj::format_errs(pkg = "uj", "[...] does not resolve to a logical object.")))
+  uj::err_if_not(uj::LGL(x), "[...] does not atomize (?uj::atomize) to a logical object.", PKG = "uj")
+  uj::W(x)
 }
 
 #' @rdname atomize
 #' @export
-wv <- which_av
+wav <- which_av
 
 #' @rdname atomize
 #' @export
-wav <- which_av
+wv <- which_av

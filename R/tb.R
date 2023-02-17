@@ -1,34 +1,38 @@
 #' @encoding UTF-8
 #' @family wraps
-#' @title Thin wrappers of `tibble` functions
-#' @description \tabular{rl}{
-#'       `tbas`   \tab \code{\link[tibble]{as_tibble}}.
-#'   \cr `tbis`   \tab \code{\link[tibble]{is_tibble}}.
-#'   \cr  `tbr`   \tab \code{\link[tibble]{tribble}}.
-#'   \cr  `trb`   \tab \code{\link[tibble]{tibble_row}}.
-#'   \cr   `tb`   \tab \code{\link[tibble]{tibble}}.
-#' }
-#' @inherit tibble::tibble
+#' @title `tibble` wrappers
+#' @description Thin wrappers of functions from package `tibble`. See links in *details* for function-specific documentation.
+#' @details
+#' \tabular{ll}{  `astb`   \tab Thinly wraps \code{\link[tibble]{as_tibble}}.  \cr   \tab   \cr
+#'                `istb`   \tab Thinly wraps \code{\link[tibble]{is_tibble}}.  \cr   \tab     }
+#' \tabular{ll}{  `tbr`    \tab Thinly wraps \code{\link[tibble]{tribble}}.    \cr   \tab   \cr
+#'                `trb`    \tab Thinly wraps \code{\link[tibble]{tibble_row}}. \cr   \tab     }
+#' \tabular{ll}{  `tb`     \tab Thinly wraps \code{\link[tibble]{tibble}}.                    }
 #' @return A tibble.
 #' @export
-tb <- function(..., .rows = NULL, .name_repair = c("check_unique", "unique", "universal", "minimal")) {tibble::tibble(..., .rows = .rows, .name_repair = .name_repair)}
+#' @examples
+#' tb(letters = letters, numbers = 1:26, constant = pi)
+#' trb(~letters, ~numbers, ~constant,
+#'     "a"     , 1,      , pi       ,
+#'     "b"     , 2,      , pi       ,
+#'     "c"     , 3,      , pi       )
+#' tbr("a", 1, pi)
+#' asTB(list(letters = letters, numbers = 1:26, constant = pi))
+#' isTB(tb(letters))
+tb <- function(...) {uj::run_alias("tibble", "tibble")}
 
 #' @rdname tb
-#' @inherit tibble::tribble
 #' @export
-trb <- function(...) {tibble::tribble(...)}
+trb <- function(...) {uj::run_alias("tibble", "tribble")}
 
 #' @rdname tb
-#' @inherit tibble::tibble_row
 #' @export
-tbr <- function(..., .name_repair = c("check_unique", "unique", "universal", "minimal")) {tibble::tibble_row(..., .name_repair = .name_repair)}
+tbr <- function(...) {uj::run_alias("tibble", "tibble_row")}
 
 #' @rdname tb
-#' @inherit tibble::as_tibble
 #' @export
-tbas <- function(x, ..., .rows = NULL, .name_repair = c("check_unique", "unique", "universal", "minimal"), rownames = pkgconfig::get_config("tibble::rownames", NULL)) {tibble::as_tibble(x, ..., .rows = .rows, .name_repair = .name_repair, rownames = rownames)}
+astb <- function(...) {uj::run_alias("tibble", "as_tibble")}
 
 #' @rdname tb
-#' @inherit tibble::is_tibble
 #' @export
-tbis <- function(x) {tibble::is_tibble(x)}
+istb <- function(x) {tibble::is_tibble(x)}
