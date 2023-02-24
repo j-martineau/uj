@@ -3,79 +3,79 @@
 #' @name crayons
 #' @title Wrappers for package \code{\link[crayon]{crayon}} functions to styled and color console text
 #' @description Functions in this family apply styles and colors to text for display on the console, where the text to display is identified by \link[=glue_dots]{collapsing} `...` args into a character scalar.
-#' @section Background color functions:
-#' \tabular{ll}{  `bg_vals`        \tab Get all valid values of arg `bg`.                                    \cr   \tab  }
-#' \tabular{ll}{  `bg_red`         \tab Set to red (\code{\link[crayon:bgRed]{crayon::bgRed}}).              \cr
-#'                `bg_blu`         \tab Set to blue (\code{\link[crayon:bgBlue]{crayon::bgBlue}}).           \cr
-#'                `bg_cyn`         \tab Set to cyan (\code{\link[crayon:bgCyan]{crayon::bgCyan}}).           \cr
-#'                `bg_blk`         \tab Set to black (\code{\link[crayon:bgBlack]{crayon::bgBlack}}).        \cr
-#'                `bg_grn`         \tab Set to green (\code{\link[crayon:bgGreen]{crayon::bgGreen}}).        \cr
-#'                `bg_wht`         \tab Set to white (\code{\link[crayon:bgWhite]{crayon::bgWhite}}).        \cr
-#'                `bg_ylw`         \tab Set to yellow (\code{\link[crayon:bgYellow]{crayon::bgYellow}}).     \cr
-#'                `bg_mag`         \tab Set to magenta (\code{\link[crayon:bgMagenta]{crayon::bgMagenta}}).  \cr
-#'                `bg_def`         \tab Set to system default.                                               \cr   \tab  }
-#' \tabular{ll}{  `bg`             \tab Set to value of arg `bg`.                                                        }
+#' @section Background color functions:
+#' \tabular{ll}{  `bg_vals`   \tab Get all valid values of arg `bg`.                                    \cr
+#'                `bg_red`    \tab Set to red (\code{\link[crayon:bgRed]{crayon::bgRed}}).              \cr
+#'                `bg_blu`    \tab Set to blue (\code{\link[crayon:bgBlue]{crayon::bgBlue}}).           \cr
+#'                `bg_cyn`    \tab Set to cyan (\code{\link[crayon:bgCyan]{crayon::bgCyan}}).           \cr
+#'                `bg_blk`    \tab Set to black (\code{\link[crayon:bgBlack]{crayon::bgBlack}}).        \cr
+#'                `bg_grn`    \tab Set to green (\code{\link[crayon:bgGreen]{crayon::bgGreen}}).        \cr
+#'                `bg_wht`    \tab Set to white (\code{\link[crayon:bgWhite]{crayon::bgWhite}}).        \cr
+#'                `bg_ylw`    \tab Set to yellow (\code{\link[crayon:bgYellow]{crayon::bgYellow}}).     \cr
+#'                `bg_mag`    \tab Set to magenta (\code{\link[crayon:bgMagenta]{crayon::bgMagenta}}).  \cr
+#'                `bg_def`    \tab Set to system default.                                               \cr
+#'                `bg`        \tab Set to value of arg `bg`.                                              }
 #' \cr\cr Valid values of `bg` are the following:
-#' \tabular{ll}{  magenta         \tab `'m'`, `'mag'`, `'magenta'` \cr   \tab  }
-#' \tabular{ll}{  default         \tab `'d'`, `'def'`, `'default'` \cr   \tab  }
-#' \tabular{ll}{  yellow          \tab `'y'`, `'ylw'`, `'yellow'`  \cr   \tab  }
-#' \tabular{ll}{  black           \tab `'k'`, `'blk'`, `'black'`   \cr
-#'                white           \tab `'w'`, `'wht'`, `'white'`   \cr
-#'                green           \tab `'g'`, `'grn'`, `'green'`   \cr   \tab  }
-#' \tabular{ll}{  blue            \tab `'b'`, `'blu'`, `'blue'`    \cr
-#'                cyan            \tab `'c'`, `'cyn'`, `'cyan'`    \cr   \tab  }
-#' \tabular{ll}{  red             \tab `'r'`, `'red'`                          }
+#' \tabular{ll}{  magenta   \tab `'m'`, `'mag'`, `'magenta'` \cr
+#'                default   \tab `'d'`, `'def'`, `'default'` \cr
+#'                yellow    \tab `'y'`, `'ylw'`, `'yellow'`  \cr
+#'                black     \tab `'k'`, `'blk'`, `'black'`   \cr
+#'                white     \tab `'w'`, `'wht'`, `'white'`   \cr
+#'                green     \tab `'g'`, `'grn'`, `'green'`   \cr
+#'                blue      \tab `'b'`, `'blu'`, `'blue'`    \cr
+#'                cyan      \tab `'c'`, `'cyn'`, `'cyan'`    \cr
+#'                red       \tab `'r'`, `'red'`                }
 #' NOTE: Silver (grey) is *not* valid for *background*.
-#' @section Foreground color functions:
-#' \tabular{ll}{  `fg_vals`        \tab Get all valid values of `st` (foreground text color).               \cr   \tab  }
-#' \tabular{ll}{  `fg_red`         \tab Set to red (\code{\link[crayon:red]{crayon::red}}).                 \cr
-#'                `fg_blu`         \tab Set to red (\code{\link[crayon:blue]{crayon::blue}}).               \cr
-#'                `fg_cyn`         \tab Set to red (\code{\link[crayon:cyan]{crayon::cyan}}).               \cr
-#'                `fg_blk`         \tab Set to red (\code{\link[crayon:black]{crayon::black}}).             \cr
-#'                `fg_grn`         \tab Set to red (\code{\link[crayon:green]{crayon::green}}).             \cr
-#'                `fg_wht`         \tab Set to red (\code{\link[crayon:white]{crayon::white}}).             \cr
-#'                `fg_ylw`         \tab Set to red (\code{\link[crayon:yellow]{crayon::yellow}}).           \cr
-#'                `fg_mag`         \tab Set to red (\code{\link[crayon:magenta]{crayon::magenta}}).         \cr
-#'                `fg_gry`         \tab Set to silver (grey) (\code{\link[crayon:silver]{crayon::silver}}). \cr
-#'                `fg_sil`         \tab Set to silver (grey).                                               \cr
-#'                `fg_slv`         \tab Set to silver (grey).                                               \cr
-#'                `fg_def`         \tab Set to system default.                                              \cr   \tab  }
-#' \tabular{ll}{  `fg`        v    \tab Set to value of arg `fg`.                                                       }
+#' @section Foreground color functions:
+#' \tabular{ll}{  `fg_vals`   \tab Get all valid values of `st` (foreground text color).               \cr
+#'                `fg_red`    \tab Set to red (\code{\link[crayon:red]{crayon::red}}).                 \cr
+#'                `fg_blu`    \tab Set to red (\code{\link[crayon:blue]{crayon::blue}}).               \cr
+#'                `fg_cyn`    \tab Set to red (\code{\link[crayon:cyan]{crayon::cyan}}).               \cr
+#'                `fg_blk`    \tab Set to red (\code{\link[crayon:black]{crayon::black}}).             \cr
+#'                `fg_grn`    \tab Set to red (\code{\link[crayon:green]{crayon::green}}).             \cr
+#'                `fg_wht`    \tab Set to red (\code{\link[crayon:white]{crayon::white}}).             \cr
+#'                `fg_ylw`    \tab Set to red (\code{\link[crayon:yellow]{crayon::yellow}}).           \cr
+#'                `fg_mag`    \tab Set to red (\code{\link[crayon:magenta]{crayon::magenta}}).         \cr
+#'                `fg_gry`    \tab Set to silver (grey) (\code{\link[crayon:silver]{crayon::silver}}). \cr
+#'                `fg_sil`    \tab Set to silver (grey).                                               \cr
+#'                `fg_slv`    \tab Set to silver (grey).                                               \cr
+#'                `fg_def`    \tab Set to system default.                                              \cr
+#'                `fg`        \tab Set to value of arg `fg`.                                             }
 #' \cr\cr Valid values of `fg` are :
-#' \tabular{ll}{  silver (grey)   \tab `'s'`, `'sil'`, `'slv'`, `'silver'`, `'gry'`, `'gray'`, `'grey'`    \cr   \tab  }
-#' \tabular{ll}{  magenta         \tab `'m'`, `'mag'`, `'magenta'`                                         \cr
-#'                default         \tab `'d'`, `'def'`, `'default'`                                         \cr   \tab  }
-#' \tabular{ll}{  yellow          \tab `'y'`, `'ylw'`, `'yellow'`                                          \cr   \tab  }
-#' \tabular{ll}{  black           \tab `'k'`, `'blk'`, `'black'`                                           \cr
-#'                white           \tab `'w'`, `'wht'`, `'white'`                                           \cr
-#'                green           \tab `'g'`, `'grn'`, `'green'`                                           \cr   \tab  }
-#' \tabular{ll}{  blue            \tab `'b'`, `'blu'`, `'blue'`                                            \cr
-#'                cyan            \tab `'c'`, `'cyn'`, `'cyan'`                                            \cr   \tab  }
-#' \tabular{ll}{  red             \tab `'r'`, `'red'`                                                                  }
+#' \tabular{ll}{  silver (grey)   \tab `'s'`, `'sil'`, `'slv'`, `'silver'`, `'gry'`, `'gray'`, `'grey'` \cr
+#'                magenta         \tab `'m'`, `'mag'`, `'magenta'`                                      \cr
+#'                default         \tab `'d'`, `'def'`, `'default'`                                      \cr
+#'                yellow          \tab `'y'`, `'ylw'`, `'yellow'`                                       \cr
+#'                black           \tab `'k'`, `'blk'`, `'black'`                                        \cr
+#'                white           \tab `'w'`, `'wht'`, `'white'`                                        \cr
+#'                green           \tab `'g'`, `'grn'`, `'green'`                                        \cr
+#'                blue            \tab `'b'`, `'blu'`, `'blue'`                                         \cr
+#'                cyan            \tab `'c'`, `'cyn'`, `'cyan'`                                         \cr
+#'                red             \tab `'r'`, `'red'`                                                     }
 #' NOTE: Silver (grey) is *only* valid for *foreground*.
-#' @section Style functions:
-#' \tabular{ll}{  `st_vals`       \tab Get all valid values of arg `st`.                                   \cr   \tab  }
-#' \tabular{ll}{  `st_bld`        \tab Set to bold (\code{\link[crayon:bgRed]{crayon::bold}}).             \cr
-#'                `st_pln`        \tab Set to plain (\code{\link[crayon:bgBlue]{crayon::reset}}).          \cr
-#'                `st_itl`        \tab Set to italic (\code{\link[crayon:bgBlue]{crayon::italic}}).        \cr
-#'                `st_und`        \tab Set to underline (\code{\link[crayon:bgBlue]{crayon::italic}}).     \cr
-#'                `st_def`        \tab Set to system default.                                              \cr   \tab  }
-#' \tabular{ll}{  `st`            \tab Set to value of arg `st`.                                                       }
+#' @section Style functions:
+#' \tabular{ll}{  `st_vals`   \tab Get all valid values of arg `st`.                               \cr
+#'                `st_bld`    \tab Set to bold (\code{\link[crayon:bgRed]{crayon::bold}}).         \cr
+#'                `st_pln`    \tab Set to plain (\code{\link[crayon:bgBlue]{crayon::reset}}).      \cr
+#'                `st_itl`    \tab Set to italic (\code{\link[crayon:bgBlue]{crayon::italic}}).    \cr
+#'                `st_und`    \tab Set to underline (\code{\link[crayon:bgBlue]{crayon::italic}}). \cr
+#'                `st_def`    \tab Set to system default.                                          \cr
+#'                `st`        \tab Set to value of arg `st`.                                         }
 #' \cr\cr Valid values of `st` are:
-#' \tabular{ll}{  underline       \tab `'u'`, `'un'`, `'und'`, `'under'`, `'underline'`, `'underlined'`                                                                         \cr   \tab  }
-#' \tabular{ll}{  default         \tab `'d'`, `'def'`, `'default'`                                                                                                              \cr   \tab  }
-#' \tabular{ll}{  italic          \tab `'i'`, `'it'`, `'itl'`, `'ital'`, `'italic'`, `'italics'`, `'italicized'`,`'e'`, `'em'`, `'emp'`, `'emph'`, `'emphasis'`, `'emphasized'` \cr   \tab  }
-#' \tabular{ll}{  plain           \tab `'p'`,` 'pl'`, `'pln'`, `'plain'`, `'r'`, `'re'`, `'res`', `'reset'`                                                                     \cr   \tab  }
-#' \tabular{ll}{  bold            \tab `'b'`, `'bo'`, `'bld'`, `'bold'`, `'bolded'`, `'s'`, `'st'`, `'str'`, `'strong'`                                                                     }
+#' \tabular{ll}{  underline   \tab `'u'`, `'un'`, `'und'`, `'under'`, `'underline'`, `'underlined'`                                                                         \cr   \tab   \cr
+#'                default     \tab `'d'`, `'def'`, `'default'`                                                                                                              \cr   \tab   \cr
+#'                italic      \tab `'i'`, `'it'`, `'itl'`, `'ital'`, `'italic'`, `'italics'`, `'italicized'`,`'e'`, `'em'`, `'emp'`, `'emph'`, `'emphasis'`, `'emphasized'` \cr   \tab   \cr
+#'                plain       \tab `'p'`,` 'pl'`, `'pln'`, `'plain'`, `'r'`, `'re'`, `'res`', `'reset'`                                                                     \cr   \tab   \cr
+#'                bold        \tab `'b'`, `'bo'`, `'bld'`, `'bold'`, `'bolded'`, `'s'`, `'st'`, `'str'`, `'strong'`                                                                        }
 #' @section Generic function:
-#' \tabular{ll}{  `txt`           \tab Styles text using args `st`, `bg`, `fg`.}
+#' \tabular{ll}{  `txt`   \tab Styles text using args `st`, `bg`, `fg`.}
 #' @param ... An arbitrary number of objects to be \link[=glue_dots]{collapsed} to a character scalar to be styled.
 #' @param st A quoted or unquoted, case-insensitive, character scalar text style from `st_vals()`. May also be `NULL` for function `st_vals`.
 #' @param bg A quoted or unquoted, case-insensitive, character scalar text background color from `bg_vals()`. May also be `NULL` for function `bg_vals`.
 #' @param fg A quoted or unquoted, case-insensitive, character scalar text foreground color from `fg_vals()`. May also be `NULL` for function `fg_vals`.
 #' @param d A non-`NA` character scalar delimiter for \link[=glue_dots]{collapsing} `...` args into a character scalar.
-#' @return **A character vector** \cr `st_vals, fg_vals, bg_vals`
-#' \cr\cr  **A character scalar** \cr All others
+#' @return **A character vector** \cr\cr `st_vals, fg_vals, bg_vals`
+#' \cr\cr  **A character scalar** \cr\cr All others
 #' @examples
 #' egArg1 <- "Some "
 #' egArg2 <- c("text", " to display", "\nP.S. ")
@@ -159,7 +159,7 @@ st_vals <- function(st = NULL) {
                        uj::f0(uj::isIN1(st, P), P,
                               uj::f0(uj::isIN1(st, U),
                                      U, uj::f0(uj::NLL(st), A,
-                                               uj::stopper("[st] must be NULL or a character scalar from st_vals().", PKG = "uj")))))))
+                                               uj::stopperr("[st] must be NULL or a character scalar from st_vals().", PKG = "uj")))))))
 }
 
 #' @rdname crayons
@@ -186,7 +186,7 @@ bg_vals <- function(bg = NULL) {
                                                    uj::f0(uj::isIN1(bg, W), W,
                                                           uj::f0(uj::isIN1(bg, Y), Y,
                                                                  uj::f0(uj::NLL(bg), A,
-                                                                        uj::stopper("[bg] must be NULL or a character scalar from bg_vals().", PKG = "uj")))))))))))
+                                                                        uj::stopperr("[bg] must be NULL or a character scalar from bg_vals().", PKG = "uj")))))))))))
 }
 
 #' @rdname crayons
@@ -215,7 +215,7 @@ fg_vals <- function(fg = NULL) {
                                                           uj::f0(uj::isIN1(fg, W), W,
                                                                  uj::f0(uj::isIN1(fg, Y),
                                                                         Y, uj::f0(uj::NLL(fg), A,
-                                                                                  uj::stopper("[fg] must be NULL or a character scalar from fg_vals().", PKG = "uj"))))))))))))
+                                                                                  uj::stopperr("[fg] must be NULL or a character scalar from fg_vals().", PKG = "uj"))))))))))))
 }
 
 # style ####
@@ -259,7 +259,7 @@ st_und <- function(..., d = " ") {
 #' @export
 st <- function(st, ..., d = " ") {
   st <- base::tolower(uj::f0(!uj::unqSTRvec(st), "error", st))
-  uj::errs_if_nots(uj::cmp_chr_scl(d)           , "[d] must be a complete character scalar (?cmp_chr_scl)."     ,
+  uj::errs_if_nots(uj::cmp_chr_scl(d)          , "[d] must be a complete character scalar (?cmp_chr_scl)."      ,
                    uj::isIN1(st, uj::st_vals()), "[st] must be a unique string vec (?unqSTRvec) from st_vals().", PKG = "uj")
   vals <- base::c("bld", "def", "itl", "pln", "und")
   text <- uj::g(d, uj::av(...))
@@ -432,8 +432,8 @@ bg_ylw <- function(..., d = " ") {
 #' @export
 bg <- function(bg, ..., d = " ") {
   bg <- base::tolower(uj::f0(!uj::cmp_str_scl(bg), "error", bg))
-  uj::errs_if_nots(uj::cmp_chr_scl(d)           , "[d] must be a complete character scalar (?cmp_chr_scl)."          ,
-                 uj::isIN1(bg, uj::bg_vals()), "[bg] must be a unique string scalar (?unqSTRscl) from bg_vals().", PKG = "uj")
+  uj::errs_if_nots(uj::cmp_chr_scl(d)           , "[d] must be a complete character scalar (?cmp_chr_scl)."        ,
+                   uj::isIN1(bg, uj::bg_vals()), "[bg] must be a unique string scalar (?unqSTRscl) from bg_vals().", PKG = "uj")
   vals <- base::c("blk", "blu", "cyn", "def", "grn", "mag", "red", "wht", "ylw")
   for (val in base::tolower(vals)) {if (uj::isIN1(bg, uj::bg_vals(val))) {return(uj::run("bg_", val, "(...)"))}}
 }

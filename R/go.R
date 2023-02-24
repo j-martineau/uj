@@ -1,8 +1,8 @@
 #' @title Open or reopen an R project
 #' @details
-#' \tabular{ll}{  `rebuild`   \tab Rebuilds the current R project. \cr   \tab  }
-#' \tabular{ll}{  `reopen`    \tab Reopens the current R project.  \cr   \tab  }
-#' \tabular{ll}{  `go`        \tab Opens another project and loads the associated library if it exists. When `name = NULL`, launches a document selection dialog box and prompts user to select an existing R project. Otherwise, searches for an R project with name equal to the value of `name` in the parent directory of the current working directory, and if there is such a project, opens that project.}
+#' \tabular{ll}{  `rebuild`   \tab Rebuilds the current R project. \cr   \tab   \cr
+#'                `reopen`    \tab Reopens the current R project.  \cr   \tab   \cr
+#'                `go`        \tab Opens another project and loads the associated library if it exists. When `name = NULL`, launches a document selection dialog box and prompts user to select an existing R project. Otherwise, searches for an R project with name equal to the value of `name` in the parent directory of the current working directory, and if there is such a project, opens that project.}
 #' @param ... Either nothing or a single unquoted R project name.
 #' @return `NULL`
 #' @export

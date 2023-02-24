@@ -4,22 +4,21 @@
 #' @family meta
 #' @title Purge objects and parts of objects
 #' @details All purge (`x`) functions include garbage collection.
-#' \tabular{ll}{  `purge_pref, rm_pref, xpref`   \tab Purge package prefixes\eqn{^{(1)}}                                                    \cr
-#'                `purge_plot, rmPLOT, xplot`   \tab Purge plots\eqn{^{(2)}}                                                               \cr
-#'                `purgeWARN, rmWARN, xwarn`   \tab Purge warnings                                                                        \cr   \tab   \cr
-#'                `purge_con, rmCON, xcon`      \tab Purge console                                                                         \cr   \tab   \cr
-#'                `purge, x`                   \tab Purge specific objects                                                                \cr   \tab   \cr
-#'                                             \tab \eqn{^{(1)}} Converts `'base::paste'` to `'paste'`, for example.                      \cr
-#'                                             \tab \eqn{^{(2)}} Followed by printing the object `x`, assumed to be a plot if not `NULL`.                }
-#' \cr
-#' \tabular{ll}{  `purgeALL`   \tab **WARNING: Use with care!** \cr
-#'                `rmALL`      \tab    *These functions purge * \cr
-#'                `xall`       \tab    *the global environment*   }
+#' \tabular{ll}{  `purge_pref, rm_pref, xpref`   \tab Purge package prefixes\eqn{^{(1)}}    \cr
+#'                `purge_plot, rmPLOT, xplot`    \tab Purge plots\eqn{^{(2)}}               \cr
+#'                `purgeWARN, rmWARN, xwarn`     \tab Purge warnings                        \cr
+#'                `purge_con, rmCON, xcon`       \tab Purge console                         \cr
+#'                `purge, x`                     \tab Purge specific objects                  }
+#'  \tabular{l}{  \eqn{^{(1)}} Converts `'base::paste'` to `'paste'`, for example.          \cr
+#'                \eqn{^{(2)}} Followed by printing the object `x` if not `NULL`. \cr   \tab  }
+#' \tabular{ll}{  `purge_global, purge_all`      \tab **WARNING: Use with care!**           \cr
+#'                `rm_global, rm_all`            \tab    *These functions purge *           \cr
+#'                `xglobal, xall`                \tab    *the global environment*             }
 #' @param x Anticipated to be a plot object, but any object can be handled.
 #' @param funs \link[=cmp_chr_vec]{A complete character vec} of function names, possibly with package prefixes.
 #' @param ... One or more \link[=cmp_chr_vec]{complete character vecs} containing names of objects to purge from the global environment.
-#' @return **A character vector**    \cr `purge_pref, rm_pref, xpref`
-#' \cr\cr  **The** `NULL` **object** \cr all others
+#' @return **A character vector**    \cr\cr `purge_pref, rm_pref, xpref`
+#' \cr\cr  **The** `NULL` **object** \cr\cr all others
 #' @examples
 #' egFunNames <- c("base::c", "uj::cmp_chr_scl", "run")
 #' xpref(egFunNames)
@@ -128,7 +127,7 @@ xcon <- purge_console
 
 #' @rdname purge
 #' @export
-purge_pkg_prefix <- function(funs) {
+purge_pref <- function(funs) {
   base::gc(verbose = FALSE)
   uj::err_if_not(uj::cmp_chr_vec(funs), "[funs] must be a complete character vec (?cmp_chr_vec).", PKG = "uj")
   where <- base::regexpr(":::", funs, fixed = T)
@@ -139,11 +138,11 @@ purge_pkg_prefix <- function(funs) {
 
 #' @rdname purge
 #' @export
-rm_pkg_pref <- purge_pkg_prefix
+rm_pref <- purge_pref
 
 #' @rdname purge
 #' @export
-xpref <- purge_pkg_prefix
+xpref <- purge_pref
 
 #' @rdname purge
 #' @export
@@ -158,6 +157,14 @@ purge_global <- function() {
 #' @rdname purge
 #' @export
 purge_all <- purge_global
+
+#' @rdname purge
+#' @export
+rm_global <- purge_global
+
+#' @rdname purge
+#' @export
+rm_all <- purge_global
 
 #' @rdname purge
 #' @export

@@ -5,19 +5,19 @@
 #' @title Manage `NA` and non-`NA` values
 #' @description All functions in this group take objects of atomic mode, \link[=atm_dtf]{atomic dtfs}, or \link[=atm_vls]{atomic vlists}.
 #' @details
-#' \tabular{ll}{  `na`      \tab Logicall yindexes `NA` values of `x`.                                                               \cr   \tab   \cr
-#'                `ok`      \tab Logically indexes non-`NA` values of `x`.                                                           \cr   \tab     }
-#' \tabular{ll}{  `nas`     \tab Evaluates whether `x` is an `NA` scalar.                                                            \cr   \tab   \cr
-#'                `oks`     \tab Evaluates whether `x` is a non-`NA` scalar.                                                         \cr   \tab     }
-#' \tabular{ll}{  `rmNA`    \tab Removes `NA` values of `x` If there are no `NA` values in `x`, returns `x` unchanged.
-#'                               If there are `NA` values in `x`, removing them may change the dimensions and/or class of `x`.       \cr   \tab     }
-#' \tabular{ll}{  `subNA`   \tab Substitutes `s` for `NA` values of`x`. Modes of `x` and `s` must be \link[=compatible]{compatible}.                }
+#' \tabular{ll}{  `na`      \tab Logically indexes `NA` values of `x`.                                                         \cr   \tab   \cr
+#'                `ok`      \tab Logically indexes non-`NA` values of `x`.                                                     \cr   \tab   \cr
+#'                `nas`     \tab Evaluates whether `x` is an `NA` scalar.                                                      \cr   \tab   \cr
+#'                `oks`     \tab Evaluates whether `x` is a non-`NA` scalar.                                                   \cr   \tab   \cr
+#'                `rmNA`    \tab Removes `NA` values of `x` If there are no `NA` values in `x`, returns `x` unchanged.
+#'                               If there are `NA` values in `x`, removing them may change the dimensions and/or class of `x`. \cr   \tab   \cr
+#'                `subNA`   \tab Substitutes `s` for `NA` values of`x`. Modescof `x` and `s` must be \link[=compatible]{compatible}.          }
 #' @param x The argument to be inspected/managed.
 #' @param s An \link[=atm_scl]{atomic scalar} to replace `NA` values. Mode must be \link[=compatible]{compatible} with`x`
-#' @return **A logical object of the same dimension as** `x` \cr `na, ok`
-#' \cr\cr  `x` **with `NA` values replaced**                 \cr (properties may change with `NA` replacement) \cr `subNA`
-#' \cr\cr  `x` **with `NA` values removed**                  \cr (properties may change with `NA` removal)     \cr `rmNA`
-#' \cr\cr  **A logical scalar**                              \cr `nas, oks`
+#' @return **A logical object of the same dimension as** `x`                                   \cr\cr `na, ok`
+#' \cr\cr  `x` **with `NA` values replaced** \cr (properties may change with `NA` replacement) \cr\cr `subNA`
+#' \cr\cr  `x` **with `NA` values removed**  \cr (properties may change with `NA` removal)     \cr\cr `rmNA`
+#' \cr\cr  **A logical scalar**                                                                \cr\cr `nas, oks`
 #' @examples
 #' egNAS <- NA
 #' egOKS <- "a"

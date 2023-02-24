@@ -21,15 +21,15 @@
 #' \cr\cr These functions are useful for compiling error messages. They thus return `NULL` if error checks are passed and a message if they are not.
 #' \cr\cr **`nll_if`**
 #' \cr\cr If `x` is scalar `TRUE`, returns `NULL`, otherwise collapses `...` args to a character scalar using delimiter `d` and returns the result.
-#' \cr\cr **`nll_if<cond.>`**
-#' \cr\cr These functions take both named and unnamed `...` args. Named `...` args other than `D` are evaluated for `TRUE`-ness (any value that is not scalar `TRUE` is considered `FALSE`). Unnamed `...` args are \link[=gDOTS]{collapsed} into a character scalar value named `D` using the delimiter in arg `d.`
-#' \tabular{ll}{  `nll_if_none`   \tab Returns `D` upon encountering a `TRUE` named `...` arg. Returns `NULL` if none is encountered. \cr   \tab     }
-#' \tabular{ll}{  `nll_if_any`    \tab Returns `NULL` upon encountering a `TRUE` named `...` arg. Returns `D` if none is encountered. \cr   \tab   \cr
+#' \cr\cr **`nll_if_<cond.>`**
+#' \cr\cr These functions take both named and unnamed `...` args. Named `...` args other than `D` are evaluated for `TRUE`-ness (any value that is not scalar `TRUE` is considered `FALSE`). Unnamed `...` args are \link[=glue_dots]{collapsed} into a character scalar value named `D` using the delimiter in arg `d.`
+#' \tabular{ll}{  `nll_if_none`   \tab Returns `D` upon encountering a `TRUE` named `...` arg. Returns `NULL` if none is encountered. \cr   \tab   \cr
+#'                `nll_if_any`    \tab Returns `NULL` upon encountering a `TRUE` named `...` arg. Returns `D` if none is encountered. \cr   \tab   \cr
 #'                `nll_if_all`    \tab Returns `D` upon encountering a non-`TRUE` named `...` arg. Returns `NULL` if none is encountered.            }
 #' \cr\cr **`nll_ifs`**
 #' \cr\cr Calls `nll_if_none(..., D = D)` when `COND = 'none'`. Calls `nll_if_any(..., D = D)` when `COND = 'any`. Calls `nll_if_all(..., D = D)` when `COND` takes any other value (including `'all'`)
 #' \cr\cr **`nlls_ifs`**
-#' \cr\cr Conditionally compiles messages into a character vector. Each non-`TRUE` odd-numbered `...` arg's message (\link[=collapse]{collapsed} from the following `...` arg) is added to the compilation. If all odd-numbered `...` args are `TRUE`, returns `NULL`.
+#' \cr\cr Conditionally compiles messages into a character vector. Each non-`TRUE` odd-numbered `...` arg's message (\link[=glue_dots]{collapsed} from the following `...` arg) is added to the compilation. If all odd-numbered `...` args are `TRUE`, returns `NULL`.
 #' @param x A logical vector.
 #' @param y,n \link[=atm_scl]{Atomic scalars} or \link[=atm_vec]{atomic vecs} of the same length as `x`.
 #' @param na An object of any type for `f1`. An atomic scalar \link[=compatible]{compatible} with `yes` and `no` for `fork`, with the additional possibility of `na = 'err'` to indicate an error should be thrown if any values in `test` are `na`.
@@ -38,9 +38,9 @@
 #' @param Y,N Any valid R object.
 #' @param D A character scalar delimiter for collapsing objects into scalar character objects. If `D` is not a character scalar, it is replaced by `" "`.
 #' @param COND A character scalar in `c('all', 'any', 'none')`. If `COND` is not of an allowed value, it is replaced by `'all'`.
-#' @return **A length-**`length(x)` **atomic object**      \cr `fork`
-#' \cr\cr  **An arbitrary object**                         \cr `f0, f1`
-#' \cr\cr  **A character scalar or the** `NULL` **object** \cr `nll_if, nll_ifs, nll_if_all, nll_if_any, nll_if_none`
+#' @return **A length-**`length(x)` **atomic object**      \cr\cr `fork`
+#' \cr\cr  **An arbitrary object**                         \cr\cr `f0, f1`
+#' \cr\cr  **A character scalar or the** `NULL` **object** \cr\cr `nll_if, nll_ifs, nll_if_all` \cr `nll_if_any, nll_if_none`
 #' @examples
 #' fork(c(TRUE, FALSE, TRUE, NA), 1, 2)
 #' fork(c(TRUE, FALSE, TRUE, NA), 1, 2, na = 0)
@@ -127,7 +127,10 @@ f1 <- function(X, Y, N, NAS = N, ERR = N) {
 
 #' @rdname fork
 #' @export
-nll_if <- function(X, ..., D = " ") {uj::f0(uj::isT1(X), NULL, uj::g(uj::f0(uj::cmp_chr_scl(D), D, " "), uj::av(...)))}
+nll_if <- function(X, ..., D = " ") {
+  if (!uj::cmp_chr_scl(D)) {D <-  " "}
+  uj::f0(uj::isT1(X), NULL, uj::g(D, uj::av(...)))
+}
 
 #' @rdname fork
 #' @export

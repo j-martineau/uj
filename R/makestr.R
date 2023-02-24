@@ -7,21 +7,21 @@
 #' \tabular{ll}{  `g`         \tab Glue/collapse `...` args                     \cr
 #'                `p`         \tab Paste across corresponding element of `...`.   }
 #' \cr\cr Suffixes and their meanings are:
-#' \tabular{ll}{  `bracket`   \tab Enclose in square brackets                   \cr
-#'                `paren`     \tab Enclose in parentheses                       \cr
-#'                `brace`     \tab Enclose in braces                \cr   \tab    }
-#' \tabular{ll}{  `quote2`    \tab Enclose in double quotes                     \cr
-#'                `quote`     \tab Enclose in single quotes                     \cr
-#'                `tick`      \tab Enclose in backticks             \cr   \tab    }
-#' \tabular{ll}{  `wrap`      \tab Enclose left and right           \cr   \tab    }
-#' \tabular{ll}{  `colon`     \tab Delimit with colons                          \cr
-#'                `list`      \tab Delimit with comma + space       \cr   \tab    }
-#' \tabular{ll}{  `form`      \tab formula statement                            \cr
-#'                `elt`       \tab Element extraction statement                 \cr
-#'                `fun`       \tab function call statement                      \cr
-#'                `cat`       \tab Vector concatenation statement   \cr   \tab    }
-#' \tabular{ll}{  `eq0`       \tab Unpadded equality statement                  \cr
-#'                `eq`        \tab Space-padded equality statement                }
+#' \tabular{ll}{  `bracket`   \tab Enclose in square brackets                    \cr
+#'                `paren`     \tab Enclose in parentheses                        \cr
+#'                `brace`     \tab Enclose in braces                \cr   \tab   \cr
+#'                `quote2`    \tab Enclose in double quotes                      \cr
+#'                `quote`     \tab Enclose in single quotes                      \cr
+#'                `tick`      \tab Enclose in backticks             \cr   \tab   \cr
+#'                `wrap`      \tab Enclose left and right           \cr   \tab   \cr
+#'                `colon`     \tab Delimit with colons                           \cr
+#'                `list`      \tab Delimit with comma + space       \cr   \tab   \cr
+#'                `form`      \tab formula statement                             \cr
+#'                `elt`       \tab Element extraction statement                  \cr
+#'                `fun`       \tab function call statement                       \cr
+#'                `cat`       \tab Vector concatenation statement   \cr   \tab   \cr
+#'                `eq0`       \tab Unpadded equality statement                   \cr
+#'                `eq`        \tab Space-padded equality statement                 }
 #' \cr\ Each prefix is joined with each suffix to create a unique function. The action indicated by the prefix happens first, followed by the action indicated in the suffix.
 #' How each function works is illustrated in the details.
 #' @param x An object containing atomic values (atomized before processing).

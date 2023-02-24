@@ -4,31 +4,32 @@
 #' @family plots
 #' @title Simple color creation
 #' @description Simple color creation with a wide variety of options (intensity, blending, lightening, darkening, opacity). This family of functions uses three-letter codes for common colors as follows.
-#' @details \tabular{lll}{  *Color*   \tab *Color*   \tab *RGB channel values of*        \cr
-#'                          *code*.   \tab *name*    \tab *default color version*        \cr
-#'                          `wht`     \tab white     \tab `c(r = 1  , g = 1  , b = 1  )` \cr
-#'                          `blk`     \tab black     \tab `c(r = 0  , g = 0  , b = 0  )` \cr
-#'                          `gry`     \tab grey      \tab `c(r = 0.5, g = 0.5, b = 0.5)` \cr
-#'                          `red`     \tab red       \tab `c(r = 1  , g = 0  , b = 0  )` \cr
-#'                          `grn`     \tab green     \tab `c(r = 0  , g = 1  , b = 0  )` \cr
-#'                          `blu`     \tab blue      \tab `c(r = 0  , g = 0  , b = 1  )` \cr
-#'                          `ylw`     \tab yellow    \tab `c(r = 1  , g = 1  , b = 0  )` \cr
-#'                          `cyn`     \tab cyan      \tab `c(r = 0  , g = 1  , b = 1  )` \cr
-#'                          `mag`     \tab magenta   \tab `c(r = 1  , g = 0  , b = 1  )` \cr
-#'                          `vlt`     \tab violet    \tab `c(r = 1  , g = 0  , b = 1  )` \cr
-#'                          `ppl`     \tab purple    \tab a `1:2` blend of red:blue.     \cr
-#'                          `orn`     \tab orange    \tab a `33:51` blend of red:yellow.    }
+#' @details
+#' \tabular{lll}{  *Color*   \tab *Color*   \tab *RGB channel values of*        \cr
+#'                 *code*.   \tab *name*    \tab *default color version*        \cr
+#'                 `wht`     \tab white     \tab `c(r = 1  , g = 1  , b = 1  )` \cr
+#'                 `blk`     \tab black     \tab `c(r = 0  , g = 0  , b = 0  )` \cr
+#'                 `gry`     \tab grey      \tab `c(r = 0.5, g = 0.5, b = 0.5)` \cr
+#'                 `red`     \tab red       \tab `c(r = 1  , g = 0  , b = 0  )` \cr
+#'                 `grn`     \tab green     \tab `c(r = 0  , g = 1  , b = 0  )` \cr
+#'                 `blu`     \tab blue      \tab `c(r = 0  , g = 0  , b = 1  )` \cr
+#'                 `ylw`     \tab yellow    \tab `c(r = 1  , g = 1  , b = 0  )` \cr
+#'                 `cyn`     \tab cyan      \tab `c(r = 0  , g = 1  , b = 1  )` \cr
+#'                 `mag`     \tab magenta   \tab `c(r = 1  , g = 0  , b = 1  )` \cr
+#'                 `vlt`     \tab violet    \tab `c(r = 1  , g = 0  , b = 1  )` \cr
+#'                 `ppl`     \tab purple    \tab a `1:2` blend of red:blue.     \cr
+#'                 `orn`     \tab orange    \tab a `33:51` blend of red:yellow.    }
 #' \cr\cr **Functions in this family**
 #' \cr\cr The symbols `{xxx}` and `{yyy}` are placeholders for any given three-letter color codes as described in the table above.
-#' \tabular{ll}{  `palSWATCH`    \tab Draws swatches for a collection/palette of colors.                                                                                                                                               \cr   \tab  }
-#' \tabular{ll}{  `{xxx}{yyy}`   \tab Creates versions of 50/50 blends of the common colors `'{xxx}'` and `{yyy}` by `p` = primary intensity, `s` = secondary intensity, and `a` = alpha, each in the interval `[0, 1]`.               \cr   \tab  }
-#' \tabular{ll}{  `palCB`        \tab Creates colorblind-friendly palettes of `2` to `20` Colors `1-10` vs. `11-20` are bright vs. `50%` darkened versions. Bright/darkened differences may be insufficient for some audiences.        \cr   \tab  }
-#' \tabular{ll}{  `color`        \tab Takes any valid color representation and lightens, darkens, adds opacity levels, and/or gets the complementary color.                                                                            \cr   \tab  }
-#' \tabular{ll}{  `blend`        \tab Blends colors `x` and `y` using non-negative numeric weights `wx` and `wy`, and proportional numeric `a` = alpha values. Each corresponding pair of values of these arguments is normalized
-#'                                    to sum to 1 to give the proportions of the resulting color that should come from `x` and `y`, respectively.                                                                                      \cr   \tab  }
-#' \tabular{ll}{  `rgba`         \tab Creates colors from `r` = red, `g` = green, `b` = blue, and `a` = alpha weights, each in the interval `[0, 1]`.                                                                                  \cr   \tab  }
-#' \tabular{ll}{  `hsva`         \tab Creates colors from `h` = hue, `s` = saturation, `v` = value, and `a` = alpha weights, each in the interval `[0, 1]`.                                                                            \cr   \tab  }
-#' \tabular{ll}{  `{xxx}`        \tab Creates versions of common color `'{xxx}'` by `p` = primary intensity, `s` = secondary intensity, and `a` = alpha, each in the interval `[0, 1]`.                                                    }
+#' \tabular{ll}{  `pal_swatch`   \tab Draws swatches for a collection/palette of colors.                                                                                                                                               \cr   \tab   \cr
+#'                `{xxx}{yyy}`   \tab Creates versions of 50/50 blends of the common colors `'{xxx}'` and `{yyy}` by `p` = primary intensity, `s` = secondary intensity, and `a` = alpha, each in the interval `[0, 1]`.               \cr   \tab   \cr
+#'                `pal_cb`       \tab Creates colorblind-friendly palettes of `2` to `20` Colors `1-10` vs. `11-20` are bright vs. `50%` darkened versions. Bright/darkened differences may be insufficient for some audiences.        \cr   \tab   \cr
+#'                `color`        \tab Takes any valid color representation and lightens, darkens, adds opacity levels, and/or gets the complementary color.                                                                            \cr   \tab   \cr
+#'                `blend`        \tab Blends colors `x` and `y` using non-negative numeric weights `wx` and `wy`, and proportional numeric `a` = alpha values. Each corresponding pair of values of these arguments is normalized
+#'                                    to sum to 1 to give the proportions of the resulting color that should come from `x` and `y`, respectively.                                                                                      \cr   \tab   \cr
+#'                `rgba`         \tab Creates colors from `r` = red, `g` = green, `b` = blue, and `a` = alpha weights, each in the interval `[0, 1]`.                                                                                  \cr   \tab   \cr
+#'                `hsva`         \tab Creates colors from `h` = hue, `s` = saturation, `v` = value, and `a` = alpha weights, each in the interval `[0, 1]`.                                                                            \cr   \tab   \cr
+#'                `{xxx}`        \tab Creates versions of common color `'{xxx}'` by `p` = primary intensity, `s` = secondary intensity, and `a` = alpha, each in the interval `[0, 1]`.                                                               }
 #' @section Recycling: The only arguments not recycled are `na, nc`, and `ng`.
 #' @section The Arguments `p` and `s`: `p` is used to indicate the proportion of the RGB values of the most intense version of a hue should be present in a resulting color. `s` is used to indicate how much of complement of each RGB value should be present in a resulting color. The table below gives a helpful heuristic for setting values of `p` and `s`:
 #' \tabular{ll}{  **Argument values**   \tab **Resulting color**    \cr
@@ -181,14 +182,14 @@ blend <- function(x, y, wx = 1, wy = 1, a = NA) {
   wt <- wx + wy                                                                  # rescale x and y weights to sum to 1
   wx <- wx / wt
   wy <- wy / wt
-  xr <- uj::to_dec(base::substr(x, 2, 3)) / 255                                   # convert red values of x and y from hexadecimal to decimal proportion
-  yr <- uj::to_dec(base::substr(y, 2, 3)) / 255
-  xg <- uj::to_dec(base::substr(x, 4, 5)) / 255                                   # convert green values of x and y from hexadecimal to decimal proportion
-  yg <- uj::to_dec(base::substr(y, 4, 5)) / 255
-  xb <- uj::to_dec(base::substr(x, 6, 7)) / 255                                   # convert blue values of x and y from hexadecimal to decimal proportion
-  yb <- uj::to_dec(base::substr(y, 6, 7)) / 255
-  xa <- uj::to_dec(base::substr(x, 8, 9)) / 255                                   # convert alpha values of x and y from hexadecimal to decimal proportion
-  ya <- uj::to_dec(base::substr(y, 8, 9)) / 255
+  xr <- uj::todec(base::substr(x, 2, 3)) / 255                                   # convert red values of x and y from hexadecimal to decimal proportion
+  yr <- uj::todec(base::substr(y, 2, 3)) / 255
+  xg <- uj::todec(base::substr(x, 4, 5)) / 255                                   # convert green values of x and y from hexadecimal to decimal proportion
+  yg <- uj::todec(base::substr(y, 4, 5)) / 255
+  xb <- uj::todec(base::substr(x, 6, 7)) / 255                                   # convert blue values of x and y from hexadecimal to decimal proportion
+  yb <- uj::todec(base::substr(y, 6, 7)) / 255
+  xa <- uj::todec(base::substr(x, 8, 9)) / 255                                   # convert alpha values of x and y from hexadecimal to decimal proportion
+  ya <- uj::todec(base::substr(y, 8, 9)) / 255
   r <- base::max(0, base::min(1, wx * xr + wy * yr))                             # weight the red, green, blue, and alpha values of x and y
   g <- base::max(0, base::min(1, wx * xg + wy * yg))
   b <- base::max(0, base::min(1, wx * xb + wy * yb))
@@ -279,7 +280,7 @@ redvlt <- function(p = 1, s = 0, a = 1) {uj::blend(uj::red(p, s), uj::vlt(p, s),
 
 #' @rdname color
 #' @export
-palCB <- function(ng, nc = NULL, a = 1) {
+pal_cb <- function(ng, nc = NULL, a = 1) {
   uj::errs_if_nots(uj::cmp_psw_scl(ng)          , "[ng] must be a complete positive whole-number scalar (?cmp_psw_scl)."                     ,
                    uj::nll_or(nc, "cmp_psw_scl"), "[nc] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl)."             ,
                    uj::cmp_ppn_scl(a)           , "[a] must be a complete proportion scalar (?cmp_ppn_scl). That is, in the interval [0, 1].", PKG = "uj")

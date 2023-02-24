@@ -2,16 +2,16 @@
 #' @title Manage attributes
 #' @description Get names of, add new, remove, and extract specific object attributes.
 #' @details
-#' \tabular{ll}{  `rm_at, xat`   \tab Removes attributes of `x` with names matching unquoted `...` args  \eqn{^{(1)}}. \cr   \tab     }
-#' \tabular{ll}{  `at_names`     \tab Thinly wraps `names(attributes(x))`.                                             \cr   \tab     }
-#' \tabular{ll}{  `add_at`       \tab Adds named `...` args to attributes of `x`.                                      \cr   \tab     }
-#' \tabular{ll}{  `at`           \tab Gets attributes of `x` with names matching unquoted `...` args  \eqn{^{(1)}}.                 \cr
-#'                               \tab \eqn{^{(1)}} No `...` args indicates all attributes of `x`.                                     }
+#' \tabular{ll}{  `rm_at, xat`   \tab Removes attributes of `x` with names matching unquoted `...` args  \eqn{^{(1)}}. \cr   \tab   \cr
+#'                `at_names`     \tab Thinly wraps `names(attributes(x))`.                                             \cr   \tab   \cr
+#'                `add_at`       \tab Adds named `...` args to attributes of `x`.                                      \cr   \tab   \cr
+#'                `at`           \tab Gets attributes of `x` with names matching unquoted `...` args  \eqn{^{(1)}}.                   }
+#'  \tabular{l}{  \eqn{^{(1)}} No `...` args indicates all attributes of `x`.}
 #' @param x An R object.
 #' @param ... Optional unquoted names of attributes of `x` or character objects. When none are provided, indicates all attributes of `x`.
 #' @param a `TRUE` or `FALSE` indicating whether to \link[av]{atomize} the result and convert the resulting vector to character.
-#' @return **An object**                                   \cr `add_at, rm_at, xat, at`
-#' \cr\cr  **The** `NULL` **object or a character vector** \cr `at_names`
+#' @return **An object**                                   \cr\cr `add_at, rm_at, xat, at`
+#' \cr\cr  **The** `NULL` **object or a character vector** \cr\cr `at_names`
 #' @export
 at <- function(x, ..., a = FALSE) {
   uj::err_if_not(uj::isTF1(a), "[a] must be scalar TRUE or scalar FALSE.", PKG = "uj")

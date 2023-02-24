@@ -48,9 +48,9 @@
 #' @param drop `TRUE` or `FALSE`. For functions associated character-wise splitting (i.e., ending in `0` or `ch`), indicates whether to drop resulting values that are not letters, digits, or spaces. For all others, indicates whether to drop resulting blank string values.
 #' @param n An optional \link[=cmp_psw_scl]{complete positive whole-number vec} specifying one or more elements to be extracted from the result.
 #' @param u complete non-`NA` scalar indicating whether to reduce the result to unique values.
-#' @return **A character vector**            \cr `ssPDB ussPDB` \cr `ssDB, ussDB` \cr `ssPB, ussPB` \cr `ssPD, ussPD` \cr `ssB, ussB` \cr `ssD, ussD` \cr `ssP, ussP` \cr `ss1, uss1` \cr `ss, uss`
-#' \cr\cr  **A \link[=CH1]{onechar} vector** \cr `ss0 uss0`     \cr `ch, uch`
-#' \cr\cr  **A data.frame **                 \cr `ssTB, ussTB`
+#' @return **A character vector**            \cr\cr `ssPDB ussPDB` \cr `ssDB, ussDB` \cr `ssPB, ussPB` \cr `ssPD, ussPD` \cr `ssB, ussB` \cr `ssD, ussD` \cr `ssP, ussP` \cr `ss1, uss1` \cr `ss, uss`
+#' \cr\cr  **A \link[=CH1]{onechar} vector** \cr\cr `ss0 uss0`     \cr `ch, uch`
+#' \cr\cr  **A data.frame **                 \cr\cr `ssTB, ussTB`
 #' @examples
 #' ss("", "super-cooled")
 #' ss("|", "super||cooled", "super|heated")
@@ -91,11 +91,11 @@ ss <- function(d, ..., trm = TRUE, sqz = TRUE, drop = TRUE, u = FALSE, n = NULL)
                    uj::f0(uj::NLL(n), T, uj::cmp_psw_vec(n))        , "[n] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).", PKG = "uj"        )
   x <- uj::av(...)
   for (dd in d) {x <- uj::av(base::strsplit(uj::asCHR(x), dd, fixed = T))}
-  if (trm) {x <- base::trimws(x)}
+  if (trm) {x <- uj::trm(x)}
   if (sqz) {x <- uj::sqz(x)}
   if (drop) {x <- x[x != ""]}
   if (uj::DEF(n)) {x <- x[n]}
-  if (u) {x <- uj::UV(x)}
+  if (u) {x <- uj::uv(x)}
   x
 }
 
@@ -103,7 +103,7 @@ ss <- function(d, ..., trm = TRUE, sqz = TRUE, drop = TRUE, u = FALSE, n = NULL)
 #' @export
 ch <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {
   x <- uj::asCHR(uj::av(...))
-  if (trm) {x <- base::trimws(x)}
+  if (trm) {x <- uj::trm(x)}
   if (sqz) {x <- uj::sqz(x)}
   x <- uj::ss("", x, trm = TRUE, sqz = TRUE, drop = FALSE, n = n, u = u)
   x <- x[x != ""]
@@ -134,11 +134,11 @@ ssTB <- function(d, ..., name = "string", part = "part", trm = TRUE, sqz = TRUE,
     }}
   y <- base::matrix(y, nrow = nd, byrow = T)
   if (uj::N1(part)) {uj::CN(y) <- uj::p0(part, ".", 1:uj::NC(y))}
-  else {uj::CN(y) <- part}
+  else {y <- uj::namec(y, part)}
   x <- base::matrix(x, ncol = 1)
   uj::CN(x) <- name
   x <- base::cbind(x, y)
-  uj::RN(x) <- NULL
+  uj::namer(x, NULL)
   uj::astb(x)
 }
 

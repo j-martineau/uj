@@ -3,15 +3,15 @@
 #' @title unique + xmode combination properties
 #' @description Functions for checking combinations of \link[=UNQ]{uniqueness} and \link[=mmm]{xmode}.
 #' @details
-#' \tabular{ll}{  `unq_mmm_funs`   \tab What \link[=UNQ]{unique} + link[=mmm]{xmode} combination \link[=prop_funs]{property functions} are there?                         \cr   \tab     }
-#' \tabular{ll}{  `unq_{mmm}`      \tab Is `x` both unique and a match to single xmode property `'{mmm}'`? (where `{mmm}` is a placeholder for any given xmode property). \cr   \tab   \cr
-#'                `unq_mmm`        \tab Is `x` both unique and a match to the single xmode property in argument `mmm`?                                                     }
+#' \tabular{ll}{  `unq_mmm_funs`   \tab What \link[=UNQ]{unique} + link[=mmm]{xmode} combination \link[=prop_funs]{property functions} are there?                         \cr   \tab   \cr
+#'                `unq_{mmm}`      \tab Is `x` both unique and a match to single xmode property `'{mmm}'`? (where `{mmm}` is a placeholder for any given xmode property). \cr   \tab   \cr
+#'                `unq_mmm`        \tab Is `x` both unique and a match to the single xmode property in argument `mmm`?                                                                   }
 #' @param x An R object.
 #' @param MMM A character scalar `xmode` property from \code{\link{mmm_props}()}`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return **A character vector** \cr `unq_mmm_funs`
-#' \cr\cr  **A logical scalar**   \cr `unq_mmm, unq_{mmm}`
+#' @return **A character vector** \cr\cr `unq_mmm_funs`
+#' \cr\cr  **A logical scalar**   \cr\cr `unq_{mmm}, unq_mmm`
 #' @examples
 #' UnqClr <- c("red", "blue", "#FFFFFF")
 #' UnqCh3 <- c("atm", "ch1", "ch3")

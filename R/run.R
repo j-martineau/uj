@@ -27,22 +27,27 @@
 #' egRUNalias2 <- function(x, y) {egRUNalias1(x, y)}
 #'
 #' @export
-run <- function(...) {base::eval.parent(base::parse(text = uj::g0(uj::av(...))), n = 1)}
+run <- function(...) {
+  code <- base::paste0(uj::av(...), collapse = "")
+  base::eval.parent(base::parse(text = code), n = 1)
+}
 
 #' @rdname run
 #' @export
 run_alias <- function(pkg, fun) {
-  args <- uj::asLST(base::sys.call(which = 2))
-  vals <- uj::asCHR(base::sys.call(which = 2))
+  args <- base::as.list(base::sys.call(which = 2))
+  vals <- base::as.character(base::sys.call(which = 2))
   args <- uj::Nth_plus(args, 2)
   vals <- uj::Nth_plus(vals, 2)
-  char <- base::sapply(args, uj::isCHR)
-  vals[char] <- uj::p0("\"", vals[char], "\"")
-  names <- uj::EN(args)
-  if (uj::N1P(names)) {
+  char <- base::sapply(args, base::is.character)
+  vals[char] <- base::paste0("\"", vals[char], "\"")
+  names <- base::names(args)
+  if (base::length(names) > 0) {
     named <- names != ""
-    names[named] <- uj::p0(names[named], " = ")
+    names[named] <- uj::paste0(names[named], " = ")
   }
-  call <- uj::p0(uj::p0(pkg, "::", fun), "(", uj::g(", ", uj::p0(names, vals)), ")")
+  args <- base::paste0(names, vals)
+  args <- base::paste0(args, collapse = ", ")
+  call <- base::paste0(pkg, "::", fun, "(", args, ")")
   base::eval.parent(base::parse(text = call), n = 2)
 }

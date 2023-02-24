@@ -11,12 +11,12 @@
 #'                `u2{bb}`       \tab from `old` units to `'{BB}'` units\eqn{^{(1,2)}}.                            \cr
 #'                `u2u`          \tab from `old` units to `new` units.\eqn{^{(2)}}                                 \cr
 #'                               \tab \eqn{^{(1)}} `{aa}` and `{bb}` are placeholders for any given plotting unit. \cr
-#'                               \tab \eqn{^{(2)}} `old` and `new` are user supplied arguments.                    }
+#'                               \tab \eqn{^{(2)}} `old` and `new` are user supplied arguments.                      }
 #' \cr\cr Available unit codes are:
 #' \tabular{ll}{  `'cm'`   \tab centimeters.     \cr
 #'                `'in'`   \tab inches.          \cr
 #'                `'mm'`   \tab millimeters.     \cr
-#'                `'pt'`   \tab points (72/inch) }
+#'                `'pt'`   \tab points (72/inch)   }
 #' @param x An \link[=atm_num]{atomic, numeric object}.
 #' @param old,new \link[=cmp_chr_scl]{Complete character scalars} giving old and new units of distance, respectively: `'cm'` for centimeters, `'in'` for inches, `'mm'` for millimeters, and `'pt'` for points.
 #' @return An atomic numeric object.

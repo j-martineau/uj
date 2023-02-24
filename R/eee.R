@@ -14,20 +14,20 @@
 #'                `'ehd', 'EHD'`   \tab *Effectively hyper dimensional*                                                                                                                                                                            \cr   \tab   \cr
 #'                                 \tab Length-`8+` arrays with `2+` positions in `3+` dimensions.                                                                                                                                                                }
 #' \cr Effective dimensionality property functions are:
-#' \tabular{ll}{  `is_eee_spec`   \tab Is `spec` an effective.D specification?                                                                                                      \cr   \tab     }
-#' \tabular{ll}{  `eee_props`    \tab What effective.D properties are there?                                                                                                        \cr   \tab     }
-#' \tabular{ll}{  `eee_funs`     \tab What effective.D property functions are there?                                                                                                \cr   \tab     }
-#' \tabular{ll}{  `{eee}`          \tab Is `x` a match to the single effective.D property `'{eee}'` where `{eee}` is a placeholder for any given effective dimensionality property? \cr   \tab     }
-#' \tabular{ll}{  `neee`         \tab How many effective dimensions does `x` have?                                                                                                  \cr   \tab     }
-#' \tabular{ll}{  `eee`          \tab What are `x`'s effective.d properties?                                                                                                        \cr   \tab   \cr
-#'                `EEE`          \tab Is `x` a match to the effective.D specification in `spec`?                                                                                                   }
+#' \tabular{ll}{  `is_eee_spec`   \tab Is `spec` an effective.D specification?                                                                                                    \cr   \tab   \cr
+#'                `eee_props`    \tab What effective.D properties are there?                                                                                                      \cr   \tab   \cr
+#'                `eee_funs`     \tab What effective.D property functions are there?                                                                                              \cr   \tab   \cr
+#'                `{EEE}`        \tab Is `x` a match to the single effective.D property `'{EEE}'` where `{EEE}` is a placeholder for any given effective dimensionality property? \cr   \tab   \cr
+#'                `neee`         \tab How many effective dimensions does `x` have?                                                                                                \cr   \tab   \cr
+#'                `eee`          \tab What are `x`'s effective.d properties?                                                                                                      \cr   \tab   \cr
+#'                `EEE`          \tab Is `x` a match to the effective.D specification in `spec`?                                                                                                 }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more effective.D properties from `eee_props()`. Effective.D properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return **A character vector** \cr `eee_props, eee_funs, eee`
-#' \cr\cr  **A logical scalar**   \cr `is_eee_spec, EEE, XXX`
-#' \cr\cr  **An integer scalar**  \cr `neee`
+#' @return **A character vector** \cr\cr `eee_props, eee_funs, eee`
+#' \cr\cr  **A logical scalar**   \cr\cr `is_eee_spec, EEE, {EEE}`
+#' \cr\cr  **An integer scalar**  \cr\cr `neee`
 #' @examples
 #' a. <- "a"
 #' abc. <- c("a", "b", "c")
@@ -81,14 +81,13 @@ eee_props <- function() {uj:::.eee}
 
 #' @rdname eee
 #' @export
-is_eee_spec <- function(spec) {spec <- uj:::.props_from_spec(spec); uj:::f0(uj::N0(spec), F, uj::allIN(spec, uj:::.EEEs))}
+is_eee_spec <- function(spec) {spec <- uj:::.spec2props(spec); uj:::f0(uj::N0(spec), F, uj::allIN(spec, uj:::.EEEs))}
 
 #' @rdname eee
 #' @export
 EEE <- function(x, spec, ...) {
   uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_eee_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from eee_props().')), PKG = "uj")
-  if (uj::DEF(errs)) {uj::stopper(errs, PKG = "uj")}
-  if (uj::meets(x, ...)) {for (prop in base::toupper(uj:::.props_from_spec(spec))) {if (uj::run('uj::', prop, '(x)')) {return(T)}}}
+  if (uj::meets(x, ...)) {for (prop in base::toupper(uj:::.spec2props(spec))) {if (uj::run('uj::', prop, '(x)')) {return(T)}}}
   F
 }
 

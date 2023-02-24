@@ -10,18 +10,18 @@
 #'                 `'nas', 'NAS'`   \tab `NA` scalar   \tab Atomic scalar `NA`.                                                                                                        \cr   \tab   \cr
 #'                 `'oks', 'OKS'`   \tab `OK` scalar   \tab Non-`NA` atomic scalar.                                                                                                                   }
 #' \cr\cr **Integrity property functions**
-#' \tabular{ll}{  `is_iii_spec`   \tab Is `spec` an integrity specification?                                                                           \cr   \tab     }
-#' \tabular{ll}{  `iii_props`     \tab What integrity properties are there?                                                                            \cr   \tab     }
-#' \tabular{ll}{  `iii_funs`      \tab What integrity property functions are there?                                                                    \cr   \tab     }
-#' \tabular{ll}{  `iii`           \tab Gets all of `x`'s integrity properties.                                                                         \cr   \tab   \cr
+#' \tabular{ll}{  `is_iii_spec`   \tab Is `spec` an integrity specification?                                                                           \cr   \tab   \cr
+#'                `iii_props`     \tab What integrity properties are there?                                                                            \cr   \tab   \cr
+#'                `iii_funs`      \tab What integrity property functions are there?                                                                    \cr   \tab   \cr
+#'                `iii`           \tab Gets all of `x`'s integrity properties.                                                                         \cr   \tab   \cr
 #'                `III`           \tab Does `x` match integrity specification `spec`?                                                                  \cr   \tab   \cr
-#'                `{iii}`         \tab Does `x` match single integrity property `'{iii}'` where `{iii}` is a placeholder for any given integrity property?                }
+#'                `{iii}`         \tab Does `x` match single integrity property `'{iii}'` where `{iii}` is a placeholder for any given integrity property?            }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more integrity properties (i.e., from `iii_props()`). Integrity properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return **A character vector** \cr   `iii_props, iii_funs, iii`
-#' \cr\cr  **A logical scalar**   \cr   `is_iii_spec, III, XXX`
+#' @return **A character vector** \cr\cr   `iii_props, iii_funs, iii`
+#' \cr\cr  **A logical scalar**   \cr\cr   `is_iii_spec, III, XXX`
 #' @examples
 #' iii_funs()
 #' iii_props()
@@ -38,7 +38,7 @@
 #' @export
 iii <- function(x) {
   y <- NULL
-  for (iii in uj:::.III) {y <- base::c(y, uj::f0(uj::run(iii, '(x)'), iii, NULL))}
+  for (III in uj:::.III) {y <- base::c(y, uj::f0(uj::run(III, '(x)'), III, NULL))}
   y
 }
 
@@ -53,7 +53,7 @@ iii_props <- function() {uj:::.iii}
 #' @rdname iii
 #' @export
 is_iii_spec <- function(spec) {
-  spec <- uj:::.props_from_spec(spec)
+  spec <- uj:::.spec2props(spec)
   f0(uj::N0(spec), F, uj::allIN(spec, base::c(uj:::.iii, uj:::.III)))
 }
 
@@ -61,7 +61,7 @@ is_iii_spec <- function(spec) {
 #' @export
 III <- function(x, spec, ...) {
   uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_iii_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from iii_props().')), PKG = "uj")
-  for (prop in base::toupper(uj:::.props_from_spec(spec))) {if (uj::run('uj::', prop, '(x)')) {return(T)}}
+  for (prop in base::toupper(uj:::.spec2props(spec))) {if (uj::run('uj::', prop, '(x)')) {return(T)}}
   F
 }
 

@@ -8,20 +8,20 @@
 #'                 `'d2d', 'D2D'`   \tab `2D`   \tab Data.frames and matrices.                   \cr
 #'                 `'dhd', 'DHD'`   \tab `HD`   \tab Hyper (3+) dimensional arrays                 }
 #' \cr **Defined dimensionality functions**
-#' \tabular{ll}{  `is_ddd_spec`   \tab Is `spec` a defined.D property specification?                                                                             \cr   \tab     }
-#' \tabular{ll}{  `ddd_props`    \tab What defined.D properties are there?                                                                                       \cr   \tab     }
-#' \tabular{ll}{  `ddd_funs`     \tab What defined.D property functions are there?                                                                               \cr   \tab     }
-#' \tabular{ll}{  `{DDD}`           \tab Does `x` match single defined.D property `'{DDD}'`? (where `{DDD}` is a placeholder for any given defined.D property).  \cr   \tab     }
-#' \tabular{ll}{  `nddd`        \tab How many defined dimensions does `x` have?                                                                                  \cr   \tab     }
-#' \tabular{ll}{  `ddd`         \tab What are `x`'s defined.D properties?                                                                                        \cr   \tab   \cr
-#'                `DDD`         \tab Does `x` match defined.D specification `spec`?                                                                              \cr   \tab     }
+#' \tabular{ll}{  `is_ddd_spec`   \tab Is `spec` a defined.D property specification?                                                                          \cr   \tab   \cr
+#'                `ddd_props`     \tab What defined.D properties are there?                                                                                   \cr   \tab   \cr
+#'                `ddd_funs`      \tab What defined.D property functions are there?                                                                           \cr   \tab   \cr
+#'                `{DDD}`         \tab Does `x` match single defined.D property `'{DDD}'`? (where `{DDD}` is a placeholder for any given defined.D property). \cr   \tab   \cr
+#'                `nddd`          \tab How many defined dimensions does `x` have?                                                                             \cr   \tab   \cr
+#'                `ddd`           \tab What are `x`'s defined.D properties?                                                                                   \cr   \tab   \cr
+#'                `DDD`           \tab Does `x` match defined.D specification `spec`?                                                                                        }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more defined.D properties from `ddd_props()`. Defined.D properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return **A character vector** \cr `ddd_props, ddd_funs, ddd`
-#' \cr\cr  **A logical scalar**   \cr `is_ddd_spec, DDD, {DDD}`
-#' \cr\cr  **A numeric scalar**   \cr `nddd`
+#' @return **A character vector** \cr\cr `ddd_props, ddd_funs, ddd`
+#' \cr\cr  **A logical scalar**   \cr\cr `is_ddd_spec, DDD, {DDD}`
+#' \cr\cr  **A numeric scalar**   \cr\cr `nddd`
 #' @examples
 #' ddd_funs()
 #' ddd_props()
@@ -51,7 +51,7 @@ ddd_props <- function() {uj:::.ddd}
 #' @rdname ddd
 #' @export
 is_ddd_spec <- function(spec) {
-  spec <- uj:::.props_from_spec(spec)
+  spec <- uj:::.spec2props(spec)
   uj::f0(uj::N0(spec), F, uj::allIN(spec, base::c(uj:::.ddd, uj:::.DDD)))
 }
 
@@ -59,7 +59,7 @@ is_ddd_spec <- function(spec) {
 #' @export
 DDD <- function(x, spec, ...) {
   uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::nll_if(uj::is_ddd_spec(spec), '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from ddd_props().')), PKG = "uj")
-  if (uj::meets(x, ...)) {for (prop in base::toupper(uj:::.props_from_spec(spec))) {if (uj::run('uj::', prop, '(x)')) {return(T)}}}
+  if (uj::meets(x, ...)) {for (prop in base::toupper(uj:::.spec2props(spec))) {if (uj::run('uj::', prop, '(x)')) {return(T)}}}
   F
 }
 

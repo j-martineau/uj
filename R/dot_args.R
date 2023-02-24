@@ -11,23 +11,23 @@
 #'          \item `is.null(NAMES) & U & any(duplicated(...names()))`}
 #' \cr The remaining functions in this family are as follows:
 #' \tabular{ll}{  `dots_by_name`   \tab Enhancement of `list(...)` that extracts one or more`...` args based on matching values supplied in `NAMES`. If a supplied name matches the name of a `...`
-#'                                    arg, that arg is returned. Otherwise, the element of `DEFS` with a matching name is returned. `NAMES = NULL` and `NAMES = NA` are converted to `'NULL'` and
-#'                                    `'NA'`. Reserved words should be backtick quoted.                                                                                                              \cr   \tab  }
-#' \tabular{ll}{  `named_dots`    \tab Get a named list containing named `...` arg values.                                                                                                            \cr   \tab  }
-#' \tabular{ll}{  `anon_dots`     \tab Get an unnamed list containing unnamed (anonymous) `...` arg values.                                                                                           \cr   \tab  }
-#' \tabular{ll}{  `flex_dots`     \tab Retrieve a list of `...length()` elements where the `n`\eqn{^{th}} element is the flexibly evaluated value of `...elt(n)`, where flexible evaluation of `...`
-#'                                    arg values means that a `...` arg takes on the unadjusted value if \link[=base:force]{forcing} evaluation does not generate an error. Otherwise, it takes as
-#'                                    its value the string literal representing it in a function call. For example, `f(exactly, 5-2, words)` and `f("exactly", "3", "words")` give identical results
-#'                                    in the following circumstances: The usage of `f` is defined as `f(...)`, `f` treats each `...` arg as a flexdot, and in the immediate environment that calls
-#'                                    `f(...)` there are no defined objects with the names `exactly` and `words`.                                                                                    \cr   \tab  }
-#' \tabular{ll}{  `glue_dots`     \tab Collapse `...` args to a character scalar by calling \code{\link[base]{paste0}}`(`\code{\link{av}}`(...), collapse = D)`.                                      \cr   \tab  }
-#' \tabular{ll}{  `gf_dots`       \tab Combo functionality of `glue_dots` and `flex_dots` to glue flexibly evaluated `...` args into a character scalar.                                                \cr   \tab  }
-#' \tabular{ll}{  `dot_by_name`    \tab Get a single `...` arg by name.                                                                                                                                \cr   \tab  }
-#' \tabular{ll}{  `named_dot`     \tab Get the `N`-th named `...` arg.                                                                                                                                \cr   \tab  }
-#' \tabular{ll}{  `anon_dot`      \tab Get the `N`-th unnamed (anonymous) `...` arg.                                                                                                                  \cr
-#'                `flex_dot`      \tab Get the `N`-th `...` arg, flexibly evaluated.                                                                                                                  \cr
-#'                `glue_dot`      \tab Get the `N`-th `...` arg, glued.                                                                                                                               \cr   \tab  }
-#' \tabular{ll}{  `gf_dot`        \tab Get the `N`-th `...` arg, flexibly evaluated and glued.                                                                                                          }
+#'                                      arg, that arg is returned. Otherwise, the element of `DEFS` with a matching name is returned. `NAMES = NULL` and `NAMES = NA` are converted to `'NULL'` and
+#'                                      `'NA'`. Reserved words should be backtick quoted.                                                                                                               \cr   \tab   \cr
+#'                `named_dots`     \tab Get a named list containing named `...` arg values.                                                                                                             \cr   \tab   \cr
+#'                `anon_dots`      \tab Get an unnamed list containing unnamed (anonymous) `...` arg values.                                                                                            \cr   \tab   \cr
+#'                `flex_dots`      \tab Retrieve a list of `...length()` elements where the `n`\eqn{^{th}} element is the flexibly evaluated value of `...elt(n)`, where flexible evaluation of `...`
+#'                                      arg values means that a `...` arg takes on the unadjusted value if \link[=base:force]{forcing} evaluation does not generate an error. Otherwise, it takes as
+#'                                      its value the string literal representing it in a function call. For example, `f(exactly, 5-2, words)` and `f("exactly", "3", "words")` give identical results
+#'                                      in the following circumstances: The usage of `f` is defined as `f(...)`, `f` treats each `...` arg as a flexdot, and in the immediate environment that calls
+#'                                      `f(...)` there are no defined objects with the names `exactly` and `words`.                                                                                     \cr   \tab   \cr
+#'                `glue_dots`      \tab Collapse `...` args to a character scalar by calling \code{\link[base]{paste0}}`(`\code{\link{av}}`(...), collapse = D)`.                                       \cr   \tab   \cr
+#'                `gf_dots`        \tab Combo functionality of `glue_dots` and `flex_dots` to glue flexibly evaluated `...` args into a character scalar.                                               \cr   \tab   \cr
+#'                `dot_by_name`    \tab Get a single `...` arg by name.                                                                                                                                 \cr   \tab   \cr
+#'                `named_dot`      \tab Get the `N`-th named `...` arg.                                                                                                                                 \cr   \tab   \cr
+#'                `anon_dot`       \tab Get the `N`-th unnamed (anonymous) `...` arg.                                                                                                                   \cr   \tab   \cr
+#'                `flex_dot`       \tab Get the `N`-th `...` arg, flexibly evaluated.                                                                                                                   \cr   \tab   \cr
+#'                `glue_dot`       \tab Get the `N`-th `...` arg, glued.                                                                                                                                \cr   \tab   \cr
+#'                `gf_dot`         \tab Get the `N`-th `...` arg, flexibly evaluated and glued.                                                                                                                        }
 #' @param ... An arbitrary number of arguments.
 #' @param BLANK `TRUE` or `FALSE` indicating whether blank names are allowed or what to return when `...` args resolve to a blank string (`""`).
 #' @param NAMES `NULL` or an \link[=atm_vec]{atomic vec} (may include `NA` values). Is split along the delimiter `'|'` to allow for compactness in submitting multiple NAMES `NULL` will match either an argument in `...` or element of `DEFS` with the name `'NULL'`. `NA` values will match an argument in `...` or an element of `DEFS` with the name `'NA'`.
@@ -40,12 +40,12 @@
 #' @param UNQ `TRUE` or `FALSE` indicating whether `NAMES` must be unique.
 #' @param D A \link[=cmp_chr_scl]{complete character scalar} for collapsing results to a character scalar.
 #' @param N A positive integer indicating which `...` arg to return.
-#' @return **A character vector** (`GLUE = FALSE`)
-#' \cr     **A character scalar** (`GLUE = TRUE`)  \cr `flex_dots, flex_dot`
-#' \cr\cr  **A character vector**                  \cr `dot_names, dnames`
-#' \cr\cr  **A character scalar**                  \cr `glue_dots, glue_dot` \cr `gf_dots, gf_dot`
-#' \cr\cr  **An object**                           \cr `dot_by_name, named_dot, anon_dot`
-#' \cr\cr  **A list**                              \cr `dots_by_name, named_dots, anon_dots`
+#' @return **A character vector** (when `GLUE = FALSE`) \cr\cr `flex_dots, flex_dot`
+#' \cr     **A character scalar** (when `GLUE = TRUE`)  \cr\cr `flex_dots, flex_dot`
+#' \cr\cr  **A character vector**                       \cr\cr `dot_names, dnames`
+#' \cr\cr  **A character scalar**                       \cr\cr `glue_dots, glue_dot` \cr `gf_dots, gf_dot`
+#' \cr\cr  **An object**                                \cr\cr `dot_by_name, named_dot, anon_dot`
+#' \cr\cr  **A list**                                   \cr\cr `dots_by_name, named_dots, anon_dots`
 #' @examples
 #' egdot_args <- function(...) {
 #'   n.dots <- ...length()
@@ -110,14 +110,14 @@ dots_by_name <- function(NAMES, DEFS, ...) {
 #' @rdname dot_args
 #' @export
 dot_names <- function(..., SUBS = NULL, REQ = TRUE, BL = FALSE, U = TRUE) {
-  n.dots <- uj::...length()
+  n.dots <- base::...length()
   dot.names <- base::...names()
   all.named <- uj::f0(n.dots == uj::N(dot.names) & uj::noneNA(dot.names), T, uj::f0(uj::N(SUBS) != n.dots, F, uj::cmp_chr_vec(SUBS)))
-  uj::errs_if_nots(uj::ND0()                , "[...] is empty."                                                                                                                   ,
-                   uj::isTF1(U)             , "[U] must be TRUE or FALSE."                                                                                                        ,
-                   uj::isTF1(BL)            , "[BL] must be TRUE or FALSE."                                                                                                       ,
-                   uj::isTF1(REQ)           , "[REQ] must be TRUE or FALSE."                                                                                                      ,
-                   uj::notT(REQ) | all.named, "When [REQ = TRUE], all [...] args must be named or [SUBS] must be a complete character vec (?cmp_chr_vec) of length [...length()].", PKG = "uj")
+  uj::errs_if_nots(uj::ND0()                 , "[...] is empty."                                                                                                                   ,
+                   uj::isTF1(U)              , "[U] must be TRUE or FALSE."                                                                                                        ,
+                   uj::isTF1(BL)             , "[BL] must be TRUE or FALSE."                                                                                                       ,
+                   uj::isTF1(REQ)            , "[REQ] must be TRUE or FALSE."                                                                                                      ,
+                   uj::notT1(REQ) | all.named, "When [REQ = TRUE], all [...] args must be named or [SUBS] must be a complete character vec (?cmp_chr_vec) of length [...length()].", PKG = "uj")
   if (!BL) {dot.names[dot.names == ""] <- SUBS[dot.names == ""]}
   uj::err_if_not(U & !uj::UNQ(dot.names), "When [U = TRUE], [...names()] and [SUBS], taken together, must give unique names for all [...] args.", PKG = "uj")
   dot.names

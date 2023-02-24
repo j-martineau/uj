@@ -6,32 +6,32 @@
 #' @details Each function in this family operates from a template as shown in the following tables where `{conj}` and `{n}` represent the values of arguments `conj` and `n`; `{pref}` and `{comp}` indicate the potentially-`NULL` values of arguments `pref` and `conj`; and `[a]`, `[b]`, and `[z]` represents elements of a list.
 #' \cr\cr **Simple lists**
 #' \cr\cr These functions do not incorporate a number into the Oxford-comma separated list:
-#' \tabular{ll}{  `ox`              \tab `'(pref) [a], [b], ..., {conj} [z]'`         \cr   \tab  }
-#' \tabular{ll}{  `ox_or `          \tab `'(pref) [a], [b], ..., or [z]'`             \cr
-#'                `ox_and`          \tab `'(pref) [a], [b], ..., and [z]'`            \cr   \tab  }
-#' \tabular{ll}{  `ox_any `         \tab `'(pref) any of [a], [b], ..., {conj} [z]'`  \cr
-#'                `ox_all `         \tab `'(pref) all of [a], [b], ..., {conj} [z]'`  \cr
-#'                `ox_none`         \tab `'(pref) none of [a], [b], ..., {conj} [z]'` \cr
-#'                `ox_some`         \tab `'(pref) some of [a], [b], ..., {conj} [z]'` \cr   \tab  }
-#' \tabular{ll}{  `ox_either `      \tab `'(pref) either [a], [b], ..., or [z]'`      \cr
-#'                `ox_neither`      \tab `'(pref) neither [a], [b], ..., nor [z]'`                }
+#' \tabular{ll}{  `ox`           \tab `'(pref) [a], [b], ..., {conj} [z]'`         \cr
+#'                `ox_or `       \tab `'(pref) [a], [b], ..., or [z]'`             \cr
+#'                `ox_and`       \tab `'(pref) [a], [b], ..., and [z]'`            \cr
+#'                `ox_any `      \tab `'(pref) any of [a], [b], ..., {conj} [z]'`  \cr
+#'                `ox_all `      \tab `'(pref) all of [a], [b], ..., {conj} [z]'`  \cr
+#'                `ox_none`      \tab `'(pref) none of [a], [b], ..., {conj} [z]'` \cr
+#'                `ox_some`      \tab `'(pref) some of [a], [b], ..., {conj} [z]'` \cr
+#'                `ox_either`    \tab `'(pref) either [a], [b], ..., or [z]'`      \cr
+#'                `ox_neither`   \tab `'(pref) neither [a], [b], ..., nor [z]'`      }
 #' \cr\cr **Numeric-comparison lists**
 #' \cr\cr These functions incorporate a number into the Oxford-comma separated list:
-#' \tabular{ll}{  `ox_n`            \tab `'(pref) {n} of [a], [b], ..., {conj} [z]'`                 \cr   \tab  }
-#' \tabular{ll}{  `ox_exactly`      \tab `'(pref) exactly {n} of [a], [b], ..., {conj} [z]'`         \cr   \tab  }
-#' \tabular{ll}{  `ox_more`         \tab `'(pref) more than {n} of [a], [b], ..., {conj} [z]'`       \cr
-#'                `ox_no_more`      \tab `'(pref) no more than {n} of [a], [b], ..., {conj} [z]'`    \cr
-#'                `ox_or_more`      \tab `'(pref) {n} or more of [a], [b], ..., {conj} [z]'`         \cr
-#'                `ox_at_most`      \tab `'(pref) at most {n} of [a], [b], ..., {conj} [z]'`         \cr   \tab  }
-#' \tabular{ll}{  `ox_less`         \tab `'(pref) less than {n} of [a], [b], ..., {conj} [z]'`       \cr
-#'                `ox_or_less`      \tab `'(pref) {n} or less of [a], [b], ..., {conj} [z]'`         \cr
+#' \tabular{ll}{  `ox_n`            \tab `'(pref) {n} of [a], [b], ..., {conj} [z]'`                 \cr
+#'                `ox_exactly`      \tab `'(pref) exactly {n} of [a], [b], ..., {conj} [z]'`         \cr
+#'                `ox_less`         \tab `'(pref) less than {n} of [a], [b], ..., {conj} [z]'`       \cr
+#'                `ox_more`         \tab `'(pref) more than {n} of [a], [b], ..., {conj} [z]'`       \cr
+#'                `ox_fewer`        \tab `'(pref) fewer than {n} of [a], [b], ..., {conj} [z]'`      \cr
+#'                `ox_greater`      \tab `'(pref) greater than {n} of [a], [b], ..., {conj} [z]'`    \cr
+#'                `ox_at_most`      \tab `'(pref) at most {n} of [a], [b], ..., {conj} [z]'`         \cr
+#'                `ox_at_least`     \tab `'(pref) at least {n} of [a], [b], ..., {conj} [z]'`        \cr
 #'                `ox_no_less`      \tab `'(pref) no less than {n} of [a], [b], ..., {conj} [z]'`    \cr
-#'                `ox_at_least`     \tab `'(pref) at least {n} of [a], [b], ..., {conj} [z]'`        \cr   \tab  }
-#' \tabular{ll}{  `ox_fewer`        \tab `'(pref) fewer than {n} of [a], [b], ..., {conj} [z]'`      \cr
-#'                `ox_no_fewer`     \tab `'(pref) no fewer than {n} of [a], [b], ..., {conj} [z]'`   \cr
-#'                `ox_or_fewer`     \tab `'(pref) {n} or fewer of [a], [b], ..., {conj} [z]'`        \cr   \tab  }
-#' \tabular{ll}{  `ox_greater`      \tab `'(pref) greater than {n} of [a], [b], ..., {conj} [z]'`    \cr
+#'                `ox_no_more`      \tab `'(pref) no more than {n} of [a], [b], ..., {conj} [z]'`    \cr
+#'                `ox_no_fewer`     \tab `'(pref) no fewer than {n} of [a], [b], ..., {conj} [z]'`   \cr
 #'                `ox_no_greater`   \tab `'(pref) no greater than {n} of [a], [b], ..., {conj} [z]'` \cr
+#'                `ox_or_less`      \tab `'(pref) {n} or less of [a], [b], ..., {conj} [z]'`         \cr
+#'                `ox_or_more`      \tab `'(pref) {n} or more of [a], [b], ..., {conj} [z]'`         \cr
+#'                `ox_or_fewer`     \tab `'(pref) {n} or fewer of [a], [b], ..., {conj} [z]'`        \cr
 #'                `ox_or_greater`   \tab `'(pref) {n} or greater of [a], [b], ..., {conj} [z]'`        }
 #' @param ... Any number of arguments coerceable to mode character.
 #' @param pref A \link[=cmp_chr_scl]{complete character scalar} prefix to prepend to the list.
@@ -122,13 +122,13 @@ oxfordCOMMA <- ox
 #' @export
 ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, first = TRUE) {
   vals <- uj::av(...)
-  uj::errs_if_nots(uj::N1P(vals)       , "[...] is empty.",
-                 uj::atm_cmp(vals)     , "Arguments in [...] must be complete and atomic (?cmp_atm_)."   ,
-                 uj::cmp_chr_scl(conj) , "[conj] must be a complete character scalar (?cmp_chr_scl)."    ,
-                 uj::cmp_chr_scl(comp) , "[comp] must be a non-NA character scalar (?cmp_chr_scl)."      ,
-                 uj::isIN1(quote, 0:2) , "[quote] must be 0, 1, or 2."                                   ,
-                 uj::cmp_nnw_scl(n)    , "[n] must be a non-negative whole number scalar (?cmp_nnw_scl).",
-                 uj::cmp_lgl_scl(first), "[first] must be TRUE or FALSE."                                , PKG = "uj")
+  uj::errs_if_nots(uj::N1P(vals)         , "[...] is empty."                                               ,
+                   uj::atm_cmp(vals)     , "Arguments in [...] must be complete and atomic (?cmp_atm_)."   ,
+                   uj::cmp_chr_scl(conj) , "[conj] must be a complete character scalar (?cmp_chr_scl)."    ,
+                   uj::cmp_chr_scl(comp) , "[comp] must be a non-NA character scalar (?cmp_chr_scl)."      ,
+                   uj::isIN1(quote, 0:2) , "[quote] must be 0, 1, or 2."                                   ,
+                   uj::cmp_nnw_scl(n)    , "[n] must be a non-negative whole number scalar (?cmp_nnw_scl).",
+                   uj::cmp_lgl_scl(first), "[first] must be TRUE or FALSE."                                , PKG = "uj")
   pref <- uj::f0(comp == "", uj::p1(n, "of"), uj::f0(first, uj::p1(comp, n, "of"), uj::p1(n, comp, "of")))
   uj::ox(vals, conj = conj, pref = pref, quote = quote)
 }

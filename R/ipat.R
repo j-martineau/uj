@@ -9,18 +9,18 @@
 #' @title Simplified string indexing for fixed patterns
 #' @description Logically index, numerically index, and count the number of times a pattern occurs.
 #' @details
-#' \tabular{ll}{  `has_pat`   \tab Evaluates whether each element of `x` contains the string in `pat`.                                                        \cr   \tab     }
-#' \tabular{ll}{  `ppats`    \tab Identifies the position of the first character of *every* instance of a pattern in each element of a character vector.      \cr   \tab     }
-#' \tabular{ll}{  `ppat`     \tab Identifies the position of *the first* character of the first instance of a pattern in each element of a character vector.  \cr   \tab   \cr
+#' \tabular{ll}{  `has_pat`   \tab Evaluates whether each element of `x` contains the string in `pat`.                                                        \cr   \tab   \cr
+#'                `ppats`    \tab Identifies the position of the first character of *every* instance of a pattern in each element of a character vector.      \cr   \tab   \cr
+#'                `ppat`     \tab Identifies the position of *the first* character of the first instance of a pattern in each element of a character vector.  \cr   \tab   \cr
 #'                `npat`     \tab Counts the number of times a pattern appears in each element of a character vector.                                         \cr   \tab   \cr
 #'                `ipat`     \tab Logically indexes character vector elements containing a pattern as `TRUE` or `FALSE`.                                      \cr   \tab   \cr
 #'                `wpat`     \tab Numerically indexes character vector elements containing a pattern as integer element numbers.                                             }
 #' \cr\cr These functions Always \link[=a]{atomizes} `...` to create a single character vector to search for a fixed pattern.
 #' @param x A character vector.
 #' @param pat A fixed value \link[=cmp_str_scl]{complete string scalar} pattern to search for in `x`.
-#' @return **A positive whole number \link[=VLS]{vlist}** \cr `ppats`
-#' \cr\cr  **A positive whole number vector**             \cr `wpat, npat, ppat`
-#' \cr\cr  **A logical scalar**                           \cr `has_pat, ipat`
+#' @return **A positive whole number \link[=VLS]{vlist}** \cr\cr `ppats`
+#' \cr\cr  **A positive whole number vector**             \cr\cr `wpat, npat, ppat`
+#' \cr\cr  **A logical scalar**                           \cr\cr `has_pat, ipat`
 #' @examples
 #' words <- c("apple", "banana", "carrot")
 #' has_pat(words, "a")

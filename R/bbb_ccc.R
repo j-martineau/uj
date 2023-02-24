@@ -3,9 +3,9 @@
 #' @title basic + xclass combination properties
 #' @description Check for combinations of \link[=bbb]{basic} and \link[=ccc]{xclass} properties.
 #' @details
-#' \tabular{ll}{  `bbb_cccfuns`   \tab What \link[=bbb]{basic} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?                                                                                                  \cr   \tab  }
-#' \tabular{ll}{  `{bbb}_{ccc}`   \tab Is `x` a match to single basic property `'{bbb}'` and single xmode property `'{mmm}'`, where `{bbb}` and `{mmm}` are placeholders for any given basic property and any given xclass property, respectively? \cr   \tab  }
-#' \tabular{ll}{  `bbb_ccc`       \tab Is `x` a match to the single basic and xclass properties in `bbb` and `ccc`, respectively?                                                                                                                              }
+#' \tabular{ll}{  `bbb_cccfuns`   \tab What \link[=bbb]{basic} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?                                                                                                  \cr   \tab   \cr
+#'                `{bbb}_{ccc}`   \tab Is `x` a match to single basic property `'{bbb}'` and single xmode property `'{mmm}'`, where `{bbb}` and `{mmm}` are placeholders for any given basic property and any given xclass property, respectively? \cr   \tab   \cr
+#'                `bbb_ccc`       \tab Is `x` a match to the single basic and xclass properties in `bbb` and `ccc`, respectively?                                                                                                                                 }
 #' \cr\cr Some combinations of basic + xclass properties are nonsensical. For this reason, the basic properties represented in this family of functions are `c('atm', 'nil',  'pop')`, or atomic, nil (non-`NULL` and of length 0), and populated (of length `1+`).
 #' \cr\cr In addition, the base property `'nil'` is nonsensical in combination with xclasses `'mvc'` (multivec) and `'scl'` (scalar), which thus do not have combined `bbb_ccc` property functions.
 #' @param x An R object.
@@ -13,8 +13,8 @@
 #' @param ccc A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return **A character vector** \cr `bbb_ccc_funs`
-#' \cr\cr  **A logical scalar**   \cr `bbb_ccc, {bbb}_{ccc}`
+#' @return **A character vector** \cr\cr `bbb_ccc_funs`
+#' \cr\cr  **A logical scalar**   \cr\cr `{bbb}_{ccc}, bbb_ccc`
 #' @examples
 #' bbb_ccc_funs()
 #' bbb_ccc(letters, "atm", "mvc")
@@ -25,7 +25,9 @@
 bbb_ccc <- function(x, bbb, ccc, ...) {
   if (uj::isCHR(bbb)) {bbb <- base::tolower(bbb)}
   if (uj::isCHR(ccc)) {ccc <- base::tolower(ccc)}
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::f0(uj::isIN1(bbb, uj:::.bbb), NULL, "[bbb] is not a scalar value from bbb_props()."), uj::f0(uj::isIN1(ccc, uj:::.ccc), NULL, "[ccc] is not a scalar value from ccc_props().")), PKG = "uj")
+  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...),
+                          uj::f0(uj::isIN1(bbb, uj:::.bbb), NULL, "[bbb] is not a scalar value from bbb_props()."),
+                          uj::f0(uj::isIN1(ccc, uj:::.ccc), NULL, "[ccc] is not a scalar value from ccc_props().")), PKG = "uj")
   arr <- ccc == "arr"; ARR <- uj::ARR(x)
   dtf <- ccc == "dtf"; DTF <- uj::DTF(x)
   gen <- ccc == "gen"; GEN <- uj::GEN(x)

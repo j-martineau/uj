@@ -69,10 +69,10 @@
 #' @param ... Optional named arguments count and/or value restrictions for `x`. See the *specifying count and value restrictions* section.
 #' @section Specifying count and value restrictions: Specifying restrictions in `...` is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
 #' \tabular{ll}{  `max, maxr, maxc`   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-#'                `min, minr, minc`   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab     }
-#' \tabular{ll}{  `lt, le, ge, gt`    \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab     }
-#' \tabular{ll}{  `n, nr, nc`         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab     }
-#' \tabular{ll}{  `vals`              \tab A vector of valid values.                                                                                                                                 }
+#'                `min, minr, minc`   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+#'                `lt, le, ge, gt`    \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+#'                `n, nr, nc`         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+#'                `vals`              \tab A vector of valid values.                                                                                                                                 }
 #' @return A logical scalar.
 #' @examples
 #' chrs <- c("a", "b", "c")
@@ -90,11 +90,11 @@
 meets <- function(x, ...) {
   if (uj::ND0()) {return(T)}
   uj::errs_if_pop(uj:::.meets_errs(x, ...), PKG = "uj")
-  atoms <- uj::av(x)                                                             # atomic values from {x}
-  nx <- uj::f0(uj::D1D(x), uj::N(x), base::prod(base::dim(x)))                  # length of {x}
-  nr <- uj::NR(x)                                                                # number of rows in {x}
-  nc <- uj::NC(x)                                                                # number of columns in {x}
-  atoms <- atoms[uj::ok(atoms)]                                                 # remove na values of {x}
+  atoms <- uj::av(x)
+  nx <- uj::f0(uj::D1D(x), uj::N(x), base::prod(base::dim(x)))
+  nr <- uj::NR(x)
+  nc <- uj::NC(x)
+  atoms <- atoms[uj::ok(atoms)]
   d <- base::list(...)
   if (uj::N0(atoms)) {return(T)}
   else if (uj::DEF(d$n)) {if (uj::isMF1(nx, d$n)) {return(F)}}

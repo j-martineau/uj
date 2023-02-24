@@ -6,14 +6,14 @@
 #' @title Thin and extended functionality wrappers of `readr` functions.
 #' @description Read the clipboard and text files, but prompting user to choose a file if no file name/path is provided.
 #' @details
-#' \tabular{ll}{  `rdCLIP`   \tab Thinly wraps \code{\link[readr]{clipboard}}                   \cr   \tab   \cr
-#'                `rdCSV`    \tab Extends \code{\link[readr]{read_csv}}\eqn{^{(1)}}             \cr
-#'                `rdTSV`    \tab Extends \code{\link[readr]{read_tsv}}\eqn{^{(1)}}             \cr
-#'                `rdXSV`    \tab Extends \code{\link[readr]{read_delim}}\eqn{^{(1)}}           \cr
-#'                           \tab \eqn{^{(1)}} `file = NULL` prompts the user to select a file.                }
+#' \tabular{ll}{  `rdCLIP`   \tab Thinly wraps \code{\link[readr]{clipboard}}         \cr   \tab   \cr
+#'                `rdCSV`    \tab Extends \code{\link[readr]{read_csv}}\eqn{^{(1)}}   \cr
+#'                `rdTSV`    \tab Extends \code{\link[readr]{read_tsv}}\eqn{^{(1)}}   \cr
+#'                `rdXSV`    \tab Extends \code{\link[readr]{read_delim}}\eqn{^{(1)}}   }
+#'  \tabular{l}{  \eqn{^{(1)}} `file = NULL` prompts the user to select a file.         }
 #' @param file Either `NULL` or a \link[=cmp_chr_vec]{complete character vector} that resolves to a file path. When `file = NULL` the user is asked to select a file using a system dialog box.
-#' @return **Varies**       \cr `rdCLIP`
-#' \cr\cr  **A data.frame** \cr `rdCSV, rdTSV, rdXSV`
+#' @return **Varies**       \cr\cr `rdCLIP`
+#' \cr\cr  **A data.frame** \cr\cr `rdCSV, rdTSV, rdXSV`
 #' @export
 rdCSV <- function(file = NULL, col_names = TRUE, col_types = NULL, col_select = NULL, id = NULL, locale = readr::default_locale(), na = base::c("", "NA"), quoted_na = TRUE, quote = "\"", comment = "", trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = base::min(1000, n_max), name_repair = "unique", num_threads = readr::readr_threads(), progress = readr::show_progress(), show_col_types = readr::should_show_types(), skip_empty_rows = TRUE, lazy = readr::should_read_lazy()) {
   if (uj::NLL(file)) {file <- uj::choose_doc("comma separated values text file")}

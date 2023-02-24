@@ -4,25 +4,25 @@
 #' @title Coerce to base mode or `xmode`
 #' @description Functions to coerce objects to \link[base:mode]{base mode} or \code{\link[=mmm]{xmode}}.
 #' @details Functions in this family are as follows:
-#' \tabular{ll}{  `asCHR`   \tab Thinly wraps \code{\link[base]{as.character}}.                                                       \cr
+#' \tabular{ll}{  `asCHR`   \tab Thinly wraps \code{\link[base]{as.character}}.                                                        \cr
 #'                `asINT`   \tab Thinly wraps \code{\link[base]{as.integer}}.                                                          \cr
 #'                `asNUM`   \tab Thinly wraps \code{\link[base]{as.numeric}}.                                                          \cr
-#'                `asLGL`   \tab Thinly wraps \code{\link[base]{as.logical}}.                                            \cr   \tab    \cr
-#'                `asORD`   \tab As xmode `'ord'` (ordered factor). Wraps `factor(x, levels = levs, ordered = TRUE)`.    \cr   \tab    \cr
-#'                `asUNO`   \tab As xmode `'uno'` (unordered factor). Wraps `factor(x, levels = levs, ordered = FALSE)`. \cr   \tab    \cr
-#'                `asCLR`   \tab Coerces character color values to hexadecimal.                                          \cr   \tab    \cr
+#'                `asLGL`   \tab Thinly wraps \code{\link[base]{as.logical}}.                                             \cr   \tab   \cr
+#'                `asORD`   \tab As xmode `'ord'` (ordered factor). Wraps `factor(x, levels = levs, ordered = TRUE)`.     \cr   \tab   \cr
+#'                `asUNO`   \tab As xmode `'uno'` (unordered factor). Wraps `factor(x, levels = levs, ordered = FALSE)`.  \cr   \tab   \cr
+#'                `asCLR`   \tab Coerces character color values to hexadecimal.                                           \cr   \tab   \cr
 #'                `asFUN`   \tab If `x` is a character scalar function return that function, but if `x` is a function object, return it. }
 #' @param x For `asCLR`, an object of mode character; for `asFUN`, a character scalar function name or a function object; for `asORD` and `asUNO`, an atomic object; and for all others, any R object.
 #' @param na `TRUE` or `FALSE` indicating whether `NA` values are acceptable.
 #' @param levs A \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for `asORD`).
 #' @param ... Further arguments passed to or from other methods.
-#' @return **An object of base mode** `'character'`                         \cr `asCHR`
-#' \cr\cr  **An object of base mode** `'integer'`                           \cr `asINT`
-#' \cr\cr  **An object of base mode** `'logical'`                           \cr `asLGL`
-#' \cr\cr  **An object of base mode** `'numeric'`                           \cr `asNUM`
-#' \cr\cr  **An object of \link[=mmm]{xmode}** `'ord'` (ordered factor)     \cr `asORD`
-#' \cr\cr  **An object of xmode** `'uno'` (unordered factor)                \cr `asUNO`
-#' \cr\cr  **An object of xmode** `'clr'` (hex color in form `'#RRGGBBAA'`) \cr `asCLR`
+#' @return **An object of base mode** `'character'`                         \cr\cr `asCHR`
+#' \cr\cr  **An object of base mode** `'integer'`                           \cr\cr `asINT`
+#' \cr\cr  **An object of base mode** `'logical'`                           \cr\cr `asLGL`
+#' \cr\cr  **An object of base mode** `'numeric'`                           \cr\cr `asNUM`
+#' \cr\cr  **An object of \link[=mmm]{xmode}** `'ord'` (ordered factor)     \cr\cr `asORD`
+#' \cr\cr  **An object of xmode** `'uno'` (unordered factor)                \cr\cr `asUNO`
+#' \cr\cr  **An object of xmode** `'clr'` (hex color in form `'#RRGGBBAA'`) \cr\cr `asCLR`
 #' @examples
 #' bins. <- sample(c(0, 1), 10, replace = T)
 #' chrs. <- c("3.14", "2.72", "1.41")
@@ -51,8 +51,8 @@
 asMODE <- function(x, mode, levs = NULL, na = FALSE) {
   if (uj::isIN1(mode, "clr" , "Clr", "CLR")) {
     uj::errs_if_nots(uj::CHR(x)                   , "[x] is not of mode character."           ,
-                   uj::isTF1(na)                , "[na] must be TRUE or FALSE."             ,
-                   uj::isT1(na) | uj::noneNAS(x), "[x] contains NA values but [na = FALSE].", PKG = "uj")
+                     uj::isTF1(na)                , "[na] must be TRUE or FALSE."             ,
+                     uj::isT1(na) | uj::noneNAS(x), "[x] contains NA values but [na = FALSE].", PKG = "uj")
     if (uj::anyOKS(x)) {
       y <- tryCatch(grDevices::col2rgb(x[uj::ok(x)], T), error = function(e) e, finally = NULL)
       uj::err_if(uj::isERR(y), "[x] does not contain only valid color values.", PKG = "uj")
@@ -71,7 +71,7 @@ asMODE <- function(x, mode, levs = NULL, na = FALSE) {
   else if (uj::isIN1(mode, "num", "Num", "NUM")) {x <- base::as.numeric(x)}
   else if (uj::isIN1(mode, "ord", "Ord", "ORD")) {x <- base::factor(x, levels = levs, ordered = T)}
   else if (uj::isIN1(mode, "uno", "Uno", "UNO")) {x <- base::factor(x, levels = levs, ordered = F)}
-  else {uj::stopper("Unrecognized mode.", pkg = "uj", fun = "asMODE")}
+  else {uj::stopperr("Unrecognized mode.", pkg = "uj", fun = "asMODE")}
 }
 
 #' @rdname asMODE

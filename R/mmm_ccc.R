@@ -3,16 +3,17 @@
 #' @title xmode + xclass combination properties
 #' @description Check for combinations of \link[=mmm]{xmode} and \link[=ccc]{xclass}.
 #' @details
-#' \tabular{ll}{  `mmm_ccc_funs`   \tab What \link[=mmm]{xmode} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?                                                                                   \cr   \tab     }
-#' \tabular{ll}{  `mmm_ccc`        \tab Does `x` match the single xmode and xclass properties in arguments `mmm` and `ccc`, respectively?                                                                                            \cr   \tab   \cr
-#'                `{mmm}_{ccc}`    \tab Does `x` match the single xmode property `'{mmm}''` and single xclass property `'{ccc}'`, where `'{mmm}'` and `'{ccc}'` are placeholders for any given xmode and any given xclass properties, respectively? }
+#' \tabular{ll}{  `mmm_ccc_funs`   \tab What \link[=mmm]{xmode} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there? \cr   \tab   \cr
+#'                `{mmm}_{ccc}`    \tab Does `x` match the single xmode property `'{mmm}''` and single xclass property `'{ccc}'`, where `'{mmm}'`
+#'                                      and `'{ccc}'` are placeholders for any given xmode and any given xclass properties, respectively?          \cr   \tab   \cr
+#'                `mmm_ccc`        \tab Does `x` match the single xmode and xclass properties in arguments `mmm` and `ccc`, respectively?                         }
 #' @param x An R object.
 #' @param mmm A character scalar single xmode property from \code{\link{mmm_props}()}.
 #' @param ccc A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return **A character scalar** \cr `mmm_ccc_funs`
-#' \cr\cr  **A logical scalar**   \cr `mmm_ccc, {mmm}_{ccc}`
+#' @return **A character scalar** \cr\cr `mmm_ccc_funs`
+#' \cr\cr  **A logical scalar**   \cr\cr `{mmm}_{ccc}, mmm_ccc`
 #' @examples
 #' egScl <- "a"
 #' egLst <- list(letters = letters, LETTERS = LETTERS)
@@ -43,7 +44,7 @@ mmm_ccc <- function(x, mmm, ccc, ...) {
 #' @rdname mmm_ccc
 #' @export
 mmm_ccc_funs <- function() {
-  y <- base::expand.grid(mmm = uj::.mmm, ccc = uj:::.ccc)
+  y <- base::expand.grid(mmm = uj:::.mmm, ccc = uj:::.ccc)
   y <- base::apply(y, 1, base::paste0, collapse = "_")
   uj::sav(y)
 }

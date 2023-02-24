@@ -11,34 +11,32 @@
 #' @family logicals
 #' @title Enhancements of `base` logical functions
 #' @details The left-hand column of the following table gives a function call from this family and the right column shows how they extend of base logical functions:
-#' \tabular{ll}{  `notIN(x, y, ...)`    \tab `!(x %in% y)`          \cr   \tab  }
-#' \tabular{ll}{  `notIN(x, y, ...)`    \tab `!(x %in% y)`          \cr
-#'                `lacks(x, y, ...)`    \tab `!(y %in% x)`          \cr
-#'                `ismf(x, y, ...)`     \tab `!(x %in% y)`          \cr
-#'                `isin(x, y, ...)`     \tab `x %in% y`             \cr   \tab  }
-#' \tabular{ll}{  `one(x, y, ...)`      \tab `xor(x, y)`            \cr
-#'                `has(x, y, ...)`      \tab `y %in% x`             \cr
-#'                `nor(x, y, ...)`      \tab `!(x | y)`             \cr
-#'                `and(x, y, ...)`      \tab `x & y`                \cr   \tab  }
-#' \tabular{ll}{  `or(x, y, ...)`       \tab `x | y`                \cr   \tab  }
-#' \tabular{ll}{  `TEST(x, ...)`        \tab `isTRUE(x)`            \cr   \tab  }
-#' \tabular{ll}{  `not(x, ...)`         \tab `!x`                     }
+#' \tabular{ll}{  `lacks(x, y, ...)`    \tab `!(y %in% x)` \cr
+#'                `ismf(x, y, ...)`     \tab `!(x %in% y)` \cr
+#'                `isin(x, y, ...)`     \tab `x %in% y`    \cr
+#'                `has(x, y, ...)`      \tab `y %in% x`    \cr   \tab   \cr
+#'                `one(x, y, ...)`      \tab `xor(x, y)`   \cr
+#'                `nor(x, y, ...)`      \tab `!(x | y)`    \cr
+#'                `and(x, y, ...)`      \tab `x & y`       \cr
+#'                `or(x, y, ...)`       \tab `x | y`       \cr   \tab   \cr
+#'                `TEST(x, ...)`        \tab `isTRUE(x)`   \cr   \tab   \cr
+#'                `not(x, ...)`         \tab `!x`                         }
 #' \cr\cr The next set of functions evaluate an arbitrary number of `...` arguments expected to be logical scalars for whether:
-#' \tabular{ll}{  `ANY`     \tab Any `...` arg is scalar `TRUE`.    \cr
-#'                `ALL`     \tab All `...` args are scalar `TRUE`.  \cr
-#'                `NOR`     \tab `0 ...` args are scalar `TRUE`.    \cr
-#'                `ONE`     \tab `1 ...` arg is scalar `TRUE`.      \cr
-#'                `TWO`     \tab `2+ ...` args are scalar `TRUE`.     }
+#' \tabular{ll}{  `ANY`   \tab Any `...` arg is scalar `TRUE`.   \cr
+#'                `ALL`   \tab All `...` args are scalar `TRUE`. \cr
+#'                `NOR`   \tab `0 ...` args are scalar `TRUE`.   \cr
+#'                `ONE`   \tab `1 ...` arg is scalar `TRUE`.     \cr
+#'                `TWO`   \tab `2+ ...` args are scalar `TRUE`.    }
 #' \cr\cr The remainder of functions in this family sweep across or within `...` arguments, as specified by the arguments `across` and `within`:
-#' \tabular{ll}{  `tests`   \tab Logically indexes `TRUE` values.   \cr   \tab  }
-#' \tabular{ll}{  `ones`    \tab Checks for exactly `1 TRUE` value. \cr
+#' \tabular{ll}{  `tests`   \tab Logically indexes `TRUE` values.   \cr   \tab   \cr
+#'                `ones`    \tab Checks for exactly `1 TRUE` value. \cr
 #'                `alls`    \tab Checks for only `TRUE` values.     \cr
 #'                `anys`    \tab Checks for any `TRUE` values.      \cr
 #'                `twos`    \tab Checks for `2+ TRUE` values.       \cr
-#'                `nors`    \tab Checks for `0 TRUE` values.        \cr   \tab  }
-#' \tabular{ll}{  `w`       \tab Numerically indexes `TRUE` values.   }
-#' @param x An \link[=atm_lgl]{atomic logical object} for all functions other than `isIN`, `isMF`, `has`, and `lacks`. Otherwise, an atomic object.
-#' @param y An atomic logical object. for all functions other than `isIN`, `isMF`, `has`, and `lacks`. Otherwise, an atomic object \link[=compatible]{compatible} with `x`.
+#'                `nors`    \tab Checks for `0 TRUE` values.        \cr   \tab   \cr
+#'                `w`       \tab Numerically indexes `TRUE` values.   }
+#' @param x An \link[=atm_lgl]{atomic logical object} for all functions other than `isin`, `ismf`, `has`, and `lacks`. Otherwise, an atomic object.
+#' @param y An atomic logical object. for all functions other than `isin`, `ismf`, `has`, and `lacks`. Otherwise, an atomic object \link[=compatible]{compatible} with `x`.
 #' @param ... An arbitrary number of \link[=lgl_vec]{logical vecs} to be processed.
 #' @param na `TRUE` or `FALSE` indicating what value should replace `NA` values.
 #' @param err `TRUE` or `FALSE`. `err = TRUE` indicates `TRUE` should be substituted for non-logical values, `err = FALSE` indicates `FALSE` should be substituted for non-logical values, `err = NA` indicates an error should be thrown if a non-logical value is encountered.
@@ -97,9 +95,9 @@
 #' lacks(letters, "a")
 #' @export
 not <- function(x, na = 'err') {
-  uj::errs_if_nots(uj::pop_lgl(x)                              , "[x] must be a populated logical object (?pop_lgl).",
-                 uj::isIN1(na, TRUE, FALSE, NA, 'err')      , "[na] must be TRUE, FALSE, NA, or 'err'."          ,
-                 uj::isEQ1(na, 'err') & uj::anyNA(uj::av(x)), "[x] may not contain NA values."                   , PKG = "uj")
+  uj::errs_if_nots(uj::pop_lgl(x)                             , "[x] must be a populated logical object (?pop_lgl).",
+                   uj::isIN1(na, TRUE, FALSE, NA, 'err')      , "[na] must be TRUE, FALSE, NA, or 'err'."           ,
+                   uj::isEQ1(na, 'err') & uj::anyNA(uj::av(x)), "[x] may not contain NA values."                    , PKG = "uj")
   if (uj::isTF1(na)) {x[uj::na(x)] <- na}
   !x
 }
@@ -107,11 +105,11 @@ not <- function(x, na = 'err') {
 #' @rdname evals
 #' @export
 and <- function(x, y, na = 'err') {
-  uj::errs_if_nots(uj::pop_lgl(x)                              , "[x] must be a populated logical object (?pop_lgl).",
-                 uj::pop_lgl(y)                              , "[x] must be a populated logical object (?pop_lgl).",
-                 uj:::.conform(x, y)                        , "[x] and y must be conformable."                   ,
-                 uj::isIN1(na, TRUE, FALSE, NA, 'err')      , "[na] must be TRUE, FALSE, NA, or 'err'."          ,
-                 uj::isEQ1(na, 'err') & uj::anyNA(uj::av(x)), "[x] may not contain NA values."                   , PKG = "uj")
+  uj::errs_if_nots(uj::pop_lgl(x)                             , "[x] must be a populated logical object (?pop_lgl).",
+                   uj::pop_lgl(y)                             , "[x] must be a populated logical object (?pop_lgl).",
+                   uj:::.conform(x, y)                        , "[x] and y must be conformable."                    ,
+                   uj::isIN1(na, TRUE, FALSE, NA, 'err')      , "[na] must be TRUE, FALSE, NA, or 'err'."           ,
+                   uj::isEQ1(na, 'err') & uj::anyNA(uj::av(x)), "[x] may not contain NA values."                    , PKG = "uj")
   if (uj::isTF1(na)) {
     x[uj::na(x)] <- na
     y[uj::na(x)] <- na
@@ -122,11 +120,11 @@ and <- function(x, y, na = 'err') {
 #' @rdname evals
 #' @export
 or <- function(x, y, na = 'err') {
-  uj::errs_if_nots(uj::pop_lgl(x)                           , "[x] must be a populated logical object (?pop_lgl).",
-                 uj::pop_lgl(y)                           , "[x] must be a populated logical object (?pop_lgl).",
-                 uj:::.conform(x, y)                     , "[x] and y must be conformable."                   ,
-                 uj::isIN1(na, TRUE, FALSE, NA, 'err')      , "[na] must be TRUE, FALSE, NA, or 'err'."          ,
-                 uj::isEQ1(na, 'err') & uj::anyNA(uj::av(x)), "[x] may not contain NA values."                   , PKG = "uj")
+  uj::errs_if_nots(uj::pop_lgl(x)                             , "[x] must be a populated logical object (?pop_lgl).",
+                   uj::pop_lgl(y)                             , "[x] must be a populated logical object (?pop_lgl).",
+                   uj:::.conform(x, y)                        , "[x] and y must be conformable."                    ,
+                   uj::isIN1(na, TRUE, FALSE, NA, 'err')      , "[na] must be TRUE, FALSE, NA, or 'err'."           ,
+                   uj::isEQ1(na, 'err') & uj::anyNA(uj::av(x)), "[x] may not contain NA values."                    , PKG = "uj")
   if (uj::isTF1(na)) {
     x[uj::na(x)(x)] <- na
     y[uj::na(x)(x)] <- na
@@ -137,12 +135,11 @@ or <- function(x, y, na = 'err') {
 #' @rdname evals
 #' @export
 nor <- function(x, y, na = 'err') {
-  uj::errs_if_nots(
-    uj::pop_lgl(x)                               , "[x] must be a populated logical object (?pop_lgl).",
-    uj::pop_lgl(y)                               , "[x] must be a populated logical object (?pop_lgl).",
-    uj:::.conform(x, y)                         , "[x] and y must be conformable."                   ,
-    uj::isIN1(na, TRUE, FALSE, NA, 'err')       , "[na] must be TRUE, FALSE, NA, or 'err'."          ,
-    uj::isEQ1(na, 'err') & uj:::anyNA(uj::av(x)), "[x] may not contain NA values."                   , PKG = "uj")
+  uj::errs_if_nots(uj::pop_lgl(x)                              , "[x] must be a populated logical object (?pop_lgl).",
+                   uj::pop_lgl(y)                              , "[x] must be a populated logical object (?pop_lgl).",
+                   uj:::.conform(x, y)                         , "[x] and y must be conformable."                    ,
+                   uj::isIN1(na, TRUE, FALSE, NA, 'err')       , "[na] must be TRUE, FALSE, NA, or 'err'."           ,
+                   uj::isEQ1(na, 'err') & uj:::anyNA(uj::av(x)), "[x] may not contain NA values."                    , PKG = "uj")
   if (uj::isTF1(na)) {
     x[uj::na(x)] <- na
     y[uj::na(x)] <- na
@@ -153,12 +150,11 @@ nor <- function(x, y, na = 'err') {
 #' @rdname evals
 #' @export
 one <- function(x, y, na = 'err') {
-  uj::errs_if_nots(
-    uj::pop_lgl(x)                              , "[x] must be a populated logical object (?pop_lgl).",
-    uj::pop_lgl(y)                              , "[x] must be a populated logical object (?pop_lgl).",
-    uj:::.conform(x, y)                        , "[x] and y must be conformable."                   ,
-    uj::isIN1(na, TRUE, FALSE, NA, 'err')      , "[na] must be TRUE, FALSE, NA, or 'err'."          ,
-    uj::isEQ1(na, 'err') & uj::anyNA(uj::av(x)), "[x] may not contain NA values."                   , PKG = "uj")
+  uj::errs_if_nots(uj::pop_lgl(x)                             , "[x] must be a populated logical object (?pop_lgl).",
+                   uj::pop_lgl(y)                             , "[x] must be a populated logical object (?pop_lgl).",
+                   uj:::.conform(x, y)                        , "[x] and y must be conformable."                    ,
+                   uj::isIN1(na, TRUE, FALSE, NA, 'err')      , "[na] must be TRUE, FALSE, NA, or 'err'."           ,
+                   uj::isEQ1(na, 'err') & uj::anyNA(uj::av(x)), "[x] may not contain NA values."                    , PKG = "uj")
   if (uj::isTF1(na)) {
     x[uj::na(x)] <- na
     y[uj::na(x)] <- na
@@ -170,8 +166,8 @@ one <- function(x, y, na = 'err') {
 #' @export
 TEST <- function(x, na = FALSE, err = NA) {
   uj::errs_if_nots(uj::lglSCL(x) | uj::isLG1(err)        , "[x] is not a logical scalar."            ,
-                 uj::isTF1(na)                         , "[na] must be TRUE or FALSE."             ,
-                 uj::isLG1(err) | uj::isEQ1(err, 'err'), "[err] must be TRUE, FALSE, NA, or 'err'.", PKG = "uj")
+                   uj::isTF1(na)                         , "[na] must be TRUE or FALSE."             ,
+                   uj::isLG1(err) | uj::isEQ1(err, 'err'), "[err] must be TRUE, FALSE, NA, or 'err'.", PKG = "uj")
   uj::f0(uj::notLG(x), err, uj::f0(uj::na(x), na, x))
 }
 
@@ -179,7 +175,7 @@ TEST <- function(x, na = FALSE, err = NA) {
 #' @export
 ANY <- function(..., err = NA) {
   uj::errs_if_nots(base::all(base::sapply(base::list(...), uj::lglSCL)), "All arguments in [...] must be logical scalars (?lglSCL).",
-                 uj::isLG1(err) | uj::isEQ1(err, 'na')               , "[err] must be TRUE, FALSE, NA, or 'na'."                  , PKG = "uj")
+                   uj::isLG1(err) | uj::isEQ1(err, 'na')               , "[err] must be TRUE, FALSE, NA, or 'na'."                  , PKG = "uj")
   for (i in 1:uj::ND()) {
     x <- tryCatch(base::...elt(i) == T, error = function(e) NA, finally = NULL)
     uj::err_if_not(uj::isDIF1(err, "na") | uj::cmp_lgl_scl(x), "[..", i, "] did not resolve to TRUE or FALSE.", PKG = "uj")
@@ -192,7 +188,7 @@ ANY <- function(..., err = NA) {
 #' @export
 ALL <- function(..., err = NA) {
   uj::errs_if_nots(base::all(base::sapply(base::list(...), uj::lglSCL)), "All arguments in [...] must be logical scalars (?lglSCL).",
-                 uj::isLG1(err) | uj::isEQ1(err, 'na')               , "[err] must be TRUE, FALSE, NA, or 'na'."                  , PKG = "uj")
+                   uj::isLG1(err) | uj::isEQ1(err, 'na')               , "[err] must be TRUE, FALSE, NA, or 'na'."                  , PKG = "uj")
   for (i in 1:uj::ND()) {
     x <- tryCatch(base::...elt(i) == T, error = function(e) NA, finally = NULL)
     uj::err_if_not(uj::isDIF1(err, "na") | uj::cmp_lgl_scl(x), "[..", i, "] did not resolve to TRUE or FALSE.", PKG = "uj")
@@ -205,7 +201,7 @@ ALL <- function(..., err = NA) {
 #' @export
 NOR <- function(..., err = NA) {
   uj::errs_if_nots(base::all(base::sapply(base::list(...), uj::lglSCL)), "All arguments in [...] must be logical scalars (?lglSCL).",
-                 uj::isLG1(err) | uj::isEQ1(err, 'na')               , "[err] must be TRUE, FALSE, NA, or 'na'."                  , PKG = "uj")
+                   uj::isLG1(err) | uj::isEQ1(err, 'na')               , "[err] must be TRUE, FALSE, NA, or 'na'."                  , PKG = "uj")
   for (i in 1:uj::ND()) {
     x <- tryCatch(base::...elt(i) == T, error = function(e) NA, finally = NULL)
     uj::err_if_not(uj::isDIF1(err, "na") | uj::cmp_lgl_scl(x), "[..", i, "] did not resolve to TRUE or FALSE.", PKG = "uj")
@@ -218,7 +214,7 @@ NOR <- function(..., err = NA) {
 #' @export
 ONE <- function(..., err = NA) {
   uj::errs_if_nots(base::all(base::sapply(base::list(...), uj::lglSCL)), "All arguments in [...] must be logical scalars (?lglSCL).",
-                 uj::isLG1(err) | uj::isEQ1(err, 'na')               , "[err] must be TRUE, FALSE, NA, or 'na'."                  , PKG = "uj")
+                   uj::isLG1(err) | uj::isEQ1(err, 'na')               , "[err] must be TRUE, FALSE, NA, or 'na'."                  , PKG = "uj")
   n <- 0
   for (i in 1:uj::ND()) {
     x <- tryCatch(base::...elt(i) == T, error = function(e) NA, finally = NULL)
@@ -257,12 +253,12 @@ tests <- function(..., a = FALSE, nas = FALSE, not = FALSE, agg = NA, sweep = NA
   ok.sa <- (uj::isNAS(agg) & uj::isNAS(sweep)) | (uj::isOKS(agg) & uj::isOKS(sweep))
   ok.r <- uj::f0(n < 2, T, base::all(base::round(base::max(ns) / ns) == base::max(ns) / ns))
   uj::errs_if_nots(uj::isTF1(a)  , "[a] must be TRUE or FALSE."                            ,
-                 uj::isTF1(nas), "[nas] must be TRUE or FALSE."                          ,
-                 uj::isTF1(not), "[not] must be TRUE or FALSE."                          ,
-                 ok.r       , "[...] arguments are not recyclable (?recyclable)."        ,
-                 ok.s       , "[sweep] must be NA, 'across', 'within', or 'both'."       ,
-                 ok.a       , "[agg] must be NA, 'nor', 'one', 'any', 'two', 'all'."     ,
-                 ok.sa      , "[agg] and [sweep] must both be NA or must both be non-NA.", PKG = 'uj')
+                   uj::isTF1(nas), "[nas] must be TRUE or FALSE."                          ,
+                   uj::isTF1(not), "[not] must be TRUE or FALSE."                          ,
+                   ok.r       , "[...] arguments are not recyclable (?recyclable)."        ,
+                   ok.s       , "[sweep] must be NA, 'across', 'within', or 'both'."       ,
+                   ok.a       , "[agg] must be NA, 'nor', 'one', 'any', 'two', 'all'."     ,
+                   ok.sa      , "[agg] and [sweep] must both be NA or must both be non-NA.", PKG = 'uj')
   for (i in 1:uj::N(x)) {
     arg <- x[[i]]
     arg[uj::na(arg)] <- nas
@@ -286,35 +282,35 @@ tests <- function(..., a = FALSE, nas = FALSE, not = FALSE, agg = NA, sweep = NA
 #' @export
 nors <- function(..., a = FALSE, na = FALSE, sweep = "across") {
   if (uj::isIN1(sweep, "across", "both", "within")) {uj::tests(..., a = a, na = na, agg = "nor", sweep = sweep)}
-  else {uj::stopper("[sweep] must be 'across', 'within', or 'both'.", FUN = "nors", PKG = "uj", STACK = uj::callers())}
+  else {uj::stopperr("[sweep] must be 'across', 'within', or 'both'.", FUN = "nors", PKG = "uj", STACK = uj::callers())}
 }
 
 #' @rdname evals
 #' @export
 anys <- function(..., a = FALSE, na = FALSE, sweep = "across") {
   if (uj::isIN1(sweep, "across", "both", "within")) {uj::tests(..., a = a, na = na, agg = "any", sweep = sweep)}
-  else {uj::stopper("[sweep] must be 'across', 'within', or 'both'.", FUN = "anys", PKG = "uj", STACK = uj::callers())}
+  else {uj::stopperr("[sweep] must be 'across', 'within', or 'both'.", FUN = "anys", PKG = "uj", STACK = uj::callers())}
 }
 
 #' @rdname evals
 #' @export
 alls <- function(..., a = FALSE, na = FALSE, sweep = "across") {
   if (uj::isIN1(sweep, "across", "both", "within")) {uj::tests(..., a = a, na = na, agg = "all", sweep = sweep)}
-  else {uj::stopper("[sweep] must be 'across', 'within', or 'both'.", FUN = "alls", PKG = "uj", STACK = uj::callers())}
+  else {uj::stopperr("[sweep] must be 'across', 'within', or 'both'.", FUN = "alls", PKG = "uj", STACK = uj::callers())}
 }
 
 #' @rdname evals
 #' @export
 ones <- function(..., a = FALSE, na = FALSE, sweep = "across") {
   if (uj::isIN1(sweep, "across", "both", "within")) {uj::tests(..., a = a, na = na, agg = "one", sweep = sweep)}
-  else {uj::stopper("[sweep] must be 'across', 'within', or 'both'.", FUN = "ones", PKG = "uj", STACK = uj::callers())}
+  else {uj::stopperr("[sweep] must be 'across', 'within', or 'both'.", FUN = "ones", PKG = "uj", STACK = uj::callers())}
 }
 
 #' @rdname evals
 #' @export
 twos <- function(..., a = FALSE, na = FALSE, sweep = "across") {
   if (uj::isIN1(sweep, "across", "both", "within")) {uj::tests(..., a = a, na = na, agg = "two", sweep = sweep)}
-  else {uj::stopper("[sweep] must be 'across', 'within', or 'both'.", FUN = "twos", PKG = "uj", STACK = uj::callers())}
+  else {uj::stopperr("[sweep] must be 'across', 'within', or 'both'.", FUN = "twos", PKG = "uj", STACK = uj::callers())}
 }
 
 #' @rdname evals
@@ -325,12 +321,12 @@ isin <- function(x, y, na = FALSE, agg = NA, not = FALSE) {
     ok.y <- uj::atm_vec(y)
     ok.xy <- uj::f0(!ok.x | !ok.y, T, uj::compatible(x, y))
     ok.agg <- uj::f0(uj::isNAS(agg), T, uj::isIN1(agg, "nor", "one", "any", "two", "all"))
-    uj::errs_if_nots(ok.x         , "[x] must be a populated atomic vec (?atm_vec)."          ,
-                   ok.y         , "[y] must be a populated atomic vec (?atm_vec)."          ,
-                   uj::isTF1(na), "[na] must be TRUE or FALSE."                            ,
-                   ok.agg       , "[agg] must be NA, 'nor', 'one', 'any', 'two', or 'all'.",
-                   uj::isTF1(not), "[not] must be TRUE or FALSE."                           ,
-                   ok.xy        , "[x] and [y] are not of compatible modes."               ,    PKG = "uj")
+    uj::errs_if_nots(ok.x         , "[x] must be a populated atomic vec (?atm_vec)."         ,
+                     ok.y         , "[y] must be a populated atomic vec (?atm_vec)."         ,
+                     uj::isTF1(na), "[na] must be TRUE or FALSE."                            ,
+                     ok.agg       , "[agg] must be NA, 'nor', 'one', 'any', 'two', or 'all'.",
+                     uj::isTF1(not), "[not] must be TRUE or FALSE."                          ,
+                     ok.xy        , "[x] and [y] are not of compatible modes."               ,    PKG = "uj")
     z <- uj::isIN1(x, y)
     z[x[uj::na(x)]] <- na
     n <- uj::NW(z)

@@ -49,12 +49,13 @@
 #' cat(weave('{@@aq}', c('me', 'myself', 'I')))
 #' @export
 weave <- function(x, ...) {
-  n.dots <- uj::ND()                                                             # The number of dot arguments
-  ok.dots <- n.dots > 0
-  uj::errs_if_nots(uj::cmp_chr_scl(x)                                                   , "[x] must be a complete character scalar (?cmp_chr_scl)."          ,
-                   ok.dots                                                              , "[...] is empty."                                                  ,
-                   uj::f0(ok.dots, base::all(base::sapply(base::list(...), cmp_vec)), F), "Arguments in [...] must be complete character objects (?cmp_chr).",
-                   uj::LGL(x)                                                           , "[...] does not resolve to a logical object."                      , PKG = "uj")
+  n.dots <- base::...length()
+  ok.x <- uj::cmp_chr_scl(x)
+  ok.n <- n.dots > 0
+  ok.ppp <- base::ifelse(ok.n, base::all(base::sapply(base::list(...), cmp_vec)), T)
+  uj::errs_if_nots(ok.n  , "[...] is empty."                                                  ,
+                   ok.x  , "[x] must be a complete character scalar (?cmp_chr_scl)."          ,
+                   ok.ppp, "Arguments in [...] must be complete character objects (?cmp_chr).", PKG = "uj")
   dots <- base::list(...)                                                        # The arguments to weave into {x}
   non.scl <- " is not scalar, but the "                                          # argument is not scalar
   non.num <- " is not numeric, but the "                                         # argument is not numeric
@@ -150,6 +151,6 @@ weave <- function(x, ...) {
                  uj::f0(is, uj::p0("[", uj::g(", ", dot), dot, "]"), dot)))))))))))
           x <- uj::p0(prev.text, dot, next.text)
   }}}}
-  if (uj::DEF(errs)) {uj::stopper(errs, PKG = "uj")}
+  if (uj::DEF(errs)) {uj::stopperr(errs, PKG = "uj")}
   x
 }

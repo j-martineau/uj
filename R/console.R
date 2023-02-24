@@ -3,21 +3,21 @@
 #' @family user
 #' @title User updates and interaction via the console
 #' @details
-#' \tabular{ll}{  `continue`   \tab Prints `"Hit [enter] or [return] to continue"` to the console and pausse execution until the user hits the enter or return key.                                             \cr   \tab  }
-#' \tabular{ll}{  `cat0`       \tab Collapses `...` to a character scalar message prefixed and suffixed with newlines and prints it to the console (ensures the message occurs on its own line of the console). \cr   \tab  }
-#' \tabular{ll}{  `say`        \tab Collapses `...` to a character scalar message and either (a) prints it to the console or (b) structures it as an update and prints it to the console. See the next table.               }
-#' \cr\cr The function `say` allows for structuring user update messages at six hierarchical levels as explained in the following table where `___` is a placeholder for the character scalar message created when collapsing `...`:
-#' \tabular{lll}{  MESSAGE     \tab VALUE          \tab UPDATE                \cr
-#'                 SUPPLIED    \tab OF THE `lev`   \tab PRINTED               \cr
-#'                 IN `...`?   \tab ARGUMENT       \tab TO CONSOLE            \cr
-#'                 yes         \tab `NA`           \tab `'___'`               \cr
-#'                 yes         \tab `1`            \tab newline + `'___'`     \cr
-#'                 yes         \tab `2`            \tab newline + `'| ___'`   \cr
-#'                 yes         \tab `3`            \tab newline + `'| > ___'` \cr
-#'                 yes         \tab `4`            \tab `' > ___'`            \cr
-#'                 yes         \tab `5`            \tab `'..(___)'`           \cr
-#'                 no          \tab `6`            \tab `'.'`                 \cr
-#'                 no          \tab `NA`           \tab `'.'`                   }
+#' \tabular{ll}{  `continue`   \tab Prints `"Hit [enter] or [return] to continue"` to the console and pausse execution until the user hits the enter or return key.                                             \cr   \tab   \cr
+#'                `cat0`       \tab Collapses `...` to a character scalar message prefixed and suffixed with newlines and prints it to the console (ensures the message occurs on its own line of the console). \cr   \tab   \cr
+#'                `say`        \tab Collapses `...` to a character scalar message and either (a) prints it to the console or (b) structures it as an update and prints it to the console. See the next table.                  }
+#' The function `say` allows for structuring user update messages at six hierarchical levels as explained in the following table where `msg` is a placeholder for the character scalar message created when collapsing `...`:
+#' \tabular{lll}{  MESSAGE     \tab VALUE OF    \tab UPDATE                \cr
+#'                 SUPPLIED    \tab THE `lev`   \tab PRINTED               \cr
+#'                 IN `...`?   \tab ARGUMENT    \tab TO CONSOLE            \cr
+#'                 yes         \tab `NA`        \tab `'msg'`               \cr
+#'                 yes         \tab `1`         \tab newline + `'msg'`     \cr
+#'                 yes         \tab `2`         \tab newline + `'| msg'`   \cr
+#'                 yes         \tab `3`         \tab newline + `'| > msg'` \cr
+#'                 yes         \tab `4`         \tab `' > msg'`            \cr
+#'                 yes         \tab `5`         \tab `'..(msg)'`           \cr
+#'                 no          \tab `6`         \tab `'.'`                 \cr
+#'                 no          \tab `NA`        \tab `'.'`                   }
 #' Other combinations not represented in the table above will result in an error.
 #' @param ... An arbitrary number of atomic arguments to be atomized collapsed into a character scalar message to the user. If no values are supplied and `lev = NA` or `lev = 6`, prints a single dot (`.`) immediately following the current contents of the console.
 #' @param lev Either `NA` to print the message in `...` immediately following the current contents of the console or a value from `1:6` to use the console for up to `6` levels of user updates. See details.

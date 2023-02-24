@@ -3,15 +3,15 @@
 #' @title Unique + xclass combination properties
 #' @description Functions checking for combinations of \link[=UNQ]{uniqueness} and \link[=ccc]{xclass}.
 #' @details
-#' \tabular{ll}{  `unq_ccc_funs`   \tab What \link[=UNQ]{unique} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?                          \cr   \tab     }
-#' \tabular{ll}{  `unq_ccc`        \tab Is `x` both unique and a match to the single xclass property in argument `ccc`?                                                      \cr   \tab   \cr
-#'                `unq_{ccc}`      \tab Is `x` both unique and a match to the single xclass property `'{ccc}'` where `{ccc}` is a placeholder for any given xclass property? }
+#' \tabular{ll}{  `unq_ccc_funs`   \tab What \link[=UNQ]{unique} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?                          \cr   \tab   \cr
+#'                `unq_{ccc}`      \tab Is `x` both unique and a match to the single xclass property `'{ccc}'` where `{ccc}` is a placeholder for any given xclass property? \cr   \tab   \cr
+#'                `unq_ccc`        \tab Is `x` both unique and a match to the single xclass property in argument `ccc`?                                                                     }
 #' @param x An R object.
 #' @param ccc A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return **A character vector** \cr `unq_ccc_funs`
-#' \cr\cr  **A logical scalar**   \cr `unq_ccc, unq_{ccc}`
+#' @return **A character vector** \cr\cr `unq_ccc_funs`
+#' \cr\cr  **A logical scalar**   \cr\cr `unq_ccc, unq_{ccc}`
 #' @examples
 #' UnqArr <- array(1:27, dim = c(3, 3, 3))
 #' UnqDtf <- data.frame(a = c("a", "b", "c"), b = 1:3)

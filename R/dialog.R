@@ -14,20 +14,20 @@
 #' @title Dialog with users using package `svDialogs`
 #' @description All functions \link[=collapse_dots]{collapses} `...` args into a prompt. Each posts an alert to the console, posts the prompt (if any), followed by a specific action.
 #' @details
-#' \tabular{ll}{  `acknowledge`   \tab Waits for user to acknowledge.\eqn{^{(1)}}                                                           \cr   \tab     }
-#' \tabular{ll}{  `OK, CANCEL`    \tab Offers `OK/CANCEL`.\eqn{^{(1,4)}}                                                                    \cr   \tab     }
-#' \tabular{ll}{  `choose_doc`    \tab Asks user to choose a document.\eqn{^{(2)}}                                                          \cr
-#'                `choose_dir`    \tab Asks user to choose a directory.\eqn{^{(2)}}                                                         \cr   \tab     }
-#' \tabular{ll}{  `choose1`       \tab Asks user to choose `1` option.\eqn{^{(1,2)}}                                                        \cr
-#'                `chooseN`       \tab Asks user to choose `1+` options.\eqn{^{(1,2,3)}}                                                    \cr   \tab   \cr
-#'                `YES, NO`       \tab Offers `YES/NO/CANCEL`.\eqn{^{(1,2,4)}}                                                              \cr   \tab   \cr
-#'                `ask_new`       \tab Asks for a list of new values.\eqn{^{(1,2)}}                                                         \cr   \tab     }
-#' \tabular{ll}{  `alert`         \tab None.\eqn{^{(1)}}                                                                                    \cr   \tab     }
-#' \tabular{ll}{  `ask`           \tab Asks for typed input.\eqn{^{(1,2)}}                                                                  \cr
-#'                                \tab \eqn{^{(1)}} Default style, background color, and foreground color of console text depend on `type`. \cr
-#'                                \tab \eqn{^{(2)}} Stops execution if user chooses `CANCEL`.                                               \cr
-#'                                \tab \eqn{^{(3)}} Stops execution if `stop | (type = 'error' & is.null(stop))`.                           \cr
-#'                                \tab \eqn{^{(4)}} Returns `TRUE` if user choice matches the function name.                                  }
+#' \tabular{ll}{  `acknowledge`   \tab Waits for user to acknowledge.\eqn{^{(1)}}        \cr   \tab   \cr
+#'                `OK, CANCEL`    \tab Offers `OK/CANCEL`.\eqn{^{(1,4)}}                 \cr   \tab   \cr
+#'                `choose_doc`    \tab Asks user to choose a document.\eqn{^{(2)}}       \cr
+#'                `choose_dir`    \tab Asks user to choose a directory.\eqn{^{(2)}}      \cr   \tab   \cr
+#'                `choose1`       \tab Asks user to choose `1` option.\eqn{^{(1,2)}}     \cr
+#'                `chooseN`       \tab Asks user to choose `1+` options.\eqn{^{(1,2,3)}} \cr   \tab   \cr
+#'                `YES, NO`       \tab Offers `YES/NO/CANCEL`.\eqn{^{(1,2,4)}}           \cr   \tab   \cr
+#'                `ask_new`       \tab Asks for a list of new values.\eqn{^{(1,2)}}      \cr   \tab   \cr
+#'                `alert`         \tab None.\eqn{^{(1)}}                                 \cr   \tab   \cr
+#'                `ask`           \tab Asks for typed input.\eqn{^{(1,2)}}                              }
+#'  \tabular{l}{  \eqn{^{(1)}} Default style, background color, and foreground color of console text depend on `type`. \cr
+#'                \eqn{^{(2)}} Stops execution if user chooses `CANCEL`.                                               \cr
+#'                \eqn{^{(3)}} Stops execution if `stop | (type = 'error' & is.null(stop))`.                           \cr
+#'                \eqn{^{(4)}} Returns `TRUE` if user choice matches the function name.                                  }
 #' @section Specifying formats: When not `NULL` format arguments (`bg.format`, `fg.format`, and `st.format`) must be \link[=cmp_str_vec]{complete string vecs} that when \link[=av]{atomized} and \link[=ssP]{split along pipes} results in a three-element character vector, the first element of which is used to specify \link[=bg]{text background color} and must be a value from \code{\link{bg_vals}()}, the second element of which is used to specify \link[=fg]{text foreground color} and must be a value from \code{\link{fg_vals}()}, and the last of which specifies \link[=st]{text style} and must be a value from \code{\link{st_vals}()}.
 #' @param ... An arbitrary, optional number of arguments which are \link[=av]{atomized} into a character scalar message to be posted to the console.
 #' @param d A character scalar delimiter for collapsing `...` args into a character scalar.
@@ -45,12 +45,12 @@
 #' @param max.n An optional complete positive numeric whole-number scalar indicating the maximum number of options that may be selected. Must be `NULL` when `n` is non-`NULL`.
 #' @param blank A character scalar containing a default message if \link[=av]{atomizing} and collapsing `...` to a character scalar results in a blank string (`""`).
 #' @param options An atomic vector list of options to choose from.
-#' @return **The** `NULL` **object** \cr `acknowledge, alert`
-#' \cr\cr  **A character scalar**    \cr `choose_dir` (a directory path) \cr `choose_doc` (a document path) \cr `ask`
-#' \cr\cr  **A character vector**    \cr `ask_new`
-#' \cr\cr  **An atomic vector**      \cr `chooseN`
-#' \cr\cr  **An atomic scalar**      \cr `choose1`
-#' \cr\cr  **A logical scalar**      \cr `CANCEL, YES, NO, OK`
+#' @return **The** `NULL` **object** \cr\cr `acknowledge, alert`
+#' \cr\cr  **A character scalar**    \cr\cr `choose_dir` (a directory path) \cr `choose_doc` (a document path) \cr `ask`
+#' \cr\cr  **A character vector**    \cr\cr `ask_new`
+#' \cr\cr  **An atomic vector**      \cr\cr `chooseN`
+#' \cr\cr  **An atomic scalar**      \cr\cr `choose1`
+#' \cr\cr  **A logical scalar**      \cr\cr `CANCEL, YES, NO, OK`
 #' @examples
 #' egA <- "two-part"
 #' egB <- "message"
@@ -166,7 +166,7 @@ chooseN <- function(options, ..., all = TRUE, none = FALSE, n = NULL, min.n = NU
   char.options <- base::c("{ CANCEL }", uj::asCHR(options), uj::f0(all, "{ ALL }", NULL), uj::f0(none, "{ NONE }", NULL))
   mssg <- uj::p0(mssg, uj::f0(mssg == "", "", "\n\n"), "CHOOSE ", infix, " OPTIONS")
   uj::alert(mssg, title = "Response required", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
-  answer <- uj::U(svDialogs::dlg_list(char.options, title = "", multiple = T)$res)
+  answer <- uj::UV(svDialogs::dlg_list(char.options, title = "", multiple = T)$res)
   if (uj::N0(answer) | uj::isEQ1(answer, "{ CANCEL }")) {uj::stopperr("Action cancelled by user choice.", FUN = uj::caller())}
   answer <- answer[answer != "{ CANCEL }"]
   if (none & uj::N0(answer) | uj::isEQ1(answer, "{ NONE }")) {NULL}

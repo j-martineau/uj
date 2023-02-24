@@ -30,4 +30,12 @@ is_unq <- is_unique
 
 #' @rdname is_unique
 #' @export
-isUNQ <- is_unique
+isUNQ <- function(...) {
+  x <- uj::av(...)
+  n <- uj::N(x)
+  n > 0 & n == uj::NU(x)
+}
+
+#' @rdname is_unique
+#' @export
+notUNQ <- function(...) {!uj::isUNQ(...)}

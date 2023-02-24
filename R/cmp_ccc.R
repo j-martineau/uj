@@ -3,15 +3,15 @@
 #' @title Completeness + xclass combination properties
 #' @description Check for combinations of \link[=CMP]{completeness} and \link[=ccc]{xclass}.
 #' @details
-#' \tabular{ll}{  `cmp_ccc_funs`   \tab What complete + xclass combination property functions are there?                                                                       \cr   \tab  }
-#' \tabular{ll}{  `cmp_{ccc}`      \tab Is `x` both complete and a match to the single xclass property `'{ccc}'` where `{ccc}` is a placeholder for any given xclass property? \cr   \tab  }
-#' \tabular{ll}{  `cmp_ccc`        \tab Is `x` both complete and a match to the single xclass property in `ccc`?                                                               \cr   \tab  }
+#' \tabular{ll}{  `cmp_ccc_funs`   \tab What complete + xclass combination property functions are there?                                                                       \cr   \tab   \cr
+#'                `cmp_{ccc}`      \tab Is `x` both complete and a match to the single xclass property `'{ccc}'` where `{ccc}` is a placeholder for any given xclass property? \cr   \tab   \cr
+#'                `cmp_ccc`        \tab Is `x` both complete and a match to the single xclass property in `ccc`?                                                                              }
 #' @param x An R object.
 #' @param ccc A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return **A character vector** \cr `cmp_ccc_funs`
-#' \cr\cr  **A logical scalar**   \cr `cmp_ccc, cmp_{ccc}`
+#' @return **A character vector** \cr\cr `cmp_ccc_funs`
+#' \cr\cr  **A logical scalar**   \cr\cr `cmp_{ccc}, cmp_ccc`
 #' @examples
 #' cmp_ccc_funs()
 #' cmp_ccc(letters, "mvc")

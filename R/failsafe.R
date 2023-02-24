@@ -1,7 +1,7 @@
 # are x and y of compatible (sortable or unsortable) modes
 .compat <- function(x, y) {
   if      (uj::isCHR(x) & uj::isCHR(y)) {T}
-  else if (uj::isLGL(x) & uj::isLGL(y)) {T}
+  else if (base::is.logical(x) & base::is.logical(y)) {T}
   else if (uj::isNUM(x) & uj::isNUM(y)) {T}
   else if (uj::isORD(x) & uj::isORD(y)) {uj::isVEQ(uj::LEVS(x), uj::LEVS(y))}
   else if (uj::isFAC(x) & uj::isFAC(y)) {uj::isSEQ(uj::LEVS(x), uj::LEVS(y))}
@@ -11,7 +11,7 @@
 # are x and y of comparable (sortable) modes
 .compar <- function(x, y) {
   if      (uj::isCHR(x) & uj::isCHR(y)) {T}
-  else if (uj::isLGL(x) & uj::isLGL(y)) {T}
+  else if (base::is.logical(x) & base::is.logical(y)) {T}
   else if (uj::isNUM(x) & uj::isNUM(y)) {T}
   else if (uj::isORD(x) & uj::isORD(y)) {uj::isVEQ(uj::LEVS(x), uj::LEVS(y))}
   else {F}
@@ -19,8 +19,8 @@
 
 # are x and y of recyclable lengths (1, max(c(length(x), length(y))))
 .mismatchN <- function(x, y) {
-  nx <- uj::N(x)
-  ny <- uj::N(y)
+  nx <- base::length(x)
+  ny <- base::length(y)
   nxy <- base::c(nx, ny)
   nvalid <- base::c(1, nxy)
   nx == 0 | ny == 0 | !base::all(nxy %in% nvalid)
@@ -33,86 +33,84 @@
 #' @title Failsafe functions that **always** return a valid object.
 #' @description Evaluate objects, test if an object has certain properties, and conduct binary logical operations safely. These functions never stop execution; they always produce a valid result, even if that result is an error object.
 #' @section Failsafe error management functions: These functions evaluate generate, check for, and manage error objects.
-#' \tabular{ll}{  `makeERR`      \tab Generate object of class `'simpleError'`.         \cr
-#'                `msgERR`       \tab Get error message, if any; otherwise, `NULL`.     \cr
-#'                `notERR`       \tab Does evaluating `x` not produce an error?.        \cr
-#'                `isERR`        \tab Does evaluating `x` produce an error?               }
+#' \tabular{ll}{  `makeERR`      \tab Generate object of class `'simpleError'`.     \cr
+#'                `msgERR`       \tab Get error message, if any; otherwise, `NULL`. \cr
+#'                `notERR`       \tab Does evaluating `x` not produce an error?.    \cr
+#'                `isERR`        \tab Does evaluating `x` produce an error?           }
 #' @section Failsafe check for classes of objects with values:
-#' \tabular{ll}{  `failsafe`     \tab Returns `x` if identity evaluation does not cause
-#'                                  an error. Return an error object otherwise.         \cr   \tab  }
-#' \tabular{ll}{  `fsNULL`       \tab `x` is `NULL`.                                    \cr
-#'                `fsDEF`        \tab `x` is defined (not `NULL`).                      \cr   \tab  }
-#' \tabular{ll}{  `fsSCL`        \tab `x` is scalar of a specific atomic value.         \cr
-#'                `sclF`         \tab `x` is scalar `FALSE`                             \cr
-#'                `sclT`         \tab `x` is scalar `TRUE`                              \cr
-#'                `sclTF`        \tab `x` is scalar `TRUE` or `FALSE`.                  \cr
-#'                `sclLG`        \tab `x` is scalar `TRUE`, `FALSE`, or `NA`.           \cr
-#'                `sclBL`        \tab `x` is blank string scalar (`""`).                \cr
-#'                `sclNA`        \tab `x` is scalar `NA`                                \cr   \tab  }
-#' \tabular{ll}{  `fsVEC`        \tab Elements of `x` are of a specific atomic value.   \cr
-#'                `vecF`         \tab Elements of `x` are `FALSE`.                      \cr
-#'                `vecT`         \tab Elements of `x` are `TRUE`.                       \cr
-#'                `vecTF`        \tab Elements of `x` are `TRUE` or `FALSE`.            \cr
-#'                `vecLG`        \tab Elements of `x` are `TRUE`, `FALSE`, or `NA`.     \cr
-#'                `vecBL`        \tab Elements of `x` are blank strings.                \cr
-#'                `vecNA`        \tab Elements of `x` are `NA`.                           }
+#' \tabular{ll}{  `failsafe`     \tab Returns `x` if identity evaluation does not cause an error. Return an error object otherwise. \cr   \tab   \cr
+#'                `fsNULL`       \tab `x` is `NULL`.                                                                                \cr
+#'                `fsDEF`        \tab `x` is defined (not `NULL`).                                                                  \cr   \tab   \cr
+#'                `fsSCL`        \tab `x` is scalar of a specific atomic value.                                                     \cr
+#'                `sclF`         \tab `x` is scalar `FALSE`                                                                         \cr
+#'                `sclT`         \tab `x` is scalar `TRUE`                                                                          \cr
+#'                `sclTF`        \tab `x` is scalar `TRUE` or `FALSE`.                                                              \cr
+#'                `sclLG`        \tab `x` is scalar `TRUE`, `FALSE`, or `NA`.                                                       \cr
+#'                `sclBL`        \tab `x` is blank string scalar (`""`).                                                            \cr
+#'                `sclNA`        \tab `x` is scalar `NA`                                                                            \cr   \tab   \cr
+#'                `fsVEC`        \tab Elements of `x` are of a specific atomic value.                                               \cr
+#'                `vecF`         \tab Elements of `x` are `FALSE`.                                                                  \cr
+#'                `vecT`         \tab Elements of `x` are `TRUE`.                                                                   \cr
+#'                `vecTF`        \tab Elements of `x` are `TRUE` or `FALSE`.                                                        \cr
+#'                `vecLG`        \tab Elements of `x` are `TRUE`, `FALSE`, or `NA`.                                                 \cr
+#'                `vecBL`        \tab Elements of `x` are blank strings.                                                            \cr
+#'                `vecNA`        \tab Elements of `x` are `NA`.                                                                       }
 #' @section Failsafe forced-evaluation functions with conditional return values: These functions \link[base:force]{force} evaluation of `x` returning values as shown in the following table with the first value returned when forcing evaluation does not produce an error and the second when it does:
-#' \tabular{ll}{  `fsOR`         \tab `x` or something else if evaluating `x` produces an error \cr
-#'                `orF`          \tab `x` or `FALSE`                                    \cr
-#'                `orT`          \tab `x` or `TRUE`                                     \cr
-#'                `orC0`         \tab `x` or `character(0)`                             \cr
-#'                `orI0`         \tab `x` or `integer(0)`                               \cr
-#'                `orL0`         \tab `x` or `logical(0)`                               \cr
-#'                `orN0`         \tab `x` or `numeric(0)`                               \cr
-#'                `orBL`         \tab `x` or `""`                                       \cr
-#'                `orNA`         \tab `x` or `NA`                                       \cr
-#'                `orNAC`        \tab `x` or `NA_character_`                            \cr
-#'                `orNAI`        \tab `x` or `NA_integer_`                              \cr
-#'                `orNAL`        \tab `x` or `NA` (logical)                             \cr
-#'                `orNAR`        \tab `x` or `NA_real_`                                   }
+#' \tabular{ll}{  `fsOR`         \tab `x` or something else if evaluating `x` produces an error \cr   \tab   \cr
+#'                `orF`          \tab `x` or `FALSE`                                            \cr
+#'                `orT`          \tab `x` or `TRUE`                                             \cr   \tab   \cr
+#'                `orC0`         \tab `x` or `character(0)`                                     \cr
+#'                `orI0`         \tab `x` or `integer(0)`                                       \cr
+#'                `orL0`         \tab `x` or `logical(0)`                                       \cr
+#'                `orN0`         \tab `x` or `numeric(0)`                                       \cr   \tab   \cr
+#'                `orBL`         \tab `x` or `""`                                               \cr   \tab   \cr
+#'                `orNA`         \tab `x` or `NA`                                               \cr
+#'                `orNAC`        \tab `x` or `NA_character_`                                    \cr
+#'                `orNAI`        \tab `x` or `NA_integer_`                                      \cr
+#'                `orNAL`        \tab `x` or `NA` (logical)                                     \cr
+#'                `orNAR`        \tab `x` or `NA_real_`                                           }
 #' @details Failsafe binary comparison functions: These are binary functions that always produce either scalar `TRUE` or scalar `FALSE`. They return `TRUE` when two variables meet the conditions shown in the following table and `FALSE` in every other circumstance (where `fx` and `fy`)
-#' \tabular{ll}{  `%.is.%`       \tab `failsafe(identical(x, y))`                                                        \cr
-#'                `%.isnt.%`     \tab `!(x %.is.% y)`                                                                    \cr   \tab  }
-#' \tabular{ll}{  `%.in.%`       \tab `sapply(failsafe(x %in% y), isTRUE)`                                               \cr
-#'                `%.mf.%`       \tab `!(x %.in.% y)` (missing from)                                                     \cr
-#'                `%.has.%`      \tab `y %.in.% x` (`x` has each `y` value)                                              \cr
-#'                `%.lacks.%`    \tab `y %.mf.% x` (`x` lacks each `y` value)                                            \cr   \tab  }
-#' \tabular{ll}{  `%.in1.%`      \tab if `x` is atomic scalar, `x %.in.% y`, otherwise `FALSE`                           \cr
-#'                `%.mf1.%`      \tab `x` is atomic scalar and `x %.mf.% y`                                              \cr
-#'                `%.has1.%`     \tab `y` is atomic scalar and `x %.has.% y`                                             \cr
-#'                `%.lacks1.%`   \tab `y` is atomic scalar and `x %.lacks.% y`                                           \cr   \tab  }
-#' \tabular{ll}{  `%.eq.%`       \tab If `x` and `y` match\eqn{^{(1)}}, `x = y`, otherwise `FALSE`                       \cr
-#'                `%.ge.%`       \tab If `x` and `y` match\eqn{^{(1)}}, `x ≥ y`, otherwise `FALSE`                       \cr
-#'                `%.gt.%`       \tab If `x` and `y` match\eqn{^{(1)}}, `x > y`, otherwise `FALSE`                       \cr
-#'                `%.le.%`       \tab If `x` and `y` match\eqn{^{(1)}}, `x ≤ y`, otherwise `FALSE`                       \cr
-#'                `%.lt.%`       \tab If `x` and `y` match\eqn{^{(1)}}, `x < y`, otherwise `FALSE`                       \cr
-#'                `%.dif.%`      \tab If `x` and `y` match\eqn{^{(1)}}, `x ≠ y`, otherwise `TRUE`                        \cr
-#'                               \tab \eqn{^{(1)}} Of equal length and \link[=compatible]{compatible modes}.             \cr   \tab  }
-#' \tabular{ll}{  `%.eq1.%`      \tab `x` and `y` are atomic scalar and `x = y`  \eqn{^{(2)}}                            \cr
-#'                `%.ge1.%`      \tab `x` and `y` are atomic scalar and `x ≥ y`  \eqn{^{(2)}}                            \cr
-#'                `%.gt1.%`      \tab `x` and `y` are atomic scalar and `x > y`  \eqn{^{(2)}}                            \cr
-#'                `%.le1.%`      \tab `x` and `y` are atomic scalar and `x ≤ y`  \eqn{^{(2)}}                            \cr
-#'                `%.lt1.%`      \tab `x` and `y` are atomic scalar and `x ≥ y`  \eqn{^{(2)}}                            \cr
-#'                `%.dif1.%`     \tab `x` and `y` are *not* atomic scalar equal  \eqn{^{(3)}}                            \cr
-#'                               \tab \eqn{^{(2)}} Of \link[=compatible]{compatible modes} and meeting the (in)equality. \cr
-#'                               \tab \eqn{^{(3)}} Not meeting the requirements of `%.eq1.%`.                            \cr   \tab  }
-#' \tabular{ll}{  `%.seq.%`      \tab `x` and `y` are \code{\link[base]{setequal}}\eqn{^{(4)}}                           \cr
-#'                `%.veq.%`      \tab `x` and `y` are vector equal\eqn{^{(5)}}                                           \cr
-#'                `%.sdif.%`     \tab `x` and `y` are set different\eqn{^{(6)}}                                          \cr
-#'                `%.vdif.%`     \tab `x` and `y` are vector different\eqn{^{(7)}}                                       \cr
-#'                               \tab \eqn{^{(4)}} Atomic, of the same length, with the same values in the same order.   \cr
-#'                               \tab \eqn{^{(5)}} Atomic, possibly of different lengths, and containing the same unique
-#'                                                values regardless of order or duplicates.                              \cr
-#'                               \tab \eqn{^{(6)}} Not meeting the requirements of `%.seq.%`.                            \cr
-#'                               \tab \eqn{^{(7)}} Not meeting the requirements of `%.veq.%`.                            \cr   \tab  }
-#' \tabular{ll}{  `%.or.%`       \tab values of `x` *and/or* `y` are `TRUE`          \cr
-#'                `%.and.%`      \tab values of `x` *and* `y` are `TRUE`             \cr
-#'                `%.xor.%`      \tab values of *either* `x` *or* `y` are `TRUE`     \cr
-#'                `%.nor.%`      \tab values of *neither* `x` *nor* `y` are `TRUE`   \cr   \tab  }
-#' \tabular{ll}{  `%.or1.%`      \tab `x` *and/or* `y` are scalar `TRUE`             \cr
-#'                `%.and1.%`     \tab `x` *and* `y` are scalar `TRUE`                \cr
-#'                `%.xor1.%`     \tab *either* `x` *or* `y` is scalar `TRUE`         \cr
-#'                `%.nor1.%`     \tab *neither* `x` *nor* `y` is scalar `TRUE`         }
+#' \tabular{ll}{  `%.is.%`       \tab `failsafe(identical(x, y))`                                  \cr
+#'                `%.isnt.%`     \tab `!(x %.is.% y)`                                              \cr   \tab   \cr
+#'                `%.in.%`       \tab `sapply(failsafe(x %in% y), isTRUE)`                         \cr
+#'                `%.mf.%`       \tab `!(x %.in.% y)` (missing from)                               \cr
+#'                `%.has.%`      \tab `y %.in.% x` (`x` has each `y` value)                        \cr
+#'                `%.lacks.%`    \tab `y %.mf.% x` (`x` lacks each `y` value)                      \cr   \tab   \cr
+#'                `%.in1.%`      \tab if `x` is atomic scalar, `x %.in.% y`, otherwise `FALSE`     \cr
+#'                `%.mf1.%`      \tab `x` is atomic scalar and `x %.mf.% y`                        \cr
+#'                `%.has1.%`     \tab `y` is atomic scalar and `x %.has.% y`                       \cr
+#'                `%.lacks1.%`   \tab `y` is atomic scalar and `x %.lacks.% y`                     \cr   \tab   \cr
+#'                `%.eq.%`       \tab If `x` and `y` match\eqn{^{(1)}}, `x = y`, otherwise `FALSE` \cr
+#'                `%.ge.%`       \tab If `x` and `y` match\eqn{^{(1)}}, `x ≥ y`, otherwise `FALSE` \cr
+#'                `%.gt.%`       \tab If `x` and `y` match\eqn{^{(1)}}, `x > y`, otherwise `FALSE` \cr
+#'                `%.le.%`       \tab If `x` and `y` match\eqn{^{(1)}}, `x ≤ y`, otherwise `FALSE` \cr
+#'                `%.lt.%`       \tab If `x` and `y` match\eqn{^{(1)}}, `x < y`, otherwise `FALSE` \cr
+#'                `%.dif.%`      \tab If `x` and `y` match\eqn{^{(1)}}, `x ≠ y`, otherwise `TRUE`  \cr   \tab   \cr
+#'                `%.eq1.%`      \tab `x` and `y` are atomic scalar and `x = y`  \eqn{^{(2)}}      \cr
+#'                `%.ge1.%`      \tab `x` and `y` are atomic scalar and `x ≥ y`  \eqn{^{(2)}}      \cr
+#'                `%.gt1.%`      \tab `x` and `y` are atomic scalar and `x > y`  \eqn{^{(2)}}      \cr
+#'                `%.le1.%`      \tab `x` and `y` are atomic scalar and `x ≤ y`  \eqn{^{(2)}}      \cr
+#'                `%.lt1.%`      \tab `x` and `y` are atomic scalar and `x ≥ y`  \eqn{^{(2)}}      \cr
+#'                `%.dif1.%`     \tab `x` and `y` are *not* atomic scalar equal  \eqn{^{(3)}}      \cr   \tab   \cr
+#'                `%.seq.%`      \tab `x` and `y` are \code{\link[base]{setequal}}\eqn{^{(4)}}     \cr
+#'                `%.veq.%`      \tab `x` and `y` are vector equal\eqn{^{(5)}}                     \cr
+#'                `%.sdif.%`     \tab `x` and `y` are set different\eqn{^{(6)}}                    \cr
+#'                `%.vdif.%`     \tab `x` and `y` are vector different\eqn{^{(7)}}                 \cr   \tab   \cr
+#'                `%.or.%`       \tab values of `x` *and/or* `y` are `TRUE`                        \cr
+#'                `%.and.%`      \tab values of `x` *and* `y` are `TRUE`                           \cr
+#'                `%.xor.%`      \tab values of *either* `x` *or* `y` are `TRUE`                   \cr
+#'                `%.nor.%`      \tab values of *neither* `x` *nor* `y` are `TRUE`                 \cr   \tab   \cr
+#'                `%.or1.%`      \tab `x` *and/or* `y` are scalar `TRUE`                           \cr
+#'                `%.and1.%`     \tab `x` *and* `y` are scalar `TRUE`                              \cr
+#'                `%.xor1.%`     \tab *either* `x` *or* `y` is scalar `TRUE`                       \cr
+#'                `%.nor1.%`     \tab *neither* `x` *nor* `y` is scalar `TRUE`                       }
+#'  \tabular{l}{  \eqn{^{(1)}} Of equal length and \link[=compatible]{compatible modes}.                                                       \cr
+#'                \eqn{^{(2)}} Of \link[=compatible]{compatible modes} and meeting the (in)equality.                                           \cr
+#'                \eqn{^{(3)}} Not meeting the requirements of `%.eq1.%`.                                                                      \cr
+#'                \eqn{^{(4)}} Atomic, of the same length, with the same values in the same order.                                             \cr
+#'                \eqn{^{(5)}} Atomic, possibly of different lengths, and containing the same unique values regardless of order or duplicates. \cr
+#'                \eqn{^{(6)}} Not meeting the requirements of `%.seq.%`.                                                                      \cr
+#'                \eqn{^{(7)}} Not meeting the requirements of `%.veq.%`.                                                                        }
 #' @section Failsafe scalar value, membership, and equality/inequality checking functions: These functions check for class, mode, and/or value and/or count the number of checks passed. They *always* produce `TRUE`, `FALSE`, or an integer scalar.
 #' \cr\cr Function names are constructed of root words, prefixes, and/or suffixes. Root word specify the type of check conducted. Prefixes and suffixes specify how to modify the results of a check or how to apply the check to each `...` argument and check whether a certain number of `...` args passed the checks.
 #' \cr\cr \strong{*Root words for atomic scalar value checking functions*}
@@ -124,22 +122,22 @@
 #'                `f`       \tab `x` is scalar `TRUE`.                               \cr
 #'                `t`       \tab `x` is scalar `FALSE`.                                }
 #' \cr \strong{*Root words for atomic value membership checking functions*}
-#' \tabular{ll}{  `lacks`   \tab `x %.lacks.% y`                      \cr
-#'                `has`     \tab `x %.has.% y`                        \cr
-#'                `in`      \tab `x %.in.% y`                         \cr
-#'                `mf`      \tab `x %.mf.% y`                           }
+#' \tabular{ll}{  `lacks`   \tab `x %.lacks.% y` \cr
+#'                `has`     \tab `x %.has.% y`   \cr
+#'                `in`      \tab `x %.in.% y`    \cr
+#'                `mf`      \tab `x %.mf.% y`      }
 #' \cr \strong{*Root words for equality/inequality checking functions*}
 #' \tabular{ll}{  `is`      \tab `x %.is.% y`                         \cr
-#'                `isnt`    \tab `x %.isnt.% y`                         }
-#' \tabular{ll}{  `eq`      \tab `x %.eq.% y`                         \cr
+#'                `isnt`    \tab `x %.isnt.% y`                       \cr
+#'                `eq`      \tab `x %.eq.% y`                         \cr
 #'                `eq1`     \tab `x %.eq1.% y`                        \cr
 #'                `seq`     \tab `x %.seq.% y`                        \cr
 #'                `veq`     \tab `x %.veq.% y`                        \cr
 #'                `dif`     \tab `x %.dif.% y`                        \cr
 #'                `dif1`    \tab `x %.dif1.% y`                       \cr
 #'                `sdif`    \tab `x %.sdif.% y`                       \cr
-#'                `vdif`    \tab `x %.sdif.% y`                         }
-#' \tabular{ll}{  `ge`      \tab `x` is greater than or equal to `y`. \cr
+#'                `vdif`    \tab `x %.sdif.% y`                       \cr
+#'                `ge`      \tab `x` is greater than or equal to `y`. \cr
 #'                `gt`      \tab `x` is greater than `y`.             \cr
 #'                `le`      \tab `x` is less than or equal to `y`.    \cr
 #'                `lt`      \tab `x` is less than `y`.                  }
@@ -149,42 +147,42 @@
 #'                `not`     \tab Negate the result of a check.          }
 #' \cr \strong{*Apply-and-sweep prefixes/suffixes evaluating whether a certain number of checks were passed*}
 #' \cr\cr The following table contains prefixes in the first column, and in the second, the number of checks that must be passed to return `TRUE`.
-#' \tabular{ll}{  `none`    \tab `0` values passed the check.         \cr
-#'                `any`     \tab `> 0` values passed the check.       \cr
-#'                `one`     \tab `1` value passed the check.          \cr
-#'                `some`    \tab `> 1` values passed the check.       \cr
-#'                `two`     \tab `2` values passed the check.         \cr
-#'                `many`    \tab `> 2` values passed the check.       \cr
-#'                `all`     \tab All values passed the check.           }
+#' \tabular{ll}{  `none`    \tab `0` values passed the check.   \cr
+#'                `any`     \tab `> 0` values passed the check. \cr
+#'                `one`     \tab `1` value passed the check.    \cr
+#'                `some`    \tab `> 1` values passed the check. \cr
+#'                `two`     \tab `2` values passed the check.   \cr
+#'                `many`    \tab `> 2` values passed the check. \cr
+#'                `all`     \tab All values passed the check.     }
 #' \cr \strong{*Identity-equality, set-equality and vector-equality checking functions*}
-#' \tabular{lll}{              \tab **IS**     \tab **NOT**           \cr
-#'                 **IS**      \tab `IS`       \tab  —                \cr
-#'                 **ISNT**    \tab `ISNT`     \tab  —                \cr
-#'                 **SEQ**     \tab `isSEQ`    \tab `notSEQ`          \cr
-#'                 **VEQ**     \tab `isVEQ`    \tab `notVEQ`          \cr
-#'                 **SDIF**    \tab `isSDIF`   \tab `notSDIF`         \cr
-#'                 **VDIF**    \tab `isVDIF`   \tab `notVDIF`           }
+#' \tabular{lll}{              \tab **IS**     \tab **NOT**   \cr
+#'                 **IS**      \tab `IS`       \tab  —        \cr
+#'                 **ISNT**    \tab `ISNT`     \tab  —        \cr
+#'                 **SEQ**     \tab `isSEQ`    \tab `notSEQ`  \cr
+#'                 **VEQ**     \tab `isVEQ`    \tab `notVEQ`  \cr
+#'                 **SDIF**    \tab `isSDIF`   \tab `notSDIF` \cr
+#'                 **VDIF**    \tab `isVDIF`   \tab `notVDIF`   }
 #' \\cr \strong{*Atomic scalar value checking functions*}
-#' \tabular{lll}{              \tab **IS1**    \tab **NOT1**          \cr
-#'                 **T**       \tab `isT1`     \tab `notT1`           \cr
-#'                 **F**       \tab `isF1`     \tab `notF1`           \cr
-#'                 **TF**      \tab `isTF1`    \tab `notTF1`          \cr
-#'                 **LG**      \tab `isLG1`    \tab `notLG1`          \cr
-#'                 **BL**      \tab `isBL1`    \tab `notBL1`          \cr
-#'                 **EQ**      \tab `isEQ1`    \tab `notEQ1`          \cr
-#'                 **GE**      \tab `isGE1`    \tab `notGE1`          \cr
-#'                 **GT**      \tab `isGT1`    \tab `notGT1`          \cr
-#'                 **LE**      \tab `isLE1`    \tab `notLE1`          \cr
-#'                 **LT**      \tab `isLT1`    \tab `notLT1`          \cr
-#'                 **NAS**     \tab `isNAS`    \tab `notNAS`          \cr
-#'                 **OKS**     \tab `isOKS`    \tab `notOKS`          \cr
-#'                 **DIF**     \tab `isDIF1`   \tab `notDIF1`           }
+#' \tabular{lll}{              \tab **IS1**    \tab **NOT1**  \cr
+#'                 **T**       \tab `isT1`     \tab `notT1`   \cr
+#'                 **F**       \tab `isF1`     \tab `notF1`   \cr
+#'                 **TF**      \tab `isTF1`    \tab `notTF1`  \cr
+#'                 **LG**      \tab `isLG1`    \tab `notLG1`  \cr
+#'                 **BL**      \tab `isBL1`    \tab `notBL1`  \cr
+#'                 **EQ**      \tab `isEQ1`    \tab `notEQ1`  \cr
+#'                 **GE**      \tab `isGE1`    \tab `notGE1`  \cr
+#'                 **GT**      \tab `isGT1`    \tab `notGT1`  \cr
+#'                 **LE**      \tab `isLE1`    \tab `notLE1`  \cr
+#'                 **LT**      \tab `isLT1`    \tab `notLT1`  \cr
+#'                 **NAS**     \tab `isNAS`    \tab `notNAS`  \cr
+#'                 **OKS**     \tab `isOKS`    \tab `notOKS`  \cr
+#'                 **DIF**     \tab `isDIF1`   \tab `notDIF1`   }
 #' \cr\cr \strong{*Atomic scalar membership checking functions*}
-#' \tabular{lll}{              \tab **IS1**    \tab **NOT1**          \cr
-#'                 **IN**      \tab `IN1`      \tab `notIN1`          \cr
-#'                 **MF**      \tab `MF1`      \tab `notMF1`          \cr
-#'                 **HAS**     \tab `HAS1`     \tab `notHAS1`         \cr
-#'                 **LACKS**   \tab `LACKS1`   \tab `notLACKS1`         }
+#' \tabular{lll}{              \tab **IS1**    \tab **NOT1**    \cr
+#'                 **IN**      \tab `IN1`      \tab `notIN1`    \cr
+#'                 **MF**      \tab `MF1`      \tab `notMF1`    \cr
+#'                 **HAS**     \tab `HAS1`     \tab `notHAS1`   \cr
+#'                 **LACKS**   \tab `LACKS1`   \tab `notLACKS1`   }
 #' \cr\cr \strong{*Atomic value checking functions*}
 #' \tabular{lllllllll}{              \tab **IS**    \tab **N**      \tab **NOT**      \tab **NONE**      \tab **ONE**      \tab **TWO**      \tab **ANY**      \tab  **ALL**   \cr
 #'                       **T**       \tab `isT`     \tab `nT`       \tab `notT`       \tab `noneT`       \tab `oneT`       \tab `twoT`       \tab `anyT`       \tab `allT`     \cr
@@ -687,7 +685,7 @@
 #' @export
 failsafe <- function(x, def = ".err") {
   x <- tryCatch(base::identity(x), error = function(e) e, finally = NULL)
-  if (assertthat::is.error(x)) {return(x)}
+  if (!assertthat::is.error(x)) {return(x)}
   def <- tryCatch(base::identity(def), error = function(e) e, finally = NULL)
   if (assertthat::is.error(def)) {def <- ".err"}
   def
@@ -705,7 +703,7 @@ notERR <- function(x) {!assertthat::is.error(tryCatch(base::identity(x), error =
 #' @export
 msgERR <- function(x) {
   x <- uj::failsafe(x)
-  if (assertthat::is.error(x)) {x$message} else {NULL}
+  if (assertthat::is.error(base::identity(x))) {x$message} else {NULL}
 }
 
 #' @rdname failsafe
@@ -714,29 +712,37 @@ makeERR <- function() {base::simpleError("Intentionally-generated error.")}
 
 #' @rdname failsafe
 #' @export
-fsDEF <- function(x) {uj::f0(uj::isERR(x), F, uj::DEF(x))}
+fsDEF <- function(x) {if (assertthat::is.error(base::identity(x))) {F} else {uj::DEF(x)}}
 
 #' @rdname failsafe
 #' @export
-fsSCL <- function(x, val) {uj::f0(uj::isERR(x) | uj::isERR(val), F,
-                                  uj::f0(uj::notN1(x) | uj::notN1(val), F,
-                                         uj::f0(uj::notATM(x) | uj::notATM(val), F,
-                                                uj::f0(uj:::.compat(x, val), F,
-                                                       uj::f0(uj::na(x) & uj::na(val), T,
-                                                              uj::f0(uj::na(x) | uj::na(val), F, x == val))))))}
+fsSCL <- function(x, val) {
+  if      (assertthat::is.error(base::identity(x))       ) {F}
+  else if (assertthat::is.error(base::identity(val))     ) {F}
+  else if (base::length(x) != 1(x) | base::length(x) != 1) {F}
+  else if (!base::is.atomic(x) | !base::is.atomic(val)   ) {F}
+  else if (uj:::.compat(x, val)                          ) {F}
+  else if (base::is.na(x) & base::is.na(val)             ) {T}
+  else if (base::is.na(x) | base::is.na(val)             ) {F}
+  else                                                     {x == val}
+}
 
 #' @rdname failsafe
 #' @export
-fsVEC <- function(x, val) {uj::f0(uj::isERR(x) | uj::isERR(val), F,
-                                  uj::f0(uj:::.mismatchN(x, val), F,
-                                         uj::f0(uj::notATM(x) | uj::notATM(val), F,
-                                                uj::f0(uj:::.compat(x, val), F,
-                                                       uj::f0(uj::na(x) & uj::na(val), T,
-                                                              uj::f0(uj::na(x) | uj::na(val) , F, x == val))))))}
+fsVEC <- function(x, val) {
+  if      (assertthat::is.error(base::identity(x  ))  ) {F}
+  else if (assertthat::is.error(base::identity(val))  ) {F}
+  else if (uj:::.mismatchN(x, val)                    ) {F}
+  else if (!base::is.atomic(x) | !base::is.atomic(val)) {F}
+  else if (uj:::.compat(x, val)                       ) {F}
+  else if (base::is.na(x) & base::is.na(val)          ) {T}
+  else if (base::is.na(x) | base::is.na(val)          ) {F}
+  else                                                  {x == val}
+}
 
 #' @rdname failsafe
 #' @export
-fsNULL <- function(x) {uj::f0(uj::isERR(x), T, uj::null(x))}
+fsNULL <- function(x) {if (assertthat::is.error(base::identity(x))) {T} else {uj::null(x)}}
 
 #' @rdname failsafe
 #' @export
@@ -784,7 +790,7 @@ vecNA <- function(x)  {uj::fsVEC(x, NA)}
 
 #' @rdname failsafe
 #' @export
-fsOR <- function(x, or = NULL) {uj::f0(isERR(x), or, x)}
+fsOR <- function(x, or = NULL) {if (assertthat::is.error(base::identity(x))) {or} else {x}}
 
 #' @rdname failsafe
 #' @export
@@ -841,7 +847,7 @@ orNULL <- function(x) {uj::fsOR(x)}
 #' @rdname failsafe
 #' @export
 IS <- function(x, y) {
-  if (!assertthat::is.error(base::identical(x))) {if (!assertthat::is.error(base::identical(y))) {return(base::identical(x, y))}}
+  if (!assertthat::is.error(base::identity(x))) {if (!assertthat::is.error(base::identity(y))) {return(base::identical(x, y))}}
   F
 }
 
@@ -853,23 +859,15 @@ ISNT <- function(x, y) {!uj::IS(x, y)}
 #' @export
 isIN1 <- function(x, ...) {
   if (!assertthat::is.error(base::identity(x))) {
-    if (uj::ND1P()) {
-      if (uj::N1(x)) {
-        if (uj::isATM(x)) {
-          for (i in 1:uj::ND()) {
+    if (base::...length() > 0) {
+      if (base::length(x) == 1) {
+        if (base::is.atomic(x)) {
+          for (i in 1:base::...length()) {
             dot <- uj::failsafe(base::identity(base::...elt(i)))
             if (!assertthat::is.error(dot)) {
-              if (uj::isATM(dot)) {
+              if (base::is.atomic(dot)) {
                 if (uj:::.compat(x, dot)) {
-                  if (base::`%in%`(x, base::...elt(i))) {return(T)}
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+                  if (base::`%in%`(x, base::...elt(i))) {return(T)}}}}}}}}}
   F
 }
 
@@ -890,16 +888,14 @@ LACKS1 <- function(x, y) {!uj::isIN1(y, x)}
 isEQ1 <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isATM(x) & uj::isATM(y)) {
-        if (uj::N1(x) & uj::N1(y)) {
+      if (base::is.atomic(x) & base::is.atomic(y)) {
+        if (base::length(x) == 1 & base::length(y) == 1) {
           if (uj:::.compat(x, y)) {
-            if (uj::na(x) | uj::na(y)) {return(F)}
-            else {return(uj::av(x == y))}
-          }
-        }
-      }
-    }
-  }
+            if (base::is.na(x) | base::is.na(y)) {return(F)}
+            y <- base::unlist(x == y)
+            base::attributes(y) <- NULL
+            return(y)
+  }}}}}
   F
 }
 
@@ -908,13 +904,13 @@ isEQ1 <- function(x, y) {
 isGE1 <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isATM(x) & uj::isATM(y)) {
-        if (uj::N1(x) & uj::N1(y)) {
-          if (uj:::.compar(x, y)) {return(uj::av(x >= y))}
-        }
-      }
-    }
-  }
+      if (base::is.atomic(x) & base::is.atomic(y)) {
+        if (base::length(x) == 1 & base::length(y) == 1) {
+          if (uj:::.compar(x, y)) {
+            y <- base::unlist(x >= y)
+            base::attributes(y) <- NULL
+            return(y)
+  }}}}}
   F
 }
 
@@ -923,13 +919,13 @@ isGE1 <- function(x, y) {
 isGT1 <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isATM(x) & uj::isATM(y)) {
-        if (uj::N1(x) & uj::N1(y)) {
-          if (uj:::.compar(x, y)) {return(uj::av(x > y))}
-        }
-      }
-    }
-  }
+      if (base::is.atomic(x) & base::is.atomic(y)) {
+        if (base::length(x) == 1 & base::length(y) == 1) {
+          if (uj:::.compar(x, y)) {
+            y <- base::unlist(x > y)
+            base::attributes(y) <- NULL
+            return(y)
+  }}}}}
   F
 }
 
@@ -938,13 +934,13 @@ isGT1 <- function(x, y) {
 isLE1 <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isATM(x) & uj::isATM(y)) {
-        if (uj::N1(x) & uj::N1(y)) {
-          if (uj:::.compar(x, y)) {return(uj::av(x <= y))}
-        }
-      }
-    }
-  }
+      if (base::is.atomic(x) & base::is.atomic(y)) {
+        if (base::length(x) == 1 & base::length(y) == 1) {
+          if (uj:::.compar(x, y)) {
+            y <- base::unlist(x <= y)
+            base::attributes(y) <- NULL
+            return(y)
+  }}}}}
   F
 }
 
@@ -953,13 +949,13 @@ isLE1 <- function(x, y) {
 isLT1 <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isATM(x) & uj::isATM(y)) {
-        if (uj::N1(x) & uj::N1(y)) {
-          if (uj:::.compar(x, y)) {return(uj::av(x < y))}
-        }
-      }
-    }
-  }
+      if (base::is.atomic(x) & base::is.atomic(y)) {
+        if (base::length(x) == 1 & base::length(y) == 1) {
+          if (uj:::.compar(x, y)) {
+            y <- base::unlist(x < y)
+            base::attributes(y) <- NULL
+            return(y)
+  }}}}}
   F
 }
 
@@ -986,14 +982,18 @@ isTF1 <- function(x) {uj::isEQ1(x, F) | uj::isEQ1(x, T)}
 #' @rdname failsafe
 #' @export
 isNA1 <- function(x) {
-  if (!assertthat::is.error(x)) {if (uj::isATM(x)) {if (uj::N1(x)) {return(base::is.na(x))}}}
+  if (!assertthat::is.error(base::identity(x))) {
+    if (base::is.atomic(x)) {
+      if (base::length(x) == 1) {return(base::is.na(x))}}}
   F
 }
 
 #' @rdname failsafe
 #' @export
 isOK1 <- function(x) {
-  if (!assertthat::is.error(x)) {if (uj::isATM(x)) {if (uj::N1(x)) {return(!base::is.na(x))}}}
+  if (!assertthat::is.error(base::identity(x))) {
+    if (base::is.atomic(x)) {
+      if (base::length(x) == 1) {return(!base::is.na(x))}}}
   F
 }
 
@@ -1001,12 +1001,11 @@ isOK1 <- function(x) {
 #' @export
 isLG1 <- function(x) {uj::isT1(x) | uj::isF1(x) | uj::isNA1(x)}
 
-
-
-
-
+#' @rdname failsafe
+#' @export
 isIN <- function(x, ...) {
-  if (!assertthat::is.error(base::identity(x))) {if (uj::isATM(x) & uj::N1P(x)) {return(base::sapply(x, uj::isIN1, ...))}}
+  if (!assertthat::is.error(base::identity(x))) {
+    if (base::is.atomic(x) & base::length(x) > 0) {return(base::sapply(x, uj::isIN1, ...))}}
   F
 }
 
@@ -1027,17 +1026,12 @@ LACKS <- function(x, y) {!uj::isIN(y, x)}
 isEQ <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isATM(x) & uj::isATM(y)) {
-        nx <- uj::N(x)
-        ny <- uj::N(y)
+      if (base::is.atomic(x) & base::is.atomic(y)) {
+        nx <- base::length(x)
+        ny <- base::length(y)
         if (nx %in% base::c(1, ny)) {
           if (ny %in% base::c(1, nx)) {
-            if (uj:::.compat(x, y)) {return(x == y)}
-          }
-        }
-      }
-    }
-  }
+            if (uj:::.compat(x, y)) {return(x == y)}}}}}}
   F
 }
 
@@ -1046,17 +1040,12 @@ isEQ <- function(x, y) {
 isGE <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isATM(x) & uj::isATM(y)) {
-        nx <- uj::N(x)
-        ny <- uj::N(y)
+      if (base::is.atomic(x) & base::is.atomic(y)) {
+        nx <- base::length(x)
+        ny <- base::length(y)
         if (nx %in% base::c(1, ny)) {
           if (ny %in% base::c(1, nx)) {
-            if (uj:::.compar(x, y)) {return(x >= y)}
-          }
-        }
-      }
-    }
-  }
+            if (uj:::.compar(x, y)) {return(x >= y)}}}}}}
   F
 }
 
@@ -1065,17 +1054,12 @@ isGE <- function(x, y) {
 isGT <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isATM(x) & uj::isATM(y)) {
-        nx <- uj::N(x)
-        ny <- uj::N(y)
+      if (base::is.atomic(x) & base::is.atomic(y)) {
+        nx <- base::length(x)
+        ny <- base::length(y)
         if (nx %in% base::c(1, ny)) {
           if (ny %in% base::c(1, nx)) {
-            if (uj:::.compar(x, y)) {return(x > y)}
-          }
-        }
-      }
-    }
-  }
+            if (uj:::.compar(x, y)) {return(x > y)}}}}}}
   F
 }
 
@@ -1084,17 +1068,12 @@ isGT <- function(x, y) {
 isLE <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isATM(x) & uj::isATM(y)) {
-        nx <- uj::N(x)
-        ny <- uj::N(y)
+      if (base::is.atomic(x) & base::is.atomic(y)) {
+        nx <- base::length(x)
+        ny <- base::length(y)
         if (nx %in% base::c(1, ny)) {
           if (ny %in% base::c(1, nx)) {
-            if (uj:::.compar(x, y)) {return(x <= y)}
-          }
-        }
-      }
-    }
-  }
+            if (uj:::.compar(x, y)) {return(x <= y)}}}}}}
   F
 }
 
@@ -1103,17 +1082,12 @@ isLE <- function(x, y) {
 isLT <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isATM(x) & uj::isATM(y)) {
-        nx <- uj::N(x)
-        ny <- uj::N(y)
+      if (base::is.atomic(x) & base::is.atomic(y)) {
+        nx <- base::length(x)
+        ny <- base::length(y)
         if (nx %in% base::c(1, ny)) {
           if (ny %in% base::c(1, nx)) {
-            if (uj:::.compar(x, y)) {return(x < y)}
-          }
-        }
-      }
-    }
-  }
+            if (uj:::.compar(x, y)) {return(x < y)}}}}}}
   F
 }
 
@@ -1140,14 +1114,14 @@ isTF <- function(x) {uj::isEQ(x, F) | uj::isEQ(x, T)}
 #' @rdname failsafe
 #' @export
 isNAS <- function(x) {
-  if (!assertthat::is.error(base::identity(x))) {if (uj::isATM(x)) {return(base::is.na(x))}}
+  if (!assertthat::is.error(base::identity(x))) {if (base::is.atomic(x)) {return(base::is.na(x))}}
   F
 }
 
 #' @rdname failsafe
 #' @export
 isOKS <- function(x) {
-  if (!assertthat::is.error(base::identity(x))) {if (uj::isATM(x)) {return(!base::is.na(x))}}
+  if (!assertthat::is.error(base::identity(x))) {if (base::is.atomic(x)) {return(!base::is.na(x))}}
   F
 }
 
@@ -1157,13 +1131,13 @@ isOKS <- function(x) {
 isSEQ <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isATM(x)) {
-        if (uj::isATM(y)) {
-          if (uj:::.compat(x, y)) {return(base::setequal(uj::av(x), uj::av(y)))}
-        }
-      }
-    }
-  }
+      if (base::is.atomic(x)) {
+        if (base::is.atomic(y)) {
+          if (uj:::.compat(x, y)) {
+            x <- base::unlist(x); base::attributes(x) <- NULL
+            y <- base::unlist(y); base::attributes(y) <- NULL
+            return(base::setequal(x, y))
+  }}}}}
   F
 }
 
@@ -1172,21 +1146,12 @@ isSEQ <- function(x, y) {
 isVEQ <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isATM(x)) {
-        if (uj::isATM(y)) {
+      if (base::is.atomic(x)) {
+        if (base::is.atomic(y)) {
           if (uj:::.compat(x, y)) {
-            if (uj::N(x) == uj::N(y)) {
+            if (base::length(x) == base::length(y)) {
               if (!base::any(base::is.na(x))) {
-                if (!base::any(base::is.na(y))) {
-                  base::all(x == y)
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+                if (!base::any(base::is.na(y))) {return(base::all(x == y))}}}}}}}}
   F
 }
 
@@ -1219,15 +1184,11 @@ nor1 <- function(x, y) {!uj::isT1(x) & !uj::isT1(y)}
 OR <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isLGL(x) & uj::isLGL(y)) {
-        nx <- uj::N(x)
-        ny <- uj::N(y)
+      if (base::is.logical(x) & base::is.logical(y)) {
+        nx <- base::length(x)
+        ny <- base::length(y)
         if (nx %in% base::c(1, ny)) {
-          if (ny %in% base::c(1, nx)) {return(x | y)}
-        }
-      }
-    }
-  }
+          if (ny %in% base::c(1, nx)) {return(x | y)}}}}}
   F
 }
 
@@ -1236,15 +1197,11 @@ OR <- function(x, y) {
 AND <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isLGL(x) & uj::isLGL(y)) {
-        nx <- uj::N(x)
-        ny <- uj::N(y)
+      if (base::is.logical(x) & base::is.logical(y)) {
+        nx <- base::length(x)
+        ny <- base::length(y)
         if (nx %in% base::c(1, ny)) {
-          if (ny %in% base::c(1, nx)) {return(x & y)}
-        }
-      }
-    }
-  }
+          if (ny %in% base::c(1, nx)) {return(x & y)}}}}}
   F
 }
 
@@ -1253,15 +1210,11 @@ AND <- function(x, y) {
 XOR <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isLGL(x) & uj::isLGL(y)) {
-        nx <- uj::N(x)
-        ny <- uj::N(y)
+      if (base::is.logical(x) & base::is.logical(y)) {
+        nx <- base::length(x)
+        ny <- base::length(y)
         if (nx %in% base::c(1, ny)) {
-          if (ny %in% base::c(1, nx)) {return(base::xor(x, y))}
-        }
-      }
-    }
-  }
+          if (ny %in% base::c(1, nx)) {return(base::xor(x, y))}}}}}
   F
 }
 
@@ -1270,15 +1223,11 @@ XOR <- function(x, y) {
 NOR <- function(x, y) {
   if (!assertthat::is.error(base::identity(x))) {
     if (!assertthat::is.error(base::identity(y))) {
-      if (uj::isLGL(x) & uj::isLGL(y)) {
-        nx <- uj::N(x)
-        ny <- uj::N(y)
+      if (base::is.logical(x) & base::is.logical(y)) {
+        nx <- base::length(x)
+        ny <- base::length(y)
         if (nx %in% base::c(1, ny)) {
-          if (ny %in% base::c(1, nx)) {return(!x & !y)}
-        }
-      }
-    }
-  }
+          if (ny %in% base::c(1, nx)) {return(!x & !y)}}}}}
   F
 }
 

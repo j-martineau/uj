@@ -8,7 +8,7 @@
 os <- function() {
   type <- base::.Platform$OS.type
   name <- base::Sys.info()["sysname"]
-  if (uj::isMF1(type, "windows", "unix") & name != "Darwin") {uj::stopper(uj::p0(
+  if (uj::isMF1(type, "windows", "unix") & name != "Darwin") {uj::stopperr(uj::p0(
     "In function {os}:\n",
     "Unknown operating system. Common operating systems\n", "are identified in the following ways:             \n",
     "  'windows' when .Platform$OS.type  == 'windows'  \n", "  'unix'    when .Platform$OS.type  == 'unix'     \n",

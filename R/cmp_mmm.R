@@ -3,15 +3,15 @@
 #' @title complete + xmode combination properties
 #' @description Check for combination of \link[=CMP]{completeness} and \link[=mmm]{xmode}.
 #' @details
-#' \tabular{ll}{  `cmp_mmm_funs`   \tab What \link[=CMP]{complete} + \link[=mmm]{xmode} combination \link[=prop_funs]{property functions} are there?                           \cr   \tab  }
-#' \tabular{ll}{  `cmp_{mmm}`      \tab Is `x` both complete and a match to the single xmode property `'{mmm}'` where `{mmm}` is a placeholder for any given xmode property?              }
-#' \tabular{ll}{  `cmp_mmm`        \tab Is `x` both complete and a match to single xmode property in arg `mmm`?                                                                \cr   \tab  }
+#' \tabular{ll}{  `cmp_mmm_funs`   \tab What \link[=CMP]{complete} + \link[=mmm]{xmode} combination \link[=prop_funs]{property functions} are there?                         \cr   \tab   \cr
+#'                `cmp_{mmm}`      \tab Is `x` both complete and a match to the single xmode property `'{mmm}'` where `{mmm}` is a placeholder for any given xmode property? \cr   \tab   \cr
+#'                `cmp_mmm`        \tab Is `x` both complete and a match to single xmode property in arg `mmm`?                                                                             }
 #' @param x An R object.
 #' @param mmm A character scalar xmode property from `mmm_props()`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return **A character vector** \cr `cmp_mmm_funs`
-#' \cr\cr  **A logical scalar**   \cr `cmp_mmm, cmp_{mmm}`
+#' @return **A character vector** \cr\cr `cmp_mmm_funs`
+#' \cr\cr  **A logical scalar**   \cr\cr `cmp_{mmm}, cmp_mmm`
 #' @examples
 #' cmp_mmm_funs()
 #' cmp_mmm(letters, "ch1")
@@ -21,7 +21,8 @@
 #' @export
 cmp_mmm <- function(x, mmm, ...) {
   if (uj::isCHR(mmm)) {mmm <- base::tolower(mmm)}
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::nll_if(uj::f0(uj::notN1(mmm) | uj::notCHR(mmm), F, uj::f0(uj::NAS(mmm), F, uj::isIN1(mmm, uj:::.mmms))), NULL, '[mmm] is not a scalar value from mmm_props().')), PKG = "uj")
+  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...),
+                          uj::nll_if(uj::f0(uj::notN1(mmm) | uj::notCHR(mmm), F, uj::f0(uj::NAS(mmm), F, uj::isIN1(mmm, uj:::.mmms))), NULL, '[mmm] is not a scalar value from mmm_props().')), PKG = "uj")
   uj::f0(!uj::meets(x, ...), F, uj::f0(uj::notATM(x) | uj::N0(x), F, uj::f0(uj::anyNA(x), F, uj::run("uj::", base::toupper(mmm), "(x)"))))
 }
 

@@ -5,17 +5,17 @@
 #' @description Check for and conduct recycling in the environment that calls functions from this family.
 #' @details Arguments are recyclable if all of their lengths are divisors of the argument with the greatest length subject to any settings in the optional arguments `ns.`, `min.`, `max.`, and/or `targ.`.
 #' \cr\cr Functions in this family are:
-#' \tabular{ll}{  `recyclableN`   \tab Are lengths in `...` recyclable?.                 \cr   \tab  }
-#' \tabular{ll}{  `recyclable`    \tab Are `...` arguments are recyclable?               \cr   \tab  }
-#' \tabular{ll}{  `recycle`       \tab Recycles `...` arguments in the calling function.             }
+#' \tabular{ll}{  `recyclableN`   \tab Are lengths in `...` recyclable?.                 \cr   \tab   \cr
+#'                `recyclable`    \tab Are `...` arguments are recyclable?               \cr   \tab   \cr
+#'                `recycle`       \tab Recycles `...` arguments in the calling function.                }
 #' @param ... For `recycle`, named arguments to be recycled in the environment of the calling function. For `recyclable_n`, one or more objects containing only positive whole number values (\link[=av]{atomized} before processing).
 #' @param N Either `NULL` or a \link[=cmp_psw_vec]{complete positive whole-number vec} (?cmp_psw_vec) giving the set of valid recycled argument lengths.
 #' @param MIN Either `NULL` or a \link[=cmp_psw_scl]{complete positive whole-number scalar} (?cmp_psw_scl) giving the minimum valid recycled argument length.
 #' @param MAX Either `NULL` or a complete positive whole-number scalar giving the maximum valid recycled argument length.
 #' @param ERR `TRUE` or `FALSE` indicating whether to throw an error if the `...` arguments are not recyclable.
 #' @param TARG Either `NULL` or a complete positive whole-number scalar giving the target length of recycled arguments. May be greater than `length(av(...))`.
-#' @return **A logical scalar**    \cr   `recyclableN, recyclable`
-#' \cr\cr  **The* `NULL` *object** \cr   `recycle`
+#' @return **A logical scalar**    \cr\cr   `recyclableN, recyclable`
+#' \cr\cr  **The* `NULL` *object** \cr\cr   `recycle`
 #' @examples
 #' egN1. <- 1
 #' egN2 <- 1:2

@@ -3,17 +3,17 @@
 #' @title Named values (unique to package `uj`)
 #' @description Get names, definitions, and values of special `uj` package named values.
 #' @details
-#' \tabular{ll}{  `value_names, val_names, vnames`   \tab Get names of all package values.                                                                            \cr   \tab   \cr
+#' \tabular{ll}{  `value_names, val_names, vnames`   \tab Get names of all package values.                                                                             \cr   \tab   \cr
 #'                `value_table, val_table, vtable`   \tab Get a data.frame of all `uj`-specific named values with three columns: `name`, `value`, and `description`,
-#'                                                        where named values with multiple elements are pipe-delimited and all values are converted to mode character. \cr   \tab     }
-#'                `values, values, vs`                 \tab Get a named list where names are the arguments submitted to `v(...)`, element values are the values of
+#'                                                        where named values with multiple elements are pipe-delimited and all values are converted to mode character. \cr   \tab   \cr
+#'                `values, values, vs`               \tab Get a named list where names are the arguments submitted to `v(...)`, element values are the values of
 #'                                                        the contents of the named element, and the attribute `'descriptions'` gives associated verbose descriptions. \cr   \tab   \cr
-#' \tabular{ll}{  `value, val, v`                    \tab Gets package values by name.                                                                                                }
+#'                `value, val, v`                    \tab Gets package values by name.                                                                                                }
 #' @param ... Unquoted, comma-separated list of names of values to return. If multiple values are specified, they are coerced into a single atomic vector result.
-#' @return **A character vector**         \cr `value_names, val_names, vnames`
-#' \cr\cr  **A data.frame**               \cr `value_table, val_table, vtable`
-#' \cr\cr  **A \link[=VLS]{vlist}**       \cr `values, values, vs`
-#' \cr\cr  **An atomic scalar or vector** \cr `value, val, v`
+#' @return **A character vector**         \cr\cr `value_names, val_names, vnames`
+#' \cr\cr  **A data.frame**               \cr\cr `value_table, val_table, vtable`
+#' \cr\cr  **A \link[=VLS]{vlist}**       \cr\cr `values, values, vs`
+#' \cr\cr  **An atomic scalar or vector** \cr\cr `value, val, v`
 #' @examples
 #' v(.)
 #' v(pipe, pipe0, eq)
@@ -866,26 +866,27 @@ values <- function() {
     MMM = "uppercase xmode property values >> toupper(mmm_props()) >> AKA uppercase extended mode properties",
     SSS = "uppercase shape property values >> toupper(sss_props()) >> AKA uppercase geometric shape properties"
   )
-  uj::add_at(out, descriptions = descriptions)
+  attr(out, "descriptions") <- descriptions
+  out
 }
 
 #' @rdname values
 #' @export
-value_names <- function() {uj::EN(uj::values())}
+value_names <- function() {base::names(uj::values())}
 
 #' @rdname values
 #' @export
 value_table <- function() {
   x <- uj::values()
   values <- base::sapply(x, paste0, collapse = "|")
-  uj::tb(name = uj::EN(x), value = values, description = uj::at(x, "descriptions"))
+  uj::tb(name = base::names(x), value = values, description = uj::at(x, "descriptions"))
 }
 
 #' @rdname values
 #' @export
 value <- function(...) {
-  x <- uj::asCHR(base::match.call())
-  x <- x[2:uj::N(x)]
+  x <- base::as.character(base::match.call())
+  x <- x[2:base::length(x)]
   uj::av(uj::values()[x])
 }
 

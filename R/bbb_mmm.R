@@ -3,17 +3,17 @@
 #' @title basic + xmode combination properties
 #' @description Check for combinations of \link[=bbb]{basic} and \link[=mmm]{xmode} properties.
 #' @details
-#' \tabular{ll}{  `bbb_mmm_funs`   \tab What \link[=bbb]{basic} + \link[=mmm]{xmode} combination property functions are there?                  \cr   \tab     }
-#' \tabular{ll}{  `bbb_mmm`        \tab Is `x` a match to single basic and xmode properties in `bbb` and `_mmm`, respectively?                  \cr   \tab   \cr
-#'                `{bbb}_{mmm}`    \tab Is `x` a match to the single basic property `'{bbb}'` and single xmode property `'{mmm}'`, where `{bbb}`
-#'                                      and `{mmm}` are placeholders for any given basic property and any given xmode property, respectively.   }
+#' \tabular{ll}{  `bbb_mmm_funs`   \tab What \link[=bbb]{basic} + \link[=mmm]{xmode} combination property functions are there?                    \cr   \tab   \cr
+#'                `{bbb}_{mmm}`    \tab Is `x` a match to the single basic property `'{bbb}'` and single xmode property `'{mmm}'`? (where `{bbb}`
+#'                                      and `{mmm}` are placeholders for any given basic property and any given xmode property, respectively).    \cr   \tab   \cr
+#'                `bbb_mmm`        \tab Is `x` a match to single basic and xmode properties in `bbb` and `mmm`, respectively?                                    }
 #' @param x An R object.
 #' @param bbb A character scalar single basic property from `c('atm', 'pop')`.
-#' @param mmm A character scalar single xmode property from `mmm_props()`.
+#' @param mmm A character scalar single xmode property from \code{\link{mmm_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return **A character vector** \cr `bbb_mmm_funs`
-#' \cr\cr  **A logical scalar**   \cr `bbb_mmm, xxxYYY`
+#' @return **A character vector** \cr\cr `bbb_mmm_funs`
+#' \cr\cr  **A logical scalar**   \cr\cr `{bbb}_{mmm}, bbb_mmm`
 #' @examples
 #' bbb_mmm_funs()
 #' bbb_mmm_props()

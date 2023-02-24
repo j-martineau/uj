@@ -3,17 +3,17 @@
 #' @title unique + xmode + xclass combination properties
 #' @description Functions for checking combinations of \link[=UNQ]{uniqueness}, \link[=mmm]{xmode}, and \link[=ccc]{xclass}.
 #' @details
-#' \tabular{ll}{  `unq_mmm_ccc_funs`   \tab What \link[=iunq]{unique} + \link[=mmm]{xmode} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there? \cr   \tab     }
-#' \tabular{ll}{  `unq_{mmm}_{ccc}`    \tab Is `x` both unique and a match to the single xmode property `'{mmm}'` and single xclass property `'{ccc}'`? (where `{mmm}` and
+#' \tabular{ll}{  `unq_mmm_ccc_funs`   \tab What \link[=iunq]{unique} + \link[=mmm]{xmode} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there? \cr   \tab   \cr
+#'                `unq_{mmm}_{ccc}`    \tab Is `x` both unique and a match to the single xmode property `'{mmm}'` and single xclass property `'{ccc}'`? (where `{mmm}` and
 #'                                          `{ccc}` are placeholders for any given xmode property and any given xclass property, respectively).                               \cr   \tab   \cr
-#'                `unq_mmm_ccc`        \tab Is `x` both unique and a match to the single xmode and xclass properties in arguments `mmm` and `ccc`, respectively?              \cr   \tab     }
+#'                `unq_mmm_ccc`        \tab Is `x` both unique and a match to the single xmode and xclass properties in arguments `mmm` and `ccc`, respectively?                             }
 #' @param x An R object.
 #' @param mmm A character scalar single xmode property from \code{\link{mmm_props}()}.
 #' @param ccc A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return **A character vector** \cr `unq_mmm_ccc_funs`
-#' \cr\cr  **A logical scalar**   \cr `unq_{mmm}_{ccc}` \cr `unq_mmm_ccc`
+#' @return **A character vector** \cr\cr `unq_mmm_ccc_funs`
+#' \cr\cr  **A logical scalar**   \cr\cr `unq_{mmm}_{ccc}` \cr `unq_mmm_ccc`
 #' @examples
 #' unq_mmm_ccc_funs()
 #' unq_mmm_ccc(letters, "ch1", "vec")

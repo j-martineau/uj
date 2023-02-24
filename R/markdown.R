@@ -17,25 +17,25 @@
 #'                `INV`   \tab invisible      }
 #' \cr For example, the function `bwht` styles markdown text as bold and white.
 #' \cr\cr **Greyscale** text suffixes take the form:
-#' \tabular{ll}{  `G05`   \tab ` 5:95` white:black ratio \cr
+#' \tabular{ll}{  `G05`   \tab ` 5:95` white:black ratio \cr
 #'                `G10`   \tab `10:90` white:black ratio \cr
 #'                `...`   \tab `...`                     \cr
-#'                `G90`   \tab `90:10` white:black ratio \cr
+#'                `G90`   \tab `90:10` white:black ratio \cr
 #'                `G95`   \tab `95:5 ` white:black ratio   }
 #' \cr For example, the function `pg45` styles markdown text as plain and grey with a `45:55` white:black ratio.
 #' \cr\cr **Other common-color text** function names append an infix and a suffix to the selected prefix, as follows:
-#' \tabular{ll}{  suffix = `blu`   \tab blue                        \cr
-#'                suffix = `cyn`   \tab cyan                        \cr
-#'                suffix = `grn`   \tab green                       \cr
-#'                suffix = `mag`   \tab magenta                     \cr
-#'                suffix = `orn`   \tab orange                      \cr
-#'                suffix = `red`   \tab red                         \cr
-#'                suffix = `vlt`   \tab violet                      \cr
-#'                suffix = `ylw`   \tab yellow         \cr   \tab     }
-#' \tabular{ll}{  infix = `f`      \tab full intensity              \cr
-#'                infix = `l`      \tab light                       \cr
-#'                infix = `m`      \tab medium                      \cr
-#'                infix = `d`      \tab dark                          }
+#' \tabular{ll}{  suffix = `blu`   \tab blue                \cr
+#'                suffix = `cyn`   \tab cyan                \cr
+#'                suffix = `grn`   \tab green               \cr
+#'                suffix = `mag`   \tab magenta             \cr
+#'                suffix = `orn`   \tab orange              \cr
+#'                suffix = `red`   \tab red                 \cr
+#'                suffix = `vlt`   \tab violet              \cr
+#'                suffix = `ylw`   \tab yellow \cr   \tab   \cr
+#'                infix = `f`      \tab full intensity      \cr
+#'                infix = `l`      \tab light               \cr
+#'                infix = `m`      \tab medium              \cr
+#'                infix = `d`      \tab dark                  }
 #' \cr For example, the function `pfred` styles markdown text as plain and full-intensity red.
 #' @param x A \link[=cmp_chr_vec]{character vector} of text to be styled.
 #' @return A markdown-styled character vector.

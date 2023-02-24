@@ -20,22 +20,20 @@
 #' @title Declare basic R objects with extended functionality
 #' @description This family of functions enforces the restrictions that names must (a) contain only ASCII letters, numerals, `'.'`, and `'_'`; (b) begin with a letter or `'.'` followed by a letter; and (c) end with a letter or numeral.
 #' \cr\cr **Functions declaring \link[=atm_dtf]{atomic data.frames}:**
-#' \tabular{ll}{  `dtf`     \tab Declares a `data.frame.`                                                                             \cr   \tab   \cr
-#'                `dtf.`    \tab Declares a `data.frame` concisely\eqn{^{(1)}}.                                                       \cr   \tab   \cr
-#'                `dtf0`    \tab Declares a `0`-row `data.frame.`                                                                     \cr   \tab   \cr
-#'                `dtfNA`   \tab Declares a `data.frame` of `NA` values: `dtf.(a, b)` is identical to
-#'                               `data.frame(a = a, b = b, stringsAsFactors = F)`.                                                                   }
+#' \tabular{ll}{  `dtf`     \tab Declares a `data.frame.`                                                                                          \cr   \tab   \cr
+#'                `dtf.`    \tab Declares a `data.frame` concisely: `dtf.(a, b)` is identical to `data.frame(a = a, b = b, stringsAsFactors = F)`. \cr   \tab   \cr
+#'                `dtf0`    \tab Declares a `0`-row `data.frame.`                                                                                  \cr   \tab   \cr
+#'                `dtfNA`   \tab Declares a `data.frame` of `NA` values.                                                                                          }
 #' \cr\cr **Functions declaring matrices:**
-#' \tabular{ll}{  `mat`     \tab Declares a matrix.                                                                                   \cr   \tab   \cr
-#'                `matd`    \tab Declares a square diagonal matrix: off-diags are `0`, `FALSE`, and `""` for `x` of mode `'numeric'`,
-#'                               `'logical'`, and `'character'`, respectively.                                                                       }
+#' \tabular{ll}{  `mat`     \tab Declares a matrix.                                                                                                                  \cr   \tab   \cr
+#'                `matd`    \tab Declares a square diagonal matrix: off-diags are `0`, `FALSE`, and `""` for `x` of mode `'numeric'`, `'logical'`, and `'character'`, respectively. }
 #' \cr\cr **Functions declaring atomic vectors:**
-#' \tabular{ll}{  `vec`     \tab Declares a vector.                                                                                   \cr   \tab   \cr
-#'                `vec.`    \tab Declares a named atomic vector concisely: `vec.(a, b)` is identical to `c(a = a, b = b)`             \cr   \tab   \cr
-#'                `vecNA`   \tab Declares a vector of `NA` values.                                                                                   }
+#' \tabular{ll}{  `vec`     \tab Declares a vector.                                                                       \cr   \tab   \cr
+#'                `vec.`    \tab Declares a named atomic vector concisely: `vec.(a, b)` is identical to `c(a = a, b = b)` \cr   \tab   \cr
+#'                `vecNA`   \tab Declares a vector of `NA` values.                                                                       }
 #' \cr\cr **Functions declaring \link[=iVLS]{vlists}:**
-#' \tabular{ll}{  `vls`     \tab Declares a \link[=VLS]{vlist}.                                                                       \cr   \tab   \cr
-#'                `vls.`    \tab Declares a named \link[=VLS]{vlist} concisely: `vls.(a, b)` is identical to `list(a = a, b = b)`.                   }
+#' \tabular{ll}{  `vls`     \tab Declares a \link[=VLS]{vlist}.                                                     \cr   \tab   \cr
+#'                `vls.`    \tab Declares a named \link[=VLS]{vlist} concisely: `vls.(a, b)` is identical to `list(a = a, b = b)`. }
 #' @param ... Objects to placed in an atomic vec, atomic matrix, atomic data.frame, vlist, or square atomic diagonal matrix. \link[=a]{Atomized} for vec and matrix creation.
 #' @param X A non-empty vector of mode `'numeric'`, `'character'`, or `'logical'`.
 #' @param R A non-`NA` numeric scalar number of replications.
@@ -46,11 +44,11 @@
 #' @param BR `TRUE` or `FALSE` indicating whether to fill matrices by row.
 #' @param EN A possibly pipe-delimited, \link[=cmp_chr_vec]{complete character vec} of names to apply to vector or list elements
 #' @param CN A possibly pipe-delimited complete character vec of column names (respectively) for a data.frame.
-#' @return **An atomic data.frame**  \cr `dtf, dtf., dtf0, dtfNA`
-#' \cr\cr  **An atomic vector**      \cr `vec, vec., vecNA`
-#' \cr\cr  **A \link[=VLS]{vlist}**  \cr `vls, vls.`
-#' \cr\cr  **A square matrix**       \cr `dmat`
-#' \cr\cr  **A matrix**              \cr `mat`
+#' @return **An atomic data.frame**  \cr\cr `dtf, dtf., dtf0, dtfNA`
+#' \cr\cr  **An atomic vector**      \cr\cr `vec, vec., vecNA`
+#' \cr\cr  **A \link[=VLS]{vlist}**  \cr\cr `vls, vls.`
+#' \cr\cr  **A square matrix**       \cr\cr `dmat`
+#' \cr\cr  **A matrix**              \cr\cr `mat`
 #' @examples
 #' egA <- "a"
 #' egB <- "b"
@@ -112,9 +110,9 @@ dtf <- function(..., CN = NULL) {
   ok3 <- uj::f0(!ok1, T, base::all(uj::rounded(mx / ns)))
   ok4 <- uj::NEQ(labs, uj::UV(labs))
   uj::errs_if_nots(ok1, "[...] arguments must be atomic vecs (?atm_vec).",
-                   ok2, "[...] arguments may not be of length 0."       ,
-                   ok3, "[...] arguments are not recyclable."           ,
-                   ok4, "column names must be unique."                  , PKG = "uj")
+                   ok2, "[...] arguments may not be of length 0."        ,
+                   ok3, "[...] arguments are not recyclable."            ,
+                   ok4, "column names must be unique."                   , PKG = "uj")
   x <- tibble::tibble(...)
   uj::CN(x) <- labs
   x
@@ -127,7 +125,7 @@ dtf. <- function(...) {
   labs <- labs[2:uj::N(labs)]
   nok <- uj::ND1P()
   avc <- uj::f0(!nok, T, base::all(base::sapply(base::list(...), uj::atm_vec)))
-  unq <- uj::f0(!nok, T, uj::NEQ(labs, uj::U(labs)))
+  unq <- uj::f0(!nok, T, uj::NEQ(labs, uj::UV(labs)))
   lab <- uj::f0(!nok | !unq, T, uj:::.labs_ok(labs))
   if (nok & avc) {
     ns <- uj::NS(base::list(...))
@@ -173,7 +171,7 @@ mat <- function(..., R = 1, NR = NULL, NC = NULL, BR = F, RN = NULL, CN = NULL) 
   uj::errs_if_nots(cmp_psw_scl(R)                   , "[R] must be a positive whole number scalar (?cmp_psw_scl)."             ,
                    uj::NLL(NR) | uj::cmp_nnw_scl(NR), "[NR] must be NULL or a non-negative whole number scalar (?cmp_nnw_scl).",
                    uj::NLL(NC) | uj::cmp_nnw_scl(NC), "[NC] must be NULL or a non-negative whole number scalar (?cmp_nnw_scl).",
-                   uj::isTF1(BR)                    , "[BR] must be TRUE or FALSE."                                          ,
+                   uj::isTF1(BR)                    , "[BR] must be TRUE or FALSE."                                            ,
                    uj::NLL(RN) | uj::cmp_nnw_scl(RN), "[RN] must be NULL or a complete character vector (?cmp_chr_vec)."       ,
                    uj::NLL(CN) | uj::cmp_nnw_scl(CN), "[CN] must be NULL or a complete character vector (?cmp_chr_vec)."       , PKG = "uj")
   X <- base::rep.int(X, R)
@@ -189,12 +187,11 @@ mat <- function(..., R = 1, NR = NULL, NC = NULL, BR = F, RN = NULL, CN = NULL) 
   ok.RN <- uj::f0(uj::NLL(RN), T, uj::N(RN) == NR)
   ok.CN <- uj::f0(uj::NLL(CN), T, uj::N(CN) == NC)
   uj::errs_if_nots(ok.RN                                   , "The number of rownames in [RN] does not match the number of rows.",
-                 ok.CN                                   , "The number of colnames in [CN] does not match the number of cols.",
-                 uj::f0(uj::NLL(RN), T, uj:::.labs_ok(RN)), "row names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.",
-                 uj::f0(uj::NLL(CN), T, uj:::.labs_ok(CN)), "col names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.", PKG = "uj" )
+                   ok.CN                                   , "The number of colnames in [CN] does not match the number of cols.",
+                   uj::f0(uj::NLL(RN), T, uj:::.labs_ok(RN)), "row names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.",
+                   uj::f0(uj::NLL(CN), T, uj:::.labs_ok(CN)), "col names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.", PKG = "uj" )
   X <- base::matrix(X, nrow = NR, ncol = NC, byrow = BR)
-  uj::RN(X) <- RN
-  uj::CN(X) <- CN
+  X <- uj::namerc(X, RN, CN)
   X
 }
 
@@ -233,7 +230,7 @@ vec <- function(..., R = 1, EN = NULL) {
       uj::errs_if_nots(uj::NEQ(X, EN)    , "[EN] must be the same length as the vector resulting from atomizing (?av) [...].",
                        uj::anyBL(EN)     , "[EN] contains a blank string (after splitting along pipes)."                     ,
                        uj:::.labs_ok(EN) , "[...] argument names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.", PKG = "uj")
-      uj::EN(X) <- EN
+      X <- uj::namee(X, EN)
     }
     X
   } else {base::vector()}
@@ -270,8 +267,7 @@ vls <- function(..., EN = NULL) {
   uj::errs_if_nots(n.dots > 0, "[...] is empty.",
                    ok.EN, "[EN] must be NULL or match the number of arguments in [...].", PKG = "uj")
   uj::err_if_not(uj::f0(uj::NLL(EN), T, uj:::.labs_ok(EN)), "element names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.", PKG = "uj")
-  uj::EN(y) <- EN
-  y
+  uj::namee(y, EN)
 }
 
 #' @rdname declare

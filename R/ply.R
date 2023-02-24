@@ -3,37 +3,36 @@
 #' @title Variations on `apply` functions
 #' @description Apply a function over elements, rows, columns, or all dimensions; to an atomic object, a \link[=MVC]{multivec}, \link[=VEC]{vec}, \link[=VLS]{vlist}, matrix, or data.frame; and/or check the number of `TRUE` values in the result.
 #' @details
-#' \tabular{ll}{  `none_ply`   \tab Checks for `0` resulting `TRUE` values\eqn{^{(1)}}.                                \cr
-#'                `one_ply`    \tab Checks for `1` resulting `TRUE` values\eqn{^{(1)}}.                                \cr
-#'                `two_ply`    \tab Checks for `2+` resulting `TRUE` values\eqn{^{(1)}}.                               \cr
-#'                `any_ply`    \tab Checks for `1+` resulting `TRUE` values\eqn{^{(1)}}.                               \cr
-#'                `all_ply`    \tab Checks for *only* resulting `TRUE` values\eqn{^{(1)}}.                             \cr   \tab   \cr
-#'                `atm_ply`    \tab Applies `FUN` to \link[=av]{atomized} `x`.                                         \cr
-#'                `mvc_ply`    \tab Applies `FUN` to elements of \link[=atm_mvc]{atomic multivec} `x`.                 \cr
-#'                `vec_ply`    \tab Applies `FUN` to elements of \link[=atm_vec]{atomic vec} `x`.                      \cr
-#'                `vls_ply`    \tab Applies `FUN` to elements of \link[=atm_vls]{atomic vlist} `x`.                    \cr   \tab   \cr
-#'                `row_ply`    \tab Applies `FUN` to rows of `x`.                                                      \cr
-#'                `col_ply`    \tab Applies `FUN` to columns of `x`.                                                   \cr
-#'                `dim_ply`    \tab Applies `FUN` to cells of `x`.                                                     \cr   \tab   \cr
-#'                `ply`        \tab Generalized `ply` function.                                                        \cr
-#'                             \tab \eqn{^{(1)}} These functions assume that applying `FUN` produces `'logical'` results. }
+#' \tabular{ll}{  `none_ply`   \tab Check for `0` resulting `TRUE` values\eqn{^{(1)}}.               \cr
+#'                `one_ply`    \tab Check for `1` resulting `TRUE` values\eqn{^{(1)}}.               \cr
+#'                `two_ply`    \tab Check for `2+` resulting `TRUE` values\eqn{^{(1)}}.              \cr
+#'                `any_ply`    \tab Check for `1+` resulting `TRUE` values\eqn{^{(1)}}.              \cr
+#'                `all_ply`    \tab Check for *only* resulting `TRUE` values\eqn{^{(1)}}.            \cr   \tab   \cr
+#'                `atm_ply`    \tab Apply `FUN` to \link[=av]{atomized} `x`.                         \cr
+#'                `mvc_ply`    \tab Apply `FUN` to elements of \link[=atm_mvc]{atomic multivec} `x`. \cr
+#'                `vec_ply`    \tab Apply `FUN` to elements of \link[=atm_vec]{atomic vec} `x`.      \cr
+#'                `vls_ply`    \tab Apply `FUN` to elements of \link[=atm_vls]{atomic vlist} `x`.    \cr   \tab   \cr
+#'                `row_ply`    \tab Apply `FUN` to rows of `x`.                                      \cr
+#'                `col_ply`    \tab Apply `FUN` to columns of `x`.                                   \cr
+#'                `dim_ply`    \tab Apply `FUN` to cells of `x`.                                     \cr   \tab   \cr
+#'                `ply`        \tab Generalized `ply` function.                                                       }
+#'  \tabular{l}{  \eqn{^{(1)}} These functions assume that applying `FUN` produces `'logical'` results.               }
 #' @section The `PROC` argument: When not `NULL`, the `PROC` argument is an optional list with up to seven named elements, which give processing instructions as follows:
-#' \tabular{ll}{  **Name and value**   \tab **Processing instructions**
-#'                `$arg = '{spec}'`    \tab Checks `x` for match to \link[=ppp]{property spec} `'{spec}'`\eqn{^{(1)}}. \cr
-#'                `$out = '{spec}'`    \tab Checks result for match to property spec `'{spec}'`.\eqn{^{(1)}}           \cr   \tab   \cr
-#'                `$agg = 'none'`      \tab Inspect result for `0` `TRUE` values.                                      \cr
-#'                `$agg = 'one'`       \tab Inspect result for `1` `TRUE` values.                                      \cr
-#'                `$agg = 'two'`       \tab Inspect result for `2+` `TRUE` values.                                     \cr
-#'                `$agg = 'any'`       \tab Inspect result for *any* `TRUE` values.                                    \cr
-#'                `$agg = 'all'`       \tab Inspect result for *only* `TRUE` values.                                   \cr   \tab     }
-#' \tabular{ll}{  `$na = 'err'`        \tab Throw error if result has any `NA` values.                                 \cr
-#'                `$na = FALSE`        \tab Replace resulting `NA`s with `FALSE`.                                      \cr
-#'                `$na = TRUE`         \tab Replace resulting `NA`s with `TRUE`.                                       \cr   \tab   \cr
-#'                `$a1 = TRUE`         \tab \link[=av]{Atomize} `x`.                                                   \cr
-#'                `$a2 = TRUE`         \tab Atomize the result.                                                        \cr   \tab     }
-#' \tabular{ll}{  `$s = TRUE`          \tab \link[base:simplify2array]{Simplify} the result.                           \cr
-#'                                     \tab \eqn{^{(1)}} `{spec}` is a placeholder for a \link[=is_prop_spec]{valid property spec}.   }
-#'
+#' \tabular{ll}{  **Name + value**    \tab **Processing instructions**
+#'                `$arg = '{spec}'`   \tab Check `x` for match to \code{\link[=ppp]{spec}}\eqn{^{(1)}}. \cr
+#'                `$out = '{spec}'`   \tab Check result for match to `'{spec}'`.\eqn{^{(1)}}            \cr   \tab   \cr
+#'                `$agg = 'none'`     \tab Inspect result for `0` `TRUE` values.                        \cr
+#'                `$agg = 'one'`      \tab Inspect result for `1` `TRUE` values.                        \cr
+#'                `$agg = 'two'`      \tab Inspect result for `2+` `TRUE` values.                       \cr
+#'                `$agg = 'any'`      \tab Inspect result for *any* `TRUE` values.                      \cr
+#'                `$agg = 'all'`      \tab Inspect result for *only* `TRUE` values.                     \cr   \tab   \cr
+#'                `$na = 'err'`       \tab Throw error if result has any `NA` values.                   \cr
+#'                `$na = FALSE`       \tab Replace resulting `NA`s with `FALSE`.                        \cr
+#'                `$na = TRUE`        \tab Replace resulting `NA`s with `TRUE`.                         \cr   \tab   \cr
+#'                `$a1 = TRUE`        \tab \link[=av]{Atomize} `x`.                                     \cr
+#'                `$a2 = TRUE`        \tab Atomize the result.                                          \cr   \tab   \cr
+#'                `$s = TRUE`         \tab \link[base:simplify2array]{Simplify} the result.                            }
+#'  \tabular{l}{  \eqn{^{(1)}} `{spec}` is a placeholder for a \link[=is_prop_spec]{valid property spec}.              }
 #' @param x An object to apply `FUN` to.
 #' @param FUN Function or character scalar name of a function to apply to `x`.
 #' @param ... An arbitrary number of additional arguments to be passed to the function `FUN`.
@@ -69,12 +68,12 @@
 #' vls_ply(egChrVls, paste0, collapse = "")
 #' @export
 ply <- function(x, FUN, ..., DIM = 0, PROC = NULL) {
-  if (uj::N0(x)) {uj::stopper("[x] is empty.", PKG = "uj")}
+  if (uj::N0(x)) {uj::stopperr("[x] is empty.", PKG = "uj")}
   vnames <- base::c("a1", "a2", "s", "na", "arg", "out", "agg")
   vaggs <- base::c("none", "any", "all", "one", "two")
-  names <- uj::EN(PROC)
-  procn <- uj::N(PROC)
-  namen <- uj::N(names)
+  names <- base::names(PROC)
+  procn <- base::length(PROC)
+  namen <- base::length(names)
   namev <- uj::f0(procn == 0, T, procn == namen & uj::allIN(names, vnames))
   d0 <- uj::isEQ1(DIM, 0)
   s <- uj::f0(uj::DEF(PROC$s), PROC$s, F)

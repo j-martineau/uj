@@ -77,20 +77,20 @@
 #'                `4`               \tab `callerN(4)`                                \cr
 #'                `...`             \tab `...`                                       \cr
 #'                `K-1`             \tab `ancestor(), callerN(K-1)`                  \cr
-#'                `K`               \tab `callerN(K)` (returns `'{ command line }'`).  }
+#'                `K`               \tab `callerN(K)` (returns `'{ command line }'`).  }
 #' \cr\cr Similarly, the following functions return values associated with at least `1` generation:
-#' \tabular{ll}{  `ncallers`    \tab Number of calling functions (excludes *self*).           \cr   \tab   \cr
-#'                `callersN`    \tab Names of the calling function(s) `N` generation(s) back. \cr   \tab   \cr
-#'                `callers`     \tab Names of all calling functions, (excludes *self*).       \cr   \tab   \cr
-#'                `lineage`     \tab Names of all lineage functions (includes *self*).                       }
+#' \tabular{ll}{  `ncallers`   \tab Number of calling functions (excludes *self*).           \cr   \tab   \cr
+#'                `callersN`   \tab Names of the calling function(s) `N` generation(s) back. \cr   \tab   \cr
+#'                `callers`    \tab Names of all calling functions, (excludes *self*).       \cr   \tab   \cr
+#'                `lineage`    \tab Names of all lineage functions (includes *self*).                       }
 #' @param n A \link[cmp_psw_vec]{complete positive whole-number scalar} giving the number of generations back in the function call stack to go.
 #' @param scl `TRUE` or `FALSE` indicating wehther to collapse package and function into a character scalar rather than as a two element list with one element for packages and another for functions.
 #' @param vec `TRUE` or `FALSE` indicating whether to represent both package and function in a character vector rather than as a two element list with one element for packages and another for functions.
 #' @param ... An arbitrary number of \link[=cmp_psw_vec]{complete positive whole-number vecs} giving the number(s) of generations back in the function call stack to go.
-#' @return **An integer scalar**                                            \cr `ncallers`
-#' \cr\cr  **A `list(pkg = <character vector>, fun = <character vector>)`** \cr All others when `vec = FALSE` or `scl = FALSE`.
-#' \cr\cr  **A character vector** (when `vec = TRUE`)                       \cr `callers, lineage, callersN`
-#' \cr\cr  **A character scalar** (when `scl = TRUE`)                       \cr `ancestor, caller, caller1, caller2, callerN, self`
+#' @return **An integer scalar**                                            \cr\cr `ncallers`
+#' \cr\cr  **A `list(pkg = <character vector>, fun = <character vector>)`** \cr\cr All others when `vec = FALSE` or `scl = FALSE`.
+#' \cr\cr  **A character vector** (when `vec = TRUE`)                       \cr\cr `callers, lineage, callersN`
+#' \cr\cr  **A character scalar** (when `scl = TRUE`)                       \cr\cr `ancestor, caller, caller1, caller2, callerN, self`
 #' @examples
 #' egD <- function() {list(self      = self()                   ,
 #'                         caller    = caller()                 ,
@@ -215,7 +215,7 @@ lineage <- function(vec = TRUE) {
   stack <- base::sys.calls()
   stack <- base::c(base::rev(uj::asCHR(stack)), "..command.line..")
   stack <- uj::Nth_plus(stack, 2)
-  uj::.pkg_fun(stack, 35, uj::vec("vec", "vls"))
+  uj:::.pkg_fun(stack, 35, uj::vec("vec", "vls"))
 }
 
 #' @rdname callers

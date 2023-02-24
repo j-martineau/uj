@@ -4,16 +4,16 @@
 #' @title String spacing functions
 #' @description These functions create strings of spaces, pad strings with space, trim edge spaces, and squeeze out unnecessary spaces.
 #' @details
-#' \tabular{ll}{  `spaces`   \tab Creates a character scalar of `n` spaces.                                                                            \cr   \tab     }
-#' \tabular{ll}{  `pad`      \tab Pads strings with leading, trailing white space using \code{\link[stringr:str_pad]{stringr::str_pad}}.               \cr   \tab   \cr
+#' \tabular{ll}{  `spaces`   \tab Creates a character scalar of `n` spaces.                                                                            \cr   \tab   \cr
+#'                `pad`      \tab Pads strings with leading, trailing white space using \code{\link[stringr:str_pad]{stringr::str_pad}}.               \cr   \tab   \cr
 #'                `sqz`      \tab Trims leading, trailing, and extra internal white space using \code{\link[stringr:str_squish]{stringr::str_squish}}. \cr   \tab   \cr
 #'                `trm`      \tab Trims leading and trailing white space using \code{\link[stringr:str_trim]{stringr::str_trim}}.                                     }
 #' @param ... An arbitrary number of atomic arguments to be processed.
 #' @param n A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of spaces or the number of pad characters.
 #' @param s A \link[=cmp_ch1_vec]{complete onechar scalar} indicating side(s) to pad: `'l'`, `'r'`, or `'b'` for left, right, or both, respectively.
 #' @param p A complete onechar scalar containing a single character used to pad strings.
-#' @return **A character scalar** \cr   `spaces`
-#' \cr\cr  **A character object** \cr   `pad, trm, sqz`
+#' @return **A character scalar** \cr\cr   `spaces`
+#' \cr\cr  **A character object** \cr\cr   `pad, trm, sqz`
 #' @examples
 #' spaces(0)
 #' spaces(4)
@@ -37,7 +37,7 @@ pad <- function(..., n = 0, s = "r", p = " ") {
   ok.nd <- uj::ND1P()
   ok.atm <- uj::f0(!ok.nd, T, base::all(base::sapply(base::list(...), uj::ATM)))
   ok.cmp <- uj::f0(!ok.nd, T, base::all(base::sapply(base::list(...), uj::CMP)))
-  uj::errs_if_nots(ok.nd                    , "[...] must contain at least one argument."                                  ,
+  uj::errs_if_nots(ok.nd                      , "[...] must contain at least one argument."                                ,
                    ok.atm & ok.cmp            , "[...] arguments must be complete and atomic (?cmp_atm)."                  ,
                    uj::cmp_nnw_scl(n)         , "[n] must be a complete non-negative whole-number scalar (?cmp_nnw_scl)."  ,
                    uj::isIN1(s, "l", "r", "b"), "[s] must be a complete onechar scalar (?cmp_ch1_vec) in c('r', 'l', 'b').",

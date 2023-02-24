@@ -2,11 +2,11 @@
 #' @encoding UTF-8
 #' @family conversions
 #' @title Convert non-negative whole numbers between decimal and hexadecimal
-#' @description \tabular{ll}{  `to_dec`   \tab Converts hexadecimal \link[=cmp_chr]{complete character object} `x` from hexadecimal to decimal. `x` may be formatted as either `'hhh...'` or `'#hhh...'` where `h` is a placeholder for a hexidecimal digit in either upper or lower case. \cr   \tab   \cr
-#'                             `to_hex`   \tab Converts \link[=cmp_psw]{complete positive whole-number} `x` to hexadecimal formatted as `'#HHH...'` where `H` is a placeholder for an uppercase hexadecimal digit.                                                                                        }
+#' @description \tabular{ll}{  `to_dec, todec`   \tab Converts hexadecimal \link[=cmp_chr]{complete character object} `x` from hexadecimal to decimal. `x` may be formatted as either `'hhh...'` or `'#hhh...'` where `h` is a placeholder for a hexidecimal digit in either upper or lower case. \cr   \tab   \cr
+#'                             `to_hex, tohex`   \tab Converts \link[=cmp_psw]{complete positive whole-number} `x` to hexadecimal formatted as `'#HHH...'` where `H` is a placeholder for an uppercase hexadecimal digit.                                                                                        }
 #' @param x A \link[=cmp_nnw]{complete non-negative whole-number object} or a \link[=cmp_chr]{complete character vec} containing only non-negative whole-number hexademical values.
-#' @return **A non-negative whole number object**                                 \cr `to_dec`
-#' \cr\cr  **A character object of non-negative whole number hexadecimal values** \cr `to_hex`
+#' @return **A non-negative whole number object**                                 \cr\cr `to_dec, todec`
+#' \cr\cr  **A character object of non-negative whole number hexadecimal values** \cr\cr `to_hex, tohex`
 #' @examples
 #' egDEC <- sample(1:100, 5)
 #' egHEX <- c("10", "#B25", "2bc4a", "#FF")
@@ -54,5 +54,13 @@ to_dec <- function(x) {
 #' @export
 to_hex <- function(x) {
   uj::err_if_not(uj::cmp_nnw_vec(x), "[x] must be complete, non-negative whole-number vec (?cmp_nnw_vec).", PKG = "uj")
-  uj::p0("#", base::toupper(base::as.character.hexmode(x)))
+  uj::paste0("#", base::toupper(base::as.character.hexmode(x)))
 }
+
+#' @rdname to_dec
+#' @export
+todec <- to_dec
+
+#' @rdname to_dec
+#' @export
+tohex <- to_hex

@@ -2,16 +2,16 @@
 #' @family properties
 #' @title Manage classes
 #' @details
-#' \tabular{ll}{  `rm_cls,xcls`   \tab Removes class(es) in `...` from classes of `x`.               \cr   \tab     }
-#' \tabular{ll}{  `has_cls`       \tab Evaluate whether class(es) in `...` are (all) classes of `x`. \cr   \tab   \cr
-#'                `add_cls`       \tab Add class(es) in `...` to classes of `x`.                     \cr   \tab   \cr
-#'                `set_cls`       \tab Set class of `x` to class(es) in `...`.                       \cr   \tab     }
-#' \tabular{ll}{  `cls`           \tab Gets class(es) of `x`.                                                       }
+#' \tabular{ll}{  `rm_cls, xcls`   \tab Removes class(es) in `...` from classes of `x`.               \cr   \tab   \cr
+#'                `has_cls`        \tab Evaluate whether class(es) in `...` are (all) classes of `x`. \cr   \tab   \cr
+#'                `add_cls`        \tab Add class(es) in `...` to classes of `x`.                     \cr   \tab   \cr
+#'                `set_cls`        \tab Set class of `x` to class(es) in `...`.                       \cr   \tab   \cr
+#'                `cls`            \tab Gets class(es) of `x`.                                                       }
 #' @param x An R object.
 #' @param ... Unquoted class names and/or names of variables whose contents are \link[=av]{atomized} and converted to character. When `...` args are names of variables in the calling environment, they are atomized, otherwise they are treated as unquoted class names.
-#' @return **A character vector** \cr `cls`
-#' \cr\cr  **A logical scalar**   \cr `has_cls`
-#' \cr\cr  **An object**          \cr `add_cls, set_cls, rm_cls, xcls`
+#' @return **A character vector** \cr\cr `cls`
+#' \cr\cr  **A logical scalar**   \cr\cr `has_cls`
+#' \cr\cr  **An object**          \cr\cr `add_cls, set_cls, rm_cls, xcls`
 #' @examples
 #' egObj1 <- data.frame(letters = letters, numbers = 1:26, stringsAsFactors = F)
 #' egObj2 <- setCLS(egObj1, c("new", cls(egObj1)))

@@ -3,14 +3,14 @@
 #' @family wraps
 #' @title Wrappers of `data.table` functions
 #' @details
-#' \tabular{ll}{  `dtmerge`   \tab Thinly wraps \code{\link[data.table]{merge}}.         \cr   \tab  }
-#' \tabular{ll}{  `dtwide`    \tab Thinly wraps \code{\link[data.table]{dcast}}.         \cr
-#'                `dtrows`    \tab Selects rows.                                         \cr
-#'                `dtcols`    \tab Selects columns without `x[ , ..var]`.                \cr   \tab  }
-#' \tabular{ll}{  `dtsub`     \tab Selects a subtable without `x[row.var, ..col.var]`.   \cr   \tab  }
-#' \tabular{ll}{  `asdt`      \tab Thinly wraps \code{\link[data.table]{as.data.table}}. \cr
-#'                `isdt`      \tab Thinly wraps \code{\link[data.table]{is.data.table}}. \cr
-#'                `iedt`      \tab Convert to `data.table`, if needed.                     }
+#' \tabular{ll}{  `dtmerge`   \tab Thinly wraps \code{\link[data.table]{merge}}.         \cr
+#'                `dtwide`    \tab Thinly wraps \code{\link[data.table]{dcast}}.         \cr
+#'                `dtrows`    \tab Selects rows.                                         \cr
+#'                `dtcols`    \tab Selects columns without `x[ , ..var]`.                \cr
+#'                `dtsub`     \tab Selects a subtable without `x[row.var, ..col.var]`.   \cr
+#'                `asdt`      \tab Thinly wraps \code{\link[data.table]{as.data.table}}. \cr
+#'                `isdt`      \tab Thinly wraps \code{\link[data.table]{is.data.table}}. \cr
+#'                `iedt`      \tab Convert to `data.table`, if needed.                     }
 #' @param x An object for `asdt`, `isdt`, and `iedt`. A \code{\link[data.table]{data.table}} for all others.
 #' @param ir,ic \link[=cmp_ind_vec]{Complete indexer vecs} or \link[=cmp_chr_vec]{complete character vecs} identifying rows and columns of `x`, respectively.
 #' @param say `TRUE` or `FALSE` indicating whether to notify user of starting a potentially time-consuming process (converting to `data.table`, joining two large `data.table`s, and reshaping from long to wide).

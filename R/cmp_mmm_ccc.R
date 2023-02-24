@@ -3,17 +3,17 @@
 #' @title Completeness + xmode + xclass combination properties
 #' @description Check for combinations of \link[=CMP]{completeness}, \link[=mmm]{xmode}, and \link[=ccc]{xclass}.
 #' @details
-#' \tabular{ll}{  `cmp_mmm_ccc_funs`   \tab What complete + xmode + xclass combination property functions are there?                                                                                                                                                          \cr   \tab  }
-#' \tabular{ll}{  `cmp_{mmm}_{ccc}`    \tab Is `x` both complete and a match to the single xmode property `'{mmm}'` and single xclass property `'{ccc}'` where `{mmm}` and `{ccc}` are placeholders for any given xmode property and any given xclass property, respectively. \cr   \tab  }
-#' \tabular{ll}{  `cmp_mmm_ccc`        \tab Is `x` both complete and a match to the single xmode and xclass properties in `MMM` and `ccc`, respectively?                                                                                                                                  }
+#' \tabular{ll}{  `cmp_mmm_ccc_funs`   \tab What complete + xmode + xclass combination property functions are there?                                                                                                                                                          \cr   \tab   \cr
+#'                `cmp_{mmm}_{ccc}`    \tab Is `x` both complete and a match to the single xmode property `'{mmm}'` and single xclass property `'{ccc}'` where `{mmm}` and `{ccc}` are placeholders for any given xmode property and any given xclass property, respectively. \cr   \tab   \cr
+#'                `cmp_mmm_ccc`        \tab Is `x` both complete and a match to the single xmode and xclass properties in `MMM` and `ccc`, respectively?                                                                                                                                     }
 #' @param x An R object.
-#' @param MMM A character scalar single xmode property from `mmm_props()`.
+#' @param mmm A character scalar single xmode property from `mmm_props()`.
 #' @param ccc A character scalar single xclass property from `ccc_props()`.
 #' @param prop A character scalar.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
-#' @return **A character scalar** \cr `cmp_mmm_ccc_funs`
-#' \cr\cr  **A logical scalar**   \cr `cmp_mmm_ccc, cmp_{mmm}_{ccc}`
+#' @return **A character scalar** \cr\cr `cmp_mmm_ccc_funs`
+#' \cr\cr  **A logical scalar**   \cr\cr `cmp_{mmm}_{ccc}, cmp_mmm_ccc`
 #' @examples
 #' cmp_mmm_cccFUNS()
 #' cmp_mmm_ccc(letters, "ch1", "vec")
@@ -22,7 +22,7 @@
 #' cmp_str_scl("a")
 #' @export
 cmp_mmm_ccc <- function(x, mmm, ccc, ...) {
-  cfun <- function(cx) {uj::run("uj::i", base::toupper(ccc), "(cx)")}
+  cfun <- function(cx) {uj::run("uj::", base::toupper(ccc), "(cx)")}
   mfun <- function(mx) {uj::f0(uj::notATM(mx), F, uj::f0(uj::N0(mx), F, uj::f0(uj::anyNAS(mx), F, uj::run("uj::", base::toupper(mmm), "(mx)"))))}
   dfun <- function(dx) {base::all(base::apply(dx, 2, mfun))}
   vfun <- function(vx) {base::all(base::sapply(vx, mfun))}
@@ -37,7 +37,7 @@ cmp_mmm_ccc <- function(x, mmm, ccc, ...) {
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_mmm_ccc_funs <- function() {uj::SUV(uj::p0('cmp', base::sort(uj::av(base::apply(base::expand.grid(mmm = base::toupper(uj:::.mmm), ccc = uj:::.ccc), 1, base::paste0, collapse = "_")))))}
+cmp_mmm_ccc_funs <- function() {uj::suv(uj::p0('cmp', base::sort(uj::av(base::apply(base::expand.grid(mmm = base::toupper(uj:::.mmm), ccc = uj:::.ccc), 1, base::paste0, collapse = "_")))))}
 
 #' @rdname cmp_mmm_ccc
 #' @export

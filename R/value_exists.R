@@ -3,16 +3,16 @@
 #' @family extensions
 #' @title Objects in environments of calling functions
 #' @description All functions in this family operate in the environment of the calling function `gens` generations back in the call stack.
-#' \tabular{ll}{  `value_exists, val_exists, vexists`   \tab Checks for the existence of an object in the environment of the `gens`-specified calling function. \cr   \tab     }
-#' \tabular{ll}{  `get_value, get_val, vget`            \tab Gets the value of an object in the environment of the `gens`-specified calling function.           \cr   \tab   \cr
-#'                `set_value, set_val, vset`            \tab Sets the value of an object in the environment of the `gens`-specified calling function.                          }
+#' \tabular{ll}{  `value_exists, val_exists, vexists`   \tab Checks for the existence of an object in the environment of the `gens`-specified calling function. \cr   \tab   \cr
+#'                `get_value, get_val, vget`            \tab Gets the value of an object in the environment of the `gens`-specified calling function.           \cr   \tab   \cr
+#'                `set_value, set_val, vset`            \tab Sets the value of an object in the environment of the `gens`-specified calling function.                          }
 #' @param name A \link[=cmp_chr_scl]{complete character scalar} giving the name of an object.
 #' @param val A value to place into the object specified by `name`.
 #' @param err A non`NA` logical scalar indicating whether to throw an error if the object specified by `name` does not exist (i.e., rather than returning `FALSE`).
 #' @param gens A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of generations back in the function call stack to go.
-#' @return **A logical scalar**      \cr `value_exists, val_exists, vexists`
-#' \cr\cr  **The** `NULL` **object** \cr `set_value, set_val, vset`
-#' \cr\cr  **An object**             \cr `get_value, get_val, vget`
+#' @return **A logical scalar**      \cr\cr `value_exists, val_exists, vexists`
+#' \cr\cr  **The** `NULL` **object** \cr\cr `set_value, set_val, vset`
+#' \cr\cr  **An object**             \cr\cr `get_value, get_val, vget`
 #' @examples
 #' egFunC <- function() {
 #'   parent <- callers(1)
