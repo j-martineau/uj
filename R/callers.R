@@ -1,59 +1,5 @@
 # internals ####
 
-.bad_if_not_name <- function(x) {uj::f0(uj::LEN(x) == 0, "< bad >", uj::f0(uj::allIN(x, base::c(base::letters, base::LETTERS, 0:9, ".", "_")), x, "< bad >"))}
-
-.pkg_fun <- function(stack, lim, vec = T, pkg.only = F, fun.only = F) {
-  bad <- "< bad >"
-  unknown1 <- "..unknown.."
-  unknown2 <- "{ unknown }"
-  command1 <- "..command.line.."
-  command2 <- "{ command line }"
-  posP <- base::regexpr("(" , stack, fixed = T) - 1
-  pos2 <- base::regexpr("::", stack, fixed = T) - 1
-  pos3 <- base::regexpr(":::", stack, fixed = T) - 1
-  iP <- posP > 0
-  i2 <- pos2 > 0
-  i3 <- pos3 > 0
-  fun <- pkg <- base::rep.int(unknown1, uj::N(stack))
-  pkg[i2] <- base::substr(stack[i2], 1, pos2[i2])
-  pkg[i3] <- base::substr(stack[i3], 1, pos3[i3])
-  fun.start <- base::pmax(1, pos2, pos3)
-  fun[iP] <- base::substr(stack[iP], fun.start[iP], posP[iP])
-  nch.pkg <- uj::LEN(pkg)
-  nch.fun <- uj::LEN(fun)
-  abb.pkg <- lim < nch.pkg
-  abb.fun <- lim < nch.fun
-  last.pkg <- base::pmin(lim, nch.pkg - 3)
-  last.fun <- base::pmin(lim, nch.fun - 3)
-  pkg[abb.pkg] <- uj::p0(base::substr(pkg[abb.pkg], 1, last.pkg[abb.pkg]), "...")
-  fun[abb.fun] <- uj::p0(base::substr(fun[abb.fun], 1, last.fun[abb.fun]), "...")
-  pkg <- base::sapply(pkg, uj:::.bad_if_not_name)
-  fun <- base::sapply(fun, uj:::.bad_if_not_name)
-  wild <- base::c(bad, unknown1)
-  bad.fun <- uj::isIN1(fun, wild)
-  pkg <- pkg[!bad.fun]
-  fun <- fun[!bad.fun]
-  i2 <- i2[!bad.fun]
-  i3 <- i3[!bad.fun]
-  pkg[pkg %in% wild] <- unknown1
-  pkg[fun == command1] <- command2
-  fun[fun == command1] <- command2
-  if (uj::N0(pkg)) {
-    pkg <- fun <- "{ command line }"
-    i3 <- F
-  } else {pkg[pkg == unknown1] <- unknown2}
-  if (!pkg.only & !fun.only) {
-    if (vec) {
-      sep <- base::rep("::", uj::N(pkg))
-      sep[i3] <- uj::p0(sep[i3], ":")
-      uj::p0(pkg, sep, fun)
-    } else {base::list(pkg = pkg, fun = fun)}
-  } else if (pkg.only) {pkg}
-  else {fun}
-}
-
-# exported ####
-
 #' @encoding UTF-8
 #' @family environments
 #' @family meta
@@ -135,20 +81,20 @@
 #' av(egA())
 #' @export
 callers <- function(vec = TRUE) {
-  if (uj::notT(vec)) {vec <- F}
-  stack <- base::c(base::rev(uj::asCHR(base::sys.calls())), "..command.line..")
-  if (uj::N2(stack)) {stack <- base::c(stack, "..command.line..")}
-  uj:::.pkg_fun(uj::Nth_plus(stack, 3), 35, uj::f0(vec, "vec", "vls"))
+  if (!uj::fs_t(vec)) {vec <- F}
+  stack <- base::c(base::rev(base::as.character(base::sys.calls())), "..command.line..")
+  if (base::length(stack) == 2) {stack <- base::c(stack, "..command.line..")}
+  uj:::.pkg_fun(stack[3:base::length(stack)], 35, uj::f0(vec, "vec", "vls"))
 }
 
 #' @rdname callers
 #' @export
 caller <- function(scl = TRUE) {
-  if (uj::notT(scl)) {scl <- F}
+  if (!uj::fs_t(scl)) {scl <- F}
   stack <- base::sys.calls()
-  stack <- base::c(base::rev(uj::asCHR(stack)), "..command.line..")
-  if (uj::N2(stack)) {stack <- base::c(stack, "..command.line..")}
-  uj:::.pkg_fun(stack, 100, uj::f0(scl, "scl", "vls"))
+  stack <- base::c(base::rev(base::as.character(stack)), "..command.line..")
+  if (base::length(stack) == 2) {stack <- base::c(stack, "..command.line..")}
+  uj:::.pkg_fun(stack[3], 100, uj::f0(scl, "scl", "vls"))
 }
 
 #' @rdname callers
@@ -158,26 +104,26 @@ caller1 <- caller
 #' @rdname callers
 #' @export
 caller2 <- function(scl = TRUE) {
-  if (uj::notT(scl)) {scl <- F}
+  if (!uj::fs_t(scl)) {scl <- F}
   stack <- base::sys.calls()
-  stack <- base::c(base::rev(uj::asCHR(stack)), "..command.line..")
-  if (uj::N2(stack)) {stack <- base::c(stack, "..command.line..")}
-  if (uj::N(stack) == 3) {stack <- base::c(stack, "..command.line..")}
+  stack <- base::c(base::rev(base::as.character(stack)), "..command.line..")
+  if (base::length(stack) == 2) {stack <- base::c(stack, "..command.line..")}
+  if (base::length(stack) == 3) {stack <- base::c(stack, "..command.line..")}
   uj:::.pkg_fun(stack[4], 100, uj::f0(scl, "scl", "vls"))
 }
 
 #' @rdname callers
 #' @export
 callerN <- function(n, err = TRUE, scl = TRUE) {
-  if (uj::notT(err)) {err <- T}
-  if (uj::notT(scl)) {scl <- T}
-  uj::err_if_not(uj::cmp_psw_scl(n), "[n] must be a complete positive whole number scalar (?cmp_psw_scl).", PKG = "uj")
+  if (!uj::fs_t(err)) {err <- T}
+  if (!uj::fs_t(scl)) {scl <- T}
+  if (!uj:::.cmp_psw_scl(N)) {uj::stopperr("[n] must be a complete positive whole number scalar (?cmp_psw_scl).", PKG = "uj")}
   stack <- base::sys.calls()
-  stack <- base::c(base::rev(uj::asCHR(stack)), "..command.line..")
-  if (uj::N2(stack)) {stack <- base::c(stack, "..command.line..")}
-  stack <- stack[3:uj::N(stack)]
-  N <- uj::N(stack)
-  uj::err_if(err & n > N, "[n] is greater than number of calling functions.", PKG = "uj")
+  stack <- base::c(base::rev(base::as.character(stack)), "..command.line..")
+  if (base::length(stack) == 2) {stack <- base::c(stack, "..command.line..")}
+  stack <- stack[3:base::length(stack)]
+  N <- base::length(stack)
+  if (err & n > N) {uj::stopperr("[n] is greater than number of calling functions.", PKG = "uj")}
   n <- base::min(n, N)
   uj:::.pkg_fun(stack[n], 100,  uj::f0(scl, "scl", "vls"))
 }
@@ -185,16 +131,16 @@ callerN <- function(n, err = TRUE, scl = TRUE) {
 #' @rdname callers
 #' @export
 callersN <- function(..., err = TRUE, vec = TRUE) {
-  if (notT(err)) {err <- T}
-  if (notT(vec)) {vec <- T}
+  if (!uj::fs_t(err)) {err <- T}
+  if (!uj::fs_t(vec)) {vec <- T}
   Ns <- uj::av(...)
-  uj::err_if_not(uj::cmp_psw_vec(Ns), "All [...] args must be complete positive whole-number vecs (?cmp_psw_vec).", PKG = "uj")
+  if (!uj:::.cmp_psw_vec(Ns)) {uj::stopperr("All [...] args must be complete positive whole-number vecs (?cmp_psw_vec).", PKG = "uj")}
   stack <- base::sys.calls()
-  stack <- base::c(base::rev(uj::asCHR(stack)), "..command.line..")
-  if (uj::N2(stack)) {stack <- base::c(stack, "..command.line..")}
-  stack <- uj::Nth_plus(stack, 3)
-  N <- uj::N(stack)
-  uj::err_if(err & base::any(Ns > N), "A value in [...] is greater than number of calling functions.", PKG = "uj")
+  stack <- base::c(base::rev(base::as.character(stack)), "..command.line..")
+  if (base::length(stack) == 2) {stack <- base::c(stack, "..command.line..")}
+  stack <- stack[3:base::length(stack)]
+  N <- base::length(stack)
+  if (err & base::any(Ns > N)) {uj::stopperr("A value in [...] is greater than number of calling functions.", PKG = "uj")}
   uj:::.pkg_fun(stack[Ns[Ns <= N]], 35, uj::f0(vec, "vec", "vls"))
 }
 
@@ -202,36 +148,36 @@ callersN <- function(..., err = TRUE, vec = TRUE) {
 #' @export
 ncallers <- function() {
   stack <- base::sys.calls()
-  stack <- base::c(base::rev(uj::asCHR(stack)), "..command.line..")
-  if (uj::N2(stack)) {stack <- base::c(stack, "..command.line..")}
-  stack <- uj::Nth_plus(stack, 3)
-  uj::N(uj:::.pkg_fun(stack, 35, T))
+  stack <- base::c(base::rev(base::as.character(stack)), "..command.line..")
+  if (base::length(stack) == 2) {stack <- base::c(stack, "..command.line..")}
+  stack <- stack[3:base::length(stack)]
+  base::length(uj:::.pkg_fun(stack, 35, T))
 }
 
 #' @rdname callers
 #' @export
 lineage <- function(vec = TRUE) {
-  if (uj::notT(vec)) {vec <- F}
+  if (!uj::fs_t(vec)) {vec <- F}
   stack <- base::sys.calls()
-  stack <- base::c(base::rev(uj::asCHR(stack)), "..command.line..")
-  stack <- uj::Nth_plus(stack, 2)
+  stack <- base::c(base::rev(base::as.character(stack)), "..command.line..")
+  stack <- stack[2:base::length(stack)]
   uj:::.pkg_fun(stack, 35, uj::vec("vec", "vls"))
 }
 
 #' @rdname callers
 #' @export
 self <- function(scl = TRUE) {
-  if (uj::notT(scl)) {scl <- F}
+  if (!uj::fs_t(scl)) {scl <- F}
   stack <- base::sys.calls()
-  stack <- base::c(base::rev(uj::asCHR(stack)), "..command.line..")[2]
+  stack <- base::c(base::rev(base::as.character(stack)), "..command.line..")[2]
   uj:::.pkg_fun(stack, 100, uj::f0(scl, "scl", "vls"))
 }
 
 #' @rdname callers
 #' @export
 ancestor <- function(scl = TRUE) {
-  if (notT(scl)) {scl <- F}
+  if (!uj::fs_t(scl)) {scl <- F}
   stack <- uj::callers()
-  stack[base::max(1, uj::N(stack) - 1)]
+  stack[base::max(1, base::length(stack) - 1)]
   uj:::.pkg_fun(stack, 100, uj::f0(scl, "scl", "vls"))
 }

@@ -3,12 +3,12 @@
 \encoding{UTF-8}
 \name{chn}
 \alias{chn}
-\alias{charN}
+\alias{charn}
 \title{Get the \code{n}-th character element-wise.}
 \usage{
 chn(x, n)
 
-charN(x, n)
+charn(x, n)
 }
 \arguments{
 \item{x}{A \link[=pop_chr]{populated character object}.}
@@ -31,13 +31,13 @@ charN(words, 10)
 \seealso{
 Other strings: 
 \code{\link{blank}()},
-\code{\link{delim}},
+\code{\link{delim}()},
 \code{\link{fsub}()},
 \code{\link{gr}},
 \code{\link{ipat}()},
 \code{\link{makestr}()},
 \code{\link{markdown}()},
-\code{\link{max_nch}()},
+\code{\link{maxnch}()},
 \code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{revstr}()},
@@ -47,7 +47,7 @@ Other strings:
 \code{\link{weave}()}
 
 Other chars: 
-\code{\link{max_nch}()},
+\code{\link{maxnch}()},
 \code{\link{revstr}()},
 \code{\link{spaces}()},
 \code{\link{ss}()}

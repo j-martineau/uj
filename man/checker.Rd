@@ -68,7 +68,7 @@ check_t(..., D = " ")
 
 check_tf(...)
 
-check_lgl(..., NAS = FALSE, EXTRAS = NULL)
+check_lgl(..., NA0 = FALSE, EXTRAS = NULL)
 
 check_nll_or(FUNS, ..., VALS = NULL)
 
@@ -80,9 +80,9 @@ check_pop(...)
 
 check_funs(FUNS, ..., VALS = NULL)
 
-check_spec(SPEC, ..., NAS = F)
+check_spec(SPEC, ..., NA0 = F)
 
-check_vals(VALS, ..., A = TRUE, NAS = FALSE)
+check_vals(VALS, ..., A = TRUE, NA0 = FALSE)
 
 check_chars(CHARS, ..., A = TRUE)
 
@@ -107,7 +107,7 @@ check_fail(...)
 
 \item{GENS}{A \link[=cmp_nnw_scl]{complete non-negative whole-number scalar} indicating the number of generations back in the call stack in which to bank and/or check for error messages.}
 
-\item{NAS}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values qualify as \code{'logical'}.}
+\item{NA0}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values qualify as \code{'logical'}.}
 
 \item{EXTRAS}{\code{NULL} or a \link[=cmp_atm]{complete atomic object} containing additional valid values.}
 
@@ -166,7 +166,7 @@ Bank error messages in the immediate environment of a function to allow for exha
 \cr\cr Error banking utility functions: These functions are utilities for banking user-defined error messages within a function to allow for checking for multiple errors in separate statements and banking those error messages as they are checked, waiting to process banked error messages until an error checking block is completed. These functions also allow for generating and checking for error messages further up the call stack than the function in which the error banking/processing occurs by specifying the number of generations back in the call stack where error banking/processing occurs in \code{GENS}:
 \tabular{ll}{  \code{banked_errs}    \tab Retrieves the bank of error message stored in the environment of the function \code{GENS} generations back in the call stack.                                                                                            \cr   \tab   \cr
   \code{bankerrs}       \tab Banks each element of \link[=cmp_chr_vec]{complete character vec} as an individual error message.                                                                                                                   \cr   \tab   \cr
-  \code{bankerr}        \tab Banks an arbitrary error message (built by \link[=collapse_dots]{collapsing} \code{...} args) in the environment of the function \code{GENS} generations back in the call stack.                                                            }
+  \code{bankerr}        \tab Banks an arbitrary error message (built by \link[=collapse_dots]{collapsing} \code{...} args) in the environment of the function \code{GENS} generations back in the call stack.                                                             }
 \cr\cr \strong{Error checking / conditional error banking functions}
 \cr\cr \strong{\code{checkerr}} checks for any banked error messages. If there are any, processes them and stops execution. Otherwise, does nothing.
 \cr\cr The remaining \strong{\verb{check_\{props\}}} functions in the following table check objects for specific properties and automatically generate errors only if those properties are not met:
@@ -180,12 +180,12 @@ Bank error messages in the immediate environment of a function to allow for exha
   \code{check_vals}      \tab A named \code{...} arg contains values not supplied in \code{VALS}.                                                                                                                                                          \cr   \tab   \cr
   \code{check_fail}      \tab A named \code{...} arg produces an error when submitted to \code{\link[base]{identity}}.                                                                                                                                \cr   \tab   \cr
   \code{check_cls}       \tab A named \code{...} arg is not of any class named in \code{CLS}.                                                                                                                                                              \cr   \tab   \cr
-  \code{check_lgl}       \tab A named \code{...} arg is neither \code{TRUE}, \code{FALSE}, \code{NA} (if \code{NAS = TRUE}), nor contained in \code{EXTRAS}.                                                                                                                   \cr   \tab   \cr
+  \code{check_lgl}       \tab A named \code{...} arg is neither \code{TRUE}, \code{FALSE}, \code{NA} (if \code{NA0 = TRUE}), nor contained in \code{EXTRAS}.                                                                                                                   \cr   \tab   \cr
   \code{check_pop}       \tab A named \code{...} arg is either \code{NULL} or otherwise of length \code{0}.                                                                                                                                                     \cr   \tab   \cr
   \code{check_tf}        \tab A named \code{...} arg is neither scalar \code{TRUE} nor scalar \code{FALSE}.                                                                                                                                                     \cr   \tab   \cr
-  \code{check_t}         \tab A named \code{...} arg is \code{FALSE}\eqn{^{(3)}}.                                                                                                                                                                                         }
+  \code{check_t}         \tab A named \code{...} arg is \code{FALSE}\eqn{^{(3)}}.                                                                                                                                                                          \cr   \tab     }
 \tabular{l}{  \eqn{^{(1)}} Named if \code{NAMED = TRUE}.                                                                                                             \cr
-  \eqn{^{(2)}} May be scalar \code{NA} if \code{NAS = TRUE}.                                                                                                  \cr
+  \eqn{^{(2)}} May be scalar \code{NA} if \code{NA0 = TRUE}.                                                                                                  \cr
   \eqn{^{(3)}} Collapses \emph{unnamed} \code{...} args to an error message template, replacing the escape sequence \code{'{@}'} with the \emph{named} \code{...} arg's name. }
 }
 \section{The \code{...} arguments}{
@@ -203,7 +203,7 @@ Bank error messages in the immediate environment of a function to allow for exha
   \code{check_lgl}     \tab    \verb{1+} (\code{\link{atm_scl}})          \tab   \code{0}                                      \tab   \verb{1+}    \cr
   \code{check_pop}     \tab    \verb{1+} (any object)                     \tab   \code{0}                                      \tab   \verb{1+}    \cr
   \code{check_tf}      \tab    \verb{1+} (any object)                     \tab   \code{0}                                      \tab   \verb{1+}    \cr
-  \code{check_t}       \tab    \verb{1+} (\code{\link{isTF1}})            \tab   \code{0}                                      \tab   \verb{1+}    \cr
+  \code{check_t}       \tab    \verb{1+} (\code{\link{is_tf0}})           \tab   \code{0}                                      \tab   \verb{1+}    \cr
   \code{stopperr}      \tab    \verb{0+} (\code{\link{cmp_chr_vec}})      \tab   \verb{0+} (\code{\link{cmp_chr_vec}})         \tab   \verb{1+}    \cr
   \code{errs}          \tab    \verb{0+} (\code{\link{cmp_chr_vec}})      \tab   \verb{0+} (\code{\link{cmp_chr_vec}})         \tab   \verb{1+}    \cr
   \code{err}           \tab    \verb{0+} (\code{\link{cmp_chr_vec}})      \tab   \verb{0+} (\code{\link{cmp_chr_vec}})         \tab   \verb{1+}      }
@@ -248,7 +248,7 @@ egErrors <- function(..., tf = NA, lgl = 42, not = FALSE, pop = NULL,
 }
 \seealso{
 Other properties: 
-\code{\link{asMODE}()},
+\code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{cls}()},

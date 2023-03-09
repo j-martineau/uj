@@ -32,7 +32,7 @@
 #'                `is_fun, not_fun`   \tab `(!)is.function(x)`                        \cr
 #'                `is_lst, not_lst`   \tab `(!)is.list(x)`                            \cr
 #'                `is_mat, not_mat`   \tab `(!)is.matrix(x)`                          \cr
-#'                `is_vec, not_vec`   \tab `(!)is.vector(x)`             \cr   \tab   \cr
+#'                `is_vec, not_veq`   \tab `(!)is.vector(x)`             \cr   \tab   \cr
 #'                `is_atm, not_atm`   \tab `(!)is.atomic(x)`                          \cr
 #'                `is_chr, not_chr`   \tab `(!)is.character(x)`                       \cr
 #'                `is_fac, not_fac`   \tab `(!)is.factor(x)`                          \cr
@@ -48,11 +48,8 @@
 #' vals
 #' vars
 #' text
-#' u(vals)
-#' u(vars)
-#' u(data.frame(var = vars, val = vals))
-#' dn(vals)
-#' up(vals)
+#' lo(vals)
+#' hi(vals)
 #' len(vars)
 #' mid(vars, 1, 3)
 #' spf(text, vars[1:3], vals[1:3], vars[4:6], vals[4:6])
@@ -68,11 +65,11 @@ g <- function(g, ...) {base::paste(uj::av(...), collapse = g)}
 
 #' @rdname basics
 #' @export
-g0 <- function(...) {uj::g("", ...)}
+g0 <- function(...) {base::paste0(uj::av(...), collapse = "")}
 
 #' @rdname basics
 #' @export
-g1 <- function(...) {uj::g(" ", ...)}
+g1 <- function(...) {base::paste0(uj::av(...), collapse = " ")}
 
 # p (paste across) ####
 
@@ -83,11 +80,11 @@ p <- function(p, ...) {base::paste(..., sep = p)}
 
 #' @rdname basics
 #' @export
-p0 <- function(...) {uj::p("", ...)}
+p0 <- function(...) {base::paste0(...)}
 
 #' @rdname basics
 #' @export
-p1 <- function(...) {uj::p(" ", ...)}
+p1 <- function(...) {base::paste(..., sep = " ")}
 
 # special values ####
 
@@ -101,25 +98,19 @@ ok <- function(x) {!base::is.na(x)}
 
 #' @rdname basics
 #' @export
-wNA <- function(x) {base::which(base::is.na(x))}
+wna <- function(x) {base::which(base::is.na(x))}
 
 #' @rdname basics
 #' @export
-wOK <- function(x) {base::which(!base::is.na(x))}
+wok <- function(x) {base::which(!base::is.na(x))}
 
 #' @rdname basics
 #' @export
-null <- function(x) {
-  x <- tryCatch(base::identity(x), error = function(e) e, finally = NULL)
-  if (assertthat::is.error(x)) {T} else {base::is.null(x)}
-}
+null <- function(x) {if (uj::is_err(x)) {T} else {base::is.null(x)}}
 
 #' @rdname basics
 #' @export
-def <- function(x) {
-  x <- tryCatch(base::identity(x), error = function(e) e, finally = NULL)
-  if (assertthat::is.error(x)) {F} else {!base::is.null(x)}
-}
+def <- function(x) {if (uj::is_err(x)) {F} else {!base::is.null(x)}}
 
 #' @rdname basics
 #' @export
@@ -161,11 +152,11 @@ dlabs <- function() {base::eval.parent(base::...names())}
 
 #' @rdname basics
 #' @export
-elabs <- function(x) {base::names(x)}
+rlabs <- function(x) {base::rownames(x)}
 
 #' @rdname basics
 #' @export
-rlabs <- function(x) {base::rownames(x)}
+vlabs <- function(x) {base::names(x)}
 
 # is(nt) class ####
 
@@ -175,11 +166,11 @@ is_atm <- function(x) {base::is.atomic(x)}
 
 #' @rdname basics
 #' @export
-is__chr <- function(x) {base::is.character(x)}
+is_chr <- function(x) {base::is.character(x)}
 
 #' @rdname basics
 #' @export
-is__fac <- function(x) {base::is.factor(x)}
+is_fac <- function(x) {base::is.factor(x)}
 
 #' @rdname basics
 #' @export
@@ -199,39 +190,39 @@ is_ord <- function(x) {base::is.ordered(x)}
 
 #' @rdname basics
 #' @export
-is_uno <- function(x) {uj::is_fac(x) & !uj::is_ord(x)}
+is_uno <- function(x) {base::is.factor(x) & !base::is.ordered(x)}
 
 #' @rdname basics
 #' @export
-not_atm <- function(x) {!uj::is_atm(x)}
+not_atm <- function(x) {!base::is.atomic(x)}
 
 #' @rdname basics
 #' @export
-not_chr <- function(x) {!uj::is_chr(x)}
+not_chr <- function(x) {!base::is.character(x)}
 
 #' @rdname basics
 #' @export
-not_fac <- function(x) {!uj::is_fac(x)}
+not_fac <- function(x) {!base::is.factor(x)}
 
 #' @rdname basics
 #' @export
-not_int <- function(x) {!uj::is_int(x)}
+not_int <- function(x) {!base::is.integer(x)}
 
 #' @rdname basics
 #' @export
-not_lgl <- function(x) {!uj::is_lgl(x)}
+not_lgl <- function(x) {!base::is.logical(x)}
 
 #' @rdname basics
 #' @export
-not_num <- function(x) {!uj::is_num(x)}
+not_num <- function(x) {!base::is.numeric(x)}
 
 #' @rdname basics
 #' @export
-not_ord <- function(x) {!uj::is_ord(x)}
+not_ord <- function(x) {!base::is.ordered(x)}
 
 #' @rdname basics
 #' @export
-not_uno <- function(x) {!uj::is_uno(x)}
+not_uno <- function(x) {!base::is.factor(x) | base::is.ordered(x)}
 
 # is(n't) class ####
 
@@ -261,33 +252,34 @@ is_vec <- function(x) {base::is.vector(x)}
 
 #' @rdname basics
 #' @export
-not_arr <- function(x) {!uj::is_arr(x)}
+not_arr <- function(x) {!base::is.array(x)}
 
 #' @rdname basics
 #' @export
-not_dtf <- function(x) {!uj::is_dtf(x)}
+not_dtf <- function(x) {!base::is.data.frame(x)}
 
 #' @rdname basics
 #' @export
-not_fun <- function(x) {!uj::is_fun(x)}
+not_fun <- function(x) {!base::is.function(x)}
 
 #' @rdname basics
 #' @export
-not_lst <- function(x) {!uj::is_lst(x)}
+not_lst <- function(x) {!base::is.list(x)}
 
 #' @rdname basics
 #' @export
-not_mat <- function(x) {!uj::is_mat(x)}
+not_mat <- function(x) {!base::is.matrix(x)}
 
 #' @rdname basics
 #' @export
-not_vec <- function(x) {!uj::is_vec(x)}
+not_veq <- function(x) {!base::is.vector(x)}
+
+# subsets ####
 
 #' @rdname basics
 #' @export
-x_in <- function(x, ...) {x[uj::isIN(x, ...)]}
+x_in <- function(x, ...) {x[uj::is_in(x, ...)]}
 
 #' @rdname basics
 #' @export
-x_in <- function(x, ...) {x[uj::isMF(x, ...)]}
-
+x_mf <- function(x, ...) {x[uj::is_mf(x, ...)]}

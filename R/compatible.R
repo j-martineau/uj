@@ -4,6 +4,7 @@
 #' @title Are objects compatible?
 #' @description
 #' \tabular{ll}{  `compatible`        \tab Evaluates whether all `...` arguments are compatible, meaning all numeric, all character, all logical, all unordered factor with the same levels, or ordered factor with the same levels in the same order.  \cr   \tab   \cr
+#'                `compatible_xy`     \tab Evaluates whether all `x` and `y` are compatible.                                                                                                                                                            \cr   \tab   \cr
 #'                `compatible_mats`   \tab Evaluates whether all `...` arguments are compatible matrices and (for row binding) have the same number of columns or (for column binding) have the same number of rows.                                    \cr   \tab   \cr
 #'                `compatible_dtfs`   \tab Evaluates whether all `...` arguments are \link[=atm_dtf]{atomic data.frames}. For row binding, also evaluates whether they have the same number of columns and all corresponding columns are compatible.
 #'                                         For column binding, also evaluates whether they have the same number of rows.                                                                                                                                               }
@@ -12,13 +13,13 @@
 #' @param REC `TRUE` or `FALSE` indicating whether arguments in `...` must be recyclable to be compatible.
 #' @return A logical scalar.
 #' @examples
-#' egN0 <- 0
+#' egn0 <- 0
 #' egN7 <- 0:7
 #' egN9 <- 0:9
-#' egL0 <- egN0 < 4
+#' egL0 <- egn0 < 4
 #' egL7 <- egN7 < 3
 #' egL9 <- egN9 < 2
-#' egC0 <- as.character(egN0)
+#' egC0 <- as.character(egn0)
 #' egC7 <- as.character(egN7)
 #' egC9 <- as.character(egN9)
 #' u00 <- factor(egC0, levels = egC0, ordered = F)
@@ -35,12 +36,12 @@
 #' egDTFncl9 <- data.frame(N = egN9, C = egC9, L = egL9)
 #' egDTFcln7 <- data.frame(C = egC7, L = egL7, N = egN7)
 #' egDTFcln9 <- data.frame(C = egC9, L = egL9, N = egN9)
-#' compatible(egN0, egN7, egN9)
+#' compatible(egn0, egN7, egN9)
 #' compatible(egC0, egC7, egC9, REC = T)
 #' compatible(egC0, egC7, egC9)
 #' compatible(egL0, egL7, egL9, REC = T)
 #' compatible(egL0, egL7, egL9)
-#' compatible(egN0, egN7, egN9, REC = T)
+#' compatible(egn0, egN7, egN9, REC = T)
 #' compatible(u09, u79, u99)
 #' compatible(u00, u07, u09)
 #' compatible(o09, o79, o99)
@@ -52,24 +53,41 @@
 #' @export
 compatible <- function(..., REC = FALSE) {
   x <- base::list(...)
-  n <- uj::N(x)
-  uj::errs_if_nots(n >= 2        , "[...] must contain multiple arguments.",
-                   uj::isTF1(REC), "[REC] must be TRUE or FALSE."          , PKG = "uj")
+  n <- base::length(x)
+  errs <- NULL
+  if (n < 2) {errs <- base::c(errs, "[...] must contain multiple arguments.")}
+  if (!uj:::.cmp_lgl_scl(REC)) {errs <- base::c(errs, "[REC] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   if (REC) {
-    un <- uj::NU(x)
+    un <- base::length(base::unique(x))
     nr <- base::max(un) / un
     if (base::any(nr != base::round(nr))) {return(F)}
   }
-  chr <- base::all(base::sapply(x, uj::isCHR))
-  lgl <- base::all(base::sapply(x, uj::isLGL))
-  num <- base::all(base::sapply(x, uj::isNUM))
-  ord <- base::all(base::sapply(x, uj::isORD))
-  uno <- base::all(base::sapply(x, uj::isFAC)) & !base::any(base::sapply(x, uj::isORD))
+  chr <- base::all(base::sapply(x, base::is.character))
+  lgl <- base::all(base::sapply(x, base::is.logical))
+  num <- base::all(base::sapply(x, baes::is.numeric))
+  ord <- base::all(base::sapply(x, base::is.ordered))
+  uno <- base::all(base::sapply(x, base::is.factor)) & !base::any(base::sapply(x, base::is.ordered))
   if (!chr & !lgl & !num) {
     if (ord | uno) {
       levs <- base::sapply(x, levels)
-      if      (ord) {for (i in 2:n) {if (uj::notVEQ(levs[[i]], levs[[i - 1]])) {return(F)}}}
-      else if (uno) {for (i in 2:n) {if (uj::notSEQ(levs[[i]], levs[[i - 1]])) {return(F)}}}
+      if (ord) {for (i in 2:n) {
+        curr.levs <- levs[[i]]
+        prev.levs <- levs[[i - 1]]
+        if (base::length(curr.levs) != base::length(prev.levs)) {return(F)}
+        CHR <- base::is.character(curr.levs) & base::is.character(prev.levs)
+        NUM <- base::is.numeric(curr.levs) & base::is.numeric(prev.levs)
+        if (!CHR & !NUM) {return(F)}
+        if (base::any(curr.levs != prev.levs)) {return(F)}
+      }} else if (uno) {for (i in 2:n) {
+        curr.levs <- levs[[i]]
+        prev.levs <- levs[[i - 1]]
+        if (base::length(curr.levs) != base::length(prev.levs)) {return(F)}
+        CHR <- base::is.character(curr.levs) & base::is.character(prev.levs)
+        NUM <- base::is.numeric(curr.levs) & base::is.numeric(prev.levs)
+        if (!CHR & !NUM) {return(F)}
+        if (!base::setequal(curr.levs, prev.levs)) {return(F)}
+      }}
       T
     } else {F}
   } else {T}
@@ -77,17 +95,24 @@ compatible <- function(..., REC = FALSE) {
 
 #' @rdname compatible
 #' @export
+compatible_xy <- function(x, y, REC = FALSE) {uj::compatible(x, y, REC = REC)}
+
+#' @rdname compatible
+#' @export
 compatible_mats <- function(DIM, ...) {
   x <- base::list(...)
-  n <- uj::N(x)
-  uj::errs_if_nots(uj::isIN1(DIM, 1, 2)                                     , "[DIM] must be integer scalar 1 or 2."             ,
-                   uj::f0(n < 2, F, base::all(base::sapply(x, uj::atm_mat))), "[...] must contain 2+ atomic matrices (?atm_mat).", PKG = "uj")
+  n <- base::length(x)
+  errs <- NULL
+  if (!uj:::.cmp_num_scl(DIM, valid = 1:2)) {errs <- base::c(errs, "[DIM] must be integer scalar 1 or 2.")}
+  if (n < 2) {errs <- base::c(errs, "[...] must contain 2+ atomic matrices (?atm_mat).")}
+  else if (!base::all(base::sapply(x, uj:::.atm_mat))) {errs <- base::c(errs, "[...] must contain 2+ atomic matrices (?atm_mat).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   for (i in 2:n) {
     curr <- x[[i]]
     prev <- x[[i - 1]]
-    if      (DIM == 1 & uj::NC(prev) != uj::NC(curr)) {return(F)}
-    else if (DIM == 2 & uj::NR(prev) != uj::NR(curr)) {return(F)}
-    else if (!uj::compatible(prev, curr)            ) {return(F)}
+    if      (DIM == 1 & base::ncol(prev) != base::ncol(curr)) {return(F)}
+    else if (DIM == 2 & base::nrow(prev) != base::nrow(curr)) {return(F)}
+    else if (!uj::compatible(prev, curr)) {return(F)}
   }
   T
 }
@@ -96,17 +121,20 @@ compatible_mats <- function(DIM, ...) {
 #' @export
 compatible_dtfs <- function(DIM, ...) {
   x <- base::list(...)
-  n <- uj::N(x)
-  uj::errs_if_nots(uj::isIN1(DIM, 1, 2)                                      , "[DIM] must be integer scalar 1 or 2."                ,
-                   uj::f0(n < 2, F,  base::all(base::sapply(x, uj::atm_dtf))), "[...] must contain 2+ atomic data.frames (?atm_dtf).", PKG = "uj")
+  n <- base::length(x)
+  errs <- NULL
+  if (!uj:::.cmp_num_scl(DIM, valid = 1:2)) {errs <- base::c(errs, "[DIM] must be integer scalar 1 or 2.")}
+  if (n < 2) {errs <- base::c(errs, "[...] must contain 2+ atomic data.frames (?atm_dtf).")}
+  else if (!base::all(base::sapply(x, uj:::.atm_dtf))) {errs <- base::c(errs, "[...] must contain 2+ atomic data.frames (?atm_dtf).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   for (i in 2:n) {
     curr <- x[[i]]
     prev <- x[[i - 1]]
-    if (DIM == 2 & uj::NR(curr) != uj::NR(prev)) {return(F)}
+    if (DIM == 2 & base::nrow(curr) != base::nrow(prev)) {return(F)}
     if (DIM == 1) {
-      if (uj::NC(curr) != uj::NC(prev)       ) {return(F)}
-      if (uj::isDIF1(uj::CN(curr), uj::CN(prev))) {return(F)}
-      for (j in 1:uj::NC(curr)) {if (!uj::compatible(curr[[j]], prev[[j]])) {return(F)}}
+      if (base::ncol(curr) != base::ncol(prev)) {return(F)}
+      if (base::any(base::colnames(curr) != base::colnames(prev))) {return(F)}
+      for (j in 1:base::ncol(curr)) {if (!uj::compatible(curr[[j]], prev[[j]])) {return(F)}}
   }}
   T
 }

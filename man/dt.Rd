@@ -3,27 +3,27 @@
 \encoding{UTF-8}
 \name{dt}
 \alias{dt}
-\alias{asdt}
-\alias{isdt}
-\alias{iedt}
-\alias{dtsub}
-\alias{dtcols}
-\alias{dtmerge}
-\alias{dtrows}
-\alias{dtwide}
+\alias{as_dt}
+\alias{is_dt}
+\alias{ie_dt}
+\alias{dt_sub}
+\alias{dt_cols}
+\alias{dt_merge}
+\alias{dt_rows}
+\alias{dt_wide}
 \title{Wrappers of \code{data.table} functions}
 \usage{
-asdt(x, keep.rownames = FALSE, ..., say = TRUE)
+as_dt(x, keep.rownames = FALSE, ..., say = TRUE)
 
-isdt(...)
+is_dt(...)
 
-iedt(x, say = TRUE)
+ie_dt(x, say = TRUE)
 
-dtsub(x, ir, ic)
+dt_sub(x, ir, ic)
 
-dtcols(x, ic)
+dt_cols(x, ic)
 
-dtmerge(
+dt_merge(
   x,
   y,
   by = NULL,
@@ -39,9 +39,9 @@ dtmerge(
   say = TRUE
 )
 
-dtrows(x, ir)
+dt_rows(x, ir)
 
-dtwide(
+dt_wide(
   data,
   formula,
   fun.aggregate = NULL,
@@ -57,7 +57,7 @@ dtwide(
 )
 }
 \arguments{
-\item{x}{An object for \code{asdt}, \code{isdt}, and \code{iedt}. A \code{\link[data.table]{data.table}} for all others.}
+\item{x}{An object for \code{as_dt}, \code{is_dt}, and \code{ie_dt}. A \code{\link[data.table]{data.table}} for all others.}
 
 \item{keep.rownames}{Default is \code{FALSE}. If \code{TRUE}, adds the input object's names as a separate column named \code{"rn"}. \code{keep.rownames = "id"} names the column \code{"id"} instead.}
 
@@ -131,14 +131,14 @@ A data.table.
 Functions to check if an object is \code{data.table}, or coerce it if possible.
 }
 \details{
-\tabular{ll}{  \code{dtmerge}   \tab Thinly wraps \code{\link[data.table]{merge}}.         \cr
-  \code{dtwide}    \tab Thinly wraps \code{\link[data.table]{dcast}}.         \cr
-  \code{dtrows}    \tab Selects rows.                                         \cr
-  \code{dtcols}    \tab Selects columns without \code{x[ , ..var]}.                \cr
-  \code{dtsub}     \tab Selects a subtable without \code{x[row.var, ..col.var]}.   \cr
-  \code{asdt}      \tab Thinly wraps \code{\link[data.table]{as.data.table}}. \cr
-  \code{isdt}      \tab Thinly wraps \code{\link[data.table]{is.data.table}}. \cr
-  \code{iedt}      \tab Convert to \code{data.table}, if needed.                     }
+\tabular{ll}{  \code{dt_merge}   \tab Thinly wraps \code{\link[data.table]{merge}}.         \cr
+  \code{dt_wide}    \tab Thinly wraps \code{\link[data.table]{dcast}}.         \cr
+  \code{dt_rows}    \tab Selects rows.                                         \cr
+  \code{dt_cols}    \tab Selects columns without \code{x[ , ..var]}.                \cr
+  \code{dt_sub}     \tab Selects a subtable without \code{x[row.var, ..col.var]}.   \cr
+  \code{as_dt}      \tab Thinly wraps \code{\link[data.table]{as.data.table}}. \cr
+  \code{is_dt}      \tab Thinly wraps \code{\link[data.table]{is.data.table}}. \cr
+  \code{ie_dt}      \tab Convert to \code{data.table}, if needed.                     }
 }
 \examples{
 nn = c(a=0.1, b=0.2, c=0.3, d=0.4)
@@ -183,7 +183,7 @@ Other wraps:
 \code{\link{dp}},
 \code{\link{ggp}()},
 \code{\link{gr}},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{sca}()},
 \code{\link{tb}()}
 }

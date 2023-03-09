@@ -25,11 +25,11 @@ cls <- function(x) {base::class(x)}
 #' @rdname cls
 #' @export
 rm_cls <- function(x, ...) {
-  rm.cls <- uj::flex_dots(..., GLUE = F)
-  all.cls <- base::class(x)
-  keep.cls <- all.cls[!(all.cls %in% rm.cls)]
-  uj::err_if_not(uj::N1P(keep.cls), "There are no classes remaining.", PKG = "uj")
-  base::class <- keep.cls
+  rm.class <- uj::flex_dots(..., GLUE = F)
+  all.class <- base::class(x)
+  keep.class <- all.class[!(all.class %in% rm.class)]
+  if (base::length(keep.class) == 0) {uj::stopperr("There are no classes remaining.", PKG = "uj")}
+  base::class(x) <- keep.class
   x
 }
 
@@ -39,12 +39,24 @@ xcls <- rm_cls
 
 #' @rdname cls
 #' @export
-set_cls <- function(x, ...) {uj::cls(x) <- uj::flex_dots(..., GLUE = F)}
+set_cls <- function(x, ...) {
+  new.class <- uj::flex_dots(..., GLUE = F)
+  base::class(x) <- new.class
+}
 
 #' @rdname cls
 #' @export
-add_cls <- function(x, ...) {uj::cls(x) <- uj::UV(base::c(uj::cls(x), uj::flex_dots(..., GLUE = F)))}
+add_cls <- function(x, ...) {
+  cur.class <- base::class(x)
+  new.class <- uj::flex_dots(..., GLUE = F)
+  all.class <- base::unique(base::c(cur.class, new.class))
+  base::class(x) <- all.class
+}
 
 #' @rdname cls
 #' @export
-has_cls <- function(x, ...) {uj::allIN(uj::flex_dots(..., GLUE = F), uj::cls(x))}
+has_cls <- function(x, ...) {
+  cur.class <- base::class(x)
+  chk.class <- uj::flex_dots(..., GLUE = F)
+  base::all(cur.class %in% chk.class)
+}

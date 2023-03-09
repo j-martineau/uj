@@ -3,6 +3,11 @@
 #' @family properties
 #' @title Does an atomic object only contain unique values?
 #' @description Evaluates whether `x` contains only only unique atomic values, with options for for atomizing before evaluation and for handling `NA` values.
+#' @details
+#' \tabular{ll}{  `not_unique0, not_unq0`   \tab whether `x` *is not* an atomic vector containing only unique values.                           \cr   \tab   \cr
+#'                `not_unique, not_unq`     \tab whether `x` *is not* a unique data.frame, list, or vector depending on values of `a` and `na`. \cr   \tab   \cr
+#'                `is_unique0, is_unq0`     \tab whether `x` *is* an atomic vector containing only unique values.                               \cr   \tab   \cr
+#'                `is_unique, is_unq`       \tab whether `x` *is* a unique data.frame, list, or vector depending on values of `a` and `na`.                    }
 #' @param x An atomic object.
 #' @param a `TRUE` or `FALSE` indicating whether to reduce `x` to an atomic vector containing all of its atomic values. When `FALSE` and `x` is not atomic, throws an error.
 #' @param na `TRUE` or `FALSE` indicating whether `NA` values are allowed.
@@ -11,18 +16,39 @@
 #' is_unique(letters)
 #' is_unq(sample(letters, 27, replace = T))
 #' @export
-is_unique <- function(x, a = T, nas = F) {
-  uDTF <- function(D) {uj::NR(uj::UV(D)) == uj::NR(D)}
-  uGEN <- function(G) {uj::NU(G) == uj::N(G)}
-  uj::errs_if_nots(uj::isTF1(a ) , "[a] must be TRUE or FALSE."  ,
-                   uj::isTF1(nas), "[nas] must be TRUE or FALSE.", PKG = "uj")
+is_unique <- function(x, a = FALSE, na = FALSE) {
+  u_dtf <- function(D) {base::nrow(base::unique(D)) == base::nrow(D)}
+  u_gen <- function(G) {base::length(base::unique(G)) == base::length(G)}
+  errs <- NULL
+  if (!uj:::.cmp_lgl_scl(a)) {errs <- base::c(errs, "[a] must be TRUE or FALSE.")}
+  if (!uj:::.cmp_lgl_scl(na)) {errs <- base::c(errs, "[na] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   x.av <- uj::av(x)
   if (a) {x <- x.av}
-  if (uj::N1P(x.av)) {
-    uj::err_if_not(uj::f0(nas, T, uj::anyNAS(x.av)), "[na = FALSE] but [x] contains NA values.", PKG = "uj")
-    uj::f0(uj::isDTF(x), uDTF(x), uj::f0(uj::isLST(x), uGEN(x), uGEN(x.av)))
+  if (base::length(x.av) > 0) {
+    ok.nax <- na | !base::any(base::is.na(x.av))
+    if (!ok.nax) {uj::stopperr("[na = FALSE] but [x] contains NA values.", PKG = "uj")}
+    if (base::is.data.frame(x)) {u_dtf(x)}
+    else if (base::is.list(x)) {u_gen(x)}
+    else {u_gen(x.av)}
   } else {F}
 }
+
+#' @rdname is_unique
+#' @export
+is_unique0 <- function(...) {
+  x <- uj::av(...)
+  n <- base::length(x)
+  n > 0 & n == base::length(base::unique(x))
+}
+
+#' @rdname is_unique
+#' @export
+not_unique <- function(x, a = FALSE, na = FALSE) {!is_unique(x, a = a, na = na)}
+
+#' @rdname is_unique
+#' @export
+not_unique0 <- function(...) {!uj::is_unique0(...)}
 
 #' @rdname is_unique
 #' @export
@@ -30,12 +56,12 @@ is_unq <- is_unique
 
 #' @rdname is_unique
 #' @export
-isUNQ <- function(...) {
-  x <- uj::av(...)
-  n <- uj::N(x)
-  n > 0 & n == uj::NU(x)
-}
+is_unq0 <- is_unique0
 
 #' @rdname is_unique
 #' @export
-notUNQ <- function(...) {!uj::isUNQ(...)}
+not_unq <- not_unique
+
+#' @rdname is_unique
+#' @export
+not_unq0 <- not_unique0

@@ -27,34 +27,43 @@
 #' sqz(trm(c("a ", "b", "c", " ", "d  ", "")))
 #' @export
 spaces <- function(n) {
-  uj::err_if_not(uj::cmp_nnw_scl(n), "[n] must be a complete positive whole-number scalar (?cmp_psw_scl).", PKG = "uj")
-  uj::g0(base::rep.int(" ", n))
+  if (!uj:::.cmp_nnw_scl(n)) {uj::stopperr("[n] must be a complete positive whole-number scalar (?cmp_psw_scl).", PKG = "uj")}
+  base::paste0(base::rep.int(" ", n), collapse = "")
 }
 
 #' @rdname spaces
 #' @export
 pad <- function(..., n = 0, s = "r", p = " ") {
-  ok.nd <- uj::ND1P()
-  ok.atm <- uj::f0(!ok.nd, T, base::all(base::sapply(base::list(...), uj::ATM)))
-  ok.cmp <- uj::f0(!ok.nd, T, base::all(base::sapply(base::list(...), uj::CMP)))
-  uj::errs_if_nots(ok.nd                      , "[...] must contain at least one argument."                                ,
-                   ok.atm & ok.cmp            , "[...] arguments must be complete and atomic (?cmp_atm)."                  ,
-                   uj::cmp_nnw_scl(n)         , "[n] must be a complete non-negative whole-number scalar (?cmp_nnw_scl)."  ,
-                   uj::isIN1(s, "l", "r", "b"), "[s] must be a complete onechar scalar (?cmp_ch1_vec) in c('r', 'l', 'b').",
-                   uj::cmp_ch1_vec(p)         , "[p] must be a complete onechar scalar (?cmp_ch1_vec)."                    , PKG = "uj")
+  ok.nd <- base::...length() > 0
+  if (ok.nd) {
+    dots <- base::list(...)
+    ok.atm <- base::all(base::sapply(dots, uj:::.ATM))
+    ok.cmp <- base::all(base::sapply(dots, uj:::.CMP))
+  } else {ok.atm <- ok.cmp <- T}
+  if (uj:::.cmp_ch1_vec(s)) {
+    if (base::is.na(s)) {ok.s <- F}
+    else {ok.s <- s %in% base::c("l", "r", "b")}
+  } else {ok.s <- F}
+  errs <- NULL
+  if (!ok.nd               ) {errs <- base::c(errs, "[...] must contain at least one argument.")}
+  if (!ok.atm | !ok.cmp    ) {errs <- base::c(errs, "[...] arguments must be complete and atomic (?cmp_atm).")}
+  if (!uj:::.cmp_nnw_scl(n)) {errs <- base::c(errs, "[n] must be a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!ok.s                ) {errs <- base::c(errs, "[s] must be a complete onechar scalar (?cmp_ch1_vec) in c('r', 'l', 'b').")}
+  if (!uj:::.cmp_ch1_vec(p)) {errs <- base::c(errs, "[p] must be a complete onechar scalar (?cmp_ch1_vec).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   base::sapply(uj::av(...), stringr::str_pad, width = n, side = s, pad = p)
 }
 
 #' @rdname spaces
 #' @export
 sqz <- function(...) {
-  uj::err_if_not(base::all(base::sapply(base::list(...), uj::cmp_chr)), "[...] must contain at least one argument, and all must be complete character objects (?cmp_chr).", PKG = "uj")
+  if (!base::all(base::sapply(base::list(...), uj:::.cmp_chr))) {uj::stopperr("[...] must contain at least one argument, and all must be complete character objects (?cmp_chr).", PKG = "uj")}
   stringr::str_squish(uj::av(...))
 }
 
 #' @rdname spaces
 #' @export
 trm <- function(...) {
-  uj::err_if_not(base::all(base::sapply(base::list(...), uj::cmp_chr)), "[...] must contain at least one argument, and all must be complete character objects (?cmp_chr)", PKG = "uj")
+  if (!base::all(base::sapply(base::list(...), uj:::.cmp_chr))) {uj::stopperr("[...] must contain at least one argument, and all must be complete character objects (?cmp_chr)", PKG = "uj")}
   stringr::str_trim(uj::av(...))
 }

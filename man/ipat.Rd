@@ -37,11 +37,11 @@ Logically index, numerically index, and count the number of times a pattern occu
 }
 \details{
 \tabular{ll}{  \code{has_pat}   \tab Evaluates whether each element of \code{x} contains the string in \code{pat}.                                                        \cr   \tab   \cr
-  \code{ppats}    \tab Identifies the position of the first character of \emph{every} instance of a pattern in each element of a character vector.      \cr   \tab   \cr
-  \code{ppat}     \tab Identifies the position of \emph{the first} character of the first instance of a pattern in each element of a character vector.  \cr   \tab   \cr
-  \code{npat}     \tab Counts the number of times a pattern appears in each element of a character vector.                                         \cr   \tab   \cr
-  \code{ipat}     \tab Logically indexes character vector elements containing a pattern as \code{TRUE} or \code{FALSE}.                                      \cr   \tab   \cr
-  \code{wpat}     \tab Numerically indexes character vector elements containing a pattern as integer element numbers.                                             }
+  \code{ppats}     \tab Identifies the position of the first character of \emph{every} instance of a pattern in each element of a character vector.      \cr   \tab   \cr
+  \code{ppat}      \tab Identifies the position of \emph{the first} character of the first instance of a pattern in each element of a character vector.  \cr   \tab   \cr
+  \code{npat}      \tab Counts the number of times a pattern appears in each element of a character vector.                                         \cr   \tab   \cr
+  \code{ipat}      \tab Logically indexes character vector elements containing a pattern as \code{TRUE} or \code{FALSE}.                                      \cr   \tab   \cr
+  \code{wpat}      \tab Numerically indexes character vector elements containing a pattern as integer element numbers.                                             }
 \cr\cr These functions Always \link[=a]{atomizes} \code{...} to create a single character vector to search for a fixed pattern.
 }
 \examples{
@@ -63,12 +63,12 @@ ppats(words, "b")
 Other strings: 
 \code{\link{blank}()},
 \code{\link{chn}()},
-\code{\link{delim}},
+\code{\link{delim}()},
 \code{\link{fsub}()},
 \code{\link{gr}},
 \code{\link{makestr}()},
 \code{\link{markdown}()},
-\code{\link{max_nch}()},
+\code{\link{maxnch}()},
 \code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{revstr}()},

@@ -124,7 +124,7 @@ av(egA())
 \seealso{
 Other environments: 
 \code{\link{os}()},
-\code{\link{recyclableN}()},
+\code{\link{recyclable_ns}()},
 \code{\link{value_exists}()}
 
 Other meta: 
@@ -132,7 +132,7 @@ Other meta:
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{purge}()},
-\code{\link{recyclableN}()},
+\code{\link{recyclable_ns}()},
 \code{\link{run}()},
 \code{\link{say}()}
 }

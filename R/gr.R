@@ -5,8 +5,8 @@
 #' @family wraps
 #' @title Thin wrappers of `graphics` functions.
 #' @details
-#' \tabular{ll}{  `strh`   \tab \code{\link[graphics]{strheight}}. \cr
-#'                `strw`   \tab \code{\link[graphics]{strwidth}}.    }
+#' \tabular{ll}{  `str_h`   \tab \code{\link[graphics]{strheight}}. \cr
+#'                `str_w`   \tab \code{\link[graphics]{strwidth}}.    }
 #' @export
 #' @examples
 #' sent1 <- "First sentence."
@@ -18,8 +18,8 @@
 #' strw(sent1)
 #' strw(sent2)
 #' strw(sent12)
-strh <- function(...) {uj::run_alias("graphics", "strheight")}
+str_h <- function(...) {uj::run_alias("graphics", "strheight")}
 
 #' @rdname gr
 #' @export
-strw <- function(...) {uj::run_alias("graphics", "strheight")}
+str_w <- function(...) {uj::run_alias("graphics", "strheight")}

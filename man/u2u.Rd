@@ -80,19 +80,19 @@ Functions in this family convert among common plotting units.
 }
 \details{
 Unit conversion functions take the following forms.
-\tabular{ll}{  \strong{Function}   \tab \strong{Type of}                                                                  \cr
-  \strong{Form}       \tab \strong{Conversion}                                                               \cr
-  \verb{\{aa\}2\{bb\}}    \tab from \code{'{aa}'} units to \code{'{bb}'} units\eqn{^{(1)}}.                           \cr
-  \verb{\{aa\}2u}       \tab from \code{'{aa}'} units to \code{new} units\eqn{^{(1,2)}}.                            \cr
-  \verb{u2\{bb\}}       \tab from \code{old} units to \code{'{BB}'} units\eqn{^{(1,2)}}.                            \cr
-  \code{u2u}          \tab from \code{old} units to \code{new} units.\eqn{^{(2)}}                                 \cr
-                 \tab \eqn{^{(1)}} \code{{aa}} and \code{{bb}} are placeholders for any given plotting unit. \cr
-                 \tab \eqn{^{(2)}} \code{old} and \code{new} are user supplied arguments.                      }
+\tabular{ll}{  \strong{Function}   \tab \strong{Type of}                                              \cr
+  \strong{Form}       \tab \strong{Conversion}                                           \cr
+  \verb{\{aa\}2\{bb\}}    \tab from \code{'{aa}'} units to \code{'{bb}'} units\eqn{^{(1)}}.       \cr
+  \verb{\{aa\}2u}       \tab from \code{'{aa}'} units to \code{new} units\eqn{^{(1,2)}}.        \cr
+  \verb{u2\{bb\}}       \tab from \code{old} units to \code{'{BB}'} units\eqn{^{(1,2)}}.        \cr
+  \code{u2u}          \tab from \code{old} units to \code{new} units.\eqn{^{(2)}}               }
+\tabular{l}{  \eqn{^{(1)}} \code{{aa}} and \code{{bb}} are placeholders for any given plotting unit. \cr
+  \eqn{^{(2)}} \code{old} and \code{new} are user supplied arguments.                      }
 \cr\cr Available unit codes are:
-\tabular{ll}{  \code{'cm'}   \tab centimeters.     \cr
-  \code{'in'}   \tab inches.          \cr
-  \code{'mm'}   \tab millimeters.     \cr
-  \code{'pt'}   \tab points (72/inch)   }
+\tabular{ll}{  \code{'cm'}   \tab centimeters    \cr
+  \code{'in'}   \tab inches         \cr
+  \code{'mm'}   \tab millimeters    \cr
+  \code{'pt'}   \tab points (72/inch) }
 }
 \examples{
 u2u(1:3, "cm", "pt")

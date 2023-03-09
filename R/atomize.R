@@ -43,37 +43,53 @@ atomize <- function(...) {
 #' @rdname atomize
 #' @export
 glue_av <- function(..., g = "") {
-  uj::err_if_not(uj::cmp_chr_scl(g), "[g] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  base::paste0(uj::atomize(...), collapse = g)
+  if (!uj:::.cmp_chr_scl(g)) {g <- ""}
+  x <- base::as.vector(base::unlist(base::list(...), T, F))
+  base::attributes(x) <- NULL
+  base::paste0(x, collapse = g)
 }
 
 #' @rdname atomize
 #' @export
 paste_av <- function(..., p = "", s = "") {
-  uj::errs_if_nots(uj::cmp_chr_scl(p), "[p] must be a complete character scalar (?cmp_chr_scl).",
-                   uj::cmp_chr_scl(s), "[s] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  base::paste0(base::paste(uj::atomize(...), sep = p), s)
+  if (!uj:::.cmp_chr_scl(p)) {p <- ""}
+  if (!uj:::.cmp_chr_scl(s)) {s <- ""}
+  x <- base::as.vector(base::unlist(base::list(...), T, F))
+  base::attributes(x) <- NULL
+  base::paste0(base::paste(x, sep = p), s)
 }
 
 #' @rdname atomize
 #' @export
-sort_uv <- function(...) {base::sort(base::unique(uj::atomize(...)))}
+sort_uv <- function(...) {
+  x <- base::as.vector(base::unlist(base::list(...), T, F))
+  base::attributes(x) <- NULL
+  base::sort(base::unique(x))
+}
 
 #' @rdname atomize
 #' @export
 which_av <- function(...) {
-  x <- uj::atomize(...)
-  uj::err_if_not(uj::LGL(x), "[...] does not atomize (?uj::atomize) to a logical object.", PKG = "uj")
-  uj::which(x)
+  x <- base::as.vector(base::unlist(base::list(...), T, F))
+  base::attributes(x) <- NULL
+  if (!base::is.logical(x)) {NULL} else {which(x)}
 }
 
 #' @rdname atomize
 #' @export
-sort_av <- function(...) {base::sort(uj::atomize(...))}
+sort_av <- function(...) {
+  x <- base::as.vector(base::unlist(base::list(...), T, F))
+  base::attributes(x) <- NULL
+  base::sort(x)
+}
 
 #' @rdname atomize
 #' @export
-unique_av <- function(...) {base::unique(uj::atomize(...))}
+unique_av <- function(...) {
+  x <- base::as.vector(base::unlist(base::list(...), T, F))
+  base::attributes(x) <- NULL
+  base::unique(x)
+}
 
 #' @rdname atomize
 #' @export

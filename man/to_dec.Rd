@@ -20,8 +20,8 @@ tohex(x)
 \item{x}{A \link[=cmp_nnw]{complete non-negative whole-number object} or a \link[=cmp_chr]{complete character vec} containing only non-negative whole-number hexademical values.}
 }
 \value{
-\strong{A non-negative whole number object}                                 \cr\cr \verb{to_dec, todec}
-\cr\cr  \strong{A character object of non-negative whole number hexadecimal values} \cr\cr \verb{to_hex, tohex}
+\strong{A non-negative whole number object}                                 \cr \verb{to_dec, todec}
+\cr\cr  \strong{A character object of non-negative whole number hexadecimal values} \cr \verb{to_hex, tohex}
 }
 \description{
 \tabular{ll}{  \verb{to_dec, todec}   \tab Converts hexadecimal \link[=cmp_chr]{complete character object} \code{x} from hexadecimal to decimal. \code{x} may be formatted as either \code{'hhh...'} or \code{'#hhh...'} where \code{h} is a placeholder for a hexidecimal digit in either upper or lower case. \cr   \tab   \cr

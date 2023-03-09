@@ -11,7 +11,7 @@
 \alias{st_pln}
 \alias{st_und}
 \alias{st}
-\alias{fg__blk}
+\alias{fg_blk}
 \alias{fg_blu}
 \alias{fg_cyn}
 \alias{fg_def}
@@ -55,7 +55,7 @@ st_und(..., d = " ")
 
 st(st, ..., d = " ")
 
-fg__blk(..., d = " ")
+fg_blk(..., d = " ")
 
 fg_blu(..., d = " ")
 

@@ -20,19 +20,22 @@
 #' cmp_ord(factor(letters, ordered = T))
 #' @export
 cmp_mmm <- function(x, mmm, ...) {
-  if (uj::isCHR(mmm)) {mmm <- base::tolower(mmm)}
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...),
-                          uj::nll_if(uj::f0(uj::notN1(mmm) | uj::notCHR(mmm), F, uj::f0(uj::NAS(mmm), F, uj::isIN1(mmm, uj:::.mmms))), NULL, '[mmm] is not a scalar value from mmm_props().')), PKG = "uj")
-  uj::f0(!uj::meets(x, ...), F, uj::f0(uj::notATM(x) | uj::N0(x), F, uj::f0(uj::anyNA(x), F, uj::run("uj::", base::toupper(mmm), "(x)"))))
+  errs <- uj:::.meets_errs(x, ...)
+  if (!uj:::.cmp_chr_scl(mmm, valid = base::c(uj:::.mmm, uj:::.MMM))) {errs <- base::c(errs, '[mmm] is not a scalar value from mmm_props().')}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (!uj::meets(x, ...)) {F}
+  else if (!base::is.atomic(x) | base::length(x) == 0) {F}
+  else if (base::any(base::is.na(x))) {F}
+  else {uj::run("uj:::.", base::toupper(mmm), "(x)")}
 }
 
 #' @rdname cmp_mmm
 #' @export
-cmp_mmm_funs <- function() {uj::p0('cmp', base::toupper(uj:::.mmms))}
+cmp_mmm_funs <- function() {base::paste0('cmp_', uj:::.mmm)}
 
 #' @rdname cmp_mmm
 #' @export
-cmp_atm <- function(x, ...) {uj::f0(uj::isATM(x), uj::CMP(x, ...), F)}
+cmp_atm <- function(x, ...) {uj::f0(base::is.atomic(x) & base::length(x) > 0, !base::any(base::is.na(x)), F)}
 
 #' @rdname cmp_mmm
 #' @export

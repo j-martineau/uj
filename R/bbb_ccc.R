@@ -23,28 +23,31 @@
 #' atm_scl(1)
 #' @export
 bbb_ccc <- function(x, bbb, ccc, ...) {
-  if (uj::isCHR(bbb)) {bbb <- base::tolower(bbb)}
-  if (uj::isCHR(ccc)) {ccc <- base::tolower(ccc)}
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...),
-                          uj::f0(uj::isIN1(bbb, uj:::.bbb), NULL, "[bbb] is not a scalar value from bbb_props()."),
-                          uj::f0(uj::isIN1(ccc, uj:::.ccc), NULL, "[ccc] is not a scalar value from ccc_props().")), PKG = "uj")
-  arr <- ccc == "arr"; ARR <- uj::ARR(x)
-  dtf <- ccc == "dtf"; DTF <- uj::DTF(x)
-  gen <- ccc == "gen"; GEN <- uj::GEN(x)
-  mat <- ccc == "mat"; MAT <- uj::MAT(x)
-  mvc <- ccc == "mvc"; MVC <- uj::MVC(x)
-  scl <- ccc == "scl"; SCL <- uj::SCL(x)
-  vec <- ccc == "vec"; VEC <- uj::VEC(x)
-  vls <- ccc == "vls"; VLS <- uj::VLS(x)
-  pop <- bbb == "pop"; POP <- uj::POP(x)
-  nil <- bbb == "nil"; NIL <- !POP & !uj::NLL(x)
+  if (base::is.character(bbb)) {bbb <- base::tolower(bbb)}
+  if (base::is.character(ccc)) {ccc <- base::tolower(ccc)}
+  bbb.err <- "[bbb] is not a scalar value from bbb_props()."
+  ccc.err <- "[ccc] is not a scalar value from ccc_props()."
+  errs <- uj:::.meets_errs(x, ...)
+  if (base::length(bbb) != 1) {errs <- base::c(errs, bbb.err)} else if (!(bbb %in% uj:::.bbb)) {errs <- base::c(errs, bbb.err)}
+  if (base::length(ccc) != 1) {errs <- base::c(errs, ccc.err)} else if (!(ccc %in% uj:::.ccc)) {errs <- base::c(errs, ccc.err)}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  arr <- ccc == "arr"; ARR <- uj:::.ARR(x)
+  dtf <- ccc == "dtf"; DTF <- uj:::.DTF(x)
+  gen <- ccc == "gen"; GEN <- uj:::.GEN(x)
+  mat <- ccc == "mat"; MAT <- uj:::.MAT(x)
+  mvc <- ccc == "mvc"; MVC <- uj:::.MVC(x)
+  scl <- ccc == "scl"; SCL <- uj:::.SCL(x)
+  vec <- ccc == "vec"; VEC <- uj:::.VEC(x)
+  vls <- ccc == "vls"; VLS <- uj:::.VLS(x)
+  pop <- bbb == "pop"; POP <- uj:::.POP(x)
+  nil <- bbb == "nil"; NIL <- !POP & !base::is.null(x)
   atm <- bbb == "atm"
   if (!uj::meets(x, ...)) {F}
   else if ((pop & !POP) | (nil & !NIL) | (arr & !ARR) | (dtf & !DTF) | (gen & !GEN) | (mat & !MAT) | (mvc & !MVC) | (scl & !SCL) | (vec & !VEC) | (vls & !VLS)) {F}
-  else if (atm & dtf) {base::all(base::apply(x, 2, uj::isATM))}
-  else if (atm & vls) {base::all(base::sapply(x, uj::isATM))}
-  else if (atm) {uj::isATM(x)}
-  else {uj::run("uj::", base::toupper(bbb), "(x)")}
+  else if (atm & dtf) {base::all(base::apply(x, 2, base::is.atomic))}
+  else if (atm & vls) {base::all(base::sapply(x, base::is.atomic))}
+  else if (atm) {base::is.atomic(x)}
+  else {uj::run("uj:::.", base::toupper(bbb), "(x)")}
 }
 
 #' @rdname bbb_ccc

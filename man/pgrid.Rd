@@ -41,7 +41,7 @@ of \code{crossed} affects the return value.           \cr   \tab   \cr
   \code{pgridN}   \tab Calls \code{pgrid} with \code{crossed = FALSE}\eqn{^{(1)}} \cr
   \code{pgridX}   \tab Calls \code{pgrid} with \code{crossed = TRUE}\eqn{^{(1)}}  \cr
   \code{pgrid0}   \tab Calls \code{pgrid} with \code{p = ""} (blank).             \cr
-  \code{pgrid1}   \tab Calls \code{pgrid} with \code{p = " "} (space).              }
+  \code{pgrid1}   \tab Calls \code{pgrid} with \code{p = " "} (space).            \cr   \tab     }
 \tabular{l}{  \eqn{^{(1)}} See \emph{the} \code{crossed} \emph{argument}.                       }
 }
 \section{The \code{crossed} Argument}{
@@ -83,13 +83,13 @@ pgrid1(x, y, z)
 Other strings: 
 \code{\link{blank}()},
 \code{\link{chn}()},
-\code{\link{delim}},
+\code{\link{delim}()},
 \code{\link{fsub}()},
 \code{\link{gr}},
 \code{\link{ipat}()},
 \code{\link{makestr}()},
 \code{\link{markdown}()},
-\code{\link{max_nch}()},
+\code{\link{maxnch}()},
 \code{\link{ox}()},
 \code{\link{revstr}()},
 \code{\link{spaces}()},

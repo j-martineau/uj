@@ -3,136 +3,136 @@
 \encoding{UTF-8}
 \name{ggp}
 \alias{ggp}
-\alias{ggaes}
-\alias{ggdot}
-\alias{ggelin}
-\alias{ggemkd}
-\alias{ggenll}
-\alias{ggerct}
-\alias{ggetxt}
-\alias{ggexp}
-\alias{gggrid}
-\alias{gghlin}
-\alias{gglab}
-\alias{gglabs}
-\alias{gglin}
-\alias{ggmar}
-\alias{ggsac}
-\alias{ggscm}
-\alias{ggsdm}
-\alias{ggslm}
-\alias{ggsav}
-\alias{ggsxc}
-\alias{ggsyc}
-\alias{ggthm}
-\alias{ggtmin}
-\alias{ggtxt}
-\alias{ggunit}
-\alias{ggvars}
-\alias{ggvlin}
-\alias{ggwrap}
-\alias{ggxlab}
-\alias{ggylab}
+\alias{gg_aes}
+\alias{gg_dot}
+\alias{gg_elin}
+\alias{gg_emkd}
+\alias{gg_enll}
+\alias{gg_erct}
+\alias{gg_etxt}
+\alias{gg_exp}
+\alias{gg_grid}
+\alias{gg_hlin}
+\alias{gg_lab}
+\alias{gg_labs}
+\alias{gg_lin}
+\alias{gg_mar}
+\alias{gg_sac}
+\alias{gg_scm}
+\alias{gg_sdm}
+\alias{gg_slm}
+\alias{gg_sav}
+\alias{gg_sxc}
+\alias{gg_syc}
+\alias{gg_thm}
+\alias{gg_thm0}
+\alias{gg_txt}
+\alias{gg_unit}
+\alias{gg_vars}
+\alias{gg_vlin}
+\alias{gg_wrap}
+\alias{gg_xlab}
+\alias{gg_ylab}
 \title{Thin wrappers of \code{ggplot2} and \code{ggtext} functions}
 \usage{
 ggp(...)
 
-ggaes(...)
+gg_aes(...)
 
-ggdot(...)
+gg_dot(...)
 
-ggelin(...)
+gg_elin(...)
 
-ggemkd(...)
+gg_emkd(...)
 
-ggenll(...)
+gg_enll(...)
 
-ggerct(...)
+gg_erct(...)
 
-ggetxt(...)
+gg_etxt(...)
 
-ggexp(...)
+gg_exp(...)
 
-gggrid(...)
+gg_grid(...)
 
-gghlin(...)
+gg_hlin(...)
 
-gglab(...)
+gg_lab(...)
 
-gglabs(...)
+gg_labs(...)
 
-gglin(...)
+gg_lin(...)
 
-ggmar(...)
+gg_mar(...)
 
-ggsac(...)
+gg_sac(...)
 
-ggscm(...)
+gg_scm(...)
 
-ggsdm(...)
+gg_sdm(...)
 
-ggslm(...)
+gg_slm(...)
 
-ggsav(...)
+gg_sav(...)
 
-ggsxc(...)
+gg_sxc(...)
 
-ggsyc(...)
+gg_syc(...)
 
-ggthm(...)
+gg_thm(...)
 
-ggtmin(...)
+gg_thm0(...)
 
-ggtxt(...)
+gg_txt(...)
 
-ggunit(...)
+gg_unit(...)
 
-ggvars(...)
+gg_vars(...)
 
-ggvlin(...)
+gg_vlin(...)
 
-ggwrap(...)
+gg_wrap(...)
 
-ggxlab(...)
+gg_xlab(...)
 
-ggylab(...)
+gg_ylab(...)
 }
 \description{
 Thin wrappers of \code{ggplot2} and \code{ggtext} functions
 }
 \details{
 These functions thinly wrap \code{ggplot2} functions unless otherwise noted:
-\tabular{ll}{  \code{ggp}      \tab \code{\link[ggplot2]{ggplot}}                                   \cr   \tab   \cr
-  \code{ggsav}    \tab \code{\link[ggplot2]{ggsave}}                                   \cr   \tab   \cr
-  \code{ggaes}    \tab \code{\link[ggplot2]{aes}}                                      \cr
-  \code{ggexp}    \tab \code{\link[ggplot2]{expansion}}                                \cr
-  \code{ggmar}    \tab \code{\link[ggplot2]{margin}}                                   \cr   \tab   \cr
-  \code{ggunit}   \tab \code{\link[ggplot2]{unit}}                                     \cr
-  \code{ggvars}   \tab \code{\link[ggplot2]{vars}}                                     \cr   \tab   \cr
-  \code{ggdot}    \tab \code{\link[ggplot2]{geom_point}}                               \cr
-  \code{gghlin}   \tab \code{\link[ggplot2]{geom_hline}}                               \cr
-  \code{gglab}    \tab \code{\link[ggplot2]{geom_label}}                               \cr
-  \code{gglin}    \tab \code{\link[ggplot2]{geom_line}}                                \cr
-  \code{ggtxt}    \tab \code{\link[ggplot2]{geom_text}}                                \cr
-  \code{ggvlin}   \tab \code{\link[ggplot2]{geom_vline}}                               \cr   \tab   \cr
-  \code{gglabs}   \tab \code{\link[ggplot2]{labs}}                                     \cr
-  \code{ggxlab}   \tab \code{\link[ggplot2]{xlab}}                                     \cr
-  \code{ggylab}   \tab \code{\link[ggplot2]{ylab}}                                     \cr   \tab   \cr
-  \code{gggrid}   \tab \code{\link[ggplot2]{facet_grid}}                               \cr
-  \code{ggwrap}   \tab \code{\link[ggplot2]{facet_wrap}}                               \cr   \tab   \cr
-  \code{ggthm}    \tab \code{\link[ggplot2]{theme}}                                    \cr
-  \code{ggtmin}   \tab \code{\link[ggplot2]{theme_minimal}}                            \cr   \tab   \cr
-  \code{ggsac}    \tab \code{\link[ggplot2]{scale_alpha_continuous}}                   \cr
-  \code{ggscm}    \tab \code{\link[ggplot2]{scale_color_manual}}                       \cr
-  \code{ggsdm}    \tab \code{\link[ggplot2]{scale_shape_manual}}                       \cr
-  \code{ggslm}    \tab \code{\link[ggplot2]{scale_linetype_manual}}                    \cr
-  \code{ggsxc}    \tab \code{\link[ggplot2]{scale_x_continuous}}                       \cr
-  \code{ggsyc}    \tab \code{\link[ggplot2]{scale_y_continuous}}                       \cr   \tab   \cr
-  \code{ggerct}   \tab \code{\link[ggplot2]{element_rect}}                             \cr
-  \code{ggetxt}   \tab \code{\link[ggplot2]{element_text}}                             \cr
-  \code{ggelin}   \tab \code{\link[ggplot2]{element_line}}                             \cr
-  \code{ggemkd}   \tab \code{\link[ggtext:element_markdown]{ggtext::element_markdown}} \cr
-  \code{ggenll}   \tab \code{\link[ggplot2]{element_blank}}                              }
+\tabular{ll}{  \code{ggp}       \tab \code{\link[ggplot2]{ggplot}}                                   \cr   \tab   \cr
+  \code{gg_sav}    \tab \code{\link[ggplot2]{ggsave}}                                   \cr   \tab   \cr
+  \code{gg_aes}    \tab \code{\link[ggplot2]{aes}}                                      \cr
+  \code{gg_exp}    \tab \code{\link[ggplot2]{expansion}}                                \cr
+  \code{gg_mar}    \tab \code{\link[ggplot2]{margin}}                                   \cr   \tab   \cr
+  \code{gg_unit}   \tab \code{\link[ggplot2]{unit}}                                     \cr
+  \code{gg_vars}   \tab \code{\link[ggplot2]{vars}}                                     \cr   \tab   \cr
+  \code{gg_dot}    \tab \code{\link[ggplot2]{geom_point}}                               \cr
+  \code{gg_hlin}   \tab \code{\link[ggplot2]{geom_hline}}                               \cr
+  \code{gg_lab}    \tab \code{\link[ggplot2]{geom_label}}                               \cr
+  \code{gg_lin}    \tab \code{\link[ggplot2]{geom_line}}                                \cr
+  \code{gg_txt}    \tab \code{\link[ggplot2]{geom_text}}                                \cr
+  \code{gg_vlin}   \tab \code{\link[ggplot2]{geom_vline}}                               \cr   \tab   \cr
+  \code{gg_labs}   \tab \code{\link[ggplot2]{labs}}                                     \cr
+  \code{gg_xlab}   \tab \code{\link[ggplot2]{xlab}}                                     \cr
+  \code{gg_ylab}   \tab \code{\link[ggplot2]{ylab}}                                     \cr   \tab   \cr
+  \code{gg_grid}   \tab \code{\link[ggplot2]{facet_grid}}                               \cr
+  \code{gg_wrap}   \tab \code{\link[ggplot2]{facet_wrap}}                               \cr   \tab   \cr
+  \code{gg_thm}    \tab \code{\link[ggplot2]{theme}}                                    \cr
+  \code{gg_tmin}   \tab \code{\link[ggplot2]{theme_minimal}}                            \cr   \tab   \cr
+  \code{gg_sac}    \tab \code{\link[ggplot2]{scale_alpha_continuous}}                   \cr
+  \code{gg_scm}    \tab \code{\link[ggplot2]{scale_color_manual}}                       \cr
+  \code{gg_sdm}    \tab \code{\link[ggplot2]{scale_shape_manual}}                       \cr
+  \code{gg_slm}    \tab \code{\link[ggplot2]{scale_linetype_manual}}                    \cr
+  \code{gg_sxc}    \tab \code{\link[ggplot2]{scale_x_continuous}}                       \cr
+  \code{gg_syc}    \tab \code{\link[ggplot2]{scale_y_continuous}}                       \cr   \tab   \cr
+  \code{gg_erct}   \tab \code{\link[ggplot2]{element_rect}}                             \cr
+  \code{gg_etxt}   \tab \code{\link[ggplot2]{element_text}}                             \cr
+  \code{gg_elin}   \tab \code{\link[ggplot2]{element_line}}                             \cr
+  \code{gg_emkd}   \tab \code{\link[ggtext:element_markdown]{ggtext::element_markdown}} \cr
+  \code{gg_enll}   \tab \code{\link[ggplot2]{element_blank}}                              }
 }
 \seealso{
 Other plots: 
@@ -148,7 +148,7 @@ Other wraps:
 \code{\link{dp}},
 \code{\link{dt}()},
 \code{\link{gr}},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{sca}()},
 \code{\link{tb}()}
 }

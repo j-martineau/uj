@@ -48,17 +48,17 @@
 #' c(unq_clr(UnqClr), unq_clr(UnqCh1), unq_clr(c(UnqClr, UnqClr))
 #' c(unq_evn(UnqEvn), unq_evn(UnqOdd), unq_evn(c(UnqEvn, UnqEvn))
 #' c(unq_fac(UnqFac), unq_fac(UnqStr), unq_fac(c(UnqFac, UnqFac))
-#' c(unq_frc(UnqFrc), unq_FRC(UnqWhl), unq_FRC(c(UnqFrc, UnqFrc))
-#' c(unq_ind(UnqIn1), unq_IND(UnqNum), unq_IND(c(UnqIn1, UnqIn1))
-#' c(unq_ind(UnqIn2), unq_IND(UnqFrc), unq_IND(c(UnqIn2, UnqIn2))
-#' c(unq_lgl(UnqLgl), unq_LGL(UnqCh1), unq_LGL(c(UnqLgl, UnqLgl))
-#' c(unq_neg(UnqNeg), unq_NEG(UnqNps), unq_NEG(c(UnqNeg, UnqNeg))
-#' c(unq_neg(UnqNgw), unq_NGW(UnqNeg), unq_NGW(c(UnqNgw, UnqNgw))
-#' c(unq_nng(UnqNng), unq_NNG(UnqNps), unq_NNG(c(UnqNng, UnqNng))
-#' c(unq_nnw(UnqNnw), unq_NNW(UnqNng), unq_NNW(c(UnqNnw, UnqNnw))
-#' c(unq_nps(UnqNps), unq_NPS(UnqNeg), unq_NPS(c(UnqNps, UnqNps))
-#' c(unq_npw(UnqNpw), unq_NPW(UnqNps), unq_NPW(c(UnqNpw, UnqNpw))
-#' c(unq_nst(UnqNst), unq_NST(UnqSrt), unq_NST(c(UnqNst, UnqNst))
+#' c(unq_frc(UnqFrc), unq_frc(UnqWhl), unq_frc(c(UnqFrc, UnqFrc))
+#' c(unq_ind(UnqIn1), unq_ind(UnqNum), unq_ind(c(UnqIn1, UnqIn1))
+#' c(unq_ind(UnqIn2), unq_ind(UnqFrc), unq_ind(c(UnqIn2, UnqIn2))
+#' c(unq_lgl(UnqLgl), unq_lgl(UnqCh1), unq_lgl(c(UnqLgl, UnqLgl))
+#' c(unq_neg(UnqNeg), unq_neg(UnqNps), unq_neg(c(UnqNeg, UnqNeg))
+#' c(unq_neg(UnqNgw), unq_ngw(UnqNeg), unq_ngw(c(UnqNgw, UnqNgw))
+#' c(unq_nng(UnqNng), unq_nng(UnqNps), unq_nng(c(UnqNng, UnqNng))
+#' c(unq_nnw(UnqNnw), unq_nnw(UnqNng), unq_nnw(c(UnqNnw, UnqNnw))
+#' c(unq_nps(UnqNps), unq_nps(UnqNeg), unq_npw(c(UnqNps, UnqNps))
+#' c(unq_npw(UnqNpw), unq_npw(UnqNps), unq_npw(c(UnqNpw, UnqNpw))
+#' c(unq_nst(UnqNst), unq_nst(UnqSrt), unq_nst(c(UnqNst, UnqNst))
 #' c(unq_num(UnqNum), unq_num(UnqCh1), unq_num(c(UnqNum, UnqNum))
 #' c(unq_odd(UnqOdd), unq_odd(UnqEvn), unq_odd(c(UnqOdd, UnqOdd))
 #' c(unq_ord(UnqOrd), unq_ord(UnqUno), unq_ord(c(UnqOrd, UnqOrd))
@@ -71,7 +71,7 @@
 #' c(unq_uno(UnqUno), unq_uno(UnqOrd), unq_uno(c(UnqUno, UnqUno))
 #' c(unq_whl(UnqWhl), unq_whl(UnqNum), unq_whl(c(UnqWhl, UnqWhl))
 #' @export
-unq_mmm <- function(x, mmm, ...) {uj::f0(uj::cmp_mmm(x, mmm, ...), uj::UNQ(x), F)}
+unq_mmm <- function(x, mmm, ...) {uj::f0(uj::cmp_mmm(x, mmm, ...), base::length(x) == base::length(base::unique(x)), F)}
 
 #' @rdname unq_mmm
 #' @export
@@ -79,7 +79,7 @@ unq_mmm_funs <- function() {uj::p0('unq_', uj:::.mmm)}
 
 #' @rdname unq_mmm
 #' @export
-unq_atm <- function(x, ...) {uj::f0(uj::isatm(x), uj::f0(uj::N1P(x), uj:::UNQ(x, ...), F), F)}
+unq_atm <- function(x, ...) {uj::f0(base::is.atomic(x), uj::f0(base::length(x) > 0, base::length(x) == base::length(base::unique(x)), F), F)}
 
 #' @rdname unq_mmm
 #' @export

@@ -22,22 +22,34 @@
 #' cmp_str_scl("a")
 #' @export
 cmp_mmm_ccc <- function(x, mmm, ccc, ...) {
-  cfun <- function(cx) {uj::run("uj::", base::toupper(ccc), "(cx)")}
-  mfun <- function(mx) {uj::f0(uj::notATM(mx), F, uj::f0(uj::N0(mx), F, uj::f0(uj::anyNAS(mx), F, uj::run("uj::", base::toupper(mmm), "(mx)"))))}
+  cfun <- function(cx) {uj::run("uj:::.", base::toupper(ccc), "(cx)")}
+  mfun <- function(mx) {
+    if      (!base::is.atomic(mx)      ) {F}
+    else if (base::length(mx) == 0     ) {F}
+    else if (base::any(base::is.na(mx))) {F}
+    else {uj::run("uj:::.", base::toupper(mmm), "(mx)")}
+  }
   dfun <- function(dx) {base::all(base::apply(dx, 2, mfun))}
   vfun <- function(vx) {base::all(base::sapply(vx, mfun))}
-  if (uj::isCHR(mmm)) {mmm <- base::tolower(mmm)}
-  if (uj::isCHR(ccc)) {ccc <- base::tolower(ccc)}
-  errs <- base::c(uj:::.meets_errs(x, ...),
-                  uj::f0(uj::isIN(mmm, uj::mmm_props()), NULL, '[mmm] is not a scalar value from mmm_props().'),
-                  uj::f0(uj::isIN(ccc, uj::ccc_props()), NULL, '[ccc] is not a scalar value from ccc_props().'))
-  uj::errs_if_pop(errs, PKG = "uj")
-  uj::f0(!uj::meets(x, ...), F, uj::f0(!cfun(x), F, uj::f0(ccc == "dtf", dfun(x), uj::f0(ccc == "vls", vfun(x), mfun(x)))))
+  if (base::is.character(mmm)) {mmm <- base::tolower(mmm)}
+  if (base::is.character(ccc)) {ccc <- base::tolower(ccc)}
+  errs <- uj:::.meets_errs(x, ...)
+  mmm.err <- "[mmm] is not a scalar value from mmm_props()."
+  ccc.err <- "[ccc] is not a scalar value from ccc_props()."
+  if (base::length(mmm) != 1) {errs <- base::c(errs, mmm.err)} else if (!(mmm %in% uj:::.mmm)) {errs <- base::c(errs, mmm.err)}
+  if (base::length(ccc) != 1) {errs <- base::c(errs, ccc.err)} else if (!(ccc %in% uj:::.ccc)) {errs <- base::c(errs, ccc.err)}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (!uj::meets(x, ...)) {F} else if (!cfun(x)) {F} else if (ccc == "dtf" ) {dfun(x)} else if (ccc == "vls" ) {vfun(x)} else {mfun(x)}
 }
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmp_mmm_ccc_funs <- function() {uj::suv(uj::p0('cmp', base::sort(uj::av(base::apply(base::expand.grid(mmm = base::toupper(uj:::.mmm), ccc = uj:::.ccc), 1, base::paste0, collapse = "_")))))}
+cmp_mmm_ccc_funs <- function() {
+  x <- base::expand.grid(mmm = uj:::.mmm, ccc = uj:::.ccc)
+  x <- base::apply(x, 1, base::paste0, collapse = "_")
+  x <- base::paste0("cmp_", x)
+  base::sort(base::unique(uj::av(x)))
+}
 
 #' @rdname cmp_mmm_ccc
 #' @export

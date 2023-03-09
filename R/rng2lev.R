@@ -22,23 +22,26 @@
 #' rng2lev(ordVALS, ordCUTS, rngLEVS)
 #' @export
 rng2lev <- function(x, cuts, levs) {
-  uj::errs_if_nots(uj::pop_srt(x)                   , "[x] must be a sortable atomic object (?pop_srt)."         ,
-                   uj::cmp_srt_vec(cuts)            , "[cuts] must be a complete sortable vec (?cmp_srt_vec)."   ,
-                   uj::cmp_srt_vec(levs)            , "[levs] must be a complete sortable vec (?cmp_srt_vec)."   , PKG = "uj")
-  uj::errs_if_nots(uj::isVEQ(base::sort(cuts), cuts), "[cuts] must be sorted in increasing order."               ,
-                   uj::UNQ(cuts)                    , "[cuts] contains duplicate values."                        ,
-                   uj::N(cuts) == uj::N(levs) - 1   , "length(cuts) must equal length(levs) - 1."                ,
-                   uj::comparable(x, cuts)          , "[x] and [cuts] must be of comparable modes (?comparable).", PKG = "uj")
+  errs <- NULL
+  if (!uj:::.pop_srt(x)) {errs <- base::c(errs, "[x] must be a sortable atomic object (?pop_srt).")}
+  if (!uj:::.cmp_srt_vec(cuts)) {errs <- base::c(errs, "[cuts] must be a complete sortable vec (?cmp_srt_vec).")}
+  if (!uj:::.cmp_srt_vec(levs)) {errs <- base::c(errs, "[levs] must be a complete sortable vec (?cmp_srt_vec).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (!base::all(base::sort(cuts) == cuts)) {errs <- base::c(errs, "[cuts] must be sorted in increasing order.")}
+  if (base::length(cuts) != base::length(base::unique(cuts))) {errs <- base::c(errs, "[cuts] contains duplicate values.")}
+  if (base::length(cuts) != base::length(levs) - 1) {errs <- base::c(errs, "length(cuts) must equal length(levs) - 1.")}
+  if (!uj::comparable(x, cuts)) {errs <- base::c(errs, "[x] and [cuts] must be of comparable modes (?comparable).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   y <- x
-  y[1:uj::N(y)] <- NA
-  if (uj::isCHR(levs)) {y <- uj::asCHR(y)}
-  else if (uj::isORD(levs)) {y <- uj::asORD(y, levs = uj::LEVS(levs))}
-  else if (uj::NLL(levs)) {y <- uj::asNUM(y)}
-  for (i in 1:uj::N(cuts)) {
+  y[1:base::length(y)] <- NA
+  if      (base::is.character(x) ) {y <- base::as.character(y)                       }
+  else if (base::is.ordered(levs)) {y <- base::factor(y, levels = base::levels(levs))}
+  else if (base::is.null(levs)   ) {y <- base::as.numeric(y)                         }
+  for (i in 1:base::length(cuts)) {
     cut <- cuts[i]
     lo <- levs[i]
     hi <- levs[i + 1]
-    eq <- uj::f0(uj::notNUM(x), hi, uj::f0(x < 0, lo, hi))
+    if (!base::is.numeric(x)) {eq <- hi} else if (x < 0) {eq <- lo} else {eq <- hi}
     if (i == 1) {y[x < cut] <- lo}
     y[x > cut] <- hi
     y[x == cut] <- eq

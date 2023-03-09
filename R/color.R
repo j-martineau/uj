@@ -1,4 +1,3 @@
-#' @name color
 #' @encoding UTF-8
 #' @family color
 #' @family plots
@@ -105,14 +104,11 @@
 #'   palSWATCH(palCB(3))
 #' }
 color <- function(x, lighten = 0, darken = 0, a = 1, comp = F) {
-  ns <- base::c(uj::N(x), uj::N(lighten), uj::N(darken), uj::N(a))
+  uj:::.color_errs(x = x, lighten = lighten, darken = darken, a = a, comp = comp)
+  ns <- base::c(base::length(x), base::length(lighten), base::length(darken), base::length(a))
   reps <- base::max(ns) / ns
-  uj::errs_if_nots(uj::cmp_clr_vec(x)                  , "[x] must be a complete color vec (?cmp_clr_vec) [i.e., containing only valid character-mode color values].",
-                   uj::cmp_ppn_vec(lighten)            , "[lighten] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."              ,
-                   uj::cmp_ppn_vec(darken)             , "[darken] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."               ,
-                   uj::cmp_ppn_vec(a)                  , "[a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1]."                    ,
-                   uj::cmp_lgl_scl(comp)               , "[comp] must be TRUE or FALSE."                                                                             ,
-                   base::all(reps == base::round(reps)), "[x], [lighten], [darken], and [a] are not recyclable (?recyclable)."                                       , PKG = "uj")
+  errs <- NULL
+  if (base::any(reps != base::round(reps))) {uj::stopperr("[x], [lighten], [darken], and [a] are not recyclable (?recyclable).", PKG = "uj")}
   if (r[1] > 1) {x       <- base::rep.int(x      , r[1])}
   if (r[2] > 1) {lighten <- base::rep.int(lighten, r[2])}
   if (r[3] > 1) {darken  <- base::rep.int(darken , r[3])}
@@ -131,8 +127,8 @@ color <- function(x, lighten = 0, darken = 0, a = 1, comp = F) {
   r[comp] <- 1 - r[comp]                                                         # invert colors for colors marked for complementarity
   g[comp] <- 1 - g[comp]
   b[comp] <- 1 - b[comp]
-  if (uj::DEF(a)) {a <- a}                                                       # if an alpha value was supplied, use it
-  else if (uj::LEN(x) == 7) {a <- 1}                                             # ...but if there is no existing alpha value, use a = 1
+  if (!base::is.null(a)) {a <- a}                                                       # if an alpha value was supplied, use it
+  else if (base::nchar(x) == 7) {a <- 1}                                             # ...but if there is no existing alpha value, use a = 1
   else {a <- x[3] / 255}                                                         # ...otherwise, use the existing alpha value
   grDevices::rgb(r, g, b, a)
 }
@@ -140,45 +136,32 @@ color <- function(x, lighten = 0, darken = 0, a = 1, comp = F) {
 #' @rdname color
 #' @export
 rgba <- function(r = 1, g = 1, b = 1, a = 1) {
-  ns <- base::c(uj::N(r), uj::N(g), uj::N(b), uj::N(a))
+  uj:::.color_errs(r = r, g = g, b = b, a = a)
+  ns <- base::c(base::length(r), base::length(g), base::length(b), base::length(a))
   reps <- base::max(ns) / ns
-  ok.recycle <- base::all(uj::rounded(reps))
-  uj::errs_if_nots(uj::cmp_ppn_vec(r), "[r] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].",
-                   uj::cmp_ppn_vec(g), "[g] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].",
-                   uj::cmp_ppn_vec(b), "[b] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].",
-                   uj::cmp_ppn_vec(a), "[a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].",
-                   ok.recycle        , "[r], [g], [b], and [a] are not recyclable (?recyclable)."                              , PKG = "uj")
+  if (base::any(reps != base::round(reps))) {uj::stopperr("[r], [g], [b], and [a] are not recyclable (?recyclable).", PKG = "uj")}
   grDevices::rgb(r, g, b, a)
 }
 
 #' @rdname color
 #' @export
 hsva <- function(h = 1, s = 1, v = 1, a = 1) {
-  ns <- base::c(uj::N(h), uj::N(s), uj::N(v), uj::N(a))
+  uj:::.color_errs(h = h, s = s, v = v, a = a)
+  ns <- base::c(base::length(h), base::length(s), base::length(v), base::length(a))
   reps <- base::max(ns) / ns
-  ok.recycle <- base::all(uj::rounded(reps))
-  uj::errs_if_nots(uj::cmp_ppn_vec(h), "[h] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].",
-                   uj::cmp_ppn_vec(s), "[s] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].",
-                   uj::cmp_ppn_vec(v), "[v] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].",
-                   uj::cmp_ppn_vec(a), "[a] must be a complete proportion vec (?cmp_ppn_vec). That is, in the interval [0, 1].",
-                   ok.recycle        , "[h], [s], [v], and [a] are not recyclable (?recyclable)."                              , PKG = "uj")
+  if (base::any(reps != base::round(rep))) {uj::stopperr("[h], [s], [v], and [a] are not recyclable (?recyclable).", PKG = "uj")}
   grDevices::hsv(h, s, v, a)
 }
 
 #' @rdname color
 #' @export
 blend <- function(x, y, wx = 1, wy = 1, a = NA) {
-  ns <- base::c(uj::N(x), uj::N(y), uj::N(wx), uj::N(wy), uj::N(a))
+  uj:::.color_errs(x = x, y = y, wx = wx, wy = wy, a = a, a.na.ok = T)
+  ns <- base::c(base::length(x), base::length(y), base::length(wx), base::length(wy), base::length(a))
   reps <- base::max(ns) / ns
-  ok.recycle <- base::all(uj::rounded(reps))
-  uj::errs_if_nots(uj::cmp_clr_vec(x)             , "[x] must be a complete color vec (?cmp_clr_vec)."                    ,
-                   uj::cmp_clr_vec(y)             , "[x] must be a complete color vec (?cmp_clr_vec)."                    ,
-                   uj::cmp_pos_vec(wx)            , "[wx] must be a complete positive numeric vec (?cmp_pos_vec)."        ,
-                   uj::cmp_pos_vec(wy)            , "[wu] must be a complete positive numeric vec (?cmp_pos_vec)."        ,
-                   uj::nll_or(reps, "cmp_ppn_vec"), "[a] must be [NA] or a complete proportion numeric vec(?cmp_ppn_vec).",
-                   ok.recycle                     , "[x], [y], [wx], [wy], and [a] are not recyclable (?recyclable)."     , PKG = "uj")
-  x  <- uj::asCLR(x)                                                             # convert x and y to hexadecimal RGBA
-  y  <- uj::asCLR(y)
+  if (base::any(reps != base::round(reps))) {uj::stopperr("[x], [y], [wx], [wy], and [a] are not recyclable (?recyclable).", PKG = "uj")}
+  x  <- uj::as_clr(x)                                                            # convert x and y to hexadecimal RGBA
+  y  <- uj::as_clr(y)
   wt <- wx + wy                                                                  # rescale x and y weights to sum to 1
   wx <- wx / wt
   wy <- wy / wt
@@ -281,22 +264,24 @@ redvlt <- function(p = 1, s = 0, a = 1) {uj::blend(uj::red(p, s), uj::vlt(p, s),
 #' @rdname color
 #' @export
 pal_cb <- function(ng, nc = NULL, a = 1) {
-  uj::errs_if_nots(uj::cmp_psw_scl(ng)          , "[ng] must be a complete positive whole-number scalar (?cmp_psw_scl)."                     ,
-                   uj::nll_or(nc, "cmp_psw_scl"), "[nc] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl)."             ,
-                   uj::cmp_ppn_scl(a)           , "[a] must be a complete proportion scalar (?cmp_ppn_scl). That is, in the interval [0, 1].", PKG = "uj")
+  errs <- NULL
+  if (!uj:::.cmp_psw_scl(ng)) {errs <- base::c(errs, "[ng] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!uj::f0(base::is.null(nc), T, uj:::.cmp_psw_scl(nc))) {errs <- base::c(errs, "[nc] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!uj:::.cmp_ppn_scl(a)) {errs <- base::c(errs, "[a] must be a complete proportion scalar (?cmp_ppn_scl). That is, in the interval [0, 1].")}
+  if (!base::is.null(errs)) {uj::stopperr(err, PKG = "uj")}
   y <- base::c("#4E79A7", "#F28E2B", "#E15759", "#76B7B2", "#59A14F", "#EDC948", "#B07AA1", "#FF9DA7", "#9C755F", "#BAB0AC", # bright colors
                "#273D54", "#794716", "#712C2D", "#3B5C59", "#2D5128", "#776524", "#583D51", "#804F54", "#4E3B30", "#5D5856") # darkened 50%
-  if (uj::N0(nc)) {if (nc < 20) {nc <- nc} else {nc <- 20}}                      # IF [nc] was not supplied THEN IF [nc] is less than 20, use as is ELSE  cap at 20
-  if (nc > uj::N(y)) {y <- base::rep.int(y, uj::HI(nc / uj::N(y)))}              # if [nc] is larger than 20, repeat colors
-  y <- y[1:nc]                                                                   # take the first [nc] colors
-  scales::alpha(y, a)                                                            # apply the alpha value
+  if (base::length(nc) == 0) {if (nc < 20) {nc <- nc} else {nc <- 20}}                   # IF [nc] was not supplied THEN IF [nc] is less than 20, use as is ELSE  cap at 20
+  if (nc > base::length(y)) {y <- base::rep.int(y, base::ceiling(nc / base::length(y)))} # if [nc] is larger than 20, repeat colors
+  y <- y[1:nc]                                                                           # take the first [nc] colors
+  scales::alpha(y, a)                                                                    # apply the alpha value
 }
 
 #' @rdname color
 #' @export
 pal_swatch <- function(x) {
-  uj::err_if_not(uj::cmp_clr_vec(x), "[x] must be a complete color vec (?cmp_clr_vec) [i.e., containing only valid character-mode color values].", PKG = "uj")
-  uj::asCLR(x)                                                                   # convert [x] to hexadecimal RGBA format
+  if (!uj:::.cmp_clr_vec(x)) {uj::stopperr("[x] must be a complete color vec (?cmp_clr_vec) [i.e., containing only valid character-mode color values].", PKG = "uj")}
+  uj::as_clr(x)                                                                  # convert [x] to hexadecimal RGBA format
   opts <- graphics::par()                                                        # bank current graphical parameters
   graphics::par(mar  = base::c(0, 0, 0, 0),                                      # set margins to zero (entire window is the plot region)
                 ann  = F,                                                        # : do not annotate with titles
@@ -305,7 +290,7 @@ pal_swatch <- function(x) {
                 bty  = "n",                                                      # : no box around the plot region
                 col  = "black")                                                  # : default plotting color
   base::on.exit(graphics::par(opts))                                             # restore the previous graphical parameters when finished
-  left <- 0:(uj::N(x) - 1)                                                       # left side of swatch rectangles
+  left <- 0:(base::length(x) - 1)                                                       # left side of swatch rectangles
   right <- left + 1                                                              # right side of swatch rectangles
   base::plot(x = base::c(0, base::max(right)), y = base::c(0, 1), col = "white") # draw white dots in the bottom left and top right corners
   for (i in 1:base::max(right)) {graphics::rect(left[i], 0, right[i], 1, col = x[i], border = "white")}

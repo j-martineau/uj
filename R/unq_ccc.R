@@ -36,11 +36,19 @@
 #' c(unq_vec(UnqVec), unq_arr(UnqDtf), unq_arr(c(UnqVec, UnqVec)))
 #' c(unq_vls(UnqVls), unq_arr(UnqVec), unq_arr(c(UnqVls, UnqVls)))
 #' @export
-unq_ccc <- function(x, ccc, ...) {uj::f0(uj::cmp_ccc(x, ccc, ...), uj::UNQ(x, a = uj::notIN(base::tolower(ccc), "dtf", "vls"), nas = F), F)}
+unq_ccc <- function(x, ccc, ...) {
+  UNQ <- function(z) {base::length(z) == base::length(base::unique(z))}
+  if (uj::cmp_ccc(x, ccc, ...)) {
+    ccc <- base::tolower(ccc)
+    if (ccc == "dtf") {base::all(base::apply(x, 2, UNQ))}
+    else if (ccc == "vls") {base::all(base::sapply(x, UNQ))}
+    else {base::length(x) == base::length(base::unique(x))}
+  } else {F}
+}
 
 #' @rdname unq_ccc
 #' @export
-unq_ccc_funs <- function() {uj::p0('unq_', uj:::.cccs)}
+unq_ccc_funs <- function() {base::paste0('unq_', uj:::.cccs)}
 
 #' @rdname unq_ccc
 #' @export

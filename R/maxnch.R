@@ -11,14 +11,14 @@
 #' max_nch(letters)
 #' maxlen("a", "collection", "of", "words")
 #' @export
-max_nch <- function(...) {
+maxnch <- function(...) {
   x <- uj::av(...)
-  x <- x[uj::ok(x)]
-  uj::err_if(uj::N0(x), "[...] does not contain any non-NA values.", PKG = "uj")
-  uj::err_if_not(uj::isCHR(x), "[...] does not contain any character objects.", PKG = "uj")
-  base::max(uj::LEN(x))
+  x <- x[!base::is.na(x)]
+  if (base::length(x) == 0) {uj::stopperr("[...] does not contain any non-NA values.", PKG = "uj")}
+  if (!base::is.character(x)) {uj::stopperr("[...] does not contain any character objects.", PKG = "uj")}
+  base::max(base::nchar(x))
 }
 
-#' @rdname max_nch
+#' @rdname maxnch
 #' @export
-maxlen <- max_nch
+maxlen <- maxnch

@@ -25,14 +25,18 @@
 #' @export
 bbb_mmm <- function(x, bbb, mmm, ...) {
   BBB <- base::c("atm", "pop")
-  if (uj::isCHR(bbb)) {bbb <- base::tolower(bbb)}
-  if (uj::isCHR(mmm)) {mmm <- base::tolower(mmm)}
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...)                                                                 ,
-                          uj::f0(uj::isIN1(bbb, BBB), NULL, "[bbb] is not a scalar value from c('atm', 'pop').")   ,
-                          uj::f0(uj::isIN1(mmm, uj:::.mmm), NULL, '[mmm] is not a scalar value from mmm_props().')), PKG = "uj")
+  MMM <- base:::.mmm
+  if (base::is.character(bbb)) {bbb <- base::tolower(bbb)}
+  if (base::is.character(mmm)) {mmm <- base::tolower(mmm)}
+  errs <- uj:::.meets_errs(x, ...)
+  bbb.err <- "[bbb] is not a scalar value from c('atm', 'pop')."
+  mmm.err <- "[mmm] is not a scalar value from mmm_props()."
+  if (base::length(bbb) == 1) {errs <- base::c(errs, bbb.err)} else if (!(bbb %in% BBB)) {errs <- base::c(errs, bbb.err)}
+  if (base::length(mmm) == 1) {errs <- base::c(errs, mmm.err)} else if (!(mmm %in% MMM)) {errs <- base::c(errs, mmm.err)}
+  if (!base::is.null(errs)) {uj::stopperrs(errs, PKG = "uj")}
   if (!uj::meets(x, ...)) {F}
-  else if (bbb == "atm") {uj::f0(uj::notATM(x), F, uj::run(base::toupper(mmm), "(x)"))}
-  else if (bbb == "pop") {uj::f0(uj::notATM(x), F, uj::f0(uj::N0(x), F, uj::run(base::toupper(mmm), "(x)")))}
+  else if (bbb == "atm") {if (!base::is.atomic(x)) {F} else {uj::run("uj:::.", base::toupper(mmm), "(x)")}}
+  else if (bbb == "pop") {if (!base::is.atomic(x)) {F} else if (base::length(x) == 0) {F} else {uj::run("uj:::.", base::toupper(mmm), "(x)")}}
   else {F}
 }
 
@@ -41,7 +45,7 @@ bbb_mmm <- function(x, bbb, mmm, ...) {
 bbb_mmm_funs <- function() {
   mmm <- uj:::.mmm
   mmm <- mmm[mmm != "atm"]
-  base::c(uj::p0("atm_", mmm), "pop_atm", uj::p0("pop_", mmm))
+  base::c(base::paste0("atm_", mmm), "pop_atm", base::paste0("pop_", mmm))
 }
 
 #' @rdname bbb_mmm

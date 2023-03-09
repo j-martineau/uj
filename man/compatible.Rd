@@ -3,11 +3,14 @@
 \encoding{UTF-8}
 \name{compatible}
 \alias{compatible}
+\alias{compatible_xy}
 \alias{compatible_mats}
 \alias{compatible_dtfs}
 \title{Are objects compatible?}
 \usage{
 compatible(..., REC = FALSE)
+
+compatible_xy(x, y, REC = FALSE)
 
 compatible_mats(DIM, ...)
 
@@ -25,18 +28,19 @@ A logical scalar.
 }
 \description{
 \tabular{ll}{  \code{compatible}        \tab Evaluates whether all \code{...} arguments are compatible, meaning all numeric, all character, all logical, all unordered factor with the same levels, or ordered factor with the same levels in the same order.  \cr   \tab   \cr
+  \code{compatible_xy}     \tab Evaluates whether all \code{x} and \code{y} are compatible.                                                                                                                                                            \cr   \tab   \cr
   \code{compatible_mats}   \tab Evaluates whether all \code{...} arguments are compatible matrices and (for row binding) have the same number of columns or (for column binding) have the same number of rows.                                    \cr   \tab   \cr
   \code{compatible_dtfs}   \tab Evaluates whether all \code{...} arguments are \link[=atm_dtf]{atomic data.frames}. For row binding, also evaluates whether they have the same number of columns and all corresponding columns are compatible.
 For column binding, also evaluates whether they have the same number of rows.                                                                                                                                               }
 }
 \examples{
-egN0 <- 0
+egn0 <- 0
 egN7 <- 0:7
 egN9 <- 0:9
-egL0 <- egN0 < 4
+egL0 <- egn0 < 4
 egL7 <- egN7 < 3
 egL9 <- egN9 < 2
-egC0 <- as.character(egN0)
+egC0 <- as.character(egn0)
 egC7 <- as.character(egN7)
 egC9 <- as.character(egN9)
 u00 <- factor(egC0, levels = egC0, ordered = F)
@@ -53,12 +57,12 @@ egDTFncl7 <- data.frame(N = egN7, C = egC7, L = egL7)
 egDTFncl9 <- data.frame(N = egN9, C = egC9, L = egL9)
 egDTFcln7 <- data.frame(C = egC7, L = egL7, N = egN7)
 egDTFcln9 <- data.frame(C = egC9, L = egL9, N = egN9)
-compatible(egN0, egN7, egN9)
+compatible(egn0, egN7, egN9)
 compatible(egC0, egC7, egC9, REC = T)
 compatible(egC0, egC7, egC9)
 compatible(egL0, egL7, egL9, REC = T)
 compatible(egL0, egL7, egL9)
-compatible(egN0, egN7, egN9, REC = T)
+compatible(egn0, egN7, egN9, REC = T)
 compatible(u09, u79, u99)
 compatible(u00, u07, u09)
 compatible(o09, o79, o99)
@@ -70,22 +74,21 @@ compatible_dtfs("c", dtfNCL7, dtfCLN7)
 }
 \seealso{
 Other extensions: 
+\code{\link{N}()},
 \code{\link{atomize}()},
 \code{\link{case}()},
 \code{\link{cb}()},
 \code{\link{comparable}()},
 \code{\link{declare}},
 \code{\link{dups}()},
-\code{\link{evals}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
 \code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
-\code{\link{nis}()},
 \code{\link{paths}},
 \code{\link{purge}()},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{sum0}()},
@@ -93,7 +96,7 @@ Other extensions:
 \code{\link{value_exists}()}
 
 Other properties: 
-\code{\link{asMODE}()},
+\code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{checker}},

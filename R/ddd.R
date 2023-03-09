@@ -36,7 +36,10 @@
 #' @export
 ddd <- function(x) {
   y <- NULL
-  for (ddd in uj:::.DDD) {y <- base::c(y, uj::f0(uj::run('uj::', ddd, '(x)'), ddd, NULL))}
+  for (DDD in uj:::.DDD) {
+    match <- uj::run("uj:::.", DDD, "(x)")
+    if (match) {y <- base::c(y, base::tolower(DDD))}
+  }
   y
 }
 
@@ -52,14 +55,21 @@ ddd_props <- function() {uj:::.ddd}
 #' @export
 is_ddd_spec <- function(spec) {
   spec <- uj:::.spec2props(spec)
-  uj::f0(uj::N0(spec), F, uj::allIN(spec, base::c(uj:::.ddd, uj:::.DDD)))
+  if (base::length(spec) == 0) {F} else {base::all(spec %in% uj:::.ddd)}
 }
 
 #' @rdname ddd
 #' @export
 DDD <- function(x, spec, ...) {
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::nll_if(uj::is_ddd_spec(spec), '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from ddd_props().')), PKG = "uj")
-  if (uj::meets(x, ...)) {for (prop in base::toupper(uj:::.spec2props(spec))) {if (uj::run('uj::', prop, '(x)')) {return(T)}}}
+  errs <- uj:::.meets_errs(x, ...)
+  if (!uj::is_ddd_spec(spec)) {errs <- base::c(errs, "[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from ddd_props().")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (uj::meets(x, ...)) {
+    props <- uj:::.spec2props(spec)
+    for (prop in base::toupper(props)) {
+      if (uj::run('uj:::.', prop, '(x)')) {return(T)}
+    }
+  }
   F
 }
 
@@ -81,4 +91,4 @@ DHD <- function(x, ...) {uj::DDD(x, 'dHd', ...)}
 
 #' @rdname ddd
 #' @export
-nddd <- function(x) {uj::f0(uj::NLL(x), 0, uj::f0(uj::isVEC(x), 1, uj::NDIM(x)))}
+nddd <- function(x) {uj::f0(base::is.null(x), 0, uj::f0(base::is.vector(x), 1, base::length(base::dim(x))))}

@@ -37,7 +37,7 @@ Other meta:
 \code{\link{dot_args}()},
 \code{\link{ply}()},
 \code{\link{purge}()},
-\code{\link{recyclableN}()},
+\code{\link{recyclable_ns}()},
 \code{\link{run}()},
 \code{\link{say}()}
 }

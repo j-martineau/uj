@@ -113,7 +113,7 @@ WHL(x, ...)
 }
 \value{
 \strong{A character vector} \cr\cr \verb{mmm_props, mmm_funs, mmm}
-\cr\cr  \strong{A logical scalar}   \cr\cr \verb{is_mmm_spec, MMM, \{mmm\}}
+\cr\cr  \strong{A logical scalar}   \cr\cr \verb{is_mmm_spec, \{MMM\}, MMM}
 }
 \description{
 xmodes are defined for non-empty atomic objects. For all other objects, the xmode is \code{NULL}. These are not formally defined modes, but are evaluated dynamically based on the current characteristics of an object.
@@ -127,40 +127,40 @@ xmodes are defined for non-empty atomic objects. For all other objects, the xmod
   \verb{'clr', 'CLR'}   \tab color (valid color values)         \cr
   \verb{'str', 'STR'}   \tab string (no blanks)                   }
 \strong{Categorical xmodes}
-\tabular{ll}{  \verb{'fac', 'FAC'}   \tab factor                             \cr
-  \verb{'lgl', 'LGL'}   \tab logical                            \cr
-  \verb{'ord', 'ORD'}   \tab ordered factor                     \cr
-  \verb{'uno', 'UNO'}   \tab unordered factor                     }
+\tabular{ll}{  \verb{'fac', 'FAC'}   \tab factor         \cr
+  \verb{'lgl', 'LGL'}   \tab logical        \cr
+  \verb{'ord', 'ORD'}   \tab ordered factor \cr
+  \verb{'uno', 'UNO'}   \tab unordered factor }
 \strong{Basic numeric xmodes}
-\tabular{ll}{  \verb{'num', 'NUM'}   \tab numeric                            \cr
-  \verb{'frc', 'FRC'}   \tab fractional                         \cr
-  \verb{'whl', 'WHL'}   \tab whole number                         }
+\tabular{ll}{  \verb{'num', 'NUM'}   \tab numeric    \cr
+  \verb{'frc', 'FRC'}   \tab fractional \cr
+  \verb{'whl', 'WHL'}   \tab whole number }
 \strong{Value-restricted numeric xmodes}
-\tabular{ll}{  \verb{'pct', 'PCT'}   \tab percentage (\code{0} to \code{100})          \cr
-  \verb{'ppn', 'PPN'}   \tab proportion (\code{0-1})                 \cr
-  \verb{'pos', 'POS'}   \tab positive                           \cr
-  \verb{'neg', 'NEG'}   \tab negative                           \cr
-  \verb{'nng', 'NNG'}   \tab non-negative                       \cr
-  \verb{'nps', 'NPS'}   \tab non-positive                         }
+\tabular{ll}{  \verb{'pct', 'PCT'}   \tab percentage (\code{0} to \code{100}) \cr
+  \verb{'ppn', 'PPN'}   \tab proportion (\code{0-1})        \cr
+  \verb{'pos', 'POS'}   \tab positive                  \cr
+  \verb{'neg', 'NEG'}   \tab negative                  \cr
+  \verb{'nng', 'NNG'}   \tab non-negative              \cr
+  \verb{'nps', 'NPS'}   \tab non-positive                }
 \strong{Whole-number value-restricted xmodes}
-\tabular{ll}{  \verb{'evn', 'EVN'}   \tab even                               \cr
-  \verb{'odd', 'ODD'}   \tab odd                                \cr
-  \verb{'ngw', 'NGW'}   \tab negative whole                     \cr
-  \verb{'psw', 'PSW'}   \tab positive whole                     \cr
-  \verb{'npw', 'NPW'}   \tab non-positive whole                 \cr
-  \verb{'nnw', 'NNW'}   \tab non-negative whole                   }
+\tabular{ll}{  \verb{'evn', 'EVN'}   \tab even               \cr
+  \verb{'odd', 'ODD'}   \tab odd                \cr
+  \verb{'ngw', 'NGW'}   \tab negative whole     \cr
+  \verb{'psw', 'PSW'}   \tab positive whole     \cr
+  \verb{'npw', 'NPW'}   \tab non-positive whole \cr
+  \verb{'nnw', 'NNW'}   \tab non-negative whole   }
 \strong{Combination xmodes}
-\tabular{ll}{  \verb{'ind', 'IND'}   \tab indexer (\code{lgl}, \code{psw})             \cr
-  \verb{'srt', 'SRT'}   \tab sortable (\code{chr}, \code{num}, \code{ord})     \cr
-  \verb{'nst', 'NST'}   \tab non-sortable atomic                  }
+\tabular{ll}{  \verb{'ind', 'IND'}   \tab indexer (\code{'lgl'}, \code{'psw'})           \cr
+  \verb{'srt', 'SRT'}   \tab sortable (\code{'chr'}, \code{'num'}, \code{'ord'}) \cr
+  \verb{'nst', 'NST'}   \tab non-sortable atomic                    }
 }
 \details{
 \tabular{ll}{  \code{is_mmm_spec}    \tab Is \code{spec} an xmode specification?                                                                                  \cr   \tab   \cr
   \code{mmm_props}      \tab What xmode properties are there?                                                                                   \cr   \tab   \cr
   \code{mmm_funs}       \tab What xmode property functions are there?                                                                           \cr   \tab   \cr
-  \code{{mmm}}          \tab Is \code{x} a match to the single xmode property \code{'{mmm}'} where \code{{mmm}} is a placeholder for any given xmode property? \cr   \tab   \cr
-  \code{mmm}            \tab What are \code{x}'s xmode properties?                                                                                   \cr   \tab   \cr
-  \code{MMM}            \tab Is \code{x} a match to the xmode property spec in \code{spec}?                                                                              }
+  \code{{MMM}}          \tab Is \code{x} a match to the single xmode property \code{'{MMM}'} where \code{{MMM}} is a placeholder for any given xmode property? \cr   \tab   \cr
+  \code{MMM}            \tab Is \code{x} a match to the xmode property spec in \code{spec}?                                                               \cr   \tab   \cr
+  \code{mmm}            \tab What are \code{x}'s xmode properties?                                                                                                  }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
@@ -191,7 +191,7 @@ CLR("#1077ACFF")
 }
 \seealso{
 Other properties: 
-\code{\link{asMODE}()},
+\code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{checker}},

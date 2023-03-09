@@ -1,11 +1,3 @@
-.pal_errs <- function(n) {uj::f0(uj::cmp_psw_scl(n), NULL, "[n] must be a positive whole-number scalar.")}
-
-.pal_vals <- function(type, n) {
-  x <- uj::run("uj::v(", type, ")")
-  while (base::length(x) < n) {x <- base::c(x, x)}
-  x[1:n]
-}
-
 #' @name pals
 #' @encoding UTF-8
 #' @family plots
@@ -32,69 +24,69 @@
 #' \cr\cr  **A character vector**             \cr\cr `pal_colors, pal_lines` \cr `pal_azdots, pal_AZdots` \cr `pal_ndots, pal_pdots`
 #' @export
 pal_colors <- function(n) {
-  uj::errs_if_pop(uj:::.pal_errs(n), PKG = "uj")
+  uj:::.pal_errs(n, uj::callers())
   uj:::.pal_vals("colors", n)
 }
 
 #' @rdname pals
 #' @export
 pal_lines <- function(n) {
-  uj::errs_if_pop(uj:::.pal_errs(n), PKG = "uj")
+  uj:::.pal_errs(n, uj::callers())
   uj:::.pal_vals("lines", n)
 }
 
 #' @rdname pals
 #' @export
 pal_azdots <- function(n) {
-  uj::errs_if_pop(uj:::.pal_errs(n), PKG = "uj")
+  uj:::.pal_errs(n, uj::callers())
   uj:::.pal_vals("azdots", n)
 }
 
 #' @rdname pals
 #' @export
 pal_AZdots <- function(n) {
-  uj::errs_if_pop(uj:::.pal_errs(n), PKG = "uj")
+  uj:::.pal_errs(n, uj::callers())
   uj:::.pal_vals("AZdots", n)
 }
 
 #' @rdname pals
 #' @export
 pal_fdots <- function(n) {
-  uj::errs_if_pop(uj:::.pal_errs(n), PKG = "uj")
+  uj:::.pal_errs(n, uj::callers())
   uj:::.pal_vals("fdots", n)
 }
 
 #' @rdname pals
 #' @export
 pal_edots <- function(n) {
-  uj::errs_if_pop(uj:::.pal_errs(n), PKG = "uj")
+  uj:::.pal_errs(n, uj::callers())
   uj:::.pal_vals("edots", n)
 }
 
 #' @rdname pals
 #' @export
 pal_ldots <- function(n) {
-  uj::errs_if_pop(uj:::.pal_errs(n), PKG = "uj")
+  uj:::.pal_errs(n, uj::callers())
   uj:::.pal_vals("ldots", n)
 }
 
 #' @rdname pals
 #' @export
 pal_ndots <- function(n) {
-  uj::errs_if_pop(uj:::.pal_errs(n), PKG = "uj")
+  uj:::.pal_errs(n, uj::callers())
   uj:::.pal_vals("ndots", n)
 }
 
 #' @rdname pals
 #' @export
 pal_pdots <- function(n) {
-  uj::errs_if_pop(uj:::.pal_errs(n), PKG = "uj")
+  uj:::.pal_errs(n, uj::callers())
   uj:::.pal_vals("pdots", n)
 }
 
 #' @rdname pals
 #' @export
 pal_sdots <- function(n) {
-  uj::errs_if_pop(uj:::.pal_errs(n), PKG = "uj")
+  uj:::.pal_errs(n, uj::callers())
   uj:::.pal_vals("edots", n)
 }

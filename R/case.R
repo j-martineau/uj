@@ -15,12 +15,14 @@
 #' case("three", 1, letters, NAMES = c("three", "four"), DEF = "default")
 #' @export
 case <- function(NAME, ..., NAMES = NULL, DEF = "err") {
-  ok.NAMES <- uj::f0(uj::NLL(NAMES), T, uj::f0(uj::notVEC(NAMES), F, uj::N(NAMES) == uj::ND()))
-  uj::errs_if_nots(uj::cmp_scl(NAME), "[NAME] must be a non-NA atomic scalar (?cmp_scl)."                      ,
-                   uj::ND1P()       , "[...] is empty."                                                        ,
-                   ok.NAMES         , "[NAMES] must be NULL or an atomic vector of length equal to ...length()", PKG = "uj")
+  ok.NAMES <- uj::f0(base::is.null(NAMES), T, uj::f0(!uj:::.atm_vec(NAMES), F, base::length(NAMES) == base::...length()))
+  errs <- NULL
+  if (!uj:::.cmp_scl(NAME)) {errs <- base::c(errs, "[NAME] must be a non-NA atomic scalar (?cmp_scl).")}
+  if (base::...length() == 0) {errs <- base::c(errs, "[...] is empty.")}
+  if (!ok.NAMES) {errs <- base::c(errs, "[NAMES] must be NULL or an atomic vector of length equal to ...length()")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   NAMES <- uj::dot_names(..., SUBS = NAMES, REQ = T, BL = F, U = T)
-  i <- uj::WV(NAMES == NAME)
-  uj::err_if(uj::isEQ1(DEF, 'err') & uj::notN1(i), "[NAME] does not match any argument in [...].", PKG = "uj")
-  uj::f0(uj::N1(i), base::...elt(i), DEF)
+  i <- base::which(NAMES == NAME)
+  if (uj:::.cmp_chr_scl(DEF, valid = 'err') & base::length(i) != 1) {uj::stopperr("[NAME] must match 1 argument in [...].", PKG = "uj")}
+  uj::f0(base::length(i) == 1, base::...elt(i), DEF)
 }

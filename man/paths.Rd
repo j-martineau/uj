@@ -91,6 +91,7 @@ run(as_path.)
 }
 \seealso{
 Other extensions: 
+\code{\link{N}()},
 \code{\link{atomize}()},
 \code{\link{case}()},
 \code{\link{cb}()},
@@ -98,15 +99,13 @@ Other extensions:
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
-\code{\link{evals}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
 \code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
-\code{\link{nis}()},
 \code{\link{purge}()},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{sum0}()},
@@ -114,7 +113,7 @@ Other extensions:
 \code{\link{value_exists}()}
 
 Other files: 
-\code{\link{rd}}
+\code{\link{rd}()}
 }
 \concept{extensions}
 \concept{files}

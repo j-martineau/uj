@@ -19,7 +19,7 @@ er(e, r, ...)
 \arguments{
 \item{r}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of replications of entire vectors.}
 
-\item{...}{One or more objects containin aatomic values to be replicated (\link[=a]{atomized} before replication).}
+\item{...}{One or more objects containing atomic values to be replicated (\link[=a]{atomized} before replication).}
 
 \item{e}{A complete positive whole-number scalar giving the number of times each value is to be replicated in place.}
 }
@@ -41,6 +41,7 @@ re(2, 3, 0:2, 3)
 }
 \seealso{
 Other extensions: 
+\code{\link{N}()},
 \code{\link{atomize}()},
 \code{\link{case}()},
 \code{\link{cb}()},
@@ -48,16 +49,14 @@ Other extensions:
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
-\code{\link{evals}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
 \code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
-\code{\link{nis}()},
 \code{\link{paths}},
 \code{\link{purge}()},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{sets}()},
 \code{\link{sum0}()},
 \code{\link{swap}()},

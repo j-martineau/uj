@@ -3,20 +3,20 @@
 \encoding{UTF-8}
 \name{gr}
 \alias{gr}
-\alias{strh}
-\alias{strw}
+\alias{str_h}
+\alias{str_w}
 \title{Thin wrappers of \code{graphics} functions.}
 \usage{
-strh(...)
+str_h(...)
 
-strw(...)
+str_w(...)
 }
 \description{
 Thin wrappers of \code{graphics} functions.
 }
 \details{
-\tabular{ll}{  \code{strh}   \tab \code{\link[graphics]{strheight}}. \cr
-  \code{strw}   \tab \code{\link[graphics]{strwidth}}.    }
+\tabular{ll}{  \code{str_h}   \tab \code{\link[graphics]{strheight}}. \cr
+  \code{str_w}   \tab \code{\link[graphics]{strwidth}}.    }
 }
 \examples{
 sent1 <- "First sentence."
@@ -33,12 +33,12 @@ strw(sent12)
 Other strings: 
 \code{\link{blank}()},
 \code{\link{chn}()},
-\code{\link{delim}},
+\code{\link{delim}()},
 \code{\link{fsub}()},
 \code{\link{ipat}()},
 \code{\link{makestr}()},
 \code{\link{markdown}()},
-\code{\link{max_nch}()},
+\code{\link{maxnch}()},
 \code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{revstr}()},
@@ -60,7 +60,7 @@ Other wraps:
 \code{\link{dp}},
 \code{\link{dt}()},
 \code{\link{ggp}()},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{sca}()},
 \code{\link{tb}()}
 }

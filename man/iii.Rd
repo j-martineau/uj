@@ -9,8 +9,8 @@
 \alias{III}
 \alias{CMP}
 \alias{MSS}
-\alias{NAS}
-\alias{OKS}
+\alias{NA0}
+\alias{OK0}
 \alias{PRT}
 \alias{DUP}
 \alias{UNQ}
@@ -30,9 +30,9 @@ CMP(x, ...)
 
 MSS(x, ...)
 
-NAS(x, ...)
+NA0(x, ...)
 
-OKS(x, ...)
+OK0(x, ...)
 
 PRT(x, ...)
 
@@ -53,24 +53,24 @@ UNQ(x, ...)
 }
 \value{
 \strong{A character vector} \cr\cr   \verb{iii_props, iii_funs, iii}
-\cr\cr  \strong{A logical scalar}   \cr\cr   \verb{is_iii_spec, III, XXX}
+\cr\cr  \strong{A logical scalar}   \cr\cr   \verb{is_iii_spec, III, \{III\}}
 }
 \description{
 Integrity properties are defined for \link[=POP]{populated} \link[=atm_dtf]{atomic data.frames}, populated \link[=atm_vls]{atomic vlists}, populated atomic vectors, and populated atomic arrays. For all others, all integrity properties are considered \code{FALSE}. The following table summarizes valid integrity properties.
 \tabular{lll}{  \verb{'cmp', 'CMP'}   \tab complete      \tab Populated and atomic vectors, arrays, \link[=atm_dtf]{data.frames}, and \link[=atm_vls]{vlists} containing \emph{no} \code{NA} values. \cr   \tab   \cr
-  \verb{'mss', 'MSS'}   \tab missing       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \emph{only} \code{NA} values.                               \cr   \tab   \cr
-  \verb{'prt', 'PRt'}   \tab partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \code{NA} \emph{and} non-\code{NA} values.                       \cr   \tab   \cr
-  \verb{'dup', 'DUP'}   \tab duplicates    \tab Complete and containing duplicate values.                                                                                  \cr   \tab   \cr
-  \verb{'unq', 'UNQ'}   \tab unique        \tab Complete and containing only unique values.                                                                                \cr   \tab   \cr
-  \verb{'nas', 'NAS'}   \tab \code{NA} scalar   \tab Atomic scalar \code{NA}.                                                                                                        \cr   \tab   \cr
-  \verb{'oks', 'OKS'}   \tab \code{OK} scalar   \tab Non-\code{NA} atomic scalar.                                                                                                                   }
+  \verb{'mss', 'MSS'}   \tab missing       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \emph{only} \code{NA} values.                                 \cr   \tab   \cr
+  \verb{'prt', 'PRT'}   \tab partial       \tab Populated and atomic vectors, arrays, data.frames, and vlists containing \code{NA} \emph{and} non-\code{NA} values.                         \cr   \tab   \cr
+  \verb{'dup', 'DUP'}   \tab duplicates    \tab Complete and containing duplicate values.                                                                                    \cr   \tab   \cr
+  \verb{'unq', 'UNQ'}   \tab unique        \tab Complete and containing only unique values.                                                                                  \cr   \tab   \cr
+  \verb{'nas', 'NA0'}   \tab \code{NA} scalar   \tab Atomic scalar \code{NA}.                                                                                                          \cr   \tab   \cr
+  \verb{'oks', 'OK0'}   \tab \code{OK} scalar   \tab Non-\code{NA} atomic scalar.                                                                                                                     }
 \cr\cr \strong{Integrity property functions}
-\tabular{ll}{  \code{is_iii_spec}   \tab Is \code{spec} an integrity specification?                                                                           \cr   \tab   \cr
-  \code{iii_props}     \tab What integrity properties are there?                                                                            \cr   \tab   \cr
-  \code{iii_funs}      \tab What integrity property functions are there?                                                                    \cr   \tab   \cr
-  \code{iii}           \tab Gets all of \code{x}'s integrity properties.                                                                         \cr   \tab   \cr
-  \code{III}           \tab Does \code{x} match integrity specification \code{spec}?                                                                  \cr   \tab   \cr
-  \code{{iii}}         \tab Does \code{x} match single integrity property \code{'{iii}'} where \code{{iii}} is a placeholder for any given integrity property?            }
+\tabular{ll}{  \code{is_iii_spec}   \tab Is \code{spec} an integrity specification?                                                                \cr   \tab   \cr
+  \code{iii_props}     \tab What integrity properties are there?                                                                 \cr   \tab   \cr
+  \code{iii_funs}      \tab What integrity property functions are there?                                                         \cr   \tab   \cr
+  \code{iii}           \tab Gets all of \code{x}'s integrity properties.                                                              \cr   \tab   \cr
+  \code{III}           \tab Does \code{x} match integrity specification \code{spec}?                                                       \cr   \tab   \cr
+  \code{{II}}          \tab Does \code{x} match single integrity property \code{'{III}'} where \code{{III}} is a placeholder for any given integrity property? }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
@@ -87,9 +87,9 @@ iii_props()
 is_iii_spec("nas|mss")
 CMP(NA)
 CMP(NULL)
-NAS(NA)
-OKS(letters)
-OKS(letters[1])
+NA0(NA)
+OK0(letters)
+OK0(letters[1])
 MSS(rep(NA, 10))
 iii(NA)
 iii(letters)
@@ -97,7 +97,7 @@ iii(letters[1])
 }
 \seealso{
 Other properties: 
-\code{\link{asMODE}()},
+\code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{checker}},

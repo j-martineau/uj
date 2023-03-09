@@ -86,16 +86,16 @@ Purge objects and parts of objects
 }
 \details{
 All purge (\code{x}) functions include garbage collection.
-\tabular{ll}{  \verb{purge_pref, rm_pref, xpref}   \tab Purge package prefixes\eqn{^{(1)}}    \cr
-  \verb{purge_plot, rmPLOT, xplot}    \tab Purge plots\eqn{^{(2)}}               \cr
-  \verb{purgeWARN, rmWARN, xwarn}     \tab Purge warnings                        \cr
-  \verb{purge_con, rmCON, xcon}       \tab Purge console                         \cr
-  \verb{purge, x}                     \tab Purge specific objects                  }
-\tabular{l}{  \eqn{^{(1)}} Converts \code{'base::paste'} to \code{'paste'}, for example.          \cr
-  \eqn{^{(2)}} Followed by printing the object \code{x} if not \code{NULL}. \cr   \tab  }
-\tabular{ll}{  \verb{purge_global, purge_all}      \tab \strong{WARNING: Use with care!}           \cr
-  \verb{rm_global, rm_all}            \tab    *These functions purge *           \cr
-  \verb{xglobal, xall}                \tab    \emph{the global environment}             }
+\tabular{ll}{  \verb{purge_pref, rm__pref, xpref}   \tab Purge package prefixes\eqn{^{(1)}}    \cr
+  \verb{purge_plot, rm_plot, xplot}    \tab Purge plots\eqn{^{(2)}}               \cr
+  \verb{purge_warn, rm_warn, xwarn}    \tab Purge warnings                        \cr
+  \verb{purge_con, rm_con, xcon}       \tab Purge console                         \cr
+  \verb{purge, x}                      \tab Purge specific objects                  }
+\tabular{l}{  \eqn{^{(1)}} Converts \code{'base::paste'} to \code{'paste'}, for example.           \cr
+  \eqn{^{(2)}} Followed by printing the object \code{x} if not \code{NULL}.  \cr   \tab  }
+\tabular{ll}{  \verb{purge_global, purge_all}      \tab \strong{WARNING: Use with care!}            \cr
+  \verb{rm_global, rm_all}            \tab    *These functions purge *            \cr
+  \verb{xglobal, xall}                \tab    \emph{the global environment}              }
 }
 \examples{
 egFunNames <- c("base::c", "uj::cmp_chr_scl", "run")
@@ -133,6 +133,7 @@ xpref(egFunNames)
 }
 \seealso{
 Other extensions: 
+\code{\link{N}()},
 \code{\link{atomize}()},
 \code{\link{case}()},
 \code{\link{cb}()},
@@ -140,15 +141,13 @@ Other extensions:
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
-\code{\link{evals}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
 \code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
-\code{\link{nis}()},
 \code{\link{paths}},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{sum0}()},
@@ -160,7 +159,7 @@ Other meta:
 \code{\link{dot_args}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
-\code{\link{recyclableN}()},
+\code{\link{recyclable_ns}()},
 \code{\link{run}()},
 \code{\link{say}()}
 }

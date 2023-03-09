@@ -3,15 +3,30 @@
 \encoding{UTF-8}
 \name{is_unique}
 \alias{is_unique}
+\alias{is_unique0}
+\alias{not_unique}
+\alias{not_unique0}
 \alias{is_unq}
-\alias{isUNQ}
+\alias{is_unq0}
+\alias{not_unq}
+\alias{not_unq0}
 \title{Does an atomic object only contain unique values?}
 \usage{
-is_unique(x, a = T, nas = F)
+is_unique(x, a = FALSE, na = FALSE)
 
-is_unq(x, a = T, nas = F)
+is_unique0(...)
 
-isUNQ(x, a = T, nas = F)
+not_unique(x, a = FALSE, na = FALSE)
+
+not_unique0(...)
+
+is_unq(x, a = FALSE, na = FALSE)
+
+is_unq0(...)
+
+not_unq(x, a = FALSE, na = FALSE)
+
+not_unq0(...)
 }
 \arguments{
 \item{x}{An atomic object.}
@@ -26,12 +41,19 @@ Scalar \code{TRUE} or scalar \code{FALSE}.
 \description{
 Evaluates whether \code{x} contains only only unique atomic values, with options for for atomizing before evaluation and for handling \code{NA} values.
 }
+\details{
+\tabular{ll}{  \verb{not_unique0, not_unq0}   \tab whether \code{x} \emph{is not} an atomic vector containing only unique values.                           \cr   \tab   \cr
+  \verb{not_unique, not_unq}     \tab whether \code{x} \emph{is not} a unique data.frame, list, or vector depending on values of \code{a} and \code{na}. \cr   \tab   \cr
+  \verb{is_unique0, is_unq0}     \tab whether \code{x} \emph{is} an atomic vector containing only unique values.                               \cr   \tab   \cr
+  \verb{is_unique, is_unq}       \tab whether \code{x} \emph{is} a unique data.frame, list, or vector depending on values of \code{a} and \code{na}.                    }
+}
 \examples{
 is_unique(letters)
 is_unq(sample(letters, 27, replace = T))
 }
 \seealso{
 Other extensions: 
+\code{\link{N}()},
 \code{\link{atomize}()},
 \code{\link{case}()},
 \code{\link{cb}()},
@@ -39,15 +61,13 @@ Other extensions:
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
-\code{\link{evals}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
 \code{\link{naming}},
 \code{\link{na}()},
-\code{\link{nis}()},
 \code{\link{paths}},
 \code{\link{purge}()},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{sum0}()},
@@ -55,7 +75,7 @@ Other extensions:
 \code{\link{value_exists}()}
 
 Other properties: 
-\code{\link{asMODE}()},
+\code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{checker}},

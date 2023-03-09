@@ -4,23 +4,23 @@
 \name{na}
 \alias{na}
 \alias{ok}
-\alias{subNA}
-\alias{nas}
-\alias{oks}
-\alias{rmNA}
+\alias{sub_na}
+\alias{na0}
+\alias{ok0}
+\alias{rm_na}
 \title{Manage \code{NA} and non-\code{NA} values}
 \usage{
 na(x)
 
 ok(x)
 
-subNA(x, s)
+sub_na(x, s)
 
-nas(x)
+na0(x)
 
-oks(x)
+ok0(x)
 
-rmNA(x)
+rm_na(x)
 }
 \arguments{
 \item{x}{The argument to be inspected/managed.}
@@ -29,46 +29,47 @@ rmNA(x)
 }
 \value{
 \strong{A logical object of the same dimension as} \code{x}                                   \cr\cr \verb{na, ok}
-\cr\cr  \code{x} \strong{with \code{NA} values replaced} \cr (properties may change with \code{NA} replacement) \cr\cr \code{subNA}
-\cr\cr  \code{x} \strong{with \code{NA} values removed}  \cr (properties may change with \code{NA} removal)     \cr\cr \code{rmNA}
-\cr\cr  \strong{A logical scalar}                                                                \cr\cr \verb{nas, oks}
+\cr\cr  \code{x} \strong{with \code{NA} values replaced} \cr (properties may change with \code{NA} replacement) \cr\cr \code{sub_na}
+\cr\cr  \code{x} \strong{with \code{NA} values removed}  \cr (properties may change with \code{NA} removal)     \cr\cr \code{rm_na}
+\cr\cr  \strong{A logical scalar}                                                                \cr\cr \verb{na0, ok0}
 }
 \description{
 All functions in this group take objects of atomic mode, \link[=atm_dtf]{atomic dtfs}, or \link[=atm_vls]{atomic vlists}.
 }
 \details{
-\tabular{ll}{  \code{na}      \tab Logically indexes \code{NA} values of \code{x}.                                                         \cr   \tab   \cr
-  \code{ok}      \tab Logically indexes non-\code{NA} values of \code{x}.                                                     \cr   \tab   \cr
-  \code{nas}     \tab Evaluates whether \code{x} is an \code{NA} scalar.                                                      \cr   \tab   \cr
-  \code{oks}     \tab Evaluates whether \code{x} is a non-\code{NA} scalar.                                                   \cr   \tab   \cr
-  \code{rmNA}    \tab Removes \code{NA} values of \code{x} If there are no \code{NA} values in \code{x}, returns \code{x} unchanged.
+\tabular{ll}{  \code{na}       \tab Logically indexes \code{NA} values of \code{x}.                                                         \cr   \tab   \cr
+  \code{ok}       \tab Logically indexes non-\code{NA} values of \code{x}.                                                     \cr   \tab   \cr
+  \code{na0}      \tab Evaluates whether \code{x} is an \code{NA} scalar.                                                      \cr   \tab   \cr
+  \code{ok0}      \tab Evaluates whether \code{x} is a non-\code{NA} scalar.                                                   \cr   \tab   \cr
+  \code{rm_na}    \tab Removes \code{NA} values of \code{x} If there are no \code{NA} values in \code{x}, returns \code{x} unchanged.
 If there are \code{NA} values in \code{x}, removing them may change the dimensions and/or class of \code{x}. \cr   \tab   \cr
-  \code{subNA}   \tab Substitutes \code{s} for \code{NA} values of\code{x}. Modescof \code{x} and \code{s} must be \link[=compatible]{compatible}.          }
+  \code{sub_na}   \tab Substitutes \code{s} for \code{NA} values of\code{x}. Modes of \code{x} and \code{s} must be \link[=compatible]{compatible}.          }
 }
 \examples{
-egNAS <- NA
-egOKS <- "a"
-egVec <- c(egNAS, egOKS)
+egNA0 <- NA
+egOK0 <- "a"
+egVec <- c(egNA0, egOK0)
 egMat <- sample(vec, 10, replace = T)
 egMat
 na(egVec)
 ok(egVec)
 na(egMat)
 ok(egMat)
-nas(egNAS)
-nas(egOKS)
-nas(egVec)
-oks(egOKS)
-oks(egNAS)
-oks(egVec)
-subNA(egMat, "x")
-rmNA(egMat)
+na0(egNAS)
+na0(egOK0)
+na0(egVec)
+ok0(egOK0)
+ok0(egNAS)
+ok0(egVec)
+sub_na(egMat, "x")
+rm_na(egMat)
 }
 \seealso{
 Other missingness: 
 \code{\link{sum0}()}
 
 Other extensions: 
+\code{\link{N}()},
 \code{\link{atomize}()},
 \code{\link{case}()},
 \code{\link{cb}()},
@@ -76,15 +77,13 @@ Other extensions:
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
-\code{\link{evals}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
 \code{\link{is_unique}()},
 \code{\link{naming}},
-\code{\link{nis}()},
 \code{\link{paths}},
 \code{\link{purge}()},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{sum0}()},

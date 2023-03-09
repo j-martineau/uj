@@ -1,5 +1,3 @@
-# indicator values ####
-
 #' @name crayons
 #' @title Wrappers for package \code{\link[crayon]{crayon}} functions to styled and color console text
 #' @description Functions in this family apply styles and colors to text for display on the console, where the text to display is identified by \link[=glue_dots]{collapsing} `...` args into a character scalar.
@@ -146,76 +144,46 @@
 #'
 #' @export
 st_vals <- function(st = NULL) {
-  st <- uj::failsafe(base::tolower(st))
-  B <- base::c("b", "bo", "bld", "bold", "bolded", "s", "st", "str", "strong")
-  D <- base::c("d", "def", "default")
-  I <- base::c("i", "it", "itl", "ital", "italic", "italics", "italicized", "e", "em", "emp", "emph", "emphasis", "emphasized")
-  P <- base::c("p", "pl", "pln", "plain", "r", "re", "res", "reset")
-  U <- base::c("u", "un", "und", "under", "underline", "underlined")
-  A <- base::sort(base::c(B, D, I, P, U))
-  uj::f0(uj::isIN1(st, B), B,
-         uj::f0(uj::isIN1(st, D), D,
-                uj::f0(uj::isIN1(st, I), I,
-                       uj::f0(uj::isIN1(st, P), P,
-                              uj::f0(uj::isIN1(st, U),
-                                     U, uj::f0(uj::NLL(st), A,
-                                               uj::stopperr("[st] must be NULL or a character scalar from st_vals().", PKG = "uj")))))))
+  uj:::.crayon_errs(st = st)
+  st <- base::tolower(st)
+  uj::f0(st %in% uj:::.st_bld, uj:::.st_bld,
+         uj::f0(st %in% uj:::.st_def, uj:::.st_def,
+                uj::f0(st %in% uj:::.st_itl, uj:::.st_itl,
+                       uj::f0(st %in% uj:::.st_pln, uj:::.st_pln,
+                              uj::f0(st %in% uj:::.st_und, uj:::.st_und, uj:::.st_all)))))
 }
 
 #' @rdname crayons
 #' @export
 bg_vals <- function(bg = NULL) {
-  bg <- uj::failsafe(base::tolower(bg))
-  B <- base::c("b", "blu", "blue")
-  C <- base::c("c", "cyn", "cyan")
-  D <- base::c("d", "def", "default")
-  G <- base::c("g", "grn", "green")
-  K <- base::c("k", "blk", "black")
-  M <- base::c("m", "mag", "magenta")
-  R <- base::c("r", "red")
-  W <- base::c("w", "wht", "white")
-  Y <- base::c("y", "ylw", "yellow")
-  A <- base::sort(base::c(K, B, C, D, G, M, R, W, Y))
-  uj::f0(uj::isIN1(bg, B), B,
-         uj::f0(uj::isIN1(bg, C), C,
-                uj::f0(uj::isIN1(bg, D), D,
-                       uj::f0(uj::isIN1(bg, G), G,
-                              uj::f0(uj::isIN1(bg, K), K,
-                                     uj::f0(uj::isIN1(bg, M), M,
-                                            uj::f0(uj::isIN1(bg, R), R,
-                                                   uj::f0(uj::isIN1(bg, W), W,
-                                                          uj::f0(uj::isIN1(bg, Y), Y,
-                                                                 uj::f0(uj::NLL(bg), A,
-                                                                        uj::stopperr("[bg] must be NULL or a character scalar from bg_vals().", PKG = "uj")))))))))))
+  uj:::.crayon_errs(bg = bg)
+  bg <- base::tolower(bg)
+  uj::f0(bg %in% uj:::.xg_blu, uj:::.xg_blu,
+         uj::f0(bg %in% uj:::.xg_cyn, uj:::.xg_cyn,
+                uj::f0(bg %in% uj:::.xg_def, uj:::.xg_def,
+                       uj::f0(bg %in% uj:::.xg_grn, uj:::.xg_grn,
+                              uj::f0(bg %in% uj:::.xg_blk, uj:::.xg_blk,
+                                     uj::f0(bg %in% uj:::.xg_mag, uj:::.xg_mag,
+                                            uj::f0(bg %in% uj:::.xg_red, uj:::.xg_red,
+                                                   uj::f0(bg %in% uj:::.xg_wht, uj:::.xg_wht,
+                                                          uj::f0(bg %in% uj:::.xg_ylw, uj:::.xg_ylw, uj:::.bg_all)))))))))
 }
 
 #' @rdname crayons
 #' @export
 fg_vals <- function(fg = NULL) {
-  fg <- uj::failsafe(base::tolower(fg))
-  B <- base::c("b", "blu", "blue")
-  C <- base::c("c", "cyn", "cyan")
-  D <- base::c("d", "def", "default")
-  G <- base::c("g", "grn", "green")
-  K <- base::c("k", "blk", "black")
-  M <- base::c("m", "mag", "magenta")
-  R <- base::c("r", "red")
-  S <- base::c("s", "sil", "gry", "slv", "grey", "silver")
-  W <- base::c("w", "wht", "white")
-  Y <- base::c("y", "ylw", "yellow")
-  A <- base::sort(base::c(K, B, C, D, G, R, S, M, W, Y))
-  uj::f0(uj::isIN1(fg, B), B,
-         uj::f0(uj::isIN1(fg, C), C,
-                uj::f0(uj::isIN1(fg, D), D,
-                       uj::f0(uj::isIN1(fg, G), G,
-                              uj::f0(uj::isIN1(fg, K), K,
-                                     uj::f0(uj::isIN1(fg, M), M,
-                                            uj::f0(uj::isIN1(fg, R), R,
-                                                   uj::f0(uj::isIN1(fg, S), S,
-                                                          uj::f0(uj::isIN1(fg, W), W,
-                                                                 uj::f0(uj::isIN1(fg, Y),
-                                                                        Y, uj::f0(uj::NLL(fg), A,
-                                                                                  uj::stopperr("[fg] must be NULL or a character scalar from fg_vals().", PKG = "uj"))))))))))))
+  uj:::.crayon_errs(fg = fg)
+  fg <- base::tolower(fg)
+  uj::f0(fg %in% uj:::.xg_blu, uj:::.xg_blu,
+         uj::f0(fg %in% uj:::.xg_cyn, uj:::.xg_cyn,
+                uj::f0(fg %in% uj:::.xg_def, uj:::.xg_def,
+                       uj::f0(fg %in% uj:::.xg_grn, uj:::.xg_grn,
+                              uj::f0(fg %in% uj:::.xg_blk, uj:::.xg_blk,
+                                     uj::f0(fg %in% uj:::.xg_mag, uj:::.xg_mag,
+                                            uj::f0(fg %in% uj:::.xg_red, uj:::.xg_red,
+                                                   uj::f0(fg %in% uj:::.xg_sil, uj:::.xg_sil,
+                                                          uj::f0(fg %in% uj:::.xg_wht, uj:::.xg_wht,
+                                                                 uj::f0(fg %in% uj:::.xg_ylw, uj:::.xg_ylw, uj:::.fg_all))))))))))
 }
 
 # style ####
@@ -223,144 +191,144 @@ fg_vals <- function(fg = NULL) {
 #' @rdname crayons
 #' @export
 st_bld <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::bold(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::bold(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 st_def <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  uj::g(d, uj::av(...))
+  uj:::.crayon_errs(d = d)
+  uj:::.glue_args(d, ...)
 }
 
 #' @rdname crayons
 #' @export
 st_itl <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::italic(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::italic(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 st_pln <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  uj::g(d, uj::av(...))
+  uj:::.crayon_errs(d = d)
+  uj:::.glue_args(d, ...)
 }
 
 #' @rdname crayons
 #' @export
 st_und <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::underline(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::underline(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 st <- function(st, ..., d = " ") {
-  st <- base::tolower(uj::f0(!uj::unqSTRvec(st), "error", st))
-  uj::errs_if_nots(uj::cmp_chr_scl(d)          , "[d] must be a complete character scalar (?cmp_chr_scl)."      ,
-                   uj::isIN1(st, uj::st_vals()), "[st] must be a unique string vec (?unqSTRvec) from st_vals().", PKG = "uj")
+  uj:::.crayon_errs(st = st, d = d, st.null.ok = F)
+  st <- base::tolower(st)
   vals <- base::c("bld", "def", "itl", "pln", "und")
-  text <- uj::g(d, uj::av(...))
-  for (val in base::tolower(vals)) {if (uj::anyIN(st, uj::st_vals(val))) {text <- uj::run("st_", val, "(text)")}}
-  text
+  x <- uj:::.glue_args(d, ...)
+  for (val in base::tolower(vals)) {if (base::any(st %in% uj::st_vals(val))) {return(uj::run("st_", val, "(x)"))}}
+  x
 }
 
 # fg color ####
 
 #' @rdname crayons
 #' @export
-fg__blk <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::black(uj::g(d, uj::av(...)))
+fg_blk <- function(..., d = " ") {
+  uj:::.crayon_errs(d = d)
+  crayon::black(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 fg_blu <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::blue(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::blue(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 fg_cyn <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::cyan(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::cyan(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 fg_def <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  uj::g(d, uj::av(...))
+  uj:::.crayon_errs(d = d)
+  uj:::.glue_args(d, ...)
 }
 
 #' @rdname crayons
 #' @export
 fg_grn <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::green(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::green(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 fg_gry <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::silver(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::silver(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 fg_mag <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::magenta(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::magenta(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 fg_red <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::red(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::red(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 fg_sil <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::silver(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::silver(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 fg_slv <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::silver(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::silver(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 fg_wht <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::white(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::white(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 fg_ylw <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::yellow(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::yellow(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 fg <- function(fg, ..., d = " ") {
-  fg <- base::tolower(uj::f0(!uj::cmp_str_scl(fg), "error", fg))
-  uj::errs_if_nots(uj::cmp_chr_scl(d)          , "[d] must be a complete character scalar (?cmp_chr_scl)."      ,
-                   uj::isIN1(fg, uj::fg_vals()), "[fg] must be a unique string vec (?unqSTRvec) from fg_vals().", PKG = "uj")
-  vals <- base::c("blk", "blu", "cyn", "def", "grn", "mag", "red", "gry", "wht", "ylw")
-  for (val in base::tolower(vals)) {if (uj::isIN1(fg, uj::fg_vals(val))) {return(uj::run("fg_", val, "(..., d = d)"))}}
+  uj:::.crayon_errs(fg = fg, d = d, fg.null.ok = F)
+  fg <- base::tolower(fg)
+  vals <- base::c("blk", "blu", "cyn", "def", "grn", "sil", "mag", "red", "wht", "ylw")
+  x <- uj:::.glue_args(d, ...)
+  for (val in base::tolower(vals)) {if (base::any(st %in% uj::st_vals(val))) {text <- uj::run("st_", val, "(x)")}}
+  x
 }
 
 # bg color ####
@@ -368,74 +336,75 @@ fg <- function(fg, ..., d = " ") {
 #' @rdname crayons
 #' @export
 bg_blk <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::bgBlack(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::bgBlack(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 bg_blu <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::bgBlue(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::bgBlue(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 bg_cyn <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::bgCyan(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::bgCyan(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 bg_def <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  uj::g(d, uj::av(...))
+  uj:::.crayon_errs(d = d)
+  uj:::.glue_args(d, ...)
 }
 
 #' @rdname crayons
 #' @export
 bg_grn <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::bgGreen(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::bgGreen(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 bg_mag <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::bgMagenta(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::bgMagenta(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 bg_red <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::bgRed(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::bgRed(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 bg_wht <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::bgWhite(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::bgWhite(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 bg_ylw <- function(..., d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  crayon::yellow(uj::g(d, uj::av(...)))
+  uj:::.crayon_errs(d = d)
+  crayon::yellow(uj:::.glue_args(d, ...))
 }
 
 #' @rdname crayons
 #' @export
 bg <- function(bg, ..., d = " ") {
-  bg <- base::tolower(uj::f0(!uj::cmp_str_scl(bg), "error", bg))
-  uj::errs_if_nots(uj::cmp_chr_scl(d)           , "[d] must be a complete character scalar (?cmp_chr_scl)."        ,
-                   uj::isIN1(bg, uj::bg_vals()), "[bg] must be a unique string scalar (?unqSTRscl) from bg_vals().", PKG = "uj")
+  uj:::.crayon_errs(bg = bg, d = d, bg.null.ok = F)
+  bg <- base::tolower(bg)
   vals <- base::c("blk", "blu", "cyn", "def", "grn", "mag", "red", "wht", "ylw")
-  for (val in base::tolower(vals)) {if (uj::isIN1(bg, uj::bg_vals(val))) {return(uj::run("bg_", val, "(...)"))}}
+  x <- uj:::.glue_args(d, ...)
+  for (val in base::tolower(vals)) {if (bg %in% uj::bg_vals(val)) {return(uj::run("bg_", val, "(x)"))}}
+  x
 }
 
 # generic ####
@@ -443,22 +412,13 @@ bg <- function(bg, ..., d = " ") {
 #' @rdname crayons
 #' @export
 txt <- function(..., bg = NULL, fg = NULL, st = NULL, d = " ") {
-  if (uj::NLL(bg)) {bg <- "def"}
-  if (uj::NLL(fg)) {fg <- "def"}
-  if (uj::NLL(st)) {st <- "def"}
-  bg <- base::tolower(uj::f0(!uj::cmp_str_scl(bg), "error", bg))
-  fg <- base::tolower(uj::f0(!uj::cmp_str_scl(bg), "error", bg))
-  st <- base::tolower(uj::f0(!uj::unq_str_vec(st), "error", st))
-  ok.b <- uj::isIN1(bg, uj::bg_vals())
-  ok.f <- uj::isIN1(fg, uj::fg_vals())
-  ok.s <- uj::f0(uj::unq_str_vec(st), uj::allIN(st, uj::st_vals()), F)
-  uj::errs_if_nots(uj::cmp_chr_scl(d), "[d] must be a complete character scalar (?cmp_chr_scl)."                            ,
-                   ok.b              , "[bg] must be NULL or a character scalar from uj::bg_vals()."                        ,
-                   ok.f              , "[fg] must be NULL or a character scalar from uj::fg_vals()."                        ,
-                   ok.s              , "[st] must be NULL or a unique string vec (?unqSTRvec) of values from uj::st_vals().", PKG = "uj")
-  x <- uj::glue_dots(...)
-  if (uj::DEF(st)) {x <- uj::st(st, x)}
-  if (uj::DEF(bg)) {x <- uj::bg(bg, x)}
-  if (uj::DEF(fg)) {x <- uj::fg(fg, x)}
-  x
+  uj:::.crayon_errs(bg = bg, fg = fg, st = st, d = d)
+  bg <- base::tolower(bg)
+  fg <- base::tolower(fg)
+  st <- base::tolower(fg)
+  text <- uj:::.glue_args(d, ...)
+  if (!base::is.null(st)) {x <- uj::st(st, text)}
+  if (!base::is.null(bg)) {x <- uj::bg(bg, text)}
+  if (!base::is.null(fg)) {x <- uj::fg(fg, text)}
+  text
 }

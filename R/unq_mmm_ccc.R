@@ -21,11 +21,24 @@
 #' unq_ch1_vec(letters)
 #' unq_str_scl("a")
 #' @export
-unq_mmm_ccc <- function(x, mmm, ccc, ...) {uj::f0(uj::cmp_mmm_ccc(x, mmm, ccc, ...), uj::UNQ(x, a = uj::notIN(ccc , "dtf", "vls"), nas = F), F)}
+unq_mmm_ccc <- function(x, mmm, ccc, ...) {
+  if (uj::cmp_mmm_ccc(x, mmm, ccc, ...)) {
+    if      (ccc == "dtf") {base::nrow(x) == base::nrow(base::unique(x))}
+    else if (ccc == "vls") {
+      n <- base::lengths(x)
+      nu <- base::sapply(x, function(z) {base::length(base::unique(z))})
+      base::all(n == nu)
+    } else {base::length(x) == base::length(base::unique(x))}
+  } else {F}
+}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_mmm_ccc_funs <- function() {uj::p0('unq_', base::sort(uj::av(base::apply(base::expand.grid(mmm = uj:::.mmm, ccc = uj:::.ccc), 1, paste0, collapse = "_"))))}
+unq_mmm_ccc_funs <- function() {
+  x <- base::expand.grid(mmm = uj:::.mmm, ccc = uj:::.ccc)
+  x <- base::apply(x, 1, paste0, collapse = "_")
+  base::paste0('unq_', base::sort(uj::av(x)))
+}
 
 #' @rdname unq_mmm_ccc
 #' @export

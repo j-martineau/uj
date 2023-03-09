@@ -28,13 +28,13 @@ mat(..., R = 1, NR = NULL, NC = NULL, BR = F, RN = NULL, CN = NULL)
 
 matd(X = 1, R = 1)
 
-vec(..., R = 1, EN = NULL)
+vec(..., R = 1, VN = NULL)
 
 vec.(...)
 
-vecNA(x)
+vecNA(R)
 
-vls(..., EN = NULL)
+vls(..., VN = NULL)
 
 vls.(...)
 }
@@ -55,7 +55,7 @@ vls.(...)
 
 \item{X}{A non-empty vector of mode \code{'numeric'}, \code{'character'}, or \code{'logical'}.}
 
-\item{EN}{A possibly pipe-delimited, \link[=cmp_chr_vec]{complete character vec} of names to apply to vector or list elements}
+\item{VN}{A possibly pipe-delimited, \link[=cmp_chr_vec]{complete character vec} of names to apply to vector or list elements}
 }
 \value{
 \strong{An atomic data.frame}  \cr\cr \verb{dtf, dtf., dtf0, dtfNA}
@@ -94,8 +94,8 @@ egLabs1 <- c("abc", "nums", "na")
 egLabs2 <- c("abc", "NUMS", "na")
 
 vec(egA, egB, egC)
-vec(egA, egB, egC, EN = abc)
-vec(egA, egB, egC, EN = "a|b|c")
+vec(egA, egB, egC, VN = abc)
+vec(egA, egB, egC, VN = "a|b|c")
 vec(egA = egA, egB = egB, egC = egC)
 vec.(egA, egB, egC)
 vecNA(3)
@@ -109,9 +109,9 @@ dmat(1, 3)
 dmat(TRUE, 3)
 
 vls(egABC, egNums, egNA)
-vls(egABC, egNums, egABC, EN = labs1)
+vls(egABC, egNums, egABC, VN = labs1)
 vls(egABC = egABC, egNums = egNums, egNA = egNA)
-vls(egABC, egNums, egNA, EN = "egABC|egNums|egNA")
+vls(egABC, egNums, egNA, VN = "egABC|egNums|egNA")
 vls.(egABC, egNums, egNA)
 
 dtf(egABC, egNUMS, egNA, CN = labs2)
@@ -124,22 +124,21 @@ dtfNA(egABC, 3)
 }
 \seealso{
 Other extensions: 
+\code{\link{N}()},
 \code{\link{atomize}()},
 \code{\link{case}()},
 \code{\link{cb}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{dups}()},
-\code{\link{evals}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
 \code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
-\code{\link{nis}()},
 \code{\link{paths}},
 \code{\link{purge}()},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{sum0}()},

@@ -1,4 +1,3 @@
-#' @rdname git
 #' @title Git commands
 #' @description Run git commands from the console or programmatically, activating and bringing a terminal to the front, executing the command, and returning focus to the console.
 #' @param message Character scalar git commit message.
@@ -6,9 +5,11 @@
 #' @param console Non-`NA` logical scalar indicating whether to bring the console to the front upon conclusion.
 #' @return `NULL`
 #' @export
-gitPUSH <- function(message, add.all = T, console = T) {
-  uj::errs_if_nots(uj::cmp_str_scl(message), "[message] must be a complete string scalar (?cmp_str_scl).",
-                   uj::cmp_lgl_scl(add.all), "[add.all] must be scalar TRUE or scalar FALSE."            , PKG = "uj")
+git_push <- function(message, add.all = T, console = T) {
+  errs <- NULL
+  if (!uj:::.cmp_str_scl(message)) {errs <- base::c(errs, "[message] must be a complete string scalar (?cmp_str_scl).")}
+  if (!uj:::.cmp_lgl_scl(add.all)) {errs <- base::c(errs, "[add.all] must be scalar TRUE or scalar FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   rstudioapi::terminalActivate()
   wd <- base::getwd()
   if (add.all) {rstudioapi::terminalExecute("git add --all", workingDir = wd)}

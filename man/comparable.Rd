@@ -3,12 +3,17 @@
 \encoding{UTF-8}
 \name{comparable}
 \alias{comparable}
+\alias{comparable_xy}
 \title{Are objects comparable?}
 \usage{
 comparable(..., REC = FALSE)
+
+comparable_xy(x, y, REC = FALSE)
 }
 \arguments{
 \item{...}{An arbitrary number of arguments to be checked for comparability with each other.}
+
+\item{x, y}{Arguments to be checked for comparability.}
 
 \item{rec.}{\code{TRUE} or \code{FALSE} indicating whether \code{...} arguments must be recyclable to be comparable.}
 }
@@ -29,22 +34,21 @@ comparable(factor(az., az., ordered = T), factor("q", az., ordered = T))
 }
 \seealso{
 Other extensions: 
+\code{\link{N}()},
 \code{\link{atomize}()},
 \code{\link{case}()},
 \code{\link{cb}()},
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
-\code{\link{evals}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
 \code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
-\code{\link{nis}()},
 \code{\link{paths}},
 \code{\link{purge}()},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{sum0}()},
@@ -52,7 +56,7 @@ Other extensions:
 \code{\link{value_exists}()}
 
 Other properties: 
-\code{\link{asMODE}()},
+\code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{checker}},

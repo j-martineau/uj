@@ -1,13 +1,3 @@
-.Nth_errs <- function(x, N, N.scl) {
-  ok.N <- uj::f0(N.scl, uj::cmp_psw_scl(N), uj::cmp_psw_vec(N))
-  errs <- base::c(uj::f0(uj::pop_vec(x)         , NULL, "[x] is not a populated vector (?pop_vec).")                          ,
-                  uj::f0(uj::f0(!N.scl, T, ok.N), NULL, "[N] must be a complete positive whole-number scalar (?cmp_psw_sco)."),
-                  uj::f0(uj::f0( N.scl, T, ok.N), NULL, "[N] must be a complete positive whole-number vector (?cmp_psw_vec)."))
-  if (uj::DEF(errs)) {return(errs)}
-  if (base::any(N > uj::N(x))) {return(uj::p0(uj::f0(N.scl, "", "The largest value in")," [N] is greater than the number of elements in [x]."))}
-  NULL
-}
-
 #' @encoding UTF-8
 #' @family to_std_fun_form
 #' @family values
@@ -28,22 +18,22 @@
 #' lastN(letters, 5)
 #' Nth(letters, 5:7)
 #' @export
-Nth <- function(x, i) {
-  uj::errs_if_pop(uj:::.Nth_errs(x, N, F), PKG = "uj")
+Nth <- function(x, N) {
+  uj:::.Nth_errs(x, N, F, uj::callers())
   x[N]
 }
 
 #' @rdname Nth
 #' @export
 firstN <- function(x, N) {
-  uj::errs_if_pop(uj:::.Nth_errs(x, N, F), PKG = "uj")
+  uj:::.Nth_errs(x, N, T, uj::callers())
   x[1:N]
 }
 
 #' @rdname Nth
 #' @export
 lastN <- function(x, N) {
-  uj::errs_if_pop(uj:::.Nth_errs(x, N, F), PKG = "uj")
+  uj:::.Nth_errs(x, N, T, uj::callers())
   N <- 1:N
   x <- base::rev(x[base::rev(N)])
 }
@@ -51,13 +41,13 @@ lastN <- function(x, N) {
 #' @rdname Nth
 #' @export
 Nth_from_last <- function(x, N) {
-  uj::errs_if_pop(uj:::.Nth_errs(x, N, F), PKG = "uj")
+  uj:::.Nth_errs(x, N, F, uj::callers())
   base::rev(x)[N]
 }
 
 #' @rdname Nth
 #' @export
 Nth_plus <- function(x, N) {
-  uj::errs_if_pop(uj:::.Nth_errs(x, N, F), PKG = "uj")
-  x[N:uj::N(x)]
+  uj:::.Nth_errs(x, N, F, uj::callers())
+  x[N:base::length(x)]
 }

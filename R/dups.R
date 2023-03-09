@@ -19,12 +19,15 @@
 #' @export
 dups <- function(...) {
   x <- uj::av(...)
-  uj::U(x[base::duplicated(x)])
+  base::unique(x[base::duplicated(x)])
 }
 
 #' @rdname dups
 #' @export
 idups <- function(x, int = F) {
-  uj::errs_if_nots(uj::atm_vec(x), "[x] must be an atomic vec (?atm_vec).", uj::isTF1(int), "[int] must be TRUE or FALSE.", PKG = "uj")
-  uj::f0(int, uj::WV(base::duplicated(x)), base::duplicated(x))
+  errs <- NULL
+  if (!uj:::.atm_vec(x)) {errs <- base::c(errs, "[x] must be an atomic vec (?atm_vec).")}
+  if (!uj:::.cmp_lgl_scl(int)) {errs <- base::c(errs, "[int] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  uj::f0(int, base::which(base::duplicated(x)), base::duplicated(x))
 }

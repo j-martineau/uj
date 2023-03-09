@@ -39,14 +39,16 @@
 #' revstr(egDtfNA, na = TRUE)
 #' @export
 revstr <- function(x, nas = FALSE) {
-  .rev <- function(xxx) {uj::g0(base::rev(uj::av(base::strsplit(xxx, "", fixed = T))))}
+  .rev <- function(xxx) {base::paste0(base::rev(uj::av(base::strsplit(xxx, "", fixed = T))))}
   .revs <- function(xx) {base::sapply(xx, .rev)}
-  ok.x <- uj::f0(uj::chr_vec(x), T, uj::f0(uj::chr_arr(x), T, uj::f0(uj::N0(x), F, uj::f0(uj::chr_vls(x), T, uj::chr_dtf(x)))))
-  ok.na <- uj::isTF1(nas)
-  ok.nax <- uj::f0(!ok.na, T, uj::f0(nas, T, uj::noneNA(uj::av(x))))
-  uj::errs_if_nots(ok.x  , "[x] must be an atomic character object (?atm_chr), character vlist (?chr_vls), or character data.frame (?chr_dtf).",
-                 ok.na , "[nas] must be a TRUE or FALSE."                                                                                 ,
-                 ok.nax, "[nas = FALSE] but [x] contains one or more NA values."                                                          , PKG = 'uj')
-  nd <- uj::NDIM(x)
-  uj::f0(uj::isDTF(x), base::apply(x, 2, .revs), uj::f0(uj::isLST(x), base::lapply(x, .revs), uj::f0(nd > 0, base::apply(x, 1:nd, .revs), .revs(x))))
+  ok.x <- uj::f0(uj:::.chr_vec(x), T, uj::f0(uj:::.chr_arr(x), T, uj::f0(base::length(x) == 0, F, uj::f0(uj:::.chr_vls(x), T, uj:::.chr_dtf(x)))))
+  ok.na <- uj:::.cmp_lgl_scl(nas)
+  ok.nax <- uj::f0(!ok.na, T, uj::f0(nas, T, !base::any(base::is.na(uj::av(x)))))
+  errs <- NULL
+  if (!ok.x) {base::c(errs, "[x] must be an atomic character object (?atm_chr), character vlist (?chr_vls), or character data.frame (?chr_dtf).")}
+  if (!ok.na) {base::c(errs, "[nas] must be a TRUE or FALSE.")}
+  if (!ok.nax) {base::c(errs, "[nas = FALSE] but [x] contains one or more NA values.")}
+  if (!base::is.null(errs)) {uj::stoppers(errs, PKG = "uj")}
+  nd <- base::length(base::dim(x))
+  uj::f0(base::is.data.frame(x), base::apply(x, 2, .revs), uj::f0(base::is.list(x), base::lapply(x, .revs), uj::f0(nd > 0, base::apply(x, 1:nd, .revs), .revs(x))))
 }

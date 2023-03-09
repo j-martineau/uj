@@ -5,8 +5,8 @@
 \alias{tb}
 \alias{trb}
 \alias{tbr}
-\alias{astb}
-\alias{istb}
+\alias{as_tb}
+\alias{is_tb}
 \title{\code{tibble} wrappers}
 \usage{
 tb(...)
@@ -15,9 +15,9 @@ trb(...)
 
 tbr(...)
 
-astb(...)
+as_tb(...)
 
-istb(x)
+is_tb(x)
 }
 \value{
 A tibble.
@@ -26,11 +26,11 @@ A tibble.
 Thin wrappers of functions from package \code{tibble}. See links in \emph{details} for function-specific documentation.
 }
 \details{
-\tabular{ll}{  \code{astb}   \tab Thinly wraps \code{\link[tibble]{as_tibble}}.  \cr
-  \code{istb}   \tab Thinly wraps \code{\link[tibble]{is_tibble}}.  \cr
-  \code{tbr}    \tab Thinly wraps \code{\link[tibble]{tribble}}.    \cr
-  \code{trb}    \tab Thinly wraps \code{\link[tibble]{tibble_row}}. \cr
-  \code{tb}     \tab Thinly wraps \code{\link[tibble]{tibble}}.       }
+\tabular{ll}{  \code{as_tb}   \tab Thinly wraps \code{\link[tibble]{as_tibble}}.  \cr
+  \code{is_tb}   \tab Thinly wraps \code{\link[tibble]{is_tibble}}.  \cr
+  \code{tbr}     \tab Thinly wraps \code{\link[tibble]{tribble}}.    \cr
+  \code{trb}     \tab Thinly wraps \code{\link[tibble]{tibble_row}}. \cr
+  \code{tb}      \tab Thinly wraps \code{\link[tibble]{tibble}}.       }
 }
 \examples{
 tb(letters = letters, numbers = 1:26, constant = pi)
@@ -49,7 +49,7 @@ Other wraps:
 \code{\link{dt}()},
 \code{\link{ggp}()},
 \code{\link{gr}},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{sca}()}
 }
 \concept{wraps}

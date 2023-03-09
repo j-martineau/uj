@@ -51,7 +51,7 @@ Other meta:
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{purge}()},
-\code{\link{recyclableN}()},
+\code{\link{recyclable_ns}()},
 \code{\link{say}()}
 }
 \concept{meta}

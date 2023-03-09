@@ -12,7 +12,7 @@
 \alias{OK}
 \alias{CANCEL}
 \alias{ask}
-\alias{askNEW}
+\alias{ask_new}
 \alias{choose_dir}
 \alias{choose_doc}
 \title{Dialog with users using package \code{svDialogs}}
@@ -56,7 +56,7 @@ CANCEL(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ")
 
 ask(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ")
 
-askNEW(
+ask_new(
   old,
   unq = TRUE,
   ftype = "y|r|p",
@@ -135,7 +135,7 @@ All functions \link[=collapse_dots]{collapses} \code{...} args into a prompt. Ea
   \verb{YES, NO}       \tab Offers \code{YES/NO/CANCEL}.\eqn{^{(1,2,4)}}           \cr   \tab   \cr
   \code{ask_new}       \tab Asks for a list of new values.\eqn{^{(1,2)}}      \cr   \tab   \cr
   \code{alert}         \tab None.\eqn{^{(1)}}                                 \cr   \tab   \cr
-  \code{ask}           \tab Asks for typed input.\eqn{^{(1,2)}}                              }
+  \code{ask}           \tab Asks for typed input.\eqn{^{(1,2)}}               \cr   \tab     }
 \tabular{l}{  \eqn{^{(1)}} Default style, background color, and foreground color of console text depend on \code{type}. \cr
   \eqn{^{(2)}} Stops execution if user chooses \code{CANCEL}.                                               \cr
   \eqn{^{(3)}} Stops execution if \code{stop | (type = 'error' & is.null(stop))}.                           \cr
@@ -178,7 +178,7 @@ alert(lab = egLab, flab = egFL)
   YES(egMsg1)
   CANCEL(egMsg1)
   ask(Msg2)
-  askNEW(egOpts)
+  ask_new(egOpts)
   choose_dir(dir.type = "directory for R scripts")
   choose_doc(doc.type = "document to read")
 }

@@ -50,12 +50,14 @@
 #' @export
 weave <- function(x, ...) {
   n.dots <- base::...length()
-  ok.x <- uj::cmp_chr_scl(x)
+  ok.x <- uj:::.cmp_chr_scl(x)
   ok.n <- n.dots > 0
-  ok.ppp <- base::ifelse(ok.n, base::all(base::sapply(base::list(...), cmp_vec)), T)
-  uj::errs_if_nots(ok.n  , "[...] is empty."                                                  ,
-                   ok.x  , "[x] must be a complete character scalar (?cmp_chr_scl)."          ,
-                   ok.ppp, "Arguments in [...] must be complete character objects (?cmp_chr).", PKG = "uj")
+  ok.ppp <- base::ifelse(ok.n, base::all(base::sapply(base::list(...), uj::cmp_chr)), T)
+  errs <- NULL
+  if (!ok.n) {errs <- base::c(errs, "[...] is empty.")}
+  if (!ok.x) {errs <- base::c(errs, "[x] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!ok.ppp) {errs <- base::c(errs, "Arguments in [...] must be complete character objects (?cmp_chr).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   dots <- base::list(...)                                                        # The arguments to weave into {x}
   non.scl <- " is not scalar, but the "                                          # argument is not scalar
   non.num <- " is not numeric, but the "                                         # argument is not numeric
@@ -70,87 +72,95 @@ weave <- function(x, ...) {
   dc.switches <- " decimal places switch (i.e., from characters in \"0123456789\")." # choose-max-of-1 set of decimal-type switches
   all.switches <- base::c("&", "|", "a", "A", "b", "c", "e", "l", "n", "p", "s", "q", "Q", "t", "T", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
   inlay.sequence <- " valid inlay escape sequence in x "                         # infix for describing inlay escape sequences
-  count.mismatch <- uj::p0("The number of arguments in [...] (", n.dots, ") and number of valid inlay escape sequences in [x.] ")
-  pat0 <- uj::p0(code.prefix, code.suffix)                                       # 0-switch pattern '{@}'
-  pat1 <- uj::p0(code.prefix, switches, code.suffix)                             # 1-switch pattern '{@s}'
-  pat2 <- uj::p0(code.prefix, switches, switches, code.suffix)                   # 2-switch pattern '{@ss}'
-  pat3 <- uj::p0(code.prefix, switches, switches, switches, code.suffix)         # 3-switch pattern '{@sss}'
+  count.mismatch <- base::paste0("The number of arguments in [...] (", n.dots, ") and number of valid inlay escape sequences in [x.] ")
+  pat0 <- base::paste0(code.prefix, code.suffix)                                 # 0-switch pattern '{@}'
+  pat1 <- base::paste0(code.prefix, switches, code.suffix)                       # 1-switch pattern '{@s}'
+  pat2 <- base::paste0(code.prefix, switches, switches, code.suffix)             # 2-switch pattern '{@ss}'
+  pat3 <- base::paste0(code.prefix, switches, switches, switches, code.suffix)   # 3-switch pattern '{@sss}'
   switches0 <- base::gregexpr(pat0, x)                                           # results of searching {x} for 0-switch patterns
   switches1 <- base::gregexpr(pat1, x)                                           # results of searching {x} for 1-switch patterns
   switches2 <- base::gregexpr(pat2, x)                                           # results of searching {x} for 2-switch patterns
   switches3 <- base::gregexpr(pat3, x)                                           # results of searching {x} for 3-switch patterns
-  switches0 <- uj::f0(uj::isSEQ(uj::av(switches0), -1), NULL, uj::tb(type = 0, pos = uj::av(switches0), len = 3)) # tibble of 0-switch pattern positions and lengths
-  switches1 <- uj::f0(uj::isSEQ(uj::av(switches1), -1), NULL, uj::tb(type = 1, pos = uj::av(switches1), len = 4)) # tibble of 1-switch pattern positions and lengths
-  switches2 <- uj::f0(uj::isSEQ(uj::av(switches2), -1), NULL, uj::tb(type = 2, pos = uj::av(switches2), len = 5)) # tibble of 2-switch pattern positions and lengths
-  switches3 <- uj::f0(uj::isSEQ(uj::av(switches3), -1), NULL, uj::tb(type = 3, pos = uj::av(switches3), len = 6)) # tibble of 3-switch pattern positions and lengths
+  switches0 <- uj::f0(base::setequal(uj::av(switches0), -1), NULL, uj::tb(type = 0, pos = uj::av(switches0), len = 3)) # tibble of 0-switch pattern positions and lengths
+  switches1 <- uj::f0(base::setequal(uj::av(switches1), -1), NULL, uj::tb(type = 1, pos = uj::av(switches1), len = 4)) # tibble of 1-switch pattern positions and lengths
+  switches2 <- uj::f0(base::setequal(uj::av(switches2), -1), NULL, uj::tb(type = 2, pos = uj::av(switches2), len = 5)) # tibble of 2-switch pattern positions and lengths
+  switches3 <- uj::f0(base::setequal(uj::av(switches3), -1), NULL, uj::tb(type = 3, pos = uj::av(switches3), len = 6)) # tibble of 3-switch pattern positions and lengths
   switches <- base::rbind(switches0, switches1, switches2, switches3)            # tibble of all switch pattern positions and lengths
   switches <- switches[base::order(switches$pos, decreasing = T), ]              # sort by decreasing position of first letter of pattern in {x}
-  n.switches <- uj::NR(switches)                                                 # number of switch patterns found in {x}
-  uj::err_if(n.switches != n.dots, count.mismatch, "(", n.switches, ") don't match.", PKG = "uj")
+  n.switches <- uj::nr(switches)                                                 # number of switch patterns found in {x}
+  if (n.switches != n.dots) {uj::stopperr(base::paste0(count.mismatch, "(", n.switches, ") don't match."), PKG = "uj")}
   dots <- base::rev(dots)
   errs <- NULL
-  for (i in 1:n.switches) {                                                      # for each switch code found in {x}
+  for (i in 1:n.switches) {
     prev0 <- 1
-    next1 <- uj::LEN(x)
+    next1 <- base::nchar(x)
     code0 <- switches$pos[i]
     code1 <- code0 + switches$len[i] - 1
     prev1 <- code0 - 1
     next0 <- code1 + 1
-    code <- uj::MID(x, code0, code1)
-    sequence <- uj::p0(i, "-th", inlay.sequence, "('", code, "')")               # : string for communicating about the current switch code
-    prev.text <- uj::f0(prev1 < prev0, "", uj::MID(x, prev0, prev1))
-    next.text <- uj::f0(next0 > next1, "", uj::MID(x, next0, next1))
-    code <- uj::ch(code)                                                         # : all of the characters in the switch code
-    code <- uj::xIN(code, all.switches)                                          # : get just the switches (removing '{@', and '}')
-    ok.code <- uj::UNQ(switches)                                                 # : are all switches unique?
-    if (!ok.code) {errs <- base::c(errs, uj::p0("The ", sequence, "contains duplicate switches."))}
-    else {                                                                       # : if no duplicate switches error
-      io <- uj::isIN1("|", code); iv <- uj::isIN1("&", code);
-      ia <- uj::isIN1("a", code); iA <- uj::isIN1("A", code)
-      ib <- uj::isIN1("b", code); ic <- uj::isIN1("c", code)
-      ie <- uj::isIN1("e", code); il <- uj::isIN1("l", code)
-      iN <- uj::isIN1("n", code); io <- uj::isIN1("o", code)
-      ip <- uj::isIN1("p", code); iq <- uj::isIN1("q", code)
-      iQ <- uj::isIN1("Q", code); is <- uj::isIN1("s", code)
-      it <- uj::isIN1("t", code); iT <- uj::isIN1("T", code)
-      i0 <- uj::isIN1("0", code); i1 <- uj::isIN1("1", code)
-      i2 <- uj::isIN1("2", code); i3 <- uj::isIN1("3", code)
-      i4 <- uj::isIN1("4", code); i5 <- uj::isIN1("5", code)
-      i6 <- uj::isIN1("6", code); i7 <- uj::isIN1("7", code)
-      i8 <- uj::isIN1("8", code); i9 <- uj::isIN1("9", code)
-      nq <- uj::NW(base::c(iq, iQ, it, iT))                                      # : : 0 to 1 switch from choose-max-of-1 quote type set?
-      nl <- uj::NW(base::c(io, iv, ia, iA, ib, ic, ie, il, iN, ip, is))          # : : 0 to 1 switch from choose-max-of-1 list type set?
-      nd <- uj::NW(base::c(i0, i2, i3, i4, i5, i6, i7, i8, i9))                  # : : 0 to 1 switch from choose-max-of-1 digits of precision set?
+    code <- base::substr(x, code0, code1)
+    sequence <- base::paste0(i, "-th", inlay.sequence, "('", code, "')")
+    prev.text <- uj::f0(prev1 < prev0, "", base::substr(x, prev0, prev1))
+    next.text <- uj::f0(next0 > next1, "", base::substr(x, next0, next1))
+    code <- uj::av(base::strsplit(code, "", fixed = T))
+    code <- code[code %in% all.switches]
+    ok.code <- base::length(switches) == base::length(base::unique(switches))
+    if (!ok.code) {errs <- base::c(errs, base::paste0("The ", sequence, "contains duplicate switches."))}
+    else {
+      io <- "|" %in% code; iv <- "&" %in% code; ia <- "a" %in% code; iA <- "A" %in% code; ib <- "b" %in% code
+      ic <- "c" %in% code; ie <- "e" %in% code; il <- "l" %in% code; iN <- "n" %in% code; io <- "o" %in% code
+      ip <- "p" %in% code; iq <- "q" %in% code; iQ <- "Q" %in% code; is <- "s" %in% code; it <- "t" %in% code
+      iT <- "T" %in% code; i0 <- "0" %in% code; i1 <- "1" %in% code; i2 <- "2" %in% code; i3 <- "3" %in% code
+      i4 <- "4" %in% code; i5 <- "5" %in% code; i6 <- "6" %in% code; i7 <- "7" %in% code; i8 <- "8" %in% code
+      i9 <- "9" %in% code
+      nq <- base::length(base::which(base::c(iq, iQ, it, iT)))
+      nl <- base::length(base::which(base::c(io, iv, ia, iA, ib, ic, ie, il, iN, ip, is)))
+      nd <- base::length(base::which(base::c(i0, i2, i3, i4, i5, i6, i7, i8, i9)))
       ok.qt <- nq < 2
       ok.ls <- ls < 2
       ok.dc <- nd < 2
-      errs <- base::c(errs, uj::f0(ok.qt, NULL, uj::p0("The ", sequence, has.mult, qt.switches)),
-                            uj::f0(ok.ls, NULL, uj::p0("The ", sequence, has.mult, ls.switches)),
-                            uj::f0(ok.dc, NULL, uj::p0("The ", sequence, has.mult, dc.switches)))
+      errs <- base::c(errs, uj::f0(ok.qt, NULL, base::paste0("The ", sequence, has.mult, qt.switches)),
+                            uj::f0(ok.ls, NULL, base::paste0("The ", sequence, has.mult, ls.switches)),
+                            uj::f0(ok.dc, NULL, base::paste0("The ", sequence, has.mult, dc.switches)))
       if (ok.ls & ok.qt & ok.dc) {
-        dot <- dots[[i]]                                                         # : : : get the i-th arg from {...}
-        dot.n <- uj::N(dot)                                                      # : : : get its length
+        dot <- dots[[i]]
+        dot.n <- base::length(dot)
         ok.ls <- nl == 1 | dot.n == 1
-        ok.dot <- nd == 0 | uj::isNUM(dot)
+        ok.dot <- nd == 0 | base::is.numeric(dot)
         errs <- base::c(errs,
-                        uj::f0(ok.ls , NULL, uj::p0("..", i, non.scl, sequence, assume.scl)),
-                        uj::f0(ok.dot, NULL, uj::p0("..", i, non.num, sequence, assume.num)))
-        if (ok.ls & ok.dot) {                                                    # : : : if no such errors
-          dot <- uj::f0(i0, uj::SPF("%0.0f", dot)                  , uj::f0(i1, uj::SPF("%0.1f", dot),
-                 uj::f0(i2, uj::SPF("%0.2f", dot)                  , uj::f0(i3, uj::SPF("%0.3f", dot),
-                 uj::f0(i4, uj::SPF("%0.4f", dot)                  , uj::f0(i5, uj::SPF("%0.5f", dot),
-                 uj::f0(i6, uj::SPF("%0.6f", dot)                  , uj::f0(i7, uj::SPF("%0.7f", dot),
-                 uj::f0(i8, uj::SPF("%0.8f", dot)                  , uj::f0(i9, uj::SPF("%0.9f", dot), dot))))))))))
-          dot <- uj::f0(iq, uj::p0("'"     , dot, "'"     )        , uj::f0(iQ, uj::p0('"'     , dot, '"'     ),
-                 uj::f0(it, uj::p0('\u2018', dot, '\u2019')        , uj::f0(iT, uj::p0('\u201C', dot, '\u201D'), dot))))
-          dot <- uj::f0(io, uj::ox_or(dot)                         , uj::f0(iv, uj::ox_and(dot)                    ,
-                 uj::f0(ia, uj::ox_any(dot)                        , uj::f0(iA, uj::ox_all(dot)                    ,
-                 uj::f0(ie, uj::ox_either(dot)                     , uj::f0(iN, uj::ox_neither(dot)                ,
-                 uj::f0(il, uj::g(", ", dot)                       , uj::f0(ic, uj::p0("c(", uj::g(", ", dot), ")"),
-                 uj::f0(ip, uj::p0( "(", uj::g(", ", dot), ")")    , uj::f0(ib, uj::p0( "{", uj::g(", ", dot), "}"),
-                 uj::f0(is, uj::p0("[", uj::g(", ", dot), dot, "]"), dot)))))))))))
-          x <- uj::p0(prev.text, dot, next.text)
+                        uj::f0(ok.ls , NULL, base::paste0("..", i, non.scl, sequence, assume.scl)),
+                        uj::f0(ok.dot, NULL, base::paste0("..", i, non.num, sequence, assume.num)))
+        if (ok.ls & ok.dot) {
+          dot <- uj::f0(i0, base::sprintf("%0.0f", dot),
+                        uj::f0(i1, base::sprintf("%0.1f", dot),
+                               uj::f0(i2, base::sprintf("%0.2f", dot),
+                                      uj::f0(i3, base::sprintf("%0.3f", dot),
+                                             uj::f0(i4, base::sprintf("%0.4f", dot),
+                                                    uj::f0(i5, base::sprintf("%0.5f", dot),
+                                                           uj::f0(i6, base::sprintf("%0.6f", dot),
+                                                                  uj::f0(i7, base::sprintf("%0.7f", dot),
+                                                                         uj::f0(i8, base::sprintf("%0.8f", dot),
+                                                                                uj::f0(i9, base::sprintf("%0.9f", dot), dot))))))))))
+
+          dot <- uj::f0(iq, base::paste0("'", dot, "'"),
+                        uj::f0(iQ, base::paste0("\"", dot, "\""),
+                               uj::f0(it, base::paste0('\u2018', dot, '\u2019'),
+                                      uj::f0(iT, base::paste0('\u201C', dot, '\u201D'), dot))))
+
+          dot <- uj::f0(io, uj::ox_or(dot),
+                        uj::f0(iv, uj::ox_and(dot),
+                               uj::f0(ia, uj::ox_any(dot),
+                                      uj::f0(iA, uj::ox_all(dot),
+                                             uj::f0(ie, uj::ox_either(dot),
+                                                    uj::f0(iN, uj::ox_neither(dot),
+                                                           uj::f0(il, base::paste0(dot, collapse = ", "),
+                                                                  uj::f0(ic, base::paste0("c(", base::paste0(dot, collapse = ", "), ")"),
+                                                                         uj::f0(ip, base::paste0( "(", base::paste0(dot, collapse = ", "), ")"),
+                                                                                uj::f0(ib, base::paste0( "{", base::paste0(dot, collapse = ", "), "}"),
+                                                                                       uj::f0(is, base::paste0("[", uj::g(", ", dot), dot, "]"), dot)))))))))))
+
+          x <- base::paste0(prev.text, dot, next.text)
   }}}}
-  if (uj::DEF(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   x
 }

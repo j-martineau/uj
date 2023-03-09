@@ -3,13 +3,15 @@
 \encoding{UTF-8}
 \name{rd}
 \alias{rd}
-\alias{rdCSV}
-\alias{rdCLIP}
-\alias{rdXSV}
-\alias{rdTSV}
+\alias{rd_csv}
+\alias{rd_clip}
+\alias{rd_xsv}
+\alias{rd_tsv}
 \title{Thin and extended functionality wrappers of \code{readr} functions.}
 \usage{
-rdCSV(
+rd()
+
+rd_csv(
   file = NULL,
   col_names = TRUE,
   col_types = NULL,
@@ -32,9 +34,9 @@ rdCSV(
   lazy = readr::should_read_lazy()
 )
 
-rdCLIP()
+rd_clip()
 
-rdXSV(
+rd_xsv(
   file = NULL,
   delim = NULL,
   quote = "\\"",
@@ -60,7 +62,7 @@ rdXSV(
   lazy = readr::should_read_lazy()
 )
 
-rdTSV(
+rd_tsv(
   file = NULL,
   col_names = TRUE,
   col_types = NULL,
@@ -87,21 +89,22 @@ rdTSV(
 \item{file}{Either \code{NULL} or a \link[=cmp_chr_vec]{complete character vector} that resolves to a file path. When \code{file = NULL} the user is asked to select a file using a system dialog box.}
 }
 \value{
-\strong{Varies}       \cr\cr \code{rdCLIP}
-\cr\cr  \strong{A data.frame} \cr\cr \verb{rdCSV, rdTSV, rdXSV}
+\strong{Varies}       \cr\cr \code{rd_clip}
+\cr\cr  \strong{A data.frame} \cr\cr \verb{rd_csv, rd_tsv, rd_xsv}
 }
 \description{
 Read the clipboard and text files, but prompting user to choose a file if no file name/path is provided.
 }
 \details{
-\tabular{ll}{  \code{rdCLIP}   \tab Thinly wraps \code{\link[readr]{clipboard}}         \cr   \tab   \cr
-  \code{rdCSV}    \tab Extends \code{\link[readr]{read_csv}}\eqn{^{(1)}}   \cr
-  \code{rdTSV}    \tab Extends \code{\link[readr]{read_tsv}}\eqn{^{(1)}}   \cr
-  \code{rdXSV}    \tab Extends \code{\link[readr]{read_delim}}\eqn{^{(1)}}   }
-\tabular{l}{  \eqn{^{(1)}} \code{file = NULL} prompts the user to select a file.         }
+\tabular{ll}{  \code{rd_clip}   \tab Thinly wraps \code{\link[readr]{clipboard}}         \cr   \tab   \cr
+  \code{rd_csv}    \tab Extends \code{\link[readr]{read_csv}}\eqn{^{(1)}}   \cr
+  \code{rd_tsv}    \tab Extends \code{\link[readr]{read_tsv}}\eqn{^{(1)}}   \cr
+  \code{rd_xsv}    \tab Extends \code{\link[readr]{read_delim}}\eqn{^{(1)}} \cr   \tab     }
+\tabular{l}{  \eqn{^{(1)}} \code{file = NULL} prompts the user to select a file.                       }
 }
 \seealso{
 Other extensions: 
+\code{\link{N}()},
 \code{\link{atomize}()},
 \code{\link{case}()},
 \code{\link{cb}()},
@@ -109,13 +112,11 @@ Other extensions:
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
-\code{\link{evals}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
 \code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
-\code{\link{nis}()},
 \code{\link{paths}},
 \code{\link{purge}()},
 \code{\link{r}()},

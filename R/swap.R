@@ -12,18 +12,22 @@
 #' swap(letters[1:6], c("a", "b", "c"), c("-A-", "-B-", "-C-"))
 #' @export
 swap <- function(x, old, new, all = FALSE) {
-  uj::errs_if_nots(uj::pop_atm(x)      , "[x] must be populated and atomic (?pop_atm).",
-                   uj::atm_vec(old)    , "[old] must be an atomic vec (?atm_vec)."     ,
-                   uj::atm_vec(new)    , "[new] must be an atomic vec (?atm_vec)."     ,
-                   uj::cmp_lgl_scl(all), "[all] must be TRUE or FALSE"                 , PKG = "uj")
-  n.old <- uj::N(old)
-  n.new <- uj::N(new)
-  uj::errs_if_nots(uj::compatible(x, old, new)      , "[x], [old], and [new] are of incompatible modes (?compatible)."  ,
-                   uj::UNQ(old)                     , "[old] must contain only unique elements."                        ,
-                   uj::isIN1(n.new, 1, n.old)       , "[length(new)] must be in [c(1, length(old))]."                   ,
-                   uj::f0(all, uj::allIN(x, old), T), "[all = TRUE] but not all elements of [x] are contained in [old].", PKG = "uj")
+  errs <- NULL
+  if (!uj:::.pop_atm(x)) {errs <- base::c(errs, "[x] must be populated and atomic (?pop_atm).")}
+  if (!uj:::.atm_vec(old)) {errs <- base::c(errs, "[old] must be an atomic vec (?atm_vec).")}
+  if (!uj:::.atm_vec(new)) {errs <- base::c(errs, "[new] must be an atomic vec (?atm_vec).")}
+  if (!uj:::.cmp_lgl_scl(all)) {errs <- base::c(errs, "[all] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  n.old <- base::length(old)
+  n.new <- base::length(new)
+  if (all) {ok.old <- base::all(x %in% old)} else {ok.old <- T}
+  if (!uj::compatible(x, old, new)) {errs <- base::c(errs, "[x], [old], and [new] are of incompatible modes (?compatible).")}
+  if (base::length(old) != base::length(base::unique(old))) {errs <- base::c(errs, "[old] must contain only unique elements.")}
+  if (!(n.new %in% base::c(1, n.old))) {errs <- base::c(errs, "[length(new)] must be in [c(1, length(old))].")}
+  if (!ok.old) {errs <- base::c(errs, "[all = TRUE] but not all elements of [x] are contained in [old].")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   if (n.new == 1) {new <- base::rep.int(new, n.old)}
-  if (uj::anyNAS(old)) {x[uj::na(x)] <- new[uj::na(old)]}
+  if (base::any(base::is.na(old))) {x[base::is.na(x)] <- new[base::is.na(old)]}
   for (i in 1:n.old) {x[x == old[i]] <- new[i]}
   x
 }

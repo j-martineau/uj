@@ -7,228 +7,238 @@
 \alias{dw}
 \alias{daw}
 \alias{dww}
+\alias{da_0}
+\alias{da_1}
 \alias{da0}
 \alias{da1}
-\alias{daB}
-\alias{daC}
-\alias{daD}
-\alias{daG}
-\alias{daP}
-\alias{daQ}
-\alias{daS}
-\alias{daT}
+\alias{da_b}
+\alias{da_c}
+\alias{da_d}
+\alias{da_g}
+\alias{da_p}
+\alias{da_q}
+\alias{da_s}
+\alias{da_t}
+\alias{dw_0}
 \alias{dw0}
+\alias{dw_1}
 \alias{dw1}
-\alias{dwB}
-\alias{dwC}
-\alias{dwD}
-\alias{dwG}
-\alias{dwP}
-\alias{dwQ}
-\alias{dwS}
-\alias{dwT}
+\alias{dw_b}
+\alias{dw_c}
+\alias{dw_d}
+\alias{dw_g}
+\alias{dw_p}
+\alias{dw_q}
+\alias{dw_s}
+\alias{dw_t}
+\alias{daw_00}
+\alias{daw_01}
 \alias{daw00}
 \alias{daw01}
-\alias{daw0B}
-\alias{daw0C}
-\alias{daw0D}
-\alias{daw0G}
-\alias{daw0P}
-\alias{daw0Q}
-\alias{daw0S}
-\alias{daw0T}
+\alias{daw_0b}
+\alias{daw_0c}
+\alias{daw_0d}
+\alias{daw_0g}
+\alias{daw_0p}
+\alias{daw_0q}
+\alias{daw_0s}
+\alias{daw_0t}
+\alias{daw_10}
+\alias{daw_11}
 \alias{daw10}
 \alias{daw11}
-\alias{daw1B}
-\alias{daw1C}
-\alias{daw1D}
-\alias{daw1G}
-\alias{daw1P}
-\alias{daw1Q}
-\alias{daw1S}
-\alias{daw1T}
-\alias{dawB0}
-\alias{dawB1}
-\alias{dawBB}
-\alias{dawBC}
-\alias{dawBD}
-\alias{dawBG}
-\alias{dawBP}
-\alias{dawBQ}
-\alias{dawBS}
-\alias{dawBT}
-\alias{dawC0}
-\alias{dawC1}
-\alias{dawCB}
-\alias{dawCC}
-\alias{dawCD}
-\alias{dawCG}
-\alias{dawCP}
-\alias{dawCQ}
-\alias{dawCS}
-\alias{dawCT}
-\alias{dawD0}
-\alias{dawD1}
-\alias{dawDB}
-\alias{dawDC}
-\alias{dawDD}
-\alias{dawDG}
-\alias{dawDP}
-\alias{dawDQ}
-\alias{dawDS}
-\alias{dawDT}
-\alias{dawG0}
-\alias{dawG1}
-\alias{dawGB}
-\alias{dawGC}
-\alias{dawGD}
-\alias{dawGG}
-\alias{dawGP}
-\alias{dawGQ}
-\alias{dawGS}
-\alias{dawGT}
-\alias{dawP0}
-\alias{dawP1}
-\alias{dawPB}
-\alias{dawPC}
-\alias{dawPD}
-\alias{dawPG}
-\alias{dawPP}
-\alias{dawPQ}
-\alias{dawPS}
-\alias{dawPT}
-\alias{dawQ0}
-\alias{dawQ1}
-\alias{dawQB}
-\alias{dawQC}
-\alias{dawQD}
-\alias{dawQG}
-\alias{dawQP}
-\alias{dawQQ}
-\alias{dawQS}
-\alias{dawQT}
-\alias{dawS0}
-\alias{dawS1}
-\alias{dawSB}
-\alias{dawSC}
-\alias{dawSD}
-\alias{dawSG}
-\alias{dawSP}
-\alias{dawSQ}
-\alias{dawSS}
-\alias{dawST}
-\alias{dawT0}
-\alias{dawT1}
-\alias{dawTB}
-\alias{dawTC}
-\alias{dawTD}
-\alias{dawTG}
-\alias{dawTP}
-\alias{dawTQ}
-\alias{dawTS}
-\alias{dawTT}
-\alias{dww00}
-\alias{dww01}
-\alias{dww0B}
-\alias{dww0C}
-\alias{dww0D}
-\alias{dww0G}
-\alias{dww0P}
-\alias{dww0Q}
-\alias{dww0S}
-\alias{dww0T}
-\alias{dww10}
-\alias{dww11}
-\alias{dww1B}
-\alias{dww1C}
-\alias{dww1D}
-\alias{dww1G}
-\alias{dww1P}
-\alias{dww1Q}
-\alias{dww1S}
-\alias{dww1T}
-\alias{dwwB0}
-\alias{dwwB1}
-\alias{dwwBB}
-\alias{dwwBC}
-\alias{dwwBD}
-\alias{dwwBG}
-\alias{dwwBP}
-\alias{dwwBQ}
-\alias{dwwBS}
-\alias{dwwBT}
-\alias{dwwC0}
-\alias{dwwC1}
-\alias{dwwCB}
-\alias{dwwCC}
-\alias{dwwCD}
-\alias{dwwCG}
-\alias{dwwCP}
-\alias{dwwCQ}
-\alias{dwwCS}
-\alias{dwwCT}
-\alias{dwwD0}
-\alias{dwwD1}
-\alias{dwwDB}
-\alias{dwwDC}
-\alias{dwwDD}
-\alias{dwwDG}
-\alias{dwwDP}
-\alias{dwwDQ}
-\alias{dwwDS}
-\alias{dwwDT}
-\alias{dwwG0}
-\alias{dwwG1}
-\alias{dwwGB}
-\alias{dwwGC}
-\alias{dwwGD}
-\alias{dwwGG}
-\alias{dwwGP}
-\alias{dwwGQ}
-\alias{dwwGS}
-\alias{dwwGT}
-\alias{dwwP0}
-\alias{dwwP1}
-\alias{dwwPB}
-\alias{dwwPC}
-\alias{dwwPD}
-\alias{dwwPG}
-\alias{dwwPP}
-\alias{dwwPQ}
-\alias{dwwPS}
-\alias{dwwPT}
-\alias{dwwQ0}
-\alias{dwwQ1}
-\alias{dwwQB}
-\alias{dwwQC}
-\alias{dwwQD}
-\alias{dwwQG}
-\alias{dwwQP}
-\alias{dwwQQ}
-\alias{dwwQS}
-\alias{dwwQT}
-\alias{dwwS0}
-\alias{dwwS1}
-\alias{dwwSB}
-\alias{dwwSC}
-\alias{dwwSD}
-\alias{dwwSG}
-\alias{dwwSP}
-\alias{dwwSQ}
-\alias{dwwSS}
-\alias{dwwST}
-\alias{dwwT0}
-\alias{dwwT1}
-\alias{dwwTB}
-\alias{dwwTC}
-\alias{dwwTD}
-\alias{dwwTG}
-\alias{dwwTP}
-\alias{dwwTQ}
-\alias{dwwTS}
-\alias{dwwTT}
+\alias{daw_1b}
+\alias{daw_1c}
+\alias{daw_1d}
+\alias{daw_1g}
+\alias{daw_1p}
+\alias{daw_1q}
+\alias{daw_1s}
+\alias{daw_1t}
+\alias{daw_b0}
+\alias{daw_b1}
+\alias{daw_bb}
+\alias{daw_bc}
+\alias{daw_bd}
+\alias{daw_bg}
+\alias{daw_bp}
+\alias{daw_bq}
+\alias{daw_bs}
+\alias{daw_bt}
+\alias{daw_c0}
+\alias{daw_c1}
+\alias{daw_cb}
+\alias{daw_cc}
+\alias{daw_cd}
+\alias{daw_cg}
+\alias{daw_cp}
+\alias{daw_cq}
+\alias{daw_cs}
+\alias{daw_ct}
+\alias{daw_d0}
+\alias{daw_d1}
+\alias{daw_db}
+\alias{daw_dc}
+\alias{daw_dd}
+\alias{daw_dg}
+\alias{daw_dp}
+\alias{daw_dq}
+\alias{daw_ds}
+\alias{daw_dt}
+\alias{daw_g0}
+\alias{daw_g1}
+\alias{daw_gb}
+\alias{daw_gc}
+\alias{daw_gd}
+\alias{daw_gg}
+\alias{daw_gp}
+\alias{daw_gq}
+\alias{daw_gs}
+\alias{daw_gt}
+\alias{daw_p0}
+\alias{daw_p1}
+\alias{daw_pb}
+\alias{daw_pc}
+\alias{daw_pd}
+\alias{daw_pg}
+\alias{daw_pp}
+\alias{daw_pq}
+\alias{daw_ps}
+\alias{daw_pt}
+\alias{daw_q0}
+\alias{daw_q1}
+\alias{daw_qb}
+\alias{daw_qc}
+\alias{daw_qd}
+\alias{daw_qg}
+\alias{daw_qp}
+\alias{daw_qq}
+\alias{daw_qs}
+\alias{daw_qt}
+\alias{daw_s0}
+\alias{daw_s1}
+\alias{daw_sb}
+\alias{daw_sc}
+\alias{daw_sd}
+\alias{daw_sg}
+\alias{daw_sp}
+\alias{daw_sq}
+\alias{daw_ss}
+\alias{daw_st}
+\alias{daw_t0}
+\alias{daw_t1}
+\alias{daw_tb}
+\alias{daw_tc}
+\alias{daw_td}
+\alias{daw_tg}
+\alias{daw_tp}
+\alias{daw_tq}
+\alias{daw_ts}
+\alias{daw_tt}
+\alias{dww_00}
+\alias{dww_01}
+\alias{dww_0b}
+\alias{dww_0c}
+\alias{dww_0d}
+\alias{dww_0g}
+\alias{dww_0p}
+\alias{dww_0q}
+\alias{dww_0s}
+\alias{dww_0t}
+\alias{dww_10}
+\alias{dww_11}
+\alias{dww_1b}
+\alias{dww_1c}
+\alias{dww_1d}
+\alias{dww_1g}
+\alias{dww_1p}
+\alias{dww_1q}
+\alias{dww_1s}
+\alias{dww_1t}
+\alias{dww_b0}
+\alias{dww_b1}
+\alias{dww_bb}
+\alias{dww_bc}
+\alias{dww_bd}
+\alias{dww_bg}
+\alias{dww_bp}
+\alias{dww_bq}
+\alias{dww_bs}
+\alias{dww_bt}
+\alias{dww_c0}
+\alias{dww_c1}
+\alias{dww_cb}
+\alias{dww_cc}
+\alias{dww_cd}
+\alias{dww_cg}
+\alias{dww_cp}
+\alias{dww_cq}
+\alias{dww_cs}
+\alias{dww_ct}
+\alias{dww_d0}
+\alias{dww_d1}
+\alias{dww_db}
+\alias{dww_dc}
+\alias{dww_dd}
+\alias{dww_dg}
+\alias{dww_dp}
+\alias{dww_dq}
+\alias{dww_ds}
+\alias{dww_dt}
+\alias{dww_g0}
+\alias{dww_g1}
+\alias{dww_gb}
+\alias{dww_gc}
+\alias{dww_gd}
+\alias{dww_gg}
+\alias{dww_gp}
+\alias{dww_gq}
+\alias{dww_gs}
+\alias{dww_gt}
+\alias{dww_p0}
+\alias{dww_p1}
+\alias{dww_pb}
+\alias{dww_pc}
+\alias{dww_pd}
+\alias{dww_pg}
+\alias{dww_pp}
+\alias{dww_pq}
+\alias{dww_ps}
+\alias{dww_pt}
+\alias{dww_q0}
+\alias{dww_q1}
+\alias{dww_qb}
+\alias{dww_qc}
+\alias{dww_qd}
+\alias{dww_qg}
+\alias{dww_qp}
+\alias{dww_qq}
+\alias{dww_qs}
+\alias{dww_qt}
+\alias{dww_s0}
+\alias{dww_s1}
+\alias{dww_sb}
+\alias{dww_sc}
+\alias{dww_sd}
+\alias{dww_sg}
+\alias{dww_sp}
+\alias{dww_sq}
+\alias{dww_ss}
+\alias{dww_st}
+\alias{dww_t0}
+\alias{dww_t1}
+\alias{dww_tb}
+\alias{dww_tc}
+\alias{dww_td}
+\alias{dww_tg}
+\alias{dww_tp}
+\alias{dww_tq}
+\alias{dww_ts}
+\alias{dww_tt}
 \title{Error-checked string delimiting}
 \usage{
+delim()
+
 da(d, ...)
 
 dw(d, ...)
@@ -237,445 +247,461 @@ daw(d, D, ...)
 
 dww(d, D, ...)
 
+da_0(...)
+
+da_1(...)
+
 da0(...)
 
 da1(...)
 
-daB(...)
+da_b(...)
 
-daC(...)
+da_c(...)
 
-daD(...)
+da_d(...)
 
-daG(...)
+da_g(...)
 
-daP(...)
+da_p(...)
 
-daQ(...)
+da_q(...)
 
-daS(...)
+da_s(...)
 
-daT(...)
+da_t(...)
+
+dw_0(...)
 
 dw0(...)
 
+dw_1(...)
+
 dw1(...)
 
-dwB(...)
+dw_b(...)
 
-dwC(...)
+dw_c(...)
 
-dwD(...)
+dw_d(...)
 
-dwG(...)
+dw_g(...)
 
-dwP(...)
+dw_p(...)
 
-dwQ(...)
+dw_q(...)
 
-dwS(...)
+dw_s(...)
 
-dwT(...)
+dw_t(...)
+
+daw_00(...)
+
+daw_01(...)
 
 daw00(...)
 
 daw01(...)
 
-daw0B(...)
+daw_0b(...)
 
-daw0C(...)
+daw_0c(...)
 
-daw0D(...)
+daw_0d(...)
 
-daw0G(...)
+daw_0g(...)
 
-daw0P(...)
+daw_0p(...)
 
-daw0Q(...)
+daw_0q(...)
 
-daw0S(...)
+daw_0s(...)
 
-daw0T(...)
+daw_0t(...)
+
+daw_10(...)
+
+daw_11(...)
 
 daw10(...)
 
 daw11(...)
 
-daw1B(...)
+daw_1b(...)
 
-daw1C(...)
+daw_1c(...)
 
-daw1D(...)
+daw_1d(...)
 
-daw1G(...)
+daw_1g(...)
 
-daw1P(...)
+daw_1p(...)
 
-daw1Q(...)
+daw_1q(...)
 
-daw1S(...)
+daw_1s(...)
 
-daw1T(...)
+daw_1t(...)
 
-dawB0(...)
+daw_b0(...)
 
-dawB1(...)
+daw_b1(...)
 
-dawBB(...)
+daw_bb(...)
 
-dawBC(...)
+daw_bc(...)
 
-dawBD(...)
+daw_bd(...)
 
-dawBG(...)
+daw_bg(...)
 
-dawBP(...)
+daw_bp(...)
 
-dawBQ(...)
+daw_bq(...)
 
-dawBS(...)
+daw_bs(...)
 
-dawBT(...)
+daw_bt(...)
 
-dawC0(...)
+daw_c0(...)
 
-dawC1(...)
+daw_c1(...)
 
-dawCB(...)
+daw_cb(...)
 
-dawCC(...)
+daw_cc(...)
 
-dawCD(...)
+daw_cd(...)
 
-dawCG(...)
+daw_cg(...)
 
-dawCP(...)
+daw_cp(...)
 
-dawCQ(...)
+daw_cq(...)
 
-dawCS(...)
+daw_cs(...)
 
-dawCT(...)
+daw_ct(...)
 
-dawD0(...)
+daw_d0(...)
 
-dawD1(...)
+daw_d1(...)
 
-dawDB(...)
+daw_db(...)
 
-dawDC(...)
+daw_dc(...)
 
-dawDD(...)
+daw_dd(...)
 
-dawDG(...)
+daw_dg(...)
 
-dawDP(...)
+daw_dp(...)
 
-dawDQ(...)
+daw_dq(...)
 
-dawDS(...)
+daw_ds(...)
 
-dawDT(...)
+daw_dt(...)
 
-dawG0(...)
+daw_g0(...)
 
-dawG1(...)
+daw_g1(...)
 
-dawGB(...)
+daw_gb(...)
 
-dawGC(...)
+daw_gc(...)
 
-dawGD(...)
+daw_gd(...)
 
-dawGG(...)
+daw_gg(...)
 
-dawGP(...)
+daw_gp(...)
 
-dawGQ(...)
+daw_gq(...)
 
-dawGS(...)
+daw_gs(...)
 
-dawGT(...)
+daw_gt(...)
 
-dawP0(...)
+daw_p0(...)
 
-dawP1(...)
+daw_p1(...)
 
-dawPB(...)
+daw_pb(...)
 
-dawPC(...)
+daw_pc(...)
 
-dawPD(...)
+daw_pd(...)
 
-dawPG(...)
+daw_pg(...)
 
-dawPP(...)
+daw_pp(...)
 
-dawPQ(...)
+daw_pq(...)
 
-dawPS(...)
+daw_ps(...)
 
-dawPT(...)
+daw_pt(...)
 
-dawQ0(...)
+daw_q0(...)
 
-dawQ1(...)
+daw_q1(...)
 
-dawQB(...)
+daw_qb(...)
 
-dawQC(...)
+daw_qc(...)
 
-dawQD(...)
+daw_qd(...)
 
-dawQG(...)
+daw_qg(...)
 
-dawQP(...)
+daw_qp(...)
 
-dawQQ(...)
+daw_qq(...)
 
-dawQS(...)
+daw_qs(...)
 
-dawQT(...)
+daw_qt(...)
 
-dawS0(...)
+daw_s0(...)
 
-dawS1(...)
+daw_s1(...)
 
-dawSB(...)
+daw_sb(...)
 
-dawSC(...)
+daw_sc(...)
 
-dawSD(...)
+daw_sd(...)
 
-dawSG(...)
+daw_sg(...)
 
-dawSP(...)
+daw_sp(...)
 
-dawSQ(...)
+daw_sq(...)
 
-dawSS(...)
+daw_ss(...)
 
-dawST(...)
+daw_st(...)
 
-dawT0(...)
+daw_t0(...)
 
-dawT1(...)
+daw_t1(...)
 
-dawTB(...)
+daw_tb(...)
 
-dawTC(...)
+daw_tc(...)
 
-dawTD(...)
+daw_td(...)
 
-dawTG(...)
+daw_tg(...)
 
-dawTP(...)
+daw_tp(...)
 
-dawTQ(...)
+daw_tq(...)
 
-dawTS(...)
+daw_ts(...)
 
-dawTT(...)
+daw_tt(...)
 
-dww00(...)
+dww_00(...)
 
-dww01(...)
+dww_01(...)
 
-dww0B(...)
+dww_0b(...)
 
-dww0C(...)
+dww_0c(...)
 
-dww0D(...)
+dww_0d(...)
 
-dww0G(...)
+dww_0g(...)
 
-dww0P(...)
+dww_0p(...)
 
-dww0Q(...)
+dww_0q(...)
 
-dww0S(...)
+dww_0s(...)
 
-dww0T(...)
+dww_0t(...)
 
-dww10(...)
+dww_10(...)
 
-dww11(...)
+dww_11(...)
 
-dww1B(...)
+dww_1b(...)
 
-dww1C(...)
+dww_1c(...)
 
-dww1D(...)
+dww_1d(...)
 
-dww1G(...)
+dww_1g(...)
 
-dww1P(...)
+dww_1p(...)
 
-dww1Q(...)
+dww_1q(...)
 
-dww1S(...)
+dww_1s(...)
 
-dww1T(...)
+dww_1t(...)
 
-dwwB0(...)
+dww_b0(...)
 
-dwwB1(...)
+dww_b1(...)
 
-dwwBB(...)
+dww_bb(...)
 
-dwwBC(...)
+dww_bc(...)
 
-dwwBD(...)
+dww_bd(...)
 
-dwwBG(...)
+dww_bg(...)
 
-dwwBP(...)
+dww_bp(...)
 
-dwwBQ(...)
+dww_bq(...)
 
-dwwBS(...)
+dww_bs(...)
 
-dwwBT(...)
+dww_bt(...)
 
-dwwC0(...)
+dww_c0(...)
 
-dwwC1(...)
+dww_c1(...)
 
-dwwCB(...)
+dww_cb(...)
 
-dwwCC(...)
+dww_cc(...)
 
-dwwCD(...)
+dww_cd(...)
 
-dwwCG(...)
+dww_cg(...)
 
-dwwCP(...)
+dww_cp(...)
 
-dwwCQ(...)
+dww_cq(...)
 
-dwwCS(...)
+dww_cs(...)
 
-dwwCT(...)
+dww_ct(...)
 
-dwwD0(...)
+dww_d0(...)
 
-dwwD1(...)
+dww_d1(...)
 
-dwwDB(...)
+dww_db(...)
 
-dwwDC(...)
+dww_dc(...)
 
-dwwDD(...)
+dww_dd(...)
 
-dwwDG(...)
+dww_dg(...)
 
-dwwDP(...)
+dww_dp(...)
 
-dwwDQ(...)
+dww_dq(...)
 
-dwwDS(...)
+dww_ds(...)
 
-dwwDT(...)
+dww_dt(...)
 
-dwwG0(...)
+dww_g0(...)
 
-dwwG1(...)
+dww_g1(...)
 
-dwwGB(...)
+dww_gb(...)
 
-dwwGC(...)
+dww_gc(...)
 
-dwwGD(...)
+dww_gd(...)
 
-dwwGG(...)
+dww_gg(...)
 
-dwwGP(...)
+dww_gp(...)
 
-dwwGQ(...)
+dww_gq(...)
 
-dwwGS(...)
+dww_gs(...)
 
-dwwGT(...)
+dww_gt(...)
 
-dwwP0(...)
+dww_p0(...)
 
-dwwP1(...)
+dww_p1(...)
 
-dwwPB(...)
+dww_pb(...)
 
-dwwPC(...)
+dww_pc(...)
 
-dwwPD(...)
+dww_pd(...)
 
-dwwPG(...)
+dww_pg(...)
 
-dwwPP(...)
+dww_pp(...)
 
-dwwPQ(...)
+dww_pq(...)
 
-dwwPS(...)
+dww_ps(...)
 
-dwwPT(...)
+dww_pt(...)
 
-dwwQ0(...)
+dww_q0(...)
 
-dwwQ1(...)
+dww_q1(...)
 
-dwwQB(...)
+dww_qb(...)
 
-dwwQC(...)
+dww_qc(...)
 
-dwwQD(...)
+dww_qd(...)
 
-dwwQG(...)
+dww_qg(...)
 
-dwwQP(...)
+dww_qp(...)
 
-dwwQQ(...)
+dww_qq(...)
 
-dwwQS(...)
+dww_qs(...)
 
-dwwQT(...)
+dww_qt(...)
 
-dwwS0(...)
+dww_s0(...)
 
-dwwS1(...)
+dww_s1(...)
 
-dwwSB(...)
+dww_sb(...)
 
-dwwSC(...)
+dww_sc(...)
 
-dwwSD(...)
+dww_sd(...)
 
-dwwSG(...)
+dww_sg(...)
 
-dwwSP(...)
+dww_sp(...)
 
-dwwSQ(...)
+dww_sq(...)
 
-dwwSS(...)
+dww_ss(...)
 
-dwwST(...)
+dww_st(...)
 
-dwwT0(...)
+dww_t0(...)
 
-dwwT1(...)
+dww_t1(...)
 
-dwwTB(...)
+dww_tb(...)
 
-dwwTC(...)
+dww_tc(...)
 
-dwwTD(...)
+dww_td(...)
 
-dwwTG(...)
+dww_tg(...)
 
-dwwTP(...)
+dww_tp(...)
 
-dwwTQ(...)
+dww_tq(...)
 
-dwwTS(...)
+dww_ts(...)
 
-dwwTT(...)
+dww_tt(...)
 }
 \arguments{
 \item{d, D}{\link[=chr_scl]{Character scalar} delimiters.}
@@ -683,11 +709,11 @@ dwwTT(...)
 \item{...}{An arbitrary number of atomic vector arguments to be delimited. Argument in \code{...} must be recyclable for functions that delimit across \code{...} arguments as the first or only step (i.e., functions with names beginning with \code{da}).}
 }
 \value{
-\strong{A character scalar} \cr\cr \verb{dawXY, dwwXY, daw, dww}
-\cr\cr  \strong{A character vector} \cr\cr \verb{daX, da, dw}
+\strong{A character scalar} \cr\cr \verb{daw_\{x\}\{y\}, dww_\{x\}\{y\}, daw, dww}
+\cr\cr  \strong{A character vector} \cr\cr \verb{da_\{x\}, dw_\{x\}, da, dw}
 }
 \description{
-Simplified and extended \code{base::paste} and \code{base::paste0}. There are both primary functions with user-specified delimiters and convenience functions for common delimiters.
+Simplified and extended \code{base::paste} and \code{base::paste0}. There are both primary functions using user-specified delimiters and convenience functions for common delimiters.
 }
 \details{
 \strong{Primary functions}
@@ -699,24 +725,24 @@ character vector using delimiter \code{D}. Produces a character scalar of \code{
   \code{dw}    \tab Delimits elements within each (atomic vector) \code{...} argument using delimiter \code{d}. Produces a character vector of \code{...length()} substrings delimited by \code{d}. \cr   \tab   \cr
   \code{da}    \tab Delimits across corresponding elements of (recyclable atomic vector) \code{...} arguments using delimiter \code{d}. Produces a character vector of
 \code{max(lengths(list(...)))} substrings delimited by \code{d}.                                                                                                                     }
-\cr\cr \strong{Common-delimiter convenience functions}
-\cr\cr Convenience function names are constructed by append \code{1} or \code{2} codes for common delimiters to the function name as follows (where \code{X} and \code{Y} are placeholders for common-delimiter codes):
-\tabular{ll}{  \code{dawXY}   \tab Delimits across with \code{X} then within with \code{Y}. \cr   \tab   \cr
-  \code{dwwXY}   \tab Delimits within with \code{X} then again with \code{Y}.  \cr   \tab   \cr
-  \code{daX}     \tab Delimits across with \code{X}.                                   \cr
-  \code{dwX}     \tab Delimits within with \code{X}.                                     }
-\cr\cr Common delimiters are encoded as:
+\cr \strong{Common-delimiter convenience functions}
+\cr\cr Convenience function names are constructed by append \code{1} or \code{2} codes for common delimiters to the function name as follows (where \code{{x}} and \code{{y}} are placeholders for common-delimiter codes):
+\tabular{ll}{  \verb{daw_\{x\}\{y\}}   \tab Delimits across using \code{{x}} then within using \code{{y}}. \cr   \tab   \cr
+  \verb{dww_\{x\}\{y\}}   \tab Delimits within using \code{{x}} then again using \code{{y}}.  \cr   \tab   \cr
+  \verb{da_\{x\}}       \tab Delimits across using \code{{x}}.                                     \cr
+  \verb{dw_\{x\}}       \tab Delimits within using \code{{x}}.                                       }
+\cr Common delimiters are encoded as:
 \tabular{lll}{  \strong{Code}   \tab \strong{Name}                      \tab   \strong{Delimiter} \cr
   \code{'0'}      \tab blank                         \tab   \code{''}          \cr
   \code{'1'}      \tab space                         \tab   \code{' '}         \cr
-  \code{'B'}      \tab broken pipe                   \tab   \code{'¦'}         \cr
-  \code{'C'}      \tab colon                         \tab   \code{':'}         \cr
-  \code{'D'}      \tab dot                           \tab   \code{'.'}         \cr
-  \code{'G'}      \tab grammatical comma\eqn{^{(1)}} \tab   \code{', '}        \cr
-  \code{'P'}      \tab pipe                          \tab   \code{'|'}         \cr
-  \code{'Q'}      \tab back-tick                     \tab   \code{'``'}        \cr
-  \code{'S'}      \tab simple comma\eqn{^{(1)}}      \tab   \code{','}         \cr
-  \code{'T'}      \tab tilde                         \tab   \code{'~'}           }
+  \code{'b'}      \tab broken pipe                   \tab   \code{'¦'}         \cr
+  \code{'c'}      \tab colon                         \tab   \code{':'}         \cr
+  \code{'d'}      \tab dot                           \tab   \code{'.'}         \cr
+  \code{'g'}      \tab grammatical comma\eqn{^{(1)}} \tab   \code{', '}        \cr
+  \code{'p'}      \tab pipe                          \tab   \code{'|'}         \cr
+  \code{'q'}      \tab back-tick quote               \tab   \code{'``'}        \cr
+  \code{'s'}      \tab simple comma\eqn{^{(1)}}      \tab   \code{','}         \cr
+  \code{'t'}      \tab tilde                         \tab   \code{'~'}           }
 \tabular{l}{  \eqn{^{(1)}} 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., \code{'1, 2, 3'} vs. \code{'1,2,3'}). }
 }
 \examples{
@@ -737,16 +763,16 @@ daw('|', ':', 1:3, 4:6)
 dww('|', ':', 1:3, 4:6)
 
 # delimit across using pipe (encoded by 'P' suffix in function name).
-daP(1:3, 4:6)
+da_p(1:3, 4:6)
 
 # delimit within using colon (encoded by 'C' suffix in function name).
-dwC(1:3, 4:6)
+dw_c(1:3, 4:6)
 
 # delimit across using pipe, then within using colon.
-dawPC(1:3, 4:6)
+daw_pc(1:3, 4:6)
 
 # delimit within using colon, then again using pipe.
-dwwCP(1:3, 4:6)
+dww_cp(1:3, 4:6)
 }
 \seealso{
 Other strings: 
@@ -757,7 +783,7 @@ Other strings:
 \code{\link{ipat}()},
 \code{\link{makestr}()},
 \code{\link{markdown}()},
-\code{\link{max_nch}()},
+\code{\link{maxnch}()},
 \code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{revstr}()},

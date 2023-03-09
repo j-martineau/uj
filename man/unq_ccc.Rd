@@ -92,7 +92,7 @@ c(unq_vls(UnqVls), unq_arr(UnqVec), unq_arr(c(UnqVls, UnqVls)))
 }
 \seealso{
 Other properties: 
-\code{\link{asMODE}()},
+\code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{checker}},

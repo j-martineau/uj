@@ -22,18 +22,23 @@
 #'
 #' @export
 cmp_ccc <- function(x, ccc, ...) {
-  cfun <- function(cx) {uj::run("uj::i", base::toupper(ccc), "(cx)")}
-  afun <- function(ax) {uj::f0(uj::notATM(ax), F, uj::f0(uj::N0(ax), F, uj::noneNA(ax)))}
+  cfun <- function(cx) {uj::run("uj:::.", base::toupper(ccc), "(cx)")}
+  afun <- function(ax) {if (!base::is.atomic(ax)) {F} else if (base::length(ax) == 0) {F} else {!base::any(base::is.na(ax))}}
   dfun <- function(dx) {base::all(base::apply(dx, 2, afun))}
   vfun <- function(vx) {base::all(base::sapply(vx, afun))}
-  if (uj::isCHR(ccc)) {ccc <- base::tolower(ccc)}
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::f0(uj::isIN1(ccc, uj:::.ccc), NULL, '[ccc] is not a scalar value from ccc_props().')), PKG = "uj")
-  uj::f0(!uj::meets(x, ...), F, uj::f0(!cfun(x), F, uj::f0(ccc == "dtf", dfun(x), uj::f0(ccc == "vls", vfun(x), afun(x)))))
+  if (base::is.character(ccc)) {ccc <- base::tolower(ccc)}
+  errs <- uj:::.meets_errs(x, ...)
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (!(ccc %in% uj:::.ccc)) {F}
+  else if (!cfun(x)) {F}
+  else if (ccc == "dtf") {dfun(x)}
+  else if (ccc == "vls") {vfun(x)}
+  else {afun(x)}
 }
 
 #' @rdname cmp_ccc
 #' @export
-cmp_ccc_funs <- function() {uj::p0('cmp', base::toupper(uj:::.cccs))}
+cmp_ccc_funs <- function() {base::paste0('cmp_', uj:::.ccc)}
 
 #' @rdname cmp_ccc
 #' @export

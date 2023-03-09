@@ -54,13 +54,13 @@ revstr(egDtfNA, na = TRUE)
 Other strings: 
 \code{\link{blank}()},
 \code{\link{chn}()},
-\code{\link{delim}},
+\code{\link{delim}()},
 \code{\link{fsub}()},
 \code{\link{gr}},
 \code{\link{ipat}()},
 \code{\link{makestr}()},
 \code{\link{markdown}()},
-\code{\link{max_nch}()},
+\code{\link{maxnch}()},
 \code{\link{ox}()},
 \code{\link{pgrid}()},
 \code{\link{spaces}()},
@@ -70,7 +70,7 @@ Other strings:
 
 Other chars: 
 \code{\link{chn}()},
-\code{\link{max_nch}()},
+\code{\link{maxnch}()},
 \code{\link{spaces}()},
 \code{\link{ss}()}
 }

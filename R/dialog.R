@@ -1,12 +1,3 @@
-.chr <- function(..., d = " ") {uj::g(d, uj::av(...))}
-.trm <- function(..., d = " ") {base::trimws(.chr(..., d = d), which = "both")}
-.ssplit <- function(x) {uj:::.trm(uj::av(base::strsplit(x, "|", fixed = T)))}
-.ok_fmt <- function(x) {
-  if (!uj::DEF(x)) {return(F)}
-  x <- uj:::.ssplit(x)
-  uj::f0(uj::N(x) != 3, F, uj::f0(uj::isMF1(x[1], uj::bg_vals()), F, uj::f0(uj::isMF1(x[2], uj::fg_vals()), F, uj::isIN1(x[3], uj::st_vals()))))
-}
-
 #' @name dialog
 #' @encoding UTF-8
 #' @family dialogs
@@ -23,7 +14,7 @@
 #'                `YES, NO`       \tab Offers `YES/NO/CANCEL`.\eqn{^{(1,2,4)}}           \cr   \tab   \cr
 #'                `ask_new`       \tab Asks for a list of new values.\eqn{^{(1,2)}}      \cr   \tab   \cr
 #'                `alert`         \tab None.\eqn{^{(1)}}                                 \cr   \tab   \cr
-#'                `ask`           \tab Asks for typed input.\eqn{^{(1,2)}}                              }
+#'                `ask`           \tab Asks for typed input.\eqn{^{(1,2)}}               \cr   \tab     }
 #'  \tabular{l}{  \eqn{^{(1)}} Default style, background color, and foreground color of console text depend on `type`. \cr
 #'                \eqn{^{(2)}} Stops execution if user chooses `CANCEL`.                                               \cr
 #'                \eqn{^{(3)}} Stops execution if `stop | (type = 'error' & is.null(stop))`.                           \cr
@@ -84,7 +75,7 @@
 #'   YES(egMsg1)
 #'   CANCEL(egMsg1)
 #'   ask(Msg2)
-#'   askNEW(egOpts)
+#'   ask_new(egOpts)
 #'   choose_dir(dir.type = "directory for R scripts")
 #'   choose_doc(doc.type = "document to read")
 #' }
@@ -93,21 +84,23 @@ alert <- function(..., type = "alert", lab = "", blank = "", ftype = "r|y|p", fl
   lab <- uj:::.chr(lab)
   msg <- uj:::.chr(...)
   type <- base::tolower(uj:::.chr(type))
-  flab <- uj::f0(uj::NLL(flab), base::c("blk", "ylw", "itl"), uj::f0(uj::cmp_chr_vec(flab), uj:::.ssplit(flab), NULL))
-  fmsg <- uj::f0(uj::NLL(fmsg), base::c("def", "def", "def"), uj::f0(uj::cmp_chr_vec(fmsg), uj:::.ssplit(fmsg), NULL))
-  ftype <- uj::f0(uj::NLL(ftype), base::c("red", "wht", "bld"), uj::f0(uj::cmp_chr_vec(ftype), uj:::.ssplit(ftype), NULL))
+  flab <- uj::f0(base::is.null(flab), base::c("blk", "ylw", "itl"), uj::f0(uj:::.cmp_chr_vec(flab), uj:::.ssplit(flab), NULL))
+  fmsg <- uj::f0(base::is.null(fmsg), base::c("def", "def", "def"), uj::f0(uj:::.cmp_chr_vec(fmsg), uj:::.ssplit(fmsg), NULL))
+  ftype <- uj::f0(base::is.null(ftype), base::c("red", "wht", "bld"), uj::f0(uj:::.cmp_chr_vec(ftype), uj:::.ssplit(ftype), NULL))
   blank <- uj:::.chr(blank)
-  uj::errs_if_nots(uj::cmp_chr_scl(type ), "[type] must be a complete character scalar (?cmp_chr_scl)."                                                                         ,
-                   uj::cmp_chr_scl(lab  ), "[lab] must be a complete character scalar (?cmp_chr_scl)."                                                                          ,
-                   uj::cmp_chr_scl(blank), "[blank] must be NULL or a complete character scalar (?cmp_chr_scl)."                                                                ,
-                   uj:::.ok_fmt(   ftype), "[ftype] must be consistent with the description the [specifying formats] section of the [alert] topic of package [uj] (?uj::alert).",
-                   uj:::.ok_fmt(   flab ), "[flab] must be consistent with the description the [specifying formats] section of the [alert] topic of package [uj] (?uj::alert)." ,
-                   uj:::.ok_fmt(   fmsg ), "[fmsg] must be consistent with the description the [specifying formats] section of the [alert] topic of package [uj] (?uj::alert)." ,
-                   uj::cmp_chr_scl(d    ), "[d] must be a complete character scalar (?cmp_chr_scl)."                                                                            , PKG = "uj")
+  errs <- NULL
+  if (!uj:::.cmp_chr_scl(type)) {errs <- base::c(errs, "[type] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!uj:::.cmp_chr_scl(lab)) {errs <- base::c(errs, "[lab] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!uj:::.cmp_chr_scl(blank)) {errs <- base::c(errs, "[blank] must be NULL or a complete character scalar (?cmp_chr_scl).")}
+  if (!uj:::.ok_fmt(ftype)) {errs <- base::c(errs, "[ftype] must be consistent with the description the [specifying formats] section of the [alert] topic of package [uj] (?uj::alert).")}
+  if (!uj:::.ok_fmt(flab)) {errs <- base::c(errs, "[flab] must be consistent with the description the [specifying formats] section of the [alert] topic of package [uj] (?uj::alert).")}
+  if (!uj:::.ok_fmt(fmsg)) {errs <- base::c(errs, "[fmsg] must be consistent with the description the [specifying formats] section of the [alert] topic of package [uj] (?uj::alert).")}
+  if (!uj:::.cmp_chr_scl(d)) {errs <- base::c(errs, "[d] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   if (type != "") {type <- uj::txt(base::toupper(type), bg = ftype[1], fg = ftype[2], st = ftype[3])}
   if (lab != "") {lab <- uj::txt(lab, bg = flab[1], fg = flab[2], st = flab[3])}
   if (msg != "") {msg <- uj::txt(msg, bg = fmsg[1], fg = fmsg[2], st = fmsg[3])}
-  base::cat(uj::p0("\n", type, uj::f0(type == "", "", "\n"), lab, uj::f0(lab == "", "", "\n"), msg, "\n"))
+  base::cat(base::paste0("\n", type, uj::f0(type == "", "", "\n"), lab, uj::f0(lab == "", "", "\n"), msg, "\n"))
   if (type == "error") {uj::stopperr("", FUN = uj::caller())}
 }
 
@@ -123,80 +116,85 @@ acknowledge <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d 
 #' @rdname dialog
 #' @export
 choose1 <- function(options, ..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
-  uj::err_if_not(uj::unq_atm_vec(options), "[options] must be a unique atomic vec (?unq_atm_vec).", PKG = "uj")
+  if (!uj:::.unq_atm_vec(options)) {uj::stopperr("[options] must be a unique atomic vec (?unq_atm_vec).", PKG = "uj")}
   uj::alert(..., title = "Response required", blank = "", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
-  char.options <- base::c("{ CANCEL }", uj::asCHR(options))
+  char.options <- base::c("{ CANCEL }", uj::as_chr(options))
   answer <- svDialogs::dlg_list(char.options)$res
-  if (uj::N0(answer) | uj::isEQ1(answer, "{ CANCEL }")) {uj::stopperr("Action cancelled by user choice.", FUN = uj::caller())}
-  options[uj::asCHR(options) == answer]
+  if (uj::n0(answer) | uj::is_eq0(answer, "{ CANCEL }")) {uj::stopperr("Action cancelled by user choice.", FUN = uj::caller())}
+  options[uj::as_chr(options) == answer]
 }
 
 #' @rdname dialog
 #' @export
 chooseN <- function(options, ..., all = TRUE, none = FALSE, n = NULL, min.n = NULL, max.n = NULL, ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
-  uj::errs_if_nots(uj::unq_atm_mvc(options        ), "[options] must be a unique atomic multivec (?unq_atm_mvc)."                     ,
-                   uj::cmp_lgl_scl(all            ), "[all] must be TRUE or FALSE."                                                   ,
-                   uj::cmp_lgl_scl(none           ), "[none] must be TRUE or FALSE."                                                  ,
-                   uj::nll_or(n    , "cmp_psw_scl"), "[n] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl)."    ,
-                   uj::nll_or(min.n, "cmp_psw_scl"), "[min.n] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).",
-                   uj::nll_or(max.n, "cmp_psw_scl"), "[max.n] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).", PKG = "uj")
-  def.min <- uj::DEF(min.n)
-  def.max <- uj::DEF(max.n)
-  def.n <- uj::DEF(n)
-  mssg <- uj::glue_dots(...)
-  n.opt <- uj::N(options)
+  errs <- NULL
+  if (!uj:::.unq_atm_mvc(options)) {errs <- base::c(errs, "[options] must be a unique atomic multivec (?unq_atm_mvc).")}
+  if (!uj::cmp_lgl_scl(all)) {errs <- base::c(errs, "[all] must be TRUE or FALSE.")}
+  if (!uj::cmp_lgl_scl(none)) {errs <- base::c(errs, "[none] must be TRUE or FALSE.")}
+  if (!uj::f0(base::is.null(n), T, uj:::.cmp_psw_scl(n))) {errs <- base::c(errs, "[n] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!uj::f0(base::is.null(min.n), T, uj:::.cmp_psw_scl(min.n))) {errs <- base::c(errs, "[min.n] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!uj::f0(base::is.null(max.n), T, uj:::.cmp_psw_scl(max.n))) {errs <- base::c(errs, "[max.n] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  def.min <- !base::is.null(min.n)
+  def.max <- !base::is.null(max.n)
+  def.n <- !base::is.null(n)
+  mssg <- base::paste0(uj::av(...), collapse = d)
+  n.opt <- base::length(options)
   ok.lo <- uj::f0(!def.n, T, n >= 1)
   ok.hi <- uj::f0(!def.n, T, n <= n.opt)
   ok.min <- uj::f0(!def.min, T, min.n <= n.opt)
   ok.max <- uj::f0(!def.max, T, max.n <= n.opt)
   ok.combo <- (!def.min & !def.max) | !def.n
   ok.min.max <- uj::f0(!def.min | !def.max, T, min.n <= max.n)
-  uj::errs_if_nots(ok.lo, "[n] is out of bounds ==> min(n) < 1."                        ,
-                   ok.hi, "[n] is out of bounds ==> max(n) > length(options)."          ,
-                   ok.min, "[min.n] is out of bounds ==> min.n > length(options)."      ,
-                   ok.max, "[max.n] is out of bounds ==> max.n > length(options)."      ,
-                   ok.combo, "When [n] is supplied, [min.n] and [max.n] must be NULL."  ,
-                   ok.min.max, "[min.n] and [max.n] are inconsistent ==> min.n > max.n.", PKG = "uj")
+  if (!ok.lo) {errs <- base::c(errs, "[n] is out of bounds ==> min(n) < 1.")}
+  if (!ok.hi) {errs <- base::c(errs, "[n] is out of bounds ==> max(n) > length(options).")}
+  if (!ok.min) {errs <- base::c(errs, "[min.n] is out of bounds ==> min.n > length(options).")}
+  if (!ok.max) {errs <- base::c(errs, "[max.n] is out of bounds ==> max.n > length(options).")}
+  if (!ok.combo) {errs <- base::c(errs, "When [n] is supplied, [min.n] and [max.n] must be NULL.")}
+  if (!ok.min.max) {errs <- base::c(errs, "[min.n] and [max.n] are inconsistent ==> min.n > max.n.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   min.n <- uj::f0(def.n, n, uj::f0(def.min, min.n, uj::f0(none, 0, 1)))
   max.n <- uj::f0(def.n, n, uj::f0(def.max, max.n, n.opt))
   n <- min.n:max.n
   infix <- uj::f0(min.n == max.n, uj::p0("exactly ", max.n), uj::p0("from ", min.n, " to ", max.n))
-  all <- uj::isIN1(uj::N(options), n)
-  none <- uj::isIN1(0, n)
-  char.options <- base::c("{ CANCEL }", uj::asCHR(options), uj::f0(all, "{ ALL }", NULL), uj::f0(none, "{ NONE }", NULL))
-  mssg <- uj::p0(mssg, uj::f0(mssg == "", "", "\n\n"), "CHOOSE ", infix, " OPTIONS")
+  all <- all | base::length(options) %in% n
+  none <- none | 0 %in% n
+  char.options <- base::c("{ CANCEL }", base::as.character(options), uj::f0(all, "{ ALL }", NULL), uj::f0(none, "{ NONE }", NULL))
+  mssg <- base::paste0(mssg, uj::f0(mssg == "", "", "\n\n"), "CHOOSE ", infix, " OPTIONS")
   uj::alert(mssg, title = "Response required", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
-  answer <- uj::UV(svDialogs::dlg_list(char.options, title = "", multiple = T)$res)
-  if (uj::N0(answer) | uj::isEQ1(answer, "{ CANCEL }")) {uj::stopperr("Action cancelled by user choice.", FUN = uj::caller())}
+  answer <- uj::uv(svDialogs::dlg_list(char.options, title = "", multiple = T)$res)
+  if (base::length(answer) == 0 & !none) {uj::stopperr("Action cancelled by user choice.", FUN = uj::caller())}
+  if (base::length(answer) == 1) {if (answer == "{ CANCEL }") {uj::stopperr("Action cancelled by user choice.", FUN = uj::caller())}}
   answer <- answer[answer != "{ CANCEL }"]
-  if (none & uj::N0(answer) | uj::isEQ1(answer, "{ NONE }")) {NULL}
-  else if (uj::isEQ1("{ ALL }", answer)) {options[!(options == "{ CANCEL }")]}
-  else if (uj::anyIN(answer, base::c("{ ALL }", "{ NONE }"))) {uj::stopperr("Invalid selection", FUN = uj::caller())}
-  else if (uj::isMF1(uj::N(answer), n)) {uj::stopperr("Invalid number of options selected", FUN = uj::caller())}
-  else {options[uj::asCHR(options) %in% uj::asCHR(answer)]}
+  if (none & base::length(answer) == 0) {NULL}
+  else if (none & base::all(answer == "{ NONE }")) {NULL}
+  else if (base::all(answer == "{ ALL }")) {options[!(options == "{ CANCEL }")]}
+  else if (base::any(answer %in% base::c("{ ALL }", "{ NONE }"))) {uj::stopperr("Invalid selection", FUN = uj::caller())}
+  else if (!(base::length(answer) %in% n)) {uj::stopperr("Invalid number of options selected", FUN = uj::caller())}
+  else {options[base::as.character(options) %in% base::as.character(answer)]}
 }
 
 #' @rdname dialog
 #' @export
 NO <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
   x <- uj::choose1(base::c("{ YES }", "{ NO }"), ..., ftype = ftype, flab = flab, fmsg = fmsg, d = d)
-  uj::f0(uj::isEQ1(x, "{ YES }"), F, uj::f0(uj::isEQ1(x, "{ NO }"), T, uj::stopperr("Action canceled by user choice.", FUN = uj::caller())))
+  uj::f0(x == "{ YES }", F, uj::f0(x == "{ NO }", T, uj::stopperr("Action canceled by user choice.", FUN = uj::caller())))
 }
 
 #' @rdname dialog
 #' @export
 YES <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
   x <- uj::choose1(base::c("{ YES }", "{ NO }"), ..., ftype = ftype, flab = flab, fmsg = fmsg, d = d)
-  uj::f0(uj::isEQ1(x, "{ YES }"), T, uj::f0(uj::isEQ1(x, "{ NO }"), F, uj::stopperr("Action canceled by user choice.", FUN = uj::caller())))
+  uj::f0(x == "{ YES }", T, uj::f0(x == "{ NO }", F, uj::stopperr("Action canceled by user choice.", FUN = uj::caller())))
 }
 
 #' @rdname dialog
 #' @export
-OK <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {uj::isEQ1(uj::choose1("{ OK }", ..., ftype = ftype, flab = flab, fmsg = fmsg, d = d), "{ OK }")}
+OK <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {uj::choose1("{ OK }", ..., ftype = ftype, flab = flab, fmsg = fmsg, d = d) == "{ OK }"}
 
 #' @rdname dialog
 #' @export
-CANCEL <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {uj::isEQ1(uj::choose1("{ OK }", ..., ftype = ftype, flab = flab, fmsg = fmsg, d = d), "{ CANCEL }")}
+CANCEL <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {uj::choose1("{ OK }", ..., ftype = ftype, flab = flab, fmsg = fmsg, d = d) == "{ CANCEL }"}
 
 #' @rdname dialog
 #' @export
@@ -206,16 +204,18 @@ ask <- function(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
   base::cat("\n\n")
   base::cat(crayon::bold(crayon::bgWhite(crayon::red("Enter your response: "))))
   answer <- base::readline()
-  uj::f0(uj::N0(answer), uj::stopperr("Action canceled by user choice.", FUN = uj::caller()), answer)
+  uj::f0(base::length(answer) == 0, uj::stopperr("Action canceled by user choice.", FUN = uj::caller()), answer)
 }
 
 #' @rdname dialog
 #' @export
-askNEW <- function(old, unq = TRUE, ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
-  uj::errs_if_nots(uj::unq_atm_vec(old), "[old] must be a unique atomic vec (?unq_atm_vec).",
-                   uj::isTF1(unq)      , "[unq] must be TRUE or FALSE."                     , PKG = "uj")
-  list <- uj::g(" | ", old)
-  question <- uj::spf("Enter a pipe-separated list of %d replacement values for the following pipe-separated original values:\n\n%s\n\n", uj::N(old), list)
+ask_new <- function(old, unq = TRUE, ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
+  errs <- NULL
+  if (!uj:::.unq_atm_vec(old)) {errs <- base::c(errs, "[old] must be a unique atomic vec (?unq_atm_vec).")}
+  if (!uj:::.cmp_lgl_scl(unq)) {errs <- base::c(errs, "[unq] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  list <- paste0(old, collapse = " | ")
+  question <- base::sprintf("Enter a pipe-separated list of %d replacement values for the following pipe-separated original values:\n\n%s\n\n", base::length(old), list)
   uj::alert(question, title = "Response required", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
   base::cat(uj::bg_red(uj::fg_ylw(uj::st_bld("Enter your response: "))))
   answer <- base::readline()
@@ -232,19 +232,19 @@ askNEW <- function(old, unq = TRUE, ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d
 #' @rdname dialog
 #' @export
 choose_dir <- function(dir.type = "directory", ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(dir.type), "[dir.type] must be a complete character scalar (?cmp_chr_scl)", PKG = "uj")
+  if (!uj::cmp_chr_scl(dir.type)) {uj::stopperr("[dir.type] must be a complete character scalar (?cmp_chr_scl)", PKG = "uj")}
   uj::acknowledge("In the next dialog box, select a ", dir.type, ".", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
-  path <- svDialogs::dlg_dir(title = uj::p0("Select a ", dir.type, ":"))$res
-  if (uj::N0(path)) {uj::stopperr("Action canceled by user choice", FUN = uj::caller())}
+  path <- svDialogs::dlg_dir(title = base::paste0("Select a ", dir.type, ":"))$res
+  if (base::length(path) == 0) {uj::stopperr("Action canceled by user choice", FUN = uj::caller())}
   path
 }
 
 #' @rdname dialog
 #' @export
 choose_doc <- function(doc.type = "document", ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ") {
-  uj::err_if_not(uj::cmp_chr_scl(doc.type), "[doc.type] must be a complete character scalar (?cmp_chr_scl)", PKG = "uj")
+  if (!uj:::.cmp_chr_scl(doc.type)) {uj::stopperr("[doc.type] must be a complete character scalar (?cmp_chr_scl)", PKG = "uj")}
   uj::acknowledge("In the next dialog box, select a ", doc.type, ".", ftype = ftype, flab = flab, fmsg = fmsg, d = d)
-  path <- svDialogs::dlg_open(title = uj::p0("Select a ", doc.type, ":"))$res
-  if (uj::N0(path)) {uj::stopperr("Action canceled by user choice", FUN = uj::caller())}
+  path <- svDialogs::dlg_open(title = base::paste0("Select a ", doc.type, ":"))$res
+  if (base::length(path) == 0) {uj::stopperr("Action canceled by user choice", FUN = uj::caller())}
   path
 }

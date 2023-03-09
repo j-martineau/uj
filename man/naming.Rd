@@ -3,17 +3,17 @@
 \encoding{UTF-8}
 \name{naming}
 \alias{naming}
-\alias{namee}
-\alias{namer}
-\alias{namec}
-\alias{namel}
-\alias{namerc}
+\alias{name_vals}
+\alias{name_rows}
+\alias{name_cols}
+\alias{name_scl_vls}
+\alias{name_rcs}
 \alias{name}
 \alias{named}
-\alias{enamed}
-\alias{rnamed}
-\alias{cnamed}
-\alias{rcnamed}
+\alias{named_elts}
+\alias{named_rows}
+\alias{named_cols}
+\alias{named_rcs}
 \alias{dnamed}
 \alias{get_names}
 \alias{dnames}
@@ -28,27 +28,27 @@
 \alias{rcn}
 \title{Naming utilities}
 \usage{
-namee(x, en)
+name_vals(x, vn)
 
-namer(x, rn)
+name_rows(x, labs)
 
-namec(x, cn)
+name_cols(x, labs)
 
-namel(x, ln)
+name_scl_vls(x, lab)
 
-namerc(x, rn, cn)
+name_rcs(x, rlabs, clabs)
 
-name(x, en = NULL, rn = NULL, cn = NULL)
+name(x, vlabs = NULL, rlabs = NULL, clabs = NULL)
 
 named(x, dim = 0, u = T, bl = F)
 
-enamed(x, u = T, bl = F)
+named_elts(x, u = T, bl = F)
 
-rnamed(x, u = T, bl = F)
+named_rows(x, u = T, bl = F)
 
-cnamed(x, u = T, bl = F)
+named_cols(x, u = T, bl = F)
 
-rcnamed(x, u = T, bl = F)
+named_rcs(x, u = T, bl = F)
 
 dnamed(..., U = T, BL = F)
 
@@ -75,15 +75,11 @@ rcnames(x, u = T, err = F)
 rcn(x, u = T, err = F)
 }
 \arguments{
-\item{x}{Vector or list for \code{namee} and \code{enames / en}; matrix or data.frame for \code{rnames / rn}, \code{cnames / cn}, \code{rcnames / rcn}, \code{namerc}, \code{namec}, and \code{namer}; or any object for \code{namel}.}
+\item{x}{Vector or list for \code{name_vals} and \code{val_names / vn}; matrix or data.frame for \code{rnames / rn}, \code{cnames / cn}, \code{rcnames / rcn}, \code{name_rcs}, \code{name_cols}, and \code{name_rows}; or any object for \code{name_scl_vls}.}
 
-\item{en}{A complete character vec of element names.}
+\item{labs, rlabs, clabs, vlabs}{A \link[=cmp_chr_vec]{complete character vec}.}
 
-\item{rn}{A complete character vec of row names.}
-
-\item{cn}{A \link[=cmp_chr_vec]{complete character vec} of column names.}
-
-\item{ln}{A non-\code{NA} character scalar to name the single elemnt of the resulting \link[=VLS]{vlist}.}
+\item{lab}{A non-\code{NA} character scalar to name the single element of the resulting \link[=VLS]{vlist}.}
 
 \item{dim}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the dimension(s) to name: \code{0} for elements (of atomic or list vectors only), \code{1} for rows of matrices or tibbles, \code{2} for columns of matrices or data.frames, or \code{12} for rows and columns of matrices or data.frames.}
 
@@ -100,35 +96,35 @@ rcn(x, u = T, err = F)
 \value{
 \strong{A \link[=VEC]{vec}, \link[=VLS]{vlist}, matrix, or data.frame} \cr\cr \code{name}
 \cr\cr  \strong{A vector or a vlist of length} \code{2}                             \cr\cr \code{get_names}
-\cr\cr  \strong{A matrix or data.frame}                                        \cr\cr \verb{namerc, namer,namec}
-\cr\cr  \strong{A \link[=VLS]{vlist} of length} \code{2}                            \cr\cr \verb{rcnames, rcn}
-\cr\cr  \strong{A \code{1}-element \link[=VLS]{vlist}}                              \cr\cr \code{namel}
+\cr\cr  \strong{A matrix or data.frame}                                        \cr\cr \verb{name_rcs, name_rows, name_cols}
+\cr\cr  \strong{A \link[=VLS]{vlist} of length} \code{2}                            \cr\cr \verb{rc_names, rcn}
+\cr\cr  \strong{A \code{1}-element \link[=VLS]{vlist}}                              \cr\cr \code{name_scl_vls}
 \cr\cr  \strong{A character vector}                                            \cr\cr \verb{rnames, cnames, enames}  \cr \verb{rn, cn, en}
-\cr\cr  \strong{A logical scalar}                                              \cr\cr \verb{rcnamed, rnamed, cnamed} \cr \verb{dnamed, enamed, named}
-\cr\cr  \strong{A vector or \link[=VLS]{vlist}}                                \cr\cr \code{namev}
+\cr\cr  \strong{A logical scalar}                                              \cr\cr \verb{rcs_are_named, rows_are_named, cols_are_named} \cr \verb{dots_are_named, vals_are_named, named}
+\cr\cr  \strong{A vector or \link[=VLS]{vlist}}                                \cr\cr \code{name_vals}
 }
 \description{
 Get object names (with optional restrictions), check whether names exist (with optional restrictions), and apply names.
 }
 \details{
-\tabular{ll}{  \code{get_names}      \tab Name retrieval                        \cr
-  \code{named}          \tab Name existence check                  \cr
-  \code{name}           \tab Naming                                \cr   \tab   \cr
-  \verb{rcnames, rcn}   \tab Row and column names                  \cr
-  \verb{rnames, rn}     \tab Row names                             \cr
-  \verb{cnames, cn}     \tab Column names                          \cr
-  \verb{enames, en}     \tab Element names                         \cr
-  \verb{dnames, dn}     \tab \code{...} arg names                       \cr   \tab   \cr
-  \code{rcnamed}        \tab Are both rows and columns named?      \cr
-  \code{cnamed}         \tab Are columns of \code{x} named?             \cr
-  \code{dnamed}         \tab Are \code{...} arguments named?            \cr
-  \code{enamed}         \tab Are elements of \code{x} named?            \cr
-  \code{rnamed}         \tab Are rows of \code{x} named?                \cr   \tab   \cr
-  \code{namerc}         \tab Name rows and columns of \code{x}          \cr
-  \code{namec}          \tab Name columns of \code{x}.                  \cr
-  \code{namel}          \tab Create and name a list of length \code{1}. \cr
-  \code{namer}          \tab Name rows of \code{x}.                     \cr
-  \code{namee}          \tab Name elements of a \code{x}.                 }
+\tabular{ll}{  \code{get_names}        \tab Name retrieval                      \cr
+  \verb{rcnames, rcn}     \tab Row and column names                \cr
+  \verb{rnames, rn}       \tab Row names                           \cr
+  \verb{cnames, cn}       \tab Column names                        \cr
+  \verb{vnames, vn}       \tab Value/element names                 \cr
+  \verb{dnames, dn}       \tab \code{...} arg names                     \cr   \tab   \cr
+  \code{named}            \tab Name existence check                \cr
+  \code{rcs_are_named}    \tab Are both rows and columns named?    \cr
+  \code{cols_are_named}   \tab Are columns of \code{x} named?           \cr
+  \code{dots_are_named}   \tab Are \code{...} arguments named?          \cr
+  \code{rows_are_named}   \tab Are rows of \code{x} named?              \cr   \tab   \cr
+  \code{vals_are_named}   \tab Are values/elements of \code{x} named?   \cr
+  \code{name}             \tab Naming                              \cr
+  \code{name_rcs}         \tab Name rows and columns of \code{x}        \cr
+  \code{name_cols}        \tab Name columns of \code{x}.                \cr
+  \code{name_rows}        \tab Name rows of \code{x}.                   \cr
+  \code{name_vals}        \tab Name values/elements of a \code{x}.      \cr   \tab   \cr
+  \code{name_scl_vls}     \tab Create and name a scalar \code{\link[=VLS]{vlist}} }
 }
 \examples{
 egDotsNamed <- function(...) {dnamed(...)}
@@ -148,13 +144,13 @@ named(egVls)
 named(egMat, d = 12)
 named(egDtf, d = 2)
 
-enamed(egVls)
-rnamed(egMat)
-cnamed(egDtf)
-rcnamed(egDtf)
+vals_are_named(egVls)
+rows_are_named(egMat)
+cols_are_named(egDtf)
+rcs_are_named(egDtf)
 
-dnamed(egVec, egVls)
-dnamed(var1 = egVec, var2 = egVls)
+dots_are_named(egVec, egVls)
+dots_are_named(var1 = egVec, var2 = egVls)
 
 get_names(egVls)
 get_names(egMat, d = 1)
@@ -167,14 +163,15 @@ rn(egMat)
 cn(egDtf)
 rcn(egDtf)
 
-namel(egDtf, "a data.frame")
-namee(egVec, letters[egVec])
-namer(egMat, letters[egVec])
-namec(egDtf, c("letters", "LETTERS"))
-namerc(egMat, letters[egVec], egVec)
+name_scl_vls(egDtf, "a data.frame")
+name_vals(egVec, letters[egVec])
+name_rows(egMat, letters[egVec])
+name_cols(egDtf, c("letters", "LETTERS"))
+name_rcs(egMat, letters[egVec], egVec)
 }
 \seealso{
 Other extensions: 
+\code{\link{N}()},
 \code{\link{atomize}()},
 \code{\link{case}()},
 \code{\link{cb}()},
@@ -182,15 +179,13 @@ Other extensions:
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
-\code{\link{evals}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
 \code{\link{is_unique}()},
 \code{\link{na}()},
-\code{\link{nis}()},
 \code{\link{paths}},
 \code{\link{purge}()},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{sum0}()},

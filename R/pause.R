@@ -20,6 +20,6 @@
 #' }
 #' @export
 pause <- function(x = 0.0000001) {
-  uj::err_if_not(uj::cmp_nng_scl(x), "[x] must be a non-NA, non-negative, numeric scalar.", PKG = "uj")
+  if (!uj:::.cmp_nng_scl(x)) {uj::stopperr("[x] must be a non-NA, non-negative, numeric scalar.", PKG = "uj")}
   base::Sys.sleep(x)
 }

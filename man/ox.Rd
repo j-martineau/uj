@@ -4,7 +4,7 @@
 \name{ox}
 \alias{ox}
 \alias{oxford}
-\alias{oxfordCOMMA}
+\alias{oxford_comma}
 \alias{ox_n}
 \alias{ox_and}
 \alias{ox_or}
@@ -36,7 +36,7 @@ ox(..., conj = "and", pref = "", quote = 0)
 
 oxford(..., conj = "and", pref = "", quote = 0)
 
-oxfordCOMMA(..., conj = "and", pref = "", quote = 0)
+oxford_comma(..., conj = "and", pref = "", quote = 0)
 
 ox_n(..., conj = "and", comp = "", quote = 0, n = 1, first = TRUE)
 
@@ -112,15 +112,17 @@ Create Oxford-comma separated lists with a variety of templates (see \emph{detai
 Each function in this family operates from a template as shown in the following tables where \code{{conj}} and \code{{n}} represent the values of arguments \code{conj} and \code{n}; \code{{pref}} and \code{{comp}} indicate the potentially-\code{NULL} values of arguments \code{pref} and \code{conj}; and \verb{[a]}, \verb{[b]}, and \verb{[z]} represents elements of a list.
 \cr\cr \strong{Simple lists}
 \cr\cr These functions do not incorporate a number into the Oxford-comma separated list:
-\tabular{ll}{  \code{ox}           \tab \code{'(pref) [a], [b], ..., {conj} [z]'}         \cr
-  \code{ox_or }       \tab \code{'(pref) [a], [b], ..., or [z]'}             \cr
-  \code{ox_and}       \tab \code{'(pref) [a], [b], ..., and [z]'}            \cr
-  \code{ox_any }      \tab \code{'(pref) any of [a], [b], ..., {conj} [z]'}  \cr
-  \code{ox_all }      \tab \code{'(pref) all of [a], [b], ..., {conj} [z]'}  \cr
-  \code{ox_none}      \tab \code{'(pref) none of [a], [b], ..., {conj} [z]'} \cr
-  \code{ox_some}      \tab \code{'(pref) some of [a], [b], ..., {conj} [z]'} \cr
-  \code{ox_either}    \tab \code{'(pref) either [a], [b], ..., or [z]'}      \cr
-  \code{ox_neither}   \tab \code{'(pref) neither [a], [b], ..., nor [z]'}      }
+\tabular{ll}{  \code{ox}             \tab \code{'(pref) [a], [b], ..., {conj} [z]'}         \cr
+  \code{oxford}         \tab                                              \cr
+  \code{oxford_comma}   \tab                                              \cr   \tab   \cr
+  \code{ox_or }         \tab \code{'(pref) [a], [b], ..., or [z]'}             \cr
+  \code{ox_and}         \tab \code{'(pref) [a], [b], ..., and [z]'}            \cr
+  \code{ox_any }        \tab \code{'(pref) any of [a], [b], ..., {conj} [z]'}  \cr
+  \code{ox_all }        \tab \code{'(pref) all of [a], [b], ..., {conj} [z]'}  \cr
+  \code{ox_none}        \tab \code{'(pref) none of [a], [b], ..., {conj} [z]'} \cr
+  \code{ox_some}        \tab \code{'(pref) some of [a], [b], ..., {conj} [z]'} \cr
+  \code{ox_either}      \tab \code{'(pref) either [a], [b], ..., or [z]'}      \cr
+  \code{ox_neither}     \tab \code{'(pref) neither [a], [b], ..., nor [z]'}      }
 \cr\cr \strong{Numeric-comparison lists}
 \cr\cr These functions incorporate a number into the Oxford-comma separated list:
 \tabular{ll}{  \code{ox_n}            \tab \code{'(pref) {n} of [a], [b], ..., {conj} [z]'}                 \cr
@@ -195,13 +197,13 @@ ox_or_fewer(egFruits, n = 2)
 Other strings: 
 \code{\link{blank}()},
 \code{\link{chn}()},
-\code{\link{delim}},
+\code{\link{delim}()},
 \code{\link{fsub}()},
 \code{\link{gr}},
 \code{\link{ipat}()},
 \code{\link{makestr}()},
 \code{\link{markdown}()},
-\code{\link{max_nch}()},
+\code{\link{maxnch}()},
 \code{\link{pgrid}()},
 \code{\link{revstr}()},
 \code{\link{spaces}()},

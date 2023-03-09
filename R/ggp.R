@@ -4,156 +4,156 @@
 #' @family wraps
 #' @title Thin wrappers of `ggplot2` and `ggtext` functions
 #' @details These functions thinly wrap `ggplot2` functions unless otherwise noted:
-#' \tabular{ll}{  `ggp`      \tab \code{\link[ggplot2]{ggplot}}                                   \cr   \tab   \cr
-#'                `ggsav`    \tab \code{\link[ggplot2]{ggsave}}                                   \cr   \tab   \cr
-#'                `ggaes`    \tab \code{\link[ggplot2]{aes}}                                      \cr
-#'                `ggexp`    \tab \code{\link[ggplot2]{expansion}}                                \cr
-#'                `ggmar`    \tab \code{\link[ggplot2]{margin}}                                   \cr   \tab   \cr
-#'                `ggunit`   \tab \code{\link[ggplot2]{unit}}                                     \cr
-#'                `ggvars`   \tab \code{\link[ggplot2]{vars}}                                     \cr   \tab   \cr
-#'                `ggdot`    \tab \code{\link[ggplot2]{geom_point}}                               \cr
-#'                `gghlin`   \tab \code{\link[ggplot2]{geom_hline}}                               \cr
-#'                `gglab`    \tab \code{\link[ggplot2]{geom_label}}                               \cr
-#'                `gglin`    \tab \code{\link[ggplot2]{geom_line}}                                \cr
-#'                `ggtxt`    \tab \code{\link[ggplot2]{geom_text}}                                \cr
-#'                `ggvlin`   \tab \code{\link[ggplot2]{geom_vline}}                               \cr   \tab   \cr
-#'                `gglabs`   \tab \code{\link[ggplot2]{labs}}                                     \cr
-#'                `ggxlab`   \tab \code{\link[ggplot2]{xlab}}                                     \cr
-#'                `ggylab`   \tab \code{\link[ggplot2]{ylab}}                                     \cr   \tab   \cr
-#'                `gggrid`   \tab \code{\link[ggplot2]{facet_grid}}                               \cr
-#'                `ggwrap`   \tab \code{\link[ggplot2]{facet_wrap}}                               \cr   \tab   \cr
-#'                `ggthm`    \tab \code{\link[ggplot2]{theme}}                                    \cr
-#'                `ggtmin`   \tab \code{\link[ggplot2]{theme_minimal}}                            \cr   \tab   \cr
-#'                `ggsac`    \tab \code{\link[ggplot2]{scale_alpha_continuous}}                   \cr
-#'                `ggscm`    \tab \code{\link[ggplot2]{scale_color_manual}}                       \cr
-#'                `ggsdm`    \tab \code{\link[ggplot2]{scale_shape_manual}}                       \cr
-#'                `ggslm`    \tab \code{\link[ggplot2]{scale_linetype_manual}}                    \cr
-#'                `ggsxc`    \tab \code{\link[ggplot2]{scale_x_continuous}}                       \cr
-#'                `ggsyc`    \tab \code{\link[ggplot2]{scale_y_continuous}}                       \cr   \tab   \cr
-#'                `ggerct`   \tab \code{\link[ggplot2]{element_rect}}                             \cr
-#'                `ggetxt`   \tab \code{\link[ggplot2]{element_text}}                             \cr
-#'                `ggelin`   \tab \code{\link[ggplot2]{element_line}}                             \cr
-#'                `ggemkd`   \tab \code{\link[ggtext:element_markdown]{ggtext::element_markdown}} \cr
-#'                `ggenll`   \tab \code{\link[ggplot2]{element_blank}}                              }
+#' \tabular{ll}{  `ggp`       \tab \code{\link[ggplot2]{ggplot}}                                   \cr   \tab   \cr
+#'                `gg_sav`    \tab \code{\link[ggplot2]{ggsave}}                                   \cr   \tab   \cr
+#'                `gg_aes`    \tab \code{\link[ggplot2]{aes}}                                      \cr
+#'                `gg_exp`    \tab \code{\link[ggplot2]{expansion}}                                \cr
+#'                `gg_mar`    \tab \code{\link[ggplot2]{margin}}                                   \cr   \tab   \cr
+#'                `gg_unit`   \tab \code{\link[ggplot2]{unit}}                                     \cr
+#'                `gg_vars`   \tab \code{\link[ggplot2]{vars}}                                     \cr   \tab   \cr
+#'                `gg_dot`    \tab \code{\link[ggplot2]{geom_point}}                               \cr
+#'                `gg_hlin`   \tab \code{\link[ggplot2]{geom_hline}}                               \cr
+#'                `gg_lab`    \tab \code{\link[ggplot2]{geom_label}}                               \cr
+#'                `gg_lin`    \tab \code{\link[ggplot2]{geom_line}}                                \cr
+#'                `gg_txt`    \tab \code{\link[ggplot2]{geom_text}}                                \cr
+#'                `gg_vlin`   \tab \code{\link[ggplot2]{geom_vline}}                               \cr   \tab   \cr
+#'                `gg_labs`   \tab \code{\link[ggplot2]{labs}}                                     \cr
+#'                `gg_xlab`   \tab \code{\link[ggplot2]{xlab}}                                     \cr
+#'                `gg_ylab`   \tab \code{\link[ggplot2]{ylab}}                                     \cr   \tab   \cr
+#'                `gg_grid`   \tab \code{\link[ggplot2]{facet_grid}}                               \cr
+#'                `gg_wrap`   \tab \code{\link[ggplot2]{facet_wrap}}                               \cr   \tab   \cr
+#'                `gg_thm`    \tab \code{\link[ggplot2]{theme}}                                    \cr
+#'                `gg_tmin`   \tab \code{\link[ggplot2]{theme_minimal}}                            \cr   \tab   \cr
+#'                `gg_sac`    \tab \code{\link[ggplot2]{scale_alpha_continuous}}                   \cr
+#'                `gg_scm`    \tab \code{\link[ggplot2]{scale_color_manual}}                       \cr
+#'                `gg_sdm`    \tab \code{\link[ggplot2]{scale_shape_manual}}                       \cr
+#'                `gg_slm`    \tab \code{\link[ggplot2]{scale_linetype_manual}}                    \cr
+#'                `gg_sxc`    \tab \code{\link[ggplot2]{scale_x_continuous}}                       \cr
+#'                `gg_syc`    \tab \code{\link[ggplot2]{scale_y_continuous}}                       \cr   \tab   \cr
+#'                `gg_erct`   \tab \code{\link[ggplot2]{element_rect}}                             \cr
+#'                `gg_etxt`   \tab \code{\link[ggplot2]{element_text}}                             \cr
+#'                `gg_elin`   \tab \code{\link[ggplot2]{element_line}}                             \cr
+#'                `gg_emkd`   \tab \code{\link[ggtext:element_markdown]{ggtext::element_markdown}} \cr
+#'                `gg_enll`   \tab \code{\link[ggplot2]{element_blank}}                              }
 #' @export
 ggp <- function(...) {uj::run_alias("ggplot2", "ggplot")}
 
 #' @rdname ggp
 #' @export
-ggaes <- function(...) {uj::run_alias("ggplot2", "aes")}
+gg_aes <- function(...) {uj::run_alias("ggplot2", "aes")}
 
 #' @rdname ggp
 #' @export
-ggdot <- function(...) {uj::run_alias("ggplot2", "geom_point")}
+gg_dot <- function(...) {uj::run_alias("ggplot2", "geom_point")}
 
 #' @rdname ggp
 #' @export
-ggelin <- function(...) {uj::run_alias("ggplot2", "element_line")}
+gg_elin <- function(...) {uj::run_alias("ggplot2", "element_line")}
 
 #' @rdname ggp
 #' @export
-ggemkd <- function(...) {uj::run_alias("ggtext", "element_markdown")}
+gg_emkd <- function(...) {uj::run_alias("ggtext", "element_markdown")}
 
 #' @rdname ggp
 #' @export
-ggenll <- function(...) {uj::run_alias("ggplot2", "element_blank")}
+gg_enll <- function(...) {uj::run_alias("ggplot2", "element_blank")}
 
 #' @rdname ggp
 #' @export
-ggerct <- function(...) {uj::run_alias("ggplot2", "element_rect")}
+gg_erct <- function(...) {uj::run_alias("ggplot2", "element_rect")}
 
 #' @rdname ggp
 #' @export
-ggetxt <- function(...) {uj::run_alias("ggplot2", "element_text")}
+gg_etxt <- function(...) {uj::run_alias("ggplot2", "element_text")}
 
 #' @rdname ggp
 #' @export
-ggexp <- function(...) {uj::run_alias("ggplot2", "expansion")}
+gg_exp <- function(...) {uj::run_alias("ggplot2", "expansion")}
 
 #' @rdname ggp
 #' @export
-gggrid <- function(...) {uj::run_alias("ggplot2", "facet_grid")}
+gg_grid <- function(...) {uj::run_alias("ggplot2", "facet_grid")}
 
 #' @rdname ggp
 #' @export
-gghlin <- function(...) {uj::run_alias("ggplot2", "geom_hline")}
+gg_hlin <- function(...) {uj::run_alias("ggplot2", "geom_hline")}
 
 #' @rdname ggp
 #' @export
-gglab <- function(...) {uj::run_alias("ggplot2", "geom_label")}
+gg_lab <- function(...) {uj::run_alias("ggplot2", "geom_label")}
 
 #' @rdname ggp
 #' @export
-gglabs <- function(...) {uj::run_alias("ggplot2", "labs")}
+gg_labs <- function(...) {uj::run_alias("ggplot2", "labs")}
 
 #' @rdname ggp
 #' @export
-gglin <- function(...) {uj::run_alias("ggplot2", "geom_line")}
+gg_lin <- function(...) {uj::run_alias("ggplot2", "geom_line")}
 
 #' @rdname ggp
 #' @export
-ggmar <- function(...) {uj::run_alias("ggplot2", "margin")}
+gg_mar <- function(...) {uj::run_alias("ggplot2", "margin")}
 
 #' @rdname ggp
 #' @export
-ggsac <- function(...) {uj::run_alias("ggplot2", "scale_alpha_continuous")}
+gg_sac <- function(...) {uj::run_alias("ggplot2", "scale_alpha_continuous")}
 
 #' @rdname ggp
 #' @export
-ggscm <- function(...) {uj::run_alias("ggplot2", "scale_color_manual")}
+gg_scm <- function(...) {uj::run_alias("ggplot2", "scale_color_manual")}
 
 #' @rdname ggp
 #' @export
-ggsdm <- function(...) {uj::run_alias("ggplot2", "scale_shape_manual")}
+gg_sdm <- function(...) {uj::run_alias("ggplot2", "scale_shape_manual")}
 
 #' @rdname ggp
 #' @export
-ggslm <- function(...) {uj::run_alias("ggplot2", "scale_linetype_manual")}
+gg_slm <- function(...) {uj::run_alias("ggplot2", "scale_linetype_manual")}
 
 #' @rdname ggp
 #' @export
-ggsav <- function(...) {uj::run_alias("ggplot2", "ggsave")}
+gg_sav <- function(...) {uj::run_alias("ggplot2", "ggsave")}
 
 #' @rdname ggp
 #' @export
-ggsxc <- function(...) {uj::run_alias("ggplot2", "scale_x_continuous")}
+gg_sxc <- function(...) {uj::run_alias("ggplot2", "scale_x_continuous")}
 
 #' @rdname ggp
 #' @export
-ggsyc <- function(...) {uj::run_alias("ggplot2", "scale_y_continuous")}
+gg_syc <- function(...) {uj::run_alias("ggplot2", "scale_y_continuous")}
 
 #' @rdname ggp
 #' @export
-ggthm <- function(...) {uj::run_alias("ggplot2", "theme")}
+gg_thm <- function(...) {uj::run_alias("ggplot2", "theme")}
 
 #' @rdname ggp
 #' @export
-ggtmin <- function(...) {uj::run_alias("ggplot2", "theme_minimal")}
+gg_thm0 <- function(...) {uj::run_alias("ggplot2", "theme_minimal")}
 
 #' @rdname ggp
 #' @export
-ggtxt <- function(...) {uj::run_alias("ggplot2", "geom_text")}
+gg_txt <- function(...) {uj::run_alias("ggplot2", "geom_text")}
 
 #' @rdname ggp
 #' @export
-ggunit <- function(...) {uj::run_alias("ggplot2", "unit")}
+gg_unit <- function(...) {uj::run_alias("ggplot2", "unit")}
 
 #' @rdname ggp
 #' @export
-ggvars <- function(...) {uj::run_alias("ggplot2", "vars")}
+gg_vars <- function(...) {uj::run_alias("ggplot2", "vars")}
 
 #' @rdname ggp
 #' @export
-ggvlin <- function(...) {uj::run_alias("ggplot2", "geom_vline")}
+gg_vlin <- function(...) {uj::run_alias("ggplot2", "geom_vline")}
 
 #' @rdname ggp
 #' @export
-ggwrap <- function(...) {uj::run_alias("ggplot2", "facet_wrap")}
+gg_wrap <- function(...) {uj::run_alias("ggplot2", "facet_wrap")}
 
 #' @rdname ggp
 #' @export
-ggxlab <- function(...) {uj::run_alias("ggplot2", "xlab")}
+gg_xlab <- function(...) {uj::run_alias("ggplot2", "xlab")}
 
 #' @rdname ggp
 #' @export
-ggylab <- function(...) {uj::run_alias("ggplot2", "ylab")}
+gg_ylab <- function(...) {uj::run_alias("ggplot2", "ylab")}

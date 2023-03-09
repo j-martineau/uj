@@ -19,12 +19,14 @@
 #' fsub(egArg2, pats, "_")
 #' @export
 fsub <- function(x, pats, subs) {
-  uj::errs_if_nots(uj::cmp_chr_gen(x)        , "[x] must be a complete character generic (?cmp_chr_gen)."                                ,
-                   uj::cmp_chr_vec(pats)     , "[pats] must be a complete character vec (?cmp_chr_vec)."                                 ,
-                   uj::cmp_chr_vec(subs)     , "[subs] must be a complete character vec (?cmp_chr_vec)."                                 ,
-                   uj::recyclable(pats, subs), "[pats] and [subs] are not recyclable."                                                   ,
-                   uj::N(subs) <= uj::N(pats), "There are more substitute strings than patterns to replace: length(subs) > length(pats).", PKG = "uj")
+  errs <- NULL
+  if (!uj:::.cmp_chr_gen(x)) {errs <- base::c(errs, "[x] must be a complete character generic (?cmp_chr_gen).")}
+  if (!uj:::.cmp_chr_vec(pats)) {errs <- base::c(errs, "[pats] must be a complete character vec (?cmp_chr_vec).")}
+  if (!uj:::.cmp_chr_vec(subs)) {errs <- base::c(errs, "[subs] must be a complete character vec (?cmp_chr_vec).")}
+  if (!uj::recyclable(pats, subs)) {errs <- base::c(errs, "[pats] and [subs] are not recyclable.")}
+  if (!base::length(subs) > base::length(pats)) {errs <- base::c(errs, "There are more substitute strings than patterns to replace: length(subs) > length(pats).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   uj::recycle(pats = pats, subs = subs)
-  for (i in 1:uj::N(pats)) {x <- av(base::gsub(pats[i], subs[i], x, fixed = T))}
+  for (i in 1:base::length(pats)) {x <- av(base::gsub(pats[i], subs[i], x, fixed = T))}
   x
 }

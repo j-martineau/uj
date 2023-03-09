@@ -12,45 +12,45 @@
 #'                `'clr', 'CLR'`   \tab color (valid color values)         \cr
 #'                `'str', 'STR'`   \tab string (no blanks)                   }
 #' **Categorical xmodes**
-#' \tabular{ll}{  `'fac', 'FAC'`   \tab factor                             \cr
-#'                `'lgl', 'LGL'`   \tab logical                            \cr
-#'                `'ord', 'ORD'`   \tab ordered factor                     \cr
-#'                `'uno', 'UNO'`   \tab unordered factor                     }
+#' \tabular{ll}{  `'fac', 'FAC'`   \tab factor         \cr
+#'                `'lgl', 'LGL'`   \tab logical        \cr
+#'                `'ord', 'ORD'`   \tab ordered factor \cr
+#'                `'uno', 'UNO'`   \tab unordered factor }
 #' **Basic numeric xmodes**
-#' \tabular{ll}{  `'num', 'NUM'`   \tab numeric                            \cr
-#'                `'frc', 'FRC'`   \tab fractional                         \cr
-#'                `'whl', 'WHL'`   \tab whole number                         }
+#' \tabular{ll}{  `'num', 'NUM'`   \tab numeric    \cr
+#'                `'frc', 'FRC'`   \tab fractional \cr
+#'                `'whl', 'WHL'`   \tab whole number }
 #' **Value-restricted numeric xmodes**
-#' \tabular{ll}{  `'pct', 'PCT'`   \tab percentage (`0` to `100`)          \cr
-#'                `'ppn', 'PPN'`   \tab proportion (`0-1`)                 \cr
-#'                `'pos', 'POS'`   \tab positive                           \cr
-#'                `'neg', 'NEG'`   \tab negative                           \cr
-#'                `'nng', 'NNG'`   \tab non-negative                       \cr
-#'                `'nps', 'NPS'`   \tab non-positive                         }
+#' \tabular{ll}{  `'pct', 'PCT'`   \tab percentage (`0` to `100`) \cr
+#'                `'ppn', 'PPN'`   \tab proportion (`0-1`)        \cr
+#'                `'pos', 'POS'`   \tab positive                  \cr
+#'                `'neg', 'NEG'`   \tab negative                  \cr
+#'                `'nng', 'NNG'`   \tab non-negative              \cr
+#'                `'nps', 'NPS'`   \tab non-positive                }
 #' **Whole-number value-restricted xmodes**
-#' \tabular{ll}{  `'evn', 'EVN'`   \tab even                               \cr
-#'                `'odd', 'ODD'`   \tab odd                                \cr
-#'                `'ngw', 'NGW'`   \tab negative whole                     \cr
-#'                `'psw', 'PSW'`   \tab positive whole                     \cr
-#'                `'npw', 'NPW'`   \tab non-positive whole                 \cr
-#'                `'nnw', 'NNW'`   \tab non-negative whole                   }
+#' \tabular{ll}{  `'evn', 'EVN'`   \tab even               \cr
+#'                `'odd', 'ODD'`   \tab odd                \cr
+#'                `'ngw', 'NGW'`   \tab negative whole     \cr
+#'                `'psw', 'PSW'`   \tab positive whole     \cr
+#'                `'npw', 'NPW'`   \tab non-positive whole \cr
+#'                `'nnw', 'NNW'`   \tab non-negative whole   }
 #' **Combination xmodes**
-#' \tabular{ll}{  `'ind', 'IND'`   \tab indexer (`lgl`, `psw`)             \cr
-#'                `'srt', 'SRT'`   \tab sortable (`chr`, `num`, `ord`)     \cr
-#'                `'nst', 'NST'`   \tab non-sortable atomic                  }
+#' \tabular{ll}{  `'ind', 'IND'`   \tab indexer (`'lgl'`, `'psw'`)           \cr
+#'                `'srt', 'SRT'`   \tab sortable (`'chr'`, `'num'`, `'ord'`) \cr
+#'                `'nst', 'NST'`   \tab non-sortable atomic                    }
 #' @details
 #' \tabular{ll}{  `is_mmm_spec`    \tab Is `spec` an xmode specification?                                                                                  \cr   \tab   \cr
 #'                `mmm_props`      \tab What xmode properties are there?                                                                                   \cr   \tab   \cr
 #'                `mmm_funs`       \tab What xmode property functions are there?                                                                           \cr   \tab   \cr
-#'                `{mmm}`          \tab Is `x` a match to the single xmode property `'{mmm}'` where `{mmm}` is a placeholder for any given xmode property? \cr   \tab   \cr
-#'                `mmm`            \tab What are `x`'s xmode properties?                                                                                   \cr   \tab   \cr
-#'                `MMM`            \tab Is `x` a match to the xmode property spec in `spec`?                                                                              }
+#'                `{MMM}`          \tab Is `x` a match to the single xmode property `'{MMM}'` where `{MMM}` is a placeholder for any given xmode property? \cr   \tab   \cr
+#'                `MMM`            \tab Is `x` a match to the xmode property spec in `spec`?                                                               \cr   \tab   \cr
+#'                `mmm`            \tab What are `x`'s xmode properties?                                                                                                  }
 #' @param x An R object.
 #' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more xmode properties from `mmm_props()`. xmode specs may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return **A character vector** \cr\cr `mmm_props, mmm_funs, mmm`
-#' \cr\cr  **A logical scalar**   \cr\cr `is_mmm_spec, MMM, {mmm}`
+#' \cr\cr  **A logical scalar**   \cr\cr `is_mmm_spec, {MMM}, MMM`
 #' @examples
 #' mmm_funs()
 #' mmm_props()
@@ -69,7 +69,10 @@
 #' CLR("blue")
 #' CLR("#1077ACFF")
 #' @export
-mmm <- function(x) {y <- NULL; for (m in uj:::.MMM) {y <- base::c(y, uj::f0(uj::run('uj:::.', m, '(x)'), m, NULL))}; y}
+mmm <- function(x) {y <- NULL
+  for (MMM in uj:::.MMM) {if (uj::run("uj:::.", MMM, "(x)")) {y <- base::c(y, base::tolower(MMM))}}
+  y
+}
 
 #' @rdname mmm
 #' @export
@@ -83,14 +86,17 @@ mmm_props <- function() {uj:::.mmm}
 #' @export
 is_mmm_spec <- function(spec) {
   spec <- uj:::.spec2props(spec)
-  uj::f0(uj::N0(spec), F, base::allIN(base::toupper(spec), uj:::.MMM))
+  if (base::length(spec) == 0) {F} else {base::all(spec %in% uj:::.mmm)}
 }
 
 #' @rdname mmm
 #' @export
 MMM <- function(x, spec, ...) {
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_mmm_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from mmm_props().')), PKG = "uj")
-  for (prop in base::toupper(uj:::spec2props(spec))) {if (uj::run('uj:::.', prop, '(x)')) {return(T)}}
+  errs <- uj:::.meets_errs(x, ...)
+  if (!uj::is_mmm_spec(spec)) {errs <- base::c(errs, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from mmm_props().')}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  props <- uj:::.spec2props(spec)
+  for (prop in base::toupper(props)) {if (uj::run("uj:::.", prop, "(x)")) {return(T)}}
   F
 }
 

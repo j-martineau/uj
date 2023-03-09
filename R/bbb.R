@@ -33,7 +33,10 @@
 #' @export
 bbb <- function(x) {
   y <- NULL
-  for (bbb in uj:::.BBB) {y <- base::c(y, uj::f0(uj::run('uj::', bbb, '(x)'), bbb, NULL))}
+  for (BBB in uj:::.BBB) {
+    match <- uj::run("uj:::.", BBB, "(x)")
+    if (match) {y <- base::c(y, BBB)}
+  }
   y
 }
 
@@ -49,14 +52,21 @@ bbb_props <- function() {uj:::.bbb}
 #' @export
 is_bbb_spec <- function(spec) {
   spec <- uj:::.spec2props(spec)
-  uj::f0(uj::N0(spec), F, uj::allIN(spec, uj::bbb_props()))
+  if (base::length(spec) == 0) {F} else {base::all(spec %in% uj:::.bbb)}
 }
 
 #' @rdname bbb
 #' @export
 BBB <- function(x, spec, ...) {
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_bbb_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from bbb_props().')), PKG = "uj")
-  if (uj::meets(x, ...)) {for (prop in base::toupper(uj:::.spec2props(spec))) {if (uj::run('uj::', prop, '(x)')) {return(T)}}}
+  errs <- uj:::.meets_errs(x, ...)
+  if (!is_bbb_spec(spec)) {errs <- base::c(errs, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from bbb_props().')}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (uj::meets(x, ...)) {
+    props <- base::toupper(uj:::.spec2props(spec))
+    for (prop in props) {
+      if (uj::run('uj:::.', prop, '(x)')) {return(T)}
+    }
+  }
   F
 }
 

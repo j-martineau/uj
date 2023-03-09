@@ -50,16 +50,24 @@
 #' \dontrun{continue()}
 #' @export
 say <- function(..., lev = NA) {
-  msg <- uj::g0(uj::av(...))
-  dot <- uj::isEQ1(msg, "") | uj::EQ(uj::asNUM(lev), uj::asNUM("6"))
-  less <- uj::isIN1(uj::asNUM(lev), uj::asNUM(uj::asCHR(1:5)))
-  uj::err_if_not(!dot | !less, "[...] must not resolve to a blank string when [lev] is in c(1, 2, 3, 4, 5).", PKG = "uj")
-  if (uj::isDIF1(msg, "") & uj::DIF(lev, 6)) {
-    if (uj::isOKS(lev)) {
-      uj::err_if_not(uj::isIN1(lev, 1:5), "[lev] must be scalar NA or a positive whole-number scalar from c(1, 2, 3, 4, 5).", PKG = "uj")
+  msg <- paste0(uj::av(...), collapse = "")
+  if (msg == "") {dot <- TRUE} else if (base::as.character(lev) == "6") {dot <- TRUE}
+  if (uj:::.cmp_psw_scl(lev)) {
+    less <- lev %in% 1:5
+    na.lev <- FALSE
+    lev.6 <- lev == 6
+  } else {
+    less <- FALSE
+    na.lev <- TRUE
+    lev.6 <- F
+  }
+  if (!dot & less) {uj::stopperr("[...] must not resolve to a blank string when [lev] is in c(1, 2, 3, 4, 5).", PKG = "uj")}
+  if (msg != "" & !lev.6) {
+    if (!base::is.na(lev)) {
+      if (!(lev %in% 1:5)) {uj::stopperr("[lev] must be scalar NA or a positive whole-number scalar from c(1, 2, 3, 4, 5).", PKG = "uj")}
       prefix <- base::c("\n", "\n| ", "\n| > ", " > ", "..(")
       suffix <- base::c(""   , ""    , ""      , ""   ,   ")")
-      base::cat(uj::p0(prefix[lev], msg, suffix[lev]))
+      base::cat(base::paste0(prefix[lev], msg, suffix[lev]))
     } else {base::cat(msg)}
   } else {base::cat(".")}
 }

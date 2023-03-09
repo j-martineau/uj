@@ -53,14 +53,16 @@ is_path <- function(..., err = F) {
   x <- base::list(...)
   ok.n <- base::length(x) > 0
   ok.ns <- uj::f0(!ok.n, T, base::all(base::lengths(x) > 0))
-  uj::errs_if_nots(ok.n                                                            , "[...] is empty."                                                                         ,
-                   ok.ns                                                           , "An argument in [...] is empty."                                                          ,
-                   uj::f0(ok.n | ok.ns, T, base::all(base::sapply(x, uj::cmp_chr))), "Arguments in [...] must be complete character scalars/vecs (?cmp_chr_scl, ?cmp_chr_vec).",
-                   uj::cmp_lgl_scl(err)                                            , "[err] must be TRUE or FALSE."                                                            , PKG = "uj")
+  errs <- NULL
+  if (!ok.n) {errs <- base::c(errs, "[...] is empty.")}
+  if (!ok.ns) {errs <- base::c(errs, "An argument in [...] is empty.")}
+  if (!uj::f0(ok.n | ok.ns, T, base::all(base::sapply(x, uj:::.cmp_chr)))) {errs <- base::c(errs, "Arguments in [...] must be complete character scalars/vecs (?cmp_chr_scl, ?cmp_chr_vec).")}
+  if (!uj:::.cmp_lgl_scl(err)) {errs <- base::c(errs, "[err] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   path <- base::file.path(...)
   if (base::file.exists(path)) {return(T)}
-  ok <- !assertthat::is.error(base::file.create(path, showWarnings = F))
-  uj::err_if(!ok & err, "[...] doesn't resolve to a valid file/folder path.", PKG = "uj")
+  ok <- !uj::is_err(tryCatch(base::file.create(path, showWarnings = F), error = function(e) e, finally = NULL))
+  if (!ok & err) {uj::stopperr("[...] doesn't resolve to a valid file/folder path.", PKG = "uj")}
   if (ok) {base::file.remove(path)}
   ok
 }
@@ -69,8 +71,8 @@ is_path <- function(..., err = F) {
 #' @export
 as_path <- function(..., err = T) {
   sep <- base::.Platform$file.sep
-  path <- uj::failsafe(base::file.path(...))
-  uj::err_if(assertthat::is.error(path), "[...] does not resolve to a valid file/folder path.", PKG = "uj")
+  path <- tryCatch(base::file.path(...), error = function(e) e, finally = NULL)
+  if (uj::is_err(path)) {uj::stopperr("[...] does not resolve to a valid file/folder path.", PKG = "uj")}
   path <- base::strsplit(path, sep, fixed = T)[[1]]
   args <- base::paste0("path[", 1:base::length(path), "]")
   args <- base::paste0(args, collapse = ", ")

@@ -3,28 +3,28 @@
 \encoding{UTF-8}
 \name{dp}
 \alias{dp}
-\alias{dpagg}
-\alias{dpn}
-\alias{dpall}
-\alias{dpgrp}
-\alias{dpjoin}
-\alias{dplab}
-\alias{dpmod}
+\alias{dp_agg}
+\alias{dp_n}
+\alias{dp_all}
+\alias{dp_grp}
+\alias{dp_join}
+\alias{dp_lab}
+\alias{dp_mod}
 \title{Thin wrappers of \code{dplyr} functions}
 \usage{
-dpagg(.data, ..., .groups = NULL)
+dp_agg(.data, ..., .groups = NULL)
 
-dpn(...)
+dp_n(...)
 
-dpall(...)
+dp_all(...)
 
-dpgrp(x, keys)
+dp_grp(x, keys)
 
-dpjoin(...)
+dp_join(...)
 
-dplab(...)
+dp_lab(...)
 
-dpmod(...)
+dp_mod(...)
 }
 \arguments{
 \item{x}{A data.frame}
@@ -38,13 +38,13 @@ A \code{data.frame}.
 Thin wrappers of \code{dplyr} functions
 }
 \details{
-\tabular{ll}{  \code{dpjoin}   \tab Thinly wraps \code{\link[dplyr]{left_join}}.               \cr
-  \code{dpagg}    \tab Thinly wraps \code{\link[dplyr]{summarize}}.               \cr
-  \code{dpall}    \tab Thinly wraps \code{\link[dplyr]{all_of}}.                  \cr
-  \code{dplab}    \tab Thinly wraps \code{\link[dplyr]{rename}}.                  \cr
-  \code{dpmod}    \tab Thinly wraps \code{\link[dplyr]{mutate}}.                  \cr
-  \code{dpgrp}    \tab Limitedly wraps \code{\link[dplyr]{group_by}}\eqn{^{(1)}}  \cr
-  \code{dpn}      \tab Thinly wraps \code{\link[dplyr]{n}}.                         }
+\tabular{ll}{  \code{dp_join}   \tab Thinly wraps \code{\link[dplyr]{left_join}}.               \cr
+  \code{dp_agg}    \tab Thinly wraps \code{\link[dplyr]{summarize}}.               \cr
+  \code{dp_all}    \tab Thinly wraps \code{\link[dplyr]{all_of}}.                  \cr
+  \code{dp_lab}    \tab Thinly wraps \code{\link[dplyr]{rename}}.                  \cr
+  \code{dp_mod}    \tab Thinly wraps \code{\link[dplyr]{mutate}}.                  \cr
+  \code{dp_grp}    \tab Limitedly wraps \code{\link[dplyr]{group_by}}\eqn{^{(1)}}  \cr
+  \code{dp_n}      \tab Thinly wraps \code{\link[dplyr]{n}}.                         }
 \tabular{l}{  \eqn{^{(1)}} Accepts as argument only a data.frame (\code{x}) and a character vector naming grouping variables (\code{keys}).}
 }
 \seealso{
@@ -53,7 +53,7 @@ Other wraps:
 \code{\link{dt}()},
 \code{\link{ggp}()},
 \code{\link{gr}},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{sca}()},
 \code{\link{tb}()}
 }

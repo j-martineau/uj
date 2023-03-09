@@ -9,7 +9,7 @@
 \alias{Nth_plus}
 \title{Extract elements by numeric position}
 \usage{
-Nth(x, i)
+Nth(x, N)
 
 firstN(x, N)
 
@@ -43,9 +43,6 @@ lastN(letters, 5)
 Nth(letters, 5:7)
 }
 \seealso{
-Other to_std_fun_form: 
-\code{\link{inc}()}
-
 Other values: 
 \code{\link{atomize}()},
 \code{\link{na}()},

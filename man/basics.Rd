@@ -3,7 +3,6 @@
 \encoding{UTF-8}
 \name{basics}
 \alias{basics}
-\alias{none}
 \alias{g}
 \alias{g0}
 \alias{g1}
@@ -16,263 +15,50 @@
 \alias{wok}
 \alias{null}
 \alias{def}
-\alias{LO}
-\alias{HI}
-\alias{LEN}
-\alias{MID}
-\alias{SPF}
-\alias{UNQ}
-\alias{notUNQ}
-\alias{LEVS}
+\alias{lo}
+\alias{hi}
+\alias{len}
+\alias{mid}
+\alias{spf}
+\alias{levs}
 \alias{rounded}
-\alias{AV}
-\alias{WV}
-\alias{UV}
-\alias{ND}
-\alias{ND0}
-\alias{ND1}
-\alias{ND2}
-\alias{ND3}
-\alias{ND1P}
-\alias{ND2P}
-\alias{ND3P}
-\alias{notND0}
-\alias{notND1}
-\alias{notND2}
-\alias{notND1P}
-\alias{notND2P}
-\alias{notND3P}
-\alias{N}
-\alias{N0}
-\alias{N1}
-\alias{N2}
-\alias{N1P}
-\alias{N2P}
-\alias{N3P}
-\alias{notN0}
-\alias{notN1}
-\alias{notN2}
-\alias{notN1P}
-\alias{notN2P}
-\alias{notN3P}
-\alias{NC}
-\alias{NC0}
-\alias{NC1}
-\alias{NC2}
-\alias{NC1P}
-\alias{NC2P}
-\alias{NC3P}
-\alias{notNC0}
-\alias{notNC1}
-\alias{notNC2}
-\alias{notNC1P}
-\alias{notNC2P}
-\alias{notNC3P}
-\alias{NR}
-\alias{NR0}
-\alias{NR1}
-\alias{NR2}
-\alias{NR1P}
-\alias{NR2P}
-\alias{NR3P}
-\alias{notNR0}
-\alias{notNR1}
-\alias{notNR2}
-\alias{notNR1P}
-\alias{notNR2P}
-\alias{notNR3P}
-\alias{NRC}
-\alias{NRC0}
-\alias{NRC1}
-\alias{NRC2}
-\alias{NRC1P}
-\alias{NRC2P}
-\alias{NRC3P}
-\alias{notNRC0}
-\alias{notNRC1}
-\alias{notNRC2}
-\alias{notNRC1P}
-\alias{notNRC2P}
-\alias{notNRC3P}
-\alias{nr0nc0}
-\alias{nr0nc1}
-\alias{nr0nc2}
-\alias{nr0nc1P}
-\alias{nr0nc2P}
-\alias{nr0nc3P}
-\alias{nr1nc0}
-\alias{nr1nc1}
-\alias{nr1nc2}
-\alias{nr1nc1P}
-\alias{nr1nc2P}
-\alias{nr1nc3P}
-\alias{nr2nc0}
-\alias{nr2nc1}
-\alias{nr2nc2}
-\alias{nr2nc1P}
-\alias{nr2nc2P}
-\alias{nr2nc3P}
-\alias{nr1Pnc0}
-\alias{nr1Pnc1}
-\alias{nr1Pnc2}
-\alias{nr1Pnc1P}
-\alias{nr1Pnc2P}
-\alias{nr1Pnc3P}
-\alias{nr2Pnc0}
-\alias{nr2Pnc1}
-\alias{nr2Pnc2}
-\alias{nr2Pnc1P}
-\alias{nr2Pnc2P}
-\alias{nr2Pnc3P}
-\alias{nr3Pnc0}
-\alias{nr3Pnc1}
-\alias{nr3Pnc2}
-\alias{nr3Pnc1P}
-\alias{nr3Pnc2P}
-\alias{nr3Pnc3P}
-\alias{notnr0nc0}
-\alias{notnr0nc1}
-\alias{notnr0nc2}
-\alias{notnr0nc1P}
-\alias{notnr0nc2P}
-\alias{notnr0nc3P}
-\alias{notnr1nc0}
-\alias{notnr1nc1}
-\alias{notnr1nc2}
-\alias{notnr1nc1P}
-\alias{notnr1nc2P}
-\alias{notnr1nc3P}
-\alias{notnr2nc0}
-\alias{notnr2nc1}
-\alias{notnr2nc2}
-\alias{notnr2nc1P}
-\alias{notnr2nc2P}
-\alias{notnr2nc3P}
-\alias{notnr1Pnc0}
-\alias{notnr1Pnc1}
-\alias{notnr1Pnc2}
-\alias{notnr1Pnc1P}
-\alias{notnr1Pnc2P}
-\alias{notnr1Pnc3P}
-\alias{notnr2Pnc0}
-\alias{notnr2Pnc1}
-\alias{notnr2Pnc2}
-\alias{notnr2Pnc1P}
-\alias{notnr2Pnc2P}
-\alias{notnr2Pnc3P}
-\alias{notnr3Pnc0}
-\alias{notnr3Pnc1}
-\alias{notnr3Pnc2}
-\alias{notnr3Pnc1P}
-\alias{notnr3Pnc2P}
-\alias{notnr3Pnc3P}
-\alias{NDIM}
-\alias{NDIM0}
-\alias{NDIM1}
-\alias{NDIM2}
-\alias{NDIM1P}
-\alias{NDIM2P}
-\alias{NDIM3P}
-\alias{notNDIM0}
-\alias{notNDIM1}
-\alias{notNDIM2}
-\alias{notNDIM1P}
-\alias{notNDIM2P}
-\alias{notNDIM3P}
-\alias{NS}
-\alias{NS0}
-\alias{NS1}
-\alias{NS2}
-\alias{NS1P}
-\alias{NS2P}
-\alias{NS3P}
-\alias{notNS0}
-\alias{notNS1}
-\alias{notNS2}
-\alias{notNS1P}
-\alias{notNS2P}
-\alias{notNS3P}
-\alias{NU}
-\alias{NU0}
-\alias{NU1}
-\alias{NU2}
-\alias{NU1P}
-\alias{NU2P}
-\alias{NU3P}
-\alias{notNU0}
-\alias{notNU1}
-\alias{notNU2}
-\alias{notNU1P}
-\alias{notNU2P}
-\alias{notNU3P}
-\alias{NV}
-\alias{NV0}
-\alias{NV1}
-\alias{NV2}
-\alias{NV1P}
-\alias{NV2P}
-\alias{NV3P}
-\alias{notNV0}
-\alias{notNV1}
-\alias{notNV2}
-\alias{notNV1P}
-\alias{notNV2P}
-\alias{notNV3P}
-\alias{NW}
-\alias{NW0}
-\alias{NW1}
-\alias{NW2}
-\alias{NW1P}
-\alias{NW2P}
-\alias{NW3P}
-\alias{notNW1}
-\alias{notNW2}
-\alias{notNW1P}
-\alias{notNW2P}
-\alias{notNW3P}
-\alias{CN}
-\alias{DN}
-\alias{EN}
-\alias{RN}
-\alias{NEQ}
-\alias{NDIF}
-\alias{isATM}
-\alias{isCHR}
-\alias{ERR}
-\alias{notERR}
-\alias{isFAC}
-\alias{isINT}
-\alias{isLGL}
-\alias{isNUM}
-\alias{isORD}
-\alias{isUNO}
-\alias{notATM}
-\alias{notCHR}
-\alias{notFAC}
-\alias{notINT}
-\alias{notLGL}
-\alias{notNUM}
-\alias{notORD}
-\alias{notUNO}
-\alias{isARR}
-\alias{isDTF}
-\alias{isFUN}
-\alias{isLST}
-\alias{isMAT}
-\alias{isVEC}
-\alias{notARR}
-\alias{notDTF}
-\alias{notFUN}
-\alias{notLST}
-\alias{notMAT}
-\alias{notVEC}
-\alias{xIN}
-\alias{xMF}
+\alias{clabs}
+\alias{dlabs}
+\alias{rlabs}
+\alias{vlabs}
+\alias{is_atm}
+\alias{is_chr}
+\alias{is_fac}
+\alias{is_int}
+\alias{is_lgl}
+\alias{is_num}
+\alias{is_ord}
+\alias{is_uno}
+\alias{not_atm}
+\alias{not_chr}
+\alias{not_fac}
+\alias{not_int}
+\alias{not_lgl}
+\alias{not_num}
+\alias{not_ord}
+\alias{not_uno}
+\alias{is_arr}
+\alias{is_dtf}
+\alias{is_fun}
+\alias{is_lst}
+\alias{is_mat}
+\alias{is_vec}
+\alias{not_arr}
+\alias{not_dtf}
+\alias{not_fun}
+\alias{not_lst}
+\alias{not_mat}
+\alias{not_veq}
+\alias{x_in}
+\alias{x_mf}
 \title{Wrappers for \code{base} functions}
 \usage{
 basics()
-
-none(...)
 
 g(g, ...)
 
@@ -298,511 +84,87 @@ null(x)
 
 def(x)
 
-LO(x)
+lo(x)
 
-HI(x)
+hi(x)
 
-LEN(x)
+len(x)
 
-MID(x, start, stop)
+mid(x, start, stop)
 
-SPF(fmt, ...)
+spf(fmt, ...)
 
-UNQ(x, ...)
-
-notUNQ(...)
-
-LEVS(x)
+levs(x)
 
 rounded(x)
 
-AV(...)
+clabs(x)
 
-WV(x)
+dlabs()
 
-UV(...)
+rlabs(x)
 
-ND()
+vlabs(x)
 
-ND0()
+is_atm(x)
 
-ND1()
+is_chr(x)
 
-ND2()
+is_fac(x)
 
-ND3()
+is_int(x)
 
-ND1P()
+is_lgl(x)
 
-ND2P()
+is_num(x)
 
-ND3P()
+is_ord(x)
 
-notND0()
+is_uno(x)
 
-notND1()
+not_atm(x)
 
-notND2()
+not_chr(x)
 
-notND1P()
+not_fac(x)
 
-notND2P()
+not_int(x)
 
-notND3P()
+not_lgl(x)
 
-N(x)
+not_num(x)
 
-N0(x)
+not_ord(x)
 
-N1(x)
+not_uno(x)
 
-N2(x)
+is_arr(x)
 
-N1P(x)
+is_dtf(x)
 
-N2P(x)
+is_fun(x)
 
-N3P(x)
+is_lst(x)
 
-notN0(x)
+is_mat(x)
 
-notN1(x)
+is_vec(x)
 
-notN2(x)
+not_arr(x)
 
-notN1P(x)
+not_dtf(x)
 
-notN2P(x)
+not_fun(x)
 
-notN3P(x)
+not_lst(x)
 
-NC(x)
+not_mat(x)
 
-NC0(x)
+not_veq(x, y)
 
-NC1(x)
+x_in(x, ...)
 
-NC2(x)
-
-NC1P(x)
-
-NC2P(x)
-
-NC3P(x)
-
-notNC0(x)
-
-notNC1(x)
-
-notNC2(x)
-
-notNC1P(x)
-
-notNC2P(x)
-
-notNC3P(x)
-
-NR(x)
-
-NR0(x)
-
-NR1(x)
-
-NR2(x)
-
-NR1P(x)
-
-NR2P(x)
-
-NR3P(x)
-
-notNR0(x)
-
-notNR1(x)
-
-notNR2(x)
-
-notNR1P(x)
-
-notNR2P(x)
-
-notNR3P(x)
-
-NRC(x)
-
-NRC0(x)
-
-NRC1(x)
-
-NRC2(x)
-
-NRC1P(x)
-
-NRC2P(x)
-
-NRC3P(x)
-
-notNRC0(x)
-
-notNRC1(x)
-
-notNRC2(x)
-
-notNRC1P(x)
-
-notNRC2P(x)
-
-notNRC3P(x)
-
-nr0nc0(x)
-
-nr0nc1(x)
-
-nr0nc2(x)
-
-nr0nc1P(x)
-
-nr0nc2P(x)
-
-nr0nc3P(x)
-
-nr1nc0(x)
-
-nr1nc1(x)
-
-nr1nc2(x)
-
-nr1nc1P(x)
-
-nr1nc2P(x)
-
-nr1nc3P(x)
-
-nr2nc0(x)
-
-nr2nc1(x)
-
-nr2nc2(x)
-
-nr2nc1P(x)
-
-nr2nc2P(x)
-
-nr2nc3P(x)
-
-nr1Pnc0(x)
-
-nr1Pnc1(x)
-
-nr1Pnc2(x)
-
-nr1Pnc1P(x)
-
-nr1Pnc2P(x)
-
-nr1Pnc3P(x)
-
-nr2Pnc0(x)
-
-nr2Pnc1(x)
-
-nr2Pnc2(x)
-
-nr2Pnc1P(x)
-
-nr2Pnc2P(x)
-
-nr2Pnc3P(x)
-
-nr3Pnc0(x)
-
-nr3Pnc1(x)
-
-nr3Pnc2(x)
-
-nr3Pnc1P(x)
-
-nr3Pnc2P(x)
-
-nr3Pnc3P(x)
-
-notnr0nc0(x)
-
-notnr0nc1(x)
-
-notnr0nc2(x)
-
-notnr0nc1P(x)
-
-notnr0nc2P(x)
-
-notnr0nc3P(x)
-
-notnr1nc0(x)
-
-notnr1nc1(x)
-
-notnr1nc2(x)
-
-notnr1nc1P(x)
-
-notnr1nc2P(x)
-
-notnr1nc3P(x)
-
-notnr2nc0(x)
-
-notnr2nc1(x)
-
-notnr2nc2(x)
-
-notnr2nc1P(x)
-
-notnr2nc2P(x)
-
-notnr2nc3P(x)
-
-notnr1Pnc0(x)
-
-notnr1Pnc1(x)
-
-notnr1Pnc2(x)
-
-notnr1Pnc1P(x)
-
-notnr1Pnc2P(x)
-
-notnr1Pnc3P(x)
-
-notnr2Pnc0(x)
-
-notnr2Pnc1(x)
-
-notnr2Pnc2(x)
-
-notnr2Pnc1P(x)
-
-notnr2Pnc2P(x)
-
-notnr2Pnc3P(x)
-
-notnr3Pnc0(x)
-
-notnr3Pnc1(x)
-
-notnr3Pnc2(x)
-
-notnr3Pnc1P(x)
-
-notnr3Pnc2P(x)
-
-notnr3Pnc3P(x)
-
-NDIM(x)
-
-NDIM0(x)
-
-NDIM1(x)
-
-NDIM2(x)
-
-NDIM1P(x)
-
-NDIM2P(x)
-
-NDIM3P(x)
-
-notNDIM0(x)
-
-notNDIM1(x)
-
-notNDIM2(x)
-
-notNDIM1P(x)
-
-notNDIM2P(x)
-
-notNDIM3P(x)
-
-NS(x)
-
-NS0(x)
-
-NS1(x)
-
-NS2(x)
-
-NS1P(x)
-
-NS2P(x)
-
-NS3P(x)
-
-notNS0(x)
-
-notNS1(x)
-
-notNS2(x)
-
-notNS1P(x)
-
-notNS2P(x)
-
-notNS3P(x)
-
-NU(x)
-
-NU0(x)
-
-NU1(x)
-
-NU2(x)
-
-NU1P(x)
-
-NU2P(x)
-
-NU3P(x)
-
-notNU0(x)
-
-notNU1(x)
-
-notNU2(x)
-
-notNU1P(x)
-
-notNU2P(x)
-
-notNU3P(x)
-
-NV(...)
-
-NV0(...)
-
-NV1(...)
-
-NV2(...)
-
-NV1P(...)
-
-NV2P(...)
-
-NV3P(...)
-
-notNV0(...)
-
-notNV1(...)
-
-notNV2(...)
-
-notNV1P(...)
-
-notNV2P(...)
-
-notNV3P(...)
-
-NW(x)
-
-NW0(x)
-
-NW1(x)
-
-NW2(x)
-
-NW1P(x)
-
-NW2P(x)
-
-NW3P(x)
-
-notN0(x)
-
-notNW1(x)
-
-notNW2(x)
-
-notNW1P(x)
-
-notNW2P(x)
-
-notNW3P(x)
-
-CN(x)
-
-DN()
-
-EN(x)
-
-RN(x)
-
-NEQ(x, y)
-
-NDIF(x, y)
-
-isATM(x)
-
-isCHR(x)
-
-ERR(x)
-
-notERR(x)
-
-isFAC(x)
-
-isINT(x)
-
-isLGL(x)
-
-isNUM(x)
-
-isORD(x)
-
-isUNO(x)
-
-notATM(x)
-
-notCHR(x)
-
-notFAC(x)
-
-notINT(x)
-
-notLGL(x)
-
-notNUM(x)
-
-notORD(x)
-
-notUNO(x)
-
-isARR(x)
-
-isDTF(x)
-
-isFUN(x)
-
-isLST(x)
-
-isMAT(x)
-
-isVEC(x)
-
-notARR(x)
-
-notDTF(x)
-
-notFUN(x)
-
-notLST(x)
-
-notMAT(x)
-
-notVEC(x)
-
-xIN(x, ...)
-
-xMF(x, ...)
+x_mf(x, ...)
 }
 \arguments{
 \item{...}{one or more \R objects, to be converted to character vectors.}
@@ -832,120 +194,43 @@ Wrappers for frequently used \code{base} package functions.
 }
 \details{
 \strong{Basic function wrappers not related to counts/lengths}
-\tabular{ll}{  \code{g}                \tab \code{paste0(V(...), collapse = g)} (glues \code{...})              \cr
-  \code{p}                \tab \code{paste(..., sep = p)}                        \cr   \tab   \cr
-  \code{g0}               \tab \code{paste0(V(...), collapse = "")}                           \cr
-  \code{p0}               \tab \code{paste(..., sep = "")}                                    \cr
-  \code{g1}               \tab \code{paste0(V(...), collapse = " ")}                          \cr
-  \code{p1}               \tab \code{paste(..., sep = " ")}                      \cr   \tab   \cr
-  \code{na}               \tab \code{is.na(x)}                                                \cr
-  \code{ok}               \tab \code{!is.na(x)}                                  \cr   \tab   \cr
-  \code{wna}              \tab \code{which(na(x))}                                            \cr
-  \code{wok}              \tab \code{which(ok(x))}                               \cr   \tab   \cr
-  \code{none}             \tab \code{!any(av(...))}                              \cr   \tab   \cr
-  \code{AV}               \tab \code{atomize(...)}                                            \cr
-  \code{UV}               \tab \code{unique(atomize(x))}                                      \cr
-  \code{WV}               \tab \code{which(atomize(x))}                          \cr   \tab   \cr
-  \code{CN}               \tab \code{colnames(x)}                                             \cr
-  \code{DN}               \tab \code{...names(x)}                                             \cr
-  \code{EN}               \tab \code{names(x)}                                                \cr
-  \code{RN}               \tab \code{rownames}                                   \cr   \tab   \cr
-  \code{HI}               \tab \code{ceiling(x)}                                              \cr
-  \code{LO}               \tab \code{floor(x)}                                   \cr   \tab   \cr
-  \code{UV}               \tab \code{U(V(...))}                                               \cr
-  \code{WV}               \tab \code{W(V(...))}                                  \cr   \tab   \cr
-  \code{xIN}              \tab \code{x[isIN(x, ...)]}                                         \cr
-  \code{xMF}              \tab \code{x[isMF(x, ...)]}                                         \cr
-  \code{LEN}              \tab \code{nchar(x)}                                   \cr   \tab   \cr
-  \code{MID}              \tab \code{substr(.)}                                  \cr   \tab   \cr
-  \code{SPF}              \tab \code{sprintf(.)}                                 \cr   \tab   \cr
-  \code{LEVS}             \tab \code{levels(x)}                                  \cr   \tab     }
-\tabular{ll}{  \verb{ERR, notERR}      \tab \verb{(!)assertthat::is.error(x)}                 \cr   \tab   \cr
-  \verb{UNQ, notUNQ}      \tab \verb{(!)(length(x) == length(U(x)))}             \cr   \tab   \cr
-  \verb{isARR, notARR}    \tab \verb{(!)is.array(x)}                                          \cr
-  \verb{isDTF, notDTF}    \tab \verb{(!)is.data.frame(x)}                                     \cr
-  \verb{isFUN, notFUN}    \tab \verb{(!)is.function(x)}                                       \cr
-  \verb{isLST, notLST}    \tab \verb{(!)is.list(x)}                                           \cr
-  \verb{isMAT, notMAT}    \tab \verb{(!)is.matrix(x)}                                         \cr
-  \verb{isVEC, notVEC}    \tab \verb{(!)is.vector(x)}                            \cr   \tab   \cr
-  \verb{isATM, notATM}    \tab \verb{(!)is.atomic(x)}                                         \cr
-  \verb{isCHR, notCHR}    \tab \verb{(!)is.character(x)}                                      \cr
-  \verb{isFAC, notFAC}    \tab \verb{(!)is.factor(x)}                                         \cr
-  \verb{isINT, notINT}    \tab \verb{(!)is.itneger(x)}                                        \cr
-  \verb{isLGL, notLGL}    \tab \verb{(!)is.logical(x)}                                        \cr
-  \verb{isNUM, notNUM}    \tab \verb{(!)is.numeric(x)}                                        \cr
-  \verb{isORD, notORD}    \tab \verb{(!)is.ordered(x)}                                        \cr
-  \verb{isUNO, notUNO}    \tab \verb{(!)(isFAC(x) & !isORD(x))}                  \cr   \tab     }
-\strong{Functions evaluating length/count (in)equality}
-\tabular{ll}{  \code{NDIF}             \tab \code{length(x) != length(y)}                                  \cr
-  \code{NEQ}              \tab \code{length(x) == length(y)}                     \cr   \tab     }
-\strong{Functions getting counts/lengths}
-\tabular{ll}{  \code{N}                \tab \code{length(x)}                                  \cr   \tab   \cr
-  \code{ND}               \tab \code{...length()}                                             \cr
-  \code{NC}               \tab \code{NCOL}                                                    \cr
-  \code{NR}               \tab \code{NROW}                                                    \cr
-  \code{NS}               \tab \code{lengths(x)}                                              \cr
-  \code{NU}               \tab \code{N(U(...))}                                               \cr
-  \code{NV}               \tab \code{N(V(...))}                                               \cr
-  \code{NW}               \tab \code{N(W(x))}                                                 \cr   \tab   \cr
-  \code{NUV}              \tab \code{N(UV(...))}                                              \cr
-  \code{NWV}              \tab \code{N(WV(....))}                                             \cr
-  \code{NRC}              \tab \code{NR(x) * NC(x)}                              \cr   \tab   \cr
-  \code{NDIM}             \tab \code{f0(null(x), 0, f0(isVEC(x), 1, N(dim(x))))}                }
-\strong{Functions checking for specific counts/lengths}
-\cr\cr The functions described in the previous table also have convenience functions for checking for specific counts/lengths. Those convenience functions are formed by appending the following to function names:
-\tabular{ll}{  \code{'0'}              \tab \code{N = 0}  \cr
-  \code{'1'}              \tab \code{N = 1}  \cr
-  \code{'2'}              \tab \code{N = 2}  \cr
-  \code{'1P'}             \tab \verb{N = 1+} \cr
-  \code{'2P'}             \tab \verb{N = 2+} \cr
-  \code{'3P'}             \tab \verb{N = 3+}   }
-\cr The following tables gives examples for the functions \code{N} and \code{NRC}:
-\tabular{lllllll}{
-  \strong{Base}       \tab \strong{\code{N = 0}}     \tab \strong{\code{N = 1}}     \tab \strong{\code{N = 2}}     \tab \strong{\verb{N ≥ 1}}     \tab \strong{\verb{N ≥ 2}}     \tab \strong{\verb{N ≥ 3}}    \cr
-  \code{N}            \tab \code{N0}            \tab \code{N1}            \tab \code{N2}            \tab \code{N1P}           \tab \code{N2P}           \tab \code{N3P}          \cr
-  \code{ND}           \tab \code{ND0}           \tab \code{ND1}           \tab \code{ND2}           \tab \code{ND1P}          \tab \code{ND2P}          \tab \code{ND3P}         \cr
-  \code{NC}           \tab \code{NC0}           \tab \code{NC1}           \tab \code{NC2}           \tab \code{NC1P}          \tab \code{NC2P}          \tab \code{NC3P}         \cr
-  \code{NR}           \tab \code{NR0}           \tab \code{NR1}           \tab \code{NR2}           \tab \code{NR1P}          \tab \code{NR2P}          \tab \code{NR3P}         \cr
-  \code{NS}           \tab \code{NS0}           \tab \code{NS1}           \tab \code{NS2}           \tab \code{NS1P}          \tab \code{NS2P}          \tab \code{NS3P}         \cr
-  \code{NU}           \tab \code{NU0}           \tab \code{NU1}           \tab \code{NU2}           \tab \code{NU1P}          \tab \code{NU2P}          \tab \code{NU3P}         \cr
-  \code{NV}           \tab \code{NV0}           \tab \code{NV1}           \tab \code{NV2}           \tab \code{NV1P}          \tab \code{NV2P}          \tab \code{NV3P}         \cr
-  \code{NW}           \tab \code{NW0}           \tab \code{NW1}           \tab \code{NW2}           \tab \code{NW1P}          \tab \code{NW2P}          \tab \code{NW3P}         \cr
-  \code{NUV}          \tab \code{NUV0}          \tab \code{NUV1}          \tab \code{NUV2}          \tab \code{NUV1P}         \tab \code{NUV2P}         \tab \code{NUV3P}        \cr
-  \code{NWV}          \tab \code{NWV0}          \tab \code{NMV1}          \tab \code{NWV2}          \tab \code{NWV1P}         \tab \code{NWV2P}         \tab \code{NWV3P}        \cr
-  \code{NRC}          \tab \code{NRC0}          \tab \code{NRC1}          \tab \code{NRC2}          \tab \code{NRC1P}         \tab \code{NRC2P}         \tab \code{NRC3P}        \cr
-  \code{NDIM}         \tab \code{NDIM0}         \tab \code{NDIM1}         \tab \code{NDIM2}         \tab \code{NDIM1P}        \tab \code{NDIM2P}        \tab \code{NDIM3P}       \cr
-                 \tab                 \tab                 \tab                 \tab                 \tab                 \tab                \cr
-  \strong{Base}       \tab \strong{\verb{N ≠ 0}}     \tab \strong{\verb{N ≠ 1}}     \tab \strong{\verb{N ≠ 2}}     \tab \strong{\code{N < 1}}     \tab \strong{\code{N < 2}}     \tab \strong{\code{N < 3}}    \cr
-  \code{N}            \tab \code{notN0}         \tab \code{notN1}         \tab \code{notN2}         \tab \code{notN1P}        \tab \code{notN2P}        \tab \code{notN3P}       \cr
-  \code{ND}           \tab \code{notND0}        \tab \code{notND1}        \tab \code{notND2}        \tab \code{notND1P}       \tab \code{notND2P}       \tab \code{notND3P}      \cr
-  \code{NC}           \tab \code{notNC0}        \tab \code{notNC1}        \tab \code{notNC2}        \tab \code{notNC1P}       \tab \code{notNC2P}       \tab \code{notNC3P}      \cr
-  \code{NR}           \tab \code{notNR0}        \tab \code{notNR1}        \tab \code{notNR2}        \tab \code{notNR1P}       \tab \code{notNR2P}       \tab \code{notNR3P}      \cr
-  \code{NS}           \tab \code{notNS0}        \tab \code{notNS1}        \tab \code{notNS2}        \tab \code{notNS1P}       \tab \code{notNS2P}       \tab \code{notNS3P}      \cr
-  \code{NU}           \tab \code{notNU0}        \tab \code{notNU1}        \tab \code{notNU2}        \tab \code{notNU1P}       \tab \code{notNU2P}       \tab \code{notNU3P}      \cr
-  \code{NV}           \tab \code{notNV0}        \tab \code{notNV1}        \tab \code{notNV2}        \tab \code{notNV1P}       \tab \code{notNV2P}       \tab \code{notNV3P}      \cr
-  \code{NW}           \tab \code{notNW0}        \tab \code{notNW1}        \tab \code{notNW2}        \tab \code{notNW1P}       \tab \code{notNW2P}       \tab \code{notNW3P}      \cr
-  \code{NUV}          \tab \code{notNUV0}       \tab \code{notNUV1}       \tab \code{notNUV2}       \tab \code{notNUV1P}      \tab \code{notNUV2P}      \tab \code{notNUV3P}     \cr
-  \code{NWV}          \tab \code{notNWV0}       \tab \code{notNMV1}       \tab \code{notNWV2}       \tab \code{notNWV1P}      \tab \code{notNWV2P}      \tab \code{notNWV3P}     \cr
-  \code{NRC}          \tab \code{notNRC0}       \tab \code{notNRC1}       \tab \code{notNRC2}       \tab \code{notNRC1P}      \tab \code{notNRC2P}      \tab \code{notNRC3P}     \cr
-  \code{NDIM}         \tab \code{notNDIM0}      \tab \code{notNIM1}       \tab \code{notNDIM2}      \tab \code{notNDIM1P}     \tab \code{notNDIM2P}     \tab \code{notNDIM3P}      }
-\cr Finally, the following table gives functions that check for specific \emph{combinations} of numbers of rows and columns and associated negations:
-\tabular{lllllll}{
-                 \tab \strong{\code{NC = 0}}    \tab \strong{\code{NC = 1}}    \tab \strong{\code{NC = 2}}    \tab \strong{\verb{NC ≥ 1}}    \tab \strong{\verb{NC ≥ 2}}    \tab \strong{\verb{NC ≥ 3}}   \cr
-  \strong{\code{nr = 0}}   \tab \code{nr0nc0}       \tab \code{nr0nc1}       \tab \code{nr0nc2}       \tab \code{nr0nc1p}      \tab \code{nr0nc2p}      \tab \code{nr0nc3p}     \cr
-  \strong{\code{nr = 1}}   \tab \code{nr1nc0}       \tab \code{nr1nc1}       \tab \code{nr1nc2}       \tab \code{nr1nc1p}      \tab \code{nr1nc2p}      \tab \code{nr1nc3p}     \cr
-  \strong{\code{nr = 2}}   \tab \code{nr2nc0}       \tab \code{nr2nc1}       \tab \code{nr2nc2}       \tab \code{nr2nc1p}      \tab \code{nr2nc2p}      \tab \code{nr2nc3p}     \cr
-  \strong{\verb{nr ≥ 1}}   \tab \code{nr1pnc0}      \tab \code{nr1pnc1}      \tab \code{nr1pnc2}      \tab \code{nr1pnc1p}     \tab \code{nr1pnc2p}     \tab \code{nr1pnc3p}    \cr
-  \strong{\verb{nr ≥ 2}}   \tab \code{nr2pnc0}      \tab \code{nr2pnc1}      \tab \code{nr2pnc2}      \tab \code{nr2pnc1p}     \tab \code{nr2pnc2p}     \tab \code{nr2pnc3p}    \cr
-  \strong{\verb{nr ≥ 3}}   \tab \code{nr3pnc0}      \tab \code{nr3pnc1}      \tab \code{nr3pnc2}      \tab \code{nr3pnc1p}     \tab \code{nr3pnc2p}     \tab \code{nr3pnc3p}    \cr
-                 \tab                 \tab                 \tab                 \tab                 \tab                 \tab                \cr
-                 \tab \strong{\verb{NC ≠ 0}}    \tab \strong{\verb{NC ≠ 1}}    \tab \strong{\verb{NC ≠ 2}}    \tab \strong{\code{NC < 1}}    \tab \strong{\code{NC < 2}}    \tab \strong{\code{NC < 3}}   \cr
-  \strong{\verb{nr ≠ 0}}   \tab \code{notnr0nc0}    \tab \code{notnr0nc1}    \tab \code{notnr0nc2}    \tab \code{notnr0nc1p}   \tab \code{notnr0nc2p}   \tab \code{notnr0nc3p}  \cr
-  \strong{\verb{nr ≠ 1}}   \tab \code{notnr1nc0}    \tab \code{notnr1nc1}    \tab \code{notnr1nc2}    \tab \code{notnr1nc1p}   \tab \code{notnr1nc2p}   \tab \code{notnr1nc3p}  \cr
-  \strong{\verb{nr ≠ 2}}   \tab \code{notnr2nc0}    \tab \code{notnr2nc1}    \tab \code{notnr2nc2}    \tab \code{notnr2nc1p}   \tab \code{notnr2nc2p}   \tab \code{notnr2nc3p}  \cr
-  \strong{\code{nr < 1}}   \tab \code{notnr1pnc0}   \tab \code{notnr1pnc1}   \tab \code{notnr1pnc2}   \tab \code{notnr1pnc1p}  \tab \code{notnr1pnc2p}  \tab \code{notnr1pnc3p} \cr
-  \strong{\code{nr < 2}}   \tab \code{notnr2pnc0}   \tab \code{notnr2pnc1}   \tab \code{notnr2pnc2}   \tab \code{notnr2pnc1p}  \tab \code{notnr2pnc2p}  \tab \code{notnr2pnc3p} \cr
-  \strong{\code{nr < 3}}   \tab \code{notnr3pnc0}   \tab \code{notnr3pnc1}   \tab \code{notnr3pnc2}   \tab \code{notnr3pnc1p}  \tab \code{notnr3pnc2p}  \tab \code{notnr3pnc3p}   }
+\tabular{ll}{  \code{g}       \tab \code{paste0(av(...), collapse = g)} (glues \code{...}) \cr
+  \code{p}       \tab \code{paste(..., sep = p)}                         \cr
+  \code{g0}      \tab \code{paste0(av(...), collapse = "")}              \cr
+  \code{p0}      \tab \code{paste(..., sep = "")}                        \cr
+  \code{g1}      \tab \code{paste0(av(...), collapse = " ")}             \cr
+  \code{p1}      \tab \code{paste(..., sep = " ")}          \cr   \tab   \cr
+  \code{hi}      \tab \code{ceiling(x)}                                  \cr
+  \code{lo}      \tab \code{floor(x)}                       \cr   \tab   \cr
+  \code{na}      \tab \code{is.na(x)}                                    \cr
+  \code{ok}      \tab \code{!is.na(x)}                      \cr   \tab   \cr
+  \code{wna}     \tab \code{which(na(x))}                                \cr
+  \code{wok}     \tab \code{which(ok(x))}                   \cr   \tab   \cr
+  \code{len}     \tab \code{nchar(x)}                       \cr   \tab   \cr
+  \code{mid}     \tab \code{substr(.)}                      \cr   \tab   \cr
+  \code{spf}     \tab \code{sprintf(.)}                     \cr   \tab   \cr
+  \code{levs}    \tab \code{levels(x)}                      \cr   \tab   \cr
+  \code{none}    \tab \code{!any(av(...))}                  \cr   \tab   \cr
+  \code{x_in}    \tab \code{x[isIN(x, ...)]}                             \cr
+  \code{x_mf}    \tab \code{x[isMF(x, ...)]}                \cr   \tab   \cr
+  \code{clabs}   \tab \code{colnames(x)}                                 \cr
+  \code{dlabs}   \tab \code{...names(x)}                                 \cr
+  \code{elabs}   \tab \code{names(x)}                                    \cr
+  \code{rlabs}   \tab \code{rownames}                       \cr   \tab     }
+\tabular{ll}{  \verb{is_arr, not_arr}   \tab \verb{(!)is.array(x)}                           \cr
+  \verb{is_dtf, not_dtf}   \tab \verb{(!)is.data.frame(x)}                      \cr
+  \verb{is_fun, not_fun}   \tab \verb{(!)is.function(x)}                        \cr
+  \verb{is_lst, not_lst}   \tab \verb{(!)is.list(x)}                            \cr
+  \verb{is_mat, not_mat}   \tab \verb{(!)is.matrix(x)}                          \cr
+  \verb{is_vec, not_veq}   \tab \verb{(!)is.vector(x)}             \cr   \tab   \cr
+  \verb{is_atm, not_atm}   \tab \verb{(!)is.atomic(x)}                          \cr
+  \verb{is_chr, not_chr}   \tab \verb{(!)is.character(x)}                       \cr
+  \verb{is_fac, not_fac}   \tab \verb{(!)is.factor(x)}                          \cr
+  \verb{is_int, not_int}   \tab \verb{(!)is.integer(x)}                         \cr
+  \verb{is_lgl, not_lgl}   \tab \verb{(!)is.logical(x)}                         \cr
+  \verb{is_num, not_num}   \tab \verb{(!)is.numeric(x)}                         \cr
+  \verb{is_ord, not_ord}   \tab \verb{(!)is.ordered(x)}                         \cr
+  \verb{is_uno, not_uno}   \tab \verb{(!)is_fac(x) & (!)is_ord(x)} \cr   \tab     }
 }
 \examples{
 vals <- c(1:3, 2:4) / 3
@@ -954,11 +239,8 @@ text <- "\%s = \%0.2f and \%s = \%0.0f"
 vals
 vars
 text
-u(vals)
-u(vars)
-u(data.frame(var = vars, val = vals))
-dn(vals)
-up(vals)
+lo(vals)
+hi(vals)
 len(vars)
 mid(vars, 1, 3)
 spf(text, vars[1:3], vals[1:3], vars[4:6], vals[4:6])
@@ -975,7 +257,7 @@ Other wraps:
 \code{\link{dt}()},
 \code{\link{ggp}()},
 \code{\link{gr}},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{sca}()},
 \code{\link{tb}()}
 }

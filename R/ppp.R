@@ -1,576 +1,3 @@
-# internal ####
-
-## PPP ####
-
-.mmm <- base::c("atm", "ch1", "ch3", "chr", "clr", "evn", "fac", "frc", "ind", "lgl", "neg", "ngw", "nng", "nnw", "nps", "npw", "nst", "num", "odd", "ord", "pct", "pos", "ppn", "psw", "srt", "str", "uno", "whl")
-.ccc <- base::c("arr", "dtf", "gen", "mat", "mvc", "scl", "vec", "vls")
-.sss <- base::c("col", "emp", "lin", "pnt", "rct", "row", "sld", "sqr")
-.bbb <- base::c("atm", "def", "fun", "nil", "nll", "pop", "rcr")
-.iii <- base::c("cmp", "dup", "mss", "nas", "oks", "prt", "unq")
-.eee <- base::c("e0D", "e1D", "e2D", "eHD", "eUD")
-.ddd <- base::c("d0D", "d1D", "d2D", "dHD")
-.ppp <- base::unique(base::sort(base::c(uj:::.bbb, uj:::.ccc, uj:::.ddd, uj:::.eee, uj:::.iii, uj:::.mmm, uj:::.sss)))
-
-.MMM <- base::toupper(uj:::.mmm)
-.CCC <- base::toupper(uj:::.ccc)
-.SSS <- base::toupper(uj:::.sss)
-.BBB <- base::toupper(uj:::.bbb)
-.III <- base::toupper(uj:::.iii)
-.EEE <- base::toupper(uj:::.eee)
-.DDD <- base::toupper(uj:::.ddd)
-.PPP <- base::unique(base::sort(base::c(uj:::.BBB, uj:::.CCC, uj:::.DDD, uj:::.EEE, uj:::.III, uj:::.MMM, uj:::.SSS)))
-
-## BBB ####
-
-.ATM <- function(x) {if (base::is.atomic(x)) {!base::is.null(x)} else {F}}
-
-.DEF <- function(x) {!base::is.null(x)}
-
-.FUN <- function(x) {
-  if (!base::is.function(x)) {
-    if (base::length(x) == 1 & base::is.character(x)) {
-      x <- tryCatch(base::match.fun(x), error = function(x) e, finally = NULL)
-      !testthat::is.error(x)
-    } else {F}
-  } else {T}
-}
-
-.NIL <- function(x) {base::length(x) == 0}
-
-.NLL <- function(x) {uj::null(x)}
-
-.POP <- function(x) {base::length(x) > 0}
-
-.RCR <- function(x) {base::is.recursive(x)}
-
-## CCC ####
-
-.ARR <- function(x) {base::is.array(x)}
-
-.DTF <- function(x) {base::is.data.frame(x)}
-
-.GEN <- function(x) {base::is.array(x) | base::is.vector(x)}
-
-.MAT <- function(x) {base::is.matrix(x)}
-
-.MVC <- function(x) {
-  if (base::length(x) < 2) {F}
-  else if (base::is.vector(x)) {T}
-  else if (!base::is.array(x)) {F}
-  else {base::length(base::which(base::dim(x) > 1)) == 1}
-}
-
-.SCL <- function(x) {if (base::length(x) != 1) {F} else {base::is.vector(x) | base::is.array(x)}}
-
-.VEC <- function(x) {
-  if (base::length(x) == 0) {F}
-  else if (base::is.vector(x)) {T}
-  else if (!base::is.array(x)) {F}
-  else {base::length(base::which(base::dim(x) > 1)) < 2}
-}
-
-.VLS <- function(x) {if (base::is.data.frame(x)) {F} else {base::is.list(x)}}
-
-## DDD ####
-
-.D0D <- function(x) {uj::null(x)}
-
-.D1D <- function(x) {base::is.vector(x)}
-
-.D2D <- function(x) {base::is.matrix(x) | base::is.data.frame(x)}
-
-.DHD <- function(x) {if (is.array(x)) {base::length(base::dim(x)) > 2} else {F}}
-
-## EEE ####
-
-.E0D <- function(x) {
-  if (base::is.atomic(x)) {base::length(x) == 1}
-  else if (base::is.data.frame(x)) {base::NROW(x) * base::NCOL(x) == 1}
-  else if (base::is.list(x)) {base::length(x) == 1}
-  else {F}
-}
-
-.E1D <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::vector(x)) {base::length(x) > 1}
-    else if (base::is.array(x)) {base::length(base::which(base::dim(x) > 1)) == 1}
-    else {F}
-  } else if (base::is.data.frame(x)) {
-    if (base::NROW(x) == 1) {base::NCOL(x) > 1}
-    else if (base::NCOL(x) == 1) {base::NROW(x) > 1}
-    else {F}
-  } else if (base::is.list(x)) {base::length(x) > 1}
-  else {F}
-}
-
-.EUD <- function(x) {base::length(x) == 0}
-
-.E2D <- function(x) {base::length(base::which(base::dim(x) > 1)) == 2}
-
-.EHD <- function(x) {base::length(base::which(base::dim(x) > 1)) > 2}
-
-## III ####
-
-.CMP <- function(x) {
-  if (base::length(x) == 0) {F}
-  else if (base::is.atomic(x)) {!base::any(base::is.na(x))}
-  else if (base::is.data.frame(x)) {base::all(base::apply(x, 2, uj:::.CMP))}
-  else if (base::is.list(x)) {base::all(base::sapply(x, uj:::.CMP))}
-  else {F}
-}
-
-.MSS <- function(x) {
-  if (base::length(x) == 0) {F}
-  else if (base::is.atomic(x)) {base::all(base::is.na(x))}
-  else if (base::is.data.frame(x)) {base::all(base::apply(x, 2, uj:::.MSS))}
-  else if (base::is.list(x)) {base::all(base::sapply(x, uj:::.MSS))}
-  else {F}
-}
-
-.PRT <- function(x) {
-  if (base::length(x) == 0) {F}
-  else if (base::is.atomic(x)) {base::any(base::is.na(x)) & base::any(!base::is.na(x))}
-  else if (base::is.data.frame(x)) {
-    if (base::NROW(x) == 0) {F}
-    else if (base::NCOL(x) == 0) {F}
-    else if (!base::all(base::apply(x, 2, base::is.atomic))) {F}
-    else {uj:::.PRT(base::unlist(x, T, F))}
-  } else if (base::is.list(x)) {
-    if (base::any(base::lengths(x) == 0)) {F}
-    else if (!base::all(base::sapply(x, base::is.atomic))) {F}
-    else {uj:::.PRT(base::unlist(x, T, F))}
-  } else {F}
-}
-
-.NAS <- function(x) {
-  if (!base::is.atomic(x)) {F}
-  else if (base::length(x) == 1) {F}
-  else {base::is.na(x)}
-}
-
-.OKS <- function(x) {
-  if (!base::is.atomic(x)) {F}
-  else if (base::length(x) == 1) {F}
-  else {!base::is.na(x)}
-}
-
-.DUP <- function(x) {
-  if (!base::is.atomic(x)) {
-    if (base::length(x) == 0) {F}
-    else if (base::any(base::is.na(x))) {F}
-    else {base::length(x) != base::length(base::unique(x))}
-  } else {F}
-}
-
-.UNQ <- function(x) {
-  if (!base::is.atomic(x)) {
-    if (base::length(x) == 0) {F}
-    else if (base::any(base::is.na(x))) {F}
-    else {base::length(x) == base::length(base::unique(x))}
-  } else {F}
-}
-
-## MMM ####
-
-.CH1 <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.character(x)) {
-          x <- x[!base::is.na(x)]
-          if (base::length(x) == 0) {T}
-          else {base::all(base::nchar(x) == 1)}
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.CH3 <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.character(x)) {
-          x <- x[!base::is.na(x)]
-          if (base::length(x) == 0) {T}
-          else {base::all(base::nchar(x) == 3)}
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.CHR <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (base::is.character(x)) {T}
-      else {base::all(base::is.na(x))}
-    } else {T}
-  } else {F}
-}
-
-.STR <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.character(x)) {
-          x <- x[!base::is.na(x)]
-          if (base::length(x) == 0) {T}
-          else {base::all(base::nchar(x) > 0)}
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.CLR <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        x <- x[!base::is.na(x)]
-        if (base::length(x) > 0) {!assertthat::is.error(uj::failsafe(grDevices::col2rgb(x)))}
-        else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.FAC <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (base::is.factor(x)) {T}
-      else {base::all(base::is.na(x))}
-    } else {T}
-  } else {F}
-}
-
-.ORD <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (base::is.ordered(x)) {T}
-      else {base::all(base::is.na(x))}
-    } else {T}
-  } else {F}
-}
-
-.UNO <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (base::is.factor(x) & !base::is.ordered(x)) {T}
-      else {base::all(base::is.na(x))}
-    } else {T}
-  } else {F}
-}
-
-.IND <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        x <- x[!base::is.na(x)]
-        if (base::is.numeric(x)) {base::all(x == base::round(x))}
-        else {base::is.logical(x)}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.NST <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {!base::is.character(x) & !base::is.numeric(x) & !base::is.ordered(x)}
-      else {T}
-    } else {T}
-  } else {F}
-}
-
-.SRT <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {base::is.character(x) | base::is.numeric(x) | base::is.ordered(x)}
-      else {T}
-    } else {T}
-  } else {F}
-}
-
-.LGL <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (base::is.logical(x)) {T}
-      else {base::all(base::is.na(x))}
-    } else {T}
-  } else {F}
-}
-
-.NUM <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (base::is.numeric(x)) {T}
-      else {base::all(base::is.na(x))}
-    } else {T}
-  } else {F}
-}
-
-.WHL <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          base::all(x == base::round(x))
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.ODD <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          if (base::all(x == base::round(x))) {
-            x <- x / 2
-            base::any(x != base::round(x))
-          } else {F}
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.EVN <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          if (base::all(x == base::round(x))) {
-            x <- x / 2
-            base::all(x == base::round(x))
-          } else {F}
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.NGW <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          if (base::all(x == base::round(x))) {base::all(x < 0)}
-          else {F}
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.NNW <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          if (base::all(x == base::round(x))) {base::all(x >= 0)}
-          else {F}
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.NPW <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          if (base::all(x == base::round(x))) {base::all(x <= 0)}
-          else {F}
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.PSW <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          if (base::all(x == base::round(x))) {base::all(x > 0)}
-          else {F}
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.FRC <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          base::any(x != base::round(x))
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.NEG <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          base::all(x < 0)
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.POS <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          base::all(x > 0)
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.NNW <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          base::all(x >= 0)
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.NPS <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          base::all(x <= 0)
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.PCT <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          base::all(x >= 0 | x <= 100)
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-.PCT <- function(x) {
-  if (base::is.atomic(x)) {
-    if (base::length(x) > 0) {
-      if (!base::all(base::is.na(x))) {
-        if (base::is.numeric(x)) {
-          x <- x[!base::is.na(x)]
-          base::all(x >= 0 | x <= 1)
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-## sss ###
-
-.COL <- function(x) {if (base::is.data.frame(x) | base::is.matrix(x)) {base::NROW(x) > 1 & base::NCOL(x) == 1} else {F}}
-
-.ROW <- function(x) {if (base::is.data.frame(x) | base::is.matrix(x)) {base::NROW(x) == 1 & base::NCOL(x) > 1} else {F}}
-
-.PNT <- function(x) {if (base::is.data.frame(x)) {base::NROW(x) * base::NCOL(x) == 1} else {base::length(x) == 1}}
-
-.EMP <- function(x) {
-  if (base::is.data.frame(x)) {base::NROW(x) * base::NCOL(x) == 0}
-  else if (base::length(x) == 0) {!base::is.null(x)}
-  else {F}
-}
-
-.LIN <- function(x) {
-  if (base::length(x) > 1) {
-    if (base::is.data.frame(x)) {
-      if (base::NROW(x) == 1 & base::NCOL(x) > 1) {T}
-      else {base::NROW(x) > 1 & base::NCOL(x) == 1}
-    } else if (base::is.array(x)) {base::length(base::which(base::dim(x) > 1)) == 2}
-    else if (base::is.list(x)) {T}
-    else if (base::is.vector(x)) {T}
-  } else {F}
-}
-
-.RCT <- function(x) {
-  if (base::length(x) > 1) {if (base::is.data.frame(x) | is.matrix(x)) {base::NROW(x) > 1 & base::NCOL(x) > 1} else {F}}
-  else {F}
-}
-
-.SLD <- function(x) {if (base::is.array(x)) {base::length(base::which(base::dim(x) > 1)) > 2} else {F}}
-
-.SQR <- function(x) {if (base::is.matrix(x)) {base::NROW(x) > 1 & base::NCOL(x) > 1 & base::NROW(x) == base::NCOL(x)} else {F}}
-
-## PPP ####
-
-.spec2combos <- function(x) {
-  if (uj::isCHR(x)) {
-    x <- uj::av(base::strsplit(x, "|", fixed = T))
-    x <- x[x != ""]
-    if (uj::N1P(x)) {base::tolower(base::unique(x))} else {NULL}
-  } else {NULL}
-}
-
-.spec2props <- function(x) {
-  if (uj::isCHR(x)) {
-    x <- uj::av(base::strsplit(x, "|", fixed = T))
-    x <- uj::av(base::strsplit(x, "_", fixed = T))
-    x <- x[x != ""]
-    if (uj::N1P(x)) {
-      if (uj::cmp_ch3(x)) {base::tolower(base::unique(x))} else {NULL}
-    } else {NULL}
-  } else {NULL}
-}
-
-.combo2props <- function(x) {
-  if (uj::isCHR(x)) {
-    if (uj::N1(.spec2combos)) {
-      x <- uj::av(base::strsplit(x, "_", fixed = T))
-      x <- x[x != ""]
-      if (uj::N1P(x)) {
-        if (uj::cmp_ch3(x)) {base::tolower(base::unique(x))} else {NULL}
-      } else {NULL}
-    } else {NULL}
-  } else {NULL}
-}
-
-# exported ####
-
 #' @encoding UTF-8
 #' @family properties
 #' @title All purpose property checking
@@ -585,7 +12,7 @@
 #'                \code{\link{sss}}   \tab shape (geometric shape)                  }
 #' This family uses concise and flexible *property specs* as defined in the following table.
 #' \tabular{ll}{  *single*   \tab \link[=CH3]{3-char} scalars (i.e., `all(nchar(.) == 3)` with all values in `all_props()`. For example, `'ord', 'dtf', 'd2d',` and `'rct'` are *single* property specs.                                                                                                                                                                 \cr   \tab   \cr
-#'                *combo*    \tab Character scalars containing multiple underscore-delimited *single* properties, indicating that those *single* properties must co-occur. For example, the *combo* property spec `'ord_dtf_d2d_rct'` (or an equivalent underscore-delimited permutation) indicates that all four *single* properties must co-occur to satisfy the spec. \cr   \tab   \cr
+#'                *combo*    \tab Character scalars containing multiple underscore-delimited *single* properties, indicating that those *single* properties must co-occur. For example, the *combo* property spec `'ord_dtf_d2d_rct'` (or an equivalent underscore-delimited permutation) indicates that all four *single* properties must co-occur to satisfy the spec. \cr   \tab   \cr
 #'                *option*   \tab Character scalars containing multiple pipe-delimited *combo* and/or *single* property specs. For example, the *option* property spec `'ord|dtf_d2d|dtf_rct'` would be satisfied by an object with *single* property `'ord'`, *combo* property `'dtf_d2d'`, **or** *combo* property `'dtf_rct'`.                                        \cr   \tab   \cr
 #'                *flex*     \tab A *single*, *combo*, or *option* property spec as defined above.                                                                                                                                                                                                                                                                                      }
 #' @details **Functions for property spec decomposition**
@@ -696,12 +123,12 @@
 #' \cr\cr  **A character vector** \cr\cr `combos_from_spec` \cr `props_from_combo` \cr `props_from_specs` \cr `ppp_or_funs` \cr `all_props` \cr `prop_funs` \cr `ppp`
 #' \cr\cr  **A logical scalar**   \cr\cr `is_prop_combo`    \cr `is_prop`          \cr `is_prop_spec`     \cr `is_prop_fun` \cr `nas_or`    \cr `nll_or`    \cr `PPP`
 #' @examples
-#' nasOR("5", "ch1")
-#' nasOR(NA, "ch1")
+#' na0_or("5", "ch1")
+#' na0_or(NA, "ch1")
 #'
-#' nllOR(NULL, "ch1")
-#' nllOR("1", "ch1")
-#' nllOR(7, "ch1")
+#' nll_or(NULL, "ch1")
+#' nll_or("1", "ch1")
+#' nll_or(7, "ch1")
 #'
 #' all_props()
 #' prop_funs()
@@ -736,131 +163,151 @@ ppp <- function(x) {base::sort(base::c(uj::bbb(x), uj::ccc(x), uj::ddd(x), uj::e
 
 #' @rdname ppp
 #' @export
-ppp_or_funs <- function() {base::c("nasOR", "nllOR")}
+ppp_or_funs <- function() {base::c("na0_or", "nll_or")}
 
 #' @rdname ppp
 #' @export
 all_props <- function(as.dtf = F) {
-  uj::err_if_not(uj::isTF1(as.dtf), "[as.dtf] must be TRUE or FALSE.", PKG = "uj")
-  bval <- uj::bbb_props(); bfam <- base::rep("bbb", uj::N(bval)); blab <- uj::p0("b_", bval)
-  cval <- uj::ccc_props(); cfam <- base::rep("ccc", uj::N(cval)); clab <- uj::p0("c_", cval)
-  dval <- uj::ddd_props(); dfam <- base::rep("ddd", uj::N(dval)); dlab <- uj::p0("d_", dval)
-  eval <- uj::eee_props(); efam <- base::rep("eee", uj::N(eval)); elab <- uj::p0("e_", eval)
-  ival <- uj::iii_props(); ifam <- base::rep("iii", uj::N(ival)); ilab <- uj::p0("i_", ival)
-  mval <- uj::mmm_props(); mfam <- base::rep("mmm", uj::N(mval)); mlab <- uj::p0("m_", mval)
-  sval <- uj::sss_props(); sfam <- base::rep("sss", uj::N(sval)); slab <- uj::p0("s_", sval)
+  if (!uj:::.cmp_lgl_scl(as.dtf)) {uj::stopperr("[as.dtf] must be TRUE or FALSE.", PKG = "uj")}
+  bval <- uj::bbb_props(); bfam <- base::rep("bbb", base::length(bval)); blab <- base::paste0("b_", bval)
+  cval <- uj::ccc_props(); cfam <- base::rep("ccc", base::length(cval)); clab <- base::paste0("c_", cval)
+  dval <- uj::ddd_props(); dfam <- base::rep("ddd", base::length(dval)); dlab <- base::paste0("d_", dval)
+  eval <- uj::eee_props(); efam <- base::rep("eee", base::length(eval)); elab <- base::paste0("e_", eval)
+  ival <- uj::iii_props(); ifam <- base::rep("iii", base::length(ival)); ilab <- base::paste0("i_", ival)
+  mval <- uj::mmm_props(); mfam <- base::rep("mmm", base::length(mval)); mlab <- base::paste0("m_", mval)
+  sval <- uj::sss_props(); sfam <- base::rep("sss", base::length(sval)); slab <- base::paste0("s_", sval)
   val <- base::c(bval, cval, dval, eval, ival, mval, sval)
   fam <- base::c(bfam, cfam, dfam, efam, ifam, mfam, sfam)
   ord <- base::order(base::c(blab, clab, dlab, elab, ilab, mlab, slab))
-  if (!as.dtf) {val[ord]} else {uj::tb(family = fam[ord], ppp = val[ord])}
+  if (!as.dtf) {base::unique(val[ord])} else {tibble::tibble(family = fam[ord], ppp = val[ord])}
 }
 
 #' @rdname ppp
 #' @export
 prop_funs <- function(as.dtf = F) {
-  uj::err_if_not(uj::isTF1(as.dtf), "[as.dtf] must be TRUE or FALSE.", PKG = "uj")
-    b_fun <-         uj::bbb_funs();   b_fam <- base::rep(        "bbb", uj::N(  b_fun));   b_lab <- uj::p0("1_",   b_fam, "_",   b_fun)
-    c_fun <-         uj::ccc_funs();   c_fam <- base::rep(        "ccc", uj::N(  c_fun));   c_lab <- uj::p0("1_",   c_fam, "_",   c_fun)
-    d_fun <-         uj::ddd_funs();   d_fam <- base::rep(        "ddd", uj::N(  d_fun));   d_lab <- uj::p0("1_",   d_fam, "_",   d_fun)
-    e_fun <-         uj::eee_funs();   e_fam <- base::rep(        "eee", uj::N(  e_fun));   e_lab <- uj::p0("1_",   e_fam, "_",   e_fun)
-    i_fun <-         uj::iii_funs();   i_fam <- base::rep(        "iii", uj::N(  i_fun));   i_lab <- uj::p0("1_",   i_fam, "_",   i_fun)
-    m_fun <-         uj::mmm_funs();   m_fam <- base::rep(        "mmm", uj::N(  m_fun));   m_lab <- uj::p0("1_",   m_fam, "_",   m_fun)
-    s_fun <-         uj::sss_funs();   s_fam <- base::rep(        "sss", uj::N(  s_fun));   s_lab <- uj::p0("1_",   s_fam, "_",   s_fun)
-   or_fun <-      uj::ppp_or_funs();  or_fam <- base::rep(     "ppp_or", uj::N( or_fun));  or_lab <- uj::p0("2_",  or_fam, "_",  or_fun)
-   bc_fun <-     uj::bbb_ccc_funs();  bc_fam <- base::rep(    "bbb_ccc", uj::N( bc_fun));  bc_lab <- uj::p0("3_",  bc_fam, "_",  bc_fun)
-   bm_fun <-     uj::bbb_mmm_funs();  bm_fam <- base::rep(    "bbb_mmm", uj::N( bm_fun));  bm_lab <- uj::p0("3_",  bm_fam, "_",  bm_fun)
-   mc_fun <-     uj::mmm_ccc_funs();  mc_fam <- base::rep(    "mmm_ccc", uj::N( mc_fun));  mc_lab <- uj::p0("3_",  mc_fam, "_",  mc_fun)
-   sc_fun <-     uj::sss_ccc_funs();  sc_fam <- base::rep(    "sss_ccc", uj::N( sc_fun));  sc_lab <- uj::p0("3_",  sc_fam, "_",  sc_fun)
-   cc_fun <-     uj::cmp_ccc_funs();  cc_fam <- base::rep(    "cmp_ccc", uj::N( cc_fun));  cc_lab <- uj::p0("4_",  cc_fam, "_",  cc_fun)
-   cm_fun <-     uj::cmp_mmm_funs();  cm_fam <- base::rep(    "cmp_mmm", uj::N( cm_fun));  cm_lab <- uj::p0("4_",  cm_fam, "_",  cm_fun)
-   uc_fun <-     uj::unq_mmm_funs();  uc_fam <- base::rep(    "unq_ccc", uj::N( uc_fun));  uc_lab <- uj::p0("4_",  uc_fam, "_",  uc_fun)
-   um_fun <-     uj::unq_mmm_funs();  um_fam <- base::rep(    "unq_mmm", uj::N( um_fun));  um_lab <- uj::p0("4_",  um_fam, "_",  um_fun)
-  cmc_fun <- uj::cmp_mmm_ccc_funs(); cmc_fam <- base::rep("cmp_mmm_ccc", uj::N(cmc_fun)); cmc_lab <- uj::p0("5_", cmc_fam, "_", cmc_fun)
-  umc_fun <- uj::unq_mmm_ccc_funs(); umc_fam <- base::rep("unq_mmm_ccc", uj::N(umc_fun)); umc_lab <- uj::p0("5_", umc_fam, "_", umc_fun)
+  if (!uj:::.cmp_lgl_scl(as.dtf)) {uj::stopperr("[as.dtf] must be TRUE or FALSE.", PKG = "uj")}
+    b_fun <-         uj::bbb_funs();   b_fam <- base::rep(        "bbb", base::length(  b_fun));   b_lab <- base::paste0("1_",   b_fam, "_",   b_fun)
+    c_fun <-         uj::ccc_funs();   c_fam <- base::rep(        "ccc", base::length(  c_fun));   c_lab <- base::paste0("1_",   c_fam, "_",   c_fun)
+    d_fun <-         uj::ddd_funs();   d_fam <- base::rep(        "ddd", base::length(  d_fun));   d_lab <- base::paste0("1_",   d_fam, "_",   d_fun)
+    e_fun <-         uj::eee_funs();   e_fam <- base::rep(        "eee", base::length(  e_fun));   e_lab <- base::paste0("1_",   e_fam, "_",   e_fun)
+    i_fun <-         uj::iii_funs();   i_fam <- base::rep(        "iii", base::length(  i_fun));   i_lab <- base::paste0("1_",   i_fam, "_",   i_fun)
+    m_fun <-         uj::mmm_funs();   m_fam <- base::rep(        "mmm", base::length(  m_fun));   m_lab <- base::paste0("1_",   m_fam, "_",   m_fun)
+    s_fun <-         uj::sss_funs();   s_fam <- base::rep(        "sss", base::length(  s_fun));   s_lab <- base::paste0("1_",   s_fam, "_",   s_fun)
+   or_fun <-      uj::ppp_or_funs();  or_fam <- base::rep(     "ppp_or", base::length( or_fun));  or_lab <- base::paste0("2_",  or_fam, "_",  or_fun)
+   bc_fun <-     uj::bbb_ccc_funs();  bc_fam <- base::rep(    "bbb_ccc", base::length( bc_fun));  bc_lab <- base::paste0("3_",  bc_fam, "_",  bc_fun)
+   bm_fun <-     uj::bbb_mmm_funs();  bm_fam <- base::rep(    "bbb_mmm", base::length( bm_fun));  bm_lab <- base::paste0("3_",  bm_fam, "_",  bm_fun)
+   mc_fun <-     uj::mmm_ccc_funs();  mc_fam <- base::rep(    "mmm_ccc", base::length( mc_fun));  mc_lab <- base::paste0("3_",  mc_fam, "_",  mc_fun)
+   sc_fun <-     uj::sss_ccc_funs();  sc_fam <- base::rep(    "sss_ccc", base::length( sc_fun));  sc_lab <- base::paste0("3_",  sc_fam, "_",  sc_fun)
+   cc_fun <-     uj::cmp_ccc_funs();  cc_fam <- base::rep(    "cmp_ccc", base::length( cc_fun));  cc_lab <- base::paste0("4_",  cc_fam, "_",  cc_fun)
+   cm_fun <-     uj::cmp_mmm_funs();  cm_fam <- base::rep(    "cmp_mmm", base::length( cm_fun));  cm_lab <- base::paste0("4_",  cm_fam, "_",  cm_fun)
+   uc_fun <-     uj::unq_mmm_funs();  uc_fam <- base::rep(    "unq_ccc", base::length( uc_fun));  uc_lab <- base::paste0("4_",  uc_fam, "_",  uc_fun)
+   um_fun <-     uj::unq_mmm_funs();  um_fam <- base::rep(    "unq_mmm", base::length( um_fun));  um_lab <- base::paste0("4_",  um_fam, "_",  um_fun)
+  cmc_fun <- uj::cmp_mmm_ccc_funs(); cmc_fam <- base::rep("cmp_mmm_ccc", base::length(cmc_fun)); cmc_lab <- base::paste0("5_", cmc_fam, "_", cmc_fun)
+  umc_fun <- uj::unq_mmm_ccc_funs(); umc_fam <- base::rep("unq_mmm_ccc", base::length(umc_fun)); umc_lab <- base::paste0("5_", umc_fam, "_", umc_fun)
   fun <- base::c(b_fun, c_fun, d_fun, e_fun, i_fun, m_fun, s_fun, or_fun, bc_fun, bm_fun, mc_fun, sc_fun, cc_fun, cm_fun, uc_fun, um_fun, cmc_fun, umc_fun)
   fam <- base::c(b_fam, c_fam, d_fam, e_fam, i_fam, m_fam, s_fam, or_fam, bc_fam, bm_fam, mc_fam, sc_fam, cc_fam, cm_fam, uc_fam, um_fam, cmc_fam, umc_fam)
   ord <- base::c(b_lab, c_lab, d_lab, e_lab, i_lab, m_lab, s_lab, or_lab, bc_lab, bm_lab, mc_lab, sc_lab, cc_lab, cm_lab, uc_lab, um_lab, cmc_lab, umc_lab)
   ord <- base::order(ord)
   fun <- fun[ord]
   fam <- fam[ord]
-  uj::f0(!as.dtf, uj::UV(fun[ord]), base::unique(uj::tb(family = fam[ord], fun = fun[ord])))
+  uj::f0(!as.dtf, base::unique(fun[ord]), base::unique(tibble::tibble(family = fam[ord], fun = fun[ord])))
 }
-
-#' @rdname ppp
-#' @export
-is_prop <- function(prop) {uj::f0(!uj::cmp_ch3_scl(prop), F, uj::isIN1(base::tolower(prop), uj::all_props()))}
 
 #' @rdname ppp
 #' @export
 is_prop_fun <- function(fun) {
-  uj::err_if_not(uj::cmp_chr_scl(fun), "[fun] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  uj::isIN(fun, uj::prop_funs())
+  if (!uj:::.cmp_chr_scl(fun)) {uj::stopperr("[fun] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")}
+  fun %in% uj::prop_funs()
 }
 
 #' @rdname ppp
 #' @export
-is_prop_spec <- function(spec) {uj::f0(uj::cmp_chr_scl(spec), uj::allIN(uj:::spec2props(spec), uj::all_props()), F)}
+is_prop <- function(prop) {if (uj:::.cmp_ch3_scl(prop)) {base::tolower(prop) %in% uj:::.ppp} else {F}}
 
 #' @rdname ppp
 #' @export
-is_prop_combo <- function(combo) {uj::f0(!uj::cmp_chr_scl(combo), F, uj::allIN(uj:::.spec2props(combo), uj::all_props()))}
+is_prop_combo <- function(combo) {
+  if (uj:::.cmp_chr_scl(combo)) {
+    combo <- uj::av(base::strsplit(combo, "|", fixed = T))
+    if (base::length(combo) == 1) {
+      props <- uj::av(base::strsplit(combo, "_", fixed = T))
+      if (base::length(base::unique(props)) == base::length(props)) {base::all(props %in% uj:::.ppp)}
+      else {F}
+    } else {F}
+  } else {F}
+}
+
+#' @rdname ppp
+#' @export
+is_prop_spec <- function(spec) {
+  if (uj:::.cmp_chr_scl(spec)) {
+    combos <- uj::av(base::strsplit(spec, "|", fixed = T))
+    if (base::length(base::unique(combos)) == base::length(combos)) {
+      base::all(base::sapply(combos, uj::is_prop_combo) | base::sapply(combos, uj::is_prop))
+    } else {F}
+  } else {F}
+}
 
 #' @rdname ppp
 #' @export
 props_from_spec <- function(spec, valid = all_props()) {
-  ok.valid <- uj::f0(uj::cmp_chr_vec(valid), uj::allIN(valid, uj::all_props()), F)
-  uj::errs_if_nots(uj::cmp_chr_scl(spec), "[spec] must be a complete character scalar (?cmp_chr_scl).",
-                   ok.valid             , "[valid] must be a complete character vector (?cmp_chr_vec) containing only values from all_props().", PKG = "uj")
+  ok.valid <- uj::f0(uj:::.cmp_chr_vec(valid), base::all(valid %in% uj:::.ppp), F)
+  ok.spec <- uj:::.cmp_chr_scl(spec)
+  errs <- NULL
+  if (!ok.spec) {errs <- base::c(errs, "[spec] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!ok.valid) {errs <- base::c(errs, "[valid] must be a complete character vector (?cmp_chr_vec) containing only values from all_props().")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   singles <- uj:::.spec2props(spec)
-  uj::err_if(uj::N0(singles), "[spec] is empty.", PKG = "uj")
-  uj::err_if_not(uj::allIN(singles, valid), "The property spec [spec] contains a property not in [valid].", PKG = "uj")
-  uj::SUV(singles)
+  if (base::length(singles) == 0) {uj::stopperr("[spec] is empty.", PKG = "uj")}
+  if (!base::all(singles %in% valid)) {uj::stopperr("The property spec [spec] contains a property not in [valid].", PKG = "uj")}
+  base::sort(base::unique(singles))
 }
 
 #' @rdname ppp
 #' @export
-combos_from_spec <- function(spec, valid = uj::all_props()) {
-  singles <- uj::props_from_spec(spec, valid = valid)
-  uj::SUV(uj:::.spec2combos(spec))
-}
+combos_from_spec <- function(spec, valid = uj::all_props()) {base::sort(base::unique(uj:::.spec2combos(spec)))}
 
 #' @rdname ppp
 #' @export
-props_from_combo <- function(combo, valid = uj::all_props()) {uj::f0(uj::N1(uj:::.spec2props(combo)), uj::SUV(uj:::.combo2props(combo)), uj::stopperr("[combo] contains more than one combination property.", PKG = "uj"))}
+props_from_combo <- function(combo, valid = uj::all_props()) {
+  uj::f0(base::length(uj:::.spec2props(combo)) == 1,
+         base::sort(base::unique(uj:::.combo2props(combo))),
+         uj::stopperr("[combo] contains more than one combination property.", PKG = "uj"))
+}
 
 #' @rdname ppp
 #' @export
 PPP <- function(x, spec, ...) {
-  uj::err_if_not(uj::is_prop_spec(spec), "[spec] specifies a property not in all_props().", PKG = "uj")
+  if (!uj::is_prop_spec(spec)) {uj::stopperr("[spec] specifies a property not in all_props().", PKG = "uj")}
   if (uj::meets(x, ...)) {
     all.props <- uj::all_props()
-    combos <- uj::combos_from_spec(spec)
+    combos <- uj:::.spec2combos(spec)
     for (combo in combos) {
-      is.one <- uj::isIN1(combo, all.props)
+      is.one <- uj::f0(base::length(combo) == 1, combo %in% all.props, F)
       is.fun <- uj::is_prop_fun(combo)
       if (!is.one & !is.fun) {
-        singles <- uj::props_from_combo(combo)
+        singles <- uj:::.combo2props(combo)
         meets <- T
-        for (prop in singles) {if (meets) {meets <- meets & base::eval(base::parse(text = uj::p0("i", base::toupper(prop), "(x)")))}}
-      } else if (is.one) {meets <- base::eval(base::parse(text = uj::p0("i", combo, "(x)")))}
-      else {meets <- base::eval(base::parse(text = uj::p0(combo, "(x)")))}
+        for (prop in singles) {if (meets) {meets <- meets & base::eval(base::parse(text = base::paste0("uj:::.", base::toupper(prop), "(x)")))}}
+      } else if (is.one) {meets <- base::eval(base::parse(text = base::paste0("uj:::.", base::toupper(combo), "(x)")))}
+      else {meets <- base::eval(base::parse(text = base::paste0("uj::", combo, "(x)")))}
       if (meets) {return(T)}
-    }}
+  }}
   F
 }
 
 #' @rdname ppp
 #' @export
-nll_or <- function(x, spec, ...) {uj::f0(uj::null(x), T, uj::PPP(x, spec, ...))}
+nll_or <- function(x, spec, ...) {uj::f0(base::is.null(x), T, uj::PPP(x, spec, ...))}
 
 #' @rdname ppp
 #' @export
-nas_or <- function(x, spec, ...) {uj::f0(uj::isNAS(x), T, uj::PPP(x, spec, ...))}
+na0_or <- function(x, spec, ...) {uj::f0(uj:::.NA0(x), T, uj::PPP(x, spec, ...))}
 
 #' @rdname ppp
 #' @export
 prop_defs <- function() {
-  uj::trb(
+  tibble::tribble(
     ~family, ~value  , ~short                              , ~long,
     "bbb"  , "atm"   , "atomic"                            , "An atomic object",
     "bbb"  , "def"   , "defined"                           , "A defined object (not NULL)",
@@ -889,8 +336,8 @@ prop_defs <- function() {
     "iii"  , "cmp"   , "atomic and complete"               , "An complete atomic object (containing no NA values)",
     "iii"  , "dup"   , "atomic, complete, with duplicates" , "A complete dup atomic object (containing no NA values, containing duplicate values)",
     "iii"  , "mss"   , "atomic and missing"                , "A missing atomic object (containing only non-NA values)",
-    "iii"  , "nas"   , "atomic NA scalar"                  , "An atomic NA scalar object",
-    "iii"  , "oks"   , "atomic non-NA scalar"              , "An atomic non-NA scalar object",
+    "iii"  , "na0"   , "atomic NA scalar"                  , "An atomic NA scalar object",
+    "iii"  , "ok0"   , "atomic non-NA scalar"              , "An atomic non-NA scalar object",
     "iii"  , "prt"   , "atomic and partial"                , "A partial atomic object (containing both NA and non-NA values)",
     "iii"  , "unq"   , "atomic, complete, and unique"      , "A unique, complete atomic object (containing no NA or duplicate values)",
     "mmm"  , "ch1"   , "onechar"                           , "Any non-NA values are character scalars containing exactly 1 character",
@@ -934,49 +381,50 @@ prop_defs <- function() {
 #' @rdname ppp
 #' @export
 prop_verbose <- function(prop, print = TRUE) {
-  uj::errs_if_nots(uj::is_prop(prop), "[prop] must be a character scalar containing a single property spec.",
-                   uj::isTF1(print), "[print] must be TRUE or FALSE."                                       , PKG = "uj" )
-  if (uj::DEF(prop)) {prop <- uj::props_from_spec(prop)}
-  uj::err_if_not(uj::N1(prop), "[prop] contains more than 1 property value.", PKG = "uj")
+  errs <- NULL
+  if (!uj::is_prop(prop)) {errs <- base::c(errs, "[prop] must be a character scalar containing a single property spec.")}
+  prop <- base::tolower(prop)
+  if (!uj:::.cmp_lgl_scl(print)) {errs <- base::c(errs, "[print] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   y <- uj::prop_defs()
-  if (uj::DEF(prop)) {y <- uj::p0("\n family: '", uj::av(y$family[y$value == prop]), "'"  ,
-                                  "\n value:  '", prop, "'"                               ,
-                                  "\n short:   ", uj::av(y$short[y$value == prop])        ,
-                                  "\n long:    ", uj::av(y$long[y$value == prop]), ".\n\n")}
-  if (!print) {y} else if (uj::DTF(y)) {base::print(y, n = uj::NR(y))} else {base::cat(y)}
+  if (!base::is.null(prop)) {y <- base::paste0("\n family: '", uj::av(y$family[y$value == prop]), "'"  ,
+                                               "\n value:  '", prop, "'"                               ,
+                                               "\n short:   ", uj::av(y$short[y$value == prop])        ,
+                                               "\n long:    ", uj::av(y$long[y$value == prop]), ".\n\n")}
+  if (!print) {y} else if (base::is.data.frame(y)) {base::print(y, n = base::nrow(y))} else {base::cat(y)}
 }
 
 #' @rdname ppp
 #' @export
 combo_concise <- function(combo) {
-  uj::err_if_not(uj::is_prop_combo(combo), "[combo] does not contain a valid property combo spec.", PKG = "uj")
-  combo <- uj::props_from_combo(combo)
+  if (!uj::is_prop_combo(combo)) {uj::stopperr("[combo] does not contain a valid property combo spec.", PKG = "uj")}
+  combo <- uj:::.combo2props(combo)
   defs <- uj::prop_defs()
   fam <- uj::av(defs$family)
   val <- uj::av(defs$value)
   abb <- uj::av(defs$short)
-  bbb <- abb[uj::isIN1(val, combo) & fam == "bbb"]
-  ccc <- abb[uj::isIN1(val, combo) & fam == "ccc"]
-  ddd <- abb[uj::isIN1(val, combo) & fam == "ddd"]
-  eee <- abb[uj::isIN1(val, combo) & fam == "eee"]
-  iii <- abb[uj::isIN1(val, combo) & fam == "iii"]
-  mmm <- abb[uj::isIN1(val, combo) & fam == "mmm"]
-  sss <- abb[uj::isIN1(val, combo) & fam == "sss"]
-  object <- uj::N0(ccc)
-  y <- uj::g(", ", base::c(bbb, ccc, ddd, eee, iii, mmm, sss))
-  y <- uj::av(base::strsplit(y, ", ", T))
+  bbb <- abb[val %in% combo & fam == "bbb"]
+  ccc <- abb[val %in% combo & fam == "ccc"]
+  ddd <- abb[val %in% combo & fam == "ddd"]
+  eee <- abb[val %in% combo & fam == "eee"]
+  iii <- abb[val %in% combo & fam == "iii"]
+  mmm <- abb[val %in% combo & fam == "mmm"]
+  sss <- abb[val %in% combo & fam == "sss"]
+  object <- base::length(ccc) == 0
+  y <- base::paste0(base::c(bbb, ccc, ddd, eee, iii, mmm, sss), collapse = ", ")
+  y <- uj::av(base::strsplit(y, ", ", fixed = T))
   y <- y[!base::duplicated(y)]
-  y <- uj::g(", ", y)
-  if (object) {y <- uj::p0(y, " object")}
-  prefix <- uj::f0(uj::isIN1(base::substr(y, 1, 1), "a", "e", "i", "o", "u"), "an ", "a ")
-  uj::p0(prefix, y)
+  y <- base::paste0(y, collapse = ", ")
+  if (object) {y <- base::paste0(y, " object")}
+  prefix <- uj::f0(base::substr(y, 1, 1) %in% base::c("a", "e", "i", "o", "u"), "an ", "a ")
+  base::paste0(prefix, y)
 }
 
 #' @rdname ppp
 #' @export
 spec_concise <- function(spec) {
-  uj::err_if_not(uj::is_prop_spec(spec), "[spec] is not a valid property spec.", PKG = "uj")
-  combos <- uj::combos_from_spec(spec)
-  for (i in 1:uj::N(combos)) {combos[i] <- uj::combo_concise(combos[i])}
-  uj::p0(" OR ", combos)
+  if (!uj::is_prop_spec(spec)) {uj::stopperr("[spec] is not a valid property spec.", PKG = "uj")}
+  combos <- uj:::.spec2combos(spec)
+  for (i in 1:base::length(combos)) {combos[i] <- uj::combo_concise(combos[i])}
+  base::paste0(combos, collapse = " OR ")
 }

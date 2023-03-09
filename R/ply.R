@@ -7,6 +7,8 @@
 #'                `one_ply`    \tab Check for `1` resulting `TRUE` values\eqn{^{(1)}}.               \cr
 #'                `two_ply`    \tab Check for `2+` resulting `TRUE` values\eqn{^{(1)}}.              \cr
 #'                `any_ply`    \tab Check for `1+` resulting `TRUE` values\eqn{^{(1)}}.              \cr
+#'                `some_ply`   \tab Check for `2+` resulting `TRUE` values\eqn{^{(1)}}.              \cr
+#'                `many_ply`   \tab Check for `3+` resulting `TRUE` values\eqn{^{(1)}}.              \cr
 #'                `all_ply`    \tab Check for *only* resulting `TRUE` values\eqn{^{(1)}}.            \cr   \tab   \cr
 #'                `atm_ply`    \tab Apply `FUN` to \link[=av]{atomized} `x`.                         \cr
 #'                `mvc_ply`    \tab Apply `FUN` to elements of \link[=atm_mvc]{atomic multivec} `x`. \cr
@@ -15,10 +17,10 @@
 #'                `row_ply`    \tab Apply `FUN` to rows of `x`.                                      \cr
 #'                `col_ply`    \tab Apply `FUN` to columns of `x`.                                   \cr
 #'                `dim_ply`    \tab Apply `FUN` to cells of `x`.                                     \cr   \tab   \cr
-#'                `ply`        \tab Generalized `ply` function.                                                       }
-#'  \tabular{l}{  \eqn{^{(1)}} These functions assume that applying `FUN` produces `'logical'` results.               }
+#'                `ply`        \tab Generalized `ply` function.                                      \cr   \tab     }
+#'  \tabular{l}{  \eqn{^{(1)}} These functions assume that applying `FUN` produces `'logical'` results.             }
 #' @section The `PROC` argument: When not `NULL`, the `PROC` argument is an optional list with up to seven named elements, which give processing instructions as follows:
-#' \tabular{ll}{  **Name + value**    \tab **Processing instructions**
+#' \tabular{ll}{  **Name + value**    \tab **Processing instructions**                                  \cr
 #'                `$arg = '{spec}'`   \tab Check `x` for match to \code{\link[=ppp]{spec}}\eqn{^{(1)}}. \cr
 #'                `$out = '{spec}'`   \tab Check result for match to `'{spec}'`.\eqn{^{(1)}}            \cr   \tab   \cr
 #'                `$agg = 'none'`     \tab Inspect result for `0` `TRUE` values.                        \cr
@@ -31,7 +33,7 @@
 #'                `$na = TRUE`        \tab Replace resulting `NA`s with `TRUE`.                         \cr   \tab   \cr
 #'                `$a1 = TRUE`        \tab \link[=av]{Atomize} `x`.                                     \cr
 #'                `$a2 = TRUE`        \tab Atomize the result.                                          \cr   \tab   \cr
-#'                `$s = TRUE`         \tab \link[base:simplify2array]{Simplify} the result.                            }
+#'                `$s = TRUE`         \tab \link[base:simplify2array]{Simplify} the result.             \cr   \tab     }
 #'  \tabular{l}{  \eqn{^{(1)}} `{spec}` is a placeholder for a \link[=is_prop_spec]{valid property spec}.              }
 #' @param x An object to apply `FUN` to.
 #' @param FUN Function or character scalar name of a function to apply to `x`.
@@ -68,52 +70,71 @@
 #' vls_ply(egChrVls, paste0, collapse = "")
 #' @export
 ply <- function(x, FUN, ..., DIM = 0, PROC = NULL) {
-  if (uj::N0(x)) {uj::stopperr("[x] is empty.", PKG = "uj")}
+  if (base::length(x) == 0) {uj::stopperr("[x] is empty.", PKG = "uj")}
   vnames <- base::c("a1", "a2", "s", "na", "arg", "out", "agg")
   vaggs <- base::c("none", "any", "all", "one", "two")
   names <- base::names(PROC)
   procn <- base::length(PROC)
   namen <- base::length(names)
-  namev <- uj::f0(procn == 0, T, procn == namen & uj::allIN(names, vnames))
-  d0 <- uj::isEQ1(DIM, 0)
-  s <- uj::f0(uj::DEF(PROC$s), PROC$s, F)
-  a1 <- uj::f0(uj::DEF(PROC$a1), PROC$a1, F)
-  a2 <- uj::f0(uj::DEF(PROC$a1), PROC$a2, F)
-  na <- uj::f0(uj::DEF(PROC$na), PROC$na, F)
+  namev <- uj::f0(procn == 0, T, procn == namen & base::all(names %in% vnames))
+  s <- uj::f0(!base::is.null(PROC$s), PROC$s, F)
+  a1 <- uj::f0(!base::is.null(PROC$a1), PROC$a1, F)
+  a2 <- uj::f0(!base::is.null(PROC$a1), PROC$a2, F)
+  na <- uj::f0(!base::is.null(PROC$na), PROC$na, F)
   agg <- PROC$agg
   arg <- PROC$arg
   out <- PROC$out
+  d0 <- base::ifelse(uj::cmp_nnw_scl(DIM), DIM == 0, F)
   ok.dim <- d0 | uj::cmp_psw_vec(DIM)
-  ok.xdim <- uj::f0(d0 | !ok.dim, T, uj::allIN(DIM, 1:uj::NDIM(x)))
-  ok.proc <- uj::f0(uj::NLL(PROC), T, uj::isLST(PROC) & namev)
-  ok.na <- uj::f0(uj::isLG1(na), T, uj::isEQ1(na, "err"))
-  ok.agg <- uj::f0(uj::NLL(agg), T, uj::isIN1(agg, vaggs))
-  ok.arg <- uj::f0(uj::NLL(arg), T, uj::is_prop_spec(arg))
-  ok.out <- uj::f0(uj::NLL(out), T, uj::is_prop_spec(out))
-  uj::errs_if_nots(uj::FUN(FUN) , "[FUN] is not a function or the name of function."                                                 ,
-                   ok.dim       , "[DIM] must be 0 or a complete positive whole-number vec (?cmp_psw_vec)."                            ,
-                   ok.xdim      , "[DIM] contains a value larger than the number of defined dimensions of [x]."                      ,
-                   ok.proc      , "Elements of [PROC] must be uniquely named with names from c('a1', 'a2', 's', 'na', 'arg', 'out').",
-                   ok.na        , "When supplied, [PROC$na] must be TRUE, FALSE, NA, or 'err'."                                      ,
-                   ok.agg       , "When supplied, [PROC$agg] must be 'none', 'any', 'all', 'one', or 'two'."                         ,
-                   ok.arg       , "When supplied, [PROC$arg] must be a valid property specification as validated by isVALIDspec(.)." ,
-                   ok.out       , "When supplied, [PROC$out] must be a valid property specification as validated by isVALIDspec(.)." ,
-                   uj::isTF1(s) , "When supplied, [PROC$s] must be TRUE or FALSE."                                                   ,
-                   uj::isTF1(a1), "When supplied, [PROC$a1] must be TRUE or FALSE."                                                  ,
-                   uj::isTF1(a2), "When supplied, [PROC$a2] must be TRUE or FALSE."                                                  , PKG = "uj" )
+  ok.xdim <- uj::f0(d0 | !ok.dim, T, base::all(DIM %in% 1:base::length(base::dim(x))))
+  ok.proc <- uj::f0(base::is.null(PROC), T, uj::is_lst(PROC) & namev)
+  ok.na <- uj::f0(uj:::.lgl_scl(na), T, uj::f0(uj:::.cmp_chr_scl(na), na == "err", F))
+  ok.agg <- uj::f0(base::is.null(agg), T, agg %in% vaggs)
+  ok.arg <- uj::f0(base::is.null(arg), T, uj::is_prop_spec(arg))
+  ok.out <- uj::f0(base::is.null(out), T, uj::is_prop_spec(out))
+  ok.a1 <- uj::f0(base::is.null(a1), T, uj::cmp_lgl_scl(a1))
+  ok.a2 <- uj::f0(base::is.null(a1), T, uj::cmp_lgl_scl(a2))
+  ok.s <- uj::f0(base::is.null(s), T, uj::cmp_lgl_scl(s))
+  errs <- NULL
+  if (!uj:::.FUN(FUN)) {errs <- base::c(errs, "[FUN] is not a function or the name of function.")}
+  if (!ok.dim) {errs <- base::c(errs, "[DIM] must be 0 or a complete positive whole-number vec (?cmp_psw_vec).")}
+  if (!ok.xdim) {errs <- base::c(errs, "[DIM] contains a value larger than the number of defined dimensions of [x].")}
+  if (!ok.proc) {errs <- base::c(errs, "Elements of [PROC] must be uniquely named with names from c('a1', 'a2', 's', 'na', 'arg', 'out').")}
+  if (!ok.na) {errs <- base::c(errs, "When supplied, [PROC$na] must be TRUE, FALSE, NA, or 'err'.")}
+  if (!ok.agg) {errs <- base::c(errs, "When supplied, [PROC$agg] must be 'none', 'any', 'all', 'one', or 'two'.")}
+  if (!ok.arg) {errs <- base::c(errs, "When supplied, [PROC$arg] must be a valid property specification as validated by isVALIDspec(.).")}
+  if (!ok.out) {errs <- base::c(errs, "When supplied, [PROC$out] must be a valid property specification as validated by isVALIDspec(.).")}
+  if (!ok.s) {errs <- base::c(errs, "When supplied, [PROC$s] must be TRUE or FALSE.")}
+  if (!ok.a1) {errs <- base::c(errs, "When supplied, [PROC$a1] must be TRUE or FALSE.")}
+  if (!ok.a2) {errs <- base::c(errs, "When supplied, [PROC$a2] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   if (a1) {x <- uj::av(x)}
-  uj::err_if_not(uj::f0(uj::DEF(arg), uj::PPP(x, arg), F), "[x] does not match [PROC$arg = '", arg, "'].", PKG = "uj")
-  if (uj::isEQ1(DIM, 0)) {x <- uj::f0(uj::isARR(x) | uj::DTF(x), base::apply(x, 1:uj::N(base::dim(x)), FUN, ...), uj::f0(uj::NLL(x) | uj::VEC(x), base::sapply(x, FUN, ...), uj::f0(uj::VLS(x), base::lapply(x, FUN, ...), x)))}
+  if (!base::is.null(arg)) {ok.match <- uj::PPP(x, arg)} else {ok.match <- FALSE}
+  if (!ok.match) {uj::stopperr("[x] does not match [PROC$arg = '", arg, "'].", PKG = "uj")}
+  if (d0) {
+    if (base::is.arrary(x) | base::is.data.frame(x)) {x <- base::apply(x, 1:base::length(base::dim(x)), FUN, ...)}
+    else if (base::is.null(x) | uj:::.VEC(x)) {x <- base::sapply(x, FUN, ...)}
+    else if (base::is.list(x)) {x <- base::lapply(x, FUN, ...)}
+    else {x}
+  }
   else {x <- base::apply(x, DIM, FUN, ...)}
   if (s) {x <- base::simplify2array(x)}
   if (a2) {x <- uj::av(x)}
-  uj::err_if_not(uj::f0(uj::DEF(out), uj::PPP(x, out), T), "[x] does not match [PROC$out = '", out, "'].", PKG = "uj")
-  if (uj::DEF(agg)) {
-    err <- uj::isEQ1(na, 'err')
-    uj::errs_if_nots(uj::LGL(x)          , "[PROC$agg] is not NULL, but results of applying [FUN] are not of mode logical.",
-                     err | uj::noneNAS(x), "Applying [FUN] produced NA values, but [PROC$na = 'err']."                     , PKG = "uj" )
-    if (!err) {x[uj::na(x)] <- na}
-    x <- uj::f0(agg == "none", uj::noneT(x), uj::f0(agg == "any", uj::anyT(x), uj::f0(agg == "all", uj::allT(x), uj::f0(agg == "one", uj::oneT(x), uj::f0(agg == "two", uj::twoT(x), x)))))
+  if (!uj::f0(base::is.null(out), T, uj::PPP(x, out))) {uj::stopperr("[x] does not match [PROC$out = '", out, "'].", PKG = "uj")}
+  if (!base::is.null(agg)) {
+    err <- uj::f0(uj:::.cmp_chr_scl(na), na == "err", F)
+    if (!uj:::.LGL(x)) {errs <- base::c(errs, "[PROC$agg] is not NULL, but results of applying [FUN] are not of mode logical.")}
+    if (err & base::any(base::is.na(uj::av(x)))) {errs <- base::c(errs, "Applying [FUN] produced NA values, but [PROC$na = 'err'].")}
+    if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+    if (!err) {x[base::is.na(x)] <- na}
+    if      (agg == "all" ) {base::length(which(x)) == length(x)}
+    else if (agg == "none") {base::length(which(x)) == 0}
+    else if (agg == "one" ) {base::length(which(x)) == 1}
+    else if (agg == "two" ) {base::length(which(x)) == 2}
+    else if (agg == "any" ) {base::length(which(x)) > 0}
+    else if (agg == "some") {base::length(which(x)) > 1}
+    else if (agg == "many") {base::length(which(x)) > 2}
+    else {x}
   }
   x
 }
@@ -129,6 +150,20 @@ none_ply <- function(x, FUN, ..., DIM = 0, PROC = NULL) {
 #' @export
 any_ply <- function(x, FUN, ..., DIM = 0, PROC = NULL) {
   PROC$agg <- "any"
+  uj::ply(x, FUN, ..., DIM = DIM, PROC = PROC)
+}
+
+#' @rdname ply
+#' @export
+some_ply <- function(x, FUN, ..., DIM = 0, PROC = NULL) {
+  PROC$agg <- "some"
+  uj::ply(x, FUN, ..., DIM = DIM, PROC = PROC)
+}
+
+#' @rdname ply
+#' @export
+many_ply <- function(x, FUN, ..., DIM = 0, PROC = NULL) {
+  PROC$agg <- "many"
   uj::ply(x, FUN, ..., DIM = DIM, PROC = PROC)
 }
 
@@ -191,7 +226,8 @@ col_ply <- function(x, FUN, ..., PROC = NULL) {
 #' @rdname ply
 #' @export
 dim_ply <- function(x, FUN, ..., PROC = NULL) {
-  d <- uj::f0(uj::nDDD(x) < 2, 0, 1:uj::NDIM(x))
+  nd <- base::length(base::dim(x))
+  d <- uj::f0(nd < 2, 0, 1:nd)
   uj::ply(x, FUN, ..., DIM = d, PROC = PROC)
 }
 

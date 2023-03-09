@@ -61,7 +61,10 @@
 #' @export
 sss <- function(x) {
   y <- NULL
-  for (SSS in uj:::.SSS) {y <- base::c(y, uj::f0(uj::run('uj:::.', SSS, '(x)'), base::tolower(SSS), NULL))}
+  for (SSS in uj:::.SSS) {
+    match <- uj::run("uj:::.", SSS, "(x)")
+    if (match) {y <- base::c(y, base::tolower(SSS))}
+  }
   y
 }
 
@@ -77,14 +80,19 @@ sss_funs <- function() {uj:::.SSS}
 #' @export
 is_sss_spec <- function(spec) {
   spec <- uj:::.spec2props(spec)
-  uj::f0(uj::N0(spec), F, uj::allIN(spec, uj:::.sss))
+  if (base::length(spec) == 0) {F} else {base::all(spec %in% uj:::.sss)}
 }
 
 #' @rdname sss
 #' @export
 SSS <- function(x, spec, ...) {
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_sss_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from sss_props().')), PKG = "uj")
-  if (uj::meets(x, ...)) {for (PPP in base::toupper(uj:::.spec2props(spec))) {if (uj::run('uj:::.', PPP, '(x)')) {return(T)}}}
+  errs <- uj:::.meets_errs(x, ...)
+  if (!uj::is_sss_spec(spec)) {errs <- base::c(errs, "[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from sss_props().")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (uj::meets(x, ...)) {
+    props <- base::toupper(uj:::.spec2props(spec))
+    for (PPP in props) {if (uj::run('uj:::.', PPP, '(x)')) {return(T)}}
+  }
   F
 }
 

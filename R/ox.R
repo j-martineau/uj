@@ -6,15 +6,17 @@
 #' @details Each function in this family operates from a template as shown in the following tables where `{conj}` and `{n}` represent the values of arguments `conj` and `n`; `{pref}` and `{comp}` indicate the potentially-`NULL` values of arguments `pref` and `conj`; and `[a]`, `[b]`, and `[z]` represents elements of a list.
 #' \cr\cr **Simple lists**
 #' \cr\cr These functions do not incorporate a number into the Oxford-comma separated list:
-#' \tabular{ll}{  `ox`           \tab `'(pref) [a], [b], ..., {conj} [z]'`         \cr
-#'                `ox_or `       \tab `'(pref) [a], [b], ..., or [z]'`             \cr
-#'                `ox_and`       \tab `'(pref) [a], [b], ..., and [z]'`            \cr
-#'                `ox_any `      \tab `'(pref) any of [a], [b], ..., {conj} [z]'`  \cr
-#'                `ox_all `      \tab `'(pref) all of [a], [b], ..., {conj} [z]'`  \cr
-#'                `ox_none`      \tab `'(pref) none of [a], [b], ..., {conj} [z]'` \cr
-#'                `ox_some`      \tab `'(pref) some of [a], [b], ..., {conj} [z]'` \cr
-#'                `ox_either`    \tab `'(pref) either [a], [b], ..., or [z]'`      \cr
-#'                `ox_neither`   \tab `'(pref) neither [a], [b], ..., nor [z]'`      }
+#' \tabular{ll}{  `ox`             \tab `'(pref) [a], [b], ..., {conj} [z]'`         \cr
+#'                `oxford`         \tab                                              \cr
+#'                `oxford_comma`   \tab                                              \cr   \tab   \cr
+#'                `ox_or `         \tab `'(pref) [a], [b], ..., or [z]'`             \cr
+#'                `ox_and`         \tab `'(pref) [a], [b], ..., and [z]'`            \cr
+#'                `ox_any `        \tab `'(pref) any of [a], [b], ..., {conj} [z]'`  \cr
+#'                `ox_all `        \tab `'(pref) all of [a], [b], ..., {conj} [z]'`  \cr
+#'                `ox_none`        \tab `'(pref) none of [a], [b], ..., {conj} [z]'` \cr
+#'                `ox_some`        \tab `'(pref) some of [a], [b], ..., {conj} [z]'` \cr
+#'                `ox_either`      \tab `'(pref) either [a], [b], ..., or [z]'`      \cr
+#'                `ox_neither`     \tab `'(pref) neither [a], [b], ..., nor [z]'`      }
 #' \cr\cr **Numeric-comparison lists**
 #' \cr\cr These functions incorporate a number into the Oxford-comma separated list:
 #' \tabular{ll}{  `ox_n`            \tab `'(pref) {n} of [a], [b], ..., {conj} [z]'`                 \cr
@@ -93,21 +95,27 @@
 #' @export
 ox <- function(..., conj = "and", pref = "", quote = 0) {
   vals <- uj::av(...)
-  uj::errs_if_nots(uj::N1P(vals)        , "[...] is empty."                                           ,
-                   uj::cmp_atm(vals)   , "Arguments in [...] must be complete and atomic (?cmp_atm)." ,
-                   uj::cmp_chr_scl(conj), "[conj] must be a complete character scalar (?cmp_chr_scl).",
-                   uj::cmp_chr_scl(pref), "[pref] must be a complete character scalar (?cmp_chr_scl).",
-                   uj::isIN1(quote, 0:2), "[quote] must be 0, 1, or 2."                               , PKG = "uj")
-  n.vals <- uj::N(vals)
-  if (n.vals == 1) {uj::errs_if_nots(conj != 'nor'                  , "[conj = 'nor'], but [...] contains only 1 atomic element.",
-                                     conj != "or" | pref != "either", "[conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element.", PKG = "uj")}
-  if (pref != "") {pref <- uj::p0(pref, " ")}                                    # if pref(ix) is not empty, follow it with a space
+  if (!uj:::.cmp_nnw_scl(quote)) {ok.quote <- F} else {ok.quote <- quote %in% 0:2}
+  errs <- NULL
+  if (base::length(vals) == 0) {errs <- base::c(errs, "[...] is empty.")}
+  if (uj:::.cmp_chr_scl(conj)) {errs <- base::c(errs, "[conj] must be a complete character scalar (?cmp_chr_scl).")}
+  if (uj:::.cmp_chr_scl(pref)) {errs <- base::c(errs, "[pref] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!ok.quote) {errs <- base::c(errs, "[quote] must be 0, 1, or 2.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  n.vals <- base::length(vals)
+  if (n.vals == 1) {
+    if (conj == "nor") {uj::stopperr("[conj = 'nor'], but [...] contains only 1 atomic element.", PKG = "uj")}
+    else if (conj == "or" & pref == "either") {uj::stopperr("[conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element.", PKG = "uj")}
+  }
+  if (pref != "") {pref <- base::paste0(pref, " ")}                              # if pref(ix) is not empty, follow it with a space
   last <- vals[n.vals]                                                           # get the last element of X
   if (n.vals > 1) {                                                              # if there is more than one element in the list
-    list <- uj::g(", ", vals[1:(n.vals - 1)])                                    # : create a comma separated list with all but the last element of X
-    conj <- uj::p0(uj::f0(n.vals == 2, " ", ", "), conj, " ")                    # : if there are only 2, no additional comma to conj the last element to the list
-  } else {list <- conj <- ""}                                                    # ELSE the list of non-last elements and the conj for the last item aren't needed
-  uj::p0(pref, list, conj, last)                                                 # put everything together
+    list <- base::paste0(vals[1:(n.vals - 1)], collapse = ", ")                  # : create a comma separated list with all but the last element of X
+    if (n.vals == 2) {conj.pref <- " "} else {conj.pref <- ", "}
+    conj.suff <- " "
+    conj <- base::paste0(conj.pref, conj, conj.suff)
+  } else {list <- conj <- ""}
+  base::paste0(pref, list, conj, last)
 }
 
 #' @rdname ox
@@ -116,20 +124,23 @@ oxford <- ox
 
 #' @rdname ox
 #' @export
-oxfordCOMMA <- ox
+oxford_comma <- ox
 
 #' @rdname ox
 #' @export
 ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, first = TRUE) {
   vals <- uj::av(...)
-  uj::errs_if_nots(uj::N1P(vals)         , "[...] is empty."                                               ,
-                   uj::atm_cmp(vals)     , "Arguments in [...] must be complete and atomic (?cmp_atm_)."   ,
-                   uj::cmp_chr_scl(conj) , "[conj] must be a complete character scalar (?cmp_chr_scl)."    ,
-                   uj::cmp_chr_scl(comp) , "[comp] must be a non-NA character scalar (?cmp_chr_scl)."      ,
-                   uj::isIN1(quote, 0:2) , "[quote] must be 0, 1, or 2."                                   ,
-                   uj::cmp_nnw_scl(n)    , "[n] must be a non-negative whole number scalar (?cmp_nnw_scl).",
-                   uj::cmp_lgl_scl(first), "[first] must be TRUE or FALSE."                                , PKG = "uj")
-  pref <- uj::f0(comp == "", uj::p1(n, "of"), uj::f0(first, uj::p1(comp, n, "of"), uj::p1(n, comp, "of")))
+  if (!uj:::.cmp_nnw_scl(quote)) {ok.quote <- F} else {ok.quote <- quote %in% 0:2}
+  errs <- NULL
+  if (base::length(vals) == 0) {errs <- base::c(errs, "[...] is empty.")}
+  if (uj:::.cmp_chr_scl(conj)) {errs <- base::c(errs, "[conj] must be a complete character scalar (?cmp_chr_scl).")}
+  if (uj:::.cmp_chr_scl(comp)) {errs <- base::c(errs, "[comp] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!ok.quote) {errs <- base::c(errs, "[quote] must be 0, 1, or 2.")}
+  if (uj:::.cmp_nnw_scl(n)) {errs <- base::c(errs, )}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (comp == "") {pref <- base::paste(n, "of")}
+  else if (first) {pref <- base::paste(comp, n, "of")}
+  else            {pref <- base::paste(n, comp, "of")}
   uj::ox(vals, conj = conj, pref = pref, quote = quote)
 }
 

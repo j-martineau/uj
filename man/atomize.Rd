@@ -3,54 +3,54 @@
 \encoding{UTF-8}
 \name{atomize}
 \alias{atomize}
+\alias{glue_av}
+\alias{paste_av}
+\alias{sort_uv}
+\alias{which_av}
+\alias{sort_av}
+\alias{unique_av}
 \alias{atoms}
 \alias{av}
-\alias{a}
-\alias{sort_av}
 \alias{sv}
-\alias{glue_av}
 \alias{gv}
-\alias{paste_av}
 \alias{pv}
-\alias{unique_av}
 \alias{uv}
-\alias{sort_uv}
 \alias{suv}
-\alias{which_av}
 \alias{wv}
+\alias{a}
 \title{Atomize}
 \usage{
 atomize(...)
+
+glue_av(..., g = "")
+
+paste_av(..., p = "", s = "")
+
+sort_uv(...)
+
+which_av(...)
+
+sort_av(...)
+
+unique_av(...)
 
 atoms(...)
 
 av(...)
 
-a(...)
-
-sort_av(...)
-
 sv(...)
-
-glue_av(..., g = "")
 
 gv(..., g = "")
 
-paste_av(..., p = "", s = "")
-
 pv(..., p = "", s = "")
-
-unique_av(...)
 
 uv(...)
 
-sort_uv(...)
-
 suv(...)
 
-which_av(...)
-
 wv(...)
+
+a(...)
 }
 \arguments{
 \item{...}{Arguments to be atomized. Expected to atomize to a logical vector for \code{which_av} and its aliases \code{wav} and \code{wv}.}
@@ -97,22 +97,21 @@ unique_av(letters, "d", 0:9, 5)
 }
 \seealso{
 Other extensions: 
+\code{\link{N}()},
 \code{\link{case}()},
 \code{\link{cb}()},
 \code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
-\code{\link{evals}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
 \code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
-\code{\link{nis}()},
 \code{\link{paths}},
 \code{\link{purge}()},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{sum0}()},

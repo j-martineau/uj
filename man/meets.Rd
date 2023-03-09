@@ -42,7 +42,7 @@ meets(sqrd, ge = 1, le = 16)
 }
 \seealso{
 Other properties: 
-\code{\link{asMODE}()},
+\code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{checker}},
@@ -62,12 +62,11 @@ Other properties:
 \code{\link{unq_ccc}()}
 
 Other logicals: 
-\code{\link{evals}},
 \code{\link{failsafe}()}
 
 Other counts: 
-\code{\link{max_nch}()},
-\code{\link{nis}()}
+\code{\link{N}()},
+\code{\link{maxnch}()}
 }
 \concept{counts}
 \concept{logicals}

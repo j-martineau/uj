@@ -67,7 +67,10 @@
 #' @export
 eee <- function(x) {
   y <- NULL
-  for (eee in uj:::.EEE) {y <- base::c(y, uj::f0(uj::run('uj::', eee, '(x)'), eee, NULL))}
+  for (EEE in uj:::.EEE) {
+    match <- uj::run("uj:::.", EEE, "(x)")
+    if (match) {y <- base::c(y, base::tolower(EEE))}
+  }
   y
 }
 
@@ -81,13 +84,24 @@ eee_props <- function() {uj:::.eee}
 
 #' @rdname eee
 #' @export
-is_eee_spec <- function(spec) {spec <- uj:::.spec2props(spec); uj:::f0(uj::N0(spec), F, uj::allIN(spec, uj:::.EEEs))}
+is_eee_spec <- function(spec) {
+  spec <- uj:::.spec2props(spec)
+  if (base::length(spec) == 0) {F} else {base::all(spec %in% uj:::.eee)}
+}
 
 #' @rdname eee
 #' @export
 EEE <- function(x, spec, ...) {
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_eee_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from eee_props().')), PKG = "uj")
-  if (uj::meets(x, ...)) {for (prop in base::toupper(uj:::.spec2props(spec))) {if (uj::run('uj::', prop, '(x)')) {return(T)}}}
+  errs <- uj:::.meets_errs(x, ...)
+  if (!uj::is_eee_spec(spec)) {errs <- base::c(errs, "[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from eee_props().")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = 'uj')}
+  if (uj::meets(x, ...)) {
+    props <- uj:::.spec2props(spec)
+    for (prop in base::toupper(props)) {
+      match <- uj::run("uj:::.", prop, "(x)")
+      if (match) {return(T)}
+    }
+  }
   F
 }
 
@@ -113,4 +127,9 @@ EUD <- function(x, ...) {uj::EEE(x, 'eUD', ...)}
 
 #' @rdname eee
 #' @export
-neee <- function(x) {uj::f0(uj::N0(x), NaN, uj::f0(uj::NRC1(x), 0, uj::f0(uje::isVEC(x), 1, uj::NW(base::dim(x) > 1))))}
+neee <- function(x) {
+  if (base::length(x) == 0) {NaN}
+  else if (base::NCOL(x) * base::NROW(x) == 1) {0}
+  else if (base::is.vector(x)) {1}
+  else {base::length(base::which(base::dim(x) > 1))}
+}

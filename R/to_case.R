@@ -34,9 +34,15 @@
 #' @export
 tocase <- function(case, ...) {
   x <- uj::av(...)
-  uj::errs_if_nots(uj::isIN1(case, "l", "s", "t", "u"), "[case] must be either 'l', 's', 't', or 'u'.",
-                   uj::cmp_chr_vec(x), "[...] must be contain character values."                      , PKG = "uj")
-  uj::f0(case == "l", base::tolower(x), uj::f0(case == "u", base::toupper(x), uj::f0(case == "t", stringr::str_to_title(x), stringr::str_to_sentence(x))))
+  ok.case <- uj:::.cmp_chr_scl(case, valid = base::c("l", "s", "t", "u"))
+  errs <- NULL
+  if (!ok.case) {errs <- base::c(errs, "[case] must be either 'l', 's', 't', or 'u'.")}
+  if (!uj:::.cmp_chr_vec(x)) {errs <- base::c(errs, "[...] must be contain character values.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if      (case == "l") {base::tolower(x)}
+  else if (case == "u") {base::toupper(x)}
+  else if (case == "t") {stringr::str_to_title(x)}
+  else                  {stringr::str_to_sentence(x)}
 }
 
 #' @rdname tocase

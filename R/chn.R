@@ -13,11 +13,15 @@
 #' charN(words, 10)
 #' @export
 chn <- function(x, n) {
-  uj::errs_if_nots(uj::cmp_psw(n) & uj::NEQ(n, x) | uj::SCL(n), "[n] must be a complete positive whole-number valued scalar (?cmp_psw_scl) or of the same dimension as [x].",
-                   uj::pop_chr(x)                             , "[x] must be an populated atomic object of mode 'character' (?pop_chr)."                                    , PKG = "uj")
+  ok.x <- uj:::.pop_chr(x)
+  if (uj:::.cmp_psw_scl(n)) {ok.n <- TRUE} else {ok.n <- base::length(n) == base::length(x)}
+  errs <- NULL
+  if (!ok.n) {errs <- base::c(errs, "[n] must be a complete positive whole-number valued scalar (?cmp_psw_scl) or of the same dimension as [x].")}
+  if (!ok.x) {errs <- base::c(errs, "[x] must be an populated atomic object of mode 'character' (?pop_chr).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   base::substr(x, n, n)
 }
 
 #' @rdname chn
 #' @export
-charN <- chn
+charn <- chn

@@ -1,88 +1,3 @@
-# internals ####
-
-.has_dots <- function(...) {base::...length() > 0}
-
-.all_named <- function(...) {
-  ndots <- base::...length()
-  labs <- base::...names()
-  if (ndots == 0) {F}
-  else if (base::length(labs) != ndots) {F}
-  else {!base::any(base::is.na(labs))}
-}
-
-.ox_vals <- function(x, join) {
-  n <- uj::N(x)
-  if (n == 1) {x}
-  else if (n == 2) {uj::p0(x[1], " ", join, " ", x[2])}
-  else {uj::p0(uj::g(", ", x[1:(n - 1)]), ", ", join, " ", x[n])}
-}
-
-.fun_pkg_stack <- function(f, p, s, c1, cs) {
-  pkg_fun <- function(stack, lim, vec = T, pkg.only = F, fun.only = F) {
-    bad <- "< bad >"
-    unknown1 <- "..unknown.."
-    unknown2 <- "{ unknown }"
-    command1 <- "..command.line.."
-    command2 <- "{ command line }"
-    posP <- base::regexpr("(" , stack, fixed = T) - 1
-    pos2 <- base::regexpr("::", stack, fixed = T) - 1
-    pos3 <- base::regexpr(":::", stack, fixed = T) - 1
-    iP <- posP > 0
-    i2 <- pos2 > 0
-    i3 <- pos3 > 0
-    fun <- pkg <- base::rep.int(unknown1, uj::N(stack))
-    pkg[i2] <- base::substr(stack[i2], 1, pos2[i2])
-    pkg[i3] <- base::substr(stack[i3], 1, pos3[i3])
-    fun.start <- base::pmax(1, pos2, pos3)
-    fun[iP] <- base::substr(stack[iP], fun.start[iP], posP[iP])
-    nch.pkg <- uj::LEN(pkg)
-    nch.fun <- uj::LEN(fun)
-    abb.pkg <- lim < nch.pkg
-    abb.fun <- lim < nch.fun
-    last.pkg <- base::pmin(lim, nch.pkg - 3)
-    last.fun <- base::pmin(lim, nch.fun - 3)
-    pkg[abb.pkg] <- uj::p0(base::substr(pkg[abb.pkg], 1, last.pkg[abb.pkg]), "...")
-    fun[abb.fun] <- uj::p0(base::substr(fun[abb.fun], 1, last.fun[abb.fun]), "...")
-    pkg <- base::sapply(pkg, uj:::.bad_if_not_name)
-    fun <- base::sapply(fun, uj:::.bad_if_not_name)
-    wild <- base::c(bad, unknown1)
-    bad.fun <- uj::isIN1(fun, wild)
-    pkg <- pkg[!bad.fun]
-    fun <- fun[!bad.fun]
-    i2 <- i2[!bad.fun]
-    i3 <- i3[!bad.fun]
-    pkg[pkg %in% wild] <- unknown1
-    pkg[fun == command1] <- command2
-    fun[fun == command1] <- command2
-    if (uj::N0(pkg)) {
-      pkg <- fun <- "{ command line }"
-      i3 <- F
-    } else {pkg[pkg == unknown1] <- unknown2}
-    if (!pkg.only & !fun.only) {
-      if (vec) {
-        sep <- base::rep("::", uj::N(pkg))
-        sep[i3] <- uj::p0(sep[i3], ":")
-        uj::p0(pkg, sep, fun)
-      } else {base::list(pkg = pkg, fun = fun)}
-    } else if (pkg.only) {pkg}
-    else {fun}
-  }
-  if (!uj::cmp_chr_scl(uj::failsafe(f))) {f <- ""}
-  if (!uj::cmp_chr_scl(uj::failsafe(p))) {p <- ""}
-  if (!uj::cmp_chr_vec(uj::failsafe(s))) {s <- ""}
-  if (base::length(f) != 1) {f <- "{ command line }"}
-  if (base::length(p) != 1) {p <- "{ unknown }"}
-  if (base::length(s) == 1) {if (s == "") {s <- uj::callers()}}
-  if (f == "") {f <- pkg_fun(caller, 100, F)$fun[1]}
-  if (p == "") {p <- pkg_fun(caller, 100, F)$pkg[1]}
-  stack <- pkg_fun(s, 35, T)
-  if (base::length(s) > 2) {s <- uj::Nth_plus(s, 2)} else {s <- "command line"}
-  s <- base::paste0("callstack = { ", base::paste0(s, collapse = " > "), " }")
-  base::list(fun = f, pkg = p, stack = s)
-}
-
-# exported ####
-
 #' @name checker
 #' @encoding UTF-8
 #' @family properties
@@ -123,7 +38,7 @@
 #' \cr\cr Error banking utility functions: These functions are utilities for banking user-defined error messages within a function to allow for checking for multiple errors in separate statements and banking those error messages as they are checked, waiting to process banked error messages until an error checking block is completed. These functions also allow for generating and checking for error messages further up the call stack than the function in which the error banking/processing occurs by specifying the number of generations back in the call stack where error banking/processing occurs in `GENS`:
 #' \tabular{ll}{  `banked_errs`    \tab Retrieves the bank of error message stored in the environment of the function `GENS` generations back in the call stack.                                                                                            \cr   \tab   \cr
 #'                `bankerrs`       \tab Banks each element of \link[=cmp_chr_vec]{complete character vec} as an individual error message.                                                                                                                   \cr   \tab   \cr
-#'                `bankerr`        \tab Banks an arbitrary error message (built by \link[=collapse_dots]{collapsing} `...` args) in the environment of the function `GENS` generations back in the call stack.                                                            }
+#'                `bankerr`        \tab Banks an arbitrary error message (built by \link[=collapse_dots]{collapsing} `...` args) in the environment of the function `GENS` generations back in the call stack.                                                             }
 #' \cr\cr **Error checking / conditional error banking functions**
 #' \cr\cr **`checkerr`** checks for any banked error messages. If there are any, processes them and stops execution. Otherwise, does nothing.
 #' \cr\cr The remaining **`check_{props}`** functions in the following table check objects for specific properties and automatically generate errors only if those properties are not met:
@@ -137,12 +52,12 @@
 #'                `check_vals`      \tab A named `...` arg contains values not supplied in `VALS`.                                                                                                                                                          \cr   \tab   \cr
 #'                `check_fail`      \tab A named `...` arg produces an error when submitted to \code{\link[base]{identity}}.                                                                                                                                \cr   \tab   \cr
 #'                `check_cls`       \tab A named `...` arg is not of any class named in `CLS`.                                                                                                                                                              \cr   \tab   \cr
-#'                `check_lgl`       \tab A named `...` arg is neither `TRUE`, `FALSE`, `NA` (if `NAS = TRUE`), nor contained in `EXTRAS`.                                                                                                                   \cr   \tab   \cr
+#'                `check_lgl`       \tab A named `...` arg is neither `TRUE`, `FALSE`, `NA` (if `NA0 = TRUE`), nor contained in `EXTRAS`.                                                                                                                   \cr   \tab   \cr
 #'                `check_pop`       \tab A named `...` arg is either `NULL` or otherwise of length `0`.                                                                                                                                                     \cr   \tab   \cr
 #'                `check_tf`        \tab A named `...` arg is neither scalar `TRUE` nor scalar `FALSE`.                                                                                                                                                     \cr   \tab   \cr
-#'                `check_t`         \tab A named `...` arg is `FALSE`\eqn{^{(3)}}.                                                                                                                                                                                         }
+#'                `check_t`         \tab A named `...` arg is `FALSE`\eqn{^{(3)}}.                                                                                                                                                                          \cr   \tab     }
 #'  \tabular{l}{  \eqn{^{(1)}} Named if `NAMED = TRUE`.                                                                                                             \cr
-#'                \eqn{^{(2)}} May be scalar `NA` if `NAS = TRUE`.                                                                                                  \cr
+#'                \eqn{^{(2)}} May be scalar `NA` if `NA0 = TRUE`.                                                                                                  \cr
 #'                \eqn{^{(3)}} Collapses *unnamed* `...` args to an error message template, replacing the escape sequence `'{@@}'` with the *named* `...` arg's name. }
 #' @section The `...` arguments: Arguments supplied in `...` differ across functions in terms of whether they are named, how many named and/or unnamed `...` args there are, and their \link[=ppp]{property requirements} as follows:
 #' \tabular{llll}{                  \tab    **Number of** `...` **args**          \tab                                            \tab           \cr
@@ -158,7 +73,7 @@
 #'                  `check_lgl`     \tab    `1+` (\code{\link{atm_scl}})          \tab   `0`                                      \tab   `1+`    \cr
 #'                  `check_pop`     \tab    `1+` (any object)                     \tab   `0`                                      \tab   `1+`    \cr
 #'                  `check_tf`      \tab    `1+` (any object)                     \tab   `0`                                      \tab   `1+`    \cr
-#'                  `check_t`       \tab    `1+` (\code{\link{isTF1}})            \tab   `0`                                      \tab   `1+`    \cr
+#'                  `check_t`       \tab    `1+` (\code{\link{is_tf0}})           \tab   `0`                                      \tab   `1+`    \cr
 #'                  `stopperr`      \tab    `0+` (\code{\link{cmp_chr_vec}})      \tab   `0+` (\code{\link{cmp_chr_vec}})         \tab   `1+`    \cr
 #'                  `errs`          \tab    `0+` (\code{\link{cmp_chr_vec}})      \tab   `0+` (\code{\link{cmp_chr_vec}})         \tab   `1+`    \cr
 #'                  `err`           \tab    `0+` (\code{\link{cmp_chr_vec}})      \tab   `0+` (\code{\link{cmp_chr_vec}})         \tab   `1+`      }
@@ -168,7 +83,7 @@
 #' @param A `TRUE` or `FALSE` indicating whether to \link[=av]{atomize} `...` args.
 #' @param D A non-`NA` character scalar delimiter for collapsing `...` into a an error message.
 #' @param FUN A character scalar naming the function generating an error or errors.
-#' @param NAS `TRUE` or `FALSE` indicating whether `NA` values qualify as `'logical'`.
+#' @param NA0 `TRUE` or `FALSE` indicating whether `NA` values qualify as `'logical'`.
 #' @param PKG A character scalar naming the package `FUN` is a part of. The package is identified as `'unknown'` when `PKG = ""`.
 #' @param ERRS A character vector of individual error messages.
 #' @param GENS A \link[=cmp_nnw_scl]{complete non-negative whole-number scalar} indicating the number of generations back in the call stack in which to bank and/or check for error messages.
@@ -218,90 +133,27 @@
 #' }
 #' @export
 stopperr <- function(..., FUN = "", PKG = "", STACK = "") {
-  fun_pkg_stack <- function(f, p, s, c1, cs) {
-    pkg_fun <- function(stack, lim, vec = T, pkg.only = F, fun.only = F) {
-      bad <- "< bad >"
-      unknown1 <- "..unknown.."
-      unknown2 <- "{ unknown }"
-      command1 <- "..command.line.."
-      command2 <- "{ command line }"
-      posP <- base::regexpr("(" , stack, fixed = T) - 1
-      pos2 <- base::regexpr("::", stack, fixed = T) - 1
-      pos3 <- base::regexpr(":::", stack, fixed = T) - 1
-      iP <- posP > 0
-      i2 <- pos2 > 0
-      i3 <- pos3 > 0
-      fun <- pkg <- base::rep.int(unknown1, uj::N(stack))
-      pkg[i2] <- base::substr(stack[i2], 1, pos2[i2])
-      pkg[i3] <- base::substr(stack[i3], 1, pos3[i3])
-      fun.start <- base::pmax(1, pos2, pos3)
-      fun[iP] <- base::substr(stack[iP], fun.start[iP], posP[iP])
-      nch.pkg <- uj::LEN(pkg)
-      nch.fun <- uj::LEN(fun)
-      abb.pkg <- lim < nch.pkg
-      abb.fun <- lim < nch.fun
-      last.pkg <- base::pmin(lim, nch.pkg - 3)
-      last.fun <- base::pmin(lim, nch.fun - 3)
-      pkg[abb.pkg] <- uj::p0(base::substr(pkg[abb.pkg], 1, last.pkg[abb.pkg]), "...")
-      fun[abb.fun] <- uj::p0(base::substr(fun[abb.fun], 1, last.fun[abb.fun]), "...")
-      pkg <- base::sapply(pkg, uj:::.bad_if_not_name)
-      fun <- base::sapply(fun, uj:::.bad_if_not_name)
-      wild <- base::c(bad, unknown1)
-      bad.fun <- uj::isIN1(fun, wild)
-      pkg <- pkg[!bad.fun]
-      fun <- fun[!bad.fun]
-      i2 <- i2[!bad.fun]
-      i3 <- i3[!bad.fun]
-      pkg[pkg %in% wild] <- unknown1
-      pkg[fun == command1] <- command2
-      fun[fun == command1] <- command2
-      if (uj::N0(pkg)) {
-        pkg <- fun <- "{ command line }"
-        i3 <- F
-      } else {pkg[pkg == unknown1] <- unknown2}
-      if (!pkg.only & !fun.only) {
-        if (vec) {
-          sep <- base::rep("::", uj::N(pkg))
-          sep[i3] <- uj::p0(sep[i3], ":")
-          uj::p0(pkg, sep, fun)
-        } else {base::list(pkg = pkg, fun = fun)}
-      } else if (pkg.only) {pkg}
-      else {fun}
-    }
-    if (!uj::cmp_chr_scl(uj::failsafe(f))) {f <- ""}
-    if (!uj::cmp_chr_scl(uj::failsafe(p))) {p <- ""}
-    if (!uj::cmp_chr_vec(uj::failsafe(s))) {s <- ""}
-    if (base::length(f) != 1) {f <- "{ command line }"}
-    if (base::length(p) != 1) {p <- "{ unknown }"}
-    if (base::length(s) == 1) {if (s == "") {s <- uj::callers()}}
-    if (f == "") {f <- pkg_fun(caller, 100, F)$fun[1]}
-    if (p == "") {p <- pkg_fun(caller, 100, F)$pkg[1]}
-    stack <- pkg_fun(s, 35, T)
-    if (base::length(s) > 2) {s <- uj::Nth_plus(s, 2)} else {s <- "command line"}
-    s <- base::paste0("callstack = { ", base::paste0(s, collapse = " > "), " }")
-    base::list(fun = f, pkg = p, stack = s)
-  }
-  if (assertthat::is.error(base::identity(FUN))) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
-  if (assertthat::is.error(base::identity(PKG))) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
-  if (assertthat::is.error(base::identity(STACK))) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
-  errs <- uj::as.character(uj::av(uj::failsafe(base::list(...))))
-  errs[base::trimws(errs, which = "both") == ""] <- "{ unknown error }"
-  errs <- base::unique(errs)
-  where <- fun_pkg_stack(FUN, PKG, STACK, uj::caller(), uj::callers())
   .rwb <- function(x) {crayon::bgRed(crayon::white(crayon::bold(x)))}
   .bwp <- function(x) {crayon::bgBlack(crayon::white(x))}
   .byi <- function(x) {crayon::bgBlack(crayon::yellow(crayon::italic(x)))}
+  if (uj::is_err(FUN)) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
+  if (uj::is_err(PKG)) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
+  if (uj::is_err(STACK)) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
+  errs <- base::as.character(uj::av(uj::failsafe(base::list(...))))
+  errs[base::trimws(errs, which = "both", whitespace = "[ \t\r]") == ""] <- "{ unknown error }"
+  errs <- base::unique(errs)
+  where <- uj:::.fun_pkg_stack(FUN, PKG, STACK, uj::caller(), uj::callers())
   err.lab <- base::gsub(" ", " ", .rwb("\n ERROR GENERATED IN"), fixed = T)
-  fun.lab <- base::gsub(" ", " ", .byi("\n function:"         ), fixed = T)
-  pkg.lab <- base::gsub(" ", " ", .byi("\n package: "         ), fixed = T)
-  fun.val <- base::gsub(" ", " ", .bwp(FUN                    ), fixed = T)
-  pkg.val <- base::gsub(" ", " ", .bwp(PKG                    ), fixed = T)
-  pad.nch <- base::max(base::c(uj::LEN(fun.val), uj::LEN(pkg.val)))
+  fun.lab <- base::gsub(" ", " ", .byi("\n function:"), fixed = T)
+  pkg.lab <- base::gsub(" ", " ", .byi("\n package: "), fixed = T)
+  fun.val <- base::gsub(" ", " ", .bwp(FUN), fixed = T)
+  pkg.val <- base::gsub(" ", " ", .bwp(PKG), fixed = T)
+  pad.nch <- base::max(base::c(base::nchar(fun.val), base::nchar(pkg.val)))
   pad.val <- base::paste0(base::rep.int(" ", pad.nch), collapse = "")
-  fun.val <- .bwp(base::substr(uj::paste0(fun.val, pad.val), 1, pad.nch))
-  pkg.val <- .bwp(base::substr(uj::paste0(pkg.val, pad.val), 1, pad.nch))
+  fun.val <- .bwp(base::substr(base::paste0(fun.val, pad.val), 1, pad.nch))
+  pkg.val <- .bwp(base::substr(base::paste0(pkg.val, pad.val), 1, pad.nch))
   pad.val <- .rwb(pad.val)
-  message <- uj::paste0(uj::paste0("\n  \u2022 ", errs), collapse = "")
+  message <- base::paste0(base::paste0("\n  \u2022 ", errs), collapse = "")
   err.obj <- base::simpleError(where$stack, call = NULL)
   base::attr(err.obj, "function") <- where$fun
   base::attr(err.obj, "package") <- where$pkg
@@ -316,27 +168,22 @@ stopperr <- function(..., FUN = "", PKG = "", STACK = "") {
 
 #' @rdname checker
 #' @export
-getterr <- function() {
-  if (base::exists(".last_UJ_error.", envir = base::.GlobalEnv)) {base::get(".last_UJ_error.", envir = .GlobalEnv)}
-  else {NULL}
-}
+getterr <- function() {if (base::exists(".last_UJ_error.", envir = base::.GlobalEnv)) {base::get(".last_UJ_error.", envir = .GlobalEnv)} else {NULL}}
 
 #' @rdname checker
 #' @export
-purgerr <- function() {
-  if (base::exists(".last_UJ_error.", envir = .GlobalEnv)) {base::rm(".last_UJ_error.", envir = .GlobalEnv)}
-}
+purgerr <- function() {if (base::exists(".last_UJ_error.", envir = .GlobalEnv)) {base::rm(".last_UJ_error.", envir = .GlobalEnv)}}
 
 #' @rdname checker
 #' @export
 err_if <- function(TEST, ..., FUN = "", PKG = "", STACK = "", D = " ") {
-  if (assertthat::is.error(base::identity(D))) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
-  if (assertthat::is.error(base::identity(FUN))) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
-  if (assertthat::is.error(base::identity(PKG))) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
-  if (assertthat::is.error(base::identity(STACK))) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
-  if (uj::isT1(TEST)) {
+  if (uj::is_err(D)) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
+  if (uj::is_err(FUN)) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
+  if (uj::is_err(PKG)) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
+  if (uj::is_err(STACK)) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
+  if (base::isTRUE(TEST)) {
     ERR <- base::paste0(uj::av(uj::failsafe(base::list(...))), collapse = D)
-    if (ERR == "") {err <- "{ unknown error }"}
+    if (ERR == "") {ERR <- "{ unknown error }"}
     where <- uj:::.fun_pkg_stack(FUN, PKG, STACK, uj::caller(), uj::callers())
     uj::stopperr(ERR, FUN = where$fun, PKG = where$pkg, STACK = where$stack)
   }
@@ -345,13 +192,13 @@ err_if <- function(TEST, ..., FUN = "", PKG = "", STACK = "", D = " ") {
 #' @rdname checker
 #' @export
 err_if_not <- function(TEST, ..., FUN = "", PKG = "", STACK = "", D = " ") {
-  if (assertthat::is.error(base::identity(D))) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
-  if (assertthat::is.error(base::identity(FUN))) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
-  if (assertthat::is.error(base::identity(PKG))) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
-  if (assertthat::is.error(base::identity(STACK))) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
-  if (uj::notT1(uj::failsafe(TEST))) {
-    ERR <- base::paste0(uj::av(uj::failsafe(base::list(...))), collapse = D)
-    if (ERR == "") {err <- "{ unknown error }"}
+  if (uj::is_err(D)) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
+  if (uj::is_err(FUN)) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
+  if (uj::is_err(PKG)) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
+  if (uj::is_err(STACK)) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
+  if (!base::isTRUE(uj::failsafe(TEST))) {
+    ERR <- base::trimws(base::paste0(uj::av(uj::failsafe(base::list(...))), collapse = D), which = "both", whitespace = "[ \t\r]")
+    if (ERR == "") {ERR <- "{ unknown error }"}
     where <- uj:::.fun_pkg_stack(FUN, PKG, STACK, uj::caller(), uj::callers())
     uj::stopperr(ERR, FUN = where$fun, PKG = where$pkg, STACK = where$stack)
   }
@@ -360,18 +207,17 @@ err_if_not <- function(TEST, ..., FUN = "", PKG = "", STACK = "", D = " ") {
 #' @rdname checker
 #' @export
 errs_ifs <- function(..., FUN = "", PKG = "", STACK = "", D = " ") {
-  if (assertthat::is.error(base::identity(D))) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
-  if (assertthat::is.error(base::identity(FUN))) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
-  if (assertthat::is.error(base::identity(PKG))) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
-  if (assertthat::is.error(base::identity(STACK))) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
+  if (uj::is_err(D)) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
+  if (uj::is_err(FUN)) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
+  if (uj::is_err(PKG)) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
+  if (uj::is_err(STACK)) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
   ndots <- base::...length()
   if (ndots / 2 == base::round(ndots / 2)) {
-    if (!uj::cmp_chr_scl(uj::failsafe(D))) {D <- " "}
     ERRS <- NULL
     for (i in 1:(ndots - 1)) {
       TEST <- uj::failsafe(base::...elt(i))
-      if (uj::isT1(TEST)) {
-        ERR <- base::paste0(uj::av(uj::failsafe(uj::failsafe(base::...elt(i + 1)))), collapse = D)
+      if (base::isTRUE(TEST)) {
+        ERR <- base::paste0(uj::av(uj::failsafe(base::...elt(i + 1))), collapse = D)
         if (ERR == "") {ERR <- "{ unknown error }"}
         ERRS <- base::c(ERRS, ERR)
       }
@@ -381,24 +227,23 @@ errs_ifs <- function(..., FUN = "", PKG = "", STACK = "", D = " ") {
       where <- uj:::.fun_pkg_stack(FUN, PKG, STACK, uj::caller(), uj::callers())
       uj::stopperr(ERRS, FUN = where$fun, PKG = where$pkg, STACK = where$stack)
     }
-  } else {uj::stopperr("There must be an even number of [...] args.", FUN = "errs_ifs", PKG = "uj", STACK = uj::callers())}
+  } else {uj::stopperr("There must be an even number of [...] args.", PKG = "uj", STACK = uj::callers())}
 }
 
 #' @rdname checker
 #' @export
 errs_if_nots <- function(..., FUN = "", PKG = "", STACK = "", D = " ") {
-  if (assertthat::is.error(base::identity(D))) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
-  if (assertthat::is.error(base::identity(FUN))) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
-  if (assertthat::is.error(base::identity(PKG))) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
-  if (assertthat::is.error(base::identity(STACK))) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
+  if (uj::is_err(D)) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
+  if (uj::is_err(FUN)) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
+  if (uj::is_err(PKG)) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
+  if (uj::is_err(STACK)) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
   ndots <- base::...length()
   if (ndots / 2 == base::round(ndots / 2)) {
-    if (!uj::cmp_chr_scl(uj::failsafe(D))) {D <- " "}
     ERRS <- NULL
     for (i in 1:(ndots - 1)) {
       TEST <- uj::failsafe(base::...elt(i))
-      if (uj::isT1(TEST)) {
-        ERR <- base::paste0(uj::av(uj::failsafe(uj::failsafe(base::...elt(i + 1)))), collapse = D)
+      if (!base::isTRUE(TEST)) {
+        ERR <- base::paste0(uj::av(uj::failsafe(base::...elt(i + 1))), collapse = D)
         if (ERR == "") {ERR <- "{ unknown error }"}
         ERRS <- base::c(ERRS, ERR)
       }
@@ -408,22 +253,22 @@ errs_if_nots <- function(..., FUN = "", PKG = "", STACK = "", D = " ") {
       where <- uj:::.fun_pkg_stack(FUN, PKG, STACK, uj::caller(), uj::callers())
       uj::stopperr(ERRS, FUN = where$fun, PKG = where$pkg, STACK = where$stack)
     }
-  } else {uj::stopperr("There must be an even number of [...] args.", FUN = "errs_ifs", PKG = "uj", STACK = uj::callers())}
+  } else {uj::stopperr("There must be an even number of [...] args.", PKG = "uj", STACK = uj::callers())}
 }
 
 #' @rdname checker
 #' @export
 err_if_pop <- function(..., FUN = "", PKG = "", STACK = "", D = " ") {
-  if (assertthat::is.error(base::identity(D))) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
-  if (assertthat::is.error(base::identity(FUN))) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
-  if (assertthat::is.error(base::identity(PKG))) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
-  if (assertthat::is.error(base::identity(STACK))) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
+  if (uj::is_err(D)) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
+  if (uj::is_err(FUN)) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
+  if (uj::is_err(PKG)) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
+  if (uj::is_err(STACK)) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
   if (base::...length() > 0) {
     ERR <- NULL
     for (i in 1:base::...length()) {
       piece <- uj::failsafe(base::...elt(i))
       if (!base::is.null(piece)) {
-        if (!assertthat::is.error(piece)) {ERR <- base::c(ERR, base::as.character(piece))}
+        if (!uj::is_err(piece)) {ERR <- base::c(ERR, base::as.character(piece))}
         else {ERR <- base::c(ERR, "")}
       }
     }
@@ -439,9 +284,9 @@ err_if_pop <- function(..., FUN = "", PKG = "", STACK = "", D = " ") {
 #' @rdname checker
 #' @export
 errs_if_pop <- function(..., FUN = "", PKG = "", STACK = "") {
-  if (assertthat::is.error(base::identity(FUN))) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
-  if (assertthat::is.error(base::identity(PKG))) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
-  if (assertthat::is.error(base::identity(STACK))) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
+  if (uj::is_err(FUN)) {FUN <- ""} else if (!base::is.character(FUN) | base::length(FUN) != 1) {FUN <- ""} else if (base::is.na(FUN)) {FUN <- ""}
+  if (uj::is_err(PKG)) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
+  if (uj::is_err(STACK)) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
   ERRS <- uj::failsafe(base::list(...))
   ERRS <- base::as.character(uj::av(ERRS))
   ERRS[base::is.na(ERRS)] <- "{ unknown error }"
@@ -458,9 +303,9 @@ errs_if_pop <- function(..., FUN = "", PKG = "", STACK = "") {
 #' @rdname checker
 #' @export
 errs <- function(ERRS, PKG = "", STACK = "") {
-  if (assertthat::is.error(base::identity(PKG))) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
-  if (assertthat::is.error(base::identity(STACK))) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
-  ERRS <- uj::failsafe(ERRS)
+  if (uj::is_err(PKG)) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
+  if (uj::is_err(STACK)) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
+  ERRS <- base::as.character(uj::failsafe(ERRS))
   ERRS <- base::trimws(base::as.character(uj::av(ERRS)), which = "both")
   ERRS[base::is.na(ERRS)] <- "{ unknown error }"
   ERRS[ERRS == ""] <- " { unknown error }"
@@ -471,9 +316,9 @@ errs <- function(ERRS, PKG = "", STACK = "") {
 #' @rdname checker
 #' @export
 err <- function(..., PKG = "", STACK = "", D = " ") {
-  if (assertthat::is.error(base::identity(D))) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
-  if (assertthat::is.error(base::identity(PKG))) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
-  if (assertthat::is.error(base::identity(STACK))) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
+  if (uj::is_err(D)) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
+  if (uj::is_err(PKG)) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
+  if (uj::is_err(STACK)) {STACK <- ""} else if (!base::is.character(STACK) | base::length(STACK) != 1) {STACK <- ""} else if (base::is.na(STACK)) {STACK <- ""}
   ERR <- base::paste0(uj::av(uj::failsafe(base::list(...))), collapse = D)
   ERR <- base::trimws(ERR, which = "both")
   if (base::is.na(ERR)) {ERR <- "{ unknown error }"}
@@ -484,7 +329,8 @@ err <- function(..., PKG = "", STACK = "", D = " ") {
 #' @rdname checker
 #' @export
 banked_errs <- function(GENS = 0) {
-  if (!uj::cmp_psw_scl(uj::failsafe(GENS))) {GENS <- 0}
+  if (uj::is_err(GENS)) {GENS <- 0}
+  if (!uj:::.cmp_psw_scl(GENS)) {GENS <- 0}
   GENS <- GENS + 1
   caller <- base::parent.frame(GENS)
   if (base::exists(".uj_ERR_BANK_uj.", envir = caller, inherits = F)) {base::get(".uj_ERR_BANK_uj.", envir = caller, inherits = F)} else {NULL}
@@ -493,11 +339,11 @@ banked_errs <- function(GENS = 0) {
 #' @rdname checker
 #' @export
 checkerr <- function(GENS = 0, PKG = "") {
-  if (!uj::cmp_psw_scl(uj::failsafe(GENS))) {GENS <- 0}
+  if (uj::is_err(GENS)) {GENS <- 0} else if (!uj:::.cmp_psw_scl(GENS)) {GENS <- 0}
+  if (uj::is_err(PKG)) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
   GENS <- GENS + 1
-  if (assertthat::is.error(base::identity(PKG))) {PKG <- ""} else if (!base::is.character(PKG) | base::length(PKG) != 1) {PKG <- ""} else if (base::is.na(PKG)) {PKG <- ""}
   stack <- uj::callers()
-  stack <- stack[GENS:uj::N(stack)]
+  stack <- stack[GENS:base::length(stack)]
   caller <- base::parent.frame(GENS)
   if (base::exists(".uj_ERR_BANK_uj.", envir = caller, inherits = F)) {
     FUN <- uj::callerN(GENS + 1)
@@ -510,8 +356,8 @@ checkerr <- function(GENS = 0, PKG = "") {
 #' @rdname checker
 #' @export
 bankerr <- function(..., GENS = 0, D = "") {
-  if (assertthat::is.error(base::identity(D))) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
-  if (!uj::cmp_psw_scl(uj::failsafe(GENS))) {GENS <- 0}
+  if (uj::is_err(GENS)) {GENS <- 0} else if (!uj:::.cmp_psw_scl(GENS)) {GENS <- 0}
+  if (uj::is_err(D)) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
   GENS <- GENS + 1
   ERR <- base::paste0(uj::av(uj::failsafe(base::list(...))), collapse = D)
   ERR <- base::trimws(ERR, which = "both")
@@ -525,7 +371,7 @@ bankerr <- function(..., GENS = 0, D = "") {
 #' @rdname checker
 #' @export
 bankerrs <- function(..., GENS = 0) {
-  if (!uj::cmp_psw_scl(uj::failsafe(GENS))) {GENS <- 0}
+  if (uj::is_err(GENS)) {GENS <- 0} else if (!uj:::.cmp_psw_scl(GENS)) {GENS <- 0}
   GENS <- GENS + 1
   if (base::...length() > 0) {
     ERRS <- NULL
@@ -545,46 +391,52 @@ bankerrs <- function(..., GENS = 0) {
 #' @rdname checker
 #' @export
 check_t <- function(..., D = " ") {
-  if (assertthat::is.error(base::identity(D))) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
+  if (uj::is_err(D)) {D <- " "} else if (!base::is.character(D) | base::length(D) != 1) {D <- " "} else if (base::is.na(D)) {D <- " "}
   x <- uj::named_dots(...)
   anon <- uj::anon_dots(...)
   mssg <- base::paste0(uj::av(anon), collapse = D)
   labs <- base::names(x)
-  uj::errs_if_nots(base::length(x) > 0                                    , "There are no named [...] args."                                                                                  ,
-                   base::length(labs) == base::length(base::unique(labs)) , "Named [...] args must be uniquely named."                                                                        ,
-                   base::length(anon) > 0                                 , "There are no unnamed [...] args."                                                                                ,
-                   base::any(base::grepl("{@}", mssg, fixed = TRUE))      , "At least 1 unnamed [...] arg must contain the escape sequence '{@}' for inserting the names of named [...] args.", PKG = "uj")
-  for (i in 1:uj::N(x)) {if (!x[[1]]) {uj::bankerr(base::gsub("{@}", uj::p0("[", labs[i], "]"), mssg), GENS = 1)}}
+  errs <- NULL
+  if (base::length(x) == 0                                  ) {errs <- base::c(errs, "There are no named [...] args."                                                                                  )}
+  if (base::length(labs) != base::length(base::unique(labs))) {errs <- base::c(errs, "Named [...] args must be uniquely named."                                                                        )}
+  if (base::length(anon) == 0                               ) {errs <- base::c(errs, "There are no unnamed [...] args."                                                                                )}
+  if (!base::any(base::grepl("{@}", mssg, fixed = TRUE))    ) {errs <- base::c(errs, "At least 1 unnamed [...] arg must contain the escape sequence '{@}' for inserting the names of named [...] args.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  for (i in 1:base::length(x)) {if (!x[[1]]) {uj::bankerr(base::gsub("{@}", base::paste0("[", labs[i], "]"), mssg), GENS = 1)}}
 }
 
 #' @rdname checker
 #' @export
 check_tf <- function(...) {
-  uj::errs_if_nots(base::...length() > 0 , "There are no [...] args"                                  ,
-                   uj:::.all_named(...), "All [...] args must be uniquely named without using \"\".", PKG = "uj")
+  erss <- NULL
+  if (base::...length() == 0) {errs <- base::c(errs, "There are no [...] args")}
+  if (!uj:::.all_named(...) ) {errs <- base::c(errs, "All [...] args must be uniquely named without using \"\".")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  dot.names <- base::...names()
   dots <- base::list(...)
   ok <- base::sapply(dots, base::isTRUE) | base::sapply(dots, base::isFALSE)
-  for (i in 1:base::length(ok)) {if (!ok[i]) {uj::bankerr("[", uj::DN()[i], "] must be scalar TRUE or scalar FALSE.", GENS = 1, D = "")}}
+  for (i in 1:base::length(ok)) {if (!ok[i]) {uj::bankerr("[", dot.names[i], "] must be scalar TRUE or scalar FALSE.", GENS = 1, D = "")}}
 }
 
 #' @rdname checker
 #' @export
-check_lgl <- function(..., NAS = FALSE, EXTRAS = NULL) {
-  NAS <- uj::f0(uj::isTF1(NAS), NAS, F)
-  EXTRAS <- uj::f0(uj::cmp_atm(EXTRAS), EXTRAS, NULL)
-  uj::errs_if_nots(base::...length() > 0, "There are no [...] args"                                  ,
-                   uj:::.all_named(...) , "All [...] args must be uniquely named without using \"\".", PKG = "uj")
+check_lgl <- function(..., NA0 = FALSE, EXTRAS = NULL) {
+  NA0 <- uj::f0(uj:::.cmp_lgl_scl(NA0), NA0, F)
+  EXTRAS <- uj::f0(uj:::.cmp_atm(EXTRAS), EXTRAS, NULL)
+  errs <- NULL
+  if (base::...length() > 0) {errs <- base::c(errs, "There are no [...] args")}
+  if (uj:::.all_named(...) ) {errs <- base::c(errs, "All [...] args must be uniquely named without using \"\".")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   x <- base::list(...)
-  uj::err_if_not(base::all(base::sapply(x, uj::atm_scl)), "all [...] args must be atomic scalars.", PKG = "uj")
+  if (!(base::all(base::sapply(x, uj:::.atm_scl)))) {uj::stopperr("All [...] args must be atomic scalars.", PKG = "uj")}
   ok <- base::sapply(x, base::isFALSE)
-  if (NAS) {ok <- ok & base::all(base::is.na(x))}
-  if (uj::DEF(EXTRAS)) {ok <- ok & base::sapply(x, uj::IN, EXTRAS)}
+  if (NA0) {ok <- ok & base::all(base::is.na(x))}
   if (!base::all(ok)) {
     labs <- base::paste0("[", base::...names()[!ok], "]")
     if (base::length(labs) > 1) {mults <- base::c("s", "")} else {mults <- base::c("", "s")}
     vals <- base::c("TRUE", "FALSE")
-    if (NAS) {vals <- base::c(vals, "NA")}
-    if (uj::DEF(EXTRAS)) {
+    if (NA0) {vals <- base::c(vals, "NA")}
+    if (!base::is.null(EXTRAS)) {
       if (base::is.character(EXTRAS)) {vals <- base::c(vals, base::paste0("'", EXTRAS, "'"))}
       else {vals <- base::c(vals, base::as.character(EXTRAS))}
     }
@@ -596,22 +448,27 @@ check_lgl <- function(..., NAS = FALSE, EXTRAS = NULL) {
 #' @rdname checker
 #' @export
 check_nll_or <- function(FUNS, ..., VALS = NULL) {
-  ok.FUNS <- uj::cmp_chr_vec(FUNS)
-  if (ok.FUNS) {
-    FUNS <- uj::av(base::strsplit(FUNS, "|", TRUE))
-    ok.FUNS <- base::all(base::sapply(FUNS, uj::is_prop_fun))
-  }
+  FUNS <- uj::failsafe(FUNS)
+  VALS <- uj::failsafe(VALS)
+  errs <- NULL
+  if (uj::is_err(FUNS)) {errs <- base::c(errs, "[FUNS] must be a complete string vec (?cmp_str_vec).")}
+  if (uj::is_err(VALS)) {errs <- base::c(errs, "[VALS] must be NULL or a valid R object.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (!uj:::.cmp_chr_vec(FUNS)) {uj::stopperr("[FUNS] must be a complete string vec (?cmp_str_vec).")}
+  FUNS <- uj::av(base::strsplit(FUNS, "|", TRUE))
+  ok.FUNS <- base::all(FUNS %in% uj::prop_funs())
   labs <- base::...names()
   nx <- base::...length()
   ok.x <- nx > 0
   if (!ok.x) {ok.labs <- T} else {ok.labs <- uj:::.all_named(...)}
   if (base::is.null(VALS)) {ok.VALS <- T}
-  else {ok.VALS <- uj::cmp_atm(VALS)}
-  uj::errs_if_nots(ok.x   , "[...] arguments must be supplied."                             ,
-                   ok.labs, "[...] args must be uniquely named without using blank strings.",
-                   ok.FUNS, "[FUNS] must contain 1+ function names found in prop_funs()."   ,
-                   ok.VALS, "[VALS] must be NULL or complete and atomic (?cmp_atm)."        , PKG = "uj")
-  errs <- uj::p0("[", labs, "] must be NULL or ", uj::spec_concise(FUNS))
+  else {ok.VALS <- uj:::.cmp_vals(VALS)}
+  if (!ok.x) {errs <- base::c(errs, "[...] arguments must be supplied.")}
+  if (!ok.labs) {errs <- base::c(errs, "[...] args must be uniquely named without using blank strings.")}
+  if (!ok.FUNS) {errs <- base::c(errs, "[FUNS] must contain 1+ function names found in prop_funs().")}
+  if (!ok.VALS) {errs <- base::c(errs, "[VALS] must be NULL or complete and atomic (?cmp_atm).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  errs <- base::paste0("[", labs, "] must be NULL or ", uj::spec_concise(FUNS))
   for (i in 1:nx) {if (!base::is.null(base::...elt(i))) {
     ok <- F
     for (fun in FUNS) {
@@ -625,23 +482,28 @@ check_nll_or <- function(FUNS, ..., VALS = NULL) {
 #' @rdname checker
 #' @export
 check_nas_or <- function(FUNS, ..., VALS = NULL) {
-  ok.FUNS <- uj::cmp_chr_vec(FUNS)
-  if (ok.FUNS) {
-    FUNS <- uj::av(base::strsplit(FUNS, "|", TRUE))
-    ok.FUNS <- base::all(base::sapply(FUNS, uj::is_prop_fun))
-  }
+  FUNS <- uj::failsafe(FUNS)
+  VALS <- uj::failsafe(VALS)
+  errs <- NULL
+  if (uj::is_err(FUNS)) {errs <- base::c(errs, "[FUNS] must be a complete string vec (?cmp_str_vec).")}
+  if (uj::is_err(VALS)) {errs <- base::c(errs, "[VALS] must be NULL or a valid R object.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (!uj:::.cmp_str_vec(FUNS)) {uj::stopperr("[FUNS] must be a complete string vec (?cmp_str_vec).")}
+  FUNS <- uj::av(base::strsplit(FUNS, "|", TRUE))
+  ok.FUNS <- base::all(FUNS %in% uj::prop_funs())
   labs <- base::...names()
   nx <- base::...length()
   ok.x <- nx > 0
   if (!ok.x) {ok.labs <- T} else {ok.labs <- uj:::.all_named(...)}
   if (base::is.null(VALS)) {ok.VALS <- T}
-  else {ok.VALS <- uj::cmp_atm(VALS)}
-  uj::errs_if_nots(ok.x   , "[...] arguments must be supplied."                             ,
-                   ok.labs, "[...] args must be uniquely named without using blank strings.",
-                   ok.FUNS, "[FUNS] must contain 1+ function names found in prop_funs()."   ,
-                   ok.VALS, "[VALS] must be NULL or complete and atomic (?cmp_atm)."        , PKG = "uj")
-  errs <- uj::p0("[", labs, "] must be scalar NA or ", uj::spec_concise(FUNS))
-  for (i in 1:nx) {if (!uj::NAS(base::...elt(i))) {
+  else {ok.VALS <- uj:::.cmp_atm(VALS)}
+  if (!ok.x) {errs <- base::c(errs, "[...] arguments must be supplied.")}
+  if (!ok.labs) {errs <- base::c(errs, "[...] args must be uniquely named without using blank strings.")}
+  if (!ok.FUNS) {errs <- base::c(errs, "[FUNS] must contain 1+ function names found in prop_funs().")}
+  if (!ok.VALS) {errs <- base::c(errs, "[VALS] must be NULL or complete and atomic (?cmp_atm).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  errs <- base::paste0("[", labs, "] must be scalar NA or ", uj::spec_concise(FUNS))
+  for (i in 1:nx) {if (!uj::NA0(base::...elt(i))) {
     ok <- F
     for (fun in FUNS) {
       ok <- ok | base::eval(base::parse(text = base::paste0(fun, "(base::...elt(i))")))
@@ -654,19 +516,23 @@ check_nas_or <- function(FUNS, ..., VALS = NULL) {
 #' @rdname checker
 #' @export
 check_cls <- function(CLS, ...) {
+  if (uj::is_err(CLS)) {uj::stopperr("[CLS] must be a complete character vec (?cmp_chr_vec)", PKG = "uj")}
   x <- uj::named_dots(...)
   anon <- uj::anon_dots(...)
   labs <- base::names(x)
-  ok.n <- base::length(x) + base::length(anon) > 0
+  ok.n <- (base::length(x) + base::length(anon)) > 0
   ok.lab <- base::length(anon) == 0
   ok.unq <- base::length(labs) == base::length(base::unique(labs))
-  uj::errs_if_nots(ok.n                , "There are no [...] args."                              ,
-                   ok.unq              , "[...] arg names must be unique."                       ,
-                   uj::cmp_chr_vec(CLS), "[CLS] must be a complete character vec (?cmp_chr_vec).",
-                   ok.lab              , "All [...] args must be named."                         , PKG = "uj")
+  ok.cls <- uj:::.cmp_chr_vec(CLS)
+  errs <- NULL
+  if (!ok.n) {errs <- base::c(errs, "There are no [...] args.")}
+  if (!ok.unq) {errs <- base::c(errs, "[...] arg names must be unique.")}
+  if (!ok.cls) {errs <- base::c(errs, "[CLS] must be a complete character vec (?cmp_chr_vec).")}
+  if (!ok.lab) {errs <- base::c(errs, "All [...] args must be named.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   CLS <- uj::av(base::strsplit(CLS, "|", fixed = T))
   mssg <- base::paste0("'", CLS, "'")
-  n <- nsdr::length(mssg)
+  n <- base::length(mssg)
   if (n == 1) {mssg <- base::paste0("class ", mssg)}
   else if (n == 2) {mssg <- base::paste0("class ", mssg[1], " or ", mssg[2])}
   else {mssg <- base::paste0("any class in { ", paste0(mssg, collapse = ", "), " }")}
@@ -683,17 +549,18 @@ check_pop <- function(...) {
   ok.named <- base::length(blank) == 0
   ok.blank <- !base::any(labs == "")
   ok.unq <- base::length(labs) == base::length(base::unique(labs))
-  uj::errs_if_nots(ok.n    , "There are no [...] args."                        ,
-                   ok.named, "All [...] args must be named."                   ,
-                   ok.blank, "[...] arg names may not be blank strings (\"\").",
-                   ok.unq  , "[...] arg names must be unique."                 , PKG = "uj")
+  if (!ok.n) {errs <- base::c(errs, "There are no [...] args.")}
+  if (!ok.named) {errs <- base::c(errs, "All [...] args must be named.")}
+  if (!ok.blank) {errs <- base::c(errs, "[...] arg names may not be blank strings (\"\").")}
+  if (!ok.unq) {errs <- base::c(errs, "[...] arg names must be unique.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   for (i in 1:base::length(named)) {if (base::length(named[[i]]) == 0) {uj::bankerr("[", labs[i], "] is NULL or empty.", GENS = 1, D = "")}}
 }
 
 #' @rdname checker
 #' @export
 check_funs <- function(FUNS, ..., VALS = NULL) {
-  uj::err_if_not(uj::cmp_chr_vec(FUNS), "[FUNS] must be a complete character vec (?cmp_chr_vec).", PKG = "uj")
+  if (!uj:::.cmp_chr_vec(FUNS)) {uj::stopperr("[FUNS] must be a complete character vec (?cmp_chr_vec).", PKG = "uj")}
   FUNS <- uj::av(base::strsplit(FUNS, "|", TRUE))
   labs <- base::...names()
   n.dots <- base::...length()
@@ -702,18 +569,20 @@ check_funs <- function(FUNS, ..., VALS = NULL) {
   ok.blank <- !base::any(labs == "")
   ok.unq <- base::length(labs) == base::length(base::unique(labs))
   ok.funs <- base::all(base::sapply(FUNS, uj::is_prop_fun))
-  ok.vals <- base::ifelse(base::is.null(VALS), T, uj::cmp_atm(VALS))
-  uj::errs_if_nots(ok.n    , "[...] arguments must be supplied."                            ,
-                   ok.named, "all [...] args must be named."                                ,
-                   ok.blank, "[...] arg names may not be blank strings (\"\")"              ,
-                   ok.unq  , "[...] arg names must be unique."                              ,
-                   ok.funs , "[FUNS] contains a function name not found in uj::prop_funs().",
-                   ok.vals , "[VALS] must be NULL or complete and atomic (?cmp_atm)."       , PKG = "uj")
-  errs <- uj::p0("[", labs, "] must have the following properties: ", uj::spec_concise(FUNS))
-  for (i in 1:nx) {
+  ok.vals <- base::ifelse(base::is.null(VALS), T, uj:::.cmp_atm(VALS))
+  errs <- NULL
+  if (!ok.n) {errs <- base::c(errs, "[...] arguments must be supplied.")}
+  if (!ok.named) {errs <- base::c(errs, "all [...] args must be named.")}
+  if (!ok.blank) {errs <- base::c(errs, "[...] arg names may not be blank strings (\"\")")}
+  if (!ok.unq) {errs <- base::c(errs, "[...] arg names must be unique.")}
+  if (!ok.funs) {errs <- base::c(errs, "[FUNS] contains a function name not found in uj::prop_funs().")}
+  if (!ok.vals) {errs <- base::c(errs, "[VALS] must be NULL or complete and atomic (?cmp_atm).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  errs <- base::paste0("[", labs, "] must have the following properties: ", uj::spec_concise(FUNS))
+  for (i in 1:n.dots) {
     ok <- FALSE
     for (fun in FUNS) {
-      ok <- ok | base::eval(base::parse(text = uj::p0(fun, "(base::...elt(i))")))
+      ok <- ok | base::eval(base::parse(text = base::paste0(fun, "(base::...elt(i))")))
       if (ok & !base::is.null(VALS)) {ok <- ok & base::all(base::...elt(i) %in% VALS)}
     }
     if (!ok) {uj::bankerr(errs[i], GENS = 1)}
@@ -722,26 +591,35 @@ check_funs <- function(FUNS, ..., VALS = NULL) {
 
 #' @rdname checker
 #' @export
-check_spec <- function(SPEC, ..., NAS = F) {
+check_spec <- function(SPEC, ..., NA0 = F) {
   n.dots <- base::...length()
   labs <- base::...names()
   ok.n <- n.dots > 0
-  ok.nas <- uj::isTF1
+  ok.nas <- uj::fs_na(NA0)
   ok.named <- base::length(labs) == n.dots
   ok.blank <- !base::any(labs == "")
   ok.unq <- base::length(labs) == base::length(base::unique(labs))
-  ok.spec <- uj::cmp_chr_scl(SPEC)
-  if (ok.spec) {ok.spec <- ok.spec & uj::is_prop_spec(SPEC)}
-  uj::errs_if_nots(ok.n    , "[...] is empty."                                              ,
-                   ok.nas  , "[NAS] must be TRUE or FALSE."                                 ,
-                   ok.named, "all [...] args mut be named."                                 ,
-                   ok.blank, "[...] arg names may not be blank."                            ,
-                   ok.unq  , "[...] arg names must be unique."                              ,
-                   ok.spec , "[SPEC] is not a valid property specification (?is_prop_spec).", PKG = "uj")
-  errs <- uj::p0("[", labs, "] must be ", uj::spec_concise(SPEC), ".")
+  ok.spec <- uj:::.cmp_chr_scl(SPEC)
+  if (ok.spec) {
+    combos <- uj::av(base::strsplit(SPEC, "|", fixed = TRUE))
+    for (combo in combos) {
+      props <- uj::av(base::strsplit(combo, "_", fixed = T))
+      if (!base::all(base::tolower(props) %in% uj:::.ppp)) {ok.spec <- F}
+      else if (base::length(props) != base::length(base::unique(props))) {ok.spec <- F}
+    }
+  }
+  errs <- NULL
+  if (!ok.n) {errs <- base::c(errs, "[...] is empty.")}
+  if (!ok.nas) {errs <- base::c(errs, "[NA0] must be TRUE or FALSE.")}
+  if (!ok.named) {errs <- base::c(errs, "all [...] args mut be named.")}
+  if (!ok.blank) {errs <- base::c(errs, "[...] arg names may not be blank.")}
+  if (!ok.unq) {errs <- base::c(errs, "[...] arg names must be unique.")}
+  if (!ok.spec) {errs <- base::c(errs, "[SPEC] is not a valid property specification (?is_prop_spec).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  errs <- base::paste0("[", labs, "] must be ", uj::spec_concise(SPEC), ".")
   for (i in 1:n.dots) {
     val <- F
-    if (NAS) {val <- uj::NAS(base::...elt(i))}
+    if (NA0) {val <- uj:::.NA0(base::...elt(i))}
     if (!val) {val <- uj::PPP(base::...elt(i), SPEC)}
     if (!val) {uj::bankerr(errs[i], GENS = 1)}
   }
@@ -749,9 +627,9 @@ check_spec <- function(SPEC, ..., NAS = F) {
 
 #' @rdname checker
 #' @export
-check_vals <- function(VALS, ..., A = TRUE, NAS = FALSE) {
+check_vals <- function(VALS, ..., A = TRUE, NA0 = FALSE) {
   valid <- function(y) {
-    if (base::is.atomic(y)) {base::all(base::sapply(uj::av(y), uj::IN, VALS))}
+    if (base::is.atomic(y)) {base::all(base::sapply(uj::av(y), base::`%in%`, table = VALS))}
     else if (base::is.data.frame(y)) {base::all(base::apply(y, 2, valid))}
     else if (base::is.list(y)) {base::all(base::sapply(y, valid))}
     else {F}
@@ -759,28 +637,30 @@ check_vals <- function(VALS, ..., A = TRUE, NAS = FALSE) {
   n.dots <- base::...length()
   labs <- base::...names()
   ok.n <- n.dots > 0
-  ok.a <- uj::isTF1(A)
-  ok.nas <- uj::isTF1(NAS)
+  ok.a <- uj:::.cmp_lgl_scl(A)
+  ok.nas <- uj:::.cmp_lgl_scl(NA0)
   ok.named <- base::length(labs) == n.dots
   ok.blank <- !base::any(labs == "")
   ok.unq <- base::length(labs) == base::length(base::unique(labs))
-  ok.vals <- uj::cmp_atm(VALS)
-  uj::errs_if_nots(ok.n    , "[...] is empty."                                                   ,
-                   ok.a    , "[A] must be TRUE or FALSE."                                        ,
-                   ok.nas  , "[NAS] must be TRUE or FALSE."                                      ,
-                   ok.vals , "[VALS] must be complete and atomic (?cmp_atm)."                    ,
-                   ok.named, "all [...] args must be named."                                     ,
-                   ok.blank, "[...] arg names may not be blank strings (\"\")."                  ,
-                   ok.unq  , "[...] arg names must be unique."                                   , PKG = "uj")
+  ok.vals <- uj:::.cmp_atm(VALS)
+  errs <- NULL
+  if (!ok.n) {errs <- base::c(errs, "[...] is empty.")}
+  if (!ok.a) {errs <- base::c(errs, "[A] must be TRUE or FALSE.")}
+  if (!ok.nas) {errs <- base::c(errs, "[NA0] must be TRUE or FALSE.")}
+  if (!ok.vals) {errs <- base::c(errs, "[VALS] must be complete and atomic (?cmp_atm).")}
+  if (!ok.named) {errs <- base::c(errs, "all [...] args must be named.")}
+  if (!ok.blank) {errs <- base::c(errs, "[...] arg names may not be blank strings (\"\").")}
+  if (!ok.unq) {errs <- base::c(errs, "[...] arg names must be unique.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   x <- base::list(...)
-  atm <- base::sapply(x, uj::pop_atm)
-  uj::err_if_not(!A | base::all(atm), "When [A = TRUE], all [...] args must be populated and atomic (?pop_atm).", PKG = "uj")
+  atm <- base::sapply(x, uj:::.POP) & base::sapply(x, uj:::.ATM)
+  if (A & !base::all(atm)) {uj::stopperr("When [A = TRUE], all [...] args must be populated and atomic (?pop_atm).", PKG = "uj")}
   if (!A) {
     vls <- base::sapply(x, atm_vls)
     dtf <- base::sapply(x, atm_dtf)
-    uj::err_if_not(base::all(atm | vls | dtf), "All [...] args must be populated and atomic (?pop_atm), atomic vlists (?atm_vls), or atomic data.frames (?atm_dtf).", PKG = "uj")
+    if (!base::all(atm | vls | dtf)) {uj::stopperr("All [...] args must be populated and atomic (?pop_atm), atomic vlists (?atm_vls), or atomic data.frames (?atm_dtf).", PKG = "uj")}
   }
-  for (i in 1:nx) {if (!valid(x[[i]])) {uj::bankerr("[", labs[i], "] contains 1 or more values not in [VALS].", GENS = 1, D = "")}}
+  for (i in 1:n.dots) {if (!valid(x[[i]])) {uj::bankerr("[", labs[i], "] contains 1 or more values not in [VALS].", GENS = 1, D = "")}}
 }
 
 #' @rdname checker
@@ -789,8 +669,7 @@ check_chars <- function(CHARS, ..., A = TRUE) {
   valid <- function(y) {
     if (base::is.character(y)) {
       y <- base::paste0(uj::av(y), collapse = "")
-      y <- base::strsplit(y, "", fixed = T)
-      y <- uj::av(y)
+      y <- uj::av(base::strsplit(y, "", fixed = T))
       base::all(y %in% CHARS)
     } else if (base::is.data.frame(y)) {base::all(base::apply(y, 2, valid))}
     else if (base::is.list(y)) {base::all(base::sapply(y, valid))}
@@ -799,26 +678,28 @@ check_chars <- function(CHARS, ..., A = TRUE) {
   n.dots <- base::...length()
   labs <- base::...names()
   ok.n <- n.dots > 0
-  ok.a <- uj::isTF1(A)
+  ok.a <- uj:::.cmp_lgl_scl(A)
   ok.named <- base::length(labs) == n.dots
   ok.blank <- !base::any(labs == "")
   ok.unq <- base::length(labs) == base::length(base::unique(labs))
-  ok.chars <- uj::cmp_chr(CHARS)
-  uj::errs_if_nots(ok.n    , "[...] is empty."                                           ,
-                   ok.a    , "[A] must be TRUE or FALSE."                                ,
-                   ok.chars, "[CHARS] must be complete and of mode character (?cmp_chr).",
-                   ok.named, "all [...] args must be named."                             ,
-                   ok.blank, "[...] arg names may not be blank strings (\"\")."          ,
-                   ok.unq  , "[...] arg names must be unique."                           , PKG = "uj")
+  ok.chars <- uj:::.cmp_str(CHARS)
+  errs <- NULL
+  if (!ok.n) {errs <- base::c(errs, "[...] is empty.")}
+  if (!ok.a) {errs <- base::c(errs, "[A] must be TRUE or FALSE.")}
+  if (!ok.chars) {errs <- base::c(errs, "[CHARS] must be complete and of mode string (?cmp_str).")}
+  if (!ok.named) {errs <- base::c(errs, "all [...] args must be named.")}
+  if (!ok.blank) {errs <- base::c(errs, "[...] arg names may not be blank strings (\"\").")}
+  if (!ok.unq) {errs <- base::c(errs, "[...] arg names must be unique.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   x <- base::list(...)
-  chr <- base::sapply(x, uj::pop_chr)
-  uj::err_if_not(!A | base::all(chr), "When [A = TRUE], all [...] args must be populated and of mode character (?pop_chr).", PKG = "uj")
+  chr <- base::sapply(x, uj:::.POP) & base::sapply(x, uj:::.CHR)
+  if (A | !base::all(chr)) {uj::stopperr("When [A = TRUE], all [...] args must be populated and of mode character (?pop_chr).", PKG = "uj")}
   if (!A) {
     vls <- base::sapply(x, chr_vls)
     dtf <- base::sapply(x, chr_dtf)
-    uj::err_if_not(base::all(chr | vls | dtf), "All [...] args must be populated and of mode character (?pop_chr), character vlists (?chr_vls), or character data.frames (?chr_dtf).", PKG = "uj")
+    if (!base::all(chr | vls | dtf)) {uj::stopperr("All [...] args must be populated and of mode character (?pop_chr), character vlists (?chr_vls), or character data.frames (?chr_dtf).", PKG = "uj")}
   }
-  for (i in 1:nx) {if (!valid(x[[i]])) {uj::bankerr("[", labs[i], "] contains 1 or more characters not in [CHARS].", GENS = 1, D = "")}}
+  for (i in 1:n.dots) {if (!valid(x[[i]])) {uj::bankerr("[", labs[i], "] contains 1 or more characters not in [CHARS].", GENS = 1, D = "")}}
 }
 
 #' @rdname checker
@@ -826,19 +707,28 @@ check_chars <- function(CHARS, ..., A = TRUE) {
 check_dots <- function(SPEC, ..., NAMED = FALSE) {
   n.dots <- base::...length()
   labs <- base::...names()
-  ok.NAMED <- uj::isTF1(NAMED)
-  ok.spec <- base::ifelse(uj::cmp_chr_scl(SPEC), uj::is_prop_spec(SPEC), F)
+  ok.named <- uj:::.cmp_lgl_scl(NAMED)
+  ok.spec <- uj:::.cmp_chr_vec(SPEC)
+  if (ok.spec) {
+    combos <- uj::av(base::strsplit(SPEC, "|", fixed = TRUE))
+    for (combo in combos) {
+      props <- uj::av(base::strsplit(combos, "_", fixed = TRUE))
+      if (!base::all(base::tolower(props) %in% uj:::.ppp)) {ok.spec <- FALSE}
+      else if (base::length(props) != base::length(base::unique(props))) {ok.spec <- FALSE}
+  }}
   ok.n <- n.dots > 0
-  ok.named <- !uj::isT1(NAMED) | base::length(labs) == n.dots
+  ok.named <- !base::isTRUE(NAMED) | base::length(labs) == n.dots
   ok.blank <- !base::any(labs == "")
   ok.unq <- base::length(labs) == base::length(base::unique(labs))
-  uj::errs_if_nots(ok.NAMED, "[NAMED] must be TRUE or FALSE."                   ,
-                   ok.n    , "[...] is empty."                                  ,
-                   ok.spec , "[SPEC] must be complete and character (?cmp_chr).",
-                   ok.named, "all [...] args must be named with [NAMED = TRUE].",
-                   ok.blank, "[...] arg names may not be blank strings (\"\")." ,
-                   ok.unq  , "[...] arg names must be unique."                  , PKG = "uj")
-  if (!base::all(base::sapply(base::list(...), uj::PPP, spec = SPEC))) {uj::uj("All [...] args must be ", uj::spec_concise(SPEC), ".", GENS = 1, D = "")}
+  errs <- NULL
+  if (!ok.named) {errs <- base::c(errs, "[NAMED] must be TRUE or FALSE.")}
+  if (!ok.n) {errs <- base::c(errs, "[...] is empty.")}
+  if (!ok.spec) {errs <- base::c(errs, "[SPEC] must be complete and character (?cmp_chr).")}
+  if (!ok.named) {errs <- base::c(errs, "all [...] args must be named with [NAMED = TRUE].")}
+  if (!ok.blank) {errs <- base::c(errs, "[...] arg names may not be blank strings (\"\").")}
+  if (!ok.unq) {errs <- base::c(errs, "[...] arg names must be unique.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (!base::all(base::sapply(base::list(...), uj::PPP, spec = SPEC))) {uj::stopperr(base::paste0("All [...] args must be ", uj::spec_concise(SPEC), "."))}
 }
 
 #' @rdname checker
@@ -850,30 +740,34 @@ check_when <- function(WHENS, VALS, ...) {
   ok.named <- base::length(labs) == n.dots
   ok.blank <- !base::any(labs == "")
   ok.unq <- base::length(labs) == base::length(base::unique(labs))
-  ok.whens <- uj::POP(WHENS) & uj::ATM(WHENS)
-  ok.vals <- uj::POP(VALS) & uj::POP(VALS)
+  ok.whens <- uj:::.pop_atm(WHENS)
+  ok.vals <- uj:::.pop_atm(VALS)
   ok.neq <- base::length(WHENS) == length(VALS)
-  ok.scl <- uj::atm_scl(..1) & uj::atm_scl(..2)
-  ok.whens2 <- base::ifelse(ok.whens & ok.vals, uj::compatible(WHENS, ..1), T)
-  ok.vals2 <- base::ifelse(ok.whens & ok.vals, uj::compatible(VALS, ..2), T)
-  uj::errs_if_nots(ok.n     , "There must be two [...] args"                              ,
-                   ok.named , "all [...] args must be named."                             ,
-                   ok.blank , "[...] arg names may not be blank."                         ,
-                   ok.unq   , "[...] arg names must be unique."                           ,
-                   ok.vals  , "[VALS] must be non-empty and atomic."                      ,
-                   ok.whens , "[WHENS] must be non-empty and atomic."                     ,
-                   ok.neq   , "[WHENS] and [VALS] must be of the same length."            ,
-                   ok.scl   , "Both args in [...] must be atomic and scalar (?atm_scl)."  ,
-                   ok.whens2, "[VALS] and [..2] are of incompatible (?compatible) modes." ,
-                   ok.vals2 , "[WHENS] and [..1] are of incompatible (?compatible) modes.", PKG = "uj")
+  ok.scl <- uj:::.atm_scl(..1) & uj:::.atm_scl(..2)
+  ok.whens2 <- base::ifelse(ok.whens & ok.vals, uj:::.compat(WHENS, ..1), T)
+  ok.vals2 <- base::ifelse(ok.whens & ok.vals, uj:::.compat(VALS, ..2), T)
+  errs <- NULL
+  if (!ok.n) {errs <- base::c(errs, "There must be two [...] args")}
+  if (!ok.named) {errs <- base::c(errs, "all [...] args must be named.")}
+  if (!ok.blank) {errs <- base::c(errs, "[...] arg names may not be blank.")}
+  if (!ok.unq) {errs <- base::c(errs, "[...] arg names must be unique.")}
+  if (!ok.vals) {errs <- base::c(errs, "[VALS] must be non-empty and atomic.")}
+  if (!ok.whens) {errs <- base::c(errs, "[WHENS] must be non-empty and atomic.")}
+  if (!ok.neq) {errs <- base::c(errs, "[WHENS] and [VALS] must be of the same length.")}
+  if (!ok.scl) {errs <- base::c(errs, "Both args in [...] must be atomic and scalar (?atm_scl).")}
+  if (!ok.whens2) {errs <- base::c(errs, "[VALS] and [..2] are of incompatible (?compatible) modes.")}
+  if (!ok.vals2) {errs <- base::c(errs, "[WHENS] and [..1] are of incompatible (?compatible) modes.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   labs1 <- base::paste0("[", labs[1], "]")
   labs2 <- base::paste0("[", labs[2], "]")
   when <- ..1
   val <- ..2
-  i <- base::which(base::sapply(WHENS, uj::isEQ, y = when))
+  i <- base::which(base::sapply(WHENS, uj::is_eq0, y = when))
   if (base::length(i) > 0) {
     match <- VALS[i[1]]
-    if (uj::notEQ1(val, match)) {
+    ok.eq <- base::length(val) == 1 & base::length(match) == 1
+    if (ok.eq) {ok.eq <- val == match}
+    if (!ok.eq) {
       if (base::is.character(match)) {match <- base::paste0("'", match, "'")}
       uj::bankerr("When ", labs1, " is ", when, ", ", labs2, " must be ", match, ".", GENS = 1, D = "")
   }}
@@ -888,12 +782,11 @@ check_fail <- function(...) {
   ok.named <- base::length(labs) == n.dots
   ok.blank <- !base::any(labs == "")
   ok.unq <- base::length(labs) == base::length(base::unique(labs))
-  uj::errs_if_nots(ok.n    , "[...] is empty."                                  ,
-                   ok.named, "all [...] args must be named with [NAMED = TRUE].",
-                   ok.blank, "[...] arg names may not be blank strings (\"\")." ,
-                   ok.unq  , "[...] arg names must be unique."                  , PKG = "uj")
-  for (i in 1:n.dots) {
-    x <- uj::failsafe(base::...elt(i))
-    if (assertthat::is.error(x)) {uj::bankerr("evaluating arg [", labs[i], "] produced an error: ", uj::av(x), GENS = 1, D = "")}
-  }
+  errs <- NULL
+  if (!ok.n) {errs <- base::c(errs, "[...] is empty.")}
+  if (!ok.named) {errs <- base::c(errs, "all [...] args must be named with [NAMED = TRUE].")}
+  if (!ok.blank) {errs <- base::c(errs, "[...] arg names may not be blank strings (\"\").")}
+  if (!ok.unq) {errs <- base::c(errs, "[...] arg names must be unique.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  for (i in 1:n.dots) {if (uj::is_err(x)) {uj::bankerr("evaluating arg [", labs[i], "] produced an error: ", uj::av(x), GENS = 1, D = "")}}
 }

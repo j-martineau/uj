@@ -25,20 +25,24 @@
 #' c(mmm_ccc(letters, "num", "dtf"), num_dtf(letters))
 #' @export
 mmm_ccc <- function(x, mmm, ccc, ...) {
-  cfun <- function(cx) {uj::run("i", base::toupper(ccc), "(cx)")}
-  mfun <- function(mx) {uj::run("i", base::toupper(mmm), "(mx)")}
-  dfun <- function(dx) {uj::f0(uj::NRC0(dx), F, base::all(base::apply(dx, 2, mfun)))}
-  vfun <- function(vx) {uj::f0(uj::N0(vx), F, base::all(base::sapply(x, mfun)))}
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...),
-                          uj::f0(uj::f0(uj::notN1(mmm) | uj::notCHR(mmm), F,
-                          uj::f0(uj::na(mmm), F, uj::isIN1(base::toupper(mmm), uj:::.MMM))), NULL, '[mmm] is not a scalar value from mmm_props().'),
-                          uj::f0(uj::f0(uj::notN1(ccc) | uj::notCHR(ccc), F,
-                          uj::f0(uj::na(ccc), F, uj::isIN1(base::toupper(ccc), uj:::.CCC))), NULL, '[ccc] is not a scalar value from ccc_props().')), PKG = "uj")
+  cfun <- function(cx) {uj::run("uj:::.", base::toupper(ccc), "(cx)")}
+  mfun <- function(mx) {uj::run("uj:::.", base::toupper(mmm), "(mx)")}
+  dfun <- function(dx) {if (base::NROW(dx) * base::NCOL(dx) == 0) {F} else {base::all(base::apply(dx, 2, mfun))}}
+  vfun <- function(vx) {if (base::length(vx) == 0) {F} else {base::all(base::sapply(x, mfun))}}
+  errs <- uj:::.meets_errs(x, ...)
+  mmm.err <- "[mmm] is not a scalar value from mmm_props()."
+  ccc.err <- "[ccc] is not a scalar value from ccc_props()."
+  if      (base::length(mmm) != 1                   ) {errs <- base::c(errs, mmm.err)}
+  else if (!base::is.character(mmm)                 ) {errs <- base::c(errs, mmm.err)}
+  else if (base::is.na(mmm)                         ) {errs <- base::c(errs, mmm.err)}
+  else if (!(mmm %in% base::c(uj:::.mmm, uj:::.MMM))) {errs <- base::c(errs, mmm.err)}
+  if      (base::length(ccc) != 1                   ) {errs <- base::c(errs, ccc.err)}
+  else if (!base::is.character(ccc)                 ) {errs <- base::c(errs, ccc.err)}
+  else if (base::is.na(ccc)                         ) {errs <- base::c(errs, ccc.err)}
+  else if (!(ccc %in% base::c(uj:::.ccc, uj:::.CCC))) {errs <- base::c(errs, ccc.err)}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   ccc <- base::tolower(ccc)
-  uj::f0(!uj::meets(x, ...), F,
-    uj::f0(!cfun(x), F,
-      uj::f0(ccc == 'dtf', dfun(x),
-        uj::f0(ccc == "vls", vfun(x), mfun(x)))))
+  if (!uj::meets(x, ...)) {F} else if (!cfun(x)) {F} else if (ccc == 'dtf') {dfun(x)} else if (ccc == "vls") {vfun(x)} else {mfun(x)}
 }
 
 #' @rdname mmm_ccc
@@ -46,7 +50,7 @@ mmm_ccc <- function(x, mmm, ccc, ...) {
 mmm_ccc_funs <- function() {
   y <- base::expand.grid(mmm = uj:::.mmm, ccc = uj:::.ccc)
   y <- base::apply(y, 1, base::paste0, collapse = "_")
-  uj::sav(y)
+  base::sort(uj::av(y))
 }
 
 #' @rdname mmm_ccc

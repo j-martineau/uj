@@ -12,4 +12,4 @@
 #' blank(2)
 #' blank(NULL)
 #' @export
-blank <- function(x) {uj::f0(uj::notN1(x) | uj::notCHR(x), F, uj::f0(uj::na(x), F, x == ""))}
+blank <- function(x) {if (base::length(x) != 1) {F} else if (!base::is.character(x)) {F} else if (!base::is.na(x)) {F} else {x == ""}}

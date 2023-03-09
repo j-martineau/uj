@@ -27,24 +27,27 @@
 #' pnt_vec(1)
 #' @export
 sss_ccc <- function(x, sss, ccc, ...) {
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...),
-                          uj::f0(uj::isIN1(base::toupper(sss), uj:::.sss), NULL, "[sss] is not a scalar value from sss_props()."),
-                          uj::f0(uj::isIN1(base::toupper(ccc), uj:::.ccc), NULL, "[ccc] is not a scalar value from ccc_props().")), PKG = "uj" )
-  sss <- base::tolower(sss); SSS <- base::toupper(sss)
-  ccc <- base::tolower(ccc); ccc <- base::toupper(ccc)
+  if (!uj:::.cmp_chr_scl(sss)) {ok.sss <- F} else {ok.sss <- base::tolower(sss) %in% uj:::.sss}
+  if (!uj:::.cmp_chr_scl(ccc)) {ok.ccc <- F} else {ok.ccc <- base::tolower(ccc) %in% uj:::.ccc}
+  errs <- uj:::.meets_errs(x, ...)
+  if (!ok.sss) {errs <- base::c(errs, "[sss] is not a scalar value from sss_props().")}
+  if (!ok.ccc) {errs <- base::c(errs, "[ccc] is not a scalar value from ccc_props().")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
   if (!uj::meets(x, ...)) {return(F)}
+  sss <- base::toupper(sss)
+  ccc <- base::toupper(ccc)
   if (sss == "emp") {
-    if (uj::notNDIM2P(x)) {
-      if (uj::notNRC0(x)) {F}
-      else if (ccc == "arr") {uj::ARR(x)}
-      else if (ccc == "dtf") {uj::DTF(x)}
-      else if (ccc == "gen") {uj::GEN(x)}
-      else if (ccc == "mat") {uj::MAT(x)}
-      else if (ccc == "vec") {uj::VEC(x)}
-      else if (ccc == "vls") {uj::VLS(x)}
+    if (base::length(base::dim(x)) != 2) {
+      if (base::NROW(x) * base::NCOL(x) != 0) {F}
+      else if (ccc == "ARR") {uj:::.ARR(x)}
+      else if (ccc == "DTF") {uj:::.DTF(x)}
+      else if (ccc == "GEN") {uj:::.GEN(x)}
+      else if (ccc == "MAT") {uj:::.MAT(x)}
+      else if (ccc == "VEC") {uj:::.VEC(x)}
+      else if (ccc == "VLS") {uj:::.VLS(x)}
       else {F}
-    } else if (uj::nRC0(x)) {uj::isIN1(ccc, "arr", "arr", "vec", "vls")}
-  } else {uj::run("uj::", SSS, "(x) & uj::", CCC, "(x)")}
+    } else if (base::NROW(x) * base::NCOL(x) == 0) {ccc %in% base::c("ARR", "VEC", "VLS")}
+  } else {uj::run("uj:::.", sss, "(x) & uj:::.", ccc, "(x)")}
 }
 
 #' @rdname sss_ccc

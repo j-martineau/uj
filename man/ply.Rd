@@ -5,6 +5,8 @@
 \alias{ply}
 \alias{none_ply}
 \alias{any_ply}
+\alias{some_ply}
+\alias{many_ply}
 \alias{all_ply}
 \alias{one_ply}
 \alias{two_ply}
@@ -22,6 +24,10 @@ ply(x, FUN, ..., DIM = 0, PROC = NULL)
 none_ply(x, FUN, ..., DIM = 0, PROC = NULL)
 
 any_ply(x, FUN, ..., DIM = 0, PROC = NULL)
+
+some_ply(x, FUN, ..., DIM = 0, PROC = NULL)
+
+many_ply(x, FUN, ..., DIM = 0, PROC = NULL)
 
 all_ply(x, FUN, ..., DIM = 0, PROC = NULL)
 
@@ -62,6 +68,8 @@ Apply a function over elements, rows, columns, or all dimensions; to an atomic o
   \code{one_ply}    \tab Check for \code{1} resulting \code{TRUE} values\eqn{^{(1)}}.               \cr
   \code{two_ply}    \tab Check for \verb{2+} resulting \code{TRUE} values\eqn{^{(1)}}.              \cr
   \code{any_ply}    \tab Check for \verb{1+} resulting \code{TRUE} values\eqn{^{(1)}}.              \cr
+  \code{some_ply}   \tab Check for \verb{2+} resulting \code{TRUE} values\eqn{^{(1)}}.              \cr
+  \code{many_ply}   \tab Check for \verb{3+} resulting \code{TRUE} values\eqn{^{(1)}}.              \cr
   \code{all_ply}    \tab Check for \emph{only} resulting \code{TRUE} values\eqn{^{(1)}}.            \cr   \tab   \cr
   \code{atm_ply}    \tab Apply \code{FUN} to \link[=av]{atomized} \code{x}.                         \cr
   \code{mvc_ply}    \tab Apply \code{FUN} to elements of \link[=atm_mvc]{atomic multivec} \code{x}. \cr
@@ -70,12 +78,12 @@ Apply a function over elements, rows, columns, or all dimensions; to an atomic o
   \code{row_ply}    \tab Apply \code{FUN} to rows of \code{x}.                                      \cr
   \code{col_ply}    \tab Apply \code{FUN} to columns of \code{x}.                                   \cr
   \code{dim_ply}    \tab Apply \code{FUN} to cells of \code{x}.                                     \cr   \tab   \cr
-  \code{ply}        \tab Generalized \code{ply} function.                                                       }
-\tabular{l}{  \eqn{^{(1)}} These functions assume that applying \code{FUN} produces \code{'logical'} results.               }
+  \code{ply}        \tab Generalized \code{ply} function.                                      \cr   \tab     }
+\tabular{l}{  \eqn{^{(1)}} These functions assume that applying \code{FUN} produces \code{'logical'} results.             }
 }
 \section{The \code{PROC} argument}{
  When not \code{NULL}, the \code{PROC} argument is an optional list with up to seven named elements, which give processing instructions as follows:
-\tabular{ll}{  \strong{Name + value}    \tab \strong{Processing instructions}
+\tabular{ll}{  \strong{Name + value}    \tab \strong{Processing instructions}                                  \cr
   \verb{$arg = '\{spec\}'}   \tab Check \code{x} for match to \code{\link[=ppp]{spec}}\eqn{^{(1)}}. \cr
   \verb{$out = '\{spec\}'}   \tab Check result for match to \code{'{spec}'}.\eqn{^{(1)}}            \cr   \tab   \cr
   \verb{$agg = 'none'}     \tab Inspect result for \code{0} \code{TRUE} values.                        \cr
@@ -88,7 +96,7 @@ Apply a function over elements, rows, columns, or all dimensions; to an atomic o
   \verb{$na = TRUE}        \tab Replace resulting \code{NA}s with \code{TRUE}.                         \cr   \tab   \cr
   \verb{$a1 = TRUE}        \tab \link[=av]{Atomize} \code{x}.                                     \cr
   \verb{$a2 = TRUE}        \tab Atomize the result.                                          \cr   \tab   \cr
-  \verb{$s = TRUE}         \tab \link[base:simplify2array]{Simplify} the result.                            }
+  \verb{$s = TRUE}         \tab \link[base:simplify2array]{Simplify} the result.             \cr   \tab     }
 \tabular{l}{  \eqn{^{(1)}} \code{{spec}} is a placeholder for a \link[=is_prop_spec]{valid property spec}.              }
 }
 
@@ -127,7 +135,7 @@ Other meta:
 \code{\link{dot_args}()},
 \code{\link{pause}()},
 \code{\link{purge}()},
-\code{\link{recyclableN}()},
+\code{\link{recyclable_ns}()},
 \code{\link{run}()},
 \code{\link{say}()}
 }

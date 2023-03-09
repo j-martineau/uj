@@ -82,26 +82,35 @@ dot_args <- function() {utils::help("dot_args")}
 #' @rdname dot_args
 #' @export
 dot_by_name <- function(NAME, DEF, ...) {
-  uj::err_if_not(uj::cmp_chr_scl(NAME), "[NAME] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")
-  if (uj::ND0()) {return(DEF)}
-  i <- uj::WV(base::...names() == NAME)
-  uj::err_if(uj::N2P(i), "[NAME] matches the names of multiple [...] arguments.", PKG = "uj")
-  uj::f0(uj::N0(i), DEF, base::...elt(i))
+  errs <- NULL
+  if (uj::is_err(NAME)) {errs <- base::c(errs, "[NAME] must be a complete character scalar (?cmp_chr_scl).")}
+  if (uj::is_err(DEF)) {errs <- baes::c(errs, "[DEF] is not a valid R object.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (!uj:::.cmp_chr_scl(name)) {uj::stopperr("[NAME] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")}
+  if (base::...length() == 0) {return(DEF)}
+  i <- base::which(base::...names() == NAME)
+  if (base::length(i) > 1) {uj::stopperr("[NAME] matches the names of multiple [...] arguments.", PKG = "uj")}
+  if (base::length(i) == 0) {DEF} else {base::...elt(i)}
 }
 
 #' @rdname dot_args
 #' @export
 dots_by_name <- function(NAMES, DEFS, ...) {
-  uj::err_if_not(uj::unq_chr_vec(NAMES)         , "[NAMES] must be a unique character vec (?unq_chr_vec)." , PKG = "uj")
-  uj::err_if_not(uj::VLS(DEFS, n = uj::N(NAMES)), "[DEFS] must be a list of length equal to length(NAMES).", PKG = "uj")
-  uj::err_if_not(uj::isSEQ(NAMES, uj::EN(DEFS)) , "setequal(NAMES, names(DEFS)) must be TRUE."             , PKG = "uj")
-  if (uj::ND0()) {return(DEFS[NAMES])}
-  if (uj::N1(NAMES)) {return(uj::dot_by_name(NAMES, DEFS, ...))}
+  errs <- NULL
+  if (uj::is_err(NAMES)) {errs <- base::c(errs, "[NAMES] must be a unique character vec (?unq_chr_vec).")}
+  if (uj::is_err(DEFS)) {errs <- base::c(errs, "[DEFS] is not a valid R object.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (!uj:::.unq_chr_vec(NAMES)) {errs <- base::c(errs, "[NAMES] must be a unique character vec (?unq_chr_vec).")}
+  if (base::is.data.frame(DEFS) | !base::is.list(DEFS) | base::length(DEFS) != base::length(NAMES)) {errs <- base::c(errs, "[DEFS] must be a non-data.frame list of length equal to length(NAMES).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (!base::setequal(NAMES, base::names(DEFS))) {uj::stopperr("setequal(NAMES, names(DEFS)) must be TRUE.", PKG = "uj")}
+  if (base::...length() == 0) {return(DEFS[NAMES])}
+  if (base::length(NAMES) == 1) {return(uj::dot_by_name(NAMES, DEFS, ...))}
   y <- NULL
-  for (i in 1:uj::ND()) {
+  for (i in 1:base::...length()) {
     NAME <- NAMES[i]
     dot <- base::list(uj::dot_by_name(NAME, DEFS[NAME], ...))
-    uj::EN(dot) <- NAME
+    base::names(dot) <- NAME
     y <- base::c(y, dot)
   }
   y
@@ -112,108 +121,156 @@ dots_by_name <- function(NAMES, DEFS, ...) {
 dot_names <- function(..., SUBS = NULL, REQ = TRUE, BL = FALSE, U = TRUE) {
   n.dots <- base::...length()
   dot.names <- base::...names()
-  all.named <- uj::f0(n.dots == uj::N(dot.names) & uj::noneNA(dot.names), T, uj::f0(uj::N(SUBS) != n.dots, F, uj::cmp_chr_vec(SUBS)))
-  uj::errs_if_nots(uj::ND0()                 , "[...] is empty."                                                                                                                   ,
-                   uj::isTF1(U)              , "[U] must be TRUE or FALSE."                                                                                                        ,
-                   uj::isTF1(BL)             , "[BL] must be TRUE or FALSE."                                                                                                       ,
-                   uj::isTF1(REQ)            , "[REQ] must be TRUE or FALSE."                                                                                                      ,
-                   uj::notT1(REQ) | all.named, "When [REQ = TRUE], all [...] args must be named or [SUBS] must be a complete character vec (?cmp_chr_vec) of length [...length()].", PKG = "uj")
+  ok.dots <- n.dots > 0
+  SUBS <- uj::failsafe(SUBS)
+  REQ <- uj::failsafe(REQ)
+  BL <- uj::failsafe(BL)
+  U <- uj::failsafe(U)
+  errs <- NULL
+  if (!ok.dots) {errs <- base::c(errs, "[...] is empty.")}
+  if (!base::isTRUE(REQ) & !base::isFALSE(REQ)) {errs <- base::c(errs, "[REQ] must be TRUE or FALSE.")}
+  if (!base::isTRUE(BL) & !base::isFALSE(BL)) {errs <- base::c(errs, "[BL] must be TRUE or FALSE.")}
+  if (!base::isTRUE(U) & !base::isFALSE(U)) {errs <- base::c(errs, "[U] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  all.named <- uj::f0(n.dots != base::length(dot.names), F,
+                      uj::f0(!base::any(base::is.na(dot.names)), T,
+                             uj::f0(base::length(SUBS) != ndots, F, uj:::.unq_chr_vec(SUBS))))
+  if (!all.named) {uj::stopperr("When [REQ = TRUE], all [...] args must be named or [SUBS] must be a complete character vec (?cmp_chr_vec) of length [...length()].", PKG = "uj")}
   if (!BL) {dot.names[dot.names == ""] <- SUBS[dot.names == ""]}
-  uj::err_if_not(U & !uj::UNQ(dot.names), "When [U = TRUE], [...names()] and [SUBS], taken together, must give unique names for all [...] args.", PKG = "uj")
+  if (U & !uj:::.UNQ(dot.names)) {uj::stopperr("When [U = TRUE], [...names()] and [SUBS], taken together, must give unique names for all [...] args.", PKG = "uj")}
   dot.names
 }
 
 #' @rdname dot_args
 #' @export
 named_dots <- function(...) {
-  dot.names <- uj::DN()
-  n.dots <- uj::ND()
-  n.names <- uj::N(dot.names)
-  ok.names <- uj::ok(dot.names) & dot.names != ""
-  uj::f0(n.dots == 0 | n.names == 0, NULL, uj::f0(uj::none(ok.names), NULL, base::list(...)[ok.names]))
+  dot.names <- base::...names()
+  n.dots <- base::...length()
+  n.names <- base::length(dot.names)
+  if (n.dots == 0 | n.names == 0) {return(NULL)}
+  i <- base::is.na(dot.names)
+  if (base::any(i)) {return(NULL)}
+  i <- dot.names != ""
+  if (!base::any(i)) {NULL} else {base::list(...)[i]}
 }
 
 #' @rdname dot_args
 #' @export
 anon_dots <- function(...) {
-  dot.names <- uj::DN()
-  n.dots <- uj::ND()
-  n.names <- uj::N(dot.names)
-  ok.names <- uj::na(dot.names) | dot.names == ""
-  uj::f0(n.dots == 0, NULL, uj::f0(n.names == 0, base::list(...), uj::f0(uj::none(ok.names), NULL, base::list(...)[ok.names])))
+  dot.names <- base::...names()
+  n.dots <- base::...length()
+  n.names <- base::length(dot.names)
+  if (n.dots == 0) {return(NULL)}
+  else if (n.names == 0) {return(base::list(...))}
+  i <- base::is.na(dot.names)
+  i[!i] <- dot.names[!i] == ""
+  if (!base::any(i)) {NULL} else {base::list(...)[i]}
 }
 
 #' @rdname dot_args
 #' @export
 named_dot <- function(N, ...) {
-  uj::err_if_not(uj::cmp_psw_scl(N), "[N] must be a positive whole-number scalar in 1:length(anon_dots(...)).", PKG = "uj")
+  N <- uj::failsafe(N)
+  if (!uj:::.cmp_psw_scl(N)) {uj::stopperr("[N] must be a positive whole-number scalar in 1:length(named_dots(...)).", PKG = "uj")}
   x <- uj::named_dots(...)
-  uj::err_if(N > uj::N(x), "[N] is greater than length(named_dots(...)).")
+  if (N > base::length(x)) {uj::stopperr("[N] is greater than length(named_dots(...)).", PKG = "uj")}
   x[N]
 }
 
 #' @rdname dot_args
 #' @export
 anon_dot <- function(N, ...) {
-  uj::err_if_not(uj::cmp_psw_scl(N), "[N] must be a positive whole-number scalar in 1:length(anon_dots(...)).", PKG = "uj")
+  N <- uj::failsafe(N)
+  if (!uj:::.cmp_psw_scl(N)) {uj::stopperr("[N] must be a positive whole-number scalar in 1:length(named_dots(...)).", PKG = "uj")}
   x <- uj::anon_dots(...)
-  uj::err_if(N > uj::N(x), "[N] is greater than length(anon_dots(...)).")
+  if (N > base::length(x)) {uj::stopperr("[N] is greater than length(anon_dots(...)).", PKG = "uj")}
   x[N]
 }
 
 #' @rdname dot_args
 #' @export
 flex_dot <- function(N, ..., GLUE = FALSE, DEF = "", D = " ") {
-  uj::errs_if_nots(uj::cmp_chr_vec(DEF), "[DEF] must be a complete character vec (?cmp_chr_vec)."             ,
-                   uj::cmp_psw_scl(N  ), "[N] must be a complete positive whole-number scalar (?cmp_psw_scl).",
-                   uj::cmp_chr_scl(D  ), "[D] must be a complete character scalar (?cmp_chr_scl)."            , PKG = "uj")
-  if (uj::ND1P()) {
-    parts <- base::as.list(base::sys.call(uj::N(base::sys.calls()) - 1))
-    part.names <- uj::EN(parts)
-    part.labels <- uj::asCHR(parts)
+  N <- uj::failsafe(N)
+  GLUE <- uj::failsafe(GLUE)
+  DEF <- uj::failsafe(DEF)
+  D <- uj::failsafe(D)
+  n.dots <- base::...length()
+  n.def <- base::length(DEF)
+  errs <- NULL
+  if (!uj:::.cmp_psw_scl(N)) {errs <- base::c(errs, "[N] must be a positive whole-number scalar in 1:length(named_dots(...)).")}
+  if (!uj:::.cmp_chr_scl(GLUE)) {errs <- base::c(errs, "[GLUE] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!uj:::.cmp_chr_vec(DEF)) {errs <- base::c(errs, "[DEF] must be a complete character vec (?cmp_chr_vec).")}
+  if (!uj:::.cmp_chr_scl(D)) {errs <- base::c(errs, "[D] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (!(N %in% 1:n.dots)) {errs <- base::c(errs, "[N] must be in 1:...length().")}
+  if (n.def != 1 & n.def != n.dots) {errs <- base::c(errs, "[DEF] must be of length 1 or of length ...length().")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (base::...length() > 0) {
+    parts <- base::as.list(base::sys.call(base::length(base::sys.calls()) - 1))
+    part.names <- base::names(parts)
+    part.labels <- base::as.character(parts)
     keep <- !(part.names %in% base::c("N", "GLUE", "DEF", "D"))
     keep[1] <- FALSE
     dot.value <- uj::failsafe(base::...elt(N))
     dot.label <- part.labels[keep][N]
     dot.name <- part.names[keep][N]
-    y <- uj::f0(uj::notERR(dot.value) & uj::notFUN(dot.value) & uj::cmp_chr(dot.value), dot.value,
-                uj::f0(dot.name == "", dot.label, uj::asCHR(uj::av(dot.value))))
-    uj::f0(GLUE, uj::g(D, y), y)
+    if (!uj::is_err(dot.value) & !uj:::.FUN(dot.value) & uj:::.CMP(dot.value) & uj:::.CHR(dot.value)) {y <- dot.value}
+    else if (dot.name == "") {y <- dot.label}
+    else {y <- base::as.character(uj::av(dot.value))}
+    if (GLUE) {base::paste0(uj::av(y), collapse = D)} else {y}
   } else {DEF}
 }
 
 #' @rdname dot_args
 #' @export
 flex_dots <- function(..., GLUE = FALSE, DEF = "", D = " ") {
-  uj::errs_if_nots(uj::cmp_lgl_scl(GLUE), "[GLUE] must be scalar TRUE or scalar FALSE."             ,
-                   uj::cmp_chr_vec(DEF) , "[DEF] must be a complete character vec (?cmp_chr_vec)."  ,
-                   uj::cmp_chr_scl(D)   , "[D] must be a complete character scalar (?cmp_chr_scl)." , PKG = "uj")
-  if (uj::ND0()) {uj::f0(GLUE, uj::g(D, DEF), DEF)}
-  y <- NULL
-  for (i in 1:uj::ND()) {y <- base::c(base::list(uj::flex_dot(..., N = i, GLUE = GLUE, DEF = DEF, D = D)))}
-  uj::f0(GLUE, uj::g(D, uj::av(y)), y)
+  GLUE <- uj::failsafe(GLUE)
+  DEF <- uj::failsafe(DEF)
+  D <- uj::failsafe(D)
+  errs <- NULL
+  if (!uj:::.cmp_psw_vec(N)) {errs <- base::c(errs, "[N] must be a positive whole-number vec of values in 1:length(named_dots(...)).")}
+  if (!uj:::.cmp_chr_scl(GLUE)) {errs <- base::c(errs, "[GLUE] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!uj:::.cmp_chr_vec(DEF)) {errs <- base::c(errs, "[DEF] must be a complete character vec (?cmp_chr_vec).")}
+  if (!uj:::.cmp_chr_scl(D)) {errs <- base::c(errs, "[D] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (base::...length() > 0) {
+    y <- NULL
+    for (i in 1:base::...length()) {y <- base::c(base::list(uj::flex_dot(..., N = i, GLUE = GLUE, DEF = DEF, D = D)))}
+  } else {y <- DEF}
+  if (GLUE) {base::paste0(uj::av(y), collapse = D)} else {y}
 }
 
 #' @rdname dot_args
 #' @export
 glue_dot <- function(..., N = 1, DEF = "", D = " ") {
-  uj::errs_if_nots(uj::cmp_psw_scl(N)  , "[N] must be a complete positive whole number scalar (?cmp_psw_scl).",
-                   uj::cmp_chr_vec(DEF), "[DEF] must be a complete character vec (?cmp_chr_vec)."             ,
-                   uj::cmp_chr_scl(D)  , "[D] must be a complete character scalar (?cmp_chr_scl)."            , PKG = "uj")
-  if (N > uj::ND()) {return(DEF)}
-  y <- base::...elt(N)
-  uj::f0(uj::DEF(y), uj::g(D, uj::av(y)), DEF)
+  N <- uj::failsafe(N)
+  DEF <- uj::failsafe(DEF)
+  D <- uj::failsafe(D)
+  errs <- NULL
+  if (!uj:::.cmp_psw_scl(N)) {errs <- base::c(errs, "[N] must be a positive whole-number scalar in 1:length(named_dots(...)).")}
+  if (!uj:::.cmp_chr_vec(DEF)) {errs <- base::c(errs, "[DEF] must be a complete character vec (?cmp_chr_vec).")}
+  if (!uj:::.cmp_chr_scl(D)) {errs <- base::c(errs, "[D] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (N <= base::...length()) {
+    y <- uj::failsafe(base::...elt(N))
+    if (!uj::is_err(y)) {
+      base::paste0(uj::av(y), collapse = D)
+    } else {base::paste0(uj::av(DEF), collapse = D)}
+  } else {base::paste0(uj::av(DEF), collapse = D)}
 }
 
 #' @rdname dot_args
 #' @export
 glue_dots <- function(..., DEF = "", D = " ") {
-  uj::errs_if_nots(uj::cmp_chr_vec(DEF), "[DEF] must be a complete character vec (?cmp_chr_vec)."  ,
-                   uj::cmp_chr_scl(D)  , "[D] must be a complete character scalar (?cmp_chr_scl)." , PKG = "uj")
-  if (uj::ND0()) {return(DEF)}
-  y <- NULL
-  for (i in 1:uj::ND()) {y <- base::c(y, uj::glue_dot(base::...elt(i), N = i, DEF = DEF, D = D))}
-  uj::g(D, y)
+  DEF <- uj::failsafe(DEF)
+  D <- uj::failsafe(D)
+  errs <- NULL
+  if (!uj:::.cmp_chr_vec(DEF)) {errs <- base::c(errs, "[DEF] must be a complete character vec (?cmp_chr_vec).")}
+  if (!uj:::.cmp_chr_scl(D)) {errs <- base::c(errs, "[D] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  y <- ""
+  for (i in 1:base::...length()) {y <- base::c(y, uj::glue_dot(base::...elt(i), N = i, DEF = DEF, D = D))}
+  base::paste0(uj::av(y), collapse = D)
 }
 
 #' @rdname dot_args

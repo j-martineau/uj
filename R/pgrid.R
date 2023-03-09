@@ -9,7 +9,7 @@
 #'                `pgridN`   \tab Calls `pgrid` with `crossed = FALSE`\eqn{^{(1)}} \cr
 #'                `pgridX`   \tab Calls `pgrid` with `crossed = TRUE`\eqn{^{(1)}}  \cr
 #'                `pgrid0`   \tab Calls `pgrid` with `p = ""` (blank).             \cr
-#'                `pgrid1`   \tab Calls `pgrid` with `p = " "` (space).              }
+#'                `pgrid1`   \tab Calls `pgrid` with `p = " "` (space).            \cr   \tab     }
 #'  \tabular{l}{  \eqn{^{(1)}} See *the* `crossed` *argument*.                       }
 #' @param ... Non-empty atomic objects.
 #' @param p A \link[=cmp_chr_scl]{complete character scalar} to use as the 'paste'.
@@ -55,14 +55,16 @@ pgrid <- function(p, ..., ch = F, crossed = F, na.err = T) {
     base::paste0(x, collapse = D)
   }
   dots <- base::list(...)
-  uj::errs_if_nots(uj::N1P(dots)                                , "[...] is empty."                                                     ,
-                   base::all(base::sapply(dots, uj::cmp_vec))   , "All arguments in [...] must be complete atomic vector+'s (?cmp_vec)" ,
-                   base::all(base::sapply(dots, uj::length) > 0), "[...] contains an empty element."                                    ,
-                   uj::cmp_chr_scl(p)                           , "[p] must be a complete character scalar (?cmp_chr_scl)."             ,
-                   uj::cmp_lgl_scl(ch)                          , "[ch] must be TRUE or FALSE."                                         ,
-                   uj::cmp_lgl_scl(crossed)                     , "[crossed] must be TRUE or FALSE."                                    ,
-                   uj::TF(na.err)                               , "[na.err] must be TRUE or FALSE."                                     ,
-                   uj::notT1(na.err) | uj::noneNAS(uj::av(dots)), "Arguments in [...] may not contain [NA] values when [na.err = TRUE].", PKG = "uj" )
+  errs <- NULL
+  if (base::length(dots) == 0) {errs <- base::c(errs, "[...] is empty.")}
+  if (!base::all(base::sapply(dots, uj:::.cmp_vec))) {errs <- base::c(errs, "All arguments in [...] must be complete atomic vector+'s (?cmp_vec)")}
+  if (!base::all(base::sapply(dots, base::length) > 0)) {errs <- base::c(errs, "[...] contains an empty element.")}
+  if (!uj:::.cmp_chr_scl(p)) {errs <- base::c(errs, "[p] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!uj:::.cmp_lgl_scl(ch)) {errs <- base::c(errs, "[ch] must be TRUE or FALSE.")}
+  if (!uj:::.cmp_lgl_scl(crossed)) {errs <- base::c(errs, "[crossed] must be TRUE or FALSE.")}
+  if (!uj:::.cmp_lgl_scl(na.err)) {errs <- base::c(errs, "[na.err] must be TRUE or FALSE.")}
+  if (base::isTRUE(na.err) & base::any(base::is.na(uj::av(dots)))) {errs <- base::c(errs, "Arguments in [...] may not contain [NA] values when [na.err = TRUE].")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = NULL)}
   call <- base::paste0("base::c(base::as.character(dots[[", 1:uj::N(dots), "]]), uj::f0(crossed, '', NULL))")
   call <- base::paste0(call, collapse = ", ")
   call <- base::paste0("base::expand.grid(", call, ", stringsAsFactors = F)")

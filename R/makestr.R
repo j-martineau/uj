@@ -64,120 +64,120 @@ makestr <- function() {utils::help("makestr", package = "uj")}
 
 #' @rdname makestr
 #' @export
-geq <- function(x, ...) {uj::g0(base::c(uj::av(x), " = ", uj::av(...)))}
+geq <- function(x, ...) {base::paste0(base::c(uj::av(x), " = ", uj::av(...)), collapse = "")}
 
 #' @rdname makestr
 #' @export
-geq0 <- function(x, ...) {uj::g0(base::c(uj::av(x), "=", uj::av(...)))}
+geq0 <- function(x, ...) {base::paste0(base::c(uj::av(x), "=", uj::av(...)), collapse = "")}
 
 #' @rdname makestr
 #' @export
-gcat <- function(...) {uj::g0(base::c("c(", uj::av(...), ")"))}
+gcat <- function(...) {base::paste0(base::c("c(", uj::av(...), ")"), collapse = "")}
 
 #' @rdname makestr
 #' @export
-gelt <- function(x, ...) {uj::g0(base::c(uj::av(x), "[", uj::av(...), "]"))}
+gelt <- function(x, ...) {base::paste0(base::c(uj::av(x), "[", uj::av(...), "]"))}
 
 #' @rdname makestr
 #' @export
-gfun <- function(x, ...) {uj::g0(base::c(uj::av(x), "(", uj::av(...), ")"))}
+gfun <- function(x, ...) {base::paste0(base::c(uj::av(x), "(", uj::av(...), ")"), collapse = "")}
 
 #' @rdname makestr
 #' @export
-glist <- function(...) {uj::g(", ", uj::av(...))}
+glist <- function(...) {base::paste0(uj::av(...), collapse = ", ")}
 
 #' @rdname makestr
 #' @export
-gform <- function(x, ...) {uj::g0(base::c(uj::av(x), " ~ ", uj::g(" + ", uj::av(...))))}
+gform <- function(x, ...) {base::paste0(base::c(uj::av(x), " ~ ", base::paste0(uj::av(...), collapse = " + ")), collapse = "")}
 
 #' @rdname makestr
 #' @export
-gtick <- function(...) {uj::g0(base::c("`" , uj::av(...), "`"))}
+gtick <- function(...) {base::paste0(base::c("`" , uj::av(...), "`"), collapse = "")}
 
 #' @rdname makestr
 #' @export
-gwrap <- function(l, r, ...) {uj::g0(base::c(uj::av(l), uj::av(...), uj::av(r)))}
+gwrap <- function(l, r, ...) {base::paste0(base::c(uj::av(l), uj::av(...), uj::av(r)), collapse = "")}
 
 #' @rdname makestr
 #' @export
-gbrace <- function(...) {uj::g0(base::c("{" , uj::av(...), "}"))}
+gbrace <- function(...) {base::paste0(base::c("{" , uj::av(...), "}"), collapse = "")}
 
 #' @rdname makestr
 #' @export
-gcolon <- function(...) {uj::g0(":", uj::av(...))}
+gcolon <- function(...) {base::paste0(":", uj::av(...), collapse = "")}
 
 #' @rdname makestr
 #' @export
-gparen <- function(...) {uj::g0(base::c("(" , uj::av(...), ")"))}
+gparen <- function(...) {base::paste0(base::c("(" , uj::av(...), ")"), collapse = "")}
 
 #' @rdname makestr
 #' @export
-gquote <- function(...) {uj::g0(base::c("'" , uj::av(...), "'"))}
+gquote <- function(...) {base::paste0(base::c("'" , uj::av(...), "'"), collapse = "")}
 
 #' @rdname makestr
 #' @export
-gquote2 <- function(...) {uj::g0(base::c("\"", uj::av(...), "\""))}
+gquote2 <- function(...) {base::paste0(base::c("\"", uj::av(...), "\"", collapse = ""))}
 
 #' @rdname makestr
 #' @export
-gbracket <- function(...) {uj::g0(base::c("[", uj::av(...), "]"))}
+gbracket <- function(...) {base::paste0(base::c("[", uj::av(...), "]"), collapse = "")}
 
 #' @rdname makestr
 #' @export
-pcat <- function(...) {uj::p0("c(", uj::p(", ", ...), ")")}
+pcat <- function(...) {base::paste0("c(", base::paste(", ", ...), ")")}
 
 #' @rdname makestr
 #' @export
-peq <- function(x, ...) {uj::p0(x, " = ", ...)}
+peq <- function(x, ...) {base::paste0(x, " = ", ...)}
 
 #' @rdname makestr
 #' @export
-peq0 <- function(x, ...) {uj::p0(x, "=", ...)}
+peq0 <- function(x, ...) {base::paste0(x, "=", ...)}
 
 #' @rdname makestr
 #' @export
-pelt <- function(x, ...) {uj::p0(x, "[", ..., "]")}
+pelt <- function(x, ...) {base::paste0(x, "[", ..., "]")}
 
 #' @rdname makestr
 #' @export
-pfun <- function(x, ...) {uj::p0(x, "(", ..., ")")}
+pfun <- function(x, ...) {base::paste0(x, "(", ..., ")")}
 
 #' @rdname makestr
 #' @export
-plist <- function(...) {uj::p(", ", ...)}
+plist <- function(...) {base::paste(..., sep = ", ")}
 
 #' @rdname makestr
 #' @export
-pform <- function(x, ...) {uj::p0(x, " ~ ",  uj::p(" + ", ...))}
+pform <- function(x, ...) {base::paste0(x, " ~ ",  base::paste(" + ", ...))}
 
 #' @rdname makestr
 #' @export
-ptick <- function(...) {uj::p0("`" , ..., "`")}
+ptick <- function(...) {base::paste0("`" , ..., "`")}
 
 #' @rdname makestr
 #' @export
-pwrap <- function(l, r, ...) {uj::p0(l, ..., r)}
+pwrap <- function(l, r, ...) {base::paste0(l, ..., r)}
 
 #' @rdname makestr
 #' @export
-pbrace <- function(...) {uj::p0("[" , ..., "]")}
+pbrace <- function(...) {base::paste0("[" , ..., "]")}
 
 #' @rdname makestr
 #' @export
-pcolon <- function(...) {uj::p(":", ...)}
+pcolon <- function(...) {base::paste(..., sep = ":")}
 
 #' @rdname makestr
 #' @export
-pparen <- function(...) {uj::p0("(" , ..., ")")}
+pparen <- function(...) {base::paste0("(" , ..., ")")}
 
 #' @rdname makestr
 #' @export
-pquote <- function(...) {uj::p0("'" , ..., "'")}
+pquote <- function(...) {base::paste0("'" , ..., "'")}
 
 #' @rdname makestr
 #' @export
-pquote2 <- function(...) {uj::p0("\"", ..., "\"")}
+pquote2 <- function(...) {base::paste0("\"", ..., "\"")}
 
 #' @rdname makestr
 #' @export
-pbracket <- function(...) {uj::p0("[", ..., "]")}
+pbracket <- function(...) {base::paste0("[", ..., "]")}

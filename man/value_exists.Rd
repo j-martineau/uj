@@ -9,8 +9,8 @@
 \alias{get_val}
 \alias{set_val}
 \alias{vexists}
-\alias{vget}
-\alias{vset}
+\alias{getv}
+\alias{setv}
 \title{Objects in environments of calling functions}
 \usage{
 value_exists(name, err = T, gens = 1)
@@ -27,9 +27,9 @@ set_val(name, val, gens = 1)
 
 vexists(name, err = T, gens = 1)
 
-vget(name, err = T, gens = 1)
+getv(name, err = T, gens = 1)
 
-vset(name, val, gens = 1)
+setv(name, val, gens = 1)
 }
 \arguments{
 \item{name}{A \link[=cmp_chr_scl]{complete character scalar} giving the name of an object.}
@@ -42,14 +42,14 @@ vset(name, val, gens = 1)
 }
 \value{
 \strong{A logical scalar}      \cr\cr \verb{value_exists, val_exists, vexists}
-\cr\cr  \strong{The} \code{NULL} \strong{object} \cr\cr \verb{set_value, set_val, vset}
-\cr\cr  \strong{An object}             \cr\cr \verb{get_value, get_val, vget}
+\cr\cr  \strong{The} \code{NULL} \strong{object} \cr\cr \verb{set_value, set_val, setv}
+\cr\cr  \strong{An object}             \cr\cr \verb{get_value, get_val, getv}
 }
 \description{
 All functions in this family operate in the environment of the calling function \code{gens} generations back in the call stack.
 \tabular{ll}{  \verb{value_exists, val_exists, vexists}   \tab Checks for the existence of an object in the environment of the \code{gens}-specified calling function. \cr   \tab   \cr
-  \verb{get_value, get_val, vget}            \tab Gets the value of an object in the environment of the \code{gens}-specified calling function.           \cr   \tab   \cr
-  \verb{set_value, set_val, vset}            \tab Sets the value of an object in the environment of the \code{gens}-specified calling function.                          }
+  \verb{get_value, get_val, getv}            \tab Gets the value of an object in the environment of the \code{gens}-specified calling function.           \cr   \tab   \cr
+  \verb{set_value, set_val, setv}            \tab Sets the value of an object in the environment of the \code{gens}-specified calling function.                          }
 }
 \examples{
 egFunC <- function() {
@@ -95,9 +95,10 @@ egFunA()
 Other environments: 
 \code{\link{callers}()},
 \code{\link{os}()},
-\code{\link{recyclableN}()}
+\code{\link{recyclable_ns}()}
 
 Other extensions: 
+\code{\link{N}()},
 \code{\link{atomize}()},
 \code{\link{case}()},
 \code{\link{cb}()},
@@ -105,16 +106,14 @@ Other extensions:
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
-\code{\link{evals}},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
 \code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
-\code{\link{nis}()},
 \code{\link{paths}},
 \code{\link{purge}()},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
 \code{\link{sum0}()},

@@ -37,14 +37,14 @@ run <- function(...) {
 run_alias <- function(pkg, fun) {
   args <- base::as.list(base::sys.call(which = 2))
   vals <- base::as.character(base::sys.call(which = 2))
-  args <- uj::Nth_plus(args, 2)
-  vals <- uj::Nth_plus(vals, 2)
+  args <- args[2:base::length(args)]
+  vals <- vals[2:base::length(vals)]
   char <- base::sapply(args, base::is.character)
   vals[char] <- base::paste0("\"", vals[char], "\"")
   names <- base::names(args)
   if (base::length(names) > 0) {
     named <- names != ""
-    names[named] <- uj::paste0(names[named], " = ")
+    names[named] <- base::paste0(names[named], " = ")
   }
   args <- base::paste0(names, vals)
   args <- base::paste0(args, collapse = ", ")

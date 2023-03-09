@@ -221,7 +221,7 @@ pop_psw(0:10)
 }
 \seealso{
 Other properties: 
-\code{\link{asMODE}()},
+\code{\link{as_mmm}()},
 \code{\link{bbb}()},
 \code{\link{checker}},
 \code{\link{cls}()},

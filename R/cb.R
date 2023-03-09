@@ -27,11 +27,11 @@
 #' rb(egD2x4, egD4x4, egD4x4b)
 #' @export
 cb <- function(...) {
-  uj::err_if_not(uj::notND2P(), "[...] contains fewer than 2 arguments.", PKG = "uj")
+  if (base::...length() < 2) {uj::stopperr("[...] contains fewer than 2 arguments.", PKG = "uj")}
   x <- base::list(...)
   dtf <- base::all(base::sapply(x, atm_dtf))
   mat <- base::all(base::sapply(x, atm_mat))
-  uj::err_if_not(dtf | mat, "[...] must contain only atomic matrices or only atomic data.frames.", PKG = "uj")
+  if (!dtf & !mat) {uj::stopperr("[...] must contain only atomic matrices or only atomic data.frames.", PKG = "uj")}
   if (uj::f0(dtf, uj::compatible_dtfs("c", ...), uj::compatible_mats("c", ...))) {return(base::cbind(...))}
   uj::stopperr("Arguments in [...] are not compatible for column binding.", PKG = "uj")
 }
@@ -39,11 +39,11 @@ cb <- function(...) {
 #' @rdname cb
 #' @export
 rb <- function(...) {
-  uj::err_if_not(uj::notND2P(), "[...] contains fewer than 2 arguments.", PKG = "uj")
+  if (base::...length() < 2) {uj::stopperr("[...] contains fewer than 2 arguments.", PKG = "uj")}
   x <- base::list(...)
   dtf <- base::all(base::sapply(x, atm_dtf))
   mat <- base::all(base::sapply(x, atm_mat))
-  uj::err_if_not(dtf | mat, "[...] must contain only atomic matrices or only atomic data.frames.", PKG = "uj")
+  if (!dtf & !mat) {uj::stopperr("[...] must contain only atomic matrices or only atomic data.frames.", PKG = "uj")}
   if (uj::f0(dtf, uj::compatible_dtfs("r", ...), uj::compatible_mats("r", ...))) {return(base::rbind(...))}
   uj::stopperr("Arguments in [...] are not compatible for row binding.", PKG = "uj")
 }

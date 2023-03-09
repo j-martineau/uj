@@ -4,16 +4,16 @@
 #' @family meta
 #' @title Purge objects and parts of objects
 #' @details All purge (`x`) functions include garbage collection.
-#' \tabular{ll}{  `purge_pref, rm_pref, xpref`   \tab Purge package prefixes\eqn{^{(1)}}    \cr
-#'                `purge_plot, rmPLOT, xplot`    \tab Purge plots\eqn{^{(2)}}               \cr
-#'                `purgeWARN, rmWARN, xwarn`     \tab Purge warnings                        \cr
-#'                `purge_con, rmCON, xcon`       \tab Purge console                         \cr
-#'                `purge, x`                     \tab Purge specific objects                  }
-#'  \tabular{l}{  \eqn{^{(1)}} Converts `'base::paste'` to `'paste'`, for example.          \cr
-#'                \eqn{^{(2)}} Followed by printing the object `x` if not `NULL`. \cr   \tab  }
-#' \tabular{ll}{  `purge_global, purge_all`      \tab **WARNING: Use with care!**           \cr
-#'                `rm_global, rm_all`            \tab    *These functions purge *           \cr
-#'                `xglobal, xall`                \tab    *the global environment*             }
+#' \tabular{ll}{  `purge_pref, rm__pref, xpref`   \tab Purge package prefixes\eqn{^{(1)}}    \cr
+#'                `purge_plot, rm_plot, xplot`    \tab Purge plots\eqn{^{(2)}}               \cr
+#'                `purge_warn, rm_warn, xwarn`    \tab Purge warnings                        \cr
+#'                `purge_con, rm_con, xcon`       \tab Purge console                         \cr
+#'                `purge, x`                      \tab Purge specific objects                  }
+#'  \tabular{l}{  \eqn{^{(1)}} Converts `'base::paste'` to `'paste'`, for example.           \cr
+#'                \eqn{^{(2)}} Followed by printing the object `x` if not `NULL`.  \cr   \tab  }
+#' \tabular{ll}{  `purge_global, purge_all`      \tab **WARNING: Use with care!**            \cr
+#'                `rm_global, rm_all`            \tab    *These functions purge *            \cr
+#'                `xglobal, xall`                \tab    *the global environment*              }
 #' @param x Anticipated to be a plot object, but any object can be handled.
 #' @param funs \link[=cmp_chr_vec]{A complete character vec} of function names, possibly with package prefixes.
 #' @param ... One or more \link[=cmp_chr_vec]{complete character vecs} containing names of objects to purge from the global environment.
@@ -54,9 +54,9 @@
 #' }
 #' @export
 purge <- function(...) {
-  x <- uj::asCHR(base::match.call())
-  x <- uj::Nth_plus(x, 2)
-  code <- uj::p0("rm(", uj::g(", ", x), ")")
+  x <- base::as.character(base::match.call())
+  x <- x[2:base::length(x)]
+  code <- base::paste0("rm(", uj::g(", ", x), ")")
   base::eval.parent(base::parse(text = code), n = 1)
   base::gc(verbose = FALSE)
 }
@@ -69,7 +69,7 @@ x <- purge
 #' @export
 purge_plot <- function(x = NULL) {
   grDevices::graphics.off()
-  if (uj::DEF(x)) {base::print(x)}
+  if (!base::is.null(x)) {base::print(x)}
   base::gc(verbose = FALSE)
 }
 
@@ -86,7 +86,7 @@ xplot <- purge_plot
 purge_warnings <- function() {
   base::gc(verbose = FALSE)
   x <- base::baseenv()$last.warning
-  if (uj::DEF(x)) {
+  if (!base::is.null(x)) {
     locked <- base::bindingIsLocked("last.warning", base::baseenv())
     if (locked) {base::unlockBinding("last.warning", base::baseenv())}
     base::assign("last.warning", NULL, envir = base::baseenv())
@@ -129,11 +129,11 @@ xcon <- purge_console
 #' @export
 purge_pref <- function(funs) {
   base::gc(verbose = FALSE)
-  uj::err_if_not(uj::cmp_chr_vec(funs), "[funs] must be a complete character vec (?cmp_chr_vec).", PKG = "uj")
+  if (!uj:::.cmp_chr_vec(funs)) {uj::stopperr("[funs] must be a complete character vec (?cmp_chr_vec).", PKG = "uj")}
   where <- base::regexpr(":::", funs, fixed = T)
   where[where == -1] <- -2
-  funs <- base::substr(funs, where + 3, uj::LEN(funs))
-  base::substr(funs, base::regexpr("::", funs, fixed = T) + 2, uj::LEN(funs))
+  funs <- base::substr(funs, where + 3, base::nchar(funs))
+  base::substr(funs, base::regexpr("::", funs, fixed = T) + 2, base::nchar(funs))
 }
 
 #' @rdname purge

@@ -6,16 +6,16 @@
 \alias{ppp_or_funs}
 \alias{all_props}
 \alias{prop_funs}
-\alias{is_prop}
 \alias{is_prop_fun}
-\alias{is_prop_spec}
+\alias{is_prop}
 \alias{is_prop_combo}
+\alias{is_prop_spec}
 \alias{props_from_spec}
 \alias{combos_from_spec}
 \alias{props_from_combo}
 \alias{PPP}
 \alias{nll_or}
-\alias{nas_or}
+\alias{na0_or}
 \alias{prop_defs}
 \alias{prop_verbose}
 \alias{combo_concise}
@@ -30,13 +30,13 @@ all_props(as.dtf = F)
 
 prop_funs(as.dtf = F)
 
-is_prop(prop)
-
 is_prop_fun(fun)
 
-is_prop_spec(spec)
+is_prop(prop)
 
 is_prop_combo(combo)
+
+is_prop_spec(spec)
 
 props_from_spec(spec, valid = all_props())
 
@@ -48,7 +48,7 @@ PPP(x, spec, ...)
 
 nll_or(x, spec, ...)
 
-nas_or(x, spec, ...)
+na0_or(x, spec, ...)
 
 prop_defs()
 
@@ -91,9 +91,9 @@ This family of functions brings together a variety of families defined in this a
   \code{\link{mmm}}   \tab xmode (extended modes)                 \cr
   \code{\link{sss}}   \tab shape (geometric shape)                  }
 This family uses concise and flexible \emph{property specs} as defined in the following table.
-\tabular{ll}{  \emph{single}   \tab \link[=CH3]{3-char} scalars (i.e., \code{all(nchar(.) == 3)} with all values in \code{all_props()}. For example, \verb{'ord', 'dtf', 'd1D',} and \code{'rct'} are \emph{single} property specs.                                                                                                                                                                 \cr   \tab   \cr
-  \emph{option}   \tab Character scalars containing multiple pipe-delimited \emph{combo} and/or \emph{single} property specs. For example, the \emph{option} property spec \code{'ord|dtf_d1d|dtf_rct'} would be satisfied by an object with \emph{single} property \code{'ord'}, \emph{combo} property \code{'dtf_D1D'}, \strong{or} \emph{combo} property \code{'dtfRCT'}.                                         \cr   \tab   \cr
-  \emph{combo}    \tab Character scalars containing multiple underscore-delimited \emph{single} properties, indicating that those \emph{single} properties must co-occur. For example, the \emph{combo} property spec \code{'ord_dtf_d1d_RCT'} (or an equivalent underscore-delimited permutation) indicates that all four \emph{single} properties must co-occur to satisfy the spec. \cr   \tab   \cr
+\tabular{ll}{  \emph{single}   \tab \link[=CH3]{3-char} scalars (i.e., \code{all(nchar(.) == 3)} with all values in \code{all_props()}. For example, \verb{'ord', 'dtf', 'd2d',} and \code{'rct'} are \emph{single} property specs.                                                                                                                                                                 \cr   \tab   \cr
+  \emph{combo}    \tab Character scalars containing multiple underscore-delimited \emph{single} properties, indicating that those \emph{single} properties must co-occur. For example, the \emph{combo} property spec \code{'ord_dtf_d2d_rct'} (or an equivalent underscore-delimited permutation) indicates that all four \emph{single} properties must co-occur to satisfy the spec. \cr   \tab   \cr
+  \emph{option}   \tab Character scalars containing multiple pipe-delimited \emph{combo} and/or \emph{single} property specs. For example, the \emph{option} property spec \code{'ord|dtf_d2d|dtf_rct'} would be satisfied by an object with \emph{single} property \code{'ord'}, \emph{combo} property \code{'dtf_d2d'}, \strong{or} \emph{combo} property \code{'dtf_rct'}.                                        \cr   \tab   \cr
   \emph{flex}     \tab A \emph{single}, \emph{combo}, or \emph{option} property spec as defined above.                                                                                                                                                                                                                                                                                      }
 }
 \details{
@@ -205,12 +205,12 @@ For convenience, property functions from other function families are also descri
 }
 
 \examples{
-nasOR("5", "ch1")
-nasOR(NA, "ch1")
+na0_or("5", "ch1")
+na0_or(NA, "ch1")
 
-nllOR(NULL, "ch1")
-nllOR("1", "ch1")
-nllOR(7, "ch1")
+nll_or(NULL, "ch1")
+nll_or("1", "ch1")
+nll_or(7, "ch1")
 
 all_props()
 prop_funs()
@@ -243,7 +243,7 @@ prop_defs()
 }
 \seealso{
 Other properties: 
-\code{\link{asMODE}()},
+\code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
 \code{\link{checker}},

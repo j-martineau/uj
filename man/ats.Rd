@@ -37,6 +37,6 @@ Get names of, add new, remove, and extract specific object attributes.
 \tabular{ll}{  \verb{rm_at, xat}   \tab Removes attributes of \code{x} with names matching unquoted \code{...} args  \eqn{^{(1)}}. \cr   \tab   \cr
   \code{at_names}     \tab Thinly wraps \code{names(attributes(x))}.                                             \cr   \tab   \cr
   \code{add_at}       \tab Adds named \code{...} args to attributes of \code{x}.                                      \cr   \tab   \cr
-  \code{at}           \tab Gets attributes of \code{x} with names matching unquoted \code{...} args  \eqn{^{(1)}}.                   }
+  \code{at}           \tab Gets attributes of \code{x} with names matching unquoted \code{...} args  \eqn{^{(1)}}.    \cr   \tab     }
 \tabular{l}{  \eqn{^{(1)}} No \code{...} args indicates all attributes of \code{x}.}
 }

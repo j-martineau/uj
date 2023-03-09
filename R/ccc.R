@@ -34,7 +34,10 @@
 #' @export
 ccc <- function(x) {
   y <- NULL
-  for (ccc in uj:::.CCC) {y <- base::c(y, uj::f0(uj::run('uj::', ccc, '(x)'), ccc, NULL))}
+  for (CCC in uj:::.CCC) {
+    match <- uj::run("uj:::.", CCC, "(x)")
+    if (match) {y <- base::c(y, base::tolower(CCC))}
+  }
   y
 }
 
@@ -50,14 +53,23 @@ ccc_props <- function() {uj:::.ccc}
 #' @export
 is_ccc_spec <- function(spec) {
   spec <- uj:::.spec2props(spec)
-  f0(uj::N0(spec), F, uj::allIN(spec, uj:::.ccc))
+  if (base::length(spec) == 0) {F}
+  else {base::all(spec %in% uj:::.ccc)}
 }
 
 #' @rdname ccc
 #' @export
 CCC <- function(x, spec, ...) {
-  uj::errs_if_pop(base::c(uj:::.meets_errs(x, ...), uj::f0(uj::is_ccc_spec(spec), NULL, '[spec] must be a complete character vec (?cmp_chr_vec) containing (possible pipe-separated) values from ccc_props().')), PKG = "uj" )
-  if (uj::meets(x, ...)) {for (prop in base::toupper(uj:::.spec2props(spec))) {if (uj::run('uj::', prop, '(x)')) {return(T)}}}
+  errs <- uj:::.meets_errs(x, ...)
+  if (!uj::is_ccc_spec(spec)) {errs <- base::c(errs, '[spec] must be a complete character vec (?cmp_chr_vec) containing (possible pipe-separated) values from ccc_props().')}
+  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
+  if (uj::meets(x, ...)) {
+    props <- base::toupper(uj:::.spec2props(spec))
+    for (prop in props) {
+      match <- uj::run("uj:::.", prop ,"(x)")
+      if (match) {return(T)}
+    }
+  }
   F
 }
 

@@ -37,7 +37,7 @@ Other wraps:
 \code{\link{dt}()},
 \code{\link{ggp}()},
 \code{\link{gr}},
-\code{\link{rd}},
+\code{\link{rd}()},
 \code{\link{tb}()}
 }
 \concept{colors}
