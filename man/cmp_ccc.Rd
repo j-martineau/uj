@@ -14,30 +14,30 @@
 \alias{cmp_vls}
 \title{Completeness + xclass combination properties}
 \usage{
-cmp_ccc(x, ccc, ...)
+cmp_ccc(X, CCC, ...)
 
 cmp_ccc_funs()
 
-cmp_arr(x, ...)
+cmp_arr(X, ...)
 
-cmp_dtf(x, ...)
+cmp_dtf(X, ...)
 
-cmp_gen(x, ...)
+cmp_gen(X, ...)
 
-cmp_mat(x, ...)
+cmp_mat(X, ...)
 
-cmp_mvc(x, ...)
+cmp_mvc(X, ...)
 
-cmp_scl(x, ...)
+cmp_scl(X, ...)
 
-cmp_vec(x, ...)
+cmp_vec(X, ...)
 
-cmp_vls(x, ...)
+cmp_vls(X, ...)
 }
 \arguments{
-\item{x}{An R object.}
+\item{X}{An R object.}
 
-\item{ccc}{A character scalar single xclass property from \code{\link{ccc_props}()}.}
+\item{CCC}{A character scalar single xclass property from \code{\link{ccc_props}()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -54,16 +54,16 @@ Check for combinations of \link[=CMP]{completeness} and \link[=ccc]{xclass}.
 }
 \details{
 \tabular{ll}{  \code{cmp_ccc_funs}   \tab What complete + xclass combination property functions are there?                                                                       \cr   \tab   \cr
-  \verb{cmp_\{ccc\}}      \tab Is \code{x} both complete and a match to the single xclass property \code{'{ccc}'} where \code{{ccc}} is a placeholder for any given xclass property? \cr   \tab   \cr
-  \code{cmp_ccc}        \tab Is \code{x} both complete and a match to the single xclass property in \code{ccc}?                                                                              }
+  \verb{cmp_\{ccc\}}      \tab Is \code{X} both complete and a match to the single xclass property \code{'{ccc}'} where \code{{ccc}} is a placeholder for any given xclass property? \cr   \tab   \cr
+  \code{cmp_ccc}        \tab Is \code{X} both complete and a match to the single xclass property in \code{CCC}?                                                                              }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{lt, le, ge, gt}    \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{n, nr, nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{vals}              \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{
@@ -80,7 +80,6 @@ Other properties:
 \code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
-\code{\link{checker}},
 \code{\link{cls}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -92,8 +91,10 @@ Other properties:
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
+\code{\link{ppp_fast}()},
 \code{\link{ppp}()},
 \code{\link{sss}()},
+\code{\link{stopperr}()},
 \code{\link{unq_ccc}()}
 }
 \concept{properties}

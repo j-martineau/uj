@@ -9,24 +9,24 @@
 \alias{pgridX}
 \title{\code{expand.grid} for \code{paste} and \code{paste0}}
 \usage{
-pgrid(p, ..., ch = F, crossed = F, na.err = T)
+pgrid(P, ..., Ch = F, Crossed = F, ErrNA = T)
 
-pgrid0(..., ch = F, crossed = F, na.err = T)
+pgrid0(..., Ch = F, Crossed = F, ErrNA = T)
 
-pgrid1(..., ch = F, crossed = F, na.err = T)
+pgrid1(..., Ch = F, Crossed = F, ErrNA = T)
 
-pgridN(p, ..., ch = F, na.err = T)
+pgridN(P, ..., Ch = F, ErrNA = T)
 
-pgridX(p, ..., ch = F, na.err = T)
+pgridX(P, ..., Ch = F, ErrNA = T)
 }
 \arguments{
-\item{p}{A \link[=cmp_chr_scl]{complete character scalar} to use as the 'paste'.}
+\item{P}{A \link[=cmp_chr_scl]{complete character scalar} to use as the 'paste'.}
 
 \item{...}{Non-empty atomic objects.}
 
-\item{ch, na.err}{Non-\code{NA} logical scalars indicating, respectively, whether to split each \code{...} arguments into its constituent characters after conversion to mode 'character' and whether to throw an error if an argument in \code{...} contains an \code{NA} value.}
+\item{Ch, ErrNA}{Non-\code{NA} logical scalars indicating, respectively, whether to split each \code{...} arguments into its constituent characters after conversion to mode 'character' and whether to throw an error if an argument in \code{...} contains an \code{NA} value.}
 
-\item{crossed}{\code{TRUE} or \code{FALSE} indicating whether to construct the result to look like a fully-crossed model. See \emph{the} \code{crossed} \emph{argument} section for details.}
+\item{Crossed}{\code{TRUE} or \code{FALSE} indicating whether to construct the result to look like a fully-crossed model. See \emph{the} \code{Crossed} \emph{argument} section for details.}
 }
 \value{
 A character vector.
@@ -35,25 +35,25 @@ A character vector.
 Generate all combinations of the values of 2 or more vectors and glue the combinations into a single character vector.
 }
 \details{
-\tabular{ll}{  \code{pgrid}    \tab Converts the \code{n} \code{...} arguments to character (with additional optional pre-processing) and create a character vector with each element
-consisting of sub-strings from across \code{...} arguments pasted together using the 'paste' \code{p}. See the \emph{value} section for how the value
-of \code{crossed} affects the return value.           \cr   \tab   \cr
-  \code{pgridN}   \tab Calls \code{pgrid} with \code{crossed = FALSE}\eqn{^{(1)}} \cr
-  \code{pgridX}   \tab Calls \code{pgrid} with \code{crossed = TRUE}\eqn{^{(1)}}  \cr
-  \code{pgrid0}   \tab Calls \code{pgrid} with \code{p = ""} (blank).             \cr
-  \code{pgrid1}   \tab Calls \code{pgrid} with \code{p = " "} (space).            \cr   \tab     }
-\tabular{l}{  \eqn{^{(1)}} See \emph{the} \code{crossed} \emph{argument}.                       }
+\tabular{ll}{  \code{pgrid}    \tab Converts the \code{N} \code{...} arguments to character (with additional optional pre-processing) and create a character vector with each element
+consisting of sub-strings from across \code{...} arguments pasted together using the 'paste' \code{P}. See the \emph{value} section for how the value
+of \code{Crossed} affects the return value.           \cr   \tab   \cr
+  \code{pgridN}   \tab Calls \code{pgrid} with \code{Crossed = FALSE}\eqn{^{(1)}} \cr
+  \code{pgridX}   \tab Calls \code{pgrid} with \code{Crossed = TRUE}\eqn{^{(1)}}  \cr
+  \code{pgrid0}   \tab Calls \code{pgrid} with \code{P = ""} (blank).             \cr
+  \code{pgrid1}   \tab Calls \code{pgrid} with \code{P = " "} (space).            \cr   \tab     }
+\tabular{l}{  \eqn{^{(1)}} See \emph{the} \code{Crossed} \emph{argument}.                       }
 }
-\section{The \code{crossed} Argument}{
+\section{The \code{Crossed} Argument}{
 
-The following console excerpt shows the effect of the value of \code{crossed}:
+The following console excerpt shows the effect of the value of \code{Crossed}:
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{> x <- c("A", "B", "C")
 > y <- c(1, 2)
 > z <- c("a", "b")
 > p <- "."
-> list(n = sort(pgrid(p, x, y, z, crossed = FALSE)),
-       y = sort(pgrid(p, x, y, z, crossed = TRUE )))
+> list(n = sort(pgrid(p, x, y, z, Crossed = FALSE)),
+       y = sort(pgrid(p, x, y, z, Crossed = TRUE )))
 $n
 [1] "A.1.a" "A.1.b" "A.2.a" "A.2.b" "B.1.a" "B.1.b"
 [7] "B.2.a" "B.2.b" "C.1.a" "C.1.b" "C.2.a" "C.2.b"
@@ -72,8 +72,8 @@ $y
 x <- c("A", "B", "C")
 y <- c(1, 2)
 z <- c("a", "b")
-pgrid(".", x, y, z, crossed = F)
-pgrid(".", x, y, z, crossed = T)
+pgrid(".", x, y, z, Crossed = F)
+pgrid(".", x, y, z, Crossed = T)
 pgridN(".", x, y, y)
 pgridX(".", x, y, z)
 pgrid0(x, y, z)

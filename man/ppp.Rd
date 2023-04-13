@@ -22,50 +22,50 @@
 \alias{spec_concise}
 \title{All purpose property checking}
 \usage{
-ppp(x)
+ppp(X)
 
 ppp_or_funs()
 
-all_props(as.dtf = F)
+all_props(asDTF = F)
 
-prop_funs(as.dtf = F)
+prop_funs(asDTF = F)
 
-is_prop_fun(fun)
+is_prop_fun(Fun)
 
-is_prop(prop)
+is_prop(Prop)
 
-is_prop_combo(combo)
+is_prop_combo(Combo)
 
-is_prop_spec(spec)
+is_prop_spec(Spec)
 
-props_from_spec(spec, valid = all_props())
+props_from_spec(Spec, Valid = all_props())
 
-combos_from_spec(spec, valid = uj::all_props())
+combos_from_spec(Spec, Valid = uj::all_props())
 
-props_from_combo(combo, valid = uj::all_props())
+props_from_combo(Combo, valid = uj::all_props())
 
-PPP(x, spec, ...)
+PPP(X, Spec, ...)
 
-nll_or(x, spec, ...)
+nll_or(X, Spec, ...)
 
-na0_or(x, spec, ...)
+na0_or(X, Spec, ...)
 
 prop_defs()
 
-prop_verbose(prop, print = TRUE)
+prop_verbose(Prop, Print = TRUE)
 
-combo_concise(combo)
+combo_concise(Combo)
 
-spec_concise(spec)
+spec_concise(Spec)
 }
 \arguments{
-\item{x}{An R object.}
+\item{X}{An R object.}
 
-\item{as.dtf}{\code{TRUE} or \code{FALSE} indicating whether to return the result as a data.frame with column \code{1} containing property values and column \code{2} containing the property families.}
+\item{asDTF}{\code{TRUE} or \code{FALSE} indicating whether to return the result as a data.frame with column \code{1} containing property values and column \code{2} containing the property families.}
 
-\item{spec}{A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from \code{ppp_vals()} separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of \code{TRUE} if any of them applies to \code{x}.}
+\item{Spec}{A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from \code{ppp_vals()} separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of \code{TRUE} if any of them applies to \code{X}.}
 
-\item{valid}{A \link[=cmp_chr_vec]{complete character vec} containing all properties considered valid.}
+\item{Valid}{A \link[=cmp_chr_vec]{complete character vec} containing all properties considered valid.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -73,7 +73,7 @@ spec_concise(spec)
     \item{\code{}}{}
   }}
 
-\item{print}{\code{TRUE} or \code{FALSE} indicating whether to print the property definition to the console.}
+\item{Print}{\code{TRUE} or \code{FALSE} indicating whether to print the property definition to the console.}
 }
 \value{
 \strong{A character scalar} \cr\cr \code{combo_concise}    \cr \code{prop_verbose}     \cr \code{spec_concise}
@@ -102,25 +102,25 @@ This family uses concise and flexible \emph{property specs} as defined in the fo
   \code{combo_from_spec}    \tab What are the constituent \emph{combo} properties in a \emph{flex} property spec?   \cr   \tab   \cr
   \code{props_from_spec}    \tab What are the \emph{unique} constituent \emph{single} properties in a \emph{flex} property spec?        }
 \strong{Functions to check whether a value is a valid property spec}
-\tabular{ll}{  \code{is_prop_combo}   \tab Is \code{combo} a valid \emph{combo} property spec?                    \cr   \tab   \cr
-  \code{is_prop_spec}    \tab Is \code{spec} a valid \emph{flex} property spec?                      \cr   \tab   \cr
-  \code{is_prop_fun}     \tab Is \code{fun} the name of a dedicated property checking function? \cr   \tab   \cr
-  \code{is_prop}         \tab Is \code{prop} a valid \emph{single} property?                                        }
+\tabular{ll}{  \code{is_prop_combo}   \tab Is \code{Combo} a valid \emph{combo} property spec?                    \cr   \tab   \cr
+  \code{is_prop_spec}    \tab Is \code{Spec} a valid \emph{flex} property spec?                      \cr   \tab   \cr
+  \code{is_prop_fun}     \tab Is \code{Fun} the name of a dedicated property checking function? \cr   \tab   \cr
+  \code{is_prop}         \tab Is \code{Prop} a valid \emph{single} property?                                        }
 \strong{Functions to define properties and property specs}
 \tabular{ll}{  \code{combo_concise}   \tab How is a \emph{combo} property spec (concisely) defined?                       \cr   \tab   \cr
   \code{spec_concise}    \tab How is an \emph{options} property spec (concisely) defined?                    \cr   \tab   \cr
   \code{prop_verbose}    \tab How is a \emph{single} property (verbosely) defined?                           \cr   \tab   \cr
   \code{prop_defs}       \tab What are the definitions of all possible \emph{single} properties (returned as a data.frame)? }
 \strong{Functions to list names of dedicated property-checking functions}
-\tabular{ll}{  \code{ppp_or_funs}   \tab What dedicated functions check \code{x} for either special values or a match to a \emph{flex} property spec? \cr   \tab   \cr
-  \code{prop_funs}     \tab What dedicated functions check \code{x} for a match to a specific \emph{single} or \emph{combo} property?         \cr   \tab   \cr
+\tabular{ll}{  \code{ppp_or_funs}   \tab What dedicated functions check \code{X} for either special values or a match to a \emph{flex} property spec? \cr   \tab   \cr
+  \code{prop_funs}     \tab What dedicated functions check \code{X} for a match to a specific \emph{single} or \emph{combo} property?         \cr   \tab   \cr
   \code{all_props}     \tab What is the complete set of all possible \emph{single} properties?                                                     }
 \strong{Functions to check object against arbitrary property specs}
-\tabular{ll}{  \code{nas_or}   \tab Is \code{x} either \code{NA} or a match to the \emph{flex} property spec in \code{spec}?  \cr   \tab   \cr
-  \code{nll_or}   \tab Is \code{x} either \code{NULL} or a match to the \emph{flex} property spec in \code{spec} \cr   \tab   \cr
-  \code{ppp}      \tab Is \code{x} a match to the \emph{flex} property spec in \code{spec}?                                }
+\tabular{ll}{  \code{nas_or}   \tab Is \code{X} either \code{NA} or a match to the \emph{flex} property spec in \code{Spec}?  \cr   \tab   \cr
+  \code{nll_or}   \tab Is \code{X} either \code{NULL} or a match to the \emph{flex} property spec in \code{Spec} \cr   \tab   \cr
+  \code{ppp}      \tab Is \code{X} a match to the \emph{flex} property spec in \code{Spec}?                                }
 \strong{Function to list all of an object's} single \strong{properties across property families}
-\tabular{ll}{  \code{ppp}   \tab What are all of \code{x}'s \emph{single} properties compiled from all property families? }
+\tabular{ll}{  \code{ppp}   \tab What are all of \code{X}'s \emph{single} properties compiled from all property families? }
 For convenience, property functions from other function families are also described below.
 \cr\cr \strong{Functions to list all} single \strong{properties in a property family}
 \tabular{ll}{  \code{bbb_props}   \tab \link[=bbb]{basic}       \cr
@@ -168,16 +168,16 @@ For convenience, property functions from other function families are also descri
   \verb{unq_\{mmm\}_\{ccc\}}   \tab integrity = \code{'unq'} + xmode = \code{'{mmm}'} + xclass = \code{'{ccc}'}   }
 \emph{\emph{Functions to check an object against an arbitrary} combo \emph{property spec}}
 \cr\cr For these functions, an uppercase letter repeated three times is a placeholder for the value of an arbitrary single property from the associated property family.
-\tabular{ll}{  \code{bbb_ccc}   \tab basic property in arg \code{bbb} + xclass property in arg \code{ccc} \cr
-  \code{mmm_ccc}   \tab xmode property in arg \code{mmm} + xclass property in arg \code{ccc} \cr
-  \code{cmp_ccc}   \tab integrity = \code{'cmp'} + xclass property in arg \code{ccc}         \cr
-  \code{sss_ccc}   \tab shape property in arg \code{sss} + xclass property in arg \code{ccc} \cr
-  \code{unq_ccc}   \tab integrity = \code{'unq'} + xclass property in arg \code{ccc}         \cr
-  \code{bbb_mmm}   \tab basic property in arg \code{bbb} + xmode property in arg \code{mmm}  \cr
-  \code{cmp_mmm}   \tab integrity = \code{'cmp'} + xmode property in arg \code{mmm}          \cr
-  \code{unq_mmm}   \tab integrity = \code{'unq'} + xmode property in arg \code{mmm}          \cr   \tab  }
-\tabular{ll}{  \code{cmp_mmm_ccc}   \tab integrity = \code{'cmp'} + xmode property in arg \code{mmm} + xclass property in arg \code{ccc} \cr   \tab   \cr
-  \code{unq_mmm_ccc}   \tab integrity = \code{'unq'} + xmode property in arg \code{mmm} + xclass property in arg \code{ccc} }
+\tabular{ll}{  \code{bbb_ccc}   \tab basic property in arg \code{BBB} + xclass property in arg \code{CCC} \cr
+  \code{mmm_ccc}   \tab xmode property in arg \code{MMM} + xclass property in arg \code{CCC} \cr
+  \code{cmp_ccc}   \tab integrity = \code{'cmp'} + xclass property in arg \code{CCC}         \cr
+  \code{sss_ccc}   \tab shape property in arg \code{SSS} + xclass property in arg \code{CCC} \cr
+  \code{unq_ccc}   \tab integrity = \code{'unq'} + xclass property in arg \code{CCC}         \cr
+  \code{bbb_mmm}   \tab basic property in arg \code{BBB} + xmode property in arg \code{MMM}  \cr
+  \code{cmp_mmm}   \tab integrity = \code{'cmp'} + xmode property in arg \code{MMM}          \cr
+  \code{unq_mmm}   \tab integrity = \code{'unq'} + xmode property in arg \code{MMM}          \cr   \tab  }
+\tabular{ll}{  \code{cmp_mmm_ccc}   \tab integrity = \code{'cmp'} + xmode property in arg \code{MMM} + xclass property in arg \code{CCC} \cr   \tab   \cr
+  \code{unq_mmm_ccc}   \tab integrity = \code{'unq'} + xmode property in arg \code{MMM} + xclass property in arg \code{CCC} }
 \emph{\emph{Functions to check objects against} flex \emph{property specs in a single family}}
 \tabular{ll}{  \code{BBB}   \tab \link[=bbb]{basic}       \cr
   \code{CCC}   \tab \link[=ccc]{xclass}      \cr
@@ -197,11 +197,11 @@ For convenience, property functions from other function families are also descri
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{lt, le, ge, gt}    \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{n, nr, nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{vals}              \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{
@@ -246,7 +246,6 @@ Other properties:
 \code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
-\code{\link{checker}},
 \code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
@@ -259,7 +258,9 @@ Other properties:
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
+\code{\link{ppp_fast}()},
 \code{\link{sss}()},
+\code{\link{stopperr}()},
 \code{\link{unq_ccc}()}
 }
 \concept{properties}

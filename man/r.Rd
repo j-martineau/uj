@@ -8,20 +8,20 @@
 \alias{er}
 \title{Error-checked wrappers for \code{base::rep}}
 \usage{
-r(r, ...)
+r(R, ...)
 
-e(e, ...)
+e(E, ...)
 
-re(r, e, ...)
+re(R, E, ...)
 
-er(e, r, ...)
+er(E, R, ...)
 }
 \arguments{
-\item{r}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of replications of entire vectors.}
+\item{R}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of replications of entire vectors.}
 
 \item{...}{One or more objects containing atomic values to be replicated (\link[=a]{atomized} before replication).}
 
-\item{e}{A complete positive whole-number scalar giving the number of times each value is to be replicated in place.}
+\item{E}{A complete positive whole-number scalar giving the number of times each value is to be replicated in place.}
 }
 \value{
 An atomic vector.
@@ -30,9 +30,9 @@ An atomic vector.
 These functions \link[=av]{atomize} \code{...} arguments, converting them to an atomic vector (represented here as \code{dots}) before replication.
 }
 \details{
-\tabular{ll}{  \verb{re, er}   \tab Calls \code{rep(dots, times = r, each = e)}. \cr   \tab   \cr
-  \code{e}        \tab Calls \code{rep.int(dots, each = e)}.        \cr   \tab   \cr
-  \code{r}        \tab Calls \code{rep.int(dots, r)}.                              }
+\tabular{ll}{  \verb{re, er}   \tab Calls \code{rep(dots, times = R, each = E)}. \cr   \tab   \cr
+  \code{e}        \tab Calls \code{rep.int(dots, each = E)}.        \cr   \tab   \cr
+  \code{r}        \tab Calls \code{rep.int(dots, R)}.                              }
 }
 \examples{
 r(2, 0:2, 3)

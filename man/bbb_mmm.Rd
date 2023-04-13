@@ -61,126 +61,126 @@
 \alias{pop_whl}
 \title{basic + xmode combination properties}
 \usage{
-bbb_mmm(x, bbb, mmm, ...)
+bbb_mmm(X, BBB, MMM, ...)
 
 bbb_mmm_funs()
 
-atm_ch1(x, ...)
+atm_ch1(X, ...)
 
-atm_ch3(x, ...)
+atm_ch3(X, ...)
 
-atm_chr(x, ...)
+atm_chr(X, ...)
 
-atm_clr(x, ...)
+atm_clr(X, ...)
 
-atm_evn(x, ...)
+atm_evn(X, ...)
 
-atm_fac(x, ...)
+atm_fac(X, ...)
 
-atm_frc(x, ...)
+atm_frc(X, ...)
 
-atm_ind(x, ...)
+atm_ind(X, ...)
 
-atm_lgl(x, ...)
+atm_lgl(X, ...)
 
-atm_neg(x, ...)
+atm_neg(X, ...)
 
-atm_ngw(x, ...)
+atm_ngw(X, ...)
 
-atm_nng(x, ...)
+atm_nng(X, ...)
 
-atm_nnw(x, ...)
+atm_nnw(X, ...)
 
-atm_nps(x, ...)
+atm_nps(X, ...)
 
-atm_npw(x, ...)
+atm_npw(X, ...)
 
-atm_nst(x, ...)
+atm_nst(X, ...)
 
-atm_num(x, ...)
+atm_num(X, ...)
 
-atm_odd(x, ...)
+atm_odd(X, ...)
 
-atm_ord(x, ...)
+atm_ord(X, ...)
 
-atm_pct(x, ...)
+atm_pct(X, ...)
 
-atm_pos(x, ...)
+atm_pos(X, ...)
 
-atm_ppn(x, ...)
+atm_ppn(X, ...)
 
-atm_psw(x, ...)
+atm_psw(X, ...)
 
-atm_srt(x, ...)
+atm_srt(X, ...)
 
-atm_str(x, ...)
+atm_str(X, ...)
 
-atm_uno(x, ...)
+atm_uno(X, ...)
 
-atm_whl(x, ...)
+atm_whl(X, ...)
 
-pop_atm(x, ...)
+pop_atm(X, ...)
 
-pop_ch1(x, ...)
+pop_ch1(X, ...)
 
-pop_ch3(x, ...)
+pop_ch3(X, ...)
 
-pop_chr(x, ...)
+pop_chr(X, ...)
 
-pop_clr(x, ...)
+pop_clr(X, ...)
 
-pop_evn(x, ...)
+pop_evn(X, ...)
 
-pop_fac(x, ...)
+pop_fac(X, ...)
 
-pop_frc(x, ...)
+pop_frc(X, ...)
 
-pop_ind(x, ...)
+pop_ind(X, ...)
 
-pop_lgl(x, ...)
+pop_lgl(X, ...)
 
-pop_neg(x, ...)
+pop_neg(X, ...)
 
-pop_ngw(x, ...)
+pop_ngw(X, ...)
 
-pop_nng(x, ...)
+pop_nng(X, ...)
 
-pop_nnw(x, ...)
+pop_nnw(X, ...)
 
-pop_nps(x, ...)
+pop_nps(X, ...)
 
-pop_npw(x, ...)
+pop_npw(X, ...)
 
-pop_nst(x, ...)
+pop_nst(X, ...)
 
-pop_num(x, ...)
+pop_num(X, ...)
 
-pop_odd(x, ...)
+pop_odd(X, ...)
 
-pop_ord(x, ...)
+pop_ord(X, ...)
 
-pop_pct(x, ...)
+pop_pct(X, ...)
 
-pop_pos(x, ...)
+pop_pos(X, ...)
 
-pop_ppn(x, ...)
+pop_ppn(X, ...)
 
-pop_psw(x, ...)
+pop_psw(X, ...)
 
-pop_srt(x, ...)
+pop_srt(X, ...)
 
-pop_str(x, ...)
+pop_str(X, ...)
 
-pop_uno(x, ...)
+pop_uno(X, ...)
 
-pop_whl(x, ...)
+pop_whl(X, ...)
 }
 \arguments{
-\item{x}{An R object.}
+\item{X}{An R object.}
 
-\item{bbb}{A character scalar single basic property from \code{c('atm', 'pop')}.}
+\item{BBB}{A character scalar single basic property from \code{c('atm', 'pop')}.}
 
-\item{mmm}{A character scalar single xmode property from \code{\link{mmm_props}()}.}
+\item{MMM}{A character scalar single xmode property from \code{\link{mmm_props}()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -197,17 +197,17 @@ Check for combinations of \link[=bbb]{basic} and \link[=mmm]{xmode} properties.
 }
 \details{
 \tabular{ll}{  \code{bbb_mmm_funs}   \tab What \link[=bbb]{basic} + \link[=mmm]{xmode} combination property functions are there?                    \cr   \tab   \cr
-  \verb{\{bbb\}_\{mmm\}}    \tab Is \code{x} a match to the single basic property \code{'{bbb}'} and single xmode property \code{'{mmm}'}? (where \code{{bbb}}
+  \verb{\{bbb\}_\{mmm\}}    \tab Is \code{X} a match to the single basic property \code{'{bbb}'} and single xmode property \code{'{mmm}'}? (where \code{{bbb}}
 and \code{{mmm}} are placeholders for any given basic property and any given xmode property, respectively).    \cr   \tab   \cr
-  \code{bbb_mmm}        \tab Is \code{x} a match to single basic and xmode properties in \code{bbb} and \code{mmm}, respectively?                                    }
+  \code{bbb_mmm}        \tab Is \code{X} a match to single basic and xmode properties in \code{BBB} and \code{MMM}, respectively?                                    }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{lt, le, ge, gt}    \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{n, nr, nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{vals}              \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{
@@ -223,7 +223,6 @@ pop_psw(0:10)
 Other properties: 
 \code{\link{as_mmm}()},
 \code{\link{bbb}()},
-\code{\link{checker}},
 \code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
@@ -236,8 +235,10 @@ Other properties:
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
+\code{\link{ppp_fast}()},
 \code{\link{ppp}()},
 \code{\link{sss}()},
+\code{\link{stopperr}()},
 \code{\link{unq_ccc}()}
 }
 \concept{properties}

@@ -13,11 +13,11 @@
 #'                `da`    \tab Delimits across corresponding elements of (recyclable atomic vector) `...` arguments using delimiter `d`. Produces a character vector of
 #'                             `max(lengths(list(...)))` substrings delimited by `d`.                                                                                                                     }
 #' \cr **Common-delimiter convenience functions**
-#' \cr\cr Convenience function names are constructed by append `1` or `2` codes for common delimiters to the function name as follows (where `{x}` and `{y}` are placeholders for common-delimiter codes):
-#' \tabular{ll}{  `daw_{x}{y}`   \tab Delimits across using `{x}` then within using `{y}`. \cr   \tab   \cr
-#'                `dww_{x}{y}`   \tab Delimits within using `{x}` then again using `{y}`.  \cr   \tab   \cr
-#'                `da_{x}`       \tab Delimits across using `{x}`.                                     \cr
-#'                `dw_{x}`       \tab Delimits within using `{x}`.                                       }
+#' \cr\cr Convenience function names are constructed by append `1` or `2` codes for common delimiters to the function name as follows (where `{X}` and `{y}` are placeholders for common-delimiter codes):
+#' \tabular{ll}{  `daw_{X}{y}`   \tab Delimits across using `{X}` then within using `{y}`. \cr   \tab   \cr
+#'                `dww_{X}{y}`   \tab Delimits within using `{X}` then again using `{y}`.  \cr   \tab   \cr
+#'                `da_{X}`       \tab Delimits across using `{X}`.                                     \cr
+#'                `dw_{X}`       \tab Delimits within using `{X}`.                                       }
 #' \cr Common delimiters are encoded as:
 #' \tabular{lll}{  **Code**   \tab **Name**                      \tab   **Delimiter** \cr
 #'                 `'0'`      \tab blank                         \tab   `''`          \cr
@@ -33,8 +33,8 @@
 #'   \tabular{l}{  \eqn{^{(1)}} 'Grammatical comma' vs. 'simple comma' indicates whether the function produces grammatical comma-delimited lists vs. simple comma-delimited values (e.g., `'1, 2, 3'` vs. `'1,2,3'`). }
 #' @param ... An arbitrary number of atomic vector arguments to be delimited. Argument in `...` must be recyclable for functions that delimit across `...` arguments as the first or only step (i.e., functions with names beginning with `da`).
 #' @param d,D \link[=chr_scl]{Character scalar} delimiters.
-#' @return **A character scalar** \cr\cr `daw_{x}{y}, dww_{x}{y}, daw, dww`
-#' \cr\cr  **A character vector** \cr\cr `da_{x}, dw_{x}, da, dw`
+#' @return **A character scalar** \cr\cr `daw_{X}{y}, dww_{X}{y}, daw, dww`
+#' \cr\cr  **A character vector** \cr\cr `da_{X}, dw_{X}, da, dw`
 #' @examples
 #' # delimit across using delimiter '|'.
 #' # aliases paste(1:3, 4:6, sep = '|').
@@ -70,18 +70,18 @@ delim <- function() {utils::help("delim", package = "uj")}
 #' @export
 da <- function(d, ...) {
   if (base::...length() == 0) {return("")}
-  errs <- uj:::.delim_errs(base::list(d = d, dots =  base::list(...)), TRUE)
-  if (!base::is.null(err)) {uj::stopperr(errs, PKG = "uj")}
+  Errors <- uj:::.delim_errs(base::list(d = d, Dots =  base::list(...)), TRUE)
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
   base::paste(..., sep = d)
 }
 
 #' @rdname delim
 #' @export
 dw <- function(d, ...) {
-  dw0 <- function(z) {base::paste0(uj::av(z), collapse = d)}
+  dw0 <- function(x) {base::paste0(uj::av(x), collapse = d)}
   if (base::...length() == 0) {return("")}
-  errs <- uj:::.delim_errs(base::list(d = d, dots =  base::list(...)), TRUE)
-  if (!base::is.null(err)) {uj::stopperr(errs, PKG = "uj")}
+  Errors <- uj:::.delim_errs(base::list(d = d, Dots =  base::list(...)), TRUE)
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
   base::sapply(base::list(...), dw0)
 }
 
@@ -89,21 +89,21 @@ dw <- function(d, ...) {
 #' @export
 daw <- function(d, D, ...) {
   if (base::...length() == 0) {return("")}
-  errs <- uj:::.delim_errs(base::list(d = d, D = D, dots =  base::list(...)), TRUE)
-  if (!base::is.null(err)) {uj::stopperr(errs, PKG = "uj")}
-  x <- base::paste0(..., sep = d)
-  base::paste0(uj::av(x), collapse = D)
+  Errors <- uj:::.delim_errs(base::list(d = d, D = D, Dots =  base::list(...)), TRUE)
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  X <- base::paste0(..., sep = d)
+  base::paste0(uj::av(X), collapse = D)
 }
 
 #' @rdname delim
 #' @export
 dww <- function(d, D, ...) {
-  dw0 <- function(z) {base::paste0(uj::av(z), collapse = d)}
+  dw0 <- function(x) {base::paste0(uj::av(x), collapse = d)}
   if (base::...length() == 0) {return("")}
-  errs <- uj:::.delim_errs(base::list(d = d, D = D, dots =  base::list(...)), TRUE)
-  if (!base::is.null(err)) {uj::stopperr(errs, PKG = "uj")}
-  x <- base::sapply(base::list(...), dw0)
-  base::paste0(uj::av(x), collapse = D)
+  Errors <- uj:::.delim_errs(base::list(d = d, D = D, Dots =  base::list(...)), TRUE)
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  X <- base::sapply(base::list(...), dw0)
+  base::paste0(uj::av(X), collapse = D)
 }
 
 #' @rdname delim

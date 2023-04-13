@@ -3,14 +3,11 @@
 \name{go}
 \alias{go}
 \alias{reopen}
-\alias{rebuild}
 \title{Open or reopen an R project}
 \usage{
 go(...)
 
 reopen()
-
-rebuild()
 }
 \arguments{
 \item{...}{Either nothing or a single unquoted R project name.}
@@ -22,7 +19,6 @@ rebuild()
 Open or reopen an R project
 }
 \details{
-\tabular{ll}{  \code{rebuild}   \tab Rebuilds the current R project. \cr   \tab   \cr
-  \code{reopen}    \tab Reopens the current R project.  \cr   \tab   \cr
+\tabular{ll}{  \code{reopen}    \tab Reopens the current R project.  \cr   \tab   \cr
   \code{go}        \tab Opens another project and loads the associated library if it exists. When \code{name = NULL}, launches a document selection dialog box and prompts user to select an existing R project. Otherwise, searches for an R project with name equal to the value of \code{name} in the parent directory of the current working directory, and if there is such a project, opens that project.}
 }

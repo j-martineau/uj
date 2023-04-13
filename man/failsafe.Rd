@@ -40,32 +40,33 @@
 \alias{or_n0}
 \alias{or_na}
 \alias{or_nac}
-\alias{or_naI}
-\alias{or_naL}
-\alias{or_naR}
+\alias{or_nai}
+\alias{or_nal}
+\alias{or_nar}
 \alias{or_null}
 \alias{is_id}
 \alias{not_id}
-\alias{is_in0}
-\alias{is_mf0}
-\alias{has0}
-\alias{lacks0}
-\alias{is_eq0}
-\alias{is_ge0}
-\alias{is_gt0}
-\alias{is_le0}
-\alias{is_lt0}
-\alias{is_dif0}
-\alias{is_f0}
-\alias{is_t0}
-\alias{is_bl0}
-\alias{is_tf0}
-\alias{is_na0}
-\alias{is_ok0}
-\alias{is_lg0}
+\alias{is_IN}
+\alias{is_MF}
+\alias{HAS}
+\alias{LACKS}
+\alias{is_EQ}
+\alias{is_GE}
+\alias{is_GT}
+\alias{is_LE}
+\alias{is_LT}
+\alias{is_DIF}
+\alias{is_F}
+\alias{is_T}
+\alias{is_BL}
+\alias{is_TF}
+\alias{is_NAV}
+\alias{is_OKV}
+\alias{is_LG}
 \alias{is_in}
 \alias{is_mf}
 \alias{has}
+\alias{not}
 \alias{lacks}
 \alias{is_eq}
 \alias{is_ge}
@@ -83,31 +84,31 @@
 \alias{is_veq}
 \alias{is_sdif}
 \alias{is_vdif}
-\alias{or0}
-\alias{and0}
-\alias{xor0}
-\alias{nor0}
+\alias{OR}
+\alias{AND}
+\alias{XOR}
+\alias{NOR}
 \alias{or}
 \alias{and}
 \alias{one}
 \alias{nor}
-\alias{not_in0}
-\alias{not_mf0}
-\alias{not_has0}
-\alias{not_lacks0}
-\alias{not_eq0}
-\alias{not_ge0}
-\alias{not_gt0}
-\alias{not_le0}
-\alias{not_lt0}
-\alias{not_dif0}
-\alias{not_f0}
-\alias{not_t0}
-\alias{not_tf0}
-\alias{not_bl0}
-\alias{not_na0}
-\alias{not_ok0}
-\alias{not_lg0}
+\alias{not_IN}
+\alias{not_MF}
+\alias{not_HAS}
+\alias{not_LACKS}
+\alias{not_EQ}
+\alias{not_GE}
+\alias{not_GT}
+\alias{not_LE}
+\alias{not_LT}
+\alias{not_DIF}
+\alias{not_F}
+\alias{not_T}
+\alias{not_TF}
+\alias{not_BL}
+\alias{not_NAV}
+\alias{not_OKV}
+\alias{not_LG}
 \alias{not_in}
 \alias{not_mf}
 \alias{not_has}
@@ -256,16 +257,16 @@
 \alias{many_okv}
 \alias{has_many}
 \alias{lacks_many}
-\alias{\%.in0.\%}
-\alias{\%.mf0.\%}
-\alias{\%.eq0.\%}
-\alias{\%.ge0.\%}
-\alias{\%.gt0.\%}
-\alias{\%.le0.\%}
-\alias{\%.lt0.\%}
-\alias{\%.has0.\%}
-\alias{\%.dif0.\%}
-\alias{\%.lacks0.\%}
+\alias{\%.IN.\%}
+\alias{\%.MF.\%}
+\alias{\%.EQ.\%}
+\alias{\%.GE.\%}
+\alias{\%.GT.\%}
+\alias{\%.LE.\%}
+\alias{\%.LT.\%}
+\alias{\%.HAS.\%}
+\alias{\%.DIF.\%}
+\alias{\%.LACKS.\%}
 \alias{\%.in.\%}
 \alias{\%.mf.\%}
 \alias{\%.eq.\%}
@@ -282,600 +283,600 @@
 \alias{\%.sdif.\%}
 \alias{\%.vdif.\%}
 \alias{\%.ndif.\%}
-\alias{\%.or0.\%}
-\alias{\%.and0.\%}
-\alias{\%.xor0.\%}
-\alias{\%.nor0.\%}
+\alias{\%.OR.\%}
+\alias{\%.AND.\%}
+\alias{\%.XOR.\%}
+\alias{\%.NOR.\%}
 \alias{\%.or.\%}
 \alias{\%.and.\%}
 \alias{\%.xor.\%}
 \alias{\%.nor.\%}
 \title{failsafe functions that \strong{always} return a valid object.}
 \usage{
-failsafe(x, def = "uj.failsafe.err")
+failsafe(X, Def = "uj.failsafe.err")
 
-is_err(x)
+is_err(X)
 
-not_err(x)
+not_err(X)
 
-msg_err(x)
+msg_err(X)
 
 make_err()
 
-fs_def(x)
+fs_def(X)
 
-fs_nll(x)
+fs_nll(X)
 
-fs_scl(x, val)
+fs_scl(X, Val)
 
-fs_t(x)
+fs_t(X)
 
-fs_f(x)
+fs_f(X)
 
-fs_tf(x)
+fs_tf(X)
 
-fs_na(x)
+fs_na(X)
 
-fs_ok(x)
+fs_ok(X)
 
-fs_bl(x)
+fs_bl(X)
 
-fs_lg(x)
+fs_lg(X)
 
-fs_vec(x, val)
+fs_vec(X, Val)
 
-fs_null(x)
+fs_null(X)
 
-scl_bl(x)
+scl_bl(X)
 
-scl_t(x)
+scl_t(X)
 
-scl_f(x)
+scl_f(X)
 
-scl_tf(x)
+scl_tf(X)
 
-scl_lg(x)
+scl_lg(X)
 
-scl_na(x)
+scl_na(X)
 
-vec_bl(x)
+vec_bl(X)
 
-vec_t(x)
+vec_t(X)
 
-vec_f(x)
+vec_f(X)
 
-vec_tf(x)
+vec_tf(X)
 
-vec_na(x)
+vec_na(X)
 
-fs_or(x, or = NULL)
+fs_or(X, Or = NULL)
 
-or_f(x)
+or_f(X)
 
-or_t(x)
+or_t(X)
 
-or_bl(x)
+or_bl(X)
 
-or_c0(x)
+or_c0(X)
 
-or_i0(x)
+or_i0(X)
 
-or_l0(x)
+or_l0(X)
 
-or_n0(x)
+or_n0(X)
 
-or_na(x)
+or_na(X)
 
-or_nac(x)
+or_nac(X)
 
-or_naI(x)
+or_nai(X)
 
-or_naL(x)
+or_nal(X)
 
-or_naR(x)
+or_nar(X)
 
-or_null(x)
+or_null(X)
 
-is_id(x, y)
+is_id(X, Y)
 
-not_id(x, y)
+not_id(X, Y)
 
-is_in0(x, ...)
+is_IN(X, ...)
 
-is_mf0(x, ...)
+is_MF(X, ...)
 
-has0(x, y)
+HAS(X, Y)
 
-lacks0(x, y)
+LACKS(X, Y)
 
-is_eq0(x, y)
+is_EQ(X, Y)
 
-is_ge0(x, y)
+is_GE(X, Y)
 
-is_gt0(x, y)
+is_GT(X, Y)
 
-is_le0(x, y)
+is_LE(X, Y)
 
-is_lt0(x, y)
+is_LT(X, Y)
 
-is_dif0(x, y)
+is_DIF(X, Y)
 
-is_f0(x)
+is_F(X)
 
-is_t0(x)
+is_T(X)
 
-is_bl0(x)
+is_BL(X)
 
-is_tf0(x)
+is_TF(X)
 
-is_na0(x)
+is_NAV(X)
 
-is_ok0(x)
+is_OKV(X)
 
-is_lg0(x)
+is_LG(X)
 
-is_in(x, ...)
+is_in(X, ...)
 
-is_mf(x, ...)
+is_mf(X, ...)
 
-has(x, y)
+has(X, Y)
 
-lacks(x, y)
+not(X)
 
-is_eq(x, y)
+lacks(X, Y)
 
-is_ge(x, y)
+is_eq(X, Y)
 
-is_gt(x, y)
+is_ge(X, Y)
 
-is_le(x, y)
+is_gt(X, Y)
 
-is_lt(x, y)
+is_le(X, Y)
 
-is_dif(x, y)
+is_lt(X, Y)
 
-is_f(x)
+is_dif(X, Y)
 
-is_t(x)
+is_f(X)
 
-is_bl(x)
+is_t(X)
 
-is_tf(x)
+is_bl(X)
 
-is_nav(x)
+is_tf(X)
 
-is_okv(x)
+is_nav(X)
 
-is_seq(x, y)
+is_okv(X)
 
-is_veq(x, y)
+is_seq(X, Y)
 
-is_sdif(x, y)
+is_veq(X, Y)
 
-is_vdif(x, y)
+is_sdif(X, Y)
 
-or0(x, y)
+is_vdif(X, Y)
 
-and0(x, y)
+OR(X, Y)
 
-xor0(x, y)
+AND(X, Y)
 
-nor0(x, y)
+XOR(X, Y)
 
-or(x, y)
+NOR(X, Y)
 
-and(x, y)
+or(X, Y)
 
-one(x, y)
+and(X, Y)
 
-nor(x, y)
+one(X, Y)
 
-not_in0(x, ...)
+nor(X, Y)
 
-not_mf0(x, ...)
+not_IN(X, ...)
 
-not_has0(x, y)
+not_MF(X, ...)
 
-not_lacks0(x, y)
+not_HAS(X, Y)
 
-not_eq0(x, y)
+not_LACKS(X, Y)
 
-not_ge0(x, y)
+not_EQ(X, Y)
 
-not_gt0(x, y)
+not_GE(X, Y)
 
-not_le0(x, y)
+not_GT(X, Y)
 
-not_lt0(x, y)
+not_LE(X, Y)
 
-not_dif0(x, y)
+not_LT(X, Y)
 
-not_f0(x)
+not_DIF(X, Y)
 
-not_t0(x)
+not_F(X)
 
-not_tf0(x)
+not_T(X)
 
-not_bl0(x)
+not_TF(X)
 
-not_na0(x)
+not_BL(X)
 
-not_ok0(x)
+not_NAV(X)
 
-not_lg0(x)
+not_OKV(X)
 
-not_in(x, ...)
+not_LG(X)
 
-not_mf(x, ...)
+not_in(X, ...)
 
-not_has(x, y)
+not_mf(X, ...)
 
-not_lacks(x, y)
+not_has(X, Y)
 
-not_eq(x, y)
+not_lacks(X, Y)
 
-not_ge(x, y)
+not_eq(X, Y)
 
-not_gt(x, y)
+not_ge(X, Y)
 
-not_le(x, y)
+not_gt(X, Y)
 
-not_lt(x, y)
+not_le(X, Y)
 
-not_dif(x, y)
+not_lt(X, Y)
 
-not_f(x)
+not_dif(X, Y)
 
-not_t(x)
+not_f(X)
 
-not_tf(x)
+not_t(X)
 
-not_bl(x)
+not_tf(X)
 
-not_nav(x)
+not_bl(X)
 
-not_okv(x)
+not_nav(X)
 
-not_seq(x, y)
+not_okv(X)
 
-not_veq(x, y)
+not_seq(X, Y)
 
-not_sdif(x, y)
+not_veq(X, Y)
 
-not_vdif(x, y)
+not_sdif(X, Y)
 
-n_in(x, ...)
+not_vdif(X, Y)
 
-n_mf(x, ...)
+n_in(X, ...)
 
-n_has(x, y)
+n_mf(X, ...)
 
-n_lacks(x, y)
+n_has(X, Y)
 
-n_eq(x, y)
+n_lacks(X, Y)
 
-n_ge(x, y)
+n_eq(X, Y)
 
-n_gt(x, y)
+n_ge(X, Y)
 
-n_le(x, y)
+n_gt(X, Y)
 
-n_lt(x, y)
+n_le(X, Y)
 
-n_dif(x, y)
+n_lt(X, Y)
 
-n_f(x)
+n_dif(X, Y)
 
-n_t(x)
+n_f(X)
 
-n_tf(x)
+n_t(X)
 
-n_bl(x)
+n_tf(X)
 
-n_nav(x)
+n_bl(X)
 
-n_okv(x)
+n_nav(X)
 
-none_f(x)
+n_okv(X)
 
-none_t(x)
+none_f(X)
 
-none_tf(x)
+none_t(X)
 
-none_bl(x)
+none_tf(X)
 
-none_eq(x, y)
+none_bl(X)
 
-none_ge(x, y)
+none_eq(X, Y)
 
-none_gt(x, y)
+none_ge(X, Y)
 
-none_le(x, y)
+none_gt(X, Y)
 
-none_lt(x, y)
+none_le(X, Y)
 
-none_in(x, ...)
+none_lt(X, Y)
 
-none_mf(x, ...)
+none_in(X, ...)
 
-none_dif(x, y)
+none_mf(X, ...)
 
-none_nav(x)
+none_dif(X, Y)
 
-none_okv(x)
+none_nav(X)
 
-has_none(x, y)
+none_okv(X)
 
-lacks_none(x, y)
+has_none(X, Y)
 
-any_f(x)
+lacks_none(X, Y)
 
-any_t(x)
+any_f(X)
 
-any_bl(x)
+any_t(X)
 
-any_eq(x, y)
+any_bl(X)
 
-any_ge(x, y)
+any_eq(X, Y)
 
-any_gt(x, y)
+any_ge(X, Y)
 
-any_in(x, ...)
+any_gt(X, Y)
 
-any_le(x, y)
+any_in(X, ...)
 
-any_lt(x, y)
+any_le(X, Y)
 
-any_mf(x, ...)
+any_lt(X, Y)
 
-any_tf(x)
+any_mf(X, ...)
 
-any_dif(x, y)
+any_tf(X)
 
-any_nav(x)
+any_dif(X, Y)
 
-any_okv(x)
+any_nav(X)
 
-has_any(x, y)
+any_okv(X)
 
-lacks_any(x, y)
+has_any(X, Y)
 
-one_f(x)
+lacks_any(X, Y)
 
-one_t(x)
+one_f(X)
 
-one_bl(x)
+one_t(X)
 
-one_eq(x, y)
+one_bl(X)
 
-one_ge(x, y)
+one_eq(X, Y)
 
-one_gt(x, y)
+one_ge(X, Y)
 
-one_in(x, ...)
+one_gt(X, Y)
 
-one_le(x, y)
+one_in(X, ...)
 
-one_lt(x, y)
+one_le(X, Y)
 
-one_mf(x, ...)
+one_lt(X, Y)
 
-one_tf(x)
+one_mf(X, ...)
 
-one_dif(x, y)
+one_tf(X)
 
-one_nav(x)
+one_dif(X, Y)
 
-one_okv(x)
+one_nav(X)
 
-has_one(x, y)
+one_okv(X)
 
-lacks_one(x, y)
+has_one(X, Y)
 
-all_f(x)
+lacks_one(X, Y)
 
-all_t(x)
+all_f(X)
 
-all_bl(x)
+all_t(X)
 
-all_eq(x, y)
+all_bl(X)
 
-all_ge(x, y)
+all_eq(X, Y)
 
-all_gt(x, y)
+all_ge(X, Y)
 
-all_in(x, ...)
+all_gt(X, Y)
 
-all_le(x, y)
+all_in(X, ...)
 
-all_lt(x, y)
+all_le(X, Y)
 
-all_mf(x, ...)
+all_lt(X, Y)
 
-all_tf(x)
+all_mf(X, ...)
 
-all_dif(x, y)
+all_tf(X)
 
-all_nav(x)
+all_dif(X, Y)
 
-all_okv(x)
+all_nav(X)
 
-has_all(x, y)
+all_okv(X)
 
-lacks_all(x, y)
+has_all(X, Y)
 
-some_f(x)
+lacks_all(X, Y)
 
-some_t(x)
+some_f(X)
 
-some_bl(x)
+some_t(X)
 
-some_eq(x, y)
+some_bl(X)
 
-some_le(x, y)
+some_eq(X, Y)
 
-some_ge(x, y)
+some_le(X, Y)
 
-some_gt(x, y)
+some_ge(X, Y)
 
-some_in(x, ...)
+some_gt(X, Y)
 
-some_lt(x, y)
+some_in(X, ...)
 
-some_mf(x, ...)
+some_lt(X, Y)
 
-some_tf(x)
+some_mf(X, ...)
 
-some_dif(x, y)
+some_tf(X)
 
-some_nav(x)
+some_dif(X, Y)
 
-some_okv(x)
+some_nav(X)
 
-has_some(x, y)
+some_okv(X)
 
-lacks_some(x, y)
+has_some(X, Y)
 
-two_f(x)
+lacks_some(X, Y)
 
-two_t(x)
+two_f(X)
 
-two_bl(x)
+two_t(X)
 
-two_eq(x, y)
+two_bl(X)
 
-two_ge(x, y)
+two_eq(X, Y)
 
-two_gt(x, y)
+two_ge(X, Y)
 
-two_in(x, ...)
+two_gt(X, Y)
 
-two_le(x, y)
+two_in(X, ...)
 
-two_lt(x, y)
+two_le(X, Y)
 
-two_mf(x, ...)
+two_lt(X, Y)
 
-two_tf(x)
+two_mf(X, ...)
 
-two_dif(x, y)
+two_tf(X)
 
-two_nav(x)
+two_dif(X, Y)
 
-two_okv(x)
+two_nav(X)
 
-has_two(x, y)
+two_okv(X)
 
-lacks_two(x, y)
+has_two(X, Y)
 
-many_f(x)
+lacks_two(X, Y)
 
-many_t(x)
+many_f(X)
 
-many_bl(x)
+many_t(X)
 
-many_eq(x, y)
+many_bl(X)
 
-many_ge(x, y)
+many_eq(X, Y)
 
-many_gt(x, y)
+many_ge(X, Y)
 
-many_in(x, ...)
+many_gt(X, Y)
 
-many_le(x, y)
+many_in(X, ...)
 
-many_lt(x, y)
+many_le(X, Y)
 
-many_mf(x, ...)
+many_lt(X, Y)
 
-many_tf(x)
+many_mf(X, ...)
 
-many_dif(x, y)
+many_tf(X)
 
-many_nav(x)
+many_dif(X, Y)
 
-many_okv(x)
+many_nav(X)
 
-has_many(x, y)
+many_okv(X)
 
-lacks_many(x, y)
+has_many(X, Y)
 
-x \%.in0.\% y
+lacks_many(X, Y)
 
-x \%.mf0.\% y
+X \%.IN.\% Y
 
-x \%.eq0.\% y
+X \%.MF.\% Y
 
-x \%.ge0.\% y
+X \%.EQ.\% Y
 
-x \%.gt0.\% y
+X \%.GE.\% Y
 
-x \%.le0.\% y
+X \%.GT.\% Y
 
-x \%.lt0.\% y
+X \%.LE.\% Y
 
-x \%.has0.\% y
+X \%.LT.\% Y
 
-x \%.dif0.\% y
+X \%.HAS.\% Y
 
-x \%.lacks0.\% y
+X \%.DIF.\% Y
 
-x \%.in.\% y
+X \%.LACKS.\% Y
 
-x \%.mf.\% y
+X \%.in.\% Y
 
-x \%.eq.\% y
+X \%.mf.\% Y
 
-x \%.ge.\% y
+X \%.eq.\% Y
 
-x \%.gt.\% y
+X \%.ge.\% Y
 
-x \%.le.\% y
+X \%.gt.\% Y
 
-x \%.lt.\% y
+X \%.le.\% Y
 
-x \%.has.\% y
+X \%.lt.\% Y
 
-x \%.dif.\% y
+X \%.has.\% Y
 
-x \%.lacks.\% y
+X \%.dif.\% Y
 
-x \%.seq.\% y
+X \%.lacks.\% Y
 
-x \%.veq.\% y
+X \%.seq.\% Y
 
-x \%.neq.\% y
+X \%.veq.\% Y
 
-x \%.sdif.\% y
+X \%.neq.\% Y
 
-x \%.vdif.\% y
+X \%.sdif.\% Y
 
-x \%.ndif.\% y
+X \%.vdif.\% Y
 
-x \%.or0.\% y
+X \%.ndif.\% Y
 
-x \%.and0.\% y
+X \%.OR.\% Y
 
-x \%.xor0.\% y
+X \%.AND.\% Y
 
-x \%.nor0.\% y
+X \%.XOR.\% Y
 
-x \%.or.\% y
+X \%.NOR.\% Y
 
-x \%.and.\% y
+X \%.or.\% Y
 
-x \%.xor.\% y
+X \%.and.\% Y
 
-x \%.nor.\% y
+X \%.xor.\% Y
+
+X \%.nor.\% Y
 }
 \arguments{
-\item{x, y}{Any objects for failsafe binary functions and miscellaneous failsafe functions.}
+\item{Def}{A character scalar default error message if forcing evaluation produces an error. If not a character scalar, it is replaced with the default.}
 
-\item{val}{An atomic scalar.}
+\item{Val, Or, X, Y}{Any object/expression to be evaluated, whether or not doing so produces an error.}
 
-\item{or}{An object to return if evaluating \code{x} produces an error.}
-
-\item{x}{An object or a call_ to evaluate in the environment of a parent function where the initial call_ was made.}
+\item{...}{Any objects/expressions to be evaluated, whether or not doing so produces an error.}
 }
 \value{
 A logical scalar or vector.
@@ -884,41 +885,86 @@ A logical scalar or vector.
 Evaluate objects, test if an object has certain properties, and conduct binary logical operations safely. these functions never stop execution; they always produce a valid result, even if that result is an error object.
 }
 \details{
-failsafe binary comparison functions: these are binary functions that always produce either scalar \code{TRUE} or scalar \code{FALSE}. they return \code{TRUE} when two variables meet the conditions shown in the following table and \code{FALSE} in every other circumstance (where \code{fx} and \code{fy})
-\tabular{ll}{  \verb{\%.is.\%}       \tab \code{failsafe(identical(x, y))}                                  \cr
-  \verb{\%.isnt.\%}     \tab \code{!(x \%.is.\% y)}                                              \cr   \tab   \cr
-  \verb{\%.in.\%}       \tab \code{sapply(failsafe(x \%in\% y), isTRUE)}                         \cr
-  \verb{\%.mf.\%}       \tab \code{!(x \%.in.\% y)} (missing from)                               \cr
-  \verb{\%.has.\%}      \tab \code{y \%.in.\% x} (\code{x} has each \code{y} value)                        \cr
-  \verb{\%.lacks.\%}    \tab \code{y \%.mf.\% x} (\code{x} lacks each \code{y} value)                      \cr   \tab   \cr
-  \verb{\%.in0.\%}      \tab if \code{x} is atomic scalar, \code{x \%.in.\% y}, otherwise \code{FALSE}     \cr
-  \verb{\%.mf0.\%}      \tab \code{x} is atomic scalar and \code{x \%.mf.\% y}                        \cr
-  \verb{\%.has0.\%}     \tab \code{y} is atomic scalar and \code{x \%.has.\% y}                       \cr
-  \verb{\%.lacks0.\%}   \tab \code{y} is atomic scalar and \code{x \%.lacks.\% y}                     \cr   \tab   \cr
-  \verb{\%.eq.\%}       \tab If \code{x} and \code{y} match\eqn{^{(1)}}, \code{x = y}, otherwise \code{FALSE} \cr
-  \verb{\%.ge.\%}       \tab If \code{x} and \code{y} match\eqn{^{(1)}}, \verb{x ≥ y}, otherwise \code{FALSE} \cr
-  \verb{\%.gt.\%}       \tab If \code{x} and \code{y} match\eqn{^{(1)}}, \code{x > y}, otherwise \code{FALSE} \cr
-  \verb{\%.le.\%}       \tab If \code{x} and \code{y} match\eqn{^{(1)}}, \verb{x ≤ y}, otherwise \code{FALSE} \cr
-  \verb{\%.lt.\%}       \tab If \code{x} and \code{y} match\eqn{^{(1)}}, \code{x < y}, otherwise \code{FALSE} \cr
-  \verb{\%.dif.\%}      \tab If \code{x} and \code{y} match\eqn{^{(1)}}, \verb{x ≠ y}, otherwise \code{TRUE}  \cr   \tab   \cr
-  \verb{\%.eq0.\%}      \tab \code{x} and \code{y} are atomic scalar and \code{x = y}  \eqn{^{(2)}}      \cr
-  \verb{\%.ge0.\%}      \tab \code{x} and \code{y} are atomic scalar and \verb{x ≥ y}  \eqn{^{(2)}}      \cr
-  \verb{\%.gt0.\%}      \tab \code{x} and \code{y} are atomic scalar and \code{x > y}  \eqn{^{(2)}}      \cr
-  \verb{\%.le0.\%}      \tab \code{x} and \code{y} are atomic scalar and \verb{x ≤ y}  \eqn{^{(2)}}      \cr
-  \verb{\%.lt0.\%}      \tab \code{x} and \code{y} are atomic scalar and \verb{x ≥ y}  \eqn{^{(2)}}      \cr
-  \verb{\%.dif0.\%}     \tab \code{x} and \code{y} are \emph{not} atomic scalar equal  \eqn{^{(3)}}      \cr   \tab   \cr
-  \verb{\%.seq.\%}      \tab \code{x} and \code{y} are \code{\link[base]{setequal}}\eqn{^{(4)}}     \cr
-  \verb{\%.veq.\%}      \tab \code{x} and \code{y} are vector equal\eqn{^{(5)}}                     \cr
-  \verb{\%.sdif.\%}     \tab \code{x} and \code{y} are set different\eqn{^{(6)}}                    \cr
-  \verb{\%.vdif.\%}     \tab \code{x} and \code{y} are vector different\eqn{^{(7)}}                 \cr   \tab   \cr
-  \verb{\%.or.\%}       \tab values of \code{x} \emph{and/or} \code{y} are \code{TRUE}                        \cr
-  \verb{\%.and.\%}      \tab values of \code{x} \emph{and} \code{y} are \code{TRUE}                           \cr
-  \verb{\%.xor.\%}      \tab values of \emph{either} \code{x} \emph{or} \code{y} are \code{TRUE}                   \cr
-  \verb{\%.nor.\%}      \tab values of \emph{neither} \code{x} \emph{nor} \code{y} are \code{TRUE}                 \cr   \tab   \cr
-  \verb{\%.or0.\%}      \tab \code{x} \emph{and/or} \code{y} are scalar \code{TRUE}                           \cr
-  \verb{\%.and0.\%}     \tab \code{x} \emph{and} \code{y} are scalar \code{TRUE}                              \cr
-  \verb{\%.xor0.\%}     \tab \emph{either} \code{x} \emph{or} \code{y} is scalar \code{TRUE}                       \cr
-  \verb{\%.nor0.\%}     \tab \emph{neither} \code{x} \emph{nor} \code{y} is scalar \code{TRUE}                     \cr   \tab     }
+\strong{Error management functions}
+\cr\cr These functions evaluate generate, check for, and manage error objects.
+\tabular{ll}{  \code{make_err}   \tab generate object of class \code{'simpleError'}.     \cr
+  \code{msg_err}    \tab get error message, if any; otherwise, \code{NULL}. \cr
+  \code{not_err}    \tab Does evaluating \code{X} not produce an error?.    \cr
+  \code{is_err}     \tab Does evaluating \code{X} produce an error?           }
+\cr \strong{failsafe check for classes of objects with values}
+\tabular{ll}{  \code{failsafe}   \tab Returns \code{X} if identity evaluation does not_ cause an error. Returns
+an error object otherwise with the attribute \code{stack = uj::callers()}. \cr   \tab   \cr
+  \code{fs_null}    \tab \code{X} is \code{NULL}.                                                        \cr
+  \code{fs_def}     \tab \code{X} is defined (not \code{NULL}).                                          \cr   \tab   \cr
+  \code{fs_scl}     \tab \code{X} is scalar of a specific atomic value.                             \cr
+  \code{fs_t}       \tab \code{X} is scalar \code{TRUE}.                                                 \cr
+  \code{fs_f}       \tab \code{X} is scalar \code{FALSE}.                                                \cr
+  \code{fs_na}      \tab \code{X} is scalar \code{NA}.                                                   \cr
+  \code{fs_tf}      \tab \code{X} is scalar \code{TRUE} or scalar \code{FALSE}.                               \cr
+  \code{scl_f}      \tab \code{X} is scalar \code{FALSE}                                                 \cr
+  \code{scl_t}      \tab \code{X} is scalar \code{TRUE}                                                  \cr
+  \code{scl_tf}     \tab \code{X} is scalar \code{TRUE} or \code{FALSE}.                                      \cr
+  \code{scl_lg}     \tab \code{X} is scalar \code{TRUE}, \code{FALSE}, or \code{NA}.                               \cr
+  \code{scl_bl}     \tab \code{X} is blank string scalar (\code{""}).                                    \cr
+  \code{scl_na}     \tab \code{X} is scalar \code{NA}                                                    \cr   \tab   \cr
+  \code{fs_vec}     \tab Elements of \code{X} are of a specific atomic value.                       \cr
+  \code{vec_f}      \tab Elements of \code{X} are \code{FALSE}.                                          \cr
+  \code{vec_t}      \tab Elements of \code{X} are \code{TRUE}.                                           \cr
+  \code{vec_tf}     \tab Elements of \code{X} are \code{TRUE} or \code{FALSE}.                                \cr
+  \code{vec_lg}     \tab Elements of \code{X} are \code{TRUE}, \code{FALSE}, or \code{NA}.                         \cr
+  \code{vec_bl}     \tab Elements of \code{X} are blank strings.                                    \cr
+  \code{vec_na}     \tab Elements of \code{X} are \code{NA}.                                               }
+\strong{Forced-evaluation functions with conditional return values}
+\cr\cr These functions \link[base:force]{force} evaluation of \code{X} returning values as shown in the following table with the first value returned when forcing evaluation does not produce an error and the second when it does:
+\tabular{ll}{  \code{fs_or}    \tab \code{X} or something else if evaluating \code{X} produces an error \cr   \tab   \cr
+  \code{or_f}     \tab \code{X} or \code{FALSE}                                            \cr
+  \code{or_t}     \tab \code{X} or \code{TRUE}                                             \cr   \tab   \cr
+  \code{or_c0}    \tab \code{X} or \code{character(0)}                                     \cr
+  \code{or_i0}    \tab \code{X} or \code{integer(0)}                                       \cr
+  \code{or_l0}    \tab \code{X} or \code{logical(0)}                                       \cr
+  \code{or_n0}    \tab \code{X} or \code{numeric(0)}                                       \cr   \tab   \cr
+  \code{or_bl}    \tab \code{X} or \code{""}                                               \cr   \tab   \cr
+  \code{or_na}    \tab \code{X} or \code{NA}                                               \cr
+  \code{or_nac}   \tab \code{X} or \code{NA_character_}                                    \cr
+  \code{or_nai}   \tab \code{X} or \code{NA_integer_}                                      \cr
+  \code{or_nal}   \tab \code{X} or \code{NA} (logical)                                     \cr
+  \code{or_nar}   \tab \code{X} or \code{NA_real_}                                           }
+\strong{Binary comparison functions}
+\cr\cr These are binary functions that always produce either scalar \code{TRUE} or scalar \code{FALSE}. They return \code{TRUE} when two variables meet the conditions shown in the following table and \code{FALSE} in every other circumstance (where \code{fx} and \code{fy})
+\tabular{ll}{  \verb{\%.is.\%}      \tab \code{failsafe(identical(X, Y))}                                  \cr
+  \verb{\%.isnt.\%}    \tab \code{!(X \%.is.\% Y)}                                              \cr   \tab   \cr
+  \verb{\%.in.\%}      \tab \code{sapply(failsafe(X \%in\% Y), isTRUE)}                         \cr
+  \verb{\%.mf.\%}      \tab \code{!(X \%.in.\% Y)} (missing from)                               \cr
+  \verb{\%.has.\%}     \tab \code{Y \%.in.\% X} (\code{X} has each \code{Y} value)                        \cr
+  \verb{\%.lacks.\%}   \tab \code{Y \%.mf.\% X} (\code{X} lacks each \code{Y} value)                      \cr   \tab   \cr
+  \verb{\%.eq.\%}      \tab If \code{X} and \code{Y} match\eqn{^{(1)}}, \code{X = Y}, otherwise \code{FALSE} \cr
+  \verb{\%.ge.\%}      \tab If \code{X} and \code{Y} match\eqn{^{(1)}}, \verb{X ≥ Y}, otherwise \code{FALSE} \cr
+  \verb{\%.gt.\%}      \tab If \code{X} and \code{Y} match\eqn{^{(1)}}, \code{X > Y}, otherwise \code{FALSE} \cr
+  \verb{\%.le.\%}      \tab If \code{X} and \code{Y} match\eqn{^{(1)}}, \verb{X ≤ Y}, otherwise \code{FALSE} \cr
+  \verb{\%.lt.\%}      \tab If \code{X} and \code{Y} match\eqn{^{(1)}}, \code{X < Y}, otherwise \code{FALSE} \cr
+  \verb{\%.dif.\%}     \tab If \code{X} and \code{Y} match\eqn{^{(1)}}, \verb{X ≠ Y}, otherwise \code{TRUE}  \cr   \tab   \cr
+  \verb{\%.seq.\%}     \tab \code{X} and \code{Y} are \code{\link[base]{setequal}}\eqn{^{(4)}}     \cr
+  \verb{\%.veq.\%}     \tab \code{X} and \code{Y} are vector equal\eqn{^{(5)}}                     \cr
+  \verb{\%.sdif.\%}    \tab \code{X} and \code{Y} are set different\eqn{^{(6)}}                    \cr
+  \verb{\%.vdif.\%}    \tab \code{X} and \code{Y} are vector different\eqn{^{(7)}}                 \cr   \tab   \cr
+  \verb{\%.or.\%}      \tab values of \code{X} \emph{and/or} \code{Y} are \code{TRUE}                        \cr
+  \verb{\%.and.\%}     \tab values of \code{X} \emph{and} \code{Y} are \code{TRUE}                           \cr
+  \verb{\%.xor.\%}     \tab values of \emph{either} \code{X} \emph{or} \code{Y} are \code{TRUE}                   \cr
+  \verb{\%.nor.\%}     \tab values of \emph{neither} \code{X} \emph{nor} \code{Y} are \code{TRUE}                 \cr   \tab   \cr
+  \verb{\%.IN.\%}      \tab if \code{X} is atomic scalar, \code{X \%.in.\% Y}, otherwise \code{FALSE}     \cr
+  \verb{\%.MF.\%}      \tab \code{X} is atomic scalar and \code{X \%.mf.\% Y}                        \cr
+  \verb{\%.HAS.\%}     \tab \code{Y} is atomic scalar and \code{X \%.has.\% Y}                       \cr
+  \verb{\%.LACKS.\%}   \tab \code{Y} is atomic scalar and \code{X \%.lacks.\% Y}                     \cr   \tab   \cr
+  \verb{\%.EQ.\%}      \tab \code{X} and \code{Y} are atomic scalar and \code{X = Y}  \eqn{^{(2)}}      \cr
+  \verb{\%.GE.\%}      \tab \code{X} and \code{Y} are atomic scalar and \verb{X ≥ Y}  \eqn{^{(2)}}      \cr
+  \verb{\%.GT.\%}      \tab \code{X} and \code{Y} are atomic scalar and \code{X > Y}  \eqn{^{(2)}}      \cr
+  \verb{\%.LE.\%}      \tab \code{X} and \code{Y} are atomic scalar and \verb{X ≤ Y}  \eqn{^{(2)}}      \cr
+  \verb{\%.LT.\%}      \tab \code{X} and \code{Y} are atomic scalar and \verb{X ≥ Y}  \eqn{^{(2)}}      \cr
+  \verb{\%.DIF.\%}     \tab \code{X} and \code{Y} are \emph{not} atomic scalar equal  \eqn{^{(3)}}      \cr   \tab   \cr
+  \verb{\%.OR.\%}      \tab \code{X} \emph{and/or} \code{Y} are scalar \code{TRUE}                           \cr
+  \verb{\%.AND.\%}     \tab \code{X} \emph{and} \code{Y} are scalar \code{TRUE}                              \cr
+  \verb{\%.XOR.\%}     \tab \emph{either} \code{X} \emph{or} \code{Y} is scalar \code{TRUE}                       \cr
+  \verb{\%.NOR.\%}     \tab \emph{neither} \code{X} \emph{nor} \code{Y} is scalar \code{TRUE}                     \cr   \tab     }
 \tabular{l}{  \eqn{^{(1)}} Of equal length and \link[=compatible]{compatible modes}.                                                       \cr
   \eqn{^{(2)}} Of \link[=compatible]{compatible modes} and meeting the (in)equality.                                           \cr
   \eqn{^{(3)}} not meeting the requirements of \verb{\%.eq0.\%}.                                                                      \cr
@@ -926,91 +972,40 @@ failsafe binary comparison functions: these are binary functions that always pro
   \eqn{^{(5)}} atomic, possibly of different lengths, and containing the same unique values regardless of order or duplicates. \cr
   \eqn{^{(6)}} not meeting the requirements of \verb{\%.seq.\%}.                                                                      \cr
   \eqn{^{(7)}} not meeting the requirements of \verb{\%.veq.\%}.                                                                        }
-}
-\section{failsafe error management functions}{
- these functions evaluate generate, check for, and manage error objects.
-\tabular{ll}{  \code{make_err}   \tab generate object of class \code{'simpleError'}.      \cr
-  \code{msg_err}    \tab get error message, if any_; otherwise, \code{NULL}. \cr
-  \code{not_err}    \tab Does evaluating \code{x} not_ produce an error?.    \cr
-  \code{is_err}     \tab Does evaluating \code{x} produce an error?           }
-}
-
-\section{failsafe check for classes of objects with values}{
-
-\tabular{ll}{  \code{failsafe}   \tab Returns \code{x} if identity evaluation does not_ cause an error. Returns
-an error object otherwise with the attribute \code{stack = uj::callers()}. \cr   \tab   \cr
-  \code{fs_null}    \tab \code{x} is \code{NULL}.                                                        \cr
-  \code{fs_def}     \tab \code{x} is defined (not_ \code{NULL}).                                         \cr   \tab   \cr
-  \code{fs_scl}     \tab \code{x} is scalar of a specific atomic value.                             \cr
-  \code{fs_t}       \tab \code{x} is scalar \code{TRUE}.                                                 \cr
-  \code{fs_f}       \tab \code{x} is scalar \code{FALSE}.                                                \cr
-  \code{fs_na}      \tab \code{x} is scalar \code{NA}.                                                   \cr
-  \code{fs_tf}      \tab \code{x} is scalar \code{TRUE} or scalar \code{FALSE}.                               \cr
-  \code{scl_f}      \tab \code{x} is scalar \code{FALSE}                                                 \cr
-  \code{scl_t}      \tab \code{x} is scalar \code{TRUE}                                                  \cr
-  \code{scl_tf}     \tab \code{x} is scalar \code{TRUE} or \code{FALSE}.                                      \cr
-  \code{scl_lg}     \tab \code{x} is scalar \code{TRUE}, \code{FALSE}, or \code{NA}.                               \cr
-  \code{scl_bl}     \tab \code{x} is blank string scalar (\code{""}).                                    \cr
-  \code{scl_na}     \tab \code{x} is scalar \code{NA}                                                    \cr   \tab   \cr
-  \code{fs_vec}     \tab Elements of \code{x} are of a specific atomic value.                       \cr
-  \code{vec_f}      \tab Elements of \code{x} are \code{FALSE}.                                          \cr
-  \code{vec_t}      \tab Elements of \code{x} are \code{TRUE}.                                           \cr
-  \code{vec_tf}     \tab Elements of \code{x} are \code{TRUE} or \code{FALSE}.                                \cr
-  \code{vec_lg}     \tab Elements of \code{x} are \code{TRUE}, \code{FALSE}, or \code{NA}.                         \cr
-  \code{vec_bl}     \tab Elements of \code{x} are blank strings.                                    \cr
-  \code{vec_na}     \tab Elements of \code{x} are \code{NA}.                                               }
-}
-
-\section{failsafe forced-evaluation functions with conditional return values}{
- these functions \link[base:force]{force} evaluation of \code{x} returning values as shown in the following table with the first value returned when forcing evaluation does not_ produce an error and the second when it does:
-\tabular{ll}{  \code{fs_or}    \tab \code{x} or something else if evaluating \code{x} produces an error \cr   \tab   \cr
-  \code{or_f}     \tab \code{x} or \code{FALSE}                                            \cr
-  \code{or_t}     \tab \code{x} or \code{TRUE}                                             \cr   \tab   \cr
-  \code{or_c0}    \tab \code{x} or \code{character(0)}                                     \cr
-  \code{or_i0}    \tab \code{x} or \code{integer(0)}                                       \cr
-  \code{or_l0}    \tab \code{x} or \code{logical(0)}                                       \cr
-  \code{or_n0}    \tab \code{x} or \code{numeric(0)}                                       \cr   \tab   \cr
-  \code{or_bl}    \tab \code{x} or \code{""}                                               \cr   \tab   \cr
-  \code{or_na}    \tab \code{x} or \code{NA}                                               \cr
-  \code{or_nac}   \tab \code{x} or \code{Na_character_}                                    \cr
-  \code{or_nai}   \tab \code{x} or \code{Na_integer_}                                      \cr
-  \code{or_nal}   \tab \code{x} or \code{NA} (logical)                                     \cr
-  \code{or_nar}   \tab \code{x} or \code{Na_real_}                                           }
-}
-
-\section{failsafe scalar value, membership, and equality/inequality checking functions}{
- these functions check for class, mode, and/or value and/or count the number of checks passed. they \emph{always} produce \code{TRUE}, \code{FALSE}, or an integer scalar.
-\cr\cr function names are constructed of root words, prefixes, and/or suffixes. Root word specify the type of check conducted. Prefixes and suffixes specify how to modify the results of a check or how to apply the check to each \code{...} argument and check whether a certain number of \code{...} args passed the checks.
-\cr\cr \strong{\emph{Root words for atomic scalar value checking functions}}
-\tabular{ll}{  \code{nav}   \tab \code{x} is atomic and values are \code{NA}                      \cr
-  \code{okv}   \tab \code{x} is atomic and values are \emph{not} \code{NA}                \cr
-  \code{bl}    \tab \code{x} is atomic and values are blanks (\code{""})             \cr
-  \code{lg}    \tab \code{x} is atomic and values are \code{TRUE}, \code{FALSE}, or \code{NA}. \cr
-  \code{tf}    \tab \code{x} is atomic and values are \code{TRUE} or \code{FALSE}.        \cr
-  \code{f}     \tab \code{x} is atomic and values are \code{TRUE}.                   \cr
-  \code{t}     \tab \code{x} is atomic and valules are \code{FALSE}.                   }
-\cr \strong{\emph{Root words for atomic value membership checking functions}}
-\tabular{ll}{  \code{lacks}   \tab \code{x \%.lacks.\% y} \cr
-  \code{has}     \tab \code{x \%.has.\% y}   \cr
-  \verb{in}      \tab \code{x \%.in.\% y}    \cr
-  \code{mf}      \tab \code{x \%.mf.\% y}      }
-\cr \strong{\emph{Root words for equality/inequality checking functions}}
+\strong{Scalar value, membership, and equality/inequality checking functions}
+\cr\cr These functions check for class, mode, and/or value and/or count the number of checks passed. they \emph{always} produce \code{TRUE}, \code{FALSE}, or an integer scalar.
+\cr\cr Function names are constructed of root words, prefixes, and/or suffixes. Root word specify the type of check conducted. Prefixes and suffixes specify how to modify the results of a check or how to apply the check to each \code{...} argument and check whether a certain number of \code{...} args passed the checks.
+\cr\cr Uppercase root words indicate one or both arguments must be scalar. Lowercase root words indicate arguments may be vectors.
+\cr\cr \emph{Root words for atomic scalar value checking functions}
+\tabular{ll}{  \code{nav}   \tab \code{X} is atomic and values are \code{NA}.                               \cr
+  \code{okv}   \tab \code{X} is atomic and values are \emph{not} \code{NA}.                         \cr
+  \code{bl}    \tab \code{X} is atomic and values are blanks (\code{""}).                      \cr
+  \code{lg}    \tab \code{X} is atomic and values are logical (\code{TRUE}, \code{FALSE}, or \code{NA}). \cr
+  \code{tf}    \tab \code{X} is atomic and values are \code{TRUE} or \code{FALSE}.                  \cr
+  \code{f}     \tab \code{X} is atomic and values are \code{TRUE}.                             \cr
+  \code{t}     \tab \code{X} is atomic and valules are \code{FALSE}.                             }
+\cr \emph{Root words for atomic value membership checking functions}
+\tabular{ll}{  \code{lacks}   \tab \code{X} lacks values of \code{Y}.      \cr
+  \code{has}     \tab \code{X} has values of \code{Y}.        \cr
+  \verb{in}      \tab \code{X} in values of \code{Y}.         \cr
+  \code{mf}      \tab \code{X} missing from values of \code{Y}. }
+\cr \emph{Root words for equality/inequality checking functions}
 \tabular{ll}{  \code{id}     \tab objects are identical                \cr
+  \code{ge}     \tab \code{X} is greater than or equal to \code{Y}. \cr
+  \code{gt}     \tab \code{X} is greater than \code{Y}.             \cr
+  \code{le}     \tab \code{X} is less than or equal to \code{Y}.    \cr
+  \code{lt}     \tab \code{X} is less than \code{Y}.                \cr
   \code{eq}     \tab values are equal                     \cr
-  \code{seq}    \tab values are set equal                 \cr
-  \code{veq}    \tab values are vector equal              \cr
   \code{dif}    \tab values are different                 \cr
+  \code{seq}    \tab values are set equal                 \cr
   \code{sdif}   \tab values are set different             \cr
-  \code{vdif}   \tab values are vector different          \cr
-  \code{ge}     \tab \code{x} is greater than or equal to \code{y}. \cr
-  \code{gt}     \tab \code{x} is greater than \code{y}.             \cr
-  \code{le}     \tab \code{x} is less than or equal to \code{y}.    \cr
-  \code{lt}     \tab \code{x} is less than \code{y}.                  }
-\cr \strong{\emph{Modifier prefixes/suffixes}}
-\tabular{ll}{  \code{n}      \tab count \code{...} args passing the check. \cr
-  \code{is}     \tab Keep the result of a check as is.   \cr
-  \code{not}    \tab Negate the result of a check.         }
-\cr \strong{\emph{apply-and-sweep prefixes/suffixes evaluating whether a certain number of checks were passed}}
+  \code{veq}    \tab values are vector equal              \cr
+  \code{vdif}   \tab values are vector different            }
+\cr \emph{Modifier prefixes/suffixes}
+\tabular{ll}{  \code{n}     \tab count \code{...} args passing the check. \cr
+  \code{is}    \tab Keep the result of a check as is.   \cr
+  \code{not}   \tab Negate the result of a check.         }
+\cr \emph{Apply-and-sweep prefixes/suffixes evaluating whether a certain number of checks were passed}
 \cr\cr the following table contains prefixes in the first column, and in the second, the number of checks that must be passed to return \code{TRUE}.
 \tabular{ll}{  \code{none}   \tab \code{0} values passed the check.   \cr
   \code{any}    \tab \verb{> 0} values passed the check. \cr
@@ -1019,38 +1014,38 @@ an error object otherwise with the attribute \code{stack = uj::callers()}. \cr �
   \code{two}    \tab \code{2} values passed the check.   \cr
   \code{many}   \tab \verb{> 2} values passed the check. \cr
   \code{all}    \tab all values passed the check.    }
-\cr \strong{\emph{Identity-equality, set-equality and vector-equality checking functions}}
-\tabular{lll}{             \tab \strong{is}       \tab \strong{not}    \cr
-  \strong{id}     \tab \code{is_id}      \tab \code{not_id}   \cr
-  \strong{seq}    \tab \code{is_seq}     \tab \code{not_deq}  \cr
-  \strong{veq}    \tab \code{is_veq}     \tab \code{not_veq}  \cr
-  \strong{sdif}   \tab \code{is_sdif}    \tab \code{not_sdif} \cr
-  \strong{vdif}   \tab \code{is_vdif}    \tab \code{not_vdif}   }
-\cr \strong{\emph{atomic scalar value checking functions}}
-\tabular{lll}{              \tab \strong{is}      \tab \strong{not}    \cr
-  \strong{TRUE}    \tab \code{is_t0}     \tab \code{not_t0}   \cr
-  \strong{FALSE}   \tab \code{is_f0}     \tab \code{not_f0}   \cr
-  \strong{tf}      \tab \code{is_tf0}    \tab \code{not_tf0}  \cr
-  \strong{lg}      \tab \code{is_lg0}    \tab \code{not_lg0}  \cr
-  \strong{bl}      \tab \code{is_bl0}    \tab \code{not_bl0}  \cr
-  \strong{eq}      \tab \code{is_eq0}    \tab \code{not_eq0}  \cr
-  \strong{ge}      \tab \code{is_ge0}    \tab \code{not_ge0}  \cr
-  \strong{gt}      \tab \code{is_gt0}    \tab \code{not_gt0}  \cr
-  \strong{le}      \tab \code{is_le0}    \tab \code{not_le0}  \cr
-  \strong{lt}      \tab \code{is_lt0}    \tab \code{not_lt0}  \cr
-  \strong{nav}     \tab \code{is_nav}    \tab \code{not_nav}  \cr
-  \strong{okv}     \tab \code{is_okv}    \tab \code{not_okv}  \cr
-  \strong{dif}     \tab \code{is_dif0}   \tab \code{not_dif0}   }
-\cr \strong{\emph{atomic scalar value membership checking functions}}
-\tabular{lll}{              \tab \strong{is}      \tab \strong{not}    \cr
-  \strong{in}      \tab \code{is_in0}    \tab \code{not_in0}  \cr
-  \strong{mf}      \tab \code{is_mf0}    \tab \code{not_mf0}  \cr
-  \strong{has}     \tab \code{has0}      \tab \code{not_has0} \cr
-  \strong{lacks}   \tab \code{lacks0}    \tab \code{not_lacks0} }
-\cr \strong{\emph{atomic value checking functions}}
-\tabular{lllllllllll}{              \tab \strong{is}     \tab \strong{n}     \tab \strong{not_}       \tab \strong{none}       \tab \strong{one}       \tab \strong{two}       \tab \strong{any}       \tab  \strong{some}      \tab  \strong{many}      \tab  \strong{all_} \cr
-  \strong{TRUE}    \tab \code{is_t}     \tab \code{n_t}     \tab \code{not_t}        \tab \code{none_t}       \tab \code{one_t}       \tab \code{two_t}       \tab \code{any_t}       \tab \code{some_t}       \tab \code{many_t}       \tab \code{all_t}   \cr
-  \strong{FALSE}   \tab \code{is_f}     \tab \code{n_f}     \tab \code{not_f}        \tab \code{none_f}       \tab \code{one_f}       \tab \code{two_f}       \tab \code{any_f}       \tab \code{some_f}       \tab \code{many_f}       \tab \code{all_f}   \cr
+\cr \strong{Identity-equality, set-equality and vector-equality checking functions}
+\tabular{lll}{             \tab \strong{is}      \tab \strong{not}    \cr
+  \strong{id}     \tab \code{is_id}     \tab \code{not_id}   \cr
+  \strong{seq}    \tab \code{is_seq}    \tab \code{not_deq}  \cr
+  \strong{veq}    \tab \code{is_veq}    \tab \code{not_veq}  \cr
+  \strong{sdif}   \tab \code{is_sdif}   \tab \code{not_sdif} \cr
+  \strong{vdif}   \tab \code{is_vdif}   \tab \code{not_vdif}   }
+\cr \strong{atomic scalar value checking functions}
+\tabular{lll}{            \tab \strong{is}     \tab \strong{not}   \cr
+  \strong{t}     \tab \code{is_T}     \tab \code{not_T}   \cr
+  \strong{f}     \tab \code{is_F}     \tab \code{not_F}   \cr
+  \strong{tf}    \tab \code{is_TF}    \tab \code{not_TF}  \cr
+  \strong{lg}    \tab \code{is_LG}    \tab \code{not_LG}  \cr
+  \strong{bl}    \tab \code{is_BL}    \tab \code{not_BL}  \cr
+  \strong{eq}    \tab \code{is_EQ}    \tab \code{not_EQ}  \cr
+  \strong{ge}    \tab \code{is_GE}    \tab \code{not_GE}  \cr
+  \strong{gt}    \tab \code{is_GT}    \tab \code{not_GT}  \cr
+  \strong{le}    \tab \code{is_LE}    \tab \code{not_LE}  \cr
+  \strong{lt}    \tab \code{is_LT}    \tab \code{not_LT}  \cr
+  \strong{nav}   \tab \code{is_NAV}   \tab \code{not_NAV} \cr
+  \strong{okv}   \tab \code{is_OKV}   \tab \code{not_OKV} \cr
+  \strong{dif}   \tab \code{is_DIF}   \tab \code{not_DIF}   }
+\cr \strong{atomic scalar value membership checking functions}
+\tabular{lll}{              \tab \strong{is}     \tab \strong{not}   \cr
+  \strong{in}      \tab \code{is_IN}    \tab \code{not_IN}  \cr
+  \strong{mf}      \tab \code{is_MF}    \tab \code{not_MF}  \cr
+  \strong{has}     \tab \code{HAS}      \tab \code{not_HAS} \cr
+  \strong{lacks}   \tab \code{LACKS}    \tab \code{not_LACKS} }
+\cr \strong{atomic value checking functions}
+\tabular{lllllllllll}{              \tab \strong{is}     \tab \strong{n}     \tab \strong{not}        \tab \strong{none}       \tab \strong{one}       \tab \strong{two}       \tab \strong{any}       \tab  \strong{some}      \tab  \strong{many}      \tab  \strong{all_} \cr
+  \strong{t}       \tab \code{is_t}     \tab \code{n_t}     \tab \code{not_t}        \tab \code{none_t}       \tab \code{one_t}       \tab \code{two_t}       \tab \code{any_t}       \tab \code{some_t}       \tab \code{many_t}       \tab \code{all_t}   \cr
+  \strong{f}       \tab \code{is_f}     \tab \code{n_f}     \tab \code{not_f}        \tab \code{none_f}       \tab \code{one_f}       \tab \code{two_f}       \tab \code{any_f}       \tab \code{some_f}       \tab \code{many_f}       \tab \code{all_f}   \cr
   \strong{tf}      \tab \code{is_tf}    \tab \code{n_tf}    \tab \code{not_tf}       \tab \code{none_tf}      \tab \code{one_tf}      \tab \code{two_tf}      \tab \code{any_tf}      \tab \code{some_tf}      \tab \code{many_tf}      \tab \code{all_tf}  \cr
   \strong{bl}      \tab \code{is_bl}    \tab \code{n_bl}    \tab \code{not_bl}       \tab \code{none_bl}      \tab \code{one_bl}      \tab \code{two_bl}      \tab \code{any_bl}      \tab \code{some_bl}      \tab \code{many_bl}      \tab \code{all_bl}  \cr
   \strong{eq}      \tab \code{is_eq}    \tab \code{n_eq}    \tab \code{not_eq}       \tab \code{none_eq}      \tab \code{one_eq}      \tab \code{two_eq}      \tab \code{any_eq}      \tab \code{some_eq}      \tab \code{many_eq}      \tab \code{all_eq}  \cr
@@ -1061,14 +1056,13 @@ an error object otherwise with the attribute \code{stack = uj::callers()}. \cr �
   \strong{dif}     \tab \code{is_dif}   \tab \code{n_dif}   \tab \code{not_dif}      \tab \code{none_dif}     \tab \code{one_dif}     \tab \code{two_dif}     \tab \code{any_dif}     \tab \code{some_dif}     \tab \code{many_dif}     \tab \code{all_dif} \cr
   \strong{nav}     \tab \code{is_nav}   \tab \code{n_nav}   \tab \code{not_nav}      \tab \code{none_nav}     \tab \code{one_nav}     \tab \code{two_nav}     \tab \code{any_nav}     \tab \code{some_nav}     \tab \code{many_nav}     \tab \code{all_nav} \cr
   \strong{okv}     \tab \verb{is_okv  } \tab \code{n_okv}   \tab \code{not_okv}      \tab \code{none_okv}     \tab \code{one_okv}     \tab \code{two_okv}     \tab \code{any_okv}     \tab \code{some_okv}     \tab \code{many_okv}     \tab \code{all_okv}   }
-\cr \strong{\emph{atomic value membership checking functions}}
-\tabular{lllllllllll}{              \tab \strong{is}    \tab \strong{n}       \tab \strong{not_}      \tab \strong{none}       \tab \strong{one}       \tab \strong{two}       \tab \strong{any}       \tab \strong{some}       \tab \strong{many}       \tab \strong{all}   \cr
+\cr \strong{atomic value membership checking functions}
+\tabular{lllllllllll}{              \tab \strong{is}    \tab \strong{n}       \tab \strong{not}       \tab \strong{none}       \tab \strong{one}       \tab \strong{two}       \tab \strong{any}       \tab \strong{some}       \tab \strong{many}       \tab \strong{all}   \cr
   \strong{in}      \tab \code{is_in}   \tab \code{n_in}      \tab \code{not_in}      \tab \code{in_none}      \tab \code{in_one}      \tab \code{in_two}      \tab \code{in_any}      \tab \code{in_some}      \tab \code{in_many}      \tab \code{in_all}  \cr
   \strong{mf}      \tab \code{is_mf}   \tab \code{n_mf}      \tab \code{not_mf}      \tab \code{mf_none}      \tab \code{mf_one}      \tab \code{mf_two}      \tab \code{mf_any}      \tab \code{mf_some}      \tab \code{mf_many}      \tab \code{mf_all}  \cr
   \strong{has}     \tab \code{has}     \tab \code{n_has}     \tab \code{not_has}     \tab \code{has_none}     \tab \code{has_one}     \tab \code{has_two}     \tab \code{has_any}     \tab \code{has_some}     \tab \code{has_many}     \tab \code{has_all} \cr
   \strong{lacks}   \tab \code{locks}   \tab \code{n_lacks}   \tab \code{not_lacks}   \tab \code{lacks_none}   \tab \code{lacks_one}   \tab \code{lacks_two}   \tab \code{lacks_any}   \tab \code{lacks_some}   \tab \code{lacks_many}   \tab \code{lacks_all} }
 }
-
 \examples{
 egfailsafe <- function() {
   abc <- c("a", "b", "c")
@@ -1076,40 +1070,40 @@ egfailsafe <- function() {
   blank <- ""
   mss.scl <- Na
   lgl.scl <- FALSE
-  fac.scl <- factor("q", levels = c("x", "q"))
-  fac.vec <- factor(c("x", "q"), levels = c("x", "q"))
+  fac.scl <- factor("q", levels = c("X", "q"))
+  fac.vec <- factor(c("X", "q"), levels = c("X", "q"))
   chr.mat <- matrix(c("a", "b", "c", "Na"), nrow = 2)
   chr.dtf <- data.frame(abc = letters[1:3], def = letters[4:6])
   num.vls <- list(first3 = c(1:3, NA), next3 = c(4:6, NA))
   combo <- list(mss.scl, lgl.scl, fac.vec, chr.mat, chr.dtf, numvls)
   attr(abc, "custom") <- "custom"
-  list(`"a" \%.and0.\% FALSE`                   = "a" \%.and.\% FALSE                   ,
-       `"a" \%.in0.\% abc`                      = "a" \%.in.\% abc                      ,
-       `"a" \%.nor0.\% FALSE`                   = "a" \%.or.\% FALSE                    ,
-       `"a" \%.xor0.\% FALSE`                   = "a" \%.cor.\% FALSE                   ,
-       `"a" \%.or0.\% FALSE`                    = "a" \%.or.\% FALSE                    ,
-       `"a" \%.mf0.TRUE\% abc`                  = "a" \%.mf.\% abc                      ,
+  list(`"a" \%.AND.\% FALSE`                    = "a" \%.AND.\% FALSE                   ,
+       `"a" \%.IN.\% abc`                       = "a" \%.IN.\% abc                      ,
+       `"a" \%.NOR.\% FALSE`                    = "a" \%.OR.\% FALSE                    ,
+       `"a" \%.XOR.\% FALSE`                    = "a" \%.XOR.\% FALSE                   ,
+       `"a" \%.OR.\% FALSE`                     = "a" \%.OR.\% FALSE                    ,
+       `"a" \%.MF.\% abc`                       = "a" \%.MF.\% abc                      ,
        `"a" \%.and.\% FALSE`                    = "a" \%.and.\% FALSE                   ,
-       `abs \%.in.\% abc`                       = "a" \%.in.\% abc                      ,
+       `"a" \%.in.\% abc`                       = "a" \%.in.\% abc                      ,
        `"a" \%.nor.\% FALSE`                    = "a" \%.or.\% FALSE                    ,
-       `"a" \%.xor.\% FALSE`                    = "a" \%.cor.\% FALSE                   ,
+       `"a" \%.xor.\% FALSE`                    = "a" \%.xor.\% FALSE                   ,
        `"a" \%.or.\% FALSE`                     = "a" \%.or.\% FALSE                    ,
        `"a" \%.mf.\% abc`                       = "a" \%.mf.\% abc                      ,
        `1 \%.in.\% abc`                         = 1 \%.in.\% abc                        ,
        `1 \%.mf.\% abc`                         = 1 \%.mf.\% abc                        ,
-       `abc \%.eq0.\% abc`                      = abc \%.eq0.\% abc                     ,
-       `abc \%.eq0.\% letters[1:3]`             = abc \%.eq0.\% letters[1:3]            ,
-       `abc \%.eq0.\% NULL`                     = abc \%.eq0.\% NULL                    ,
-       `abc \%.has0.\% "a"`                     = abc \%.has.\% "a"                     ,
-       `abc \%.has0.\% 1`                       = abc \%.has.\% 1                       ,
-       `abc \%.has0.\% NULL`                    = abc \%.has.\% NULL                    ,
+       `abc \%.EQ.\% abc`                       = abc \%.EQ.\% abc                      ,
+       `abc \%.EQ.\% letters[1:3]`              = abc \%.EQ.\% letters[1:3]             ,
+       `abc \%.EQ.\% NULL`                      = abc \%.EQ.\% NULL                     ,
+       `abc \%.HAS.\% "a"`                      = abc \%.HAS.\% "a"                     ,
+       `abc \%.HAS.\% 1`                        = abc \%.HAS.\% 1                       ,
+       `abc \%.HAS.\% NULL`                     = abc \%.HAS.\% NULL                    ,
        `abc \%.has.\% letters[1:6]`             = abc \%.has.\% "a"                     ,
        `abc \%.has.\% 1:3`                      = abc \%.has.\% 1                       ,
        `abc \%.has.\% NULL`                     = abc \%.has.\% NULL                    ,
        `abc \%.is.\% NULL`                      = abc \%.is.\% NULL                     ,
-       `abc \%.lacks0.\% "a"`                   = abc \%.lacks.\% "a"                   ,
-       `abc \%.lacks0.\% 1`                     = abc \%.lacks.\% 1                     ,
-       `abc \%.lacks0.\% NULL`                  = abc \%.lacks.\% NULL                  ,
+       `abc \%.LACKS.\% "a"`                    = abc \%.LACKS.\% "a"                   ,
+       `abc \%.LACKS.\% 1`                      = abc \%.LACKS.\% 1                     ,
+       `abc \%.LACKS.\% NULL`                   = abc \%.LACKS.\% NULL                  ,
        `abc \%.is.\% abc`                       = abc \%.is.\% abc                      ,
        `abc \%.is.\% letters[1:3]`              = abc \%.is.\% letters[1:3]             ,
        `abc \%.isnt.\% abc`                     = abc \%.isnt.\% abc                    ,
@@ -1165,26 +1159,26 @@ egfailsafe <- function() {
        `is_bl("a")`                           = is_bl("a")                          ,
        `is_bl(c("", ""))`                     = is_bl(c("", ""))                    ,
        `is_bl(NA)`                            = is_bl(NA)                           ,
-       `is_bl0("")`                           = is_bl0("")                          ,
-       `is_bl0("a")`                          = is_bl0("a")                         ,
-       `is_bl0(c("", ""))`                    = is_bl0(c("", ""))                   ,
-       `is_bl0(NA)`                           = is_bl0(NA)                          ,
+       `is_BL("")`                            = is_BL("")                           ,
+       `is_BL("a")`                           = is_BL("a")                          ,
+       `is_BL(c("", ""))`                     = is_BL(c("", ""))                    ,
+       `is_BL(NA)`                            = is_BL(NA)                           ,
        `is_dif("", "")`                       = is_dif("", "")                      ,
        `is_dif("word", 7)`                    = is_dif("word", 7)                   ,
        `is_dif(chr.mat, chr.mat)`             = is_dif(chr.mat, chr.mat)            ,
        `is_dif(NA, NA)`                       = is_dif(NA, NA)                      ,
-       `is_dif0("", "")`                      = is_dif0("", "")                     ,
-       `is_dif0("word", 7)`                   = is_dif0("word", 7)                  ,
-       `is_dif0(chr.mat, chr.mat)`            = is_dif0(chr.mat, chr.mat)           ,
-       `is_dif0(NA, NA)`                      = is_dif0(NA, NA)                     ,
+       `is_DIF("", "")`                       = is_DIF("", "")                      ,
+       `is_DIF("word", 7)`                    = is_DIF("word", 7)                   ,
+       `is_DIF(chr.mat, chr.mat)`             = is_DIF(chr.mat, chr.mat)            ,
+       `is_DIF(NA, NA)`                       = is_DIF(NA, NA)                      ,
        `is_eq("", "")`                        = is_eq("", "")                       ,
        `is_eq("word", 7)`                     = is_eq("word", 7)                    ,
        `is_eq(chr.mat, chr.mat)`              = is_eq(chr.mat, chr.mat)             ,
        `is_eq(NA, NA)`                        = is_eq(NA, NA)                       ,
-       `is_eq0("", "")`                       = is_eq0("", "")                      ,
-       `is_eq0("word", 7)`                    = is_eq0("word", 7)                   ,
-       `is_eq0(chr.mat, chr.mat)`             = is_eq0(chr.mat, chr.mat)            ,
-       `is_eq0(NA, NA)`                       = is_eq0(NA, NA)                      ,
+       `is_EQ("", "")`                        = is_EQ("", "")                       ,
+       `is_EQ("word", 7)`                     = is_EQ("word", 7)                    ,
+       `is_EQ(chr.mat, chr.mat)`              = is_EQ(chr.mat, chr.mat)             ,
+       `is_EQ(NA, NA)`                        = is_EQ(NA, NA)                       ,
        `is_err(non.existent.variable)`        = is_err(non.existent.variable)       ,
        `is_err(pi)`                           = is_err(pi)                          ,
        `is_f(c(TRUE, FALSE))`                 = is_f(c(TRUE, FALSE))                ,
@@ -1192,77 +1186,77 @@ egfailsafe <- function() {
        `is_f(NA)`                             = is_f(NA)                            ,
        `is_f(TRUE)`                           = is_f(TRUE)                          ,
        `is_f(TRUE)`                           = is_f(TRUE)                          ,
-       `is_f0(c(TRUE, FALSE))`                = is_f0(c(TRUE, FALSE))               ,
-       `is_f0(chr.mat)`                       = is_f0(chr.mat)                      ,
-       `is_f0(FALSE)`                         = is_f0(FALSE)                        ,
-       `is_f0(NA)`                            = is_f0(NA)                           ,
-       `is_f0(TRUE)`                          = is_f0(TRUE)                         ,
+       `is_F(c(TRUE, FALSE))`                 = is_F(c(TRUE, FALSE))                ,
+       `is_F(chr.mat)`                        = is_F(chr.mat)                       ,
+       `is_F(FALSE)`                          = is_F(FALSE)                         ,
+       `is_F(NA)`                             = is_F(NA)                            ,
+       `is_F(TRUE)`                           = is_F(TRUE)                          ,
        `is_ge("a", "b")`                      = is_ge("a", "b")                     ,
        `is_ge("b", "a")`                      = is_ge("b", "a")                     ,
        `is_ge(1, 1)`                          = is_ge(1, 1)                         ,
        `is_ge(chr.mat, chr.mat)`              = is_ge(chr.mat, chr.mat)             ,
-       `is_ge0("a", "b")`                     = is_ge0("a", "b")                    ,
-       `is_ge0("b", "a")`                     = is_ge0("b", "a")                    ,
-       `is_ge0(1, 1)`                         = is_ge0(1, 1)                        ,
-       `is_ge0(chr.mat, chr.mat)`             = is_ge0(chr.mat, chr.mat)            ,
+       `is_GE("a", "b")`                      = is_GE("a", "b")                     ,
+       `is_GE("b", "a")`                      = is_GE("b", "a")                     ,
+       `is_GE(1, 1)`                          = is_GE(1, 1)                         ,
+       `is_GE(chr.mat, chr.mat)`              = is_GE(chr.mat, chr.mat)             ,
        `is_gt("a", "b")`                      = is_gt("a", "b")                     ,
        `is_gt("b", "a")`                      = is_gt("b", "a")                     ,
        `is_gt(1, 1)`                          = is_gt(1, 1)                         ,
        `is_gt(chr.mat, chr.mat)`              = is_gt(chr.mat, chr.mat)             ,
-       `is_gt0("a", "b")`                     = is_gt0("a", "b")                    ,
-       `is_gt0("b", "a")`                     = is_gt0("b", "a")                    ,
-       `is_gt0(1, 1)`                         = is_gt0(1, 1)                        ,
-       `is_gt0(chr.mat, chr.mat)`             = is_gt0(chr.mat, chr.mat)            ,
+       `is_GT("a", "b")`                      = is_GT("a", "b")                     ,
+       `is_GT("b", "a")`                      = is_GT("b", "a")                     ,
+       `is_GT(1, 1)`                          = is_GT(1, 1)                         ,
+       `is_GT(chr.mat, chr.mat)`              = is_GT(chr.mat, chr.mat)             ,
        `is_in(1, "", "a", 1:2)`               = is_in(1, "", "a", 1:2)              ,
        `is_in(1, "a", letters)`               = is_in(1, "a", letters)              ,
        `is_in(NULL, blank, combo)`            = is_in(NULL, blank, combo)           ,
-       `is_in0(1, "", "a", 1:2)`              = is_in0(1, "", "a", 1:2)             ,
-       `is_in0(1, "a", letters)`              = is_in0(1, "a", letters)             ,
-       `is_in0(NULL, blank, combo)`           = is_in0(NULL, blank, combo)          ,
-       `is_bl0(chr.mat)`                      = is_bl0(chr.mat)                     ,
+       `is_IN(1, "", "a", 1:2)`               = is_IN(1, "", "a", 1:2)              ,
+       `is_IN(1, "a", letters)`               = is_IN(1, "a", letters)              ,
+       `is_IN(NULL, blank, combo)`            = is_IN(NULL, blank, combo)           ,
+       `is_BL(chr.mat)`                       = is_BL(chr.mat)                      ,
        `is_le("a", "b")`                      = is_le("a", "b")                     ,
        `is_le("b", "a")`                      = is_le("b", "a")                     ,
        `is_le(1, 1)`                          = is_le(1, 1)                         ,
        `is_le(chr.mat, chr.mat)`              = is_le(chr.mat, chr.mat)             ,
-       `is_le0("a", "b")`                     = is_le0("a", "b")                    ,
-       `is_le0("b", "a")`                     = is_le0("b", "a")                    ,
-       `is_le0(1, 1)`                         = is_le0(1, 1)                        ,
-       `is_le0(chr.mat, chr.mat)`             = is_le0(chr.mat, chr.mat)            ,
-       `is_lg0(c(TRUE, FALSE))`               = is_lg0(c(TRUE, FALSE))              ,
-       `is_lg0(chr.mat)`                      = is_lg0(chr.mat)                     ,
-       `is_lg0(FALSE)`                        = is_lg0(FALSE)                       ,
-       `is_lg0(NA)`                           = is_lg0(NA)                          ,
-       `is_lg0(TRUE)`                         = is_lg0(TRUE)                        ,
+       `is_LE("a", "b")`                      = is_LE("a", "b")                     ,
+       `is_LE("b", "a")`                      = is_LE("b", "a")                     ,
+       `is_LE(1, 1)`                          = is_LE(1, 1)                         ,
+       `is_LE(chr.mat, chr.mat)`              = is_LE(chr.mat, chr.mat)             ,
+       `is_LG(c(TRUE, FALSE))`                = is_LG(c(TRUE, FALSE))               ,
+       `is_LG(chr.mat)`                       = is_LG(chr.mat)                      ,
+       `is_LG(FALSE)`                         = is_LG(FALSE)                        ,
+       `is_LG(NA)`                            = is_LG(NA)                           ,
+       `is_LG(TRUE)`                          = is_LG(TRUE)                         ,
        `is_lt("a", "b")`                      = is_lt("a", "b")                     ,
        `is_lt("b", "a")`                      = is_lt("b", "a")                     ,
        `is_lt(1, 1)`                          = is_lt(1, 1)                         ,
        `is_lt(chr.mat, chr.mat)`              = is_lt(chr.mat, chr.mat)             ,
-       `is_lt0("a", "b")`                     = is_lt0("a", "b")                    ,
-       `is_lt0("b", "a")`                     = is_lt0("b", "a")                    ,
-       `is_lt0(1, 1)`                         = is_lt0(1, 1)                        ,
-       `is_lt0(chr.mat, chr.mat)`             = is_lt0(chr.mat, chr.mat)            ,
+       `is_LT("a", "b")`                      = is_LT("a", "b")                     ,
+       `is_LT("b", "a")`                      = is_LT("b", "a")                     ,
+       `is_LT(1, 1)`                          = is_LT(1, 1)                         ,
+       `is_LT(chr.mat, chr.mat)`              = is_LT(chr.mat, chr.mat)             ,
        `is_mf(1, "", "a", 1:2)`               = is_mf(1, "", "a", 1:2)              ,
        `is_mf(1, "a", letters)`               = is_mf(1, "a", letters)              ,
        `is_mf(NULL, blank, combo)`            = is_mf(NULL, blank, combo)           ,
-       `is_mf0(1, "", "a", 1:2)`              = is_mf0(1, "", "a", 1:2)             ,
-       `is_mf0(1, "a", letters)`              = is_mf0(1, "a", letters)             ,
-       `is_mf0(NULL, blank, combo)`           = is_mf0(NULL, blank, combo)          ,
+       `is_MF(1, "", "a", 1:2)`               = is_MF(1, "", "a", 1:2)              ,
+       `is_MF(1, "a", letters)`               = is_MF(1, "a", letters)              ,
+       `is_MF(NULL, blank, combo)`            = is_MF(NULL, blank, combo)           ,
        `is_nav(1)`                            = is_nav(1)                           ,
        `is_nav(c(NA, NA))`                    = is_nav(c(NA, NA))                   ,
        `is_nav(chr.mat)`                      = is_nav(chr.mat)                     ,
        `is_nav(NA)`                           = is_nav(NA)                          ,
-       `is_na0(1)`                            = is_na0(1)                           ,
-       `is_na0(c(NA, NA))`                    = is_na0(c(NA, NA))                   ,
-       `is_na0(chr.mat)`                      = is_na0(chr.mat)                     ,
-       `is_na0(NA)`                           = is_na0(NA)                          ,
+       `is_NAV(1)`                            = is_NAV(1)                           ,
+       `is_NAV(c(NA, NA))`                    = is_NAV(c(NA, NA))                   ,
+       `is_NAV(chr.mat)`                      = is_NAV(chr.mat)                     ,
+       `is_NAV(NA)`                           = is_NAV(NA)                          ,
        `is_okv(1)`                            = is_okv(1)                           ,
        `is_okv(c(NA, NA))`                    = is_okv(c(NA, NA))                   ,
        `is_okv(chr.mat)`                      = is_ok(chr.mat)                      ,
        `is_okv(NA)`                           = is_okv(NA)                          ,
-       `is_ok0(1)`                            = is_ok0(1)                           ,
-       `is_ok0(c(NA, NA))`                    = is_ok0(c(NA, NA))                   ,
-       `is_ok0(chr.mat)`                      = is_ok0(chr.mat)                     ,
-       `is_ok0(NA)`                           = is_ok0(NA)                          ,
+       `is_OKV(1)`                            = is_OKV(1)                           ,
+       `is_OKV(c(NA, NA))`                    = is_OKV(c(NA, NA))                   ,
+       `is_OKV(chr.mat)`                      = is_OKV(chr.mat)                     ,
+       `is_OKV(NA)`                           = is_OKV(NA)                          ,
        `is_seq(1, letters)`                   = is_seq(1, letters)                  ,
        `is_seq(1, letters)`                   = is_seq(1, letters)                  ,
        `is_seq(1:3, c(1, 2, 3, 2, 1))`        = is_seq(1:3, c(1, 2, 3, 2, 1))       ,
@@ -1274,22 +1268,22 @@ egfailsafe <- function() {
        `is_t(NA)`                             = is_t(NA)                            ,
        `is_t(TRUE)`                           = is_t(TRUE)                          ,
        `is_t(TRUE)`                           = is_t(TRUE)                          ,
-       `is_t0(c(TRUE, FALSE))`                = is_t0(c(TRUE, FALSE))               ,
-       `is_t0(chr.mat)`                       = is_t0(chr.mat)                      ,
-       `is_t0(FALSE)`                         = is_t0(FALSE)                        ,
-       `is_t0(NA)`                            = is_t0(NA)                           ,
-       `is_t0(TRUE)`                          = is_t0(TRUE)                         ,
+       `is_T(c(TRUE, FALSE))`                 = is_T(c(TRUE, FALSE))                ,
+       `is_T(chr.mat)`                        = is_T(chr.mat)                       ,
+       `is_T(FALSE)`                          = is_T(FALSE)                         ,
+       `is_T(NA)`                             = is_T(NA)                            ,
+       `is_T(TRUE)`                           = is_T(TRUE)                          ,
        `is_tf(c(TRUE, FALSE))`                = is_tf(c(TRUE, FALSE))               ,
        `is_tf(chr.mat)`                       = is_tf(chr.mat)                      ,
        `is_tf(chr.mat)`                       = is_tf(chr.mat)                      ,
        `is_tf(NA)`                            = is_tf(NA)                           ,
        `is_tf(TRUE)`                          = is_tf(TRUE)                         ,
        `is_tf(TRUE)`                          = is_tf(TRUE)                         ,
-       `is_tf0(c(TRUE, FALSE))`               = is_tf0(c(TRUE, FALSE))              ,
-       `is_tf0(chr.mat)`                      = is_tf0(chr.mat)                     ,
-       `is_tf0(FALSE)`                        = is_tf0(FALSE)                       ,
-       `is_tf0(NA)`                           = is_tf0(NA)                          ,
-       `is_tf0(TRUE)`                         = is_tf0(TRUE)                        ,
+       `is_TF(c(TRUE, FALSE))`                = is_TF(c(TRUE, FALSE))               ,
+       `is_TF(chr.mat)`                       = is_TF(chr.mat)                      ,
+       `is_TF(FALSE)`                         = is_TF(FALSE)                        ,
+       `is_TF(NA)`                            = is_TF(NA)                           ,
+       `is_TF(TRUE)`                          = is_TF(TRUE)                         ,
        `is_veq(1, letters)`                   = is_veq(1, letters)                  ,
        `is_veq(1:3, c(1, 2, 3, 2, 1))`        = is_veq(1:3, c(1, 2, 3, 2, 1))       ,
        `is_veq(1:3, c(1, 2, 3, 2, 1))`        = is_veq(1:3, c(1, 2, 3, 2, 1))       ,
@@ -1352,27 +1346,27 @@ egfailsafe <- function() {
        `not_bl(c("", ""))`                    = not_bl(c("", ""))                   ,
        `not_bl(chr.mat)`                      = not_bl(chr.mat)                     ,
        `not_bl(NA)`                           = not_bl(NA)                          ,
-       `not_bl0("")`                          = not_bl0("")                         ,
-       `not_bl0("a")`                         = not_bl0("a")                        ,
-       `not_bl0(c("", ""))`                   = not_bl0(c("", ""))                  ,
-       `not_bl0(chr.mat)`                     = not_bl0(chr.mat)                    ,
-       `not_bl0(NA)`                          = not_bl0(NA)                         ,
+       `not_BL("")`                           = not_BL("")                          ,
+       `not_BL("a")`                          = not_BL("a")                         ,
+       `not_BL(c("", ""))`                    = not_BL(c("", ""))                   ,
+       `not_BL(chr.mat)`                      = not_BL(chr.mat)                     ,
+       `not_BL(NA)`                           = not_BL(NA)                          ,
        `not_dif("", "")`                      = not_dif("", "")                     ,
        `not_dif("word", 7)`                   = not_dif("word", 7)                  ,
        `not_dif(chr.mat, chr.mat)`            = not_dif(chr.mat, chr.mat)           ,
        `not_dif(NA, NA)`                      = not_dif(NA, NA)                     ,
-       `not_dif0("", "")`                     = not_dif0("", "")                    ,
-       `not_dif0("word", 7)`                  = not_dif0("word", 7)                 ,
-       `not_dif0(chr.mat, chr.mat)`           = not_dif0(chr.mat, chr.mat)          ,
-       `not_dif0(NA, NA)`                     = not_dif0(NA, NA)                    ,
+       `not_DIF("", "")`                      = not_DIF("", "")                     ,
+       `not_DIF("word", 7)`                   = not_DIF("word", 7)                  ,
+       `not_DIF(chr.mat, chr.mat)`            = not_DIF(chr.mat, chr.mat)           ,
+       `not_DIF(NA, NA)`                      = not_DIF(NA, NA)                     ,
        `not_eq("", "")`                       = not_eq("", "")                      ,
        `not_eq("word", 7)`                    = not_eq("word", 7)                   ,
        `not_eq(chr.mat, chr.mat)`             = not_eq(chr.mat, chr.mat)            ,
        `not_eq(NA, NA)`                       = not_eq(NA, NA)                      ,
-       `not_eq0("", "")`                      = not_eq0("", "")                     ,
-       `not_eq0("word", 7)`                   = not_eq0("word", 7)                  ,
-       `not_eq0(chr.mat, chr.mat)`            = not_eq0(chr.mat, chr.mat)           ,
-       `not_eq0(NA, NA)`                      = not_eq0(NA, NA)                     ,
+       `not_EQ("", "")`                       = not_EQ("", "")                      ,
+       `not_EQ("word", 7)`                    = not_EQ("word", 7)                   ,
+       `not_EQ(chr.mat, chr.mat)`             = not_EQ(chr.mat, chr.mat)            ,
+       `not_EQ(NA, NA)`                       = not_EQ(NA, NA)                      ,
        `not_err(non.existent.variable)`       = not_err(non.existent.variable)      ,
        `not_err(pi)`                          = not_err(pi)                         ,
        `not_f(c(TRUE, FALSE))`                = not_f(c(TRUE, FALSE))               ,
@@ -1380,72 +1374,74 @@ egfailsafe <- function() {
        `not_f(NA)`                            = not_f(NA)                           ,
        `not_f(TRUE)`                          = not_f(TRUE)                         ,
        `not_f(TRUE)`                          = not_f(TRUE)                         ,
-       `not_f0(c(TRUE, FALSE))`               = not_f0(c(TRUE, FALSE))              ,
-       `not_f0(chr.mat)`                      = not_f0(chr.mat)                     ,
-       `not_f0(FALSE)`                        = not_f0(FALSE)                       ,
-       `not_f0(NA)`                           = not_f0(NA)                          ,
-       `not_f0(TRUE)`                         = not_f0(TRUE)                        ,
+       `not_F(c(TRUE, FALSE))`                = not_F(c(TRUE, FALSE))               ,
+       `not_F(chr.mat)`                       = not_F(chr.mat)                      ,
+       `not_F(FALSE)`                         = not_F(FALSE)                        ,
+       `not_F(NA)`                            = not_F(NA)                           ,
+       `not_F(TRUE)`                          = not_F(TRUE)                         ,
        `not_ge("a", "b")`                     = not_ge("a", "b")                    ,
        `not_ge("b", "a")`                     = not_ge("b", "a")                    ,
        `not_ge(1, 1)`                         = not_ge(1, 1)                        ,
        `not_ge(chr.mat, chr.mat)`             = not_ge(chr.mat, chr.mat)            ,
-       `not_ge0("a", "b")`                    = not_ge0("a", "b")                   ,
-       `not_ge0("b", "a")`                    = not_ge0("b", "a")                   ,
-       `not_ge0(1, 1)`                        = not_ge0(1, 1)                       ,
-       `not_ge0(chr.mat, chr.mat)`            = not_ge0(chr.mat, chr.mat)           ,
+       `not_GE("a", "b")`                     = not_GE("a", "b")                    ,
+       `not_GE("b", "a")`                     = not_GE("b", "a")                    ,
+       `not_GE(1, 1)`                         = not_GE(1, 1)                        ,
+       `not_GE(chr.mat, chr.mat)`             = not_GE(chr.mat, chr.mat)            ,
        `not_gt("a", "b")`                     = not_gt("a", "b")                    ,
        `not_gt("b", "a")`                     = not_gt("b", "a")                    ,
        `not_gt(1, 1)`                         = not_gt(1, 1)                        ,
        `not_gt(chr.mat, chr.mat)`             = not_gt(chr.mat, chr.mat)            ,
-       `not_gt0("a", "b")`                    = not_gt0("a", "b")                   ,
-       `not_gt0("b", "a")`                    = not_gt0("b", "a")                   ,
-       `not_gt0(1, 1)`                        = not_gt0(1, 1)                       ,
-       `not_gt0(chr.mat, chr.mat)`            = not_gt0(chr.mat, chr.mat)           ,
+       `not_GT("a", "b")`                     = not_GT("a", "b")                    ,
+       `not_GT("b", "a")`                     = not_GT("b", "a")                    ,
+       `not_GT(1, 1)`                         = not_GT(1, 1)                        ,
+       `not_GT(chr.mat, chr.mat)`             = not_GT(chr.mat, chr.mat)            ,
        `not_in(1, "", "a", 1:2)`              = not_in(1, "", "a", 1:2)             ,
        `not_in(1, "a", letters)`              = not_in(1, "a", letters)             ,
        `not_in(NULL, blank, combo)`           = not_in(NULL, blank, combo)          ,
-       `not_in0(1, "", "a", 1:2)`             = not_in0(1, "", "a", 1:2)            ,
-       `not_in0(1, "a", letters)`             = not_in0(1, "a", letters)            ,
-       `not_in0(NULL, blank, combo)`          = not_in0(NULL, blank, combo)         ,
+       `not_IN(1, "", "a", 1:2)`              = not_IN(1, "", "a", 1:2)             ,
+       `not_IN(1, "a", letters)`              = not_IN(1, "a", letters)             ,
+       `not_IN(NULL, blank, combo)`           = not_IN(NULL, blank, combo)          ,
        `not_le("a", "b")`                     = not_le("a", "b")                    ,
        `not_le("b", "a")`                     = not_le("b", "a")                    ,
        `not_le(1, 1)`                         = not_le(1, 1)                        ,
        `not_le(chr.mat, chr.mat)`             = not_le(chr.mat, chr.mat)            ,
-       `not_le0("a", "b")`                    = not_le0("a", "b")                   ,
-       `not_le0("b", "a")`                    = not_le0("b", "a")                   ,
-       `not_le0(1, 1)`                        = not_le0(1, 1)                       ,
-       `not_le0(chr.mat, chr.mat)`            = not_le0(chr.mat, chr.mat)           ,
-       `not_lg0(c(TRUE, FALSE))`              = not_lg0(c(TRUE, FALSE))             ,
-       `not_lg0(chr.mat)`                     = not_lg0(chr.mat)                    ,
-       `not_lg0(FALSE)`                       = not_lg0(FALSE)                      ,
-       `not_lg0(NA)`                          = not_lg0(NA)                         ,
-       `not_lg0(TRUE)`                        = not_lg0(TRUE)                       ,
+       `not_LE("a", "b")`                     = not_LE("a", "b")                    ,
+       `not_LE("b", "a")`                     = not_LE("b", "a")                    ,
+       `not_LE(1, 1)`                         = not_LE(1, 1)                        ,
+       `not_LE(chr.mat, chr.mat)`             = not_LE(chr.mat, chr.mat)            ,
+       `not_LG(c(TRUE, FALSE))`               = not_LG(c(TRUE, FALSE))              ,
+       `not_LG(chr.mat)`                      = not_LG(chr.mat)                     ,
+       `not_LG(FALSE)`                        = not_LG(FALSE)                       ,
+       `not_LG(NA)`                           = not_LG(NA)                          ,
+       `not_LG(TRUE)`                         = not_LG(TRUE)                        ,
        `not_lt("a", "b")`                     = not_lt("a", "b")                    ,
        `not_lt("b", "a")`                     = not_lt("b", "a")                    ,
        `not_lt(1, 1)`                         = not_lt(1, 1)                        ,
        `not_lt(chr.mat, chr.mat)`             = not_lt(chr.mat, chr.mat)            ,
-       `not_lt0("a", "b")`                    = not_lt0("a", "b")                   ,
-       `not_lt0("b", "a")`                    = not_lt0("b", "a")                   ,
-       `not_lt0(1, 1)`                        = not_lt0(1, 1)                       ,
-       `not_lt0(chr.mat, chr.mat)`            = not_lt0(chr.mat, chr.mat)           ,
+       `not_LT("a", "b")`                     = not_LT("a", "b")                    ,
+       `not_LT("b", "a")`                     = not_LT("b", "a")                    ,
+       `not_LT(1, 1)`                         = not_LT(1, 1)                        ,
+       `not_LT(chr.mat, chr.mat)`             = not_LT(chr.mat, chr.mat)            ,
        `not_mf(1, "", "a", 1:2)`              = not_mf(1, "", "a", 1:2)             ,
        `not_mf(1, "a", letters)`              = not_mf(1, "a", letters)             ,
        `not_mf(NULL, blank, combo)`           = not_mf(NULL, blank, combo)          ,
-       `not_mf0(1, "", "a", 1:2)`             = not_mf0(1, "", "a", 1:2)            ,
-       `not_mf0(1, "a", letters)`             = not_mf0(1, "a", letters)            ,
-       `not_mf0(NULL, blank, combo)`          = not_mf0(NULL, blank, combo)         ,
-       `not_na0(1)`                           = not_na0(1)                          ,
-       `not_na0(c(NA, NA))`                   = not_na0(c(NA, NA))                  ,
-       `not_na0(chr.mat)`                     = not_na0(chr.mat)                    ,
-       `not_na0(NA)`                          = not_na0(NA)                         ,
-       `not_nav(c(NA, NA)), not_nav(chr.mat)` = not_nav(c(NA, NA)), not_nav(chr.mat),
+       `not_MF(1, "", "a", 1:2)`              = not_MF(1, "", "a", 1:2)             ,
+       `not_MF(1, "a", letters)`              = not_MF(1, "a", letters)             ,
+       `not_MF(NULL, blank, combo)`           = not_MF(NULL, blank, combo)          ,
+       `not_NAV(1)`                           = not_NAV(1)                          ,
+       `not_NAV(c(NA, NA))`                   = not_NAV(c(NA, NA))                  ,
+       `not_NAV(chr.mat)`                     = not_NAV(chr.mat)                    ,
+       `not_NAV(NA)`                          = not_NAV(NA)                         ,
+       `not_nav(c(NA, NA), chr.mat)`          = not_nav(c(NA, NA), chr.mat)         ,
        `not_nav(NA), not_nav(1)`              = not_nav(NA), not_nav(1)             ,
-       `not_ok0(1)`                           = not_ok0(1)                          ,
-       `not_ok0(c(NA, NA))`                   = not_ok0(c(NA, NA))                  ,
-       `not_ok0(chr.mat)`                     = not_ok0(chr.mat)                    ,
-       `not_ok0(NA)`                          = not_ok0(NA)                         ,
-       `not_okv(c(NA, NA)), not_okv(chr.mat)` = not_okv(c(NA, NA)), not_okv(chr.mat),
-       `not_okv(NA), not_okv(1)`              = not_okv(NA), not_okv(1)             ,
+       `not_OKV(1)`                           = not_OKV(1)                          ,
+       `not_OKV(c(NA, NA))`                   = not_OKV(c(NA, NA))                  ,
+       `not_OKV(chr.mat)`                     = not_OKV(chr.mat)                    ,
+       `not_OKV(NA)`                          = not_OKV(NA)                         ,
+       `not_okv(c(NA, NA)`                    = not_okv(c(NA, NA))                  ,
+       `not_okv(chr.mat)`                     = not_okv(chr.mat)                    ,
+       `not_okv(NA)`                          = not_okv(NA)                         ,
+       `not_okv(1)`                           = not_okv(1)                          ,
        `not_seq(1, letters)`                  = not_seq(1, letters)                 ,
        `not_seq(1, letters)`                  = not_seq(1, letters)                 ,
        `not_seq(1:3, c(1, 2, 3, 2, 1))`       = not_seq(1:3, c(1, 2, 3, 2, 1))      ,
@@ -1457,21 +1453,21 @@ egfailsafe <- function() {
        `not_t(NA)`                            = not_t(NA)                           ,
        `not_t(TRUE)`                          = not_t(TRUE)                         ,
        `not_t(TRUE)`                          = not_t(TRUE)                         ,
-       `not_t0(c(TRUE, FALSE))`               = not_t0(c(TRUE, FALSE))              ,
-       `not_t0(chr.mat)`                      = not_t0(chr.mat)                     ,
-       `not_t0(FALSE)`                        = not_t0(FALSE)                       ,
-       `not_t0(NA)`                           = not_t0(NA)                          ,
-       `not_t0(TRUE)`                         = not_t0(TRUE)                        ,
+       `not_T(c(TRUE, FALSE))`                = not_T(c(TRUE, FALSE))               ,
+       `not_T(chr.mat)`                       = not_T(chr.mat)                      ,
+       `not_T(FALSE)`                         = not_T(FALSE)                        ,
+       `not_T(NA)`                            = not_T(NA)                           ,
+       `not_T(TRUE)`                          = not_T(TRUE)                         ,
        `not_tf(c(TRUE, FALSE))`               = not_tf(c(TRUE, FALSE))              ,
        `not_tf(chr.mat)`                      = not_tf(chr.mat)                     ,
        `not_tf(NA)`                           = not_tf(NA)                          ,
        `not_tf(TRUE)`                         = not_tf(TRUE)                        ,
        `not_tf(TRUE)`                         = not_tf(TRUE)                        ,
-       `not_tf0(c(TRUE, FALSE))`              = not_tf0(c(TRUE, FALSE))             ,
-       `not_tf0(chr.mat)`                     = not_tf0(chr.mat)                    ,
-       `not_tf0(FALSE)`                       = not_tf0(FALSE)                      ,
-       `not_tf0(NA)`                          = not_tf0(NA)                         ,
-       `not_tf0(TRUE)`                        = not_tf0(TRUE)                       ,
+       `not_TF(c(TRUE, FALSE))`               = not_TF(c(TRUE, FALSE))              ,
+       `not_TF(chr.mat)`                      = not_TF(chr.mat)                     ,
+       `not_TF(FALSE)`                        = not_TF(FALSE)                       ,
+       `not_TF(NA)`                           = not_TF(NA)                          ,
+       `not_TF(TRUE)`                         = not_TF(TRUE)                        ,
        `not_veq(1, letters)`                  = not_veq(1, letters)                 ,
        `not_veq(1, letters)`                  = not_veq(1, letters)                 ,
        `not_veq(1:3, c(1, 2, 3, 2, 1))`       = not_veq(1:3, c(1, 2, 3, 2, 1))      ,
@@ -1490,7 +1486,6 @@ egfailsafe <- function() {
        `one_gt("a", c(blank, NA, letters))`   = one_gt("a", c(blank, NA, letters))  ,
        `one_in(NULL, blank, combo)`           = one_in(NULL, blank, combo)          ,
        `one_le("a", c(blank, NA, letters))`   = one_le("a", c(blank, NA, letters))  ,
-       `one_lg(c(NA, TRUE, FALSE))`           = one_lg(c(NA, TRUE, FALSE))          ,
        `one_lt("a", c(blank, NA, letters))`   = one_lt("a", c(blank, NA, letters))  ,
        `one_mf(NULL, blank, combo)`           = one_mf(NULL, blank, combo)          ,
        `one_nav(c(blank, NA, letters))`       = one_nav(c(blank, NA, letters))      ,
@@ -1507,7 +1502,6 @@ egfailsafe <- function() {
        `some_gt("a", c(blank, NA, letters))`  = some_gt("a", c(blank, NA, letters)) ,
        `some_in(NULL, blank, combo)`          = some_in(NULL, blank, combo)         ,
        `some_le("a", c(blank, NA, letters))`  = some_le("a", c(blank, NA, letters)) ,
-       `some_lg(c(NA, TRUE, FALSE))`          = some_lg(c(NA, TRUE, FALSE))         ,
        `some_lt("a", c(blank, NA, letters))`  = some_lt("a", c(blank, NA, letters)) ,
        `some_mf(NULL, blank, combo)`          = some_mf(NULL, blank, combo)         ,
        `some_nav(c(blank, NA, letters))`      = some_nav(c(blank, NA, letters))     ,
@@ -1532,7 +1526,6 @@ egfailsafe <- function() {
        `two_gt("a", c(blank, NA, letters))`   = two_gt("a", c(blank, NA, letters))  ,
        `two_in(NULL, blank, combo)`           = two_in(NULL, blank, combo)          ,
        `two_le("a", c(blank, NA, letters))`   = two_le("a", c(blank, NA, letters))  ,
-       `two_lg(c(NA, TRUE, FALSE))`           = two_lg(c(NA, TRUE, FALSE))          ,
        `two_lt("a", c(blank, NA, letters))`   = two_lt("a", c(blank, NA, letters))  ,
        `two_mf(NULL, blank, combo)`           = two_mf(NULL, blank, combo)          ,
        `two_nav(c(blank, NA, letters))`       = two_nav(c(blank, NA, letters))      ,
@@ -1571,7 +1564,7 @@ Other logicals:
 \code{\link{meets}()}
 
 Other errs: 
-\code{\link{checker}}
+\code{\link{stopperr}()}
 }
 \concept{errs}
 \concept{extensions}

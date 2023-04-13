@@ -5,12 +5,12 @@
 #' @title Compute stats ignoring `NA` values
 #' @description Simple wrappers for calculating statistics ignoring any `NA` values.
 #' @details
-#' \tabular{ll}{  `cmeans0`   \tab Calls `colMeans(x, na.rm = T)`          \cr
-#'                `rmeans0`   \tab Calls `rowMeans(x, na.rm = T)`          \cr
-#'                `csums0`    \tab Calls `colSums(x, na.rm = T)`           \cr
-#'                `rsums0`    \tab Calls `rowSums(x, na.rm = T)`           \cr
-#'                `csds0`     \tab Calls `apply(x, 2, sd, na.rm = T)`      \cr
-#'                `rsds0`     \tab Calls `apply(x, 1, sd, na.rm = T)`      \cr
+#' \tabular{ll}{  `cmeans0`   \tab Calls `colMeans(X, na.rm = T)`          \cr
+#'                `rmeans0`   \tab Calls `rowMeans(X, na.rm = T)`          \cr
+#'                `csums0`    \tab Calls `colSums(X, na.rm = T)`           \cr
+#'                `rsums0`    \tab Calls `rowSums(X, na.rm = T)`           \cr
+#'                `csds0`     \tab Calls `apply(X, 2, sd, na.rm = T)`      \cr
+#'                `rsds0`     \tab Calls `apply(X, 1, sd, na.rm = T)`      \cr
 #'                `pmin0`     \tab Calls `pmin(..., na.rm = T)`            \cr
 #'                `pmax0`     \tab Calls `pmax(..., na.rm = T)`            \cr
 #'                `mean0`     \tab Calls `mean(av(...), na.rm = T)`        \cr
@@ -18,13 +18,12 @@
 #'                `max0`      \tab Calls `max(av(...), na.rm = T)`         \cr
 #'                `sum0`      \tab Calls `sum(av(...), na.rm = T)`         \cr
 #'                `var0`      \tab Calls `var(av(...), na.rm = T)`         \cr
-#'                `cor0`      \tab Calls `cor(x, y, use = 'complete.obs')` \cr
-#'                `cov0`      \tab Calls `cov(x, y, use = 'complete.obs')` \cr
+#'                `cor0`      \tab Calls `cor(X, Y, use = 'complete.obs')` \cr
+#'                `cov0`      \tab Calls `cov(X, Y, use = 'complete.obs')` \cr
 #'                `sd0`       \tab Calls `sd(av(...), na.rm = T)`            }
 #' @param ... Scalars, vectors, or matrices. Reduced a single vector of atomic values for `sd0`, `min0`, `max0`, and `mean0`.
-#' @param n Positive whole-number scalar size of the complete set each subset is drawn from.
-#' @param x A \link[=cmp_num_vec]{complete numeric vec} or a \link[=cmp_num_mat]{complete numeric matrix}.
-#' @param y An optional complete numeric vec or a complete numeric matrix.
+#' @param X A \link[=cmp_num_vec]{complete numeric vec} or a \link[=cmp_num_mat]{complete numeric matrix}.
+#' @param Y An optional complete numeric vec or a complete numeric matrix.
 #' @return **A numeric vector**           \cr\cr `cmeans0, csums0, cvars0, csds0` \cr `rmeans0, rsums0, rvars0, rsds0` \cr `mean0, sum0, var0, sd0` \cr `pmin0, min0` \cr `pmax0, max0`
 #' \cr\cr  **A numeric vector or matrix** \cr\cr `cor0, cov0`
 #' @examples
@@ -77,11 +76,11 @@ sd0 <- function(...) {base::sd(uj::av(...), na.rm = T)}
 
 #' @rdname sum0
 #' @export
-cor0 <- function(x, y = NULL) {base::cor(x, y, use = "complete.obs")}
+cor0 <- function(X, Y = NULL) {base::cor(X, Y, use = "complete.obs")}
 
 #' @rdname sum0
 #' @export
-cov0 <- function(x, y = NULL) {base::cov(x, y, use = "complete.obs")}
+cov0 <- function(X, Y = NULL) {base::cov(X, Y, use = "complete.obs")}
 
 #' @rdname sum0
 #' @export
@@ -109,32 +108,32 @@ mean0 <- function(...) {base::mean(uj::av(...), na.rm = T)}
 
 #' @rdname sum0
 #' @export
-csds0 <- function(x) {base::apply(x, 2, base::sd, na.rm = T)}
+csds0 <- function(X) {base::apply(X, 2, base::sd, na.rm = T)}
 
 #' @rdname sum0
 #' @export
-rsds0 <- function(x) {base::apply(x, 1, base::sd, na.rm = T)}
+rsds0 <- function(X) {base::apply(X, 1, base::sd, na.rm = T)}
 
 #' @rdname sum0
 #' @export
-cvars0 <- function(x) {base::apply(x, 2, base::var, na.rm = T)}
+cvars0 <- function(X) {base::apply(X, 2, base::var, na.rm = T)}
 
 #' @rdname sum0
 #' @export
-rvars0 <- function(x) {base::apply(x, 1, base::var, na.rm = T)}
+rvars0 <- function(X) {base::apply(X, 1, base::var, na.rm = T)}
 
 #' @rdname sum0
 #' @export
-csums0 <- function(x) {base::colSums(x, na.rm = T)}
+csums0 <- function(X) {base::colSums(X, na.rm = T)}
 
 #' @rdname sum0
 #' @export
-rsums0 <- function(x) {base::rowSums(x, na.rm = T)}
+rsums0 <- function(X) {base::rowSums(X, na.rm = T)}
 
 #' @rdname sum0
 #' @export
-cmeans0 <- function(x) {base::colMeans(x, na.rm = T)}
+cmeans0 <- function(X) {base::colMeans(X, na.rm = T)}
 
 #' @rdname sum0
 #' @export
-rmeans0 <- function(x) {base::rowMeans(x, na.rm = T)}
+rmeans0 <- function(X) {base::rowMeans(X, na.rm = T)}

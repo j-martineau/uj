@@ -13,30 +13,30 @@
 \alias{as_uno}
 \title{Coerce to base mode or \code{xmode}}
 \usage{
-as_mmm(x, mode, levs = NULL, na = FALSE)
+as_mmm(X, Mode, Levs = NULL, Na = FALSE)
 
-as_chr(x, na = FALSE)
+as_chr(X, Na = FALSE)
 
-as_clr(x, na = FALSE)
+as_clr(X, Na = FALSE)
 
-as_fun(x)
+as_fun(X)
 
-as_int(x)
+as_int(X)
 
-as_num(x)
+as_num(X)
 
-as_lgl(x)
+as_lgl(X)
 
-as_ord(x, levs)
+as_ord(X, Levs)
 
-as_uno(x, levs)
+as_uno(X, Levs)
 }
 \arguments{
-\item{x}{For \code{as_clr}, an object of mode character; for \code{as_fun}, a character scalar function name or a function object; for \code{as_ord} and \code{as_uno}, an atomic object; and for all others, any R object.}
+\item{X}{For \code{as_clr}, an object of mode character; for \code{as_fun}, a character scalar function name or a function object; for \code{as_ord} and \code{as_uno}, an atomic object; and for all others, any R object.}
 
-\item{levs}{A \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for \code{asORD}).}
+\item{Levs}{A \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for \code{asORD}).}
 
-\item{na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are acceptable.}
+\item{Na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are acceptable.}
 
 \item{...}{Further arguments passed to or from other methods.}
 }
@@ -58,10 +58,10 @@ Functions in this family are as follows:
   \code{as_int}   \tab Thinly wraps \code{\link[base]{as.integer}}.                                                          \cr
   \code{as_num}   \tab Thinly wraps \code{\link[base]{as.numeric}}.                                                          \cr
   \code{as_lgl}   \tab Thinly wraps \code{\link[base]{as.logical}}.                                             \cr   \tab   \cr
-  \code{as_ord}   \tab As xmode \code{'ord'} (ordered factor). Wraps \code{factor(x, levels = levs, ordered = TRUE)}.     \cr   \tab   \cr
-  \code{as_uno}   \tab As xmode \code{'uno'} (unordered factor). Wraps \code{factor(x, levels = levs, ordered = FALSE)}.  \cr   \tab   \cr
+  \code{as_ord}   \tab As xmode \code{'ord'} (ordered factor). Wraps \code{factor(X, levels = Levs, ordered = TRUE)}.     \cr   \tab   \cr
+  \code{as_uno}   \tab As xmode \code{'uno'} (unordered factor). Wraps \code{factor(X, levels = Levs, ordered = FALSE)}.  \cr   \tab   \cr
   \code{as_clr}   \tab Coerces character color values to hexadecimal.                                           \cr   \tab   \cr
-  \code{as_fun}   \tab If \code{x} is a character scalar function return that function, but if \code{x} is a function object, return it. }
+  \code{as_fun}   \tab If \code{X} is a character scalar function return that function, but if \code{X} is a function object, return it. }
 }
 \examples{
 bins. <- sample(c(0, 1), 10, replace = T)
@@ -85,14 +85,13 @@ as_clr(clrs.)
 nums.
 as_chr(nums.)
 
-as_uno(clrs., levs = unique(clrs.))
-as_ord(clrs., levs = sort(unique(clrs.)))
+as_uno(clrs., Levs = unique(clrs.))
+as_ord(clrs., Levs = sort(unique(clrs.)))
 }
 \seealso{
 Other properties: 
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
-\code{\link{checker}},
 \code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
@@ -105,8 +104,10 @@ Other properties:
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
+\code{\link{ppp_fast}()},
 \code{\link{ppp}()},
 \code{\link{sss}()},
+\code{\link{stopperr}()},
 \code{\link{unq_ccc}()}
 }
 \concept{properties}

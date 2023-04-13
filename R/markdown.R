@@ -38,447 +38,447 @@
 #'                suffix = `ylw`   \tab yellow              }
 #'
 #' \cr For example, the function `pf_red` styles markdown text as plain and full-intensity red.
-#' @param x A \link[=cmp_chr_vec]{character vector} of text to be styled.
+#' @param X A \link[=cmp_chr_vec]{character vector} of text to be styled.
 #' @return A markdown-styled character vector.
 #' @export
 markdown <- function() {utils::help("markdown", package = "uj")}
 
 #' @rdname markdown
 #' @export
-subs <- function(x) {base::paste0(uj::v(sub1), x, uj::v(sub2))}
+subs <- function(X) {base::paste0(uj::v(sub1), X, uj::v(sub2))}
 
 #' @rdname markdown
 #' @export
-sups <- function(x) {base::paste0(uj::v(sup1), x, uj::v(sup2))}
+sups <- function(X) {base::paste0(uj::v(sup1), X, uj::v(sup2))}
 
 #' @rdname markdown
 #' @export
-bf_blu <- function(x) {base::paste0(uj::v(bf_blu), x, uj::v(bold2))}
+bf_blu <- function(X) {base::paste0(uj::v(bf_blu), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bl_blu <- function(x) {base::paste0(uj::v(bl_blu), x, uj::v(bold2))}
+bl_blu <- function(X) {base::paste0(uj::v(bl_blu), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bm_blu <- function(x) {base::paste0(uj::v(bm_blu), x, uj::v(bold2))}
+bm_blu <- function(X) {base::paste0(uj::v(bm_blu), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bd_blu <- function(x) {base::paste0(uj::v(bd_blu), x, uj::v(bold2))}
+bd_blu <- function(X) {base::paste0(uj::v(bd_blu), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bf_cyn <- function(x) {base::paste0(uj::v(bf_cyn), x, uj::v(bold2))}
+bf_cyn <- function(X) {base::paste0(uj::v(bf_cyn), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bl_cyn <- function(x) {base::paste0(uj::v(bl_cyn), x, uj::v(bold2))}
+bl_cyn <- function(X) {base::paste0(uj::v(bl_cyn), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bm_cyn <- function(x) {base::paste0(uj::v(bm_cyn), x, uj::v(bold2))}
+bm_cyn <- function(X) {base::paste0(uj::v(bm_cyn), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bd_cyn <- function(x) {base::paste0(uj::v(bd_cyn), x, uj::v(bold2))}
+bd_cyn <- function(X) {base::paste0(uj::v(bd_cyn), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bf_grn <- function(x) {base::paste0(uj::v(bf_grn), x, uj::v(bold2))}
+bf_grn <- function(X) {base::paste0(uj::v(bf_grn), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bl_grn <- function(x) {base::paste0(uj::v(bl_grn), x, uj::v(bold2))}
+bl_grn <- function(X) {base::paste0(uj::v(bl_grn), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bm_grn <- function(x) {base::paste0(uj::v(bm_grn), x, uj::v(bold2))}
+bm_grn <- function(X) {base::paste0(uj::v(bm_grn), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bd_grn <- function(x) {base::paste0(uj::v(bd_grn), x, uj::v(bold2))}
+bd_grn <- function(X) {base::paste0(uj::v(bd_grn), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bf_mag <- function(x) {base::paste0(uj::v(bf_mag), x, uj::v(bold2))}
+bf_mag <- function(X) {base::paste0(uj::v(bf_mag), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bl_mag <- function(x) {base::paste0(uj::v(bl_mag), x, uj::v(bold2))}
+bl_mag <- function(X) {base::paste0(uj::v(bl_mag), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bm_mag <- function(x) {base::paste0(uj::v(bm_mag), x, uj::v(bold2))}
+bm_mag <- function(X) {base::paste0(uj::v(bm_mag), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bd_mag <- function(x) {base::paste0(uj::v(bd_mag), x, uj::v(bold2))}
+bd_mag <- function(X) {base::paste0(uj::v(bd_mag), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bf_orn <- function(x) {base::paste0(uj::v(bf_orn), x, uj::v(bold2))}
+bf_orn <- function(X) {base::paste0(uj::v(bf_orn), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bl_orn <- function(x) {base::paste0(uj::v(bl_orn), x, uj::v(bold2))}
+bl_orn <- function(X) {base::paste0(uj::v(bl_orn), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bm_orn <- function(x) {base::paste0(uj::v(bm_orn), x, uj::v(bold2))}
+bm_orn <- function(X) {base::paste0(uj::v(bm_orn), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bd_orn <- function(x) {base::paste0(uj::v(bd_orn), x, uj::v(bold2))}
+bd_orn <- function(X) {base::paste0(uj::v(bd_orn), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bf_red <- function(x) {base::paste0(uj::v(bf_red), x, uj::v(bold2))}
+bf_red <- function(X) {base::paste0(uj::v(bf_red), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bl_red <- function(x) {base::paste0(uj::v(bl_red), x, uj::v(bold2))}
+bl_red <- function(X) {base::paste0(uj::v(bl_red), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bm_red <- function(x) {base::paste0(uj::v(bm_red), x, uj::v(bold2))}
+bm_red <- function(X) {base::paste0(uj::v(bm_red), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bd_red <- function(x) {base::paste0(uj::v(bd_red), x, uj::v(bold2))}
+bd_red <- function(X) {base::paste0(uj::v(bd_red), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bf_vlt <- function(x) {base::paste0(uj::v(bf_vlt), x, uj::v(bold2))}
+bf_vlt <- function(X) {base::paste0(uj::v(bf_vlt), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bl_vlt <- function(x) {base::paste0(uj::v(bl_vlt), x, uj::v(bold2))}
+bl_vlt <- function(X) {base::paste0(uj::v(bl_vlt), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bm_vlt <- function(x) {base::paste0(uj::v(bm_vlt), x, uj::v(bold2))}
+bm_vlt <- function(X) {base::paste0(uj::v(bm_vlt), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bd_vlt <- function(x) {base::paste0(uj::v(bd_vlt), x, uj::v(bold2))}
+bd_vlt <- function(X) {base::paste0(uj::v(bd_vlt), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bf_ylw <- function(x) {base::paste0(uj::v(bf_ylw), x, uj::v(bold2))}
+bf_ylw <- function(X) {base::paste0(uj::v(bf_ylw), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bl_ylw <- function(x) {base::paste0(uj::v(bl_ylw), x, uj::v(bold2))}
+bl_ylw <- function(X) {base::paste0(uj::v(bl_ylw), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bm_ylw <- function(x) {base::paste0(uj::v(bm_ylw), x, uj::v(bold2))}
+bm_ylw <- function(X) {base::paste0(uj::v(bm_ylw), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bd_ylw <- function(x) {base::paste0(uj::v(bd_ylw), x, uj::v(bold2))}
+bd_ylw <- function(X) {base::paste0(uj::v(bd_ylw), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_wht <- function(x) {base::paste0(uj::v(b_wht), x, uj::v(bold2))}
+b_wht <- function(X) {base::paste0(uj::v(b_wht), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g95 <- function(x) {base::paste0(uj::v(b_g95), x, uj::v(bold2))}
+b_g95 <- function(X) {base::paste0(uj::v(b_g95), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g90 <- function(x) {base::paste0(uj::v(b_g90), x, uj::v(bold2))}
+b_g90 <- function(X) {base::paste0(uj::v(b_g90), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g85 <- function(x) {base::paste0(uj::v(b_g85), x, uj::v(bold2))}
+b_g85 <- function(X) {base::paste0(uj::v(b_g85), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g80 <- function(x) {base::paste0(uj::v(b_g80), x, uj::v(bold2))}
+b_g80 <- function(X) {base::paste0(uj::v(b_g80), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g75 <- function(x) {base::paste0(uj::v(b_g75), x, uj::v(bold2))}
+b_g75 <- function(X) {base::paste0(uj::v(b_g75), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g70 <- function(x) {base::paste0(uj::v(b_g70), x, uj::v(bold2))}
+b_g70 <- function(X) {base::paste0(uj::v(b_g70), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g65 <- function(x) {base::paste0(uj::v(b_g65), x, uj::v(bold2))}
+b_g65 <- function(X) {base::paste0(uj::v(b_g65), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g60 <- function(x) {base::paste0(uj::v(b_g60), x, uj::v(bold2))}
+b_g60 <- function(X) {base::paste0(uj::v(b_g60), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g55 <- function(x) {base::paste0(uj::v(b_g55), x, uj::v(bold2))}
+b_g55 <- function(X) {base::paste0(uj::v(b_g55), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g50 <- function(x) {base::paste0(uj::v(b_g50), x, uj::v(bold2))}
+b_g50 <- function(X) {base::paste0(uj::v(b_g50), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g45 <- function(x) {base::paste0(uj::v(b_g45), x, uj::v(bold2))}
+b_g45 <- function(X) {base::paste0(uj::v(b_g45), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g40 <- function(x) {base::paste0(uj::v(b_g40), x, uj::v(bold2))}
+b_g40 <- function(X) {base::paste0(uj::v(b_g40), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_g35 <- function(x) {base::paste0(uj::v(b_g35), x, uj::v(bold2))}
+b_g35 <- function(X) {base::paste0(uj::v(b_g35), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bg_30 <- function(x) {base::paste0(uj::v(b_g30), x, uj::v(bold2))}
+bg_30 <- function(X) {base::paste0(uj::v(b_g30), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bg_25 <- function(x) {base::paste0(uj::v(b_g25), x, uj::v(bold2))}
+bg_25 <- function(X) {base::paste0(uj::v(b_g25), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bg_20 <- function(x) {base::paste0(uj::v(b_g20), x, uj::v(bold2))}
+bg_20 <- function(X) {base::paste0(uj::v(b_g20), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bg_15 <- function(x) {base::paste0(uj::v(b_g15), x, uj::v(bold2))}
+bg_15 <- function(X) {base::paste0(uj::v(b_g15), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bg_10 <- function(x) {base::paste0(uj::v(b_g10), x, uj::v(bold2))}
+bg_10 <- function(X) {base::paste0(uj::v(b_g10), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-bg_05 <- function(x) {base::paste0(uj::v(b_g05), x, uj::v(bold2))}
+bg_05 <- function(X) {base::paste0(uj::v(b_g05), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_blk <- function(x) {base::paste0(uj::v(b_blk), x, uj::v(bold2))}
+b_blk <- function(X) {base::paste0(uj::v(b_blk), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-b_inv <- function(x) {base::paste0(uj::v(b_inv), x, uj::v(bold2))}
+b_inv <- function(X) {base::paste0(uj::v(b_inv), X, uj::v(bold2))}
 
 #' @rdname markdown
 #' @export
-pf_blu <- function(x) {base::paste0(uj::v(pf_blu), x, uj::v(plain2))}
+pf_blu <- function(X) {base::paste0(uj::v(pf_blu), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pl_blu <- function(x) {base::paste0(uj::v(pl_blu), x, uj::v(plain2))}
+pl_blu <- function(X) {base::paste0(uj::v(pl_blu), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pm_blu <- function(x) {base::paste0(uj::v(pm_blu), x, uj::v(plain2))}
+pm_blu <- function(X) {base::paste0(uj::v(pm_blu), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pd_blu <- function(x) {base::paste0(uj::v(pd_blu), x, uj::v(plain2))}
+pd_blu <- function(X) {base::paste0(uj::v(pd_blu), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pf_cyn <- function(x) {base::paste0(uj::v(pf_cyn), x, uj::v(plain2))}
+pf_cyn <- function(X) {base::paste0(uj::v(pf_cyn), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pl_cyn <- function(x) {base::paste0(uj::v(pl_cyn), x, uj::v(plain2))}
+pl_cyn <- function(X) {base::paste0(uj::v(pl_cyn), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pm_cyn <- function(x) {base::paste0(uj::v(pm_cyn), x, uj::v(plain2))}
+pm_cyn <- function(X) {base::paste0(uj::v(pm_cyn), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pd_cyn <- function(x) {base::paste0(uj::v(pd_cyn), x, uj::v(plain2))}
+pd_cyn <- function(X) {base::paste0(uj::v(pd_cyn), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pf_grn <- function(x) {base::paste0(uj::v(pf_grn), x, uj::v(plain2))}
+pf_grn <- function(X) {base::paste0(uj::v(pf_grn), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pl_grn <- function(x) {base::paste0(uj::v(pl_grn), x, uj::v(plain2))}
+pl_grn <- function(X) {base::paste0(uj::v(pl_grn), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pm_grn <- function(x) {base::paste0(uj::v(pm_grn), x, uj::v(plain2))}
+pm_grn <- function(X) {base::paste0(uj::v(pm_grn), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pd_grn <- function(x) {base::paste0(uj::v(pd_grn), x, uj::v(plain2))}
+pd_grn <- function(X) {base::paste0(uj::v(pd_grn), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pf_mag <- function(x) {base::paste0(uj::v(pf_mag), x, uj::v(plain2))}
+pf_mag <- function(X) {base::paste0(uj::v(pf_mag), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pl_mag <- function(x) {base::paste0(uj::v(pl_mag), x, uj::v(plain2))}
+pl_mag <- function(X) {base::paste0(uj::v(pl_mag), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pm_mag <- function(x) {base::paste0(uj::v(pm_mag), x, uj::v(plain2))}
+pm_mag <- function(X) {base::paste0(uj::v(pm_mag), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pd_mag <- function(x) {base::paste0(uj::v(pd_mag), x, uj::v(plain2))}
+pd_mag <- function(X) {base::paste0(uj::v(pd_mag), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pf_orn <- function(x) {base::paste0(uj::v(pf_orn), x, uj::v(plain2))}
+pf_orn <- function(X) {base::paste0(uj::v(pf_orn), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pl_orn <- function(x) {base::paste0(uj::v(pl_orn), x, uj::v(plain2))}
+pl_orn <- function(X) {base::paste0(uj::v(pl_orn), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pm_orn <- function(x) {base::paste0(uj::v(pm_orn), x, uj::v(plain2))}
+pm_orn <- function(X) {base::paste0(uj::v(pm_orn), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pd_orn <- function(x) {base::paste0(uj::v(pd_orn), x, uj::v(plain2))}
+pd_orn <- function(X) {base::paste0(uj::v(pd_orn), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pf_red <- function(x) {base::paste0(uj::v(pf_red), x, uj::v(plain2))}
+pf_red <- function(X) {base::paste0(uj::v(pf_red), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pl_red <- function(x) {base::paste0(uj::v(pl_red), x, uj::v(plain2))}
+pl_red <- function(X) {base::paste0(uj::v(pl_red), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pm_red <- function(x) {base::paste0(uj::v(pm_red), x, uj::v(plain2))}
+pm_red <- function(X) {base::paste0(uj::v(pm_red), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pd_red <- function(x) {base::paste0(uj::v(pd_red), x, uj::v(plain2))}
+pd_red <- function(X) {base::paste0(uj::v(pd_red), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pf_vlt <- function(x) {base::paste0(uj::v(pf_vlt), x, uj::v(plain2))}
+pf_vlt <- function(X) {base::paste0(uj::v(pf_vlt), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pl_vlt <- function(x) {base::paste0(uj::v(pl_vlt), x, uj::v(plain2))}
+pl_vlt <- function(X) {base::paste0(uj::v(pl_vlt), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pm_vlt <- function(x) {base::paste0(uj::v(pm_vlt), x, uj::v(plain2))}
+pm_vlt <- function(X) {base::paste0(uj::v(pm_vlt), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pd_vlt <- function(x) {base::paste0(uj::v(pd_vlt), x, uj::v(plain2))}
+pd_vlt <- function(X) {base::paste0(uj::v(pd_vlt), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pf_ylw <- function(x) {base::paste0(uj::v(pf_ylw), x, uj::v(plain2))}
+pf_ylw <- function(X) {base::paste0(uj::v(pf_ylw), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pl_ylw <- function(x) {base::paste0(uj::v(pl_ylw), x, uj::v(plain2))}
+pl_ylw <- function(X) {base::paste0(uj::v(pl_ylw), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pm_ylw <- function(x) {base::paste0(uj::v(pm_ylw), x, uj::v(plain2))}
+pm_ylw <- function(X) {base::paste0(uj::v(pm_ylw), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-pd_ylw <- function(x) {base::paste0(uj::v(pd_ylw), x, uj::v(plain2))}
+pd_ylw <- function(X) {base::paste0(uj::v(pd_ylw), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_wht <- function(x) {base::paste0(uj::v(p_wht), x, uj::v(plain2))}
+p_wht <- function(X) {base::paste0(uj::v(p_wht), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g95 <- function(x) {base::paste0(uj::v(p_g95), x, uj::v(plain2))}
+p_g95 <- function(X) {base::paste0(uj::v(p_g95), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g90 <- function(x) {base::paste0(uj::v(p_g90), x, uj::v(plain2))}
+p_g90 <- function(X) {base::paste0(uj::v(p_g90), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g85 <- function(x) {base::paste0(uj::v(p_g85), x, uj::v(plain2))}
+p_g85 <- function(X) {base::paste0(uj::v(p_g85), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g80 <- function(x) {base::paste0(uj::v(p_g80), x, uj::v(plain2))}
+p_g80 <- function(X) {base::paste0(uj::v(p_g80), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g75 <- function(x) {base::paste0(uj::v(p_g75), x, uj::v(plain2))}
+p_g75 <- function(X) {base::paste0(uj::v(p_g75), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g70 <- function(x) {base::paste0(uj::v(p_g70), x, uj::v(plain2))}
+p_g70 <- function(X) {base::paste0(uj::v(p_g70), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g65 <- function(x) {base::paste0(uj::v(p_g65), x, uj::v(plain2))}
+p_g65 <- function(X) {base::paste0(uj::v(p_g65), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g60 <- function(x) {base::paste0(uj::v(p_g60), x, uj::v(plain2))}
+p_g60 <- function(X) {base::paste0(uj::v(p_g60), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g55 <- function(x) {base::paste0(uj::v(p_g55), x, uj::v(plain2))}
+p_g55 <- function(X) {base::paste0(uj::v(p_g55), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g50 <- function(x) {base::paste0(uj::v(p_g50), x, uj::v(plain2))}
+p_g50 <- function(X) {base::paste0(uj::v(p_g50), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g45 <- function(x) {base::paste0(uj::v(p_g45), x, uj::v(plain2))}
+p_g45 <- function(X) {base::paste0(uj::v(p_g45), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g40 <- function(x) {base::paste0(uj::v(p_g40), x, uj::v(plain2))}
+p_g40 <- function(X) {base::paste0(uj::v(p_g40), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g35 <- function(x) {base::paste0(uj::v(p_g35), x, uj::v(plain2))}
+p_g35 <- function(X) {base::paste0(uj::v(p_g35), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g30 <- function(x) {base::paste0(uj::v(p_g30), x, uj::v(plain2))}
+p_g30 <- function(X) {base::paste0(uj::v(p_g30), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g25 <- function(x) {base::paste0(uj::v(p_g25), x, uj::v(plain2))}
+p_g25 <- function(X) {base::paste0(uj::v(p_g25), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g20 <- function(x) {base::paste0(uj::v(p_g20), x, uj::v(plain2))}
+p_g20 <- function(X) {base::paste0(uj::v(p_g20), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g15 <- function(x) {base::paste0(uj::v(p_g15), x, uj::v(plain2))}
+p_g15 <- function(X) {base::paste0(uj::v(p_g15), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g10 <- function(x) {base::paste0(uj::v(p_g10), x, uj::v(plain2))}
+p_g10 <- function(X) {base::paste0(uj::v(p_g10), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_g05 <- function(x) {base::paste0(uj::v(p_g05), x, uj::v(plain2))}
+p_g05 <- function(X) {base::paste0(uj::v(p_g05), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_blk <- function(x) {base::paste0(uj::v(p_blk), x, uj::v(plain2))}
+p_blk <- function(X) {base::paste0(uj::v(p_blk), X, uj::v(plain2))}
 
 #' @rdname markdown
 #' @export
-p_inv <- function(x) {base::paste0(uj::v(p_inv), x, uj::v(plain2))}
+p_inv <- function(X) {base::paste0(uj::v(p_inv), X, uj::v(plain2))}

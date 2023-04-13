@@ -28,70 +28,70 @@
 \alias{rcn}
 \title{Naming utilities}
 \usage{
-name_vals(x, vn)
+name_vals(X, Names)
 
-name_rows(x, labs)
+name_rows(X, Names)
 
-name_cols(x, labs)
+name_cols(X, Names)
 
-name_scl_vls(x, lab)
+name_scl_vls(X, Name)
 
-name_rcs(x, rlabs, clabs)
+name_rcs(X, rNames, cNames)
 
-name(x, vlabs = NULL, rlabs = NULL, clabs = NULL)
+name(X, vNames = NULL, rNames = NULL, cNames = NULL)
 
-named(x, dim = 0, u = T, bl = F)
+named(X, D = 0, U = T, Bl = F)
 
-named_elts(x, u = T, bl = F)
+named_elts(X, U = T, Bl = F)
 
-named_rows(x, u = T, bl = F)
+named_rows(X, U = T, Bl = F)
 
-named_cols(x, u = T, bl = F)
+named_cols(X, U = T, Bl = F)
 
-named_rcs(x, u = T, bl = F)
+named_rcs(X, U = T, Bl = F)
 
 dnamed(..., U = T, BL = F)
 
-get_names(x, d = 0, u = T, err = F)
+get_names(X, D = 0, U = T, Err = F)
 
 dnames(..., U = T, ERR = F)
 
 dn(..., U = T, ERR = F)
 
-enames(x, u = T, err = F)
+enames(X, U = T, Err = F)
 
-en(x, u = T, err = F)
+en(X, U = T, Err = F)
 
-rnames(x, u = T, err = F)
+rnames(X, U = T, Err = F)
 
-rn(x, u = T, err = F)
+rn(X, U = T, Err = F)
 
-cnames(x, u = T, err = F)
+cnames(X, U = T, Err = F)
 
-cn(x, u = T, err = F)
+cn(X, U = T, Err = F)
 
-rcnames(x, u = T, err = F)
+rcnames(X, U = T, Err = F)
 
-rcn(x, u = T, err = F)
+rcn(X, U = T, Err = F)
 }
 \arguments{
-\item{x}{Vector or list for \code{name_vals} and \code{val_names / vn}; matrix or data.frame for \code{rnames / rn}, \code{cnames / cn}, \code{rcnames / rcn}, \code{name_rcs}, \code{name_cols}, and \code{name_rows}; or any object for \code{name_scl_vls}.}
+\item{X}{Vector or list for \code{name_vals} and \code{val_names / vn}; matrix or data.frame for \code{rnames / rn}, \code{cnames / cn}, \code{rcnames / rcn}, \code{name_rcs}, \code{name_cols}, and \code{name_rows}; or any object for \code{name_scl_vls}.}
 
-\item{labs, rlabs, clabs, vlabs}{A \link[=cmp_chr_vec]{complete character vec}.}
+\item{D}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the dimension(s) to name: \code{0} for elements (of atomic or list vectors only), \code{1} for rows of matrices or tibbles, \code{2} for columns of matrices or data.frames, or \code{12} for rows and columns of matrices or data.frames.}
 
-\item{lab}{A non-\code{NA} character scalar to name the single element of the resulting \link[=VLS]{vlist}.}
+\item{U}{\code{TRUE} or \code{FALSE} indicating whether names must be unique.}
 
-\item{dim}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the dimension(s) to name: \code{0} for elements (of atomic or list vectors only), \code{1} for rows of matrices or tibbles, \code{2} for columns of matrices or data.frames, or \code{12} for rows and columns of matrices or data.frames.}
-
-\item{u, U}{\code{TRUE} or \code{FALSE} indicating whether names must be unique.}
-
-\item{bl, BL}{\code{TRUE} or \code{FALSE} indicating whether blank strings (\code{""}) are allowed as names.}
+\item{Bl, BL}{\code{TRUE} or \code{FALSE} indicating whether blank strings (\code{""}) are allowed as names.}
 
 \item{...}{An arbitrary number of arguments.}
 
-\item{err}{\code{TRUE} or \code{FALSE} indicating whether names must exist.}
+\item{Err}{\code{TRUE} or \code{FALSE} indicating whether names must exist.}
 
 \item{ERR}{\code{TRUE} or \code{FALSE} indicating whether \code{...} args must have names.}
+
+\item{Lab}{A non-\code{NA} character scalar to name the single element of the resulting \link[=VLS]{vlist}.}
+
+\item{Labs, rLabs, cLabs, vLabs}{A \link[=cmp_chr_vec]{complete character vec}.}
 }
 \value{
 \strong{A \link[=VEC]{vec}, \link[=VLS]{vlist}, matrix, or data.frame} \cr\cr \code{name}
@@ -115,15 +115,15 @@ Get object names (with optional restrictions), check whether names exist (with o
   \verb{dnames, dn}       \tab \code{...} arg names                     \cr   \tab   \cr
   \code{named}            \tab Name existence check                \cr
   \code{rcs_are_named}    \tab Are both rows and columns named?    \cr
-  \code{cols_are_named}   \tab Are columns of \code{x} named?           \cr
+  \code{cols_are_named}   \tab Are columns of \code{X} named?           \cr
   \code{dots_are_named}   \tab Are \code{...} arguments named?          \cr
-  \code{rows_are_named}   \tab Are rows of \code{x} named?              \cr   \tab   \cr
-  \code{vals_are_named}   \tab Are values/elements of \code{x} named?   \cr
+  \code{rows_are_named}   \tab Are rows of \code{X} named?              \cr   \tab   \cr
+  \code{vals_are_named}   \tab Are values/elements of \code{X} named?   \cr
   \code{name}             \tab Naming                              \cr
-  \code{name_rcs}         \tab Name rows and columns of \code{x}        \cr
-  \code{name_cols}        \tab Name columns of \code{x}.                \cr
-  \code{name_rows}        \tab Name rows of \code{x}.                   \cr
-  \code{name_vals}        \tab Name values/elements of a \code{x}.      \cr   \tab   \cr
+  \code{name_rcs}         \tab Name rows and columns of \code{X}        \cr
+  \code{name_cols}        \tab Name columns of \code{X}.                \cr
+  \code{name_rows}        \tab Name rows of \code{X}.                   \cr
+  \code{name_vals}        \tab Name values/elements of a \code{X}.      \cr   \tab   \cr
   \code{name_scl_vls}     \tab Create and name a scalar \code{\link[=VLS]{vlist}} }
 }
 \examples{
@@ -141,8 +141,8 @@ egDtf
 
 named(egVec)
 named(egVls)
-named(egMat, d = 12)
-named(egDtf, d = 2)
+named(egMat, D = 12)
+named(egDtf, D = 2)
 
 vals_are_named(egVls)
 rows_are_named(egMat)
@@ -153,8 +153,8 @@ dots_are_named(egVec, egVls)
 dots_are_named(var1 = egVec, var2 = egVls)
 
 get_names(egVls)
-get_names(egMat, d = 1)
-get_names(egDtf, d = 2)
+get_names(egMat, D = 1)
+get_names(egDtf, D = 2)
 
 en(egVec)
 en(egVls)

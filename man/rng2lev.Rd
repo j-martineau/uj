@@ -3,25 +3,25 @@
 \encoding{UTF-8}
 \name{rng2lev}
 \alias{rng2lev}
-\title{Convert sortable values in levels by range}
+\title{Convert sortable values in levels bY range}
 \usage{
-rng2lev(x, cuts, levs)
+rng2lev(X, Cuts, Levs)
 }
 \arguments{
-\item{x}{An \link[=atm_srt]{atomic object of sortable} values.}
+\item{X}{An \link[=atm_srt]{atomic object of sortable} values.}
 
-\item{cuts}{An \link[=srt_vec]{atomic vec} of \code{n-1} cuts for \code{n} levels.}
+\item{Cuts}{An \link[=srt_vec]{atomic vec} of \code{N-1} cuts for \code{N} levels.}
 
-\item{levs}{An atomic vec of \code{n} level labels.}
+\item{Levs}{An atomic vec of \code{N} level labels.}
 }
 \value{
-An atomic object of the same dimension as \code{x} and the same mode as \code{levs}.
+An atomic object of the same dimension as \code{X} and the same mode as \code{Levs}.
 }
 \description{
-Convert values of \code{x} to the \code{n} levels in \code{levs} distinguished by the \code{n-1} thresholds in \code{cuts}.
-\cr\cr When values of \code{x} are equal to a value of \code{cuts}, assignment to level is dependent on whether the value of each element of \code{cut} is less than \code{0} vs. greater than or equal to \code{0}.
-\cr\cr For a value in \code{cuts} less than \code{0}, the level assigned is the lower of the levels distinguished by that value of \code{cuts}.
-\cr\cr Otherwise, the level assigned is the upper of the levels distinguished by that value of \code{cuts}.
+Convert values of \code{X} to the \code{N} levels in \code{Levs} distinguished by the \code{N-1} thresholds in \code{Cuts}.
+\cr\cr When values of \code{X} are equal to a value of \code{Cuts}, assignment to level is dependent on whether the value of each element of \code{Cuts} is less than \code{0} vs. greater than or equal to \code{0}.
+\cr\cr For a value in \code{Cuts} less than \code{0}, the level assigned is the lower of the levels distinguished by that value of \code{Cuts}.
+\cr\cr Otherwise, the level assigned is the upper of the levels distinguished by that value of \code{Cuts}.
 }
 \examples{
 numVALS <- -5:5

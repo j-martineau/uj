@@ -1,8 +1,8 @@
 #' @encoding UTF-8
 #' @title Pause execution.
 #' @family meta
-#' @description Pause for `x` seconds, then resume execution.
-#' @param x A \link[=cmp_nng_scl]{complete non-netative numeric scalar} indicating the number of seconds to pause.
+#' @description Pause for `X` seconds, then resume execution.
+#' @param X A \link[=cmp_nng_scl]{complete non-netative numeric scalar} indicating the number of seconds to pause.
 #' @return `NULL` (called for its side effect).
 #' @examples
 #' \dontrun{
@@ -19,7 +19,7 @@
 #'   cat("\n done")
 #' }
 #' @export
-pause <- function(x = 0.0000001) {
-  if (!uj:::.cmp_nng_scl(x)) {uj::stopperr("[x] must be a non-NA, non-negative, numeric scalar.", PKG = "uj")}
-  base::Sys.sleep(x)
+pause <- function(X = 0.0000001) {
+  if (!uj:::.cmp_nng_scl(X)) {uj::stopperr("[X] must be a non-NA, non-negative, numeric scalar.", PKG = "uj")}
+  base::Sys.sleep(X)
 }

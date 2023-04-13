@@ -19,9 +19,9 @@
 #'                `as_path`       \tab Collapses `...` into a path using the current platform file path separator `.Platform$file.sep`.                                                        }
 #' @details In most cases, if (optionally) specified, functions throw an error if `...` does not resolve to a valid object path.
 #' @param ... Atomic arguments pasted to create
-#' @param err `TRUE` or `FALSE` indicating whether an error should be thrown if `...` is not a valid object path when collapsed to a character scalar.
-#' @param dirs A \link[=cmp_chr_vec]{complete character vec} of new sub-directory names.
-#' @param path A \link[=cmp_chr_scl]{complete character scalar} path to either a directory or a file.
+#' @param Err `TRUE` or `FALSE` indicating whether an error should be thrown if `...` is not a valid object path when collapsed to a character scalar.
+#' @param Dirs A \link[=cmp_chr_vec]{complete character vec} of new sub-directory names.
+#' @param Path A \link[=cmp_chr_scl]{complete character scalar} path to either a directory or a file.
 #' @return **A character scalar** \cr\cr `object_dirs, parent_path` \cr `object_name, parent_name` \cr `as_path`
 #' \cr\cr  **A character vector** \cr\cr `object_dirs, parent_dirs`
 #' \cr\cr  **A logical scalar**   \cr\cr `is_path`
@@ -49,74 +49,74 @@
 #' run(is_path.)
 #' run(as_path.)
 #' @export
-is_path <- function(..., err = F) {
-  x <- base::list(...)
-  ok.n <- base::length(x) > 0
-  ok.ns <- uj::f0(!ok.n, T, base::all(base::lengths(x) > 0))
-  errs <- NULL
-  if (!ok.n) {errs <- base::c(errs, "[...] is empty.")}
-  if (!ok.ns) {errs <- base::c(errs, "An argument in [...] is empty.")}
-  if (!uj::f0(ok.n | ok.ns, T, base::all(base::sapply(x, uj:::.cmp_chr)))) {errs <- base::c(errs, "Arguments in [...] must be complete character scalars/vecs (?cmp_chr_scl, ?cmp_chr_vec).")}
-  if (!uj:::.cmp_lgl_scl(err)) {errs <- base::c(errs, "[err] must be TRUE or FALSE.")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
-  path <- base::file.path(...)
-  if (base::file.exists(path)) {return(T)}
-  ok <- !uj::is_err(tryCatch(base::file.create(path, showWarnings = F), error = function(e) e, finally = NULL))
-  if (!ok & err) {uj::stopperr("[...] doesn't resolve to a valid file/folder path.", PKG = "uj")}
-  if (ok) {base::file.remove(path)}
-  ok
+is_path <- function(..., Err = F) {
+  X <- base::list(...)
+  OkN <- base::length(X) > 0
+  OkNs <- uj::f0(!OkN, T, base::all(base::lengths(X) > 0))
+  Errors <- NULL
+  if (!OkN) {Errors <- base::c(Errors, "[...] is empty.")}
+  if (!OkNs) {Errors <- base::c(Errors, "An argument in [...] is empty.")}
+  if (!uj::f0(OkN | OkNs, T, base::all(base::sapply(X, uj:::.cmp_chr)))) {Errors <- base::c(Errors, "Arguments in [...] must be complete character scalars/vecs (?cmp_chr_scl, ?cmp_chr_vec).")}
+  if (!uj:::.cmp_lgl_scl(Err)) {Errors <- base::c(Errors, "[Err] must be TRUE or FALSE.")}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  Path <- base::file.path(...)
+  if (base::file.exists(Path)) {return(T)}
+  OK <- !uj::is_err(tryCatch(base::file.create(Path, showWarnings = F), error = function(e) e, finally = NULL))
+  if (!OK & Err) {uj::stopperr("[...] doesn't resolve to a valid file/folder path.", PKG = "uj")}
+  if (OK) {base::file.remove(Path)}
+  OK
 }
 
 #' @rdname paths
 #' @export
-as_path <- function(..., err = T) {
-  sep <- base::.Platform$file.sep
-  path <- tryCatch(base::file.path(...), error = function(e) e, finally = NULL)
-  if (uj::is_err(path)) {uj::stopperr("[...] does not resolve to a valid file/folder path.", PKG = "uj")}
-  path <- base::strsplit(path, sep, fixed = T)[[1]]
-  args <- base::paste0("path[", 1:base::length(path), "]")
-  args <- base::paste0(args, collapse = ", ")
-  code <- base::paste0("base::file.path(", args, ")")
-  path <- uj::run(code)
-  if (base::substr(path, 1, 1) != sep) {path <- base::paste0(sep, path)}
-  path
+as_path <- function(..., Err = T) {
+  Sep <- base::.Platform$file.sep
+  Path <- tryCatch(base::file.path(...), error = function(e) e, finally = NULL)
+  if (uj::is_err(Path)) {uj::stopperr("[...] does not resolve to a valid file/folder path.", PKG = "uj")}
+  Path <- base::strsplit(Path, Sep, fixed = T)[[1]]
+  Args <- base::paste0("Path[", 1:base::length(Path), "]")
+  Args <- base::paste0(Args, collapse = ", ")
+  Code <- base::paste0("base::file.path(", Args, ")")
+  Path <- uj::run(Code)
+  if (base::substr(Path, 1, 1) != Sep) {Path <- base::paste0(Sep, Path)}
+  Path
 }
 
 #' @rdname paths
 #' @export
-object_dirs <- function(path, err = T) {
-  path <- uj::as_path(path, err = err)
-  path <- base::strsplit(path, base::.Platform$file.sep, fixed = T)[[1]]
-  path <- path[path != ""]
-  uj::f0(base::length(path) < 2, base::character(0), path[1:(base::length(path) - 1)])
+object_dirs <- function(Path, Err = T) {
+  Path <- uj::as_path(Path, Err = Err)
+  Path <- base::strsplit(Path, base::.Platform$file.sep, fixed = T)[[1]]
+  Path <- Path[Path != ""]
+  uj::f0(base::length(Path) < 2, base::character(0), Path[1:(base::length(Path) - 1)])
 }
 
 #' @rdname paths
 #' @export
-parent_dirs <- function(path, err = T) {
-  path <- uj::object_dirs(path, err)
-  uj::f0(base::length(path) < 2, base::character(0), path[1:(base::length(path) - 1)])
+parent_dirs <- function(Path, Err = T) {
+  Path <- uj::object_dirs(Path, Err)
+  uj::f0(base::length(Path) < 2, base::character(0), Path[1:(base::length(Path) - 1)])
 }
 
 #' @rdname paths
 #' @export
-object_path  <- function(path, err = T) {uj::as_path(path, err = err)}
+object_path  <- function(Path, Err = T) {uj::as_path(Path, Err = Err)}
 
 #' @rdname paths
 #' @export
-parent_path  <- function(path, err = T) {base::paste0(uj::object_dirs(path, err), collapse = base::.Platform$file.sep)}
+parent_path  <- function(Path, Err = T) {base::paste0(uj::object_dirs(Path, Err), collapse = base::.Platform$file.sep)}
 
 #' @rdname paths
 #' @export
-object_name <- function(path, err = T) {base::basename(uj::as_path(path, err = err))}
+object_name <- function(Path, Err = T) {base::basename(uj::as_path(Path, Err = Err))}
 
 #' @rdname paths
 #' @export
-parent_name <- function(path, err = T) {base::basename(uj::parent_path(path, err = err))}
+parent_name <- function(Path, Err = T) {base::basename(uj::parent_path(Path, Err = Err))}
 
 #' @rdname paths
 #' @export
-new_dirs <- function(dirs, path = NULL) {
-  if (base::is.null(path)) {path <- uj::choose_dir("folder to create new sub-folders in")}
-  for (dir in dirs) {if (!base::dir.exists(base::file.path(path, dir))) {base::dir.create(base::file.path(path, dir))}}
+new_dirs <- function(Dirs, Path = NULL) {
+  if (base::is.null(Path)) {Path <- uj::choose_dir("folder to create new sub-folders in")}
+  for (Dir in Dirs) {if (!base::dir.exists(base::file.path(Path, Dir))) {base::dir.create(base::file.path(Path, Dir))}}
 }

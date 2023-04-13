@@ -230,464 +230,464 @@
 \alias{unq_whl_vls}
 \title{unique + xmode + xclass combination properties}
 \usage{
-unq_mmm_ccc(x, mmm, ccc, ...)
+unq_mmm_ccc(X, MMM, CCC, ...)
 
 unq_mmm_ccc_funs()
 
-unq_atm_arr(x, ...)
+unq_atm_arr(X, ...)
 
-unq_atm_dtf(x, ...)
+unq_atm_dtf(X, ...)
 
-unq_atm_gen(x, ...)
+unq_atm_gen(X, ...)
 
-unq_atm_mat(x, ...)
+unq_atm_mat(X, ...)
 
-unq_atm_mvc(x, ...)
+unq_atm_mvc(X, ...)
 
-unq_atm_scl(x, ...)
+unq_atm_scl(X, ...)
 
-unq_atm_vec(x, ...)
+unq_atm_vec(X, ...)
 
-unq_atm_vls(x, ...)
+unq_atm_vls(X, ...)
 
-unq_ch1_arr(x, ...)
+unq_ch1_arr(X, ...)
 
-unq_ch1_dtf(x, ...)
+unq_ch1_dtf(X, ...)
 
-unq_ch1_gen(x, ...)
+unq_ch1_gen(X, ...)
 
-unq_ch1_mat(x, ...)
+unq_ch1_mat(X, ...)
 
-unq_ch1_mvc(x, ...)
+unq_ch1_mvc(X, ...)
 
-unq_ch1_scl(x, ...)
+unq_ch1_scl(X, ...)
 
-unq_ch1_vec(x, ...)
+unq_ch1_vec(X, ...)
 
-unq_ch1_vls(x, ...)
+unq_ch1_vls(X, ...)
 
-unq_ch3_arr(x, ...)
+unq_ch3_arr(X, ...)
 
-unq_ch3_dtf(x, ...)
+unq_ch3_dtf(X, ...)
 
-unq_ch3_gen(x, ...)
+unq_ch3_gen(X, ...)
 
-unq_ch3_mat(x, ...)
+unq_ch3_mat(X, ...)
 
-unq_ch3_mvc(x, ...)
+unq_ch3_mvc(X, ...)
 
-unq_ch3_scl(x, ...)
+unq_ch3_scl(X, ...)
 
-unq_ch3_vec(x, ...)
+unq_ch3_vec(X, ...)
 
-unq_ch3_vls(x, ...)
+unq_ch3_vls(X, ...)
 
-unq_chr_arr(x, ...)
+unq_chr_arr(X, ...)
 
-unq_chr_dtf(x, ...)
+unq_chr_dtf(X, ...)
 
-unq_chr_gen(x, ...)
+unq_chr_gen(X, ...)
 
-unq_chr_mat(x, ...)
+unq_chr_mat(X, ...)
 
-unq_chr_mvc(x, ...)
+unq_chr_mvc(X, ...)
 
-unq_chr_scl(x, ...)
+unq_chr_scl(X, ...)
 
-unq_chr_vec(x, ...)
+unq_chr_vec(X, ...)
 
-unq_chr_vls(x, ...)
+unq_chr_vls(X, ...)
 
-unq_clr_arr(x, ...)
+unq_clr_arr(X, ...)
 
-unq_clr_dtf(x, ...)
+unq_clr_dtf(X, ...)
 
-unq_clr_gen(x, ...)
+unq_clr_gen(X, ...)
 
-unq_clr_mat(x, ...)
+unq_clr_mat(X, ...)
 
-unq_clr_mvc(x, ...)
+unq_clr_mvc(X, ...)
 
-unq_clr_scl(x, ...)
+unq_clr_scl(X, ...)
 
-unq_clr_vec(x, ...)
+unq_clr_vec(X, ...)
 
-unq_clr_vls(x, ...)
+unq_clr_vls(X, ...)
 
-unq_evn_arr(x, ...)
+unq_evn_arr(X, ...)
 
-unq_evn_dtf(x, ...)
+unq_evn_dtf(X, ...)
 
-unq_evn_gen(x, ...)
+unq_evn_gen(X, ...)
 
-unq_evn_mat(x, ...)
+unq_evn_mat(X, ...)
 
-unq_evn_mvc(x, ...)
+unq_evn_mvc(X, ...)
 
-unq_evn_scl(x, ...)
+unq_evn_scl(X, ...)
 
-unq_evn_vec(x, ...)
+unq_evn_vec(X, ...)
 
-unq_evn_vls(x, ...)
+unq_evn_vls(X, ...)
 
-unq_fac_arr(x, ...)
+unq_fac_arr(X, ...)
 
-unq_fac_dtf(x, ...)
+unq_fac_dtf(X, ...)
 
-unq_fac_gen(x, ...)
+unq_fac_gen(X, ...)
 
-unq_fac_mat(x, ...)
+unq_fac_mat(X, ...)
 
-unq_fac_mvc(x, ...)
+unq_fac_mvc(X, ...)
 
-unq_fac_scl(x, ...)
+unq_fac_scl(X, ...)
 
-unq_fac_vec(x, ...)
+unq_fac_vec(X, ...)
 
-unq_fac_vls(x, ...)
+unq_fac_vls(X, ...)
 
-unq_frc_arr(x, ...)
+unq_frc_arr(X, ...)
 
-unq_frc_dtf(x, ...)
+unq_frc_dtf(X, ...)
 
-unq_frc_gen(x, ...)
+unq_frc_gen(X, ...)
 
-unq_frc_mat(x, ...)
+unq_frc_mat(X, ...)
 
-unq_frc_mvc(x, ...)
+unq_frc_mvc(X, ...)
 
-unq_frc_scl(x, ...)
+unq_frc_scl(X, ...)
 
-unq_frc_vec(x, ...)
+unq_frc_vec(X, ...)
 
-unq_frc_vls(x, ...)
+unq_frc_vls(X, ...)
 
-unq_ind_arr(x, ...)
+unq_ind_arr(X, ...)
 
-unq_ind_dtf(x, ...)
+unq_ind_dtf(X, ...)
 
-unq_ind_gen(x, ...)
+unq_ind_gen(X, ...)
 
-unq_ind_mat(x, ...)
+unq_ind_mat(X, ...)
 
-unq_ind_mvc(x, ...)
+unq_ind_mvc(X, ...)
 
-unq_ind_scl(x, ...)
+unq_ind_scl(X, ...)
 
-unq_ind_vec(x, ...)
+unq_ind_vec(X, ...)
 
-unq_ind_vls(x, ...)
+unq_ind_vls(X, ...)
 
-unq_lgl_arr(x, ...)
+unq_lgl_arr(X, ...)
 
-unq_lgl_dtf(x, ...)
+unq_lgl_dtf(X, ...)
 
-unq_lgl_gen(x, ...)
+unq_lgl_gen(X, ...)
 
-unq_lgl_mat(x, ...)
+unq_lgl_mat(X, ...)
 
-unq_lgl_mvc(x, ...)
+unq_lgl_mvc(X, ...)
 
-unq_lgl_scl(x, ...)
+unq_lgl_scl(X, ...)
 
-unq_lgl_vec(x, ...)
+unq_lgl_vec(X, ...)
 
-unq_lgl_vls(x, ...)
+unq_lgl_vls(X, ...)
 
-unq_neg_arr(x, ...)
+unq_neg_arr(X, ...)
 
-unq_neg_dtf(x, ...)
+unq_neg_dtf(X, ...)
 
-unq_neg_gen(x, ...)
+unq_neg_gen(X, ...)
 
-unq_neg_mat(x, ...)
+unq_neg_mat(X, ...)
 
-unq_neg_mvc(x, ...)
+unq_neg_mvc(X, ...)
 
-unq_neg_scl(x, ...)
+unq_neg_scl(X, ...)
 
-unq_neg_vec(x, ...)
+unq_neg_vec(X, ...)
 
-unq_neg_vls(x, ...)
+unq_neg_vls(X, ...)
 
-unq_ngw_arr(x, ...)
+unq_ngw_arr(X, ...)
 
-unq_ngw_dtf(x, ...)
+unq_ngw_dtf(X, ...)
 
-unq_ngw_gen(x, ...)
+unq_ngw_gen(X, ...)
 
-unq_ngw_mat(x, ...)
+unq_ngw_mat(X, ...)
 
-unq_ngw_mvc(x, ...)
+unq_ngw_mvc(X, ...)
 
-unq_ngw_scl(x, ...)
+unq_ngw_scl(X, ...)
 
-unq_ngw_vec(x, ...)
+unq_ngw_vec(X, ...)
 
-unq_ngw_vls(x, ...)
+unq_ngw_vls(X, ...)
 
-unq_nng_arr(x, ...)
+unq_nng_arr(X, ...)
 
-unq_nng_dtf(x, ...)
+unq_nng_dtf(X, ...)
 
-unq_nng_gen(x, ...)
+unq_nng_gen(X, ...)
 
-unq_nng_mat(x, ...)
+unq_nng_mat(X, ...)
 
-unq_nng_mvc(x, ...)
+unq_nng_mvc(X, ...)
 
-unq_nng_scl(x, ...)
+unq_nng_scl(X, ...)
 
-unq_nng_vec(x, ...)
+unq_nng_vec(X, ...)
 
-unq_nng_vls(x, ...)
+unq_nng_vls(X, ...)
 
-unq_nnw_arr(x, ...)
+unq_nnw_arr(X, ...)
 
-unq_nnw_dtf(x, ...)
+unq_nnw_dtf(X, ...)
 
-unq_nnw_gen(x, ...)
+unq_nnw_gen(X, ...)
 
-unq_nnw_mat(x, ...)
+unq_nnw_mat(X, ...)
 
-unq_nnw_mvc(x, ...)
+unq_nnw_mvc(X, ...)
 
-unq_nnw_scl(x, ...)
+unq_nnw_scl(X, ...)
 
-unq_nnw_vec(x, ...)
+unq_nnw_vec(X, ...)
 
-unq_nnw_vls(x, ...)
+unq_nnw_vls(X, ...)
 
-unq_nps_arr(x, ...)
+unq_nps_arr(X, ...)
 
-unq_nps_dtf(x, ...)
+unq_nps_dtf(X, ...)
 
-unq_nps_gen(x, ...)
+unq_nps_gen(X, ...)
 
-unq_nps_mat(x, ...)
+unq_nps_mat(X, ...)
 
-unq_nps_mvc(x, ...)
+unq_nps_mvc(X, ...)
 
-unq_nps_scl(x, ...)
+unq_nps_scl(X, ...)
 
-unq_nps_vec(x, ...)
+unq_nps_vec(X, ...)
 
-unq_nps_vls(x, ...)
+unq_nps_vls(X, ...)
 
-unq_npw_arr(x, ...)
+unq_npw_arr(X, ...)
 
-unq_npw_dtf(x, ...)
+unq_npw_dtf(X, ...)
 
-unq_npw_gen(x, ...)
+unq_npw_gen(X, ...)
 
-unq_npw_mat(x, ...)
+unq_npw_mat(X, ...)
 
-unq_npw_mvc(x, ...)
+unq_npw_mvc(X, ...)
 
-unq_npw_scl(x, ...)
+unq_npw_scl(X, ...)
 
-unq_npw_vec(x, ...)
+unq_npw_vec(X, ...)
 
-unq_npw_vls(x, ...)
+unq_npw_vls(X, ...)
 
-unq_nst_arr(x, ...)
+unq_nst_arr(X, ...)
 
-unq_nst_dtf(x, ...)
+unq_nst_dtf(X, ...)
 
-unq_nst_gen(x, ...)
+unq_nst_gen(X, ...)
 
-unq_nst_mat(x, ...)
+unq_nst_mat(X, ...)
 
-unq_nst_mvc(x, ...)
+unq_nst_mvc(X, ...)
 
-unq_nst_scl(x, ...)
+unq_nst_scl(X, ...)
 
-unq_nst_vec(x, ...)
+unq_nst_vec(X, ...)
 
-unq_nst_vls(x, ...)
+unq_nst_vls(X, ...)
 
-unq_num_arr(x, ...)
+unq_num_arr(X, ...)
 
-unq_num_dtf(x, ...)
+unq_num_dtf(X, ...)
 
-unq_num_gen(x, ...)
+unq_num_gen(X, ...)
 
-unq_num_mat(x, ...)
+unq_num_mat(X, ...)
 
-unq_num_mvc(x, ...)
+unq_num_mvc(X, ...)
 
-unq_num_scl(x, ...)
+unq_num_scl(X, ...)
 
-unq_num_vec(x, ...)
+unq_num_vec(X, ...)
 
-unq_num_vls(x, ...)
+unq_num_vls(X, ...)
 
-unq_odd_arr(x, ...)
+unq_odd_arr(X, ...)
 
-unq_odd_dtf(x, ...)
+unq_odd_dtf(X, ...)
 
-unq_odd_gen(x, ...)
+unq_odd_gen(X, ...)
 
-unq_odd_mat(x, ...)
+unq_odd_mat(X, ...)
 
-unq_odd_mvc(x, ...)
+unq_odd_mvc(X, ...)
 
-unq_odd_scl(x, ...)
+unq_odd_scl(X, ...)
 
-unq_odd_vec(x, ...)
+unq_odd_vec(X, ...)
 
-unq_odd_vls(x, ...)
+unq_odd_vls(X, ...)
 
-unq_ord_arr(x, ...)
+unq_ord_arr(X, ...)
 
-unq_ord_dtf(x, ...)
+unq_ord_dtf(X, ...)
 
-unq_ord_gen(x, ...)
+unq_ord_gen(X, ...)
 
-unq_ord_mat(x, ...)
+unq_ord_mat(X, ...)
 
-unq_ord_mvc(x, ...)
+unq_ord_mvc(X, ...)
 
-unq_ord_scl(x, ...)
+unq_ord_scl(X, ...)
 
-unq_ord_vec(x, ...)
+unq_ord_vec(X, ...)
 
-unq_ord_vls(x, ...)
+unq_ord_vls(X, ...)
 
-unq_pct_arr(x, ...)
+unq_pct_arr(X, ...)
 
-unq_pct_dtf(x, ...)
+unq_pct_dtf(X, ...)
 
-unq_pct_gen(x, ...)
+unq_pct_gen(X, ...)
 
-unq_pct_mat(x, ...)
+unq_pct_mat(X, ...)
 
-unq_pct_mvc(x, ...)
+unq_pct_mvc(X, ...)
 
-unq_pct_scl(x, ...)
+unq_pct_scl(X, ...)
 
-unq_pct_vec(x, ...)
+unq_pct_vec(X, ...)
 
-unq_pct_vls(x, ...)
+unq_pct_vls(X, ...)
 
-unq_pos_arr(x, ...)
+unq_pos_arr(X, ...)
 
-unq_pos_dtf(x, ...)
+unq_pos_dtf(X, ...)
 
-unq_pos_gen(x, ...)
+unq_pos_gen(X, ...)
 
-unq_pos_mat(x, ...)
+unq_pos_mat(X, ...)
 
-unq_pos_mvc(x, ...)
+unq_pos_mvc(X, ...)
 
-unq_pos_scl(x, ...)
+unq_pos_scl(X, ...)
 
-unq_pos_vec(x, ...)
+unq_pos_vec(X, ...)
 
-unq_pos_vls(x, ...)
+unq_pos_vls(X, ...)
 
-unq_ppn_arr(x, ...)
+unq_ppn_arr(X, ...)
 
-unq_ppn_dtf(x, ...)
+unq_ppn_dtf(X, ...)
 
-unq_ppn_gen(x, ...)
+unq_ppn_gen(X, ...)
 
-unq_ppn_mat(x, ...)
+unq_ppn_mat(X, ...)
 
-unq_ppn_mvc(x, ...)
+unq_ppn_mvc(X, ...)
 
-unq_ppn_scl(x, ...)
+unq_ppn_scl(X, ...)
 
-unq_ppn_vec(x, ...)
+unq_ppn_vec(X, ...)
 
-unq_ppn_vls(x, ...)
+unq_ppn_vls(X, ...)
 
-unq_psw_arr(x, ...)
+unq_psw_arr(X, ...)
 
-unq_psw_dtf(x, ...)
+unq_psw_dtf(X, ...)
 
-unq_psw_gen(x, ...)
+unq_psw_gen(X, ...)
 
-unq_psw_mat(x, ...)
+unq_psw_mat(X, ...)
 
-unq_psw_mvc(x, ...)
+unq_psw_mvc(X, ...)
 
-unq_psw_scl(x, ...)
+unq_psw_scl(X, ...)
 
-unq_psw_vec(x, ...)
+unq_psw_vec(X, ...)
 
-unq_psw_vls(x, ...)
+unq_psw_vls(X, ...)
 
-unq_srt_arr(x, ...)
+unq_srt_arr(X, ...)
 
-unq_srt_dtf(x, ...)
+unq_srt_dtf(X, ...)
 
-unq_srt_gen(x, ...)
+unq_srt_gen(X, ...)
 
-unq_srt_mat(x, ...)
+unq_srt_mat(X, ...)
 
-unq_srt_mvc(x, ...)
+unq_srt_mvc(X, ...)
 
-unq_srt_scl(x, ...)
+unq_srt_scl(X, ...)
 
-unq_srt_vec(x, ...)
+unq_srt_vec(X, ...)
 
-unq_srt_vls(x, ...)
+unq_srt_vls(X, ...)
 
-unq_str_arr(x, ...)
+unq_str_arr(X, ...)
 
-unq_str_dtf(x, ...)
+unq_str_dtf(X, ...)
 
-unq_str_gen(x, ...)
+unq_str_gen(X, ...)
 
-unq_str_mat(x, ...)
+unq_str_mat(X, ...)
 
-unq_str_mvc(x, ...)
+unq_str_mvc(X, ...)
 
-unq_str_scl(x, ...)
+unq_str_scl(X, ...)
 
-unq_str_vec(x, ...)
+unq_str_vec(X, ...)
 
-unq_str_vls(x, ...)
+unq_str_vls(X, ...)
 
-unq_uno_arr(x, ...)
+unq_uno_arr(X, ...)
 
-unq_uno_dtf(x, ...)
+unq_uno_dtf(X, ...)
 
-unq_uno_gen(x, ...)
+unq_uno_gen(X, ...)
 
-unq_uno_mat(x, ...)
+unq_uno_mat(X, ...)
 
-unq_uno_mvc(x, ...)
+unq_uno_mvc(X, ...)
 
-unq_uno_scl(x, ...)
+unq_uno_scl(X, ...)
 
-unq_uno_vec(x, ...)
+unq_uno_vec(X, ...)
 
-unq_uno_vls(x, ...)
+unq_uno_vls(X, ...)
 
-unq_whl_arr(x, ...)
+unq_whl_arr(X, ...)
 
-unq_whl_dtf(x, ...)
+unq_whl_dtf(X, ...)
 
-unq_whl_gen(x, ...)
+unq_whl_gen(X, ...)
 
-unq_whl_mat(x, ...)
+unq_whl_mat(X, ...)
 
-unq_whl_mvc(x, ...)
+unq_whl_mvc(X, ...)
 
-unq_whl_scl(x, ...)
+unq_whl_scl(X, ...)
 
-unq_whl_vec(x, ...)
+unq_whl_vec(X, ...)
 
-unq_whl_vls(x, ...)
+unq_whl_vls(X, ...)
 }
 \arguments{
-\item{x}{An R object.}
+\item{X}{An R object.}
 
-\item{mmm}{A character scalar single xmode property from \code{\link{mmm_props}()}.}
+\item{MMM}{A character scalar single xmode property from \code{\link{mmm_props}()}.}
 
-\item{ccc}{A character scalar single xclass property from \code{\link{ccc_props}()}.}
+\item{CCC}{A character scalar single xclass property from \code{\link{ccc_props}()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -704,17 +704,17 @@ Functions for checking combinations of \link[=UNQ]{uniqueness}, \link[=mmm]{xmod
 }
 \details{
 \tabular{ll}{  \code{unq_mmm_ccc_funs}   \tab What \link[=iunq]{unique} + \link[=mmm]{xmode} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there? \cr   \tab   \cr
-  \verb{unq_\{mmm\}_\{ccc\}}    \tab Is \code{x} both unique and a match to the single xmode property \code{'{mmm}'} and single xclass property \code{'{ccc}'}? (where \code{{mmm}} and
+  \verb{unq_\{mmm\}_\{ccc\}}    \tab Is \code{X} both unique and a match to the single xmode property \code{'{mmm}'} and single xclass property \code{'{ccc}'}? (where \code{{mmm}} and
 \code{{ccc}} are placeholders for any given xmode property and any given xclass property, respectively).                               \cr   \tab   \cr
-  \code{unq_mmm_ccc}        \tab Is \code{x} both unique and a match to the single xmode and xclass properties in arguments \code{mmm} and \code{ccc}, respectively?                             }
+  \code{unq_mmm_ccc}        \tab Is \code{X} both unique and a match to the single xmode and xclass properties in arguments \code{MMM} and \code{CCC}, respectively?                             }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{lt, le, ge, gt}    \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{n, nr, nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{vals}              \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{

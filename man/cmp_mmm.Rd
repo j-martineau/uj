@@ -31,72 +31,72 @@
 \alias{cmp_str}
 \alias{cmp_uno}
 \alias{cmp_whl}
-\title{complete + xmode combination properties}
+\title{complete + Xmode combination properties}
 \usage{
-cmp_mmm(x, mmm, ...)
+cmp_mmm(X, MMM, ...)
 
 cmp_mmm_funs()
 
-cmp_atm(x, ...)
+cmp_atm(X, ...)
 
-cmp_ch1(x, ...)
+cmp_ch1(X, ...)
 
-cmp_ch3(x, ...)
+cmp_ch3(X, ...)
 
-cmp_chr(x, ...)
+cmp_chr(X, ...)
 
-cmp_clr(x, ...)
+cmp_clr(X, ...)
 
-cmp_evn(x, ...)
+cmp_evn(X, ...)
 
-cmp_fac(x, ...)
+cmp_fac(X, ...)
 
-cmp_frc(x, ...)
+cmp_frc(X, ...)
 
-cmp_ind(x, ...)
+cmp_ind(X, ...)
 
-cmp_lgl(x, ...)
+cmp_lgl(X, ...)
 
-cmp_neg(x, ...)
+cmp_neg(X, ...)
 
-cmp_ngw(x, ...)
+cmp_ngw(X, ...)
 
-cmp_nng(x, ...)
+cmp_nng(X, ...)
 
-cmp_nnw(x, ...)
+cmp_nnw(X, ...)
 
-cmp_nps(x, ...)
+cmp_nps(X, ...)
 
-cmp_npw(x, ...)
+cmp_npw(X, ...)
 
-cmp_nst(x, ...)
+cmp_nst(X, ...)
 
-cmp_num(x, ...)
+cmp_num(X, ...)
 
-cmp_odd(x, ...)
+cmp_odd(X, ...)
 
-cmp_ord(x, ...)
+cmp_ord(X, ...)
 
-cmp_pct(x, ...)
+cmp_pct(X, ...)
 
-cmp_pos(x, ...)
+cmp_pos(X, ...)
 
-cmp_pos(x, ...)
+cmp_pos(X, ...)
 
-cmp_psw(x, ...)
+cmp_psw(X, ...)
 
-cmp_srt(x, ...)
+cmp_srt(X, ...)
 
-cmp_str(x, ...)
+cmp_str(X, ...)
 
-cmp_uno(x, ...)
+cmp_uno(X, ...)
 
-cmp_whl(x, ...)
+cmp_whl(X, ...)
 }
 \arguments{
-\item{x}{An R object.}
+\item{X}{An R object.}
 
-\item{mmm}{A character scalar xmode property from \code{mmm_props()}.}
+\item{MMM}{A character scalar Xmode property from \code{mmm_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -109,20 +109,20 @@ cmp_whl(x, ...)
 \cr\cr  \strong{A logical scalar}   \cr\cr \verb{cmp_\{mmm\}, cmp_mmm}
 }
 \description{
-Check for combination of \link[=CMP]{completeness} and \link[=mmm]{xmode}.
+Check for combination of \link[=CMP]{completeness} and \link[=mmm]{Xmode}.
 }
 \details{
-\tabular{ll}{  \code{cmp_mmm_funs}   \tab What \link[=CMP]{complete} + \link[=mmm]{xmode} combination \link[=prop_funs]{property functions} are there?                         \cr   \tab   \cr
-  \verb{cmp_\{mmm\}}      \tab Is \code{x} both complete and a match to the single xmode property \code{'{mmm}'} where \code{{mmm}} is a placeholder for any given xmode property? \cr   \tab   \cr
-  \code{cmp_mmm}        \tab Is \code{x} both complete and a match to single xmode property in arg \code{mmm}?                                                                             }
+\tabular{ll}{  \code{cmp_mmm_funs}   \tab What \link[=CMP]{complete} + \link[=mmm]{Xmode} combination \link[=prop_funs]{property functions} are there?                         \cr   \tab   \cr
+  \verb{cmp_\{mmm\}}      \tab Is \code{X} both complete and a match to the single Xmode property \code{'{mmm}'} where \code{{mmm}} is a placeholder for any given Xmode property? \cr   \tab   \cr
+  \code{cmp_mmm}        \tab Is \code{X} both complete and a match to single Xmode property in arg \code{mmm}?                                                                             }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{lt, le, ge, gt}    \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{n, nr, nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{vals}              \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{
@@ -137,7 +137,6 @@ Other properties:
 \code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
-\code{\link{checker}},
 \code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{comparable}()},
@@ -149,8 +148,10 @@ Other properties:
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
+\code{\link{ppp_fast}()},
 \code{\link{ppp}()},
 \code{\link{sss}()},
+\code{\link{stopperr}()},
 \code{\link{unq_ccc}()}
 }
 \concept{properties}

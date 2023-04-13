@@ -5,16 +5,16 @@
 \alias{pause}
 \title{Pause execution.}
 \usage{
-pause(x = 1e-07)
+pause(X = 1e-07)
 }
 \arguments{
-\item{x}{A \link[=cmp_nng_scl]{complete non-netative numeric scalar} indicating the number of seconds to pause.}
+\item{X}{A \link[=cmp_nng_scl]{complete non-netative numeric scalar} indicating the number of seconds to pause.}
 }
 \value{
 \code{NULL} (called for its side effect).
 }
 \description{
-Pause for \code{x} seconds, then resume execution.
+Pause for \code{X} seconds, then resume execution.
 }
 \examples{
 \dontrun{

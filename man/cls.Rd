@@ -10,20 +10,20 @@
 \alias{has_cls}
 \title{Manage classes}
 \usage{
-cls(x)
+cls(X)
 
-rm_cls(x, ...)
+rm_cls(X, ...)
 
-xcls(x, ...)
+xcls(X, ...)
 
-set_cls(x, ...)
+set_cls(X, ...)
 
-add_cls(x, ...)
+add_cls(X, ...)
 
-has_cls(x, ...)
+has_cls(X, ...)
 }
 \arguments{
-\item{x}{An R object.}
+\item{X}{An R object.}
 
 \item{...}{Unquoted class names and/or names of variables whose contents are \link[=av]{atomized} and converted to character. When \code{...} args are names of variables in the calling environment, they are atomized, otherwise they are treated as unquoted class names.}
 }
@@ -36,11 +36,11 @@ has_cls(x, ...)
 Manage classes
 }
 \details{
-\tabular{ll}{  \verb{rm_cls, xcls}   \tab Removes class(es) in \code{...} from classes of \code{x}.               \cr   \tab   \cr
-  \code{has_cls}        \tab Evaluate whether class(es) in \code{...} are (all) classes of \code{x}. \cr   \tab   \cr
-  \code{add_cls}        \tab Add class(es) in \code{...} to classes of \code{x}.                     \cr   \tab   \cr
-  \code{set_cls}        \tab Set class of \code{x} to class(es) in \code{...}.                       \cr   \tab   \cr
-  \code{cls}            \tab Gets class(es) of \code{x}.                                                       }
+\tabular{ll}{  \verb{rm_cls, xcls}   \tab Removes class(es) in \code{...} from classes of \code{X}.               \cr   \tab   \cr
+  \code{has_cls}        \tab Evaluate whether class(es) in \code{...} are (all) classes of \code{X}. \cr   \tab   \cr
+  \code{add_cls}        \tab Add class(es) in \code{...} to classes of \code{X}.                     \cr   \tab   \cr
+  \code{set_cls}        \tab Set class of \code{X} to class(es) in \code{...}.                       \cr   \tab   \cr
+  \code{cls}            \tab Gets class(es) of \code{X}.                                                       }
 }
 \examples{
 egObj1 <- data.frame(letters = letters, numbers = 1:26, stringsAsFactors = F)
@@ -55,7 +55,6 @@ Other properties:
 \code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
-\code{\link{checker}},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
@@ -67,8 +66,10 @@ Other properties:
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
+\code{\link{ppp_fast}()},
 \code{\link{ppp}()},
 \code{\link{sss}()},
+\code{\link{stopperr}()},
 \code{\link{unq_ccc}()}
 }
 \concept{properties}

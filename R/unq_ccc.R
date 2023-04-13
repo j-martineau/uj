@@ -4,9 +4,9 @@
 #' @description Functions checking for combinations of \link[=UNQ]{uniqueness} and \link[=ccc]{xclass}.
 #' @details
 #' \tabular{ll}{  `unq_ccc_funs`   \tab What \link[=UNQ]{unique} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?                          \cr   \tab   \cr
-#'                `unq_{ccc}`      \tab Is `x` both unique and a match to the single xclass property `'{ccc}'` where `{ccc}` is a placeholder for any given xclass property? \cr   \tab   \cr
-#'                `unq_ccc`        \tab Is `x` both unique and a match to the single xclass property in argument `ccc`?                                                                     }
-#' @param x An R object.
+#'                `unq_{ccc}`      \tab Is `X` both unique and a match to the single xclass property `'{ccc}'` where `{ccc}` is a placeholder for any given xclass property? \cr   \tab   \cr
+#'                `unq_ccc`        \tab Is `X` both unique and a match to the single xclass property in argument `ccc`?                                                                     }
+#' @param X An R object.
 #' @param ccc A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
@@ -36,48 +36,48 @@
 #' c(unq_vec(UnqVec), unq_arr(UnqDtf), unq_arr(c(UnqVec, UnqVec)))
 #' c(unq_vls(UnqVls), unq_arr(UnqVec), unq_arr(c(UnqVls, UnqVls)))
 #' @export
-unq_ccc <- function(x, ccc, ...) {
-  UNQ <- function(z) {base::length(z) == base::length(base::unique(z))}
-  if (uj::cmp_ccc(x, ccc, ...)) {
-    ccc <- base::tolower(ccc)
-    if (ccc == "dtf") {base::all(base::apply(x, 2, UNQ))}
-    else if (ccc == "vls") {base::all(base::sapply(x, UNQ))}
-    else {base::length(x) == base::length(base::unique(x))}
+unq_ccc <- function(X, CCC, ...) {
+  UNQ <- function(x) {base::length(x) == base::length(base::unique(x))}
+  if (uj::cmp_ccc(X, CCC, ...)) {
+    CCC <- base::tolower(CCC)
+    if (CCC == "dtf") {base::all(base::apply(X, 2, UNQ))}
+    else if (CCC == "vls") {base::all(base::sapply(X, UNQ))}
+    else {base::length(X) == base::length(base::unique(X))}
   } else {F}
 }
 
 #' @rdname unq_ccc
 #' @export
-unq_ccc_funs <- function() {base::paste0('unq_', uj:::.cccs)}
+unq_ccc_funs <- function() {base::paste0('unq_', uj::v(ccc))}
 
 #' @rdname unq_ccc
 #' @export
-unq_arr <- function(x, ...) {uj::unq_ccc(x, 'arr', ...)}
+unq_arr <- function(X, ...) {uj::unq_ccc(X, 'arr', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_dtf <- function(x, ...) {uj::unq_ccc(x, 'dtf', ...)}
+unq_dtf <- function(X, ...) {uj::unq_ccc(X, 'dtf', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_gen <- function(x, ...) {uj::unq_ccc(x, 'gen', ...)}
+unq_gen <- function(X, ...) {uj::unq_ccc(X, 'gen', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_mat <- function(x, ...) {uj::unq_ccc(x, 'mat', ...)}
+unq_mat <- function(X, ...) {uj::unq_ccc(X, 'mat', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_mvc <- function(x, ...) {uj::unq_ccc(x, 'mvc', ...)}
+unq_mvc <- function(X, ...) {uj::unq_ccc(X, 'mvc', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_scl <- function(x, ...) {uj::unq_ccc(x, 'scl', ...)}
+unq_scl <- function(X, ...) {uj::unq_ccc(X, 'scl', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_vec <- function(x, ...) {uj::unq_ccc(x, 'vec', ...)}
+unq_vec <- function(X, ...) {uj::unq_ccc(X, 'vec', ...)}
 
 #' @rdname unq_ccc
 #' @export
-unq_vls <- function(x, ...) {uj::unq_ccc(x, 'vls', ...)}
+unq_vls <- function(X, ...) {uj::unq_ccc(X, 'vls', ...)}

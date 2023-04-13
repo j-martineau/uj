@@ -19,20 +19,20 @@
 #' tbr("a", 1, pi)
 #' asTB(list(letters = letters, numbers = 1:26, constant = pi))
 #' isTB(tb(letters))
-tb <- function(...) {uj::run_alias("tibble", "tibble")}
+tb <- tibble::tibble
 
 #' @rdname tb
 #' @export
-trb <- function(...) {uj::run_alias("tibble", "tribble")}
+trb <- tibble::tribble
 
 #' @rdname tb
 #' @export
-tbr <- function(...) {uj::run_alias("tibble", "tibble_row")}
+tbr <- tibble::tibble_row
 
 #' @rdname tb
 #' @export
-as_tb <- function(...) {uj::run_alias("tibble", "as_tibble")}
+as_tb <- tibble::as_tibble
 
 #' @rdname tb
 #' @export
-is_tb <- function(x) {tibble::is_tibble(x)}
+is_tb <- tibble::is_tibble

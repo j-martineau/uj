@@ -22,9 +22,9 @@
 \usage{
 atomize(...)
 
-glue_av(..., g = "")
+glue_av(..., G = "")
 
-paste_av(..., p = "", s = "")
+paste_av(..., P = "", S = "")
 
 sort_uv(...)
 
@@ -40,9 +40,9 @@ av(...)
 
 sv(...)
 
-gv(..., g = "")
+gv(..., G = "")
 
-pv(..., p = "", s = "")
+pv(..., P = "", S = "")
 
 uv(...)
 
@@ -55,11 +55,11 @@ a(...)
 \arguments{
 \item{...}{Arguments to be atomized. Expected to atomize to a logical vector for \code{which_av} and its aliases \code{wav} and \code{wv}.}
 
-\item{g}{Character scalar glue.}
+\item{G}{Character scalar glue.}
 
-\item{p}{Character scalar prefix.}
+\item{P}{Character scalar prefix.}
 
-\item{s}{Character scalar suffix.}
+\item{S}{Character scalar suffix.}
 }
 \value{
 \strong{A character scalar} \cr\cr \verb{glue_av, gav, gv}
@@ -75,22 +75,22 @@ Functions in this family are:
 \tabular{ll}{  \verb{atomize, atoms, av, a}   \tab Gets a vector of atomic values in \code{...} args. \cr
   \verb{unique_av, uav, uv}      \tab Calls \code{unique(av(...))}                       \cr
   \verb{which_av, wav, wv}       \tab Calls \code{which(av(...))}                        \cr
-  \verb{paste_av, pav, pv}       \tab Calls \code{paste0(p, av(...), s)}                 \cr
+  \verb{paste_av, pav, pv}       \tab Calls \code{paste0(P, av(...), S)}                 \cr
   \verb{sort_av, sav, sv}        \tab Calls \code{sort(av(...))}.                        \cr
-  \verb{glue_av, gav, gv}        \tab Calls \verb{paste0(av(...) collapse = g)}          \cr
+  \verb{glue_av, gav, gv}        \tab Calls \verb{paste0(av(...) collapse = G)}          \cr
   \verb{sort_uv, suv}            \tab Calls \code{sort(unique(av(...)))}                   }
 }
 \examples{
-x <- list("a", "b", "c")
+X <- list("a", "b", "c")
 y <- data.frame(1:3)
-x
+X
 y
-a(x)
+a(X)
 av(y)
-atoms(x, y)
-atomize(x, "d", y, 4)
-glue_av(letters, LETTERS, g = "-")
-paste_av(letters, p = "\u2022 ", s = ".")
+atoms(X, y)
+atomize(X, "d", y, 4)
+glue_av(letters, LETTERS, G = "-")
+paste_av(letters, P = "\u2022 ", S = ".")
 sort_av(letters, LETTERS, 0:9)
 sort_uv(letters, LETTERS, 0:9)
 unique_av(letters, "d", 0:9, 5)

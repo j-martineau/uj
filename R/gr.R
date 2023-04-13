@@ -18,8 +18,8 @@
 #' strw(sent1)
 #' strw(sent2)
 #' strw(sent12)
-str_h <- function(...) {uj::run_alias("graphics", "strheight")}
+str_h <- graphics::strheight
 
 #' @rdname gr
 #' @export
-str_w <- function(...) {uj::run_alias("graphics", "strheight")}
+str_w <- graphics::strwidth

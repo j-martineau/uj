@@ -15,28 +15,32 @@
 #' @param keys A \link[=cmp_chr_vec]{complete character vec} naming grouping variables in `x`.
 #' @return A `data.frame`.
 #' @export
-dp_agg <- function(.data, ..., .groups = NULL) {dplyr::summarize(.data, ..., .groups = .groups)}
+dp <- function() {utils::help("dp", package = "uj")}
 
 #' @rdname dp
 #' @export
-dp_n <- function(...) {uj::run_alias("dplyr", "n")}
+dp_agg <- dplyr::summarize
 
 #' @rdname dp
 #' @export
-dp_all <- function(...) {uj::run_alias("dplyr", "all_of")}
+dp_n <- dplyr::n
 
 #' @rdname dp
 #' @export
-dp_grp <- function(x, keys) {uj::run("dplyr::group_by(x, ", base::paste0(keys, collapse = ", "), ")")}
+dp_all <- dplyr::all_of
 
 #' @rdname dp
 #' @export
-dp_join <- function(...) {uj::run_alias("dplyr", "left_join")}
+dp_grp <- function(X, Keys) {uj::run("dplyr::group_by(X, ", base::paste0(Keys, collapse = ", "), ")")}
 
 #' @rdname dp
 #' @export
-dp_lab <- function(...) {uj::run_alias("dplyr", "rename")}
+dp_join <- dplyr::left_join
 
 #' @rdname dp
 #' @export
-dp_mod <- function(...) {uj::run_alias("dplyr", "mutate")}
+dp_lab <- dplyr::rename
+
+#' @rdname dp
+#' @export
+dp_mod <- dplyr::mutate

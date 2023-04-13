@@ -4,14 +4,14 @@
 \alias{git_push}
 \title{Git commands}
 \usage{
-git_push(message, add.all = T, console = T)
+git_push(Message, AddAll = T, Console = T)
 }
 \arguments{
-\item{message}{Character scalar git commit message.}
+\item{Message}{Character scalar git commit message.}
 
-\item{add.all}{Non-\code{NA} logical scalar indicating whether to call \verb{git add --all} before calling \verb{git commit -am "\{message\}"}.}
+\item{AddAll}{Non-\code{NA} logical scalar indicating whether to call \verb{git add --all} before calling \verb{git commit -am "\{Message\}"}.}
 
-\item{console}{Non-\code{NA} logical scalar indicating whether to bring the console to the front upon conclusion.}
+\item{Console}{Non-\code{NA} logical scalar indicating whether to bring the console to the front upon conclusion.}
 }
 \value{
 \code{NULL}

@@ -2,32 +2,32 @@
 #' @family extensions
 #' @family forks
 #' @title Swap atomic values.
-#' @param x An atomic object.
-#' @param old,new \link[=atm_vec]{Atomic vecs} of unique values to be replaced and replacement values, respectively. `length(new)` must be in `c(1, length(old))`.
-#' @param all `TRUE` or `FALSE` indicating whether all values of `x` must be contained in `old`.
-#' @return An atomic object of the same dimensions as `x`.
+#' @param X An atomic object.
+#' @param Old,New \link[=atm_vec]{Atomic vecs} of unique values to be replaced and replacement values, respectively. `length(New)` must be in `c(1, length(Old))`.
+#' @param All `TRUE` or `FALSE` indicating whether All values of `X` must be contained in `Old`.
+#' @return An atomic object of the same dimensions as `X`.
 #' @examples
 #' letters[1:6]
 #' swap(letters[1:6], c("a", "b", "c"), ".")
 #' swap(letters[1:6], c("a", "b", "c"), c("-A-", "-B-", "-C-"))
 #' @export
-swap <- function(x, old, new, all = FALSE) {
-  errs <- NULL
-  if (!uj:::.pop_atm(x)) {errs <- base::c(errs, "[x] must be populated and atomic (?pop_atm).")}
-  if (!uj:::.atm_vec(old)) {errs <- base::c(errs, "[old] must be an atomic vec (?atm_vec).")}
-  if (!uj:::.atm_vec(new)) {errs <- base::c(errs, "[new] must be an atomic vec (?atm_vec).")}
-  if (!uj:::.cmp_lgl_scl(all)) {errs <- base::c(errs, "[all] must be TRUE or FALSE.")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
-  n.old <- base::length(old)
-  n.new <- base::length(new)
-  if (all) {ok.old <- base::all(x %in% old)} else {ok.old <- T}
-  if (!uj::compatible(x, old, new)) {errs <- base::c(errs, "[x], [old], and [new] are of incompatible modes (?compatible).")}
-  if (base::length(old) != base::length(base::unique(old))) {errs <- base::c(errs, "[old] must contain only unique elements.")}
-  if (!(n.new %in% base::c(1, n.old))) {errs <- base::c(errs, "[length(new)] must be in [c(1, length(old))].")}
-  if (!ok.old) {errs <- base::c(errs, "[all = TRUE] but not all elements of [x] are contained in [old].")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
-  if (n.new == 1) {new <- base::rep.int(new, n.old)}
-  if (base::any(base::is.na(old))) {x[base::is.na(x)] <- new[base::is.na(old)]}
-  for (i in 1:n.old) {x[x == old[i]] <- new[i]}
-  x
+swap <- function(X, Old, New, All = FALSE) {
+  Errors <- NULL
+  if (!uj:::.pop_atm(X)) {Errors <- base::c(Errors, "[X] must be populated and atomic (?pop_atm).")}
+  if (!uj:::.atm_vec(Old)) {Errors <- base::c(Errors, "[Old] must be an atomic vec (?atm_vec).")}
+  if (!uj:::.atm_vec(New)) {Errors <- base::c(Errors, "[New] must be an atomic vec (?atm_vec).")}
+  if (!uj:::.cmp_lgl_scl(All)) {Errors <- base::c(Errors, "[All] must be TRUE or FALSE.")}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  OldCount <- base::length(Old)
+  NewCount <- base::length(New)
+  if (All) {ok.Old <- base::All(X %in% Old)} else {ok.Old <- T}
+  if (!uj::compatible(X, Old, New)) {Errors <- base::c(Errors, "[X], [Old], and [New] are of incompatible modes (?compatible).")}
+  if (base::length(Old) != base::length(base::unique(Old))) {Errors <- base::c(Errors, "[Old] must contain only unique elements.")}
+  if (!(NewCount %in% base::c(1, OldCount))) {Errors <- base::c(Errors, "[length(New)] must be in [c(1, length(Old))].")}
+  if (!ok.Old) {Errors <- base::c(Errors, "[All = TRUE] but not All elements of [X] are contained in [Old].")}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  if (NewCount == 1) {New <- base::rep.int(New, OldCount)}
+  if (base::any(base::is.na(Old))) {X[base::is.na(X)] <- New[base::is.na(Old)]}
+  for (i in 1:OldCount) {X[X == Old[i]] <- New[i]}
+  X
 }

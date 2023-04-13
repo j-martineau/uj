@@ -36,74 +36,74 @@
 \alias{WHL}
 \title{Extended mode (xmode) properties}
 \usage{
-mmm(x)
+mmm(X)
 
 mmm_funs()
 
 mmm_props()
 
-is_mmm_spec(spec)
+is_mmm_spec(Spec)
 
-MMM(x, spec, ...)
+MMM(X, Spec, ...)
 
-CH1(x, ...)
+CH1(X, ...)
 
-CH3(x, ...)
+CH3(X, ...)
 
-CHR(x, ...)
+CHR(X, ...)
 
-CLR(x, ...)
+CLR(X, ...)
 
-EVN(x, ...)
+EVN(X, ...)
 
-FAC(x, ...)
+FAC(X, ...)
 
-FRC(x, ...)
+FRC(X, ...)
 
-IND(x, ...)
+IND(X, ...)
 
-LGL(x, ...)
+LGL(X, ...)
 
-NEG(x, ...)
+NEG(X, ...)
 
-NGW(x, ...)
+NGW(X, ...)
 
-NNG(x, ...)
+NNG(X, ...)
 
-NNW(x, ...)
+NNW(X, ...)
 
-NPS(x, ...)
+NPS(X, ...)
 
-NPW(x, ...)
+NPW(X, ...)
 
-NST(x, ...)
+NST(X, ...)
 
-NUM(x, ...)
+NUM(X, ...)
 
-ODD(x, ...)
+ODD(X, ...)
 
-ORD(x, ...)
+ORD(X, ...)
 
-PCT(x, ...)
+PCT(X, ...)
 
-POS(x, ...)
+POS(X, ...)
 
-PPN(x, ...)
+PPN(X, ...)
 
-PSW(x, ...)
+PSW(X, ...)
 
-SRT(x, ...)
+SRT(X, ...)
 
-STR(x, ...)
+STR(X, ...)
 
-UNO(x, ...)
+UNO(X, ...)
 
-WHL(x, ...)
+WHL(X, ...)
 }
 \arguments{
-\item{x}{An R object.}
+\item{X}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more xmode properties from \code{mmm_props()}. xmode specs may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
+\item{Spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more xmode properties from \code{mmm_props()}. xmode specs may be pipe-delimited. If there are multiple properties in \code{Spec}, \code{X} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -122,8 +122,8 @@ xmodes are defined for non-empty atomic objects. For all other objects, the xmod
 \tabular{ll}{  \verb{'atm', 'ATM'}   \tab atomic (both a \code{\link[=bbb]{basic}} and an xmode property).}
 \strong{Character xmodes}
 \tabular{ll}{  \verb{'chr', 'CHR'}   \tab character                          \cr
-  \verb{'ch1', 'CH1'}   \tab onechar, or \code{all(nchar(x) == 1)}   \cr
-  \verb{'ch3', 'CH3'}   \tab threechar, or \code{all(nchar(x) == 3)} \cr
+  \verb{'ch1', 'CH1'}   \tab onechar, or \code{all(nchar(X) == 1)}   \cr
+  \verb{'ch3', 'CH3'}   \tab threechar, or \code{all(nchar(X) == 3)} \cr
   \verb{'clr', 'CLR'}   \tab color (valid color values)         \cr
   \verb{'str', 'STR'}   \tab string (no blanks)                   }
 \strong{Categorical xmodes}
@@ -155,20 +155,20 @@ xmodes are defined for non-empty atomic objects. For all other objects, the xmod
   \verb{'nst', 'NST'}   \tab non-sortable atomic                    }
 }
 \details{
-\tabular{ll}{  \code{is_mmm_spec}    \tab Is \code{spec} an xmode specification?                                                                                  \cr   \tab   \cr
+\tabular{ll}{  \code{is_mmm_spec}    \tab Is \code{Spec} an xmode specification?                                                                                  \cr   \tab   \cr
   \code{mmm_props}      \tab What xmode properties are there?                                                                                   \cr   \tab   \cr
   \code{mmm_funs}       \tab What xmode property functions are there?                                                                           \cr   \tab   \cr
-  \code{{MMM}}          \tab Is \code{x} a match to the single xmode property \code{'{MMM}'} where \code{{MMM}} is a placeholder for any given xmode property? \cr   \tab   \cr
-  \code{MMM}            \tab Is \code{x} a match to the xmode property spec in \code{spec}?                                                               \cr   \tab   \cr
-  \code{mmm}            \tab What are \code{x}'s xmode properties?                                                                                                  }
+  \code{{MMM}}          \tab Is \code{X} a match to the single xmode property \code{'{MMM}'} where \code{{MMM}} is a placeholder for any given xmode property? \cr   \tab   \cr
+  \code{MMM}            \tab Is \code{X} a match to the xmode property Spec in \code{Spec}?                                                               \cr   \tab   \cr
+  \code{mmm}            \tab What are \code{X}'s xmode properties?                                                                                                  }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{lt, le, ge, gt}    \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{n, nr, nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{vals}              \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{
@@ -194,7 +194,6 @@ Other properties:
 \code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
-\code{\link{checker}},
 \code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
@@ -206,8 +205,10 @@ Other properties:
 \code{\link{is_unique}()},
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
+\code{\link{ppp_fast}()},
 \code{\link{ppp}()},
 \code{\link{sss}()},
+\code{\link{stopperr}()},
 \code{\link{unq_ccc}()}
 }
 \concept{properties}

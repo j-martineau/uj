@@ -15,28 +15,28 @@
 \alias{pal_sdots}
 \title{Plotting palettes}
 \usage{
-pal_colors(n)
+pal_colors(N)
 
-pal_lines(n)
+pal_lines(N)
 
-pal_azdots(n)
+pal_azdots(N)
 
-pal_AZdots(n)
+pal_AZdots(N)
 
-pal_fdots(n)
+pal_fdots(N)
 
-pal_edots(n)
+pal_edots(N)
 
-pal_ldots(n)
+pal_ldots(N)
 
-pal_ndots(n)
+pal_ndots(N)
 
-pal_pdots(n)
+pal_pdots(N)
 
-pal_sdots(n)
+pal_sdots(N)
 }
 \arguments{
-\item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of unique values to return.}
+\item{N}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of unique values to return.}
 }
 \value{
 \strong{A positive whole number vector} \cr\cr \verb{pal_edots, pal_fdots}  \cr \verb{pal_ldots, pal_sdots}
@@ -46,7 +46,7 @@ pal_sdots(n)
 This family of functions uses \code{'dots'} to subsume plotting to \code{'points'}, \code{'shapes'}, and \code{'pch'}.
 }
 \details{
-The functions in this family create palettes of various types from the first \code{n}  \eqn{^{(1)}} values of source vectors as defined below:
+The functions in this family create palettes of various types from the first \code{N}  \eqn{^{(1)}} values of source vectors as defined below:
 \tabular{lll}{  \emph{Function}     \tab \emph{Type}                    \tab \emph{Source}    \cr
   \code{pal_colors}   \tab colors                    \tab \code{v(colors)} \cr
   \code{pal_lines}    \tab line types                \tab \code{v(lines)}  \cr
@@ -58,7 +58,7 @@ The functions in this family create palettes of various types from the first \co
   \code{pal_edots}    \tab empty dots\eqn{^{(3)}}    \tab \code{v(edots)}  \cr
   \code{pal_fdots}    \tab filled dots\eqn{^{(4)}}   \tab \code{v(fdots)}  \cr
   \code{pal_sdots}    \tab solid dots                \tab \code{v(sdots)}    }
-\tabular{l}{  \eqn{^{(1)}} Recycled if \verb{n > length(<source>)}.  \cr
+\tabular{l}{  \eqn{^{(1)}} Recycled if \verb{N > length(<source>)}.  \cr
   \eqn{^{(2)}} Non-enclosing shape.                 \cr
   \eqn{^{(3)}} Enclosing shape with empty interior. \cr
   \eqn{^{(4)}} Enclosing shape with filled interior.  }

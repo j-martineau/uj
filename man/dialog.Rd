@@ -19,100 +19,181 @@
 \usage{
 alert(
   ...,
-  type = "alert",
-  lab = "",
-  blank = "",
-  ftype = "r|y|p",
-  flab = "k|y|i",
-  fmsg = "d|d|d",
-  d = " "
+  Title = "alert",
+  Sub = "",
+  PS = "",
+  Blank = "",
+  FT = "r|w|b",
+  FS = "k|y|p",
+  FM = "",
+  FP = "k|y|i",
+  D = " ",
+  .clear = FALSE
 )
 
-acknowledge(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ")
+acknowledge(
+  ...,
+  Sub = "",
+  FT = "r|w|b",
+  FS = "k|y|p",
+  FM = "",
+  FP = "k|y|i",
+  D = " ",
+  .clear = FALSE
+)
 
-choose1(options, ..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ")
+choose1(
+  Options,
+  ...,
+  Sub = "",
+  FT = "r|w|b",
+  FS = "k|y|p",
+  FM = "",
+  FP = "k|y|i",
+  D = " ",
+  .clear = FALSE
+)
 
 chooseN(
-  options,
+  Options,
   ...,
-  all = TRUE,
-  none = FALSE,
-  n = NULL,
-  min.n = NULL,
-  max.n = NULL,
-  ftype = "y|r|p",
-  flab = "k|y|i",
-  fmsg = "d|d|d",
-  d = " "
+  Sub = "",
+  All = TRUE,
+  None = FALSE,
+  N = NULL,
+  MinN = NULL,
+  MaxN = NULL,
+  FT = "r|w|b",
+  FS = "k|y|p",
+  FM = "",
+  FP = "k|y|i",
+  D = " ",
+  .clear = FALSE
 )
 
-NO(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ")
+NO(
+  ...,
+  Sub = "",
+  FT = "r|w|b",
+  FS = "k|y|p",
+  FM = "",
+  FP = "k|y|i",
+  D = " ",
+  .clear = FALSE
+)
 
-YES(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ")
+YES(
+  ...,
+  Sub = "",
+  FT = "r|w|b",
+  FS = "k|y|p",
+  FM = "",
+  FP = "k|y|i",
+  D = " ",
+  .clear = FALSE
+)
 
-OK(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ")
+OK(
+  ...,
+  Sub = "",
+  FT = "r|w|b",
+  FS = "k|y|p",
+  FM = "",
+  FP = "k|y|i",
+  D = " ",
+  .clear = FALSE
+)
 
-CANCEL(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ")
+CANCEL(
+  ...,
+  Sub = "",
+  FT = "r|w|b",
+  FS = "k|y|p",
+  FM = "",
+  FP = "k|y|i",
+  D = " ",
+  .clear = FALSE
+)
 
-ask(..., ftype = "y|r|p", flab = "k|y|i", fmsg = "d|d|d", d = " ")
+ask(
+  ...,
+  Default = "",
+  Sub = "",
+  FT = "r|w|b",
+  FS = "k|y|p",
+  FM = "",
+  FP = "k|y|i",
+  D = " ",
+  .clear = FALSE
+)
 
 ask_new(
-  old,
-  unq = TRUE,
-  ftype = "y|r|p",
-  flab = "k|y|i",
-  fmsg = "d|d|d",
-  d = " "
+  Old,
+  Unq = TRUE,
+  Sub = "",
+  FT = "r|w|b",
+  FS = "k|y|p",
+  FM = "",
+  FP = "k|y|i",
+  D = " ",
+  Sep = "|",
+  .clear = FALSE
 )
 
 choose_dir(
-  dir.type = "directory",
-  ftype = "y|r|p",
-  flab = "k|y|i",
-  fmsg = "d|d|d",
-  d = " "
+  DirType = "directory",
+  Sub = "",
+  FT = "r|w|b",
+  FS = "k|y|p",
+  FM = "",
+  FP = "k|y|i",
+  D = " ",
+  .clear = FALSE
 )
 
 choose_doc(
-  doc.type = "document",
-  ftype = "y|r|p",
-  flab = "k|y|i",
-  fmsg = "d|d|d",
-  d = " "
+  DocType = "document",
+  Sub = "",
+  FT = "r|w|b",
+  FS = "",
+  FM = "",
+  FP = "k|y|i",
+  D = " ",
+  .clear = FALSE
 )
 }
 \arguments{
 \item{...}{An arbitrary, optional number of arguments which are \link[=av]{atomized} into a character scalar message to be posted to the console.}
 
-\item{type}{A character scalar type of alert to post to the console. \code{type = 'error'} results in stopping execution after raising the alert. Predefined alert types are \code{c('alert', 'error', 'update', 'warning')}. Custom types are also accepted, but they should be short to avoid formatting problems.}
+\item{Title}{A Title for the alert (\code{type = 'error'} results in stopping execution after posting the alert). Should be short to avoid formatting problems.}
 
-\item{lab}{A character scalar alert title to post to the console. Should be relatively short to avoid formatting problems.}
+\item{Sub}{A character scalar alert subtitle to post to the console on the line following the Title. Should be short to avoid formatting problems.}
 
-\item{blank}{A character scalar containing a default message if \link[=av]{atomizing} and collapsing \code{...} to a character scalar results in a blank string (\code{""}).}
+\item{PS}{A character scalar suffix to post to the console on the line following the alert message contained in \code{...}.}
 
-\item{ftype}{A formatting value consistent with the description in the \emph{specifying formats} section giving formatting instructions for the alert type.}
+\item{Blank}{A character scalar containing a Default message if \link[=av]{atomizing} and collapsing \code{...} to a character scalar results in a Blank string (\code{""}).}
 
-\item{flab}{A formatting value consistent with the description in the \emph{specifying formats} section giving formatting instructions for the alert title.}
+\item{FT, FS, FM, FP}{Formatting values consistent with the description in the \emph{specifying formats} section giving formatting instructions for, respectively, the Title (in \code{titel}), subtitle (in \code{Sub}), message (in \code{...}), and postscript (in \code{PS}).}
 
-\item{fmsg}{A formatting value consistent with the description in the \emph{specifying formats} section giving formatting instructions for the alert message.}
+\item{D}{A character scalar delimiter for collapsing \code{...} args into a character scalar.}
 
-\item{d}{A character scalar delimiter for collapsing \code{...} args into a character scalar.}
+\item{.clear}{A non-\code{NA} logical scalar indicating whether to clear the console before each interaction with the user.}
 
-\item{options}{An atomic vector list of options to choose from.}
+\item{Options}{An atomic vector listing options to choose from.}
 
-\item{all}{Scalar \code{TRUE} or \code{FALSE} indicating whether to add an \code{{ ALL }} value to \code{options}.}
+\item{All}{Scalar \code{TRUE} or \code{FALSE} indicating whether to add an \code{{ ALL }} value to \code{Options}.}
 
-\item{none}{Scalar \code{TRUE} or \code{FALSE} indicating whether to add a \code{{ NONE }} value to \code{options} (implying that it is valid to select none).}
+\item{None}{Scalar \code{TRUE} or \code{FALSE} indicating whether to add a \code{{ NONE }} value to \code{Options} (implying that it is valid to select none).}
 
-\item{n}{An optional \link[=cmp_psw_scl]{complete positive numeric whole-number scalar} (?cmp_psw_scl) indicating the number of options that must be selected. Must be contained in \code{1:length(options)}.}
+\item{N}{An optional \link[=cmp_psw_scl]{complete positive numeric whole-number scalar} (?cmp_psw_scl) indicating the number of options that must be selected. Must be contained in \code{1:length(Options)}.}
 
-\item{min.n}{An optional \link[=CMP]{complete} \link[=PSW]{positive numeric whole-number} \link[=SCL]{scalar} indicating the minimum number of options that may be selected. Must be \code{NULL} when \code{n} is non-\code{NULL}.}
+\item{MaxN}{An optional complete positive numeric whole-number scalar indicating the maximum number of options that may be selected. Must be \code{NULL} when \code{n} is non-\code{NULL}.}
 
-\item{max.n}{An optional complete positive numeric whole-number scalar indicating the maximum number of options that may be selected. Must be \code{NULL} when \code{n} is non-\code{NULL}.}
+\item{Old}{A \link[=chr_vec]{character vec} of unique values to be replaced.}
 
-\item{old}{A \link[=chr_vec]{character vec} of unique values to be replaced.}
+\item{Unq}{Scalar \code{TRUE} or \code{FALSE} indicating whether replacement values must be unique.}
 
-\item{unq}{Scalar \code{TRUE} or \code{FALSE} indicating whether replacement values must be unique.}
+\item{MinM}{An optional \link[=CMP]{complete} \link[=PSW]{positive numeric whole-number} \link[=SCL]{scalar} indicating the minimum number of options that may be selected. Must be \code{NULL} when \code{n} is non-\code{NULL}.}
 }
 \value{
 \strong{The} \code{NULL} \strong{object} \cr\cr \verb{acknowledge, alert}
@@ -126,61 +207,174 @@ choose_doc(
 All functions \link[=collapse_dots]{collapses} \code{...} args into a prompt. Each posts an alert to the console, posts the prompt (if any), followed by a specific action.
 }
 \details{
-\tabular{ll}{  \code{acknowledge}   \tab Waits for user to acknowledge.\eqn{^{(1)}}        \cr   \tab   \cr
-  \verb{OK, CANCEL}    \tab Offers \code{OK/CANCEL}.\eqn{^{(1,4)}}                 \cr   \tab   \cr
-  \code{choose_doc}    \tab Asks user to choose a document.\eqn{^{(2)}}       \cr
-  \code{choose_dir}    \tab Asks user to choose a directory.\eqn{^{(2)}}      \cr   \tab   \cr
-  \code{choose1}       \tab Asks user to choose \code{1} option.\eqn{^{(1,2)}}     \cr
-  \code{chooseN}       \tab Asks user to choose \verb{1+} options.\eqn{^{(1,2,3)}} \cr   \tab   \cr
-  \verb{YES, NO}       \tab Offers \code{YES/NO/CANCEL}.\eqn{^{(1,2,4)}}           \cr   \tab   \cr
-  \code{ask_new}       \tab Asks for a list of new values.\eqn{^{(1,2)}}      \cr   \tab   \cr
-  \code{alert}         \tab None.\eqn{^{(1)}}                                 \cr   \tab   \cr
-  \code{ask}           \tab Asks for typed input.\eqn{^{(1,2)}}               \cr   \tab     }
-\tabular{l}{  \eqn{^{(1)}} Default style, background color, and foreground color of console text depend on \code{type}. \cr
-  \eqn{^{(2)}} Stops execution if user chooses \code{CANCEL}.                                               \cr
-  \eqn{^{(3)}} Stops execution if \code{stop | (type = 'error' & is.null(stop))}.                           \cr
-  \eqn{^{(4)}} Returns \code{TRUE} if user choice matches the function name.                                  }
+\tabular{ll}{  \code{acknowledge}   \tab Waits for user to acknowledge.                        \cr
+                  \tab                                                       \cr
+  \verb{OK, CANCEL}    \tab Offers OK and CANCEL options.\eqn{^{(3)}}             \cr
+                  \tab                                                       \cr
+  \code{choose_doc}    \tab Asks user to choose a document.\eqn{^{(1)}}           \cr
+  \code{choose_dir}    \tab Asks user to choose a directory.\eqn{^{(1)}}          \cr
+                  \tab                                                       \cr
+  \code{choose1}       \tab Asks user to choose \code{1} option.\eqn{^{(1)}}           \cr
+  \code{chooseN}       \tab Asks user to choose \verb{1+} options.\eqn{^{(1,2)}}       \cr
+                  \tab                                                       \cr
+  \verb{YES, NO}       \tab Offers YES, NO, and CANCEL options.\eqn{^{(1,3)}}     \cr
+                  \tab                                                       \cr
+  \code{ask_new}       \tab Asks for a list of new values.\eqn{^{(1)}}            \cr
+                  \tab                                                       \cr
+  \code{alert}         \tab None.                                                 \cr
+                  \tab                                                       \cr
+  \code{ask}           \tab Asks for typed input.\eqn{^{(1)}}                     \cr
+                  \tab                                                         }
+\tabular{l}{  \eqn{^{(1)}} Stops execution if user chooses \code{CANCEL}.                     \cr
+  \eqn{^{(2)}} Stops execution if \code{stop | (type = "error" & is.null(stop))}. \cr
+  \eqn{^{(3)}} Returns \code{TRUE} if user choice matches the function name.        }
+The following give templates for what the user sees, where any value derived from arguments will be absent if it is or resolves to a Blank string.
+\cr\cr
+\strong{\code{alert}}
+\tabular{ll}{
+  \strong{CONDITION}         \tab \strong{VALUE}                      \cr
+  \code{g(D, Title) != ""}   \tab formatted Title from \code{Title}.  \cr
+  \code{g(D, Sub) != ""}     \tab formatted subtitle from \code{Sub}. \cr
+  \code{g(D, ...) != ""}     \tab formatted message from \code{...}.  \cr
+                        \tab \verb{< Blank line >}               \cr
+  \code{g(D, PS) != ""}      \tab formatted postscript from \code{PS}.  }
+All other templates incorporate a call to \code{alert(.)} with components as shown below.
+\cr\cr\strong{\code{acknowledge}}
+\tabular{ll}{
+  \strong{COMPONENT}   \tab \strong{VALUE}                                \cr
+  Title           \tab \code{'ACKNOWLEDGMENT REQUIRED'}              \cr
+  Subtitle        \tab \code{'< g(D, Sub) >'}                        \cr
+  Message         \tab \code{'< g(D, ...) >'}                        \cr
+                  \tab \verb{< Blank line >}                         \cr
+  Postscript      \tab \code{'press [return] or [enter] to continue:'} }
+\strong{\code{choose1}}
+\tabular{ll}{
+  \strong{COMPONENT}   \tab \strong{VALUE}                         \cr
+  Title           \tab \code{'RESPONSE REQUIRED'}             \cr
+  Subtitle        \tab \code{'< g(D, Sub) >'}                 \cr
+  Message         \tab \code{'< g(D, ...) >'}                 \cr
+                  \tab \verb{< Blank line >}                  \cr
+  Postscript      \tab \code{'choose an option - Select one'} \cr
+                  \tab \verb{< Blank line >}                  \cr
+  Cancel.Option   \tab \verb{'1: \{ CANCEL \}}'                 \cr
+  Option.1        \tab \code{'2: < Options[1] >'}             \cr
+  Option.2        \tab \code{'3: < Options[2] >'}             \cr
+  ...             \tab ...                               \cr
+  Pption.n        \tab \code{'< n + 1 >: < Options[n] >'}     \cr
+  Prompt          \tab \code{'Selection:'}                      }
+\strong{\code{chooseN}}
+\tabular{ll}{
+  \strong{COMPONENT}   \tab \strong{VALUE}                                                                      \cr
+  Title           \tab \code{'RESPONSE REQUIRED'}                                                          \cr
+  Subtitle        \tab \code{'< g(D, Sub) >'}                                                              \cr
+  Message         \tab \code{'< g(D, ...) >'}                                                              \cr
+                  \tab \verb{< Blank line >}                                                               \cr
+  Postscript      \tab \code{'choose < n | between n1 and n2 > options - Select one or more'}              \cr
+                  \tab \verb{< Blank line >}                                                               \cr
+  Cancel.Option   \tab \code{'1: { CANCEL }'}                                                              \cr
+  Option.1        \tab \code{'2: < Options[1] >'}                                                          \cr
+  Option.2        \tab \code{'3: < Options[2] >'}                                                          \cr
+  ...             \tab ...                                                                            \cr
+  Option.n        \tab \code{'< n + 1 >: < Options[n] >'}                                                  \cr
+  All.option      \tab \code{'< n + 2 >: { ALL }'}                                                         \cr
+  None.option     \tab \code{'< n + 3 >: { NONE }'}                                                        \cr
+  Prompt          \tab \code{'Enter one or more numbers separated by spaces and then ENTER, or 0 to cancel'} }
+\strong{\code{NO}} and \strong{\code{YES}}
+\tabular{ll}{
+  \strong{COMPONENT}   \tab \strong{VALUE}                         \cr
+  Title           \tab \code{'RESPONSE REQUIRED'}             \cr
+  Subtitle        \tab '\verb{< g(D, Sub) >'}                 \cr
+  Message         \tab \code{'< g(D, ...) >'}                 \cr
+                  \tab \verb{< Blank line >}                  \cr
+  Postscript      \tab \code{'choose an option - Select one'} \cr
+                  \tab \verb{< Blank line >}                  \cr
+  Cancel.Option   \tab \code{'1: { CANCEL }'}                 \cr
+  Yes.Option      \tab \code{'2: { YES }'}                    \cr
+  No.Option       \tab \code{'3: { NO }'}                     \cr
+  Prompt          \tab \code{'Selection:'}                      }
+\strong{\code{OK}} and \strong{\code{CANCEL}}
+\tabular{ll}{
+  \strong{COMPONENT}   \tab \strong{VALUE}                         \cr
+  Title           \tab \code{'RESPONSE REQUIRED'}             \cr
+  Subtitle        \tab \code{'< g(D, Sub) >'}                 \cr
+  Sessage         \tab \code{'< g(D, ...) >'}                 \cr
+                  \tab \verb{< Blank line >}                  \cr
+  Postscript      \tab \code{'choose an option - Select one'} \cr
+                  \tab \verb{< Blank line >}                  \cr
+  Cancel.Option   \tab \code{'1: { CANCEL }'}                 \cr
+  OK.Option       \tab \code{'2: { OK }'}                     \cr
+  Prompt          \tab \code{'Selection: '}                     }
+\strong{\code{ask}}
+\tabular{ll}{
+  \strong{COMPONENT}   \tab \strong{VALUE}               \cr
+  Title           \tab \code{'RESPONSE REQUIRED'}   \cr
+  Subtitle        \tab \code{'< g(D, Sub) >'}       \cr
+  Message         \tab \code{'< g(D, ...) >'}       \cr
+                  \tab \verb{< Blank line >}        \cr
+  Postscript      \tab \code{'enter your response: '} }
+\strong{\code{ask_new}}
+\tabular{ll}{
+  \strong{COMPONENT}   \tab \strong{VALUE}                                                                                                               \cr
+  Title           \tab \code{'RESPONSE REQUIRED'}                                                                                                   \cr
+  Subtitle        \tab \code{'< g(D, Sub) >'}                                                                                                       \cr
+  Message         \tab \code{'Enter a pipe-separated list of < N(Options) > replacement values for the following pipe-separated original values: '} \cr
+                  \tab \verb{< Blank line >}                                                                                                        \cr
+  Old.Values      \tab \code{'< paste0(old, collapse = " | ") >'}                                                                                   \cr
+                  \tab \verb{< Blank line >}                                                                                                        \cr
+  Postscript      \tab \code{'enter your response: '}                                                                                                 }
+\strong{\code{choose_dir}}
+\tabular{ll}{
+  \strong{COMPONENT}   \tab \strong{VALUE}                                        \cr
+  Title           \tab \code{'ACKNOWLEDGMENT REQUIRED'}                      \cr
+  Subtitle        \tab \code{'< g(D, Sub) >'}                                \cr
+  Message         \tab \code{'In the next dialog box, select a < dir.type >.'} }
+\strong{\code{choose_doc}}
+\tabular{ll}{
+  \strong{COMPONENT}   \tab \strong{VALUE}                                        \cr
+  Title           \tab \code{'ACKNOWLEDGMENT REQUIRED'}                      \cr
+  Subtitle        \tab \code{'< g(D, Sub) >'}                                \cr
+  Message         \tab \code{'In the next dialog box, select a < doc.type >.'} }
 }
 \section{Specifying formats}{
- When not \code{NULL} format arguments (\code{bg.format}, \code{fg.format}, and \code{st.format}) must be \link[=cmp_str_vec]{complete string vecs} that when \link[=av]{atomized} and \link[=ssP]{split along pipes} results in a three-element character vector, the first element of which is used to specify \link[=bg]{text background color} and must be a value from \code{\link{bg_vals}()}, the second element of which is used to specify \link[=fg]{text foreground color} and must be a value from \code{\link{fg_vals}()}, and the last of which specifies \link[=st]{text style} and must be a value from \code{\link{st_vals}()}.
+ When formatting arguments (\code{FT}, \code{FS}, \code{FM}, and \code{FP}) take the special value \code{""}, the corresponding alert elements (\code{Title}, \code{Sub}, \code{...}, and \code{PS}, respectively) are posted to the console without special formatting.
+\cr\cr Otherwise, formatting arguments must be \link[=cmp_str_vec]{complete string vecs} that when \link[=av]{atomized} and \link[=ssP]{split along pipes} results in a three-element character vector, the first element of which is used to specify \link[=bg]{text background color} and must be a value from \code{\link{bg_vals}()}, the second element of which is used to specify \link[=fg]{text foreground color} and must be a value from \code{\link{fg_vals}()}, and the last of which specifies \link[=st]{text style} and must be a value from \code{\link{st_vals}()}.
 }
 
 \examples{
 egA <- "two-part"
 egB <- "message"
 egFT <- c("yellow", "red", "plain")
-egFL <- c("blk|wht", "und")
+egFS <- c("blk|wht", "und")
 egFM <- "b|y|i"
-egType = "type"
-egLab = "title"
+egT = "Title"
+egS = "Subtitle"
 egOpts <- paste("option", letters[1:10])
-egMsg1 <- "Do you want to continue?"
-egMsg2 <- "Why do you want to continue?"
-
-alert(egA, egB, d = " ")
-alert(egA, egB, type = egType, d = " ")
-alert(egA, egB, lab = l, d = " ")
-alert(egA, egB, type = egType, lab = egLab, d = " ")
-alert(egA, egB, type = egType, lab = egLab, d = " ", fmsg = egFM)
-alert(egA, egB, type = egType, lab = egLab, d = " ", flab = egFL)
-alert(egA, egB, type = egType, lab = egLab, d = " ", ftype = egFT)
-alert(egA, egB, type = egType, lab = egLab, d = " ", ftype = egFT, flab = egFL, fmsg = egFM)
-alert(type = egType, lab = egLab, ftype = egFT, flab = egFL)
-alert(type = egType, ftype = egFT)
-alert(lab = egLab, flab = egFL)
+egM1 <- "Do you want to continue?"
+egM2 <- "Why do you want to continue?"
+alert(egA, egB, D = " ")
+alert(egA, egB, Title = egTitle, D = " ")
+alert(egA, egB, Sub = l, D = " ")
+alert(egA, egB, Title = egTitle, Sub = egSub, D = " ")
+alert(egA, egB, Title = egTitle, Sub = egSub, D = " ", FM = egFM)
+alert(egA, egB, Title = egTitle, Sub = egSub, D = " ", FS = egFS)
+alert(egA, egB, Title = egTitle, Sub = egSub, D = " ", FT = egFT)
+alert(egA, egB, Title = egTitle, Sub = egSub, D = " ", FT = egFT, FS = egFS, FM = egFM)
+alert(Title = egT, Sub = egSub, FT = egFT, FS = egFS)
+alert(Title = egT, Sub = egS)
+alert(Sub = egS, fS = egFS)
 \dontrun{
   acknowledge(egA, egB)
   choose1(egOpts)
   chooseN(egOpts)
-  chooseN(egOpts, all = T, none = F, min = 6, max = 10)
+  chooseN(egOpts, All = T, None = F, Min = 6, Max = 10)
   NO(egMsg1)
   OK(egMsg2)
   YES(egMsg1)
   CANCEL(egMsg1)
   ask(Msg2)
   ask_new(egOpts)
-  choose_dir(dir.type = "directory for R scripts")
-  choose_doc(doc.type = "document to read")
+  choose_dir(DirType = "directory for R scripts")
+  choose_doc(DocType = "document to read")
 }
 }
 \seealso{

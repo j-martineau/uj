@@ -10,14 +10,14 @@
 #'                 `'nll', 'NLL'`   \tab `null`        \tab `NULL`.                                                                                                                   \cr
 #'                 `'nil', 'NIL'`   \tab `nil`         \tab Length `0` but not `NULL`.                                                                                                  }
 #' @details
-#' \tabular{ll}{  `is_bbb_spec`   \tab Is `spec` a basic property specification?                                                                   \cr   \tab   \cr
+#' \tabular{ll}{  `is_bbb_spec`   \tab Is `Spec` a basic property specification?                                                                   \cr   \tab   \cr
 #'                `bbb_props`     \tab What basic properties are there?                                                                            \cr   \tab   \cr
 #'                `bbb_funs`      \tab What basic properties functions are there?                                                                  \cr   \tab   \cr
-#'                `{BBB}`         \tab Is `x` a match to the basic property `'{BBB}'` where `{BBB}` is a placeholder for any given basic property? \cr   \tab   \cr
-#'                `BBB`           \tab Is `x` a match to the basic property specification `spec`?                                                  \cr   \tab   \cr
-#'                `bbb`           \tab What are `x`'s basic properties?                                                                                           }
-#' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more basic properties from `bbb_props()`. basic properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
+#'                `{BBB}`         \tab Is `X` a match to the basic property `'{BBB}'` where `{BBB}` is a placeholder for any given basic property? \cr   \tab   \cr
+#'                `BBB`           \tab Is `X` a match to the basic property specification `Spec`?                                                  \cr   \tab   \cr
+#'                `bbb`           \tab What are `X`'s basic properties?                                                                                           }
+#' @param X An R object.
+#' @param Spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more basic properties from `bbb_props()`. basic properties may be pipe-delimited. If there are multiple properties in `Spec`, `X` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return **A character vector** \cr\cr `bbb_props, bbb_funs, bbb`
@@ -31,40 +31,40 @@
 #' ATM(list(letters))
 #' bbb(NA)
 #' @export
-bbb <- function(x) {
-  y <- NULL
-  for (BBB in uj:::.BBB) {
-    match <- uj::run("uj:::.", BBB, "(x)")
-    if (match) {y <- base::c(y, BBB)}
+bbb <- function(X) {
+  Y <- NULL
+  for (BBB in uj::v(BBB)) {
+    Match <- uj::run("uj:::.", BBB, "(X)")
+    if (Match) {Y <- base::c(Y, BBB)}
   }
-  y
+  Y
 }
 
 #' @rdname bbb
 #' @export
-bbb_funs <- function() {uj:::.BBB}
+bbb_funs <- function() {uj::v(BBB)}
 
 #' @rdname bbb
 #' @export
-bbb_props <- function() {uj:::.bbb}
+bbb_props <- function() {uj::v(bbb)}
 
 #' @rdname bbb
 #' @export
-is_bbb_spec <- function(spec) {
-  spec <- uj:::.spec2props(spec)
-  if (base::length(spec) == 0) {F} else {base::all(spec %in% uj:::.bbb)}
+is_bbb_spec <- function(Spec) {
+  Spec <- uj:::.spec2props(Spec)
+  if (base::length(Spec) == 0) {F} else {base::all(Spec %in% uj::v(bbb))}
 }
 
 #' @rdname bbb
 #' @export
-BBB <- function(x, spec, ...) {
-  errs <- uj:::.meets_errs(x, ...)
-  if (!is_bbb_spec(spec)) {errs <- base::c(errs, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from bbb_props().')}
-  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
-  if (uj::meets(x, ...)) {
-    props <- base::toupper(uj:::.spec2props(spec))
-    for (prop in props) {
-      if (uj::run('uj:::.', prop, '(x)')) {return(T)}
+BBB <- function(X, Spec, ...) {
+  Errors <- uj:::.meets_errs(X, ...)
+  if (!is_bbb_spec(Spec)) {Errors <- base::c(Errors, '[Spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from bbb_props().')}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  if (uj::meets(X, ...)) {
+    Props <- base::toupper(uj:::.spec2props(Spec))
+    for (Prop in Props) {
+      if (uj::run('uj:::.', Prop, '(X)')) {return(T)}
     }
   }
   F
@@ -72,28 +72,28 @@ BBB <- function(x, spec, ...) {
 
 #' @rdname bbb
 #' @export
-ATM <- function(x, ...) {uj::BBB(x, 'atm', ...)}
+ATM <- function(X, ...) {uj::BBB(X, 'atm', ...)}
 
 #' @rdname bbb
 #' @export
-DEF <- function(x, ...) {uj::BBB(x, 'def', ...)}
+DEF <- function(X, ...) {uj::BBB(X, 'def', ...)}
 
 #' @rdname bbb
 #' @export
-FUN <- function(x, ...) {uj::BBB(x, 'fun', ...)}
+FUN <- function(X, ...) {uj::BBB(X, 'fun', ...)}
 
 #' @rdname bbb
 #' @export
-NIL <- function(x) {uj::BBB(x, 'nil')}
+NIL <- function(X) {uj::BBB(X, 'nil')}
 
 #' @rdname bbb
 #' @export
-NLL <- function(x) {uj::BBB(x, 'nll')}
+NLL <- function(X) {uj::BBB(X, 'nll')}
 
 #' @rdname bbb
 #' @export
-POP <- function(x, ...) {uj::BBB(x, 'pop', ...)}
+POP <- function(X, ...) {uj::BBB(X, 'pop', ...)}
 
 #' @rdname bbb
 #' @export
-RCR <- function(x, ...) {uj::BBB(x, 'rcr', ...)}
+RCR <- function(X, ...) {uj::BBB(X, 'rcr', ...)}

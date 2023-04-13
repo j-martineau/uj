@@ -13,15 +13,15 @@
 \alias{dt_wide}
 \title{Wrappers of \code{data.table} functions}
 \usage{
-as_dt(x, keep.rownames = FALSE, ..., say = TRUE)
+as_dt(x, keep.rownames = FALSE, ...)
 
-is_dt(...)
+is_dt(x)
 
-ie_dt(x, say = TRUE)
+ie_dt(X)
 
-dt_sub(x, ir, ic)
+dt_sub(X, R, C)
 
-dt_cols(x, ic)
+dt_cols(X, C)
 
 dt_merge(
   x,
@@ -36,10 +36,10 @@ dt_merge(
   suffixes = c(".x", ".y"),
   no.dups = TRUE,
   allow.cartesian = base::getOption("datatable.allow.cartesian"),
-  say = TRUE
+  .say = TRUE
 )
 
-dt_rows(x, ir)
+dt_rows(X, R)
 
 dt_wide(
   data,
@@ -53,19 +53,17 @@ dt_wide(
   drop = TRUE,
   value.var = data.table:::guess(data),
   verbose = base::getOption("datatable.verbose"),
-  say = TRUE
+  Say = TRUE
 )
 }
 \arguments{
-\item{x}{An object for \code{as_dt}, \code{is_dt}, and \code{ie_dt}. A \code{\link[data.table]{data.table}} for all others.}
+\item{x, y}{Data frames to be merged.}
 
-\item{keep.rownames}{Default is \code{FALSE}. If \code{TRUE}, adds the input object's names as a separate column named \code{"rn"}. \code{keep.rownames = "id"} names the column \code{"id"} instead.}
+\item{...}{Not used at this time.}
 
-\item{...}{Additional arguments to be passed to or from other methods.}
+\item{X}{An object for \code{as_dt}, \code{is_dt}, and \code{ie_dt}. A \code{\link[data.table]{data.table}} for all others.}
 
-\item{say}{\code{TRUE} or \code{FALSE} indicating whether to notify user of starting a potentially time-consuming process (converting to \code{data.table}, joining two large \code{data.table}s, and reshaping from long to wide).}
-
-\item{ir, ic}{\link[=cmp_ind_vec]{Complete indexer vecs} or \link[=cmp_chr_vec]{complete character vecs} identifying rows and columns of \code{x}, respectively.}
+\item{R, C}{\link[=cmp_ind_vec]{Complete indexer vecs} or \link[=cmp_chr_vec]{complete character vecs} identifying rows and columns of \code{X}, respectively.}
 
 \item{by}{A vector of shared column names in \code{x} and \code{y} to merge on.
 This defaults to the shared key columns between the two tables.
@@ -98,6 +96,8 @@ as any \code{by.x}.}
 
 \item{allow.cartesian}{See \code{allow.cartesian} in \code{\link[data.table]{[.data.table}}.}
 
+\item{.say}{Logical scalar indicating whether to update user on progress.}
+
 \item{data}{ A \code{data.table}.}
 
 \item{formula}{A formula of the form LHS ~ RHS to cast, see Details.}
@@ -128,59 +128,82 @@ as any \code{by.x}.}
 A data.table.
 }
 \description{
-Functions to check if an object is \code{data.table}, or coerce it if possible.
+Fast merge of two \code{data.table}s. The \code{data.table} method behaves
+very similarly to that of \code{data.frame}s except that, by default, it attempts to merge
+
+\itemize{
+  \item at first based on the shared key columns, and if there are none,
+  \item then based on key columns of the first argument \code{x}, and if there
+  are none,
+  \item then based on the common columns between the two \code{data.table}s.
+}
+
+Set the \code{by}, or \code{by.x} and \code{by.y} arguments explicitly to override this default.
 }
 \details{
 \tabular{ll}{  \code{dt_merge}   \tab Thinly wraps \code{\link[data.table]{merge}}.         \cr
   \code{dt_wide}    \tab Thinly wraps \code{\link[data.table]{dcast}}.         \cr
   \code{dt_rows}    \tab Selects rows.                                         \cr
-  \code{dt_cols}    \tab Selects columns without \code{x[ , ..var]}.                \cr
-  \code{dt_sub}     \tab Selects a subtable without \code{x[row.var, ..col.var]}.   \cr
+  \code{dt_cols}    \tab Selects columns without \code{X[ , ..var]}.                \cr
+  \code{dt_sub}     \tab Selects a subtable without \code{X[row.var, ..col.var]}.   \cr
   \code{as_dt}      \tab Thinly wraps \code{\link[data.table]{as.data.table}}. \cr
   \code{is_dt}      \tab Thinly wraps \code{\link[data.table]{is.data.table}}. \cr
   \code{ie_dt}      \tab Convert to \code{data.table}, if needed.                     }
 }
 \examples{
-nn = c(a=0.1, b=0.2, c=0.3, d=0.4)
-as.data.table(nn)
-as.data.table(nn, keep.rownames=TRUE)
-as.data.table(nn, keep.rownames="rownames")
+(dt1 <- data.table(A = letters[1:10], X = 1:10, key = "A"))
+(dt2 <- data.table(A = letters[5:14], Y = 1:10, key = "A"))
+merge(dt1, dt2)
+merge(dt1, dt2, all = TRUE)
 
-# char object not converted to factor
-cc = c(X="a", Y="b", Z="c")
-as.data.table(cc)
-as.data.table(cc, keep.rownames=TRUE)
-as.data.table(cc, keep.rownames="rownames")
+(dt1 <- data.table(A = letters[rep(1:3, 2)], X = 1:6, key = "A"))
+(dt2 <- data.table(A = letters[rep(2:4, 2)], Y = 6:1, key = "A"))
+merge(dt1, dt2, allow.cartesian=TRUE)
 
-mm = matrix(1:4, ncol=2, dimnames=list(c("r1", "r2"), c("c1", "c2")))
-as.data.table(mm)
-as.data.table(mm, keep.rownames=TRUE)
-as.data.table(mm, keep.rownames="rownames")
-as.data.table(mm, key="c1")
+(dt1 <- data.table(A = c(rep(1L, 5), 2L), B = letters[rep(1:3, 2)], X = 1:6, key = "A,B"))
+(dt2 <- data.table(A = c(rep(1L, 5), 2L), B = letters[rep(2:4, 2)], Y = 6:1, key = "A,B"))
+merge(dt1, dt2)
+merge(dt1, dt2, by="B", allow.cartesian=TRUE)
 
-ll = list(a=1:2, b=3:4)
-as.data.table(ll)
-as.data.table(ll, keep.rownames=TRUE)
-as.data.table(ll, keep.rownames="rownames")
+# test it more:
+d1 <- data.table(a=rep(1:2,each=3), b=1:6, key="a,b")
+d2 <- data.table(a=0:1, bb=10:11, key="a")
+d3 <- data.table(a=0:1, key="a")
+d4 <- data.table(a=0:1, b=0:1, key="a,b")
 
-DF = data.frame(x=rep(c("x","y","z"),each=2), y=c(1,3,6), row.names=LETTERS[1:6])
-as.data.table(DF)
-as.data.table(DF, keep.rownames=TRUE)
-as.data.table(DF, keep.rownames="rownames")
+merge(d1, d2)
+merge(d2, d1)
+merge(d1, d2, all=TRUE)
+merge(d2, d1, all=TRUE)
 
-DT = data.table(x=rep(c("x","y","z"),each=2), y=c(1:6))
-as.data.table(DT)
-as.data.table(DT, key='x')
+merge(d3, d1)
+merge(d1, d3)
+merge(d1, d3, all=TRUE)
+merge(d3, d1, all=TRUE)
 
-ar = rnorm(27)
-ar[sample(27, 15)] = NA
-dim(ar) = c(3L,3L,3L)
-as.data.table(ar)
+merge(d1, d4)
+merge(d1, d4, by="a", suffixes=c(".d1", ".d4"))
+merge(d4, d1)
+merge(d1, d4, all=TRUE)
+merge(d4, d1, all=TRUE)
+
+# new feature, no need to set keys anymore
+set.seed(1L)
+d1 <- data.table(a=sample(rep(1:3,each=2)), z=1:6)
+d2 <- data.table(a=2:0, z=10:12)
+merge(d1, d2, by="a")
+merge(d1, d2, by="a", all=TRUE)
+
+# new feature, using by.x and by.y arguments
+setnames(d2, "a", "b")
+merge(d1, d2, by.x="a", by.y="b")
+merge(d1, d2, by.x="a", by.y="b", all=TRUE)
+merge(d2, d1, by.x="b", by.y="a")
 }
 \seealso{
 Other wraps: 
 \code{\link{basics}()},
-\code{\link{dp}},
+\code{\link{dp}()},
 \code{\link{ggp}()},
 \code{\link{gr}},
 \code{\link{rd}()},

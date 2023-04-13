@@ -53,7 +53,7 @@ gf_dot(..., N = 1, DEF = "", D = " ")
 
 \item{...}{An arbitrary number of arguments.}
 
-\item{NAMES}{\code{NULL} or an \link[=atm_vec]{atomic vec} (may include \code{NA} values). Is split along the delimiter \code{'|'} to allow for compactness in submitting multiple NAMES \code{NULL} will match either an argument in \code{...} or element of \code{DEFS} with the name \code{'NULL'}. \code{NA} values will match an argument in \code{...} or an element of \code{DEFS} with the name \code{'NA'}.}
+\item{NAMES}{\code{NULL} or an \link[=atm_vec]{atomic vec} (may include \code{NA} values). Is split along the delimiter \code{'|'} to allow for compactness in submitting multiple NAMES \code{NULL} will match either an argument in \code{...} or element of \code{DEFS} with the Name \code{'NULL'}. \code{NA} values will match an argument in \code{...} or an element of \code{DEFS} with the Name \code{'NA'}.}
 
 \item{DEFS}{A named \link[=VLS]{vlist} of default objects/values to return if the specified arguments are not in \code{...}. Elements of \code{DEFS} must be uniquely nameD If \code{DEFS} is a tibble, columns with matching names are returned.}
 
@@ -83,15 +83,15 @@ gf_dot(..., N = 1, DEF = "", D = " ")
 Enhanced of functions for managing \code{...} arguments.
 }
 \details{
-\strong{\code{dot_names}} and \strong{\code{dnames}} are enhancements of \code{...names} that flexibly retrieves names of all \code{...} args by substituting the corresponding value of \code{SUBS} If a \code{...} arg's name is missing or blank (\code{""}), the corresponding value of \code{.names} is substituteD Throws an error in the following circumstances:
+\strong{\code{dot_names}} and \strong{\code{dnames}} are enhancements of \code{...names} that flexibly retrieves names of all \code{...} args by substituting the corresponding value of \code{SUBS} If a \code{...} arg's Name is missing or blank (\code{""}), the corresponding value of \code{.names} is substituteD Throws an error in the following circumstances:
 \itemize{\item \code{...length() == 0}
 \item \code{length(NAMES) > 0 & length(NAMES) < ...length()}
 \item \code{is.null(NAMES) & BLANK & any(...names() == "")}
 \item \code{is.null(NAMES) & REQ & !any(...names() != "")}
 \item \code{is.null(NAMES) & U & any(duplicated(...names()))}}
 \cr The remaining functions in this family are as follows:
-\tabular{ll}{  \code{dots_by_name}   \tab Enhancement of \code{list(...)} that extracts one or more\code{...} args based on matching values supplied in \code{NAMES}. If a supplied name matches the name of a \code{...}
-arg, that arg is returned. Otherwise, the element of \code{DEFS} with a matching name is returned. \code{NAMES = NULL} and \code{NAMES = NA} are converted to \code{'NULL'} and
+\tabular{ll}{  \code{dots_by_name}   \tab Enhancement of \code{list(...)} that extracts one or more\code{...} args based on matching values supplied in \code{NAMES}. If a supplied Name matches the Name of a \code{...}
+arg, that arg is returned. Otherwise, the element of \code{DEFS} with a matching Name is returned. \code{NAMES = NULL} and \code{NAMES = NA} are converted to \code{'NULL'} and
 \code{'NA'}. Reserved words should be backtick quoted.                                                                                                               \cr   \tab   \cr
   \code{named_dots}     \tab Get a named list containing named \code{...} arg values.                                                                                                             \cr   \tab   \cr
   \code{anon_dots}      \tab Get an unnamed list containing unnamed (anonymous) \code{...} arg values.                                                                                            \cr   \tab   \cr
@@ -111,22 +111,22 @@ in the following circumstances: The usage of \code{f} is defined as \code{f(...)
 }
 \examples{
 egdot_args <- function(...) {
-  n.dots <- ...length()
-  if (n.dots > 1) {
-    sub.names <- paste0(letters[1:n.dots], LETTERS[1:n.dots])
-    defaults <- as.list(LETTERS[1:n.dots])
+  nDots <- ...length()
+  if (nDots > 1) {
+    sub.names <- paste0(letters[1:nDots], LETTERS[1:nDots])
+    defaults <- as.list(LETTERS[1:nDots])
     default <- "{missing}"
   } else {
     sub.names <- NULL
-    defaults <- "{no dot args}"
-    default <- "{no dot args}"
+    defaults <- "{no Dot args}"
+    default <- "{no Dot args}"
   }
   list(glue.flex.dots = flex_dots(..., GLUE = TRUE, DEF = default, D = "_") ,
        glue.flex.dot2 = flex_dot(..., N = 2, GLUE = TRUE)                   ,
        subbed.names   = failsafe(dot_names(..., SUBS = sub.names))          ,
        named.dots     = failsafe(named_dots(...))                           ,
        anon.dots      = failsafe(anon_dots(...))                            ,
-       dot.names      = failsafe(dot_names(...))                            ,
+       DotNames      = failsafe(dot_names(...))                            ,
        flex.dots      = flex_dots(..., DEFS = default)                      ,
        flex.dot2      = flex_dot(..., N = 2)                                ,
        glue.dots      = failsafe(glue_dots(..., DEFS = default))            ,

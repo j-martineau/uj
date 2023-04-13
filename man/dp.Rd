@@ -12,19 +12,29 @@
 \alias{dp_mod}
 \title{Thin wrappers of \code{dplyr} functions}
 \usage{
+dp()
+
 dp_agg(.data, ..., .groups = NULL)
 
-dp_n(...)
+dp_n()
 
-dp_all(...)
+dp_all(x)
 
-dp_grp(x, keys)
+dp_grp(X, Keys)
 
-dp_join(...)
+dp_join(
+  x,
+  y,
+  by = NULL,
+  copy = FALSE,
+  suffix = c(".x", ".y"),
+  ...,
+  keep = FALSE
+)
 
-dp_lab(...)
+dp_lab(.data, ...)
 
-dp_mod(...)
+dp_mod(.data, ...)
 }
 \arguments{
 \item{x}{A data.frame}

@@ -8,12 +8,12 @@
 \usage{
 comparable(..., REC = FALSE)
 
-comparable_xy(x, y, REC = FALSE)
+comparable_xy(X, y, REC = FALSE)
 }
 \arguments{
 \item{...}{An arbitrary number of arguments to be checked for comparability with each other.}
 
-\item{x, y}{Arguments to be checked for comparability.}
+\item{X, y}{Arguments to be checked for comparability.}
 
 \item{rec.}{\code{TRUE} or \code{FALSE} indicating whether \code{...} arguments must be recyclable to be comparable.}
 }
@@ -59,7 +59,6 @@ Other properties:
 \code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
-\code{\link{checker}},
 \code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
@@ -71,8 +70,10 @@ Other properties:
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
+\code{\link{ppp_fast}()},
 \code{\link{ppp}()},
 \code{\link{sss}()},
+\code{\link{stopperr}()},
 \code{\link{unq_ccc}()}
 }
 \concept{extensions}

@@ -5,11 +5,7 @@
 \alias{sca}
 \title{Thin wrappers of \code{scales} functions}
 \usage{
-sca(color, alpha = NA)
-}
-\arguments{
-\item{alpha}{new alpha level in [0,1].  If alpha is \code{NA},
-existing alpha values are preserved.}
+sca(Color, Alpha = NA)
 }
 \description{
 \tabular{ll}{  \code{sca}   \tab Thinly wraps \code{\link[scales]{alpha}}}
@@ -33,7 +29,7 @@ Other plots:
 
 Other wraps: 
 \code{\link{basics}()},
-\code{\link{dp}},
+\code{\link{dp}()},
 \code{\link{dt}()},
 \code{\link{ggp}()},
 \code{\link{gr}},

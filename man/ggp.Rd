@@ -35,67 +35,364 @@
 \alias{gg_ylab}
 \title{Thin wrappers of \code{ggplot2} and \code{ggtext} functions}
 \usage{
-ggp(...)
+ggp(data = NULL, mapping = aes(), ..., environment = parent.frame())
 
-gg_aes(...)
+gg_aes(x, y, ...)
 
-gg_dot(...)
+gg_dot(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  ...,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
 
-gg_elin(...)
+gg_elin(
+  colour = NULL,
+  linewidth = NULL,
+  linetype = NULL,
+  lineend = NULL,
+  color = NULL,
+  arrow = NULL,
+  inherit.blank = FALSE,
+  size = deprecated()
+)
 
-gg_emkd(...)
+gg_emkd(
+  family = NULL,
+  face = NULL,
+  size = NULL,
+  colour = NULL,
+  fill = NULL,
+  box.colour = NULL,
+  linetype = NULL,
+  linewidth = NULL,
+  hjust = NULL,
+  vjust = NULL,
+  halign = NULL,
+  valign = NULL,
+  angle = NULL,
+  lineheight = NULL,
+  margin = NULL,
+  padding = NULL,
+  r = NULL,
+  color = NULL,
+  box.color = NULL,
+  align_widths = NULL,
+  align_heights = NULL,
+  rotate_margins = NULL,
+  debug = FALSE,
+  inherit.blank = FALSE
+)
 
-gg_enll(...)
+gg_enll()
 
-gg_erct(...)
+gg_erct(
+  fill = NULL,
+  colour = NULL,
+  linewidth = NULL,
+  linetype = NULL,
+  color = NULL,
+  inherit.blank = FALSE,
+  size = deprecated()
+)
 
-gg_etxt(...)
+gg_etxt(
+  family = NULL,
+  face = NULL,
+  colour = NULL,
+  size = NULL,
+  hjust = NULL,
+  vjust = NULL,
+  angle = NULL,
+  lineheight = NULL,
+  color = NULL,
+  margin = NULL,
+  debug = NULL,
+  inherit.blank = FALSE
+)
 
-gg_exp(...)
+gg_exp(mult = 0, add = 0)
 
-gg_grid(...)
+gg_grid(
+  rows = NULL,
+  cols = NULL,
+  scales = "fixed",
+  space = "fixed",
+  shrink = TRUE,
+  labeller = "label_value",
+  as.table = TRUE,
+  switch = NULL,
+  drop = TRUE,
+  margins = FALSE,
+  facets = NULL
+)
 
-gg_hlin(...)
+gg_hlin(
+  mapping = NULL,
+  data = NULL,
+  ...,
+  yintercept,
+  na.rm = FALSE,
+  show.legend = NA
+)
 
-gg_lab(...)
+gg_lab(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  ...,
+  parse = FALSE,
+  nudge_x = 0,
+  nudge_y = 0,
+  label.padding = unit(0.25, "lines"),
+  label.r = unit(0.15, "lines"),
+  label.size = 0.25,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
 
-gg_labs(...)
+gg_labs(
+  ...,
+  title = waiver(),
+  subtitle = waiver(),
+  caption = waiver(),
+  tag = waiver(),
+  alt = waiver(),
+  alt_insight = waiver()
+)
 
-gg_lin(...)
+gg_lin(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  na.rm = FALSE,
+  orientation = NA,
+  show.legend = NA,
+  inherit.aes = TRUE,
+  ...
+)
 
-gg_mar(...)
+gg_mar(t = 0, r = 0, b = 0, l = 0, unit = "pt")
 
-gg_sac(...)
+gg_sac(..., range = c(0.1, 1))
 
-gg_scm(...)
+gg_scm(
+  ...,
+  values,
+  aesthetics = "colour",
+  breaks = waiver(),
+  na.value = "grey50"
+)
 
-gg_sdm(...)
+gg_sdm(..., values, breaks = waiver(), na.value = NA)
 
-gg_slm(...)
+gg_slm(..., values, breaks = waiver(), na.value = "blank")
 
-gg_sav(...)
+gg_sav(
+  filename,
+  plot = last_plot(),
+  device = NULL,
+  path = NULL,
+  scale = 1,
+  width = NA,
+  height = NA,
+  units = c("in", "cm", "mm", "px"),
+  dpi = 300,
+  limitsize = TRUE,
+  bg = NULL,
+  ...
+)
 
-gg_sxc(...)
+gg_sxc(
+  name = waiver(),
+  breaks = waiver(),
+  minor_breaks = waiver(),
+  n.breaks = NULL,
+  labels = waiver(),
+  limits = NULL,
+  expand = waiver(),
+  oob = censor,
+  na.value = NA_real_,
+  trans = "identity",
+  guide = waiver(),
+  position = "bottom",
+  sec.axis = waiver()
+)
 
-gg_syc(...)
+gg_syc(
+  name = waiver(),
+  breaks = waiver(),
+  minor_breaks = waiver(),
+  n.breaks = NULL,
+  labels = waiver(),
+  limits = NULL,
+  expand = waiver(),
+  oob = censor,
+  na.value = NA_real_,
+  trans = "identity",
+  guide = waiver(),
+  position = "left",
+  sec.axis = waiver()
+)
 
-gg_thm(...)
+gg_thm(
+  line,
+  rect,
+  text,
+  title,
+  aspect.ratio,
+  axis.title,
+  axis.title.x,
+  axis.title.x.top,
+  axis.title.x.bottom,
+  axis.title.y,
+  axis.title.y.left,
+  axis.title.y.right,
+  axis.text,
+  axis.text.x,
+  axis.text.x.top,
+  axis.text.x.bottom,
+  axis.text.y,
+  axis.text.y.left,
+  axis.text.y.right,
+  axis.ticks,
+  axis.ticks.x,
+  axis.ticks.x.top,
+  axis.ticks.x.bottom,
+  axis.ticks.y,
+  axis.ticks.y.left,
+  axis.ticks.y.right,
+  axis.ticks.length,
+  axis.ticks.length.x,
+  axis.ticks.length.x.top,
+  axis.ticks.length.x.bottom,
+  axis.ticks.length.y,
+  axis.ticks.length.y.left,
+  axis.ticks.length.y.right,
+  axis.line,
+  axis.line.x,
+  axis.line.x.top,
+  axis.line.x.bottom,
+  axis.line.y,
+  axis.line.y.left,
+  axis.line.y.right,
+  legend.background,
+  legend.margin,
+  legend.spacing,
+  legend.spacing.x,
+  legend.spacing.y,
+  legend.key,
+  legend.key.size,
+  legend.key.height,
+  legend.key.width,
+  legend.text,
+  legend.text.align,
+  legend.title,
+  legend.title.align,
+  legend.position,
+  legend.direction,
+  legend.justification,
+  legend.box,
+  legend.box.just,
+  legend.box.margin,
+  legend.box.background,
+  legend.box.spacing,
+  panel.background,
+  panel.border,
+  panel.spacing,
+  panel.spacing.x,
+  panel.spacing.y,
+  panel.grid,
+  panel.grid.major,
+  panel.grid.minor,
+  panel.grid.major.x,
+  panel.grid.major.y,
+  panel.grid.minor.x,
+  panel.grid.minor.y,
+  panel.ontop,
+  plot.background,
+  plot.title,
+  plot.title.position,
+  plot.subtitle,
+  plot.caption,
+  plot.caption.position,
+  plot.tag,
+  plot.tag.position,
+  plot.margin,
+  strip.background,
+  strip.background.x,
+  strip.background.y,
+  strip.clip,
+  strip.placement,
+  strip.text,
+  strip.text.x,
+  strip.text.y,
+  strip.switch.pad.grid,
+  strip.switch.pad.wrap,
+  ...,
+  complete = FALSE,
+  validate = TRUE
+)
 
-gg_thm0(...)
+gg_thm0(
+  base_size = 11,
+  base_family = "",
+  base_line_size = base_size/22,
+  base_rect_size = base_size/22
+)
 
-gg_txt(...)
+gg_txt(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  ...,
+  parse = FALSE,
+  nudge_x = 0,
+  nudge_y = 0,
+  check_overlap = FALSE,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
 
-gg_unit(...)
+gg_unit(x, units, data = NULL)
 
 gg_vars(...)
 
-gg_vlin(...)
+gg_vlin(
+  mapping = NULL,
+  data = NULL,
+  ...,
+  xintercept,
+  na.rm = FALSE,
+  show.legend = NA
+)
 
-gg_wrap(...)
+gg_wrap(
+  facets,
+  nrow = NULL,
+  ncol = NULL,
+  scales = "fixed",
+  shrink = TRUE,
+  labeller = "label_value",
+  as.table = TRUE,
+  switch = deprecated(),
+  drop = TRUE,
+  dir = "h",
+  strip.position = "top"
+)
 
-gg_xlab(...)
+gg_xlab(label)
 
-gg_ylab(...)
+gg_ylab(label)
 }
 \description{
 Thin wrappers of \code{ggplot2} and \code{ggtext} functions
@@ -145,7 +442,7 @@ Other plots:
 
 Other wraps: 
 \code{\link{basics}()},
-\code{\link{dp}},
+\code{\link{dp}()},
 \code{\link{dt}()},
 \code{\link{gr}},
 \code{\link{rd}()},

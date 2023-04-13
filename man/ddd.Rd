@@ -14,30 +14,30 @@
 \alias{nddd}
 \title{Defined dimensionality (defined.D) properties}
 \usage{
-ddd(x)
+ddd(X)
 
 ddd_funs()
 
 ddd_props()
 
-is_ddd_spec(spec)
+is_ddd_spec(Spec)
 
-DDD(x, spec, ...)
+DDD(X, Spec, ...)
 
-D0D(x, ...)
+D0D(X, ...)
 
-D1D(x, ...)
+D1D(X, ...)
 
-D2D(x, ...)
+D2D(X, ...)
 
-DHD(x, ...)
+DHD(X, ...)
 
-nddd(x)
+nddd(X)
 }
 \arguments{
-\item{x}{An R object.}
+\item{X}{An R object.}
 
-\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more defined.D properties from \code{ddd_props()}. Defined.D properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
+\item{Spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more defined.D properties from \code{ddd_props()}. Defined.D properties may be pipe-delimited. If there are multiple properties in \code{Spec}, \code{X} is inspected for a Match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -57,21 +57,21 @@ An object's defined dimensionality (defined.D) is the number of dimensions on wh
   \verb{'d2d', 'D2D'}   \tab \verb{2D}   \tab Data.frames and matrices.                   \cr
   \verb{'dhd', 'DHD'}   \tab \code{HD}   \tab Hyper (3+) dimensional arrays                 }
 \cr \strong{Defined dimensionality functions}
-\tabular{ll}{  \code{is_ddd_spec}   \tab Is \code{spec} a defined.D property specification?                                                                          \cr   \tab   \cr
+\tabular{ll}{  \code{is_ddd_spec}   \tab Is \code{Spec} a defined.D property specification?                                                                          \cr   \tab   \cr
   \code{ddd_props}     \tab What defined.D properties are there?                                                                                   \cr   \tab   \cr
   \code{ddd_funs}      \tab What defined.D property functions are there?                                                                           \cr   \tab   \cr
-  \code{{DDD}}         \tab Does \code{x} match single defined.D property \code{'{DDD}'}? (where \code{{DDD}} is a placeholder for any given defined.D property). \cr   \tab   \cr
-  \code{nddd}          \tab How many defined dimensions does \code{x} have?                                                                             \cr   \tab   \cr
-  \code{ddd}           \tab What are \code{x}'s defined.D properties?                                                                                   \cr   \tab   \cr
-  \code{DDD}           \tab Does \code{x} match defined.D specification \code{spec}?                                                                                        }
+  \code{{DDD}}         \tab Does \code{X} Match single defined.D property \code{'{DDD}'}? (where \code{{DDD}} is a placeholder for any given defined.D property). \cr   \tab   \cr
+  \code{nddd}          \tab How many defined dimensions does \code{X} have?                                                                             \cr   \tab   \cr
+  \code{ddd}           \tab What are \code{X}'s defined.D properties?                                                                                   \cr   \tab   \cr
+  \code{DDD}           \tab Does \code{X} Match defined.D specification \code{Spec}?                                                                                        }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{lt, le, ge, gt}    \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{n, nr, nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{vals}              \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{
@@ -91,7 +91,6 @@ Other properties:
 \code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
-\code{\link{checker}},
 \code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
@@ -103,8 +102,10 @@ Other properties:
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
+\code{\link{ppp_fast}()},
 \code{\link{ppp}()},
 \code{\link{sss}()},
+\code{\link{stopperr}()},
 \code{\link{unq_ccc}()}
 }
 \concept{properties}

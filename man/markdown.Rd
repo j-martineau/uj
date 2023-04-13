@@ -117,228 +117,228 @@
 \usage{
 markdown()
 
-subs(x)
+subs(X)
 
-sups(x)
+sups(X)
 
-bf_blu(x)
+bf_blu(X)
 
-bl_blu(x)
+bl_blu(X)
 
-bm_blu(x)
+bm_blu(X)
 
-bd_blu(x)
+bd_blu(X)
 
-bf_cyn(x)
+bf_cyn(X)
 
-bl_cyn(x)
+bl_cyn(X)
 
-bm_cyn(x)
+bm_cyn(X)
 
-bd_cyn(x)
+bd_cyn(X)
 
-bf_grn(x)
+bf_grn(X)
 
-bl_grn(x)
+bl_grn(X)
 
-bm_grn(x)
+bm_grn(X)
 
-bd_grn(x)
+bd_grn(X)
 
-bf_mag(x)
+bf_mag(X)
 
-bl_mag(x)
+bl_mag(X)
 
-bm_mag(x)
+bm_mag(X)
 
-bd_mag(x)
+bd_mag(X)
 
-bf_orn(x)
+bf_orn(X)
 
-bl_orn(x)
+bl_orn(X)
 
-bm_orn(x)
+bm_orn(X)
 
-bd_orn(x)
+bd_orn(X)
 
-bf_red(x)
+bf_red(X)
 
-bl_red(x)
+bl_red(X)
 
-bm_red(x)
+bm_red(X)
 
-bd_red(x)
+bd_red(X)
 
-bf_vlt(x)
+bf_vlt(X)
 
-bl_vlt(x)
+bl_vlt(X)
 
-bm_vlt(x)
+bm_vlt(X)
 
-bd_vlt(x)
+bd_vlt(X)
 
-bf_ylw(x)
+bf_ylw(X)
 
-bl_ylw(x)
+bl_ylw(X)
 
-bm_ylw(x)
+bm_ylw(X)
 
-bd_ylw(x)
+bd_ylw(X)
 
-b_wht(x)
+b_wht(X)
 
-b_g95(x)
+b_g95(X)
 
-b_g90(x)
+b_g90(X)
 
-b_g85(x)
+b_g85(X)
 
-b_g80(x)
+b_g80(X)
 
-b_g75(x)
+b_g75(X)
 
-b_g70(x)
+b_g70(X)
 
-b_g65(x)
+b_g65(X)
 
-b_g60(x)
+b_g60(X)
 
-b_g55(x)
+b_g55(X)
 
-b_g50(x)
+b_g50(X)
 
-b_g45(x)
+b_g45(X)
 
-b_g40(x)
+b_g40(X)
 
-b_g35(x)
+b_g35(X)
 
-bg_30(x)
+bg_30(X)
 
-bg_25(x)
+bg_25(X)
 
-bg_20(x)
+bg_20(X)
 
-bg_15(x)
+bg_15(X)
 
-bg_10(x)
+bg_10(X)
 
-bg_05(x)
+bg_05(X)
 
-b_blk(x)
+b_blk(X)
 
-b_inv(x)
+b_inv(X)
 
-pf_blu(x)
+pf_blu(X)
 
-pl_blu(x)
+pl_blu(X)
 
-pm_blu(x)
+pm_blu(X)
 
-pd_blu(x)
+pd_blu(X)
 
-pf_cyn(x)
+pf_cyn(X)
 
-pl_cyn(x)
+pl_cyn(X)
 
-pm_cyn(x)
+pm_cyn(X)
 
-pd_cyn(x)
+pd_cyn(X)
 
-pf_grn(x)
+pf_grn(X)
 
-pl_grn(x)
+pl_grn(X)
 
-pm_grn(x)
+pm_grn(X)
 
-pd_grn(x)
+pd_grn(X)
 
-pf_mag(x)
+pf_mag(X)
 
-pl_mag(x)
+pl_mag(X)
 
-pm_mag(x)
+pm_mag(X)
 
-pd_mag(x)
+pd_mag(X)
 
-pf_orn(x)
+pf_orn(X)
 
-pl_orn(x)
+pl_orn(X)
 
-pm_orn(x)
+pm_orn(X)
 
-pd_orn(x)
+pd_orn(X)
 
-pf_red(x)
+pf_red(X)
 
-pl_red(x)
+pl_red(X)
 
-pm_red(x)
+pm_red(X)
 
-pd_red(x)
+pd_red(X)
 
-pf_vlt(x)
+pf_vlt(X)
 
-pl_vlt(x)
+pl_vlt(X)
 
-pm_vlt(x)
+pm_vlt(X)
 
-pd_vlt(x)
+pd_vlt(X)
 
-pf_ylw(x)
+pf_ylw(X)
 
-pl_ylw(x)
+pl_ylw(X)
 
-pm_ylw(x)
+pm_ylw(X)
 
-pd_ylw(x)
+pd_ylw(X)
 
-p_wht(x)
+p_wht(X)
 
-p_g95(x)
+p_g95(X)
 
-p_g90(x)
+p_g90(X)
 
-p_g85(x)
+p_g85(X)
 
-p_g80(x)
+p_g80(X)
 
-p_g75(x)
+p_g75(X)
 
-p_g70(x)
+p_g70(X)
 
-p_g65(x)
+p_g65(X)
 
-p_g60(x)
+p_g60(X)
 
-p_g55(x)
+p_g55(X)
 
-p_g50(x)
+p_g50(X)
 
-p_g45(x)
+p_g45(X)
 
-p_g40(x)
+p_g40(X)
 
-p_g35(x)
+p_g35(X)
 
-p_g30(x)
+p_g30(X)
 
-p_g25(x)
+p_g25(X)
 
-p_g20(x)
+p_g20(X)
 
-p_g15(x)
+p_g15(X)
 
-p_g10(x)
+p_g10(X)
 
-p_g05(x)
+p_g05(X)
 
-p_blk(x)
+p_blk(X)
 
-p_inv(x)
+p_inv(X)
 }
 \arguments{
-\item{x}{A \link[=cmp_chr_vec]{character vector} of text to be styled.}
+\item{X}{A \link[=cmp_chr_vec]{character vector} of text to be styled.}
 }
 \value{
 A markdown-styled character vector.

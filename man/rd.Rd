@@ -11,82 +11,16 @@
 \usage{
 rd()
 
-rd_csv(
-  file = NULL,
-  col_names = TRUE,
-  col_types = NULL,
-  col_select = NULL,
-  id = NULL,
-  locale = readr::default_locale(),
-  na = base::c("", "NA"),
-  quoted_na = TRUE,
-  quote = "\\"",
-  comment = "",
-  trim_ws = TRUE,
-  skip = 0,
-  n_max = Inf,
-  guess_max = base::min(1000, n_max),
-  name_repair = "unique",
-  num_threads = readr::readr_threads(),
-  progress = readr::show_progress(),
-  show_col_types = readr::should_show_types(),
-  skip_empty_rows = TRUE,
-  lazy = readr::should_read_lazy()
-)
+rd_csv(File = NULL, ...)
 
 rd_clip()
 
-rd_xsv(
-  file = NULL,
-  delim = NULL,
-  quote = "\\"",
-  escape_backslash = FALSE,
-  escape_double = TRUE,
-  col_names = TRUE,
-  col_types = NULL,
-  col_select = NULL,
-  id = NULL,
-  locale = readr::default_locale(),
-  na = base::c("", "NA"),
-  quoted_na = TRUE,
-  comment = "",
-  trim_ws = FALSE,
-  skip = 0,
-  n_max = Inf,
-  guess_max = base::min(1000, n_max),
-  name_repair = "unique",
-  num_threads = readr::readr_threads(),
-  progress = readr::show_progress(),
-  show_col_types = sreadr::should_show_types(),
-  skip_empty_rows = TRUE,
-  lazy = readr::should_read_lazy()
-)
+rd_xsv(File = NULL, Delim = NULL, ...)
 
-rd_tsv(
-  file = NULL,
-  col_names = TRUE,
-  col_types = NULL,
-  col_select = NULL,
-  id = NULL,
-  locale = readr::default_locale(),
-  na = base::c("", "NA"),
-  quoted_na = TRUE,
-  quote = "\\"",
-  comment = "",
-  trim_ws = TRUE,
-  skip = 0,
-  n_max = Inf,
-  guess_max = base::min(1000, n_max),
-  progress = readr::show_progress(),
-  name_repair = "unique",
-  num_threads = readr::readr_threads(),
-  show_col_types = readr::should_show_types(),
-  skip_empty_rows = TRUE,
-  lazy = readr::should_read_lazy()
-)
+rd_tsv(File = NULL, ...)
 }
 \arguments{
-\item{file}{Either \code{NULL} or a \link[=cmp_chr_vec]{complete character vector} that resolves to a file path. When \code{file = NULL} the user is asked to select a file using a system dialog box.}
+\item{File}{Either \code{NULL} or a \link[=cmp_chr_vec]{complete character vector} that resolves to a file path. When \code{File = NULL} the user is asked to select a file using a system dialog box.}
 }
 \value{
 \strong{Varies}       \cr\cr \code{rd_clip}
@@ -100,7 +34,7 @@ Read the clipboard and text files, but prompting user to choose a file if no fil
   \code{rd_csv}    \tab Extends \code{\link[readr]{read_csv}}\eqn{^{(1)}}   \cr
   \code{rd_tsv}    \tab Extends \code{\link[readr]{read_tsv}}\eqn{^{(1)}}   \cr
   \code{rd_xsv}    \tab Extends \code{\link[readr]{read_delim}}\eqn{^{(1)}} \cr   \tab     }
-\tabular{l}{  \eqn{^{(1)}} \code{file = NULL} prompts the user to select a file.                       }
+\tabular{l}{  \eqn{^{(1)}} \code{File = NULL} prompts the user to select a file.                       }
 }
 \seealso{
 Other extensions: 
@@ -127,7 +61,7 @@ Other extensions:
 
 Other wraps: 
 \code{\link{basics}()},
-\code{\link{dp}},
+\code{\link{dp}()},
 \code{\link{dt}()},
 \code{\link{ggp}()},
 \code{\link{gr}},

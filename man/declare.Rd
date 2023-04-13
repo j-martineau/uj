@@ -73,7 +73,7 @@ This family of functions enforces the restrictions that names must (a) contain o
   \code{dtfNA}   \tab Declares a \code{data.frame} of \code{NA} values.                                                                                          }
 \cr\cr \strong{Functions declaring matrices:}
 \tabular{ll}{  \code{mat}     \tab Declares a matrix.                                                                                                                  \cr   \tab   \cr
-  \code{matd}    \tab Declares a square diagonal matrix: off-diags are \code{0}, \code{FALSE}, and \code{""} for \code{x} of mode \code{'numeric'}, \code{'logical'}, and \code{'character'}, respectively. }
+  \code{matd}    \tab Declares a square diagonal matrix: off-diags are \code{0}, \code{FALSE}, and \code{""} for \code{X} of mode \code{'numeric'}, \code{'logical'}, and \code{'character'}, respectively. }
 \cr\cr \strong{Functions declaring atomic vectors:}
 \tabular{ll}{  \code{vec}     \tab Declares a vector.                                                                       \cr   \tab   \cr
   \code{vec.}    \tab Declares a named atomic vector concisely: \code{vec.(a, b)} is identical to \code{c(a = a, b = b)} \cr   \tab   \cr
@@ -109,12 +109,12 @@ dmat(1, 3)
 dmat(TRUE, 3)
 
 vls(egABC, egNums, egNA)
-vls(egABC, egNums, egABC, VN = labs1)
+vls(egABC, egNums, egABC, VN = Labs1)
 vls(egABC = egABC, egNums = egNums, egNA = egNA)
 vls(egABC, egNums, egNA, VN = "egABC|egNums|egNA")
 vls.(egABC, egNums, egNA)
 
-dtf(egABC, egNUMS, egNA, CN = labs2)
+dtf(egABC, egNUMS, egNA, CN = Labs2)
 dtf(egABC = egABC, egNUMS = egNUMS, egNA = egNA)
 dtf(egABC, egNUMS, egNA, CN = "egABC|egNUMS|egNA")
 dtf.(egABC, egNUMS, egNA)

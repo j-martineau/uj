@@ -14,36 +14,36 @@
 \alias{unq_vls}
 \title{Unique + xclass combination properties}
 \usage{
-unq_ccc(x, ccc, ...)
+unq_ccc(X, CCC, ...)
 
 unq_ccc_funs()
 
-unq_arr(x, ...)
+unq_arr(X, ...)
 
-unq_dtf(x, ...)
+unq_dtf(X, ...)
 
-unq_gen(x, ...)
+unq_gen(X, ...)
 
-unq_mat(x, ...)
+unq_mat(X, ...)
 
-unq_mvc(x, ...)
+unq_mvc(X, ...)
 
-unq_scl(x, ...)
+unq_scl(X, ...)
 
-unq_vec(x, ...)
+unq_vec(X, ...)
 
-unq_vls(x, ...)
+unq_vls(X, ...)
 }
 \arguments{
-\item{x}{An R object.}
-
-\item{ccc}{A character scalar single xclass property from \code{\link{ccc_props}()}.}
+\item{X}{An R object.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
   \describe{
     \item{\code{}}{}
   }}
+
+\item{ccc}{A character scalar single xclass property from \code{\link{ccc_props}()}.}
 }
 \value{
 \strong{A character vector} \cr\cr \code{unq_ccc_funs}
@@ -54,16 +54,16 @@ Functions checking for combinations of \link[=UNQ]{uniqueness} and \link[=ccc]{x
 }
 \details{
 \tabular{ll}{  \code{unq_ccc_funs}   \tab What \link[=UNQ]{unique} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?                          \cr   \tab   \cr
-  \verb{unq_\{ccc\}}      \tab Is \code{x} both unique and a match to the single xclass property \code{'{ccc}'} where \code{{ccc}} is a placeholder for any given xclass property? \cr   \tab   \cr
-  \code{unq_ccc}        \tab Is \code{x} both unique and a match to the single xclass property in argument \code{ccc}?                                                                     }
+  \verb{unq_\{ccc\}}      \tab Is \code{X} both unique and a match to the single xclass property \code{'{ccc}'} where \code{{ccc}} is a placeholder for any given xclass property? \cr   \tab   \cr
+  \code{unq_ccc}        \tab Is \code{X} both unique and a match to the single xclass property in argument \code{ccc}?                                                                     }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{lt, le, ge, gt}    \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{n, nr, nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{vals}              \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{
@@ -95,7 +95,6 @@ Other properties:
 \code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
-\code{\link{checker}},
 \code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
@@ -108,7 +107,9 @@ Other properties:
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
+\code{\link{ppp_fast}()},
 \code{\link{ppp}()},
-\code{\link{sss}()}
+\code{\link{sss}()},
+\code{\link{stopperr}()}
 }
 \concept{properties}

@@ -14,40 +14,40 @@
 \alias{ancestor}
 \title{Function names and counts in the call stack}
 \usage{
-callers(vec = TRUE)
+callers(Vec = TRUE)
 
-caller(scl = TRUE)
+caller(Scl = TRUE)
 
-caller1(scl = TRUE)
+caller1(Scl = TRUE)
 
-caller2(scl = TRUE)
+caller2(Scl = TRUE)
 
-callerN(n, err = TRUE, scl = TRUE)
+callerN(N, Err = TRUE, Scl = TRUE)
 
-callersN(..., err = TRUE, vec = TRUE)
+callersN(..., Err = TRUE, Vec = TRUE)
 
 ncallers()
 
-lineage(vec = TRUE)
+lineage(Vec = TRUE)
 
-self(scl = TRUE)
+self(Scl = TRUE)
 
-ancestor(scl = TRUE)
+ancestor(Scl = TRUE)
 }
 \arguments{
-\item{vec}{\code{TRUE} or \code{FALSE} indicating whether to represent both package and function in a character vector rather than as a two element list with one element for packages and another for functions.}
+\item{Vec}{\code{TRUE} or \code{FALSE} indicating whether to represent both package and function in a character vector rather than as a two element list with one element for packages and another for functions.}
 
-\item{scl}{\code{TRUE} or \code{FALSE} indicating wehther to collapse package and function into a character scalar rather than as a two element list with one element for packages and another for functions.}
+\item{Scl}{\code{TRUE} or \code{FALSE} indicating whether to collapse package and function into a character scalar rather than as a two element list with one element for packages and another for functions.}
 
-\item{n}{A \link[cmp_psw_vec]{complete positive whole-number scalar} giving the number of generations back in the function call stack to go.}
+\item{N}{A \link[cmp_psw_vec]{complete positive whole-number scalar} giving the number of generations back in the function call stack to go.}
 
 \item{...}{An arbitrary number of \link[=cmp_psw_vec]{complete positive whole-number vecs} giving the number(s) of generations back in the function call stack to go.}
 }
 \value{
 \strong{An integer scalar}                                            \cr\cr \code{ncallers}
-\cr\cr  \strong{A \verb{list(pkg = <character vector>, fun = <character vector>)}} \cr\cr All others when \code{vec = FALSE} or \code{scl = FALSE}.
-\cr\cr  \strong{A character vector} (when \code{vec = TRUE})                       \cr\cr \verb{callers, lineage, callersN}
-\cr\cr  \strong{A character scalar} (when \code{scl = TRUE})                       \cr\cr \verb{ancestor, caller, caller1, caller2, callerN, self}
+\cr\cr  \strong{A \verb{list(pkg = <character vector>, fun = <character vector>)}} \cr\cr  All others when \code{Vec = FALSE} or \code{Scl = FALSE}.
+\cr\cr  \strong{A character vector} (when \code{Vec = TRUE})                       \cr\cr \verb{callers, lineage, callersN}
+\cr\cr  \strong{A character scalar} (when \code{Scl = TRUE})                       \cr\cr \verb{ancestor, caller, caller1, caller2, callerN, self}
 }
 \description{
 This family of functions addresses the function call stack \emph{from the perspective of a function that calls one of the functions in this family}. Consistent with that perspective, the basic terminology this family of functions uses is the following:
@@ -73,27 +73,27 @@ Consistent with this terminology introduced in the \emph{description}, the follo
   \code{K-1}             \tab \verb{ancestor(), callerN(K-1)}                  \cr
   \code{K}               \tab \code{callerN(K)} (returns \code{'{ command line }'}).  }
 \cr\cr Similarly, the following functions return values associated with at least \code{1} generation:
-\tabular{ll}{  \code{ncallers}   \tab Number of calling functions (excludes \emph{self}).           \cr   \tab   \cr
-  \code{callersN}   \tab Names of the calling function(s) \code{N} generation(s) back. \cr   \tab   \cr
-  \code{callers}    \tab Names of all calling functions, (excludes \emph{self}).       \cr   \tab   \cr
-  \code{lineage}    \tab Names of all lineage functions (includes \emph{self}).                       }
+\tabular{ll}{  \code{ncallers}        \tab Number of calling functions (excludes \emph{self}).           \cr   \tab   \cr
+  \code{callersN}        \tab Names of the calling function(s) \code{N} generation(s) back. \cr   \tab   \cr
+  \code{callers}         \tab Names of all calling functions, (excludes \emph{self}).       \cr   \tab   \cr
+  \code{lineage}         \tab Names of all lineage functions (includes \emph{self}).                       }
 }
 \examples{
 egD <- function() {list(self      = self()                   ,
                         caller    = caller()                 ,
                         callers   = callers()                ,
-                        caller2   = caller2(err = F)         ,
-                        caller3   = callerN(3, err = F)      ,
-                        callers23 = callersN(2, 3, err = F)  ,
+                        caller2   = caller2(Err = F)         ,
+                        caller3   = callerN(3, Err = F)      ,
+                        callers23 = callersN(2, 3, Err = F)  ,
                         ncallers  = ncallers()               ,
                         ancestor  = ancestor()               ,
                         lineage   = lineage()                )}
 egC <- function() {list(self      = self()                   ,
                         caller    = caller()                 ,
                         callers   = callers()                ,
-                        caller2   = caller2(err = F)         ,
-                        caller3   = callerN(3, err = F)      ,
-                        callers23 = callersN(2, 3, err = F)  ,
+                        caller2   = caller2(Err = F)         ,
+                        caller3   = callerN(3, Err = F)      ,
+                        callers23 = callersN(2, 3, Err = F)  ,
                         ncallers  = ncallers()               ,
                         ancestor  = ancestor()               ,
                         lineage   = lineage()                ,
@@ -101,9 +101,9 @@ egC <- function() {list(self      = self()                   ,
 egB <- function() {list(self      = self()                   ,
                         caller    = caller()                 ,
                         callers   = callers()                ,
-                        caller2   = caller2(err = F)         ,
-                        caller3   = callerN(3, err = F)      ,
-                        callers23 = callersN(2, 3, err = F)  ,
+                        caller2   = caller2(Err = F)         ,
+                        caller3   = callerN(3, Err = F)      ,
+                        callers23 = callersN(2, 3, Err = F)  ,
                         ncallers  = ncallers()               ,
                         ancestor  = ancestor()               ,
                         lineage   = lineage()                ,
@@ -111,9 +111,9 @@ egB <- function() {list(self      = self()                   ,
 egA <- function() {list(self      = self()                   ,
                         caller    = caller()                 ,
                         callers   = callers()                ,
-                        caller2   = caller2(err = F)         ,
-                        caller3   = callerN(3, err = F)      ,
-                        callers23 = callersN(2, 3, err = F)  ,
+                        caller2   = caller2(Err = F)         ,
+                        caller3   = callerN(3, Err = F)      ,
+                        callers23 = callersN(2, 3, Err = F)  ,
                         ncallers  = ncallers()               ,
                         ancestor  = ancestor()               ,
                         lineage   = lineage()                ,

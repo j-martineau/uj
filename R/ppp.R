@@ -20,25 +20,25 @@
 #'                `combo_from_spec`    \tab What are the constituent *combo* properties in a *flex* property spec?   \cr   \tab   \cr
 #'                `props_from_spec`    \tab What are the *unique* constituent *single* properties in a *flex* property spec?        }
 #' **Functions to check whether a value is a valid property spec**
-#' \tabular{ll}{  `is_prop_combo`   \tab Is `combo` a valid *combo* property spec?                    \cr   \tab   \cr
-#'                `is_prop_spec`    \tab Is `spec` a valid *flex* property spec?                      \cr   \tab   \cr
-#'                `is_prop_fun`     \tab Is `fun` the name of a dedicated property checking function? \cr   \tab   \cr
-#'                `is_prop`         \tab Is `prop` a valid *single* property?                                        }
+#' \tabular{ll}{  `is_prop_combo`   \tab Is `Combo` a valid *combo* property spec?                    \cr   \tab   \cr
+#'                `is_prop_spec`    \tab Is `Spec` a valid *flex* property spec?                      \cr   \tab   \cr
+#'                `is_prop_fun`     \tab Is `Fun` the name of a dedicated property checking function? \cr   \tab   \cr
+#'                `is_prop`         \tab Is `Prop` a valid *single* property?                                        }
 #' **Functions to define properties and property specs**
 #' \tabular{ll}{  `combo_concise`   \tab How is a *combo* property spec (concisely) defined?                       \cr   \tab   \cr
 #'                `spec_concise`    \tab How is an *options* property spec (concisely) defined?                    \cr   \tab   \cr
 #'                `prop_verbose`    \tab How is a *single* property (verbosely) defined?                           \cr   \tab   \cr
 #'                `prop_defs`       \tab What are the definitions of all possible *single* properties (returned as a data.frame)? }
 #' **Functions to list names of dedicated property-checking functions**
-#' \tabular{ll}{  `ppp_or_funs`   \tab What dedicated functions check `x` for either special values or a match to a *flex* property spec? \cr   \tab   \cr
-#'                `prop_funs`     \tab What dedicated functions check `x` for a match to a specific *single* or *combo* property?         \cr   \tab   \cr
+#' \tabular{ll}{  `ppp_or_funs`   \tab What dedicated functions check `X` for either special values or a match to a *flex* property spec? \cr   \tab   \cr
+#'                `prop_funs`     \tab What dedicated functions check `X` for a match to a specific *single* or *combo* property?         \cr   \tab   \cr
 #'                `all_props`     \tab What is the complete set of all possible *single* properties?                                                     }
 #' **Functions to check object against arbitrary property specs**
-#' \tabular{ll}{  `nas_or`   \tab Is `x` either `NA` or a match to the *flex* property spec in `spec`?  \cr   \tab   \cr
-#'                `nll_or`   \tab Is `x` either `NULL` or a match to the *flex* property spec in `spec` \cr   \tab   \cr
-#'                `ppp`      \tab Is `x` a match to the *flex* property spec in `spec`?                                }
+#' \tabular{ll}{  `nas_or`   \tab Is `X` either `NA` or a match to the *flex* property spec in `Spec`?  \cr   \tab   \cr
+#'                `nll_or`   \tab Is `X` either `NULL` or a match to the *flex* property spec in `Spec` \cr   \tab   \cr
+#'                `ppp`      \tab Is `X` a match to the *flex* property spec in `Spec`?                                }
 #' **Function to list all of an object's** single **properties across property families**
-#' \tabular{ll}{  `ppp`   \tab What are all of `x`'s *single* properties compiled from all property families? }
+#' \tabular{ll}{  `ppp`   \tab What are all of `X`'s *single* properties compiled from all property families? }
 #' For convenience, property functions from other function families are also described below.
 #' \cr\cr **Functions to list all** single **properties in a property family**
 #' \tabular{ll}{  `bbb_props`   \tab \link[=bbb]{basic}       \cr
@@ -86,16 +86,16 @@
 #'                `unq_{mmm}_{ccc}`   \tab integrity = `'unq'` + xmode = `'{mmm}'` + xclass = `'{ccc}'`   }
 #' **Functions to check an object against an arbitrary* combo *property spec**
 #' \cr\cr For these functions, an uppercase letter repeated three times is a placeholder for the value of an arbitrary single property from the associated property family.
-#' \tabular{ll}{  `bbb_ccc`   \tab basic property in arg `bbb` + xclass property in arg `ccc` \cr
-#'                `mmm_ccc`   \tab xmode property in arg `mmm` + xclass property in arg `ccc` \cr
-#'                `cmp_ccc`   \tab integrity = `'cmp'` + xclass property in arg `ccc`         \cr
-#'                `sss_ccc`   \tab shape property in arg `sss` + xclass property in arg `ccc` \cr
-#'                `unq_ccc`   \tab integrity = `'unq'` + xclass property in arg `ccc`         \cr
-#'                `bbb_mmm`   \tab basic property in arg `bbb` + xmode property in arg `mmm`  \cr
-#'                `cmp_mmm`   \tab integrity = `'cmp'` + xmode property in arg `mmm`          \cr
-#'                `unq_mmm`   \tab integrity = `'unq'` + xmode property in arg `mmm`          \cr   \tab  }
-#' \tabular{ll}{  `cmp_mmm_ccc`   \tab integrity = `'cmp'` + xmode property in arg `mmm` + xclass property in arg `ccc` \cr   \tab   \cr
-#'                `unq_mmm_ccc`   \tab integrity = `'unq'` + xmode property in arg `mmm` + xclass property in arg `ccc` }
+#' \tabular{ll}{  `bbb_ccc`   \tab basic property in arg `BBB` + xclass property in arg `CCC` \cr
+#'                `mmm_ccc`   \tab xmode property in arg `MMM` + xclass property in arg `CCC` \cr
+#'                `cmp_ccc`   \tab integrity = `'cmp'` + xclass property in arg `CCC`         \cr
+#'                `sss_ccc`   \tab shape property in arg `SSS` + xclass property in arg `CCC` \cr
+#'                `unq_ccc`   \tab integrity = `'unq'` + xclass property in arg `CCC`         \cr
+#'                `bbb_mmm`   \tab basic property in arg `BBB` + xmode property in arg `MMM`  \cr
+#'                `cmp_mmm`   \tab integrity = `'cmp'` + xmode property in arg `MMM`          \cr
+#'                `unq_mmm`   \tab integrity = `'unq'` + xmode property in arg `MMM`          \cr   \tab  }
+#' \tabular{ll}{  `cmp_mmm_ccc`   \tab integrity = `'cmp'` + xmode property in arg `MMM` + xclass property in arg `CCC` \cr   \tab   \cr
+#'                `unq_mmm_ccc`   \tab integrity = `'unq'` + xmode property in arg `MMM` + xclass property in arg `CCC` }
 #' **Functions to check objects against* flex *property specs in a single family**
 #' \tabular{ll}{  `BBB`   \tab \link[=bbb]{basic}       \cr
 #'                `CCC`   \tab \link[=ccc]{xclass}      \cr
@@ -112,11 +112,11 @@
 #'                `iii`   \tab \link[=iii]{integrity}   \cr
 #'                `mmm`   \tab \link[=mmm]{xmode}       \cr
 #'                `sss`   \tab \link[=sss]{shape}         }
-#' @param as.dtf `TRUE` or `FALSE` indicating whether to return the result as a data.frame with column `1` containing property values and column `2` containing the property families.
-#' @param x An R object.
-#' @param spec A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from `ppp_vals()` separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of `TRUE` if any of them applies to `x`.
-#' @param valid A \link[=cmp_chr_vec]{complete character vec} containing all properties considered valid.
-#' @param print `TRUE` or `FALSE` indicating whether to print the property definition to the console.
+#' @param asDTF `TRUE` or `FALSE` indicating whether to return the result as a data.frame with column `1` containing property values and column `2` containing the property families.
+#' @param X An R object.
+#' @param Spec A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from `ppp_vals()` separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of `TRUE` if any of them applies to `X`.
+#' @param Valid A \link[=cmp_chr_vec]{complete character vec} containing all properties considered valid.
+#' @param Print `TRUE` or `FALSE` indicating whether to print the property definition to the console.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return **A character scalar** \cr\cr `combo_concise`    \cr `prop_verbose`     \cr `spec_concise`
@@ -159,7 +159,7 @@
 #' ppp(letters)
 #' prop_defs()
 #' @export
-ppp <- function(x) {base::sort(base::c(uj::bbb(x), uj::ccc(x), uj::ddd(x), uj::eee(x), uj::iii(x), uj::mmm(x), uj::sss(x)))}
+ppp <- function(X) {base::sort(base::c(uj::bbb(X), uj::ccc(X), uj::ddd(X), uj::eee(X), uj::iii(X), uj::mmm(X), uj::sss(X)))}
 
 #' @rdname ppp
 #' @export
@@ -167,8 +167,8 @@ ppp_or_funs <- function() {base::c("na0_or", "nll_or")}
 
 #' @rdname ppp
 #' @export
-all_props <- function(as.dtf = F) {
-  if (!uj:::.cmp_lgl_scl(as.dtf)) {uj::stopperr("[as.dtf] must be TRUE or FALSE.", PKG = "uj")}
+all_props <- function(asDTF = F) {
+  if (!uj:::.cmp_lgl_scl(asDTF)) {uj::stopperr("[asDTF] must be TRUE or FALSE.", PKG = "uj")}
   bval <- uj::bbb_props(); bfam <- base::rep("bbb", base::length(bval)); blab <- base::paste0("b_", bval)
   cval <- uj::ccc_props(); cfam <- base::rep("ccc", base::length(cval)); clab <- base::paste0("c_", cval)
   dval <- uj::ddd_props(); dfam <- base::rep("ddd", base::length(dval)); dlab <- base::paste0("d_", dval)
@@ -179,59 +179,59 @@ all_props <- function(as.dtf = F) {
   val <- base::c(bval, cval, dval, eval, ival, mval, sval)
   fam <- base::c(bfam, cfam, dfam, efam, ifam, mfam, sfam)
   ord <- base::order(base::c(blab, clab, dlab, elab, ilab, mlab, slab))
-  if (!as.dtf) {base::unique(val[ord])} else {tibble::tibble(family = fam[ord], ppp = val[ord])}
+  if (!asDTF) {base::unique(val[ord])} else {tibble::tibble(family = fam[ord], ppp = val[ord])}
 }
 
 #' @rdname ppp
 #' @export
-prop_funs <- function(as.dtf = F) {
-  if (!uj:::.cmp_lgl_scl(as.dtf)) {uj::stopperr("[as.dtf] must be TRUE or FALSE.", PKG = "uj")}
-    b_fun <-         uj::bbb_funs();   b_fam <- base::rep(        "bbb", base::length(  b_fun));   b_lab <- base::paste0("1_",   b_fam, "_",   b_fun)
-    c_fun <-         uj::ccc_funs();   c_fam <- base::rep(        "ccc", base::length(  c_fun));   c_lab <- base::paste0("1_",   c_fam, "_",   c_fun)
-    d_fun <-         uj::ddd_funs();   d_fam <- base::rep(        "ddd", base::length(  d_fun));   d_lab <- base::paste0("1_",   d_fam, "_",   d_fun)
-    e_fun <-         uj::eee_funs();   e_fam <- base::rep(        "eee", base::length(  e_fun));   e_lab <- base::paste0("1_",   e_fam, "_",   e_fun)
-    i_fun <-         uj::iii_funs();   i_fam <- base::rep(        "iii", base::length(  i_fun));   i_lab <- base::paste0("1_",   i_fam, "_",   i_fun)
-    m_fun <-         uj::mmm_funs();   m_fam <- base::rep(        "mmm", base::length(  m_fun));   m_lab <- base::paste0("1_",   m_fam, "_",   m_fun)
-    s_fun <-         uj::sss_funs();   s_fam <- base::rep(        "sss", base::length(  s_fun));   s_lab <- base::paste0("1_",   s_fam, "_",   s_fun)
-   or_fun <-      uj::ppp_or_funs();  or_fam <- base::rep(     "ppp_or", base::length( or_fun));  or_lab <- base::paste0("2_",  or_fam, "_",  or_fun)
-   bc_fun <-     uj::bbb_ccc_funs();  bc_fam <- base::rep(    "bbb_ccc", base::length( bc_fun));  bc_lab <- base::paste0("3_",  bc_fam, "_",  bc_fun)
-   bm_fun <-     uj::bbb_mmm_funs();  bm_fam <- base::rep(    "bbb_mmm", base::length( bm_fun));  bm_lab <- base::paste0("3_",  bm_fam, "_",  bm_fun)
-   mc_fun <-     uj::mmm_ccc_funs();  mc_fam <- base::rep(    "mmm_ccc", base::length( mc_fun));  mc_lab <- base::paste0("3_",  mc_fam, "_",  mc_fun)
-   sc_fun <-     uj::sss_ccc_funs();  sc_fam <- base::rep(    "sss_ccc", base::length( sc_fun));  sc_lab <- base::paste0("3_",  sc_fam, "_",  sc_fun)
-   cc_fun <-     uj::cmp_ccc_funs();  cc_fam <- base::rep(    "cmp_ccc", base::length( cc_fun));  cc_lab <- base::paste0("4_",  cc_fam, "_",  cc_fun)
-   cm_fun <-     uj::cmp_mmm_funs();  cm_fam <- base::rep(    "cmp_mmm", base::length( cm_fun));  cm_lab <- base::paste0("4_",  cm_fam, "_",  cm_fun)
-   uc_fun <-     uj::unq_mmm_funs();  uc_fam <- base::rep(    "unq_ccc", base::length( uc_fun));  uc_lab <- base::paste0("4_",  uc_fam, "_",  uc_fun)
-   um_fun <-     uj::unq_mmm_funs();  um_fam <- base::rep(    "unq_mmm", base::length( um_fun));  um_lab <- base::paste0("4_",  um_fam, "_",  um_fun)
-  cmc_fun <- uj::cmp_mmm_ccc_funs(); cmc_fam <- base::rep("cmp_mmm_ccc", base::length(cmc_fun)); cmc_lab <- base::paste0("5_", cmc_fam, "_", cmc_fun)
-  umc_fun <- uj::unq_mmm_ccc_funs(); umc_fam <- base::rep("unq_mmm_ccc", base::length(umc_fun)); umc_lab <- base::paste0("5_", umc_fam, "_", umc_fun)
-  fun <- base::c(b_fun, c_fun, d_fun, e_fun, i_fun, m_fun, s_fun, or_fun, bc_fun, bm_fun, mc_fun, sc_fun, cc_fun, cm_fun, uc_fun, um_fun, cmc_fun, umc_fun)
-  fam <- base::c(b_fam, c_fam, d_fam, e_fam, i_fam, m_fam, s_fam, or_fam, bc_fam, bm_fam, mc_fam, sc_fam, cc_fam, cm_fam, uc_fam, um_fam, cmc_fam, umc_fam)
-  ord <- base::c(b_lab, c_lab, d_lab, e_lab, i_lab, m_lab, s_lab, or_lab, bc_lab, bm_lab, mc_lab, sc_lab, cc_lab, cm_lab, uc_lab, um_lab, cmc_lab, umc_lab)
-  ord <- base::order(ord)
-  fun <- fun[ord]
-  fam <- fam[ord]
-  uj::f0(!as.dtf, base::unique(fun[ord]), base::unique(tibble::tibble(family = fam[ord], fun = fun[ord])))
+prop_funs <- function(asDTF = F) {
+  if (!uj:::.cmp_lgl_scl(asDTF)) {uj::stopperr("[asDTF] must be TRUE or FALSE.", PKG = "uj")}
+    bFun <-         uj::bbb_funs();   bFam <- base::rep(        "bbb", base::length(  bFun));   bLab <- base::paste0("1_",   bFam, "_",   bFun)
+    cFun <-         uj::ccc_funs();   cFam <- base::rep(        "ccc", base::length(  cFun));   cLab <- base::paste0("1_",   cFam, "_",   cFun)
+    dFun <-         uj::ddd_funs();   dFam <- base::rep(        "ddd", base::length(  dFun));   dLab <- base::paste0("1_",   dFam, "_",   dFun)
+    eFun <-         uj::eee_funs();   eFam <- base::rep(        "eee", base::length(  eFun));   eLab <- base::paste0("1_",   eFam, "_",   eFun)
+    iFun <-         uj::iii_funs();   iFam <- base::rep(        "iii", base::length(  iFun));   iLab <- base::paste0("1_",   iFam, "_",   iFun)
+    mFun <-         uj::mmm_funs();   mFam <- base::rep(        "mmm", base::length(  mFun));   mLab <- base::paste0("1_",   mFam, "_",   mFun)
+    sFun <-         uj::sss_funs();   sFam <- base::rep(        "sss", base::length(  sFun));   sLab <- base::paste0("1_",   sFam, "_",   sFun)
+   orFun <-      uj::ppp_or_funs();  orFam <- base::rep(     "ppp_or", base::length( orFun));  orLab <- base::paste0("2_",  orFam, "_",  orFun)
+   bcFun <-     uj::bbb_ccc_funs();  bcFam <- base::rep(    "bbb_ccc", base::length( bcFun));  bcLab <- base::paste0("3_",  bcFam, "_",  bcFun)
+   bmFun <-     uj::bbb_mmm_funs();  bmFam <- base::rep(    "bbb_mmm", base::length( bmFun));  bmLab <- base::paste0("3_",  bmFam, "_",  bmFun)
+   mcFun <-     uj::mmm_ccc_funs();  mcFam <- base::rep(    "mmm_ccc", base::length( mcFun));  mcLab <- base::paste0("3_",  mcFam, "_",  mcFun)
+   scFun <-     uj::sss_ccc_funs();  scFam <- base::rep(    "sss_ccc", base::length( scFun));  scLab <- base::paste0("3_",  scFam, "_",  scFun)
+   ccFun <-     uj::cmp_ccc_funs();  ccFam <- base::rep(    "cmp_ccc", base::length( ccFun));  ccLab <- base::paste0("4_",  ccFam, "_",  ccFun)
+   cmFun <-     uj::cmp_mmm_funs();  cmFam <- base::rep(    "cmp_mmm", base::length( cmFun));  cmLab <- base::paste0("4_",  cmFam, "_",  cmFun)
+   ucFun <-     uj::unq_mmm_funs();  ucFam <- base::rep(    "unq_ccc", base::length( ucFun));  ucLab <- base::paste0("4_",  ucFam, "_",  ucFun)
+   umFun <-     uj::unq_mmm_funs();  umFam <- base::rep(    "unq_mmm", base::length( umFun));  umLab <- base::paste0("4_",  umFam, "_",  umFun)
+  cmcFun <- uj::cmp_mmm_ccc_funs(); cmcFam <- base::rep("cmp_mmm_ccc", base::length(cmcFun)); cmcLab <- base::paste0("5_", cmcFam, "_", cmcFun)
+  umcFun <- uj::unq_mmm_ccc_funs(); umcFam <- base::rep("unq_mmm_ccc", base::length(umcFun)); umcLab <- base::paste0("5_", umcFam, "_", umcFun)
+  Fun <- base::c(bFun, cFun, dFun, eFun, iFun, mFun, sFun, orFun, bcFun, bmFun, mcFun, scFun, ccFun, cmFun, ucFun, umFun, cmcFun, umcFun)
+  Fam <- base::c(bFam, cFam, dFam, eFam, iFam, mFam, sFam, orFam, bcFam, bmFam, mcFam, scFam, ccFam, cmFam, ucFam, umFam, cmcFam, umcFam)
+  Ord <- base::c(bLab, cLab, dLab, eLab, iLab, mLab, sLab, orLab, bcLab, bmLab, mcLab, scLab, ccLab, cmLab, ucLab, umLab, cmcLab, umcLab)
+  Ord <- base::order(Ord)
+  Fun <- Fun[Ord]
+  Fam <- Fam[Ord]
+  uj::f0(!asDTF, base::unique(Fun[Ord]), base::unique(tibble::tibble(Family = Fam[Ord], Fun = Fun[Ord])))
 }
 
 #' @rdname ppp
 #' @export
-is_prop_fun <- function(fun) {
-  if (!uj:::.cmp_chr_scl(fun)) {uj::stopperr("[fun] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")}
-  fun %in% uj::prop_funs()
+is_prop_fun <- function(Fun) {
+  if (!uj:::.cmp_chr_scl(Fun)) {uj::stopperr("[Fun] must be a complete character scalar (?cmp_chr_scl).", PKG = "uj")}
+  Fun %in% uj::prop_funs()
 }
 
 #' @rdname ppp
 #' @export
-is_prop <- function(prop) {if (uj:::.cmp_ch3_scl(prop)) {base::tolower(prop) %in% uj:::.ppp} else {F}}
+is_prop <- function(Prop) {if (uj:::.cmp_ch3_scl(Prop)) {base::tolower(Prop) %in% uj::v(ppp)} else {F}}
 
 #' @rdname ppp
 #' @export
-is_prop_combo <- function(combo) {
-  if (uj:::.cmp_chr_scl(combo)) {
-    combo <- uj::av(base::strsplit(combo, "|", fixed = T))
-    if (base::length(combo) == 1) {
-      props <- uj::av(base::strsplit(combo, "_", fixed = T))
-      if (base::length(base::unique(props)) == base::length(props)) {base::all(props %in% uj:::.ppp)}
+is_prop_combo <- function(Combo) {
+  if (uj:::.cmp_chr_scl(Combo)) {
+    Combo <- uj::av(base::strsplit(Combo, "|", fixed = T))
+    if (base::length(Combo) == 1) {
+      Props <- uj::av(base::strsplit(Combo, "_", fixed = T))
+      if (base::length(base::unique(Props)) == base::length(Props)) {base::all(Props %in% uj::v(ppp))}
       else {F}
     } else {F}
   } else {F}
@@ -239,76 +239,76 @@ is_prop_combo <- function(combo) {
 
 #' @rdname ppp
 #' @export
-is_prop_spec <- function(spec) {
-  if (uj:::.cmp_chr_scl(spec)) {
-    combos <- uj::av(base::strsplit(spec, "|", fixed = T))
-    if (base::length(base::unique(combos)) == base::length(combos)) {
-      base::all(base::sapply(combos, uj::is_prop_combo) | base::sapply(combos, uj::is_prop))
+is_prop_spec <- function(Spec) {
+  if (uj:::.cmp_chr_scl(Spec)) {
+    Combos <- uj::av(base::strsplit(Spec, "|", fixed = T))
+    if (base::length(base::unique(Combos)) == base::length(Combos)) {
+      base::all(base::sapply(Combos, uj::is_prop_combo) | base::sapply(Combos, uj::is_prop))
     } else {F}
   } else {F}
 }
 
 #' @rdname ppp
 #' @export
-props_from_spec <- function(spec, valid = all_props()) {
-  ok.valid <- uj::f0(uj:::.cmp_chr_vec(valid), base::all(valid %in% uj:::.ppp), F)
-  ok.spec <- uj:::.cmp_chr_scl(spec)
-  errs <- NULL
-  if (!ok.spec) {errs <- base::c(errs, "[spec] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!ok.valid) {errs <- base::c(errs, "[valid] must be a complete character vector (?cmp_chr_vec) containing only values from all_props().")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
-  singles <- uj:::.spec2props(spec)
-  if (base::length(singles) == 0) {uj::stopperr("[spec] is empty.", PKG = "uj")}
-  if (!base::all(singles %in% valid)) {uj::stopperr("The property spec [spec] contains a property not in [valid].", PKG = "uj")}
-  base::sort(base::unique(singles))
+props_from_spec <- function(Spec, Valid = all_props()) {
+  OkValid <- uj::f0(uj:::.cmp_chr_vec(Valid), base::all(Valid %in% uj::v(ppp)), F)
+  OkSpec <- uj:::.cmp_chr_scl(Spec)
+  Errors <- NULL
+  if (!OkSpec) {Errors <- base::c(Errors, "[Spec] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!OkValid) {Errors <- base::c(Errors, "[Valid] must be a complete character vector (?cmp_chr_vec) containing only values from all_props().")}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  Singles <- uj:::.spec2props(Spec)
+  if (base::length(Singles) == 0) {uj::stopperr("[Spec] is empty.", PKG = "uj")}
+  if (!base::all(Singles %in% Valid)) {uj::stopperr("The property spec [Spec] contains a property not in [Valid].", PKG = "uj")}
+  base::sort(base::unique(Singles))
 }
 
 #' @rdname ppp
 #' @export
-combos_from_spec <- function(spec, valid = uj::all_props()) {base::sort(base::unique(uj:::.spec2combos(spec)))}
+combos_from_spec <- function(Spec, Valid = uj::all_props()) {base::sort(base::unique(uj:::.spec2combos(Spec)))}
 
 #' @rdname ppp
 #' @export
-props_from_combo <- function(combo, valid = uj::all_props()) {
-  uj::f0(base::length(uj:::.spec2props(combo)) == 1,
-         base::sort(base::unique(uj:::.combo2props(combo))),
-         uj::stopperr("[combo] contains more than one combination property.", PKG = "uj"))
+props_from_combo <- function(Combo, valid = uj::all_props()) {
+  uj::f0(base::length(uj:::.spec2props(Combo)) == 1,
+         base::sort(base::unique(uj:::.combo2props(Combo))),
+         uj::stopperr("[Combo] contains more than one combination property.", PKG = "uj"))
 }
 
 #' @rdname ppp
 #' @export
-PPP <- function(x, spec, ...) {
-  if (!uj::is_prop_spec(spec)) {uj::stopperr("[spec] specifies a property not in all_props().", PKG = "uj")}
-  if (uj::meets(x, ...)) {
-    all.props <- uj::all_props()
-    combos <- uj:::.spec2combos(spec)
-    for (combo in combos) {
-      is.one <- uj::f0(base::length(combo) == 1, combo %in% all.props, F)
-      is.fun <- uj::is_prop_fun(combo)
-      if (!is.one & !is.fun) {
-        singles <- uj:::.combo2props(combo)
-        meets <- T
-        for (prop in singles) {if (meets) {meets <- meets & base::eval(base::parse(text = base::paste0("uj:::.", base::toupper(prop), "(x)")))}}
-      } else if (is.one) {meets <- base::eval(base::parse(text = base::paste0("uj:::.", base::toupper(combo), "(x)")))}
-      else {meets <- base::eval(base::parse(text = base::paste0("uj::", combo, "(x)")))}
-      if (meets) {return(T)}
+PPP <- function(X, Spec, ...) {
+  if (!uj::is_prop_spec(Spec)) {uj::stopperr("[Spec] specifies a property not in all_props().", PKG = "uj")}
+  if (uj::meets(X, ...)) {
+    AllProps <- uj::all_props()
+    Combos <- uj:::.spec2combos(Spec)
+    for (Combo in Combos) {
+      IsOne <- uj::f0(base::length(Combo) == 1, Combo %in% AllProps, F)
+      IsFun <- uj::is_prop_fun(Combo)
+      if (!IsOne & !IsFun) {
+        Singles <- uj:::.combo2props(Combo)
+        Meets <- T
+        for (Prop in Singles) {if (Meets) {Meets <- Meets & base::eval(base::parse(text = base::paste0("uj:::.", base::toupper(Prop), "(X)")))}}
+      } else if (IsOne) {Meets <- base::eval(base::parse(text = base::paste0("uj:::.", base::toupper(Combo), "(X)")))}
+      else {Meets <- base::eval(base::parse(text = base::paste0("uj::", Combo, "(X)")))}
+      if (Meets) {return(T)}
   }}
   F
 }
 
 #' @rdname ppp
 #' @export
-nll_or <- function(x, spec, ...) {uj::f0(base::is.null(x), T, uj::PPP(x, spec, ...))}
+nll_or <- function(X, Spec, ...) {uj::f0(base::is.null(X), T, uj::PPP(X, Spec, ...))}
 
 #' @rdname ppp
 #' @export
-na0_or <- function(x, spec, ...) {uj::f0(uj:::.NA0(x), T, uj::PPP(x, spec, ...))}
+na0_or <- function(X, Spec, ...) {uj::f0(uj:::.NA0(X), T, uj::PPP(X, Spec, ...))}
 
 #' @rdname ppp
 #' @export
 prop_defs <- function() {
   tibble::tribble(
-    ~family, ~value  , ~short                              , ~long,
+    ~Family, ~Value  , ~Short                              , ~Long,
     "bbb"  , "atm"   , "atomic"                            , "An atomic object",
     "bbb"  , "def"   , "defined"                           , "A defined object (not NULL)",
     "bbb"  , "fun"   , "function or function name"         , "A function object or a character scalar containing a function name",
@@ -367,12 +367,12 @@ prop_defs <- function() {
     "mmm"  , "srt"   , "sortable"                          , "A sortable object (character, logical, numeric, or ordered factor)",
     "mmm"  , "uno"   , "unordered-factor"                  , "A unordered-factor object",
     "mmm"  , "whl"   , "whole-number"                      , "A whole-number object",
-    "sss"  , "col"   , "column"                            , "A column object (2+ x 1 data.frame/matrix)",
+    "sss"  , "col"   , "column"                            , "A column object (2+ X 1 data.frame/matrix)",
     "sss"  , "emp"   , "empty"                             , "An empty object (of length 0, but not NULL)",
     "sss"  , "lin"   , "linear"                            , "A linear object (vector/vlist/1D array of length 2+, row/column matrix/data.frame, or populated array with multiple indexing positions in exactly 1 dimension)",
-    "sss"  , "pnt"   , "point"                             , "A point object (length-1 vector/array/vlist or 1 x 1 data.frame/matrix)",
-    "sss"  , "rct"   , "rectangular"                       , "A rectangular object (2+ x 2+ data.frame/matrix)",
-    "sss"  , "row"   , "row"                               , "A row object (1 x 2+ data.frame/matrix)",
+    "sss"  , "pnt"   , "point"                             , "A point object (length-1 vector/array/vlist or 1 X 1 data.frame/matrix)",
+    "sss"  , "rct"   , "rectangular"                       , "A rectangular object (2+ X 2+ data.frame/matrix)",
+    "sss"  , "row"   , "row"                               , "A row object (1 X 2+ data.frame/matrix)",
     "sss"  , "sld"   , "solid"                             , "A solid object (array with multiple index positions in 3+ dimensions)",
     "sss"  , "sqr"   , "square"                            , "A square atomic matrix"
   )
@@ -380,51 +380,51 @@ prop_defs <- function() {
 
 #' @rdname ppp
 #' @export
-prop_verbose <- function(prop, print = TRUE) {
-  errs <- NULL
-  if (!uj::is_prop(prop)) {errs <- base::c(errs, "[prop] must be a character scalar containing a single property spec.")}
-  prop <- base::tolower(prop)
-  if (!uj:::.cmp_lgl_scl(print)) {errs <- base::c(errs, "[print] must be TRUE or FALSE.")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
-  y <- uj::prop_defs()
-  if (!base::is.null(prop)) {y <- base::paste0("\n family: '", uj::av(y$family[y$value == prop]), "'"  ,
-                                               "\n value:  '", prop, "'"                               ,
-                                               "\n short:   ", uj::av(y$short[y$value == prop])        ,
-                                               "\n long:    ", uj::av(y$long[y$value == prop]), ".\n\n")}
-  if (!print) {y} else if (base::is.data.frame(y)) {base::print(y, n = base::nrow(y))} else {base::cat(y)}
+prop_verbose <- function(Prop, Print = TRUE) {
+  Errors <- NULL
+  if (!uj::is_prop(Prop)) {Errors <- base::c(Errors, "[Prop] must be a character scalar containing a single property spec.")}
+  Prop <- base::tolower(Prop)
+  if (!uj:::.cmp_lgl_scl(Print)) {Errors <- base::c(Errors, "[Print] must be TRUE or FALSE.")}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  Y <- uj::prop_defs()
+  if (!base::is.null(Prop)) {Y <- base::paste0("\n Family: '", uj::av(Y$Family[Y$Value == Prop]), "'"  ,
+                                               "\n Value:  '", Prop, "'"                               ,
+                                               "\n Short:   ", uj::av(Y$Short[Y$Value == Prop])        ,
+                                               "\n Long:    ", uj::av(Y$Long[Y$Value == Prop]), ".\n\n")}
+  if (!Print) {Y} else if (base::is.data.frame(Y)) {base::print(Y, n = base::nrow(Y))} else {base::cat(Y)}
 }
 
 #' @rdname ppp
 #' @export
-combo_concise <- function(combo) {
-  if (!uj::is_prop_combo(combo)) {uj::stopperr("[combo] does not contain a valid property combo spec.", PKG = "uj")}
-  combo <- uj:::.combo2props(combo)
-  defs <- uj::prop_defs()
-  fam <- uj::av(defs$family)
-  val <- uj::av(defs$value)
-  abb <- uj::av(defs$short)
-  bbb <- abb[val %in% combo & fam == "bbb"]
-  ccc <- abb[val %in% combo & fam == "ccc"]
-  ddd <- abb[val %in% combo & fam == "ddd"]
-  eee <- abb[val %in% combo & fam == "eee"]
-  iii <- abb[val %in% combo & fam == "iii"]
-  mmm <- abb[val %in% combo & fam == "mmm"]
-  sss <- abb[val %in% combo & fam == "sss"]
-  object <- base::length(ccc) == 0
-  y <- base::paste0(base::c(bbb, ccc, ddd, eee, iii, mmm, sss), collapse = ", ")
-  y <- uj::av(base::strsplit(y, ", ", fixed = T))
-  y <- y[!base::duplicated(y)]
-  y <- base::paste0(y, collapse = ", ")
-  if (object) {y <- base::paste0(y, " object")}
-  prefix <- uj::f0(base::substr(y, 1, 1) %in% base::c("a", "e", "i", "o", "u"), "an ", "a ")
-  base::paste0(prefix, y)
+combo_concise <- function(Combo) {
+  if (!uj::is_prop_combo(Combo)) {uj::stopperr("[Combo] does not contain a valid property combo spec.", PKG = "uj")}
+  Combo <- uj:::.combo2props(Combo)
+  Defs <- uj::prop_defs()
+  Family <- uj::av(Defs$Family)
+  Value <- uj::av(Defs$Value)
+  Short <- uj::av(Defs$Short)
+  bbb <- Short[Value %in% Combo & Family == "bbb"]
+  ccc <- Short[Value %in% Combo & Family == "ccc"]
+  ddd <- Short[Value %in% Combo & Family == "ddd"]
+  eee <- Short[Value %in% Combo & Family == "eee"]
+  iii <- Short[Value %in% Combo & Family == "iii"]
+  mmm <- Short[Value %in% Combo & Family == "mmm"]
+  sss <- Short[Value %in% Combo & Family == "sss"]
+  Object <- base::length(ccc) == 0
+  Y <- base::paste0(base::c(bbb, ccc, ddd, eee, iii, mmm, sss), collapse = ", ")
+  Y <- uj::av(base::strsplit(Y, ", ", fixed = T))
+  Y <- Y[!base::duplicated(Y)]
+  Y <- base::paste0(Y, collapse = ", ")
+  if (Object) {Y <- base::paste0(Y, " object")}
+  Prefix <- uj::f0(base::substr(Y, 1, 1) %in% base::c("a", "e", "i", "o", "u"), "an ", "a ")
+  base::paste0(Prefix, Y)
 }
 
 #' @rdname ppp
 #' @export
-spec_concise <- function(spec) {
-  if (!uj::is_prop_spec(spec)) {uj::stopperr("[spec] is not a valid property spec.", PKG = "uj")}
-  combos <- uj:::.spec2combos(spec)
-  for (i in 1:base::length(combos)) {combos[i] <- uj::combo_concise(combos[i])}
-  base::paste0(combos, collapse = " OR ")
+spec_concise <- function(Spec) {
+  if (!uj::is_prop_spec(Spec)) {uj::stopperr("[Spec] is not a valid property spec.", PKG = "uj")}
+  Combos <- uj:::.spec2combos(Spec)
+  for (i in 1:base::length(Combos)) {Combos[i] <- uj::combo_concise(Combos[i])}
+  base::paste0(Combos, collapse = " OR ")
 }

@@ -3,26 +3,18 @@
 \encoding{UTF-8}
 \name{run}
 \alias{run}
-\alias{run_alias}
 \title{Build and evaluate code}
 \usage{
 run(...)
-
-run_alias(pkg, fun)
 }
 \arguments{
 \item{...}{Arguments to be pasted into a character scalar command to be run (i.e., parsed and evaluated) in the environment where \code{run(...)} was called.}
-
-\item{pkg}{Complete scalar character (?cmp_chr_scl) package name (may be a blank string).}
-
-\item{fun}{Complete scalar string (?cmp_str_scl) function name.}
 }
 \value{
 The value returned upon evaluating the character scalar created from collapsing \code{...} arguments.
 }
 \description{
 \code{run(...)} Collapses \code{...} into a character scalar and evaluates it as code in the environment of the calling function.
-\cr\cr \code{run_alias(pkg, fun)} constructs a call to \verb{\{pkg\}::\{fun\}(.)} with arguments being \code{...} args available in the environment from which \code{run_alias} is called. See \strong{examples}.
 }
 \examples{
 egCallVec <- paste0("'", 0:3, "'")
@@ -39,7 +31,6 @@ print(egCallScl)
 print(egResultVec)
 print(egResultScl)
 
-egDTFalias <- function(...) {run_alias("base", "data.frame")}
 egRUNalias1 <- function(x, y) {egDTFalias(var.x = x, var.y = y)}
 egRUNalias2 <- function(x, y) {egRUNalias1(x, y)}
 

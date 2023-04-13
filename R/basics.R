@@ -10,37 +10,37 @@
 #'                `p0`      \tab `paste(..., sep = "")`                        \cr
 #'                `g1`      \tab `paste0(av(...), collapse = " ")`             \cr
 #'                `p1`      \tab `paste(..., sep = " ")`          \cr   \tab   \cr
-#'                `hi`      \tab `ceiling(x)`                                  \cr
-#'                `lo`      \tab `floor(x)`                       \cr   \tab   \cr
-#'                `na`      \tab `is.na(x)`                                    \cr
-#'                `ok`      \tab `!is.na(x)`                      \cr   \tab   \cr
-#'                `wna`     \tab `which(na(x))`                                \cr
-#'                `wok`     \tab `which(ok(x))`                   \cr   \tab   \cr
-#'                `len`     \tab `nchar(x)`                       \cr   \tab   \cr
+#'                `hi`      \tab `ceiling(X)`                                  \cr
+#'                `lo`      \tab `floor(X)`                       \cr   \tab   \cr
+#'                `na`      \tab `is.na(X)`                                    \cr
+#'                `ok`      \tab `!is.na(X)`                      \cr   \tab   \cr
+#'                `wna`     \tab `which(na(X))`                                \cr
+#'                `wok`     \tab `which(ok(X))`                   \cr   \tab   \cr
+#'                `len`     \tab `nchar(X)`                       \cr   \tab   \cr
 #'                `mid`     \tab `substr(.)`                      \cr   \tab   \cr
 #'                `spf`     \tab `sprintf(.)`                     \cr   \tab   \cr
-#'                `levs`    \tab `levels(x)`                      \cr   \tab   \cr
+#'                `levs`    \tab `levels(X)`                      \cr   \tab   \cr
 #'                `none`    \tab `!any(av(...))`                  \cr   \tab   \cr
-#'                `x_in`    \tab `x[isIN(x, ...)]`                             \cr
-#'                `x_mf`    \tab `x[isMF(x, ...)]`                \cr   \tab   \cr
-#'                `clabs`   \tab `colnames(x)`                                 \cr
-#'                `dlabs`   \tab `...names(x)`                                 \cr
-#'                `elabs`   \tab `names(x)`                                    \cr
+#'                `x_in`    \tab `X[isIN(X, ...)]`                             \cr
+#'                `x_mf`    \tab `X[isMF(X, ...)]`                \cr   \tab   \cr
+#'                `clabs`   \tab `colnames(X)`                                 \cr
+#'                `dlabs`   \tab `...names(X)`                                 \cr
+#'                `elabs`   \tab `names(X)`                                    \cr
 #'                `rlabs`   \tab `rownames`                       \cr   \tab     }
-#' \tabular{ll}{  `is_arr, not_arr`   \tab `(!)is.array(x)`                           \cr
-#'                `is_dtf, not_dtf`   \tab `(!)is.data.frame(x)`                      \cr
-#'                `is_fun, not_fun`   \tab `(!)is.function(x)`                        \cr
-#'                `is_lst, not_lst`   \tab `(!)is.list(x)`                            \cr
-#'                `is_mat, not_mat`   \tab `(!)is.matrix(x)`                          \cr
-#'                `is_vec, not_veq`   \tab `(!)is.vector(x)`             \cr   \tab   \cr
-#'                `is_atm, not_atm`   \tab `(!)is.atomic(x)`                          \cr
-#'                `is_chr, not_chr`   \tab `(!)is.character(x)`                       \cr
-#'                `is_fac, not_fac`   \tab `(!)is.factor(x)`                          \cr
-#'                `is_int, not_int`   \tab `(!)is.integer(x)`                         \cr
-#'                `is_lgl, not_lgl`   \tab `(!)is.logical(x)`                         \cr
-#'                `is_num, not_num`   \tab `(!)is.numeric(x)`                         \cr
-#'                `is_ord, not_ord`   \tab `(!)is.ordered(x)`                         \cr
-#'                `is_uno, not_uno`   \tab `(!)is_fac(x) & (!)is_ord(x)` \cr   \tab     }
+#' \tabular{ll}{  `is_arr, not_arr`   \tab `(!)is.array(X)`                           \cr
+#'                `is_dtf, not_dtf`   \tab `(!)is.data.frame(X)`                      \cr
+#'                `is_fun, not_fun`   \tab `(!)is.function(X)`                        \cr
+#'                `is_lst, not_lst`   \tab `(!)is.list(X)`                            \cr
+#'                `is_mat, not_mat`   \tab `(!)is.matrix(X)`                          \cr
+#'                `is_vec, not_veq`   \tab `(!)is.vector(X)`             \cr   \tab   \cr
+#'                `is_atm, not_atm`   \tab `(!)is.atomic(X)`                          \cr
+#'                `is_chr, not_chr`   \tab `(!)is.character(X)`                       \cr
+#'                `is_fac, not_fac`   \tab `(!)is.factor(X)`                          \cr
+#'                `is_int, not_int`   \tab `(!)is.integer(X)`                         \cr
+#'                `is_lgl, not_lgl`   \tab `(!)is.logical(X)`                         \cr
+#'                `is_num, not_num`   \tab `(!)is.numeric(X)`                         \cr
+#'                `is_ord, not_ord`   \tab `(!)is.ordered(X)`                         \cr
+#'                `is_uno, not_uno`   \tab `(!)is_fac(X) & (!)is_ord(X)` \cr   \tab     }
 #' @examples
 #' vals <- c(1:3, 2:4) / 3
 #' vars <- c("a", "bb", "ccc", "dddd", "ccc", "bb")
@@ -61,7 +61,7 @@ basics <- function() {utils::help("basics", package = "uj")}
 
 #' @rdname basics
 #' @export
-g <- function(g, ...) {base::paste(uj::av(...), collapse = g)}
+g <- function(G, ...) {base::paste(uj::av(...), collapse = G)}
 
 #' @rdname basics
 #' @export
@@ -76,7 +76,7 @@ g1 <- function(...) {base::paste0(uj::av(...), collapse = " ")}
 #' @rdname basics
 #' @inherit base::paste
 #' @export
-p <- function(p, ...) {base::paste(..., sep = p)}
+p <- function(P, ...) {base::paste(..., sep = P)}
 
 #' @rdname basics
 #' @export
@@ -90,61 +90,61 @@ p1 <- function(...) {base::paste(..., sep = " ")}
 
 #' @rdname basics
 #' @export
-na <- function(x) {base::is.na(x)}
+na <- function(X) {base::is.na(X)}
 
 #' @rdname basics
 #' @export
-ok <- function(x) {!base::is.na(x)}
+ok <- function(X) {!base::is.na(X)}
 
 #' @rdname basics
 #' @export
-wna <- function(x) {base::which(base::is.na(x))}
+wna <- function(X) {base::which(base::is.na(X))}
 
 #' @rdname basics
 #' @export
-wok <- function(x) {base::which(!base::is.na(x))}
+wok <- function(X) {base::which(!base::is.na(X))}
 
 #' @rdname basics
 #' @export
-null <- function(x) {if (uj::is_err(x)) {T} else {base::is.null(x)}}
+null <- function(X) {if (uj::is_err(X)) {T} else {base::is.null(X)}}
 
 #' @rdname basics
 #' @export
-def <- function(x) {if (uj::is_err(x)) {F} else {!base::is.null(x)}}
+def <- function(X) {if (uj::is_err(X)) {F} else {!base::is.null(X)}}
 
 #' @rdname basics
 #' @export
-lo <- function(x) {base::floor(x)}
+lo <- function(X) {base::floor(X)}
 
 #' @rdname basics
 #' @export
-hi <- function(x) {base::ceiling(x)}
+hi <- function(X) {base::ceiling(X)}
 
 #' @rdname basics
 #' @export
-len <- function(x) {base::nchar(x)}
+len <- function(X) {base::nchar(X)}
 
 #' @rdname basics
 #' @export
-mid <- function(x, start, stop) {base::substr(x, start, stop)}
+mid <- function(X, Start, Stop) {base::substr(X, Start, Stop)}
 
 #' @rdname basics
 #' @export
-spf <- function(fmt, ...) {base::sprintf(fmt, ...)}
+spf <- function(Fmt, ...) {base::sprintf(Fmt, ...)}
 
 #' @rdname basics
 #' @export
-levs <- function(x) {base::levels(x)}
+levs <- function(X) {base::levels(X)}
 
 #' @rdname basics
 #' @export
-rounded <- function(x) {base::all(x == base::round(x))}
+rounded <- function(X) {base::all(X == base::round(X))}
 
 # names ####
 
 #' @rdname basics
 #' @export
-clabs <- function(x) {base::colnames(x)}
+clabs <- function(X) {base::colnames(X)}
 
 #' @rdname basics
 #' @export
@@ -152,134 +152,134 @@ dlabs <- function() {base::eval.parent(base::...names())}
 
 #' @rdname basics
 #' @export
-rlabs <- function(x) {base::rownames(x)}
+rlabs <- function(X) {base::rownames(X)}
 
 #' @rdname basics
 #' @export
-vlabs <- function(x) {base::names(x)}
+vlabs <- function(X) {base::names(X)}
 
 # is(nt) class ####
 
 #' @rdname basics
 #' @export
-is_atm <- function(x) {base::is.atomic(x)}
+is_atm <- function(X) {base::is.atomic(X)}
 
 #' @rdname basics
 #' @export
-is_chr <- function(x) {base::is.character(x)}
+is_chr <- function(X) {base::is.character(X)}
 
 #' @rdname basics
 #' @export
-is_fac <- function(x) {base::is.factor(x)}
+is_fac <- function(X) {base::is.factor(X)}
 
 #' @rdname basics
 #' @export
-is_int <- function(x) {base::is.integer(x)}
+is_int <- function(X) {base::is.integer(X)}
 
 #' @rdname basics
 #' @export
-is_lgl <- function(x) {base::is.logical(x)}
+is_lgl <- function(X) {base::is.logical(X)}
 
 #' @rdname basics
 #' @export
-is_num <- function(x) {base::is.numeric(x)}
+is_num <- function(X) {base::is.numeric(X)}
 
 #' @rdname basics
 #' @export
-is_ord <- function(x) {base::is.ordered(x)}
+is_ord <- function(X) {base::is.ordered(X)}
 
 #' @rdname basics
 #' @export
-is_uno <- function(x) {base::is.factor(x) & !base::is.ordered(x)}
+is_uno <- function(X) {base::is.factor(X) & !base::is.ordered(X)}
 
 #' @rdname basics
 #' @export
-not_atm <- function(x) {!base::is.atomic(x)}
+not_atm <- function(X) {!base::is.atomic(X)}
 
 #' @rdname basics
 #' @export
-not_chr <- function(x) {!base::is.character(x)}
+not_chr <- function(X) {!base::is.character(X)}
 
 #' @rdname basics
 #' @export
-not_fac <- function(x) {!base::is.factor(x)}
+not_fac <- function(X) {!base::is.factor(X)}
 
 #' @rdname basics
 #' @export
-not_int <- function(x) {!base::is.integer(x)}
+not_int <- function(X) {!base::is.integer(X)}
 
 #' @rdname basics
 #' @export
-not_lgl <- function(x) {!base::is.logical(x)}
+not_lgl <- function(X) {!base::is.logical(X)}
 
 #' @rdname basics
 #' @export
-not_num <- function(x) {!base::is.numeric(x)}
+not_num <- function(X) {!base::is.numeric(X)}
 
 #' @rdname basics
 #' @export
-not_ord <- function(x) {!base::is.ordered(x)}
+not_ord <- function(X) {!base::is.ordered(X)}
 
 #' @rdname basics
 #' @export
-not_uno <- function(x) {!base::is.factor(x) | base::is.ordered(x)}
+not_uno <- function(X) {!base::is.factor(X) | base::is.ordered(X)}
 
 # is(n't) class ####
 
 #' @rdname basics
 #' @export
-is_arr <- function(x) {base::is.array(x)}
+is_arr <- function(X) {base::is.array(X)}
 
 #' @rdname basics
 #' @export
-is_dtf <- function(x) {base::is.data.frame(x)}
+is_dtf <- function(X) {base::is.data.frame(X)}
 
 #' @rdname basics
 #' @export
-is_fun <- function(x) {base::is.function(x)}
+is_fun <- function(X) {base::is.function(X)}
 
 #' @rdname basics
 #' @export
-is_lst <- function(x) {base::is.list(x)}
+is_lst <- function(X) {base::is.list(X)}
 
 #' @rdname basics
 #' @export
-is_mat <- function(x) {base::is.matrix(x)}
+is_mat <- function(X) {base::is.matrix(X)}
 
 #' @rdname basics
 #' @export
-is_vec <- function(x) {base::is.vector(x)}
+is_vec <- function(X) {base::is.vector(X)}
 
 #' @rdname basics
 #' @export
-not_arr <- function(x) {!base::is.array(x)}
+not_arr <- function(X) {!base::is.array(X)}
 
 #' @rdname basics
 #' @export
-not_dtf <- function(x) {!base::is.data.frame(x)}
+not_dtf <- function(X) {!base::is.data.frame(X)}
 
 #' @rdname basics
 #' @export
-not_fun <- function(x) {!base::is.function(x)}
+not_fun <- function(X) {!base::is.function(X)}
 
 #' @rdname basics
 #' @export
-not_lst <- function(x) {!base::is.list(x)}
+not_lst <- function(X) {!base::is.list(X)}
 
 #' @rdname basics
 #' @export
-not_mat <- function(x) {!base::is.matrix(x)}
+not_mat <- function(X) {!base::is.matrix(X)}
 
 #' @rdname basics
 #' @export
-not_veq <- function(x) {!base::is.vector(x)}
+not_veq <- function(X) {!base::is.vector(X)}
 
 # subsets ####
 
 #' @rdname basics
 #' @export
-x_in <- function(x, ...) {x[uj::is_in(x, ...)]}
+x_in <- function(X, ...) {X[uj::is_in(X, ...)]}
 
 #' @rdname basics
 #' @export
-x_mf <- function(x, ...) {x[uj::is_mf(x, ...)]}
+x_mf <- function(X, ...) {X[uj::is_mf(X, ...)]}

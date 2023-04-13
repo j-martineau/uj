@@ -33,9 +33,9 @@ egM4x4b <- egM4x4
 cb(egM4x3, egM4x4, egM4x4b)
 rb(egM2x4, egM3x4 , egM4x4, egM4x4b)
 
-egD4x2 <- dtf(w = 1:4, x = letters[1:4])
-egD4x4 <- dtf(w = 1:4, x = letters[1:4], y = NA, z = '.')
-egD2x4 <- dtf(w = 1:2, x = letters[1:2], y = NA, z = '.')
+egD4x2 <- dtf(w = 1:4, X = letters[1:4])
+egD4x4 <- dtf(w = 1:4, X = letters[1:4], y = NA, z = '.')
+egD2x4 <- dtf(w = 1:2, X = letters[1:2], y = NA, z = '.')
 egD4x4b <- egD4x4
 egD4x4d <- dtf(W = 1:4, X = letters[1:4], Y = NA, Z = '.')
 

@@ -33,68 +33,68 @@
 \alias{unq_whl}
 \title{unique + xmode combination properties}
 \usage{
-unq_mmm(x, ...)
+unq_mmm(X, ...)
 
 unq_mmm_funs()
 
-unq_atm(x, ...)
+unq_atm(X, ...)
 
-unq_ch1(x, ...)
+unq_ch1(X, ...)
 
-unq_ch3(x, ...)
+unq_ch3(X, ...)
 
-unq_chr(x, ...)
+unq_chr(X, ...)
 
-unq_clr(x, ...)
+unq_clr(X, ...)
 
-unq_evn(x, ...)
+unq_evn(X, ...)
 
-unq_fac(x, ...)
+unq_fac(X, ...)
 
-unq_frc(x, ...)
+unq_frc(X, ...)
 
-unq_ind(x, ...)
+unq_ind(X, ...)
 
-unq_lgl(x, ...)
+unq_lgl(X, ...)
 
-unq_neg(x, ...)
+unq_neg(X, ...)
 
-unq_ngw(x, ...)
+unq_ngw(X, ...)
 
-unq_nng(x, ...)
+unq_nng(X, ...)
 
-unq_nnw(x, ...)
+unq_nnw(X, ...)
 
-unq_nps(x, ...)
+unq_nps(X, ...)
 
-unq_npw(x, ...)
+unq_npw(X, ...)
 
-unq_nst(x, ...)
+unq_nst(X, ...)
 
-unq_mmm(x, ...)
+unq_mmm(X, ...)
 
-unq_odd(x, ...)
+unq_odd(X, ...)
 
-unq_ord(x, ...)
+unq_ord(X, ...)
 
-unq_pct(x, ...)
+unq_pct(X, ...)
 
-unq_pos(x, ...)
+unq_pos(X, ...)
 
-unq_ppn(x, ...)
+unq_ppn(X, ...)
 
-unq_psw(x, ...)
+unq_psw(X, ...)
 
-unq_srt(x, ...)
+unq_srt(X, ...)
 
-unq_str(x, ...)
+unq_str(X, ...)
 
-unq_uno(x, ...)
+unq_uno(X, ...)
 
-unq_whl(x, ...)
+unq_whl(X, ...)
 }
 \arguments{
-\item{x}{An R object.}
+\item{X}{An R object.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -113,16 +113,16 @@ Functions for checking combinations of \link[=UNQ]{uniqueness} and \link[=mmm]{x
 }
 \details{
 \tabular{ll}{  \code{unq_mmm_funs}   \tab What \link[=UNQ]{unique} + link[=mmm]{xmode} combination \link[=prop_funs]{property functions} are there?                         \cr   \tab   \cr
-  \verb{unq_\{mmm\}}      \tab Is \code{x} both unique and a match to single xmode property \code{'{mmm}'}? (where \code{{mmm}} is a placeholder for any given xmode property). \cr   \tab   \cr
-  \code{unq_mmm}        \tab Is \code{x} both unique and a match to the single xmode property in argument \code{mmm}?                                                                   }
+  \verb{unq_\{mmm\}}      \tab Is \code{X} both unique and a match to single xmode property \code{'{mmm}'}? (where \code{{mmm}} is a placeholder for any given xmode property). \cr   \tab   \cr
+  \code{unq_mmm}        \tab Is \code{X} both unique and a match to the single xmode property in argument \code{MMM}?                                                                   }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{max, maxr, maxc}   \tab Scalar maximum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{min, minr, minc}   \tab Scalar minimum valid numbers of element, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{lt, le, ge, gt}    \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{n, nr, nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{vals}              \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{

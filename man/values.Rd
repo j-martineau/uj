@@ -4,8 +4,10 @@
 \name{values}
 \alias{values}
 \alias{value_names}
+\alias{value_descriptions}
 \alias{value_table}
 \alias{value}
+\alias{vals}
 \alias{val_names}
 \alias{val_table}
 \alias{val}
@@ -15,15 +17,17 @@
 \alias{v}
 \title{Named values (unique to package \code{uj})}
 \usage{
-values()
+values(Vec = FALSE)
 
 value_names()
+
+value_descriptions()
 
 value_table()
 
 value(...)
 
-values()
+vals(Vec = FALSE)
 
 val_names()
 
@@ -31,7 +35,7 @@ val_table()
 
 val(...)
 
-vs()
+vs(Vec = FALSE)
 
 vnames()
 

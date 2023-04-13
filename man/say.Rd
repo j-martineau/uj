@@ -5,65 +5,64 @@
 \alias{say}
 \alias{cat0}
 \alias{continue}
-\title{User updates and interaction via the console}
+\title{User updates and interaction via the console in default color and style}
 \usage{
-say(..., lev = NA)
+say(..., Lev = 0, Sub = 0, .clear = FALSE)
 
-cat0(...)
+cat0(..., .clear = FALSE)
 
-continue()
+continue(.clear = FALSE)
 }
 \arguments{
-\item{...}{An arbitrary number of atomic arguments to be atomized collapsed into a character scalar message to the user. If no values are supplied and \code{lev = NA} or \code{lev = 6}, prints a single dot (\code{.}) immediately following the current contents of the console.}
+\item{...}{An arbitrary number of atomic arguments to be atomized collapsed into a character scalar message to the user. If no values are supplied and \code{Lev = NA} or \code{Lev = 6}, prints a single dot (\code{.}) immediately following the current contents of the console.}
 
-\item{lev}{Either \code{NA} to print the message in \code{...} immediately following the current contents of the console or a value from \code{1:6} to use the console for up to \code{6} levels of user updates. See details.}
+\item{Lev}{Either \code{NA} to print the message in \code{...} immediately following the current contents of the console or a value from \code{1:6} to use the console for up to \code{6} levels of user updates. See details.}
 }
 \value{
 \code{NULL}.
 }
 \description{
-User updates and interaction via the console
+User updates and interaction via the console in default color and style
 }
 \details{
 \tabular{ll}{  \code{continue}   \tab Prints \code{"Hit [enter] or [return] to continue"} to the console and pausse execution until the user hits the enter or return key.                                             \cr   \tab   \cr
   \code{cat0}       \tab Collapses \code{...} to a character scalar message prefixed and suffixed with newlines and prints it to the console (ensures the message occurs on its own line of the console). \cr   \tab   \cr
   \code{say}        \tab Collapses \code{...} to a character scalar message and either (a) prints it to the console or (b) structures it as an update and prints it to the console. See the next table.                  }
-The function \code{say} allows for structuring user update messages at six hierarchical levels as explained in the following table where \code{msg} is a placeholder for the character scalar message created when collapsing \code{...}:
-\tabular{lll}{  MESSAGE     \tab VALUE OF    \tab UPDATE                \cr
-  SUPPLIED    \tab THE \code{lev}   \tab PRINTED               \cr
-  IN \code{...}?   \tab ARGUMENT    \tab TO CONSOLE            \cr
-  yes         \tab \code{NA}        \tab \code{'msg'}               \cr
-  yes         \tab \code{1}         \tab newline + \code{'msg'}     \cr
-  yes         \tab \code{2}         \tab newline + \code{'| msg'}   \cr
-  yes         \tab \code{3}         \tab newline + \code{'| > msg'} \cr
-  yes         \tab \code{4}         \tab \code{' > msg'}            \cr
-  yes         \tab \code{5}         \tab \code{'..(msg)'}           \cr
-  no          \tab \code{6}         \tab \code{'.'}                 \cr
-  no          \tab \code{NA}        \tab \code{'.'}                   }
-Other combinations not represented in the table above will result in an error.
+When \code{...} is empty, the message defaults to a single dot (\code{"."}).
+\cr\cr The function \code{say} allows for structuring user update messages at hierarchical levels as explained in the following table:
+\tabular{ll}{  VALUE      \tab PREFIX OF MESSAGE          \cr
+  OF \code{Lev}   \tab POSTED TO CONSOLE          \cr
+  \code{0}        \tab < none >                   \cr
+  \code{1}        \tab < newline >                \cr
+  \code{2}        \tab < newline > + \code{'| '}       \cr
+  \code{3}        \tab < newline > + \code{'| > '}     \cr
+  \code{4}        \tab < newline > + \code{'| | > '}   \cr
+  \code{5}        \tab < newline > + \code{'| | | > '} \cr
+  \code{...}      \tab \code{...}                        }
+In addition, Sub-levels are defined via the argument \code{Sub} where \code{Sub = 0} leaves the message as is, \code{Sub = 1} prepends \code{' > '} to the message, and \code{Sub = 2}, prepends \code{"..("} and appends \code{")"} to the message.
 }
 \examples{
 cat0("msg on its own line")
 chat. <- function() {
-  say("msg 1A", lev = 1)
-  say("msg 2A", lev = 2)
-  say("msg 2B", lev = 2)
-  say("msg 3A", lev = 3)
-  say("msg 3B", lev = 3)
+  say("msg 1A", Lev = 1)
+  say("msg 2A", Lev = 2)
+  say("msg 2B", Lev = 2)
+  say("msg 3A", Lev = 3)
+  say("msg 3B", Lev = 3)
   say()
   say()
   say()
-  say("msg 3C", lev = 3)
-  say("msg 4A", lev = 4)
-  say("msg 4B", lev = 4)
-  say("msg 5A", lev = 5)
-  say(lev = 6)
-  say(lev = 6)
-  say("msg 5B", lev = 5)
-  say("msg 3D", lev = 3)
+  say("msg 3C", Lev = 3)
+  say("msg 4A", Lev = 4)
+  say("msg 4B", Lev = 4)
+  say("msg 5A", Lev = 5)
+  say(Lev = 6)
+  say(Lev = 6)
+  say("msg 5B", Lev = 5)
+  say("msg 3D", Lev = 3)
   say()
   say()
-  say("msg 1B", lev = 1)
+  say("msg 1B", Lev = 1)
   say(" + a_random_message")
 }
 chat.()

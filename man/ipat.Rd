@@ -10,22 +10,22 @@
 \alias{ppats}
 \title{Simplified string indexing for fixed patterns}
 \usage{
-ipat(x, pat)
+ipat(X, Pat)
 
-has_pat(x, pat)
+has_pat(X, Pat)
 
-wpat(x, pat)
+wpat(X, Pat)
 
-npat(x, pat)
+npat(X, Pat)
 
-ppat(x, pat)
+ppat(X, Pat)
 
-ppats(x, pat)
+ppats(X, Pat)
 }
 \arguments{
-\item{x}{A character vector.}
+\item{X}{A character vector.}
 
-\item{pat}{A fixed value \link[=cmp_str_scl]{complete string scalar} pattern to search for in \code{x}.}
+\item{Pat}{A fixed value \link[=cmp_str_scl]{complete string scalar} pattern to search for in \code{X}.}
 }
 \value{
 \strong{A positive whole number \link[=VLS]{vlist}} \cr\cr \code{ppats}
@@ -36,7 +36,7 @@ ppats(x, pat)
 Logically index, numerically index, and count the number of times a pattern occurs.
 }
 \details{
-\tabular{ll}{  \code{has_pat}   \tab Evaluates whether each element of \code{x} contains the string in \code{pat}.                                                        \cr   \tab   \cr
+\tabular{ll}{  \code{has_pat}   \tab Evaluates whether each element of \code{X} contains the string in \code{Pat}.                                                        \cr   \tab   \cr
   \code{ppats}     \tab Identifies the position of the first character of \emph{every} instance of a pattern in each element of a character vector.      \cr   \tab   \cr
   \code{ppat}      \tab Identifies the position of \emph{the first} character of the first instance of a pattern in each element of a character vector.  \cr   \tab   \cr
   \code{npat}      \tab Counts the number of times a pattern appears in each element of a character vector.                                         \cr   \tab   \cr

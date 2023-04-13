@@ -4,9 +4,9 @@
 #' @description Functions for checking combinations of \link[=UNQ]{uniqueness} and \link[=mmm]{xmode}.
 #' @details
 #' \tabular{ll}{  `unq_mmm_funs`   \tab What \link[=UNQ]{unique} + link[=mmm]{xmode} combination \link[=prop_funs]{property functions} are there?                         \cr   \tab   \cr
-#'                `unq_{mmm}`      \tab Is `x` both unique and a match to single xmode property `'{mmm}'`? (where `{mmm}` is a placeholder for any given xmode property). \cr   \tab   \cr
-#'                `unq_mmm`        \tab Is `x` both unique and a match to the single xmode property in argument `mmm`?                                                                   }
-#' @param x An R object.
+#'                `unq_{mmm}`      \tab Is `X` both unique and a match to single xmode property `'{mmm}'`? (where `{mmm}` is a placeholder for any given xmode property). \cr   \tab   \cr
+#'                `unq_mmm`        \tab Is `X` both unique and a match to the single xmode property in argument `MMM`?                                                                   }
+#' @param X An R object.
 #' @param MMM A character scalar `xmode` property from \code{\link{mmm_props}()}`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
@@ -71,120 +71,120 @@
 #' c(unq_uno(UnqUno), unq_uno(UnqOrd), unq_uno(c(UnqUno, UnqUno))
 #' c(unq_whl(UnqWhl), unq_whl(UnqNum), unq_whl(c(UnqWhl, UnqWhl))
 #' @export
-unq_mmm <- function(x, mmm, ...) {uj::f0(uj::cmp_mmm(x, mmm, ...), base::length(x) == base::length(base::unique(x)), F)}
+unq_mmm <- function(X, MMM, ...) {uj::f0(uj::cmp_mmm(X, MMM, ...), base::length(X) == base::length(base::unique(X)), F)}
 
 #' @rdname unq_mmm
 #' @export
-unq_mmm_funs <- function() {uj::p0('unq_', uj:::.mmm)}
+unq_mmm_funs <- function() {uj::p0('unq_', uj::v(mmm))}
 
 #' @rdname unq_mmm
 #' @export
-unq_atm <- function(x, ...) {uj::f0(base::is.atomic(x), uj::f0(base::length(x) > 0, base::length(x) == base::length(base::unique(x)), F), F)}
+unq_atm <- function(X, ...) {uj::f0(base::is.atomic(X), uj::f0(base::length(X) > 0, base::length(X) == base::length(base::unique(X)), F), F)}
 
 #' @rdname unq_mmm
 #' @export
-unq_ch1 <- function(x, ...) {uj::unq_mmm(x, 'ch1', ...)}
+unq_ch1 <- function(X, ...) {uj::unq_mmm(X, 'ch1', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_ch3 <- function(x, ...) {uj::unq_mmm(x, 'ch3', ...)}
+unq_ch3 <- function(X, ...) {uj::unq_mmm(X, 'ch3', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_chr <- function(x, ...) {uj::unq_mmm(x, 'chr', ...)}
+unq_chr <- function(X, ...) {uj::unq_mmm(X, 'chr', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_clr <- function(x, ...) {uj::unq_mmm(x, 'clr', ...)}
+unq_clr <- function(X, ...) {uj::unq_mmm(X, 'clr', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_evn <- function(x, ...) {uj::unq_mmm(x, 'evn', ...)}
+unq_evn <- function(X, ...) {uj::unq_mmm(X, 'evn', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_fac <- function(x, ...) {uj::unq_mmm(x, 'fac', ...)}
+unq_fac <- function(X, ...) {uj::unq_mmm(X, 'fac', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_frc <- function(x, ...) {uj::unq_mmm(x, 'frc', ...)}
+unq_frc <- function(X, ...) {uj::unq_mmm(X, 'frc', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_ind <- function(x, ...) {uj::unq_mmm(x, 'ind', ...)}
+unq_ind <- function(X, ...) {uj::unq_mmm(X, 'ind', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_lgl <- function(x, ...) {uj::unq_mmm(x, 'lgl', ...)}
+unq_lgl <- function(X, ...) {uj::unq_mmm(X, 'lgl', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_neg <- function(x, ...) {uj::unq_mmm(x, 'neg', ...)}
+unq_neg <- function(X, ...) {uj::unq_mmm(X, 'neg', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_ngw <- function(x, ...) {uj::unq_mmm(x, 'ngw', ...)}
+unq_ngw <- function(X, ...) {uj::unq_mmm(X, 'ngw', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_nng <- function(x, ...) {uj::unq_mmm(x, 'nng', ...)}
+unq_nng <- function(X, ...) {uj::unq_mmm(X, 'nng', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_nnw <- function(x, ...) {uj::unq_mmm(x, 'nnw', ...)}
+unq_nnw <- function(X, ...) {uj::unq_mmm(X, 'nnw', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_nps <- function(x, ...) {uj::unq_mmm(x, 'nps', ...)}
+unq_nps <- function(X, ...) {uj::unq_mmm(X, 'nps', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_npw <- function(x, ...) {uj::unq_mmm(x, 'npw', ...)}
+unq_npw <- function(X, ...) {uj::unq_mmm(X, 'npw', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_nst <- function(x, ...) {uj::unq_mmm(x, 'nst', ...)}
+unq_nst <- function(X, ...) {uj::unq_mmm(X, 'nst', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_mmm <- function(x, ...) {uj::unq_mmm(x, 'num', ...)}
+unq_mmm <- function(X, ...) {uj::unq_mmm(X, 'num', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_odd <- function(x, ...) {uj::unq_mmm(x, 'odd', ...)}
+unq_odd <- function(X, ...) {uj::unq_mmm(X, 'odd', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_ord <- function(x, ...) {uj::unq_mmm(x, 'ord', ...)}
+unq_ord <- function(X, ...) {uj::unq_mmm(X, 'ord', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_pct <- function(x, ...) {uj::unq_mmm(x, 'pct', ...)}
+unq_pct <- function(X, ...) {uj::unq_mmm(X, 'pct', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_pos <- function(x, ...) {uj::unq_mmm(x, 'pos', ...)}
+unq_pos <- function(X, ...) {uj::unq_mmm(X, 'pos', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_ppn <- function(x, ...) {uj::unq_mmm(x, 'ppn', ...)}
+unq_ppn <- function(X, ...) {uj::unq_mmm(X, 'ppn', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_psw <- function(x, ...) {uj::unq_mmm(x, 'psw', ...)}
+unq_psw <- function(X, ...) {uj::unq_mmm(X, 'psw', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_srt <- function(x, ...) {uj::unq_mmm(x, 'srt', ...)}
+unq_srt <- function(X, ...) {uj::unq_mmm(X, 'srt', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_str <- function(x, ...) {uj::unq_mmm(x, 'str', ...)}
+unq_str <- function(X, ...) {uj::unq_mmm(X, 'str', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_uno <- function(x, ...) {uj::unq_mmm(x, 'uno', ...)}
+unq_uno <- function(X, ...) {uj::unq_mmm(X, 'uno', ...)}
 
 #' @rdname unq_mmm
 #' @export
-unq_whl <- function(x, ...) {uj::unq_mmm(x, 'whl', ...)}
+unq_whl <- function(X, ...) {uj::unq_mmm(X, 'whl', ...)}

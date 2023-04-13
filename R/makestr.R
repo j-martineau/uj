@@ -24,51 +24,51 @@
 #'                `eq`        \tab Space-padded equality statement                 }
 #' \cr\ Each prefix is joined with each suffix to create a unique function. The action indicated by the prefix happens first, followed by the action indicated in the suffix.
 #' How each function works is illustrated in the details.
-#' @param x An object containing atomic values (atomized before processing).
-#' @param l,r \link[=cmp_chr_scl]{Complete character scalars} giving left and right side enclosures for `...` after \link[=av]{atomization}.
+#' @param X An object containing atomic values (atomized before processing).
+#' @param L,R \link[=cmp_chr_scl]{Complete character scalars} giving left and right side enclosures for `...` after \link[=av]{atomization}.
 #' @param ... An arbitrary number of objects to be atomized into a single atomic vector.
 #' @return A character scalar or vector
 #' @examples
-#' geq(c('x', 'y', 'z'), 0, 1, 2)
-#' peq(c('x', 'y', 'z'), 0, 1, 2)
-#' geq0(c('x', 'y', 'z'), 0, 1, 2)
-#' peq0(c('x', 'y', 'z'), 0, 1, 2)
-#' gcat(c('x', 'y', 'z'), 0, 1, 2)
-#' pcat(c('x', 'y', 'z'), 0, 1, 2)
-#' gelt(c('x', 'y', 'z'), 0, 1, 2)
-#' pelt(c('x', 'y', 'z'), 0, 1, 2)
-#' gfun(c('x', 'y', 'z'), 0, 1, 2)
-#' pfun(c('x', 'y', 'z'), 0, 1, 2)
-#' gform(c('x', 'y', 'z'), 0, 1, 2)
-#' pform(c('x', 'y', 'z'), 0, 1, 2)
-#' glist(c('x', 'y', 'z'), 0, 1, 2)
-#' plist(c('x', 'y', 'z'), 0, 1, 2)
-#' gtick(c('x', 'y', 'z'), 0, 1, 2)
-#' ptick(c('x', 'y', 'z'), 0, 1, 2)
-#' gwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)
-#' pwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)
-#' gbrace(c('x', 'y', 'z'), 0, 1, 2)
-#' pbrace(c('x', 'y', 'z'), 0, 1, 2)
-#' gcolon(c('x', 'y', 'z'), 0, 1, 2)
-#' pcolon(c('x', 'y', 'z'), 0, 1, 2)
-#' gparen(c('x', 'y', 'z'), 0, 1, 2)
-#' pparen(c('x', 'y', 'z'), 0, 1, 2)
-#' gquote(c('x', 'y', 'z'), 0, 1, 2)
-#' pquote(c('x', 'y', 'z'), 0, 1, 2)
-#' gquote2(c('x', 'y', 'z'), 0, 1, 2)
-#' pquote2(c('x', 'y', 'z'), 0, 1, 2)
-#' gbracket(c('x', 'y', 'z'), 0, 1, 2)
-#' pbracket(c('x', 'y', 'z'), 0, 1, 2)
+#' geq(c('X', 'Y', 'Z'), 0, 1, 2)
+#' peq(c('X', 'Y', 'Z'), 0, 1, 2)
+#' geq0(c('X', 'Y', 'Z'), 0, 1, 2)
+#' peq0(c('X', 'Y', 'Z'), 0, 1, 2)
+#' gcat(c('X', 'Y', 'Z'), 0, 1, 2)
+#' pcat(c('X', 'Y', 'Z'), 0, 1, 2)
+#' gelt(c('X', 'Y', 'Z'), 0, 1, 2)
+#' pelt(c('X', 'Y', 'Z'), 0, 1, 2)
+#' gfun(c('X', 'Y', 'Z'), 0, 1, 2)
+#' pfun(c('X', 'Y', 'Z'), 0, 1, 2)
+#' gform(c('X', 'Y', 'Z'), 0, 1, 2)
+#' pform(c('X', 'Y', 'Z'), 0, 1, 2)
+#' glist(c('X', 'Y', 'Z'), 0, 1, 2)
+#' plist(c('X', 'Y', 'Z'), 0, 1, 2)
+#' gtick(c('X', 'Y', 'Z'), 0, 1, 2)
+#' ptick(c('X', 'Y', 'Z'), 0, 1, 2)
+#' gwrap(c('L', 'L', 'L'), 'R', 0, 1, 2)
+#' pwrap(c('L', 'L', 'L'), 'R', 0, 1, 2)
+#' gbrace(c('X', 'Y', 'Z'), 0, 1, 2)
+#' pbrace(c('X', 'Y', 'Z'), 0, 1, 2)
+#' gcolon(c('X', 'Y', 'Z'), 0, 1, 2)
+#' pcolon(c('X', 'Y', 'Z'), 0, 1, 2)
+#' gparen(c('X', 'Y', 'Z'), 0, 1, 2)
+#' pparen(c('X', 'Y', 'Z'), 0, 1, 2)
+#' gquote(c('X', 'Y', 'Z'), 0, 1, 2)
+#' pquote(c('X', 'Y', 'Z'), 0, 1, 2)
+#' gquote2(c('X', 'Y', 'Z'), 0, 1, 2)
+#' pquote2(c('X', 'Y', 'Z'), 0, 1, 2)
+#' gbracket(c('X', 'Y', 'Z'), 0, 1, 2)
+#' pbracket(c('X', 'Y', 'Z'), 0, 1, 2)
 #' @export
 makestr <- function() {utils::help("makestr", package = "uj")}
 
 #' @rdname makestr
 #' @export
-geq <- function(x, ...) {base::paste0(base::c(uj::av(x), " = ", uj::av(...)), collapse = "")}
+geq <- function(X, ...) {base::paste0(base::c(uj::av(X), " = ", uj::av(...)), collapse = "")}
 
 #' @rdname makestr
 #' @export
-geq0 <- function(x, ...) {base::paste0(base::c(uj::av(x), "=", uj::av(...)), collapse = "")}
+geq0 <- function(X, ...) {base::paste0(base::c(uj::av(X), "=", uj::av(...)), collapse = "")}
 
 #' @rdname makestr
 #' @export
@@ -76,11 +76,11 @@ gcat <- function(...) {base::paste0(base::c("c(", uj::av(...), ")"), collapse = 
 
 #' @rdname makestr
 #' @export
-gelt <- function(x, ...) {base::paste0(base::c(uj::av(x), "[", uj::av(...), "]"))}
+gelt <- function(X, ...) {base::paste0(base::c(uj::av(X), "[", uj::av(...), "]"))}
 
 #' @rdname makestr
 #' @export
-gfun <- function(x, ...) {base::paste0(base::c(uj::av(x), "(", uj::av(...), ")"), collapse = "")}
+gfun <- function(X, ...) {base::paste0(base::c(uj::av(X), "(", uj::av(...), ")"), collapse = "")}
 
 #' @rdname makestr
 #' @export
@@ -88,7 +88,7 @@ glist <- function(...) {base::paste0(uj::av(...), collapse = ", ")}
 
 #' @rdname makestr
 #' @export
-gform <- function(x, ...) {base::paste0(base::c(uj::av(x), " ~ ", base::paste0(uj::av(...), collapse = " + ")), collapse = "")}
+gform <- function(X, ...) {base::paste0(base::c(uj::av(X), " ~ ", base::paste0(uj::av(...), collapse = " + ")), collapse = "")}
 
 #' @rdname makestr
 #' @export
@@ -96,7 +96,7 @@ gtick <- function(...) {base::paste0(base::c("`" , uj::av(...), "`"), collapse =
 
 #' @rdname makestr
 #' @export
-gwrap <- function(l, r, ...) {base::paste0(base::c(uj::av(l), uj::av(...), uj::av(r)), collapse = "")}
+gwrap <- function(L, R, ...) {base::paste0(base::c(uj::av(L), uj::av(...), uj::av(R)), collapse = "")}
 
 #' @rdname makestr
 #' @export
@@ -104,7 +104,7 @@ gbrace <- function(...) {base::paste0(base::c("{" , uj::av(...), "}"), collapse 
 
 #' @rdname makestr
 #' @export
-gcolon <- function(...) {base::paste0(":", uj::av(...), collapse = "")}
+gcolon <- function(...) {base::paste0(uj::av(...), collapse = ":")}
 
 #' @rdname makestr
 #' @export
@@ -128,19 +128,19 @@ pcat <- function(...) {base::paste0("c(", base::paste(", ", ...), ")")}
 
 #' @rdname makestr
 #' @export
-peq <- function(x, ...) {base::paste0(x, " = ", ...)}
+peq <- function(X, ...) {base::paste0(X, " = ", ...)}
 
 #' @rdname makestr
 #' @export
-peq0 <- function(x, ...) {base::paste0(x, "=", ...)}
+peq0 <- function(X, ...) {base::paste0(X, "=", ...)}
 
 #' @rdname makestr
 #' @export
-pelt <- function(x, ...) {base::paste0(x, "[", ..., "]")}
+pelt <- function(X, ...) {base::paste0(X, "[", ..., "]")}
 
 #' @rdname makestr
 #' @export
-pfun <- function(x, ...) {base::paste0(x, "(", ..., ")")}
+pfun <- function(X, ...) {base::paste0(X, "(", ..., ")")}
 
 #' @rdname makestr
 #' @export
@@ -148,7 +148,7 @@ plist <- function(...) {base::paste(..., sep = ", ")}
 
 #' @rdname makestr
 #' @export
-pform <- function(x, ...) {base::paste0(x, " ~ ",  base::paste(" + ", ...))}
+pform <- function(X, ...) {base::paste0(X, " ~ ",  base::paste(" + ", ...))}
 
 #' @rdname makestr
 #' @export
@@ -156,7 +156,7 @@ ptick <- function(...) {base::paste0("`" , ..., "`")}
 
 #' @rdname makestr
 #' @export
-pwrap <- function(l, r, ...) {base::paste0(l, ..., r)}
+pwrap <- function(L, R, ...) {base::paste0(L, ..., R)}
 
 #' @rdname makestr
 #' @export

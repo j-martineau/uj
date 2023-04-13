@@ -5,17 +5,17 @@
 \alias{swap}
 \title{Swap atomic values.}
 \usage{
-swap(x, old, new, all = FALSE)
+swap(X, Old, New, All = FALSE)
 }
 \arguments{
-\item{x}{An atomic object.}
+\item{X}{An atomic object.}
 
-\item{old, new}{\link[=atm_vec]{Atomic vecs} of unique values to be replaced and replacement values, respectively. \code{length(new)} must be in \code{c(1, length(old))}.}
+\item{Old, New}{\link[=atm_vec]{Atomic vecs} of unique values to be replaced and replacement values, respectively. \code{length(New)} must be in \code{c(1, length(Old))}.}
 
-\item{all}{\code{TRUE} or \code{FALSE} indicating whether all values of \code{x} must be contained in \code{old}.}
+\item{All}{\code{TRUE} or \code{FALSE} indicating whether All values of \code{X} must be contained in \code{Old}.}
 }
 \value{
-An atomic object of the same dimensions as \code{x}.
+An atomic object of the same dimensions as \code{X}.
 }
 \description{
 Swap atomic values.

@@ -17,9 +17,9 @@
 #' cb(egM4x3, egM4x4, egM4x4b)
 #' rb(egM2x4, egM3x4 , egM4x4, egM4x4b)
 #'
-#' egD4x2 <- dtf(w = 1:4, x = letters[1:4])
-#' egD4x4 <- dtf(w = 1:4, x = letters[1:4], y = NA, z = '.')
-#' egD2x4 <- dtf(w = 1:2, x = letters[1:2], y = NA, z = '.')
+#' egD4x2 <- dtf(w = 1:4, X = letters[1:4])
+#' egD4x4 <- dtf(w = 1:4, X = letters[1:4], y = NA, z = '.')
+#' egD2x4 <- dtf(w = 1:2, X = letters[1:2], y = NA, z = '.')
 #' egD4x4b <- egD4x4
 #' egD4x4d <- dtf(W = 1:4, X = letters[1:4], Y = NA, Z = '.')
 #'
@@ -28,11 +28,11 @@
 #' @export
 cb <- function(...) {
   if (base::...length() < 2) {uj::stopperr("[...] contains fewer than 2 arguments.", PKG = "uj")}
-  x <- base::list(...)
-  dtf <- base::all(base::sapply(x, atm_dtf))
-  mat <- base::all(base::sapply(x, atm_mat))
-  if (!dtf & !mat) {uj::stopperr("[...] must contain only atomic matrices or only atomic data.frames.", PKG = "uj")}
-  if (uj::f0(dtf, uj::compatible_dtfs("c", ...), uj::compatible_mats("c", ...))) {return(base::cbind(...))}
+  X <- base::list(...)
+  Dtf <- base::all(base::sapply(X, atm_dtf))
+  Mat <- base::all(base::sapply(X, atm_mat))
+  if (!Dtf & !Mat) {uj::stopperr("[...] must contain only atomic matrices or only atomic data.frames.", PKG = "uj")}
+  if (uj::f0(Dtf, uj::compatible_dtfs("c", ...), uj::compatible_mats("c", ...))) {return(base::cbind(...))}
   uj::stopperr("Arguments in [...] are not compatible for column binding.", PKG = "uj")
 }
 
@@ -40,10 +40,10 @@ cb <- function(...) {
 #' @export
 rb <- function(...) {
   if (base::...length() < 2) {uj::stopperr("[...] contains fewer than 2 arguments.", PKG = "uj")}
-  x <- base::list(...)
-  dtf <- base::all(base::sapply(x, atm_dtf))
-  mat <- base::all(base::sapply(x, atm_mat))
-  if (!dtf & !mat) {uj::stopperr("[...] must contain only atomic matrices or only atomic data.frames.", PKG = "uj")}
-  if (uj::f0(dtf, uj::compatible_dtfs("r", ...), uj::compatible_mats("r", ...))) {return(base::rbind(...))}
+  X <- base::list(...)
+  Dtf <- base::all(base::sapply(X, atm_dtf))
+  Mat <- base::all(base::sapply(X, atm_mat))
+  if (!Dtf & !Mat) {uj::stopperr("[...] must contain only atomic matrices or only atomic data.frames.", PKG = "uj")}
+  if (uj::f0(Dtf, uj::compatible_dtfs("r", ...), uj::compatible_mats("r", ...))) {return(base::rbind(...))}
   uj::stopperr("Arguments in [...] are not compatible for row binding.", PKG = "uj")
 }

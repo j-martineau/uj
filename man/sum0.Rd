@@ -26,9 +26,9 @@ sum0(...)
 
 sd0(...)
 
-cor0(x, y = NULL)
+cor0(X, Y = NULL)
 
-cov0(x, y = NULL)
+cov0(X, Y = NULL)
 
 min0(...)
 
@@ -42,30 +42,28 @@ pmax0(...)
 
 mean0(...)
 
-csds0(x)
+csds0(X)
 
-rsds0(x)
+rsds0(X)
 
-cvars0(x)
+cvars0(X)
 
-rvars0(x)
+rvars0(X)
 
-csums0(x)
+csums0(X)
 
-rsums0(x)
+rsums0(X)
 
-cmeans0(x)
+cmeans0(X)
 
-rmeans0(x)
+rmeans0(X)
 }
 \arguments{
 \item{...}{Scalars, vectors, or matrices. Reduced a single vector of atomic values for \code{sd0}, \code{min0}, \code{max0}, and \code{mean0}.}
 
-\item{x}{A \link[=cmp_num_vec]{complete numeric vec} or a \link[=cmp_num_mat]{complete numeric matrix}.}
+\item{X}{A \link[=cmp_num_vec]{complete numeric vec} or a \link[=cmp_num_mat]{complete numeric matrix}.}
 
-\item{y}{An optional complete numeric vec or a complete numeric matrix.}
-
-\item{n}{Positive whole-number scalar size of the complete set each subset is drawn from.}
+\item{Y}{An optional complete numeric vec or a complete numeric matrix.}
 }
 \value{
 \strong{A numeric vector}           \cr\cr \verb{cmeans0, csums0, cvars0, csds0} \cr \verb{rmeans0, rsums0, rvars0, rsds0} \cr \verb{mean0, sum0, var0, sd0} \cr \verb{pmin0, min0} \cr \verb{pmax0, max0}
@@ -75,12 +73,12 @@ rmeans0(x)
 Simple wrappers for calculating statistics ignoring any \code{NA} values.
 }
 \details{
-\tabular{ll}{  \code{cmeans0}   \tab Calls \code{colMeans(x, na.rm = T)}          \cr
-  \code{rmeans0}   \tab Calls \code{rowMeans(x, na.rm = T)}          \cr
-  \code{csums0}    \tab Calls \code{colSums(x, na.rm = T)}           \cr
-  \code{rsums0}    \tab Calls \code{rowSums(x, na.rm = T)}           \cr
-  \code{csds0}     \tab Calls \code{apply(x, 2, sd, na.rm = T)}      \cr
-  \code{rsds0}     \tab Calls \code{apply(x, 1, sd, na.rm = T)}      \cr
+\tabular{ll}{  \code{cmeans0}   \tab Calls \code{colMeans(X, na.rm = T)}          \cr
+  \code{rmeans0}   \tab Calls \code{rowMeans(X, na.rm = T)}          \cr
+  \code{csums0}    \tab Calls \code{colSums(X, na.rm = T)}           \cr
+  \code{rsums0}    \tab Calls \code{rowSums(X, na.rm = T)}           \cr
+  \code{csds0}     \tab Calls \code{apply(X, 2, sd, na.rm = T)}      \cr
+  \code{rsds0}     \tab Calls \code{apply(X, 1, sd, na.rm = T)}      \cr
   \code{pmin0}     \tab Calls \code{pmin(..., na.rm = T)}            \cr
   \code{pmax0}     \tab Calls \code{pmax(..., na.rm = T)}            \cr
   \code{mean0}     \tab Calls \code{mean(av(...), na.rm = T)}        \cr
@@ -88,8 +86,8 @@ Simple wrappers for calculating statistics ignoring any \code{NA} values.
   \code{max0}      \tab Calls \code{max(av(...), na.rm = T)}         \cr
   \code{sum0}      \tab Calls \code{sum(av(...), na.rm = T)}         \cr
   \code{var0}      \tab Calls \code{var(av(...), na.rm = T)}         \cr
-  \code{cor0}      \tab Calls \code{cor(x, y, use = 'complete.obs')} \cr
-  \code{cov0}      \tab Calls \code{cov(x, y, use = 'complete.obs')} \cr
+  \code{cor0}      \tab Calls \code{cor(X, Y, use = 'complete.obs')} \cr
+  \code{cov0}      \tab Calls \code{cov(X, Y, use = 'complete.obs')} \cr
   \code{sd0}       \tab Calls \code{sd(av(...), na.rm = T)}            }
 }
 \examples{

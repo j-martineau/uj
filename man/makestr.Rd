@@ -37,23 +37,23 @@
 \usage{
 makestr()
 
-geq(x, ...)
+geq(X, ...)
 
-geq0(x, ...)
+geq0(X, ...)
 
 gcat(...)
 
-gelt(x, ...)
+gelt(X, ...)
 
-gfun(x, ...)
+gfun(X, ...)
 
 glist(...)
 
-gform(x, ...)
+gform(X, ...)
 
 gtick(...)
 
-gwrap(l, r, ...)
+gwrap(L, R, ...)
 
 gbrace(...)
 
@@ -69,21 +69,21 @@ gbracket(...)
 
 pcat(...)
 
-peq(x, ...)
+peq(X, ...)
 
-peq0(x, ...)
+peq0(X, ...)
 
-pelt(x, ...)
+pelt(X, ...)
 
-pfun(x, ...)
+pfun(X, ...)
 
 plist(...)
 
-pform(x, ...)
+pform(X, ...)
 
 ptick(...)
 
-pwrap(l, r, ...)
+pwrap(L, R, ...)
 
 pbrace(...)
 
@@ -98,11 +98,11 @@ pquote2(...)
 pbracket(...)
 }
 \arguments{
-\item{x}{An object containing atomic values (atomized before processing).}
+\item{X}{An object containing atomic values (atomized before processing).}
 
 \item{...}{An arbitrary number of objects to be atomized into a single atomic vector.}
 
-\item{l, r}{\link[=cmp_chr_scl]{Complete character scalars} giving left and right side enclosures for \code{...} after \link[=av]{atomization}.}
+\item{L, R}{\link[=cmp_chr_scl]{Complete character scalars} giving left and right side enclosures for \code{...} after \link[=av]{atomization}.}
 }
 \value{
 A character scalar or vector
@@ -134,36 +134,36 @@ Prefixes and their meanings are:
 How each function works is illustrated in the details.
 }
 \examples{
-geq(c('x', 'y', 'z'), 0, 1, 2)
-peq(c('x', 'y', 'z'), 0, 1, 2)
-geq0(c('x', 'y', 'z'), 0, 1, 2)
-peq0(c('x', 'y', 'z'), 0, 1, 2)
-gcat(c('x', 'y', 'z'), 0, 1, 2)
-pcat(c('x', 'y', 'z'), 0, 1, 2)
-gelt(c('x', 'y', 'z'), 0, 1, 2)
-pelt(c('x', 'y', 'z'), 0, 1, 2)
-gfun(c('x', 'y', 'z'), 0, 1, 2)
-pfun(c('x', 'y', 'z'), 0, 1, 2)
-gform(c('x', 'y', 'z'), 0, 1, 2)
-pform(c('x', 'y', 'z'), 0, 1, 2)
-glist(c('x', 'y', 'z'), 0, 1, 2)
-plist(c('x', 'y', 'z'), 0, 1, 2)
-gtick(c('x', 'y', 'z'), 0, 1, 2)
-ptick(c('x', 'y', 'z'), 0, 1, 2)
-gwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)
-pwrap(c('l', 'L', 'l'), 'r', 0, 1, 2)
-gbrace(c('x', 'y', 'z'), 0, 1, 2)
-pbrace(c('x', 'y', 'z'), 0, 1, 2)
-gcolon(c('x', 'y', 'z'), 0, 1, 2)
-pcolon(c('x', 'y', 'z'), 0, 1, 2)
-gparen(c('x', 'y', 'z'), 0, 1, 2)
-pparen(c('x', 'y', 'z'), 0, 1, 2)
-gquote(c('x', 'y', 'z'), 0, 1, 2)
-pquote(c('x', 'y', 'z'), 0, 1, 2)
-gquote2(c('x', 'y', 'z'), 0, 1, 2)
-pquote2(c('x', 'y', 'z'), 0, 1, 2)
-gbracket(c('x', 'y', 'z'), 0, 1, 2)
-pbracket(c('x', 'y', 'z'), 0, 1, 2)
+geq(c('X', 'Y', 'Z'), 0, 1, 2)
+peq(c('X', 'Y', 'Z'), 0, 1, 2)
+geq0(c('X', 'Y', 'Z'), 0, 1, 2)
+peq0(c('X', 'Y', 'Z'), 0, 1, 2)
+gcat(c('X', 'Y', 'Z'), 0, 1, 2)
+pcat(c('X', 'Y', 'Z'), 0, 1, 2)
+gelt(c('X', 'Y', 'Z'), 0, 1, 2)
+pelt(c('X', 'Y', 'Z'), 0, 1, 2)
+gfun(c('X', 'Y', 'Z'), 0, 1, 2)
+pfun(c('X', 'Y', 'Z'), 0, 1, 2)
+gform(c('X', 'Y', 'Z'), 0, 1, 2)
+pform(c('X', 'Y', 'Z'), 0, 1, 2)
+glist(c('X', 'Y', 'Z'), 0, 1, 2)
+plist(c('X', 'Y', 'Z'), 0, 1, 2)
+gtick(c('X', 'Y', 'Z'), 0, 1, 2)
+ptick(c('X', 'Y', 'Z'), 0, 1, 2)
+gwrap(c('L', 'L', 'L'), 'R', 0, 1, 2)
+pwrap(c('L', 'L', 'L'), 'R', 0, 1, 2)
+gbrace(c('X', 'Y', 'Z'), 0, 1, 2)
+pbrace(c('X', 'Y', 'Z'), 0, 1, 2)
+gcolon(c('X', 'Y', 'Z'), 0, 1, 2)
+pcolon(c('X', 'Y', 'Z'), 0, 1, 2)
+gparen(c('X', 'Y', 'Z'), 0, 1, 2)
+pparen(c('X', 'Y', 'Z'), 0, 1, 2)
+gquote(c('X', 'Y', 'Z'), 0, 1, 2)
+pquote(c('X', 'Y', 'Z'), 0, 1, 2)
+gquote2(c('X', 'Y', 'Z'), 0, 1, 2)
+pquote2(c('X', 'Y', 'Z'), 0, 1, 2)
+gbracket(c('X', 'Y', 'Z'), 0, 1, 2)
+pbracket(c('X', 'Y', 'Z'), 0, 1, 2)
 }
 \seealso{
 Other strings: 

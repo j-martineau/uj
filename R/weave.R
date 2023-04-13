@@ -34,8 +34,8 @@
 #' \cr\cr Escape sequences in format `'{@@}'` mean 'insert \link[=atm_scl]{atomic scalar} arg *as is*'.
 #' \cr\cr Escape sequences in formats `'{@@x}', '{@@xy}',` and `'{@@xyz}'` mean 'insert \link[=atm_scl]{atomic vec} arg *after applying*, respectively, switch `x`; switches `x` and `y`; and switches `x`, `y`, and `z`.'
 #' \cr\cr **Ordering of switches in escape sequences** is arbitrary. Regardless of order in escape sequences, any `decimal` switches are applied first, followed by any `quote` switches, followed by any `list` switches.
-#' @param x A \link[=cmp_chr_scl]{complete character scalar} with embedded escape sequences. See details.
-#' @param ... Arbitrary number of atomic scalar/vector arguments to be inserted into `x` with formatting specified in inlay escape sequences. The `N`-th argument in `...` corresponds to the `N`-th inlay escape sequence in `x`. The number of inlay escape sequences in `x` must be equal to the number of `...` arguments. See details.
+#' @param X A \link[=cmp_chr_scl]{complete character scalar} with embedded escape sequences. See details.
+#' @param ... Arbitrary number of atomic scalar/vector arguments to be inserted into `X` with formatting specified in inlay escape sequences. The `N`-th argument in `...` corresponds to the `N`-th inlay escape sequence in `x`. The number of inlay escape sequences in `x` must be equal to the number of `...` arguments. See details.
 #' @return A character scalar.
 #' @examples
 #' cat(weave('{@@}', FALSE))
@@ -48,119 +48,119 @@
 #' cat(weave('{@@et3}', c(pi, exp(1))))
 #' cat(weave('{@@aq}', c('me', 'myself', 'I')))
 #' @export
-weave <- function(x, ...) {
-  n.dots <- base::...length()
-  ok.x <- uj:::.cmp_chr_scl(x)
-  ok.n <- n.dots > 0
-  ok.ppp <- base::ifelse(ok.n, base::all(base::sapply(base::list(...), uj::cmp_chr)), T)
-  errs <- NULL
-  if (!ok.n) {errs <- base::c(errs, "[...] is empty.")}
-  if (!ok.x) {errs <- base::c(errs, "[x] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!ok.ppp) {errs <- base::c(errs, "Arguments in [...] must be complete character objects (?cmp_chr).")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
-  dots <- base::list(...)                                                        # The arguments to weave into {x}
-  non.scl <- " is not scalar, but the "                                          # argument is not scalar
-  non.num <- " is not numeric, but the "                                         # argument is not numeric
-  switches <- "[&|aAbcelnpsqQtT0123456789]"                                      # gregexpr pattern for all valid switches
-  has.mult <- " contains more than 1 "                                           # multiple switches from a choose-max-of-1 set
-  assume.scl <- " assumes a scalar argument."                                    # switch code assumes a scalar argument
-  assume.num <- " assumes a numeric argument."                                   # switch code assumes a numeric argument
-  code.prefix <- "[{][@]"                                                        # gregexpr pattern for switch code prefix, i.e., '{@'
-  code.suffix <- "[}]"                                                           # gregexpr pattern for switch code suffix, i.e., '}'
-  ls.switches <- " list type switch (i.e., from characters in \"|&aAbcelnps\")." # choose-max-of-1 set of list-type switches
-  qt.switches <- " quote type switch (i.e., from characters in \"qtQT\")."       # choose-max-of-1 set of quote-type switches
-  dc.switches <- " decimal places switch (i.e., from characters in \"0123456789\")." # choose-max-of-1 set of decimal-type switches
-  all.switches <- base::c("&", "|", "a", "A", "b", "c", "e", "l", "n", "p", "s", "q", "Q", "t", "T", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
-  inlay.sequence <- " valid inlay escape sequence in x "                         # infix for describing inlay escape sequences
-  count.mismatch <- base::paste0("The number of arguments in [...] (", n.dots, ") and number of valid inlay escape sequences in [x.] ")
-  pat0 <- base::paste0(code.prefix, code.suffix)                                 # 0-switch pattern '{@}'
-  pat1 <- base::paste0(code.prefix, switches, code.suffix)                       # 1-switch pattern '{@s}'
-  pat2 <- base::paste0(code.prefix, switches, switches, code.suffix)             # 2-switch pattern '{@ss}'
-  pat3 <- base::paste0(code.prefix, switches, switches, switches, code.suffix)   # 3-switch pattern '{@sss}'
-  switches0 <- base::gregexpr(pat0, x)                                           # results of searching {x} for 0-switch patterns
-  switches1 <- base::gregexpr(pat1, x)                                           # results of searching {x} for 1-switch patterns
-  switches2 <- base::gregexpr(pat2, x)                                           # results of searching {x} for 2-switch patterns
-  switches3 <- base::gregexpr(pat3, x)                                           # results of searching {x} for 3-switch patterns
-  switches0 <- uj::f0(base::setequal(uj::av(switches0), -1), NULL, uj::tb(type = 0, pos = uj::av(switches0), len = 3)) # tibble of 0-switch pattern positions and lengths
-  switches1 <- uj::f0(base::setequal(uj::av(switches1), -1), NULL, uj::tb(type = 1, pos = uj::av(switches1), len = 4)) # tibble of 1-switch pattern positions and lengths
-  switches2 <- uj::f0(base::setequal(uj::av(switches2), -1), NULL, uj::tb(type = 2, pos = uj::av(switches2), len = 5)) # tibble of 2-switch pattern positions and lengths
-  switches3 <- uj::f0(base::setequal(uj::av(switches3), -1), NULL, uj::tb(type = 3, pos = uj::av(switches3), len = 6)) # tibble of 3-switch pattern positions and lengths
-  switches <- base::rbind(switches0, switches1, switches2, switches3)            # tibble of all switch pattern positions and lengths
-  switches <- switches[base::order(switches$pos, decreasing = T), ]              # sort by decreasing position of first letter of pattern in {x}
-  n.switches <- uj::nr(switches)                                                 # number of switch patterns found in {x}
-  if (n.switches != n.dots) {uj::stopperr(base::paste0(count.mismatch, "(", n.switches, ") don't match."), PKG = "uj")}
-  dots <- base::rev(dots)
-  errs <- NULL
-  for (i in 1:n.switches) {
-    prev0 <- 1
-    next1 <- base::nchar(x)
-    code0 <- switches$pos[i]
-    code1 <- code0 + switches$len[i] - 1
-    prev1 <- code0 - 1
-    next0 <- code1 + 1
-    code <- base::substr(x, code0, code1)
-    sequence <- base::paste0(i, "-th", inlay.sequence, "('", code, "')")
-    prev.text <- uj::f0(prev1 < prev0, "", base::substr(x, prev0, prev1))
-    next.text <- uj::f0(next0 > next1, "", base::substr(x, next0, next1))
-    code <- uj::av(base::strsplit(code, "", fixed = T))
-    code <- code[code %in% all.switches]
-    ok.code <- base::length(switches) == base::length(base::unique(switches))
-    if (!ok.code) {errs <- base::c(errs, base::paste0("The ", sequence, "contains duplicate switches."))}
+weave <- function(X, ...) {
+  nDots <- base::...length()
+  OkX <- uj:::.cmp_chr_scl(X)
+  OkN <- nDots > 0
+  OkPPP <- base::ifelse(OkN, base::all(base::sapply(base::list(...), uj::cmp_chr)), T)
+  Errors <- NULL
+  if (!OkN) {Errors <- base::c(Errors, "[...] is empty.")}
+  if (!OkX) {Errors <- base::c(Errors, "[x] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!OkPPP) {Errors <- base::c(Errors, "Arguments in [...] must be complete character objects (?cmp_chr).")}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  Dots <- base::list(...)                                                        # The arguments to weave into {x}
+  NonScl <- " is not scalar, but the "                                          # argument is not scalar
+  NonNum <- " is not numeric, but the "                                         # argument is not numeric
+  Switches <- "[&|aAbcelnpsqQtT0123456789]"                                      # gregexpr pattern for all valid switches
+  HasMult <- " contains more than 1 "                                           # multiple switches from a choose-max-of-1 set
+  AssumeScl <- " assumes a scalar argument."                                    # switch code assumes a scalar argument
+  AssumeNum <- " assumes a numeric argument."                                   # switch code assumes a numeric argument
+  CodePrefix <- "[{][@]"                                                        # gregexpr pattern for switch code prefix, i.e., '{@'
+  CodeSuffix <- "[}]"                                                           # gregexpr pattern for switch code suffix, i.e., '}'
+  ListSwitches <- " list type switch (i.e., from characters in \"|&aAbcelnps\")." # choose-max-of-1 set of list-type switches
+  QuoteSwitches <- " quote type switch (i.e., from characters in \"qtQT\")."       # choose-max-of-1 set of quote-type switches
+  DecimalSwitches <- " decimal places switch (i.e., from characters in \"0123456789\")." # choose-max-of-1 set of decimal-type switches
+  AllSwitches <- base::c("&", "|", "a", "A", "b", "c", "e", "l", "n", "p", "s", "q", "Q", "t", "T", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+  InlaySequence <- " valid inlay escape sequence in X "                         # infix for describing inlay escape sequences
+  CountMismatch <- base::paste0("The number of arguments in [...] (", nDots, ") and number of valid inlay escape sequences in [X] ")
+  Pattern0 <- base::paste0(CodePrefix, CodeSuffix)                                 # 0-switch pattern '{@}'
+  Pattern1 <- base::paste0(CodePrefix, Switches, CodeSuffix)                       # 1-switch pattern '{@s}'
+  Pattern2 <- base::paste0(CodePrefix, Switches, Switches, CodeSuffix)             # 2-switch pattern '{@ss}'
+  Pattern3 <- base::paste0(CodePrefix, Switches, Switches, Switches, CodeSuffix)   # 3-switch pattern '{@sss}'
+  Switches0 <- base::gregexpr(Pattern0, X)                                           # results of searching {X} for 0-switch patterns
+  Switches1 <- base::gregexpr(Pattern1, X)                                           # results of searching {X} for 1-switch patterns
+  Switches2 <- base::gregexpr(Pattern2, X)                                           # results of searching {X} for 2-switch patterns
+  Switches3 <- base::gregexpr(Pattern3, X)                                           # results of searching {X} for 3-switch patterns
+  Switches0 <- uj::f0(base::setequal(uj::av(Switches0), -1), NULL, uj::tb(Type = 0, Position = uj::av(Switches0), Length = 3)) # tibble of 0-switch pattern positions and lengths
+  Switches1 <- uj::f0(base::setequal(uj::av(Switches1), -1), NULL, uj::tb(Type = 1, Position = uj::av(Switches1), Length = 4)) # tibble of 1-switch pattern positions and lengths
+  Switches2 <- uj::f0(base::setequal(uj::av(Switches2), -1), NULL, uj::tb(Type = 2, Position = uj::av(Switches2), Length = 5)) # tibble of 2-switch pattern positions and lengths
+  Switches3 <- uj::f0(base::setequal(uj::av(Switches3), -1), NULL, uj::tb(Type = 3, Position = uj::av(Switches3), Length = 6)) # tibble of 3-switch pattern positions and lengths
+  Switches <- base::rbind(Switches0, Switches1, Switches2, Switches3)            # tibble of all switch pattern positions and lengths
+  Switches <- Switches[base::order(Switches$Position, decreasing = T), ]              # sort by decreasing position of first letter of pattern in {X}
+  nSwitches <- uj::nr(Switches)                                                 # number of switch patterns found in {X}
+  if (nSwitches != nDots) {uj::stopperr(base::paste0(CountMismatch, "(", nSwitches, ") don't match."), PKG = "uj")}
+  Dots <- base::rev(Dots)
+  Errors <- NULL
+  for (i in 1:nSwitches) {
+    Prev0 <- 1
+    Next1 <- base::nchar(X)
+    Code0 <- Switches$pos[i]
+    Code1 <- Code0 + Switches$Length[i] - 1
+    Prev1 <- Code0 - 1
+    Next0 <- Code1 + 1
+    Code <- base::substr(X, Code0, Code1)
+    Sequence <- base::paste0(i, "-th", InlaySequence, "('", Code, "')")
+    PrevText <- uj::f0(Prev1 < Prev0, "", base::substr(X, Prev0, Prev1))
+    NextText <- uj::f0(Next0 > Next1, "", base::substr(X, Next0, Next1))
+    Code <- uj::av(base::strsplit(Code, "", fixed = T))
+    Code <- Code[Code %in% AllSwitches]
+    OkCode <- base::length(Switches) == base::length(base::unique(Switches))
+    if (!OkCode) {Errors <- base::c(Errors, base::paste0("The ", Sequence, "contains duplicate switches."))}
     else {
-      io <- "|" %in% code; iv <- "&" %in% code; ia <- "a" %in% code; iA <- "A" %in% code; ib <- "b" %in% code
-      ic <- "c" %in% code; ie <- "e" %in% code; il <- "l" %in% code; iN <- "n" %in% code; io <- "o" %in% code
-      ip <- "p" %in% code; iq <- "q" %in% code; iQ <- "Q" %in% code; is <- "s" %in% code; it <- "t" %in% code
-      iT <- "T" %in% code; i0 <- "0" %in% code; i1 <- "1" %in% code; i2 <- "2" %in% code; i3 <- "3" %in% code
-      i4 <- "4" %in% code; i5 <- "5" %in% code; i6 <- "6" %in% code; i7 <- "7" %in% code; i8 <- "8" %in% code
-      i9 <- "9" %in% code
-      nq <- base::length(base::which(base::c(iq, iQ, it, iT)))
-      nl <- base::length(base::which(base::c(io, iv, ia, iA, ib, ic, ie, il, iN, ip, is)))
-      nd <- base::length(base::which(base::c(i0, i2, i3, i4, i5, i6, i7, i8, i9)))
-      ok.qt <- nq < 2
-      ok.ls <- ls < 2
-      ok.dc <- nd < 2
-      errs <- base::c(errs, uj::f0(ok.qt, NULL, base::paste0("The ", sequence, has.mult, qt.switches)),
-                            uj::f0(ok.ls, NULL, base::paste0("The ", sequence, has.mult, ls.switches)),
-                            uj::f0(ok.dc, NULL, base::paste0("The ", sequence, has.mult, dc.switches)))
-      if (ok.ls & ok.qt & ok.dc) {
-        dot <- dots[[i]]
-        dot.n <- base::length(dot)
-        ok.ls <- nl == 1 | dot.n == 1
-        ok.dot <- nd == 0 | base::is.numeric(dot)
-        errs <- base::c(errs,
-                        uj::f0(ok.ls , NULL, base::paste0("..", i, non.scl, sequence, assume.scl)),
-                        uj::f0(ok.dot, NULL, base::paste0("..", i, non.num, sequence, assume.num)))
-        if (ok.ls & ok.dot) {
-          dot <- uj::f0(i0, base::sprintf("%0.0f", dot),
-                        uj::f0(i1, base::sprintf("%0.1f", dot),
-                               uj::f0(i2, base::sprintf("%0.2f", dot),
-                                      uj::f0(i3, base::sprintf("%0.3f", dot),
-                                             uj::f0(i4, base::sprintf("%0.4f", dot),
-                                                    uj::f0(i5, base::sprintf("%0.5f", dot),
-                                                           uj::f0(i6, base::sprintf("%0.6f", dot),
-                                                                  uj::f0(i7, base::sprintf("%0.7f", dot),
-                                                                         uj::f0(i8, base::sprintf("%0.8f", dot),
-                                                                                uj::f0(i9, base::sprintf("%0.9f", dot), dot))))))))))
+      io <- "|" %in% Code | "o" %in% Code
+      iv <- "&" %in% Code; ia <- "a" %in% Code; iA <- "A" %in% Code; ib <- "b" %in% Code; ic <- "c" %in% Code
+      ie <- "e" %in% Code; il <- "l" %in% Code; iN <- "n" %in% Code; ip <- "p" %in% Code; iq <- "q" %in% Code
+      iQ <- "Q" %in% Code; is <- "s" %in% Code; it <- "t" %in% Code; iT <- "T" %in% Code; i0 <- "0" %in% Code
+      i1 <- "1" %in% Code; i2 <- "2" %in% Code; i3 <- "3" %in% Code; i4 <- "4" %in% Code; i5 <- "5" %in% Code
+      i6 <- "6" %in% Code; i7 <- "7" %in% Code; i8 <- "8" %in% Code; i9 <- "9" %in% Code
+      nList <- base::length(base::which(base::c(io, iv, ia, iA, ib, ic, ie, il, iN, ip, is)))
+      nQuote <- base::length(base::which(base::c(iq, iQ, it, iT)))
+      nDecimal <- base::length(base::which(base::c(i0, i2, i3, i4, i5, i6, i7, i8, i9)))
+      OkQuote <- nQuote < 2
+      OkList <- nList < 2
+      OkDecimal <- nDecimal < 2
+      Errors <- base::c(Errors, uj::f0(OkList, NULL, base::paste0("The ", Sequence, HasMult, ListSwitches)),
+                                uj::f0(OkQuote, NULL, base::paste0("The ", Sequence, HasMult, QuoteSwitches)),
+                                uj::f0(OkDecimal, NULL, base::paste0("The ", Sequence, HasMult, DecimalSwitches)))
+      if (OkList & OkQuote & OkDecimal) {
+        Dot <- Dot[[i]]
+        DotLen <- base::length(Dot)
+        OkList <- nList == 1 | DotLen == 1
+        OkDot <- nDecimal == 0 | base::is.numeric(Dot)
+        Errors <- base::c(Errors,
+                        uj::f0(OkList , NULL, base::paste0("..", i, NonScl, Sequence, AssumeScl)),
+                        uj::f0(OkDot, NULL, base::paste0("..", i, NonNum, Sequence, AssumeNum)))
+        if (OkList & OkDot) {
+          Dot <- uj::f0(i0, base::sprintf("%0.0f", Dot),
+                        uj::f0(i1, base::sprintf("%0.1f", Dot),
+                               uj::f0(i2, base::sprintf("%0.2f", Dot),
+                                      uj::f0(i3, base::sprintf("%0.3f", Dot),
+                                             uj::f0(i4, base::sprintf("%0.4f", Dot),
+                                                    uj::f0(i5, base::sprintf("%0.5f", Dot),
+                                                           uj::f0(i6, base::sprintf("%0.6f", Dot),
+                                                                  uj::f0(i7, base::sprintf("%0.7f", Dot),
+                                                                         uj::f0(i8, base::sprintf("%0.8f", Dot),
+                                                                                uj::f0(i9, base::sprintf("%0.9f", Dot), Dot))))))))))
 
-          dot <- uj::f0(iq, base::paste0("'", dot, "'"),
-                        uj::f0(iQ, base::paste0("\"", dot, "\""),
-                               uj::f0(it, base::paste0('\u2018', dot, '\u2019'),
-                                      uj::f0(iT, base::paste0('\u201C', dot, '\u201D'), dot))))
+          Dot <- uj::f0(iq, base::paste0("'", Dot, "'"),
+                        uj::f0(iQ, base::paste0("\"", Dot, "\""),
+                               uj::f0(it, base::paste0('\u2018', Dot, '\u2019'),
+                                      uj::f0(iT, base::paste0('\u201C', Dot, '\u201D'), Dot))))
 
-          dot <- uj::f0(io, uj::ox_or(dot),
-                        uj::f0(iv, uj::ox_and(dot),
-                               uj::f0(ia, uj::ox_any(dot),
-                                      uj::f0(iA, uj::ox_all(dot),
-                                             uj::f0(ie, uj::ox_either(dot),
-                                                    uj::f0(iN, uj::ox_neither(dot),
-                                                           uj::f0(il, base::paste0(dot, collapse = ", "),
-                                                                  uj::f0(ic, base::paste0("c(", base::paste0(dot, collapse = ", "), ")"),
-                                                                         uj::f0(ip, base::paste0( "(", base::paste0(dot, collapse = ", "), ")"),
-                                                                                uj::f0(ib, base::paste0( "{", base::paste0(dot, collapse = ", "), "}"),
-                                                                                       uj::f0(is, base::paste0("[", uj::g(", ", dot), dot, "]"), dot)))))))))))
+          Dot <- uj::f0(io, uj::ox_or(Dot),
+                        uj::f0(iv, uj::ox_and(Dot),
+                               uj::f0(ia, uj::ox_any(Dot),
+                                      uj::f0(iA, uj::ox_all(Dot),
+                                             uj::f0(ie, uj::ox_either(Dot),
+                                                    uj::f0(iN, uj::ox_neither(Dot),
+                                                           uj::f0(il, base::paste0(Dot, collapse = ", "),
+                                                                  uj::f0(ic, base::paste0("c(", base::paste0(Dot, collapse = ", "), ")"),
+                                                                         uj::f0(ip, base::paste0( "(", base::paste0(Dot, collapse = ", "), ")"),
+                                                                                uj::f0(ib, base::paste0( "{", base::paste0(Dot, collapse = ", "), "}"),
+                                                                                       uj::f0(is, base::paste0("[", uj::g(", ", Dot), Dot, "]"), Dot)))))))))))
 
-          x <- base::paste0(prev.text, dot, next.text)
+          X <- base::paste0(PrevText, Dot, NextText)
   }}}}
-  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
-  x
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  X
 }

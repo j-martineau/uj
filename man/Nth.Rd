@@ -9,26 +9,26 @@
 \alias{Nth_plus}
 \title{Extract elements by numeric position}
 \usage{
-Nth(x, N)
+Nth(X, N)
 
-firstN(x, N)
+firstN(X, N)
 
-lastN(x, N)
+lastN(X, N)
 
-Nth_from_last(x, N)
+Nth_from_last(X, N)
 
-Nth_plus(x, N)
+Nth_plus(X, N)
 }
 \arguments{
-\item{x}{A \link[=pop_vec]{populated vector} to extract elements from.}
+\item{X}{A \link[=pop_vec]{populated vector} to extract elements from.}
 
-\item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar}.}
+\item{N}{A \link[=cmp_psw_scl]{complete positive whole-number scalar}.}
 }
 \value{
 A scalar, vector, or \link[=VLS]{vlist}.
 }
 \description{
-Extract the \code{N}-th, \code{n}-th from last, first \code{n}, and last \code{n} elements of a vector of list.
+Extract the \code{N}-th, \code{N}-th from last, first \code{N}, and last \code{N} elements of a vector of list.
 \tabular{ll}{  \code{Nth_from_last}   \tab Gets the \code{N}th from last element(s). \cr
   \code{Nth_plus}        \tab Gets element \code{N} and onwards.        \cr
   \code{firstN}          \tab Gets the first \code{N} elements.         \cr

@@ -8,32 +8,32 @@
 \usage{
 dups(...)
 
-idups(x, int = F)
+idups(X, Int = F)
 }
 \arguments{
 \item{...}{One or more atomic vectors to be evaluated for duplicated values.}
 
-\item{x}{An \link[=atm_vec]{atomic vec}.}
+\item{X}{An \link[=atm_vec]{atomic vec}.}
 
-\item{int}{\code{TRUE} or \code{FALSE} indicating whether to return a logical vector (\code{int = FALSE}) or an integer vector (\code{int = TRUE}).}
+\item{Int}{\code{TRUE} or \code{FALSE} indicating whether to return a logical vector (\code{Int = FALSE}) or an integer vector (\code{Int = TRUE}).}
 }
 \value{
-\strong{A logical vector} (when \verb{int = FALSE)} \cr\cr \code{idups}
-\cr\cr  \strong{An integer vector} (when \verb{int = TRUE}) \cr\cr \code{idups}
+\strong{A logical vector} (when \verb{Int = FALSE)} \cr\cr \code{idups}
+\cr\cr  \strong{An integer vector} (when \verb{Int = TRUE}) \cr\cr \code{idups}
 \cr\cr  \strong{An atomic vector}                      \cr\cr \code{dups}
 }
 \description{
 Extensions of \code{\link[base]{duplicated}}. Logically and numerically index duplicate values.
 }
 \details{
-\tabular{ll}{  \code{idups}   \tab Indexes all elements of \code{x} that are duplicates of its earlier element, either as a logical vector of the same length as \code{x} (when \code{int = FALSE})
-or as an integer vector whose length is the same as the number of elements in \code{x} that are duplicates of earlier elements (when \code{int = TRUE}).    \cr   \tab   \cr
+\tabular{ll}{  \code{idups}   \tab Indexes all elements of \code{X} that are duplicates of its earlier element, either as a logical vector of the same length as \code{X} (when \code{Int = FALSE})
+or as an integer vector whose length is the same as the number of elements in \code{X} that are duplicates of earlier elements (when \code{Int = TRUE}).    \cr   \tab   \cr
   \code{dups}    \tab \link[=av]{Atomizes} \code{...}, then reduce the resulting vector to contain one copy of each duplicated element.                                                     }
 }
 \examples{
 dups(0:5, 5:10, 10:15, 15:20)
 idups(c(0:5, 5:10, 10:15, 15:20))
-idups(c(0:5, 5:10, 10:15, 15:20), int = T)
+idups(c(0:5, 5:10, 10:15, 15:20), Int = T)
 }
 \seealso{
 Other extensions: 

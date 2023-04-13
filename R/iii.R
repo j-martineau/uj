@@ -10,14 +10,14 @@
 #'                 `'nas', 'NA0'`   \tab `NA` scalar   \tab Atomic scalar `NA`.                                                                                                          \cr   \tab   \cr
 #'                 `'oks', 'OK0'`   \tab `OK` scalar   \tab Non-`NA` atomic scalar.                                                                                                                     }
 #' \cr\cr **Integrity property functions**
-#' \tabular{ll}{  `is_iii_spec`   \tab Is `spec` an integrity specification?                                                                \cr   \tab   \cr
+#' \tabular{ll}{  `is_iii_spec`   \tab Is `Spec` an integrity specification?                                                                \cr   \tab   \cr
 #'                `iii_props`     \tab What integrity properties are there?                                                                 \cr   \tab   \cr
 #'                `iii_funs`      \tab What integrity property functions are there?                                                         \cr   \tab   \cr
-#'                `iii`           \tab Gets all of `x`'s integrity properties.                                                              \cr   \tab   \cr
-#'                `III`           \tab Does `x` match integrity specification `spec`?                                                       \cr   \tab   \cr
-#'                `{II}`          \tab Does `x` match single integrity property `'{III}'` where `{III}` is a placeholder for any given integrity property? }
-#' @param x An R object.
-#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more integrity properties (i.e., from `iii_props()`). Integrity properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
+#'                `iii`           \tab Gets all of `X`'s integrity properties.                                                              \cr   \tab   \cr
+#'                `III`           \tab Does `X` match integrity specification `Spec`?                                                       \cr   \tab   \cr
+#'                `{II}`          \tab Does `X` match single integrity property `'{III}'` where `{III}` is a placeholder for any given integrity property? }
+#' @param X An R object.
+#' @param Spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more integrity properties (i.e., from `iii_props()`). Integrity properties may be pipe-delimited. If there are multiple properties in `Spec`, `X` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return **A character vector** \cr\cr   `iii_props, iii_funs, iii`
@@ -36,61 +36,61 @@
 #' iii(letters)
 #' iii(letters[1])
 #' @export
-iii <- function(x) {
-  y <- NULL
-  for (III in uj:::.III) {y <- base::c(y, uj::f0(uj::run("uj:::.", III, '(x)'), III, NULL))}
-  y
+iii <- function(X) {
+  Y <- NULL
+  for (III in uj::v(III)) {Y <- base::c(Y, uj::f0(uj::run("uj:::.", III, '(X)'), III, NULL))}
+  Y
 }
 
 #' @rdname iii
 #' @export
-iii_funs <- function() {uj:::.III}
+iii_funs <- function() {uj::v(III)}
 
 #' @rdname iii
 #' @export
-iii_props <- function() {uj:::.iii}
+iii_props <- function() {uj::v(iii)}
 
 #' @rdname iii
 #' @export
-is_iii_spec <- function(spec) {
-  spec <- uj:::.spec2props(spec)
-  f0(base::length(spec) == 0, F, base::all(spec %in% uj:::.iii))
+is_iii_spec <- function(Spec) {
+  Spec <- uj:::.spec2props(Spec)
+  f0(base::length(Spec) == 0, F, base::all(Spec %in% uj::v(iii)))
 }
 
 #' @rdname iii
 #' @export
-III <- function(x, spec, ...) {
-  errs <- uj:::.meets_errs(x, ...)
-  if (!uj::is_iii_spec(spec)) {errs <- base::c(errs, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from iii_props().')}
-  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
-  for (prop in base::toupper(uj:::.spec2props(spec))) {if (uj::run('uj:::.', prop, '(x)')) {return(T)}}
+III <- function(X, Spec, ...) {
+  Errors <- uj:::.meets_errs(X, ...)
+  if (!uj::is_iii_spec(Spec)) {Errors <- base::c(Errors, '[Spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from iii_props().')}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  for (Prop in base::toupper(uj:::.spec2props(Spec))) {if (uj::run('uj:::.', Prop, '(X)')) {return(T)}}
   F
 }
 
 #' @rdname iii
 #' @export
-CMP <- function(x, ...) {uj::III(x, 'x', ...)}
+CMP <- function(X, ...) {uj::III(X, 'X', ...)}
 
 #' @rdname iii
 #' @export
-MSS <- function(x, ...) {uj::III(x, 'mss', ...)}
+MSS <- function(X, ...) {uj::III(X, 'mss', ...)}
 
 #' @rdname iii
 #' @export
-NA0 <- function(x, ...) {uj::III(x, 'nas', ...)}
+NA0 <- function(X, ...) {uj::III(X, 'nas', ...)}
 
 #' @rdname iii
 #' @export
-OK0 <- function(x, ...) {uj::III(x, 'oks', ...)}
+OK0 <- function(X, ...) {uj::III(X, 'oks', ...)}
 
 #' @rdname iii
 #' @export
-PRT <- function(x, ...) {uj::III(x, 'prt', ...)}
+PRT <- function(X, ...) {uj::III(X, 'prt', ...)}
 
 #' @rdname iii
 #' @export
-DUP <- function(x, ...) {uj::III(x, 'dup', ...)}
+DUP <- function(X, ...) {uj::III(X, 'dup', ...)}
 
 #' @rdname iii
 #' @export
-UNQ <- function(x, ...) {uj::III(x, 'unq', ...)}
+UNQ <- function(X, ...) {uj::III(X, 'unq', ...)}

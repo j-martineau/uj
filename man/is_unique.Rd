@@ -12,40 +12,40 @@
 \alias{not_unq0}
 \title{Does an atomic object only contain unique values?}
 \usage{
-is_unique(x, a = FALSE, na = FALSE)
+is_unique(X, A = FALSE, Na = FALSE)
 
 is_unique0(...)
 
-not_unique(x, a = FALSE, na = FALSE)
+not_unique(X, A = FALSE, Na = FALSE)
 
 not_unique0(...)
 
-is_unq(x, a = FALSE, na = FALSE)
+is_unq(X, A = FALSE, Na = FALSE)
 
 is_unq0(...)
 
-not_unq(x, a = FALSE, na = FALSE)
+not_unq(X, A = FALSE, Na = FALSE)
 
 not_unq0(...)
 }
 \arguments{
-\item{x}{An atomic object.}
+\item{X}{An atomic object.}
 
-\item{a}{\code{TRUE} or \code{FALSE} indicating whether to reduce \code{x} to an atomic vector containing all of its atomic values. When \code{FALSE} and \code{x} is not atomic, throws an error.}
+\item{A}{\code{TRUE} or \code{FALSE} indicating whether to reduce \code{X} to an atomic vector containing all of its atomic values. When \code{FALSE} and \code{X} is not atomic, throws an error.}
 
-\item{na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are allowed.}
+\item{Na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are allowed.}
 }
 \value{
 Scalar \code{TRUE} or scalar \code{FALSE}.
 }
 \description{
-Evaluates whether \code{x} contains only only unique atomic values, with options for for atomizing before evaluation and for handling \code{NA} values.
+Evaluates whether \code{X} contains only only unique atomic values, with options for for atomizing before evaluation and for handling \code{NA} values.
 }
 \details{
-\tabular{ll}{  \verb{not_unique0, not_unq0}   \tab whether \code{x} \emph{is not} an atomic vector containing only unique values.                           \cr   \tab   \cr
-  \verb{not_unique, not_unq}     \tab whether \code{x} \emph{is not} a unique data.frame, list, or vector depending on values of \code{a} and \code{na}. \cr   \tab   \cr
-  \verb{is_unique0, is_unq0}     \tab whether \code{x} \emph{is} an atomic vector containing only unique values.                               \cr   \tab   \cr
-  \verb{is_unique, is_unq}       \tab whether \code{x} \emph{is} a unique data.frame, list, or vector depending on values of \code{a} and \code{na}.                    }
+\tabular{ll}{  \verb{not_unique0, not_unq0}   \tab whether \code{X} \emph{is not} an atomic vector containing only unique values.                           \cr   \tab   \cr
+  \verb{not_unique, not_unq}     \tab whether \code{X} \emph{is not} a unique data.frame, list, or vector depending on values of \code{A} and \code{Na}. \cr   \tab   \cr
+  \verb{is_unique0, is_unq0}     \tab whether \code{X} \emph{is} an atomic vector containing only unique values.                               \cr   \tab   \cr
+  \verb{is_unique, is_unq}       \tab whether \code{X} \emph{is} a unique data.frame, list, or vector depending on values of \code{A} and \code{Na}.                    }
 }
 \examples{
 is_unique(letters)
@@ -78,7 +78,6 @@ Other properties:
 \code{\link{as_mmm}()},
 \code{\link{bbb_mmm}()},
 \code{\link{bbb}()},
-\code{\link{checker}},
 \code{\link{cls}()},
 \code{\link{cmp_ccc}()},
 \code{\link{cmp_mmm}()},
@@ -90,8 +89,10 @@ Other properties:
 \code{\link{meets}()},
 \code{\link{mmm_ccc}()},
 \code{\link{mmm}()},
+\code{\link{ppp_fast}()},
 \code{\link{ppp}()},
 \code{\link{sss}()},
+\code{\link{stopperr}()},
 \code{\link{unq_ccc}()}
 }
 \concept{extensions}

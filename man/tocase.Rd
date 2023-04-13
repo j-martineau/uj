@@ -9,9 +9,9 @@
 \alias{sc}
 \alias{tc}
 \alias{uc}
-\title{Convert string case}
+\title{Convert string Case}
 \usage{
-tocase(case, ...)
+tocase(Case, ...)
 
 tosent(...)
 
@@ -26,7 +26,7 @@ tc(...)
 uc(...)
 }
 \arguments{
-\item{case}{A case insensitive \link[=cmp_ch1_scl]{complete onechar scalar}. Either \code{'l'}, \code{'s'}, \code{'t'}, or \code{'u'} to indicate lower, sentence, title, or upper case, respectively.}
+\item{Case}{A Case insensitive \link[=cmp_ch1_scl]{complete onechar scalar}. Either \code{'l'}, \code{'s'}, \code{'t'}, or \code{'u'} to indicate lower, sentence, title, or upper Case, respectively.}
 
 \item{...}{An arbitrary number of non-empty character arguments.}
 }
@@ -37,12 +37,12 @@ A character vector.
 Convert among lower, sentence, title, and upper cases.
 }
 \details{
-Functions in this family convert string case as follows:
-\tabular{ll}{  \verb{totitle, tc}   \tab Convert to \link[stringr:str_to_sentence]{title case}.    \cr
-  \verb{tosent, sc}    \tab Convert to \link[stringr:str_to_sentence]{sentence case}. \cr
-  \code{tocase}        \tab Convert to case \code{case}.                                   \cr
-  \code{lc}            \tab Convert to \link[base:tolower]{lower case}.               \cr
-  \code{uc}            \tab Convert to \link[base:toupper]{upper case}.                 }
+Functions in this family convert string Case as follows:
+\tabular{ll}{  \verb{totitle, tc}   \tab Convert to \link[stringr:str_to_sentence]{title Case}.    \cr
+  \verb{tosent, sc}    \tab Convert to \link[stringr:str_to_sentence]{sentence Case}. \cr
+  \code{tocase}        \tab Convert to Case \code{Case}.                                   \cr
+  \code{lc}            \tab Convert to \link[base:tolower]{lower Case}.               \cr
+  \code{uc}            \tab Convert to \link[base:toupper]{upper Case}.                 }
 }
 \examples{
 egSentence <- "This is a sentence."

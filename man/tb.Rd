@@ -9,13 +9,23 @@
 \alias{is_tb}
 \title{\code{tibble} wrappers}
 \usage{
-tb(...)
+tb(
+  ...,
+  .rows = NULL,
+  .name_repair = c("check_unique", "unique", "universal", "minimal")
+)
 
 trb(...)
 
-tbr(...)
+tbr(..., .name_repair = c("check_unique", "unique", "universal", "minimal"))
 
-as_tb(...)
+as_tb(
+  x,
+  ...,
+  .rows = NULL,
+  .name_repair = c("check_unique", "unique", "universal", "minimal"),
+  rownames = pkgconfig::get_config("tibble::rownames", NULL)
+)
 
 is_tb(x)
 }
@@ -45,7 +55,7 @@ isTB(tb(letters))
 \seealso{
 Other wraps: 
 \code{\link{basics}()},
-\code{\link{dp}},
+\code{\link{dp}()},
 \code{\link{dt}()},
 \code{\link{ggp}()},
 \code{\link{gr}},

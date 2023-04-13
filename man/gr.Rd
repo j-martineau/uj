@@ -7,9 +7,9 @@
 \alias{str_w}
 \title{Thin wrappers of \code{graphics} functions.}
 \usage{
-str_h(...)
+str_h(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...)
 
-str_w(...)
+str_w(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...)
 }
 \description{
 Thin wrappers of \code{graphics} functions.
@@ -57,7 +57,7 @@ Other plots:
 
 Other wraps: 
 \code{\link{basics}()},
-\code{\link{dp}},
+\code{\link{dp}()},
 \code{\link{dt}()},
 \code{\link{ggp}()},
 \code{\link{rd}()},

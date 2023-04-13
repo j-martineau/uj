@@ -14,32 +14,32 @@
 \alias{new_dirs}
 \title{Evaluate and manipulate paths to files or folders}
 \usage{
-is_path(..., err = F)
+is_path(..., Err = F)
 
-as_path(..., err = T)
+as_path(..., Err = T)
 
-object_dirs(path, err = T)
+object_dirs(Path, Err = T)
 
-parent_dirs(path, err = T)
+parent_dirs(Path, Err = T)
 
-object_path(path, err = T)
+object_path(Path, Err = T)
 
-parent_path(path, err = T)
+parent_path(Path, Err = T)
 
-object_name(path, err = T)
+object_name(Path, Err = T)
 
-parent_name(path, err = T)
+parent_name(Path, Err = T)
 
-new_dirs(dirs, path = NULL)
+new_dirs(Dirs, Path = NULL)
 }
 \arguments{
 \item{...}{Atomic arguments pasted to create}
 
-\item{err}{\code{TRUE} or \code{FALSE} indicating whether an error should be thrown if \code{...} is not a valid object path when collapsed to a character scalar.}
+\item{Err}{\code{TRUE} or \code{FALSE} indicating whether an error should be thrown if \code{...} is not a valid object path when collapsed to a character scalar.}
 
-\item{path}{A \link[=cmp_chr_scl]{complete character scalar} path to either a directory or a file.}
+\item{Path}{A \link[=cmp_chr_scl]{complete character scalar} path to either a directory or a file.}
 
-\item{dirs}{A \link[=cmp_chr_vec]{complete character vec} of new sub-directory names.}
+\item{Dirs}{A \link[=cmp_chr_vec]{complete character vec} of new sub-directory names.}
 }
 \value{
 \strong{A character scalar} \cr\cr \verb{object_dirs, parent_path} \cr \verb{object_name, parent_name} \cr \code{as_path}

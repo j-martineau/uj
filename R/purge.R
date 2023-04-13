@@ -3,19 +3,19 @@
 #' @family extensions
 #' @family meta
 #' @title Purge objects and parts of objects
-#' @details All purge (`x`) functions include garbage collection.
+#' @details All purge (`X`) functions include garbage collection.
 #' \tabular{ll}{  `purge_pref, rm__pref, xpref`   \tab Purge package prefixes\eqn{^{(1)}}    \cr
 #'                `purge_plot, rm_plot, xplot`    \tab Purge plots\eqn{^{(2)}}               \cr
 #'                `purge_warn, rm_warn, xwarn`    \tab Purge warnings                        \cr
 #'                `purge_con, rm_con, xcon`       \tab Purge console                         \cr
-#'                `purge, x`                      \tab Purge specific objects                  }
+#'                `purge, X`                      \tab Purge specific objects                  }
 #'  \tabular{l}{  \eqn{^{(1)}} Converts `'base::paste'` to `'paste'`, for example.           \cr
-#'                \eqn{^{(2)}} Followed by printing the object `x` if not `NULL`.  \cr   \tab  }
+#'                \eqn{^{(2)}} Followed by printing the object `X` if not `NULL`.            \cr   }
 #' \tabular{ll}{  `purge_global, purge_all`      \tab **WARNING: Use with care!**            \cr
 #'                `rm_global, rm_all`            \tab    *These functions purge *            \cr
 #'                `xglobal, xall`                \tab    *the global environment*              }
-#' @param x Anticipated to be a plot object, but any object can be handled.
-#' @param funs \link[=cmp_chr_vec]{A complete character vec} of function names, possibly with package prefixes.
+#' @param X Anticipated to be a plot object, but any object can be handled.
+#' @param Funs \link[=cmp_chr_vec]{A complete character vec} of function names, possibly with package prefixes.
 #' @param ... One or more \link[=cmp_chr_vec]{complete character vecs} containing names of objects to purge from the global environment.
 #' @return **A character vector**    \cr\cr `purge_pref, rm_pref, xpref`
 #' \cr\cr  **The** `NULL` **object** \cr\cr all others
@@ -25,8 +25,8 @@
 #' \dontrun{
 #'   ## build a ggplot scatterplot object (y.)
 #'   library(ggplot2)
-#'   egObj <- data.frame(x = 0:100, y = sqrt(0:100)
-#'   egGgp <- ggplot(egObj, aes(x, y)) + geom_point()
+#'   egObj <- data.frame(X = 0:100, y = sqrt(0:100)
+#'   egGgp <- ggplot(egObj, aes(X, y)) + geom_point()
 #'
 #'   ## print to console, wait for user, purge console
 #'   say("\n A message")
@@ -34,7 +34,7 @@
 #'   xcon()
 #'
 #'   ## display a scatterplot, wait for user
-#'   plot(egObj$x, egObj$y)
+#'   plot(egObj$X, egObj$y)
 #'   continue()
 #'
 #'   ## purge plots and print ggplot
@@ -54,22 +54,22 @@
 #' }
 #' @export
 purge <- function(...) {
-  x <- base::as.character(base::match.call())
-  x <- x[2:base::length(x)]
-  code <- base::paste0("rm(", uj::g(", ", x), ")")
-  base::eval.parent(base::parse(text = code), n = 1)
+  X <- base::as.character(base::match.call())
+  X <- X[2:base::length(X)]
+  Code <- base::paste0("rm(", uj::g(", ", X), ")")
+  base::eval.parent(base::parse(text = Code), n = 1)
   base::gc(verbose = FALSE)
 }
 
 #' @rdname purge
 #' @export
-x <- purge
+X <- purge
 
 #' @rdname purge
 #' @export
-purge_plot <- function(x = NULL) {
+purge_plot <- function(X = NULL) {
   grDevices::graphics.off()
-  if (!base::is.null(x)) {base::print(x)}
+  if (!base::is.null(X)) {base::print(X)}
   base::gc(verbose = FALSE)
 }
 
@@ -85,12 +85,12 @@ xplot <- purge_plot
 #' @export
 purge_warnings <- function() {
   base::gc(verbose = FALSE)
-  x <- base::baseenv()$last.warning
-  if (!base::is.null(x)) {
-    locked <- base::bindingIsLocked("last.warning", base::baseenv())
-    if (locked) {base::unlockBinding("last.warning", base::baseenv())}
+  X <- base::baseenv()$last.warning
+  if (!base::is.null(X)) {
+    Locked <- base::bindingIsLocked("last.warning", base::baseenv())
+    if (Locked) {base::unlockBinding("last.warning", base::baseenv())}
     base::assign("last.warning", NULL, envir = base::baseenv())
-    if (locked) {base::lockBinding("last.warning", base::baseenv())}
+    if (Locked) {base::lockBinding("last.warning", base::baseenv())}
   }
 }
 
@@ -127,13 +127,13 @@ xcon <- purge_console
 
 #' @rdname purge
 #' @export
-purge_pref <- function(funs) {
+purge_pref <- function(Funs) {
   base::gc(verbose = FALSE)
-  if (!uj:::.cmp_chr_vec(funs)) {uj::stopperr("[funs] must be a complete character vec (?cmp_chr_vec).", PKG = "uj")}
-  where <- base::regexpr(":::", funs, fixed = T)
-  where[where == -1] <- -2
-  funs <- base::substr(funs, where + 3, base::nchar(funs))
-  base::substr(funs, base::regexpr("::", funs, fixed = T) + 2, base::nchar(funs))
+  if (!uj:::.cmp_chr_vec(Funs)) {uj::stopperr("[Funs] must be a complete character vec (?cmp_chr_vec).", PKG = "uj")}
+  Where <- base::regexpr(":::", Funs, fixed = T)
+  Where[Where == -1] <- -2
+  Funs <- base::substr(Funs, Where + 3, base::nchar(Funs))
+  base::substr(Funs, base::regexpr("::", Funs, fixed = T) + 2, base::nchar(Funs))
 }
 
 #' @rdname purge

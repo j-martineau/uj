@@ -51,24 +51,24 @@
 #' recyclable(egN3, egC3, egN3)
 #' @export
 recyclable_ns <- function(..., N = NULL, MIN = NULL, MAX = NULL, TARG = NULL) {
-  ns <- uj::av(...)
-  ok.dots <- base::length(ns) > 0
-  ok.ns <- uj::f0(!ok.dots, T, uj:::.cmp_psw_vec(ns))
-  ok.N <- uj::f0(base::is.null(N), T, uj:::.cmp_psw_vec(N))
-  ok.MIN <- uj::f0(base::is.null(MIN), T, uj:::.cmp_psw_scl(MIN))
-  ok.MAX <- uj::f0(base::is.null(MAX), T, uj:::.cmp_psw_scl(MAX))
-  ok.TARG <- uj::f0(base::is.null(TARG), T, uj:::.cmp_psw_scl(TARG))
-  errs <- NULL
-  if (!ok.dots) {errs <- base::c(errs, "[...] is empty.")}
-  if (!ok.ns) {errs <- base::c(errs, "[...] must atomize (?av) to a complete positive whole-number vec (?cmp_psw_vec).")}
-  if (!ok.N) {errs <- base::c(errs, "[N] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).")}
-  if (!ok.MIN) {errs <- base::c(errs, "[MIN] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
-  if (!ok.MAX) {errs <- base::c(errs, "[MAX] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
-  if (!ok.TARG) {errs <- base::c(errs, "[TARG] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
-  if (base::is.null(TARG)) {TARG <- base::max(ns)}
-  reps <- TARG / ns
-  if (!base::all(reps == base::round(reps))) {return(F)}
+  Ns <- uj::av(...)
+  OkDots <- base::length(Ns) > 0
+  OkNs <- uj::f0(!OkDots, T, uj:::.cmp_psw_vec(Ns))
+  OkN <- uj::f0(base::is.null(N), T, uj:::.cmp_psw_vec(N))
+  OkMIN <- uj::f0(base::is.null(MIN), T, uj:::.cmp_psw_scl(MIN))
+  OkMAX <- uj::f0(base::is.null(MAX), T, uj:::.cmp_psw_scl(MAX))
+  OkTARG <- uj::f0(base::is.null(TARG), T, uj:::.cmp_psw_scl(TARG))
+  Errors <- NULL
+  if (!OkDots) {Errors <- base::c(Errors, "[...] is empty.")}
+  if (!OkNs) {Errors <- base::c(Errors, "[...] must atomize (?av) to a complete positive whole-number vec (?cmp_psw_vec).")}
+  if (!OkN) {Errors <- base::c(Errors, "[N] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).")}
+  if (!OkMIN) {Errors <- base::c(Errors, "[MIN] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!OkMAX) {Errors <- base::c(Errors, "[MAX] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!OkTARG) {Errors <- base::c(Errors, "[TARG] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  if (base::is.null(TARG)) {TARG <- base::max(Ns)}
+  Reps <- TARG / Ns
+  if (!base::all(Reps == base::round(Reps))) {return(F)}
   if (!base::is.null(N)) {if (!(TARG %in% N)) {return(F)}}
   if (!base::is.null(MIN)) {if (TARG < MIN) {return(F)}}
   if (!base::is.null(MAX)) {if (TARG > MAX) {return(F)}}
@@ -78,24 +78,24 @@ recyclable_ns <- function(..., N = NULL, MIN = NULL, MAX = NULL, TARG = NULL) {
 #' @rdname recyclable_ns
 #' @export
 recyclable <- function(..., N = NULL, MIN = 1, MAX = NULL, TARG = NULL, ERR = FALSE) {
-  x <- base::list(...)
-  errs <- NULL
-  if (base::length(x) == 0) {errs <- base::c(errs, "[...] is empty.")}
-  if (!base::all(base::sapply(x, uj:::.atm_vec))) {errs <- base::c(errs, "Arguments in [...] must be atomic vecs (?atm_vec).")}
-  if (!uj:::.cmp_chr_scl(ERR)) {errs <- base::c(errs, "[ERR] must be scalar TRUE or scalar FALSE.")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
-  y <- uj::recyclable_ns(uj::ns(x), N = N, MIN = MIN, MAX = MAX, TARG = TARG)
-  if (ERR & !y) {uj::stopperr("[...] arguments are not recyclable.", PKG = "uj")}
-  y
+  X <- base::list(...)
+  Errors <- NULL
+  if (base::length(X) == 0) {Errors <- base::c(Errors, "[...] is empty.")}
+  if (!base::all(base::sapply(X, uj:::.atm_vec))) {Errors <- base::c(Errors, "Arguments in [...] must be atomic vecs (?atm_vec).")}
+  if (!uj:::.cmp_lgl_scl(ERR)) {Errors <- base::c(Errors, "[ERR] must be scalar TRUE or scalar FALSE.")}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
+  Y <- uj::recyclable_ns(uj::ns(X), N = N, MIN = MIN, MAX = MAX, TARG = TARG)
+  if (ERR & !Y) {uj::stopperr("[...] arguments are not recyclable.", PKG = "uj")}
+  Y
 }
 
 #' @rdname recyclable_ns
 #' @export
 recycle <- function(..., N = NULL, MIN = 1, MAX = NULL, TARG = NULL) {
   uj::recyclable(..., N = N, MIN = MIN, MAX = MAX, TARG = TARG, ERR = T)
-  ndot <- base::...length()
-  lens <- base::lengths(base::list(...))
-  labs <- base::...names()
-  reps <- uj::f0(base::is.null(TARG), base::max(lens), TARG) / lens
-  for (i in 1:ndot) {if (reps[i] > 1) {base::assign(labs[i], base::rep.int(base::...elt(i), reps[i]), envir = base::parent.frame())}}
+  nDots <- base::...length()
+  DotLens <- base::lengths(base::list(...))
+  DotLabs <- base::...names()
+  Reps <- uj::f0(base::is.null(TARG), base::max(DotLens), TARG) / DotLens
+  for (i in 1:nDots) {if (Reps[i] > 1) {base::assign(DotLabs[i], base::rep.int(base::...elt(i), Reps[i]), envir = base::parent.frame())}}
 }
