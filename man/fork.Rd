@@ -123,6 +123,7 @@ Other extensions:
 \code{\link{declare}},
 \code{\link{dups}()},
 \code{\link{failsafe}()},
+\code{\link{flex_rbind}()},
 \code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},

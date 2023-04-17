@@ -1547,6 +1547,7 @@ Other extensions:
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
+\code{\link{flex_rbind}()},
 \code{\link{fork}()},
 \code{\link{is_unique}()},
 \code{\link{naming}},
