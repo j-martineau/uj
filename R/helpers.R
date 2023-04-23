@@ -213,6 +213,59 @@
 	uj::f0(base::length(X) != 3, F, uj::f0(!(X[1] %in% uj::v(CrayonBackgroundColors)), F, uj::f0(!(X[2] %in% uj::v(CrayonForegroundColors)), F, base::all(X[3] %in% uj::v(CrayonStyles)))))
 }
 
+.cat_choose_list <- function(Options, Message, All, None, MinN, MaxN, FT, FS, FUN, STACK, .clear, .cancel = T) {
+  if (.clear) {uj::xconsole()}
+  if (FT != "") {
+    TitleBG <- base::strsplit(FT, "|", fixed = T)[[1]][1]
+    TitleFG <- base::strsplit(FT, "|", fixed = T)[[1]][2]
+    TitleST <- base::strsplit(FT, "|", fixed = T)[[1]][3]
+  } else {TitleBG <- TitleFG <- TitleST <- NULL}
+  if (FS != "") {
+    SubBG <- base::strsplit(FS, "|", fixed = T)[[1]][1]
+    SubFG <- base::strsplit(FS, "|", fixed = T)[[1]][2]
+  } else {SubBG <- SubFG <- NULL}
+  uj::alert(Message, Title = "response required", FT = FT, FS = FS, .clear = .clear)
+  base::cat("\n")
+  if (.cancel) {
+    if (TRUE) {base::cat(uj::txt("CODE   OPTION         ", BG = SubBG, FG = SubFG, ST = "bold"))}
+    if (TRUE) {base::cat(      "\n   X   { CANCEL }")}
+    if (None) {base::cat(      "\n   N   { NONE }")}
+    if (All ) {base::cat(      "\n   A   { ALL }")}
+  } else {
+    if (TRUE) {base::cat(uj::txt("CODE   OPTION         ", BG = SubBG, FG = SubFG, ST = "bold"))}
+    if (None) {base::cat(      "\n   N   { NONE }")}
+    if (All ) {base::cat(      "\n   A   { ALL }")}
+  }
+  for (i in 1:base::length(Options)) {
+    Code <- base::as.character(i)
+    Prefix <- base::paste0(base::rep.int(" ", 4 - base::nchar(Code)), collapse = "")
+    Infix <- "   "
+    Option <- base::gsub(" ", " ", Options[i], fixed = T)
+    base::cat("\n", Prefix, Code, Infix, Option, sep = "")
+  }
+  cat("\n\n")
+  if (MinN == 1 & MaxN == 1) {base::cat(uj::txt("Enter the code for 1 of the above options:", BG = TitleBG, FG = TitleFG, ST = TitleST))}
+  else if (MinN == MaxN) {base::cat(uj::txt("Enter a comma separated list of codes for", MinN, "of the above options:", D = " ", BG = TitleBG, FG = TitleFG, ST = TitleST))}
+  else {base::cat(uj::txt("Enter a comma separated list of codes for", MinN, "to", MaxN, "of the above options:", D = " ", BG = TitleBG, FG = TitleFG, ST = TitleST))}
+  Answer <- base::toupper(base::trimws(base::strsplit(base::readline(), ",", fixed = TRUE)[[1]], which = "both"))
+  if (base::length(Answer) == 1) {
+    if (.cancel & Answer == "X") {uj::stopperr("Canceled by user.", FUN = FUN, PKG = "uj", STACK = STACK)}
+    if (None & Answer == "N") {return(NULL)}
+    if (All & Answer == "A") {return(Options)}
+    Answer <- base::as.numeric(Answer)
+    if (!uj::cmp_psw_scl(Answer)) {uj::stopperr("Invalid selection code", FUN = FUN, PKG = "uj", STACK = STACK)}
+    if (1 < MinN) {uj::stopperr("Too few options selected.", FUN = FUN, PKG = "uj", STACK = STACK)}
+    if (Answer > uj::N(Options)) {uj::stopperr("Selection code is greater than the number of available options.", FUN = FUN, PGK = "uj", STACK = STACK)}
+  } else {
+    Answer <- base::as.numeric(Answer)
+    if (!uj::cmp_psw_vec(Answer)) {uj::stopperr("Unrecognized selection code(s).", FUN = FUN, PKG = "uj", STACK = STACK)}
+    if (uj::N(Answer) < MinN) {uj::stopperr("Too few options selected.", FUN = FUN, PKG = "uj", STACK = STACK)}
+    if (uj::N(Answer) > MaxN) {uj::stopperr("Too many options selected.", FUN = FUN, PKG = "uj", STACK = STACK)}
+    if (base::any(Answer > uj::N(Options))) {uj::stopperr("A selection code is greater than the number of available options.", FUN = FUN, PGK = "uj", STACK = STACK)}
+  }
+  Options[Answer]
+}
+
 # declare ####
 
 .labs_ok <- function(X) {
@@ -439,3 +492,6 @@
 	if (!base::ifelse(base::is.null(E), T, uj:::.cmp_psw_scl(E))) {Errors <- base::c(Errors, "[E] must be a positive whole-number scalar (?cmp_psw_scl).")}
 	if (!base::is.null(Errors)) {uj::stopperr(Errors, FUN = Fun, PKG = 'uj', STACK = Stack)}
 }
+
+# dialog ####
+

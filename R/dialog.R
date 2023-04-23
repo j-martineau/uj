@@ -2,7 +2,7 @@
 #' @encoding UTF-8
 #' @family dialogs
 #' @family user
-#' @title Dialog with users using package `svDialogs`
+#' @title Dialog with users via the console or packages `svDialogs`.
 #' @description All functions \link[=collapse_dots]{collapses} `...` args into a prompt. Each posts an alert to the console, posts the prompt (if any), followed by a specific action.
 #' @details
 #' \tabular{ll}{  `acknowledge`   \tab Waits for user to acknowledge.                        \cr
@@ -230,26 +230,23 @@ alert <- function(..., Title = "alert", Sub = "", PS = "", Blank = "", FT = "r|w
 
 #' @rdname dialog
 #' @export
-acknowledge <- function(..., Sub = "", FT = "r|w|b", FS = "k|y|p", FM = "", FP = "k|y|i", D = " ", .clear = FALSE) {
-  uj::alert(..., Title = "acknowledgment required", Sub = Sub, PS = "press [return] or [enter] to continue", FT = FT, FS = FS, FM = FM, FP = FP, D = D, .clear = .clear)
+acknowledge <- function(..., Sub = "", PS = "", FT = "r|w|b", FS = "k|y|p", FP = "k|y|i", D = " ", .clear = FALSE) {
+  uj::alert(..., Title = "acknowledgment required", Sub = Sub, PS = "press [return] or [enter] to continue", FT = FT, FS = FS, FP = FP, D = D, .clear = .clear)
   base::readline()
   NULL
 }
 
 #' @rdname dialog
 #' @export
-choose1 <- function(Options, ..., Sub = "", FT = "r|w|b", FS = "k|y|p", FM = "", FP = "k|y|i", D = " ", .clear = FALSE) {
+choose1 <- function(Options, ..., FT = "r|w|b", FS = "k|y|p", D = " ", .clear = FALSE) {
   if (!uj:::.unq_atm_vec(Options)) {uj::stopperr("[Options] must be a unique atomic vec (?unq_atm_vec).", PKG = "uj")}
-  uj::alert(..., Title = "response required", Sub = Sub, PS = "choose an option", FT = FT, FS = FS, FM = FM, FP = FP, D = D, .clear = .clear)
-  CharOptions <- base::c("{ CANCEL }", base::as.character(Options))
-  Answer <- svDialogs::dlg_list(CharOptions)$res
-  if (base::length(Answer) == 0 | uj::f0(base::length(Answer) == 1, Answer == "{ CANCEL }", F)) {uj::stopperr("Action cancelled by user.", PKG = "uj")}
-  Options[base::as.character(Options) == Answer]
+  Message <- base::paste0(uj::av(...), collapse = D)
+  uj:::.cat_choose_list(Options, Message, F, F, 1, 1, FT, FS, "choose1", uj::caller(), .clear)
 }
 
 #' @rdname dialog
 #' @export
-chooseN <- function(Options, ..., Sub = "", All = TRUE, None = FALSE, N = NULL, MinN = NULL, MaxN = NULL, FT = "r|w|b", FS = "k|y|p", FM = "", FP = "k|y|i", D = " ", .clear = FALSE) {
+chooseN <- function(Options, ..., All = TRUE, None = FALSE, N = NULL, MinN = NULL, MaxN = NULL, FT = "r|w|b", FS = "k|y|p", D = " ", .clear = FALSE) {
   Errors <- NULL
   if (!uj:::.unq_atm_mvc(Options)) {Errors <- base::c(Errors, "[Options] must be a unique atomic multivec (?unq_atm_mvc).")}
   if (!uj::cmp_lgl_scl(All)) {Errors <- base::c(Errors, "[All] must be TRUE or FALSE.")}
@@ -278,46 +275,36 @@ chooseN <- function(Options, ..., Sub = "", All = TRUE, None = FALSE, N = NULL, 
   if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
   MinN <- uj::f0(DefN, N, uj::f0(DefMin, MinN, uj::f0(None, 0, 1)))
   MaxN <- uj::f0(DefN, N, uj::f0(DefMax, MaxN, nOptions))
-  N <- MinN:MaxN
-  Infix <- uj::f0(MinN == MaxN, MaxN, uj::p0("between ", MinN, " and ", MaxN))
-  All <- All | base::length(Options) %in% N
-  None <- None | 0 %in% N
-  CharOptions <- base::c("{ CANCEL }", base::as.character(Options), uj::f0(All, "{ ALL }", NULL), uj::f0(None, "{ NONE }", NULL))
-  PS <- base::paste0("choose ", Infix, " options")
-  uj::alert(Message, Title = "response required", Sub = Sub, PS = PS, FT = FT, FS = FS, FM = FM, D = D, .clear = .clear)
-  Answer <- uj::uv(svDialogs::dlg_list(CharOptions, Title = "", multiple = T)$res)
-  if (base::length(Answer) == 0 & !None) {uj::stopperr("Action cancelled by user.", PKG = "uj")}
-  if (base::length(Answer) == 1) {if (Answer == "{ CANCEL }") {uj::stopperr("Action cancelled by user.", PKG = "uj")}}
-  Answer <- Answer[Answer != "{ CANCEL }"]
-  if (None & base::length(Answer) == 0) {NULL}
-  else if (None & base::all(Answer == "{ NONE }")) {NULL}
-  else if (base::all(Answer == "{ ALL }")) {Options[!(Options == "{ CANCEL }")]}
-  else if (base::any(Answer %in% base::c("{ ALL }", "{ NONE }"))) {uj::stopperr("Invalid selection.", PKG = "uj")}
-  else if (!(base::length(Answer) %in% N)) {uj::stopperr("Invalid number of options selected.", PKG = "uj")}
-  else {Options[base::as.character(Options) %in% base::as.character(Answer)]}
+  uj:::.cat_choose_list(Options, Message, All, None, MinN, MaxN, FT, FS, "chooseN", uj::callers(), .clear)
 }
 
 #' @rdname dialog
 #' @export
-NO <- function(..., Sub = "", FT = "r|w|b", FS = "k|y|p", FM = "", FP = "k|y|i", D = " ", .clear = FALSE) {
-  X <- uj::choose1(base::c("{ YES }", "{ NO }"), ..., Sub = Sub, FT = FT, FS = FS, FM = FM, FP = FP, D = D, .clear = .clear)
-  uj::f0(X == "{ YES }", F, uj::f0(X == "{ NO }", T, uj::stopperr("Action canceled by user.", PKG = "uj")))
+NO <- function(..., FT = "r|w|b", FS = "k|y|p", D = " ", .clear = FALSE) {
+  Message <- base::paste0(uj::av(...), collapse = D)
+  uj:::.cat_choose_list(base::c("yes", "no"), Message, F, F, 1, 1, FT, FS, "NO", uj::callers(), .clear) == "no"
 }
 
 #' @rdname dialog
 #' @export
-YES <- function(..., Sub = "", FT = "r|w|b", FS = "k|y|p", FM = "", FP = "k|y|i", D = " ", .clear = FALSE) {
-  X <- uj::choose1(base::c("{ YES }", "{ NO }"), ..., FT = FT, FS = FS, FM = FM, FP = FP, D = D, .clear = .clear)
-  uj::f0(X == "{ YES }", T, uj::f0(X == "{ NO }", F, uj::stopperr("Action canceled by user.", PKG = "uj")))
+YES <- function(..., FT = "r|w|b", FS = "k|y|p", D = " ", .clear = FALSE) {
+  Message <- base::paste0(uj::av(...), collapse = D)
+  uj:::.cat_choose_list(base::c("yes", "no"), Message, F, F, 1, 1, FT, FS, "YES", uj::callers(), .clear) == "yes"
 }
 
 #' @rdname dialog
 #' @export
-OK <- function(..., Sub = "", FT = "r|w|b", FS = "k|y|p", FM = "", FP = "k|y|i", D = " ", .clear = FALSE) {uj::choose1("{ OK }", ..., FT = FT, FS = FS, FM = FM, FP = FP, D = D, .clear = .clear) == "{ OK }"}
+OK <- function(..., FT = "r|w|b", FS = "k|y|p", D = " ", .clear = FALSE) {
+  Message <- base::paste0(uj::av(...), collapse = D)
+  uj:::.cat_choose_list(base::c("ok", "cancel"), Message, F, F, 1, 1, FT, FS, "OK", uj::callers(), .clear, .cancel = F) == "ok"
+}
 
 #' @rdname dialog
 #' @export
-CANCEL <- function(..., Sub = "", FT = "r|w|b", FS = "k|y|p", FM = "", FP = "k|y|i", D = " ", .clear = FALSE) {uj::choose1("{ OK }", ..., FT = FT, FS = FS, FM = FM, FP = FP, D = D, .clear = .clear) == "{ CANCEL }"}
+CANCEL <- function(..., FT = "r|w|b", FS = "k|y|p", D = " ", .clear = FALSE) {
+  Message <- base::paste0(uj::av(...), collapse = D)
+  uj:::.cat_choose_list(base::c("ok", "cancel"), Message, F, F, 1, 1, FT, FS, "CANCEL", uj::callers(), .clear, .cancel = F) == "cancel"
+}
 
 #' @rdname dialog
 #' @export

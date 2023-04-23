@@ -15,7 +15,7 @@
 \alias{ask_new}
 \alias{choose_dir}
 \alias{choose_doc}
-\title{Dialog with users using package \code{svDialogs}}
+\title{Dialog with users via the console or packages \code{svDialogs}.}
 \usage{
 alert(
   ...,
@@ -34,30 +34,19 @@ alert(
 acknowledge(
   ...,
   Sub = "",
+  PS = "",
   FT = "r|w|b",
   FS = "k|y|p",
-  FM = "",
   FP = "k|y|i",
   D = " ",
   .clear = FALSE
 )
 
-choose1(
-  Options,
-  ...,
-  Sub = "",
-  FT = "r|w|b",
-  FS = "k|y|p",
-  FM = "",
-  FP = "k|y|i",
-  D = " ",
-  .clear = FALSE
-)
+choose1(Options, ..., FT = "r|w|b", FS = "k|y|p", D = " ", .clear = FALSE)
 
 chooseN(
   Options,
   ...,
-  Sub = "",
   All = TRUE,
   None = FALSE,
   N = NULL,
@@ -65,55 +54,17 @@ chooseN(
   MaxN = NULL,
   FT = "r|w|b",
   FS = "k|y|p",
-  FM = "",
-  FP = "k|y|i",
   D = " ",
   .clear = FALSE
 )
 
-NO(
-  ...,
-  Sub = "",
-  FT = "r|w|b",
-  FS = "k|y|p",
-  FM = "",
-  FP = "k|y|i",
-  D = " ",
-  .clear = FALSE
-)
+NO(..., FT = "r|w|b", FS = "k|y|p", D = " ", .clear = FALSE)
 
-YES(
-  ...,
-  Sub = "",
-  FT = "r|w|b",
-  FS = "k|y|p",
-  FM = "",
-  FP = "k|y|i",
-  D = " ",
-  .clear = FALSE
-)
+YES(..., FT = "r|w|b", FS = "k|y|p", D = " ", .clear = FALSE)
 
-OK(
-  ...,
-  Sub = "",
-  FT = "r|w|b",
-  FS = "k|y|p",
-  FM = "",
-  FP = "k|y|i",
-  D = " ",
-  .clear = FALSE
-)
+OK(..., FT = "r|w|b", FS = "k|y|p", D = " ", .clear = FALSE)
 
-CANCEL(
-  ...,
-  Sub = "",
-  FT = "r|w|b",
-  FS = "k|y|p",
-  FM = "",
-  FP = "k|y|i",
-  D = " ",
-  .clear = FALSE
-)
+CANCEL(..., FT = "r|w|b", FS = "k|y|p", D = " ", .clear = FALSE)
 
 ask(
   ...,

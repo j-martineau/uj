@@ -14,7 +14,7 @@ flex_rbind <- function(X, Y) {
   yNames <- base::colnames(Y)
   SharedNames <- base::intersect(xNames, yNames)
   if (base::length(SharedNames) == 0) {uj::stopperr("No variables in [X] and [Y] have the same name.", PKG = "uj")}
-  AllNames <- base::sort(base::unique(base::c(xNames, yNames)))
+  AllNames <- base::unique(base::c(xNames, yNames))
   UniqueNamesY <- AllNames[!(AllNames %in% xNames)]
   UniqueNamesX <- AllNames[!(AllNames %in% yNames)]
   for (Name in SharedNames) {if (!uj:::.compat(X[[Name]], Y[[Name]])) {uj::stopperr("Variables contained in both [X] and [Y] must be compatible.", PKG = "uj")}}
