@@ -139,7 +139,7 @@
 	if (!uj:::.cmp_ppn_vec(R)) {Errors <- base::c(Errors, "[R] must be a complete proportion vec (?cmp_ppn_vec).")}
 	if (!uj:::.cmp_ppn_vec(S)) {Errors <- base::c(Errors, "[S] must be a complete proportion vec (?cmp_ppn_vec).")}
 	if (!uj:::.cmp_ppn_vec(V)) {Errors <- base::c(Errors, "[V] must be a complete proportion vec (?cmp_ppn_vec).")}
-	if (!(OkNaA & uj:::.NAV(A))) {if (!uj:::.cmp_ppn_vec(A)) {Errors <- base::c(Errors, "[A] must be a complete proportion vec (?cmp_ppn_vec).")}}
+	if (!(OkNaA & uj::.NA0(A))) {if (!uj:::.cmp_ppn_vec(A)) {Errors <- base::c(Errors, "[A] must be a complete proportion vec (?cmp_ppn_vec).")}}
 	if (!uj:::.cmp_pos_vec(WX)) {Errors <- base::c(Errors, "[wX] must be a complete positive numeric vec (?cmp_pos_vec).")}
 	if (!uj:::.cmp_pos_vec(WY)) {Errors <- base::c(Errors, "[wY] must be a complete positive numeric vec (?cmp_pos_vec).")}
 	if (!uj:::.cmp_lgl_scl(Comp)) {Errors <- base::c(Errors, "[Comp] must be TRUE or FALSE.")}

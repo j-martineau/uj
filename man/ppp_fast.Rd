@@ -115,6 +115,7 @@
 \alias{.cmp_srt_vec}
 \alias{.cmp_str_scl}
 \alias{.cmp_str_vec}
+\alias{.cmp_whl_scl}
 \alias{.cmp_atm_mvc}
 \alias{.unq_atm_mvc}
 \alias{.unq_atm_vec}
@@ -354,6 +355,8 @@ ppp_fast()
 .cmp_str_scl(X)
 
 .cmp_str_vec(X)
+
+.cmp_whl_scl(X)
 
 .cmp_atm_mvc(X)
 

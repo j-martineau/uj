@@ -49,4 +49,9 @@ put(egVls, 7, 2)
 putr(egMat, 1:5, 1)
 putc(egDtf, 1:5, 1)
 }
+\seealso{
+Other function_form: 
+\code{\link{insert_before_pos}()},
+\code{\link{move_pos}()}
+}
 \concept{function_form}

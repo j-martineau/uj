@@ -77,11 +77,11 @@ MSS <- function(X, ...) {uj::III(X, 'mss', ...)}
 
 #' @rdname iii
 #' @export
-NA0 <- function(X, ...) {uj::III(X, 'nas', ...)}
+NA0 <- function(X, ...) {uj::III(X, 'na0', ...)}
 
 #' @rdname iii
 #' @export
-OK0 <- function(X, ...) {uj::III(X, 'oks', ...)}
+OK0 <- function(X, ...) {uj::III(X, 'ok0', ...)}
 
 #' @rdname iii
 #' @export

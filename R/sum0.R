@@ -72,15 +72,15 @@ sum0 <- function(...) {base::sum(uj::av(...), na.rm = T)}
 
 #' @rdname sum0
 #' @export
-sd0 <- function(...) {base::sd(uj::av(...), na.rm = T)}
+sd0 <- function(...) {stats::sd(uj::av(...), na.rm = T)}
 
 #' @rdname sum0
 #' @export
-cor0 <- function(X, Y = NULL) {base::cor(X, Y, use = "complete.obs")}
+cor0 <- function(X, Y = NULL) {stats::cor(X, Y, use = "complete.obs")}
 
 #' @rdname sum0
 #' @export
-cov0 <- function(X, Y = NULL) {base::cov(X, Y, use = "complete.obs")}
+cov0 <- function(X, Y = NULL) {stats::cov(X, Y, use = "complete.obs")}
 
 #' @rdname sum0
 #' @export
@@ -108,19 +108,19 @@ mean0 <- function(...) {base::mean(uj::av(...), na.rm = T)}
 
 #' @rdname sum0
 #' @export
-csds0 <- function(X) {base::apply(X, 2, base::sd, na.rm = T)}
+csds0 <- function(X) {base::apply(X, 2, stats::sd, na.rm = T)}
 
 #' @rdname sum0
 #' @export
-rsds0 <- function(X) {base::apply(X, 1, base::sd, na.rm = T)}
+rsds0 <- function(X) {base::apply(X, 1, stats::sd, na.rm = T)}
 
 #' @rdname sum0
 #' @export
-cvars0 <- function(X) {base::apply(X, 2, base::var, na.rm = T)}
+cvars0 <- function(X) {base::apply(X, 2, stats::var, na.rm = T)}
 
 #' @rdname sum0
 #' @export
-rvars0 <- function(X) {base::apply(X, 1, base::var, na.rm = T)}
+rvars0 <- function(X) {base::apply(X, 1, stats::var, na.rm = T)}
 
 #' @rdname sum0
 #' @export

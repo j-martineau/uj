@@ -83,6 +83,18 @@ xplot <- purge_plot
 
 #' @rdname purge
 #' @export
+purge_plots <- purge_plot
+
+#' @rdname purge
+#' @export
+rm_plots <- purge_plot
+
+#' @rdname purge
+#' @export
+xplots <- purge_plot
+
+#' @rdname purge
+#' @export
 purge_warnings <- function() {
   base::gc(verbose = FALSE)
   X <- base::baseenv()$last.warning

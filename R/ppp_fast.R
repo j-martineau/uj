@@ -802,6 +802,10 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
+.cmp_whl_scl <- function(X) {if (base::length(X) != 1) {F} else if (!base::is.numeric(X)) {F} else if (base::any(base::is.na(X))) {F} else {X == base::round(X)}}
+
+#' @rdname ppp_fast
+#' @export
 .cmp_atm_mvc <- function(X) {if (!uj:::.MVC(X)) {F} else if (!base::is.atomic(X)) {F} else if (base::any(base::is.na(X))) {F} else {T}}
 
 #' @rdname ppp_fast

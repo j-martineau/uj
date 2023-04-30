@@ -824,23 +824,23 @@ cmp_psw_vls <- function(X, ...) {uj::cmp_mmm_ccc(X, 'psw', 'vls', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmpSRTarr <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'arr', ...)}
+cmp_srt_arr <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'arr', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmpSRTdtf <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'dtf', ...)}
+cmp_srt_dtf <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'dtf', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmpSRTgen <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'gen', ...)}
+cmp_srt_gen <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'gen', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmpSRTmat <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'mat', ...)}
+cmp_srt_mat <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'mat', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmpSRTmvc <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'mvc', ...)}
+cmp_srt_mvc <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'mvc', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
@@ -848,11 +848,11 @@ cmp_srt_scl <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'scl', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmpSRTvec <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'vec', ...)}
+cmp_srt_vec <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'vec', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export
-cmpSRTvls <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'vls', ...)}
+cmp_srt_vls <- function(X, ...) {uj::cmp_mmm_ccc(X, 'srt', 'vls', ...)}
 
 #' @rdname cmp_mmm_ccc
 #' @export

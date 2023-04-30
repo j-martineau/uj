@@ -196,14 +196,14 @@
 \alias{cmp_psw_scl}
 \alias{cmp_psw_vec}
 \alias{cmp_psw_vls}
-\alias{cmpSRTarr}
-\alias{cmpSRTdtf}
-\alias{cmpSRTgen}
-\alias{cmpSRTmat}
-\alias{cmpSRTmvc}
+\alias{cmp_srt_arr}
+\alias{cmp_srt_dtf}
+\alias{cmp_srt_gen}
+\alias{cmp_srt_mat}
+\alias{cmp_srt_mvc}
 \alias{cmp_srt_scl}
-\alias{cmpSRTvec}
-\alias{cmpSRTvls}
+\alias{cmp_srt_vec}
+\alias{cmp_srt_vls}
 \alias{cmp_str_arr}
 \alias{cmp_str_dtf}
 \alias{cmp_str_gen}
@@ -618,21 +618,21 @@ cmp_psw_vec(X, ...)
 
 cmp_psw_vls(X, ...)
 
-cmpSRTarr(X, ...)
+cmp_srt_arr(X, ...)
 
-cmpSRTdtf(X, ...)
+cmp_srt_dtf(X, ...)
 
-cmpSRTgen(X, ...)
+cmp_srt_gen(X, ...)
 
-cmpSRTmat(X, ...)
+cmp_srt_mat(X, ...)
 
-cmpSRTmvc(X, ...)
+cmp_srt_mvc(X, ...)
 
 cmp_srt_scl(X, ...)
 
-cmpSRTvec(X, ...)
+cmp_srt_vec(X, ...)
 
-cmpSRTvls(X, ...)
+cmp_srt_vls(X, ...)
 
 cmp_str_arr(X, ...)
 

@@ -7,6 +7,9 @@
 \alias{purge_plot}
 \alias{rm_plot}
 \alias{xplot}
+\alias{purge_plots}
+\alias{rm_plots}
+\alias{xplots}
 \alias{purge_warnings}
 \alias{purge_warn}
 \alias{xwarnings}
@@ -35,6 +38,12 @@ purge_plot(X = NULL)
 rm_plot(X = NULL)
 
 xplot(X = NULL)
+
+purge_plots(X = NULL)
+
+rm_plots(X = NULL)
+
+xplots(X = NULL)
 
 purge_warnings()
 
