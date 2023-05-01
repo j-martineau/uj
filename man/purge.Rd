@@ -172,6 +172,10 @@ Other meta:
 \code{\link{recyclable_ns}()},
 \code{\link{run}()},
 \code{\link{say}()}
+
+Other purge: 
+\code{\link{rm_vals}()}
 }
 \concept{extensions}
 \concept{meta}
+\concept{purge}

@@ -3,22 +3,40 @@
 \encoding{UTF-8}
 \name{swap}
 \alias{swap}
-\title{Swap atomic values.}
+\alias{swap_vals}
+\alias{swap_elt}
+\alias{swap_rows}
+\alias{swap_cols}
+\title{Swap by Row Index, Column Index, Element Index, and Atomic Value.}
 \usage{
-swap(X, Old, New, All = FALSE)
+swap(X, DIM = 0, From = NULL, To = NULL, Old = NULL, New = NULL, All = FALSE)
+
+swap_vals(X, Old, New, All = FALSE)
+
+swap_elt(X, From, To)
+
+swap_rows(X, From, To)
+
+swap_cols(X, From, To)
 }
 \arguments{
-\item{X}{An atomic object.}
+\item{X}{A non-empty data.frame, matrix, vlist (?uj::VLS), or an atomic object of any dimension.}
 
-\item{Old, New}{\link[=atm_vec]{Atomic vecs} of unique values to be replaced and replacement values, respectively. \code{length(New)} must be in \code{c(1, length(Old))}.}
+\item{DIM}{Dimension on which swapping occurs. \code{0} indicates swapping by element index of a non-empty vector, vlist, or other atomic object. \code{1} and \code{2} indicate, respectively, swapping rows and columns of a data.frame or matrix.}
 
-\item{All}{\code{TRUE} or \code{FALSE} indicating whether All values of \code{X} must be contained in \code{Old}.}
+\item{From, To}{Uniquely valued non-zero whole number vectors indexing source (\code{From}) and destination (\code{To}) positions, rows, or columns. \code{From < 0} and \code{To < 0} index from the last value rather than the first.}
+
+\item{Old}{\link[=unq_atm_vec]{A uniquely valued atomic vec} of values to be replaced.}
+
+\item{New}{\link[=atm_vec]{An atomic vec} of replacement values. \code{length(New)} must be in \code{c(1, length(Old))}.}
+
+\item{All}{\code{TRUE} or \code{FALSE} indicating whether all values of \code{X} must be contained in \code{Old} (ignored when \code{Old} and \code{New} are \code{NULL}).}
 }
 \value{
-An atomic object of the same dimensions as \code{X}.
+An object of the same class and dimensions as \code{X}.
 }
 \description{
-Swap atomic values.
+Swap by Row Index, Column Index, Element Index, and Atomic Value.
 }
 \examples{
 letters[1:6]

@@ -51,7 +51,8 @@ putc(egDtf, 1:5, 1)
 }
 \seealso{
 Other function_form: 
-\code{\link{insert_before_pos}()},
-\code{\link{move_pos}()}
+\code{\link{insert_elts_before}()},
+\code{\link{move_elt}()},
+\code{\link{rm_vals}()}
 }
 \concept{function_form}
