@@ -843,3 +843,13 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 #' @rdname ppp_fast
 #' @export
 .unq_str_vec <- function(X) {uj::f0(uj:::.cmp_str_vec(X), base::length(X) == base::length(base::unique(X)), F)}
+
+#' @rdname ppp_fast
+#' @export
+.atm_rct_dtf <- function(X) {
+  if (!uj::.DTF(X)) {return(FALSE)}
+  if (uj::nr(X) < 2 | uj::nc(X) < 2) {return(FALSE)}
+  for (i in 1:uj::nc(X)) {if (!uj::.ATM(X[[i]])) {return(FALSE)}}
+  TRUE
+}
+

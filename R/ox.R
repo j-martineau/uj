@@ -98,8 +98,8 @@ ox <- function(..., Conj = "and", Pref = "", Quote = 0) {
   if (!uj:::.cmp_nnw_scl(Quote)) {OkQuote <- F} else {OkQuote <- Quote %in% 0:2}
   Errors <- NULL
   if (base::length(Vals) == 0) {Errors <- base::c(Errors, "[...] is empty.")}
-  if (uj:::.cmp_chr_scl(Conj)) {Errors <- base::c(Errors, "[Conj] must be a complete character scalar (?cmp_chr_scl).")}
-  if (uj:::.cmp_chr_scl(Pref)) {Errors <- base::c(Errors, "[Pref] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!uj:::.cmp_chr_scl(Conj)) {Errors <- base::c(Errors, "[Conj] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!uj:::.cmp_chr_scl(Pref)) {Errors <- base::c(Errors, "[Pref] must be a complete character scalar (?cmp_chr_scl).")}
   if (!OkQuote) {Errors <- base::c(Errors, "[Quote] must be 0, 1, or 2.")}
   if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
   nVals <- base::length(Vals)

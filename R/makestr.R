@@ -64,95 +64,95 @@ makestr <- function() {utils::help("makestr", package = "uj")}
 
 #' @rdname makestr
 #' @export
-geq <- function(X, ...) {base::paste0(base::c(uj::av(X), " = ", uj::av(...)), collapse = "")}
+geq <- function(X, ...) {base::paste0(base::c(uj::av(X), uj::v(equal1), uj::av(...)), collapse = uj::v(blank))}
 
 #' @rdname makestr
 #' @export
-geq0 <- function(X, ...) {base::paste0(base::c(uj::av(X), "=", uj::av(...)), collapse = "")}
+geq0 <- function(X, ...) {base::paste0(base::c(uj::av(X), uj::v(equal), uj::av(...)), collapse = uj::v(blank))}
 
 #' @rdname makestr
 #' @export
-gcat <- function(...) {base::paste0(base::c("c(", uj::av(...), ")"), collapse = "")}
+gcat <- function(...) {base::paste0(base::c("c", uj::v(lparen), uj::av(...), uj::v(rparen)), collapse = uj::v(blank))}
 
 #' @rdname makestr
 #' @export
-gelt <- function(X, ...) {base::paste0(base::c(uj::av(X), "[", uj::av(...), "]"))}
+gelt <- function(X, ...) {base::paste0(base::c(uj::av(X), uj::v(lbracket), uj::av(...), uj::v(rbracket)))}
 
 #' @rdname makestr
 #' @export
-gfun <- function(X, ...) {base::paste0(base::c(uj::av(X), "(", uj::av(...), ")"), collapse = "")}
+gfun <- function(X, ...) {base::paste0(base::c(uj::av(X), uj::v(lparen), uj::av(...), uj::v(rparen)), collapse = uj::v(blank))}
 
 #' @rdname makestr
 #' @export
-glist <- function(...) {base::paste0(uj::av(...), collapse = ", ")}
+glist <- function(...) {base::paste0(uj::av(...), collapse = uj::v(comma1))}
 
 #' @rdname makestr
 #' @export
-gform <- function(X, ...) {base::paste0(base::c(uj::av(X), " ~ ", base::paste0(uj::av(...), collapse = " + ")), collapse = "")}
+gform <- function(X, ...) {base::paste0(base::c(uj::av(X), uj::v(tilde1), base::paste0(uj::av(...), collapse = uj::v(plus1))), collapse = uj::v(blank))}
 
 #' @rdname makestr
 #' @export
-gtick <- function(...) {base::paste0(base::c("`" , uj::av(...), "`"), collapse = "")}
+gtick <- function(...) {base::paste0(base::c(uj::v(tick) , uj::av(...), uj::v(tick)), collapse = uj::v(blank))}
 
 #' @rdname makestr
 #' @export
-gwrap <- function(L, R, ...) {base::paste0(base::c(uj::av(L), uj::av(...), uj::av(R)), collapse = "")}
+gwrap <- function(L, R, ...) {base::paste0(base::c(uj::av(L), uj::av(...), uj::av(R)), collapse = uj::v(blank))}
 
 #' @rdname makestr
 #' @export
-gbrace <- function(...) {base::paste0(base::c("{" , uj::av(...), "}"), collapse = "")}
+gbrace <- function(...) {base::paste0(base::c(uj::v(lbrace) , uj::av(...), uj::v(rbraace)), collapse = uj::v(blank))}
 
 #' @rdname makestr
 #' @export
-gcolon <- function(...) {base::paste0(uj::av(...), collapse = ":")}
+gcolon <- function(...) {base::paste0(uj::av(...), collapse = uj::v(colon))}
 
 #' @rdname makestr
 #' @export
-gparen <- function(...) {base::paste0(base::c("(" , uj::av(...), ")"), collapse = "")}
+gparen <- function(...) {base::paste0(base::c(uj::v(lparen) , uj::av(...), uj::v(rparen)), collapse = uj::v(blank))}
 
 #' @rdname makestr
 #' @export
-gquote <- function(...) {base::paste0(base::c("'" , uj::av(...), "'"), collapse = "")}
+gquote <- function(...) {base::paste0(base::c(uj::v(lquote) , uj::av(...), uj::v(rquote)), collapse = uj::v(blank))}
 
 #' @rdname makestr
 #' @export
-gquote2 <- function(...) {base::paste0(base::c("\"", uj::av(...), "\"", collapse = ""))}
+gquote2 <- function(...) {base::paste0(base::c(uj::v(lquote2), uj::av(...), uj::v(rquote2), collapse = uj::v(blank)))}
 
 #' @rdname makestr
 #' @export
-gbracket <- function(...) {base::paste0(base::c("[", uj::av(...), "]"), collapse = "")}
+gbracket <- function(...) {base::paste0(base::c(uj::v(lbracket), uj::av(...), uj::v(rbracket)), collapse = uj::v(blank))}
 
 #' @rdname makestr
 #' @export
-pcat <- function(...) {base::paste0("c(", base::paste(", ", ...), ")")}
+pcat <- function(...) {base::paste0("c", uj::v(lparen), base::paste(uj::v(comma1), ...), uj::v(rparen))}
 
 #' @rdname makestr
 #' @export
-peq <- function(X, ...) {base::paste0(X, " = ", ...)}
+peq <- function(X, ...) {base::paste0(X, uj::v(equal1), ...)}
 
 #' @rdname makestr
 #' @export
-peq0 <- function(X, ...) {base::paste0(X, "=", ...)}
+peq0 <- function(X, ...) {base::paste0(X, uj::v(equal), ...)}
 
 #' @rdname makestr
 #' @export
-pelt <- function(X, ...) {base::paste0(X, "[", ..., "]")}
+pelt <- function(X, ...) {base::paste0(X, uj::v(lbracket), ..., uj::v(rbracket))}
 
 #' @rdname makestr
 #' @export
-pfun <- function(X, ...) {base::paste0(X, "(", ..., ")")}
+pfun <- function(X, ...) {base::paste0(X, uj::v(lparen), ..., uj::v(rparen))}
 
 #' @rdname makestr
 #' @export
-plist <- function(...) {base::paste(..., sep = ", ")}
+plist <- function(...) {base::paste(..., sep = uj::v(comma1))}
 
 #' @rdname makestr
 #' @export
-pform <- function(X, ...) {base::paste0(X, " ~ ",  base::paste(" + ", ...))}
+pform <- function(X, ...) {base::paste0(X, uj::v(tilde1),  base::paste(uj::v(plus1), ...))}
 
 #' @rdname makestr
 #' @export
-ptick <- function(...) {base::paste0("`" , ..., "`")}
+ptick <- function(...) {base::paste0(uj::v(tick) , ..., uj::v(tick))}
 
 #' @rdname makestr
 #' @export
@@ -160,24 +160,24 @@ pwrap <- function(L, R, ...) {base::paste0(L, ..., R)}
 
 #' @rdname makestr
 #' @export
-pbrace <- function(...) {base::paste0("[" , ..., "]")}
+pbrace <- function(...) {base::paste0(uj::v(lbrace) , ..., uj::v(rbrace))}
 
 #' @rdname makestr
 #' @export
-pcolon <- function(...) {base::paste(..., sep = ":")}
+pcolon <- function(...) {base::paste(..., sep = uj::v(colon))}
 
 #' @rdname makestr
 #' @export
-pparen <- function(...) {base::paste0("(" , ..., ")")}
+pparen <- function(...) {base::paste0(uj::v(lparen), ..., uj::v(rparen))}
 
 #' @rdname makestr
 #' @export
-pquote <- function(...) {base::paste0("'" , ..., "'")}
+pquote <- function(...) {base::paste0(uj::v(quote) , ..., uj::v(quote))}
 
 #' @rdname makestr
 #' @export
-pquote2 <- function(...) {base::paste0("\"", ..., "\"")}
+pquote2 <- function(...) {base::paste0(uj::v(quote2), ..., uj::v(quote2))}
 
 #' @rdname makestr
 #' @export
-pbracket <- function(...) {base::paste0("[", ..., "]")}
+pbracket <- function(...) {base::paste0(uj::v(lbracket), ..., uj::v(rbracklet))}

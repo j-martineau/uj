@@ -5,114 +5,168 @@
 \alias{markdown}
 \alias{subs}
 \alias{sups}
-\alias{bf_blu}
-\alias{bl_blu}
-\alias{bm_blu}
-\alias{bd_blu}
-\alias{bf_cyn}
-\alias{bl_cyn}
-\alias{bm_cyn}
-\alias{bd_cyn}
-\alias{bf_grn}
-\alias{bl_grn}
-\alias{bm_grn}
-\alias{bd_grn}
-\alias{bf_mag}
-\alias{bl_mag}
-\alias{bm_mag}
-\alias{bd_mag}
-\alias{bf_orn}
-\alias{bl_orn}
-\alias{bm_orn}
-\alias{bd_orn}
-\alias{bf_red}
-\alias{bl_red}
-\alias{bm_red}
-\alias{bd_red}
-\alias{bf_vlt}
-\alias{bl_vlt}
-\alias{bm_vlt}
-\alias{bd_vlt}
-\alias{bf_ylw}
-\alias{bl_ylw}
-\alias{bm_ylw}
-\alias{bd_ylw}
-\alias{b_wht}
-\alias{b_g95}
-\alias{b_g90}
-\alias{b_g85}
-\alias{b_g80}
-\alias{b_g75}
-\alias{b_g70}
-\alias{b_g65}
-\alias{b_g60}
-\alias{b_g55}
-\alias{b_g50}
-\alias{b_g45}
-\alias{b_g40}
-\alias{b_g35}
-\alias{bg_30}
-\alias{bg_25}
-\alias{bg_20}
-\alias{bg_15}
-\alias{bg_10}
-\alias{bg_05}
-\alias{b_blk}
-\alias{b_inv}
-\alias{pf_blu}
-\alias{pl_blu}
-\alias{pm_blu}
-\alias{pd_blu}
-\alias{pf_cyn}
-\alias{pl_cyn}
-\alias{pm_cyn}
-\alias{pd_cyn}
-\alias{pf_grn}
-\alias{pl_grn}
-\alias{pm_grn}
-\alias{pd_grn}
-\alias{pf_mag}
-\alias{pl_mag}
-\alias{pm_mag}
-\alias{pd_mag}
-\alias{pf_orn}
-\alias{pl_orn}
-\alias{pm_orn}
-\alias{pd_orn}
-\alias{pf_red}
-\alias{pl_red}
-\alias{pm_red}
-\alias{pd_red}
-\alias{pf_vlt}
-\alias{pl_vlt}
-\alias{pm_vlt}
-\alias{pd_vlt}
-\alias{pf_ylw}
-\alias{pl_ylw}
-\alias{pm_ylw}
-\alias{pd_ylw}
-\alias{p_wht}
-\alias{p_g95}
-\alias{p_g90}
-\alias{p_g85}
-\alias{p_g80}
-\alias{p_g75}
-\alias{p_g70}
-\alias{p_g65}
-\alias{p_g60}
-\alias{p_g55}
-\alias{p_g50}
-\alias{p_g45}
-\alias{p_g40}
-\alias{p_g35}
-\alias{p_g30}
-\alias{p_g25}
-\alias{p_g20}
-\alias{p_g15}
-\alias{p_g10}
-\alias{p_g05}
-\alias{p_blk}
-\alias{p_inv}
+\alias{bfblu}
+\alias{blblu}
+\alias{bmblu}
+\alias{bdblu}
+\alias{bfcyn}
+\alias{blcyn}
+\alias{bmcyn}
+\alias{bdcyn}
+\alias{bfgrn}
+\alias{blgrn}
+\alias{bmgrn}
+\alias{bdgrn}
+\alias{bfmag}
+\alias{blmag}
+\alias{bmmag}
+\alias{bdmag}
+\alias{bforn}
+\alias{blorn}
+\alias{bmorn}
+\alias{bdorn}
+\alias{bfred}
+\alias{blred}
+\alias{bmred}
+\alias{bdred}
+\alias{bfvlt}
+\alias{blvlt}
+\alias{bmvlt}
+\alias{bdvlt}
+\alias{bfylw}
+\alias{blylw}
+\alias{bmylw}
+\alias{bdylw}
+\alias{bwht}
+\alias{bg95}
+\alias{bg90}
+\alias{bg85}
+\alias{bg80}
+\alias{bg75}
+\alias{bg70}
+\alias{bg65}
+\alias{bg60}
+\alias{bg55}
+\alias{bg50}
+\alias{bg45}
+\alias{bg40}
+\alias{bg35}
+\alias{bg30}
+\alias{bg25}
+\alias{bg20}
+\alias{bg15}
+\alias{bg10}
+\alias{bg05}
+\alias{bblk}
+\alias{binv}
+\alias{pfblu}
+\alias{plblu}
+\alias{pmblu}
+\alias{pdblu}
+\alias{pfcyn}
+\alias{plcyn}
+\alias{pmcyn}
+\alias{pdcyn}
+\alias{pfgrn}
+\alias{plgrn}
+\alias{pmgrn}
+\alias{pdgrn}
+\alias{pfmag}
+\alias{plmag}
+\alias{pmmag}
+\alias{pdmag}
+\alias{pforn}
+\alias{plorn}
+\alias{pmorn}
+\alias{pdorn}
+\alias{pfred}
+\alias{plred}
+\alias{pmred}
+\alias{pdred}
+\alias{pfvlt}
+\alias{plvlt}
+\alias{pmvlt}
+\alias{pdvlt}
+\alias{pfylw}
+\alias{plylw}
+\alias{pmylw}
+\alias{pdylw}
+\alias{pwht}
+\alias{pg95}
+\alias{pg90}
+\alias{pg85}
+\alias{pg80}
+\alias{pg75}
+\alias{pg70}
+\alias{pg65}
+\alias{pg60}
+\alias{pg55}
+\alias{pg50}
+\alias{pg45}
+\alias{pg40}
+\alias{pg35}
+\alias{pg30}
+\alias{pg25}
+\alias{pg20}
+\alias{pg15}
+\alias{pg10}
+\alias{pg05}
+\alias{pblk}
+\alias{pinv}
+\alias{ifblu}
+\alias{ilblu}
+\alias{imblu}
+\alias{idblu}
+\alias{ifcyn}
+\alias{ilcyn}
+\alias{imcyn}
+\alias{idcyn}
+\alias{ifgrn}
+\alias{ilgrn}
+\alias{imgrn}
+\alias{idgrn}
+\alias{ifmag}
+\alias{ilmag}
+\alias{immag}
+\alias{idmag}
+\alias{iforn}
+\alias{ilorn}
+\alias{imorn}
+\alias{idorn}
+\alias{ifred}
+\alias{ilred}
+\alias{imred}
+\alias{idred}
+\alias{ifvlt}
+\alias{ilvlt}
+\alias{imvlt}
+\alias{idvlt}
+\alias{ifylw}
+\alias{ilylw}
+\alias{imylw}
+\alias{idylw}
+\alias{iwht}
+\alias{ig95}
+\alias{ig90}
+\alias{ig85}
+\alias{ig80}
+\alias{ig75}
+\alias{ig70}
+\alias{ig65}
+\alias{ig60}
+\alias{ig55}
+\alias{ig50}
+\alias{ig45}
+\alias{ig40}
+\alias{ig35}
+\alias{ig30}
+\alias{ig25}
+\alias{ig20}
+\alias{ig15}
+\alias{ig10}
+\alias{ig05}
+\alias{iblk}
+\alias{iinv}
 \title{Build markdown expressions for styled + colored \code{ggtext} strings}
 \usage{
 markdown()
@@ -121,221 +175,329 @@ subs(X)
 
 sups(X)
 
-bf_blu(X)
+bfblu(X)
 
-bl_blu(X)
+blblu(X)
 
-bm_blu(X)
+bmblu(X)
 
-bd_blu(X)
+bdblu(X)
 
-bf_cyn(X)
+bfcyn(X)
 
-bl_cyn(X)
+blcyn(X)
 
-bm_cyn(X)
+bmcyn(X)
 
-bd_cyn(X)
+bdcyn(X)
 
-bf_grn(X)
+bfgrn(X)
 
-bl_grn(X)
+blgrn(X)
 
-bm_grn(X)
+bmgrn(X)
 
-bd_grn(X)
+bdgrn(X)
 
-bf_mag(X)
+bfmag(X)
 
-bl_mag(X)
+blmag(X)
 
-bm_mag(X)
+bmmag(X)
 
-bd_mag(X)
+bdmag(X)
 
-bf_orn(X)
+bforn(X)
 
-bl_orn(X)
+blorn(X)
 
-bm_orn(X)
+bmorn(X)
 
-bd_orn(X)
+bdorn(X)
 
-bf_red(X)
+bfred(X)
 
-bl_red(X)
+blred(X)
 
-bm_red(X)
+bmred(X)
 
-bd_red(X)
+bdred(X)
 
-bf_vlt(X)
+bfvlt(X)
 
-bl_vlt(X)
+blvlt(X)
 
-bm_vlt(X)
+bmvlt(X)
 
-bd_vlt(X)
+bdvlt(X)
 
-bf_ylw(X)
+bfylw(X)
 
-bl_ylw(X)
+blylw(X)
 
-bm_ylw(X)
+bmylw(X)
 
-bd_ylw(X)
+bdylw(X)
 
-b_wht(X)
+bwht(X)
 
-b_g95(X)
+bg95(X)
 
-b_g90(X)
+bg90(X)
 
-b_g85(X)
+bg85(X)
 
-b_g80(X)
+bg80(X)
 
-b_g75(X)
+bg75(X)
 
-b_g70(X)
+bg70(X)
 
-b_g65(X)
+bg65(X)
 
-b_g60(X)
+bg60(X)
 
-b_g55(X)
+bg55(X)
 
-b_g50(X)
+bg50(X)
 
-b_g45(X)
+bg45(X)
 
-b_g40(X)
+bg40(X)
 
-b_g35(X)
+bg35(X)
 
-bg_30(X)
+bg30(X)
 
-bg_25(X)
+bg25(X)
 
-bg_20(X)
+bg20(X)
 
-bg_15(X)
+bg15(X)
 
-bg_10(X)
+bg10(X)
 
-bg_05(X)
+bg05(X)
 
-b_blk(X)
+bblk(X)
 
-b_inv(X)
+binv(X)
 
-pf_blu(X)
+pfblu(X)
 
-pl_blu(X)
+plblu(X)
 
-pm_blu(X)
+pmblu(X)
 
-pd_blu(X)
+pdblu(X)
 
-pf_cyn(X)
+pfcyn(X)
 
-pl_cyn(X)
+plcyn(X)
 
-pm_cyn(X)
+pmcyn(X)
 
-pd_cyn(X)
+pdcyn(X)
 
-pf_grn(X)
+pfgrn(X)
 
-pl_grn(X)
+plgrn(X)
 
-pm_grn(X)
+pmgrn(X)
 
-pd_grn(X)
+pdgrn(X)
 
-pf_mag(X)
+pfmag(X)
 
-pl_mag(X)
+plmag(X)
 
-pm_mag(X)
+pmmag(X)
 
-pd_mag(X)
+pdmag(X)
 
-pf_orn(X)
+pforn(X)
 
-pl_orn(X)
+plorn(X)
 
-pm_orn(X)
+pmorn(X)
 
-pd_orn(X)
+pdorn(X)
 
-pf_red(X)
+pfred(X)
 
-pl_red(X)
+plred(X)
 
-pm_red(X)
+pmred(X)
 
-pd_red(X)
+pdred(X)
 
-pf_vlt(X)
+pfvlt(X)
 
-pl_vlt(X)
+plvlt(X)
 
-pm_vlt(X)
+pmvlt(X)
 
-pd_vlt(X)
+pdvlt(X)
 
-pf_ylw(X)
+pfylw(X)
 
-pl_ylw(X)
+plylw(X)
 
-pm_ylw(X)
+pmylw(X)
 
-pd_ylw(X)
+pdylw(X)
 
-p_wht(X)
+pwht(X)
 
-p_g95(X)
+pg95(X)
 
-p_g90(X)
+pg90(X)
 
-p_g85(X)
+pg85(X)
 
-p_g80(X)
+pg80(X)
 
-p_g75(X)
+pg75(X)
 
-p_g70(X)
+pg70(X)
 
-p_g65(X)
+pg65(X)
 
-p_g60(X)
+pg60(X)
 
-p_g55(X)
+pg55(X)
 
-p_g50(X)
+pg50(X)
 
-p_g45(X)
+pg45(X)
 
-p_g40(X)
+pg40(X)
 
-p_g35(X)
+pg35(X)
 
-p_g30(X)
+pg30(X)
 
-p_g25(X)
+pg25(X)
 
-p_g20(X)
+pg20(X)
 
-p_g15(X)
+pg15(X)
 
-p_g10(X)
+pg10(X)
 
-p_g05(X)
+pg05(X)
 
-p_blk(X)
+pblk(X)
 
-p_inv(X)
+pinv(X)
+
+ifblu(X)
+
+ilblu(X)
+
+imblu(X)
+
+idblu(X)
+
+ifcyn(X)
+
+ilcyn(X)
+
+imcyn(X)
+
+idcyn(X)
+
+ifgrn(X)
+
+ilgrn(X)
+
+imgrn(X)
+
+idgrn(X)
+
+ifmag(X)
+
+ilmag(X)
+
+immag(X)
+
+idmag(X)
+
+iforn(X)
+
+ilorn(X)
+
+imorn(X)
+
+idorn(X)
+
+ifred(X)
+
+ilred(X)
+
+imred(X)
+
+idred(X)
+
+ifvlt(X)
+
+ilvlt(X)
+
+imvlt(X)
+
+idvlt(X)
+
+ifylw(X)
+
+ilylw(X)
+
+imylw(X)
+
+idylw(X)
+
+iwht(X)
+
+ig95(X)
+
+ig90(X)
+
+ig85(X)
+
+ig80(X)
+
+ig75(X)
+
+ig70(X)
+
+ig65(X)
+
+ig60(X)
+
+ig55(X)
+
+ig50(X)
+
+ig45(X)
+
+ig40(X)
+
+ig35(X)
+
+ig30(X)
+
+ig25(X)
+
+ig20(X)
+
+ig15(X)
+
+ig10(X)
+
+ig05(X)
+
+iblk(X)
+
+iinv(X)
 }
 \arguments{
 \item{X}{A \link[=cmp_chr_vec]{character vector} of text to be styled.}
@@ -351,20 +513,21 @@ Style markdown text with subscripts, superscripts, and colors.
 \tabular{ll}{  \code{subs}   \tab subscript   \cr
   \code{sups}   \tab superscript   }
 \cr\cr \strong{All remaining functions} in this family start with a prefix character as follows:
-\tabular{ll}{  prefix = \code{b}   \tab bold  \cr
-  prefix = \code{p}   \tab plain   }
+\tabular{ll}{  prefix = \code{b}   \tab bold   \cr
+  prefix = \code{i}   \tab italic \cr
+  prefix = \code{p}   \tab plain    }
 \cr\cr \strong{Black, white, and invisible text} functions suffixes are:
-\tabular{ll}{  \code{blk}   \tab black        \cr
-  \code{wht}   \tab white        \cr
-  \code{inv}   \tab invisible      }
-\cr For example, the function \code{b_wht} styles markdown text as bold and white.
+\tabular{ll}{  \code{blk}   \tab black   \cr
+  \code{wht}   \tab white   \cr
+  \code{inv}   \tab invisible }
+\cr For example, the function \code{bwht} styles markdown text as bold and white.
 \cr\cr \strong{Greyscale} text suffixes take the form:
 \tabular{ll}{  \code{g05}   \tab \code{ 5:95} white:black ratio \cr
   \code{g10}   \tab \code{10:90} white:black ratio \cr
   \code{...}   \tab \code{...}                     \cr
   \code{g90}   \tab \code{90:10} white:black ratio \cr
   \code{g95}   \tab \code{95:5 } white:black ratio   }
-\cr For example, the function \code{p_g45} styles markdown text as plain and grey with a \code{45:55} white:black ratio.
+\cr For example, the function \code{pg45} styles markdown text as plain and grey with a \code{45:55} white:black ratio.
 \cr\cr \strong{Other common-color text} function names append an infix and a suffix to the selected prefix, as follows:
 \tabular{ll}{  infix = \code{f}      \tab full intensity    \cr
   infix = \code{l}      \tab light             \cr
@@ -379,7 +542,7 @@ Style markdown text with subscripts, superscripts, and colors.
   suffix = \code{vlt}   \tab violet            \cr
   suffix = \code{ylw}   \tab yellow              }
 
-\cr For example, the function \code{pf_red} styles markdown text as plain and full-intensity red.
+\cr For example, the function \code{pfred} styles markdown text as plain and full-intensity red.
 }
 \seealso{
 Other strings: 

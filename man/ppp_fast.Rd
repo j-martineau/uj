@@ -126,6 +126,7 @@
 \alias{.unq_num_vec}
 \alias{.unq_psw_vec}
 \alias{.unq_str_vec}
+\alias{.atm_rct_dtf}
 \title{Fast property checking for common checks}
 \usage{
 ppp_fast()
@@ -377,6 +378,8 @@ ppp_fast()
 .unq_psw_vec(X)
 
 .unq_str_vec(X)
+
+.atm_rct_dtf(X)
 }
 \value{
 \code{TRUE} or \code{FALSE}.
