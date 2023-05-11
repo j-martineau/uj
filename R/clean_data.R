@@ -8,6 +8,7 @@
 #' @param X A data frame.
 #' @param .clear A logical scalar indicating whether to clear the console at the start of each data cleaning step.
 #' @return A data frame
+#' @export
 clean_data <- function(X, .clear = TRUE) {
   base::gc()
   if (!uj::.atm_rct_dtf(X)) {uj::bankerr("[X] must have 2+ rows, 2+ columns, and all columns must be atomic.")}

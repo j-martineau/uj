@@ -408,7 +408,7 @@ ujPkgConstants <- function() {utils::help("ujPkgConstants", package = "uj")}
   CrayonSilver = .PkgCrayonSynonyms$Silver,
   CrayonYellow = .PkgCrayonSynonyms$Yellow,
   CrayonMagenta = .PkgCrayonSynonyms$Magenta,
-  CrayonStyles = .PkgCrayonSynonyms$Styles,
+  CrayonStyles = .PkgCrayonFamilies$Styles,
   CrayonBackgroundColors = .PkgCrayonFamilies$BackgroundColors,
   CrayonForegroundColors = .PkgCrayonFamilies$ForegroundColors
 )
