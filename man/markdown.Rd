@@ -569,7 +569,7 @@ Other plots:
 \code{\link{color}},
 \code{\link{ggp}()},
 \code{\link{gr}},
-\code{\link{pals}},
+\code{\link{pals}()},
 \code{\link{sca}()},
 \code{\link{u2u}()}
 }

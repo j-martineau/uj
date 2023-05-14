@@ -24,7 +24,7 @@ Other plots:
 \code{\link{ggp}()},
 \code{\link{gr}},
 \code{\link{markdown}()},
-\code{\link{pals}},
+\code{\link{pals}()},
 \code{\link{u2u}()}
 
 Other wraps: 

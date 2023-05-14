@@ -24,7 +24,7 @@ clean_remode(X, .clear = TRUE)
 \item{.clear}{A logical scalar indicating whether to clear the console at the start of each data cleaning step.}
 }
 \value{
-A data frame
+A data frame.
 }
 \description{
 This family of functions clean a data frame as follows:

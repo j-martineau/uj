@@ -3,65 +3,85 @@
 \encoding{UTF-8}
 \name{pals}
 \alias{pals}
-\alias{pal_colors}
-\alias{pal_lines}
-\alias{pal_azdots}
-\alias{pal_AZdots}
-\alias{pal_fdots}
-\alias{pal_edots}
-\alias{pal_ldots}
-\alias{pal_ndots}
-\alias{pal_pdots}
-\alias{pal_sdots}
+\alias{line_types}
+\alias{fill_shapes}
+\alias{open_shapes}
+\alias{punc_shapes}
+\alias{empty_shapes}
+\alias{solid_shapes}
+\alias{digit_shapes}
+\alias{digit_shapes0}
+\alias{letter_shapes}
+\alias{LETTER_shapes}
+\alias{colors_standard}
+\alias{colors_sensitive}
+\alias{build_palette}
+\alias{blank_shape}
 \title{Plotting palettes}
 \usage{
-pal_colors(N)
+pals()
 
-pal_lines(N)
+line_types(TotN, UnqN = min(9, TotN))
 
-pal_azdots(N)
+fill_shapes(TotN, UnqN = min(5, TotN))
 
-pal_AZdots(N)
+open_shapes(TotN, UnqN = min(7, TotN))
 
-pal_fdots(N)
+punc_shapes(TotN, UnqN = min(7, TotN))
 
-pal_edots(N)
+empty_shapes(TotN, UnqN = min(5, TotN))
 
-pal_ldots(N)
+solid_shapes(TotN, UnqN = min(4, TotN))
 
-pal_ndots(N)
+digit_shapes(TotN, UnqN = min(9, TotN))
 
-pal_pdots(N)
+digit_shapes0(TotN, UnqN = min(10, TotN))
 
-pal_sdots(N)
+letter_shapes(TotN, UnqN = min(26, TotN))
+
+LETTER_shapes(TotN, UnqN = min(26, TotN))
+
+colors_standard(TotN, UnqN = min(10, TotN))
+
+colors_sensitive(TotN, UnqN = min(10, TotN))
+
+build_palette(Type, TotN, UnqN)
+
+blank_shape()
 }
 \arguments{
-\item{N}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of unique values to return.}
+\item{TotN}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of values to return.}
+
+\item{UnqN}{A positive whole-number scalar less than or equal to \code{TotN} giving the number of unique values to be repeated until there are \code{TotN} total values.}
+
+\item{Type}{A character scalar from \code{c('line.types', 'open.shapes', 'punc.shapes', 'fill.shapes','empty.shapes', 'solid.shapes', 'digit.shapes', 'digit.shapes0', 'letter.shapes', 'LETTER.shapes', 'colors.standard', 'colors.sensitive')}.}
 }
 \value{
-\strong{A positive whole number vector} \cr\cr \verb{pal_edots, pal_fdots}  \cr \verb{pal_ldots, pal_sdots}
-\cr\cr  \strong{A character vector}             \cr\cr \verb{pal_colors, pal_lines} \cr \verb{pal_azdots, pal_AZdots} \cr \verb{pal_ndots, pal_pdots}
+\strong{A positive whole number vector} \cr\cr \code{fill_shapes}, \code{open_shapes}, \code{punc_shapes}, \code{empty_shapes}, \code{solid_shapes}, \code{digit_shapes}, \code{digit_shapes0}, \code{letter_shapes}, \verb{LETTER_shapes,} \emph{and possibly} \code{build_palette}
+\cr\cr  \strong{A character vector}             \cr\cr \code{line_types}, \code{colors_standard}, \code{colors_sensitive} \emph{and possibly} \code{build_palette}
+\cr\cr  \strong{A positive whole number scalar} \cr\cr \code{blank_shape}
 }
 \description{
-This family of functions uses \code{'dots'} to subsume plotting to \code{'points'}, \code{'shapes'}, and \code{'pch'}.
+Build line type, shape, and color palettes.
 }
 \details{
-The functions in this family create palettes of various types from the first \code{N}  \eqn{^{(1)}} values of source vectors as defined below:
-\tabular{lll}{  \emph{Function}     \tab \emph{Type}                    \tab \emph{Source}    \cr
-  \code{pal_colors}   \tab colors                    \tab \code{v(colors)} \cr
-  \code{pal_lines}    \tab line types                \tab \code{v(lines)}  \cr
-  \code{pal_azdots}   \tab alpha dots                \tab \code{v(azdots)} \cr
-  \code{pal_AZdots}   \tab ALPHA dots                \tab \code{v(AZdots)} \cr
-  \code{pal_ndots}    \tab numeral dots              \tab \code{v(ndots)}  \cr
-  \code{pal_pdots}    \tab punctuation dots          \tab \code{v(pdots)}  \cr
-  \code{pal_ldots}    \tab line dots\eqn{^{(2)}}     \tab \code{v(ldots)}  \cr
-  \code{pal_edots}    \tab empty dots\eqn{^{(3)}}    \tab \code{v(edots)}  \cr
-  \code{pal_fdots}    \tab filled dots\eqn{^{(4)}}   \tab \code{v(fdots)}  \cr
-  \code{pal_sdots}    \tab solid dots                \tab \code{v(sdots)}    }
-\tabular{l}{  \eqn{^{(1)}} Recycled if \verb{N > length(<source>)}.  \cr
-  \eqn{^{(2)}} Non-enclosing shape.                 \cr
-  \eqn{^{(3)}} Enclosing shape with empty interior. \cr
-  \eqn{^{(4)}} Enclosing shape with filled interior.  }
+The functions in this family create palettes of various types from values of source vectors as defined below:
+\tabular{lll}{\emph{Function}             \tab \emph{Palette Type}                     \tab \emph{Source}              \cr
+\code{line_types}           \tab line types                         \tab \code{v(line.types)}       \cr
+\code{open_shapes}          \tab \verb{+ x ~ ^ v < >} as shapes          \tab \code{v(open.shapes)}      \cr
+\code{punc_shapes}          \tab \verb{! @ # $ \% & ?} as shapes          \tab \code{v(punc.shapes)}      \cr
+\code{fill_shapes}          \tab The \code{5} R fillable shapes          \tab \code{v(fill.shapes)}      \cr
+\code{empty_shapes}         \tab The \code{5} R empty shapes             \tab \code{v(empty.shapes)}     \cr
+\code{solid_shapes}         \tab The \code{4} R solid shapes             \tab \code{v(solid.shapes)}     \cr
+\code{digit_shapes}         \tab \code{1} to \code{9} as shapes               \tab \code{v(digit.shapes)}     \cr
+\code{digit_shapes0}        \tab \code{0} to \code{9} as shapes               \tab \code{v(digit.shapes0)}    \cr
+\code{letter_shapes}        \tab \code{a} to \code{z} as shapes               \tab \code{v(letter.shapes)}    \cr
+\code{LETTER_shapes}        \tab \code{A} to \code{Z} as shapes               \tab \code{v(LETTER.shapes)}    \cr
+\code{colors_standard}      \tab 10 distinctive colors              \tab \code{v(colors.standard)}  \cr
+\code{colors_sensitive}     \tab 10 colorblind sensitive colors     \tab \code{v(colors.sensitive)} \cr
+\code{build_palette}        \tab \emph{any of the above}                 \tab \emph{any of the above}    \cr
+\code{blank_shape}          \tab Space as a shape                   \tab \code{v(blank.shape)}        }
+\emph{NOTE}: \code{UnqN} defaults to the smaller of \code{TotN} or the number of unique values available for the palette. If \code{UnqN} is larger than the number of unique values available for the palette, an error is generated, except in \code{create_palette} where \code{UnqN} is reduced to the number of available unique values if necessary.
 }
 \seealso{
 Other plots: 

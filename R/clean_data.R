@@ -7,17 +7,17 @@
 #'                `clean_data`          \tab Select, rename, recode, and remode variables. }
 #' @param X A data frame.
 #' @param .clear A logical scalar indicating whether to clear the console at the start of each data cleaning step.
-#' @return A data frame
+#' @return A data frame.
 #' @export
 clean_data <- function(X, .clear = TRUE) {
   base::gc()
   if (!uj::.atm_rct_dtf(X)) {uj::bankerr("[X] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
   uj::check_tf(.clear = .clear)
-  uj::checkerr(PKG = "iDIF")
+  uj::checkerr(PKG = "uj")
   X <- uj::clean_select(X, .clear = .clear)
   X <- uj::clean_rename(X, .clear = .clear)
   X <- uj::clean_recode(X, .clear = .clear)
-  iDIF::clean_remode(X)
+  uj::clean_remode(X)
 }
 
 #' @rdname clean_data
@@ -26,7 +26,7 @@ clean_select <- function(X, .clear = TRUE) {
   base::gc()
   if (!uj::.atm_rct_dtf(X)) {uj::bankerr("[X] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
   uj::check_tf(.clear = .clear)
-  uj::checkerr(PKG = "iDIF")
+  uj::checkerr(PKG = "uj")
   KeepVars <- uj::chooseN(uj::cn(X), "What variables do you want to retain?", .clear = .clear)
   X[ , KeepVars]
 }
@@ -35,9 +35,9 @@ clean_select <- function(X, .clear = TRUE) {
 #' @export
 clean_rename <- function(X, .clear = TRUE) {
   base::gc()
-  if (!uj:::.atm_rct_dtf(X)) {uj::bankerr("[X] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
+  if (!uj::.atm_rct_dtf(X)) {uj::bankerr("[X] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
   uj::check_tf(.clear = .clear)
-  uj::checkerr(PKG = "iDIF")
+  uj::checkerr(PKG = "uj")
   OldNames <- uj::chooseN(uj::cn(X), "What variables do you want to rename?", None = T, .clear = .clear)
   nOld <- uj::N(OldNames)
   if (uj::not_BL(OldNames) & nOld != 0) {
@@ -53,9 +53,9 @@ clean_rename <- function(X, .clear = TRUE) {
 #' @export
 clean_recode <- function(X, .clear = TRUE) {
   base::gc()
-  if (!uj:::.atm_rct_dtf(X)) {uj::bankerr("[Data] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
+  if (!uj::.atm_rct_dtf(X)) {uj::bankerr("[Data] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
   uj::check_tf(.clear = .clear)
-  uj::checkerr(PKG = "iDIF")
+  uj::checkerr(PKG = "uj")
   VarsToRecode <- uj::chooseN(uj::cn(X), "What variables do you want to recode?", None = T, .clear = .clear)
   for (VarToRecode in VarsToRecode) {
     OriginalVar <- uj::av(X[ , VarToRecode])
@@ -89,9 +89,9 @@ clean_recode <- function(X, .clear = TRUE) {
 #' @export
 clean_remode <- function(X, .clear = TRUE) {
   base::gc()
-  if (!iDIF:::.atm_rct_dtf(X)) {uj::bankerr("[X] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
+  if (!uj::.atm_rct_dtf(X)) {uj::bankerr("[X] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
   uj::check_tf(.clear = .clear)
-  uj::checkerr(PKG = "iDIF")
+  uj::checkerr(PKG = "uj")
   VarsToRemode <- uj::chooseN(uj::cn(X), "What variables do you want to re-MODE?", None = T, .clear = .clear)
   AllModes <- c("character", "integer", "logical", "numeric")
   for (VarToRemode in VarsToRemode) {

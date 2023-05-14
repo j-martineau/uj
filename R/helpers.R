@@ -449,15 +449,19 @@
 
 # pals ####
 
-.pal_errs <- function(N, Stack) {
+.pal_errs <- function(TotN, UnqN, MaxUnqN, Stack) {
   Fun <- uj::caller()
-  if (!uj:::.cmp_psw_scl(N)) {uj::stopperr("[N] must be a positive whole-number scalar.", FUN = Fun, PKG = "uj", STACK = Stack)}
+  Errs <- NULL
+  if (!uj:::.cmp_psw_scl(TotN)) {Errs <- base::c(Errs, "[TotN] must be a positive whole number scalar.")}
+  if (!uj:::.cmp_psw_scl(UnqN)) {Errs <- base::c(Errs, "[UnqN] must be a positive whole number scalar.")}
+  if (!base::is.null(Errs)) {uj::stopperr(Errs, FUN = Fun, PKG = "uj", STACK = Stack)}
+  if (UnqN > MaxUnqN) {uj::stopperr("[UnqN] is greater than the number of unique values available for the designated palette.", FUN = Fun, PKG = "uj", STACK = Stack)}
 }
 
-.pal_vals <- function(Type, N) {
-	X <- uj::run("uj::v(", Type, ")")
-	while (base::length(X) < N) {X <- base::c(X, X)}
-	X[1:N]
+.pal_vals <- function(Type, TotN, UnqN) {
+	Vals <- uj::run("uj::v(", Type, ")")[1:UnqN]
+	while (base::length(Vals) < TotN) {Vals <- base::c(Vals, Vals)}
+	Vals[1:TotN]
 }
 
 # ipat ####

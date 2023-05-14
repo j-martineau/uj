@@ -342,7 +342,7 @@ fg <- function(FG, ..., D = " ") {
   else if (FG %in% uj::v(CrayonSilver) ) {X <- uj::fg_sil(X)}
   else if (FG %in% uj::v(CrayonYellow) ) {X <- uj::fg_ylw(X)}
   else if (FG %in% uj::v(CrayonMagenta)) {X <- uj::fg_mag(X)}
-  else                            {X <- uj::fg_def(X)}
+  else                                   {X <- uj::fg_def(X)}
   X
 }
 
