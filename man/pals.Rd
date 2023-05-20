@@ -13,7 +13,8 @@
 \alias{digit_shapes0}
 \alias{letter_shapes}
 \alias{LETTER_shapes}
-\alias{colors_standard}
+\alias{colors_dark}
+\alias{colors_bright}
 \alias{colors_sensitive}
 \alias{build_palette}
 \alias{blank_shape}
@@ -25,7 +26,7 @@ line_types(TotN, UnqN = min(9, TotN))
 
 fill_shapes(TotN, UnqN = min(5, TotN))
 
-open_shapes(TotN, UnqN = min(7, TotN))
+open_shapes(TotN, UnqN = min(5, TotN))
 
 punc_shapes(TotN, UnqN = min(7, TotN))
 
@@ -41,9 +42,11 @@ letter_shapes(TotN, UnqN = min(26, TotN))
 
 LETTER_shapes(TotN, UnqN = min(26, TotN))
 
-colors_standard(TotN, UnqN = min(10, TotN))
+colors_dark(TotN, UnqN = min(6, TotN))
 
-colors_sensitive(TotN, UnqN = min(10, TotN))
+colors_bright(TotN, UnqN = min(6, TotN))
+
+colors_sensitive(TotN, UnqN = min(12, TotN))
 
 build_palette(Type, TotN, UnqN)
 
@@ -58,7 +61,7 @@ blank_shape()
 }
 \value{
 \strong{A positive whole number vector} \cr\cr \code{fill_shapes}, \code{open_shapes}, \code{punc_shapes}, \code{empty_shapes}, \code{solid_shapes}, \code{digit_shapes}, \code{digit_shapes0}, \code{letter_shapes}, \verb{LETTER_shapes,} \emph{and possibly} \code{build_palette}
-\cr\cr  \strong{A character vector}             \cr\cr \code{line_types}, \code{colors_standard}, \code{colors_sensitive} \emph{and possibly} \code{build_palette}
+\cr\cr  \strong{A character vector}             \cr\cr \code{line_types}, \code{colors_dark}, \code{colors_bright}, \code{colors_sensitive} \emph{and possibly} \code{build_palette}
 \cr\cr  \strong{A positive whole number scalar} \cr\cr \code{blank_shape}
 }
 \description{
@@ -66,21 +69,23 @@ Build line type, shape, and color palettes.
 }
 \details{
 The functions in this family create palettes of various types from values of source vectors as defined below:
-\tabular{lll}{\emph{Function}             \tab \emph{Palette Type}                     \tab \emph{Source}              \cr
-\code{line_types}           \tab line types                         \tab \code{v(line.types)}       \cr
-\code{open_shapes}          \tab \verb{+ x ~ ^ v < >} as shapes          \tab \code{v(open.shapes)}      \cr
-\code{punc_shapes}          \tab \verb{! @ # $ \% & ?} as shapes          \tab \code{v(punc.shapes)}      \cr
-\code{fill_shapes}          \tab The \code{5} R fillable shapes          \tab \code{v(fill.shapes)}      \cr
-\code{empty_shapes}         \tab The \code{5} R empty shapes             \tab \code{v(empty.shapes)}     \cr
-\code{solid_shapes}         \tab The \code{4} R solid shapes             \tab \code{v(solid.shapes)}     \cr
-\code{digit_shapes}         \tab \code{1} to \code{9} as shapes               \tab \code{v(digit.shapes)}     \cr
-\code{digit_shapes0}        \tab \code{0} to \code{9} as shapes               \tab \code{v(digit.shapes0)}    \cr
-\code{letter_shapes}        \tab \code{a} to \code{z} as shapes               \tab \code{v(letter.shapes)}    \cr
-\code{LETTER_shapes}        \tab \code{A} to \code{Z} as shapes               \tab \code{v(LETTER.shapes)}    \cr
-\code{colors_standard}      \tab 10 distinctive colors              \tab \code{v(colors.standard)}  \cr
-\code{colors_sensitive}     \tab 10 colorblind sensitive colors     \tab \code{v(colors.sensitive)} \cr
-\code{build_palette}        \tab \emph{any of the above}                 \tab \emph{any of the above}    \cr
-\code{blank_shape}          \tab Space as a shape                   \tab \code{v(blank.shape)}        }
+\tabular{lll}{
+\strong{Function}           \tab \strong{Palette Type}                                  \tab \strong{Source}            \cr
+\code{colors_sensitive}     \tab 6 dark + 6 bright colorblind sensitive colors     \tab \code{v(colors.sensitive)} \cr
+\code{colors_bright}        \tab 6 colorblind sensitive bright colors              \tab \code{v(colors.bright)}    \cr
+\code{colors_dark}          \tab 6 colorblind-sensitive dark colors                \tab \code{v(colors.dark)}      \cr
+\code{line_types}           \tab line types                                        \tab \code{v(line.types)}       \cr
+\code{open_shapes}          \tab \verb{+ x ~ ^ v < >} as shapes                         \tab \code{v(open.shapes)}      \cr
+\code{punc_shapes}          \tab \verb{! @ # $ \% & ?} as shapes                         \tab \code{v(punc.shapes)}      \cr
+\code{fill_shapes}          \tab The \code{5} R fillable shapes                         \tab \code{v(fill.shapes)}      \cr
+\code{empty_shapes}         \tab The \code{5} R empty shapes                            \tab \code{v(empty.shapes)}     \cr
+\code{solid_shapes}         \tab The \code{4} R solid shapes                            \tab \code{v(solid.shapes)}     \cr
+\code{digit_shapes}         \tab \code{1} to \code{9} as shapes                              \tab \code{v(digit.shapes)}     \cr
+\code{digit_shapes0}        \tab \code{0} to \code{9} as shapes                              \tab \code{v(digit.shapes0)}    \cr
+\code{letter_shapes}        \tab \code{a} to \code{z} as shapes                              \tab \code{v(letter.shapes)}    \cr
+\code{LETTER_shapes}        \tab \code{A} to \code{Z} as shapes                              \tab \code{v(LETTER.shapes)}    \cr
+\code{build_palette}        \tab \emph{any of the above}                                \tab \emph{any of the above}    \cr
+\code{blank_shape}          \tab Space as a shape                                  \tab \code{v(blank.shape)}        }
 \emph{NOTE}: \code{UnqN} defaults to the smaller of \code{TotN} or the number of unique values available for the palette. If \code{UnqN} is larger than the number of unique values available for the palette, an error is generated, except in \code{create_palette} where \code{UnqN} is reduced to the number of available unique values if necessary.
 }
 \seealso{

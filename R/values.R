@@ -98,9 +98,9 @@ ujconstants <- function() {utils::help("ujconstants", package = "uj")}
 #' @rdname ujconstants
 #' @export
 .CrayonFamilyVals <- base::list(
-  Styles = base::sort(base::unlist(base::c(.CrayonSynonymVals$Bold, .CrayonSynonymVals$Default, .CrayonSynonymVals$Italic, .CrayonSynonymVals$Plain, .CrayonSynonymVals$Underline), T, F)),
-  BackgroundColors = base::sort(base::unlist(base::c(.CrayonSynonymVals$Blue, .CrayonSynonymVals$Cyan, .CrayonSynonymVals$Default, .CrayonSynonymVals$Green, .CrayonSynonymVals$Black, .CrayonSynonymVals$Magenta, .CrayonSynonymVals$Red, .CrayonSynonymVals$White, .CrayonSynonymVals$Yellow, .CrayonSynonymVals$Silver), T, F)),
-  ForegroundColors = base::sort(base::unlist(base::c(.CrayonSynonymVals$Blue, .CrayonSynonymVals$Cyan, .CrayonSynonymVals$Default, .CrayonSynonymVals$Green, .CrayonSynonymVals$Black, .CrayonSynonymVals$Magenta, .CrayonSynonymVals$Red, .CrayonSynonymVals$White, .CrayonSynonymVals$Yellow), T, F))
+  CrayonStyles = base::sort(base::unlist(base::c(.CrayonSynonymVals$Bold, .CrayonSynonymVals$Default, .CrayonSynonymVals$Italic, .CrayonSynonymVals$Plain, .CrayonSynonymVals$Underline), T, F)),
+  CrayonBackgroundColors = base::sort(base::unlist(base::c(.CrayonSynonymVals$Blue, .CrayonSynonymVals$Cyan, .CrayonSynonymVals$Default, .CrayonSynonymVals$Green, .CrayonSynonymVals$Black, .CrayonSynonymVals$Magenta, .CrayonSynonymVals$Red, .CrayonSynonymVals$White, .CrayonSynonymVals$Yellow, .CrayonSynonymVals$Silver), T, F)),
+  CrayonForegroundColors = base::sort(base::unlist(base::c(.CrayonSynonymVals$Blue, .CrayonSynonymVals$Cyan, .CrayonSynonymVals$Default, .CrayonSynonymVals$Green, .CrayonSynonymVals$Black, .CrayonSynonymVals$Magenta, .CrayonSynonymVals$Red, .CrayonSynonymVals$White, .CrayonSynonymVals$Yellow), T, F))
 )
 
 #' @rdname ujconstants
@@ -178,12 +178,14 @@ ujconstants <- function() {utils::help("ujconstants", package = "uj")}
   blk  = "#000000FF", g05  = "#0D0D0DFF", g10  = "#1A1A1AFF", g15  = "#262626FF", g20  = "#333333FF", g25  = "#404040FF", g30  = "#4D4D4DFF",
   g35  = "#595959FF", g40  = "#666666FF", g45  = "#737373FF", g50  = "#808080FF", g55  = "#8C8C8CFF", g60  = "#999999FF", g65  = "#A6A6A6FF",
   g70  = "#B3B3B3FF", g75  = "#BFBFBFFF", g80  = "#CCCCCCFF", g85  = "#D9D9D9FF", g90  = "#E6E6E6FF", g95  = "#F2F2F2FF", wht  = "#FFFFFFFF",
-  lblu = "#DDDDFFFF", lcyn = "#DDFFFFFF", lgrn = "#DDFFDDFF", lmag = "#FFDDFFFF", lorn = "#FFEEDDFF", lred = "#FFDDDDFF", lylw = "#FFFFDDFF",
+  lblu = "#DDDDFFFF", lcyn = "#D7FFFFFF", lgrn = "#D7FFD7FF", lmag = "#FFDDFFFF", lorn = "#FFEECCFF", lred = "#FFD7D7FF", lylw = "#FFFFDDFF",
   mblu = "#AAAAFFFF", mcyn = "#AAFFFFFF", mgrn = "#AAFFAAFF", mmag = "#FFAAFFFF", morn = "#FFAA66FF", mred = "#FFAAAAFF", mylw = "#F7F7AAFF",
-  fblu = "#0000FFFF", fcyn = "#00EEEEFF", fgrn = "#00EE00FF", fmag = "#EE00EEFF", forn = "#EE6600FF", fred = "#FF0000FF", fylw = "#EEEE00FF",
-  dblu = "#000077FF", dcyn = "#007777FF", dgrn = "#007700FF", dmag = "#770077FF", dorn = "#773300FF", dred = "#770000FF", dylw = "#777700FF",
-  colors.sensitive = base::c('#AA2E00FF', '#0000AAFF'  , '#AA00AAFF'  , '#555555FF', '#5517AAFF'    , '#FF4500FF', '#0000FFFF' , '#FF00FFFF', '#999999FF', '#7F22FFFF'),
-  colors.standard  = base::c("darkblue" , "darkorange4", "darkmagenta", "darkred"  , "darkslategrey", "darkgreen", "steelblue4", "wheat4"   , "grey35"   , "orangered")
+  fblu = "#4444FFFF", fcyn = "#00BBBBFF", fgrn = "#00FF00FF", fmag = "#FF00FFFF", forn = "#FF7700FF", fred = "#FF0000FF", fylw = "#FFFF00FF",
+  dblu = "#000080FF", dcyn = "#006666FF", dgrn = "#006600FF", dmag = "#880088FF", dorn = "#773300FF", dred = "#770000FF", dylw = "#777700FF",
+  colors.dark      = base::c("#000099FF", "#773300FF", "#880088FF", "#006666FF", "#880011FF", "#116600FF"),
+  colors.sensitive = base::c("#000099FF", "#773300FF", "#880088FF", "#006666FF", "#880011FF", "#116600FF" ,
+                             "#4444FFFF", "#FF7700FF", "#FF00FFFF", "#00AAAAFF", "#FF2244FF", "#22CC00FF"),
+  colors.bright    = base::c("#4444FFFF", "#FF7700FF", "#FF00FFFF", "#00AAAAFF", "#FF2244FF", "#22CC00FF")
 )
 
 #' @rdname ujconstants
@@ -197,8 +199,7 @@ ujconstants <- function() {utils::help("ujconstants", package = "uj")}
   mblu = "medium blue", mcyn = "medium cyan", mgrn = "medium green", mmag = "medium magenda", morn = "medium orange", mred = "medium red", mylw = "medium yellow",
   fblu = "full blue"  , fcyn = "full cyan"  , fgrn = "full green"  , fmag = "full magenta"  , forn = "full orange"  , fred = "full red"  , fylw = "full yellow"  ,
   dblu = "dark blue"  , dcyn = "dark cyan"  , dgrn = "dark green"  , dmag = "dark magenta"  , dorn = "dark orange"  , dred = "dark red"  , dylw = "dark yellow"  ,
-  colors.sensitive    = "custom hex colorblind-sensitive color palette with 10 colors (5 dark followed by 5 bright of the same hue)",
-  colors.standard     = "standard R named color palette (10 colors chosen for distinctiveness; not colorblind sensitive after the 3rd element)"
+  colors = "custom hex colorblind-sensitive color palette with 10 colors (5 dark followed by 5 bright of the same hue)"
 )
 
 #' @rdname ujconstants
@@ -272,7 +273,7 @@ ujconstants <- function() {utils::help("ujconstants", package = "uj")}
   LETTER.shapes = 65:90                                     , #       A,      B,  C,    D,       E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z
   digit.shapes0 = 48:57                                     , #       0,      1,  2,    3,       4, 5, 6, 7, 8, 9
   digit.shapes  = 49:57                                     , #       1,      2,  3,    4,       5, 6, 7, 8, 9
-  open.shapes   = base::c(  3,   4, 126,  94, 118,  60,  62), #       +,      x,  ~,    ^,       v, <, >
+  open.shapes   = base::c(  3,  94, 118,  60,  62)          , #       +,      ^,  v,    <,       >
   punc.shapes   = base::c( 33,  64,  35,  36,  37,  38,  63), #       !,      @,  #,    $,       %, &, ?
   empty.shapes  = base::c(  1,   0,   2,   6,   5          ), # circle , square, up, down, diamond
   fill.shapes   = base::c( 21,  22,  24,  25,  23          ), # circle , square, up, down, diamond
@@ -287,7 +288,7 @@ ujconstants <- function() {utils::help("ujconstants", package = "uj")}
   LETTER.shapes = "uppercase letters drawn as plotting symbols (uses ASCII rather than character values)",
   digit.shapes0 = "digits from 0 to 9 drawn as plotting symbols (uses ASCII rather than character values)",
   digit.shapes  = "digits from 1 to 9 drawn as plotting symbols (uses ASCII rather than character values)",
-  open.shapes   = "distinctive characters that have no enclosed areas (+, x, ~, ^, v, <, >; drawn as plotting symbols, using ASCII rather than character values)",
+  open.shapes   = "distinctive characters that have no enclosed areas (+, ^, v, <, >; drawn as plotting symbols, using ASCII rather than character values)",
   punc.shapes   = "distinctive punctuation characters for use where overplotting as not problem (!, @, #, $, %, &, ?; drawn as plotting symbols, using ASCII rather than character values)",
   empty.shapes  = "standard R empty shapes ordered to maximize distinctiveness for smaller numbers of shapes needed (circle, square, up triangle, down triangle, diamond)",
   fill.shapes   = "standard R fillable shapes ordered to maximize distinctiveness for smaller numbers of shapes needed (circle, square, up triangle, down triangle, diamond)",
@@ -393,10 +394,7 @@ ujconstants <- function() {utils::help("ujconstants", package = "uj")}
   CrayonWhite = .CrayonSynonymVals$White,
   CrayonSilver = .CrayonSynonymVals$Silver,
   CrayonYellow = .CrayonSynonymVals$Yellow,
-  CrayonMagenta = .CrayonSynonymVals$Magenta,
-  CrayonStyles = .CrayonSynonymVals$Styles,
-  CrayonBackgroundColors = .CrayonSynonymVals$BackgroundColors,
-  CrayonForegroundColors = .CrayonSynonymVals$ForegroundColors
+  CrayonMagenta = .CrayonSynonymVals$Magenta
 )
 
 #' @rdname ujconstants

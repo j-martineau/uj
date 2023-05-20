@@ -170,7 +170,7 @@ stopperr <- function(..., FUN = "", PKG = "", STACK = "") {
   ErrorObject <- base::paste0("\nFUNCTION\n  \u2022 ", FUN, "\n\nPACKAGE\n  \u2022 ", PKG, "\n\nCALL STACK ", STACK, "\n\nERROR MESSAGE", Suffix, Message)
   ErrorObject <- base::simpleError(ErrorObject)
   base::assign(".last_UJ_error.", ErrorObject, envir = .GlobalEnv)
-  stop(Message, call. = F)
+  stop(Message)
 }
 
 #' @rdname stopperr

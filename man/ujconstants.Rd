@@ -98,9 +98,9 @@ An object of class \code{list} of length 9.
 
 An object of class \code{character} of length 9.
 
-An object of class \code{list} of length 52.
+An object of class \code{list} of length 53.
 
-An object of class \code{character} of length 52.
+An object of class \code{character} of length 51.
 
 An object of class \code{list} of length 150.
 
@@ -130,13 +130,13 @@ An object of class \code{list} of length 17.
 
 An object of class \code{character} of length 17.
 
-An object of class \code{list} of length 17.
+An object of class \code{list} of length 14.
 
 An object of class \code{character} of length 17.
 
-An object of class \code{list} of length 556.
+An object of class \code{list} of length 554.
 
-An object of class \code{character} of length 558.
+An object of class \code{character} of length 557.
 }
 \usage{
 ujconstants()
