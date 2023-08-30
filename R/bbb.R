@@ -32,12 +32,12 @@
 #' bbb(NA)
 #' @export
 bbb <- function(x) {
-  Y <- NULL
+  y <- NULL
   for (BBB in uj::v(BBB)) {
     Match <- uj::run("uj:::.", BBB, "(x)")
-    if (Match) {Y <- base::c(Y, BBB)}
+    if (Match) {y <- base::c(y, BBB)}
   }
-  Y
+  y
 }
 
 #' @rdname bbb

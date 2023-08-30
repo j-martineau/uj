@@ -123,7 +123,7 @@ compatible_dtfs <- function(dim, ...) {
   X <- base::list(...)
   N <- base::length(X)
   Errors <- NULL
-  if (!uj:::.cmp_num_scl(dim, valid = 1:2)) {Errors <- base::c(Errors, "[dim] must be integer scalar 1 or 2.")}
+  if (!uj:::.cmp_num_scl(dim, .VALID = 1:2)) {Errors <- base::c(Errors, "[dim] must be integer scalar 1 or 2.")}
   if (N < 2) {Errors <- base::c(Errors, "[...] must contain 2+ atomic data.frames (?atm_dtf).")}
   else if (!base::all(base::sapply(X, uj:::.atm_dtf))) {Errors <- base::c(Errors, "[...] must contain 2+ atomic data.frames (?atm_dtf).")}
   if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}

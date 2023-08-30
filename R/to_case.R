@@ -33,16 +33,16 @@
 #' tocase("u", egList)
 #' @export
 tocase <- function(case, ...) {
-  X <- uj::av(...)
+  x <- uj::av(...)
   OkCase <- uj:::.cmp_chr_scl(case, .VALID = base::c("l", "s", "t", "u"))
   Errors <- NULL
   if (!OkCase) {Errors <- base::c(Errors, "[case] must be either 'l', 's', 't', or 'u'.")}
-  if (!uj:::.cmp_chr_vec(X)) {Errors <- base::c(Errors, "[...] must be contain character values.")}
+  if (!uj:::.cmp_chr_vec(x)) {Errors <- base::c(Errors, "[...] must be contain character values.")}
   if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  if      (case == "l") {base::tolower(X)}
-  else if (case == "u") {base::toupper(X)}
-  else if (case == "t") {stringr::str_to_title(X)}
-  else                  {stringr::str_to_sentence(X)}
+  if      (case == "l") {base::tolower(x)}
+  else if (case == "u") {base::toupper(x)}
+  else if (case == "t") {stringr::str_to_title(x)}
+  else                  {stringr::str_to_sentence(x)}
 }
 
 #' @rdname tocase

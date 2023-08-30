@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{rng2lev}
 \alias{rng2lev}
-\title{Convert sortable values in levels bY range}
+\title{Convert sortable values in levels by range}
 \usage{
 rng2lev(x, cuts, levs)
 }

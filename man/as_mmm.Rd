@@ -13,7 +13,7 @@
 \alias{as_uno}
 \title{Coerce to base mode or \code{xmode}}
 \usage{
-as_mmm(x, mode, levs = NULL, ..NA = FALSE)
+as_mmm(x, mode, levs = NULL, .NA = FALSE)
 
 as_chr(x, .NA = FALSE)
 

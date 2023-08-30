@@ -139,7 +139,7 @@ nll_if <- function(x, ..., .D = " ") {
 nll_ifs <- function(..., .D = " ", .COND = "all") {
   .bad_dots <- function(STACK) {uj::stopperr("There must be both named and unnamed [...] args.", FUN = "nll_ifs", .PKG = "uj", STACK = STACK)}
   if (!uj:::.cmp_chr_scl(uj::failsafe(.D))) {.D <- " "}
-  if (!uj:::.cmp_chr_scl(.COND, Valid = base::c("all", "any", "none"))) {.COND <- "all"}
+  if (!uj:::.cmp_chr_scl(.COND, .VALID = base::c("all", "any", "none"))) {.COND <- "all"}
   Dots <- base::list(...)
   Labs <- base::names(Dots)
   if (base::length(Labs) == 0) {.bad_dots(uj::callers())}

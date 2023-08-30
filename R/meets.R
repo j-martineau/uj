@@ -7,8 +7,8 @@
 #' @param x An object.
 #' @param ... Optional named arguments count and/or value restrictions for `x`. See the *specifying count and value restrictions* section.
 #' @section Specifying count and value restrictions: Specifying restrictions in `...` is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-#' \tabular{ll}{  `.MAX, .MAXR, .MAXC`   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-#'                `.MIN, .MINR, .MINC`   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+#' \tabular{ll}{  `.MAX, .MAXR, .MAXC`   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                 \cr   \tab   \cr
+#'                `.MIN, .MINR, .MINC`   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                 \cr   \tab   \cr
 #'                `.LT, .LE, .GE, .GT`   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
 #'                `.N, .NR, .NC`         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
 #'                `.VALS`                \tab A vector of valid values.                                                                                                                                 }

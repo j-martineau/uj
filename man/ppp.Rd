@@ -22,7 +22,7 @@
 \alias{spec_concise}
 \title{All purpose property checking}
 \usage{
-ppp(X)
+ppp(x)
 
 ppp_or_funs()
 
@@ -59,13 +59,13 @@ combo_concise(x)
 spec_concise(x)
 }
 \arguments{
-\item{as.dtf}{\code{TRUE} or \code{FALSE} indicating whether to return the result as a data.frame with column \code{1} containing property values and column \code{2} containing the property families.}
-
 \item{x}{An R object.}
+
+\item{as.dtf}{\code{TRUE} or \code{FALSE} indicating whether to return the result as a data.frame with column \code{1} containing property values and column \code{2} containing the property families.}
 
 \item{.VALID}{A \link[=cmp_chr_vec]{complete character vec} containing all properties considered valid.}
 
-\item{spec}{A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from \code{ppp_vals()} separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of \code{TRUE} if any of them applies to \code{X}.}
+\item{spec}{A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from \code{ppp_vals()} separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of \code{TRUE} if any of them applies to \code{x}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -112,15 +112,15 @@ This family uses concise and flexible \emph{property specs} as defined in the fo
   \code{prop_verbose}    \tab How is a \emph{single} property (verbosely) defined?                           \cr   \tab   \cr
   \code{prop_defs}       \tab What are the definitions of all possible \emph{single} properties (returned as a data.frame)? }
 \strong{Functions to list names of dedicated property-checking functions}
-\tabular{ll}{  \code{ppp_or_funs}   \tab What dedicated functions check \code{X} for either special values or a match to a \emph{flex} property spec? \cr   \tab   \cr
-  \code{prop_funs}     \tab What dedicated functions check \code{X} for a match to a specific \emph{single} or \emph{combo} property?         \cr   \tab   \cr
+\tabular{ll}{  \code{ppp_or_funs}   \tab What dedicated functions check \code{x} for either special values or a match to a \emph{flex} property spec? \cr   \tab   \cr
+  \code{prop_funs}     \tab What dedicated functions check \code{x} for a match to a specific \emph{single} or \emph{combo} property?         \cr   \tab   \cr
   \code{all_props}     \tab What is the complete set of all possible \emph{single} properties?                                                     }
 \strong{Functions to check object against arbitrary property specs}
-\tabular{ll}{  \code{nas_or}   \tab Is \code{X} either \code{NA} or a match to the \emph{flex} property spec in \code{Spec}?  \cr   \tab   \cr
-  \code{nll_or}   \tab Is \code{X} either \code{NULL} or a match to the \emph{flex} property spec in \code{Spec} \cr   \tab   \cr
-  \code{ppp}      \tab Is \code{X} a match to the \emph{flex} property spec in \code{Spec}?                                }
+\tabular{ll}{  \code{nas_or}   \tab Is \code{x} either \code{NA} or a match to the \emph{flex} property spec in \code{Spec}?  \cr   \tab   \cr
+  \code{nll_or}   \tab Is \code{x} either \code{NULL} or a match to the \emph{flex} property spec in \code{Spec} \cr   \tab   \cr
+  \code{ppp}      \tab Is \code{x} a match to the \emph{flex} property spec in \code{Spec}?                                }
 \strong{Function to list all of an object's} single \strong{properties across property families}
-\tabular{ll}{  \code{ppp}   \tab What are all of \code{X}'s \emph{single} properties compiled from all property families? }
+\tabular{ll}{  \code{ppp}   \tab What are all of \code{x}'s \emph{single} properties compiled from all property families? }
 For convenience, property functions from other function families are also described below.
 \cr\cr \strong{Functions to list all} single \strong{properties in a property family}
 \tabular{ll}{  \code{bbb_props}   \tab \link[=bbb]{basic}       \cr
@@ -197,8 +197,8 @@ For convenience, property functions from other function families are also descri
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                 \cr   \tab   \cr
+  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                 \cr   \tab   \cr
   \verb{.LT, .LE, .GE, .GT}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
   \verb{.N, .NR, .NC}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
   \code{.VALS}                \tab A vector of valid values.                                                                                                                                 }

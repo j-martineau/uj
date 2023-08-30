@@ -203,8 +203,8 @@ and \code{{mmm}} are placeholders for any given basic property and any given xmo
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                 \cr   \tab   \cr
+  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                 \cr   \tab   \cr
   \verb{.LT, .LE, .GE, .GT}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
   \verb{.N, .NR, .NC}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
   \code{.VALS}                \tab A vector of valid values.                                                                                                                                 }

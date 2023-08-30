@@ -14,34 +14,34 @@
 \alias{ancestor}
 \title{Function names and counts in the call stack}
 \usage{
-callers(vec = TRUE)
+callers(.VEC = TRUE)
 
-caller(scl = TRUE)
+caller(.SCL = TRUE)
 
-caller1(scl = TRUE)
+caller1(.SCL = TRUE)
 
-caller2(scl = TRUE)
+caller2(.SCL = TRUE)
 
-callerN(n, err = TRUE, scl = TRUE)
+callerN(n, .ERR = TRUE, .SCL = TRUE)
 
-callersN(..., err = TRUE, vec = TRUE)
+callersN(..., .ERR = TRUE, .VEC = TRUE)
 
 ncallers()
 
-lineage(vec = TRUE)
+lineage(.VEC = TRUE)
 
-self(scl = TRUE)
+self(.SCL = TRUE)
 
-ancestor(scl = TRUE)
+ancestor(.SCL = TRUE)
 }
 \arguments{
-\item{vec}{\code{TRUE} or \code{FALSE} indicating whether to represent both package and function in a character vector rather than as a two element list with one element for packages and another for functions.}
+\item{.VEC}{\code{TRUE} or \code{FALSE} indicating whether to represent both package and function in a character vector rather than as a two element list with one element for packages and another for functions.}
 
-\item{scl}{\code{TRUE} or \code{FALSE} indicating whether to collapse package and function into a character scalar rather than as a two element list with one element for packages and another for functions.}
+\item{.SCL}{\code{TRUE} or \code{FALSE} indicating whether to collapse package and function into a character scalar rather than as a two element list with one element for packages and another for functions.}
 
 \item{n}{A \link[cmp_psw_vec]{complete positive whole-number scalar} giving the number of generations back in the function call stack to go.}
 
-\item{err}{\code{TRUE} or \code{FALSE} indicating whether to throw an error if one is encountered.}
+\item{.ERR}{\code{TRUE} or \code{FALSE} indicating whether to throw an error if one is encountered.}
 
 \item{...}{An arbitrary number of \link[=cmp_psw_vec]{complete positive whole-number vecs} giving the number(s) of generations back in the function call stack to go.}
 }
@@ -84,18 +84,18 @@ Consistent with this terminology introduced in the \emph{description}, the follo
 egD <- function() {list(self      = self()                   ,
                         caller    = caller()                 ,
                         callers   = callers()                ,
-                        caller2   = caller2(err = F)         ,
-                        caller3   = callerN(3, err = F)      ,
-                        callers23 = callersN(2, 3, err = F)  ,
+                        caller2   = caller2(.ERR = F)        ,
+                        caller3   = callerN(3, .ERR = F)     ,
+                        callers23 = callersN(2, 3, .ERR = F) ,
                         ncallers  = ncallers()               ,
                         ancestor  = ancestor()               ,
                         lineage   = lineage()                )}
 egC <- function() {list(self      = self()                   ,
                         caller    = caller()                 ,
                         callers   = callers()                ,
-                        caller2   = caller2(err = F)         ,
-                        caller3   = callerN(3, err = F)      ,
-                        callers23 = callersN(2, 3, err = F)  ,
+                        caller2   = caller2(.ERR = F)        ,
+                        caller3   = callerN(3, .ERR = F)     ,
+                        callers23 = callersN(2, 3, .ERR = F) ,
                         ncallers  = ncallers()               ,
                         ancestor  = ancestor()               ,
                         lineage   = lineage()                ,
@@ -103,9 +103,9 @@ egC <- function() {list(self      = self()                   ,
 egB <- function() {list(self      = self()                   ,
                         caller    = caller()                 ,
                         callers   = callers()                ,
-                        caller2   = caller2(err = F)         ,
-                        caller3   = callerN(3, err = F)      ,
-                        callers23 = callersN(2, 3, err = F)  ,
+                        caller2   = caller2(.ERR = F)        ,
+                        caller3   = callerN(3, .ERR = F)     ,
+                        callers23 = callersN(2, 3, .ERR = F) ,
                         ncallers  = ncallers()               ,
                         ancestor  = ancestor()               ,
                         lineage   = lineage()                ,
@@ -113,9 +113,9 @@ egB <- function() {list(self      = self()                   ,
 egA <- function() {list(self      = self()                   ,
                         caller    = caller()                 ,
                         callers   = callers()                ,
-                        caller2   = caller2(err = F)         ,
-                        caller3   = callerN(3, err = F)      ,
-                        callers23 = callersN(2, 3, err = F)  ,
+                        caller2   = caller2(.ERR = F)        ,
+                        caller3   = callerN(3, .ERR = F)     ,
+                        callers23 = callersN(2, 3, .ERR = F) ,
                         ncallers  = ncallers()               ,
                         ancestor  = ancestor()               ,
                         lineage   = lineage()                ,

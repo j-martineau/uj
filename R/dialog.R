@@ -296,14 +296,14 @@ YES <- function(..., .FT = "r|w|b", .FS = "k|y|p", .D = " ", .CLEAR = FALSE) {
 #' @export
 OK <- function(..., .FT = "r|w|b", .FS = "k|y|p", .D = " ", .CLEAR = FALSE) {
   Message <- base::paste0(uj::av(...), collapse = .D)
-  uj:::.cat_choose_list(base::c("ok", "cancel"), Message, F, F, 1, 1, .FT, .FS, "OK", uj::callers(), .CLEAR, .cancel = F) == "ok"
+  uj:::.cat_choose_list(base::c("ok", "cancel"), Message, F, F, 1, 1, .FT, .FS, "OK", uj::callers(), .CLEAR, .CANCEL = F) == "ok"
 }
 
 #' @rdname dialog
 #' @export
 CANCEL <- function(..., .FT = "r|w|b", .FS = "k|y|p", .D = " ", .CLEAR = FALSE) {
   Message <- base::paste0(uj::av(...), collapse = .D)
-  uj:::.cat_choose_list(base::c("ok", "cancel"), Message, F, F, 1, 1, .FT, .FS, "CANCEL", uj::callers(), .CLEAR, .cancel = F) == "cancel"
+  uj:::.cat_choose_list(base::c("ok", "cancel"), Message, F, F, 1, 1, .FT, .FS, "CANCEL", uj::callers(), .CLEAR, .CANCEL = F) == "cancel"
 }
 
 #' @rdname dialog

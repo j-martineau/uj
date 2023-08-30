@@ -32,61 +32,61 @@
 \alias{ox_or_fewer}
 \title{Oxford-comma separated lists}
 \usage{
-ox(..., .CONJ = "and", .PREF = "", Quote = 0)
+ox(..., .CONJ = "and", .PREF = "", .QUOTE = 0)
 
-oxford(..., .CONJ = "and", .PREF = "", Quote = 0)
+oxford(..., .CONJ = "and", .PREF = "", .QUOTE = 0)
 
-oxford_comma(..., .CONJ = "and", .PREF = "", Quote = 0)
+oxford_comma(..., .CONJ = "and", .PREF = "", .QUOTE = 0)
 
-ox_n(..., .CONJ = "and", .COMP = "", Quote = 0, .N = 1, .FIRST = TRUE)
+ox_n(..., .CONJ = "and", .COMP = "", .QUOTE = 0, .N = 1, .FIRST = TRUE)
 
-ox_and(..., .PREF = "")
+ox_and(..., .PREF = "", .QUOTE = 0)
 
-ox_or(..., .PREF = "")
+ox_or(..., .PREF = "", .QUOTE = 0)
 
-ox_nor(..., .PREF = "neither")
+ox_nor(..., .PREF = "neither", .QUOTE = 0)
 
-ox_either(...)
+ox_either(..., .QUOTE = 0)
 
-ox_neither(...)
+ox_neither(..., .QUOTE = 0)
 
-ox_all(..., .CONJ = "and")
+ox_all(..., .CONJ = "and", .QUOTE = 0)
 
-ox_any(..., .CONJ = "or")
+ox_any(..., .CONJ = "or", .QUOTE = 0)
 
-ox_none(..., .CONJ = "or")
+ox_none(..., .CONJ = "or", .QUOTE = 0)
 
-ox_some(..., .CONJ = "and")
+ox_some(..., .CONJ = "and", .QUOTE = 0)
 
-ox_exactly(..., .CONJ = "or", .N = 1)
+ox_exactly(..., .CONJ = "or", .N = 1, .QUOTE = 0)
 
-ox_less(..., .CONJ = "and", .N = 2)
+ox_less(..., .CONJ = "and", .N = 2, .QUOTE = 0)
 
-ox_more(..., .CONJ = "and", .N = 1)
+ox_more(..., .CONJ = "and", .N = 1, .QUOTE = 0)
 
-ox_fewer(..., .CONJ = "and", .N = 2)
+ox_fewer(..., .CONJ = "and", .N = 2, .QUOTE = 0)
 
-ox_greater(..., .CONJ = "and", .N = 2)
+ox_greater(..., .CONJ = "and", .N = 2, .QUOTE = 0)
 
-ox_at_least(..., .CONJ = "and", .N = 1)
+ox_at_least(..., .CONJ = "and", .N = 1, .QUOTE = 0)
 
-ox_at_most(..., .CONJ = "and", .N = 1)
+ox_at_most(..., .CONJ = "and", .N = 1, .QUOTE = 0)
 
-ox_no_greater(..., .CONJ = "and", .N = 1)
+ox_no_greater(..., .CONJ = "and", .N = 1, .QUOTE = 0)
 
-ox_no_fewer(..., .CONJ = "and", .N = 1)
+ox_no_fewer(..., .CONJ = "and", .N = 1, .QUOTE = 0)
 
-ox_no_more(..., .CONJ = "and", .N = 1)
+ox_no_more(..., .CONJ = "and", .N = 1, .QUOTE = 0)
 
-ox_no_less(..., .CONJ = "and", .N = 1)
+ox_no_less(..., .CONJ = "and", .N = 1, .QUOTE = 0)
 
-ox_or_more(..., .CONJ = "and", .N = 1)
+ox_or_more(..., .CONJ = "and", .N = 1, .QUOTE = 0)
 
-ox_or_greater(..., .CONJ = "and", .N = 1)
+ox_or_greater(..., .CONJ = "and", .N = 1, .QUOTE = 0)
 
-ox_or_less(..., .CONJ = "and", .N = 1)
+ox_or_less(..., .CONJ = "and", .N = 1, .QUOTE = 0)
 
-ox_or_fewer(..., .CONJ = "and", .N = 1)
+ox_or_fewer(..., .CONJ = "and", .N = 1, .QUOTE = 0)
 }
 \arguments{
 \item{...}{Any number of arguments coerceable to mode character.}
@@ -94,6 +94,8 @@ ox_or_fewer(..., .CONJ = "and", .N = 1)
 \item{.CONJ}{A complete character scalar conjunction to use between the next to last and last elements of the list. Typical values are \code{and}, \code{or} and \code{nor}.}
 
 \item{.PREF}{A \link[=cmp_chr_scl]{complete character scalar} prefix to prepend to the list.}
+
+\item{.QUOTE}{\code{0}, \code{1}, or \code{2} indicating whether to leave list elements unquoted, single-quote the list elements, or double-quote the list elements.}
 
 \item{.COMP}{A complete character scalar used for comparing to \code{.N}, such as \code{'at least'} or \code{'or fewer'}.}
 
@@ -125,22 +127,22 @@ Each function in this family operates from a template as shown in the following 
   \code{ox_neither}     \tab \code{'{pref} neither [a], [b], ..., nor [z]'}      }
 \cr\cr \strong{Numeric-comparison lists}
 \cr\cr These functions incorporate a number into the Oxford-comma separated list:
-\tabular{ll}{  \code{ox_n}            \tab \code{'{pref} {n} of [a], [b], ..., {conj} [z]'}                 \cr
-  \code{ox_exactly}      \tab \code{'{pref} exactly {n} of [a], [b], ..., {conj} [z]'}         \cr
-  \code{ox_less}         \tab \code{'{pref} less than {n} of [a], [b], ..., {conj} [z]'}       \cr
-  \code{ox_more}         \tab \code{'{pref} more than {n} of [a], [b], ..., {conj} [z]'}       \cr
-  \code{ox_fewer}        \tab \code{'{pref} fewer than {n} of [a], [b], ..., {conj} [z]'}      \cr
-  \code{ox_greater}      \tab \code{'{pref} greater than {n} of [a], [b], ..., {conj} [z]'}    \cr
-  \code{ox_at_most}      \tab \code{'{pref} at most {n} of [a], [b], ..., {conj} [z]'}         \cr
-  \code{ox_at_least}     \tab \code{'{pref} at least {n} of [a], [b], ..., {conj} [z]'}        \cr
-  \code{ox_no_less}      \tab \code{'{pref} no less than {n} of [a], [b], ..., {conj} [z]'}    \cr
-  \code{ox_no_more}      \tab \code{'{pref} no more than {n} of [a], [b], ..., {conj} [z]'}    \cr
-  \code{ox_no_fewer}     \tab \code{'{pref} no fewer than {n} of [a], [b], ..., {conj} [z]'}   \cr
-  \code{ox_no_greater}   \tab \code{'{pref} no greater than {n} of [a], [b], ..., {conj} [z]'} \cr
-  \code{ox_or_less}      \tab \code{'{pref} {n} or less of [a], [b], ..., {conj} [z]'}         \cr
-  \code{ox_or_more}      \tab \code{'{pref} {n} or more of [a], [b], ..., {conj} [z]'}         \cr
-  \code{ox_or_fewer}     \tab \code{'{pref} {n} or fewer of [a], [b], ..., {conj} [z]'}        \cr
-  \code{ox_or_greater}   \tab \code{'{pref} {n} or greater of [a], [b], ..., {conj} [z]'}        }
+\tabular{ll}{  \code{ox_n}            \tab \code{'{n} of [a], [b], ..., {conj} [z]'}          \cr
+  \code{ox_exactly}      \tab \code{'exactly {n} of [a], [b], ..., {conj} [z]'}         \cr
+  \code{ox_less}         \tab \code{'less than {n} of [a], [b], ..., {conj} [z]'}       \cr
+  \code{ox_more}         \tab \code{'more than {n} of [a], [b], ..., {conj} [z]'}       \cr
+  \code{ox_fewer}        \tab \code{'fewer than {n} of [a], [b], ..., {conj} [z]'}      \cr
+  \code{ox_greater}      \tab \code{'greater than {n} of [a], [b], ..., {conj} [z]'}    \cr
+  \code{ox_at_most}      \tab \code{'at most {n} of [a], [b], ..., {conj} [z]'}         \cr
+  \code{ox_at_least}     \tab \code{'at least {n} of [a], [b], ..., {conj} [z]'}        \cr
+  \code{ox_no_less}      \tab \code{'no less than {n} of [a], [b], ..., {conj} [z]'}    \cr
+  \code{ox_no_more}      \tab \code{'no more than {n} of [a], [b], ..., {conj} [z]'}    \cr
+  \code{ox_no_fewer}     \tab \code{'no fewer than {n} of [a], [b], ..., {conj} [z]'}   \cr
+  \code{ox_no_greater}   \tab \code{'no greater than {n} of [a], [b], ..., {conj} [z]'} \cr
+  \code{ox_or_less}      \tab \code{'{n} or less of [a], [b], ..., {conj} [z]'}         \cr
+  \code{ox_or_more}      \tab \code{'{n} or more of [a], [b], ..., {conj} [z]'}         \cr
+  \code{ox_or_fewer}     \tab \code{'{n} or fewer of [a], [b], ..., {conj} [z]'}        \cr
+  \code{ox_or_greater}   \tab \code{'{n} or greater of [a], [b], ..., {conj} [z]'}        }
 }
 \examples{
 egFruits <- c("apples", "bananas", "oranges")

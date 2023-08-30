@@ -230,7 +230,7 @@ st_und <- function(..., .D = " ") {
 #' @rdname crayons
 #' @export
 st <- function(.ST, ..., .D = " ") {
-  uj:::.crayons_errs(.ST = .ST, .D = .D, OK.NULL.SZT = F)
+  uj:::.crayons_errs(.ST = .ST, .D = .D, .OK.NULL.ST = F)
   .ST <- base::tolower(.ST)
   x <- uj:::.glue_args(.D, ...)
   if      (.ST %in% uj::v(CrayonBold)     ) {x <- uj::st_bld(x)}
@@ -330,7 +330,7 @@ fg_ylw <- function(..., .D = " ") {
 #' @rdname crayons
 #' @export
 fg <- function(.FG, ..., .D = " ") {
-  uj:::.crayons_errs(.FG = .FG, .D = .D, OK.NULL.FG = F)
+  uj:::.crayons_errs(.FG = .FG, .D = .D, .OK.NULL.FG = F)
   .FG <- base::tolower(.FG)
   x <- uj:::.glue_args(.D, ...)
   if      (.FG %in% uj::v(CrayonRed)    ) {x <- uj::fg_red(x)}
@@ -414,7 +414,7 @@ bg_ylw <- function(..., .D = " ") {
 #' @rdname crayons
 #' @export
 bg <- function(.BG, ..., .D = " ") {
-  uj:::.crayons_errs(.BG = .BG, .D = .D, OK.NULL.BG = F)
+  uj:::.crayons_errs(.BG = .BG, .D = .D, .OK.NULL.BG = F)
   .BG <- base::tolower(.BG)
   x <- uj:::.glue_args(.D, ...)
   if      (.BG %in% uj::v(CrayonRed)    ) {x <- uj::bg_red(x)}
@@ -434,7 +434,7 @@ bg <- function(.BG, ..., .D = " ") {
 #' @rdname crayons
 #' @export
 txt <- function(..., .BG = NULL, .FG = NULL, .ST = NULL, .D = " ") {
-  uj:::.crayons_errs(.BG = .BG, .FG = .FG, .ST = .ST, .D = .D, OK.NULL.BG = T, OK.NULL.FG = T, OK.NULL.ST = T)
+  uj:::.crayons_errs(.BG = .BG, .FG = .FG, .ST = .ST, .D = .D, .OK.NULL.BG = T, .OK.NULL.FG = T, .OK.NULL.ST = T)
   x <- uj:::.glue_args(.D, ...)
   if (!base::is.null(.ST)) {x <- uj::st(base::tolower(.ST), x)}
   if (!base::is.null(.BG)) {x <- uj::bg(base::tolower(.BG), x)}

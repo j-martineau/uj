@@ -1285,7 +1285,7 @@ not_ns3p <- function(x) {!uj::ns3p(x)}
   Errors <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
   if (!is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
   x <- uj::av(base::sapply(Dots, base::ncol))
-  uj::n_check(x, .N = .N, min = min, .MAX = .MAX, .EQ = .EQ)
+  uj::n_check(x, .N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
 }
 
 #' @rdname N
@@ -1330,7 +1330,7 @@ not_ns3p <- function(x) {!uj::ns3p(x)}
 ...nv <- function(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .A = TRUE) {
   Dots <- base::list(...)
   Atoms <- uj::av(Dots)
-  Errors <- uj:::.n_errs(N = N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ, .A = .A)
+  Errors <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ, .A = .A)
   if (!is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
   if (.A) {x <- base::length(Atoms)} else {x <- base::lengths(Dots)}
   uj::n_check(x, .N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)

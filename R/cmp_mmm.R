@@ -20,7 +20,7 @@
 #' cmp_ord(factor(letters, ordered = T))
 #' @export
 cmp_mmm <- function(x, .MMM, ...) {
-  Errors <- uj:::.meets_Errors(x, ...)
+  Errors <- uj:::.meets_errs(x, ...)
   if (!uj:::.cmp_chr_scl(.MMM, .VALID = base::c(uj::v(mmm), uj::v(.MMM)))) {Errors <- base::c(Errors, '[.MMM] is not a scalar value from mmm_props().')}
   if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
   if (!uj::meets(x, ...)) {F}

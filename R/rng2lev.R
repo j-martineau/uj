@@ -1,6 +1,6 @@
 #' @encoding UTF-8
 #' @family conversions
-#' @title Convert sortable values in levels bY range
+#' @title Convert sortable values in levels by range
 #' @description Convert values of `x` to the `N` levels in `levs` distinguished by the `N-1` thresholds in `cuts`.
 #' \cr\cr When values of `x` are equal to a value of `cuts`, assignment to level is dependent on whether the value of each element of `cuts` is less than `0` vs. greater than or equal to `0`.
 #' \cr\cr For a value in `cuts` less than `0`, the level assigned is the lower of the levels distinguished by that value of `cuts`.
@@ -32,19 +32,19 @@ rng2lev <- function(x, cuts, levs) {
   if (base::length(cuts) != base::length(levs) - 1) {Errors <- base::c(Errors, "length(cuts) must equal length(levs) - 1.")}
   if (!uj::comparable(x, cuts)) {Errors <- base::c(Errors, "[x] and [cuts] must be of comparable modes (?comparable).")}
   if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  Y <- x
-  Y[1:base::length(Y)] <- NA
-  if (base::is.character(x)) {Y <- base::as.character(Y)}
-  else if (base::is.ordered(levs)) {Y <- base::factor(Y, levels = base::levels(levs))}
-  else if (base::is.null(levs)) {Y <- base::as.numeric(Y)}
+  y <- x
+  y[1:base::length(y)] <- NA
+  if (base::is.character(x)) {y <- base::as.character(y)}
+  else if (base::is.ordered(levs)) {y <- base::factor(y, levels = base::levels(levs))}
+  else if (base::is.null(levs)) {y <- base::as.numeric(y)}
   for (i in 1:base::length(cuts)) {
     Cut <- cuts[i]
     Lo <- levs[i]
     Hi <- levs[i + 1]
     if (!base::is.numeric(x)) {Eq <- Hi} else if (x < 0) {Eq <- Lo} else {Eq <- Hi}
-    if (i == 1) {Y[x < Cut] <- Lo}
-    Y[x > Cut] <- Hi
-    Y[x == Cut] <- Eq
+    if (i == 1) {y[x < Cut] <- Lo}
+    y[x > Cut] <- Hi
+    y[x == Cut] <- Eq
   }
-  Y
+  y
 }

@@ -30,15 +30,15 @@
 #'                `prop_verbose`    \tab How is a *single* property (verbosely) defined?                           \cr   \tab   \cr
 #'                `prop_defs`       \tab What are the definitions of all possible *single* properties (returned as a data.frame)? }
 #' **Functions to list names of dedicated property-checking functions**
-#' \tabular{ll}{  `ppp_or_funs`   \tab What dedicated functions check `X` for either special values or a match to a *flex* property spec? \cr   \tab   \cr
-#'                `prop_funs`     \tab What dedicated functions check `X` for a match to a specific *single* or *combo* property?         \cr   \tab   \cr
+#' \tabular{ll}{  `ppp_or_funs`   \tab What dedicated functions check `x` for either special values or a match to a *flex* property spec? \cr   \tab   \cr
+#'                `prop_funs`     \tab What dedicated functions check `x` for a match to a specific *single* or *combo* property?         \cr   \tab   \cr
 #'                `all_props`     \tab What is the complete set of all possible *single* properties?                                                     }
 #' **Functions to check object against arbitrary property specs**
-#' \tabular{ll}{  `nas_or`   \tab Is `X` either `NA` or a match to the *flex* property spec in `Spec`?  \cr   \tab   \cr
-#'                `nll_or`   \tab Is `X` either `NULL` or a match to the *flex* property spec in `Spec` \cr   \tab   \cr
-#'                `ppp`      \tab Is `X` a match to the *flex* property spec in `Spec`?                                }
+#' \tabular{ll}{  `nas_or`   \tab Is `x` either `NA` or a match to the *flex* property spec in `Spec`?  \cr   \tab   \cr
+#'                `nll_or`   \tab Is `x` either `NULL` or a match to the *flex* property spec in `Spec` \cr   \tab   \cr
+#'                `ppp`      \tab Is `x` a match to the *flex* property spec in `Spec`?                                }
 #' **Function to list all of an object's** single **properties across property families**
-#' \tabular{ll}{  `ppp`   \tab What are all of `X`'s *single* properties compiled from all property families? }
+#' \tabular{ll}{  `ppp`   \tab What are all of `x`'s *single* properties compiled from all property families? }
 #' For convenience, property functions from other function families are also described below.
 #' \cr\cr **Functions to list all** single **properties in a property family**
 #' \tabular{ll}{  `bbb_props`   \tab \link[=bbb]{basic}       \cr
@@ -113,7 +113,7 @@
 #'                `mmm`   \tab \link[=mmm]{xmode}       \cr
 #'                `sss`   \tab \link[=sss]{shape}         }
 #' @param x An R object.
-#' @param spec A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from `ppp_vals()` separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of `TRUE` if any of them applies to `X`.
+#' @param spec A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from `ppp_vals()` separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of `TRUE` if any of them applies to `x`.
 #' @param as.dtf `TRUE` or `FALSE` indicating whether to return the result as a data.frame with column `1` containing property values and column `2` containing the property families.
 #' @param .VALID A \link[=cmp_chr_vec]{complete character vec} containing all properties considered valid.
 #' @param .PRINT `TRUE` or `FALSE` indicating whether to print the property definition to the console.
@@ -159,7 +159,7 @@
 #' ppp(letters)
 #' prop_defs()
 #' @export
-ppp <- function(X) {base::sort(base::c(uj::bbb(X), uj::ccc(X), uj::ddd(X), uj::eee(X), uj::iii(X), uj::mmm(X), uj::sss(X)))}
+ppp <- function(x) {base::sort(base::c(uj::bbb(x), uj::ccc(x), uj::ddd(x), uj::eee(x), uj::iii(x), uj::mmm(x), uj::sss(x)))}
 
 #' @rdname ppp
 #' @export
@@ -367,12 +367,12 @@ prop_defs <- function() {
     "mmm"  , "srt"   , "sortable"                          , "A sortable object (character, logical, numeric, or ordered factor)",
     "mmm"  , "uno"   , "unordered-factor"                  , "A unordered-factor object",
     "mmm"  , "whl"   , "whole-number"                      , "A whole-number object",
-    "sss"  , "col"   , "column"                            , "A column object (2+ X 1 data.frame/matrix)",
+    "sss"  , "col"   , "column"                            , "A column object (2+ x 1 data.frame/matrix)",
     "sss"  , "emp"   , "empty"                             , "An empty object (of length 0, but not NULL)",
     "sss"  , "lin"   , "linear"                            , "A linear object (vector/vlist/1D array of length 2+, row/column matrix/data.frame, or populated array with multiple indexing positions in exactly 1 dimension)",
-    "sss"  , "pnt"   , "point"                             , "A point object (length-1 vector/array/vlist or 1 X 1 data.frame/matrix)",
-    "sss"  , "rct"   , "rectangular"                       , "A rectangular object (2+ X 2+ data.frame/matrix)",
-    "sss"  , "row"   , "row"                               , "A row object (1 X 2+ data.frame/matrix)",
+    "sss"  , "pnt"   , "point"                             , "A point object (length-1 vector/array/vlist or 1 x 1 data.frame/matrix)",
+    "sss"  , "rct"   , "rectangular"                       , "A rectangular object (2+ x 2+ data.frame/matrix)",
+    "sss"  , "row"   , "row"                               , "A row object (1 x 2+ data.frame/matrix)",
     "sss"  , "sld"   , "solid"                             , "A solid object (array with multiple index positions in 3+ dimensions)",
     "sss"  , "sqr"   , "square"                            , "A square atomic matrix"
   )

@@ -53,9 +53,9 @@ mmm_ccc <- function(x, .MMM, .CCC, ...) {
 #' @rdname mmm_ccc
 #' @export
 mmm_ccc_funs <- function() {
-  Y <- base::expand.grid(mmm = uj::v(mmm), ccc = uj::v(ccc))
-  Y <- base::apply(Y, 1, base::paste0, collapse = "_")
-  base::sort(uj::av(Y))
+  y <- base::expand.grid(mmm = uj::v(mmm), ccc = uj::v(ccc))
+  y <- base::apply(y, 1, base::paste0, collapse = "_")
+  base::sort(uj::av(y))
 }
 
 #' @rdname mmm_ccc

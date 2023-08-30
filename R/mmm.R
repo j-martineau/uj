@@ -70,9 +70,9 @@
 #' CLR("#1077ACFF")
 #' @export
 mmm <- function(x) {
-  Y <- NULL
-  for (MMM in uj::v(MMM)) {if (uj::run("uj:::.", MMM, "(x)")) {Y <- base::c(Y, base::tolower(MMM))}}
-  Y
+  y <- NULL
+  for (MMM in uj::v(MMM)) {if (uj::run("uj:::.", MMM, "(x)")) {y <- base::c(y, base::tolower(MMM))}}
+  y
 }
 
 #' @rdname mmm

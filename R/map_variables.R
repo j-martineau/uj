@@ -34,21 +34,29 @@
 #' map_variables(x, roles, defs, mmms, .ROLES = .ROLES, .DEFS = .DEFS, .MMMS = .MMMS, .TRIM = FALSE, .RENAME = FALSE, .CLEAR = FALSE)
 #' @export
 map_variables <- function(x, roles, defs, mmms, .ROLES = NULL, .DEFS = NULL, .MMMS = NULL, .TRIM = TRUE, .RENAME = TRUE, .CLEAR = TRUE) {
-  uj::check_funs("rct_atm_dtf", x = x)
-  uj::check_funs("unq_str_vec", roles = roles, defs = defs)
-  uj::check_funs("cmp_str_vec", mmms = mmms, VALS = uj::mmm_props())
-  uj::check_nll_or("unq_str_vec", .ROLES = .ROLES, .DEFS = .DEFS)
-  uj::check_nll_or("cmp_str_vec", .MMMS = .MMMS, VALS = uj::mmm_props())
-  uj::check_tf(.TRIM = .TRIM, .RENAME = .RENAME, .CLEAR = .CLEAR)
-  uj::checkerr(PKG = "uj")
+  Errs <- NULL
+  if (!uj::.atm_rct_dtf(x)) {Errs <- base::c(Errs, "[x] must be a data.frame.")}
+  if (!uj::.unq_str_vec(roles)) {Errs <- base::c(Errs, "[roles] must be a unique string vec (?uj::unq_str_vec).")}
+  if (!uj::.unq_str_vec(defs)) {Errs <- base::c(Errs, "[defs] must be a unique string vec (?uj::unq_str_vec).")}
+  if (!uj::.cmp_str_vec(mmms)) {Errs <- base::c(Errs, "[mmms] must be a complete string vec (?uj::cmp_str_vec).")}
+  if (!base::is.null(.ROLES)) {if (!uj::.unq_str_vec(.ROLES)) {Errs <- base::c(Errs, "[.ROLES] must be NULL or a unique string vec (?uj::unq_str_vec).")}}
+  if (!base::is.null(.DEFS)) {if (!uj::.unq_str_vec(.DEFS)) {Errs <- base::c(Errs, "[.DEFS] must be NULL or a unique string vec (?uj::unq_str_vec).")}}
+  if (!base::is.null(.MMMS)) {if (!uj::.cmp_str_vec(.MMMS)) {Errs <- base::c(Errs, "[.MMMS] must be NULL or a complete string vec (?uj::cmp_str_vec).")}}
+  if (!base::isTRUE(.TRIM) & !base::isFALSE(.TRIM)) {Errs <- base::c(Errs, "[.TRIM] must be TRUE or FALSE.")}
+  if (!base::isTRUE(.RENAME) & !base::isFALSE(.RENAME)) {Errs <- base::c(Errs, "[.RENAME] must be TRUE or FALSE.")}
+  if (!base::isTRUE(.CLEAR) & !base::isFALSE(.CLEAR)) {Errs <- base::c(Errs, "[.CLEAR] must be TRUE or FALSE.")}
+  if (!base::is.null(Errs)) {uj::stopperr(Errs, .PKG = "uj")}
+  if (!base::all(mmms %in% uj::mmm_props())) {Errs <- base::c(Errs, "[mmms] contains a value not in uj::mmm_props().")}
+  if (!base::is.null(.MMMS)) {if (!base::all(.MMMS %in% uj::mmm_props())) {Errs <- base::c(Errs, "[.MMMS] contains a value not in uj::mmm_props().")}}
+  if (!base::is.null(Errs)) {uj::stopperr(Errs, .PKG = "uj")}
   available <- uj::cnames(x)
-  if (!uj::unq_str_vec(available)) {uj::bankerr("Names of variables in [x] must be unique and non-blank.")}
-  if (uj::N(roles) > uj::N(available)) {uj::bankerr("length(roles) > ncol(x).")}
-  if (uj::N(roles) != uj::N(defs)) {uj::bankerr("length(defs) != length(roles).")}
-  if (uj::N(roles) != uj::N(mmms)) {uj::bankerr("length(mmms) != length(roles).")}
-  if (uj::N(.ROLES) != uj::N(.DEFS)) {uj::bankerr("length(.DEFS) != length(.ROLES).")}
-  if (uj::N(.ROLES) != uj::N(.MMMS)) {uj::bankerr("length(.MMMS) != length(.ROLES).")}
-  uj::checkerr(PKG = "uj")
+  if (!uj::unq_str_vec(available)) {Errs <- base::c(Errs, "Names of variables in [x] must be unique and non-blank.")}
+  if (uj::N(roles) > uj::N(available)) {Errs <- base::c(Errs, "length(roles) > ncol(x).")}
+  if (uj::N(roles) != uj::N(defs)) {Errs <- base::c(Errs, "length(defs) != length(roles).")}
+  if (uj::N(roles) != uj::N(mmms)) {Errs <- base::c(Errs, "length(mmms) != length(roles).")}
+  if (uj::N(.ROLES) != uj::N(.DEFS)) {Errs <- base::c(Errs, "length(.DEFS) != length(.ROLES).")}
+  if (uj::N(.ROLES) != uj::N(.MMMS)) {Errs <- base::c(Errs, "length(.MMMS) != length(.ROLES).")}
+  if (!base::is.null(Errs)) {uj::stopperr(Errs, .PKG = "uj")}
   map <- uj::tb(role = roles, name = NA)
   for (i in 1:uj::N(roles)) {
     role <- roles[i]

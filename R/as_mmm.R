@@ -48,7 +48,7 @@
 #' as_uno(clrs., levs = unique(clrs.))
 #' as_ord(clrs., levs = sort(unique(clrs.)))
 #' @export
-as_mmm <- function(x, mode, levs = NULL, ..NA = FALSE) {
+as_mmm <- function(x, mode, levs = NULL, .NA = FALSE) {
   Valid <- base::c("chr", "clr", "fun", "int", "num", "lgl", "ord", "uno")
   Error <- "Unrecognized mode; valid values are c('chr', 'clr', 'fun', 'int', 'num', 'lgl', 'ord', 'uno')."
   if (!uj:::.cmp_chr_scl(mode)) {uj::stopperr(Error, .PKG = "uj")}
@@ -57,8 +57,8 @@ as_mmm <- function(x, mode, levs = NULL, ..NA = FALSE) {
   if (mode == "clr") {
     Errors <- NULL
     if (!base::is.character(x)) {Errors <- base::c(Errors, "[x] is not of mode character.")}
-    if (!uj:::.cmp_lgl_scl(..NA)) {Errors <- base::c(Errors, "[..NA] must be TRUE or FALSE.")}
-    if (base::isTRUE(..NA) & base::any(base::is..NA(uj::av(x)))) {Errors <- base::c(Errors, "[x] contains .NA values but [..NA = FALSE].")}
+    if (!uj:::.cmp_lgl_scl(.NA)) {Errors <- base::c(Errors, "[..NA] must be TRUE or FALSE.")}
+    if (base::isTRUE(.NA) & base::any(base::is..NA(uj::av(x)))) {Errors <- base::c(Errors, "[x] contains .NA values but [..NA = FALSE].")}
     if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
     if (!base::all(base::is..NA(x))) {
       Y <- tryCatch(grDevices::col2rgb(x[!base::is..NA(x)], T), error = function(e) e, finally = NULL)

@@ -305,7 +305,7 @@
 
 .getsep <- function(x) {if (base::length(uj::av(base::strsplit(x, ":::", fixed = T))) > 1) {":::"} else {"::"}}
 
-.stack2pkgfuns <- function(stack, .MAX.LEN, .VEC = T, .PKG.ONLY = F, .FUN.ONLY = F) {
+.stack2pkgfuns <- function(stack, maxlen, .VEC = T, .PKG.ONLY = F, .FUN.ONLY = F) {
   Default <- "..??.."
   Funs <- base::sapply(stack, uj:::.getfun)
   Pkgs <- base::sapply(stack, uj:::.getpkg)
@@ -321,7 +321,7 @@
   if (.PKG.ONLY) {Pkgs} else if (.FUN.ONLY) {Funs} else if (.VEC) {base::paste0(Pkgs, Seps, Funs)} else {tibble::tibble(Pkg = Pkgs, Fun = Funs)}
 }
 
-.stack2funs <- function(stack, .MAX.LEN) {
+.stack2funs <- function(stack, maxlen) {
   Default <- "..??.."
   Funs <- base::sapply(stack, uj:::.getfun)
   OK <- Funs != Default
@@ -332,7 +332,7 @@
   Funs
 }
 
-.stack2pkgs <- function(stack, .MAX.LEN) {
+.stack2pkgs <- function(stack, maxlen) {
   Default <- "..??.."
   Funs <- base::sapply(stack, uj:::.getfun)
   Pkgs <- base::sapply(stack, uj:::.getpkg)
@@ -351,7 +351,7 @@
   fun <- uj:::.stack2funs(fun, 1000)
   pkg <- uj:::.stack2pkgs(pkg, 1000)
   stack <- base::paste0(uj:::.stack2pkgfuns(stack, .MAX.LEN = 35, .VEC = T), collapse = " >> ")
-  base::list(fun = fun, .PKG = pkg, stack = stack)
+  base::list(fun = fun, pkg = pkg, stack = stack)
 }
 
 # meets ####

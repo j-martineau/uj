@@ -55,13 +55,13 @@ dt_rows <- function(x, r) {x[r, ]}
 #' @inherit data.table::dcast
 #' @export
 dt_wide <- function(data, formula, fun.aggregate = NULL, sep = "_", ..., margins = NULL, subset = NULL, fill = NULL, drop = TRUE, value.var = data.table:::guess(data), verbose = base::getOption("datatable.verbose"), .SAY = TRUE) {
-  if (.SAY) {uj::say("wait", Sub = 2)}
+  if (.SAY) {uj::say("wait", .SUB = 2)}
   Code <- base::paste0("data.table::dcast.data.table(data, formula, sep = sep, ..., drop = drop, value.var = value.var, verbose = verbose",
                        uj::f0(base::is.null(fun.aggregate), "", ", fun.aggregate = fun.aggregate"),
                        uj::f0(base::is.null(margins), "", ", margins = margins"),
                        uj::f0(base::is.null(subset), "", ", subset = subset"),
                        uj::f0(base::is.null(fill), "", ", fill = fill"), ")")
   data <- uj::run(Code)
-  if (.SAY) {uj::say("done", Sub = 2)}
+  if (.SAY) {uj::say("done", .SUB = 2)}
   data
 }

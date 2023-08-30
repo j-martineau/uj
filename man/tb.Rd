@@ -49,8 +49,8 @@ trb(~letters, ~numbers, ~constant,
     "b"     , 2,      , pi       ,
     "c"     , 3,      , pi       )
 tbr("a", 1, pi)
-asTB(list(letters = letters, numbers = 1:26, constant = pi))
-isTB(tb(letters))
+as_tb(list(letters = letters, numbers = 1:26, constant = pi))
+is_tb(tb(letters))
 }
 \seealso{
 Other wraps: 

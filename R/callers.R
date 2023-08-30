@@ -30,9 +30,9 @@
 #'                `callers`         \tab Names of all calling functions, (excludes *self*).       \cr   \tab   \cr
 #'                `lineage`         \tab Names of all lineage functions (includes *self*).                       }
 #' @param n A \link[cmp_psw_vec]{complete positive whole-number scalar} giving the number of generations back in the function call stack to go.
-#' @param err `TRUE` or `FALSE` indicating whether to throw an error if one is encountered.
-#' @param scl `TRUE` or `FALSE` indicating whether to collapse package and function into a character scalar rather than as a two element list with one element for packages and another for functions.
-#' @param vec `TRUE` or `FALSE` indicating whether to represent both package and function in a character vector rather than as a two element list with one element for packages and another for functions.
+#' @param .ERR `TRUE` or `FALSE` indicating whether to throw an error if one is encountered.
+#' @param .SCL `TRUE` or `FALSE` indicating whether to collapse package and function into a character scalar rather than as a two element list with one element for packages and another for functions.
+#' @param .VEC `TRUE` or `FALSE` indicating whether to represent both package and function in a character vector rather than as a two element list with one element for packages and another for functions.
 #' @param ... An arbitrary number of \link[=cmp_psw_vec]{complete positive whole-number vecs} giving the number(s) of generations back in the function call stack to go.
 #' @return **An integer scalar**                                            \cr\cr `ncallers`
 #' \cr\cr  **A `list(pkg = <character vector>, fun = <character vector>)`** \cr\cr  All others when `vec = FALSE` or `scl = FALSE`.
@@ -42,18 +42,18 @@
 #' egD <- function() {list(self      = self()                   ,
 #'                         caller    = caller()                 ,
 #'                         callers   = callers()                ,
-#'                         caller2   = caller2(err = F)         ,
-#'                         caller3   = callerN(3, err = F)      ,
-#'                         callers23 = callersN(2, 3, err = F)  ,
+#'                         caller2   = caller2(.ERR = F)        ,
+#'                         caller3   = callerN(3, .ERR = F)     ,
+#'                         callers23 = callersN(2, 3, .ERR = F) ,
 #'                         ncallers  = ncallers()               ,
 #'                         ancestor  = ancestor()               ,
 #'                         lineage   = lineage()                )}
 #' egC <- function() {list(self      = self()                   ,
 #'                         caller    = caller()                 ,
 #'                         callers   = callers()                ,
-#'                         caller2   = caller2(err = F)         ,
-#'                         caller3   = callerN(3, err = F)      ,
-#'                         callers23 = callersN(2, 3, err = F)  ,
+#'                         caller2   = caller2(.ERR = F)        ,
+#'                         caller3   = callerN(3, .ERR = F)     ,
+#'                         callers23 = callersN(2, 3, .ERR = F) ,
 #'                         ncallers  = ncallers()               ,
 #'                         ancestor  = ancestor()               ,
 #'                         lineage   = lineage()                ,
@@ -61,9 +61,9 @@
 #' egB <- function() {list(self      = self()                   ,
 #'                         caller    = caller()                 ,
 #'                         callers   = callers()                ,
-#'                         caller2   = caller2(err = F)         ,
-#'                         caller3   = callerN(3, err = F)      ,
-#'                         callers23 = callersN(2, 3, err = F)  ,
+#'                         caller2   = caller2(.ERR = F)        ,
+#'                         caller3   = callerN(3, .ERR = F)     ,
+#'                         callers23 = callersN(2, 3, .ERR = F) ,
 #'                         ncallers  = ncallers()               ,
 #'                         ancestor  = ancestor()               ,
 #'                         lineage   = lineage()                ,
@@ -71,9 +71,9 @@
 #' egA <- function() {list(self      = self()                   ,
 #'                         caller    = caller()                 ,
 #'                         callers   = callers()                ,
-#'                         caller2   = caller2(err = F)         ,
-#'                         caller3   = callerN(3, err = F)      ,
-#'                         callers23 = callersN(2, 3, err = F)  ,
+#'                         caller2   = caller2(.ERR = F)        ,
+#'                         caller3   = callerN(3, .ERR = F)     ,
+#'                         callers23 = callersN(2, 3, .ERR = F) ,
 #'                         ncallers  = ncallers()               ,
 #'                         ancestor  = ancestor()               ,
 #'                         lineage   = lineage()                ,
@@ -81,21 +81,21 @@
 #' egA()
 #' av(egA())
 #' @export
-callers <- function(vec = TRUE) {
-  if (!uj::fs_t(vec)) {vec <- F}
+callers <- function(.VEC = TRUE) {
+  if (!uj::fs_t(.VEC)) {.VEC <- F}
   Stack <- base::c(base::rev(base::as.character(base::sys.calls())), "..R..::..command.line..()")
   if (base::length(Stack) == 2) {Stack <- base::c(Stack, "..R..::..command.line..()")}
-  uj:::.stack2pkgfuns(Stack[3:base::length(Stack)], 35, vec = vec)
+  uj:::.stack2pkgfuns(Stack[3:base::length(Stack)], 35, .VEC = .VEC)
 }
 
 #' @rdname callers
 #' @export
-caller <- function(scl = TRUE) {
-  if (!uj::fs_t(scl)) {scl <- F}
+caller <- function(.SCL = TRUE) {
+  if (!uj::fs_t(.SCL)) {.SCL <- F}
   Stack <- base::sys.calls()
   Stack <- base::c(base::rev(base::as.character(Stack)), "..R..::..command.line..()")
   if (base::length(Stack) == 2) {Stack <- base::c(Stack, "..R..::..command.line..()")}
-  uj:::.stack2pkgfuns(Stack[3], 100, vec = scl)
+  uj:::.stack2pkgfuns(Stack[3], 100, .VEC = .SCL)
 }
 
 #' @rdname callers
@@ -104,36 +104,36 @@ caller1 <- caller
 
 #' @rdname callers
 #' @export
-caller2 <- function(scl = TRUE) {
-  if (!uj::fs_t(scl)) {scl <- F}
+caller2 <- function(.SCL = TRUE) {
+  if (!uj::fs_t(.SCL)) {.SCL <- F}
   Stack <- base::sys.calls()
   Stack <- base::c(base::rev(base::as.character(Stack)), "..R..::..command.line..()")
   if (base::length(Stack) == 2) {Stack <- base::c(Stack, "..R..::..command.line..()")}
   if (base::length(Stack) == 3) {Stack <- base::c(Stack, "..R..::..command.line..()")}
-  uj:::.stack2pkgfuns(Stack[4], 100, vec = scl)
+  uj:::.stack2pkgfuns(Stack[4], 100, .VEC = .SCL)
 }
 
 #' @rdname callers
 #' @export
-callerN <- function(n, err = TRUE, scl = TRUE) {
-  if (!uj::fs_t(err)) {err <- T}
-  if (!uj::fs_t(scl)) {scl <- T}
+callerN <- function(n, .ERR = TRUE, .SCL = TRUE) {
+  if (!uj::fs_t(.ERR)) {.ERR <- T}
+  if (!uj::fs_t(.SCL)) {.SCL <- T}
   if (!uj:::.cmp_psw_scl(n)) {uj::stopperr("[n] must be a complete positive whole number scalar (?cmp_psw_scl).", .PKG = "uj")}
   Stack <- base::sys.calls()
   Stack <- base::c(base::rev(base::as.character(Stack)), "..R..::..command.line..()")
   if (base::length(Stack) == 2) {Stack <- base::c(Stack, "..R..::..command.line..()")}
   Stack <- Stack[3:base::length(Stack)]
   nStack <- base::length(Stack)
-  if (err & n > nStack) {uj::stopperr("[n] is greater than number of calling functions.", .PKG = "uj")}
+  if (.ERR & n > nStack) {uj::stopperr("[n] is greater than number of calling functions.", .PKG = "uj")}
   n <- base::min(n, nStack)
-  uj:::.stack2pkgfuns(Stack[n], 100, vec = scl)
+  uj:::.stack2pkgfuns(Stack[n], 100, .VEC = .SCL)
 }
 
 #' @rdname callers
 #' @export
-callersN <- function(..., err = TRUE, vec = TRUE) {
-  if (!uj::fs_t(err)) {err <- T}
-  if (!uj::fs_t(vec)) {vec <- T}
+callersN <- function(..., .ERR = TRUE, .VEC = TRUE) {
+  if (!uj::fs_t(.ERR)) {.ERR <- T}
+  if (!uj::fs_t(.VEC)) {.VEC <- T}
   Ns <- uj::av(...)
   if (!uj:::.cmp_psw_vec(Ns)) {uj::stopperr("All [...] args must be complete positive whole-number vecs (?cmp_psw_vec).", .PKG = "uj")}
   Stack <- base::sys.calls()
@@ -142,7 +142,7 @@ callersN <- function(..., err = TRUE, vec = TRUE) {
   Stack <- Stack[3:base::length(Stack)]
   nStack <- base::length(Stack)
   if (err & base::any(Ns > nStack)) {uj::stopperr("A value in [...] is greater than number of calling functions.", .PKG = "uj")}
-  uj:::.stack2pkgfuns(Stack[Ns[Ns <= nStack]], 35, vec = vec)
+  uj:::.stack2pkgfuns(Stack[Ns[Ns <= nStack]], 35, .VEC = .VEC)
 }
 
 #' @rdname callers
@@ -157,28 +157,28 @@ ncallers <- function() {
 
 #' @rdname callers
 #' @export
-lineage <- function(vec = TRUE) {
-  if (!uj::fs_t(vec)) {vec <- F}
+lineage <- function(.VEC = TRUE) {
+  if (!uj::fs_t(.VEC)) {.VEC <- F}
   Stack <- base::sys.calls()
   Stack <- base::c(base::rev(base::as.character(Stack)), "..R..::..command.line..()")
   Stack <- Stack[2:base::length(Stack)]
-  uj:::.stack2pkgfuns(Stack, 35, vec = vec)
+  uj:::.stack2pkgfuns(Stack, 35, .VEC = .VEC)
 }
 
 #' @rdname callers
 #' @export
-self <- function(scl = TRUE) {
-  if (!uj::fs_t(scl)) {scl <- F}
+self <- function(.SCL = TRUE) {
+  if (!uj::fs_t(.SCL)) {.SCL <- F}
   Stack <- base::sys.calls()
   Stack <- base::c(base::rev(base::as.character(Stack)), "..R..::..command.line..()")[2]
-  uj:::.stack2pkgfuns(Stack, 100, vec = scl)
+  uj:::.stack2pkgfuns(Stack, 100, .VEC = .SCL)
 }
 
 #' @rdname callers
 #' @export
-ancestor <- function(scl = TRUE) {
-  if (!uj::fs_t(scl)) {scl <- F}
+ancestor <- function(.SCL = TRUE) {
+  if (!uj::fs_t(.SCL)) {.SCL <- F}
   Stack <- uj::callers()
   Stack[base::max(1, base::length(Stack) - 1)]
-  uj:::.stack2pkgfuns(Stack, 100, vec = scl)
+  uj:::.stack2pkgfuns(Stack, 100, .VEC = .SCL)
 }
