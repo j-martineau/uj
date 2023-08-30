@@ -12,39 +12,39 @@
 \alias{nll_if_none}
 \title{Enhancements of \code{\link[base]{ifelse}}.}
 \usage{
-f0(X, Y, N)
+f0(x, y, n)
 
-fork(X, Y, N, NAS = N)
+fork(x, y, n, .NA = n)
 
-f1(X, Y, N, NAS = N, ERR = N)
+f1(x, y, n, .NA = n, .ERR = n)
 
-nll_if(X, ..., D = " ")
+nll_if(x, ..., .D = " ")
 
-nll_ifs(..., D = " ")
+nll_ifs(..., .D = " ")
 
-nll_if_any(..., D = " ")
+nll_if_any(..., .D = " ")
 
-nll_if_all(..., D = " ")
+nll_if_all(..., .D = " ")
 
-nll_if_none(..., D = " ")
+nll_if_none(..., .D = " ")
 
-nll_ifs(..., D = " ")
+nll_ifs(..., .D = " ")
 }
 \arguments{
-\item{X}{A logical scalar (if not,\code{X} it is replaced by \code{FALSE}).}
+\item{x}{A logical scalar (if not,\code{x} it is replaced by \code{FALSE}).}
 
-\item{Y, N}{Any valid R object.}
+\item{y, n}{Any valid R object.}
 
-\item{NAS}{An object of any type for \code{f1}. An atomic scalar \link[=compatible]{compatible} with \code{Y} and \code{N} for \code{fork}, with the additional possibility of \code{NAS = 'err'} to indicate an error should be thrown if any values in \code{X} are \code{NA}.}
+\item{.NA}{An object of any type for \code{f1}. An atomic scalar \link[=compatible]{compatible} with \code{y} and \code{n} for \code{fork}, with the additional possibility of \code{.NA = 'err'} to indicate an error should be thrown if any values in \code{x} are \code{NA}.}
 
-\item{ERR}{Either \code{'err'} or an object to be returned when \code{X} is not an atomic scalar in \code{c(TRUE, FALSE, NA)}.}
+\item{.ERR}{Either \code{'err'} or an object to be returned when \code{x} is not an atomic scalar in \code{c(TRUE, FALSE, NA)}.}
 
-\item{D}{A character scalar delimiter for collapsing objects into scalar character objects. If \code{D} is not a character scalar, it is replaced by \code{" "}.}
+\item{.D}{A character scalar delimiter for collapsing objects into scalar character objects. If \code{.D} is not a character scalar, it is replaced by \code{" "}.}
 
-\item{COND}{A character scalar in \code{c('all', 'any', 'none')}. If \code{COND} is not of an allowed value, it is replaced by \code{'all'}.}
+\item{.COND}{A character scalar in \code{c('all', 'any', 'none')}. If \code{.COND} is not of an allowed value, it is replaced by \code{'all'}.}
 }
 \value{
-\strong{A length-}\code{length(X)} \strong{atomic object}      \cr\cr \code{fork}
+\strong{A length-}\code{length(x)} \strong{atomic object}      \cr\cr \code{fork}
 \cr\cr  \strong{An arbitrary object}                         \cr\cr \verb{f0, f1}
 \cr\cr  \strong{A character scalar or the} \code{NULL} \strong{object} \cr\cr \verb{nll_if, nll_ifs, nll_if_all} \cr \verb{nll_if_any, nll_if_none}
 }
@@ -53,29 +53,29 @@ Return different types of objects for \code{TRUE} and \code{FALSE} and return \c
 }
 \details{
 \strong{\code{fork}}
-\cr\cr Evaluates logical scalar or logical vector \code{X} and return an object of the same length as \code{X} where:
-\itemize{\item \code{TRUE} values of \code{X} are replaced by corresponding values of \code{Y}.
-\item \code{FALSE} values of \code{X} are replaced by corresponding values of \code{N}.
-\item \code{NA} values of \code{X} are replaced by \code{NAS} (unless \code{NAS = 'err'}, in which case if there are any \code{NA} values in \code{X}, throws an error). }
+\cr\cr Evaluates logical scalar or logical vector \code{x} and return an object of the same length as \code{x} where:
+\itemize{\item \code{TRUE} values of \code{x} are replaced by corresponding values of \code{y}.
+\item \code{FALSE} values of \code{x} are replaced by corresponding values of \code{n}.
+\item \code{NA} values of \code{x} are replaced by \code{.NA} (unless \code{.NA = 'err'}, in which case if there are any \code{NA} values in \code{x}, throws an error). }
 \cr\cr \strong{\code{f0}}
-\cr\cr If \code{X} is scalar \code{TRUE}, returns \code{Y}. If \code{X} is anything else, returns \code{N}.
+\cr\cr If \code{x} is scalar \code{TRUE}, returns \code{y}. If \code{x} is anything else, returns \code{n}.
 \cr\cr \strong{\code{f1}}
-\cr\cr Error-checked version of \code{f0}. Evaluates and processes logical scalar \code{X} in the following manner:
-\itemize{\item If \code{X = TRUE}, returns \code{Y}.
-\item If \code{X = FALSE}, returns \code{Y}.
-\item If \code{X = NA}, returns \code{NAS} unless \code{NAS = 'err'}, in which case, an error is thrown.
-\item If \code{X} is neither a logical scalar nor scalar \code{NA}, returns \code{err} unless \code{ERR = 'err'}, in which case an error is thrown. }
+\cr\cr Error-checked version of \code{f0}. Evaluates and processes logical scalar \code{x} in the following manner:
+\itemize{\item If \code{x = TRUE}, returns \code{y}.
+\item If \code{x = FALSE}, returns \code{y}.
+\item If \code{x = NA}, returns \code{.NA} unless \code{.NA = 'err'}, in which case, an error is thrown.
+\item If \code{x} is neither a logical scalar nor scalar \code{NA}, returns \code{err} unless \code{.ERR = 'err'}, in which case an error is thrown. }
 \cr\cr \strong{Functions beginning with \code{nll_if}}
 \cr\cr These functions are useful for compiling error messages. They thus return \code{NULL} if error checks are passed and a message if they are not.
 \cr\cr \strong{\code{nll_if}}
-\cr\cr If \code{X} is scalar \code{TRUE}, returns \code{NULL}, otherwise collapses \code{...} args to a character scalar using delimiter \code{D} and returns the result.
+\cr\cr If \code{x} is scalar \code{TRUE}, returns \code{NULL}, otherwise collapses \code{...} args to a character scalar using delimiter \code{.D} and returns the result.
 \cr\cr \strong{\verb{nll_if_<cond.>}}
-\cr\cr These functions take both named and unnamed \code{...} args. Named \code{...} args other than \code{D} are evaluated for \code{TRUE}-ness (any value that is not scalar \code{TRUE} is considered \code{FALSE}). Unnamed \code{...} args are \link[=glue_dots]{collapsed} into a character scalar value named \code{D} using the delimiter in arg \code{D}
-\tabular{ll}{  \code{nll_if_none}   \tab Returns \code{D} upon encountering a \code{TRUE} named \code{...} arg. Returns \code{NULL} if none is encountered. \cr   \tab   \cr
-  \code{nll_if_any}    \tab Returns \code{NULL} upon encountering a \code{TRUE} named \code{...} arg. Returns \code{D} if none is encountered. \cr   \tab   \cr
-  \code{nll_if_all}    \tab Returns \code{D} upon encountering a non-\code{TRUE} named \code{...} arg. Returns \code{NULL} if none is encountered.            }
+\cr\cr These functions take both named and unnamed \code{...} args. Named \code{...} args other than \code{.D} are evaluated for \code{TRUE}-ness (any value that is not scalar \code{TRUE} is considered \code{FALSE}). Unnamed \code{...} args are \link[=glue_dots]{collapsed} into a character scalar value named \code{.D} using the delimiter in arg \code{.D}
+\tabular{ll}{  \code{nll_if_none}   \tab Returns \code{.D} upon encountering a \code{TRUE} named \code{...} arg. Returns \code{NULL} if none is encountered. \cr   \tab   \cr
+  \code{nll_if_any}    \tab Returns \code{NULL} upon encountering a \code{TRUE} named \code{...} arg. Returns \code{.D} if none is encountered. \cr   \tab   \cr
+  \code{nll_if_all}    \tab Returns \code{.D} upon encountering a non-\code{TRUE} named \code{...} arg. Returns \code{NULL} if none is encountered.            }
 \cr\cr \strong{\code{nll_ifs}}
-\cr\cr Calls \code{nll_if_none(..., D = D)} when \code{COND = 'none'}. Calls \code{nll_if_any(..., D = D)} when \verb{COND = 'any}. Calls \code{nll_if_all(..., D = D)} when \code{COND} takes any other value (including \code{'all'})
+\cr\cr Calls \code{nll_if_none(..., .D = .D)} when \code{.COND = 'none'}. Calls \code{nll_if_any(..., .D = .D)} when \verb{.COND = 'any}. Calls \code{nll_if_all(..., .D = .D)} when \code{.COND} takes any other value (including \code{'all'})
 \cr\cr \strong{\code{nlls_ifs}}
 \cr\cr Conditionally compiles messages into a character vector. Each non-\code{TRUE} odd-numbered \code{...} arg's message (\link[=glue_dots]{collapsed} from the following \code{...} arg) is added to the compilation. If all odd-numbered \code{...} args are \code{TRUE}, returns \code{NULL}.
 }
@@ -105,9 +105,9 @@ nll_if(TRUE, "an error", "message")
 nll_if(FALSE, "an error", "message")
 nll_if(41, "an error", "message")
 
-nll_ifs(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "any", COND = "all")
-nll_ifs(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "all", COND = "any")
-nll_ifs(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "none", COND = "none")
+nll_ifs(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "any", .COND = "all")
+nll_ifs(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "all", .COND = "any")
+nll_ifs(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "none", .COND = "none")
 nll_if_any(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "any")
 nll_if_all(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "all")
 nll_if_none(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "none")

@@ -22,9 +22,9 @@
 \usage{
 atomize(...)
 
-glue_av(..., G = "")
+glue_av(..., g = "")
 
-paste_av(..., P = "", S = "")
+paste_av(..., p = "", s = "")
 
 sort_uv(...)
 
@@ -40,9 +40,9 @@ av(...)
 
 sv(...)
 
-gv(..., G = "")
+gv(..., g = "")
 
-pv(..., P = "", S = "")
+pv(..., p = "", s = "")
 
 uv(...)
 
@@ -55,11 +55,11 @@ a(...)
 \arguments{
 \item{...}{Arguments to be atomized. Expected to atomize to a logical vector for \code{which_av} and its aliases \code{wav} and \code{wv}.}
 
-\item{G}{Character scalar glue.}
+\item{g}{Character scalar glue.}
 
-\item{P}{Character scalar prefix.}
+\item{p}{Character scalar prefix.}
 
-\item{S}{Character scalar suffix.}
+\item{s}{Character scalar suffix.}
 }
 \value{
 \strong{A character scalar} \cr\cr \verb{glue_av, gav, gv}
@@ -81,16 +81,16 @@ Functions in this family are:
   \verb{sort_uv, suv}            \tab Calls \code{sort(unique(av(...)))}                   }
 }
 \examples{
-X <- list("a", "b", "c")
+x <- list("a", "b", "c")
 y <- data.frame(1:3)
-X
+x
 y
-a(X)
+a(x)
 av(y)
-atoms(X, y)
-atomize(X, "d", y, 4)
-glue_av(letters, LETTERS, G = "-")
-paste_av(letters, P = "\u2022 ", S = ".")
+atoms(x, y)
+atomize(x, "d", y, 4)
+glue_av(letters, LETTERS, g = "-")
+paste_av(letters, P = "\u2022 ", s = ".")
 sort_av(letters, LETTERS, 0:9)
 sort_uv(letters, LETTERS, 0:9)
 unique_av(letters, "d", 0:9, 5)
@@ -120,8 +120,8 @@ Other extensions:
 \code{\link{value_exists}()}
 
 Other values: 
-\code{\link{Nth}()},
 \code{\link{na}()},
+\code{\link{nth}},
 \code{\link{values}()}
 }
 \concept{extensions}

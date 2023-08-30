@@ -5,16 +5,16 @@
 \alias{blank}
 \title{Blank strings}
 \usage{
-blank(X)
+blank(x)
 }
 \arguments{
-\item{X}{An R object}
+\item{x}{An R object}
 }
 \value{
 A logical scalar
 }
 \description{
-Evaluate whether \code{X} is a blank string scalar (i.e., \code{""}).
+Evaluate whether \code{x} is a blank string scalar (i.e., \code{""}).
 }
 \examples{
 blank(NA)

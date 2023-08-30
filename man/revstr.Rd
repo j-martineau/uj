@@ -5,15 +5,15 @@
 \alias{revstr}
 \title{Reverse strings}
 \usage{
-revstr(X, NAS = FALSE)
+revstr(x, .NA = FALSE)
 }
 \arguments{
-\item{X}{A \link[=chr_vec]{character vec}.}
+\item{x}{A \link[=chr_vec]{character vec}.}
 
-\item{NAS}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are acceptable.}
+\item{.NA}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are acceptable.}
 }
 \value{
-An object of the same structure and dimension as \code{X}.
+An object of the same structure and dimension as \code{x}.
 }
 \description{
 Reverses the order of characters in each element of a non-empty \link[=atm_chr]{atomic character object}, \link[=chr_vls]{character vlist} or \link[=chr_dtf]{character data.frame}.

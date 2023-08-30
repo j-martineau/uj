@@ -25,52 +25,52 @@
 \alias{pt2mm}
 \title{Convert plotting units}
 \usage{
-u2u(X, Old, New)
+u2u(x, old, new)
 
-u2cm(X, Old)
+u2cm(x, old)
 
-u2in(X, Old)
+u2in(x, old)
 
-u2mm(X, Old)
+u2mm(x, old)
 
-u2pt(X, Old)
+u2pt(x, old)
 
-cm2u(X, New)
+cm2u(x, new)
 
-in2u(X, New)
+in2u(x, new)
 
-mm2u(X, New)
+mm2u(x, new)
 
-pt2u(X, New)
+pt2u(x, new)
 
-cm2in(X)
+cm2in(x)
 
-cm2mm(X)
+cm2mm(x)
 
-cm2pt(X)
+cm2pt(x)
 
-in2cm(X)
+in2cm(x)
 
-in2mm(X)
+in2mm(x)
 
-in2pt(X)
+in2pt(x)
 
-mm2cm(X)
+mm2cm(x)
 
-mm2in(X)
+mm2in(x)
 
-mm2pt(X)
+mm2pt(x)
 
-pt2cm(X)
+pt2cm(x)
 
-pt2in(X)
+pt2in(x)
 
-pt2mm(X)
+pt2mm(x)
 }
 \arguments{
-\item{X}{An \link[=atm_num]{atomic, numeric object}.}
+\item{x}{An \link[=atm_num]{atomic, numeric object}.}
 
-\item{Old, New}{\link[=cmp_chr_scl]{Complete character scalars} giving Old and New units of distance, respectively: \code{'cm'} for centimeters, \code{'in'} for inches, \code{'mm'} for millimeters, and \code{'pt'} for points.}
+\item{old, new}{\link[=cmp_chr_scl]{Complete character scalars} giving old and new units of distance, respectively: \code{'cm'} for centimeters, \code{'in'} for inches, \code{'mm'} for millimeters, and \code{'pt'} for points.}
 }
 \value{
 An atomic numeric object.
@@ -83,11 +83,11 @@ Unit conversion functions take the following forms.
 \tabular{ll}{  \strong{Function}   \tab \strong{Type of}                                              \cr
   \strong{Form}       \tab \strong{Conversion}                                           \cr
   \verb{\{aa\}2\{bb\}}    \tab from \code{'{aa}'} units to \code{'{bb}'} units\eqn{^{(1)}}.       \cr
-  \verb{\{aa\}2u}       \tab from \code{'{aa}'} units to \code{New} units\eqn{^{(1,2)}}.        \cr
-  \verb{u2\{bb\}}       \tab from \code{Old} units to \code{'{bb}'} units\eqn{^{(1,2)}}.        \cr
-  \code{u2u}          \tab from \code{Old} units to \code{New} units.\eqn{^{(2)}}               }
+  \verb{\{aa\}2u}       \tab from \code{'{aa}'} units to \code{new} units\eqn{^{(1,2)}}.        \cr
+  \verb{u2\{bb\}}       \tab from \code{old} units to \code{'{bb}'} units\eqn{^{(1,2)}}.        \cr
+  \code{u2u}          \tab from \code{old} units to \code{new} units.\eqn{^{(2)}}               }
 \tabular{l}{  \eqn{^{(1)}} \code{{aa}} and \code{{bb}} are placeholders for any given plotting unit. \cr
-  \eqn{^{(2)}} \code{Old} and \code{New} are user supplied arguments.                      }
+  \eqn{^{(2)}} \code{old} and \code{new} are user supplied arguments.                      }
 \cr\cr Available unit codes are:
 \tabular{ll}{  \code{'cm'}   \tab centimeters    \cr
   \code{'in'}   \tab inches         \cr

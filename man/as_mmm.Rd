@@ -13,44 +13,44 @@
 \alias{as_uno}
 \title{Coerce to base mode or \code{xmode}}
 \usage{
-as_mmm(X, Mode, Levs = NULL, Na = FALSE)
+as_mmm(x, mode, levs = NULL, ..NA = FALSE)
 
-as_chr(X, Na = FALSE)
+as_chr(x, .NA = FALSE)
 
-as_clr(X, Na = FALSE)
+as_clr(x, .NA = FALSE)
 
-as_fun(X)
+as_fun(x)
 
-as_int(X)
+as_int(x)
 
-as_num(X)
+as_num(x)
 
-as_lgl(X)
+as_lgl(x)
 
-as_ord(X, Levs)
+as_ord(x, levs)
 
-as_uno(X, Levs)
+as_uno(x, levs)
 }
 \arguments{
-\item{X}{For \code{as_clr}, an object of mode character; for \code{as_fun}, a character scalar function name or a function object; for \code{as_ord} and \code{as_uno}, an atomic object; and for all others, any R object.}
+\item{x}{For \code{as_clr}, an object of mode character; for \code{as_fun}, a character scalar function name or a function object; for \code{as_ord} and \code{as_uno}, an atomic object; and for all others, any R object.}
 
-\item{Levs}{A \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for \code{asORD}).}
+\item{mode}{A \link[mode]{three-char scalar} containing an \link[mode]{extended mode} value.}
 
-\item{Na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are acceptable.}
+\item{levs}{Optional \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for \code{asORD}).}
 
-\item{...}{Further arguments passed to or from other methods.}
+\item{..NA}{\code{TRUE} or \code{FALSE} indicating whether \code{.NA} values are acceptable.}
 }
 \value{
 \strong{An object of base mode} \code{'character'}                         \cr\cr \code{as_chr}
 \cr\cr  \strong{An object of base mode} \code{'integer'}                           \cr\cr \code{as_int}
 \cr\cr  \strong{An object of base mode} \code{'logical'}                           \cr\cr \code{as_lgl}
 \cr\cr  \strong{An object of base mode} \code{'numeric'}                           \cr\cr \code{as_num}
-\cr\cr  \strong{An object of \link[=mmm]{xmode}} \code{'ord'} (ordered factor)     \cr\cr \code{as_ord}
+\cr\cr  \strong{An object of \link[=mode]{xmode}} \code{'ord'} (ordered factor)     \cr\cr \code{as_ord}
 \cr\cr  \strong{An object of xmode} \code{'uno'} (unordered factor)                \cr\cr \code{as_uno}
 \cr\cr  \strong{An object of xmode} \code{'clr'} (hex color in form \code{'#RRGGBBAA'}) \cr\cr \code{as_clr}
 }
 \description{
-Functions to coerce objects to \link[base:mode]{base mode} or \code{\link[=mmm]{xmode}}.
+Functions to coerce objects to \link[base:mode]{base mode} or \code{\link[=mode]{xmode}}.
 }
 \details{
 Functions in this family are as follows:
@@ -58,10 +58,10 @@ Functions in this family are as follows:
   \code{as_int}   \tab Thinly wraps \code{\link[base]{as.integer}}.                                                          \cr
   \code{as_num}   \tab Thinly wraps \code{\link[base]{as.numeric}}.                                                          \cr
   \code{as_lgl}   \tab Thinly wraps \code{\link[base]{as.logical}}.                                             \cr   \tab   \cr
-  \code{as_ord}   \tab As xmode \code{'ord'} (ordered factor). Wraps \code{factor(X, levels = Levs, ordered = TRUE)}.     \cr   \tab   \cr
-  \code{as_uno}   \tab As xmode \code{'uno'} (unordered factor). Wraps \code{factor(X, levels = Levs, ordered = FALSE)}.  \cr   \tab   \cr
+  \code{as_ord}   \tab As xmode \code{'ord'} (ordered factor). Wraps \code{factor(x, levels = levs, ordered = TRUE)}.     \cr   \tab   \cr
+  \code{as_uno}   \tab As xmode \code{'uno'} (unordered factor). Wraps \code{factor(x, levels = levs, ordered = FALSE)}.  \cr   \tab   \cr
   \code{as_clr}   \tab Coerces character color values to hexadecimal.                                           \cr   \tab   \cr
-  \code{as_fun}   \tab If \code{X} is a character scalar function return that function, but if \code{X} is a function object, return it. }
+  \code{as_fun}   \tab If \code{x} is a character scalar function return that function, but if \code{x} is a function object, return it. }
 }
 \examples{
 bins. <- sample(c(0, 1), 10, replace = T)
@@ -85,8 +85,8 @@ as_clr(clrs.)
 nums.
 as_chr(nums.)
 
-as_uno(clrs., Levs = unique(clrs.))
-as_ord(clrs., Levs = sort(unique(clrs.)))
+as_uno(clrs., levs = unique(clrs.))
+as_ord(clrs., levs = sort(unique(clrs.)))
 }
 \seealso{
 Other properties: 

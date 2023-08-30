@@ -5,7 +5,7 @@
 #' @description Build line type, shape, and color palettes.
 #' @details The functions in this family create palettes of various types from values of source vectors as defined below:
 #' \tabular{lll}{
-#'   **Function**           \tab **Palette Type**                                  \tab **Source**            \cr
+#'   **Function**           \tab **Palette type**                                  \tab **Source**            \cr
 #'   `colors_sensitive`     \tab 6 dark + 6 bright colorblind sensitive colors     \tab `v(colors.sensitive)` \cr
 #'   `colors_bright`        \tab 6 colorblind sensitive bright colors              \tab `v(colors.bright)`    \cr
 #'   `colors_dark`          \tab 6 colorblind-sensitive dark colors                \tab `v(colors.dark)`      \cr
@@ -21,10 +21,10 @@
 #'   `LETTER_shapes`        \tab `A` to `Z` as shapes                              \tab `v(LETTER.shapes)`    \cr
 #'   `build_palette`        \tab *any of the above*                                \tab *any of the above*    \cr
 #'   `blank_shape`          \tab Space as a shape                                  \tab `v(blank.shape)`        }
-#' *NOTE*: `UnqN` defaults to the smaller of `TotN` or the number of unique values available for the palette. If `UnqN` is larger than the number of unique values available for the palette, an error is generated, except in `create_palette` where `UnqN` is reduced to the number of available unique values if necessary.
-#' @param Type A character scalar from `c('line.types', 'open.shapes', 'punc.shapes', 'fill.shapes','empty.shapes', 'solid.shapes', 'digit.shapes', 'digit.shapes0', 'letter.shapes', 'LETTER.shapes', 'colors.standard', 'colors.sensitive')`.
-#' @param TotN A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of values to return.
-#' @param UnqN A positive whole-number scalar less than or equal to `TotN` giving the number of unique values to be repeated until there are `TotN` total values.
+#' *NOTE*: `unq` defaults to the smaller of `tot` or the number of unique values available for the palette. If `unq` is larger than the number of unique values available for the palette, an error is generated, except in `create_palette` where `unq` is reduced to the number of available unique values if necessary.
+#' @param type A character scalar from `c('line.types', 'open.shapes', 'punc.shapes', 'fill.shapes','empty.shapes', 'solid.shapes', 'digit.shapes', 'digit.shapes0', 'letter.shapes', 'LETTER.shapes', 'colors.standard', 'colors.sensitive')`.
+#' @param tot A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of values to return.
+#' @param unq A positive whole-number scalar less than or equal to `tot` giving the number of unique values to be repeated until there are `tot` total values.
 #' @return **A positive whole number vector** \cr\cr `fill_shapes`, `open_shapes`, `punc_shapes`, `empty_shapes`, `solid_shapes`, `digit_shapes`, `digit_shapes0`, `letter_shapes`, `LETTER_shapes,` *and possibly* `build_palette`
 #' \cr\cr  **A character vector**             \cr\cr `line_types`, `colors_dark`, `colors_bright`, `colors_sensitive` *and possibly* `build_palette`
 #' \cr\cr  **A positive whole number scalar** \cr\cr `blank_shape`
@@ -33,109 +33,109 @@ pals <- function() {utils::help("pals", "uj")}
 
 #' @rdname pals
 #' @export
-line_types <- function(TotN, UnqN = min(9, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 9, uj::callers())
-  uj:::.pal_vals("line.types", TotN, UnqN)
+line_types <- function(tot, unq = min(9, tot)) {
+  uj:::.pal_errs(tot, unq, 9, uj::callers())
+  uj:::.pal_vals("line.types", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-fill_shapes <- function(TotN, UnqN = min(5, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 5, uj::callers())
-  uj:::.pal_vals("fill.shapes", TotN, UnqN)
+fill_shapes <- function(tot, unq = min(5, tot)) {
+  uj:::.pal_errs(tot, unq, 5, uj::callers())
+  uj:::.pal_vals("fill.shapes", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-open_shapes <- function(TotN, UnqN = min(5, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 5, uj::callers())
-  uj:::.pal_vals("open.shapes", TotN, UnqN)
+open_shapes <- function(tot, unq = min(5, tot)) {
+  uj:::.pal_errs(tot, unq, 5, uj::callers())
+  uj:::.pal_vals("open.shapes", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-punc_shapes <- function(TotN, UnqN = min(7, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 7, uj::callers())
-  uj:::.pal_vals("punc.shapes", TotN, UnqN)
+punc_shapes <- function(tot, unq = min(7, tot)) {
+  uj:::.pal_errs(tot, unq, 7, uj::callers())
+  uj:::.pal_vals("punc.shapes", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-empty_shapes <- function(TotN, UnqN = min(5, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 5, uj::callers())
-  uj:::.pal_vals("empty.shapes", TotN, UnqN)
+empty_shapes <- function(tot, unq = min(5, tot)) {
+  uj:::.pal_errs(tot, unq, 5, uj::callers())
+  uj:::.pal_vals("empty.shapes", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-solid_shapes <- function(TotN, UnqN = min(4, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 4, uj::callers())
-  uj:::.pal_vals("solid.shapes", TotN, UnqN)
+solid_shapes <- function(tot, unq = min(4, tot)) {
+  uj:::.pal_errs(tot, unq, 4, uj::callers())
+  uj:::.pal_vals("solid.shapes", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-digit_shapes <- function(TotN, UnqN = min(9, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 9, uj::callers())
-  uj:::.pal_vals("digit.shapes", TotN, UnqN)
+digit_shapes <- function(tot, unq = min(9, tot)) {
+  uj:::.pal_errs(tot, unq, 9, uj::callers())
+  uj:::.pal_vals("digit.shapes", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-digit_shapes0 <- function(TotN, UnqN = min(10, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 10, uj::callers())
-  uj:::.pal_vals("digit.shapes0", TotN, UnqN)
+digit_shapes0 <- function(tot, unq = min(10, tot)) {
+  uj:::.pal_errs(tot, unq, 10, uj::callers())
+  uj:::.pal_vals("digit.shapes0", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-letter_shapes <- function(TotN, UnqN = min(26, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 26, uj::callers())
-  uj:::.pal_vals("letter.shapes", TotN, UnqN)
+letter_shapes <- function(tot, unq = min(26, tot)) {
+  uj:::.pal_errs(tot, unq, 26, uj::callers())
+  uj:::.pal_vals("letter.shapes", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-LETTER_shapes <- function(TotN, UnqN = min(26, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 26, uj::callers())
-  uj:::.pal_vals("LETTER.shapes", TotN, UnqN)
+LETTER_shapes <- function(tot, unq = min(26, tot)) {
+  uj:::.pal_errs(tot, unq, 26, uj::callers())
+  uj:::.pal_vals("LETTER.shapes", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-colors_dark <- function(TotN, UnqN = min(6, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 6, uj::callers())
-  uj:::.pal_vals("colors.dark", TotN, UnqN)
+colors_dark <- function(tot, unq = min(6, tot)) {
+  uj:::.pal_errs(tot, unq, 6, uj::callers())
+  uj:::.pal_vals("colors.dark", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-colors_bright <- function(TotN, UnqN = min(6, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 6, uj::callers())
-  uj:::.pal_vals("colors.bright", TotN, UnqN)
+colors_bright <- function(tot, unq = min(6, tot)) {
+  uj:::.pal_errs(tot, unq, 6, uj::callers())
+  uj:::.pal_vals("colors.bright", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-colors_sensitive <- function(TotN, UnqN = min(12, TotN)) {
-  uj:::.pal_errs(TotN, UnqN, 12, uj::callers())
-  uj:::.pal_vals("colors.sensitive", TotN, UnqN)
+colors_sensitive <- function(tot, unq = min(12, tot)) {
+  uj:::.pal_errs(tot, unq, 12, uj::callers())
+  uj:::.pal_vals("colors.sensitive", tot, unq)
 }
 
 #' @rdname pals
 #' @export
-build_palette <- function(Type, TotN, UnqN) {
+build_palette <- function(type, tot, unq) {
   ValidTypes <- base::c('colors.dark', 'colors.bright', 'colors.sensitive', 'line.types', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes')
   ValidUnqNs <- base::c(colors.sensitive = 10, colors.standard = 10, linetypes = 9, letter.shapes = 26, LETTER.shapes = 26, digit.shapes0 = 10, digit.shapes = 9, open.shapes = 7, punch.shapes = 7, empty.shapes = 5, fill.shapes = 5, solid.shapes = 4)
   Errs <- NULL
-  if      (!uj::.cmp_chr_scl(Type)) {Errs <- base::c(Errs, "[Type] must be a character scalar in c('colors.sensitive', 'colors.standard', 'linetypes', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes').")}
-  else if (!(Type %in% ValidTypes)) {Errs <- base::c(Errs, "[Type] must be a character scalar in c('colors.sensitive', 'colors.standard', 'linetypes', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes').")}
-  if      (!uj::.cmp_psw_scl(TotN)) {Errs <- base::c(Errs, "[TotN] must be positive whole-number scalar.")}
-  if      (!uj::.cmp_psw_scl(UnqN)) {Errs <- base::c(Errs, "[UnqN] must be positive whole-number scalar.")}
-  if (!base::is.null(Errs)) {uj::stopperr(Errs, PKG = "uj")}
-  if (UnqN > TotN) {uj::stopperr("[UnqN] is greater than [TotN]", PKG = "uj")}
-  UnqN < base::min(UnqN, ValidUnqNs[Type])
-  uj::pal_vals(Type, TotN, UnqN)
+  if      (!uj::.cmp_chr_scl(type)) {Errs <- base::c(Errs, "[type] must be a character scalar in c('colors.sensitive', 'colors.standard', 'linetypes', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes').")}
+  else if (!(type %in% ValidTypes)) {Errs <- base::c(Errs, "[type] must be a character scalar in c('colors.sensitive', 'colors.standard', 'linetypes', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes').")}
+  if      (!uj::.cmp_psw_scl(tot )) {Errs <- base::c(Errs, "[tot] must be positive whole-number scalar.")}
+  if      (!uj::.cmp_psw_scl(unq )) {Errs <- base::c(Errs, "[unq] must be positive whole-number scalar.")}
+  if (!base::is.null(Errs)) {uj::stopperr(Errs, .PKG = "uj")}
+  if (unq > tot) {uj::stopperr("[unq] is greater than [tot]", .PKG = "uj")}
+  unq < base::min(unq, ValidUnqNs[type])
+  uj::pal_vals(type, tot, unq)
 }
 
 #' @rdname pals

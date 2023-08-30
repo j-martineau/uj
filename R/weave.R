@@ -34,8 +34,8 @@
 #' \cr\cr Escape sequences in format `'{@@}'` mean 'insert \link[=atm_scl]{atomic scalar} arg *as is*'.
 #' \cr\cr Escape sequences in formats `'{@@x}', '{@@xy}',` and `'{@@xyz}'` mean 'insert \link[=atm_scl]{atomic vec} arg *after applying*, respectively, switch `x`; switches `x` and `y`; and switches `x`, `y`, and `z`.'
 #' \cr\cr **Ordering of switches in escape sequences** is arbitrary. Regardless of order in escape sequences, any `decimal` switches are applied first, followed by any `quote` switches, followed by any `list` switches.
-#' @param X A \link[=cmp_chr_scl]{complete character scalar} with embedded escape sequences. See details.
-#' @param ... Arbitrary number of atomic scalar/vector arguments to be inserted into `X` with formatting specified in inlay escape sequences. The `N`-th argument in `...` corresponds to the `N`-th inlay escape sequence in `x`. The number of inlay escape sequences in `x` must be equal to the number of `...` arguments. See details.
+#' @param tmp A \link[=cmp_chr_scl]{complete character scalar} template with embedded escape sequences. See details.
+#' @param ... Arbitrary number of unnamed atomic scalar/vector arguments to be inserted into `tmp` with formatting specified in inlay escape sequences. The `n`-th argument in `...` corresponds to the `n`-th inlay escape sequence in `tmp`. The number of inlay escape sequences in `tmp` must be equal to the number of `...` arguments. See details.
 #' @return A character scalar.
 #' @examples
 #' cat(weave('{@@}', FALSE))
@@ -48,60 +48,60 @@
 #' cat(weave('{@@et3}', c(pi, exp(1))))
 #' cat(weave('{@@aq}', c('me', 'myself', 'I')))
 #' @export
-weave <- function(X, ...) {
+weave <- function(tmp, ...) {
   nDots <- base::...length()
-  OkX <- uj:::.cmp_chr_scl(X)
+  OkTmp <- uj:::.cmp_chr_scl(tmp)
   OkN <- nDots > 0
   OkPPP <- base::ifelse(OkN, base::all(base::sapply(base::list(...), uj::cmp_chr)), T)
   Errors <- NULL
   if (!OkN) {Errors <- base::c(Errors, "[...] is empty.")}
-  if (!OkX) {Errors <- base::c(Errors, "[x] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!OkTmp) {Errors <- base::c(Errors, "[tmp] must be a complete character scalar (?cmp_chr_scl).")}
   if (!OkPPP) {Errors <- base::c(Errors, "Arguments in [...] must be complete character objects (?cmp_chr).")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
-  Dots <- base::list(...)                                                        # The arguments to weave into {x}
-  NonScl <- " is not scalar, but the "                                          # argument is not scalar
-  NonNum <- " is not numeric, but the "                                         # argument is not numeric
-  Switches <- "[&|aAbcelnpsqQtT0123456789]"                                      # gregexpr pattern for all valid switches
-  HasMult <- " contains more than 1 "                                           # multiple switches from a choose-max-of-1 set
-  AssumeScl <- " assumes a scalar argument."                                    # switch code assumes a scalar argument
-  AssumeNum <- " assumes a numeric argument."                                   # switch code assumes a numeric argument
-  CodePrefix <- "[{][@]"                                                        # gregexpr pattern for switch code prefix, i.e., '{@'
-  CodeSuffix <- "[}]"                                                           # gregexpr pattern for switch code suffix, i.e., '}'
-  ListSwitches <- " list type switch (i.e., from characters in \"|&aAbcelnps\")." # choose-max-of-1 set of list-type switches
-  QuoteSwitches <- " quote type switch (i.e., from characters in \"qtQT\")."       # choose-max-of-1 set of quote-type switches
-  DecimalSwitches <- " decimal places switch (i.e., from characters in \"0123456789\")." # choose-max-of-1 set of decimal-type switches
-  AllSwitches <- base::c("&", "|", "a", "A", "b", "c", "e", "l", "n", "p", "s", "q", "Q", "t", "T", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
-  InlaySequence <- " valid inlay escape sequence in X "                         # infix for describing inlay escape sequences
-  CountMismatch <- base::paste0("The number of arguments in [...] (", nDots, ") and number of valid inlay escape sequences in [X] ")
-  Pattern0 <- base::paste0(CodePrefix, CodeSuffix)                                 # 0-switch pattern '{@}'
-  Pattern1 <- base::paste0(CodePrefix, Switches, CodeSuffix)                       # 1-switch pattern '{@s}'
-  Pattern2 <- base::paste0(CodePrefix, Switches, Switches, CodeSuffix)             # 2-switch pattern '{@ss}'
-  Pattern3 <- base::paste0(CodePrefix, Switches, Switches, Switches, CodeSuffix)   # 3-switch pattern '{@sss}'
-  Switches0 <- base::gregexpr(Pattern0, X)                                           # results of searching {X} for 0-switch patterns
-  Switches1 <- base::gregexpr(Pattern1, X)                                           # results of searching {X} for 1-switch patterns
-  Switches2 <- base::gregexpr(Pattern2, X)                                           # results of searching {X} for 2-switch patterns
-  Switches3 <- base::gregexpr(Pattern3, X)                                           # results of searching {X} for 3-switch patterns
-  Switches0 <- uj::f0(base::setequal(uj::av(Switches0), -1), NULL, uj::tb(Type = 0, Position = uj::av(Switches0), Length = 3)) # tibble of 0-switch pattern positions and lengths
-  Switches1 <- uj::f0(base::setequal(uj::av(Switches1), -1), NULL, uj::tb(Type = 1, Position = uj::av(Switches1), Length = 4)) # tibble of 1-switch pattern positions and lengths
-  Switches2 <- uj::f0(base::setequal(uj::av(Switches2), -1), NULL, uj::tb(Type = 2, Position = uj::av(Switches2), Length = 5)) # tibble of 2-switch pattern positions and lengths
-  Switches3 <- uj::f0(base::setequal(uj::av(Switches3), -1), NULL, uj::tb(Type = 3, Position = uj::av(Switches3), Length = 6)) # tibble of 3-switch pattern positions and lengths
-  Switches <- base::rbind(Switches0, Switches1, Switches2, Switches3)            # tibble of all switch pattern positions and lengths
-  Switches <- Switches[base::order(Switches$Position, decreasing = T), ]              # sort by decreasing position of first letter of pattern in {X}
-  nSwitches <- uj::nr(Switches)                                                 # number of switch patterns found in {X}
-  if (nSwitches != nDots) {uj::stopperr(base::paste0(CountMismatch, "(", nSwitches, ") don't match."), PKG = "uj")}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
+  Dots <- base::list(...)                                                                                                                             # The arguments to weave into X
+  NonScl <- " is not scalar, but the "                                                                                                                # argument is not scalar
+  NonNum <- " is not numeric, but the "                                                                                                               # argument is not numeric
+  Switches <- "[&|aAbcelnpsqQtT0123456789]"                                                                                                           # gregexpr pattern for all valid switches
+  HasMult <- " contains more than 1 "                                                                                                                 # multiple switches from a choose-max-of-1 set
+  AssumeScl <- " assumes a scalar argument."                                                                                                          # switch code assumes a scalar argument
+  AssumeNum <- " assumes a numeric argument."                                                                                                         # switch code assumes a numeric argument
+  CodePrefix <- "[{][@]"                                                                                                                              # gregexpr pattern for switch code prefix, i.e., '{@'
+  CodeSuffix <- "[}]"                                                                                                                                 # gregexpr pattern for switch code suffix, i.e., '}'
+  ListSwitches <- " list type switch (i.e., from characters in \"|&aAbcelnps\")."                                                                     # choose-max-of-1 set of list-type switches
+  QuoteSwitches <- " quote type switch (i.e., from characters in \"qtQT\")."                                                                          # choose-max-of-1 set of quote-type switches
+  DecimalSwitches <- " decimal places switch (i.e., from characters in \"0123456789\")."                                                              # choose-max-of-1 set of decimal-type switches
+  AllSwitches <- base::c("&", "|", "a", "A", "b", "c", "e", "l", "n", "p", "s", "q", "Q", "t", "T", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9") # all possible switch values
+  InlaySequence <- " valid inlay escape sequence in [tmp] "                                                                                           # infix for describing inlay escape sequences
+  CountMismatch <- base::paste0("The number of arguments in [...] (", nDots, ") and number of valid inlay escape sequences in [X] ")                  # count mismatch error message value
+  Pattern0 <- base::paste0(CodePrefix, CodeSuffix)                                                                                                    # 0-switch pattern '{@}'
+  Pattern1 <- base::paste0(CodePrefix, Switches, CodeSuffix)                                                                                          # 1-switch pattern '{@s}'
+  Pattern2 <- base::paste0(CodePrefix, Switches, Switches, CodeSuffix)                                                                                # 2-switch pattern '{@ss}'
+  Pattern3 <- base::paste0(CodePrefix, Switches, Switches, Switches, CodeSuffix)                                                                      # 3-switch pattern '{@sss}'
+  Switches0 <- base::gregexpr(Pattern0, tmp)                                                                                                          # results of searching [tmp] for 0-switch patterns
+  Switches1 <- base::gregexpr(Pattern1, tmp)                                                                                                          # results of searching [tmp] for 1-switch patterns
+  Switches2 <- base::gregexpr(Pattern2, tmp)                                                                                                          # results of searching [tmp] for 2-switch patterns
+  Switches3 <- base::gregexpr(Pattern3, tmp)                                                                                                          # results of searching [tmp] for 3-switch patterns
+  Switches0 <- uj::f0(base::setequal(uj::av(Switches0), -1), NULL, uj::tb(Type = 0, Position = uj::av(Switches0), Length = 3))                        # tibble of 0-switch pattern positions and lengths
+  Switches1 <- uj::f0(base::setequal(uj::av(Switches1), -1), NULL, uj::tb(Type = 1, Position = uj::av(Switches1), Length = 4))                        # tibble of 1-switch pattern positions and lengths
+  Switches2 <- uj::f0(base::setequal(uj::av(Switches2), -1), NULL, uj::tb(Type = 2, Position = uj::av(Switches2), Length = 5))                        # tibble of 2-switch pattern positions and lengths
+  Switches3 <- uj::f0(base::setequal(uj::av(Switches3), -1), NULL, uj::tb(Type = 3, Position = uj::av(Switches3), Length = 6))                        # tibble of 3-switch pattern positions and lengths
+  Switches <- base::rbind(Switches0, Switches1, Switches2, Switches3)                                                                                 # tibble of all switch pattern positions and lengths
+  Switches <- Switches[base::order(Switches$Position, decreasing = T), ]                                                                              # sort by decreasing position of first letter of pattern in [tmp]
+  nSwitches <- uj::nr(Switches)                                                                                                                       # number of switch patterns found in [tmp]
+  if (nSwitches != nDots) {uj::stopperr(base::paste0(CountMismatch, "(", nSwitches, ") don't match."), .PKG = "uj")}
   Dots <- base::rev(Dots)
   Errors <- NULL
   for (i in 1:nSwitches) {
     Prev0 <- 1
-    Next1 <- base::nchar(X)
+    Next1 <- base::nchar(tmp)
     Code0 <- Switches$pos[i]
     Code1 <- Code0 + Switches$Length[i] - 1
     Prev1 <- Code0 - 1
     Next0 <- Code1 + 1
-    Code <- base::substr(X, Code0, Code1)
+    Code <- base::substr(tmp, Code0, Code1)
     Sequence <- base::paste0(i, "-th", InlaySequence, "('", Code, "')")
-    PrevText <- uj::f0(Prev1 < Prev0, "", base::substr(X, Prev0, Prev1))
-    NextText <- uj::f0(Next0 > Next1, "", base::substr(X, Next0, Next1))
+    PrevText <- uj::f0(Prev1 < Prev0, "", base::substr(tmp, Prev0, Prev1))
+    NextText <- uj::f0(Next0 > Next1, "", base::substr(tmp, Next0, Next1))
     Code <- uj::av(base::strsplit(Code, "", fixed = T))
     Code <- Code[Code %in% AllSwitches]
     OkCode <- base::length(Switches) == base::length(base::unique(Switches))
@@ -159,8 +159,8 @@ weave <- function(X, ...) {
                                                                                 uj::f0(ib, base::paste0( "{", base::paste0(Dot, collapse = ", "), "}"),
                                                                                        uj::f0(is, base::paste0("[", uj::g(", ", Dot), Dot, "]"), Dot)))))))))))
 
-          X <- base::paste0(PrevText, Dot, NextText)
+          tmp <- base::paste0(PrevText, Dot, NextText)
   }}}}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
-  X
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
+  tmp
 }

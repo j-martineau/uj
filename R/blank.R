@@ -1,8 +1,8 @@
 #' @encoding UTF-8
 #' @family strings
 #' @title Blank strings
-#' @description Evaluate whether `X` is a blank string scalar (i.e., `""`).
-#' @param X An R object
+#' @description Evaluate whether `x` is a blank string scalar (i.e., `""`).
+#' @param x An R object
 #' @return A logical scalar
 #' @examples
 #' blank(NA)
@@ -12,4 +12,4 @@
 #' blank(2)
 #' blank(NULL)
 #' @export
-blank <- function(X) {if (base::length(X) != 1) {F} else if (!base::is.character(X)) {F} else if (!base::is.na(X)) {F} else {X == ""}}
+blank <- function(x) {if (base::length(x) != 1) {F} else if (!base::is.character(x)) {F} else if (!base::is.na(x)) {F} else {x == ""}}

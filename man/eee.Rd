@@ -15,32 +15,32 @@
 \alias{neee}
 \title{Effective dimensionality (effective.D) properties}
 \usage{
-eee(X)
+eee(x)
 
 eee_funs()
 
 eee_props()
 
-is_eee_spec(Spec)
+is_eee_spec(spec)
 
-EEE(X, Spec, ...)
+EEE(x, spec, ...)
 
-E0D(X, ...)
+E0D(x, ...)
 
-E1D(X, ...)
+E1D(x, ...)
 
-E2D(X, ...)
+E2D(x, ...)
 
-EHD(X, ...)
+EHD(x, ...)
 
-EUD(X, ...)
+EUD(x, ...)
 
-neee(X)
+neee(x)
 }
 \arguments{
-\item{X}{An R object.}
+\item{x}{An R object.}
 
-\item{Spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more effective.D properties from \code{eee_props()}. Effective.D properties may be pipe-delimited. If there are multiple properties in \code{Spec}, \code{X} is inspected for a match to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more effective.D properties from \code{eee_props()}. Effective.D properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -62,25 +62,25 @@ An object's effective.D is defined as the number of dimensions in which it has m
   \verb{'e1d', 'E1D'}   \tab \emph{Effectively} \code{1} \emph{dimensional}                                                                                                                                                                                         \cr
   \tab \code{\link[=MVC]{multivecs}}, length-\verb{2+} vlists, \code{\link[=ROW]{row}} data.frames, \code{\link[=COL]{column}} data.frames, and length-\verb{2+} arrays with \verb{2+} index positions in exactly \code{1} dimension. \cr   \tab   \cr
   \verb{'e2d', 'E2D'}   \tab \emph{Effectively} \code{2} \emph{dimensional}                                                                                                                                                                                         \cr
-  \tab \verb{2+ X 2+ }data.frames and length-\verb{4+} arrays with \verb{2+} positions in exactly \code{2} dimensions.                                                                                                                \cr   \tab   \cr
+  \tab \verb{2+ x 2+ }data.frames and length-\verb{4+} arrays with \verb{2+} positions in exactly \code{2} dimensions.                                                                                                                \cr   \tab   \cr
   \verb{'ehd', 'EHD'}   \tab \emph{Effectively hyper dimensional}                                                                                                                                                                            \cr   \tab   \cr
   \tab Length-\verb{8+} arrays with \verb{2+} positions in \verb{3+} dimensions.                                                                                                                                                                }
 \cr Effective dimensionality property functions are:
-\tabular{ll}{  \code{is_eee_spec}   \tab Is \code{Spec} an effective.D specification?                                                                                                    \cr   \tab   \cr
+\tabular{ll}{  \code{is_eee_spec}   \tab Is \code{spec} an effective.D specification?                                                                                                    \cr   \tab   \cr
   \code{eee_props}    \tab What effective.D properties are there?                                                                                                      \cr   \tab   \cr
   \code{eee_funs}     \tab What effective.D property functions are there?                                                                                              \cr   \tab   \cr
-  \code{{EEE}}        \tab Is \code{X} a match to the single effective.D property \code{'{EEE}'} where \code{{EEE}} is a placeholder for any given effective dimensionality property? \cr   \tab   \cr
-  \code{neee}         \tab How many effective dimensions does \code{X} have?                                                                                                \cr   \tab   \cr
-  \code{eee}          \tab What are \code{X}'s effective.d properties?                                                                                                      \cr   \tab   \cr
-  \code{EEE}          \tab Is \code{X} a match to the effective.D specification in \code{Spec}?                                                                                                 }
+  \code{{EEE}}        \tab Is \code{x} a match to the single effective.D property \code{'{EEE}'} where \code{{EEE}} is a placeholder for any given effective dimensionality property? \cr   \tab   \cr
+  \code{neee}         \tab How many effective dimensions does \code{x} have?                                                                                                \cr   \tab   \cr
+  \code{eee}          \tab What are \code{x}'s effective.d properties?                                                                                                      \cr   \tab   \cr
+  \code{EEE}          \tab Is \code{x} a match to the effective.D specification in \code{spec}?                                                                                                 }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.LT, .LE, .GE, .GT}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.N, .NR, .NC}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.VALS}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{

@@ -8,35 +8,35 @@
 \alias{move_col}
 \title{Manipulate positions, rows, and columns}
 \usage{
-move_elt(X, From, To)
+move_elt(x, from, to)
 
-move_val(X, Val, To)
+move_val(x, val, to)
 
-move_row(X, From, To)
+move_row(x, from, to)
 
-move_col(X, From, To)
+move_col(x, from, to)
 }
 \arguments{
-\item{X}{For \code{move_elt} and \code{move_val} an atomic vector. A data.frame or matrix for all others.}
+\item{x}{For \code{move_elt} and \code{move_val} an atomic vector. A data.frame or matrix for all others.}
 
-\item{From}{Whole-number scalar indexing the element, row, or column to be moved. Negative values index from the last position, row or column.}
+\item{from}{Whole-number scalar indexing the element, row, or column to be moved. Negative values index from the last position, row or column.}
 
-\item{To}{Whole-number scalar indexing the element, row, or column to be moved into. Negative values index from the last position, row or column.}
+\item{to}{Whole-number scalar indexing the element, row, or column to be moved into. Negative values index from the last position, row or column.}
 
-\item{Val}{A non-\code{NA} atomic scalar value found in \code{X}.}
+\item{val}{A non-\code{NA} atomic scalar value found in \code{x}.}
 }
 \value{
-An object of the same class and dimension as \code{X}.
+An object of the same class and dimension as \code{x}.
 }
 \description{
 Manipulate positions, rows, and columns
 }
 \details{
-\tabular{ll}{  \code{move_val}     \tab Move value \code{Val} of \code{X} into the \code{From}-th element of \code{X}. Assumes \code{length(which(X == Val)) == 1}. \cr   \tab   \cr
-  \code{move_elt}     \tab Move the value in the \code{From}-th position of \code{X} to the \code{To}-th position of \code{X}.                    \cr   \tab   \cr
-  \code{move_row}     \tab Move the \code{From}-th row of \code{X} to the \code{To}-th row of \code{X}.                                           \cr   \tab   \cr
-  \code{move_col}     \tab Move the \code{From}-th column of \code{X} to the \code{To}-th column of \code{X}.                                                    }
-\code{From < 0} and \code{To < 0} index from the last position, row, or column rather than the first.
+\tabular{ll}{  \code{move_val}     \tab Move value \code{val} of \code{x} into the \code{from}-th element of \code{x}. Assumes \code{length(which(x == val)) == 1}. \cr   \tab   \cr
+  \code{move_elt}     \tab Move the value in the \code{from}-th position of \code{x} to the \code{to}-th position of \code{x}.                    \cr   \tab   \cr
+  \code{move_row}     \tab Move the \code{from}-th row of \code{x} to the \code{to}-th row of \code{x}.                                           \cr   \tab   \cr
+  \code{move_col}     \tab Move the \code{from}-th column of \code{x} to the \code{to}-th column of \code{x}.                                                    }
+\code{from < 0} and \code{to < 0} index from the last position, row, or column rather than the first.
 }
 \seealso{
 Other function_form: 

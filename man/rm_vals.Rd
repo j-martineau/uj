@@ -12,43 +12,43 @@
 \alias{xcols}
 \title{Manipulate positions, rows, and columns}
 \usage{
-rm_vals(X, Vals)
+rm_vals(x, vals)
 
-rm_elts(X, Elts)
+rm_elts(x, elts)
 
-rm_rows(X, Rows)
+rm_rows(x, rows)
 
-rm_cols(X, Cols)
+rm_cols(x, cols)
 
-xvals(X, Vals)
+xvals(x, vals)
 
-xelts(X, Elts)
+xelts(x, elts)
 
-xrows(X, Rows)
+xrows(x, rows)
 
-xcols(X, Cols)
+xcols(x, cols)
 }
 \arguments{
-\item{X}{For \verb{*vals} and \verb{*elts} an atomic vector. For \verb{*cols} and \verb{*rows}, a atomic data.frame (?uj::atm_dtf) or an atomic matrix.}
+\item{x}{For \verb{*vals} and \verb{*elts} an atomic vector. For \verb{*cols} and \verb{*rows}, a atomic data.frame (?uj::atm_dtf) or an atomic matrix.}
 
-\item{Vals}{A unique-valued atomic vector (?uj::unq_atm_vec) mode-compatible with \code{X}.}
+\item{vals}{A unique-valued atomic vector (?uj::unq_atm_vec) mode-compatible with \code{x}.}
 
-\item{Elts, Rows, Cols}{Atomic vector indexing elements, rows, or columns of \code{X} to be deleted, respectively. These are either
+\item{elts, rows, cols}{Atomic vector indexing elements, rows, or columns of \code{x} to be deleted, respectively. These are either
 \itemize{\item A uniquely-valued positive whole-number vector.
-\item A complete logical vector (?uj::cmp_lgl_vec) of length \code{length(X)}.
+\item A complete logical vector (?uj::cmp_lgl_vec) of length \code{length(x)}.
 \item A uniquely-valued character vector of element/column/row names.   }}
 }
 \value{
-An object of the same class as \code{X}.
+An object of the same class as \code{x}.
 }
 \description{
 Manipulate positions, rows, and columns
 }
 \details{
-\tabular{ll}{  \verb{purge_vals, rm_vals, xvals}   \tab Remove values in atomic vector \code{Vals} from atomic vector \code{X}. \cr   \tab   \cr
-  \verb{purge_elts, rm_elts, xelts}   \tab Delete elements of \code{X} indexed in \code{Elts}                      \cr   \tab   \cr
-  \verb{purge_rows, rm_rows, xrows}   \tab Delete rows of \code{X} indexed in \code{Rows}.                         \cr   \tab   \cr
-  \verb{purge_cols, rm_cols, xcols}   \tab Delete columns of \code{X} indexed in \code{Cols}                                      }
+\tabular{ll}{  \verb{purge_vals, rm_vals, xvals}   \tab Remove values in atomic vector \code{vals} from atomic vector \code{x}. \cr   \tab   \cr
+  \verb{purge_elts, rm_elts, xelts}   \tab Delete elements of \code{x} indexed in \code{elts}                      \cr   \tab   \cr
+  \verb{purge_rows, rm_rows, xrows}   \tab Delete rows of \code{x} indexed in \code{rows}.                         \cr   \tab   \cr
+  \verb{purge_cols, rm_cols, xcols}   \tab Delete columns of \code{x} indexed in \code{cols}                                      }
 }
 \seealso{
 Other function_form: 

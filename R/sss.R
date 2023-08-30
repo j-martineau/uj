@@ -16,11 +16,11 @@
 #' \tabular{ll}{  `is_sss_spec`   \tab Is `spec` a shape specification?                                                                              \cr
 #'                `sss_props`     \tab What shape properties are there?                                                                              \cr
 #'                `sss_funs`      \tab What shape property functions are there?                                                                      \cr   \tab  }
-#' \tabular{ll}{  `{SSS}`         \tab Does `X` match single shape property `'{SSS}'`? (where `{SSS}` is a placeholder for any given shape property. \cr   \tab   \cr
-#'                `SSS`           \tab Does `X` match the shape spec in argument `spec`?                                                             \cr
-#'                `sss`           \tab What are `X`'s shape properties?                                                                                }
-#' @param X An R object.
-#' @param Spec Either `NULL` or a \link[=cmp_chr_vec]{complete character vec} containing one or more shape properties (i.e., from `sss_props()`). Shape properties in `spec` may be pipe-delimited. If there are multiple shape properties in `spec`, `X` is inspected for any match to any shape property in `spec`.
+#' \tabular{ll}{  `{SSS}`         \tab Does `x` match single shape property `'{SSS}'`? (where `{SSS}` is a placeholder for any given shape property. \cr   \tab   \cr
+#'                `SSS`           \tab Does `x` match the shape spec in argument `spec`?                                                             \cr
+#'                `sss`           \tab What are `x`'s shape properties?                                                                                }
+#' @param x An R object.
+#' @param spec Either `NULL` or a \link[=cmp_chr_vec]{complete character vec} containing one or more shape properties (i.e., from `sss_props()`). Shape properties in `spec` may be pipe-delimited. If there are multiple shape properties in `spec`, `x` is inspected for any match to any shape property in `spec`.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return **A character vector** \cr\cr `sss_props, sss_funs`
@@ -59,10 +59,10 @@
 #' c(SLD(Sld), SLD(Rc1))
 #' c(SQR(Sqr), SQR(Pt1))
 #' @export
-sss <- function(X) {
+sss <- function(x) {
   Y <- NULL
   for (SSS in uj::v(SSS)) {
-    match <- uj::run("uj:::.", SSS, "(X)")
+    match <- uj::run("uj:::.", SSS, "(x)")
     if (match) {Y <- base::c(Y, base::tolower(SSS))}
   }
   Y
@@ -78,52 +78,52 @@ sss_funs <- function() {uj::v(SSS)}
 
 #' @rdname sss
 #' @export
-is_sss_spec <- function(Spec) {
-  Spec <- uj:::.spec2props(Spec)
-  if (base::length(Spec) == 0) {F} else {base::all(Spec %in% uj::v(sss))}
+is_sss_spec <- function(spec) {
+  spec <- uj:::.spec2props(spec)
+  if (base::length(spec) == 0) {F} else {base::all(spec %in% uj::v(sss))}
 }
 
 #' @rdname sss
 #' @export
-SSS <- function(X, Spec, ...) {
-  Errors <- uj:::.meets_errs(X, ...)
-  if (!uj::is_sss_spec(Spec)) {Errors <- base::c(Errors, "[Spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from sss_props().")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
-  if (uj::meets(X, ...)) {
-    Props <- base::toupper(uj:::.spec2props(Spec))
-    for (PPP in Props) {if (uj::run('uj:::.', PPP, '(X)')) {return(T)}}
+SSS <- function(x, spec, ...) {
+  Errors <- uj:::.meets_errs(x, ...)
+  if (!uj::is_sss_spec(spec)) {Errors <- base::c(Errors, "[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from sss_props().")}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
+  if (uj::meets(x, ...)) {
+    Props <- base::toupper(uj:::.spec2props(spec))
+    for (PPP in Props) {if (uj::run('uj:::.', PPP, '(x)')) {return(T)}}
   }
   F
 }
 
 #' @rdname sss
 #' @export
-COL <- function(X, ...) {uj::SSS(X, 'col', ...)}
+COL <- function(x, ...) {uj::SSS(x, 'col', ...)}
 
 #' @rdname sss
 #' @export
-EMP <- function(X, ...) {uj::SSS(X, 'emp', ...)}
+EMP <- function(x, ...) {uj::SSS(x, 'emp', ...)}
 
 #' @rdname sss
 #' @export
-LIN <- function(X, ...) {uj::SSS(X, 'lin', ...)}
+LIN <- function(x, ...) {uj::SSS(x, 'lin', ...)}
 
 #' @rdname sss
 #' @export
-PNT <- function(X, ...) {uj::SSS(X, 'pnt', ...)}
+PNT <- function(x, ...) {uj::SSS(x, 'pnt', ...)}
 
 #' @rdname sss
 #' @export
-RCT <- function(X, ...) {uj::SSS(X, 'rct', ...)}
+RCT <- function(x, ...) {uj::SSS(x, 'rct', ...)}
 
 #' @rdname sss
 #' @export
-ROW <- function(X, ...) {uj::SSS(X, 'row', ...)}
+ROW <- function(x, ...) {uj::SSS(x, 'row', ...)}
 
 #' @rdname sss
 #' @export
-SLD <- function(X, ...) {uj::SSS(X, 'sld', ...)}
+SLD <- function(x, ...) {uj::SSS(x, 'sld', ...)}
 
 #' @rdname sss
 #' @export
-SQR <- function(X, ...) {uj::SSS(X, 'sqr', ...)}
+SQR <- function(x, ...) {uj::SSS(x, 'sqr', ...)}

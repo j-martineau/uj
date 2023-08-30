@@ -31,7 +31,7 @@ dp_all <- dplyr::all_of
 
 #' @rdname dp
 #' @export
-dp_grp <- function(X, Keys) {uj::run("dplyr::group_by(X, ", base::paste0(Keys, collapse = ", "), ")")}
+dp_grp <- function(x, keys) {uj::run("dplyr::group_by(x, ", base::paste0(keys, collapse = ", "), ")")}
 
 #' @rdname dp
 #' @export

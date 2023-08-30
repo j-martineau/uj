@@ -8,20 +8,20 @@
 \alias{compatible_dtfs}
 \title{Are objects compatible?}
 \usage{
-compatible(..., REC = FALSE)
+compatible(..., .REC = FALSE)
 
-compatible_xy(X, Y, REC = FALSE)
+compatible_xy(x, y, .REC = FALSE)
 
-compatible_mats(DIM, ...)
+compatible_mats(dim, ...)
 
-compatible_dtfs(DIM, ...)
+compatible_dtfs(dim, ...)
 }
 \arguments{
 \item{...}{An arbitrary number of arguments to be checked for compatibility with each other.}
 
-\item{REC}{\code{TRUE} or \code{FALSE} indicating whether arguments in \code{...} must be recyclable to be compatible.}
+\item{.REC}{\code{TRUE} or \code{FALSE} indicating whether arguments in \code{...} must be recyclable to be compatible.}
 
-\item{DIM}{Integer scalar indicating type of binding to check for compatibility (1 = row, 2 = col).}
+\item{dim}{Integer scalar indicating type of binding to check for compatibility (1 = row, 2 = col).}
 }
 \value{
 A logical scalar.
@@ -58,11 +58,11 @@ egDTFncl9 <- data.frame(N = egN9, C = egC9, L = egL9)
 egDTFcln7 <- data.frame(C = egC7, L = egL7, N = egN7)
 egDTFcln9 <- data.frame(C = egC9, L = egL9, N = egN9)
 compatible(egn0, egN7, egN9)
-compatible(egC0, egC7, egC9, REC = T)
+compatible(egC0, egC7, egC9, .REC = T)
 compatible(egC0, egC7, egC9)
-compatible(egL0, egL7, egL9, REC = T)
+compatible(egL0, egL7, egL9, .REC = T)
 compatible(egL0, egL7, egL9)
-compatible(egn0, egN7, egN9, REC = T)
+compatible(egn0, egN7, egN9, .REC = T)
 compatible(u09, u79, u99)
 compatible(u00, u07, u09)
 compatible(o09, o79, o99)

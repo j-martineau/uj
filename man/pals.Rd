@@ -22,42 +22,42 @@
 \usage{
 pals()
 
-line_types(TotN, UnqN = min(9, TotN))
+line_types(tot, unq = min(9, tot))
 
-fill_shapes(TotN, UnqN = min(5, TotN))
+fill_shapes(tot, unq = min(5, tot))
 
-open_shapes(TotN, UnqN = min(5, TotN))
+open_shapes(tot, unq = min(5, tot))
 
-punc_shapes(TotN, UnqN = min(7, TotN))
+punc_shapes(tot, unq = min(7, tot))
 
-empty_shapes(TotN, UnqN = min(5, TotN))
+empty_shapes(tot, unq = min(5, tot))
 
-solid_shapes(TotN, UnqN = min(4, TotN))
+solid_shapes(tot, unq = min(4, tot))
 
-digit_shapes(TotN, UnqN = min(9, TotN))
+digit_shapes(tot, unq = min(9, tot))
 
-digit_shapes0(TotN, UnqN = min(10, TotN))
+digit_shapes0(tot, unq = min(10, tot))
 
-letter_shapes(TotN, UnqN = min(26, TotN))
+letter_shapes(tot, unq = min(26, tot))
 
-LETTER_shapes(TotN, UnqN = min(26, TotN))
+LETTER_shapes(tot, unq = min(26, tot))
 
-colors_dark(TotN, UnqN = min(6, TotN))
+colors_dark(tot, unq = min(6, tot))
 
-colors_bright(TotN, UnqN = min(6, TotN))
+colors_bright(tot, unq = min(6, tot))
 
-colors_sensitive(TotN, UnqN = min(12, TotN))
+colors_sensitive(tot, unq = min(12, tot))
 
-build_palette(Type, TotN, UnqN)
+build_palette(type, tot, unq)
 
 blank_shape()
 }
 \arguments{
-\item{TotN}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of values to return.}
+\item{tot}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of values to return.}
 
-\item{UnqN}{A positive whole-number scalar less than or equal to \code{TotN} giving the number of unique values to be repeated until there are \code{TotN} total values.}
+\item{unq}{A positive whole-number scalar less than or equal to \code{tot} giving the number of unique values to be repeated until there are \code{tot} total values.}
 
-\item{Type}{A character scalar from \code{c('line.types', 'open.shapes', 'punc.shapes', 'fill.shapes','empty.shapes', 'solid.shapes', 'digit.shapes', 'digit.shapes0', 'letter.shapes', 'LETTER.shapes', 'colors.standard', 'colors.sensitive')}.}
+\item{type}{A character scalar from \code{c('line.types', 'open.shapes', 'punc.shapes', 'fill.shapes','empty.shapes', 'solid.shapes', 'digit.shapes', 'digit.shapes0', 'letter.shapes', 'LETTER.shapes', 'colors.standard', 'colors.sensitive')}.}
 }
 \value{
 \strong{A positive whole number vector} \cr\cr \code{fill_shapes}, \code{open_shapes}, \code{punc_shapes}, \code{empty_shapes}, \code{solid_shapes}, \code{digit_shapes}, \code{digit_shapes0}, \code{letter_shapes}, \verb{LETTER_shapes,} \emph{and possibly} \code{build_palette}
@@ -70,7 +70,7 @@ Build line type, shape, and color palettes.
 \details{
 The functions in this family create palettes of various types from values of source vectors as defined below:
 \tabular{lll}{
-\strong{Function}           \tab \strong{Palette Type}                                  \tab \strong{Source}            \cr
+\strong{Function}           \tab \strong{Palette type}                                  \tab \strong{Source}            \cr
 \code{colors_sensitive}     \tab 6 dark + 6 bright colorblind sensitive colors     \tab \code{v(colors.sensitive)} \cr
 \code{colors_bright}        \tab 6 colorblind sensitive bright colors              \tab \code{v(colors.bright)}    \cr
 \code{colors_dark}          \tab 6 colorblind-sensitive dark colors                \tab \code{v(colors.dark)}      \cr
@@ -86,7 +86,7 @@ The functions in this family create palettes of various types from values of sou
 \code{LETTER_shapes}        \tab \code{A} to \code{Z} as shapes                              \tab \code{v(LETTER.shapes)}    \cr
 \code{build_palette}        \tab \emph{any of the above}                                \tab \emph{any of the above}    \cr
 \code{blank_shape}          \tab Space as a shape                                  \tab \code{v(blank.shape)}        }
-\emph{NOTE}: \code{UnqN} defaults to the smaller of \code{TotN} or the number of unique values available for the palette. If \code{UnqN} is larger than the number of unique values available for the palette, an error is generated, except in \code{create_palette} where \code{UnqN} is reduced to the number of available unique values if necessary.
+\emph{NOTE}: \code{unq} defaults to the smaller of \code{tot} or the number of unique values available for the palette. If \code{unq} is larger than the number of unique values available for the palette, an error is generated, except in \code{create_palette} where \code{unq} is reduced to the number of available unique values if necessary.
 }
 \seealso{
 Other plots: 

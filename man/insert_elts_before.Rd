@@ -10,47 +10,47 @@
 \alias{insert_after_row}
 \title{Manipulate positions, rows, and columns}
 \usage{
-insert_elts_before(X, NewElts, Elt)
+insert_elts_before(x, new.elts, elt)
 
-insert_cols_before(X, NewCols, Col)
+insert_cols_before(x, new.cols, col)
 
-insert_rows_before(X, NewRows, Row)
+insert_rows_before(x, new.rows, row)
 
-insert_elt_after(X, NewElts, Elt)
+insert_elt_after(x, new.elts, elt)
 
-insert_col_after(X, NewCols, Col)
+insert_col_after(x, new.cols, col)
 
-insert_after_row(X, NewRows, Row)
+insert_after_row(x, new.rows, row)
 }
 \arguments{
-\item{X}{For \code{insert_elt_before} and \code{insert_elt_after} a non-empty atomic vector. A non-empty atomic matrix or atomic data frame (?uj::atm_dtf) for all others.}
+\item{x}{For \code{insert_elt_before} and \code{insert_elt_after} a non-empty atomic vector. A non-empty atomic matrix or atomic data frame (?uj::atm_dtf) for all others.}
 
-\item{NewElts}{An atomic vector compatible with \code{X} (?uj::compatible).}
+\item{new.elts}{An atomic vector compatible with \code{x} (?uj::compatible).}
 
-\item{Elt}{A whole number scalar indexing a position of \code{X}. Negative values index from the last position.}
+\item{elt}{A whole number scalar indexing a position of \code{x}. Negative values index from the last position.}
 
-\item{NewCols}{A matrix or data.frame compatible witht \code{Y} for col binding.}
+\item{new.cols}{A matrix or data.frame compatible witht \code{Y} for col binding.}
 
-\item{Col}{A whole number scalar indexing a column of \code{X}. Negative values index from the last column.}
+\item{col}{A whole number scalar indexing a column of \code{x}. Negative values index from the last column.}
 
-\item{NewRows}{A matrix or data.frame compatible with \code{X} for row binding.}
+\item{new.rows}{A matrix or data.frame compatible with \code{x} for row binding.}
 
-\item{Row}{A whole number scalar indexing a row of \code{X}. Negative values index from the last row.}
+\item{row}{A whole number scalar indexing a row of \code{x}. Negative values index from the last row.}
 }
 \value{
-An object of the same class as \code{X} with increased dimension.
+An object of the same class as \code{x} with increased dimension.
 }
 \description{
 Manipulate positions, rows, and columns
 }
 \details{
-\tabular{ll}{  \code{insert_elts_before}   \tab Insert \code{Elts} into \code{X} before the \code{Elt}-the positions of \code{X}. \cr   \tab   \cr
-  \code{insert_cols_before}   \tab Insert \code{Cols} into \code{X} before the \code{Col}-th column of \code{X}.     \cr   \tab   \cr
-  \code{insert_rows_before}   \tab Insert \code{Rows} into \code{X} before the \code{Row}-th row of \code{X}.        \cr   \tab   \cr
-  \code{insert_elts_after}    \tab Insert \code{Elts} into \code{X} after the \code{Elt}-the position of \code{X}.   \cr   \tab   \cr
-  \code{insert_cols_after}    \tab Insert \code{Cols} into \code{X} after the \code{Col}-th column of \code{X}.      \cr   \tab   \cr
-  \code{insert_rows_after}    \tab Insert \code{Rows} into \code{X} after the \code{Row}-th row of \code{X}.                        }
-\code{Elt < 0}, \code{Col < 0}, and \code{Row < 0} index from the last position, row, or column rather than the first.
+\tabular{ll}{  \code{insert_elts_before}   \tab Insert \code{Elts} into \code{x} before the \code{elt}-the positions of \code{x}. \cr   \tab   \cr
+  \code{insert_cols_before}   \tab Insert \code{Cols} into \code{x} before the \code{col}-th column of \code{x}.     \cr   \tab   \cr
+  \code{insert_rows_before}   \tab Insert \code{Rows} into \code{x} before the \code{row}-th row of \code{x}.        \cr   \tab   \cr
+  \code{insert_elts_after}    \tab Insert \code{Elts} into \code{x} after the \code{elt}-the position of \code{x}.   \cr   \tab   \cr
+  \code{insert_cols_after}    \tab Insert \code{Cols} into \code{x} after the \code{col}-th column of \code{x}.      \cr   \tab   \cr
+  \code{insert_rows_after}    \tab Insert \code{Rows} into \code{x} after the \code{row}-th row of \code{x}.                        }
+\code{elt < 0}, \code{col < 0}, and \code{row < 0} index from the last position, row, or column rather than the first.
 }
 \seealso{
 Other function_form: 

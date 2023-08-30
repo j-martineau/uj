@@ -10,4 +10,4 @@
 #' sca("red", 0.5)
 #' sca("#FF00FF", 0.1)
 #' @export
-sca <- function(Color, Alpha = NA) {scales::alpha(Color, Alpha)}
+sca <- function(color, alpha = NA) {scales::alpha(color, alpha)}

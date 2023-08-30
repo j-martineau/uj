@@ -293,588 +293,588 @@
 \alias{\%.nor.\%}
 \title{failsafe functions that \strong{always} return a valid object.}
 \usage{
-failsafe(X, Def = "uj.failsafe.err")
+failsafe(x, .DEF = "uj.failsafe.err")
 
-is_err(X)
+is_err(x)
 
-not_err(X)
+not_err(x)
 
-msg_err(X)
+msg_err(x)
 
 make_err()
 
-fs_def(X)
+fs_def(x)
 
-fs_nll(X)
+fs_nll(x)
 
-fs_scl(X, Val)
+fs_scl(x, val)
 
-fs_t(X)
+fs_t(x)
 
-fs_f(X)
+fs_f(x)
 
-fs_tf(X)
+fs_tf(x)
 
-fs_na(X)
+fs_na(x)
 
-fs_ok(X)
+fs_ok(x)
 
-fs_bl(X)
+fs_bl(x)
 
-fs_lg(X)
+fs_lg(x)
 
-fs_vec(X, Val)
+fs_vec(x, val)
 
-fs_null(X)
+fs_null(x)
 
-scl_bl(X)
+scl_bl(x)
 
-scl_t(X)
+scl_t(x)
 
-scl_f(X)
+scl_f(x)
 
-scl_tf(X)
+scl_tf(x)
 
-scl_lg(X)
+scl_lg(x)
 
-scl_na(X)
+scl_na(x)
 
-vec_bl(X)
+vec_bl(x)
 
-vec_t(X)
+vec_t(x)
 
-vec_f(X)
+vec_f(x)
 
-vec_tf(X)
+vec_tf(x)
 
-vec_na(X)
+vec_na(x)
 
-fs_or(X, Or = NULL)
+fs_or(x, or = NULL)
 
-or_f(X)
+or_f(x)
 
-or_t(X)
+or_t(x)
 
-or_bl(X)
+or_bl(x)
 
-or_c0(X)
+or_c0(x)
 
-or_i0(X)
+or_i0(x)
 
-or_l0(X)
+or_l0(x)
 
-or_n0(X)
+or_n0(x)
 
-or_na(X)
+or_na(x)
 
-or_nac(X)
+or_nac(x)
 
-or_nai(X)
+or_nai(x)
 
-or_nal(X)
+or_nal(x)
 
-or_nar(X)
+or_nar(x)
 
-or_null(X)
+or_null(x)
 
-is_id(X, Y)
+is_id(x, y)
 
-not_id(X, Y)
+not_id(x, y)
 
-is_IN(X, ...)
+is_IN(x, ...)
 
-is_MF(X, ...)
+is_MF(x, ...)
 
-HAS(X, Y)
+HAS(x, y)
 
-LACKS(X, Y)
+LACKS(x, y)
 
-is_EQ(X, Y)
+is_EQ(x, y)
 
-is_GE(X, Y)
+is_GE(x, y)
 
-is_GT(X, Y)
+is_GT(x, y)
 
-is_LE(X, Y)
+is_LE(x, y)
 
-is_LT(X, Y)
+is_LT(x, y)
 
-is_DIF(X, Y)
+is_DIF(x, y)
 
-is_F(X)
+is_F(x)
 
-is_T(X)
+is_T(x)
 
-is_BL(X)
+is_BL(x)
 
-is_TF(X)
+is_TF(x)
 
-is_NAV(X)
+is_NAV(x)
 
-is_OKV(X)
+is_OKV(x)
 
-is_LG(X)
+is_LG(x)
 
-is_in(X, ...)
+is_in(x, ...)
 
-is_mf(X, ...)
+is_mf(x, ...)
 
-has(X, Y)
+has(x, y)
 
-not(X)
+not(x)
 
-lacks(X, Y)
+lacks(x, y)
 
-is_eq(X, Y)
+is_eq(x, y)
 
-is_ge(X, Y)
+is_ge(x, y)
 
-is_gt(X, Y)
+is_gt(x, y)
 
-is_le(X, Y)
+is_le(x, y)
 
-is_lt(X, Y)
+is_lt(x, y)
 
-is_dif(X, Y)
+is_dif(x, y)
 
-is_f(X)
+is_f(x)
 
-is_t(X)
+is_t(x)
 
-is_bl(X)
+is_bl(x)
 
-is_tf(X)
+is_tf(x)
 
-is_nav(X)
+is_nav(x)
 
-is_okv(X)
+is_okv(x)
 
-is_seq(X, Y)
+is_seq(x, y)
 
-is_veq(X, Y)
+is_veq(x, y)
 
-is_sdif(X, Y)
+is_sdif(x, y)
 
-is_vdif(X, Y)
+is_vdif(x, y)
 
-OR(X, Y)
+OR(x, y)
 
-AND(X, Y)
+AND(x, y)
 
-XOR(X, Y)
+XOR(x, y)
 
-NOR(X, Y)
+NOR(x, y)
 
-or(X, Y)
+or(x, y)
 
-and(X, Y)
+and(x, y)
 
-one(X, Y)
+one(x, y)
 
-nor(X, Y)
+nor(x, y)
 
-not_IN(X, ...)
+not_IN(x, ...)
 
-not_MF(X, ...)
+not_MF(x, ...)
 
-not_HAS(X, Y)
+not_HAS(x, y)
 
-not_LACKS(X, Y)
+not_LACKS(x, y)
 
-not_EQ(X, Y)
+not_EQ(x, y)
 
-not_GE(X, Y)
+not_GE(x, y)
 
-not_GT(X, Y)
+not_GT(x, y)
 
-not_LE(X, Y)
+not_LE(x, y)
 
-not_LT(X, Y)
+not_LT(x, y)
 
-not_DIF(X, Y)
+not_DIF(x, y)
 
-not_F(X)
+not_F(x)
 
-not_T(X)
+not_T(x)
 
-not_TF(X)
+not_TF(x)
 
-not_BL(X)
+not_BL(x)
 
-not_NAV(X)
+not_NAV(x)
 
-not_OKV(X)
+not_OKV(x)
 
-not_LG(X)
+not_LG(x)
 
-not_in(X, ...)
+not_in(x, ...)
 
-not_mf(X, ...)
+not_mf(x, ...)
 
-not_has(X, Y)
+not_has(x, y)
 
-not_lacks(X, Y)
+not_lacks(x, y)
 
-not_eq(X, Y)
+not_eq(x, y)
 
-not_ge(X, Y)
+not_ge(x, y)
 
-not_gt(X, Y)
+not_gt(x, y)
 
-not_le(X, Y)
+not_le(x, y)
 
-not_lt(X, Y)
+not_lt(x, y)
 
-not_dif(X, Y)
+not_dif(x, y)
 
-not_f(X)
+not_f(x)
 
-not_t(X)
+not_t(x)
 
-not_tf(X)
+not_tf(x)
 
-not_bl(X)
+not_bl(x)
 
-not_nav(X)
+not_nav(x)
 
-not_okv(X)
+not_okv(x)
 
-not_seq(X, Y)
+not_seq(x, y)
 
-not_veq(X, Y)
+not_veq(x, y)
 
-not_sdif(X, Y)
+not_sdif(x, y)
 
-not_vdif(X, Y)
+not_vdif(x, y)
 
-n_in(X, ...)
+n_in(x, ...)
 
-n_mf(X, ...)
+n_mf(x, ...)
 
-n_has(X, Y)
+n_has(x, y)
 
-n_lacks(X, Y)
+n_lacks(x, y)
 
-n_eq(X, Y)
+n_eq(x, y)
 
-n_ge(X, Y)
+n_ge(x, y)
 
-n_gt(X, Y)
+n_gt(x, y)
 
-n_le(X, Y)
+n_le(x, y)
 
-n_lt(X, Y)
+n_lt(x, y)
 
-n_dif(X, Y)
+n_dif(x, y)
 
-n_f(X)
+n_f(x)
 
-n_t(X)
+n_t(x)
 
-n_tf(X)
+n_tf(x)
 
-n_bl(X)
+n_bl(x)
 
-n_nav(X)
+n_nav(x)
 
-n_okv(X)
+n_okv(x)
 
-none_f(X)
+none_f(x)
 
-none_t(X)
+none_t(x)
 
-none_tf(X)
+none_tf(x)
 
-none_bl(X)
+none_bl(x)
 
-none_eq(X, Y)
+none_eq(x, y)
 
-none_ge(X, Y)
+none_ge(x, y)
 
-none_gt(X, Y)
+none_gt(x, y)
 
-none_le(X, Y)
+none_le(x, y)
 
-none_lt(X, Y)
+none_lt(x, y)
 
-none_in(X, ...)
+none_in(x, ...)
 
-none_mf(X, ...)
+none_mf(x, ...)
 
-none_dif(X, Y)
+none_dif(x, y)
 
-none_nav(X)
+none_nav(x)
 
-none_okv(X)
+none_okv(x)
 
-has_none(X, Y)
+has_none(x, y)
 
-lacks_none(X, Y)
+lacks_none(x, y)
 
-any_f(X)
+any_f(x)
 
-any_t(X)
+any_t(x)
 
-any_bl(X)
+any_bl(x)
 
-any_eq(X, Y)
+any_eq(x, y)
 
-any_ge(X, Y)
+any_ge(x, y)
 
-any_gt(X, Y)
+any_gt(x, y)
 
-any_in(X, ...)
+any_in(x, ...)
 
-any_le(X, Y)
+any_le(x, y)
 
-any_lt(X, Y)
+any_lt(x, y)
 
-any_mf(X, ...)
+any_mf(x, ...)
 
-any_tf(X)
+any_tf(x)
 
-any_dif(X, Y)
+any_dif(x, y)
 
-any_nav(X)
+any_nav(x)
 
-any_okv(X)
+any_okv(x)
 
-has_any(X, Y)
+has_any(x, y)
 
-lacks_any(X, Y)
+lacks_any(x, y)
 
-one_f(X)
+one_f(x)
 
-one_t(X)
+one_t(x)
 
-one_bl(X)
+one_bl(x)
 
-one_eq(X, Y)
+one_eq(x, y)
 
-one_ge(X, Y)
+one_ge(x, y)
 
-one_gt(X, Y)
+one_gt(x, y)
 
-one_in(X, ...)
+one_in(x, ...)
 
-one_le(X, Y)
+one_le(x, y)
 
-one_lt(X, Y)
+one_lt(x, y)
 
-one_mf(X, ...)
+one_mf(x, ...)
 
-one_tf(X)
+one_tf(x)
 
-one_dif(X, Y)
+one_dif(x, y)
 
-one_nav(X)
+one_nav(x)
 
-one_okv(X)
+one_okv(x)
 
-has_one(X, Y)
+has_one(x, y)
 
-lacks_one(X, Y)
+lacks_one(x, y)
 
-all_f(X)
+all_f(x)
 
-all_t(X)
+all_t(x)
 
-all_bl(X)
+all_bl(x)
 
-all_eq(X, Y)
+all_eq(x, y)
 
-all_ge(X, Y)
+all_ge(x, y)
 
-all_gt(X, Y)
+all_gt(x, y)
 
-all_in(X, ...)
+all_in(x, ...)
 
-all_le(X, Y)
+all_le(x, y)
 
-all_lt(X, Y)
+all_lt(x, y)
 
-all_mf(X, ...)
+all_mf(x, ...)
 
-all_tf(X)
+all_tf(x)
 
-all_dif(X, Y)
+all_dif(x, y)
 
-all_nav(X)
+all_nav(x)
 
-all_okv(X)
+all_okv(x)
 
-has_all(X, Y)
+has_all(x, y)
 
-lacks_all(X, Y)
+lacks_all(x, y)
 
-some_f(X)
+some_f(x)
 
-some_t(X)
+some_t(x)
 
-some_bl(X)
+some_bl(x)
 
-some_eq(X, Y)
+some_eq(x, y)
 
-some_le(X, Y)
+some_le(x, y)
 
-some_ge(X, Y)
+some_ge(x, y)
 
-some_gt(X, Y)
+some_gt(x, y)
 
-some_in(X, ...)
+some_in(x, ...)
 
-some_lt(X, Y)
+some_lt(x, y)
 
-some_mf(X, ...)
+some_mf(x, ...)
 
-some_tf(X)
+some_tf(x)
 
-some_dif(X, Y)
+some_dif(x, y)
 
-some_nav(X)
+some_nav(x)
 
-some_okv(X)
+some_okv(x)
 
-has_some(X, Y)
+has_some(x, y)
 
-lacks_some(X, Y)
+lacks_some(x, y)
 
-two_f(X)
+two_f(x)
 
-two_t(X)
+two_t(x)
 
-two_bl(X)
+two_bl(x)
 
-two_eq(X, Y)
+two_eq(x, y)
 
-two_ge(X, Y)
+two_ge(x, y)
 
-two_gt(X, Y)
+two_gt(x, y)
 
-two_in(X, ...)
+two_in(x, ...)
 
-two_le(X, Y)
+two_le(x, y)
 
-two_lt(X, Y)
+two_lt(x, y)
 
-two_mf(X, ...)
+two_mf(x, ...)
 
-two_tf(X)
+two_tf(x)
 
-two_dif(X, Y)
+two_dif(x, y)
 
-two_nav(X)
+two_nav(x)
 
-two_okv(X)
+two_okv(x)
 
-has_two(X, Y)
+has_two(x, y)
 
-lacks_two(X, Y)
+lacks_two(x, y)
 
-many_f(X)
+many_f(x)
 
-many_t(X)
+many_t(x)
 
-many_bl(X)
+many_bl(x)
 
-many_eq(X, Y)
+many_eq(x, y)
 
-many_ge(X, Y)
+many_ge(x, y)
 
-many_gt(X, Y)
+many_gt(x, y)
 
-many_in(X, ...)
+many_in(x, ...)
 
-many_le(X, Y)
+many_le(x, y)
 
-many_lt(X, Y)
+many_lt(x, y)
 
-many_mf(X, ...)
+many_mf(x, ...)
 
-many_tf(X)
+many_tf(x)
 
-many_dif(X, Y)
+many_dif(x, y)
 
-many_nav(X)
+many_nav(x)
 
-many_okv(X)
+many_okv(x)
 
-has_many(X, Y)
+has_many(x, y)
 
-lacks_many(X, Y)
+lacks_many(x, y)
 
-X \%.IN.\% Y
+x \%.IN.\% y
 
-X \%.MF.\% Y
+x \%.MF.\% y
 
-X \%.EQ.\% Y
+x \%.EQ.\% y
 
-X \%.GE.\% Y
+x \%.GE.\% y
 
-X \%.GT.\% Y
+x \%.GT.\% y
 
-X \%.LE.\% Y
+x \%.LE.\% y
 
-X \%.LT.\% Y
+x \%.LT.\% y
 
-X \%.HAS.\% Y
+x \%.HAS.\% y
 
-X \%.DIF.\% Y
+x \%.DIF.\% y
 
-X \%.LACKS.\% Y
+x \%.LACKS.\% y
 
-X \%.in.\% Y
+x \%.in.\% y
 
-X \%.mf.\% Y
+x \%.mf.\% y
 
-X \%.eq.\% Y
+x \%.eq.\% y
 
-X \%.ge.\% Y
+x \%.ge.\% y
 
-X \%.gt.\% Y
+x \%.gt.\% y
 
-X \%.le.\% Y
+x \%.le.\% y
 
-X \%.lt.\% Y
+x \%.lt.\% y
 
-X \%.has.\% Y
+x \%.has.\% y
 
-X \%.dif.\% Y
+x \%.dif.\% y
 
-X \%.lacks.\% Y
+x \%.lacks.\% y
 
-X \%.seq.\% Y
+x \%.seq.\% y
 
-X \%.veq.\% Y
+x \%.veq.\% y
 
-X \%.neq.\% Y
+x \%.neq.\% y
 
-X \%.sdif.\% Y
+x \%.sdif.\% y
 
-X \%.vdif.\% Y
+x \%.vdif.\% y
 
-X \%.ndif.\% Y
+x \%.ndif.\% y
 
-X \%.OR.\% Y
+x \%.OR.\% y
 
-X \%.AND.\% Y
+x \%.AND.\% y
 
-X \%.XOR.\% Y
+x \%.XOR.\% y
 
-X \%.NOR.\% Y
+x \%.NOR.\% y
 
-X \%.or.\% Y
+x \%.or.\% y
 
-X \%.and.\% Y
+x \%.and.\% y
 
-X \%.xor.\% Y
+x \%.xor.\% y
 
-X \%.nor.\% Y
+x \%.nor.\% y
 }
 \arguments{
-\item{Def}{A character scalar default error message if forcing evaluation produces an error. If not a character scalar, it is replaced with the default.}
+\item{.DEF}{A character scalar default error message if forcing evaluation produces an error. If not a character scalar, it is replaced with the default.}
 
-\item{Val, Or, X, Y}{Any object/expression to be evaluated, whether or not doing so produces an error.}
+\item{val, or, x, y}{Any object/expression to be evaluated, whether or not doing so produces an error.}
 
 \item{...}{Any objects/expressions to be evaluated, whether or not doing so produces an error.}
 }
@@ -889,82 +889,82 @@ Evaluate objects, test if an object has certain properties, and conduct binary l
 \cr\cr These functions evaluate generate, check for, and manage error objects.
 \tabular{ll}{  \code{make_err}   \tab generate object of class \code{'simpleError'}.     \cr
   \code{msg_err}    \tab get error message, if any; otherwise, \code{NULL}. \cr
-  \code{not_err}    \tab Does evaluating \code{X} not produce an error?.    \cr
-  \code{is_err}     \tab Does evaluating \code{X} produce an error?           }
+  \code{not_err}    \tab Does evaluating \code{x} not produce an error?.    \cr
+  \code{is_err}     \tab Does evaluating \code{x} produce an error?           }
 \cr \strong{failsafe check for classes of objects with values}
-\tabular{ll}{  \code{failsafe}   \tab Returns \code{X} if identity evaluation does not_ cause an error. Returns
+\tabular{ll}{  \code{failsafe}   \tab Returns \code{x} if identity evaluation does not_ cause an error. Returns
 an error object otherwise with the attribute \code{stack = uj::callers()}. \cr   \tab   \cr
-  \code{fs_null}    \tab \code{X} is \code{NULL}.                                                        \cr
-  \code{fs_def}     \tab \code{X} is defined (not \code{NULL}).                                          \cr   \tab   \cr
-  \code{fs_scl}     \tab \code{X} is scalar of a specific atomic value.                             \cr
-  \code{fs_t}       \tab \code{X} is scalar \code{TRUE}.                                                 \cr
-  \code{fs_f}       \tab \code{X} is scalar \code{FALSE}.                                                \cr
-  \code{fs_na}      \tab \code{X} is scalar \code{NA}.                                                   \cr
-  \code{fs_tf}      \tab \code{X} is scalar \code{TRUE} or scalar \code{FALSE}.                               \cr
-  \code{scl_f}      \tab \code{X} is scalar \code{FALSE}                                                 \cr
-  \code{scl_t}      \tab \code{X} is scalar \code{TRUE}                                                  \cr
-  \code{scl_tf}     \tab \code{X} is scalar \code{TRUE} or \code{FALSE}.                                      \cr
-  \code{scl_lg}     \tab \code{X} is scalar \code{TRUE}, \code{FALSE}, or \code{NA}.                               \cr
-  \code{scl_bl}     \tab \code{X} is blank string scalar (\code{""}).                                    \cr
-  \code{scl_na}     \tab \code{X} is scalar \code{NA}                                                    \cr   \tab   \cr
-  \code{fs_vec}     \tab Elements of \code{X} are of a specific atomic value.                       \cr
-  \code{vec_f}      \tab Elements of \code{X} are \code{FALSE}.                                          \cr
-  \code{vec_t}      \tab Elements of \code{X} are \code{TRUE}.                                           \cr
-  \code{vec_tf}     \tab Elements of \code{X} are \code{TRUE} or \code{FALSE}.                                \cr
-  \code{vec_lg}     \tab Elements of \code{X} are \code{TRUE}, \code{FALSE}, or \code{NA}.                         \cr
-  \code{vec_bl}     \tab Elements of \code{X} are blank strings.                                    \cr
-  \code{vec_na}     \tab Elements of \code{X} are \code{NA}.                                               }
+  \code{fs_null}    \tab \code{x} is \code{NULL}.                                                        \cr
+  \code{fs_def}     \tab \code{x} is defined (not \code{NULL}).                                          \cr   \tab   \cr
+  \code{fs_scl}     \tab \code{x} is scalar of a specific atomic value.                             \cr
+  \code{fs_t}       \tab \code{x} is scalar \code{TRUE}.                                                 \cr
+  \code{fs_f}       \tab \code{x} is scalar \code{FALSE}.                                                \cr
+  \code{fs_na}      \tab \code{x} is scalar \code{NA}.                                                   \cr
+  \code{fs_tf}      \tab \code{x} is scalar \code{TRUE} or scalar \code{FALSE}.                               \cr
+  \code{scl_f}      \tab \code{x} is scalar \code{FALSE}                                                 \cr
+  \code{scl_t}      \tab \code{x} is scalar \code{TRUE}                                                  \cr
+  \code{scl_tf}     \tab \code{x} is scalar \code{TRUE} or \code{FALSE}.                                      \cr
+  \code{scl_lg}     \tab \code{x} is scalar \code{TRUE}, \code{FALSE}, or \code{NA}.                               \cr
+  \code{scl_bl}     \tab \code{x} is blank string scalar (\code{""}).                                    \cr
+  \code{scl_na}     \tab \code{x} is scalar \code{NA}                                                    \cr   \tab   \cr
+  \code{fs_vec}     \tab Elements of \code{x} are of a specific atomic value.                       \cr
+  \code{vec_f}      \tab Elements of \code{x} are \code{FALSE}.                                          \cr
+  \code{vec_t}      \tab Elements of \code{x} are \code{TRUE}.                                           \cr
+  \code{vec_tf}     \tab Elements of \code{x} are \code{TRUE} or \code{FALSE}.                                \cr
+  \code{vec_lg}     \tab Elements of \code{x} are \code{TRUE}, \code{FALSE}, or \code{NA}.                         \cr
+  \code{vec_bl}     \tab Elements of \code{x} are blank strings.                                    \cr
+  \code{vec_na}     \tab Elements of \code{x} are \code{NA}.                                               }
 \strong{Forced-evaluation functions with conditional return values}
-\cr\cr These functions \link[base:force]{force} evaluation of \code{X} returning values as shown in the following table with the first value returned when forcing evaluation does not produce an error and the second when it does:
-\tabular{ll}{  \code{fs_or}    \tab \code{X} or something else if evaluating \code{X} produces an error \cr   \tab   \cr
-  \code{or_f}     \tab \code{X} or \code{FALSE}                                            \cr
-  \code{or_t}     \tab \code{X} or \code{TRUE}                                             \cr   \tab   \cr
-  \code{or_c0}    \tab \code{X} or \code{character(0)}                                     \cr
-  \code{or_i0}    \tab \code{X} or \code{integer(0)}                                       \cr
-  \code{or_l0}    \tab \code{X} or \code{logical(0)}                                       \cr
-  \code{or_n0}    \tab \code{X} or \code{numeric(0)}                                       \cr   \tab   \cr
-  \code{or_bl}    \tab \code{X} or \code{""}                                               \cr   \tab   \cr
-  \code{or_na}    \tab \code{X} or \code{NA}                                               \cr
-  \code{or_nac}   \tab \code{X} or \code{NA_character_}                                    \cr
-  \code{or_nai}   \tab \code{X} or \code{NA_integer_}                                      \cr
-  \code{or_nal}   \tab \code{X} or \code{NA} (logical)                                     \cr
-  \code{or_nar}   \tab \code{X} or \code{NA_real_}                                           }
+\cr\cr These functions \link[base:force]{force} evaluation of \code{x} returning values as shown in the following table with the first value returned when forcing evaluation does not produce an error and the second when it does:
+\tabular{ll}{  \code{fs_or}    \tab \code{x} or something else if evaluating \code{x} produces an error \cr   \tab   \cr
+  \code{or_f}     \tab \code{x} or \code{FALSE}                                            \cr
+  \code{or_t}     \tab \code{x} or \code{TRUE}                                             \cr   \tab   \cr
+  \code{or_c0}    \tab \code{x} or \code{character(0)}                                     \cr
+  \code{or_i0}    \tab \code{x} or \code{integer(0)}                                       \cr
+  \code{or_l0}    \tab \code{x} or \code{logical(0)}                                       \cr
+  \code{or_n0}    \tab \code{x} or \code{numeric(0)}                                       \cr   \tab   \cr
+  \code{or_bl}    \tab \code{x} or \code{""}                                               \cr   \tab   \cr
+  \code{or_na}    \tab \code{x} or \code{NA}                                               \cr
+  \code{or_nac}   \tab \code{x} or \code{NA_character_}                                    \cr
+  \code{or_nai}   \tab \code{x} or \code{NA_integer_}                                      \cr
+  \code{or_nal}   \tab \code{x} or \code{NA} (logical)                                     \cr
+  \code{or_nar}   \tab \code{x} or \code{NA_real_}                                           }
 \strong{Binary comparison functions}
 \cr\cr These are binary functions that always produce either scalar \code{TRUE} or scalar \code{FALSE}. They return \code{TRUE} when two variables meet the conditions shown in the following table and \code{FALSE} in every other circumstance (where \code{fx} and \code{fy})
-\tabular{ll}{  \verb{\%.is.\%}      \tab \code{failsafe(identical(X, Y))}                                  \cr
-  \verb{\%.isnt.\%}    \tab \code{!(X \%.is.\% Y)}                                              \cr   \tab   \cr
-  \verb{\%.in.\%}      \tab \code{sapply(failsafe(X \%in\% Y), isTRUE)}                         \cr
-  \verb{\%.mf.\%}      \tab \code{!(X \%.in.\% Y)} (missing from)                               \cr
-  \verb{\%.has.\%}     \tab \code{Y \%.in.\% X} (\code{X} has each \code{Y} value)                        \cr
-  \verb{\%.lacks.\%}   \tab \code{Y \%.mf.\% X} (\code{X} lacks each \code{Y} value)                      \cr   \tab   \cr
-  \verb{\%.eq.\%}      \tab If \code{X} and \code{Y} match\eqn{^{(1)}}, \code{X = Y}, otherwise \code{FALSE} \cr
-  \verb{\%.ge.\%}      \tab If \code{X} and \code{Y} match\eqn{^{(1)}}, \verb{X ≥ Y}, otherwise \code{FALSE} \cr
-  \verb{\%.gt.\%}      \tab If \code{X} and \code{Y} match\eqn{^{(1)}}, \code{X > Y}, otherwise \code{FALSE} \cr
-  \verb{\%.le.\%}      \tab If \code{X} and \code{Y} match\eqn{^{(1)}}, \verb{X ≤ Y}, otherwise \code{FALSE} \cr
-  \verb{\%.lt.\%}      \tab If \code{X} and \code{Y} match\eqn{^{(1)}}, \code{X < Y}, otherwise \code{FALSE} \cr
-  \verb{\%.dif.\%}     \tab If \code{X} and \code{Y} match\eqn{^{(1)}}, \verb{X ≠ Y}, otherwise \code{TRUE}  \cr   \tab   \cr
-  \verb{\%.seq.\%}     \tab \code{X} and \code{Y} are \code{\link[base]{setequal}}\eqn{^{(4)}}     \cr
-  \verb{\%.veq.\%}     \tab \code{X} and \code{Y} are vector equal\eqn{^{(5)}}                     \cr
-  \verb{\%.sdif.\%}    \tab \code{X} and \code{Y} are set different\eqn{^{(6)}}                    \cr
-  \verb{\%.vdif.\%}    \tab \code{X} and \code{Y} are vector different\eqn{^{(7)}}                 \cr   \tab   \cr
-  \verb{\%.or.\%}      \tab values of \code{X} \emph{and/or} \code{Y} are \code{TRUE}                        \cr
-  \verb{\%.and.\%}     \tab values of \code{X} \emph{and} \code{Y} are \code{TRUE}                           \cr
-  \verb{\%.xor.\%}     \tab values of \emph{either} \code{X} \emph{or} \code{Y} are \code{TRUE}                   \cr
-  \verb{\%.nor.\%}     \tab values of \emph{neither} \code{X} \emph{nor} \code{Y} are \code{TRUE}                 \cr   \tab   \cr
-  \verb{\%.IN.\%}      \tab if \code{X} is atomic scalar, \code{X \%.in.\% Y}, otherwise \code{FALSE}     \cr
-  \verb{\%.MF.\%}      \tab \code{X} is atomic scalar and \code{X \%.mf.\% Y}                        \cr
-  \verb{\%.HAS.\%}     \tab \code{Y} is atomic scalar and \code{X \%.has.\% Y}                       \cr
-  \verb{\%.LACKS.\%}   \tab \code{Y} is atomic scalar and \code{X \%.lacks.\% Y}                     \cr   \tab   \cr
-  \verb{\%.EQ.\%}      \tab \code{X} and \code{Y} are atomic scalar and \code{X = Y}  \eqn{^{(2)}}      \cr
-  \verb{\%.GE.\%}      \tab \code{X} and \code{Y} are atomic scalar and \verb{X ≥ Y}  \eqn{^{(2)}}      \cr
-  \verb{\%.GT.\%}      \tab \code{X} and \code{Y} are atomic scalar and \code{X > Y}  \eqn{^{(2)}}      \cr
-  \verb{\%.LE.\%}      \tab \code{X} and \code{Y} are atomic scalar and \verb{X ≤ Y}  \eqn{^{(2)}}      \cr
-  \verb{\%.LT.\%}      \tab \code{X} and \code{Y} are atomic scalar and \verb{X ≥ Y}  \eqn{^{(2)}}      \cr
-  \verb{\%.DIF.\%}     \tab \code{X} and \code{Y} are \emph{not} atomic scalar equal  \eqn{^{(3)}}      \cr   \tab   \cr
-  \verb{\%.OR.\%}      \tab \code{X} \emph{and/or} \code{Y} are scalar \code{TRUE}                           \cr
-  \verb{\%.AND.\%}     \tab \code{X} \emph{and} \code{Y} are scalar \code{TRUE}                              \cr
-  \verb{\%.XOR.\%}     \tab \emph{either} \code{X} \emph{or} \code{Y} is scalar \code{TRUE}                       \cr
-  \verb{\%.NOR.\%}     \tab \emph{neither} \code{X} \emph{nor} \code{Y} is scalar \code{TRUE}                     \cr   \tab     }
+\tabular{ll}{  \verb{\%.is.\%}      \tab \code{failsafe(identical(x, y))}                                  \cr
+  \verb{\%.isnt.\%}    \tab \code{!(x \%.is.\% y)}                                              \cr   \tab   \cr
+  \verb{\%.in.\%}      \tab \code{sapply(failsafe(x \%in\% y), isTRUE)}                         \cr
+  \verb{\%.mf.\%}      \tab \code{!(x \%.in.\% y)} (missing from)                               \cr
+  \verb{\%.has.\%}     \tab \code{y \%.in.\% x} (\code{x} has each \code{y} value)                        \cr
+  \verb{\%.lacks.\%}   \tab \code{y \%.mf.\% x} (\code{x} lacks each \code{y} value)                      \cr   \tab   \cr
+  \verb{\%.eq.\%}      \tab If \code{x} and \code{y} match\eqn{^{(1)}}, \code{x = y}, otherwise \code{FALSE} \cr
+  \verb{\%.ge.\%}      \tab If \code{x} and \code{y} match\eqn{^{(1)}}, \verb{x ≥ y}, otherwise \code{FALSE} \cr
+  \verb{\%.gt.\%}      \tab If \code{x} and \code{y} match\eqn{^{(1)}}, \code{x > y}, otherwise \code{FALSE} \cr
+  \verb{\%.le.\%}      \tab If \code{x} and \code{y} match\eqn{^{(1)}}, \verb{x ≤ y}, otherwise \code{FALSE} \cr
+  \verb{\%.lt.\%}      \tab If \code{x} and \code{y} match\eqn{^{(1)}}, \code{x < y}, otherwise \code{FALSE} \cr
+  \verb{\%.dif.\%}     \tab If \code{x} and \code{y} match\eqn{^{(1)}}, \verb{x ≠ y}, otherwise \code{TRUE}  \cr   \tab   \cr
+  \verb{\%.seq.\%}     \tab \code{x} and \code{y} are \code{\link[base]{setequal}}\eqn{^{(4)}}     \cr
+  \verb{\%.veq.\%}     \tab \code{x} and \code{y} are vector equal\eqn{^{(5)}}                     \cr
+  \verb{\%.sdif.\%}    \tab \code{x} and \code{y} are set different\eqn{^{(6)}}                    \cr
+  \verb{\%.vdif.\%}    \tab \code{x} and \code{y} are vector different\eqn{^{(7)}}                 \cr   \tab   \cr
+  \verb{\%.or.\%}      \tab values of \code{x} \emph{and/or} \code{y} are \code{TRUE}                        \cr
+  \verb{\%.and.\%}     \tab values of \code{x} \emph{and} \code{y} are \code{TRUE}                           \cr
+  \verb{\%.xor.\%}     \tab values of \emph{either} \code{x} \emph{or} \code{y} are \code{TRUE}                   \cr
+  \verb{\%.nor.\%}     \tab values of \emph{neither} \code{x} \emph{nor} \code{y} are \code{TRUE}                 \cr   \tab   \cr
+  \verb{\%.IN.\%}      \tab if \code{x} is atomic scalar, \code{x \%.in.\% y}, otherwise \code{FALSE}     \cr
+  \verb{\%.MF.\%}      \tab \code{x} is atomic scalar and \code{x \%.mf.\% y}                        \cr
+  \verb{\%.HAS.\%}     \tab \code{y} is atomic scalar and \code{x \%.has.\% y}                       \cr
+  \verb{\%.LACKS.\%}   \tab \code{y} is atomic scalar and \code{x \%.lacks.\% y}                     \cr   \tab   \cr
+  \verb{\%.EQ.\%}      \tab \code{x} and \code{y} are atomic scalar and \code{x = y}  \eqn{^{(2)}}      \cr
+  \verb{\%.GE.\%}      \tab \code{x} and \code{y} are atomic scalar and \verb{x ≥ y}  \eqn{^{(2)}}      \cr
+  \verb{\%.GT.\%}      \tab \code{x} and \code{y} are atomic scalar and \code{x > y}  \eqn{^{(2)}}      \cr
+  \verb{\%.LE.\%}      \tab \code{x} and \code{y} are atomic scalar and \verb{x ≤ y}  \eqn{^{(2)}}      \cr
+  \verb{\%.LT.\%}      \tab \code{x} and \code{y} are atomic scalar and \verb{x ≥ y}  \eqn{^{(2)}}      \cr
+  \verb{\%.DIF.\%}     \tab \code{x} and \code{y} are \emph{not} atomic scalar equal  \eqn{^{(3)}}      \cr   \tab   \cr
+  \verb{\%.OR.\%}      \tab \code{x} \emph{and/or} \code{y} are scalar \code{TRUE}                           \cr
+  \verb{\%.AND.\%}     \tab \code{x} \emph{and} \code{y} are scalar \code{TRUE}                              \cr
+  \verb{\%.XOR.\%}     \tab \emph{either} \code{x} \emph{or} \code{y} is scalar \code{TRUE}                       \cr
+  \verb{\%.NOR.\%}     \tab \emph{neither} \code{x} \emph{nor} \code{y} is scalar \code{TRUE}                     \cr   \tab     }
 \tabular{l}{  \eqn{^{(1)}} Of equal length and \link[=compatible]{compatible modes}.                                                       \cr
   \eqn{^{(2)}} Of \link[=compatible]{compatible modes} and meeting the (in)equality.                                           \cr
   \eqn{^{(3)}} not meeting the requirements of \verb{\%.eq0.\%}.                                                                      \cr
@@ -977,24 +977,24 @@ an error object otherwise with the attribute \code{stack = uj::callers()}. \cr �
 \cr\cr Function names are constructed of root words, prefixes, and/or suffixes. Root word specify the type of check conducted. Prefixes and suffixes specify how to modify the results of a check or how to apply the check to each \code{...} argument and check whether a certain number of \code{...} args passed the checks.
 \cr\cr Uppercase root words indicate one or both arguments must be scalar. Lowercase root words indicate arguments may be vectors.
 \cr\cr \emph{Root words for atomic scalar value checking functions}
-\tabular{ll}{  \code{nav}   \tab \code{X} is atomic and values are \code{NA}.                               \cr
-  \code{okv}   \tab \code{X} is atomic and values are \emph{not} \code{NA}.                         \cr
-  \code{bl}    \tab \code{X} is atomic and values are blanks (\code{""}).                      \cr
-  \code{lg}    \tab \code{X} is atomic and values are logical (\code{TRUE}, \code{FALSE}, or \code{NA}). \cr
-  \code{tf}    \tab \code{X} is atomic and values are \code{TRUE} or \code{FALSE}.                  \cr
-  \code{f}     \tab \code{X} is atomic and values are \code{TRUE}.                             \cr
-  \code{t}     \tab \code{X} is atomic and valules are \code{FALSE}.                             }
+\tabular{ll}{  \code{nav}   \tab \code{x} is atomic and values are \code{NA}.                               \cr
+  \code{okv}   \tab \code{x} is atomic and values are \emph{not} \code{NA}.                         \cr
+  \code{bl}    \tab \code{x} is atomic and values are blanks (\code{""}).                      \cr
+  \code{lg}    \tab \code{x} is atomic and values are logical (\code{TRUE}, \code{FALSE}, or \code{NA}). \cr
+  \code{tf}    \tab \code{x} is atomic and values are \code{TRUE} or \code{FALSE}.                  \cr
+  \code{f}     \tab \code{x} is atomic and values are \code{TRUE}.                             \cr
+  \code{t}     \tab \code{x} is atomic and valules are \code{FALSE}.                             }
 \cr \emph{Root words for atomic value membership checking functions}
-\tabular{ll}{  \code{lacks}   \tab \code{X} lacks values of \code{Y}.      \cr
-  \code{has}     \tab \code{X} has values of \code{Y}.        \cr
-  \verb{in}      \tab \code{X} in values of \code{Y}.         \cr
-  \code{mf}      \tab \code{X} missing from values of \code{Y}. }
+\tabular{ll}{  \code{lacks}   \tab \code{x} lacks values of \code{y}.      \cr
+  \code{has}     \tab \code{x} has values of \code{y}.        \cr
+  \verb{in}      \tab \code{x} in values of \code{y}.         \cr
+  \code{mf}      \tab \code{x} missing from values of \code{y}. }
 \cr \emph{Root words for equality/inequality checking functions}
 \tabular{ll}{  \code{id}     \tab objects are identical                \cr
-  \code{ge}     \tab \code{X} is greater than or equal to \code{Y}. \cr
-  \code{gt}     \tab \code{X} is greater than \code{Y}.             \cr
-  \code{le}     \tab \code{X} is less than or equal to \code{Y}.    \cr
-  \code{lt}     \tab \code{X} is less than \code{Y}.                \cr
+  \code{ge}     \tab \code{x} is greater than or equal to \code{y}. \cr
+  \code{gt}     \tab \code{x} is greater than \code{y}.             \cr
+  \code{le}     \tab \code{x} is less than or equal to \code{y}.    \cr
+  \code{lt}     \tab \code{x} is less than \code{y}.                \cr
   \code{eq}     \tab values are equal                     \cr
   \code{dif}    \tab values are different                 \cr
   \code{seq}    \tab values are set equal                 \cr
@@ -1070,8 +1070,8 @@ egfailsafe <- function() {
   blank <- ""
   mss.scl <- Na
   lgl.scl <- FALSE
-  fac.scl <- factor("q", levels = c("X", "q"))
-  fac.vec <- factor(c("X", "q"), levels = c("X", "q"))
+  fac.scl <- factor("q", levels = c("x", "q"))
+  fac.vec <- factor(c("x", "q"), levels = c("x", "q"))
   chr.mat <- matrix(c("a", "b", "c", "Na"), nrow = 2)
   chr.dtf <- data.frame(abc = letters[1:3], def = letters[4:6])
   num.vls <- list(first3 = c(1:3, NA), next3 = c(4:6, NA))

@@ -131,255 +131,255 @@
 \usage{
 ppp_fast()
 
-.ATM(X)
+.ATM()
 
-.DEF(X)
+.DEF(x)
 
-.FUN(X)
+.FUN(x)
 
-.NIL(X)
+.NIL(x)
 
-.NLL(X)
+.NLL(x)
 
-.POP(X)
+.POP(x)
 
-.RCR(X)
+.RCR(x)
 
-.ARR(X)
+.ARR(x)
 
-.DTF(X)
+.DTF(x)
 
-.GEN(X)
+.GEN(x)
 
-.MAT(X)
+.MAT(x)
 
-.MVC(X)
+.MVC(x)
 
-.SCL(X)
+.SCL(x)
 
-.VLS(X)
+.VLS(x)
 
-.VEC(X)
+.VEC(x)
 
-.D0D(X)
+.D0D(x)
 
-.D1D(X)
+.D1D(x)
 
-.D2D(X)
+.D2D(x)
 
-.DHD(X)
+.DHD(x)
 
-.EUD(X)
+.EUD(x)
 
-.E2D(X)
+.E2D(x)
 
-.EHD(X)
+.EHD(x)
 
-.E0D(X)
+.E0D(x)
 
-.E1D(X)
+.E1D(x)
 
-.NA0(X)
+.NA0(x)
 
-.OK0(X)
+.OK0(x)
 
-.DUP(X)
+.DUP(x)
 
-.UNQ(X)
+.UNQ(x)
 
-.CMP(X)
+.CMP(x)
 
-.MSS(X)
+.MSS(x)
 
-.PRT(X)
+.PRT(x)
 
-.CH1(X)
+.CH1(x)
 
-.CH3(X)
+.CH3(x)
 
-.CHR(X)
+.CHR(x)
 
-.STR(X)
+.STR(x)
 
-.CLR(X)
+.CLR(x)
 
-.FAC(X)
+.FAC(x)
 
-.ORD(X)
+.ORD(x)
 
-.UNO(X)
+.UNO(x)
 
-.IND(X)
+.IND(x)
 
-.NST(X)
+.NST(x)
 
-.SRT(X)
+.SRT(x)
 
-.LGL(X)
+.LGL(x)
 
-.NUM(X)
+.NUM(x)
 
-.WHL(X)
+.WHL(x)
 
-.ODD(X)
+.ODD(x)
 
-.EVN(X)
+.EVN(x)
 
-.NGW(X)
+.NGW(x)
 
-.NPW(X)
+.NPW(x)
 
-.PSW(X)
+.PSW(x)
 
-.FRC(X)
+.FRC(x)
 
-.NEG(X)
+.NEG(x)
 
-.POS(X)
+.POS(x)
 
-.NNW(X)
+.NNW(x)
 
-.NPS(X)
+.NPS(x)
 
-.PCT(X)
+.PCT(x)
 
-.PPN(X)
+.PPN(x)
 
-.COL(X)
+.COL(x)
 
-.ROW(X)
+.ROW(x)
 
-.PNT(X)
+.PNT(x)
 
-.SLD(X)
+.SLD(x)
 
-.SQR(X)
+.SQR(x)
 
-.EMP(X)
+.EMP(x)
 
-.RCT(X)
+.RCT(x)
 
-.LIN(X)
+.LIN(x)
 
-.atm_dtf(X)
+.atm_dtf(x)
 
-.atm_mat(X)
+.atm_mat(x)
 
-.atm_scl(X)
+.atm_scl(x)
 
-.atm_vec(X)
+.atm_vec(x)
 
-.atm_vls(X)
+.atm_vls(x)
 
-.chr_arr(X)
+.chr_arr(x)
 
-.chr_dtf(X)
+.chr_dtf(x)
 
-.chr_vec(X)
+.chr_vec(x)
 
-.chr_vls(X)
+.chr_vls(x)
 
-.cmp_atm(X)
+.cmp_atm(x)
 
-.cmp_chr(X)
+.cmp_chr(x)
 
-.cmp_num(X)
+.cmp_num(x)
 
-.cmp_scl(X)
+.cmp_scl(x)
 
-.cmp_vec(X)
+.cmp_vec(x)
 
-.lgl_scl(X)
+.lgl_scl(x)
 
-.nnw_vec(X)
+.nnw_vec(x)
 
-.pop_atm(X)
+.pop_atm(x)
 
-.pop_chr(X)
+.pop_chr(x)
 
-.pop_dtf(X)
+.pop_dtf(x)
 
-.pop_mat(X)
+.pop_mat(x)
 
-.pop_srt(X)
+.pop_srt(x)
 
-.pop_vec(X)
+.pop_vec(x)
 
-.pop_vls(X)
+.pop_vls(x)
 
-.cmp_atm_vec(X)
+.cmp_atm_vec(x)
 
-.cmp_ch1_scl(X)
+.cmp_ch1_scl(x)
 
-.cmp_ch1_vec(X)
+.cmp_ch1_vec(x)
 
-.cmp_ch3_scl(X)
+.cmp_ch3_scl(x)
 
-.cmp_ch3_vec(X)
+.cmp_ch3_vec(x)
 
-.cmp_chr_arr(X, Valid = NULL)
+.cmp_chr_arr(x, .VALID = NULL)
 
-.cmp_chr_vec(X, Valid = NULL)
+.cmp_chr_vec(x, .VALID = NULL)
 
-.cmp_chr_vls(X, Valid = NULL)
+.cmp_chr_vls(x, .VALID = NULL)
 
-.cmp_chr_gen(X, Valid = NULL)
+.cmp_chr_gen(x, .VALID = NULL)
 
-.cmp_chr_scl(X, Valid = NULL)
+.cmp_chr_scl(x, .VALID = NULL)
 
-.cmp_clr_vec(X)
+.cmp_clr_vec(x)
 
-.cmp_lgl_scl(X)
+.cmp_lgl_scl(x)
 
-.cmp_lgl_vec(X)
+.cmp_lgl_vec(x)
 
-.cmp_nng_scl(X)
+.cmp_nng_scl(x)
 
-.cmp_nnw_scl(X)
+.cmp_nnw_scl(x)
 
-.cmp_nnw_vec(X)
+.cmp_nnw_vec(x)
 
-.cmp_num_scl(X, Valid = NULL)
+.cmp_num_scl(x, .VALID = NULL)
 
-.cmp_num_vec(X, Valid = NULL)
+.cmp_num_vec(x, .VALID = NULL)
 
-.cmp_pos_vec(X)
+.cmp_pos_vec(x)
 
-.cmp_ppn_vec(X)
+.cmp_ppn_vec(x)
 
-.cmp_psw_scl(X)
+.cmp_psw_scl(x)
 
-.cmp_psw_vec(X)
+.cmp_psw_vec(x)
 
-.cmp_srt_vec(X)
+.cmp_srt_vec(x)
 
-.cmp_str_scl(X)
+.cmp_str_scl(x)
 
-.cmp_str_vec(X)
+.cmp_str_vec(x)
 
-.cmp_whl_scl(X)
+.cmp_whl_scl(x)
 
-.cmp_atm_mvc(X)
+.cmp_atm_mvc(x)
 
-.unq_atm_mvc(X)
+.unq_atm_mvc(x)
 
-.unq_atm_vec(X)
+.unq_atm_vec(x)
 
-.unq_ch1_vec(X)
+.unq_ch1_vec(x)
 
-.unq_ch3_vec(X)
+.unq_ch3_vec(x)
 
-.unq_chr_vec(X, Valid = NULL)
+.unq_chr_vec(x, .VALID = NULL)
 
-.unq_nnw_vec(X)
+.unq_nnw_vec(x)
 
-.unq_num_vec(X, Valid = NULL)
+.unq_num_vec(x, .VALID = NULL)
 
-.unq_psw_vec(X)
+.unq_psw_vec(x)
 
-.unq_str_vec(X)
+.unq_str_vec(x)
 
-.atm_rct_dtf(X)
+.atm_rct_dtf(x)
 }
 \value{
 \code{TRUE} or \code{FALSE}.

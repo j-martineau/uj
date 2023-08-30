@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{purge}
 \alias{purge}
-\alias{X}
+\alias{x}
 \alias{purge_plot}
 \alias{rm_plot}
 \alias{xplot}
@@ -31,19 +31,19 @@
 \usage{
 purge(...)
 
-X(...)
+x(...)
 
-purge_plot(X = NULL)
+purge_plot(x = NULL)
 
-rm_plot(X = NULL)
+rm_plot(x = NULL)
 
-xplot(X = NULL)
+xplot(x = NULL)
 
-purge_plots(X = NULL)
+purge_plots(x = NULL)
 
-rm_plots(X = NULL)
+rm_plots(x = NULL)
 
-xplots(X = NULL)
+xplots(x = NULL)
 
 purge_warnings()
 
@@ -61,11 +61,11 @@ xconsole()
 
 xcon()
 
-purge_pref(Funs)
+purge_pref(funs)
 
-rm_pref(Funs)
+rm_pref(funs)
 
-xpref(Funs)
+xpref(funs)
 
 purge_global()
 
@@ -82,9 +82,9 @@ xall()
 \arguments{
 \item{...}{One or more \link[=cmp_chr_vec]{complete character vecs} containing names of objects to purge from the global environment.}
 
-\item{X}{Anticipated to be a plot object, but any object can be handled.}
+\item{x}{Anticipated to be a plot object, but any object can be handled.}
 
-\item{Funs}{\link[=cmp_chr_vec]{A complete character vec} of function names, possibly with package prefixes.}
+\item{funs}{\link[=cmp_chr_vec]{A complete character vec} of function names, possibly with package prefixes.}
 }
 \value{
 \strong{A character vector}    \cr\cr \verb{purge_pref, rm_pref, xpref}
@@ -94,14 +94,14 @@ xall()
 Purge objects and parts of objects
 }
 \details{
-All purge (\code{X}) functions include garbage collection.
-\tabular{ll}{  \verb{purge_pref, rm__pref, xpref}   \tab Purge package prefixes\eqn{^{(1)}}    \cr
-  \verb{purge_plot, rm_plot, xplot}    \tab Purge plots\eqn{^{(2)}}               \cr
-  \verb{purge_warn, rm_warn, xwarn}    \tab Purge warnings                        \cr
-  \verb{purge_con, rm_con, xcon}       \tab Purge console                         \cr
-  \verb{purge, X}                      \tab Purge specific objects                  }
+All purge (\code{x}) functions include garbage collection.
+\tabular{ll}{  \verb{purge_pref, rm_pref, xpref}   \tab Purge package prefixes\eqn{^{(1)}}    \cr
+  \verb{purge_plot, rm_plot, xplot}   \tab Purge plots\eqn{^{(2)}}               \cr
+  \verb{purge_warn, rm_warn, xwarn}   \tab Purge warnings                        \cr
+  \verb{purge_con, rm_con, xcon}      \tab Purge console                         \cr
+  \verb{purge, x}                     \tab Purge specific objects                  }
 \tabular{l}{  \eqn{^{(1)}} Converts \code{'base::paste'} to \code{'paste'}, for example.           \cr
-  \eqn{^{(2)}} Followed by printing the object \code{X} if not \code{NULL}.            \cr   }
+  \eqn{^{(2)}} Followed by printing the object \code{x} if not \code{NULL}.            \cr   }
 \tabular{ll}{  \verb{purge_global, purge_all}      \tab \strong{WARNING: Use with care!}            \cr
   \verb{rm_global, rm_all}            \tab    *These functions purge *            \cr
   \verb{xglobal, xall}                \tab    \emph{the global environment}              }
@@ -112,8 +112,8 @@ xpref(egFunNames)
 \dontrun{
   ## build a ggplot scatterplot object (y.)
   library(ggplot2)
-  egObj <- data.frame(X = 0:100, y = sqrt(0:100)
-  egGgp <- ggplot(egObj, aes(X, y)) + geom_point()
+  egObj <- data.frame(x = 0:100, y = sqrt(0:100)
+  egGgp <- ggplot(egObj, aes(x, y)) + geom_point()
 
   ## print to console, wait for user, purge console
   say("\n A message")
@@ -121,7 +121,7 @@ xpref(egFunNames)
   xcon()
 
   ## display a scatterplot, wait for user
-  plot(egObj$X, egObj$y)
+  plot(egObj$x, egObj$y)
   continue()
 
   ## purge plots and print ggplot

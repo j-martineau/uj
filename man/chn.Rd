@@ -4,22 +4,22 @@
 \name{chn}
 \alias{chn}
 \alias{charn}
-\title{Get the \code{N}-th character element-wise.}
+\title{Get the \code{n}-th character element-wise.}
 \usage{
-chn(X, N)
+chn(x, n)
 
-charn(X, N)
+charn(x, n)
 }
 \arguments{
-\item{X}{A \link[=pop_chr]{populated character object}.}
+\item{x}{A \link[=pop_chr]{populated character object}.}
 
-\item{N}{A \link[=cmp_psw_scl]{positive whole-number scalar} or a \link[=cmp_psw]{complete positive whole-number object} of the same dimensions as \code{X}.}
+\item{n}{A \link[=cmp_psw_scl]{positive whole-number scalar} or a \link[=cmp_psw]{complete positive whole-number object} of the same dimensions as \code{x}.}
 }
 \value{
-A \link[=cmp_ch1]{complete onechar} atomic object of the same dimension as \code{X}.
+A \link[=cmp_ch1]{complete onechar} atomic object of the same dimension as \code{x}.
 }
 \description{
-Get the \code{N}-th character element-wise.
+Get the \code{n}-th character element-wise.
 }
 \examples{
 words <- stringr::fruit[1:10]

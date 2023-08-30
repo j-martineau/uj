@@ -8,22 +8,22 @@
 \alias{trm}
 \title{String spacing functions}
 \usage{
-spaces(N)
+spaces(n)
 
-pad(..., N = 0, S = "r", P = " ")
+pad(..., n = 0, s = "r", p = " ")
 
 sqz(...)
 
 trm(...)
 }
 \arguments{
-\item{N}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of spaces or the number of pad characters.}
+\item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the number of spaces or the number of pad characters.}
 
 \item{...}{An arbitrary number of atomic arguments to be processed.}
 
-\item{S}{A \link[=cmp_ch1_vec]{complete onechar scalar} indicating side(s) to pad: \code{'l'}, \code{'r'}, or \code{'b'} for left, right, or both, respectively.}
+\item{s}{A \link[=cmp_ch1_vec]{complete onechar scalar} indicating side(s) to pad: \code{'l'}, \code{'r'}, or \code{'b'} for left, right, or both, respectively.}
 
-\item{P}{A complete onechar scalar containing a single character used to pad strings.}
+\item{p}{A complete onechar scalar containing a single character used to pad strings.}
 }
 \value{
 \strong{A character scalar} \cr\cr   \code{spaces}
@@ -41,11 +41,11 @@ These functions create strings of spaces, pad strings with space, trim edge spac
 \examples{
 spaces(0)
 spaces(4)
-pad(0:9, N = 3)
-pad(0:9, N = 3, S = "r")
-pad(0:9, N = 3, S = "l")
-pad(0:9, N = 3, S = "b")
-pad(0:9, N = 3, S = "b", P = "*")
+pad(0:9, n = 3)
+pad(0:9, n = 3, s = "r")
+pad(0:9, n = 3, s = "l")
+pad(0:9, n = 3, s = "b")
+pad(0:9, n = 3, s = "b", p = "*")
 trm(c("a ", "b", "c", " ", "d  ", ""))
 sqz(c("a ", "b", "c", " ", "d  ", ""))
 sqz(trm(c("a ", "b", "c", " ", "d  ", "")))

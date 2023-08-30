@@ -14,48 +14,48 @@
 \alias{vecNA}
 \alias{vls}
 \alias{vls.}
-\title{Declare basic R objects with extended functionality}
+\title{Declare basic .R objects with extended functionality}
 \usage{
-dtf(..., CN = NULL)
+dtf(..., .CN = NULL)
 
 dtf.(...)
 
-dtf0(CN)
+dtf0(.CN)
 
-dtfNA(CN, NR)
+dtfNA(.CN, .NR)
 
-mat(..., R = 1, NR = NULL, NC = NULL, BR = F, RN = NULL, CN = NULL)
+mat(..., .R = 1, .NR = NULL, .NC = NULL, .BR = F, .RN = NULL, .CN = NULL)
 
-matd(X = 1, R = 1)
+matd(x = 1, .R = 1)
 
-vec(..., R = 1, VN = NULL)
+vec(..., .R = 1, .VN = NULL)
 
 vec.(...)
 
-vecNA(R)
+vecNA(.R)
 
-vls(..., VN = NULL)
+vls(..., .VN = NULL)
 
 vls.(...)
 }
 \arguments{
 \item{...}{Objects to placed in an atomic vec, atomic matrix, atomic data.frame, vlist, or square atomic diagonal matrix. \link[=a]{Atomized} for vec and matrix creation.}
 
-\item{CN}{A possibly pipe-delimited complete character vec of column names (respectively) for a data.frame.}
+\item{.CN}{Possibly pipe-delimited complete character vec of matrix/data.frame column names.}
 
-\item{NR}{Complete positive whole-number scalars giving number of matrix rows.}
+\item{.NR}{Complete positive whole-number scalars giving number of matrix rows.}
 
-\item{R}{A non-\code{NA} numeric scalar number of replications.}
+\item{.R}{A non-\code{NA} numeric scalar number of replications.}
 
-\item{NC}{Complete positive whole-number scalars giving number of matrix columns.}
+\item{.NC}{Complete positive whole-number scalars giving number of matrix columns.}
 
-\item{BR}{\code{TRUE} or \code{FALSE} indicating whether to fill matrices by row.}
+\item{.BR}{\code{TRUE} or \code{FALSE} indicating whether to fill matrices by row.}
 
-\item{RN}{Possibly pipe-delimited complete character vec of matrix row names.}
+\item{.RN}{Possibly pipe-delimited complete character vec of matrix row names.}
 
-\item{X}{A non-empty vector of mode \code{'numeric'}, \code{'character'}, or \code{'logical'}.}
+\item{x}{A non-empty vector of mode \code{'numeric'}, \code{'character'}, or \code{'logical'}.}
 
-\item{VN}{A possibly pipe-delimited, \link[=cmp_chr_vec]{complete character vec} of names to apply to vector or list elements}
+\item{.VN}{A possibly pipe-delimited, \link[=cmp_chr_vec]{complete character vec} of names to apply to vector or list elements}
 }
 \value{
 \strong{An atomic data.frame}  \cr\cr \verb{dtf, dtf., dtf0, dtfNA}
@@ -73,7 +73,7 @@ This family of functions enforces the restrictions that names must (a) contain o
   \code{dtfNA}   \tab Declares a \code{data.frame} of \code{NA} values.                                                                                          }
 \cr\cr \strong{Functions declaring matrices:}
 \tabular{ll}{  \code{mat}     \tab Declares a matrix.                                                                                                                  \cr   \tab   \cr
-  \code{matd}    \tab Declares a square diagonal matrix: off-diags are \code{0}, \code{FALSE}, and \code{""} for \code{X} of mode \code{'numeric'}, \code{'logical'}, and \code{'character'}, respectively. }
+  \code{matd}    \tab Declares a square diagonal matrix: off-diags are \code{0}, \code{FALSE}, and \code{""} for \code{x} of mode \code{'numeric'}, \code{'logical'}, and \code{'character'}, respectively. }
 \cr\cr \strong{Functions declaring atomic vectors:}
 \tabular{ll}{  \code{vec}     \tab Declares a vector.                                                                       \cr   \tab   \cr
   \code{vec.}    \tab Declares a named atomic vector concisely: \code{vec.(a, b)} is identical to \code{c(a = a, b = b)} \cr   \tab   \cr
@@ -94,29 +94,29 @@ egLabs1 <- c("abc", "nums", "na")
 egLabs2 <- c("abc", "NUMS", "na")
 
 vec(egA, egB, egC)
-vec(egA, egB, egC, VN = abc)
-vec(egA, egB, egC, VN = "a|b|c")
+vec(egA, egB, egC, .VN = abc)
+vec(egA, egB, egC, .VN = "a|b|c")
 vec(egA = egA, egB = egB, egC = egC)
 vec.(egA, egB, egC)
 vecNA(3)
 
 mat(1:9)
-mat(1:9, NR = 3)
-mat(1:9, NC = 3)
-mat(1:9, NR = 3, RN = "a|b|c", CN = egABC, BR = TRUE)
+mat(1:9, .NR = 3)
+mat(1:9, .NC = 3)
+mat(1:9, .NR = 3, .RN = "a|b|c", .CN = egABC, .BR = TRUE)
 dmat(egABC)
 dmat(1, 3)
 dmat(TRUE, 3)
 
 vls(egABC, egNums, egNA)
-vls(egABC, egNums, egABC, VN = Labs1)
+vls(egABC, egNums, egABC, .VN = Labs1)
 vls(egABC = egABC, egNums = egNums, egNA = egNA)
-vls(egABC, egNums, egNA, VN = "egABC|egNums|egNA")
+vls(egABC, egNums, egNA, .VN = "egABC|egNums|egNA")
 vls.(egABC, egNums, egNA)
 
-dtf(egABC, egNUMS, egNA, CN = Labs2)
+dtf(egABC, egNUMS, egNA, .CN = Labs2)
 dtf(egABC = egABC, egNUMS = egNUMS, egNA = egNA)
-dtf(egABC, egNUMS, egNA, CN = "egABC|egNUMS|egNA")
+dtf(egABC, egNUMS, egNA, .CN = "egABC|egNUMS|egNA")
 dtf.(egABC, egNUMS, egNA)
 dtf0(egABC)
 dtf0("egA|egB|egC")

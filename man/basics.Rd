@@ -60,111 +60,111 @@
 \usage{
 basics()
 
-g(G, ...)
+g(g, ...)
 
 g0(...)
 
 g1(...)
 
-p(P, ...)
+p(p, ...)
 
 p0(...)
 
 p1(...)
 
-na(X)
+na(x)
 
-ok(X)
+ok(x)
 
-wna(X)
+wna(x)
 
-wok(X)
+wok(x)
 
-null(X)
+null(x)
 
-def(X)
+def(x)
 
-lo(X)
+lo(x)
 
-hi(X)
+hi(x)
 
-len(X)
+len(x)
 
-mid(X, Start, Stop)
+mid(x, start, stop)
 
-spf(Fmt, ...)
+spf(fmt, ...)
 
-levs(X)
+levs(x)
 
-rounded(X)
+rounded(x)
 
-clabs(X)
+clabs(x)
 
 dlabs()
 
-rlabs(X)
+rlabs(x)
 
-vlabs(X)
+vlabs(x)
 
-is_atm(X)
+is_atm(x)
 
-is_chr(X)
+is_chr(x)
 
-is_fac(X)
+is_fac(x)
 
-is_int(X)
+is_int(x)
 
-is_lgl(X)
+is_lgl(x)
 
-is_num(X)
+is_num(x)
 
-is_ord(X)
+is_ord(x)
 
-is_uno(X)
+is_uno(x)
 
-not_atm(X)
+not_atm(x)
 
-not_chr(X)
+not_chr(x)
 
-not_fac(X)
+not_fac(x)
 
-not_int(X)
+not_int(x)
 
-not_lgl(X)
+not_lgl(x)
 
-not_num(X)
+not_num(x)
 
-not_ord(X)
+not_ord(x)
 
-not_uno(X)
+not_uno(x)
 
-is_arr(X)
+is_arr(x)
 
-is_dtf(X)
+is_dtf(x)
 
-is_fun(X)
+is_fun(x)
 
-is_lst(X)
+is_lst(x)
 
-is_mat(X)
+is_mat(x)
 
-is_vec(X)
+is_vec(x)
 
-not_arr(X)
+not_arr(x)
 
-not_dtf(X)
+not_dtf(x)
 
-not_fun(X)
+not_fun(x)
 
-not_lst(X)
+not_lst(x)
 
-not_mat(X)
+not_mat(x)
 
-not_veq(X, Y)
+not_veq(x, y)
 
-x_in(X, ...)
+x_in(x, ...)
 
-x_mf(X, ...)
+x_mf(x, ...)
 }
 \arguments{
 \item{...}{one or more \R objects, to be converted to character vectors.}
@@ -200,37 +200,37 @@ Wrappers for frequently used \code{base} package functions.
   \code{p0}      \tab \code{paste(..., sep = "")}                        \cr
   \code{g1}      \tab \code{paste0(av(...), collapse = " ")}             \cr
   \code{p1}      \tab \code{paste(..., sep = " ")}          \cr   \tab   \cr
-  \code{hi}      \tab \code{ceiling(X)}                                  \cr
-  \code{lo}      \tab \code{floor(X)}                       \cr   \tab   \cr
-  \code{na}      \tab \code{is.na(X)}                                    \cr
-  \code{ok}      \tab \code{!is.na(X)}                      \cr   \tab   \cr
-  \code{wna}     \tab \code{which(na(X))}                                \cr
-  \code{wok}     \tab \code{which(ok(X))}                   \cr   \tab   \cr
-  \code{len}     \tab \code{nchar(X)}                       \cr   \tab   \cr
+  \code{hi}      \tab \code{ceiling(x)}                                  \cr
+  \code{lo}      \tab \code{floor(x)}                       \cr   \tab   \cr
+  \code{na}      \tab \code{is.na(x)}                                    \cr
+  \code{ok}      \tab \code{!is.na(x)}                      \cr   \tab   \cr
+  \code{wna}     \tab \code{which(na(x))}                                \cr
+  \code{wok}     \tab \code{which(ok(x))}                   \cr   \tab   \cr
+  \code{len}     \tab \code{nchar(x)}                       \cr   \tab   \cr
   \code{mid}     \tab \code{substr(.)}                      \cr   \tab   \cr
   \code{spf}     \tab \code{sprintf(.)}                     \cr   \tab   \cr
-  \code{levs}    \tab \code{levels(X)}                      \cr   \tab   \cr
+  \code{levs}    \tab \code{levels(x)}                      \cr   \tab   \cr
   \code{none}    \tab \code{!any(av(...))}                  \cr   \tab   \cr
-  \code{x_in}    \tab \code{X[isIN(X, ...)]}                             \cr
-  \code{x_mf}    \tab \code{X[isMF(X, ...)]}                \cr   \tab   \cr
-  \code{clabs}   \tab \code{colnames(X)}                                 \cr
-  \code{dlabs}   \tab \code{...names(X)}                                 \cr
-  \code{elabs}   \tab \code{names(X)}                                    \cr
+  \code{x_in}    \tab \code{x[isIN(x, ...)]}                             \cr
+  \code{x_mf}    \tab \code{x[isMF(x, ...)]}                \cr   \tab   \cr
+  \code{clabs}   \tab \code{colnames(x)}                                 \cr
+  \code{dlabs}   \tab \code{...names(x)}                                 \cr
+  \code{elabs}   \tab \code{names(x)}                                    \cr
   \code{rlabs}   \tab \code{rownames}                       \cr   \tab     }
-\tabular{ll}{  \verb{is_arr, not_arr}   \tab \verb{(!)is.array(X)}                           \cr
-  \verb{is_dtf, not_dtf}   \tab \verb{(!)is.data.frame(X)}                      \cr
-  \verb{is_fun, not_fun}   \tab \verb{(!)is.function(X)}                        \cr
-  \verb{is_lst, not_lst}   \tab \verb{(!)is.list(X)}                            \cr
-  \verb{is_mat, not_mat}   \tab \verb{(!)is.matrix(X)}                          \cr
-  \verb{is_vec, not_veq}   \tab \verb{(!)is.vector(X)}             \cr   \tab   \cr
-  \verb{is_atm, not_atm}   \tab \verb{(!)is.atomic(X)}                          \cr
-  \verb{is_chr, not_chr}   \tab \verb{(!)is.character(X)}                       \cr
-  \verb{is_fac, not_fac}   \tab \verb{(!)is.factor(X)}                          \cr
-  \verb{is_int, not_int}   \tab \verb{(!)is.integer(X)}                         \cr
-  \verb{is_lgl, not_lgl}   \tab \verb{(!)is.logical(X)}                         \cr
-  \verb{is_num, not_num}   \tab \verb{(!)is.numeric(X)}                         \cr
-  \verb{is_ord, not_ord}   \tab \verb{(!)is.ordered(X)}                         \cr
-  \verb{is_uno, not_uno}   \tab \verb{(!)is_fac(X) & (!)is_ord(X)} \cr   \tab     }
+\tabular{ll}{  \verb{is_arr, not_arr}   \tab \verb{(!)is.array(x)}                           \cr
+  \verb{is_dtf, not_dtf}   \tab \verb{(!)is.data.frame(x)}                      \cr
+  \verb{is_fun, not_fun}   \tab \verb{(!)is.function(x)}                        \cr
+  \verb{is_lst, not_lst}   \tab \verb{(!)is.list(x)}                            \cr
+  \verb{is_mat, not_mat}   \tab \verb{(!)is.matrix(x)}                          \cr
+  \verb{is_vec, not_veq}   \tab \verb{(!)is.vector(x)}             \cr   \tab   \cr
+  \verb{is_atm, not_atm}   \tab \verb{(!)is.atomic(x)}                          \cr
+  \verb{is_chr, not_chr}   \tab \verb{(!)is.character(x)}                       \cr
+  \verb{is_fac, not_fac}   \tab \verb{(!)is.factor(x)}                          \cr
+  \verb{is_int, not_int}   \tab \verb{(!)is.integer(x)}                         \cr
+  \verb{is_lgl, not_lgl}   \tab \verb{(!)is.logical(x)}                         \cr
+  \verb{is_num, not_num}   \tab \verb{(!)is.numeric(x)}                         \cr
+  \verb{is_ord, not_ord}   \tab \verb{(!)is.ordered(x)}                         \cr
+  \verb{is_uno, not_uno}   \tab \verb{(!)is_fac(x) & (!)is_ord(x)} \cr   \tab     }
 }
 \examples{
 vals <- c(1:3, 2:4) / 3

@@ -4,8 +4,8 @@
 #' @title Are objects comparable?
 #' @description Determines whether modes of all `...` arguments are comparable (i.e., sortable and compatible with each other), meaning that the are either all character, all logical, all numeric, or all ordered factor with the same set of levels (in the same order).
 #' @param ... An arbitrary number of arguments to be checked for comparability with each other.
-#' @param rec. `TRUE` or `FALSE` indicating whether `...` arguments must be recyclable to be comparable.
-#' @param X,y Arguments to be checked for comparability.
+#' @param .REC `TRUE` or `FALSE` indicating whether `...` arguments must be recyclable to be comparable.
+#' @param x,y Arguments to be checked for comparability.
 #' @return A logical scalar.
 #' @examples
 #' az. <- letters
@@ -16,25 +16,25 @@
 #' comparable(list(az., 1:10), az., 1:10)
 #' comparable(factor(az., az., ordered = T), factor("q", az., ordered = T))
 #' @export
-comparable <- function(..., REC = FALSE) {
-  X <- base::list(...)
-  N <- base::length(X)
+comparable <- function(..., .REC = FALSE) {
+  x <- base::list(...)
+  N <- base::length(x)
   Errors <- NULL
   if (N < 2) {Errors <- base::c(Errors, "[...] must contain multiple arguments.")}
-  if (!uj:::.cmp_lgl_scl(REC)) {Errors <- base::c(Errors, "[REC] must be TRUE or FALSE.")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
-  if (REC) {
-    UnqNs <- base::unique(base::lengths(X))
+  if (!uj:::.cmp_lgl_scl(.REC)) {Errors <- base::c(Errors, "[.REC] must be TRUE or FALSE.")}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
+  if (.REC) {
+    UnqNs <- base::unique(base::lengths(x))
     nReps <- base::max(UnqNs) / UnqNs
     if (base::any(nReps != base::round(nReps))) {return(F)}
   }
-  Chr <- base::all(base::sapply(X, base::is.character(X)))
-  Lgl <- base::all(base::sapply(X, base::is.logical(X)))
-  Num <- base::all(base::sapply(X, base::is.numeric(X)))
-  Ord <- base::all(base::sapply(X, base::is.ordered(X)))
+  Chr <- base::all(base::sapply(x, base::is.character(x)))
+  Lgl <- base::all(base::sapply(x, base::is.logical(x)))
+  Num <- base::all(base::sapply(x, base::is.numeric(x)))
+  Ord <- base::all(base::sapply(x, base::is.ordered(x)))
   if (!Chr & !Lgl & !Num) {
     if (Ord) {
-      FacLevs <- base::lapply(X, base::levels)
+      FacLevs <- base::lapply(x, base::levels)
       for (i in 2:N) {
         CurrLevs <- FacLevs[[i]]
         PrevLevs <- FacLevs[[i - 1]]
@@ -48,4 +48,4 @@ comparable <- function(..., REC = FALSE) {
 
 #' @rdname comparable
 #' @export
-comparable_xy <- function(X, y, REC = FALSE) {uj::comparable(X, y, REC = REC)}
+comparable_xy <- function(x, y, .REC = FALSE) {uj::comparable(x, y, .REC = .REC)}

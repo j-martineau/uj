@@ -17,36 +17,36 @@
 \alias{SQR}
 \title{Shape properties}
 \usage{
-sss(X)
+sss(x)
 
 sss_props()
 
 sss_funs()
 
-is_sss_spec(Spec)
+is_sss_spec(spec)
 
-SSS(X, Spec, ...)
+SSS(x, spec, ...)
 
-COL(X, ...)
+COL(x, ...)
 
-EMP(X, ...)
+EMP(x, ...)
 
-LIN(X, ...)
+LIN(x, ...)
 
-PNT(X, ...)
+PNT(x, ...)
 
-RCT(X, ...)
+RCT(x, ...)
 
-ROW(X, ...)
+ROW(x, ...)
 
-SLD(X, ...)
+SLD(x, ...)
 
-SQR(X, ...)
+SQR(x, ...)
 }
 \arguments{
-\item{X}{An R object.}
+\item{x}{An R object.}
 
-\item{Spec}{Either \code{NULL} or a \link[=cmp_chr_vec]{complete character vec} containing one or more shape properties (i.e., from \code{sss_props()}). Shape properties in \code{spec} may be pipe-delimited. If there are multiple shape properties in \code{spec}, \code{X} is inspected for any match to any shape property in \code{spec}.}
+\item{spec}{Either \code{NULL} or a \link[=cmp_chr_vec]{complete character vec} containing one or more shape properties (i.e., from \code{sss_props()}). Shape properties in \code{spec} may be pipe-delimited. If there are multiple shape properties in \code{spec}, \code{x} is inspected for any match to any shape property in \code{spec}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -75,17 +75,17 @@ Shape properties are defined as follows:
 \tabular{ll}{  \code{is_sss_spec}   \tab Is \code{spec} a shape specification?                                                                              \cr
   \code{sss_props}     \tab What shape properties are there?                                                                              \cr
   \code{sss_funs}      \tab What shape property functions are there?                                                                      \cr   \tab  }
-\tabular{ll}{  \code{{SSS}}         \tab Does \code{X} match single shape property \code{'{SSS}'}? (where \code{{SSS}} is a placeholder for any given shape property. \cr   \tab   \cr
-  \code{SSS}           \tab Does \code{X} match the shape spec in argument \code{spec}?                                                             \cr
-  \code{sss}           \tab What are \code{X}'s shape properties?                                                                                }
+\tabular{ll}{  \code{{SSS}}         \tab Does \code{x} match single shape property \code{'{SSS}'}? (where \code{{SSS}} is a placeholder for any given shape property. \cr   \tab   \cr
+  \code{SSS}           \tab Does \code{x} match the shape spec in argument \code{spec}?                                                             \cr
+  \code{sss}           \tab What are \code{x}'s shape properties?                                                                                }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.LT, .LE, .GE, .GT}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.N, .NR, .NC}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.VALS}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{

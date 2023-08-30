@@ -1,16 +1,16 @@
 #' @encoding UTF-8
 #' @family conversions
 #' @family strings
-#' @title Convert string Case
+#' @title Convert string case
 #' @description Convert among lower, sentence, title, and upper cases.
-#' @details Functions in this family convert string Case as follows:
-#' \tabular{ll}{  `totitle, tc`   \tab Convert to \link[stringr:str_to_sentence]{title Case}.    \cr
-#'                `tosent, sc`    \tab Convert to \link[stringr:str_to_sentence]{sentence Case}. \cr
-#'                `tocase`        \tab Convert to Case `Case`.                                   \cr
-#'                `lc`            \tab Convert to \link[base:tolower]{lower Case}.               \cr
-#'                `uc`            \tab Convert to \link[base:toupper]{upper Case}.                 }
+#' @details Functions in this family convert string case as follows:
+#' \tabular{ll}{  `totitle, tc`   \tab Convert to \link[stringr:str_to_sentence]{title case}.    \cr
+#'                `tosent, sc`    \tab Convert to \link[stringr:str_to_sentence]{sentence case}. \cr
+#'                `tocase`        \tab Convert to case `case`.                                   \cr
+#'                `lc`            \tab Convert to \link[base:tolower]{lower case}.               \cr
+#'                `uc`            \tab Convert to \link[base:toupper]{upper case}.                 }
 #' @param ... An arbitrary number of non-empty character arguments.
-#' @param Case A Case insensitive \link[=cmp_ch1_scl]{complete onechar scalar}. Either `'l'`, `'s'`, `'t'`, or `'u'` to indicate lower, sentence, title, or upper Case, respectively.
+#' @param case A case insensitive \link[=cmp_ch1_scl]{complete onechar scalar}. Either `'l'`, `'s'`, `'t'`, or `'u'` to indicate lower, sentence, title, or upper case, respectively.
 #' @return A character vector.
 #' @examples
 #' egSentence <- "This is a sentence."
@@ -32,16 +32,16 @@
 #' tocase("s", egTitle, egList)
 #' tocase("u", egList)
 #' @export
-tocase <- function(Case, ...) {
+tocase <- function(case, ...) {
   X <- uj::av(...)
-  OkCase <- uj:::.cmp_chr_scl(Case, Valid = base::c("l", "s", "t", "u"))
+  OkCase <- uj:::.cmp_chr_scl(case, .VALID = base::c("l", "s", "t", "u"))
   Errors <- NULL
-  if (!OkCase) {Errors <- base::c(Errors, "[Case] must be either 'l', 's', 't', or 'u'.")}
+  if (!OkCase) {Errors <- base::c(Errors, "[case] must be either 'l', 's', 't', or 'u'.")}
   if (!uj:::.cmp_chr_vec(X)) {Errors <- base::c(Errors, "[...] must be contain character values.")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
-  if      (Case == "l") {base::tolower(X)}
-  else if (Case == "u") {base::toupper(X)}
-  else if (Case == "t") {stringr::str_to_title(X)}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
+  if      (case == "l") {base::tolower(X)}
+  else if (case == "u") {base::toupper(X)}
+  else if (case == "t") {stringr::str_to_title(X)}
   else                  {stringr::str_to_sentence(X)}
 }
 

@@ -4,19 +4,19 @@
 #' @family meta
 #' @family purge
 #' @title Purge objects and parts of objects
-#' @details All purge (`X`) functions include garbage collection.
-#' \tabular{ll}{  `purge_pref, rm__pref, xpref`   \tab Purge package prefixes\eqn{^{(1)}}    \cr
-#'                `purge_plot, rm_plot, xplot`    \tab Purge plots\eqn{^{(2)}}               \cr
-#'                `purge_warn, rm_warn, xwarn`    \tab Purge warnings                        \cr
-#'                `purge_con, rm_con, xcon`       \tab Purge console                         \cr
-#'                `purge, X`                      \tab Purge specific objects                  }
+#' @details All purge (`x`) functions include garbage collection.
+#' \tabular{ll}{  `purge_pref, rm_pref, xpref`   \tab Purge package prefixes\eqn{^{(1)}}    \cr
+#'                `purge_plot, rm_plot, xplot`   \tab Purge plots\eqn{^{(2)}}               \cr
+#'                `purge_warn, rm_warn, xwarn`   \tab Purge warnings                        \cr
+#'                `purge_con, rm_con, xcon`      \tab Purge console                         \cr
+#'                `purge, x`                     \tab Purge specific objects                  }
 #'  \tabular{l}{  \eqn{^{(1)}} Converts `'base::paste'` to `'paste'`, for example.           \cr
-#'                \eqn{^{(2)}} Followed by printing the object `X` if not `NULL`.            \cr   }
+#'                \eqn{^{(2)}} Followed by printing the object `x` if not `NULL`.            \cr   }
 #' \tabular{ll}{  `purge_global, purge_all`      \tab **WARNING: Use with care!**            \cr
 #'                `rm_global, rm_all`            \tab    *These functions purge *            \cr
 #'                `xglobal, xall`                \tab    *the global environment*              }
-#' @param X Anticipated to be a plot object, but any object can be handled.
-#' @param Funs \link[=cmp_chr_vec]{A complete character vec} of function names, possibly with package prefixes.
+#' @param x Anticipated to be a plot object, but any object can be handled.
+#' @param funs \link[=cmp_chr_vec]{A complete character vec} of function names, possibly with package prefixes.
 #' @param ... One or more \link[=cmp_chr_vec]{complete character vecs} containing names of objects to purge from the global environment.
 #' @return **A character vector**    \cr\cr `purge_pref, rm_pref, xpref`
 #' \cr\cr  **The** `NULL` **object** \cr\cr all others
@@ -26,8 +26,8 @@
 #' \dontrun{
 #'   ## build a ggplot scatterplot object (y.)
 #'   library(ggplot2)
-#'   egObj <- data.frame(X = 0:100, y = sqrt(0:100)
-#'   egGgp <- ggplot(egObj, aes(X, y)) + geom_point()
+#'   egObj <- data.frame(x = 0:100, y = sqrt(0:100)
+#'   egGgp <- ggplot(egObj, aes(x, y)) + geom_point()
 #'
 #'   ## print to console, wait for user, purge console
 #'   say("\n A message")
@@ -35,7 +35,7 @@
 #'   xcon()
 #'
 #'   ## display a scatterplot, wait for user
-#'   plot(egObj$X, egObj$y)
+#'   plot(egObj$x, egObj$y)
 #'   continue()
 #'
 #'   ## purge plots and print ggplot
@@ -55,22 +55,22 @@
 #' }
 #' @export
 purge <- function(...) {
-  X <- base::as.character(base::match.call())
-  X <- X[2:base::length(X)]
-  Code <- base::paste0("rm(", uj::g(", ", X), ")")
+  x <- base::as.character(base::match.call())
+  x <- x[2:base::length(x)]
+  Code <- base::paste0("rm(", uj::g(", ", x), ")")
   base::eval.parent(base::parse(text = Code), n = 1)
   base::gc(verbose = FALSE)
 }
 
 #' @rdname purge
 #' @export
-X <- purge
+x <- purge
 
 #' @rdname purge
 #' @export
-purge_plot <- function(X = NULL) {
+purge_plot <- function(x = NULL) {
   grDevices::graphics.off()
-  if (!base::is.null(X)) {base::print(X)}
+  if (!base::is.null(x)) {base::print(x)}
   base::gc(verbose = FALSE)
 }
 
@@ -98,8 +98,8 @@ xplots <- purge_plot
 #' @export
 purge_warnings <- function() {
   base::gc(verbose = FALSE)
-  X <- base::baseenv()$last.warning
-  if (!base::is.null(X)) {
+  x <- base::baseenv()$last.warning
+  if (!base::is.null(x)) {
     Locked <- base::bindingIsLocked("last.warning", base::baseenv())
     if (Locked) {base::unlockBinding("last.warning", base::baseenv())}
     base::assign("last.warning", NULL, envir = base::baseenv())
@@ -140,13 +140,13 @@ xcon <- purge_console
 
 #' @rdname purge
 #' @export
-purge_pref <- function(Funs) {
+purge_pref <- function(funs) {
   base::gc(verbose = FALSE)
-  if (!uj:::.cmp_chr_vec(Funs)) {uj::stopperr("[Funs] must be a complete character vec (?cmp_chr_vec).", PKG = "uj")}
-  Where <- base::regexpr(":::", Funs, fixed = T)
+  if (!uj:::.cmp_chr_vec(funs)) {uj::stopperr("[funs] must be a complete character vec (?cmp_chr_vec).", .PKG = "uj")}
+  Where <- base::regexpr(":::", funs, fixed = T)
   Where[Where == -1] <- -2
-  Funs <- base::substr(Funs, Where + 3, base::nchar(Funs))
-  base::substr(Funs, base::regexpr("::", Funs, fixed = T) + 2, base::nchar(Funs))
+  funs <- base::substr(funs, Where + 3, base::nchar(funs))
+  base::substr(funs, base::regexpr("::", funs, fixed = T) + 2, base::nchar(funs))
 }
 
 #' @rdname purge
@@ -192,81 +192,81 @@ xall <- purge_global
 #' @family purge
 #' @title Manipulate positions, rows, and columns
 #' @details
-#' \tabular{ll}{  `purge_vals, rm_vals, xvals`   \tab Remove values in atomic vector `Vals` from atomic vector `X`. \cr   \tab   \cr
-#'                `purge_elts, rm_elts, xelts`   \tab Delete elements of `X` indexed in `Elts`                      \cr   \tab   \cr
-#'                `purge_rows, rm_rows, xrows`   \tab Delete rows of `X` indexed in `Rows`.                         \cr   \tab   \cr
-#'                `purge_cols, rm_cols, xcols`   \tab Delete columns of `X` indexed in `Cols`                                      }
-#' @param X For `*vals` and `*elts` an atomic vector. For `*cols` and `*rows`, a atomic data.frame (?uj::atm_dtf) or an atomic matrix.
-#' @param Vals A unique-valued atomic vector (?uj::unq_atm_vec) mode-compatible with `X`.
-#' @param Elts,Rows,Cols Atomic vector indexing elements, rows, or columns of `X` to be deleted, respectively. These are either
+#' \tabular{ll}{  `purge_vals, rm_vals, xvals`   \tab Remove values in atomic vector `vals` from atomic vector `x`. \cr   \tab   \cr
+#'                `purge_elts, rm_elts, xelts`   \tab Delete elements of `x` indexed in `elts`                      \cr   \tab   \cr
+#'                `purge_rows, rm_rows, xrows`   \tab Delete rows of `x` indexed in `rows`.                         \cr   \tab   \cr
+#'                `purge_cols, rm_cols, xcols`   \tab Delete columns of `x` indexed in `cols`                                      }
+#' @param x For `*vals` and `*elts` an atomic vector. For `*cols` and `*rows`, a atomic data.frame (?uj::atm_dtf) or an atomic matrix.
+#' @param vals A unique-valued atomic vector (?uj::unq_atm_vec) mode-compatible with `x`.
+#' @param elts,rows,cols Atomic vector indexing elements, rows, or columns of `x` to be deleted, respectively. These are either
 #'   \itemize{\item A uniquely-valued positive whole-number vector.
-#'            \item A complete logical vector (?uj::cmp_lgl_vec) of length `length(X)`.
+#'            \item A complete logical vector (?uj::cmp_lgl_vec) of length `length(x)`.
 #'            \item A uniquely-valued character vector of element/column/row names.   }
-#' @return An object of the same class as `X`.
+#' @return An object of the same class as `x`.
 #' @export
-rm_vals <- function(X, Vals) {
+rm_vals <- function(x, vals) {
   Errs <- NULL
-  if (!uj::.atm_vec(X)) {Errs <- base::c(Errs, "[X] must be an atomic vec (?uj::atm_vec).")}
-  if (!uj::.unq_vec(Vals)) {Errs <- base::c(Errs, "[Vals] must be a unique-valued atomic vec (?uj::unq_vec).")}
-  if (uj::DEF(Errs)) {uj::stopperr(Errs, PKG = "uj")}
-  if (!uj:::.compat(X, Vals)) {uj::stopper("[X] and [Vals] must be of compatible modes.", PKG = "uj")}
-  X <- X[!(X %in% Vals)]
+  if (!uj::.atm_vec(x)) {Errs <- base::c(Errs, "[x] must be an atomic vec (?uj::atm_vec).")}
+  if (!uj::.unq_vec(vals)) {Errs <- base::c(Errs, "[vals] must be a unique-valued atomic vec (?uj::unq_vec).")}
+  if (uj::DEF(Errs)) {uj::stopperr(Errs, .PKG = "uj")}
+  if (!uj:::.compat(x, vals)) {uj::stopper("[x] and [vals] must be of compatible modes.", .PKG = "uj")}
+  x <- x[!(x %in% vals)]
 }
 
 #' @rdname rm_vals
 #' @export
-rm_elts <- function(X, Elts) {
-  if (!uj::.atm_vec(X)) {uj::stopper("[X] must be an atomic vec (?uj::atm_vec).", PKG = "uj")}
-  N <- base::length(X)
-  if (uj::unq_whl_vec(Elts)) {
-    if (base::all(Elts != 0)) {
-      Elts[Elts < 0] <- N + Elts[Elts < 0] - 1
-      if (base::all(Elts <= N)) {X[1:N[!(1:N %in% Elts)], ]}
-      else {uj::stopper("[Elts] may not contain values larger than length(X).")}
-    } else {uj::stopperr("[Elts] may not contain 0.", PKG = "uj")}
-  } else if (uj::cmp_lgl_vec(Elts)) {
-    if (uj::N(Elts) == N) {X[!Elts]}
-    else {uj::stopper("length(Elts) must equal length(X) when [Elts] is of mode logical.")}
-  } else if (uj::unq_chr_scl(Elts)) {
-    if (base::all(Elts %in% base::names(X))) {X[Elts]}
-    else {uj::stopperr("[Elts] contains a name not in rownames(X).")}
-  } else {uj::stopperr("[Elts] must contain only unique positive integers ≤ length(X), a complete logical vector of length(X), or a unique character vector containing only names of elements of [X].")}
+rm_elts <- function(x, elts) {
+  if (!uj::.atm_vec(x)) {uj::stopper("[x] must be an atomic vec (?uj::atm_vec).", .PKG = "uj")}
+  N <- base::length(x)
+  if (uj::unq_whl_vec(elts)) {
+    if (base::all(elts != 0)) {
+      elts[elts < 0] <- N + elts[elts < 0] - 1
+      if (base::all(elts <= N)) {x[1:N[!(1:N %in% elts)], ]}
+      else {uj::stopper("[elts] may not contain values larger than length(x).")}
+    } else {uj::stopperr("[elts] may not contain 0.", .PKG = "uj")}
+  } else if (uj::cmp_lgl_vec(elts)) {
+    if (uj::N(elts) == N) {x[!elts]}
+    else {uj::stopper("length(elts) must equal length(x) when [elts] is of mode logical.")}
+  } else if (uj::unq_chr_scl(elts)) {
+    if (base::all(elts %in% base::names(x))) {x[elts]}
+    else {uj::stopperr("[elts] contains a name not in rownames(x).")}
+  } else {uj::stopperr("[elts] must contain only unique positive integers ≤ length(x), a complete logical vector of length(x), or a unique character vector containing only names of elements of [x].")}
 }
 
 #' @rdname rm_vals
 #' @export
-rm_rows <- function(X, Rows) {
-  if (!(uj:::.atm_mat(X) | uj:::.atm_dtf(X)) | !uj:::.POP(X)) {uj::stopperr("[X] must be an atomic matrix or an atomic data frame (uj::?atm_dtf).", PKG = "uj")}
-  N <- base::nrow(X)
-  if (uj::unq_whl_vec(Rows)) {
-    if (base::all(Rows != 0)) {
-      if (base::all(Rows <= N)) {X[1:N[!(1:N %in% Rows)], ]}
-      else {uj::stopperr("[Rows] may not contain values larger than nrow(X).")}
+rm_rows <- function(x, rows) {
+  if (!(uj:::.atm_mat(x) | uj:::.atm_dtf(x)) | !uj:::.POP(x)) {uj::stopperr("[x] must be an atomic matrix or an atomic data frame (uj::?atm_dtf).", .PKG = "uj")}
+  N <- base::nrow(x)
+  if (uj::unq_whl_vec(rows)) {
+    if (base::all(rows != 0)) {
+      if (base::all(rows <= N)) {x[1:N[!(1:N %in% rows)], ]}
+      else {uj::stopperr("[rows] may not contain values larger than nrow(x).")}
     } else {uj::stopperr()}
-  } else if (uj::cmp_lgl_vec(Rows)) {
-    if (base::length(Rows) == N) {X[!Rows, ]}
-    else {uj::stopper("length(Rows) must equal nrow(X) when [Rows] is of mode logical.")}
-  } else if (uj::unq_chr_scl(Rows)) {
-    if (base::all(Rows %in% base::rownames(X))) {X[Rows, ]}
-    else {uj::stopperr("[Rows] contains a name not in rownames(X).")}
-  } else {uj::stopperr("[Rows] must contain only unique positive integers ≤ nrow(X), a complete logical vector of length nrow(X), or a unique character vector containing only rownames of [X].")}
+  } else if (uj::cmp_lgl_vec(rows)) {
+    if (base::length(rows) == N) {x[!rows, ]}
+    else {uj::stopper("length(rows) must equal nrow(x) when [rows] is of mode logical.")}
+  } else if (uj::unq_chr_scl(rows)) {
+    if (base::all(rows %in% base::rownames(x))) {x[rows, ]}
+    else {uj::stopperr("[rows] contains a name not in rownames(x).")}
+  } else {uj::stopperr("[rows] must contain only unique positive integers ≤ nrow(x), a complete logical vector of length nrow(x), or a unique character vector containing only rownames of [x].")}
 }
 
 #' @rdname rm_vals
 #' @export
-rm_cols <- function(X, Cols) {
-  if (!(uj:::.atm_mat(X) | uj:::.atm_dtf(X)) | !uj:::.POP(X)) {uj::stopperr("[X] must be an atomic matrix or an atomic data frame (uj::?atm_dtf).", PKG = "uj")}
-  N <- base::ncol(X)
-  if (uj::unq_psw_vec(X)) {
-    if (base::all(Cols <= N)) {X[1:N[!(1:N %in% Cols)], ]}
-    else {uj::stopper("[Cols] may not contain values larger than ncol(X).")}
-  } else if (uj::cmp_lgl_vec(Cols)) {
-    if (base::length(Cols) == N) {X[ , !Cols]}
-    else {uj::stopper("length(Cols) must equal ncol(X) when [Cols] is of mode logical.")}
-  } else if (uj::unq_chr_scl(Cols)) {
-    if (base::all(C %in% base::colnames(X))) {X[ , C]}
-    else {uj::stopper("[Cols] contains a name not in colnames(X).")}
-  } else {uj::stopper("[Cols] must contain only unique positive integers ≤ ncol(X), a complete logical vector of length ncol(X), or a unique character vector containing only colnames of [X].")}
+rm_cols <- function(x, cols) {
+  if (!(uj:::.atm_mat(x) | uj:::.atm_dtf(x)) | !uj:::.POP(x)) {uj::stopperr("[x] must be an atomic matrix or an atomic data frame (uj::?atm_dtf).", .PKG = "uj")}
+  N <- base::ncol(x)
+  if (uj::unq_psw_vec(x)) {
+    if (base::all(cols <= N)) {x[1:N[!(1:N %in% cols)], ]}
+    else {uj::stopper("[cols] may not contain values larger than ncol(x).")}
+  } else if (uj::cmp_lgl_vec(cols)) {
+    if (base::length(cols) == N) {x[ , !cols]}
+    else {uj::stopper("length(cols) must equal ncol(x) when [cols] is of mode logical.")}
+  } else if (uj::unq_chr_scl(cols)) {
+    if (base::all(C %in% base::colnames(x))) {x[ , C]}
+    else {uj::stopper("[cols] contains a name not in colnames(x).")}
+  } else {uj::stopper("[cols] must contain only unique positive integers ≤ ncol(x), a complete logical vector of length ncol(x), or a unique character vector containing only colnames of [x].")}
 }
 
 #' @rdname rm_vals

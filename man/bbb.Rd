@@ -16,34 +16,34 @@
 \alias{RCR}
 \title{Basic properties}
 \usage{
-bbb(X)
+bbb(x)
 
 bbb_funs()
 
 bbb_props()
 
-is_bbb_spec(Spec)
+is_bbb_spec(spec)
 
-BBB(X, Spec, ...)
+BBB(x, spec, ...)
 
-ATM(X, ...)
+ATM(x, ...)
 
-DEF(X, ...)
+DEF(x, ...)
 
-FUN(X, ...)
+FUN(x, ...)
 
-NIL(X)
+NIL(x)
 
-NLL(X)
+NLL(x)
 
-POP(X, ...)
+POP(x, ...)
 
-RCR(X, ...)
+RCR(x, ...)
 }
 \arguments{
-\item{X}{An R object.}
+\item{x}{An R object.}
 
-\item{Spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more basic properties from \code{bbb_props()}. basic properties may be pipe-delimited. If there are multiple properties in \code{Spec}, \code{X} is inspected for a match to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more basic properties from \code{bbb_props()}. basic properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -66,20 +66,20 @@ An object's basic properties are defined by its fundamental structure as follows
   \verb{'nil', 'NIL'}   \tab \code{nil}         \tab Length \code{0} but not \code{NULL}.                                                                                                  }
 }
 \details{
-\tabular{ll}{  \code{is_bbb_spec}   \tab Is \code{Spec} a basic property specification?                                                                   \cr   \tab   \cr
+\tabular{ll}{  \code{is_bbb_spec}   \tab Is \code{spec} a basic property specification?                                                                   \cr   \tab   \cr
   \code{bbb_props}     \tab What basic properties are there?                                                                            \cr   \tab   \cr
   \code{bbb_funs}      \tab What basic properties functions are there?                                                                  \cr   \tab   \cr
-  \code{{BBB}}         \tab Is \code{X} a match to the basic property \code{'{BBB}'} where \code{{BBB}} is a placeholder for any given basic property? \cr   \tab   \cr
-  \code{BBB}           \tab Is \code{X} a match to the basic property specification \code{Spec}?                                                  \cr   \tab   \cr
-  \code{bbb}           \tab What are \code{X}'s basic properties?                                                                                           }
+  \code{{BBB}}         \tab Is \code{x} a match to the basic property \code{'{BBB}'} where \code{{BBB}} is a placeholder for any given basic property? \cr   \tab   \cr
+  \code{BBB}           \tab Is \code{x} a match to the basic property specification \code{spec}?                                                  \cr   \tab   \cr
+  \code{bbb}           \tab What are \code{x}'s basic properties?                                                                                           }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.LT, .LE, .GE, .GT}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.N, .NR, .NC}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.VALS}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{

@@ -13,7 +13,7 @@ reopen()
 \item{...}{Either nothing or a single unquoted R project name.}
 }
 \value{
-\code{NULL}
+\code{NULL}. Called for the side effect of opening or reopening a project.
 }
 \description{
 Open or reopen an R project

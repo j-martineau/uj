@@ -7,8 +7,8 @@
 #' \tabular{ll}{  `'atm', 'ATM'`   \tab atomic (both a \code{\link[=bbb]{basic}} and an xmode property).}
 #' **Character xmodes**
 #' \tabular{ll}{  `'chr', 'CHR'`   \tab character                          \cr
-#'                `'ch1', 'CH1'`   \tab onechar, or `all(nchar(X) == 1)`   \cr
-#'                `'ch3', 'CH3'`   \tab threechar, or `all(nchar(X) == 3)` \cr
+#'                `'ch1', 'CH1'`   \tab onechar, or `all(nchar(x) == 1)`   \cr
+#'                `'ch3', 'CH3'`   \tab threechar, or `all(nchar(x) == 3)` \cr
 #'                `'clr', 'CLR'`   \tab color (valid color values)         \cr
 #'                `'str', 'STR'`   \tab string (no blanks)                   }
 #' **Categorical xmodes**
@@ -39,14 +39,14 @@
 #'                `'srt', 'SRT'`   \tab sortable (`'chr'`, `'num'`, `'ord'`) \cr
 #'                `'nst', 'NST'`   \tab non-sortable atomic                    }
 #' @details
-#' \tabular{ll}{  `is_mmm_spec`    \tab Is `Spec` an xmode specification?                                                                                  \cr   \tab   \cr
+#' \tabular{ll}{  `is_mmm_spec`    \tab Is `spec` an xmode specification?                                                                                  \cr   \tab   \cr
 #'                `mmm_props`      \tab What xmode properties are there?                                                                                   \cr   \tab   \cr
 #'                `mmm_funs`       \tab What xmode property functions are there?                                                                           \cr   \tab   \cr
-#'                `{MMM}`          \tab Is `X` a match to the single xmode property `'{MMM}'` where `{MMM}` is a placeholder for any given xmode property? \cr   \tab   \cr
-#'                `MMM`            \tab Is `X` a match to the xmode property Spec in `Spec`?                                                               \cr   \tab   \cr
-#'                `mmm`            \tab What are `X`'s xmode properties?                                                                                                  }
-#' @param X An R object.
-#' @param Spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more xmode properties from `mmm_props()`. xmode specs may be pipe-delimited. If there are multiple properties in `Spec`, `X` is inspected for a match to any of the specified properties.
+#'                `{MMM}`          \tab Is `x` a match to the single xmode property `'{MMM}'` where `{MMM}` is a placeholder for any given xmode property? \cr   \tab   \cr
+#'                `MMM`            \tab Is `x` a match to the xmode property spec in `spec`?                                                               \cr   \tab   \cr
+#'                `mmm`            \tab What are `x`'s xmode properties?                                                                                                  }
+#' @param x An R object.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more xmode properties from `mmm_props()`. xmode specs may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return **A character vector** \cr\cr `mmm_props, mmm_funs, mmm`
@@ -69,9 +69,9 @@
 #' CLR("blue")
 #' CLR("#1077ACFF")
 #' @export
-mmm <- function(X) {
+mmm <- function(x) {
   Y <- NULL
-  for (MMM in uj::v(MMM)) {if (uj::run("uj:::.", MMM, "(X)")) {Y <- base::c(Y, base::tolower(MMM))}}
+  for (MMM in uj::v(MMM)) {if (uj::run("uj:::.", MMM, "(x)")) {Y <- base::c(Y, base::tolower(MMM))}}
   Y
 }
 
@@ -85,126 +85,126 @@ mmm_props <- function() {uj::v(mmm)}
 
 #' @rdname mmm
 #' @export
-is_mmm_spec <- function(Spec) {
-  Spec <- uj:::.spec2props(Spec)
-  if (base::length(Spec) == 0) {F} else {base::all(Spec %in% uj::v(mmm))}
+is_mmm_spec <- function(spec) {
+  spec <- uj:::.spec2props(spec)
+  if (base::length(spec) == 0) {F} else {base::all(spec %in% uj::v(mmm))}
 }
 
 #' @rdname mmm
 #' @export
-MMM <- function(X, Spec, ...) {
-  Errors <- uj:::.meets_errs(X, ...)
-  if (!uj::is_mmm_spec(Spec)) {Errors <- base::c(Errors, '[Spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from mmm_props().')}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, PKG = "uj")}
-  Props <- uj:::.spec2props(Spec)
-  for (Prop in base::toupper(Props)) {if (uj::run("uj:::.", Prop, "(X)")) {return(T)}}
+MMM <- function(x, spec, ...) {
+  Errors <- uj:::.meets_errs(x, ...)
+  if (!uj::is_mmm_spec(spec)) {Errors <- base::c(Errors, '[spec] must be a complete character vec (?cmp_chr_vec) containing one or more (possible pipe-separated) values exclusively from mmm_props().')}
+  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
+  Props <- uj:::.spec2props(spec)
+  for (Prop in base::toupper(Props)) {if (uj::run("uj:::.", Prop, "(x)")) {return(T)}}
   F
 }
 
 #' @rdname mmm
 #' @export
-CH1 <- function(X, ...) {uj::MMM(X, 'ch1', ...)}
+CH1 <- function(x, ...) {uj::MMM(x, 'ch1', ...)}
 
 #' @rdname mmm
 #' @export
-CH3 <- function(X, ...) {uj::MMM(X, 'ch3', ...)}
+CH3 <- function(x, ...) {uj::MMM(x, 'ch3', ...)}
 
 #' @rdname mmm
 #' @export
-CHR <- function(X, ...) {uj::MMM(X, 'chr', ...)}
+CHR <- function(x, ...) {uj::MMM(x, 'chr', ...)}
 
 #' @rdname mmm
 #' @export
-CLR <- function(X, ...) {uj::MMM(X, 'clr', ...)}
+CLR <- function(x, ...) {uj::MMM(x, 'clr', ...)}
 
 #' @rdname mmm
 #' @export
-EVN <- function(X, ...) {uj::MMM(X, 'evn', ...)}
+EVN <- function(x, ...) {uj::MMM(x, 'evn', ...)}
 
 #' @rdname mmm
 #' @export
-FAC <- function(X, ...) {uj::MMM(X, 'fac', ...)}
+FAC <- function(x, ...) {uj::MMM(x, 'fac', ...)}
 
 #' @rdname mmm
 #' @export
-FRC <- function(X, ...) {uj::MMM(X, 'frc', ...)}
+FRC <- function(x, ...) {uj::MMM(x, 'frc', ...)}
 
 #' @rdname mmm
 #' @export
-IND <- function(X, ...) {uj::MMM(X, 'ind', ...)}
+IND <- function(x, ...) {uj::MMM(x, 'ind', ...)}
 
 #' @rdname mmm
 #' @export
-LGL <- function(X, ...) {uj::MMM(X, 'lgl', ...)}
+LGL <- function(x, ...) {uj::MMM(x, 'lgl', ...)}
 
 #' @rdname mmm
 #' @export
-NEG <- function(X, ...) {uj::MMM(X, 'neg', ...)}
+NEG <- function(x, ...) {uj::MMM(x, 'neg', ...)}
 
 #' @rdname mmm
 #' @export
-NGW <- function(X, ...) {uj::MMM(X, 'ngw', ...)}
+NGW <- function(x, ...) {uj::MMM(x, 'ngw', ...)}
 
 #' @rdname mmm
 #' @export
-NNG <- function(X, ...) {uj::MMM(X, 'nng', ...)}
+NNG <- function(x, ...) {uj::MMM(x, 'nng', ...)}
 
 #' @rdname mmm
 #' @export
-NNW <- function(X, ...) {uj::MMM(X, 'nnw', ...)}
+NNW <- function(x, ...) {uj::MMM(x, 'nnw', ...)}
 
 #' @rdname mmm
 #' @export
-NPS <- function(X, ...) {uj::MMM(X, 'nps', ...)}
+NPS <- function(x, ...) {uj::MMM(x, 'nps', ...)}
 
 #' @rdname mmm
 #' @export
-NPW <- function(X, ...) {uj::MMM(X, 'npw', ...)}
+NPW <- function(x, ...) {uj::MMM(x, 'npw', ...)}
 
 #' @rdname mmm
 #' @export
-NST <- function(X, ...) {uj::MMM(X, 'nst', ...)}
+NST <- function(x, ...) {uj::MMM(x, 'nst', ...)}
 
 #' @rdname mmm
 #' @export
-NUM <- function(X, ...) {uj::MMM(X, 'num', ...)}
+NUM <- function(x, ...) {uj::MMM(x, 'num', ...)}
 
 #' @rdname mmm
 #' @export
-ODD <- function(X, ...) {uj::MMM(X, 'odd', ...)}
+ODD <- function(x, ...) {uj::MMM(x, 'odd', ...)}
 
 #' @rdname mmm
 #' @export
-ORD <- function(X, ...) {uj::MMM(X, 'ord', ...)}
+ORD <- function(x, ...) {uj::MMM(x, 'ord', ...)}
 
 #' @rdname mmm
 #' @export
-PCT <- function(X, ...) {uj::MMM(X, 'pct', ...)}
+PCT <- function(x, ...) {uj::MMM(x, 'pct', ...)}
 
 #' @rdname mmm
 #' @export
-POS <- function(X, ...) {uj::MMM(X, 'pos', ...)}
+POS <- function(x, ...) {uj::MMM(x, 'pos', ...)}
 
 #' @rdname mmm
 #' @export
-PPN <- function(X, ...) {uj::MMM(X, 'ppn', ...)}
+PPN <- function(x, ...) {uj::MMM(x, 'ppn', ...)}
 
 #' @rdname mmm
 #' @export
-PSW <- function(X, ...) {uj::MMM(X, 'psw', ...)}
+PSW <- function(x, ...) {uj::MMM(x, 'psw', ...)}
 
 #' @rdname mmm
 #' @export
-SRT <- function(X, ...) {uj::MMM(X, 'srt', ...)}
+SRT <- function(x, ...) {uj::MMM(x, 'srt', ...)}
 
 #' @rdname mmm
 #' @export
-STR <- function(X, ...) {uj::MMM(X, 'str', ...)}
+STR <- function(x, ...) {uj::MMM(x, 'str', ...)}
 
 #' @rdname mmm
 #' @export
-UNO <- function(X, ...) {uj::MMM(X, 'uno', ...)}
+UNO <- function(x, ...) {uj::MMM(x, 'uno', ...)}
 
 #' @rdname mmm
 #' @export
-WHL <- function(X, ...) {uj::MMM(X, 'whl', ...)}
+WHL <- function(x, ...) {uj::MMM(x, 'whl', ...)}

@@ -5,12 +5,12 @@
 \alias{weave}
 \title{Weave inlay values into a string}
 \usage{
-weave(X, ...)
+weave(tmp, ...)
 }
 \arguments{
-\item{X}{A \link[=cmp_chr_scl]{complete character scalar} with embedded escape sequences. See details.}
+\item{tmp}{A \link[=cmp_chr_scl]{complete character scalar} template with embedded escape sequences. See details.}
 
-\item{...}{Arbitrary number of atomic scalar/vector arguments to be inserted into \code{X} with formatting specified in inlay escape sequences. The \code{N}-th argument in \code{...} corresponds to the \code{N}-th inlay escape sequence in \code{x}. The number of inlay escape sequences in \code{x} must be equal to the number of \code{...} arguments. See details.}
+\item{...}{Arbitrary number of unnamed atomic scalar/vector arguments to be inserted into \code{tmp} with formatting specified in inlay escape sequences. The \code{n}-th argument in \code{...} corresponds to the \code{n}-th inlay escape sequence in \code{tmp}. The number of inlay escape sequences in \code{tmp} must be equal to the number of \code{...} arguments. See details.}
 }
 \value{
 A character scalar.

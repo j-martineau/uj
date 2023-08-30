@@ -17,11 +17,11 @@ as_dt(x, keep.rownames = FALSE, ...)
 
 is_dt(x)
 
-ie_dt(X)
+ie_dt(x)
 
-dt_sub(X, R, C)
+dt_sub(x, row, col)
 
-dt_cols(X, C)
+dt_cols(x, col)
 
 dt_merge(
   x,
@@ -36,10 +36,10 @@ dt_merge(
   suffixes = c(".x", ".y"),
   no.dups = TRUE,
   allow.cartesian = base::getOption("datatable.allow.cartesian"),
-  .say = TRUE
+  .SAY = TRUE
 )
 
-dt_rows(X, R)
+dt_rows(x, r)
 
 dt_wide(
   data,
@@ -53,17 +53,17 @@ dt_wide(
   drop = TRUE,
   value.var = data.table:::guess(data),
   verbose = base::getOption("datatable.verbose"),
-  Say = TRUE
+  .SAY = TRUE
 )
 }
 \arguments{
-\item{x, y}{Data frames to be merged.}
+\item{x}{Any object for \code{as_dt}, \code{is_dt}, and \code{ie_dt}. A \code{\link[data.table]{data.table}} for all others.}
 
 \item{...}{Not used at this time.}
 
-\item{X}{An object for \code{as_dt}, \code{is_dt}, and \code{ie_dt}. A \code{\link[data.table]{data.table}} for all others.}
+\item{row, col}{\link[=cmp_ind_vec]{Complete indexer vecs} or \link[=cmp_chr_vec]{complete character vecs} identifying rows and columns of \code{x}, respectively.}
 
-\item{R, C}{\link[=cmp_ind_vec]{Complete indexer vecs} or \link[=cmp_chr_vec]{complete character vecs} identifying rows and columns of \code{X}, respectively.}
+\item{y}{A data.table to be merged with \code{x}.}
 
 \item{by}{A vector of shared column names in \code{x} and \code{y} to merge on.
 This defaults to the shared key columns between the two tables.
@@ -96,7 +96,7 @@ as any \code{by.x}.}
 
 \item{allow.cartesian}{See \code{allow.cartesian} in \code{\link[data.table]{[.data.table}}.}
 
-\item{.say}{Logical scalar indicating whether to update user on progress.}
+\item{.SAY}{Logical scalar indicating whether to update user on progress.}
 
 \item{data}{ A \code{data.table}.}
 
@@ -144,8 +144,8 @@ Set the \code{by}, or \code{by.x} and \code{by.y} arguments explicitly to overri
 \tabular{ll}{  \code{dt_merge}   \tab Thinly wraps \code{\link[data.table]{merge}}.         \cr
   \code{dt_wide}    \tab Thinly wraps \code{\link[data.table]{dcast}}.         \cr
   \code{dt_rows}    \tab Selects rows.                                         \cr
-  \code{dt_cols}    \tab Selects columns without \code{X[ , ..var]}.                \cr
-  \code{dt_sub}     \tab Selects a subtable without \code{X[row.var, ..col.var]}.   \cr
+  \code{dt_cols}    \tab Selects columns without \code{x[ , ..var]}.                \cr
+  \code{dt_sub}     \tab Selects a subtable without \code{x[row.var, ..col.var]}.   \cr
   \code{as_dt}      \tab Thinly wraps \code{\link[data.table]{as.data.table}}. \cr
   \code{is_dt}      \tab Thinly wraps \code{\link[data.table]{is.data.table}}. \cr
   \code{ie_dt}      \tab Convert to \code{data.table}, if needed.                     }

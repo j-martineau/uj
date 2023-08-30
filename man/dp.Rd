@@ -14,13 +14,13 @@
 \usage{
 dp()
 
-dp_agg(.data, ..., .groups = NULL)
+dp_agg(.data, ..., .by = NULL, .groups = NULL)
 
 dp_n()
 
 dp_all(x)
 
-dp_grp(X, Keys)
+dp_grp(x, keys)
 
 dp_join(
   x,
@@ -29,7 +29,7 @@ dp_join(
   copy = FALSE,
   suffix = c(".x", ".y"),
   ...,
-  keep = FALSE
+  keep = NULL
 )
 
 dp_lab(.data, ...)

@@ -5,28 +5,28 @@
 \alias{case}
 \title{Case as an extension of switch}
 \usage{
-case(NAME, ..., NAMES = NULL, DEF = "err")
+case(.NAME, ..., .NAMES = NULL, .DEF = "err")
 }
 \arguments{
-\item{NAME}{\code{NULL} or an \link[=atm_scl]{atomic scalar} naming an argument in \code{...}. \code{NULL} is converted to \code{'NULL'} and \code{NA} is converted to \code{'NA'}. Coerced to mode character.}
+\item{.NAME}{\code{NULL} or an \link[=atm_scl]{atomic scalar} naming an argument in \code{...}. \code{NULL} is converted to \code{'NULL'} and \code{NA} is converted to \code{'NA'}. Coerced to mode character.}
 
-\item{...}{Any number of uniquely named arguments to select from to be the return value. Selection is based on which element's name equals the value of \code{NAME}. When there is no match, if \code{DEF = 'err'}, an error is thrown, otherwise \code{DEF} is returned as the default value.}
+\item{...}{Any number of uniquely named arguments to select from to be the return value. Selection is based on which element's name equals the value of \code{.NAME}. When there is no match, if \code{.DEF = 'err'}, an error is thrown, otherwise \code{.DEF} is returned as the default value.}
 
-\item{NAMES}{Either \code{NULL} or a \link[=cmp_scl_vec]{complete character vec}. If this argument is of mode character, it is split using pipe delimiters. Its length (after potential splitting) must match the number of \code{...} arguments. Values of \code{NAMES} must be unique.}
+\item{.NAMES}{Either \code{NULL} or a \link[=cmp_scl_vec]{complete character vec}. If this argument is of mode character, it is split using pipe delimiters. Its length (after potential splitting) must match the number of \code{...} arguments. Values of \code{.NAMES} must be unique.}
 
-\item{DEF}{The default value to return if no match is found, unless \code{DEF} is the character scalar \code{'err'}. In that case, if no match is found, an error is thrown.}
+\item{.DEF}{The default value to return if no match is found, unless \code{.DEF} is the character scalar \code{'err'}. In that case, if no match is found, an error is thrown.}
 }
 \value{
-Either the value of an argument selected from \code{...} or the value of \code{DEF}.
+Either the value of an argument selected from \code{...} or the value of \code{.DEF}.
 }
 \description{
-Takes a name (i.e., any atomic scalar) and matches that name to the name matching an element of \code{...} where matching can be achieved by matching the name of an argument in \code{...}. When names are supplied via \code{NAMES}, they substituted for the names of arguments in \code{...}. When no match is found and \code{DEF = 'err'} an error is thrown, otherwise, the value of \code{DEF} is returned.
+Takes a name (i.e., any atomic scalar) and matches that name to the name matching an element of \code{...} where matching can be achieved by matching the name of an argument in \code{...}. When names are supplied via \code{.NAMES}, they substituted for the names of arguments in \code{...}. When no match is found and \code{.DEF = 'err'} an error is thrown, otherwise, the value of \code{.DEF} is returned.
 }
 \examples{
-case("one", one = 1, two = letters, DEF = "default")
-case("two", one = 1, two = letters, DEF = "default")
-case("three", one = 1, two = letters, DEF = "default")
-case("three", 1, letters, NAMES = c("three", "four"), DEF = "default")
+case("one", one = 1, two = letters, .DEF = "default")
+case("two", one = 1, two = letters, .DEF = "default")
+case("three", one = 1, two = letters, .DEF = "default")
+case("three", 1, letters, .NAMES = c("three", "four"), .DEF = "default")
 }
 \seealso{
 Other extensions: 

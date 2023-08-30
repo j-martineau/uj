@@ -9,31 +9,31 @@
 \alias{swap_cols}
 \title{Swap by Row Index, Column Index, Element Index, and Atomic Value.}
 \usage{
-swap(X, DIM = 0, From = NULL, To = NULL, Old = NULL, New = NULL, All = FALSE)
+swap(x, dim = 0, from = NULL, to = NULL, old = NULL, new = NULL, all = FALSE)
 
-swap_vals(X, Old, New, All = FALSE)
+swap_vals(x, old, new, all = FALSE)
 
-swap_elt(X, From, To)
+swap_elt(x, from, to)
 
-swap_rows(X, From, To)
+swap_rows(x, from, to)
 
-swap_cols(X, From, To)
+swap_cols(x, from, to)
 }
 \arguments{
-\item{X}{A non-empty data.frame, matrix, vlist (?uj::VLS), or an atomic object of any dimension.}
+\item{x}{A non-empty data.frame, matrix, vlist (?uj::VLS), or an atomic object of any dimension.}
 
-\item{DIM}{Dimension on which swapping occurs. \code{0} indicates swapping by element index of a non-empty vector, vlist, or other atomic object. \code{1} and \code{2} indicate, respectively, swapping rows and columns of a data.frame or matrix.}
+\item{dim}{Dimension on which swapping occurs. \code{0} indicates swapping by element index of a non-empty vector, vlist, or other atomic object. \code{1} and \code{2} indicate, respectively, swapping rows and columns of a data.frame or matrix.}
 
-\item{From, To}{Uniquely valued non-zero whole number vectors indexing source (\code{From}) and destination (\code{To}) positions, rows, or columns. \code{From < 0} and \code{To < 0} index from the last value rather than the first.}
+\item{from, to}{Uniquely valued non-zero whole number vectors indexing source (\code{from}) and destination (\code{to}) positions, rows, or columns. \code{from < 0} and \code{to < 0} index from the last value rather than the first.}
 
-\item{Old}{\link[=unq_atm_vec]{A uniquely valued atomic vec} of values to be replaced.}
+\item{old}{\link[=unq_atm_vec]{A uniquely valued atomic vec} of values to be replaced.}
 
-\item{New}{\link[=atm_vec]{An atomic vec} of replacement values. \code{length(New)} must be in \code{c(1, length(Old))}.}
+\item{new}{\link[=atm_vec]{An atomic vec} of replacement values. \code{length(new)} must be in \code{c(1, length(old))}.}
 
-\item{All}{\code{TRUE} or \code{FALSE} indicating whether all values of \code{X} must be contained in \code{Old} (ignored when \code{Old} and \code{New} are \code{NULL}).}
+\item{all}{\code{TRUE} or \code{FALSE} indicating whether all values of \code{x} must be contained in \code{old} (ignored when \code{old} and \code{new} are \code{NULL}).}
 }
 \value{
-An object of the same class and dimensions as \code{X}.
+An object of the same class and dimensions as \code{x}.
 }
 \description{
 Swap by Row Index, Column Index, Element Index, and Atomic Value.

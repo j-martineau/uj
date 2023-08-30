@@ -30,82 +30,82 @@
 \alias{pal_swatch}
 \title{Simple color creation}
 \usage{
-color(X, Lighten = 0, Darken = 0, A = 1, Comp = F)
+color(x, lighten = 0, darken = 0, a = 1, comp = F)
 
-rgba(R = 1, G = 1, B = 1, A = 1)
+rgba(r = 1, g = 1, b = 1, a = 1)
 
-hsva(H = 1, S = 1, V = 1, A = 1)
+hsva(h = 1, s = 1, v = 1, a = 1)
 
-blend(X, Y, WX = 1, WY = 1, A = NA)
+blend(x, y, wx = 1, wy = 1, a = NA)
 
-red(P = 1, S = 0, A = 1)
+red(p = 1, s = 0, a = 1)
 
-grn(P = 1, S = 0, A = 1)
+grn(p = 1, s = 0, a = 1)
 
-blu(P = 1, S = 0, A = 1)
+blu(p = 1, s = 0, a = 1)
 
-cyn(P = 1, S = 0, A = 1)
+cyn(p = 1, s = 0, a = 1)
 
-mag(P = 1, S = 0, A = 1)
+mag(p = 1, s = 0, a = 1)
 
-vlt(P = 1, S = 0, A = 1)
+vlt(p = 1, s = 0, a = 1)
 
-ylw(P = 1, S = 0, A = 1)
+ylw(p = 1, s = 0, a = 1)
 
-gry(P = 0.5, A = 1)
+gry(p = 0.5, a = 1)
 
-blk(A = 1)
+blk(a = 1)
 
-wht(A = 1)
+wht(a = 1)
 
-ppl(P = 1, S = 0, A = 1)
+ppl(p = 1, s = 0, a = 1)
 
-orn(P = 1, S = 0, A = 1)
+orn(p = 1, s = 0, a = 1)
 
-blu_grn(P = 1, S = 0, A = 1)
+blu_grn(p = 1, s = 0, a = 1)
 
-blu_ppl(P = 1, S = 0, A = 1)
+blu_ppl(p = 1, s = 0, a = 1)
 
-blu_vlt(P = 1, S = 0, A = 1)
+blu_vlt(p = 1, s = 0, a = 1)
 
-ylw_grn(P = 1, S = 0, A = 1)
+ylw_grn(p = 1, s = 0, a = 1)
 
-ylw_orn(P = 1, S = 0, A = 1)
+ylw_orn(p = 1, s = 0, a = 1)
 
-red_orn(P = 1, S = 0, A = 1)
+red_orn(p = 1, s = 0, a = 1)
 
-red_ppl(P = 1, S = 0, A = 1)
+red_ppl(p = 1, s = 0, a = 1)
 
-red_vlt(P = 1, S = 0, A = 1)
+red_vlt(p = 1, s = 0, a = 1)
 
-pal_cb(NG, NC = NULL, A = 1)
+pal_cb(ng, nc = NULL, a = 1)
 
-pal_swatch(X)
+pal_swatch(x)
 }
 \arguments{
-\item{X}{An \link[=atm_vec]{atomic vec} containing valid color representations. Recycled with \verb{Y, Lighten, Darken, Comp, A, P, S, WX, WY} where these are valid arguments.}
+\item{x}{An \link[=atm_vec]{atomic vec} containing valid color representations. Recycled with \verb{y, lighten, darken, comp, a, p, s, wx, wy} where these are valid arguments.}
 
-\item{Lighten}{A \link[=cmp_ppn_vec]{complete proportion numeric vec} of proportions by which to lighten the colors given in \code{X} toward white.}
+\item{lighten}{A \link[=cmp_ppn_vec]{complete proportion numeric vec} of proportions by which to lighten the colors given in \code{x} toward white.}
 
-\item{Darken}{A complete proportion numeric vec of proportions by which to darken the colors given in \code{X} toward black.}
+\item{darken}{A complete proportion numeric vec of proportions by which to darken the colors given in \code{x} toward black.}
 
-\item{A}{A complete proportion numeric vec of 1 or more alpha levels (\code{0} = transparent, \code{0.5} = translucent, \code{1} = opaque). \code{NA} values in \code{a} are only applicable with \code{color(.)} and \code{blend(.)}) to indicate keeping existing alpha values.}
+\item{a}{A complete proportion numeric vec of 1 or more alpha levels (\code{0} = transparent, \code{0.5} = translucent, \code{1} = opaque). \code{NA} values in \code{a} are only applicable with \code{color(.)} and \code{blend(.)}) to indicate keeping existing alpha values.}
 
-\item{Comp}{A \link[=cmp_lgl_vec]{complete logical vec} indicating whether to return complementary colors.}
+\item{comp}{A \link[=cmp_lgl_vec]{complete logical vec} indicating whether to return complementary colors.}
 
-\item{R, G, B}{Complete proportion numeric vecs giving intensities of red, blue, and green from the RGB color space. Recycled with each other and \code{A}.}
+\item{r, g, b}{Complete proportion numeric vecs giving intensities of red, blue, and green from the RGB color space. Recycled with each other and \code{a}.}
 
-\item{H, S, V}{Complete proportion numeric vecs giving hue, saturation, and value/brightness from the HSV color space. Recycled√with each other and \code{A}.}
+\item{h, s, v}{Complete proportion numeric vecs giving hue, saturation, and value/brightness from the HSV color space. Recycled√with each other and \code{a}.}
 
-\item{Y}{An atomic vec containing valid R color representations.}
+\item{y}{An atomic vec containing valid r color representations.}
 
-\item{WX, WY}{\link[=cmp_nnw_vec]{Complete non-negative numeric vecs} giving weights to apply to \code{X} and \code{Y} in color blending.}
+\item{wx, wy}{\link[=cmp_nnw_vec]{Complete non-negative numeric vecs} giving weights to apply to \code{x} and \code{y} in color blending.}
 
-\item{P, S}{Complete poportion numeric vecs of 1 or more primary and secondary color intensities (respectively) in the range \verb{[0, 1]}.}
+\item{p, s}{Complete poportion numeric vecs of 1 or more primary and secondary color intensities (respectively) in the range \verb{[0, 1]}.}
 
-\item{NC, NG}{\link[=cmp_psw_scl]{Complete positive whole-number scalars} giving the number of colors and groups, respectively.}
+\item{nc, ng}{\link[=cmp_psw_scl]{Complete positive whole-number scalars} giving the number of colors and groups, respectively.}
 
-\item{Na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} counts as a valid color alpha level.}
+\item{.NA}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} counts as a valid color alpha level.}
 }
 \value{
 A character vector of \code{1} or more hexadecimal RGB + alpha color representations in the form \code{'#RRGGBBAA'}.
@@ -116,60 +116,60 @@ Simple color creation with a wide variety of options (intensity, blending, light
 \details{
 \tabular{lll}{  \emph{Color}   \tab \emph{Color}   \tab \emph{RGB channel values of}        \cr
   \emph{code}.   \tab \emph{name}    \tab \emph{default color version}        \cr
-  \code{wht}     \tab white     \tab \code{c(R = 1  , G = 1  , B = 1  )} \cr
-  \code{blk}     \tab black     \tab \code{c(R = 0  , G = 0  , B = 0  )} \cr
-  \code{gry}     \tab grey      \tab \code{c(R = 0.5, G = 0.5, B = 0.5)} \cr
-  \code{red}     \tab red       \tab \code{c(R = 1  , G = 0  , B = 0  )} \cr
-  \code{grn}     \tab green     \tab \code{c(R = 0  , G = 1  , B = 0  )} \cr
-  \code{blu}     \tab blue      \tab \code{c(R = 0  , G = 0  , B = 1  )} \cr
-  \code{ylw}     \tab yellow    \tab \code{c(R = 1  , G = 1  , B = 0  )} \cr
-  \code{cyn}     \tab cyan      \tab \code{c(R = 0  , G = 1  , B = 1  )} \cr
-  \code{mag}     \tab magenta   \tab \code{c(R = 1  , G = 0  , B = 1  )} \cr
-  \code{vlt}     \tab violet    \tab \code{c(R = 1  , G = 0  , B = 1  )} \cr
+  \code{wht}     \tab white     \tab \code{c(r = 1  , g = 1  , b = 1  )} \cr
+  \code{blk}     \tab black     \tab \code{c(r = 0  , g = 0  , b = 0  )} \cr
+  \code{gry}     \tab grey      \tab \code{c(r = 0.5, g = 0.5, b = 0.5)} \cr
+  \code{red}     \tab red       \tab \code{c(r = 1  , g = 0  , b = 0  )} \cr
+  \code{grn}     \tab green     \tab \code{c(r = 0  , g = 1  , b = 0  )} \cr
+  \code{blu}     \tab blue      \tab \code{c(r = 0  , g = 0  , b = 1  )} \cr
+  \code{ylw}     \tab yellow    \tab \code{c(r = 1  , g = 1  , b = 0  )} \cr
+  \code{cyn}     \tab cyan      \tab \code{c(r = 0  , g = 1  , b = 1  )} \cr
+  \code{mag}     \tab magenta   \tab \code{c(r = 1  , g = 0  , b = 1  )} \cr
+  \code{vlt}     \tab violet    \tab \code{c(r = 1  , g = 0  , b = 1  )} \cr
   \code{ppl}     \tab purple    \tab a \code{1:2} blend of red:blue.     \cr
   \code{orn}     \tab orange    \tab a \code{33:51} blend of red:yellow.    }
 \cr\cr \strong{Functions in this family}
 \cr\cr The symbols \code{{xxx}} and \code{{yyy}} are placeholders for any given three-letter color codes as described in the table above.
 \tabular{ll}{  \code{pal_swatch}    \tab Draws swatches for a collection/palette of colors.                                                                                                                                               \cr   \tab   \cr
-  \verb{\{xxx\}_\{yyy\}}   \tab Creates versions of 50/50 blends of the common colors \code{'{xxx}'} and \code{{yyy}} by \code{P} = primary intensity, \code{S} = secondary intensity, and \code{A} = alpha, each in the interval \verb{[0, 1]}.               \cr   \tab   \cr
+  \verb{\{xxx\}_\{yyy\}}   \tab Creates versions of 50/50 blends of the common colors \code{'{xxx}'} and \code{{yyy}} by \code{p} = primary intensity, \code{s} = secondary intensity, and \code{a} = alpha, each in the interval \verb{[0, 1]}.               \cr   \tab   \cr
   \code{pal_cb}        \tab Creates colorblind-friendly palettes of \code{2} to \code{20} Colors \code{1-10} vs. \code{11-20} are bright vs. \verb{50\%} darkened versions. Bright/darkened differences may be insufficient for some audiences.        \cr   \tab   \cr
   \code{color}         \tab Takes any valid color representation and lightens, darkens, adds opacity levels, and/or gets the complementary color.                                                                            \cr   \tab   \cr
-  \code{blend}         \tab Blends colors \code{X} and \code{Y} using non-negative numeric weights \code{WX} and \code{WY}, and proportional numeric \code{A} = alpha values. Each corresponding pair of values of these arguments is normalized
-to sum to 1 to give the proportions of the resulting color that should come from \code{X} and \code{Y}, respectively.                                                                                      \cr   \tab   \cr
-  \code{rgba}          \tab Creates colors from \code{R} = red, \code{G} = green, \code{B} = blue, and \code{A} = alpha weights, each in the interval \verb{[0, 1]}.                                                                                  \cr   \tab   \cr
-  \code{hsva}          \tab Creates colors from \code{H} = hue, \code{S} = saturation, \code{V} = value, and \code{A} = alpha weights, each in the interval \verb{[0, 1]}.                                                                            \cr   \tab   \cr
-  \code{{xxx}}         \tab Creates versions of common color \code{'{xxx}'} by \code{P} = primary intensity, \code{S} = secondary intensity, and \code{A} = alpha, each in the interval \verb{[0, 1]}.                                                               }
+  \code{blend}         \tab Blends colors \code{x} and \code{y} using non-negative numeric weights \code{wx} and \code{wy}, and proportional numeric \code{a} = alpha values. Each corresponding pair of values of these arguments is normalized
+to sum to 1 to give the proportions of the resulting color that should come from \code{x} and \code{y}, respectively.                                                                                      \cr   \tab   \cr
+  \code{rgba}          \tab Creates colors from \code{r} = red, \code{g} = green, \code{b} = blue, and \code{a} = alpha weights, each in the interval \verb{[0, 1]}.                                                                                  \cr   \tab   \cr
+  \code{hsva}          \tab Creates colors from \code{h} = hue, \code{s} = saturation, \code{v} = value, and \code{a} = alpha weights, each in the interval \verb{[0, 1]}.                                                                            \cr   \tab   \cr
+  \code{{xxx}}         \tab Creates versions of common color \code{'{xxx}'} by \code{p} = primary intensity, \code{s} = secondary intensity, and \code{a} = alpha, each in the interval \verb{[0, 1]}.                                                               }
 }
 \section{Recycling}{
- The only arguments not recycled are \verb{Na, NC}, and \code{NG}.
+ The only arguments not recycled are \verb{.NA, nc}, and \code{ng}.
 }
 
-\section{The Arguments \code{P} and \code{S}}{
- \code{P} is used to indicate the proportion of the RGB values of the most intense version of a hue should be present in a resulting color. \code{S} is used to indicate how much of complement of each RGB value should be present in a resulting color. The table below gives a helpful heuristic for setting values of \code{P} and \code{S}:
+\section{The Arguments \code{p} and \code{s}}{
+ \code{p} is used to indicate the proportion of the RGB values of the most intense version of a hue should be present in a resulting color. \code{s} is used to indicate how much of complement of each RGB value should be present in a resulting color. The table below gives a helpful heuristic for setting values of \code{p} and \code{s}:
 \tabular{ll}{  \strong{Argument values}   \tab \strong{Resulting color}    \cr
-  \verb{P = 1, S = 0}        \tab intense                \cr
-  \verb{P > S > 0}           \tab lighter                \cr
-  \verb{S < P < 1}           \tab darker                 \cr
-  \code{P = S = 1}           \tab white                  \cr
-  \code{P = S = 0}           \tab black                  \cr
-  \code{P = S = 0.5}         \tab grey                   \cr
-  \verb{S = 1, P = 0}        \tab intense, complementary \cr
-  \verb{S > P > 0}           \tab lighter, complementary \cr
-  \verb{P < S < 1}           \tab darker, complementary    }
-A concrete numeric example is that calling
+  \verb{p = 1, s = 0}        \tab intense                \cr
+  \verb{p > s > 0}           \tab lighter                \cr
+  \verb{s < p < 1}           \tab darker                 \cr
+  \code{p = s = 1}           \tab white                  \cr
+  \code{p = s = 0}           \tab black                  \cr
+  \code{p = s = 0.5}         \tab grey                   \cr
+  \verb{s = 1, p = 0}        \tab intense, complementary \cr
+  \verb{s > p > 0}           \tab lighter, complementary \cr
+  \verb{p < s < 1}           \tab darker, complementary    }
+a concrete numeric example is that calling
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{   ylw(P = 0.7, S = 0.3)
+\if{html}{\out{<div class="sourceCode">}}\preformatted{   ylw(p = 0.7, s = 0.3)
 }\if{html}{\out{</div>}}
 
 starts with primary and secondary RGB values of
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{   prm = c(R = 1, G = 1, B = 0)
-   sec = c(R = 0, G = 0, B = 1)
+\if{html}{\out{<div class="sourceCode">}}\preformatted{   prm = c(r = 1, g = 1, b = 0)
+   sec = c(r = 0, g = 0, b = 1)
 }\if{html}{\out{</div>}}
 
-To get final RGB values, the primary RGB values are multiplied by \code{P = 0.7}, secondary RGB values are multiple by \code{S = 0.3}, and the results are summed pairwise giving
+To get final RGB values, the primary RGB values are multiplied by \code{p = 0.7}, secondary RGB values are multiple by \code{s = 0.3}, and the results are summed pairwise giving
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{   final = c(R = 0.7, G = 0.7, B = 0.3)
+\if{html}{\out{<div class="sourceCode">}}\preformatted{   final = c(r = 0.7, g = 0.7, b = 0.3)
 }\if{html}{\out{</div>}}
 }
 
@@ -181,27 +181,27 @@ color(c("red", "#00FF80", "#FF0000AA"))
 rgba(1/3, 2/3, 3/3, 1/2)
 hsav(1/3, 2/3, 3/3, 1/2)
 rgba(1/3, 2/3, 3/3, 1/2)
-blend("red", "blue", WX = 2, WY = 1, A = 0.5)
+blend("red", "blue", wx = 2, wy = 1, a = 0.5)
 blk(a = 1 / 2)
 wht(a = 1 / 2)
-gry(P = 2 /3, A = 0.5)
-red(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-grn(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-blu(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-cyn(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-mag(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-vlt(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-ylw(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-ppl(P = 2 / 3, S = 1 / 3, A = 1 / 2))
-orn(P = 2 / 3, S = 1 / 3, A = 1 / 2))
-blu_grn(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-blu_ppl(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-blu_vlt(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-ylw_grn(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-ylw_orn(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-red_orn(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-red_ppl(P = 2 / 3, S = 1 / 3, A = 1 / 2)
-red_vlt(P = 2 / 3, S = 1 / 3, A = 1 / 2)
+gry(p = 2 /3, a = 0.5)
+red(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+grn(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+blu(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+cyn(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+mag(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+vlt(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+ylw(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+ppl(p = 2 / 3, s = 1 / 3, a = 1 / 2))
+orn(p = 2 / 3, s = 1 / 3, a = 1 / 2))
+blu_grn(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+blu_ppl(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+blu_vlt(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+ylw_grn(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+ylw_orn(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+red_orn(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+red_ppl(p = 2 / 3, s = 1 / 3, a = 1 / 2)
+red_vlt(p = 2 / 3, s = 1 / 3, a = 1 / 2)
 pal_cb(12)
 pal_cb(3)
 \dontrun{

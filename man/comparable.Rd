@@ -6,16 +6,16 @@
 \alias{comparable_xy}
 \title{Are objects comparable?}
 \usage{
-comparable(..., REC = FALSE)
+comparable(..., .REC = FALSE)
 
-comparable_xy(X, y, REC = FALSE)
+comparable_xy(x, y, .REC = FALSE)
 }
 \arguments{
 \item{...}{An arbitrary number of arguments to be checked for comparability with each other.}
 
-\item{X, y}{Arguments to be checked for comparability.}
+\item{.REC}{\code{TRUE} or \code{FALSE} indicating whether \code{...} arguments must be recyclable to be comparable.}
 
-\item{rec.}{\code{TRUE} or \code{FALSE} indicating whether \code{...} arguments must be recyclable to be comparable.}
+\item{x, y}{Arguments to be checked for comparability.}
 }
 \value{
 A logical scalar.

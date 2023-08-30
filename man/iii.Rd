@@ -16,34 +16,34 @@
 \alias{UNQ}
 \title{Integrity properties}
 \usage{
-iii(X)
+iii(x)
 
 iii_funs()
 
 iii_props()
 
-is_iii_spec(Spec)
+is_iii_spec(spec)
 
-III(X, Spec, ...)
+III(x, spec, ...)
 
-CMP(X, ...)
+CMP(x, ...)
 
-MSS(X, ...)
+MSS(x, ...)
 
-NA0(X, ...)
+NA0(x, ...)
 
-OK0(X, ...)
+OK0(x, ...)
 
-PRT(X, ...)
+PRT(x, ...)
 
-DUP(X, ...)
+DUP(x, ...)
 
-UNQ(X, ...)
+UNQ(x, ...)
 }
 \arguments{
-\item{X}{An R object.}
+\item{x}{An R object.}
 
-\item{Spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more integrity properties (i.e., from \code{iii_props()}). Integrity properties may be pipe-delimited. If there are multiple properties in \code{Spec}, \code{X} is inspected for a match to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more integrity properties (i.e., from \code{iii_props()}). Integrity properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -65,20 +65,20 @@ Integrity properties are defined for \link[=POP]{populated} \link[=atm_dtf]{atom
   \verb{'nas', 'NA0'}   \tab \code{NA} scalar   \tab Atomic scalar \code{NA}.                                                                                                          \cr   \tab   \cr
   \verb{'oks', 'OK0'}   \tab \code{OK} scalar   \tab Non-\code{NA} atomic scalar.                                                                                                                     }
 \cr\cr \strong{Integrity property functions}
-\tabular{ll}{  \code{is_iii_spec}   \tab Is \code{Spec} an integrity specification?                                                                \cr   \tab   \cr
+\tabular{ll}{  \code{is_iii_spec}   \tab Is \code{spec} an integrity specification?                                                                \cr   \tab   \cr
   \code{iii_props}     \tab What integrity properties are there?                                                                 \cr   \tab   \cr
   \code{iii_funs}      \tab What integrity property functions are there?                                                         \cr   \tab   \cr
-  \code{iii}           \tab Gets all of \code{X}'s integrity properties.                                                              \cr   \tab   \cr
-  \code{III}           \tab Does \code{X} match integrity specification \code{Spec}?                                                       \cr   \tab   \cr
-  \code{{II}}          \tab Does \code{X} match single integrity property \code{'{III}'} where \code{{III}} is a placeholder for any given integrity property? }
+  \code{iii}           \tab Gets all of \code{x}'s integrity properties.                                                              \cr   \tab   \cr
+  \code{III}           \tab Does \code{x} match integrity specification \code{spec}?                                                       \cr   \tab   \cr
+  \code{{II}}          \tab Does \code{x} match single integrity property \code{'{III}'} where \code{{III}} is a placeholder for any given integrity property? }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.LT, .LE, .GE, .GT}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.N, .NR, .NC}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.VALS}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{

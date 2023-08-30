@@ -17,36 +17,36 @@
 \alias{VLS}
 \title{Extended class (xclass) properties}
 \usage{
-ccc(X)
+ccc(x)
 
 ccc_funs()
 
 ccc_props()
 
-is_ccc_spec(Spec)
+is_ccc_spec(spec)
 
-CCC(X, Spec, ...)
+CCC(x, spec, ...)
 
-ARR(X, ...)
+ARR(x, ...)
 
-DTF(X, ...)
+DTF(x, ...)
 
-GEN(X, ...)
+GEN(x, ...)
 
-MAT(X, ...)
+MAT(x, ...)
 
-MVC(X, ...)
+MVC(x, ...)
 
-SCL(X, ...)
+SCL(x, ...)
 
-VEC(X, ...)
+VEC(x, ...)
 
-VLS(X, ...)
+VLS(x, ...)
 }
 \arguments{
-\item{X}{An R object.}
+\item{x}{An R object.}
 
-\item{Spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more xclass properties (i.e., from \code{\link{ccc_props}()}). Properties may be pipe-delimited. If there are multiple properties in \code{Spec}, \code{X} is inspected for a match to any of the specified properties.}
+\item{spec}{\code{NULL} or a \link[=cmp_chr_scl]{complete character vec} containing one or more xclass properties (i.e., from \code{\link{ccc_props}()}). Properties may be pipe-delimited. If there are multiple properties in \code{spec}, \code{x} is inspected for a match to any of the specified properties.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -71,20 +71,20 @@ VLS(X, ...)
 \tabular{l}{  \eqn{^{(1)}} Non-\code{data.frame} lists. }
 }
 \details{
-\tabular{ll}{  \code{is_ccc_spec}   \tab Is \code{Spec} an xclass specification?                                                                                   \cr   \tab   \cr
+\tabular{ll}{  \code{is_ccc_spec}   \tab Is \code{spec} an xclass specification?                                                                                   \cr   \tab   \cr
   \code{ccc_props}     \tab What xclass properties are there?                                                                                    \cr   \tab   \cr
   \code{ccc_funs}      \tab What xclass property functions are there?                                                                            \cr   \tab   \cr
-  \code{{CCC}}         \tab Is \code{X} a match to the single xclass property \code{'{CCC}'} where \code{{CCC}} is a placeholder for any given xclass property? \cr   \tab   \cr
-  \code{CCC}           \tab Is \code{X} a match to the xclass specification \code{Spec}?                                                                   \cr   \tab   \cr
-  \code{ccc}           \tab What are \code{X}'s xclass properties?                                                                                                   }
+  \code{{CCC}}         \tab Is \code{x} a match to the single xclass property \code{'{CCC}'} where \code{{CCC}} is a placeholder for any given xclass property? \cr   \tab   \cr
+  \code{CCC}           \tab Is \code{x} a match to the xclass specification \code{spec}?                                                                   \cr   \tab   \cr
+  \code{ccc}           \tab What are \code{x}'s xclass properties?                                                                                                   }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.LT, .LE, .GE, .GT}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.N, .NR, .NC}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.VALS}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{

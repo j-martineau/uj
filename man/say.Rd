@@ -7,16 +7,20 @@
 \alias{continue}
 \title{User updates and interaction via the console in default color and style}
 \usage{
-say(..., Lev = 0, Sub = 0, .clear = FALSE)
+say(..., .LEV = 0, .SUB = 0, .CLEAR = FALSE)
 
-cat0(..., .clear = FALSE)
+cat0(..., .CLEAR = FALSE)
 
-continue(.clear = FALSE)
+continue(.CLEAR = FALSE)
 }
 \arguments{
-\item{...}{An arbitrary number of atomic arguments to be atomized collapsed into a character scalar message to the user. If no values are supplied and \code{Lev = NA} or \code{Lev = 6}, prints a single dot (\code{.}) immediately following the current contents of the console.}
+\item{...}{An arbitrary number of atomic arguments to be atomized collapsed into a character scalar message to the user. If no values are supplied and \code{.LEV = NA} or \code{.LEV = 6}, prints a single dot (\code{.}) immediately following the current contents of the console.}
 
-\item{Lev}{Either \code{NA} to print the message in \code{...} immediately following the current contents of the console or a value from \code{1:6} to use the console for up to \code{6} levels of user updates. See details.}
+\item{.LEV}{Either \code{NA} to print the message in \code{...} immediately following the current contents of the console or a value from \code{1:6} to use the console for up to \code{6} levels of user updates. See details.}
+
+\item{.SUB}{Either \code{0}, \code{1}, or \code{2}. See details.}
+
+\item{.CLEAR}{Either \code{TRUE} or \code{FALSE} indicating whether to clear the console before printing a message to it.}
 }
 \value{
 \code{NULL}.
@@ -31,7 +35,7 @@ User updates and interaction via the console in default color and style
 When \code{...} is empty, the message defaults to a single dot (\code{"."}).
 \cr\cr The function \code{say} allows for structuring user update messages at hierarchical levels as explained in the following table:
 \tabular{ll}{  VALUE      \tab PREFIX OF MESSAGE          \cr
-  OF \code{Lev}   \tab POSTED TO CONSOLE          \cr
+  OF \code{.LEV}   \tab POSTED TO CONSOLE          \cr
   \code{0}        \tab < none >                   \cr
   \code{1}        \tab < newline >                \cr
   \code{2}        \tab < newline > + \code{'| '}       \cr
@@ -39,30 +43,30 @@ When \code{...} is empty, the message defaults to a single dot (\code{"."}).
   \code{4}        \tab < newline > + \code{'| | > '}   \cr
   \code{5}        \tab < newline > + \code{'| | | > '} \cr
   \code{...}      \tab \code{...}                        }
-In addition, Sub-levels are defined via the argument \code{Sub} where \code{Sub = 0} leaves the message as is, \code{Sub = 1} prepends \code{' > '} to the message, and \code{Sub = 2}, prepends \code{"..("} and appends \code{")"} to the message.
+In addition, .SUB-levels are defined via the argument \code{.SUB} where \code{.SUB = 0} leaves the message as is, \code{.SUB = 1} prepends \code{' > '} to the message, and \code{.SUB = 2}, prepends \code{"..("} and appends \code{")"} to the message.
 }
 \examples{
 cat0("msg on its own line")
 chat. <- function() {
-  say("msg 1A", Lev = 1)
-  say("msg 2A", Lev = 2)
-  say("msg 2B", Lev = 2)
-  say("msg 3A", Lev = 3)
-  say("msg 3B", Lev = 3)
+  say("msg 1A", .LEV = 1)
+  say("msg 2A", .LEV = 2)
+  say("msg 2B", .LEV = 2)
+  say("msg 3A", .LEV = 3)
+  say("msg 3B", .LEV = 3)
   say()
   say()
   say()
-  say("msg 3C", Lev = 3)
-  say("msg 4A", Lev = 4)
-  say("msg 4B", Lev = 4)
-  say("msg 5A", Lev = 5)
-  say(Lev = 6)
-  say(Lev = 6)
-  say("msg 5B", Lev = 5)
-  say("msg 3D", Lev = 3)
+  say("msg 3C", .LEV = 3)
+  say("msg 4A", .LEV = 4)
+  say("msg 4B", .LEV = 4)
+  say("msg 5A", .LEV = 5)
+  say(.LEV = 6)
+  say(.LEV = 6)
+  say("msg 5B", .LEV = 5)
+  say("msg 3D", .LEV = 3)
   say()
   say()
-  say("msg 1B", Lev = 1)
+  say("msg 1B", .LEV = 1)
   say(" + a_random_message")
 }
 chat.()

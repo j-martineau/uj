@@ -20,94 +20,94 @@
 \usage{
 dot_args()
 
-dot_by_name(NAME, DEF, ...)
+dot_by_name(.NAME, .DEF, ...)
 
-dots_by_name(NAMES, DEFS, ...)
+dots_by_name(.NAMES, .DEFS, ...)
 
-dot_names(..., SUBS = NULL, REQ = TRUE, BL = FALSE, U = TRUE)
+dot_names(..., .SUBS = NULL, .REQ = TRUE, .BL = FALSE, .U = TRUE)
 
 named_dots(...)
 
 anon_dots(...)
 
-named_dot(N, ...)
+named_dot(.N, ...)
 
-anon_dot(N, ...)
+anon_dot(.N, ...)
 
-flex_dot(N, ..., GLUE = FALSE, DEF = "", D = " ")
+flex_dot(.N, ..., .GLUE = FALSE, .DEF = "", .D = " ")
 
-flex_dots(..., GLUE = FALSE, DEF = "", D = " ")
+flex_dots(..., .GLUE = FALSE, .DEF = "", .D = " ")
 
-glue_dot(..., N = 1, DEF = "", D = " ")
+glue_dot(..., .N = 1, .DEF = "", .D = " ")
 
-glue_dots(..., DEF = "", D = " ")
+glue_dots(..., .DEF = "", .D = " ")
 
-gf_dots(..., DEF = "", D = " ")
+gf_dots(..., .DEF = "", .D = " ")
 
-gf_dot(..., N = 1, DEF = "", D = " ")
+gf_dot(..., .N = 1, .DEF = "", .D = " ")
 }
 \arguments{
-\item{NAME}{\code{NULL} or \link[=cmp_scl]{complete atomic scalar}. \code{NULL} is replaced with \code{'NULL'} and \code{NA} is replaced with \code{'NA'}.}
+\item{.NAME}{\code{NULL} or \link[=cmp_scl]{complete atomic scalar}. \code{NULL} is replaced with \code{'NULL'} and \code{NA} is replaced with \code{'NA'}.}
 
-\item{DEF}{A default object/value to return if a specified argument is not in \code{...}. For \code{glue_dots} and \code{glue_dot}, must be a \link[=cmp_chr_vec]{complete character vec}. For all others, may be, but does not need to be, a list.}
+\item{.DEF}{A default object/value to return if a specified argument is not in \code{...}. For \code{glue_dots} and \code{glue_dot}, must be a \link[=cmp_chr_vec]{complete character vec}. For all others, may be, but does not need to be, a list.}
 
 \item{...}{An arbitrary number of arguments.}
 
-\item{NAMES}{\code{NULL} or an \link[=atm_vec]{atomic vec} (may include \code{NA} values). Is split along the delimiter \code{'|'} to allow for compactness in submitting multiple NAMES \code{NULL} will match either an argument in \code{...} or element of \code{DEFS} with the Name \code{'NULL'}. \code{NA} values will match an argument in \code{...} or an element of \code{DEFS} with the Name \code{'NA'}.}
+\item{.NAMES}{\code{NULL} or an \link[=atm_vec]{atomic vec} (may include \code{NA} values). Is split along the delimiter \code{'|'} to allow for compactness in submitting multiple .NAMES \code{NULL} will match either an argument in \code{...} or element of \code{.DEFS} with the Name \code{'NULL'}. \code{NA} values will match an argument in \code{...} or an element of \code{.DEFS} with the Name \code{'NA'}.}
 
-\item{DEFS}{A named \link[=VLS]{vlist} of default objects/values to return if the specified arguments are not in \code{...}. Elements of \code{DEFS} must be uniquely nameD If \code{DEFS} is a tibble, columns with matching names are returned.}
+\item{.DEFS}{A named \link[=VLS]{vlist} of default objects/values to return if the specified arguments are not in \code{...}. Elements of \code{.DEFS} must be uniquely nameD If \code{.DEFS} is a tibble, columns with matching names are returned.}
 
-\item{SUBS}{\code{NULL} or \link[=cmp_chr_vec]{complete character vec}. If not \code{NULL}, it is split using pipes \code{'|'} as a delimiter. If there are no pipes contained in \code{NAMES}, it remains unchangeD When this argument is not \code{NULL}, it is substituted for the names of \code{...} arguments; thus, after splitting, its length must equal the number of \code{...} arguments. For example, \code{NAMES = c('one', 'two', 'three|four|five')} indicates that there should be five \code{...} arguments and the vector \code{c('one', 'two', 'three', 'four', 'five')} is substituted for their names.}
+\item{.SUBS}{\code{NULL} or \link[=cmp_chr_vec]{complete character vec}. If not \code{NULL}, it is split using pipes \code{'|'} as a delimiter. If there are no pipes contained in \code{.NAMES}, it remains unchangeD When this argument is not \code{NULL}, it is substituted for the names of \code{...} arguments; thus, after splitting, its length must equal the number of \code{...} arguments. For example, \code{.NAMES = c('one', 'two', 'three|four|five')} indicates that there should be five \code{...} arguments and the vector \code{c('one', 'two', 'three', 'four', 'five')} is substituted for their names.}
 
-\item{REQ}{\code{TRUE} or \code{FALSE} indicating whether names are required.}
+\item{.REQ}{\code{TRUE} or \code{FALSE} indicating whether names are required.}
 
-\item{N}{A positive integer indicating which \code{...} arg to return.}
+\item{.BL}{\code{TRUE} or \code{FALSE} indicating whether blank names are allowed or what to return when \code{...} args resolve to a blank string (\code{""}).}
 
-\item{GLUE}{\code{TRUE} or \code{FALSE} indicating whether to glue the result (collapse into a character scalar) using the delimiter \code{D}.}
+\item{.U}{\code{TRUE} or \code{FALSE} indicating whether \code{.NAMES} must be unique.}
 
-\item{D}{A \link[=cmp_chr_scl]{complete character scalar} for collapsing results to a character scalar.}
+\item{.N}{A positive integer indicating which \code{...} arg to return.}
 
-\item{BLANK}{\code{TRUE} or \code{FALSE} indicating whether blank names are allowed or what to return when \code{...} args resolve to a blank string (\code{""}).}
+\item{.GLUE}{\code{TRUE} or \code{FALSE} indicating whether to glue the result (collapse into a character scalar) using the delimiter \code{.D}.}
 
-\item{UNQ}{\code{TRUE} or \code{FALSE} indicating whether \code{NAMES} must be unique.}
+\item{.D}{A \link[=cmp_chr_scl]{complete character scalar} for collapsing results to a character scalar.}
 }
 \value{
-\strong{A character vector} (when \code{GLUE = FALSE}) \cr\cr \verb{flex_dots, flex_dot}
-\cr     \strong{A character scalar} (when \code{GLUE = TRUE})  \cr\cr \verb{flex_dots, flex_dot}
-\cr\cr  \strong{A character vector}                       \cr\cr \verb{dot_names, dnames}
-\cr\cr  \strong{A character scalar}                       \cr\cr \verb{glue_dots, glue_dot} \cr \verb{gf_dots, gf_dot}
-\cr\cr  \strong{An object}                                \cr\cr \verb{dot_by_name, named_dot, anon_dot}
-\cr\cr  \strong{A list}                                   \cr\cr \verb{dots_by_name, named_dots, anon_dots}
+\strong{A character vector} (when \code{.GLUE = FALSE}) \cr\cr \verb{flex_dots, flex_dot}
+\cr     \strong{A character scalar} (when \code{.GLUE = TRUE})  \cr\cr \verb{flex_dots, flex_dot}
+\cr\cr  \strong{A character vector}                        \cr\cr \verb{dot_names, dnames}
+\cr\cr  \strong{A character scalar}                        \cr\cr \verb{glue_dots, glue_dot} \cr \verb{gf_dots, gf_dot}
+\cr\cr  \strong{An object}                                 \cr\cr \verb{dot_by_name, named_dot, anon_dot}
+\cr\cr  \strong{A list}                                    \cr\cr \verb{dots_by_name, named_dots, anon_dots}
 }
 \description{
 Enhanced of functions for managing \code{...} arguments.
 }
 \details{
-\strong{\code{dot_names}} and \strong{\code{dnames}} are enhancements of \code{...names} that flexibly retrieves names of all \code{...} args by substituting the corresponding value of \code{SUBS} If a \code{...} arg's Name is missing or blank (\code{""}), the corresponding value of \code{.names} is substituteD Throws an error in the following circumstances:
+\strong{\code{dot_names}} and \strong{\code{dnames}} are enhancements of \code{...names} that flexibly retrieves names of all \code{...} args by substituting the corresponding value of \code{.SUBS} If a \code{...} arg's name is missing or blank (\code{""}), the corresponding value of \code{.names} is substituted Throws an error in the following circumstances:
 \itemize{\item \code{...length() == 0}
-\item \code{length(NAMES) > 0 & length(NAMES) < ...length()}
-\item \code{is.null(NAMES) & BLANK & any(...names() == "")}
-\item \code{is.null(NAMES) & REQ & !any(...names() != "")}
-\item \code{is.null(NAMES) & U & any(duplicated(...names()))}}
+\item \code{length(.NAMES) > 0 & length(.NAMES) < ...length()}
+\item \code{is.null(.NAMES) & ..BL & any(...names() == "")}
+\item \code{is.null(.NAMES) & .REQ & !any(...names() != "")}
+\item \code{is.null(.NAMES) & .U & any(duplicated(...names()))}}
 \cr The remaining functions in this family are as follows:
-\tabular{ll}{  \code{dots_by_name}   \tab Enhancement of \code{list(...)} that extracts one or more\code{...} args based on matching values supplied in \code{NAMES}. If a supplied Name matches the Name of a \code{...}
-arg, that arg is returned. Otherwise, the element of \code{DEFS} with a matching Name is returned. \code{NAMES = NULL} and \code{NAMES = NA} are converted to \code{'NULL'} and
+\tabular{ll}{  \code{dots_by_name}   \tab Enhancement of \code{list(...)} that extracts one or more\code{...} args based on matching values supplied in \code{.NAMES}. If a supplied Name matches the Name of a \code{...}
+arg, that arg is returned. Otherwise, the element of \code{.DEFS} with a matching Name is returned. \code{.NAMES = NULL} and \code{.NAMES = NA} are converted to \code{'NULL'} and
 \code{'NA'}. Reserved words should be backtick quoted.                                                                                                               \cr   \tab   \cr
   \code{named_dots}     \tab Get a named list containing named \code{...} arg values.                                                                                                             \cr   \tab   \cr
   \code{anon_dots}      \tab Get an unnamed list containing unnamed (anonymous) \code{...} arg values.                                                                                            \cr   \tab   \cr
-  \code{flex_dots}      \tab Retrieve a list of \code{...length()} elements where the \code{n}\eqn{^{th}} element is the flexibly evaluated value of \code{...elt(n)}, where flexible evaluation of \code{...}
+  \code{flex_dots}      \tab Retrieve a list of \code{...length()} elements where the \code{.N}\eqn{^{th}} element is the flexibly evaluated value of \code{...elt(.N)}, where flexible evaluation of \code{...}
 arg values means that a \code{...} arg takes on the unadjusted value if \link[=base:force]{forcing} evaluation does not generate an error. Otherwise, it takes as
 its value the string literal representing it in a function call. For example, \code{f(exactly, 5-2, words)} and \code{f("exactly", "3", "words")} give identical results
 in the following circumstances: The usage of \code{f} is defined as \code{f(...)}, \code{f} treats each \code{...} arg as a flexdot, and in the immediate environment that calls
 \code{f(...)} there are no defined objects with the names \code{exactly} and \code{words}.                                                                                     \cr   \tab   \cr
-  \code{glue_dots}      \tab Collapse \code{...} args to a character scalar by calling \code{\link[base]{paste0}}\code{(}\code{\link{av}}\verb{(...), collapse = D)}.                                       \cr   \tab   \cr
+  \code{glue_dots}      \tab Collapse \code{...} args to a character scalar by calling \code{\link[base]{paste0}}\code{(}\code{\link{av}}\verb{(...), collapse = .D)}.                                       \cr   \tab   \cr
   \code{gf_dots}        \tab Combo functionality of \code{glue_dots} and \code{flex_dots} to glue flexibly evaluated \code{...} args into a character scalar.                                               \cr   \tab   \cr
   \code{dot_by_name}    \tab Get a single \code{...} arg by name.                                                                                                                                 \cr   \tab   \cr
-  \code{named_dot}      \tab Get the \code{N}-th named \code{...} arg.                                                                                                                                 \cr   \tab   \cr
-  \code{anon_dot}       \tab Get the \code{N}-th unnamed (anonymous) \code{...} arg.                                                                                                                   \cr   \tab   \cr
-  \code{flex_dot}       \tab Get the \code{N}-th \code{...} arg, flexibly evaluated.                                                                                                                   \cr   \tab   \cr
-  \code{glue_dot}       \tab Get the \code{N}-th \code{...} arg, glued.                                                                                                                                \cr   \tab   \cr
-  \code{gf_dot}         \tab Get the \code{N}-th \code{...} arg, flexibly evaluated and glued.                                                                                                                        }
+  \code{named_dot}      \tab Get the \code{.N}-th named \code{...} arg.                                                                                                                                 \cr   \tab   \cr
+  \code{anon_dot}       \tab Get the \code{.N}-th unnamed (anonymous) \code{...} arg.                                                                                                                   \cr   \tab   \cr
+  \code{flex_dot}       \tab Get the \code{.N}-th \code{...} arg, flexibly evaluated.                                                                                                                   \cr   \tab   \cr
+  \code{glue_dot}       \tab Get the \code{.N}-th \code{...} arg, glued.                                                                                                                                \cr   \tab   \cr
+  \code{gf_dot}         \tab Get the \code{.N}-th \code{...} arg, flexibly evaluated and glued.                                                                                                                        }
 }
 \examples{
 egdot_args <- function(...) {
@@ -121,16 +121,16 @@ egdot_args <- function(...) {
     defaults <- "{no Dot args}"
     default <- "{no Dot args}"
   }
-  list(glue.flex.dots = flex_dots(..., GLUE = TRUE, DEF = default, D = "_") ,
-       glue.flex.dot2 = flex_dot(..., N = 2, GLUE = TRUE)                   ,
-       subbed.names   = failsafe(dot_names(..., SUBS = sub.names))          ,
+  list(glue.flex.dots = flex_dots(..., .GLUE = TRUE, .DEF = default, .D = "_") ,
+       glue.flex.dot2 = flex_dot(..., .N = 2, .GLUE = TRUE)                   ,
+       subbed.names   = failsafe(dot_names(..., .SUBS = sub.names))          ,
        named.dots     = failsafe(named_dots(...))                           ,
        anon.dots      = failsafe(anon_dots(...))                            ,
        DotNames      = failsafe(dot_names(...))                            ,
-       flex.dots      = flex_dots(..., DEFS = default)                      ,
-       flex.dot2      = flex_dot(..., N = 2)                                ,
-       glue.dots      = failsafe(glue_dots(..., DEFS = default))            ,
-       gf.dots        = gf_dots(..., DEF = default)                         ,
+       flex.dots      = flex_dots(..., .DEFS = default)                      ,
+       flex.dot2      = flex_dot(..., .N = 2)                                ,
+       glue.dots      = failsafe(glue_dots(..., .DEFS = default))            ,
+       gf.dots        = gf_dots(..., .DEF = default)                         ,
        dots           = failsafe(dots_by_name(sub.names, defaults, ...))     ,
        dot1           = failsafe(dot_by_name(sub.names[1], defaults[1], ...)))
 }

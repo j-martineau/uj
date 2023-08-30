@@ -8,20 +8,20 @@
 \alias{er}
 \title{Error-checked wrappers for \code{base::rep}}
 \usage{
-r(R, ...)
+r(r, ...)
 
-e(E, ...)
+e(e, ...)
 
-re(R, E, ...)
+re(r, e, ...)
 
-er(E, R, ...)
+er(e, r, ...)
 }
 \arguments{
-\item{R}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of replications of entire vectors.}
+\item{r}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of replications of entire vectors.}
 
 \item{...}{One or more objects containing atomic values to be replicated (\link[=a]{atomized} before replication).}
 
-\item{E}{A complete positive whole-number scalar giving the number of times each value is to be replicated in place.}
+\item{e}{A complete positive whole-number scalar giving the number of times each value is to be replicated in place.}
 }
 \value{
 An atomic vector.

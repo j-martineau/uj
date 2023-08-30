@@ -11,16 +11,18 @@
 \usage{
 rd()
 
-rd_csv(File = NULL, ...)
+rd_csv(file = NULL, ...)
 
 rd_clip()
 
-rd_xsv(File = NULL, Delim = NULL, ...)
+rd_xsv(file = NULL, .D = NULL, ...)
 
-rd_tsv(File = NULL, ...)
+rd_tsv(file = NULL, ...)
 }
 \arguments{
-\item{File}{Either \code{NULL} or a \link[=cmp_chr_vec]{complete character vector} that resolves to a file path. When \code{File = NULL} the user is asked to select a file using a system dialog box.}
+\item{file}{Either \code{NULL} or a \link[=cmp_chr_vec]{complete character vector} that resolves to a file path. When \code{file = NULL} the user is asked to select a file using a system dialog box.}
+
+\item{.D}{Either \code{NULL} or a \link[=cmp_ch1_scl]{complete onechar scalar} text delimiter.}
 }
 \value{
 \strong{Varies}       \cr\cr \code{rd_clip}
@@ -34,7 +36,7 @@ Read the clipboard and text files, but prompting user to choose a file if no fil
   \code{rd_csv}    \tab Extends \code{\link[readr]{read_csv}}\eqn{^{(1)}}   \cr
   \code{rd_tsv}    \tab Extends \code{\link[readr]{read_tsv}}\eqn{^{(1)}}   \cr
   \code{rd_xsv}    \tab Extends \code{\link[readr]{read_delim}}\eqn{^{(1)}} \cr   \tab     }
-\tabular{l}{  \eqn{^{(1)}} \code{File = NULL} prompts the user to select a file.                       }
+\tabular{l}{  \eqn{^{(1)}} \code{file = NULL} prompts the user to select a file.                       }
 }
 \seealso{
 Other extensions: 

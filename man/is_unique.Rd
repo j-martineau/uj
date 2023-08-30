@@ -12,40 +12,40 @@
 \alias{not_unq0}
 \title{Does an atomic object only contain unique values?}
 \usage{
-is_unique(X, A = FALSE, Na = FALSE)
+is_unique(x, .A = FALSE, .NA = FALSE)
 
 is_unique0(...)
 
-not_unique(X, A = FALSE, Na = FALSE)
+not_unique(x, .A = FALSE, .NA = FALSE)
 
 not_unique0(...)
 
-is_unq(X, A = FALSE, Na = FALSE)
+is_unq(x, .A = FALSE, .NA = FALSE)
 
 is_unq0(...)
 
-not_unq(X, A = FALSE, Na = FALSE)
+not_unq(x, .A = FALSE, .NA = FALSE)
 
 not_unq0(...)
 }
 \arguments{
-\item{X}{An atomic object.}
+\item{x}{An atomic object.}
 
-\item{A}{\code{TRUE} or \code{FALSE} indicating whether to reduce \code{X} to an atomic vector containing all of its atomic values. When \code{FALSE} and \code{X} is not atomic, throws an error.}
+\item{.A}{\code{TRUE} or \code{FALSE} indicating whether to reduce \code{x} to an atomic vector containing all of its atomic values. When \code{FALSE} and \code{x} is not atomic, throws an error.}
 
-\item{Na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are allowed.}
+\item{.NA}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are allowed.}
 }
 \value{
 Scalar \code{TRUE} or scalar \code{FALSE}.
 }
 \description{
-Evaluates whether \code{X} contains only only unique atomic values, with options for for atomizing before evaluation and for handling \code{NA} values.
+Evaluates whether \code{x} contains only only unique atomic values, with options for for atomizing before evaluation and for handling \code{NA} values.
 }
 \details{
-\tabular{ll}{  \verb{not_unique0, not_unq0}   \tab whether \code{X} \emph{is not} an atomic vector containing only unique values.                           \cr   \tab   \cr
-  \verb{not_unique, not_unq}     \tab whether \code{X} \emph{is not} a unique data.frame, list, or vector depending on values of \code{A} and \code{Na}. \cr   \tab   \cr
-  \verb{is_unique0, is_unq0}     \tab whether \code{X} \emph{is} an atomic vector containing only unique values.                               \cr   \tab   \cr
-  \verb{is_unique, is_unq}       \tab whether \code{X} \emph{is} a unique data.frame, list, or vector depending on values of \code{A} and \code{Na}.                    }
+\tabular{ll}{  \verb{not_unique0, not_unq0}   \tab whether \code{x} \emph{is not} an atomic vector containing any duplicate value.                            \cr   \tab   \cr
+  \verb{not_unique, not_unq}     \tab whether \code{x} \emph{is not} a unique data.frame, list, or vector depending on values of \code{.A} and \code{.NA}. \cr   \tab   \cr
+  \verb{is_unique0, is_unq0}     \tab whether \code{x} \emph{is} an atomic vector containing only unique values.                                 \cr   \tab   \cr
+  \verb{is_unique, is_unq}       \tab whether \code{x} \emph{is} a unique data.frame, list, or vector depending on values of \code{.A} and \code{.NA}.                    }
 }
 \examples{
 is_unique(letters)

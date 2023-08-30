@@ -7,31 +7,31 @@
 \alias{putc}
 \title{Put values into objects}
 \usage{
-put(X, V, E)
+put(x, v, e)
 
-putr(X, V, R)
+putr(x, v, r)
 
-putc(X, V, C)
+putc(x, v, c)
 }
 \arguments{
-\item{X}{For \code{put}, a vector or \link[=ccc]{vlist}. For \code{putc} and \code{putr}, a data.frame or matrix.}
+\item{x}{For \code{put}, a vector or \link[=ccc]{vlist}. For \code{putc} and \code{putr}, a data.frame or matrix.}
 
-\item{V}{A vector of replacement values. Must be of the same length as \code{E} for \code{put}. Length must equal the number of \code{nrow(X)} for \code{putc}. Length must equal \code{ncol(X)} for \code{putr}}
+\item{v}{A vector of replacement values. Must be of the same length as \code{e} for \code{put}. Length must equal the number of \code{nrow(x)} for \code{putc}. Length must equal \code{ncol(x)} for \code{putr}}
 
-\item{E}{A \link[=cmp_ind_vec]{complete indexer vec} of length equal to that of \code{V}.}
+\item{e}{A \link[=cmp_ind_vec]{complete indexer vec} of length equal to that of \code{v}.}
 
-\item{R, C}{\link[=cmp_ind_scl]{Complete indexer scalars} indicating row or column to replace, respectively.}
+\item{r, c}{\link[=cmp_ind_scl]{Complete indexer scalars} indicating row or column to replace, respectively.}
 }
 \value{
-An object of the same class and dimension as \code{X}.
+An object of the same class and dimension as \code{x}.
 }
 \description{
 Put values into a vector/list, vectors into rows, and vectors into columns.
 }
 \details{
-\tabular{ll}{  \code{put}    \tab Puts vector \code{V} into \code{E}-indexed elements of \code{X} (assumed to be a vector or \link[=VLS]{vlist}). \cr   \tab   \cr
-  \code{putc}   \tab Puts vector \code{V} into \code{C}-indexed column of \code{X} (assumed to be a data.frame or matrix).           \cr   \tab   \cr
-  \code{putr}   \tab Puts vector \code{V} into \code{R}-indexed row of \code{X} (assumed to be a data.frame or matrix).                             }
+\tabular{ll}{  \code{put}    \tab Puts vector \code{v} into \code{e}-indexed elements of \code{x} (assumed to be a vector or \link[=VLS]{vlist}). \cr   \tab   \cr
+  \code{putc}   \tab Puts vector \code{v} into \code{c}-indexed column of \code{x} (assumed to be a data.frame or matrix).           \cr   \tab   \cr
+  \code{putr}   \tab Puts vector \code{v} into \code{r}-indexed row of \code{x} (assumed to be a data.frame or matrix).                             }
 }
 \examples{
 egVec <- letters[1:5]

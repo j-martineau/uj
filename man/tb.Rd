@@ -38,8 +38,8 @@ Thin wrappers of functions from package \code{tibble}. See links in \emph{detail
 \details{
 \tabular{ll}{  \code{as_tb}   \tab Thinly wraps \code{\link[tibble]{as_tibble}}.  \cr
   \code{is_tb}   \tab Thinly wraps \code{\link[tibble]{is_tibble}}.  \cr
-  \code{tbr}     \tab Thinly wraps \code{\link[tibble]{tribble}}.    \cr
-  \code{trb}     \tab Thinly wraps \code{\link[tibble]{tibble_row}}. \cr
+  \code{trb}     \tab Thinly wraps \code{\link[tibble]{tribble}}.    \cr
+  \code{tbr}     \tab Thinly wraps \code{\link[tibble]{tibble_row}}. \cr
   \code{tb}      \tab Thinly wraps \code{\link[tibble]{tibble}}.       }
 }
 \examples{

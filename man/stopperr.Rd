@@ -37,104 +37,106 @@
 \alias{check_fail}
 \title{Error checking, banking, and processing}
 \usage{
-stopperr(..., FUN = "", PKG = "", STACK = "")
+stopperr(..., .FUN = "", .PKG = "", .STACK = "")
 
 getterr()
 
 purgerr()
 
-stopper(..., FUN = "", PKG = "", STACK = "")
+stopper(..., .FUN = "", .PKG = "", .STACK = "")
 
 getter()
 
 purger()
 
-err_if(TEST, ..., FUN = "", PKG = "", STACK = "", D = " ")
+err_if(.TEST, ..., .FUN = "", .PKG = "", .STACK = "", .D = " ")
 
-err_if_not(TEST, ..., FUN = "", PKG = "", STACK = "", D = " ")
+err_if_not(.TEST, ..., .FUN = "", .PKG = "", .STACK = "", .D = " ")
 
-errs_ifs(..., FUN = "", PKG = "", STACK = "", D = " ")
+errs_ifs(..., .FUN = "", .PKG = "", .STACK = "", .D = " ")
 
-errs_if_nots(..., FUN = "", PKG = "", STACK = "", D = " ")
+errs_if_nots(..., .FUN = "", .PKG = "", .STACK = "", .D = " ")
 
-err_if_pop(..., FUN = "", PKG = "", STACK = "", D = " ")
+err_if_pop(..., .FUN = "", .PKG = "", .STACK = "", .D = " ")
 
-errs_if_pop(..., FUN = "", PKG = "", STACK = "")
+errs_if_pop(..., .FUN = "", .PKG = "", .STACK = "")
 
-errs(ERRS, PKG = "", STACK = "")
+errs(.ERRS, .PKG = "", .STACK = "")
 
-err(..., PKG = "", STACK = "", D = " ")
+err(..., .PKG = "", .STACK = "", .D = " ")
 
-banked_errs(GENS = 0)
+banked_errs(.GENS = 0)
 
-checkerr(GENS = 0, PKG = "")
+checkerr(.GENS = 0, .PKG = "")
 
-checker(GENS = 0, PKG = "")
+checker(.GENS = 0, .PKG = "")
 
-bankerr(..., GENS = 0, D = "")
+bankerr(..., .GENS = 0, .D = "")
 
-bankerrs(..., GENS = 0)
+bankerrs(..., .GENS = 0)
 
-check_t(..., D = " ")
+check_t(..., .D = " ")
 
 check_tf(...)
 
-check_lgl(..., NA0 = FALSE, EXTRAS = NULL)
+check_lgl(..., .NA = FALSE, .EXTRAS = NULL)
 
-check_nll_or(FUNS, ..., VALS = NULL)
+check_nll_or(.FUNS, ..., .VALS = NULL)
 
-check_nas_or(FUNS, ..., VALS = NULL)
+check_nas_or(.FUNS, ..., .VALS = NULL)
 
-check_cls(CLS, ...)
+check_cls(.CLS, ...)
 
 check_pop(...)
 
-check_funs(FUNS, ..., VALS = NULL)
+check_funs(.FUNS, ..., .VALS = NULL)
 
-check_spec(SPEC, ..., NA0 = F)
+check_spec(.SPEC, ..., .NA = F)
 
-check_vals(VALS, ..., A = TRUE, NA0 = FALSE)
+check_vals(.VALS, ..., .A = TRUE, .NA = FALSE)
 
-check_chars(CHARS, ..., A = TRUE)
+check_chars(.CHARS, ..., .A = TRUE)
 
-check_dots(SPEC, ..., NAMED = FALSE)
+check_dots(.SPEC, ..., .NAMED = FALSE)
 
-check_when(WHENS, VALS, ...)
+check_when(.WHENS, .VALS, ...)
 
 check_fail(...)
 }
 \arguments{
 \item{...}{Differs by function in terms of whether they are named, how many there are, and their \link[=ppp]{property requirements} as described in section \emph{the} \code{...} \emph{arguments}.}
 
-\item{FUN}{A character scalar naming the function generating an error or errors.}
+\item{.FUN}{A character scalar naming the function generating an error or errors.}
 
-\item{PKG}{A character scalar naming the package \code{FUN} is a part of. The package is identified as \code{'unknown'} when \code{PKG = ""}.}
+\item{.PKG}{A character scalar naming the package \code{FUN} is a part of. The package is identified as \code{'unknown'} when \code{.PKG = ""}.}
 
-\item{STACK}{An optional character vector naming the lineage of the function generating the error. If \code{NULL}, retrieves the Stack under the assumption that the immediate calling function is Where the error is generated.}
+\item{.STACK}{An optional character vector naming the lineage of the function generating the error. If \code{NULL}, retrieves the Stack under the assumption that the immediate calling function is Where the error is generated.}
 
-\item{D}{A non-\code{NA} character scalar delimiter for collapsing \code{...} into a an error message.}
+\item{.TEST}{A non-\code{NA} logical scalar.}
 
-\item{ERRS}{A character vector of individual error messages.}
+\item{.D}{A non-\code{NA} character scalar delimiter for collapsing \code{...} into a an error message.}
 
-\item{GENS}{A \link[=cmp_nnw_scl]{complete non-negative whole-number scalar} indicating the number of generations back in the call Stack in which to bank and/or check for error messages.}
+\item{.ERRS}{A character vector of individual error messages.}
 
-\item{NA0}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values qualify as \code{'logical'}.}
+\item{.GENS}{A \link[=cmp_nnw_scl]{complete non-negative whole-number scalar} indicating the number of generations back in the call Stack in which to bank and/or check for error messages.}
 
-\item{EXTRAS}{\code{NULL} or a \link[=cmp_atm]{complete atomic object} containing additional valid values.}
+\item{.NA}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values qualify as \code{'logical'}.}
 
-\item{FUNS}{A \link[=cmp_chr_vec]{complete character vec} containing \code{1} or more \link[=prop_funs]{property function} names.}
+\item{.EXTRAS}{\code{NULL} or a \link[=cmp_atm]{complete atomic object} containing additional valid values.}
 
-\item{VALS}{A \link[=cmp_atm]{complete atomic object} of length \code{length(WHENS)}.}
+\item{.FUNS}{A \link[=cmp_chr_vec]{complete character vec} containing \code{1} or more \link[=prop_funs]{property function} names.}
 
-\item{SPEC}{A \link[=cmp_chr_scl]{complete character scalar} containing a \link[=is_prop_spec]{property spec}.}
+\item{.VALS}{A \link[=cmp_atm]{complete atomic object} of length \code{length(WHENS)}.}
 
-\item{A}{\code{TRUE} or \code{FALSE} indicating whether to \link[=av]{atomize} \code{...} args.}
+\item{.SPEC}{A \link[=cmp_chr_scl]{complete character scalar} containing a \link[=is_prop_spec]{property spec}.}
 
-\item{CHARS}{A \link[=cmp_str]{complete string object} containing}
+\item{.A}{\code{TRUE} or \code{FALSE} indicating whether to \link[=av]{atomize} \code{...} args.}
 
-\item{NAMED}{\code{TRUE} or \code{FALSE} indicating whether \code{...} args must uniquely named without using \code{""}.}
+\item{.CHARS}{A \link[=cmp_str]{complete string object} containing}
 
-\item{WHENS}{A \link[=pop_atm]{populated atomic object} of length \code{length(VALS)}.}
+\item{.NAMED}{\code{TRUE} or \code{FALSE} indicating whether \code{...} args must uniquely named without using \code{""}.}
+
+\item{.WHENS}{A \link[=pop_atm]{populated atomic object} of length \code{length(.VALS)}.}
 }
 \value{
 **A **\code{\link[base]{simpleError}} \strong{object} \cr\cr \code{getterr}
@@ -148,9 +150,9 @@ Bank error messages in the immediate environment of a function to allow for exha
 \strong{Primary stopping functions}
 \tabular{ll}{  \code{stopperr} or \code{stopper}   \tab Stops execution by:                                                                                                                                                                                                             \cr
                             \tab \enumerate{
-\item Posting an \code{\link{alert}} header the console with the following components: an error \code{'ERROR'} title, a subheader identifying the function Where the error originated (from \code{FUN}), and another subheader identifying the package that function belongs to (from \code{PKG}).
+\item Posting an \code{\link{alert}} header the console with the following components: an error \code{'ERROR'} title, a subheader identifying the function Where the error originated (from \code{FUN}), and another subheader identifying the package that function belongs to (from \code{.PKG}).
 \item Posting one or more error message to the console following the header, each preceded by a bullet, Where each element of each \code{...} arg is a separate error message.
-\item Creating a \code{\link[base]{simpleError}} object with an error message consisting of an \link[=lineage]{abbreviated function call lineage} given as a vector in \code{STACK}.
+\item Creating a \code{\link[base]{simpleError}} object with an error message consisting of an \link[=lineage]{abbreviated function call lineage} given as a vector in \code{.STACK}.
 \item Attaching the function identity, package identity, and associated message(s) to the \code{simpleError} object as attributes.
 \item Archiving the \code{simpleError} object in the global variable \code{.last_UJ_error.} (which can be retrieved by calling \code{getter()} and can be purged by calling \code{purger()}). Allows for error tracing in the circumstance that R purges the last error in final error processing.
 \item Calling \code{stop} with the \code{simpleError} object as the argument.                                                                                                                                           } \cr   \tab   \cr
@@ -158,8 +160,8 @@ Bank error messages in the immediate environment of a function to allow for exha
   \code{purgerr} or \code{purger}     \tab Purges the most recent \code{\link[base]{simpleError}} object generated by this family of functions.                                                                                                               \cr   \tab   \cr
   \code{getterr} or \code{getter}     \tab Gets the most recent \code{simpleError} object generated by this family of functions.                                                                                                                                                  }
 \cr Both \code{stopperr / stopper} and \code{checkerr / checker} can identify error-generating functions further up the call Stack than the function in which they are called:
-\itemize{\item \code{stopperr / stopper} uses args \code{FUN}, \code{PKG}, and \code{STACK} to identify the error-generating function.
-\item \code{checkerr / checker} uses args \code{GENS} and \code{PKG} to identify the error-generating function.}
+\itemize{\item \code{stopperr / stopper} uses args \code{FUN}, \code{.PKG}, and \code{.STACK} to identify the error-generating function.
+\item \code{checkerr / checker} uses args \code{.GENS} and \code{.PKG} to identify the error-generating function.}
 \cr\cr \strong{Secondary stopping functions}
 \cr\cr These functions are designed to be called directly from the function Where an error is generated. It gathers the name of the function generating the error rather than requiring the user to provide the function name. These functions operate as follows:
 \tabular{ll}{  \code{errs}            \tab Calls \code{stopperr} treating each element of each \code{...} arg as a separate error message, allowing for compiling multiple error message before processing.                                                              \cr   \tab   \cr
@@ -177,29 +179,29 @@ Bank error messages in the immediate environment of a function to allow for exha
 \cr\cr \strong{Utility functions}
 \cr\cr These functions purge and retrieve the most recent error generated by this family of functions.
 \cr\cr \strong{Primary error banking functions}
-\cr\cr Error banking utility functions: These functions are utilities for banking user-defined error messages within a function to allow for checking for multiple errors in separate statements and banking those error messages as they are checked, waiting to process banked error messages until an error checking block is completed. These functions also allow for generating and checking for error messages further up the call Stack than the function in which the error banking/processing occurs by specifying the number of generations back in the call Stack Where error banking/processing occurs in \code{GENS}:
-\tabular{ll}{  \code{banked_errs}    \tab Retrieves the bank of error message stored in the environment of the function \code{GENS} generations back in the call Stack.                                                                                            \cr   \tab   \cr
+\cr\cr Error banking utility functions: These functions are utilities for banking user-defined error messages within a function to allow for checking for multiple errors in separate statements and banking those error messages as they are checked, waiting to process banked error messages until an error checking block is completed. These functions also allow for generating and checking for error messages further up the call Stack than the function in which the error banking/processing occurs by specifying the number of generations back in the call Stack Where error banking/processing occurs in \code{.GENS}:
+\tabular{ll}{  \code{banked_errs}    \tab Retrieves the bank of error message stored in the environment of the function \code{.GENS} generations back in the call Stack.                                                                                            \cr   \tab   \cr
   \code{bankerrs}       \tab Banks each element of \link[=cmp_chr_vec]{complete character vec} as an individual error message.                                                                                                                   \cr   \tab   \cr
-  \code{bankerr}        \tab Banks an arbitrary error message (built by \link[=collapse_dots]{collapsing} \code{...} args) in the environment of the function \code{GENS} generations back in the call Stack.                                                             }
+  \code{bankerr}        \tab Banks an arbitrary error message (built by \link[=collapse_dots]{collapsing} \code{...} args) in the environment of the function \code{.GENS} generations back in the call Stack.                                                             }
 \cr\cr \strong{Error checking / conditional error banking functions}
 \cr\cr \strong{\code{checkerr}} checks for any banked error messages. If there are any, processes them and stops execution. Otherwise, does nothing.
 \cr\cr The remaining \strong{\verb{check_\{props\}}} functions in the following table check objects for specific properties and automatically generate errors only if those properties are not met:
-\tabular{ll}{  \code{check_nas_or}    \tab A named \code{...} arg is neither \code{NULL} nor satisfies any property function named in \code{FUNS}.                                                                                                                           \cr   \tab   \cr
-  \code{check_nll_or}    \tab A named \code{...} arg is neither scalar \code{NA} nor satisfies any property function named in \code{FUNS}.                                                                                                                      \cr   \tab   \cr
+\tabular{ll}{  \code{check_nas_or}    \tab A named \code{...} arg is neither \code{NULL} nor satisfies any property function named in \code{.FUNS}.                                                                                                                           \cr   \tab   \cr
+  \code{check_nll_or}    \tab A named \code{...} arg is neither scalar \code{NA} nor satisfies any property function named in \code{.FUNS}.                                                                                                                      \cr   \tab   \cr
   \code{check_chars}     \tab A named \code{...} arg contains characters not supplied in \code{CHARS}.                                                                                                                                                     \cr   \tab   \cr
-  \code{check_when}      \tab The first named \code{...} arg \emph{is} the \code{n}-th value in \code{WHENS}, but the second \emph{is not} the \code{n}-th value in \code{VALS}.                                                                                                    \cr   \tab   \cr
+  \code{check_when}      \tab The first named \code{...} arg \emph{is} the \code{n}-th value in \code{WHENS}, but the second \emph{is not} the \code{n}-th value in \code{.VALS}.                                                                                                    \cr   \tab   \cr
   \code{check_dots}      \tab A \code{...} arg\eqn{^{(1)}} fails to satisfy the \link[=is_prop_spec]{property spec} in \code{SPEC}.                                                                                                                        \cr   \tab   \cr
   \code{check_spec}      \tab A named \code{...} arg fails to satisfy the \link[=is_prop_spec]{property spec} in \code{SPEC}\eqn{^{(2)}}.                                                                                                                  \cr   \tab   \cr
-  \code{check_funs}      \tab A named \code{...} arg fails to satisfy \emph{any} of the \link[=prop_funs]{property function(s)} named in \code{FUNS}.                                                                                                           \cr   \tab   \cr
-  \code{check_vals}      \tab A named \code{...} arg contains values not supplied in \code{VALS}.                                                                                                                                                          \cr   \tab   \cr
+  \code{check_funs}      \tab A named \code{...} arg fails to satisfy \emph{any} of the \link[=prop_funs]{property function(s)} named in \code{.FUNS}.                                                                                                           \cr   \tab   \cr
+  \code{check_vals}      \tab A named \code{...} arg contains values not supplied in \code{.VALS}.                                                                                                                                                          \cr   \tab   \cr
   \code{check_fail}      \tab A named \code{...} arg produces an error when submitted to \code{\link[base]{identity}}.                                                                                                                                \cr   \tab   \cr
   \code{check_cls}       \tab A named \code{...} arg is not of any class named in \code{CLS}.                                                                                                                                                              \cr   \tab   \cr
-  \code{check_lgl}       \tab A named \code{...} arg is neither \code{TRUE}, \code{FALSE}, \code{NA} (if \code{NA0 = TRUE}), nor contained in \code{EXTRAS}.                                                                                                                   \cr   \tab   \cr
+  \code{check_lgl}       \tab A named \code{...} arg is neither \code{TRUE}, \code{FALSE}, \code{NA} (if \code{.NA = TRUE}), nor contained in \code{EXTRAS}.                                                                                                                   \cr   \tab   \cr
   \code{check_pop}       \tab A named \code{...} arg is either \code{NULL} or otherwise of length \code{0}.                                                                                                                                                     \cr   \tab   \cr
   \code{check_tf}        \tab A named \code{...} arg is neither scalar \code{TRUE} nor scalar \code{FALSE}.                                                                                                                                                     \cr   \tab   \cr
   \code{check_t}         \tab A named \code{...} arg is \code{FALSE}\eqn{^{(3)}}.                                                                                                                                                                          \cr   \tab     }
 \tabular{l}{  \eqn{^{(1)}} Named if \code{NAMED = TRUE}.                                                                                                             \cr
-  \eqn{^{(2)}} May be scalar \code{NA} if \code{NA0 = TRUE}.                                                                                                  \cr
+  \eqn{^{(2)}} May be scalar \code{NA} if \code{.NA = TRUE}.                                                                                                  \cr
   \eqn{^{(3)}} Collapses \emph{unnamed} \code{...} args to an error message template, replacing the escape sequence \code{'{@}'} with the \emph{named} \code{...} arg's name. }
 }
 \section{The \code{...} arguments}{
@@ -227,13 +229,13 @@ Bank error messages in the immediate environment of a function to allow for exha
 }
 
 \examples{
-egStopper <- function() {stopperr('stopper demo', PKG = 'uj')}
-egErrs <- function() {errs('errs demo1', 'errs demo2', PKG = 'uj')}
-egErr <- function() {err('err', 'demo', PKG = 'uj')}
+egStopper <- function() {stopperr('stopper demo', .PKG = 'uj')}
+egErrs <- function() {errs('errs demo1', 'errs demo2', .PKG = 'uj')}
+egErr <- function() {err('err', 'demo', .PKG = 'uj')}
 egErrors <- function(..., tf = NA, lgl = 42, not = FALSE, pop = NULL,
                      fail = simpleError('error'), funs = 2:4, spec = 42,
                      vals = 42, class = 42, nas.or = NULL, nll.or = NA,
-                     chars = '5', whenA = "errorA", whenB = "errorB") {
+                     chars = '5', when.a = "error.a", when.b = "error.b") {
   bankerr(...elt(1))
   bankerrs(...elt(2), ...elt(3))
   check_tf(tf = tf)
@@ -246,10 +248,10 @@ egErrors <- function(..., tf = NA, lgl = 42, not = FALSE, pop = NULL,
   check_vals(letters, vals = vals)
   check_cls('data.frame', class)
   check_nas_or(c('cmp_ch1_vec', 'cmp_ngw_vec'), nas.or = nas.or)
-  check_nll_or(c('cmp_ch1_vec', 'cmpNGWvec'), nll.or = nll.or)
+  check_nll_or(c('cmp_ch1_vec', 'cmp_ngw_vec'), nll.or = nll.or)
   check_chars(letters, chars = chars)
-  check_when(whenA = whenA, whenB = whenB, c('errorA', ''), c('errorB', ''))
-  checkerr(PKG = 'uj')
+  check_when(when.a = when.a, when.b = when.b, c('error.a', ''), c('error.b', ''))
+  checkerr(.PKG = 'uj')
 }
 \dontrun{
   egstopperr()

@@ -5,20 +5,20 @@
 \alias{fsub}
 \title{Fixed-value string substitution}
 \usage{
-fsub(X, Pats, Subs)
+fsub(x, pats, subs)
 }
 \arguments{
-\item{X}{An \link[=atm_chr]{atomic character object}.}
+\item{x}{An \link[=atm_chr]{atomic character object}.}
 
-\item{Pats}{A \link[=cmp_chr_vec]{complete character vec} of patterns to replace.}
+\item{pats}{A \link[=cmp_chr_vec]{complete character vec} of patterns to replace.}
 
-\item{Subs}{A complete character vec of replacement strings}
+\item{subs}{A complete character vec of replacement strings}
 }
 \value{
 Atomic character object.
 }
 \description{
-Finds strings from \code{Pats} in \code{X} and replaces them with corresponding values of (possibly recycled) \code{Subs}.
+Finds strings from \code{pats} in \code{x} and replaces them with corresponding values of (possibly recycled) \code{subs}.
 }
 \examples{
 egArg1 <- c("a", "few", "words", "in", "a string")
@@ -27,10 +27,10 @@ egPats <- c("a", "f", "w", "i", "s", " ")
 egSubs <- c("A", "F", "W", "I", "S", "_")
 egArg1
 egArg2
-fsub(egArg1, Pats, Subs)
-fsub(egArg2, Pats, Subs)
-fsub(egArg1, Pats, "_")
-fsub(egArg2, Pats, "_")
+fsub(egArg1, egPats, egSubs)
+fsub(egArg2, egPats, egSubs)
+fsub(egArg1, egPats, "_")
+fsub(egArg2, egPats, "_")
 }
 \seealso{
 Other strings: 

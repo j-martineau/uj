@@ -8,19 +8,19 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.ATM <- function(X) {if (base::is.atomic(X)) {!base::is.null(X)} else {F}}
+.ATM <- function() {if (base::is.atomic(x)) {!base::is.null(x)} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.DEF <- function(X) {!base::is.null(X)}
+.DEF <- function(x) {!base::is.null(x)}
 
 #' @rdname ppp_fast
 #' @export
-.FUN <- function(X) {
-  if (!base::is.function(X)) {
-    if (base::length(X) == 1 & base::is.character(X)) {
-      X <- tryCatch(base::match.fun(X), error = function(X) e, finally = NULL)
-      !rlang::is_error(X)
+.FUN <- function(x) {
+  if (!base::is.function(x)) {
+    if (base::length(x) == 1 & base::is.character(x)) {
+      x <- tryCatch(base::match.fun(x), error = function(x) e, finally = NULL)
+      !rlang::is_error(x)
     } else {F}
   } else {T}
 }
@@ -29,102 +29,102 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.NIL <- function(X) {base::length(X) == 0}
+.NIL <- function(x) {base::length(x) == 0}
 
 #' @rdname ppp_fast
 #' @export
-.NLL <- function(X) {uj::null(X)}
+.NLL <- function(x) {uj::null(x)}
 
 #' @rdname ppp_fast
 #' @export
-.POP <- function(X) {base::length(X) > 0}
+.POP <- function(x) {base::length(x) > 0}
 
 #' @rdname ppp_fast
 #' @export
-.RCR <- function(X) {base::is.recursive(X)}
+.RCR <- function(x) {base::is.recursive(x)}
 
 # xclass
 
 #' @rdname ppp_fast
 #' @export
-.ARR <- function(X) {base::is.array(X)}
+.ARR <- function(x) {base::is.array(x)}
 
 #' @rdname ppp_fast
 #' @export
-.DTF <- function(X) {base::is.data.frame(X)}
+.DTF <- function(x) {base::is.data.frame(x)}
 
 #' @rdname ppp_fast
 #' @export
-.GEN <- function(X) {base::is.array(X) | base::is.vector(X)}
+.GEN <- function(x) {base::is.array(x) | base::is.vector(x)}
 
 #' @rdname ppp_fast
 #' @export
-.MAT <- function(X) {base::is.matrix(X)}
+.MAT <- function(x) {base::is.matrix(x)}
 
 #' @rdname ppp_fast
 #' @export
-.MVC <- function(X) {if (base::length(X) < 2) {F} else if (base::is.vector(X)) {T} else if (!base::is.array(X)) {F} else {base::length(base::which(base::dim(X) > 1)) == 1}}
+.MVC <- function(x) {if (base::length(x) < 2) {F} else if (base::is.vector(x)) {T} else if (!base::is.array(x)) {F} else {base::length(base::which(base::dim(x) > 1)) == 1}}
 
 #' @rdname ppp_fast
 #' @export
-.SCL <- function(X) {if (base::length(X) != 1) {F} else {base::is.vector(X) | base::is.array(X)}}
+.SCL <- function(x) {if (base::length(x) != 1) {F} else {base::is.vector(x) | base::is.array(x)}}
 
 #' @rdname ppp_fast
 #' @export
-.VLS <- function(X) {if (base::is.data.frame(X)) {F} else {base::is.list(X)}}
+.VLS <- function(x) {if (base::is.data.frame(x)) {F} else {base::is.list(x)}}
 
 #' @rdname ppp_fast
 #' @export
-.VEC <- function(X) {if (base::length(X) == 0) {F} else if (base::is.vector(X)) {T} else if (!base::is.array(X)) {F} else {base::length(base::which(base::dim(X) > 1)) < 2}}
+.VEC <- function(x) {if (base::length(x) == 0) {F} else if (base::is.vector(x)) {T} else if (!base::is.array(x)) {F} else {base::length(base::which(base::dim(x) > 1)) < 2}}
 
 # defined D
 
 #' @rdname ppp_fast
 #' @export
-.D0D <- function(X) {uj::null(X)}
+.D0D <- function(x) {uj::null(x)}
 
 #' @rdname ppp_fast
 #' @export
-.D1D <- function(X) {base::is.vector(X)}
+.D1D <- function(x) {base::is.vector(x)}
 
 #' @rdname ppp_fast
 #' @export
-.D2D <- function(X) {base::is.matrix(X) | base::is.data.frame(X)}
+.D2D <- function(x) {base::is.matrix(x) | base::is.data.frame(x)}
 
 #' @rdname ppp_fast
 #' @export
-.DHD <- function(X) {if (is.array(X)) {base::length(base::dim(X)) > 2} else {F}}
+.DHD <- function(x) {if (is.array(x)) {base::length(base::dim(x)) > 2} else {F}}
 
 # effective D
 
 #' @rdname ppp_fast
 #' @export
-.EUD <- function(X) {base::length(X) == 0}
+.EUD <- function(x) {base::length(x) == 0}
 
 #' @rdname ppp_fast
 #' @export
-.E2D <- function(X) {base::length(base::which(base::dim(X) > 1)) == 2}
+.E2D <- function(x) {base::length(base::which(base::dim(x) > 1)) == 2}
 
 #' @rdname ppp_fast
 #' @export
-.EHD <- function(X) {base::length(base::which(base::dim(X) > 1)) > 2}
+.EHD <- function(x) {base::length(base::which(base::dim(x) > 1)) > 2}
 
 #' @rdname ppp_fast
 #' @export
-.E0D <- function(X) {if (base::is.atomic(X)) {base::length(X) == 1} else if (base::is.data.frame(X)) {base::NROW(X) * base::NCOL(X) == 1} else if (base::is.list(X)) {base::length(X) == 1} else {F}}
+.E0D <- function(x) {if (base::is.atomic(x)) {base::length(x) == 1} else if (base::is.data.frame(x)) {base::NROW(x) * base::NCOL(x) == 1} else if (base::is.list(x)) {base::length(x) == 1} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.E1D <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::is.vector(X)) {base::length(X) > 1}
-    else if (base::is.array(X)) {base::length(base::which(base::dim(X) > 1)) == 1}
+.E1D <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::is.vector(x)) {base::length(x) > 1}
+    else if (base::is.array(x)) {base::length(base::which(base::dim(x) > 1)) == 1}
     else {F}
-  } else if (base::is.data.frame(X)) {
-    if (base::NROW(X) == 1) {base::NCOL(X) > 1}
-    else if (base::NCOL(X) == 1) {base::NROW(X) > 1}
+  } else if (base::is.data.frame(x)) {
+    if (base::NROW(x) == 1) {base::NCOL(x) > 1}
+    else if (base::NCOL(x) == 1) {base::NROW(x) > 1}
     else {F}
-  } else if (base::is.list(X)) {base::length(X) > 1}
+  } else if (base::is.list(x)) {base::length(x) > 1}
   else {F}
 }
 
@@ -132,44 +132,44 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.NA0 <- function(X) {if (!base::is.atomic(X) | base::length(X) != 1) {F} else {base::is.na(X)}}
+.NA0 <- function(x) {if (!base::is.atomic(x) | base::length(x) != 1) {F} else {base::is.na(x)}}
 
 #' @rdname ppp_fast
 #' @export
-.OK0 <- function(X) {if (!base::is.atomic(X) | base::length(X) != 1) {F} else {!base::is.na(X)}}
+.OK0 <- function(x) {if (!base::is.atomic(x) | base::length(x) != 1) {F} else {!base::is.na(x)}}
 
 #' @rdname ppp_fast
 #' @export
-.DUP <- function(X) {if (!base::is.atomic(X) | base::length(X) == 0) {F} else {base::length(X) != base::length(base::unique(X))}}
+.DUP <- function(x) {if (!base::is.atomic(x) | base::length(x) == 0) {F} else {base::length(x) != base::length(base::unique(x))}}
 
 #' @rdname ppp_fast
 #' @export
-.UNQ <- function(X) {if (!base::is.atomic(X) | base::length(X) == 0) {F} else {base::length(X) == base::length(base::unique(X))}}
+.UNQ <- function(x) {if (!base::is.atomic(x) | base::length(x) == 0) {F} else {base::length(x) == base::length(base::unique(x))}}
 
 #' @rdname ppp_fast
 #' @export
-.CMP <- function(X) {if (!base::is.atomic(X) | base::length(X) == 0) {F} else {!base::any(base::is.na(X))}}
+.CMP <- function(x) {if (!base::is.atomic(x) | base::length(x) == 0) {F} else {!base::any(base::is.na(x))}}
 
 #' @rdname ppp_fast
 #' @export
-.MSS <- function(X) {if (!base::is.atomic(X) | base::length(X) == 0) {F} else {base::all(base::is.na(X))}}
+.MSS <- function(x) {if (!base::is.atomic(x) | base::length(x) == 0) {F} else {base::all(base::is.na(x))}}
 
 #' @rdname ppp_fast
 #' @export
-.PRT <- function(X) {if (!base::is.atomic(X) | base::length(X) <= 1) {F} else {base::any(base::is.na(X)) & base::any(!base::is.na(X))}}
+.PRT <- function(x) {if (!base::is.atomic(x) | base::length(x) <= 1) {F} else {base::any(base::is.na(x)) & base::any(!base::is.na(x))}}
 
 # xmode
 
 #' @rdname ppp_fast
 #' @export
-.CH1 <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.character(X)) {
-          X <- X[!base::is.na(X)]
-          if (base::length(X) == 0) {T}
-          else {base::all(base::nchar(X) == 1)}
+.CH1 <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.character(x)) {
+          x <- x[!base::is.na(x)]
+          if (base::length(x) == 0) {T}
+          else {base::all(base::nchar(x) == 1)}
         } else {F}
       } else {T}
     } else {T}
@@ -178,14 +178,14 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.CH3 <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.character(X)) {
-          X <- X[!base::is.na(X)]
-          if (base::length(X) == 0) {T}
-          else {base::all(base::nchar(X) == 3)}
+.CH3 <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.character(x)) {
+          x <- x[!base::is.na(x)]
+          if (base::length(x) == 0) {T}
+          else {base::all(base::nchar(x) == 3)}
         } else {F}
       } else {T}
     } else {T}
@@ -194,25 +194,25 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.CHR <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (base::is.character(X)) {T}
-      else {base::all(base::is.na(X))}
+.CHR <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (base::is.character(x)) {T}
+      else {base::all(base::is.na(x))}
     } else {T}
   } else {F}
 }
 
 #' @rdname ppp_fast
 #' @export
-.STR <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.character(X)) {
-          X <- X[!base::is.na(X)]
-          if (base::length(X) == 0) {T}
-          else {base::all(base::nchar(X) > 0)}
+.STR <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.character(x)) {
+          x <- x[!base::is.na(x)]
+          if (base::length(x) == 0) {T}
+          else {base::all(base::nchar(x) > 0)}
         } else {F}
       } else {T}
     } else {T}
@@ -221,12 +221,12 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.CLR <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        X <- X[!base::is.na(X)]
-        if (base::length(X) > 0) {!uj::is_err(grDevices::col2rgb(X))}
+.CLR <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        x <- x[!base::is.na(x)]
+        if (base::length(x) > 0) {!uj::is_err(grDevices::col2rgb(x))}
         else {F}
       } else {T}
     } else {T}
@@ -235,46 +235,46 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.FAC <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (base::is.factor(X)) {T}
-      else {base::all(base::is.na(X))}
+.FAC <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (base::is.factor(x)) {T}
+      else {base::all(base::is.na(x))}
     } else {T}
   } else {F}
 }
 
 #' @rdname ppp_fast
 #' @export
-.ORD <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (base::is.ordered(X)) {T}
-      else {base::all(base::is.na(X))}
+.ORD <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (base::is.ordered(x)) {T}
+      else {base::all(base::is.na(x))}
     } else {T}
   } else {F}
 }
 
 #' @rdname ppp_fast
 #' @export
-.UNO <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (base::is.factor(X) & !base::is.ordered(X)) {T}
-      else {base::all(base::is.na(X))}
+.UNO <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (base::is.factor(x) & !base::is.ordered(x)) {T}
+      else {base::all(base::is.na(x))}
     } else {T}
   } else {F}
 }
 
 #' @rdname ppp_fast
 #' @export
-.IND <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        X <- X[!base::is.na(X)]
-        if (base::is.numeric(X)) {base::all(X == base::round(X))}
-        else {base::is.logical(X)}
+.IND <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        x <- x[!base::is.na(x)]
+        if (base::is.numeric(x)) {base::all(x == base::round(x))}
+        else {base::is.logical(x)}
       } else {T}
     } else {T}
   } else {F}
@@ -282,53 +282,53 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.NST <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {!base::is.character(X) & !base::is.numeric(X) & !base::is.ordered(X)} else {T}
+.NST <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {!base::is.character(x) & !base::is.numeric(x) & !base::is.ordered(x)} else {T}
     } else {T}
   } else {F}
 }
 
 #' @rdname ppp_fast
 #' @export
-.SRT <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {base::is.character(X) | base::is.numeric(X) | base::is.ordered(X)} else {T}
+.SRT <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {base::is.character(x) | base::is.numeric(x) | base::is.ordered(x)} else {T}
     } else {T}
   } else {F}
 }
 
 #' @rdname ppp_fast
 #' @export
-.LGL <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (base::is.logical(X)) {T} else {base::all(base::is.na(X))}
+.LGL <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (base::is.logical(x)) {T} else {base::all(base::is.na(x))}
     } else {T}
   } else {F}
 }
 
 #' @rdname ppp_fast
 #' @export
-.NUM <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (base::is.numeric(X)) {T} else {base::all(base::is.na(X))}
+.NUM <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (base::is.numeric(x)) {T} else {base::all(base::is.na(x))}
     } else {T}
   } else {F}
 }
 
 #' @rdname ppp_fast
 #' @export
-.WHL <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          base::all(X == base::round(X))
+.WHL <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          base::all(x == base::round(x))
         } else {F}
       } else {T}
     } else {T}
@@ -337,15 +337,15 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.ODD <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          if (base::all(X == base::round(X))) {
-            X <- X / 2
-            base::any(X != base::round(X))
+.ODD <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          if (base::all(x == base::round(x))) {
+            x <- x / 2
+            base::any(x != base::round(x))
           } else {F}
         } else {F}
       } else {T}
@@ -355,15 +355,15 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.EVN <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          if (base::all(X == base::round(X))) {
-            X <- X / 2
-            base::all(X == base::round(X))
+.EVN <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          if (base::all(x == base::round(x))) {
+            x <- x / 2
+            base::all(x == base::round(x))
           } else {F}
         } else {F}
       } else {T}
@@ -373,41 +373,26 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.NGW <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          if (base::all(X == base::round(X))) {base::all(X < 0)} else {F}
+.NGW <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          if (base::all(x == base::round(x))) {base::all(x < 0)} else {F}
         } else {F}
       } else {T}
     } else {T}
   } else {F}
 }
 
-.NNW <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          if (base::all(X == base::round(X))) {base::all(X >= 0)} else {F}
-        } else {F}
-      } else {T}
-    } else {T}
-  } else {F}
-}
-
-#' @rdname ppp_fast
-#' @export
-.NPW <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          if (base::all(X == base::round(X))) {base::all(X <= 0)} else {F}
+.NNW <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          if (base::all(x == base::round(x))) {base::all(x >= 0)} else {F}
         } else {F}
       } else {T}
     } else {T}
@@ -416,13 +401,13 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.PSW <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          if (base::all(X == base::round(X))) {base::all(X > 0)} else {F}
+.NPW <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          if (base::all(x == base::round(x))) {base::all(x <= 0)} else {F}
         } else {F}
       } else {T}
     } else {T}
@@ -431,13 +416,13 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.FRC <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          base::any(X != base::round(X))
+.PSW <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          if (base::all(x == base::round(x))) {base::all(x > 0)} else {F}
         } else {F}
       } else {T}
     } else {T}
@@ -446,13 +431,13 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.NEG <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          base::all(X < 0)
+.FRC <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          base::any(x != base::round(x))
         } else {F}
       } else {T}
     } else {T}
@@ -461,13 +446,13 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.POS <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          base::all(X > 0)
+.NEG <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          base::all(x < 0)
         } else {F}
       } else {T}
     } else {T}
@@ -476,13 +461,13 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.NNW <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          base::all(X >= 0)
+.POS <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          base::all(x > 0)
         } else {F}
       } else {T}
     } else {T}
@@ -491,13 +476,13 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.NPS <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          base::all(X <= 0)
+.NNW <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          base::all(x >= 0)
         } else {F}
       } else {T}
     } else {T}
@@ -506,13 +491,13 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.PCT <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          base::all(X >= 0 | X <= 100)
+.NPS <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          base::all(x <= 0)
         } else {F}
       } else {T}
     } else {T}
@@ -521,13 +506,28 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.PPN <- function(X) {
-  if (base::is.atomic(X)) {
-    if (base::length(X) > 0) {
-      if (!base::all(base::is.na(X))) {
-        if (base::is.numeric(X)) {
-          X <- X[!base::is.na(X)]
-          base::all(X >= 0 | X <= 1)
+.PCT <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          base::all(x >= 0 | x <= 100)
+        } else {F}
+      } else {T}
+    } else {T}
+  } else {F}
+}
+
+#' @rdname ppp_fast
+#' @export
+.PPN <- function(x) {
+  if (base::is.atomic(x)) {
+    if (base::length(x) > 0) {
+      if (!base::all(base::is.na(x))) {
+        if (base::is.numeric(x)) {
+          x <- x[!base::is.na(x)]
+          base::all(x >= 0 | x <= 1)
         } else {F}
       } else {T}
     } else {T}
@@ -538,40 +538,40 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.COL <- function(X) {if (base::is.data.frame(X) | base::is.matrix(X)) {base::NROW(X) > 1 & base::NCOL(X) == 1} else {F}}
+.COL <- function(x) {if (base::is.data.frame(x) | base::is.matrix(x)) {base::NROW(x) > 1 & base::NCOL(x) == 1} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.ROW <- function(X) {if (base::is.data.frame(X) | base::is.matrix(X)) {base::NROW(X) == 1 & base::NCOL(X) > 1} else {F}}
+.ROW <- function(x) {if (base::is.data.frame(x) | base::is.matrix(x)) {base::NROW(x) == 1 & base::NCOL(x) > 1} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.PNT <- function(X) {if (base::is.data.frame(X)) {base::NROW(X) * base::NCOL(X) == 1} else {base::length(X) == 1}}
+.PNT <- function(x) {if (base::is.data.frame(x)) {base::NROW(x) * base::NCOL(x) == 1} else {base::length(x) == 1}}
 
 #' @rdname ppp_fast
 #' @export
-.SLD <- function(X) {if (base::is.array(X)) {base::length(base::which(base::dim(X) > 1)) > 2} else {F}}
+.SLD <- function(x) {if (base::is.array(x)) {base::length(base::which(base::dim(x) > 1)) > 2} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.SQR <- function(X) {if (base::is.matrix(X)) {base::NROW(X) > 1 & base::NCOL(X) > 1 & base::NROW(X) == base::NCOL(X)} else {F}}
+.SQR <- function(x) {if (base::is.matrix(x)) {base::NROW(x) > 1 & base::NCOL(x) > 1 & base::NROW(x) == base::NCOL(x)} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.EMP <- function(X) {if (base::is.data.frame(X)) {base::NROW(X) * base::NCOL(X) == 0} else if (base::length(X) == 0) {!base::is.null(X)} else {F}}
+.EMP <- function(x) {if (base::is.data.frame(x)) {base::NROW(x) * base::NCOL(x) == 0} else if (base::length(x) == 0) {!base::is.null(x)} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.RCT <- function(X) {if (base::length(X) > 1) {if (base::is.data.frame(X) | is.matrix(X)) {base::NROW(X) > 1 & base::NCOL(X) > 1} else {F}} else {F}}
+.RCT <- function(x) {if (base::length(x) > 1) {if (base::is.data.frame(x) | is.matrix(x)) {base::NROW(x) > 1 & base::NCOL(x) > 1} else {F}} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.LIN <- function(X) {
-  if (base::length(X) > 1) {
-    if (base::is.data.frame(X)) {if (base::NROW(X) == 1 & base::NCOL(X) > 1) {T} else {base::NROW(X) > 1 & base::NCOL(X) == 1}}
-    else if (base::is.array(X)) {base::length(base::which(base::dim(X) > 1)) == 2}
-    else if (base::is.list(X)) {T}
-    else if (base::is.vector(X)) {T}
+.LIN <- function(x) {
+  if (base::length(x) > 1) {
+    if (base::is.data.frame(x)) {if (base::NROW(x) == 1 & base::NCOL(x) > 1) {T} else {base::NROW(x) > 1 & base::NCOL(x) == 1}}
+    else if (base::is.array(x)) {base::length(base::which(base::dim(x) > 1)) == 2}
+    else if (base::is.list(x)) {T}
+    else if (base::is.vector(x)) {T}
   } else {F}
 }
 
@@ -579,84 +579,84 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.atm_dtf <- function(X) {
-  NC <- base::NCOL(X)
-  if (base::is.data.frame(X) & base::NROW(X) > 0 & NC > 0) {
-    for (i in 1:NC) {if (!base::is.atomic(X[[i]])) {return(FALSE)}}
+.atm_dtf <- function(x) {
+  NC <- base::NCOL(x)
+  if (base::is.data.frame(x) & base::NROW(x) > 0 & NC > 0) {
+    for (i in 1:NC) {if (!base::is.atomic(x[[i]])) {return(FALSE)}}
     TRUE
   } else {FALSE}
 }
 
 #' @rdname ppp_fast
 #' @export
-.atm_mat <- function(X) {base::is.atomic(X) & base::is.matrix(X)}
+.atm_mat <- function(x) {base::is.atomic(x) & base::is.matrix(x)}
 
 #' @rdname ppp_fast
 #' @export
-.atm_scl <- function(X) {base::is.atomic(X) & base::length(X) == 1}
+.atm_scl <- function(x) {base::is.atomic(x) & base::length(x) == 1}
 
 #' @rdname ppp_fast
 #' @export
-.atm_vec <- function(X) {base::is.atomic(X) & uj:::.VEC(X)}
+.atm_vec <- function(x) {base::is.atomic(x) & uj:::.VEC(x)}
 
 #' @rdname ppp_fast
 #' @export
-.atm_vls <- function(X) {if (base::is.list(X) & !base::is.data.frame(X) & base::length(X) > 0) {base::all(base::sapply(X, base::is.atomic))} else {F}}
+.atm_vls <- function(x) {if (base::is.list(x) & !base::is.data.frame(x) & base::length(x) > 0) {base::all(base::sapply(x, base::is.atomic))} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.chr_arr <- function(X) {base::is.array(X) & base::is.character(X)}
+.chr_arr <- function(x) {base::is.array(x) & base::is.character(x)}
 
 #' @rdname ppp_fast
 #' @export
-.chr_dtf <- function(X) {
-  NC <- base::NCOL(X)
-  if (base::is.data.frame(X) & base::NROW(X) > 0 & NC > 0) {
-    for (i in 1:NC) {if (!base::is.character(X[[i]])) {return(FALSE)}}
+.chr_dtf <- function(x) {
+  NC <- base::NCOL(x)
+  if (base::is.data.frame(x) & base::NROW(x) > 0 & NC > 0) {
+    for (i in 1:NC) {if (!base::is.character(x[[i]])) {return(FALSE)}}
     TRUE
   } else {FALSE}
 }
 
 #' @rdname ppp_fast
 #' @export
-.chr_vec <- function(X) {uj:::.VEC(X) & base::is.character(X)}
+.chr_vec <- function(x) {uj:::.VEC(x) & base::is.character(x)}
 
 #' @rdname ppp_fast
 #' @export
-.chr_vls <- function(X) {uj::f0(base::is.list(X) & !is.data.frame(X), base::all(base::sapply(X, base::is.charsacter)), F)}
+.chr_vls <- function(x) {uj::f0(base::is.list(x) & !is.data.frame(x), base::all(base::sapply(x, base::is.charsacter)), F)}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_atm <- function(X) {if (base::is.atomic(X) & base::length(X) > 0) {!base::any(base::is.na(X))} else {F}}
+.cmp_atm <- function(x) {if (base::is.atomic(x) & base::length(x) > 0) {!base::any(base::is.na(x))} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_chr <- function(X) {if (base::is.character(X) & base::length(X) > 0) {!base::any(base::is.na(X))} else {F}}
+.cmp_chr <- function(x) {if (base::is.character(x) & base::length(x) > 0) {!base::any(base::is.na(x))} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_num <- function(X) {if (base::is.numeric(X) & base::length(X) > 0) {!base::any(base::is.na(X))} else {F}}
+.cmp_num <- function(x) {if (base::is.numeric(x) & base::length(x) > 0) {!base::any(base::is.na(x))} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_scl <- function(X) {if (base::is.atomic(X) & base::length(X) == 1) {!base::is.na(X)} else {F}}
+.cmp_scl <- function(x) {if (base::is.atomic(x) & base::length(x) == 1) {!base::is.na(x)} else {F}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_vec <- function(X) {if (!base::is.atomic(X) | base::length(X) == 0) {F} else if (!uj:::.VEC(X)) {F} else {!base::any(base::is.na(X))}}
+.cmp_vec <- function(x) {if (!base::is.atomic(x) | base::length(x) == 0) {F} else if (!uj:::.VEC(x)) {F} else {!base::any(base::is.na(x))}}
 
 #' @rdname ppp_fast
 #' @export
-.lgl_scl <- function(X) {base::logical(X) & base::length(X) == 1}
+.lgl_scl <- function(x) {base::logical(x) & base::length(x) == 1}
 
 #' @rdname ppp_fast
 #' @export
-.nnw_vec <- function(X) {
-  if (uj:::.VEC(X)) {
-    if (base::is.numeric(X)) {
-      X <- X[!base::is.na(X)]
-      if (base::length(X) > 0) {
-        if (base::all(X >= 0)) {base::all(X == base::round(X))}
+.nnw_vec <- function(x) {
+  if (uj:::.VEC(x)) {
+    if (base::is.numeric(x)) {
+      x <- x[!base::is.na(x)]
+      if (base::length(x) > 0) {
+        if (base::all(x >= 0)) {base::all(x == base::round(x))}
         else {F}
       } else {T}
     } else {F}
@@ -665,191 +665,191 @@ ppp_fast <- function() {utils::help("ppp_fast", "uj")}
 
 #' @rdname ppp_fast
 #' @export
-.pop_atm <- function(X) {base::is.atomic(X) & base::length(X) > 0}
+.pop_atm <- function(x) {base::is.atomic(x) & base::length(x) > 0}
 
 #' @rdname ppp_fast
 #' @export
-.pop_chr <- function(X) {base::length(X) > 0 & base::is.character(X)}
+.pop_chr <- function(x) {base::length(x) > 0 & base::is.character(x)}
 
 #' @rdname ppp_fast
 #' @export
-.pop_dtf <- function(X) {base::is.data.frame(X) & base::NROW(X) > 0 & base::NCOL(X) > 0}
+.pop_dtf <- function(x) {base::is.data.frame(x) & base::NROW(x) > 0 & base::NCOL(x) > 0}
 
 #' @rdname ppp_fast
 #' @export
-.pop_mat <- function(X) {base::is.matrix(X) & base::length(X) > 0}
+.pop_mat <- function(x) {base::is.matrix(x) & base::length(x) > 0}
 
 #' @rdname ppp_fast
 #' @export
-.pop_srt <- function(X) {base::length(X) > 0 & (base::is.character(X) | base::is.numeric(X) | base::is.ordered(X))}
+.pop_srt <- function(x) {base::length(x) > 0 & (base::is.character(x) | base::is.numeric(x) | base::is.ordered(x))}
 
 #' @rdname ppp_fast
 #' @export
-.pop_vec <- function(X) {uj:::.VEC(X) & base::length(X) > 0}
+.pop_vec <- function(x) {uj:::.VEC(x) & base::length(x) > 0}
 
 #' @rdname ppp_fast
 #' @export
-.pop_vls <- function(X) {uj:::.VLS(X) & base::length(X) > 0}
+.pop_vls <- function(x) {uj:::.VLS(x) & base::length(x) > 0}
 
 ## .xxx_yyy_zzz ####
 
 #' @rdname ppp_fast
 #' @export
-.cmp_atm_vec <- function(X) {if (!uj:::.VEC(X)) {F} else if (!base::is.atomic(X)) {F} else if (base::any(base::is.na(X))) {F}else {T}}
+.cmp_atm_vec <- function(x) {if (!uj:::.VEC(x)) {F} else if (!base::is.atomic(x)) {F} else if (base::any(base::is.na(x))) {F}else {T}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_ch1_scl <- function(X) {if (base::length(X) != 1) {F} else if (!base::is.character(X)) {F} else if (base::is.na(X)) {F} else {base::nchar(X) == 1}}
+.cmp_ch1_scl <- function(x) {if (base::length(x) != 1) {F} else if (!base::is.character(x)) {F} else if (base::is.na(x)) {F} else {base::nchar(x) == 1}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_ch1_vec <- function(X) {if (!uj:::.VEC(X)) {F} else if (!base::is.character(X)) {F} else if (base::any(base::is.na(X))) {F} else {base::all(base::nchar(X) == 1)}}
+.cmp_ch1_vec <- function(x) {if (!uj:::.VEC(x)) {F} else if (!base::is.character(x)) {F} else if (base::any(base::is.na(x))) {F} else {base::all(base::nchar(x) == 1)}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_ch3_scl <- function(X) {if (base::length(X) != 1) {F} else if (!base::is.character(X)) {F} else if (base::is.na(X)) {F} else {base::nchar(X) == 3}}
+.cmp_ch3_scl <- function(x) {if (base::length(x) != 1) {F} else if (!base::is.character(x)) {F} else if (base::is.na(x)) {F} else {base::nchar(x) == 3}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_ch3_vec <- function(X) {if (!uj:::.VEC(X)) {F} else if (!base::is.character(X)) {F} else if (base::is.na(X)) {F} else {base::all(base::nchar(X) == 3)}}
+.cmp_ch3_vec <- function(x) {if (!uj:::.VEC(x)) {F} else if (!base::is.character(x)) {F} else if (base::is.na(x)) {F} else {base::all(base::nchar(x) == 3)}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_chr_arr <- function(X, Valid = NULL) {
-  if      (base::length(X) == 0     ) {F}
-  else if (!uj:::.ARR(X)            ) {F}
-  else if (!base::is.character(X)   ) {F}
-  else if (base::any(base::is.na(X))) {F}
-  else if (base::is.null(Valid)     ) {T}
-  else {base::all(X %in% Valid)}
+.cmp_chr_arr <- function(x, .VALID = NULL) {
+  if      (base::length(x) == 0     ) {F}
+  else if (!uj:::.ARR(x)            ) {F}
+  else if (!base::is.character(x)   ) {F}
+  else if (base::any(base::is.na(x))) {F}
+  else if (base::is.null(.VALID)     ) {T}
+  else {base::all(x %in% .VALID)}
 }
 
 #' @rdname ppp_fast
 #' @export
-.cmp_chr_vec <- function(X, Valid = NULL) {if (!uj:::.VEC(X)) {F} else if (!base::is.character(X)) {F} else if (base::any(base::is.na(X))) {F} else if (!base::is.null(Valid)) {base::all(X %in% Valid)} else {T}}
+.cmp_chr_vec <- function(x, .VALID = NULL) {if (!uj:::.VEC(x)) {F} else if (!base::is.character(x)) {F} else if (base::any(base::is.na(x))) {F} else if (!base::is.null(.VALID)) {base::all(x %in% .VALID)} else {T}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_chr_vls <- function(X, Valid = NULL) {if (!uj:::.chr_vls(X)) {F} else if (base::any(base::is.na(uj::av(X)))) {F} else if (base::is.null(Valid)) {T} else {base::all(uj::av(X) %in% Valid)}}
+.cmp_chr_vls <- function(x, .VALID = NULL) {if (!uj:::.chr_vls(x)) {F} else if (base::any(base::is.na(uj::av(x)))) {F} else if (base::is.null(.VALID)) {T} else {base::all(uj::av(x) %in% .VALID)}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_chr_gen <- function(X, Valid = NULL) {if (uj::.cmp_chr_vec(X, Valid = Valid)) {T} else if (uj::.cmp_chr_arr(X, Valid = Valid)) {T} else {uj::.cmp_chr_vls(X, Valid = Valid)}}
+.cmp_chr_gen <- function(x, .VALID = NULL) {if (uj::.cmp_chr_vec(x, .VALID = .VALID)) {T} else if (uj::.cmp_chr_arr(x, .VALID = .VALID)) {T} else {uj::.cmp_chr_vls(x, .VALID = .VALID)}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_chr_scl <- function(X, Valid = NULL) {if (base::length(X) != 1) {F} else if (!base::is.character(X)) {F} else if (base::is.na(X)) {F} else if (!base::is.null(Valid)) {X %in% Valid} else {T}}
+.cmp_chr_scl <- function(x, .VALID = NULL) {if (base::length(x) != 1) {F} else if (!base::is.character(x)) {F} else if (base::is.na(x)) {F} else if (!base::is.null(.VALID)) {x %in% .VALID} else {T}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_clr_vec <- function(X) {uj:::.cmp_vec(X) & uj:::.CLR(X)}
+.cmp_clr_vec <- function(x) {uj:::.cmp_vec(x) & uj:::.CLR(x)}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_lgl_scl <- function(X) {if (base::length(X) != 1) {F} else if (!base::is.logical(X)) {F} else {!base::is.na(X)}}
+.cmp_lgl_scl <- function(x) {if (base::length(x) != 1) {F} else if (!base::is.logical(x)) {F} else {!base::is.na(x)}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_lgl_vec <- function(X) {if (!uj:::.VEC(X)) {F} else if (!base::is.logical(X)) {F} else {!base::any(base::is.na(X))}}
+.cmp_lgl_vec <- function(x) {if (!uj:::.VEC(x)) {F} else if (!base::is.logical(x)) {F} else {!base::any(base::is.na(x))}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_nng_scl <- function(X) {if (base::length(X) != 1) {F} else if (!base::is.numeric(X)) {F} else if (base::is.na(X)) {F} else {X < 0}}
+.cmp_nng_scl <- function(x) {if (base::length(x) != 1) {F} else if (!base::is.numeric(x)) {F} else if (base::is.na(x)) {F} else {x < 0}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_nnw_scl <- function(X) {if (base::length(X) != 1) {F} else if (!base::is.numeric(X)) {F} else if (base::is.na(X)) {F} else if (X < 0) {F} else {X == round(X)}}
+.cmp_nnw_scl <- function(x) {if (base::length(x) != 1) {F} else if (!base::is.numeric(x)) {F} else if (base::is.na(x)) {F} else if (x < 0) {F} else {x == round(x)}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_nnw_vec <- function(X) {if (!uj:::.VEC(X)) {F} else if (!base::is.numeric(X)) {F} else if (base::any(base::is.na(X))) {F} else if (base::any(X < 0)) {F} else {base::all(X == round(X))}}
+.cmp_nnw_vec <- function(x) {if (!uj:::.VEC(x)) {F} else if (!base::is.numeric(x)) {F} else if (base::any(base::is.na(x))) {F} else if (base::any(x < 0)) {F} else {base::all(x == round(x))}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_num_scl <- function(X, Valid = NULL) {if (base::length(X) != 1) {F} else if (!base::is.numeric(X)) {F} else if (base::is.na(X)) {F} else if (!base::is.null(Valid)) {X %in% Valid} else {T}}
+.cmp_num_scl <- function(x, .VALID = NULL) {if (base::length(x) != 1) {F} else if (!base::is.numeric(x)) {F} else if (base::is.na(x)) {F} else if (!base::is.null(.VALID)) {x %in% .VALID} else {T}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_num_vec <- function(X, Valid = NULL) {if (!uj:::.VEC(X)) {F} else if (!base::is.numeric(X)) {F} else if (base::any(base::is.na(X))) {F} else if (!base::is.null(Valid)) {base::all(X %in% Valid)} else {T}}
+.cmp_num_vec <- function(x, .VALID = NULL) {if (!uj:::.VEC(x)) {F} else if (!base::is.numeric(x)) {F} else if (base::any(base::is.na(x))) {F} else if (!base::is.null(.VALID)) {base::all(x %in% .VALID)} else {T}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_pos_vec <- function(X) {if (base::length(X) == 0) {F} else if (!base::is.numeric(X)) {F} else if (base::any(base::is.na(X))) {F} else {base::all(X >= 0 & X <= 1)}}
+.cmp_pos_vec <- function(x) {if (base::length(x) == 0) {F} else if (!base::is.numeric(x)) {F} else if (base::any(base::is.na(x))) {F} else {base::all(x >= 0 & x <= 1)}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_ppn_vec <- function(X) {if (base::length(X) == 0) {F} else if (!base::is.numeric(X)) {F} else if (base::any(base::is.na(X))) {F} else {base::all(X >= 0 & X <= 1)}}
+.cmp_ppn_vec <- function(x) {if (base::length(x) == 0) {F} else if (!base::is.numeric(x)) {F} else if (base::any(base::is.na(x))) {F} else {base::all(x >= 0 & x <= 1)}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_psw_scl <- function(X) {if (base::length(X) != 1) {F} else if (!base::is.numeric(X)) {F} else if (base::is.na(X)) {F} else if (X <= 0) {F} else {X == round(X)}}
+.cmp_psw_scl <- function(x) {if (base::length(x) != 1) {F} else if (!base::is.numeric(x)) {F} else if (base::is.na(x)) {F} else if (x <= 0) {F} else {x == round(x)}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_psw_vec <- function(X) {if (!uj:::.VEC(X)) {F} else if (!base::is.numeric(X)) {F} else if (base::any(base::is.na(X))) {F} else if (base::any(X <= 0)) {F} else {base::all(X == round(X))}}
+.cmp_psw_vec <- function(x) {if (!uj:::.VEC(x)) {F} else if (!base::is.numeric(x)) {F} else if (base::any(base::is.na(x))) {F} else if (base::any(x <= 0)) {F} else {base::all(x == round(x))}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_srt_vec <- function(X) {if (!uj:::.VEC(X)) {F} else if (!base::is.numeric(X) & !base::is.character(X) & !base::is.ordered(X)) {F} else {base::any(base::is.na(X))}}
+.cmp_srt_vec <- function(x) {if (!uj:::.VEC(x)) {F} else if (!base::is.numeric(x) & !base::is.character(x) & !base::is.ordered(x)) {F} else {base::any(base::is.na(x))}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_str_scl <- function(X) {if (base::length(X) != 1) {F} else if (!base::is.character(X)) {F} else if (base::is.na(X)) {F} else {!base::any(X == "")}}
+.cmp_str_scl <- function(x) {if (base::length(x) != 1) {F} else if (!base::is.character(x)) {F} else if (base::is.na(x)) {F} else {!base::any(x == "")}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_str_vec <- function(X) {if (base::length(X) == 0) {F} else if (!base::is.character(X)) {F} else if (base::any(base::is.na(X))) {F} else {!base::any(X == "")}}
+.cmp_str_vec <- function(x) {if (base::length(x) == 0) {F} else if (!base::is.character(x)) {F} else if (base::any(base::is.na(x))) {F} else {!base::any(x == "")}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_whl_scl <- function(X) {if (base::length(X) != 1) {F} else if (!base::is.numeric(X)) {F} else if (base::any(base::is.na(X))) {F} else {X == base::round(X)}}
+.cmp_whl_scl <- function(x) {if (base::length(x) != 1) {F} else if (!base::is.numeric(x)) {F} else if (base::any(base::is.na(x))) {F} else {x == base::round(x)}}
 
 #' @rdname ppp_fast
 #' @export
-.cmp_atm_mvc <- function(X) {if (!uj:::.MVC(X)) {F} else if (!base::is.atomic(X)) {F} else if (base::any(base::is.na(X))) {F} else {T}}
+.cmp_atm_mvc <- function(x) {if (!uj:::.MVC(x)) {F} else if (!base::is.atomic(x)) {F} else if (base::any(base::is.na(x))) {F} else {T}}
 
 #' @rdname ppp_fast
 #' @export
-.unq_atm_mvc <- function(X) {uj::f0(uj:::.cmp_atm_mvc(X), base::length(X) == base::length(base::unique(X)), F)}
+.unq_atm_mvc <- function(x) {uj::f0(uj:::.cmp_atm_mvc(x), base::length(x) == base::length(base::unique(x)), F)}
 
 #' @rdname ppp_fast
 #' @export
-.unq_atm_vec <- function(X) {uj::f0(uj:::.cmp_atm_vec(X), base::length(X) == base::length(base::unique(X)), F)}
+.unq_atm_vec <- function(x) {uj::f0(uj:::.cmp_atm_vec(x), base::length(x) == base::length(base::unique(x)), F)}
 
 #' @rdname ppp_fast
 #' @export
-.unq_ch1_vec <- function(X) {uj::f0(uj:::.cmp_ch1_vec(X), base::length(X) == base::length(base::unique(X)), F)}
+.unq_ch1_vec <- function(x) {uj::f0(uj:::.cmp_ch1_vec(x), base::length(x) == base::length(base::unique(x)), F)}
 
 #' @rdname ppp_fast
 #' @export
-.unq_ch3_vec <- function(X) {uj::f0(uj:::.cmp_ch3_vec(X), base::length(X) == base::length(base::unique(X)), F)}
+.unq_ch3_vec <- function(x) {uj::f0(uj:::.cmp_ch3_vec(x), base::length(x) == base::length(base::unique(x)), F)}
 
 #' @rdname ppp_fast
 #' @export
-.unq_chr_vec <- function(X, Valid = NULL) {uj::f0(uj:::.cmp_chr_vec(X), base::length(X) == base::length(base::unique(X)), uj::f0(base::is.null(Valid), T, base::all(X %in% Valid)))}
+.unq_chr_vec <- function(x, .VALID = NULL) {uj::f0(uj:::.cmp_chr_vec(x), base::length(x) == base::length(base::unique(x)), uj::f0(base::is.null(.VALID), T, base::all(x %in% .VALID)))}
 
 #' @rdname ppp_fast
 #' @export
-.unq_nnw_vec <- function(X) {uj::f0(uj:::.cmp_nnw_vec(X), base::length(X) == base::length(base::unique(X)), F)}
+.unq_nnw_vec <- function(x) {uj::f0(uj:::.cmp_nnw_vec(x), base::length(x) == base::length(base::unique(x)), F)}
 
 #' @rdname ppp_fast
 #' @export
-.unq_num_vec <- function(X, Valid = NULL) {uj::f0(uj:::.cmp_num_vec(X), base::length(X) == base::length(base::unique(X)), uj::f0(base::is.null(Valid), T, base::all(X %in% Valid)))}
+.unq_num_vec <- function(x, .VALID = NULL) {uj::f0(uj:::.cmp_num_vec(x), base::length(x) == base::length(base::unique(x)), uj::f0(base::is.null(.VALID), T, base::all(x %in% .VALID)))}
 
 #' @rdname ppp_fast
 #' @export
-.unq_psw_vec <- function(X) {uj::f0(uj:::.cmp_psw_vec(X), base::length(X) == base::length(base::unique(X)), F)}
+.unq_psw_vec <- function(x) {uj::f0(uj:::.cmp_psw_vec(x), base::length(x) == base::length(base::unique(x)), F)}
 
 #' @rdname ppp_fast
 #' @export
-.unq_str_vec <- function(X) {uj::f0(uj:::.cmp_str_vec(X), base::length(X) == base::length(base::unique(X)), F)}
+.unq_str_vec <- function(x) {uj::f0(uj:::.cmp_str_vec(x), base::length(x) == base::length(base::unique(x)), F)}
 
 #' @rdname ppp_fast
 #' @export
-.atm_rct_dtf <- function(X) {
-  if (!uj::.DTF(X)) {return(FALSE)}
-  if (uj::nr(X) < 2 | uj::nc(X) < 2) {return(FALSE)}
-  for (i in 1:uj::nc(X)) {if (!uj::.ATM(X[[i]])) {return(FALSE)}}
+.atm_rct_dtf <- function(x) {
+  if (!uj::.DTF(x)) {return(FALSE)}
+  if (uj::nr(x) < 2 | uj::nc(x) < 2) {return(FALSE)}
+  for (i in 1:uj::nc(x)) {if (!uj::.ATM(x[[i]])) {return(FALSE)}}
   TRUE
 }
 

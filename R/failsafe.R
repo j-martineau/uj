@@ -9,82 +9,82 @@
 #' \cr\cr These functions evaluate generate, check for, and manage error objects.
 #' \tabular{ll}{  `make_err`   \tab generate object of class `'simpleError'`.     \cr
 #'                `msg_err`    \tab get error message, if any; otherwise, `NULL`. \cr
-#'                `not_err`    \tab Does evaluating `X` not produce an error?.    \cr
-#'                `is_err`     \tab Does evaluating `X` produce an error?           }
+#'                `not_err`    \tab Does evaluating `x` not produce an error?.    \cr
+#'                `is_err`     \tab Does evaluating `x` produce an error?           }
 #' \cr **failsafe check for classes of objects with values**
-#' \tabular{ll}{  `failsafe`   \tab Returns `X` if identity evaluation does not_ cause an error. Returns
+#' \tabular{ll}{  `failsafe`   \tab Returns `x` if identity evaluation does not_ cause an error. Returns
 #'                                  an error object otherwise with the attribute `stack = uj::callers()`. \cr   \tab   \cr
-#'                `fs_null`    \tab `X` is `NULL`.                                                        \cr
-#'                `fs_def`     \tab `X` is defined (not `NULL`).                                          \cr   \tab   \cr
-#'                `fs_scl`     \tab `X` is scalar of a specific atomic value.                             \cr
-#'                `fs_t`       \tab `X` is scalar `TRUE`.                                                 \cr
-#'                `fs_f`       \tab `X` is scalar `FALSE`.                                                \cr
-#'                `fs_na`      \tab `X` is scalar `NA`.                                                   \cr
-#'                `fs_tf`      \tab `X` is scalar `TRUE` or scalar `FALSE`.                               \cr
-#'                `scl_f`      \tab `X` is scalar `FALSE`                                                 \cr
-#'                `scl_t`      \tab `X` is scalar `TRUE`                                                  \cr
-#'                `scl_tf`     \tab `X` is scalar `TRUE` or `FALSE`.                                      \cr
-#'                `scl_lg`     \tab `X` is scalar `TRUE`, `FALSE`, or `NA`.                               \cr
-#'                `scl_bl`     \tab `X` is blank string scalar (`""`).                                    \cr
-#'                `scl_na`     \tab `X` is scalar `NA`                                                    \cr   \tab   \cr
-#'                `fs_vec`     \tab Elements of `X` are of a specific atomic value.                       \cr
-#'                `vec_f`      \tab Elements of `X` are `FALSE`.                                          \cr
-#'                `vec_t`      \tab Elements of `X` are `TRUE`.                                           \cr
-#'                `vec_tf`     \tab Elements of `X` are `TRUE` or `FALSE`.                                \cr
-#'                `vec_lg`     \tab Elements of `X` are `TRUE`, `FALSE`, or `NA`.                         \cr
-#'                `vec_bl`     \tab Elements of `X` are blank strings.                                    \cr
-#'                `vec_na`     \tab Elements of `X` are `NA`.                                               }
+#'                `fs_null`    \tab `x` is `NULL`.                                                        \cr
+#'                `fs_def`     \tab `x` is defined (not `NULL`).                                          \cr   \tab   \cr
+#'                `fs_scl`     \tab `x` is scalar of a specific atomic value.                             \cr
+#'                `fs_t`       \tab `x` is scalar `TRUE`.                                                 \cr
+#'                `fs_f`       \tab `x` is scalar `FALSE`.                                                \cr
+#'                `fs_na`      \tab `x` is scalar `NA`.                                                   \cr
+#'                `fs_tf`      \tab `x` is scalar `TRUE` or scalar `FALSE`.                               \cr
+#'                `scl_f`      \tab `x` is scalar `FALSE`                                                 \cr
+#'                `scl_t`      \tab `x` is scalar `TRUE`                                                  \cr
+#'                `scl_tf`     \tab `x` is scalar `TRUE` or `FALSE`.                                      \cr
+#'                `scl_lg`     \tab `x` is scalar `TRUE`, `FALSE`, or `NA`.                               \cr
+#'                `scl_bl`     \tab `x` is blank string scalar (`""`).                                    \cr
+#'                `scl_na`     \tab `x` is scalar `NA`                                                    \cr   \tab   \cr
+#'                `fs_vec`     \tab Elements of `x` are of a specific atomic value.                       \cr
+#'                `vec_f`      \tab Elements of `x` are `FALSE`.                                          \cr
+#'                `vec_t`      \tab Elements of `x` are `TRUE`.                                           \cr
+#'                `vec_tf`     \tab Elements of `x` are `TRUE` or `FALSE`.                                \cr
+#'                `vec_lg`     \tab Elements of `x` are `TRUE`, `FALSE`, or `NA`.                         \cr
+#'                `vec_bl`     \tab Elements of `x` are blank strings.                                    \cr
+#'                `vec_na`     \tab Elements of `x` are `NA`.                                               }
 #' **Forced-evaluation functions with conditional return values**
-#' \cr\cr These functions \link[base:force]{force} evaluation of `X` returning values as shown in the following table with the first value returned when forcing evaluation does not produce an error and the second when it does:
-#' \tabular{ll}{  `fs_or`    \tab `X` or something else if evaluating `X` produces an error \cr   \tab   \cr
-#'                `or_f`     \tab `X` or `FALSE`                                            \cr
-#'                `or_t`     \tab `X` or `TRUE`                                             \cr   \tab   \cr
-#'                `or_c0`    \tab `X` or `character(0)`                                     \cr
-#'                `or_i0`    \tab `X` or `integer(0)`                                       \cr
-#'                `or_l0`    \tab `X` or `logical(0)`                                       \cr
-#'                `or_n0`    \tab `X` or `numeric(0)`                                       \cr   \tab   \cr
-#'                `or_bl`    \tab `X` or `""`                                               \cr   \tab   \cr
-#'                `or_na`    \tab `X` or `NA`                                               \cr
-#'                `or_nac`   \tab `X` or `NA_character_`                                    \cr
-#'                `or_nai`   \tab `X` or `NA_integer_`                                      \cr
-#'                `or_nal`   \tab `X` or `NA` (logical)                                     \cr
-#'                `or_nar`   \tab `X` or `NA_real_`                                           }
+#' \cr\cr These functions \link[base:force]{force} evaluation of `x` returning values as shown in the following table with the first value returned when forcing evaluation does not produce an error and the second when it does:
+#' \tabular{ll}{  `fs_or`    \tab `x` or something else if evaluating `x` produces an error \cr   \tab   \cr
+#'                `or_f`     \tab `x` or `FALSE`                                            \cr
+#'                `or_t`     \tab `x` or `TRUE`                                             \cr   \tab   \cr
+#'                `or_c0`    \tab `x` or `character(0)`                                     \cr
+#'                `or_i0`    \tab `x` or `integer(0)`                                       \cr
+#'                `or_l0`    \tab `x` or `logical(0)`                                       \cr
+#'                `or_n0`    \tab `x` or `numeric(0)`                                       \cr   \tab   \cr
+#'                `or_bl`    \tab `x` or `""`                                               \cr   \tab   \cr
+#'                `or_na`    \tab `x` or `NA`                                               \cr
+#'                `or_nac`   \tab `x` or `NA_character_`                                    \cr
+#'                `or_nai`   \tab `x` or `NA_integer_`                                      \cr
+#'                `or_nal`   \tab `x` or `NA` (logical)                                     \cr
+#'                `or_nar`   \tab `x` or `NA_real_`                                           }
 #' **Binary comparison functions**
 #' \cr\cr These are binary functions that always produce either scalar `TRUE` or scalar `FALSE`. They return `TRUE` when two variables meet the conditions shown in the following table and `FALSE` in every other circumstance (where `fx` and `fy`)
-#' \tabular{ll}{  `%.is.%`      \tab `failsafe(identical(X, Y))`                                  \cr
-#'                `%.isnt.%`    \tab `!(X %.is.% Y)`                                              \cr   \tab   \cr
-#'                `%.in.%`      \tab `sapply(failsafe(X %in% Y), isTRUE)`                         \cr
-#'                `%.mf.%`      \tab `!(X %.in.% Y)` (missing from)                               \cr
-#'                `%.has.%`     \tab `Y %.in.% X` (`X` has each `Y` value)                        \cr
-#'                `%.lacks.%`   \tab `Y %.mf.% X` (`X` lacks each `Y` value)                      \cr   \tab   \cr
-#'                `%.eq.%`      \tab If `X` and `Y` match\eqn{^{(1)}}, `X = Y`, otherwise `FALSE` \cr
-#'                `%.ge.%`      \tab If `X` and `Y` match\eqn{^{(1)}}, `X ≥ Y`, otherwise `FALSE` \cr
-#'                `%.gt.%`      \tab If `X` and `Y` match\eqn{^{(1)}}, `X > Y`, otherwise `FALSE` \cr
-#'                `%.le.%`      \tab If `X` and `Y` match\eqn{^{(1)}}, `X ≤ Y`, otherwise `FALSE` \cr
-#'                `%.lt.%`      \tab If `X` and `Y` match\eqn{^{(1)}}, `X < Y`, otherwise `FALSE` \cr
-#'                `%.dif.%`     \tab If `X` and `Y` match\eqn{^{(1)}}, `X ≠ Y`, otherwise `TRUE`  \cr   \tab   \cr
-#'                `%.seq.%`     \tab `X` and `Y` are \code{\link[base]{setequal}}\eqn{^{(4)}}     \cr
-#'                `%.veq.%`     \tab `X` and `Y` are vector equal\eqn{^{(5)}}                     \cr
-#'                `%.sdif.%`    \tab `X` and `Y` are set different\eqn{^{(6)}}                    \cr
-#'                `%.vdif.%`    \tab `X` and `Y` are vector different\eqn{^{(7)}}                 \cr   \tab   \cr
-#'                `%.or.%`      \tab values of `X` *and/or* `Y` are `TRUE`                        \cr
-#'                `%.and.%`     \tab values of `X` *and* `Y` are `TRUE`                           \cr
-#'                `%.xor.%`     \tab values of *either* `X` *or* `Y` are `TRUE`                   \cr
-#'                `%.nor.%`     \tab values of *neither* `X` *nor* `Y` are `TRUE`                 \cr   \tab   \cr
-#'                `%.IN.%`      \tab if `X` is atomic scalar, `X %.in.% Y`, otherwise `FALSE`     \cr
-#'                `%.MF.%`      \tab `X` is atomic scalar and `X %.mf.% Y`                        \cr
-#'                `%.HAS.%`     \tab `Y` is atomic scalar and `X %.has.% Y`                       \cr
-#'                `%.LACKS.%`   \tab `Y` is atomic scalar and `X %.lacks.% Y`                     \cr   \tab   \cr
-#'                `%.EQ.%`      \tab `X` and `Y` are atomic scalar and `X = Y`  \eqn{^{(2)}}      \cr
-#'                `%.GE.%`      \tab `X` and `Y` are atomic scalar and `X ≥ Y`  \eqn{^{(2)}}      \cr
-#'                `%.GT.%`      \tab `X` and `Y` are atomic scalar and `X > Y`  \eqn{^{(2)}}      \cr
-#'                `%.LE.%`      \tab `X` and `Y` are atomic scalar and `X ≤ Y`  \eqn{^{(2)}}      \cr
-#'                `%.LT.%`      \tab `X` and `Y` are atomic scalar and `X ≥ Y`  \eqn{^{(2)}}      \cr
-#'                `%.DIF.%`     \tab `X` and `Y` are *not* atomic scalar equal  \eqn{^{(3)}}      \cr   \tab   \cr
-#'                `%.OR.%`      \tab `X` *and/or* `Y` are scalar `TRUE`                           \cr
-#'                `%.AND.%`     \tab `X` *and* `Y` are scalar `TRUE`                              \cr
-#'                `%.XOR.%`     \tab *either* `X` *or* `Y` is scalar `TRUE`                       \cr
-#'                `%.NOR.%`     \tab *neither* `X` *nor* `Y` is scalar `TRUE`                     \cr   \tab     }
+#' \tabular{ll}{  `%.is.%`      \tab `failsafe(identical(x, y))`                                  \cr
+#'                `%.isnt.%`    \tab `!(x %.is.% y)`                                              \cr   \tab   \cr
+#'                `%.in.%`      \tab `sapply(failsafe(x %in% y), isTRUE)`                         \cr
+#'                `%.mf.%`      \tab `!(x %.in.% y)` (missing from)                               \cr
+#'                `%.has.%`     \tab `y %.in.% x` (`x` has each `y` value)                        \cr
+#'                `%.lacks.%`   \tab `y %.mf.% x` (`x` lacks each `y` value)                      \cr   \tab   \cr
+#'                `%.eq.%`      \tab If `x` and `y` match\eqn{^{(1)}}, `x = y`, otherwise `FALSE` \cr
+#'                `%.ge.%`      \tab If `x` and `y` match\eqn{^{(1)}}, `x ≥ y`, otherwise `FALSE` \cr
+#'                `%.gt.%`      \tab If `x` and `y` match\eqn{^{(1)}}, `x > y`, otherwise `FALSE` \cr
+#'                `%.le.%`      \tab If `x` and `y` match\eqn{^{(1)}}, `x ≤ y`, otherwise `FALSE` \cr
+#'                `%.lt.%`      \tab If `x` and `y` match\eqn{^{(1)}}, `x < y`, otherwise `FALSE` \cr
+#'                `%.dif.%`     \tab If `x` and `y` match\eqn{^{(1)}}, `x ≠ y`, otherwise `TRUE`  \cr   \tab   \cr
+#'                `%.seq.%`     \tab `x` and `y` are \code{\link[base]{setequal}}\eqn{^{(4)}}     \cr
+#'                `%.veq.%`     \tab `x` and `y` are vector equal\eqn{^{(5)}}                     \cr
+#'                `%.sdif.%`    \tab `x` and `y` are set different\eqn{^{(6)}}                    \cr
+#'                `%.vdif.%`    \tab `x` and `y` are vector different\eqn{^{(7)}}                 \cr   \tab   \cr
+#'                `%.or.%`      \tab values of `x` *and/or* `y` are `TRUE`                        \cr
+#'                `%.and.%`     \tab values of `x` *and* `y` are `TRUE`                           \cr
+#'                `%.xor.%`     \tab values of *either* `x` *or* `y` are `TRUE`                   \cr
+#'                `%.nor.%`     \tab values of *neither* `x` *nor* `y` are `TRUE`                 \cr   \tab   \cr
+#'                `%.IN.%`      \tab if `x` is atomic scalar, `x %.in.% y`, otherwise `FALSE`     \cr
+#'                `%.MF.%`      \tab `x` is atomic scalar and `x %.mf.% y`                        \cr
+#'                `%.HAS.%`     \tab `y` is atomic scalar and `x %.has.% y`                       \cr
+#'                `%.LACKS.%`   \tab `y` is atomic scalar and `x %.lacks.% y`                     \cr   \tab   \cr
+#'                `%.EQ.%`      \tab `x` and `y` are atomic scalar and `x = y`  \eqn{^{(2)}}      \cr
+#'                `%.GE.%`      \tab `x` and `y` are atomic scalar and `x ≥ y`  \eqn{^{(2)}}      \cr
+#'                `%.GT.%`      \tab `x` and `y` are atomic scalar and `x > y`  \eqn{^{(2)}}      \cr
+#'                `%.LE.%`      \tab `x` and `y` are atomic scalar and `x ≤ y`  \eqn{^{(2)}}      \cr
+#'                `%.LT.%`      \tab `x` and `y` are atomic scalar and `x ≥ y`  \eqn{^{(2)}}      \cr
+#'                `%.DIF.%`     \tab `x` and `y` are *not* atomic scalar equal  \eqn{^{(3)}}      \cr   \tab   \cr
+#'                `%.OR.%`      \tab `x` *and/or* `y` are scalar `TRUE`                           \cr
+#'                `%.AND.%`     \tab `x` *and* `y` are scalar `TRUE`                              \cr
+#'                `%.XOR.%`     \tab *either* `x` *or* `y` is scalar `TRUE`                       \cr
+#'                `%.NOR.%`     \tab *neither* `x` *nor* `y` is scalar `TRUE`                     \cr   \tab     }
 #'  \tabular{l}{  \eqn{^{(1)}} Of equal length and \link[=compatible]{compatible modes}.                                                       \cr
 #'                \eqn{^{(2)}} Of \link[=compatible]{compatible modes} and meeting the (in)equality.                                           \cr
 #'                \eqn{^{(3)}} not meeting the requirements of `%.eq0.%`.                                                                      \cr
@@ -97,24 +97,24 @@
 #' \cr\cr Function names are constructed of root words, prefixes, and/or suffixes. Root word specify the type of check conducted. Prefixes and suffixes specify how to modify the results of a check or how to apply the check to each `...` argument and check whether a certain number of `...` args passed the checks.
 #' \cr\cr Uppercase root words indicate one or both arguments must be scalar. Lowercase root words indicate arguments may be vectors.
 #' \cr\cr *Root words for atomic scalar value checking functions*
-#' \tabular{ll}{  `nav`   \tab `X` is atomic and values are `NA`.                               \cr
-#'                `okv`   \tab `X` is atomic and values are *not* `NA`.                         \cr
-#'                `bl`    \tab `X` is atomic and values are blanks (`""`).                      \cr
-#'                `lg`    \tab `X` is atomic and values are logical (`TRUE`, `FALSE`, or `NA`). \cr
-#'                `tf`    \tab `X` is atomic and values are `TRUE` or `FALSE`.                  \cr
-#'                `f`     \tab `X` is atomic and values are `TRUE`.                             \cr
-#'                `t`     \tab `X` is atomic and valules are `FALSE`.                             }
+#' \tabular{ll}{  `nav`   \tab `x` is atomic and values are `NA`.                               \cr
+#'                `okv`   \tab `x` is atomic and values are *not* `NA`.                         \cr
+#'                `bl`    \tab `x` is atomic and values are blanks (`""`).                      \cr
+#'                `lg`    \tab `x` is atomic and values are logical (`TRUE`, `FALSE`, or `NA`). \cr
+#'                `tf`    \tab `x` is atomic and values are `TRUE` or `FALSE`.                  \cr
+#'                `f`     \tab `x` is atomic and values are `TRUE`.                             \cr
+#'                `t`     \tab `x` is atomic and valules are `FALSE`.                             }
 #' \cr *Root words for atomic value membership checking functions*
-#' \tabular{ll}{  `lacks`   \tab `X` lacks values of `Y`.      \cr
-#'                `has`     \tab `X` has values of `Y`.        \cr
-#'                `in`      \tab `X` in values of `Y`.         \cr
-#'                `mf`      \tab `X` missing from values of `Y`. }
+#' \tabular{ll}{  `lacks`   \tab `x` lacks values of `y`.      \cr
+#'                `has`     \tab `x` has values of `y`.        \cr
+#'                `in`      \tab `x` in values of `y`.         \cr
+#'                `mf`      \tab `x` missing from values of `y`. }
 #' \cr *Root words for equality/inequality checking functions*
 #' \tabular{ll}{  `id`     \tab objects are identical                \cr
-#'                `ge`     \tab `X` is greater than or equal to `Y`. \cr
-#'                `gt`     \tab `X` is greater than `Y`.             \cr
-#'                `le`     \tab `X` is less than or equal to `Y`.    \cr
-#'                `lt`     \tab `X` is less than `Y`.                \cr
+#'                `ge`     \tab `x` is greater than or equal to `y`. \cr
+#'                `gt`     \tab `x` is greater than `y`.             \cr
+#'                `le`     \tab `x` is less than or equal to `y`.    \cr
+#'                `lt`     \tab `x` is less than `y`.                \cr
 #'                `eq`     \tab values are equal                     \cr
 #'                `dif`    \tab values are different                 \cr
 #'                `seq`    \tab values are set equal                 \cr
@@ -184,8 +184,8 @@
 #'                         **lacks**   \tab `locks`   \tab `n_lacks`   \tab `not_lacks`   \tab `lacks_none`   \tab `lacks_one`   \tab `lacks_two`   \tab `lacks_any`   \tab `lacks_some`   \tab `lacks_many`   \tab `lacks_all` }
 #' @return A logical scalar or vector.
 #' @param ... Any objects/expressions to be evaluated, whether or not doing so produces an error.
-#' @param Val,Or,X,Y Any object/expression to be evaluated, whether or not doing so produces an error.
-#' @param Def A character scalar default error message if forcing evaluation produces an error. If not a character scalar, it is replaced with the default.
+#' @param val,or,x,y Any object/expression to be evaluated, whether or not doing so produces an error.
+#' @param .DEF A character scalar default error message if forcing evaluation produces an error. If not a character scalar, it is replaced with the default.
 #' @examples
 #' egfailsafe <- function() {
 #'   abc <- c("a", "b", "c")
@@ -193,8 +193,8 @@
 #'   blank <- ""
 #'   mss.scl <- Na
 #'   lgl.scl <- FALSE
-#'   fac.scl <- factor("q", levels = c("X", "q"))
-#'   fac.vec <- factor(c("X", "q"), levels = c("X", "q"))
+#'   fac.scl <- factor("q", levels = c("x", "q"))
+#'   fac.vec <- factor(c("x", "q"), levels = c("x", "q"))
 #'   chr.mat <- matrix(c("a", "b", "c", "Na"), nrow = 2)
 #'   chr.dtf <- data.frame(abc = letters[1:3], def = letters[4:6])
 #'   num.vls <- list(first3 = c(1:3, NA), next3 = c(4:6, NA))
@@ -660,29 +660,29 @@
 #' }
 #' egfailsafe()
 #' @export
-failsafe <- function(X, Def = "uj.failsafe.err") {
-  X <- tryCatch(base::identity(X), error = function(e) e, finally = NULL)
-  if (rlang::is_error(X)) {
-    Def <- tryCatch(base::identity(Def), error = function(e) e, finally = NULL)
-    if (rlang::is_error(Def)) {Def <- "uj.failsafe.err"}
-    base::attr(Def, "stack") <- uj::callers()
-    Def
-  } else {X}
+failsafe <- function(x, .DEF = "uj.failsafe.err") {
+  x <- tryCatch(base::identity(x), error = function(e) e, finally = NULL)
+  if (rlang::is_error(x)) {
+    .DEF <- tryCatch(base::identity(.DEF), error = function(e) e, finally = NULL)
+    if (rlang::is_error(.DEF)) {.DEF <- "uj.failsafe.err"}
+    base::attr(.DEF, "stack") <- uj::callers()
+    .DEF
+  } else {x}
 }
 
 #' @rdname failsafe
 #' @export
-is_err <- function(X) {rlang::is_error(tryCatch(base::identity(X), error = function(e) e, finally = NULL))}
+is_err <- function(x) {rlang::is_error(tryCatch(base::identity(x), error = function(e) e, finally = NULL))}
 
 #' @rdname failsafe
 #' @export
-not_err <- function(X) {!uj::is_err(X)}
+not_err <- function(x) {!uj::is_err(x)}
 
 #' @rdname failsafe
 #' @export
-msg_err <- function(X) {
-  X <- tryCatch(base::identity(X), error = function(e) e, finally = NULL)
-  if (rlang::is_error(X)) {X$message} else {NULL}
+msg_err <- function(x) {
+  x <- tryCatch(base::identity(x), error = function(e) e, finally = NULL)
+  if (rlang::is_error(x)) {x$message} else {NULL}
 }
 
 #' @rdname failsafe
@@ -691,1309 +691,1309 @@ make_err <- function() {base::simpleError("uj.intentionally.generated error.")}
 
 #' @rdname failsafe
 #' @export
-fs_def <- function(X) {if (uj::is_err(X)) {FALSE} else {!base::is.null(X)}}
+fs_def <- function(x) {if (uj::is_err(x)) {FALSE} else {!base::is.null(x)}}
 
 #' @rdname failsafe
 #' @export
-fs_nll <- function(X) {if (uj::is_err(X)) {TRUE} else {base::is.null(X)}}
+fs_nll <- function(x) {if (uj::is_err(x)) {TRUE} else {base::is.null(x)}}
 
 #' @rdname failsafe
 #' @export
-fs_scl <- function(X, Val) {
-  if      (uj::is_err(X) | uj::is_err(Val)              ) {FALSE}
-  else if (base::length(X) != 1 | base::length(Val) != 1) {FALSE}
-  else if (!base::is.atomic(X) | !base::is.atomic(Val)  ) {FALSE}
-  else if (uj:::.compat(X, Val)                         ) {FALSE}
-  else if (base::is.na(X) & base::is.na(Val)            ) {TRUE}
-  else if (base::is.na(X) | base::is.na(Val)            ) {FALSE}
-  else                                                    {X == Val}
+fs_scl <- function(x, val) {
+  if      (uj::is_err(x) | uj::is_err(val)              ) {FALSE}
+  else if (base::length(x) != 1 | base::length(val) != 1) {FALSE}
+  else if (!base::is.atomic(x) | !base::is.atomic(val)  ) {FALSE}
+  else if (uj:::.compat(x, val)                         ) {FALSE}
+  else if (base::is.na(x) & base::is.na(val)            ) {TRUE}
+  else if (base::is.na(x) | base::is.na(val)            ) {FALSE}
+  else                                                    {x == val}
 }
 
 #' @rdname failsafe
 #' @export
-fs_t <- function(X) {if (uj::is_err(X)) {FALSE} else {base::isTRUE(X)}}
+fs_t <- function(x) {if (uj::is_err(x)) {FALSE} else {base::isTRUE(x)}}
 
 #' @rdname failsafe
 #' @export
-fs_f <- function(X) {if (uj::is_err(X)) {FALSE} else {base::isFALSE(X)}}
+fs_f <- function(x) {if (uj::is_err(x)) {FALSE} else {base::isFALSE(x)}}
 
 #' @rdname failsafe
 #' @export
-fs_tf <- function(X) {uj::fs_t(X) | uj::fs_f(X)}
+fs_tf <- function(x) {uj::fs_t(x) | uj::fs_f(x)}
 
 #' @rdname failsafe
 #' @export
-fs_na <- function(X) {
-  if (!uj::is_err(X)) {if (base::is.atomic(X)) {if (base::length(X) == 1) {return(base::is.na(X))}}}
+fs_na <- function(x) {
+  if (!uj::is_err(x)) {if (base::is.atomic(x)) {if (base::length(x) == 1) {return(base::is.na(x))}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-fs_ok <- function(X) {
-  if (!uj::is_err(X)) {if (base::is.atomic(X)) {if (base::length(X) == 1) {!return(base::is.na(X))}}}
+fs_ok <- function(x) {
+  if (!uj::is_err(x)) {if (base::is.atomic(x)) {if (base::length(x) == 1) {!return(base::is.na(x))}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-fs_bl <- function(X) {
-  if (!uj::is_err(X)) {if (base::is.character(X)) {if (base::length(X) == 1) {return(X == "")}}}
+fs_bl <- function(x) {
+  if (!uj::is_err(x)) {if (base::is.character(x)) {if (base::length(x) == 1) {return(x == "")}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-fs_lg <- function(X) {uj::fs_f(X) | uj::fs_t(X) | uj::fs_na(X)}
+fs_lg <- function(x) {uj::fs_f(x) | uj::fs_t(x) | uj::fs_na(x)}
 
 #' @rdname failsafe
 #' @export
-fs_vec <- function(X, Val) {
-  if      (uj::is_err(X) | uj::is_err(Val)            ) {FALSE}
-  else if (uj:::.mismatch_n(X, Val)                   ) {FALSE}
-  else if (!base::is.atomic(X) | !base::is.atomic(Val)) {FALSE}
-  else if (uj:::.compat(X, Val)                       ) {FALSE}
-  else if (base::is.na(X) & base::is.na(Val)          ) {TRUE}
-  else if (base::is.na(X) | base::is.na(Val)          ) {FALSE}
-  else                                                  {X == Val}
+fs_vec <- function(x, val) {
+  if      (uj::is_err(x) | uj::is_err(val)            ) {FALSE}
+  else if (uj:::.mismatch_n(x, val)                   ) {FALSE}
+  else if (!base::is.atomic(x) | !base::is.atomic(val)) {FALSE}
+  else if (uj:::.compat(x, val)                       ) {FALSE}
+  else if (base::is.na(x) & base::is.na(val)          ) {TRUE}
+  else if (base::is.na(x) | base::is.na(val)          ) {FALSE}
+  else                                                  {x == val}
 }
 
 #' @rdname failsafe
 #' @export
-fs_null <- function(X) {if (uj::is_err(X)) {FALSE} else {base::is.null(X)}}
+fs_null <- function(x) {if (uj::is_err(x)) {FALSE} else {base::is.null(x)}}
 
 #' @rdname failsafe
 #' @export
-scl_bl <- function(X) {uj::fs_bl(X)}
+scl_bl <- function(x) {uj::fs_bl(x)}
 
 #' @rdname failsafe
 #' @export
-scl_t <- function(X)  {uj::fs_t(X)}
+scl_t <- function(x)  {uj::fs_t(x)}
 
 #' @rdname failsafe
 #' @export
-scl_f <- function(X)  {uj::fs_f(X)}
+scl_f <- function(x)  {uj::fs_f(x)}
 
 #' @rdname failsafe
 #' @export
-scl_tf <- function(X)  {uj::fs_tf(X)}
+scl_tf <- function(x)  {uj::fs_tf(x)}
 
 #' @rdname failsafe
 #' @export
-scl_lg <- function(X)  {uj::fs_lg(X)}
+scl_lg <- function(x)  {uj::fs_lg(x)}
 
 #' @rdname failsafe
 #' @export
-scl_na <- function(X)  {uj::fs_na(X)}
+scl_na <- function(x)  {uj::fs_na(x)}
 
 #' @rdname failsafe
 #' @export
-vec_bl <- function(X) {uj::fs_vec(X, "")}
+vec_bl <- function(x) {uj::fs_vec(x, "")}
 
 #' @rdname failsafe
 #' @export
-vec_t <- function(X)  {uj::fs_vec(X, TRUE)}
+vec_t <- function(x)  {uj::fs_vec(x, TRUE)}
 
 #' @rdname failsafe
 #' @export
-vec_f <- function(X)  {uj::fs_vec(X, FALSE)}
+vec_f <- function(x)  {uj::fs_vec(x, FALSE)}
 
 #' @rdname failsafe
 #' @export
-vec_tf <- function(X)  {uj::fs_vec(X, TRUE) | uj::fs_vec(X, TRUE)}
+vec_tf <- function(x)  {uj::fs_vec(x, TRUE) | uj::fs_vec(x, TRUE)}
 
 #' @rdname failsafe
 #' @export
-vec_na <- function(X)  {uj::fs_vec(X, NA)}
+vec_na <- function(x)  {uj::fs_vec(x, NA)}
 
 #' @rdname failsafe
 #' @export
-fs_or <- function(X, Or = NULL) {if (!uj::is_err(X)) {X} else if (!uj::is_err(Or)) {Or} else {NULL}}
+fs_or <- function(x, or = NULL) {if (!uj::is_err(x)) {x} else if (!uj::is_err(or)) {or} else {NULL}}
 
 #' @rdname failsafe
 #' @export
-or_f <- function(X) {uj::fs_or(X, FALSE)}
+or_f <- function(x) {uj::fs_or(x, FALSE)}
 
 #' @rdname failsafe
 #' @export
-or_t <- function(X) {uj::fs_or(X, TRUE)}
+or_t <- function(x) {uj::fs_or(x, TRUE)}
 
 #' @rdname failsafe
 #' @export
-or_bl <- function(X) {uj::fs_or(X, "")}
+or_bl <- function(x) {uj::fs_or(x, "")}
 
 #' @rdname failsafe
 #' @export
-or_c0 <- function(X) {uj::fs_or(X, base::character(0))}
+or_c0 <- function(x) {uj::fs_or(x, base::character(0))}
 
 #' @rdname failsafe
 #' @export
-or_i0 <- function(X) {uhj::fs_or(X, base::integer(0))}
+or_i0 <- function(x) {uhj::fs_or(x, base::integer(0))}
 
 #' @rdname failsafe
 #' @export
-or_l0 <- function(X) {uhj::fs_or(X, base::logical(0))}
+or_l0 <- function(x) {uhj::fs_or(x, base::logical(0))}
 
 #' @rdname failsafe
 #' @export
-or_n0 <- function(X) {uhj::fs_or(X, base::numeric(0))}
+or_n0 <- function(x) {uhj::fs_or(x, base::numeric(0))}
 
 #' @rdname failsafe
 #' @export
-or_na <- function(X) {uj::fs_or(X, NA)}
+or_na <- function(x) {uj::fs_or(x, NA)}
 
 #' @rdname failsafe
 #' @export
-or_nac <- function(X) {uj::fs_or(X, NA_character_)}
+or_nac <- function(x) {uj::fs_or(x, NA_character_)}
 
 #' @rdname failsafe
 #' @export
-or_nai <- function(X) {uj::fs_or(X, NA_integer_)}
+or_nai <- function(x) {uj::fs_or(x, NA_integer_)}
 
 #' @rdname failsafe
 #' @export
-or_nal <- function(X) {uj::fs_or(X, NA)}
+or_nal <- function(x) {uj::fs_or(x, NA)}
 
 #' @rdname failsafe
 #' @export
-or_nar <- function(X) {uj::fs_or(X, NA_real_)}
+or_nar <- function(x) {uj::fs_or(x, NA_real_)}
 
 #' @rdname failsafe
 #' @export
-or_null <- function(X) {uj::fs_or(X)}
+or_null <- function(x) {uj::fs_or(x)}
 
 #' @rdname failsafe
 #' @export
-is_id <- function(X, Y) {if (uj::is_err(X) | uj::is_err(Y)) {FALSE} else {base::identical(X, Y)}}
+is_id <- function(x, y) {if (uj::is_err(x) | uj::is_err(y)) {FALSE} else {base::identical(x, y)}}
 
 #' @rdname failsafe
 #' @export
-not_id <- function(X, Y) {if (uj::is_err(X) | uj::is_err(Y)) {FALSE} else {!base::identical(X, Y)}}
+not_id <- function(x, y) {if (uj::is_err(x) | uj::is_err(y)) {FALSE} else {!base::identical(x, y)}}
 
 #' @rdname failsafe
 #' @export
-is_IN <- function(X, ...) {
-  if (uj::not_err(X)) {
-    if (base::...length() > 0 & base::length(X) == 1 & base::is.atomic(X)) {
+is_IN <- function(x, ...) {
+  if (uj::not_err(x)) {
+    if (base::...length() > 0 & base::length(x) == 1 & base::is.atomic(x)) {
       for (i in 1:base::...length()) {
         if (uj::not_err(base::...elt(i))) {
           Dot <- base::...elt(i)
           if (base::is.atomic(Dot)) {
-            if (uj:::.compat(X, Dot)) {
-              if (X %in% Dot) {return(TRUE)}}}}}}}
+            if (uj:::.compat(x, Dot)) {
+              if (x %in% Dot) {return(TRUE)}}}}}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_MF <- function(X, ...) {!uj::is_IN(X, ...)}
+is_MF <- function(x, ...) {!uj::is_IN(x, ...)}
 
 #' @rdname failsafe
 #' @export
-HAS <- function(X, Y) {uj::is_IN(Y, X)}
+HAS <- function(x, y) {uj::is_IN(y, x)}
 
 #' @rdname failsafe
 #' @export
-LACKS <- function(X, Y) {!uj::is_IN(Y, X)}
+LACKS <- function(x, y) {!uj::is_IN(y, x)}
 
 #' @rdname failsafe
 #' @export
-is_EQ <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.atomic(X) & base::is.atomic(Y) & base::length(X) == 1 & base::length(Y) == 1) {
-      if (uj:::.compat(X, Y)) {
-        if (base::is.na(X) | base::is.na(Y)) {return(FALSE)}
-        Y <- base::unlist(X == Y)
-        base::attributes(Y) <- NULL
-        return(Y)}}}
+is_EQ <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.atomic(x) & base::is.atomic(y) & base::length(x) == 1 & base::length(y) == 1) {
+      if (uj:::.compat(x, y)) {
+        if (base::is.na(x) | base::is.na(y)) {return(FALSE)}
+        y <- base::unlist(x == y)
+        base::attributes(y) <- NULL
+        return(y)}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_GE <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.atomic(X) & base::is.atomic(Y) & base::length(X) == 1 & base::length(Y) == 1) {
-      if (uj:::.compar(X, Y)) {
-        Y <- base::unlist(X >= Y)
-        base::attributes(Y) <- NULL
-        return(Y)}}}
+is_GE <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.atomic(x) & base::is.atomic(y) & base::length(x) == 1 & base::length(y) == 1) {
+      if (uj:::.compar(x, y)) {
+        y <- base::unlist(x >= y)
+        base::attributes(y) <- NULL
+        return(y)}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_GT <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.atomic(X) & base::is.atomic(Y) & base::length(X) == 1 & base::length(Y) == 1) {
-      if (uj:::.compar(X, Y)) {
-        Y <- base::unlist(X > Y)
-        base::attributes(Y) <- NULL
-        return(Y)}}}
+is_GT <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.atomic(x) & base::is.atomic(y) & base::length(x) == 1 & base::length(y) == 1) {
+      if (uj:::.compar(x, y)) {
+        y <- base::unlist(x > y)
+        base::attributes(y) <- NULL
+        return(y)}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_LE <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.atomic(X) & base::is.atomic(Y) & base::length(X) == 1 & base::length(Y) == 1) {
-      if (uj:::.compar(X, Y)) {
-        Y <- base::unlist(X <= Y)
-        base::attributes(Y) <- NULL
-        return(Y)}}}
+is_LE <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.atomic(x) & base::is.atomic(y) & base::length(x) == 1 & base::length(y) == 1) {
+      if (uj:::.compar(x, y)) {
+        y <- base::unlist(x <= y)
+        base::attributes(y) <- NULL
+        return(y)}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_LT <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.atomic(X) & base::is.atomic(Y) & base::length(X) == 1 & base::length(Y) == 1) {
-      if (uj:::.compar(X, Y)) {
-        Y <- base::unlist(X < Y)
-        base::attributes(Y) <- NULL
-        return(Y)}}}
+is_LT <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.atomic(x) & base::is.atomic(y) & base::length(x) == 1 & base::length(y) == 1) {
+      if (uj:::.compar(x, y)) {
+        y <- base::unlist(x < y)
+        base::attributes(y) <- NULL
+        return(y)}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_DIF <- function(X, Y) {!uj::is_EQ(X, Y)}
+is_DIF <- function(x, y) {!uj::is_EQ(x, y)}
 
 #' @rdname failsafe
 #' @export
-is_F <- function(X) {uj::fs_f(X)}
+is_F <- function(x) {uj::fs_f(x)}
 
 #' @rdname failsafe
 #' @export
-is_T <- function(X) {uj::fs_t(X)}
+is_T <- function(x) {uj::fs_t(x)}
 
 #' @rdname failsafe
 #' @export
-is_BL <- function(X) {uj::fs_bl(X)}
+is_BL <- function(x) {uj::fs_bl(x)}
 
 #' @rdname failsafe
 #' @export
-is_TF <- function(X) {uj::fs_tf(X)}
+is_TF <- function(x) {uj::fs_tf(x)}
 
 #' @rdname failsafe
 #' @export
-is_NAV <- function(X) {uj::fs_na(X)}
+is_NAV <- function(x) {uj::fs_na(x)}
 
 #' @rdname failsafe
 #' @export
-is_OKV <- function(X) {uj::fs_ok(X)}
+is_OKV <- function(x) {uj::fs_ok(x)}
 
 #' @rdname failsafe
 #' @export
-is_LG <- function(X) {uj::fs_lg(X)}
+is_LG <- function(x) {uj::fs_lg(x)}
 
 #' @rdname failsafe
 #' @export
-is_in <- function(X, ...) {
-  if (uj::not_err(X)) {if (base::is.atomic(X) & base::length(X) > 0) {return(base::sapply(X, uj::is_IN, ...))}}
+is_in <- function(x, ...) {
+  if (uj::not_err(x)) {if (base::is.atomic(x) & base::length(x) > 0) {return(base::sapply(x, uj::is_IN, ...))}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_mf <- function(X, ...) {!uj::is_in(X, ...)}
+is_mf <- function(x, ...) {!uj::is_in(x, ...)}
 
 #' @rdname failsafe
 #' @export
-has <- function(X, Y) {uj::is_in(Y, X)}
+has <- function(x, y) {uj::is_in(y, x)}
 
 #' @rdname failsafe
 #' @export
-not <- function(X) {base::isFALSE(uj::failsafe(X))}
+not <- function(x) {base::isFALSE(uj::failsafe(x))}
 
 #' @rdname failsafe
 #' @export
-lacks <- function(X, Y) {!uj::is_in(Y, X)}
+lacks <- function(x, y) {!uj::is_in(y, x)}
 
 #' @rdname failsafe
 #' @export
-is_eq <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.atomic(X) & base::is.atomic(Y)) {
-      nX <- base::length(X)
-      nY <- base::length(Y)
+is_eq <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.atomic(x) & base::is.atomic(y)) {
+      nX <- base::length(x)
+      nY <- base::length(y)
       if (nX %in% base::c(1, nY) & nY %in% base::c(1, nY)) {
-        if (uj:::.compat(X, Y)) {return(X == Y)}}}}
+        if (uj:::.compat(x, y)) {return(x == y)}}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_ge <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.atomic(X) & base::is.atomic(Y)) {
-      nX <- base::length(X)
-      nY <- base::length(Y)
+is_ge <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.atomic(x) & base::is.atomic(y)) {
+      nX <- base::length(x)
+      nY <- base::length(y)
       if (nX %in% base::c(1, nY) & nY %in% base::c(1, nX)) {
-        if (uj:::.compar(X, Y)) {return(X >= Y)}}}}
+        if (uj:::.compar(x, y)) {return(x >= y)}}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_gt <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.atomic(X) & base::is.atomic(Y)) {
-      nX <- base::length(X)
-      nY <- base::length(Y)
+is_gt <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.atomic(x) & base::is.atomic(y)) {
+      nX <- base::length(x)
+      nY <- base::length(y)
       if (nX %in% base::c(1, nY) & nY %in% base::c(1, nX)) {
-        if (uj:::.compar(X, Y)) {return(X > Y)}}}}
+        if (uj:::.compar(x, y)) {return(x > y)}}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_le <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.atomic(X) & base::is.atomic(Y)) {
-      nX <- base::length(X)
-      nY <- base::length(Y)
+is_le <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.atomic(x) & base::is.atomic(y)) {
+      nX <- base::length(x)
+      nY <- base::length(y)
       if (nX %in% base::c(1, nY) & nY %in% base::c(1, nX)) {
-        if (uj:::.compar(X, Y)) {return(X <= Y)}}}}
+        if (uj:::.compar(x, y)) {return(x <= y)}}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_lt <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.atomic(X) & base::is.atomic(Y)) {
-      nX <- base::length(X)
-      nY <- base::length(Y)
+is_lt <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.atomic(x) & base::is.atomic(y)) {
+      nX <- base::length(x)
+      nY <- base::length(y)
       if (nX %in% base::c(1, nY) & nY %in% base::c(1, nX)) {
-        if (uj:::.compar(X, Y)) {return(X < Y)}}}}
+        if (uj:::.compar(x, y)) {return(x < y)}}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_dif <- function(X, Y) {!uj::is_eq(X, Y)}
+is_dif <- function(x, y) {!uj::is_eq(x, y)}
 
 #' @rdname failsafe
 #' @export
-is_f <- function(X) {uj::is_eq(X, FALSE)}
+is_f <- function(x) {uj::is_eq(x, FALSE)}
 
 #' @rdname failsafe
 #' @export
-is_t <- function(X) {uj::is_eq(X, TRUE)}
+is_t <- function(x) {uj::is_eq(x, TRUE)}
 
 #' @rdname failsafe
 #' @export
-is_bl <- function(X) {uj::is_eq(X, "")}
+is_bl <- function(x) {uj::is_eq(x, "")}
 
 #' @rdname failsafe
 #' @export
-is_tf <- function(X) {uj::is_eq(X, FALSE) | uj::is_eq(X, TRUE)}
+is_tf <- function(x) {uj::is_eq(x, FALSE) | uj::is_eq(x, TRUE)}
 
 #' @rdname failsafe
 #' @export
-is_nav <- function(X) {
-  if (uj::not_err(X)) {if (base::is.atomic(X)) {return(base::is.na(X))}}
+is_nav <- function(x) {
+  if (uj::not_err(x)) {if (base::is.atomic(x)) {return(base::is.na(x))}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_okv <- function(X) {
-  if (uj::not_err(X)) {if (base::is.atomic(X)) {return(!base::is.na(X))}}
+is_okv <- function(x) {
+  if (uj::not_err(x)) {if (base::is.atomic(x)) {return(!base::is.na(x))}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_seq <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.atomic(X) & base::is.atomic(Y)) {
-      if (uj:::.compat(X, Y)) {
-        X <- base::unlist(X); base::attributes(X) <- NULL
-        Y <- base::unlist(Y); base::attributes(Y) <- NULL
-        return(base::setequal(X, Y))}}}
+is_seq <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.atomic(x) & base::is.atomic(y)) {
+      if (uj:::.compat(x, y)) {
+        x <- base::unlist(x); base::attributes(x) <- NULL
+        y <- base::unlist(y); base::attributes(y) <- NULL
+        return(base::setequal(x, y))}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_veq <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.atomic(X) & base::is.atomic(Y)) {
-      if (uj:::.compat(X, Y)) {
-        if (base::length(X) == base::length(Y)) {
-          if (!base::any(base::is.na(X)) & !base::any(base::is.na(Y))) {return(base::all(X == Y))}}}}}
+is_veq <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.atomic(x) & base::is.atomic(y)) {
+      if (uj:::.compat(x, y)) {
+        if (base::length(x) == base::length(y)) {
+          if (!base::any(base::is.na(x)) & !base::any(base::is.na(y))) {return(base::all(x == y))}}}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-is_sdif <- function(X, Y) {!uj::is_seq(X, Y)}
+is_sdif <- function(x, y) {!uj::is_seq(x, y)}
 
 #' @rdname failsafe
 #' @export
-is_vdif <- function(X, Y) {!uj::is_veq(X, Y)}
+is_vdif <- function(x, y) {!uj::is_veq(x, y)}
 
 #' @rdname failsafe
 #' @export
-OR <- function(X, Y) {uj::fs_t(X) | uj::fs_t(Y)}
+OR <- function(x, y) {uj::fs_t(x) | uj::fs_t(y)}
 
 #' @rdname failsafe
 #' @export
-AND <- function(X, Y) {uj::fs_t(X) & uj::fs_t(Y)}
+AND <- function(x, y) {uj::fs_t(x) & uj::fs_t(y)}
 
 #' @rdname failsafe
 #' @export
-XOR <- function(X, Y) {base::xor(uj::fs_t(X), uj::fs_t(Y))}
+XOR <- function(x, y) {base::xor(uj::fs_t(x), uj::fs_t(y))}
 
 #' @rdname failsafe
 #' @export
-NOR <- function(X, Y) {!uj::fs_t(X) & !uj::fs_t(Y)}
+NOR <- function(x, y) {!uj::fs_t(x) & !uj::fs_t(y)}
 
 #' @rdname failsafe
 #' @export
-or <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.logical(X) & base::is.logical(Y)) {
-      nX <- base::length(X)
-      nY <- base::length(Y)
-      if (nX %in% base::c(1, nY) & nY %in% base::c(1, nX)) {return(X | Y)}}}
+or <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.logical(x) & base::is.logical(y)) {
+      nX <- base::length(x)
+      nY <- base::length(y)
+      if (nX %in% base::c(1, nY) & nY %in% base::c(1, nX)) {return(x | y)}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-and <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.logical(X) & base::is.logical(Y)) {
-      nX <- base::length(X)
-      nY <- base::length(Y)
-      if (nX %in% base::c(1, nY) & nY %in% base::c(1, nX)) {return(X & Y)}}}
+and <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.logical(x) & base::is.logical(y)) {
+      nX <- base::length(x)
+      nY <- base::length(y)
+      if (nX %in% base::c(1, nY) & nY %in% base::c(1, nX)) {return(x & y)}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-one <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.logical(X) & base::is.logical(Y)) {
-      nX <- base::length(X)
-      nY <- base::length(Y)
-      if (nX %in% base::c(1, nY) & nY %in% base::c(1, nX)) {return(base::xor(X, Y))}}}
+one <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.logical(x) & base::is.logical(y)) {
+      nX <- base::length(x)
+      nY <- base::length(y)
+      if (nX %in% base::c(1, nY) & nY %in% base::c(1, nX)) {return(base::xor(x, y))}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-nor <- function(X, Y) {
-  if (uj::not_err(X) & uj::not_err(Y)) {
-    if (base::is.logical(X) & base::is.logical(Y)) {
-      nX <- base::length(X)
-      nY <- base::length(Y)
-      if (nX %in% base::c(1, nY) & nY %in% base::c(1, nX)) {return(!X & !Y)}}}
+nor <- function(x, y) {
+  if (uj::not_err(x) & uj::not_err(y)) {
+    if (base::is.logical(x) & base::is.logical(y)) {
+      nX <- base::length(x)
+      nY <- base::length(y)
+      if (nX %in% base::c(1, nY) & nY %in% base::c(1, nX)) {return(!x & !y)}}}
   FALSE
 }
 
 #' @rdname failsafe
 #' @export
-not_IN <- function(X, ...) {!uj::is_IN(X, ...)}
+not_IN <- function(x, ...) {!uj::is_IN(x, ...)}
 
 #' @rdname failsafe
 #' @export
-not_MF <- function(X, ...) {!uj::is_MF(X, ...)}
+not_MF <- function(x, ...) {!uj::is_MF(x, ...)}
 
 #' @rdname failsafe
 #' @export
-not_HAS <- function(X, Y) {!uj::HAS(X, Y)}
+not_HAS <- function(x, y) {!uj::HAS(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_LACKS <- function(X, Y) {!uj::LACKS(X, Y)}
+not_LACKS <- function(x, y) {!uj::LACKS(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_EQ <- function(X, Y) {!uj::is_EQ(X, Y)}
+not_EQ <- function(x, y) {!uj::is_EQ(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_GE <- function(X, Y) {!uj::is_GE(X, Y)}
+not_GE <- function(x, y) {!uj::is_GE(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_GT <- function(X, Y) {!uj::is_GT(X, Y)}
+not_GT <- function(x, y) {!uj::is_GT(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_LE <- function(X, Y) {!uj::is_LE(X, Y)}
+not_LE <- function(x, y) {!uj::is_LE(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_LT <- function(X, Y) {!uj::is_LT(X, Y)}
+not_LT <- function(x, y) {!uj::is_LT(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_DIF <- function(X, Y) {!uj::is_DIF(X, Y)}
+not_DIF <- function(x, y) {!uj::is_DIF(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_F <- function(X) {!uj::fs_f(X)}
+not_F <- function(x) {!uj::fs_f(x)}
 
 #' @rdname failsafe
 #' @export
-not_T <- function(X) {!uj::fs_t(X)}
+not_T <- function(x) {!uj::fs_t(x)}
 
 #' @rdname failsafe
 #' @export
-not_TF <- function(X) {!uj::fs_tf(X)}
+not_TF <- function(x) {!uj::fs_tf(x)}
 
 #' @rdname failsafe
 #' @export
-not_BL <- function(X) {!uj::fs_bl(X)}
+not_BL <- function(x) {!uj::fs_bl(x)}
 
 #' @rdname failsafe
 #' @export
-not_NAV <- function(X) {!uj::fs_na(X)}
+not_NAV <- function(x) {!uj::fs_na(x)}
 
 #' @rdname failsafe
 #' @export
-not_OKV <- function(X) {!uj::fs_ok(X)}
+not_OKV <- function(x) {!uj::fs_ok(x)}
 
 #' @rdname failsafe
 #' @export
-not_LG <- function(X) {!uj::fs_lg(X)}
+not_LG <- function(x) {!uj::fs_lg(x)}
 
 #' @rdname failsafe
 #' @export
-not_in <- function(X, ...) {!uj::is_in(X, ...)}
+not_in <- function(x, ...) {!uj::is_in(x, ...)}
 
 #' @rdname failsafe
 #' @export
-not_mf <- function(X, ...) {!uj::is_mf(X, ...)}
+not_mf <- function(x, ...) {!uj::is_mf(x, ...)}
 
 #' @rdname failsafe
 #' @export
-not_has <- function(X, Y) {!uj::has(X, Y)}
+not_has <- function(x, y) {!uj::has(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_lacks <- function(X, Y) {!uj::lacks(X, Y)}
+not_lacks <- function(x, y) {!uj::lacks(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_eq <- function(X, Y) {!uj::is_eq(X, Y)}
+not_eq <- function(x, y) {!uj::is_eq(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_ge <- function(X, Y) {!uj::is_ge(X, Y)}
+not_ge <- function(x, y) {!uj::is_ge(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_gt <- function(X, Y) {!uj::is_gt(X, Y)}
+not_gt <- function(x, y) {!uj::is_gt(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_le <- function(X, Y) {!uj::is_le(X, Y)}
+not_le <- function(x, y) {!uj::is_le(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_lt <- function(X, Y) {!uj::is_lt(X, Y)}
+not_lt <- function(x, y) {!uj::is_lt(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_dif <- function(X, Y) {!uj::is_dif(X, Y)}
+not_dif <- function(x, y) {!uj::is_dif(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_f <- function(X) {!uj::is_f(X)}
+not_f <- function(x) {!uj::is_f(x)}
 
 #' @rdname failsafe
 #' @export
-not_t <- function(X) {!uj::is_t(X)}
+not_t <- function(x) {!uj::is_t(x)}
 
 #' @rdname failsafe
 #' @export
-not_tf <- function(X) {!uj::is_tf(X)}
+not_tf <- function(x) {!uj::is_tf(x)}
 
 #' @rdname failsafe
 #' @export
-not_bl <- function(X) {!uj::is_bl(X)}
+not_bl <- function(x) {!uj::is_bl(x)}
 
 #' @rdname failsafe
 #' @export
-not_nav <- function(X) {!uj::is_nav(X)}
+not_nav <- function(x) {!uj::is_nav(x)}
 
 #' @rdname failsafe
 #' @export
-not_okv <- function(X) {!uj::is_okv(X)}
+not_okv <- function(x) {!uj::is_okv(x)}
 
 #' @rdname failsafe
 #' @export
-not_seq <- function(X, Y) {!uj::is_seq(X, Y)}
+not_seq <- function(x, y) {!uj::is_seq(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_veq <- function(X, Y) {!uj::is_veq(X, Y)}
+not_veq <- function(x, y) {!uj::is_veq(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_sdif <- function(X, Y) {!uj::is_sdif(X, Y)}
+not_sdif <- function(x, y) {!uj::is_sdif(x, y)}
 
 #' @rdname failsafe
 #' @export
-not_vdif <- function(X, Y) {!uj::is_vdif(X, Y)}
+not_vdif <- function(x, y) {!uj::is_vdif(x, y)}
 
 #' @rdname failsafe
 #' @export
-n_in <- function(X, ...) {uj::nw(uj::is_in(X, ...))}
+n_in <- function(x, ...) {uj::nw(uj::is_in(x, ...))}
 
 #' @rdname failsafe
 #' @export
-n_mf <- function(X, ...) {uj::nw(uj::is_mf(X, ...))}
+n_mf <- function(x, ...) {uj::nw(uj::is_mf(x, ...))}
 
 #' @rdname failsafe
 #' @export
-n_has <- function(X, Y) {uj::nw(uj::has(X, Y))}
+n_has <- function(x, y) {uj::nw(uj::has(x, y))}
 
 #' @rdname failsafe
 #' @export
-n_lacks <- function(X, Y) {uj::nw(uj::lacks(X, Y))}
+n_lacks <- function(x, y) {uj::nw(uj::lacks(x, y))}
 
 #' @rdname failsafe
 #' @export
-n_eq <- function(X, Y) {uj::nw(uj::is_eq(X, Y))}
+n_eq <- function(x, y) {uj::nw(uj::is_eq(x, y))}
 
 #' @rdname failsafe
 #' @export
-n_ge <- function(X, Y) {uj::nw(uj::is_ge(X, Y))}
+n_ge <- function(x, y) {uj::nw(uj::is_ge(x, y))}
 
 #' @rdname failsafe
 #' @export
-n_gt <- function(X, Y) {uj::nw(uj::is_gt(X, Y))}
+n_gt <- function(x, y) {uj::nw(uj::is_gt(x, y))}
 
 #' @rdname failsafe
 #' @export
-n_le <- function(X, Y) {uj::nw(uj::is_le(X, Y))}
+n_le <- function(x, y) {uj::nw(uj::is_le(x, y))}
 
 #' @rdname failsafe
 #' @export
-n_lt <- function(X, Y) {uj::nw(uj::is_lt(X, Y))}
+n_lt <- function(x, y) {uj::nw(uj::is_lt(x, y))}
 
 #' @rdname failsafe
 #' @export
-n_dif <- function(X, Y) {uj::nw(uj::is_dif(X, Y))}
+n_dif <- function(x, y) {uj::nw(uj::is_dif(x, y))}
 
 #' @rdname failsafe
 #' @export
-n_f <- function(X) {uj::nw(uj::is_f(X))}
+n_f <- function(x) {uj::nw(uj::is_f(x))}
 
 #' @rdname failsafe
 #' @export
-n_t <- function(X) {uj::nw(uj::is_t(X))}
+n_t <- function(x) {uj::nw(uj::is_t(x))}
 
 #' @rdname failsafe
 #' @export
-n_tf <- function(X) {uj::nw(uj::is_tf(X))}
+n_tf <- function(x) {uj::nw(uj::is_tf(x))}
 
 #' @rdname failsafe
 #' @export
-n_bl <- function(X) {uj::nw(uj::is_bl(X))}
+n_bl <- function(x) {uj::nw(uj::is_bl(x))}
 
 #' @rdname failsafe
 #' @export
-n_nav <- function(X) {uj::nw(uj::is_nav(X))}
+n_nav <- function(x) {uj::nw(uj::is_nav(x))}
 
 #' @rdname failsafe
 #' @export
-n_okv <- function(X) {uj::nw(uj::is_okv(X))}
+n_okv <- function(x) {uj::nw(uj::is_okv(x))}
 
 #' @rdname failsafe
 #' @export
-none_f <- function(X) {uj::n_f(X) == 0}
+none_f <- function(x) {uj::n_f(x) == 0}
 
 #' @rdname failsafe
 #' @export
-none_t <- function(X) {uj::n_t(X) == 0}
+none_t <- function(x) {uj::n_t(x) == 0}
 
 #' @rdname failsafe
 #' @export
-none_tf <- function(X) {uj::n_tf(X) == 0}
+none_tf <- function(x) {uj::n_tf(x) == 0}
 
 #' @rdname failsafe
 #' @export
-none_bl <- function(X) {uj::n_bl(X) == 0}
+none_bl <- function(x) {uj::n_bl(x) == 0}
 
 #' @rdname failsafe
 #' @export
-none_eq <- function(X, Y) {uj::n_eq(X, Y) == 0}
+none_eq <- function(x, y) {uj::n_eq(x, y) == 0}
 
 #' @rdname failsafe
 #' @export
-none_ge <- function(X, Y) {uj::n_ge(X, Y) == 0}
+none_ge <- function(x, y) {uj::n_ge(x, y) == 0}
 
 #' @rdname failsafe
 #' @export
-none_gt <- function(X, Y) {uj::n_gt(X, Y) == 0}
+none_gt <- function(x, y) {uj::n_gt(x, y) == 0}
 
 #' @rdname failsafe
 #' @export
-none_le <- function(X, Y) {uj::n_le(X, Y) == 0}
+none_le <- function(x, y) {uj::n_le(x, y) == 0}
 
 #' @rdname failsafe
 #' @export
-none_lt <- function(X, Y) {uj::n_lt(X, Y) == 0}
+none_lt <- function(x, y) {uj::n_lt(x, y) == 0}
 
 #' @rdname failsafe
 #' @export
-none_in <- function(X, ...) {uj::n_in(X, ...) == 0}
+none_in <- function(x, ...) {uj::n_in(x, ...) == 0}
 
 #' @rdname failsafe
 #' @export
-none_mf <- function(X, ...) {uj::n_mf(X, ...) == 0}
+none_mf <- function(x, ...) {uj::n_mf(x, ...) == 0}
 
 #' @rdname failsafe
 #' @export
-none_dif <- function(X, Y) {uj::n_dif(X, Y) == 0}
+none_dif <- function(x, y) {uj::n_dif(x, y) == 0}
 
 #' @rdname failsafe
 #' @export
-none_nav <- function(X) {uj::n_nav(X) == 0}
+none_nav <- function(x) {uj::n_nav(x) == 0}
 
 #' @rdname failsafe
 #' @export
-none_okv <- function(X) {uj::n_okv(X) == 0}
+none_okv <- function(x) {uj::n_okv(x) == 0}
 
 #' @rdname failsafe
 #' @export
-has_none <- function(X, Y) {uj::n_has(X, Y) == 0}
+has_none <- function(x, y) {uj::n_has(x, y) == 0}
 
 #' @rdname failsafe
 #' @export
-lacks_none <- function(X, Y) {uj::n_lacks(X, Y) == 0}
+lacks_none <- function(x, y) {uj::n_lacks(x, y) == 0}
 
 #' @rdname failsafe
 #' @export
-any_f <- function(X) {uj::n_f(X) > 0}
+any_f <- function(x) {uj::n_f(x) > 0}
 
 #' @rdname failsafe
 #' @export
-any_t <- function(X) {uj::n_t(X) > 0}
+any_t <- function(x) {uj::n_t(x) > 0}
 
 #' @rdname failsafe
 #' @export
-any_bl <- function(X) {uj::n_bl(X) > 0}
+any_bl <- function(x) {uj::n_bl(x) > 0}
 
 #' @rdname failsafe
 #' @export
-any_eq <- function(X, Y) {uj::n_eq(X, Y) > 0}
+any_eq <- function(x, y) {uj::n_eq(x, y) > 0}
 
 #' @rdname failsafe
 #' @export
-any_ge <- function(X, Y) {uj::n_ge(X, Y) > 0}
+any_ge <- function(x, y) {uj::n_ge(x, y) > 0}
 
 #' @rdname failsafe
 #' @export
-any_gt <- function(X, Y) {uj::n_gt(X, Y) > 0}
+any_gt <- function(x, y) {uj::n_gt(x, y) > 0}
 
 #' @rdname failsafe
 #' @export
-any_in <- function(X, ...) {uj::n_in(X, ...) > 0}
+any_in <- function(x, ...) {uj::n_in(x, ...) > 0}
 
 #' @rdname failsafe
 #' @export
-any_le <- function(X, Y) {uj::n_le(X, Y) > 0}
+any_le <- function(x, y) {uj::n_le(x, y) > 0}
 
 #' @rdname failsafe
 #' @export
-any_lt <- function(X, Y) {uj::n_lt(X, Y) > 0}
+any_lt <- function(x, y) {uj::n_lt(x, y) > 0}
 
 #' @rdname failsafe
 #' @export
-any_mf <- function(X, ...) {uj::n_mf(X, ...) > 0}
+any_mf <- function(x, ...) {uj::n_mf(x, ...) > 0}
 
 #' @rdname failsafe
 #' @export
-any_tf <- function(X) {uj::n_tf(X) > 0}
+any_tf <- function(x) {uj::n_tf(x) > 0}
 
 #' @rdname failsafe
 #' @export
-any_dif <- function(X, Y) {uj::n_dif(X, Y) > 0}
+any_dif <- function(x, y) {uj::n_dif(x, y) > 0}
 
 #' @rdname failsafe
 #' @export
-any_nav <- function(X) {uj::n_nav(X) > 0}
+any_nav <- function(x) {uj::n_nav(x) > 0}
 
 #' @rdname failsafe
 #' @export
-any_okv <- function(X) {uj::n_okv(X) > 0}
+any_okv <- function(x) {uj::n_okv(x) > 0}
 
 #' @rdname failsafe
 #' @export
-has_any <- function(X, Y) {uj::n_has(X, Y) > 0}
+has_any <- function(x, y) {uj::n_has(x, y) > 0}
 
 #' @rdname failsafe
 #' @export
-lacks_any <- function(X, Y) {uj::n_lacks(X, Y) > 0}
+lacks_any <- function(x, y) {uj::n_lacks(x, y) > 0}
 
 #' @rdname failsafe
 #' @export
-one_f <- function(X) {uj::n_f(X) == 1}
+one_f <- function(x) {uj::n_f(x) == 1}
 
 #' @rdname failsafe
 #' @export
-one_t <- function(X) {uj::n_t(X) == 1}
+one_t <- function(x) {uj::n_t(x) == 1}
 
 #' @rdname failsafe
 #' @export
-one_bl <- function(X) {uj::n_bl(X) == 1}
+one_bl <- function(x) {uj::n_bl(x) == 1}
 
 #' @rdname failsafe
 #' @export
-one_eq <- function(X, Y) {uj::n_eq(X, Y) == 1}
+one_eq <- function(x, y) {uj::n_eq(x, y) == 1}
 
 #' @rdname failsafe
 #' @export
-one_ge <- function(X, Y) {uj::n_ge(X, Y) == 1}
+one_ge <- function(x, y) {uj::n_ge(x, y) == 1}
 
 #' @rdname failsafe
 #' @export
-one_gt <- function(X, Y) {uj::n_gt(X, Y) == 1}
+one_gt <- function(x, y) {uj::n_gt(x, y) == 1}
 
 #' @rdname failsafe
 #' @export
-one_in <- function(X, ...) {uj::n_in(X, ...) == 1}
+one_in <- function(x, ...) {uj::n_in(x, ...) == 1}
 
 #' @rdname failsafe
 #' @export
-one_le <- function(X, Y) {uj::n_le(X, Y) == 1}
+one_le <- function(x, y) {uj::n_le(x, y) == 1}
 
 #' @rdname failsafe
 #' @export
-one_lt <- function(X, Y) {uj::n_lt(X, Y) == 1}
+one_lt <- function(x, y) {uj::n_lt(x, y) == 1}
 
 #' @rdname failsafe
 #' @export
-one_mf <- function(X, ...) {uj::n_mf(X, ...) == 1}
+one_mf <- function(x, ...) {uj::n_mf(x, ...) == 1}
 
 #' @rdname failsafe
 #' @export
-one_tf <- function(X) {uj::n_tf(X) == 1}
+one_tf <- function(x) {uj::n_tf(x) == 1}
 
 #' @rdname failsafe
 #' @export
-one_dif <- function(X, Y) {uj::n_dif(X, Y) == 1}
+one_dif <- function(x, y) {uj::n_dif(x, y) == 1}
 
 #' @rdname failsafe
 #' @export
-one_nav <- function(X) {uj::n_nav(X) == 1}
+one_nav <- function(x) {uj::n_nav(x) == 1}
 
 #' @rdname failsafe
 #' @export
-one_okv <- function(X) {uj::n_okv(X) == 1}
+one_okv <- function(x) {uj::n_okv(x) == 1}
 
 #' @rdname failsafe
 #' @export
-has_one <- function(X, Y) {uj::n_has(X, Y) == 1}
+has_one <- function(x, y) {uj::n_has(x, y) == 1}
 
 #' @rdname failsafe
 #' @export
-lacks_one <- function(X, Y) {uj::n_lacks(X, Y) == 1}
+lacks_one <- function(x, y) {uj::n_lacks(x, y) == 1}
 
 #' @rdname failsafe
 #' @export
-all_f <- function(X) {base::all(uj::is_f(X))}
+all_f <- function(x) {base::all(uj::is_f(x))}
 
 #' @rdname failsafe
 #' @export
-all_t <- function(X) {base::all(uj::is_t(X))}
+all_t <- function(x) {base::all(uj::is_t(x))}
 
 #' @rdname failsafe
 #' @export
-all_bl <- function(X) {base::all(uj::is_bl(X))}
+all_bl <- function(x) {base::all(uj::is_bl(x))}
 
 #' @rdname failsafe
 #' @export
-all_eq <- function(X, Y) {base::all(uj::is_eq(X, Y))}
+all_eq <- function(x, y) {base::all(uj::is_eq(x, y))}
 
 #' @rdname failsafe
 #' @export
-all_ge <- function(X, Y) {base::all(uj::is_ge(X, Y))}
+all_ge <- function(x, y) {base::all(uj::is_ge(x, y))}
 
 #' @rdname failsafe
 #' @export
-all_gt <- function(X, Y) {base::all(uj::is_gt(X, Y))}
+all_gt <- function(x, y) {base::all(uj::is_gt(x, y))}
 
 #' @rdname failsafe
 #' @export
-all_in <- function(X, ...) {base::all(uj::is_in(X, ...))}
+all_in <- function(x, ...) {base::all(uj::is_in(x, ...))}
 
 #' @rdname failsafe
 #' @export
-all_le <- function(X, Y) {base::all(uj::is_le(X, Y))}
+all_le <- function(x, y) {base::all(uj::is_le(x, y))}
 
 #' @rdname failsafe
 #' @export
-all_lt <- function(X, Y) {base::all(uj::is_lt(X, Y))}
+all_lt <- function(x, y) {base::all(uj::is_lt(x, y))}
 
 #' @rdname failsafe
 #' @export
-all_mf <- function(X, ...) {base::all(uj::is_mf(X, ...))}
+all_mf <- function(x, ...) {base::all(uj::is_mf(x, ...))}
 
 #' @rdname failsafe
 #' @export
-all_tf <- function(X) {base::all(uj::is_tf(X))}
+all_tf <- function(x) {base::all(uj::is_tf(x))}
 
 #' @rdname failsafe
 #' @export
-all_dif <- function(X, Y) {base::all(uj::is_dif(X, Y))}
+all_dif <- function(x, y) {base::all(uj::is_dif(x, y))}
 
 #' @rdname failsafe
 #' @export
-all_nav <- function(X) {base::all(uj::is_nav(X))}
+all_nav <- function(x) {base::all(uj::is_nav(x))}
 
 #' @rdname failsafe
 #' @export
-all_okv <- function(X) {base::all(uj::is_okv(X))}
+all_okv <- function(x) {base::all(uj::is_okv(x))}
 
 #' @rdname failsafe
 #' @export
-has_all <- function(X, Y) {base::all(uj::has(X, Y))}
+has_all <- function(x, y) {base::all(uj::has(x, y))}
 
 #' @rdname failsafe
 #' @export
-lacks_all <- function(X, Y) {base::all(uj::lacks(X, Y))}
+lacks_all <- function(x, y) {base::all(uj::lacks(x, y))}
 
 #' @rdname failsafe
 #' @export
-some_f <- function(X) {uj::n_f(X) > 1}
+some_f <- function(x) {uj::n_f(x) > 1}
 
 #' @rdname failsafe
 #' @export
-some_t <- function(X) {uj::n_t(X) > 1}
+some_t <- function(x) {uj::n_t(x) > 1}
 
 #' @rdname failsafe
 #' @export
-some_bl <- function(X) {uj::n_bl(X) > 1}
+some_bl <- function(x) {uj::n_bl(x) > 1}
 
 #' @rdname failsafe
 #' @export
-some_eq <- function(X, Y) {uj::n_eq(X, Y) > 1}
+some_eq <- function(x, y) {uj::n_eq(x, y) > 1}
 
 #' @rdname failsafe
 #' @export
-some_le <- function(X, Y) {uj::n_le(X, Y) > 1}
+some_le <- function(x, y) {uj::n_le(x, y) > 1}
 
 #' @rdname failsafe
 #' @export
-some_ge <- function(X, Y) {uj::n_ge(X, Y) > 1}
+some_ge <- function(x, y) {uj::n_ge(x, y) > 1}
 
 #' @rdname failsafe
 #' @export
-some_gt <- function(X, Y) {uj::n_gt(X, Y) > 1}
+some_gt <- function(x, y) {uj::n_gt(x, y) > 1}
 
 #' @rdname failsafe
 #' @export
-some_in <- function(X, ...) {uj::n_in(X, ...) > 1}
+some_in <- function(x, ...) {uj::n_in(x, ...) > 1}
 
 #' @rdname failsafe
 #' @export
-some_lt <- function(X, Y) {uj::n_lt(X, Y) > 1}
+some_lt <- function(x, y) {uj::n_lt(x, y) > 1}
 
 #' @rdname failsafe
 #' @export
-some_mf <- function(X, ...) {uj::n_mf(X, ...) > 1}
+some_mf <- function(x, ...) {uj::n_mf(x, ...) > 1}
 
 #' @rdname failsafe
 #' @export
-some_tf <- function(X) {uj::n_tf(X) > 1}
+some_tf <- function(x) {uj::n_tf(x) > 1}
 
 #' @rdname failsafe
 #' @export
-some_dif <- function(X, Y) {uj::n_dif(X, Y) > 1}
+some_dif <- function(x, y) {uj::n_dif(x, y) > 1}
 
 #' @rdname failsafe
 #' @export
-some_nav <- function(X) {uj::n_nav(X) > 1}
+some_nav <- function(x) {uj::n_nav(x) > 1}
 
 #' @rdname failsafe
 #' @export
-some_okv <- function(X) {uj::n_okv(X) > 1}
+some_okv <- function(x) {uj::n_okv(x) > 1}
 
 #' @rdname failsafe
 #' @export
-has_some <- function(X, Y) {uj::n_has(X, Y) > 1}
+has_some <- function(x, y) {uj::n_has(x, y) > 1}
 
 #' @rdname failsafe
 #' @export
-lacks_some <- function(X, Y) {uj::n_lacks(X, Y) > 1}
+lacks_some <- function(x, y) {uj::n_lacks(x, y) > 1}
 
 #' @rdname failsafe
 #' @export
-two_f <- function(X) {uj::n_f(X) == 2}
+two_f <- function(x) {uj::n_f(x) == 2}
 
 #' @rdname failsafe
 #' @export
-two_t <- function(X) {uj::n_t(X) == 2}
+two_t <- function(x) {uj::n_t(x) == 2}
 
 #' @rdname failsafe
 #' @export
-two_bl <- function(X) {uj::n_bl(X) == 2}
+two_bl <- function(x) {uj::n_bl(x) == 2}
 
 #' @rdname failsafe
 #' @export
-two_eq <- function(X, Y) {uj::n_eq(X, Y) == 2}
+two_eq <- function(x, y) {uj::n_eq(x, y) == 2}
 
 #' @rdname failsafe
 #' @export
-two_ge <- function(X, Y) {uj::n_ge(X, Y) == 2}
+two_ge <- function(x, y) {uj::n_ge(x, y) == 2}
 
 #' @rdname failsafe
 #' @export
-two_gt <- function(X, Y) {uj::n_gt(X, Y) == 2}
+two_gt <- function(x, y) {uj::n_gt(x, y) == 2}
 
 #' @rdname failsafe
 #' @export
-two_in <- function(X, ...) {uj::n_in(X, ...) == 2}
+two_in <- function(x, ...) {uj::n_in(x, ...) == 2}
 
 #' @rdname failsafe
 #' @export
-two_le <- function(X, Y) {uj::n_le(X, Y) == 2}
+two_le <- function(x, y) {uj::n_le(x, y) == 2}
 
 #' @rdname failsafe
 #' @export
-two_lt <- function(X, Y) {uj::n_lt(X, Y) == 2}
+two_lt <- function(x, y) {uj::n_lt(x, y) == 2}
 
 #' @rdname failsafe
 #' @export
-two_mf <- function(X, ...) {uj::n_mf(X, ...) == 2}
+two_mf <- function(x, ...) {uj::n_mf(x, ...) == 2}
 
 #' @rdname failsafe
 #' @export
-two_tf <- function(X) {uj::n_tf(X) == 2}
+two_tf <- function(x) {uj::n_tf(x) == 2}
 
 #' @rdname failsafe
 #' @export
-two_dif <- function(X, Y) {uj::n_dif(X, Y) == 2}
+two_dif <- function(x, y) {uj::n_dif(x, y) == 2}
 
 #' @rdname failsafe
 #' @export
-two_nav <- function(X) {uj::n_nav(X) == 2}
+two_nav <- function(x) {uj::n_nav(x) == 2}
 
 #' @rdname failsafe
 #' @export
-two_okv <- function(X) {uj::n_okv(X) == 2}
+two_okv <- function(x) {uj::n_okv(x) == 2}
 
 #' @rdname failsafe
 #' @export
-has_two <- function(X, Y) {uj::n_has(X, Y) == 2}
+has_two <- function(x, y) {uj::n_has(x, y) == 2}
 
 #' @rdname failsafe
 #' @export
-lacks_two <- function(X, Y) {uj::n_lacks(X, Y) == 2}
+lacks_two <- function(x, y) {uj::n_lacks(x, y) == 2}
 
 #' @rdname failsafe
 #' @export
-many_f <- function(X) {uj::n_f(X) > 2}
+many_f <- function(x) {uj::n_f(x) > 2}
 
 #' @rdname failsafe
 #' @export
-many_t <- function(X) {uj::n_t(X) > 2}
+many_t <- function(x) {uj::n_t(x) > 2}
 
 #' @rdname failsafe
 #' @export
-many_bl <- function(X) {uj::n_bl(X) > 2}
+many_bl <- function(x) {uj::n_bl(x) > 2}
 
 #' @rdname failsafe
 #' @export
-many_eq <- function(X, Y) {uj::n_eq(X, Y) > 2}
+many_eq <- function(x, y) {uj::n_eq(x, y) > 2}
 
 #' @rdname failsafe
 #' @export
-many_ge <- function(X, Y) {uj::n_ge(X, Y) > 2}
+many_ge <- function(x, y) {uj::n_ge(x, y) > 2}
 
 #' @rdname failsafe
 #' @export
-many_gt <- function(X, Y) {uj::n_gt(X, Y) > 2}
+many_gt <- function(x, y) {uj::n_gt(x, y) > 2}
 
 #' @rdname failsafe
 #' @export
-many_in <- function(X, ...) {uj::n_in(X, ...) > 2}
+many_in <- function(x, ...) {uj::n_in(x, ...) > 2}
 
 #' @rdname failsafe
 #' @export
-many_le <- function(X, Y) {uj::n_le(X, Y) > 2}
+many_le <- function(x, y) {uj::n_le(x, y) > 2}
 
 #' @rdname failsafe
 #' @export
-many_lt <- function(X, Y) {uj::n_lt(X, Y) > 2}
+many_lt <- function(x, y) {uj::n_lt(x, y) > 2}
 
 #' @rdname failsafe
 #' @export
-many_mf <- function(X, ...) {uj::n_mf(X, ...) > 2}
+many_mf <- function(x, ...) {uj::n_mf(x, ...) > 2}
 
 #' @rdname failsafe
 #' @export
-many_tf <- function(X) {uj::n_tf(X) > 2}
+many_tf <- function(x) {uj::n_tf(x) > 2}
 
 #' @rdname failsafe
 #' @export
-many_dif <- function(X, Y) {uj::n_dif(X, Y) > 2}
+many_dif <- function(x, y) {uj::n_dif(x, y) > 2}
 
 #' @rdname failsafe
 #' @export
-many_nav <- function(X) {uj::n_nav(X) > 2}
+many_nav <- function(x) {uj::n_nav(x) > 2}
 
 #' @rdname failsafe
 #' @export
-many_okv <- function(X) {uj::n_okv(X) > 2}
+many_okv <- function(x) {uj::n_okv(x) > 2}
 
 #' @rdname failsafe
 #' @export
-has_many <- function(X, Y) {uj::n_has(X, Y) > 2}
+has_many <- function(x, y) {uj::n_has(x, y) > 2}
 
 #' @rdname failsafe
 #' @export
-lacks_many <- function(X, Y) {uj::n_lacks(X, Y) > 2}
+lacks_many <- function(x, y) {uj::n_lacks(x, y) > 2}
 
 #' @rdname failsafe
 #' @export
-`%.IN.%` <- function(X, Y) {uj::is_IN(X, Y)}
+`%.IN.%` <- function(x, y) {uj::is_IN(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.MF.%` <- function(X, Y) {uj::is_MF(X, Y)}
+`%.MF.%` <- function(x, y) {uj::is_MF(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.EQ.%` <- function(X, Y) {uj::is_EQ(X, Y)}
+`%.EQ.%` <- function(x, y) {uj::is_EQ(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.GE.%` <- function(X, Y) {uj::is_GE(X, Y)}
+`%.GE.%` <- function(x, y) {uj::is_GE(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.GT.%` <- function(X, Y) {uj::is_GT(X, Y)}
+`%.GT.%` <- function(x, y) {uj::is_GT(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.LE.%` <- function(X, Y) {uj::is_LE(X, Y)}
+`%.LE.%` <- function(x, y) {uj::is_LE(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.LT.%` <- function(X, Y) {uj::is_LT(X, Y)}
+`%.LT.%` <- function(x, y) {uj::is_LT(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.HAS.%` <- function(X, Y) {uj::has0(X, Y)}
+`%.HAS.%` <- function(x, y) {uj::has0(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.DIF.%` <- function(X, Y) {uj::is_DIF(X, Y)}
+`%.DIF.%` <- function(x, y) {uj::is_DIF(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.LACKS.%` <- function(X, Y) {uj::LACKS(X, Y)}
+`%.LACKS.%` <- function(x, y) {uj::LACKS(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.in.%` <- function(X, Y) {uj::is_in(X, Y)}
+`%.in.%` <- function(x, y) {uj::is_in(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.mf.%` <- function(X, Y) {uj::is_mf(X, Y)}
+`%.mf.%` <- function(x, y) {uj::is_mf(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.eq.%` <- function(X, Y) {uj::is_eq(X, Y)}
+`%.eq.%` <- function(x, y) {uj::is_eq(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.ge.%` <- function(X, Y) {uj::is_ge(X, Y)}
+`%.ge.%` <- function(x, y) {uj::is_ge(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.gt.%` <- function(X, Y) {uj::is_gt(X, Y)}
+`%.gt.%` <- function(x, y) {uj::is_gt(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.le.%` <- function(X, Y) {uj::is_le(X, Y)}
+`%.le.%` <- function(x, y) {uj::is_le(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.lt.%` <- function(X, Y) {uj::is_lt(X, Y)}
+`%.lt.%` <- function(x, y) {uj::is_lt(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.has.%` <- function(X, Y) {uj::has(X, Y)}
+`%.has.%` <- function(x, y) {uj::has(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.dif.%` <- function(X, Y) {uj::is_dif(X, Y)}
+`%.dif.%` <- function(x, y) {uj::is_dif(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.lacks.%` <- function(X, Y) {uj::lacks(X, Y)}
+`%.lacks.%` <- function(x, y) {uj::lacks(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.seq.%` <- function(X, Y) {uj::is_seq(X, Y)}
+`%.seq.%` <- function(x, y) {uj::is_seq(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.veq.%` <- function(X, Y) {uj::is_veq(X, Y)}
+`%.veq.%` <- function(x, y) {uj::is_veq(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.neq.%` <- function(X, Y) {if (uj::is_err(X) | uj::is_err(Y)) {F} else {base::length(X) == base::length(Y)}}
+`%.neq.%` <- function(x, y) {if (uj::is_err(x) | uj::is_err(y)) {F} else {base::length(x) == base::length(y)}}
 
 #' @rdname failsafe
 #' @export
-`%.sdif.%` <- function(X, Y) {uj::is_sdif(X, Y)}
+`%.sdif.%` <- function(x, y) {uj::is_sdif(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.vdif.%` <- function(X, Y) {uj::is_vdif(X, Y)}
+`%.vdif.%` <- function(x, y) {uj::is_vdif(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.ndif.%` <- function(X, Y) {uj::ndif(X, Y)}
+`%.ndif.%` <- function(x, y) {uj::ndif(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.OR.%` <- function(X, Y) {uj::OR(X, Y)}
+`%.OR.%` <- function(x, y) {uj::OR(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.AND.%` <- function(X, Y) {uj::AND(X, Y)}
+`%.AND.%` <- function(x, y) {uj::AND(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.XOR.%` <- function(X, Y) {uj::XOR(X, Y)}
+`%.XOR.%` <- function(x, y) {uj::XOR(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.NOR.%` <- function(X, Y) {uj::NOR(X, Y)}
+`%.NOR.%` <- function(x, y) {uj::NOR(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.or.%` <- function(X, Y) {uj::or(X, Y)}
+`%.or.%` <- function(x, y) {uj::or(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.and.%` <- function(X, Y) {uj::and(X, Y)}
+`%.and.%` <- function(x, y) {uj::and(x, y)}
 
 #' @rdname failsafe
 #' @export
-`%.xor.%` <- function(X, Y) {
-  if (uj::is_err(X) | uj::is_err(Y)) {return(F)} else if (!base::is.logical(X) | !base::is.logical(Y)) {return(F)}
-  nXY <- base::c(base::length(X), base::length(Y))
+`%.xor.%` <- function(x, y) {
+  if (uj::is_err(x) | uj::is_err(y)) {return(F)} else if (!base::is.logical(x) | !base::is.logical(y)) {return(F)}
+  nXY <- base::c(base::length(x), base::length(y))
   Valid <- base::c(1, base::max(nXY))
-  if (!base::all(nXY %in% Valid)) {F} else {base::xor(X, Y)}
+  if (!base::all(nXY %in% Valid)) {F} else {base::xor(x, y)}
 }
 
 #' @rdname failsafe
 #' @export
-`%.nor.%` <- function(X, Y) {uj::nor(X, Y)}
+`%.nor.%` <- function(x, y) {uj::nor(x, y)}

@@ -709,8 +709,8 @@ dww_tt(...)
 \item{...}{An arbitrary number of atomic vector arguments to be delimited. Argument in \code{...} must be recyclable for functions that delimit across \code{...} arguments as the first or only step (i.e., functions with names beginning with \code{da}).}
 }
 \value{
-\strong{A character scalar} \cr\cr \verb{daw_\{X\}\{y\}, dww_\{X\}\{y\}, daw, dww}
-\cr\cr  \strong{A character vector} \cr\cr \verb{da_\{X\}, dw_\{X\}, da, dw}
+\strong{A character scalar} \cr\cr \verb{daw_\{x\}\{y\}, dww_\{x\}\{y\}, daw, dww}
+\cr\cr  \strong{A character vector} \cr\cr \verb{da_\{x\}, dw_\{x\}, da, dw}
 }
 \description{
 Simplified and extended \code{base::paste} and \code{base::paste0}. There are both primary functions using user-specified delimiters and convenience functions for common delimiters.
@@ -726,11 +726,11 @@ character vector using delimiter \code{D}. Produces a character scalar of \code{
   \code{da}    \tab Delimits across corresponding elements of (recyclable atomic vector) \code{...} arguments using delimiter \code{d}. Produces a character vector of
 \code{max(lengths(list(...)))} substrings delimited by \code{d}.                                                                                                                     }
 \cr \strong{Common-delimiter convenience functions}
-\cr\cr Convenience function names are constructed by append \code{1} or \code{2} codes for common delimiters to the function name as follows (where \code{{X}} and \code{{y}} are placeholders for common-delimiter codes):
-\tabular{ll}{  \verb{daw_\{X\}\{y\}}   \tab Delimits across using \code{{X}} then within using \code{{y}}. \cr   \tab   \cr
-  \verb{dww_\{X\}\{y\}}   \tab Delimits within using \code{{X}} then again using \code{{y}}.  \cr   \tab   \cr
-  \verb{da_\{X\}}       \tab Delimits across using \code{{X}}.                                     \cr
-  \verb{dw_\{X\}}       \tab Delimits within using \code{{X}}.                                       }
+\cr\cr Convenience function names are constructed by append \code{1} or \code{2} codes for common delimiters to the function name as follows (where \code{{x}} and \code{{y}} are placeholders for common-delimiter codes):
+\tabular{ll}{  \verb{daw_\{x\}\{y\}}   \tab Delimits across using \code{{x}} then within using \code{{y}}. \cr   \tab   \cr
+  \verb{dww_\{x\}\{y\}}   \tab Delimits within using \code{{x}} then again using \code{{y}}.  \cr   \tab   \cr
+  \verb{da_\{x\}}       \tab Delimits across using \code{{x}}.                                     \cr
+  \verb{dw_\{x\}}       \tab Delimits within using \code{{x}}.                                       }
 \cr Common delimiters are encoded as:
 \tabular{lll}{  \strong{Code}   \tab \strong{Name}                      \tab   \strong{Delimiter} \cr
   \code{'0'}      \tab blank                         \tab   \code{''}          \cr

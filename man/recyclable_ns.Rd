@@ -7,24 +7,24 @@
 \alias{recycle}
 \title{Recycling and recyclability}
 \usage{
-recyclable_ns(..., N = NULL, MIN = NULL, MAX = NULL, TARG = NULL)
+recyclable_ns(..., .N = NULL, .MIN = NULL, .MAX = NULL, .TARG = NULL)
 
-recyclable(..., N = NULL, MIN = 1, MAX = NULL, TARG = NULL, ERR = FALSE)
+recyclable(..., .N = NULL, .MIN = 1, .MAX = NULL, .TARG = NULL, .ERR = FALSE)
 
-recycle(..., N = NULL, MIN = 1, MAX = NULL, TARG = NULL)
+recycle(..., .N = NULL, .MIN = 1, .MAX = NULL, .TARG = NULL)
 }
 \arguments{
 \item{...}{For \code{recycle}, named arguments to be recycled in the environment of the calling function. For \code{recyclable_n}, one or more objects containing only positive whole number values (\link[=av]{atomized} before processing).}
 
-\item{N}{Either \code{NULL} or a \link[=cmp_psw_vec]{complete positive whole-number vec} (?cmp_psw_vec) giving the set of valid recycled argument lengths.}
+\item{.N}{Either \code{NULL} or a \link[=cmp_psw_vec]{complete positive whole-number vec} (?cmp_psw_vec) giving the set of valid recycled argument lengths.}
 
-\item{MIN}{Either \code{NULL} or a \link[=cmp_psw_scl]{complete positive whole-number scalar} (?cmp_psw_scl) giving the minimum valid recycled argument length.}
+\item{.MIN}{Either \code{NULL} or a \link[=cmp_psw_scl]{complete positive whole-number scalar} (?cmp_psw_scl) giving the minimum valid recycled argument length.}
 
-\item{MAX}{Either \code{NULL} or a complete positive whole-number scalar giving the maximum valid recycled argument length.}
+\item{.MAX}{Either \code{NULL} or a complete positive whole-number scalar giving the maximum valid recycled argument length.}
 
-\item{TARG}{Either \code{NULL} or a complete positive whole-number scalar giving the target length of recycled arguments. May be greater than \code{length(av(...))}.}
+\item{.TARG}{Either \code{NULL} or a complete positive whole-number scalar giving the target length of recycled arguments. May be greater than \code{length(av(...))}.}
 
-\item{ERR}{\code{TRUE} or \code{FALSE} indicating whether to throw an error if the \code{...} arguments are not recyclable.}
+\item{.ERR}{\code{TRUE} or \code{FALSE} indicating whether to throw an error if the \code{...} arguments are not recyclable.}
 }
 \value{
 \strong{A logical scalar}    \cr\cr   \verb{recyclableN, recyclable}
@@ -62,12 +62,12 @@ egRecycle(egN3, egC3, egC1)
 egRecycle(egN3, egC3, egN3)
 recyclableN(1:3)
 recyclableN(2, 4, 8)
-recyclableN(2, 4, 8, N = c(2, 4, 8, 16))
-recyclableN(2, 4, 8, MIN = 4)
-recyclableN(2, 4, 8, MAX = 4)
-recyclableN(2, 4, 8, TARG = 7)
-recyclableN(2, 4, 8, TARG = 8)
-recyclableN(2, 4, 8, TARG = 16)
+recyclableN(2, 4, 8, .N = c(2, 4, 8, 16))
+recyclableN(2, 4, 8, .MIN = 4)
+recyclableN(2, 4, 8, .MAX = 4)
+recyclableN(2, 4, 8, .TARG = 7)
+recyclableN(2, 4, 8, .TARG = 8)
+recyclableN(2, 4, 8, .TARG = 16)
 recyclable(egN1, egC2, egN3)
 recyclable(egN4, egC2, egN1)
 recyclable(egC1, egN2, egC4)

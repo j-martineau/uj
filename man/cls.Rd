@@ -10,20 +10,20 @@
 \alias{has_cls}
 \title{Manage classes}
 \usage{
-cls(X)
+cls(x)
 
-rm_cls(X, ...)
+rm_cls(x, ...)
 
-xcls(X, ...)
+xcls(x, ...)
 
-set_cls(X, ...)
+set_cls(x, ...)
 
-add_cls(X, ...)
+add_cls(x, ...)
 
-has_cls(X, ...)
+has_cls(x, ...)
 }
 \arguments{
-\item{X}{An R object.}
+\item{x}{An R object.}
 
 \item{...}{Unquoted class names and/or names of variables whose contents are \link[=av]{atomized} and converted to character. When \code{...} args are names of variables in the calling environment, they are atomized, otherwise they are treated as unquoted class names.}
 }
@@ -36,11 +36,11 @@ has_cls(X, ...)
 Manage classes
 }
 \details{
-\tabular{ll}{  \verb{rm_cls, xcls}   \tab Removes class(es) in \code{...} from classes of \code{X}.               \cr   \tab   \cr
-  \code{has_cls}        \tab Evaluate whether class(es) in \code{...} are (all) classes of \code{X}. \cr   \tab   \cr
-  \code{add_cls}        \tab Add class(es) in \code{...} to classes of \code{X}.                     \cr   \tab   \cr
-  \code{set_cls}        \tab Set class of \code{X} to class(es) in \code{...}.                       \cr   \tab   \cr
-  \code{cls}            \tab Gets class(es) of \code{X}.                                                       }
+\tabular{ll}{  \verb{rm_cls, xcls}   \tab Removes class(es) in \code{...} from classes of \code{x}.               \cr   \tab   \cr
+  \code{has_cls}        \tab Evaluate whether class(es) in \code{...} are (all) classes of \code{x}. \cr   \tab   \cr
+  \code{add_cls}        \tab Add class(es) in \code{...} to classes of \code{x}.                     \cr   \tab   \cr
+  \code{set_cls}        \tab Set class of \code{x} to class(es) in \code{...}.                       \cr   \tab   \cr
+  \code{cls}            \tab Gets class(es) of \code{x}.                                                       }
 }
 \examples{
 egObj1 <- data.frame(letters = letters, numbers = 1:26, stringsAsFactors = F)

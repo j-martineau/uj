@@ -5,10 +5,10 @@
 \alias{flex_rbind}
 \title{Flexibly row bind two data frames}
 \usage{
-flex_rbind(X, Y)
+flex_rbind(x, y)
 }
 \arguments{
-\item{X, Y}{Atomic data.frames.}
+\item{x, y}{Atomic data.frames.}
 }
 \value{
 A data.frame.

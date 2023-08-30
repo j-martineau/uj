@@ -10,40 +10,40 @@
 \alias{rm_na}
 \title{Manage \code{NA} and non-\code{NA} values}
 \usage{
-na(X)
+na(x)
 
-ok(X)
+ok(x)
 
-sub_na(X, S)
+sub_na(x, sub)
 
-na0(X)
+na0(x)
 
-ok0(X)
+ok0(x)
 
-rm_na(X)
+rm_na(x)
 }
 \arguments{
-\item{X}{The argument to be inspected/managed.}
+\item{x}{The argument to be inspected/managed.}
 
-\item{S}{An \link[=atm_scl]{atomic scalar} to replace \code{NA} values. Mode must be \link[=compatible]{compatible} with\code{X}}
+\item{sub}{An \link[=atm_scl]{atomic scalar} to replace \code{NA} values. Mode must be \link[=compatible]{compatible} with\code{x}}
 }
 \value{
-\strong{A logical object of the same dimension as} \code{X}                                   \cr\cr \verb{na, ok}
-\cr\cr  \code{X} \strong{with \code{NA} values replaced} \cr (properties may change with \code{NA} replacement) \cr\cr \code{sub_na}
-\cr\cr  \code{X} \strong{with \code{NA} values removed}  \cr (properties may change with \code{NA} removal)     \cr\cr \code{rm_na}
+\strong{A logical object of the same dimension as} \code{x}                                   \cr\cr \verb{na, ok}
+\cr\cr  \code{x} \strong{with \code{NA} values replaced} \cr (properties may change with \code{NA} replacement) \cr\cr \code{sub_na}
+\cr\cr  \code{x} \strong{with \code{NA} values removed}  \cr (properties may change with \code{NA} removal)     \cr\cr \code{rm_na}
 \cr\cr  \strong{A logical scalar}                                                                \cr\cr \verb{na0, ok0}
 }
 \description{
 All functions in this group take objects of atomic mode, \link[=atm_dtf]{atomic dtfs}, or \link[=atm_vls]{atomic vlists}.
 }
 \details{
-\tabular{ll}{  \code{na}       \tab Logically indexes \code{NA} values of \code{X}.                                                         \cr   \tab   \cr
-  \code{ok}       \tab Logically indexes non-\code{NA} values of \code{X}.                                                     \cr   \tab   \cr
-  \code{na0}      \tab Evaluates whether \code{X} is an \code{NA} scalar.                                                      \cr   \tab   \cr
-  \code{ok0}      \tab Evaluates whether \code{X} is a non-\code{NA} scalar.                                                   \cr   \tab   \cr
-  \code{rm_na}    \tab Removes \code{NA} values of \code{X} If there are no \code{NA} values in \code{X}, returns \code{X} unchanged.
-If there are \code{NA} values in \code{X}, removing them may change the dimensions and/or class of \code{X}. \cr   \tab   \cr
-  \code{sub_na}   \tab Substitutes \code{S} for \code{NA} values of\code{X}. Modes of \code{X} and \code{S} must be \link[=compatible]{compatible}.          }
+\tabular{ll}{  \code{na}       \tab Logically indexes \code{NA} values of \code{x}.                                                         \cr   \tab   \cr
+  \code{ok}       \tab Logically indexes non-\code{NA} values of \code{x}.                                                     \cr   \tab   \cr
+  \code{na0}      \tab Evaluates whether \code{x} is an \code{NA} scalar.                                                      \cr   \tab   \cr
+  \code{ok0}      \tab Evaluates whether \code{x} is a non-\code{NA} scalar.                                                   \cr   \tab   \cr
+  \code{rm_na}    \tab Removes \code{NA} values of \code{x} If there are no \code{NA} values in \code{x}, returns \code{x} unchanged.
+If there are \code{NA} values in \code{x}, removing them may change the dimensions and/or class of \code{x}. \cr   \tab   \cr
+  \code{sub_na}   \tab Substitutes \code{sub} for \code{NA} values of\code{x}. Modes of \code{x} and \code{sub} must be \link[=compatible]{compatible}.          }
 }
 \examples{
 egNA0 <- NA
@@ -61,7 +61,7 @@ na0(egVec)
 ok0(egOK0)
 ok0(egNAS)
 ok0(egVec)
-sub_na(egMat, "X")
+sub_na(egMat, "x")
 rm_na(egMat)
 }
 \seealso{
@@ -92,8 +92,8 @@ Other extensions:
 \code{\link{value_exists}()}
 
 Other values: 
-\code{\link{Nth}()},
 \code{\link{atomize}()},
+\code{\link{nth}},
 \code{\link{values}()}
 }
 \concept{extensions}

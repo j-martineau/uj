@@ -17,7 +17,7 @@ maxlen(...)
 An integer scalar.
 }
 \description{
-Gets the number of characters in the longest string in \code{X}.
+Gets the number of characters in the longest string in \code{...}.
 }
 \examples{
 max_nch(letters)

@@ -5,8 +5,8 @@
 #' @details
 #' \tabular{ll}{  `as_tb`   \tab Thinly wraps \code{\link[tibble]{as_tibble}}.  \cr
 #'                `is_tb`   \tab Thinly wraps \code{\link[tibble]{is_tibble}}.  \cr
-#'                `tbr`     \tab Thinly wraps \code{\link[tibble]{tribble}}.    \cr
-#'                `trb`     \tab Thinly wraps \code{\link[tibble]{tibble_row}}. \cr
+#'                `trb`     \tab Thinly wraps \code{\link[tibble]{tribble}}.    \cr
+#'                `tbr`     \tab Thinly wraps \code{\link[tibble]{tibble_row}}. \cr
 #'                `tb`      \tab Thinly wraps \code{\link[tibble]{tibble}}.       }
 #' @return A tibble.
 #' @export

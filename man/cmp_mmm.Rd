@@ -33,70 +33,70 @@
 \alias{cmp_whl}
 \title{complete + Xmode combination properties}
 \usage{
-cmp_mmm(X, MMM, ...)
+cmp_mmm(x, .MMM, ...)
 
 cmp_mmm_funs()
 
-cmp_atm(X, ...)
+cmp_atm(x, ...)
 
-cmp_ch1(X, ...)
+cmp_ch1(x, ...)
 
-cmp_ch3(X, ...)
+cmp_ch3(x, ...)
 
-cmp_chr(X, ...)
+cmp_chr(x, ...)
 
-cmp_clr(X, ...)
+cmp_clr(x, ...)
 
-cmp_evn(X, ...)
+cmp_evn(x, ...)
 
-cmp_fac(X, ...)
+cmp_fac(x, ...)
 
-cmp_frc(X, ...)
+cmp_frc(x, ...)
 
-cmp_ind(X, ...)
+cmp_ind(x, ...)
 
-cmp_lgl(X, ...)
+cmp_lgl(x, ...)
 
-cmp_neg(X, ...)
+cmp_neg(x, ...)
 
-cmp_ngw(X, ...)
+cmp_ngw(x, ...)
 
-cmp_nng(X, ...)
+cmp_nng(x, ...)
 
-cmp_nnw(X, ...)
+cmp_nnw(x, ...)
 
-cmp_nps(X, ...)
+cmp_nps(x, ...)
 
-cmp_npw(X, ...)
+cmp_npw(x, ...)
 
-cmp_nst(X, ...)
+cmp_nst(x, ...)
 
-cmp_num(X, ...)
+cmp_num(x, ...)
 
-cmp_odd(X, ...)
+cmp_odd(x, ...)
 
-cmp_ord(X, ...)
+cmp_ord(x, ...)
 
-cmp_pct(X, ...)
+cmp_pct(x, ...)
 
-cmp_pos(X, ...)
+cmp_pos(x, ...)
 
-cmp_pos(X, ...)
+cmp_pos(x, ...)
 
-cmp_psw(X, ...)
+cmp_psw(x, ...)
 
-cmp_srt(X, ...)
+cmp_srt(x, ...)
 
-cmp_str(X, ...)
+cmp_str(x, ...)
 
-cmp_uno(X, ...)
+cmp_uno(x, ...)
 
-cmp_whl(X, ...)
+cmp_whl(x, ...)
 }
 \arguments{
-\item{X}{An R object.}
+\item{x}{An R object.}
 
-\item{MMM}{A character scalar Xmode property from \code{mmm_props()}.}
+\item{.MMM}{A character scalar Xmode property from \code{mmm_props()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -113,16 +113,16 @@ Check for combination of \link[=CMP]{completeness} and \link[=mmm]{Xmode}.
 }
 \details{
 \tabular{ll}{  \code{cmp_mmm_funs}   \tab What \link[=CMP]{complete} + \link[=mmm]{Xmode} combination \link[=prop_funs]{property functions} are there?                         \cr   \tab   \cr
-  \verb{cmp_\{mmm\}}      \tab Is \code{X} both complete and a match to the single Xmode property \code{'{mmm}'} where \code{{mmm}} is a placeholder for any given Xmode property? \cr   \tab   \cr
-  \code{cmp_mmm}        \tab Is \code{X} both complete and a match to single Xmode property in arg \code{mmm}?                                                                             }
+  \verb{cmp_\{mmm\}}      \tab Is \code{x} both complete and a match to the single Xmode property \code{'{mmm}'} where \code{{mmm}} is a placeholder for any given Xmode property? \cr   \tab   \cr
+  \code{cmp_mmm}        \tab Is \code{x} both complete and a match to single Xmode property in arg \code{.MMM}?                                                                            }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.LT, .LE, .GE, .GT}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.N, .NR, .NC}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.VALS}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{

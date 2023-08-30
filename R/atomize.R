@@ -12,24 +12,24 @@
 #'                `glue_av, gav, gv`        \tab Calls `paste0(av(...) collapse = G)`          \cr
 #'                `sort_uv, suv`            \tab Calls `sort(unique(av(...)))`                   }
 #' @param ... Arguments to be atomized. Expected to atomize to a logical vector for `which_av` and its aliases `wav` and `wv`.
-#' @param G Character scalar glue.
-#' @param P Character scalar prefix.
-#' @param S Character scalar suffix.
+#' @param g Character scalar glue.
+#' @param p Character scalar prefix.
+#' @param s Character scalar suffix.
 #' @return **A character scalar** \cr\cr `glue_av, gav, gv`
 #' \cr\cr  **A character vector** \cr\cr `paste_av, pav, pv`
 #' \cr\cr  **An integer vector**  \cr\cr `which_av, wav, wv`
 #' \cr\cr  **An atomic vector**   \cr\cr  All others
 #' @examples
-#' X <- list("a", "b", "c")
+#' x <- list("a", "b", "c")
 #' y <- data.frame(1:3)
-#' X
+#' x
 #' y
-#' a(X)
+#' a(x)
 #' av(y)
-#' atoms(X, y)
-#' atomize(X, "d", y, 4)
-#' glue_av(letters, LETTERS, G = "-")
-#' paste_av(letters, P = "\u2022 ", S = ".")
+#' atoms(x, y)
+#' atomize(x, "d", y, 4)
+#' glue_av(letters, LETTERS, g = "-")
+#' paste_av(letters, P = "\u2022 ", s = ".")
 #' sort_av(letters, LETTERS, 0:9)
 #' sort_uv(letters, LETTERS, 0:9)
 #' unique_av(letters, "d", 0:9, 5)
@@ -42,21 +42,21 @@ atomize <- function(...) {
 
 #' @rdname atomize
 #' @export
-glue_av <- function(..., G = "") {
-  if (!uj:::.cmp_chr_scl(G)) {G <- ""}
+glue_av <- function(..., g = "") {
+  if (!uj:::.cmp_chr_scl(g)) {g <- ""}
   X <- base::as.vector(base::unlist(base::list(...), T, F))
   base::attributes(X) <- NULL
-  base::paste0(X, collapse = G)
+  base::paste0(X, collapse = g)
 }
 
 #' @rdname atomize
 #' @export
-paste_av <- function(..., P = "", S = "") {
-  if (!uj:::.cmp_chr_scl(P)) {P <- ""}
-  if (!uj:::.cmp_chr_scl(S)) {S <- ""}
+paste_av <- function(..., p = "", s = "") {
+  if (!uj:::.cmp_chr_scl(p)) {p <- ""}
+  if (!uj:::.cmp_chr_scl(s)) {s <- ""}
   X <- base::as.vector(base::unlist(base::list(...), T, F))
   base::attributes(X) <- NULL
-  base::paste0(base::paste(X, sep = P), S)
+  base::paste0(base::paste(X, sep = p), s)
 }
 
 #' @rdname atomize

@@ -222,448 +222,448 @@
 \alias{whl_vls}
 \title{xmode + xclass combination properties}
 \usage{
-mmm_ccc(X, MMM, CCC, ...)
+mmm_ccc(x, .MMM, .CCC, ...)
 
 mmm_ccc_funs()
 
-ch1_arr(X, ...)
+ch1_arr(x, ...)
 
-ch1_dtf(X, ...)
+ch1_dtf(x, ...)
 
-ch1_gen(X, ...)
+ch1_gen(x, ...)
 
-ch1_mat(X, ...)
+ch1_mat(x, ...)
 
-ch1_mvc(X, ...)
+ch1_mvc(x, ...)
 
-ch1_scl(X, ...)
+ch1_scl(x, ...)
 
-ch1_vec(X, ...)
+ch1_vec(x, ...)
 
-ch1_vls(X, ...)
+ch1_vls(x, ...)
 
-ch3_arr(X, ...)
+ch3_arr(x, ...)
 
-ch3_dtf(X, ...)
+ch3_dtf(x, ...)
 
-ch3_gen(X, ...)
+ch3_gen(x, ...)
 
-ch3_mat(X, ...)
+ch3_mat(x, ...)
 
-ch3_mvc(X, ...)
+ch3_mvc(x, ...)
 
-ch3_scl(X, ...)
+ch3_scl(x, ...)
 
-ch3_vec(X, ...)
+ch3_vec(x, ...)
 
-ch3_vls(X, ...)
+ch3_vls(x, ...)
 
-chr_arr(X, ...)
+chr_arr(x, ...)
 
-chr_dtf(X, ...)
+chr_dtf(x, ...)
 
-chr_gen(X, ...)
+chr_gen(x, ...)
 
-chr_mat(X, ...)
+chr_mat(x, ...)
 
-chr_mvc(X, ...)
+chr_mvc(x, ...)
 
-chr_scl(X, ...)
+chr_scl(x, ...)
 
-chr_vec(X, ...)
+chr_vec(x, ...)
 
-chr_vls(X, ...)
+chr_vls(x, ...)
 
-clr_arr(X, ...)
+clr_arr(x, ...)
 
-clr_dtf(X, ...)
+clr_dtf(x, ...)
 
-clr_gen(X, ...)
+clr_gen(x, ...)
 
-clr_mat(X, ...)
+clr_mat(x, ...)
 
-clr_mvc(X, ...)
+clr_mvc(x, ...)
 
-clr_scl(X, ...)
+clr_scl(x, ...)
 
-clr_vec(X, ...)
+clr_vec(x, ...)
 
-clr_vls(X, ...)
+clr_vls(x, ...)
 
-evn_arr(X, ...)
+evn_arr(x, ...)
 
-evn_dtf(X, ...)
+evn_dtf(x, ...)
 
-evn_gen(X, ...)
+evn_gen(x, ...)
 
-evn_mat(X, ...)
+evn_mat(x, ...)
 
-evn_mvc(X, ...)
+evn_mvc(x, ...)
 
-evn_scl(X, ...)
+evn_scl(x, ...)
 
-evn_vec(X, ...)
+evn_vec(x, ...)
 
-evn_vls(X, ...)
+evn_vls(x, ...)
 
-fac_arr(X, ...)
+fac_arr(x, ...)
 
-fac_dtf(X, ...)
+fac_dtf(x, ...)
 
-fac_gen(X, ...)
+fac_gen(x, ...)
 
-fac_mat(X, ...)
+fac_mat(x, ...)
 
-fac_mvc(X, ...)
+fac_mvc(x, ...)
 
-fac_scl(X, ...)
+fac_scl(x, ...)
 
-fac_vec(X, ...)
+fac_vec(x, ...)
 
-fac_vls(X, ...)
+fac_vls(x, ...)
 
-frc_arr(X, ...)
+frc_arr(x, ...)
 
-frc_dtf(X, ...)
+frc_dtf(x, ...)
 
-frc_gen(X, ...)
+frc_gen(x, ...)
 
-frc_mat(X, ...)
+frc_mat(x, ...)
 
-frc_mvc(X, ...)
+frc_mvc(x, ...)
 
-frc_scl(X, ...)
+frc_scl(x, ...)
 
-frc_vec(X, ...)
+frc_vec(x, ...)
 
-frc_vls(X, ...)
+frc_vls(x, ...)
 
-ind_arr(X, ...)
+ind_arr(x, ...)
 
-ind_dtf(X, ...)
+ind_dtf(x, ...)
 
-ind_gen(X, ...)
+ind_gen(x, ...)
 
-ind_mat(X, ...)
+ind_mat(x, ...)
 
-ind_mvc(X, ...)
+ind_mvc(x, ...)
 
-ind_scl(X, ...)
+ind_scl(x, ...)
 
-ind_vec(X, ...)
+ind_vec(x, ...)
 
-ind_vls(X, ...)
+ind_vls(x, ...)
 
-lgl_arr(X, ...)
+lgl_arr(x, ...)
 
-lgl_dtf(X, ...)
+lgl_dtf(x, ...)
 
-lgl_gen(X, ...)
+lgl_gen(x, ...)
 
-lgl_mat(X, ...)
+lgl_mat(x, ...)
 
-lgl_mvc(X, ...)
+lgl_mvc(x, ...)
 
-lgl_scl(X, ...)
+lgl_scl(x, ...)
 
-lgl_vec(X, ...)
+lgl_vec(x, ...)
 
-lgl_vls(X, ...)
+lgl_vls(x, ...)
 
-neg_arr(X, ...)
+neg_arr(x, ...)
 
-neg_dtf(X, ...)
+neg_dtf(x, ...)
 
-neg_gen(X, ...)
+neg_gen(x, ...)
 
-neg_mat(X, ...)
+neg_mat(x, ...)
 
-neg_mvc(X, ...)
+neg_mvc(x, ...)
 
-neg_scl(X, ...)
+neg_scl(x, ...)
 
-neg_vec(X, ...)
+neg_vec(x, ...)
 
-neg_vls(X, ...)
+neg_vls(x, ...)
 
-ngw_arr(X, ...)
+ngw_arr(x, ...)
 
-ngw_dtf(X, ...)
+ngw_dtf(x, ...)
 
-ngw_gen(X, ...)
+ngw_gen(x, ...)
 
-ngw_mat(X, ...)
+ngw_mat(x, ...)
 
-ngw_mvc(X, ...)
+ngw_mvc(x, ...)
 
-ngw_scl(X, ...)
+ngw_scl(x, ...)
 
-ngw_vec(X, ...)
+ngw_vec(x, ...)
 
-ngw_vls(X, ...)
+ngw_vls(x, ...)
 
-nng_arr(X, ...)
+nng_arr(x, ...)
 
-nng_dtf(X, ...)
+nng_dtf(x, ...)
 
-nng_gen(X, ...)
+nng_gen(x, ...)
 
-nng_mat(X, ...)
+nng_mat(x, ...)
 
-nng_mvc(X, ...)
+nng_mvc(x, ...)
 
-nng_scl(X, ...)
+nng_scl(x, ...)
 
-nng_vec(X, ...)
+nng_vec(x, ...)
 
-nng_vls(X, ...)
+nng_vls(x, ...)
 
-nnw_arr(X, ...)
+nnw_arr(x, ...)
 
-nnw_dtf(X, ...)
+nnw_dtf(x, ...)
 
-nnw_gen(X, ...)
+nnw_gen(x, ...)
 
-nnw_mat(X, ...)
+nnw_mat(x, ...)
 
-nnw_mvc(X, ...)
+nnw_mvc(x, ...)
 
-nnw_scl(X, ...)
+nnw_scl(x, ...)
 
-nnw_vec(X, ...)
+nnw_vec(x, ...)
 
-nnw_vls(X, ...)
+nnw_vls(x, ...)
 
-nps_arr(X, ...)
+nps_arr(x, ...)
 
-nps_dtf(X, ...)
+nps_dtf(x, ...)
 
-nps_gen(X, ...)
+nps_gen(x, ...)
 
-nps_mat(X, ...)
+nps_mat(x, ...)
 
-nps_mvc(X, ...)
+nps_mvc(x, ...)
 
-nps_scl(X, ...)
+nps_scl(x, ...)
 
-nps_vec(X, ...)
+nps_vec(x, ...)
 
-nps_vls(X, ...)
+nps_vls(x, ...)
 
-npw_arr(X, ...)
+npw_arr(x, ...)
 
-npw_dtf(X, ...)
+npw_dtf(x, ...)
 
-npw_gen(X, ...)
+npw_gen(x, ...)
 
-npw_mat(X, ...)
+npw_mat(x, ...)
 
-npw_mvc(X, ...)
+npw_mvc(x, ...)
 
-npw_scl(X, ...)
+npw_scl(x, ...)
 
-npw_vec(X, ...)
+npw_vec(x, ...)
 
-npw_vls(X, ...)
+npw_vls(x, ...)
 
-nst_arr(X, ...)
+nst_arr(x, ...)
 
-nst_dtf(X, ...)
+nst_dtf(x, ...)
 
-nst_gen(X, ...)
+nst_gen(x, ...)
 
-nst_mat(X, ...)
+nst_mat(x, ...)
 
-nst_mvc(X, ...)
+nst_mvc(x, ...)
 
-nst_scl(X, ...)
+nst_scl(x, ...)
 
-nst_vec(X, ...)
+nst_vec(x, ...)
 
-nst_vls(X, ...)
+nst_vls(x, ...)
 
-num_arr(X, ...)
+num_arr(x, ...)
 
-num_dtf(X, ...)
+num_dtf(x, ...)
 
-num_gen(X, ...)
+num_gen(x, ...)
 
-num_mat(X, ...)
+num_mat(x, ...)
 
-num_mvc(X, ...)
+num_mvc(x, ...)
 
-num_scl(X, ...)
+num_scl(x, ...)
 
-num_vec(X, ...)
+num_vec(x, ...)
 
-num_vls(X, ...)
+num_vls(x, ...)
 
-odd_arr(X, ...)
+odd_arr(x, ...)
 
-odd_dtf(X, ...)
+odd_dtf(x, ...)
 
-odd_gen(X, ...)
+odd_gen(x, ...)
 
-odd_mat(X, ...)
+odd_mat(x, ...)
 
-odd_mvc(X, ...)
+odd_mvc(x, ...)
 
-odd_scl(X, ...)
+odd_scl(x, ...)
 
-odd_vec(X, ...)
+odd_vec(x, ...)
 
-odd_vls(X, ...)
+odd_vls(x, ...)
 
-ord_arr(X, ...)
+ord_arr(x, ...)
 
-ord_dtf(X, ...)
+ord_dtf(x, ...)
 
-ord_gen(X, ...)
+ord_gen(x, ...)
 
-ord_mat(X, ...)
+ord_mat(x, ...)
 
-ord_mvc(X, ...)
+ord_mvc(x, ...)
 
-ord_scl(X, ...)
+ord_scl(x, ...)
 
-ord_vec(X, ...)
+ord_vec(x, ...)
 
-ord_vls(X, ...)
+ord_vls(x, ...)
 
-pct_arr(X, ...)
+pct_arr(x, ...)
 
-pct_dtf(X, ...)
+pct_dtf(x, ...)
 
-pct_gen(X, ...)
+pct_gen(x, ...)
 
-pct_mat(X, ...)
+pct_mat(x, ...)
 
-pct_mvc(X, ...)
+pct_mvc(x, ...)
 
-pct_scl(X, ...)
+pct_scl(x, ...)
 
-pct_vec(X, ...)
+pct_vec(x, ...)
 
-pct_vls(X, ...)
+pct_vls(x, ...)
 
-pos_arr(X, ...)
+pos_arr(x, ...)
 
-pos_dtf(X, ...)
+pos_dtf(x, ...)
 
-pos_gen(X, ...)
+pos_gen(x, ...)
 
-pos_mat(X, ...)
+pos_mat(x, ...)
 
-pos_mvc(X, ...)
+pos_mvc(x, ...)
 
-pos_scl(X, ...)
+pos_scl(x, ...)
 
-pos_vec(X, ...)
+pos_vec(x, ...)
 
-pos_vls(X, ...)
+pos_vls(x, ...)
 
-ppn_arr(X, ...)
+ppn_arr(x, ...)
 
-ppn_dtf(X, ...)
+ppn_dtf(x, ...)
 
-ppn_gen(X, ...)
+ppn_gen(x, ...)
 
-ppn_mat(X, ...)
+ppn_mat(x, ...)
 
-ppn_mvc(X, ...)
+ppn_mvc(x, ...)
 
-ppn_scl(X, ...)
+ppn_scl(x, ...)
 
-ppn_vec(X, ...)
+ppn_vec(x, ...)
 
-ppn_vls(X, ...)
+ppn_vls(x, ...)
 
-psw_arr(X, ...)
+psw_arr(x, ...)
 
-psw_dtf(X, ...)
+psw_dtf(x, ...)
 
-psw_gen(X, ...)
+psw_gen(x, ...)
 
-psw_mat(X, ...)
+psw_mat(x, ...)
 
-psw_mvc(X, ...)
+psw_mvc(x, ...)
 
-psw_scl(X, ...)
+psw_scl(x, ...)
 
-psw_vec(X, ...)
+psw_vec(x, ...)
 
-psw_vls(X, ...)
+psw_vls(x, ...)
 
-srt_arr(X, ...)
+srt_arr(x, ...)
 
-srt_dtf(X, ...)
+srt_dtf(x, ...)
 
-srt_gen(X, ...)
+srt_gen(x, ...)
 
-srt_mat(X, ...)
+srt_mat(x, ...)
 
-srt_mvc(X, ...)
+srt_mvc(x, ...)
 
-srt_scl(X, ...)
+srt_scl(x, ...)
 
-srt_vec(X, ...)
+srt_vec(x, ...)
 
-srt_vls(X, ...)
+srt_vls(x, ...)
 
-str_arr(X, ...)
+str_arr(x, ...)
 
-str_dtf(X, ...)
+str_dtf(x, ...)
 
-str_gen(X, ...)
+str_gen(x, ...)
 
-str_mat(X, ...)
+str_mat(x, ...)
 
-str_mvc(X, ...)
+str_mvc(x, ...)
 
-str_scl(X, ...)
+str_scl(x, ...)
 
-str_vec(X, ...)
+str_vec(x, ...)
 
-str_vls(X, ...)
+str_vls(x, ...)
 
-uno_arr(X, ...)
+uno_arr(x, ...)
 
-uno_dtf(X, ...)
+uno_dtf(x, ...)
 
-uno_gen(X, ...)
+uno_gen(x, ...)
 
-uno_mat(X, ...)
+uno_mat(x, ...)
 
-uno_mvc(X, ...)
+uno_mvc(x, ...)
 
-uno_scl(X, ...)
+uno_scl(x, ...)
 
-uno_vec(X, ...)
+uno_vec(x, ...)
 
-uno_vls(X, ...)
+uno_vls(x, ...)
 
-whl_arr(X, ...)
+whl_arr(x, ...)
 
-whl_dtf(X, ...)
+whl_dtf(x, ...)
 
-whl_gen(X, ...)
+whl_gen(x, ...)
 
-whl_mat(X, ...)
+whl_mat(x, ...)
 
-whl_mvc(X, ...)
+whl_mvc(x, ...)
 
-whl_scl(X, ...)
+whl_scl(x, ...)
 
-whl_vec(X, ...)
+whl_vec(x, ...)
 
-whl_vls(X, ...)
+whl_vls(x, ...)
 }
 \arguments{
-\item{X}{An R object.}
+\item{x}{An R object.}
 
-\item{MMM}{A character scalar single xmode property from \code{\link{mmm_props}()}.}
+\item{.MMM}{A character scalar single xmode property from \code{\link{mmm_props}()}.}
 
-\item{CCC}{A character scalar single xclass property from \code{\link{ccc_props}()}.}
+\item{.CCC}{A character scalar single xclass property from \code{\link{ccc_props}()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -680,17 +680,17 @@ Check for combinations of \link[=mmm]{xmode} and \link[=ccc]{xclass}.
 }
 \details{
 \tabular{ll}{  \code{mmm_ccc_funs}   \tab What \link[=mmm]{xmode} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there? \cr   \tab   \cr
-  \verb{\{mmm\}_\{ccc\}}    \tab Does \code{X} match the single xmode property \verb{'\{mmm\}''} and single xclass property \code{'{ccc}'}, where \code{'{mmm}'}
+  \verb{\{mmm\}_\{ccc\}}    \tab Does \code{x} match the single xmode property \verb{'\{mmm\}''} and single xclass property \code{'{ccc}'}, where \code{'{mmm}'}
                         and \code{'{ccc}'} are placeholders for any given xmode and any given xclass properties, respectively?          \cr   \tab   \cr
-  \code{mmm_ccc}        \tab Does \code{X} match the single xmode and xclass properties in arguments \code{MMM} and \code{CCC}, respectively?                         }
+  \code{mmm_ccc}        \tab Does \code{x} match the single xmode and xclass properties in arguments \code{.MMM} and \code{.CCC}, respectively?                         }
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.LT, .LE, .GE, .GT}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.N, .NR, .NC}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.VALS}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{

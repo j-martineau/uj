@@ -5,16 +5,16 @@
 \alias{sets}
 \title{Create indices to build all possible non-empty sets}
 \usage{
-sets(N)
+sets(n)
 }
 \arguments{
-\item{N}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the length of set of unique values.}
+\item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the length of set of unique values.}
 }
 \value{
 A \link[=cmp_psw_vls]{complete positive whole-number vlist}.
 }
 \description{
-Creates a list of elements containing indices to create all possible unique-value sets of size \code{1} to \code{N} from a length-\code{N} vector of unique values.
+Creates a list of elements containing indices to create all possible unique-value sets of size \code{1} to \code{n} from a length-\code{n} vector of unique values.
 }
 \examples{
 sets(1)

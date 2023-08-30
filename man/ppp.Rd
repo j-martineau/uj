@@ -26,46 +26,46 @@ ppp(X)
 
 ppp_or_funs()
 
-all_props(asDTF = F)
+all_props(as.dtf = F)
 
-prop_funs(asDTF = F)
+prop_funs(as.dtf = F)
 
-is_prop_fun(Fun)
+is_prop_fun(x)
 
-is_prop(Prop)
+is_prop(x)
 
-is_prop_combo(Combo)
+is_prop_combo(x)
 
-is_prop_spec(Spec)
+is_prop_spec(x)
 
-props_from_spec(Spec, Valid = all_props())
+props_from_spec(x, .VALID = all_props())
 
-combos_from_spec(Spec, Valid = uj::all_props())
+combos_from_spec(x)
 
-props_from_combo(Combo, valid = uj::all_props())
+props_from_combo(x)
 
-PPP(X, Spec, ...)
+PPP(x, spec, ...)
 
-nll_or(X, Spec, ...)
+nll_or(x, spec, ...)
 
-na0_or(X, Spec, ...)
+na0_or(x, spec, ...)
 
 prop_defs()
 
-prop_verbose(Prop, Print = TRUE)
+prop_verbose(x, .PRINT = TRUE)
 
-combo_concise(Combo)
+combo_concise(x)
 
-spec_concise(Spec)
+spec_concise(x)
 }
 \arguments{
-\item{X}{An R object.}
+\item{as.dtf}{\code{TRUE} or \code{FALSE} indicating whether to return the result as a data.frame with column \code{1} containing property values and column \code{2} containing the property families.}
 
-\item{asDTF}{\code{TRUE} or \code{FALSE} indicating whether to return the result as a data.frame with column \code{1} containing property values and column \code{2} containing the property families.}
+\item{x}{An R object.}
 
-\item{Spec}{A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from \code{ppp_vals()} separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of \code{TRUE} if any of them applies to \code{X}.}
+\item{.VALID}{A \link[=cmp_chr_vec]{complete character vec} containing all properties considered valid.}
 
-\item{Valid}{A \link[=cmp_chr_vec]{complete character vec} containing all properties considered valid.}
+\item{spec}{A \link[=cmp_chr_scl]{complete character scalar} containing one or more values from \code{ppp_vals()} separated by pipes and/or underscores. Combinations of properties can be specified by separating them with underscores. Separating properties or combinations of properties with pipes will result in a value of \code{TRUE} if any of them applies to \code{X}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -73,7 +73,7 @@ spec_concise(Spec)
     \item{\code{}}{}
   }}
 
-\item{Print}{\code{TRUE} or \code{FALSE} indicating whether to print the property definition to the console.}
+\item{.PRINT}{\code{TRUE} or \code{FALSE} indicating whether to print the property definition to the console.}
 }
 \value{
 \strong{A character scalar} \cr\cr \code{combo_concise}    \cr \code{prop_verbose}     \cr \code{spec_concise}
@@ -197,11 +197,11 @@ For convenience, property functions from other function families are also descri
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.LT, .LE, .GE, .GT}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.N, .NR, .NC}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.VALS}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{

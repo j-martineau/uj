@@ -12,14 +12,14 @@
 #'                 `'vec', 'VEC'`   \tab vec        \tab scalars and multivecs                      }
 #'   \tabular{l}{  \eqn{^{(1)}} Non-`data.frame` lists. }
 #' @details
-#' \tabular{ll}{  `is_ccc_spec`   \tab Is `Spec` an xclass specification?                                                                                   \cr   \tab   \cr
+#' \tabular{ll}{  `is_ccc_spec`   \tab Is `spec` an xclass specification?                                                                                   \cr   \tab   \cr
 #'                `ccc_props`     \tab What xclass properties are there?                                                                                    \cr   \tab   \cr
 #'                `ccc_funs`      \tab What xclass property functions are there?                                                                            \cr   \tab   \cr
-#'                `{CCC}`         \tab Is `X` a match to the single xclass property `'{CCC}'` where `{CCC}` is a placeholder for any given xclass property? \cr   \tab   \cr
-#'                `CCC`           \tab Is `X` a match to the xclass specification `Spec`?                                                                   \cr   \tab   \cr
-#'                `ccc`           \tab What are `X`'s xclass properties?                                                                                                   }
-#' @param X An R object.
-#' @param Spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more xclass properties (i.e., from \code{\link{ccc_props}()}). Properties may be pipe-delimited. If there are multiple properties in `Spec`, `X` is inspected for a match to any of the specified properties.
+#'                `{CCC}`         \tab Is `x` a match to the single xclass property `'{CCC}'` where `{CCC}` is a placeholder for any given xclass property? \cr   \tab   \cr
+#'                `CCC`           \tab Is `x` a match to the xclass specification `spec`?                                                                   \cr   \tab   \cr
+#'                `ccc`           \tab What are `x`'s xclass properties?                                                                                                   }
+#' @param x An R object.
+#' @param spec `NULL` or a \link[=cmp_chr_scl]{complete character vec} containing one or more xclass properties (i.e., from \code{\link{ccc_props}()}). Properties may be pipe-delimited. If there are multiple properties in `spec`, `x` is inspected for a match to any of the specified properties.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return **A character vector** \cr\cr `ccc_props, ccc_funs, ccc`
@@ -32,10 +32,10 @@
 #' VEC(letters)
 #' ccc(letters)
 #' @export
-ccc <- function(X) {
+ccc <- function(x) {
   y <- NULL
   for (CCC in uj::v(CCC)) {
-    match <- uj::run("uj:::.", CCC, "(X)")
+    match <- uj::run("uj:::.", CCC, "(x)")
     if (match) {y <- base::c(y, base::tolower(CCC))}
   }
   y
@@ -51,22 +51,22 @@ ccc_props <- function() {uj::v(ccc)}
 
 #' @rdname ccc
 #' @export
-is_ccc_spec <- function(Spec) {
-  Spec <- uj:::.spec2props(Spec)
-  if (base::length(Spec) == 0) {F}
-  else {base::all(Spec %in% uj::v(ccc))}
+is_ccc_spec <- function(spec) {
+  spec <- uj:::.spec2props(spec)
+  if (base::length(spec) == 0) {F}
+  else {base::all(spec %in% uj::v(ccc))}
 }
 
 #' @rdname ccc
 #' @export
-CCC <- function(X, Spec, ...) {
-  errs <- uj:::.meets_errs(X, ...)
-  if (!uj::is_ccc_spec(Spec)) {errs <- base::c(errs, '[Spec] must be a complete character vec (?cmp_chr_vec) containing (possible pipe-separated) values from ccc_props().')}
-  if (!base::is.null(errs)) {uj::stopperr(errs, PKG = "uj")}
-  if (uj::meets(X, ...)) {
-    Props <- base::toupper(uj:::.spec2props(Spec))
+CCC <- function(x, spec, ...) {
+  errs <- uj:::.meets_errs(x, ...)
+  if (!uj::is_ccc_spec(spec)) {errs <- base::c(errs, '[spec] must be a complete character vec (?cmp_chr_vec) containing (possible pipe-separated) values from ccc_props().')}
+  if (!base::is.null(errs)) {uj::stopperr(errs, .PKG = "uj")}
+  if (uj::meets(x, ...)) {
+    Props <- base::toupper(uj:::.spec2props(spec))
     for (Prop in Props) {
-      Match <- uj::run("uj:::.", Prop ,"(X)")
+      Match <- uj::run("uj:::.", Prop ,"(x)")
       if (Match) {return(T)}
     }
   }
@@ -75,32 +75,32 @@ CCC <- function(X, Spec, ...) {
 
 #' @rdname ccc
 #' @export
-ARR <- function(X, ...) {uj::CCC(X, 'arr', ...)}
+ARR <- function(x, ...) {uj::CCC(x, 'arr', ...)}
 
 #' @rdname ccc
 #' @export
-DTF <- function(X, ...) {uj::CCC(X, 'dtf', ...)}
+DTF <- function(x, ...) {uj::CCC(x, 'dtf', ...)}
 
 #' @rdname ccc
 #' @export
-GEN <- function(X, ...) {uj::CCC(X, 'gen', ...)}
+GEN <- function(x, ...) {uj::CCC(x, 'gen', ...)}
 
 #' @rdname ccc
 #' @export
-MAT <- function(X, ...) {uj::CCC(X, 'mat', ...)}
+MAT <- function(x, ...) {uj::CCC(x, 'mat', ...)}
 
 #' @rdname ccc
 #' @export
-MVC <- function(X, ...) {uj::CCC(X, 'mvc', ...)}
+MVC <- function(x, ...) {uj::CCC(x, 'mvc', ...)}
 
 #' @rdname ccc
 #' @export
-SCL <- function(X, ...) {uj::CCC(X, 'scl', ...)}
+SCL <- function(x, ...) {uj::CCC(x, 'scl', ...)}
 
 #' @rdname ccc
 #' @export
-VEC <- function(X, ...) {uj::CCC(X, 'vec', ...)}
+VEC <- function(x, ...) {uj::CCC(x, 'vec', ...)}
 
 #' @rdname ccc
 #' @export
-VLS <- function(X, ...) {uj::CCC(X, 'vls', ...)}
+VLS <- function(x, ...) {uj::CCC(x, 'vls', ...)}

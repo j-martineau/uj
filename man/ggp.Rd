@@ -128,7 +128,7 @@ gg_grid(
   switch = NULL,
   drop = TRUE,
   margins = FALSE,
-  facets = NULL
+  facets = deprecated()
 )
 
 gg_hlin(
@@ -333,7 +333,11 @@ gg_thm(
   strip.placement,
   strip.text,
   strip.text.x,
+  strip.text.x.bottom,
+  strip.text.x.top,
   strip.text.y,
+  strip.text.y.left,
+  strip.text.y.right,
   strip.switch.pad.grid,
   strip.switch.pad.wrap,
   ...,

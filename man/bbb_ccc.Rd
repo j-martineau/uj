@@ -28,66 +28,66 @@
 \alias{pop_vls}
 \title{basic + xclass combination properties}
 \usage{
-bbb_ccc(X, BBB, CCC, ...)
+bbb_ccc(x, .BBB, .CCC, ...)
 
 bbb_ccc_funs()
 
-atm_arr(X, ...)
+atm_arr(x, ...)
 
-atm_dtf(X, ...)
+atm_dtf(x, ...)
 
-atm_gen(X, ...)
+atm_gen(x, ...)
 
-atm_mat(X, ...)
+atm_mat(x, ...)
 
-atm_mvc(X, ...)
+atm_mvc(x, ...)
 
-atm_scl(X, ...)
+atm_scl(x, ...)
 
-atm_vec(X, ...)
+atm_vec(x, ...)
 
-atm_vls(X, ...)
+atm_vls(x, ...)
 
-nil_arr(X, ...)
+nil_arr(x, ...)
 
-nil_dtf(X, ...)
+nil_dtf(x, ...)
 
-nil_gen(X, ...)
+nil_gen(x, ...)
 
-nil_mat(X, ...)
+nil_mat(x, ...)
 
-nil_vec(X, ...)
+nil_vec(x, ...)
 
-nil_vls(X, ...)
+nil_vls(x, ...)
 
-pop_arr(X, ...)
+pop_arr(x, ...)
 
-pop_dtf(X, ...)
+pop_dtf(x, ...)
 
-pop_gen(X, ...)
+pop_gen(x, ...)
 
-pop_mat(X, ...)
+pop_mat(x, ...)
 
-pop_mvc(X, ...)
+pop_mvc(x, ...)
 
-pop_scl(X, ...)
+pop_scl(x, ...)
 
-pop_vec(X, ...)
+pop_vec(x, ...)
 
-pop_vls(X, ...)
+pop_vls(x, ...)
 }
 \arguments{
-\item{X}{An R object.}
+\item{x}{An R object.}
+
+\item{.BBB}{A character scalar single basic property from \code{\link{bbb_props}()}.}
+
+\item{.CCC}{A character scalar single xclass property from \code{\link{ccc_props}()}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
   \describe{
     \item{\code{}}{}
   }}
-
-\item{bbb}{A character scalar single basic property from \code{\link{bbb_props}()}.}
-
-\item{ccc}{A character scalar single xclass property from \code{\link{ccc_props}()}.}
 }
 \value{
 \strong{A character vector} \cr\cr \code{bbb_ccc_funs}
@@ -97,19 +97,19 @@ pop_vls(X, ...)
 Check for combinations of \link[=bbb]{basic} and \link[=ccc]{xclass} properties.
 }
 \details{
-\tabular{ll}{  \code{bbb_cccfuns}   \tab What \link[=bbb]{basic} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?                                                                                                  \cr   \tab   \cr
-  \verb{\{bbb\}_\{ccc\}}   \tab Is \code{X} a match to single basic property \code{'{bbb}'} and single xmode property \code{'{mmm}'}, where \code{{bbb}} and \code{{mmm}} are placeholders for any given basic property and any given xclass property, respectively? \cr   \tab   \cr
-  \code{bbb_ccc}       \tab Is \code{X} a match to the single basic and xclass properties in \code{bbb} and \code{ccc}, respectively?                                                                                                                                 }
+\tabular{ll}{  \code{bbb_ccc_funs}   \tab What \link[=bbb]{basic} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?                                                                                                  \cr   \tab   \cr
+  \verb{\{bbb\}_\{ccc\}}    \tab Is \code{x} a match to single basic property \code{'{bbb}'} and single xmode property \code{'{mmm}'}, where \code{{bbb}} and \code{{mmm}} are placeholders for any given basic property and any given xclass property, respectively? \cr   \tab   \cr
+  \code{bbb_ccc}        \tab Is \code{x} a match to the single basic and xclass properties in \code{.BBB} and \code{.CCC}, respectively?                                                                                                                                 }
 \cr\cr Some combinations of basic + xclass properties are nonsensical. For this reason, the basic properties represented in this family of functions are \code{c('atm', 'nil',  'pop')}, or atomic, nil (non-\code{NULL} and of length 0), and populated (of length \verb{1+}).
 \cr\cr In addition, the base property \code{'nil'} is nonsensical in combination with xclasses \code{'mvc'} (multivec) and \code{'scl'} (scalar), which thus do not have combined \code{bbb_ccc} property functions.
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.LT, .LE, .GE, .GT}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.N, .NR, .NC}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.VALS}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{

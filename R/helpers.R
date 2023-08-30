@@ -1,44 +1,44 @@
 # failsafe ####
 
 # are x and y of compatible (sortable or unsortable) modes
-.compat <- function(X, Y) {
-  if (base::is.character(X) & base::is.character(Y)) {TRUE}
-  else if (base::is.logical(X) & base::is.logical(Y)) {TRUE}
-  else if (base::is.numeric(X) & base::is.numeric(Y)) {TRUE}
-  else if (base::is.ordered(X) & base::is.ordered(Y)) {
-    xLevels <- base::levels(X)
-    yLevels <- base::levels(Y)
+.compat <- function(x, y) {
+  if (base::is.character(x) & base::is.character(y)) {TRUE}
+  else if (base::is.logical(x) & base::is.logical(y)) {TRUE}
+  else if (base::is.numeric(x) & base::is.numeric(y)) {TRUE}
+  else if (base::is.ordered(x) & base::is.ordered(y)) {
+    xLevels <- base::levels(x)
+    yLevels <- base::levels(y)
     if (base::length(xLevels) != base::length(yLevels)) {FALSE}
     else {base::all(xLevels == yLevels)}
   }
-  else if (base::is.factor(X) & !base::is.ordered(Y)) {
-    xLevels <- base::levels(X)
-    yLevels <- base::levels(Y)
+  else if (base::is.factor(x) & !base::is.ordered(y)) {
+    xLevels <- base::levels(x)
+    yLevels <- base::levels(y)
     if (base::length(xLevels) != base::length(yLevels)) {FALSE}
     else {base::setequal(xLevels, yLevels)}
   } else {FALSE}
 }
 
 # are x and y of comparable (sortable) modes
-.compar <- function(X, Y) {
-  if (base::is.character(X) & base::is.character(Y)) {TRUE}
-  else if (base::is.logical(X) & base::is.logical(Y)) {TRUE}
-  else if (base::is.numeric(X) & base::is.numeric(Y)) {TRUE}
-  else if (base::is.ordered(X) & base::is.ordered(Y)) {
-    xLevels <- base::levels(X)
-    yLevels <- base::levels(Y)
+.compar <- function(x, y) {
+  if (base::is.character(x) & base::is.character(y)) {TRUE}
+  else if (base::is.logical(x) & base::is.logical(y)) {TRUE}
+  else if (base::is.numeric(x) & base::is.numeric(y)) {TRUE}
+  else if (base::is.ordered(x) & base::is.ordered(y)) {
+    xLevels <- base::levels(x)
+    yLevels <- base::levels(y)
     if (base::length(xLevels) != base::length(yLevels)) {FALSE}
     else {base::all(xLevels == yLevels)}
   } else {FALSE}
 }
 
 # are x and y of recyclable lengths (1, max(c(length(x), length(y))))
-.mismatch_n <- function(X, Y) {
-  nX <- base::length(X)
-  nY <- base::length(Y)
-  nXY <- base::c(nX, nY)
-  nValid <- base::c(1, nXY)
-  nX == 0 | nY == 0 | !base::all(nXY %in% nValid)
+.mismatch_n <- function(x, y) {
+  nx <- base::length(x)
+  ny <- base::length(y)
+  nxy <- base::c(nx, ny)
+  nValid <- base::c(1, nxy)
+  nx == 0 | ny == 0 | !base::all(nxy %in% nValid)
 }
 
 # checkerr ####
@@ -51,39 +51,39 @@
 }
 
 # simple oxford comma lists
-.ox_vals <- function(X, Join) {
-	N <- base::length(X)
-	if (N == 1) {X} else if (N == 2) {base::paste0(X[1], " ", Join, " ", X[2])} else {base::paste0(base::paste0(X[1:(N - 1)], collapse = ", "), ", ", Join, " ", X[N])}
+.ox_vals <- function(x, join) {
+	N <- base::length(x)
+	if (N == 1) {x} else if (N == 2) {base::paste0(x[1], " ", join, " ", x[2])} else {base::paste0(base::paste0(x[1:(N - 1)], collapse = ", "), ", ", join, " ", x[N])}
 }
 
 # ppp_specs ####
 
-.spec2combos <- function(X) {
-	if (base::is.character(X)) {
-		X <- uj::av(base::strsplit(X, "|", fixed = T))
-		X <- X[X != ""]
-		if (base::length(X) > 0) {base::unique(base::tolower(X))} else {NULL}
+.spec2combos <- function(x) {
+	if (base::is.character(x)) {
+		x <- uj::av(base::strsplit(x, "|", fixed = T))
+		x <- x[x != ""]
+		if (base::length(x) > 0) {base::unique(base::tolower(x))} else {NULL}
 	} else {NULL}
 }
 
-.spec2props <- function(X) {
-	if (base::is.character(X)) {
-		X <- uj::av(base::strsplit(X, "|", fixed = T))
-		X <- uj::av(base::strsplit(X, "_", fixed = T))
-		X <- X[X != ""]
-		if (base::length(X) > 0) {
-			if (base::any(base::is.na(X))) {NULL} else if (base::any(base::nchar(X) != 3)) {NULL} else {base::unique(base::tolower(X))}
+.spec2props <- function(x) {
+	if (base::is.character(x)) {
+		x <- uj::av(base::strsplit(x, "|", fixed = T))
+		x <- uj::av(base::strsplit(x, "_", fixed = T))
+		x <- x[x != ""]
+		if (base::length(x) > 0) {
+			if (base::any(base::is.na(x))) {NULL} else if (base::any(base::nchar(x) != 3)) {NULL} else {base::unique(base::tolower(x))}
 		} else {NULL}
 	} else {NULL}
 }
 
-.combo2props <- function(X) {
-	if (base::is.character(X)) {
-		if (base::length(uj:::.spec2combos(X)) == 1) {
-			X <- uj::av(base::strsplit(X, "_", fixed = T))
-			X <- X[X != ""]
-			if (base::length(X) > 0) {
-				if (base::any(base::is.na(X))) {NULL} else if (base::any(base::nchar(X) != 3)) {NULL} else {base::unique(base::tolower(X))}
+.combo2props <- function(x) {
+	if (base::is.character(x)) {
+		if (base::length(uj:::.spec2combos(x)) == 1) {
+			x <- uj::av(base::strsplit(x, "_", fixed = T))
+			x <- x[x != ""]
+			if (base::length(x) > 0) {
+				if (base::any(base::is.na(x))) {NULL} else if (base::any(base::nchar(x) != 3)) {NULL} else {base::unique(base::tolower(x))}
 			} else {NULL}
 		} else {NULL}
 	} else {NULL}
@@ -91,29 +91,29 @@
 
 # N ###
 
-.n_errs <- function(N = NULL, Min = NULL, Max = NULL, Eq = FALSE, A = FALSE, Na = FALSE) {
+.n_errs <- function(.N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .NA = FALSE, .A = FALSE) {
 	Errors <- NULL
-	if (!base::is.null(N) & (!uj:::.cmp_nnw_vec(N))) {Errors <- base::c(Errors, "[N] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec).")}
-	if (!base::is.null(Min) & (!uj:::.cmp_nnw_scl(min))) {Errors <- base::c(Errors, "[Min] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
-	if (!base::is.null(Max) & (!uj:::.cmp_nnw_scl(max))) {Errors <- base::c(Errors, "[max] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
-	if (!uj::fs_tf(Eq)) {Errors <- base::c(Errors, "[Eq] must be TRUE or FALSE.")}
-	if (!uj::fs_tf(A)) {Errors <- base::c(Errors, "[A] must be TRUE or FALSE.")}
-	if (!uj::fs_tf(Na)) {Errors <- base::c(Errors, "[Na] must be TRUE or FALSE.")}
+	if (!base::is.null(.N) & (!uj:::.cmp_nnw_vec(.N))) {Errors <- base::c(Errors, "[.N] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec).")}
+	if (!base::is.null(.MIN) & (!uj:::.cmp_nnw_scl(.MIN))) {Errors <- base::c(Errors, "[.MIN] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
+	if (!base::is.null(.MAX) & (!uj:::.cmp_nnw_scl(.MAX))) {Errors <- base::c(Errors, "[.MAX] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
+	if (!uj::fs_tf(.EQ)) {Errors <- base::c(Errors, "[.EQ] must be TRUE or FALSE.")}
+	if (!uj::fs_tf(.NA)) {Errors <- base::c(Errors, "[.NA] must be TRUE or FALSE.")}
+	if (!uj::fs_tf(.A)) {Errors <- base::c(Errors, "[.A] must be TRUE or FALSE.")}
 	Errors
 }
 
 # delim ####
 
-.delim_errs <- function(Args, A) {
-	N <- uj::N(Args$Dots)
-	Ns <- uj::ns(Args$Dots)
-	Two <- "D" %in% base::names(Args)
+.delim_errs <- function(args, .A) {
+	N <- uj::N(args$Dots)
+	Ns <- uj::ns(args$Dots)
+	Two <- "D" %in% base::names(args)
 	Dots <- N > 0
 	Pops <- uj::f0(!Dots, T, base::all(Ns > 0))
-	CCSd <- uj:::.cmp_chr_scl(Args$d)
-	CCSD <- uj::f0(!Two, T, uj:::.cmp_chr_scl(Args$D))
-	Atms <- uj::f0(!CCSd, T, base::all(base::sapply(Args$Dots, uj::atm_vec)))
-	Recs <- uj::f0(A | !Pops, T, uj::recyclable_ns(base::max(Ns) / Ns))
+	CCSd <- uj:::.cmp_chr_scl(args$d)
+	CCSD <- uj::f0(!Two, T, uj:::.cmp_chr_scl(args$D))
+	Atms <- uj::f0(!CCSd, T, base::all(base::sapply(args$Dots, uj::atm_vec)))
+	Recs <- uj::f0(.A | !Pops, T, uj::recyclable_ns(base::max(Ns) / Ns))
 	Errors <- NULL
 	if (!Dots) {Errors <- base::c(Errors, "[...] is empty.")}
 	if (!Pops) {Errors <- base::c(Errors, "An argument in [...] is of length 0.")}
@@ -126,190 +126,190 @@
 
 # color ####
 
-.color_errs <- function(X = "red", Y = "red", Lighten = 0, Darken = 0, R = 0, G = 0, B = 0, A = 0, H = 0, S = 0, V = 0, WX = 1, WY = 1, Comp = T, OkNaA = F) {
+.color_errs <- function(x = "red", y = "red", lighten = 0, darken = 0, r = 0, g = 0, b = 0, a = 0, h = 0, s = 0, v = 0, wx = 1, wy = 1, comp = T, .NA = F) {
 	Fun <- uj::caller()
 	Errors <- NULL
-	if (!uj:::.cmp_clr_vec(X) ) {Errors <- base::c(Errors, "[X] must be contain only valid character color representations.")}
-	if (!uj:::.cmp_clr_vec(Y) ) {Errors <- base::c(Errors, "[Y] must be contain only valid character color representations.")}
-	if (!uj:::.cmp_ppn_vec(Lighten)) {Errors <- base::c(Errors, "[Lighten] must be a complete proportion vec (?cmp_ppn_vec).")}
-	if (!uj:::.cmp_ppn_vec(Darken)) {Errors <- base::c(Errors, "[Darken] must be a complete proportion vec (?cmp_ppn_vec).")}
-	if (!uj:::.cmp_ppn_vec(B)) {Errors <- base::c(Errors, "[B] must be a complete proportion vec (?cmp_ppn_vec).")}
-	if (!uj:::.cmp_ppn_vec(G)) {Errors <- base::c(Errors, "[G] must be a complete proportion vec (?cmp_ppn_vec).")}
-	if (!uj:::.cmp_ppn_vec(H)) {Errors <- base::c(Errors, "[H] must be a complete proportion vec (?cmp_ppn_vec).")}
-	if (!uj:::.cmp_ppn_vec(R)) {Errors <- base::c(Errors, "[R] must be a complete proportion vec (?cmp_ppn_vec).")}
-	if (!uj:::.cmp_ppn_vec(S)) {Errors <- base::c(Errors, "[S] must be a complete proportion vec (?cmp_ppn_vec).")}
-	if (!uj:::.cmp_ppn_vec(V)) {Errors <- base::c(Errors, "[V] must be a complete proportion vec (?cmp_ppn_vec).")}
-	if (!(OkNaA & uj::.NA0(A))) {if (!uj:::.cmp_ppn_vec(A)) {Errors <- base::c(Errors, "[A] must be a complete proportion vec (?cmp_ppn_vec).")}}
-	if (!uj:::.cmp_pos_vec(WX)) {Errors <- base::c(Errors, "[wX] must be a complete positive numeric vec (?cmp_pos_vec).")}
-	if (!uj:::.cmp_pos_vec(WY)) {Errors <- base::c(Errors, "[wY] must be a complete positive numeric vec (?cmp_pos_vec).")}
-	if (!uj:::.cmp_lgl_scl(Comp)) {Errors <- base::c(Errors, "[Comp] must be TRUE or FALSE.")}
-	if (!base::is.null(Errors)) {uj::stopperr(Errors, FUN = Fun, PKG = "uj")}
+	if (!uj:::.cmp_clr_vec(x) ) {Errors <- base::c(Errors, "[x] must be contain only valid character color representations.")}
+	if (!uj:::.cmp_clr_vec(y) ) {Errors <- base::c(Errors, "[y] must be contain only valid character color representations.")}
+	if (!uj:::.cmp_ppn_vec(lighten)) {Errors <- base::c(Errors, "[lighten] must be a complete proportion vec (?cmp_ppn_vec).")}
+	if (!uj:::.cmp_ppn_vec(darken)) {Errors <- base::c(Errors, "[darken] must be a complete proportion vec (?cmp_ppn_vec).")}
+	if (!uj:::.cmp_ppn_vec(b)) {Errors <- base::c(Errors, "[b] must be a complete proportion vec (?cmp_ppn_vec).")}
+	if (!uj:::.cmp_ppn_vec(g)) {Errors <- base::c(Errors, "[g] must be a complete proportion vec (?cmp_ppn_vec).")}
+	if (!uj:::.cmp_ppn_vec(h)) {Errors <- base::c(Errors, "[h] must be a complete proportion vec (?cmp_ppn_vec).")}
+	if (!uj:::.cmp_ppn_vec(r)) {Errors <- base::c(Errors, "[r] must be a complete proportion vec (?cmp_ppn_vec).")}
+	if (!uj:::.cmp_ppn_vec(s)) {Errors <- base::c(Errors, "[s] must be a complete proportion vec (?cmp_ppn_vec).")}
+	if (!uj:::.cmp_ppn_vec(v)) {Errors <- base::c(Errors, "[v] must be a complete proportion vec (?cmp_ppn_vec).")}
+	if (!(.NA & uj::.NA0(a))) {if (!uj:::.cmp_ppn_vec(a)) {Errors <- base::c(Errors, "[a] must be a complete proportion vec (?cmp_ppn_vec).")}}
+	if (!uj:::.cmp_pos_vec(wx)) {Errors <- base::c(Errors, "[wx] must be a complete positive numeric vec (?cmp_pos_vec).")}
+	if (!uj:::.cmp_pos_vec(wy)) {Errors <- base::c(Errors, "[wy] must be a complete positive numeric vec (?cmp_pos_vec).")}
+	if (!uj:::.cmp_lgl_scl(comp)) {Errors <- base::c(Errors, "[comp] must be TRUE or FALSE.")}
+	if (!base::is.null(Errors)) {uj::stopperr(Errors, .FUN = Fun, .PKG = "uj")}
 }
 
 # crayon ####
 
-.glue_args <- function(D, ...) {base::paste0(uj::av(...), collapse = D)}
+.glue_args <- function(.D, ...) {base::paste0(uj::av(...), collapse = .D)}
 
-.crayons_errs <- function(ST = NULL, BG = NULL, FG = NULL, D = " ", OkNullST = TRUE, OkNullBG = TRUE, OkNullFG = TRUE) {
+.crayons_errs <- function(.ST = NULL, .BG = NULL, .FG = NULL, .D = " ", .OK.NULL.ST = TRUE, .OK.NULL.BG = TRUE, .OK.NULL.FG = TRUE) {
 	Fun <- uj::caller()
-	ST <- uj::failsafe(ST)
-	BG <- uj::failsafe(BG)
-	FG <- uj::failsafe(FG)
-	D <- uj::failsafe(D)
-	OkST <- uj::f0(base::is.null(ST), OkNullST, uj:::.unq_chr_vec(ST, Valid = base::c(uj::v(CrayonStyles), base::toupper(uj::v(CrayonStyles)))))
-	OkBg <- uj::f0(base::is.null(BG), OkNullBG, uj:::.cmp_chr_scl(BG, Valid = base::c(uj::v(CrayonBackgroundColors), base::toupper(uj::v(CrayonBackgroundColors)))))
-	OkFg <- uj::f0(base::is.null(FG), OkNullFG, uj:::.cmp_chr_scl(FG, Valid = base::c(uj::v(CrayonForegroundColors), base::toupper(uj::v(CrayonForegroundColors)))))
-	OkD <- uj:::.cmp_chr_scl(D)
+	.ST <- uj::failsafe(.ST)
+	.BG <- uj::failsafe(.BG)
+	.FG <- uj::failsafe(.FG)
+	.D <- uj::failsafe(.D)
+	OkST <- uj::f0(base::is.null(.ST), .OK.NULL.ST, uj:::.unq_chr_vec(.ST, Valid = base::c(uj::v(CrayonStyles), base::toupper(uj::v(CrayonStyles)))))
+	OkBg <- uj::f0(base::is.null(.BG), .OK.NULL.BG, uj:::.cmp_chr_scl(.BG, Valid = base::c(uj::v(CrayonBackgroundColors), base::toupper(uj::v(CrayonBackgroundColors)))))
+	OkFg <- uj::f0(base::is.null(.FG), .OK.NULL.FG, uj:::.cmp_chr_scl(.FG, Valid = base::c(uj::v(CrayonForegroundColors), base::toupper(uj::v(CrayonForegroundColors)))))
+	OkD <- uj:::.cmp_chr_scl(.D)
 	Errors <- NULL
-	if (!OkBg) {Errors <- base::c(Errors, "[BG] must be a character scalar from bg_vals().")}
-	if (!OkFg) {Errors <- base::c(Errors, "[FG] must be a character scalar from fg_vals().")}
-	if (!OkST) {Errors <- base::c(Errors, "[ST] must be a unique character vec from st_vals().")}
-	if (!OkD) {Errors <- base::c(Errors, "[D] must be a non-NA character scalar.")}
-	if (!base::is.null(Errors)) {uj::stopperr(Errors, FUN = Fun, PKG = "uj")}
+	if (!OkBg) {Errors <- base::c(Errors, "[.BG] must be a character scalar from bg_vals().")}
+	if (!OkFg) {Errors <- base::c(Errors, "[.FG] must be a character scalar from fg_vals().")}
+	if (!OkST) {Errors <- base::c(Errors, "[.ST] must be a unique character vec from st_vals().")}
+	if (!OkD ) {Errors <- base::c(Errors, "[.D] must be a non-NA character scalar.")}
+	if (!base::is.null(Errors)) {uj::stopperr(Errors, .FUN = Fun, .PKG = "uj")}
 }
 
-.match_bg_val <- function(X) {
-  if      (X %in% uj::v(CrayonBlue)   ) {"blu"}
-  else if (X %in% uj::v(CrayonCyan)   ) {"cyn"}
-  else if (X %in% uj::v(CrayonGreen)  ) {"grn"}
-  else if (X %in% uj::v(CrayonBlack)  ) {"blk"}
-  else if (X %in% uj::v(CrayonMagenta)) {"mag"}
-  else if (X %in% uj::v(CrayonRed)    ) {"red"}
-  else if (X %in% uj::v(CrayonWhite)  ) {"wht"}
-  else if (X %in% uj::v(CrayonYellow) ) {"ylw"}
+.match_bg_val <- function(x) {
+  if      (x %in% uj::v(CrayonBlue)   ) {"blu"}
+  else if (x %in% uj::v(CrayonCyan)   ) {"cyn"}
+  else if (x %in% uj::v(CrayonGreen)  ) {"grn"}
+  else if (x %in% uj::v(CrayonBlack)  ) {"blk"}
+  else if (x %in% uj::v(CrayonMagenta)) {"mag"}
+  else if (x %in% uj::v(CrayonRed)    ) {"red"}
+  else if (x %in% uj::v(CrayonWhite)  ) {"wht"}
+  else if (x %in% uj::v(CrayonYellow) ) {"ylw"}
   else                                  {"def"}
 }
 
-.match_fg_val <- function(X) {
-  if      (X %in% uj::v(CrayonBlue)   ) {"blu"}
-  else if (X %in% uj::v(CrayonCyan)   ) {"cyn"}
-  else if (X %in% uj::v(CrayonGreen)  ) {"grn"}
-  else if (X %in% uj::v(CrayonBlack)  ) {"blk"}
-  else if (X %in% uj::v(CrayonMagenta)) {"mag"}
-  else if (X %in% uj::v(CrayonRed)    ) {"red"}
-  else if (X %in% uj::v(CrayonSilver) ) {"sil"}
-  else if (X %in% uj::v(CrayonWhite)  ) {"wht"}
-  else if (X %in% uj::v(CrayonYellow) ) {"ylw"}
+.match_fg_val <- function(x) {
+  if      (x %in% uj::v(CrayonBlue)   ) {"blu"}
+  else if (x %in% uj::v(CrayonCyan)   ) {"cyn"}
+  else if (x %in% uj::v(CrayonGreen)  ) {"grn"}
+  else if (x %in% uj::v(CrayonBlack)  ) {"blk"}
+  else if (x %in% uj::v(CrayonMagenta)) {"mag"}
+  else if (x %in% uj::v(CrayonRed)    ) {"red"}
+  else if (x %in% uj::v(CrayonSilver) ) {"sil"}
+  else if (x %in% uj::v(CrayonWhite)  ) {"wht"}
+  else if (x %in% uj::v(CrayonYellow) ) {"ylw"}
   else                                  {"def"}
 }
 
-.match_st_val <- function(X) {
-  if      (X %in% uj::v(CrayonBold)     ) {"bld"}
-  else if (X %in% uj::v(CrayonItalic)   ) {"itl"}
-  else if (X %in% uj::v(CrayonPlain)    ) {"pln"}
-  else if (X %in% uj::v(CrayonUnderline)) {"und"}
+.match_st_val <- function(x) {
+  if      (x %in% uj::v(CrayonBold)     ) {"bld"}
+  else if (x %in% uj::v(CrayonItalic)   ) {"itl"}
+  else if (x %in% uj::v(CrayonPlain)    ) {"pln"}
+  else if (x %in% uj::v(CrayonUnderline)) {"und"}
   else                                    {"def"}
 }
 
 # dialog ####
 
-.chr <- function(..., D = " ") {base::paste0(uj::av(...), collapse = D)}
-.trm <- function(..., D = " ") {base::trimws(uj:::.chr(..., D = D), which = "both")}
-.ssplit <- function(X) {base::trimws(uj::av(base::strsplit(X, "|", fixed = T)), which = "both", whitespace = "[ ]")}
+.chr <- function(..., .D = " ") {base::paste0(uj::av(...), collapse = .D)}
+.trm <- function(..., .D = " ") {base::trimws(uj:::.chr(..., .D = .D), which = "both")}
+.ssplit <- function(x) {base::trimws(uj::av(base::strsplit(x, "|", fixed = T)), which = "both", whitespace = "[ ]")}
 
-.ok_fmt <- function(X) {
-	if (base::is.null(X)) {return(F)} else if (base::is.character(X) & base::length(X) == 1) {if (!base::is.na(X)) {if (X == "") {return(TRUE)}}}
-	X <- uj:::.ssplit(X)
-	uj::f0(base::length(X) != 3, F, uj::f0(!(X[1] %in% uj::v(CrayonBackgroundColors)), F, uj::f0(!(X[2] %in% uj::v(CrayonForegroundColors)), F, base::all(X[3] %in% uj::v(CrayonStyles)))))
+.ok_fmt <- function(x) {
+	if (base::is.null(x)) {return(F)} else if (base::is.character(x) & base::length(x) == 1) {if (!base::is.na(x)) {if (x == "") {return(TRUE)}}}
+	x <- uj:::.ssplit(x)
+	uj::f0(base::length(x) != 3, F, uj::f0(!(x[1] %in% uj::v(CrayonBackgroundColors)), F, uj::f0(!(x[2] %in% uj::v(CrayonForegroundColors)), F, base::all(x[3] %in% uj::v(CrayonStyles)))))
 }
 
-.cat_choose_list <- function(Options, Message, All, None, MinN, MaxN, FT, FS, FUN, STACK, .clear, .cancel = T) {
+.cat_choose_list <- function(options, message, .ALL, .NONE, .MIN, .MAX, .FT, .FS, .FUN, .STACK, .CLEAR, .CANCEL = T) {
   if (.clear) {uj::xconsole()}
-  if (FT != "") {
-    TitleBG <- base::strsplit(FT, "|", fixed = T)[[1]][1]
-    TitleFG <- base::strsplit(FT, "|", fixed = T)[[1]][2]
-    TitleST <- base::strsplit(FT, "|", fixed = T)[[1]][3]
+  if (.FT != "") {
+    TitleBG <- base::strsplit(.FT, "|", fixed = T)[[1]][1]
+    TitleFG <- base::strsplit(.FT, "|", fixed = T)[[1]][2]
+    TitleST <- base::strsplit(.FT, "|", fixed = T)[[1]][3]
   } else {TitleBG <- TitleFG <- TitleST <- NULL}
-  if (FS != "") {
-    SubBG <- base::strsplit(FS, "|", fixed = T)[[1]][1]
-    SubFG <- base::strsplit(FS, "|", fixed = T)[[1]][2]
+  if (.FS != "") {
+    SubBG <- base::strsplit(.FS, "|", fixed = T)[[1]][1]
+    SubFG <- base::strsplit(.FS, "|", fixed = T)[[1]][2]
   } else {SubBG <- SubFG <- NULL}
-  uj::alert(Message, Title = "response required", FT = FT, FS = FS, .clear = .clear)
+  uj::alert(message, Title = "response required", .FT = .FT, .FS = .FS, .CLEAR = .CLEAR)
   base::cat("\n")
-  if (.cancel) {
-    if (TRUE) {base::cat(uj::txt("CODE   OPTION         ", BG = SubBG, FG = SubFG, ST = "bold"))}
-    if (TRUE) {base::cat(      "\n   X   { CANCEL }")}
-    if (None) {base::cat(      "\n   N   { NONE }")}
-    if (All ) {base::cat(      "\n   A   { ALL }")}
+  if (.CANCEL) {
+    if (TRUE ) {base::cat(uj::txt("CODE   OPTION         ", .BG = SubBG, .FG = SubFG, .ST = "bold"))}
+    if (TRUE ) {base::cat(      "\n   X   { CANCEL }")}
+    if (.NONE) {base::cat(      "\n   N   { NONE }")}
+    if (.ALL ) {base::cat(      "\n   A   { ALL }")}
   } else {
-    if (TRUE) {base::cat(uj::txt("CODE   OPTION         ", BG = SubBG, FG = SubFG, ST = "bold"))}
-    if (None) {base::cat(      "\n   N   { NONE }")}
-    if (All ) {base::cat(      "\n   A   { ALL }")}
+    if (TRUE ) {base::cat(uj::txt("CODE   OPTION         ", .BG = SubBG, .FG = SubFG, .ST = "bold"))}
+    if (.NONE) {base::cat(      "\n   N   { NONE }")}
+    if (.ALL ) {base::cat(      "\n   A   { ALL }")}
   }
-  for (i in 1:base::length(Options)) {
+  for (i in 1:base::length(options)) {
     Code <- base::as.character(i)
     Prefix <- base::paste0(base::rep.int(" ", 4 - base::nchar(Code)), collapse = "")
     Infix <- "   "
-    Option <- base::gsub(" ", " ", Options[i], fixed = T)
+    Option <- base::gsub(" ", " ", options[i], fixed = T)
     base::cat("\n", Prefix, Code, Infix, Option, sep = "")
   }
   cat("\n\n")
-  if (MinN == 1 & MaxN == 1) {base::cat(uj::txt("Enter the code for 1 of the above options:", BG = TitleBG, FG = TitleFG, ST = TitleST))}
-  else if (MinN == MaxN) {base::cat(uj::txt("Enter a comma separated list of codes for", MinN, "of the above options:", D = " ", BG = TitleBG, FG = TitleFG, ST = TitleST))}
-  else {base::cat(uj::txt("Enter a comma separated list of codes for", MinN, "to", MaxN, "of the above options:", D = " ", BG = TitleBG, FG = TitleFG, ST = TitleST))}
+  if (.MIN == 1 & .MAX == 1) {base::cat(uj::txt("Enter the code for 1 of the above options:", .BG = TitleBG, .FG = TitleFG, .ST = TitleST))}
+  else if (.MIN == .MAX) {base::cat(uj::txt("Enter a comma separated list of codes for", .MIN, "of the above options:", .D = " ", .BG = TitleBG, .FG = TitleFG, .ST = TitleST))}
+  else {base::cat(uj::txt("Enter a comma separated list of codes for", .MIN, "to", .MAX, "of the above options:", .D = " ", .BG = TitleBG, .FG = TitleFG, .ST = TitleST))}
   Answer <- base::toupper(base::trimws(base::strsplit(base::readline(), ",", fixed = TRUE)[[1]], which = "both"))
   if (base::length(Answer) == 1) {
-    if (.cancel & Answer == "X") {uj::stopperr("Canceled by user.", FUN = FUN, PKG = "uj", STACK = STACK)}
-    if (None & Answer == "N") {return(NULL)}
-    if (All & Answer == "A") {return(Options)}
+    if (.CANCEL & Answer == "X") {uj::stopperr("Canceled by user.", .FUN = .FUN, .PKG = "uj", .STACK = .STACK)}
+    if (.NONE & Answer == "N") {return(NULL)}
+    if (.ALL & Answer == "A") {return(options)}
     Answer <- base::as.numeric(Answer)
-    if (!uj::cmp_psw_scl(Answer)) {uj::stopperr("Invalid selection code", FUN = FUN, PKG = "uj", STACK = STACK)}
-    if (1 < MinN) {uj::stopperr("Too few options selected.", FUN = FUN, PKG = "uj", STACK = STACK)}
-    if (Answer > uj::N(Options)) {uj::stopperr("Selection code is greater than the number of available options.", FUN = FUN, PGK = "uj", STACK = STACK)}
+    if (!uj::cmp_psw_scl(Answer)) {uj::stopperr("Invalid selection code", .FUN = .FUN, .PKG = "uj", .STACK = .STACK)}
+    if (1 < .MIN) {uj::stopperr("Too few options selected.", .FUN = .FUN, .PKG = "uj", .STACK = .STACK)}
+    if (Answer > uj::N(options)) {uj::stopperr("Selection code is greater than the number of available options.", .FUN = .FUN, .PKG = "uj", .STACK = .STACK)}
   } else {
     Answer <- base::as.numeric(Answer)
-    if (!uj::cmp_psw_vec(Answer)) {uj::stopperr("Unrecognized selection code(s).", FUN = FUN, PKG = "uj", STACK = STACK)}
-    if (uj::N(Answer) < MinN) {uj::stopperr("Too few options selected.", FUN = FUN, PKG = "uj", STACK = STACK)}
-    if (uj::N(Answer) > MaxN) {uj::stopperr("Too many options selected.", FUN = FUN, PKG = "uj", STACK = STACK)}
-    if (base::any(Answer > uj::N(Options))) {uj::stopperr("A selection code is greater than the number of available options.", FUN = FUN, PGK = "uj", STACK = STACK)}
+    if (!uj::cmp_psw_vec(Answer)) {uj::stopperr("Unrecognized selection code(s).", .FUN = .FUN, .PKG = "uj", .STACK = .STACK)}
+    if (uj::N(Answer) < .MIN) {uj::stopperr("Too few options selected.", .FUN = .FUN, .PKG = "uj", .STACK = .STACK)}
+    if (uj::N(Answer) > .MAX) {uj::stopperr("Too many options selected.", .FUN = .FUN, .PKG = "uj", .STACK = .STACK)}
+    if (base::any(Answer > uj::N(options))) {uj::stopperr("A selection code is greater than the number of available options.", .FUN = .FUN, .PKG = "uj", .STACK = .STACK)}
   }
-  Options[Answer]
+  options[Answer]
 }
 
 # declare ####
 
-.labs_ok <- function(X) {
+.labs_ok <- function(x) {
 	Alpha <- base::c(letters, LETTERS)
 	Nums <- base::as.character(0:9)
-	OK <- base::substr(X, 1, 1) %in% Alpha
-	OK[!OK] <- base::substr(X[!OK], 1, 1) == "." & base::substr(X[!OK], 2, 2) %in% Alpha
+	OK <- base::substr(x, 1, 1) %in% Alpha
+	OK[!OK] <- base::substr(x[!OK], 1, 1) == "." & base::substr(x[!OK], 2, 2) %in% Alpha
 	if (base::all(OK)) {
-	  nChars <- base::nchar(X)
-		OK <- OK & base::substr(X, nChars, nChars) %in% base::c(Alpha, Nums)
-		uj::f0(!base::all(OK), F, base::all(uj::av(base::strsplit(X, "", fixed = T)) %in% base::c(Alpha, Nums, ".", "_")))
+	  nChars <- base::nchar(x)
+		OK <- OK & base::substr(x, nChars, nChars) %in% base::c(Alpha, Nums)
+		uj::f0(!base::all(OK), F, base::all(uj::av(base::strsplit(x, "", fixed = T)) %in% base::c(Alpha, Nums, ".", "_")))
 	} else {F}
 }
 
 # callers ####
 
-.getfun <- function(X) {
+.getfun <- function(x) {
   Default <- "..unknown.."
-  X <- uj::av(base::strsplit(X, ":::", fixed = T))
-  X <- uj::av(base::strsplit(X, "::", fixed = T))
-  N <- base::length(X)
-  if (N == 0) {X <- ""} else if (N > 1) {X <- X[2]}
-  X <- uj::av(base::strsplit(X, "(", fixed = T))
-  X <- uj::av(base::strsplit(X, " ", fixed = T))
-  N <- base::length(X)
-  if (N == 0) {X <- ""} else if (N > 1) {X <- X[1]}
-  if (X == "") {Default} else {X}
+  x <- uj::av(base::strsplit(x, ":::", fixed = T))
+  x <- uj::av(base::strsplit(x, "::", fixed = T))
+  N <- base::length(x)
+  if (N == 0) {x <- ""} else if (N > 1) {x <- x[2]}
+  x <- uj::av(base::strsplit(x, "(", fixed = T))
+  x <- uj::av(base::strsplit(x, " ", fixed = T))
+  N <- base::length(x)
+  if (N == 0) {x <- ""} else if (N > 1) {x <- x[1]}
+  if (x == "") {Default} else {x}
 }
 
-.getpkg <- function(X) {
+.getpkg <- function(x) {
   Default <- "..??.."
-  X <- uj::av(base::strsplit(X, ":::", fixed = T))
-  X <- uj::av(base::strsplit(X, "::", fixed = T))
-  N <- base::length(X)
-  if (N < 2) {Default} else {X[1]}
+  x <- uj::av(base::strsplit(x, ":::", fixed = T))
+  x <- uj::av(base::strsplit(x, "::", fixed = T))
+  N <- base::length(x)
+  if (N < 2) {Default} else {x[1]}
 }
 
-.getsep <- function(X) {if (base::length(uj::av(base::strsplit(X, ":::", fixed = T))) > 1) {":::"} else {"::"}}
+.getsep <- function(x) {if (base::length(uj::av(base::strsplit(x, ":::", fixed = T))) > 1) {":::"} else {"::"}}
 
-.stack2pkgfuns <- function(Stack, MaxLen, Vec = T, PkgOnly = F, FunOnly = F) {
+.stack2pkgfuns <- function(stack, .MAX.LEN, .VEC = T, .PKG.ONLY = F, .FUN.ONLY = F) {
   Default <- "..??.."
-  Funs <- base::sapply(Stack, uj:::.getfun)
-  Pkgs <- base::sapply(Stack, uj:::.getpkg)
-  Seps <- base::sapply(Stack, uj:::.getsep)
+  Funs <- base::sapply(stack, uj:::.getfun)
+  Pkgs <- base::sapply(stack, uj:::.getpkg)
+  Seps <- base::sapply(stack, uj:::.getsep)
   OK <- Funs != Default
   Funs <- Funs[OK]
   Pkgs <- Pkgs[OK]
@@ -318,12 +318,12 @@
   Funs[Funs == "..command.line.."] <- "[command.line]"
   Pkgs[Pkgs == Default] <- "[??]"
   Funs[Funs == Default] <- "[??]"
-  if (PkgOnly) {Pkgs} else if (FunOnly) {Funs} else if (Vec) {base::paste0(Pkgs, Seps, Funs)} else {tibble::tibble(Pkg = Pkgs, Fun = Funs)}
+  if (.PKG.ONLY) {Pkgs} else if (.FUN.ONLY) {Funs} else if (.VEC) {base::paste0(Pkgs, Seps, Funs)} else {tibble::tibble(Pkg = Pkgs, Fun = Funs)}
 }
 
-.stack2funs <- function(Stack, MaxLen) {
+.stack2funs <- function(stack, .MAX.LEN) {
   Default <- "..??.."
-  Funs <- base::sapply(Stack, uj:::.getfun)
+  Funs <- base::sapply(stack, uj:::.getfun)
   OK <- Funs != Default
   Funs <- Funs[OK]
   if (base::length(Funs) == 0) {Funs <- Default}
@@ -332,10 +332,10 @@
   Funs
 }
 
-.stack2pkgs <- function(Stack, MaxLen) {
+.stack2pkgs <- function(stack, .MAX.LEN) {
   Default <- "..??.."
-  Funs <- base::sapply(Stack, uj:::.getfun)
-  Pkgs <- base::sapply(Stack, uj:::.getpkg)
+  Funs <- base::sapply(stack, uj:::.getfun)
+  Pkgs <- base::sapply(stack, uj:::.getpkg)
   Ok <- Funs != Default
   Pkgs <- Pkgs[Ok]
   if (base::length(Pkgs) == 0) {Pkgs <- Default}
@@ -344,157 +344,154 @@
   Pkgs
 }
 
-.fun_pkg_stack <- function(Fun, Pkg, Stack, FUN, STACK) {
-  if (Fun == "") {Fun <- FUN}
-  if (Pkg == "") {Pkg <- "..??.."}
-  if (Stack == "") {Stack <- STACK}
-  Fun <- uj:::.stack2funs(Fun, 1000)
-  Pkg <- uj:::.stack2pkgs(Pkg, 1000)
-  Stack <- base::paste0(uj:::.stack2pkgfuns(Stack, MaxLen = 35, Vec = T), collapse = " >> ")
-  base::list(Fun = Fun, Pkg = Pkg, Stack = Stack)
+.fun_pkg_stack <- function(fun, pkg, stack, .FUN, .STACK) {
+  if (fun == "") {fun <- .FUN}
+  if (pkg == "") {pkg <- "..??.."}
+  if (stack == "") {stack <- .STACK}
+  fun <- uj:::.stack2funs(fun, 1000)
+  pkg <- uj:::.stack2pkgs(pkg, 1000)
+  stack <- base::paste0(uj:::.stack2pkgfuns(stack, .MAX.LEN = 35, .VEC = T), collapse = " >> ")
+  base::list(fun = fun, .PKG = pkg, stack = stack)
 }
 
 # meets ####
 
-.meets_errs <- function(X, ...) {
+.meets_errs <- function(x, ...) {
 	if (base::...length() == 0) {return(NULL)}
-	Vars <- base::c('.n', '.nr', '.nc', '.min', '.minr', '.minc', '.max', '.maxr', '.maxc', '.vals', '.lt', '.le', '.le', '.ge', '.gt')
-	Dots <- base::list(...)
-	DotNames  <- base::names(Dots)
-	PopNames  <- DotNames[DotNames != ""]
-	UnqNames  <- base::unique(PopNames[PopNames != ""])
-	AllUnique <- uj::f0(base::is.null(DotNames), T, base::setequal(PopNames, UnqNames))
-	NoBlanks  <- uj::f0(base::is.null(DotNames), T, !base::any(DotNames == ""))
-	AllValid  <- uj::f0(base::length(PopNames) == 0, T, base::all(DotNames %in% Vars))
-	Errors <- NULL
-	if (!AllValid) {Errors <- base::c(Errors, "Names of arguments in [...] must be in c('.n', '.nr', '.nc', '.min', '.minr', '.minc', '.max', '.maxr', '.maxc', '.vals', '.lt', '.le', '.ge', '.gt').")}
-	if (!NoBlanks) {Errors <- base::c(Errors, "All arguments in [...] must be named.")}
-	if (!AllUnique) {Errors <- base::c(Errors, "Arguments in [...] must be named uniquely.")}
-	if (!base::is.null(Errors)) {return(Errors)}
-
-	okVec <- function(Dot) {uj::f0(base::is.null(Dot), T, uj::f0(!base::is.atomic(Dot) | base::length(Dot) == 0, F, uj::f0(base::is.vector(Dot), T, uj::f0(!base::is.array(Dot), F, base::length(base::dim(Dot)) < 2))))}
-	okScl <- function(Dot) {uj::f0(base::is.null(Dot), T, uj::f0(!okVec(Dot), F, base::length(Dot) == 1))}
-	okIndVec <- function(Dot) {uj::f0(base::is.null(Dot), T, uj::f0(!okVec(Dot), F, !base::any(base::is.na(Dot)) & base::all(Dot >= 0 & base::all(Dot == base::round(Dot)))))}
-	okIndScl <- function(Dot) {uj::f0(base::is.null(Dot), T, uj::f0(!okScl(Dot), F, !base::is.na(Dot) & Dot >= 0 & uj::rounded(Dot)))}
-	okSrtVec <- function(Obj, Dot) {
-	  ObjWild <- uj::f0(base::is.null(Obj), T, uj::f0(!base::is.atomic(Obj), F, uj::f0(base::length(Obj) == 0, T, base::all(base::is.na(Obj)))))
-		ObjChr <- base::is.character(Obj); DotChr <- base::is.character(Dot)
-		ObjNum <- base::is.numeric(Obj); DotNum <- base::is.numeric(Dot)
-		ObjLgl <- base::is.logical(Obj); DotLgl <- base::is.logical(Dot)
-		ObjOrd <- base::is.ordered(Obj); DotOrd <- base::is.ordered(Dot)
-		ObjLevs <- uj::f0(!ObjOrd, NULL, base::levels(Obj)); ObjLevCount <- base::length(ObjLevs)
-		DotLevs <- uj::f0(!DotOrd, NULL, base::levels(Dot)); DotLevCount <- base::length(DotLevs)
-		uj::f0(base::is.null(Dot), T,
-						uj::f0(!okVec(Dot), F,
-									uj::f0(!DotNum & !DotLgl & !DotChr & !DotOrd, F,
-													uj::f0(!base::is.atomic(Obj), T,
-																uj::f0(ObjWild, T,
-																				uj::f0(ObjChr & DotChr, T,
-																							uj::f0(ObjNum & DotNum, T,
-																											uj::f0(ObjLgl & DotLgl, T,
-																														uj::f0(!ObjOrd | !DotOrd, F,
-																																		uj::f0(ObjLevCount != DotLevCount, F,
-																																					base::all(ObjLevs == DotLevs)))))))))))
-	}
-	okSrtScl <- function(Obj, Dot) {uj::f0(base::is.null(Dot), T, uj::f0(!okSrtVec(Obj, Dot), F, base::length(Dot) == 1))}
-	lt <- Dots$.lt; min  <- Dots$.min ; max  <- Dots$.max ; n  <- Dots$.Nn
-	le <- Dots$.le; minr <- Dots$.minr; maxr <- Dots$.maxr; nr <- Dots$.nr
-	ge <- Dots$.ge; minc <- Dots$.minc; maxc <- Dots$.maxc; nc <- Dots$.nc
-	gt <- Dots$.gt; vals <- Dots$.vals
-	base::c(
-		uj::f0(okIndVec(n), NULL, "[.n] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
-		uj::f0(okIndVec(nr), NULL, "[.nr] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
-		uj::f0(okIndVec(nc), NULL, "[.nc] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec)."),
-		uj::f0(okIndScl(min), NULL, "[.min] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-		uj::f0(okIndScl(max), NULL, "[.max] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-		uj::f0(okIndScl(minr), NULL, "[.minr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-		uj::f0(okIndScl(minc), NULL, "[.minc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-		uj::f0(okIndScl(maxr), NULL, "[.maxr] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-		uj::f0(okIndScl(maxc), NULL, "[.maxc] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl)."),
-		uj::f0(okSrtScl(X, lt), NULL, "[.lt] must be NULL or a non-NA sortable atomic scalar (?cmp_srt_scl) comparable with [X] (?comparable)."),
-		uj::f0(okSrtScl(X, le), NULL, "[.le] must be NULL or a non-NA sortable atomic scalar (?cmp_srt_scl) comparable with [X] (?comparable)."),
-		uj::f0(okSrtScl(X, ge), NULL, "[.ge] must be NULL or a non-NA sortable atomic scalar (?cmp_srt_scl) comparable with [X] (?comparable)."),
-		uj::f0(okSrtScl(X, gt), NULL, "[.gt] must be NULL or a non-NA sortable atomic scalar (?cmp_srt_scl) comparable with [X] (?comparable)."),
-		uj::f0(okSrtVec(X, vals), NULL, "[.vals] must be NULL or a complete atomic vec (?cmp_vec) comparable with [X] (?comparable).")
-	)
+  Dots <- base::list(...)
+  Names <- base::names(Dots)
+  Valid <- base::c('.N', '.NR', '.NC', '.MIN', '.MINR', '.MINC', '.MAX', '.MAXR', '.MAXC', '.VALS', '.LT', '.LE', '.GE', '.GT')
+  Errors <- NULL
+	if (base::length(Names) != base::length(Dots)) {Errors <- base::c(Errors, "All [...] arguments must be named.")}
+	if (base::length(Names) != base::length(base::unique(Names))) {Errors <- base::c(Errors, "Names of [...] arguments must be unique.")}
+	if (!base::all(Names %in% Valid)) {Errors <- base::c(Errors, base::paste0("All names of [...] arguments must be from c('.N', '.NR', '.NC', '.MIN', '.MINR', '.MINC', '.MAX', '.MAXR', '.MAXC', '.VALS', '.LT', '.LE', '.GE', '.GT')."))}
+	if (!base::is.null(Errors)) {uj::stopper(Errors, .FUN = "meets", .PKG = "uj")}
+  if (".N" %in% Names) {if (!uj:::.cmp_nnw_vec(Dots$.N)) {Errors <- base::c(Errors, "[.N] must be a non-negative whole-number vector (?uj::cmp_nnw_vec) if supplied.")}}
+  if (".MIN" %in% Names) {if (!uj:::cmp_nnw_scl(Dots$.MIN)) {Errors <- base::c(Errors, "[.MIN] must be a non-negative whole-number scalar (?uj::cmp_nnw_scl) if supplied.")}}
+  if (".MAX" %in% Names) {if (!uj:::cmp_nnw_scl(Dots$.MAX)) {Errors <- base::c(Errors, "[.MAX] must be a non-negative whole-number scalar (?uj::cmp_nnw_scl) if supplied.")}}
+  if (".NR" %in% Names) {
+    if (!base::is.data.frame(x) & !is.matrix(x)) {Errors <- base::c(Errors, "[x] must be a data.frame or matrix when [.NR] is supplied")}
+    if (!uj:::.cmp_nnw_vec(Dots$.NR)) {Errors <- base::c(Errors, "[.NR] must be a non-negative whole-number vector (?uj::cmp_nnw_vec) if supplied.")}
+  }
+  if (".MINR" %in% Names) {
+    if (!base::is.data.frame(x) & !is.matrix(x)) {Errors <- base::c(Errors, "[x] must be a data.frame or matrix when [.MINR] is supplied")}
+    if (!uj:::cmp_nnw_scl(Dots$.MINR)) {Errors <- base::c(Errors, "[.MINR] must be a non-negative whole-number scalar (?uj::cmp_nnw_scl) if supplied.")}
+  }
+  if (".MAXR" %in% Names) {
+    if (!base::is.data.frame(x) & !is.matrix(x)) {Errors <- base::c(Errors, "[x] must be a data.frame or matrix when [.MAXR] is supplied")}
+    if (!uj:::cmp_nnw_scl(Dots$.MAXR)) {Errors <- base::c(Errors, "[.MAXR] must be a non-negative whole-number scalar (?uj::cmp_nnw_scl) if supplied.")}
+  }
+  if (".NC" %in% Names) {
+    if (!base::is.data.frame(x) & !is.matrix(x)) {Errors <- base::c(Errors, "[x] must be a data.frame or matrix when [.NC] is supplied")}
+    if (!uj:::.cmp_nnw_vec(Dots$.NC)) {Errors <- base::c(Errors, "[.NC] must be a non-negative whole-number vector (?uj::cmp_nnw_vec) if supplied.")}
+  }
+  if (".MINC" %in% Names) {
+    if (!base::is.data.frame(x) & !is.matrix(x)) {Errors <- base::c(Errors, "[x] must be a data.frame or matrix when [.MINC] is supplied")}
+    if (!uj:::cmp_nnw_scl(Dots$.MINC)) {Errors <- base::c(Errors, "[.MINC] must be a non-negative whole-number scalar (?uj::cmp_nnw_scl) if supplied.")}
+  }
+  if (".MAXC" %in% Names) {
+    if (!base::is.data.frame(x) & !is.matrix(x)) {Errors <- base::c(Errors, "[x] must be a data.frame or matrix when [.MAXC] is supplied")}
+    if (!uj:::cmp_nnw_scl(Dots$.MAXC)) {Errors <- base::c(Errors, "[.MAXC] must be a non-negative whole-number scalar (?uj::cmp_nnw_scl) if supplied.")}
+  }
+  if (".VALS" %in% Names) {
+    if (!uj:::.cmp_atm_vec(Dots$.VALS)) {Errors <- base::c(Errors, "[.VALS] must be a complete atomic vector (?uj::cmp_atm_vec) if supplied.")}
+    else if (!uj:::.compat(x, Dots$.VALS)) {Errors <- base::c(Errors, "[x] and [.VALS] must be compatible modes.")}
+  }
+  if (".LT" %in% Names) {
+    if (!uj:::.cmp_srt_scl(Dots$.LT)) {Errors <- base::c(Errors, "[.LT] must be a complete sortable scalar (?uj::cmp_srt_scl).")}
+    else if (!uj:::.compar(x, Dots$.LT)) {Errors <- base::c(Errors, "[x] and [.LT] must be of comparable, sortable modes.")}
+  }
+  if (".LE" %in% Names) {
+    if (!uj:::.cmp_srt_scl(Dots$.LE)) {Errors <- base::c(Errors, "[.LE] must be a complete sortable scalar (?uj::cmp_srt_scl).")}
+    else if (!uj:::.compar(x, Dots$.LE)) {Errors <- base::c(Errors, "[x] and [.LE] must be of comparable, sortable modes.")}
+  }
+  if (".GE" %in% Names) {
+    if (!uj:::.cmp_srt_scl(Dots$.GE)) {Errors <- base::c(Errors, "[.GE] must be a complete sortable scalar (?uj::cmp_srt_scl).")}
+    else if (!uj:::.compar(x, Dots$.GE)) {Errors <- base::c(Errors, "[x] and [.VALS] must be of comparable, sortable modes.")}
+  }
+  if (".GT" %in% Names) {
+    if (!uj:::.cmp_srt_scl(Dots$.GT)) {Errors <- base::c(Errors, "[.GT] must be a complete sortable scalar (?uj::cmp_srt_scl).")}
+    else if (!uj:::.compar(x, Dots$.GT)) {Errors <- base::c(Errors, "[x] and [.GT] must be of comparable, sortable modes.")}
+  }
+  if (!base::is.null(Errors)) {uj::stopper(Errors, .FUN = "meets", .PKG = "uj")}
 }
 
 # value_exists ####
 
-.value_errs <- function(Name, Err = TRUE, Gens = 1) {
+.value_errs <- function(name, .ERR = TRUE, .GENS = 1) {
   Fun <- uj::caller()
 	Errors <- NULL
-	if (!uj:::.cmp_chr_scl(Name)) {Errors <- base::c(Errors, "[Name] must be a complete character scalar (?cmp_chr_scl).")}
-	if (!uj:::.cmp_psw_scl(Gens)) {Errors <- base::c(Errors, "[Gens] must be a positive whole number scalar (?cmp_psw_scl).")}
-	if (!uj:::.cmp_lgl_scl(Err)) {Errors <- base::c(Errors, "[Err] must be TRUE or FALSE.")}
-	if (!base::is.null(Errors)) {uj::stopperr(Errors, FUN = Fun, PKG = "uj")}
+	if (!uj:::.cmp_chr_scl(name)) {Errors <- base::c(Errors, "[name] must be a complete character scalar (?cmp_chr_scl).")}
+	if (!uj:::.cmp_psw_scl(.GENS)) {Errors <- base::c(Errors, "[.GENS] must be a positive whole number scalar (?cmp_psw_scl).")}
+	if (!uj:::.cmp_lgl_scl(.ERR)) {Errors <- base::c(Errors, "[.ERR] must be TRUE or FALSE.")}
+	if (!base::is.null(Errors)) {uj::stopperr(Errors, FUN = Fun, .PKG = "uj")}
 }
 
 # na ####
 
-.ok_vals <- function(X) {!base::is.na(X)}
+.ok_vals <- function(x) {!base::is.na(x)}
 
 # rd ####
 
-.rd_filename <- function(File, Type) {
-	if      (Type == "csv") {Prompt <- "comma separated values (.csv) text file"}
-	else if (Type == "tsv") {Prompt <- "tab separated values (.tsv) text file"}
-	else if (Type == "xsv") {Prompt <- "delimited text file"}
-	if (base::is.null(File)) {File <- uj::choose_doc(Prompt)}
-	if (!uj:::.cmp_chr_vec(File)) {uj::stopperr("[File] must be NULL or a complete character vec (?cmp_chr_vec)", FUN = base::paste0("rd_", Type), PKG = "uj")}
-  File <- base::paste0(File, collapse = "")
-	if (!base::file.exists(File)) {uj::stopperr(base::paste0("the specified file ('", File, "') does not exist."), FUN = base::paste0("rd_", Type), PKG = "uj")}
-  File
+.rd_filename <- function(file, type) {
+	if      (type == "csv") {Prompt <- "comma separated values (.csv) text file"}
+	else if (type == "tsv") {Prompt <- "tab separated values (.tsv) text file"}
+	else if (type == "xsv") {Prompt <- "delimited text file"}
+	if (base::is.null(file)) {file <- uj::choose_doc(Prompt)}
+	if (!uj:::.cmp_chr_vec(file)) {uj::stopperr("[file] must be NULL or a complete character vec (?cmp_chr_vec)", FUN = base::paste0("rd_", type), .PKG = "uj")}
+  file <- base::paste0(file, collapse = "")
+	if (!base::file.exists(file)) {uj::stopperr(base::paste0("the specified file ('", file, "') does not exist."), FUN = base::paste0("rd_", type), .PKG = "uj")}
+  file
 }
 
 # pals ####
 
-.pal_errs <- function(TotN, UnqN, MaxUnqN, Stack) {
+.pal_errs <- function(tot, unq, max.unq, .STACK) {
   Fun <- uj::caller()
   Errs <- NULL
-  if (!uj:::.cmp_psw_scl(TotN)) {Errs <- base::c(Errs, "[TotN] must be a positive whole number scalar.")}
-  if (!uj:::.cmp_psw_scl(UnqN)) {Errs <- base::c(Errs, "[UnqN] must be a positive whole number scalar.")}
-  if (!base::is.null(Errs)) {uj::stopperr(Errs, FUN = Fun, PKG = "uj", STACK = Stack)}
-  if (UnqN > MaxUnqN) {uj::stopperr("[UnqN] is greater than the number of unique values available for the designated palette.", FUN = Fun, PKG = "uj", STACK = Stack)}
+  if (!uj:::.cmp_psw_scl(tot)) {Errs <- base::c(Errs, "[tot] must be a positive whole number scalar.")}
+  if (!uj:::.cmp_psw_scl(unq)) {Errs <- base::c(Errs, "[unq] must be a positive whole number scalar.")}
+  if (!base::is.null(Errs)) {uj::stopperr(Errs, .FUN = Fun, .PKG = "uj", .STACK = .STACK)}
+  if (unq > max.unq) {uj::stopperr("[unq] is greater than the number of unique values available for the designated palette.", .FUN = Fun, .PKG = "uj", .STACK = .STACK)}
 }
 
-.pal_vals <- function(Type, TotN, UnqN) {
-	Vals <- uj::run("uj::v(", Type, ")")[1:UnqN]
-	while (base::length(Vals) < TotN) {Vals <- base::c(Vals, Vals)}
-	Vals[1:TotN]
+.pal_vals <- function(type, tot, unq) {
+	Vals <- uj::run("uj::v(", type, ")")[1:unq]
+	while (base::length(Vals) < tot) {Vals <- base::c(Vals, Vals)}
+	Vals[1:tot]
 }
 
 # ipat ####
 
-.pat_errs <- function(X, Pat, Stack) {
+.pat_errs <- function(x, pat, .STACK) {
 	Errors <- NULL
 	Fun <- uj::caller()
-	if (!uj:::.cmp_chr_vec(X)) {base::c(Errors, "[X] must be a complete character vec (?cmp_chr_vec).")}
-	if (!uj:::.cmp_str_scl(Pat)) {base::c(Errors, "[pat] must be a complete string scalar (?cmp_str_scl).")}
-	uj::stopperr(Errors, FUN = Fun, PKG = "uj", STACK = Stack)
+	if (!uj:::.cmp_chr_vec(x)) {base::c(Errors, "[x] must be a complete character vec (?cmp_chr_vec).")}
+	if (!uj:::.cmp_str_scl(pat)) {base::c(Errors, "[pat] must be a complete string scalar (?cmp_str_scl).")}
+	uj::stopperr(Errors, .FUN = Fun, .PKG = "uj", .STACK = .STACK)
 }
 
 # Nth ####
 
-.Nth_errs <- function(X, N, SclCount, Stack) {
-  OkN <- uj::f0(SclCount, uj:::.cmp_psw_scl(N), uj:::.cmp_psw_vec(N))
+.nth_errs <- function(x, n, .SCL.COUNT, .STACK) {
+  OkN <- uj::f0(.SCL.COUNT, uj:::.cmp_psw_scl(n), uj:::.cmp_psw_vec(n))
 	Fun <- uj::caller()
 	Errors <- NULL
-	if (!uj:::.pop_vec(X)) {Errors <- base::c(Errors, "[X] is not a populated vector (?pop_vec).")}
-	if (SclCount & !OkN) {Errors <- base::c(Errors, "[N] must be a complete positive whole-number scalar (?cmp_psw_sco).")}
-	if (!SclCount & !OkN) {Errors <- base::c(Errors, "[N] must be a complete positive whole-number vector (?cmp_psw_vec).")}
-	if (!base::is.null(Errors)) {uj::stopperr(Errors, FUN = Fun, PKG = "uj", STACK = Stack)}
-	if (base::any(N > base::length(X))) {uj::stopperr(base::paste0(uj::f0(SclCount, "", "The largest value in")," [N] is greater than the number of elements in [x]."), FUN = Fun, PKG = "uj")}
+	if (!uj:::.pop_vec(x)) {Errors <- base::c(Errors, "[x] is not a populated vector (?pop_vec).")}
+	if (.SCL.COUNT & !OkN) {Errors <- base::c(Errors, "[n] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
+	if (!.SCL.COUNT & !OkN) {Errors <- base::c(Errors, "[n] must be a complete positive whole-number vector (?cmp_psw_vec).")}
+	if (!base::is.null(Errors)) {uj::stopperr(Errors, .FUN = Fun, .PKG = "uj", .STACK = .STACK)}
+	if (base::any(n > base::length(x))) {uj::stopperr(base::paste0(uj::f0(.SCL.COUNT, "", "The largest value in")," [n] is greater than the number of elements in [x]."), FUN = Fun, .PKG = "uj", .STACK = .STACK)}
 }
 
 # r ####
 
-.r_errs <- function(Fun, Stack, ..., R = NULL, E = NULL) {
+.r_errs <- function(Fun, .STACK, ..., r = NULL, e = NULL) {
 	Errors <- NULL
 	if (!base::all(base::sapply(base::list(...), uj:::.atm_vec))) {Errors <- base::c(Errors, "Arguments in [...] must be atomic vecs (?atm_vec).")}
-	if (!base::ifelse(base::is.null(R), T, uj:::.cmp_psw_scl(R))) {Errors <- base::c(Errors, "[R] must be a positive whole-number scalar (?cmp_psw_scl).")}
-	if (!base::ifelse(base::is.null(E), T, uj:::.cmp_psw_scl(E))) {Errors <- base::c(Errors, "[E] must be a positive whole-number scalar (?cmp_psw_scl).")}
-	if (!base::is.null(Errors)) {uj::stopperr(Errors, FUN = Fun, PKG = 'uj', STACK = Stack)}
+	if (!base::ifelse(base::is.null(r), T, uj:::.cmp_psw_scl(r))) {Errors <- base::c(Errors, "[r] must be a positive whole-number scalar (?cmp_psw_scl).")}
+	if (!base::ifelse(base::is.null(e), T, uj:::.cmp_psw_scl(e))) {Errors <- base::c(Errors, "[e] must be a positive whole-number scalar (?cmp_psw_scl).")}
+	if (!base::is.null(Errors)) {uj::stopperr(Errors, .FUN = Fun, .PKG = 'uj', .STACK = .STACK)}
 }
 
 # dialog ####

@@ -4,12 +4,12 @@
 #' @description Functions for checking combinations of \link[=UNQ]{uniqueness}, \link[=mmm]{xmode}, and \link[=ccc]{xclass}.
 #' @details
 #' \tabular{ll}{  `unq_mmm_ccc_funs`   \tab What \link[=iunq]{unique} + \link[=mmm]{xmode} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there? \cr   \tab   \cr
-#'                `unq_{mmm}_{ccc}`    \tab Is `X` both unique and a match to the single xmode property `'{mmm}'` and single xclass property `'{ccc}'`? (where `{mmm}` and
+#'                `unq_{mmm}_{ccc}`    \tab Is `x` both unique and a match to the single xmode property `'{mmm}'` and single xclass property `'{ccc}'`? (where `{mmm}` and
 #'                                          `{ccc}` are placeholders for any given xmode property and any given xclass property, respectively).                               \cr   \tab   \cr
-#'                `unq_mmm_ccc`        \tab Is `X` both unique and a match to the single xmode and xclass properties in arguments `MMM` and `CCC`, respectively?                             }
-#' @param X An R object.
-#' @param MMM A character scalar single xmode property from \code{\link{mmm_props}()}.
-#' @param CCC A character scalar single xclass property from \code{\link{ccc_props}()}.
+#'                `unq_mmm_ccc`        \tab Is `x` both unique and a match to the single xmode and xclass properties in arguments `.MMM` and `.CCC`, respectively?                           }
+#' @param x An R object.
+#' @param .MMM A character scalar single xmode property from \code{\link{mmm_props}()}.
+#' @param .CCC A character scalar single xclass property from \code{\link{ccc_props}()}.
 #' @inheritDotParams meets
 #' @inheritSection meets Specifying count and value restrictions
 #' @return **A character vector** \cr\cr `unq_mmm_ccc_funs`
@@ -21,917 +21,917 @@
 #' unq_ch1_vec(letters)
 #' unq_str_scl("a")
 #' @export
-unq_mmm_ccc <- function(X, MMM, CCC, ...) {
-  if (uj::cmp_mmm_ccc(X, MMM, CCC, ...)) {
-    if      (CCC == "dtf") {base::nrow(X) == base::nrow(base::unique(X))}
-    else if (CCC == "vls") {
-      N <- base::lengths(X)
-      NU <- base::sapply(X, function(x) {base::length(base::unique(x))})
+unq_mmm_ccc <- function(x, .MMM, .CCC, ...) {
+  if (uj::cmp_mmm_ccc(x, .MMM, .CCC, ...)) {
+    if      (.CCC == "dtf") {base::nrow(x) == base::nrow(base::unique(x))}
+    else if (.CCC == "vls") {
+      N <- base::lengths(x)
+      NU <- base::sapply(x, function(x) {base::length(base::unique(x))})
       base::all(N == NU)
-    } else {base::length(X) == base::length(base::unique(X))}
+    } else {base::length(x) == base::length(base::unique(x))}
   } else {F}
 }
 
 #' @rdname unq_mmm_ccc
 #' @export
 unq_mmm_ccc_funs <- function() {
-  X <- base::expand.grid(mmm = uj::v(mmm), ccc = uj::v(ccc))
-  X <- base::apply(X, 1, paste0, collapse = "_")
-  base::paste0('unq_', base::sort(uj::av(X)))
+  x <- base::expand.grid(mmm = uj::v(mmm), ccc = uj::v(ccc))
+  x <- base::apply(x, 1, paste0, collapse = "_")
+  base::paste0('unq_', base::sort(uj::av(x)))
 }
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_atm_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'atm', 'arr', ...)}
+unq_atm_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'atm', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_atm_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'atm', 'dtf', ...)}
+unq_atm_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'atm', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_atm_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'atm', 'gen', ...)}
+unq_atm_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'atm', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_atm_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'atm', 'mat', ...)}
+unq_atm_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'atm', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_atm_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'atm', 'mvc', ...)}
+unq_atm_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'atm', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_atm_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'atm', 'scl', ...)}
+unq_atm_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'atm', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_atm_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'atm', 'vec', ...)}
+unq_atm_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'atm', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_atm_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'atm', 'vls', ...)}
+unq_atm_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'atm', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch1_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch1', 'arr', ...)}
+unq_ch1_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch1', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch1_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch1', 'dtf', ...)}
+unq_ch1_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch1', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch1_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch1', 'gen', ...)}
+unq_ch1_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch1', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch1_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch1', 'mat', ...)}
+unq_ch1_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch1', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch1_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch1', 'mvc', ...)}
+unq_ch1_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch1', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch1_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch1', 'scl', ...)}
+unq_ch1_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch1', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch1_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch1', 'vec', ...)}
+unq_ch1_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch1', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch1_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch1', 'vls', ...)}
+unq_ch1_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch1', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch3_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch3', 'arr', ...)}
+unq_ch3_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch3', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch3_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch3', 'dtf', ...)}
+unq_ch3_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch3', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch3_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch3', 'gen', ...)}
+unq_ch3_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch3', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch3_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch3', 'mat', ...)}
+unq_ch3_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch3', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch3_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch3', 'mvc', ...)}
+unq_ch3_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch3', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch3_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch3', 'scl', ...)}
+unq_ch3_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch3', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch3_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch3', 'vec', ...)}
+unq_ch3_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch3', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ch3_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'ch3', 'vls', ...)}
+unq_ch3_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'ch3', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_chr_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'chr', 'arr', ...)}
+unq_chr_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'chr', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_chr_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'chr', 'dtf', ...)}
+unq_chr_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'chr', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_chr_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'chr', 'gen', ...)}
+unq_chr_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'chr', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_chr_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'chr', 'mat', ...)}
+unq_chr_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'chr', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_chr_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'chr', 'mvc', ...)}
+unq_chr_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'chr', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_chr_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'chr', 'scl', ...)}
+unq_chr_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'chr', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_chr_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'chr', 'vec', ...)}
+unq_chr_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'chr', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_chr_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'chr', 'vls', ...)}
+unq_chr_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'chr', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_clr_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'clr', 'arr', ...)}
+unq_clr_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'clr', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_clr_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'clr', 'dtf', ...)}
+unq_clr_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'clr', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_clr_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'clr', 'gen', ...)}
+unq_clr_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'clr', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_clr_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'clr', 'mat', ...)}
+unq_clr_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'clr', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_clr_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'clr', 'mvc', ...)}
+unq_clr_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'clr', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_clr_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'clr', 'scl', ...)}
+unq_clr_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'clr', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_clr_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'clr', 'vec', ...)}
+unq_clr_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'clr', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_clr_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'clr', 'vls', ...)}
+unq_clr_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'clr', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_evn_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'evn', 'arr', ...)}
+unq_evn_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'evn', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_evn_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'evn', 'dtf', ...)}
+unq_evn_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'evn', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_evn_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'evn', 'gen', ...)}
+unq_evn_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'evn', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_evn_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'evn', 'mat', ...)}
+unq_evn_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'evn', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_evn_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'evn', 'mvc', ...)}
+unq_evn_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'evn', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_evn_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'evn', 'scl', ...)}
+unq_evn_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'evn', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_evn_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'evn', 'vec', ...)}
+unq_evn_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'evn', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_evn_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'evn', 'vls', ...)}
+unq_evn_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'evn', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_fac_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'fac', 'arr', ...)}
+unq_fac_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'fac', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_fac_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'fac', 'dtf', ...)}
+unq_fac_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'fac', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_fac_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'fac', 'gen', ...)}
+unq_fac_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'fac', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_fac_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'fac', 'mat', ...)}
+unq_fac_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'fac', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_fac_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'fac', 'mvc', ...)}
+unq_fac_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'fac', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_fac_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'fac', 'scl', ...)}
+unq_fac_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'fac', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_fac_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'fac', 'vec', ...)}
+unq_fac_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'fac', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_fac_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'fac', 'vls', ...)}
+unq_fac_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'fac', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_frc_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'frc', 'arr', ...)}
+unq_frc_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'frc', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_frc_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'frc', 'dtf', ...)}
+unq_frc_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'frc', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_frc_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'frc', 'gen', ...)}
+unq_frc_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'frc', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_frc_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'frc', 'mat', ...)}
+unq_frc_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'frc', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_frc_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'frc', 'mvc', ...)}
+unq_frc_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'frc', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_frc_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'frc', 'scl', ...)}
+unq_frc_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'frc', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_frc_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'frc', 'vec', ...)}
+unq_frc_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'frc', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_frc_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'frc', 'vls', ...)}
+unq_frc_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'frc', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ind_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'ind', 'arr', ...)}
+unq_ind_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'ind', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ind_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'ind', 'dtf', ...)}
+unq_ind_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'ind', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ind_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'ind', 'gen', ...)}
+unq_ind_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'ind', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ind_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'ind', 'mat', ...)}
+unq_ind_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'ind', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ind_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'ind', 'mvc', ...)}
+unq_ind_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'ind', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ind_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'ind', 'scl', ...)}
+unq_ind_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'ind', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ind_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'ind', 'vec', ...)}
+unq_ind_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'ind', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ind_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'ind', 'vls', ...)}
+unq_ind_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'ind', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_lgl_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'lgl', 'arr', ...)}
+unq_lgl_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'lgl', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_lgl_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'lgl', 'dtf', ...)}
+unq_lgl_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'lgl', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_lgl_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'lgl', 'gen', ...)}
+unq_lgl_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'lgl', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_lgl_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'lgl', 'mat', ...)}
+unq_lgl_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'lgl', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_lgl_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'lgl', 'mvc', ...)}
+unq_lgl_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'lgl', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_lgl_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'lgl', 'scl', ...)}
+unq_lgl_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'lgl', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_lgl_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'lgl', 'vec', ...)}
+unq_lgl_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'lgl', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_lgl_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'lgl', 'vls', ...)}
+unq_lgl_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'lgl', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_neg_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'neg', 'arr', ...)}
+unq_neg_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'neg', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_neg_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'neg', 'dtf', ...)}
+unq_neg_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'neg', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_neg_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'neg', 'gen', ...)}
+unq_neg_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'neg', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_neg_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'neg', 'mat', ...)}
+unq_neg_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'neg', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_neg_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'neg', 'mvc', ...)}
+unq_neg_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'neg', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_neg_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'neg', 'scl', ...)}
+unq_neg_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'neg', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_neg_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'neg', 'vec', ...)}
+unq_neg_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'neg', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_neg_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'neg', 'vls', ...)}
+unq_neg_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'neg', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ngw_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'ngw', 'arr', ...)}
+unq_ngw_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'ngw', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ngw_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'ngw', 'dtf', ...)}
+unq_ngw_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'ngw', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ngw_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'ngw', 'gen', ...)}
+unq_ngw_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'ngw', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ngw_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'ngw', 'mat', ...)}
+unq_ngw_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'ngw', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ngw_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'ngw', 'mvc', ...)}
+unq_ngw_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'ngw', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ngw_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'ngw', 'scl', ...)}
+unq_ngw_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'ngw', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ngw_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'ngw', 'vec', ...)}
+unq_ngw_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'ngw', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ngw_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'ngw', 'vls', ...)}
+unq_ngw_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'ngw', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nng_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'nng', 'arr', ...)}
+unq_nng_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'nng', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nng_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'nng', 'dtf', ...)}
+unq_nng_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'nng', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nng_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'nng', 'gen', ...)}
+unq_nng_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'nng', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nng_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'nng', 'mat', ...)}
+unq_nng_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'nng', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nng_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'nng', 'mvc', ...)}
+unq_nng_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'nng', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nng_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'nng', 'scl', ...)}
+unq_nng_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'nng', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nng_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'nng', 'vec', ...)}
+unq_nng_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'nng', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nng_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'nng', 'vls', ...)}
+unq_nng_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'nng', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nnw_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'nnw', 'arr', ...)}
+unq_nnw_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'nnw', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nnw_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'nnw', 'dtf', ...)}
+unq_nnw_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'nnw', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nnw_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'nnw', 'gen', ...)}
+unq_nnw_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'nnw', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nnw_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'nnw', 'mat', ...)}
+unq_nnw_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'nnw', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nnw_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'nnw', 'mvc', ...)}
+unq_nnw_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'nnw', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nnw_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'nnw', 'scl', ...)}
+unq_nnw_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'nnw', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nnw_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'nnw', 'vec', ...)}
+unq_nnw_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'nnw', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nnw_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'nnw', 'vls', ...)}
+unq_nnw_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'nnw', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nps_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'nps', 'arr', ...)}
+unq_nps_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'nps', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nps_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'nps', 'dtf', ...)}
+unq_nps_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'nps', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nps_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'nps', 'gen', ...)}
+unq_nps_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'nps', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nps_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'nps', 'mat', ...)}
+unq_nps_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'nps', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nps_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'nps', 'mvc', ...)}
+unq_nps_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'nps', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nps_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'nps', 'scl', ...)}
+unq_nps_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'nps', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nps_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'nps', 'vec', ...)}
+unq_nps_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'nps', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nps_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'nps', 'vls', ...)}
+unq_nps_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'nps', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_npw_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'npw', 'arr', ...)}
+unq_npw_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'npw', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_npw_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'npw', 'dtf', ...)}
+unq_npw_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'npw', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_npw_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'npw', 'gen', ...)}
+unq_npw_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'npw', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_npw_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'npw', 'mat', ...)}
+unq_npw_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'npw', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_npw_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'npw', 'mvc', ...)}
+unq_npw_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'npw', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_npw_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'npw', 'scl', ...)}
+unq_npw_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'npw', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_npw_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'npw', 'vec', ...)}
+unq_npw_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'npw', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_npw_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'npw', 'vls', ...)}
+unq_npw_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'npw', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nst_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'nst', 'arr', ...)}
+unq_nst_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'nst', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nst_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'nst', 'dtf', ...)}
+unq_nst_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'nst', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nst_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'nst', 'gen', ...)}
+unq_nst_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'nst', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nst_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'nst', 'mat', ...)}
+unq_nst_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'nst', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nst_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'nst', 'mvc', ...)}
+unq_nst_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'nst', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nst_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'nst', 'scl', ...)}
+unq_nst_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'nst', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nst_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'nst', 'vec', ...)}
+unq_nst_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'nst', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_nst_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'nst', 'vls', ...)}
+unq_nst_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'nst', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_num_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'num', 'arr', ...)}
+unq_num_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'num', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_num_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'num', 'dtf', ...)}
+unq_num_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'num', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_num_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'num', 'gen', ...)}
+unq_num_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'num', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_num_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'num', 'mat', ...)}
+unq_num_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'num', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_num_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'num', 'mvc', ...)}
+unq_num_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'num', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_num_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'num', 'scl', ...)}
+unq_num_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'num', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_num_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'num', 'vec', ...)}
+unq_num_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'num', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_num_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'num', 'vls', ...)}
+unq_num_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'num', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_odd_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'odd', 'arr', ...)}
+unq_odd_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'odd', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_odd_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'odd', 'dtf', ...)}
+unq_odd_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'odd', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_odd_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'odd', 'gen', ...)}
+unq_odd_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'odd', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_odd_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'odd', 'mat', ...)}
+unq_odd_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'odd', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_odd_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'odd', 'mvc', ...)}
+unq_odd_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'odd', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_odd_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'odd', 'scl', ...)}
+unq_odd_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'odd', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_odd_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'odd', 'vec', ...)}
+unq_odd_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'odd', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_odd_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'odd', 'vls', ...)}
+unq_odd_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'odd', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ord_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'ord', 'arr', ...)}
+unq_ord_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'ord', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ord_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'ord', 'dtf', ...)}
+unq_ord_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'ord', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ord_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'ord', 'gen', ...)}
+unq_ord_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'ord', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ord_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'ord', 'mat', ...)}
+unq_ord_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'ord', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ord_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'ord', 'mvc', ...)}
+unq_ord_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'ord', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ord_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'ord', 'scl', ...)}
+unq_ord_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'ord', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ord_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'ord', 'vec', ...)}
+unq_ord_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'ord', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ord_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'ord', 'vls', ...)}
+unq_ord_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'ord', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pct_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'pct', 'arr', ...)}
+unq_pct_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'pct', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pct_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'pct', 'dtf', ...)}
+unq_pct_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'pct', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pct_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'pct', 'gen', ...)}
+unq_pct_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'pct', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pct_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'pct', 'mat', ...)}
+unq_pct_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'pct', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pct_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'pct', 'mvc', ...)}
+unq_pct_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'pct', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pct_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'pct', 'scl', ...)}
+unq_pct_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'pct', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pct_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'pct', 'vec', ...)}
+unq_pct_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'pct', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pct_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'pct', 'vls', ...)}
+unq_pct_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'pct', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pos_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'pos', 'arr', ...)}
+unq_pos_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'pos', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pos_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'pos', 'dtf', ...)}
+unq_pos_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'pos', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pos_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'pos', 'gen', ...)}
+unq_pos_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'pos', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pos_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'pos', 'mat', ...)}
+unq_pos_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'pos', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pos_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'pos', 'mvc', ...)}
+unq_pos_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'pos', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pos_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'pos', 'scl', ...)}
+unq_pos_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'pos', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pos_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'pos', 'vec', ...)}
+unq_pos_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'pos', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_pos_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'pos', 'vls', ...)}
+unq_pos_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'pos', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ppn_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'ppn', 'arr', ...)}
+unq_ppn_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'ppn', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ppn_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'ppn', 'dtf', ...)}
+unq_ppn_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'ppn', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ppn_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'ppn', 'gen', ...)}
+unq_ppn_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'ppn', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ppn_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'ppn', 'mat', ...)}
+unq_ppn_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'ppn', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ppn_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'ppn', 'mvc', ...)}
+unq_ppn_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'ppn', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ppn_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'ppn', 'scl', ...)}
+unq_ppn_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'ppn', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ppn_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'ppn', 'vec', ...)}
+unq_ppn_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'ppn', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_ppn_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'ppn', 'vls', ...)}
+unq_ppn_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'ppn', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_psw_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'psw', 'arr', ...)}
+unq_psw_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'psw', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_psw_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'psw', 'dtf', ...)}
+unq_psw_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'psw', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_psw_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'psw', 'gen', ...)}
+unq_psw_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'psw', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_psw_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'psw', 'mat', ...)}
+unq_psw_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'psw', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_psw_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'psw', 'mvc', ...)}
+unq_psw_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'psw', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_psw_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'psw', 'scl', ...)}
+unq_psw_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'psw', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_psw_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'psw', 'vec', ...)}
+unq_psw_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'psw', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_psw_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'psw', 'vls', ...)}
+unq_psw_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'psw', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_srt_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'srt', 'arr', ...)}
+unq_srt_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'srt', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_srt_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'srt', 'dtf', ...)}
+unq_srt_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'srt', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_srt_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'srt', 'gen', ...)}
+unq_srt_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'srt', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_srt_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'srt', 'mat', ...)}
+unq_srt_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'srt', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_srt_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'srt', 'mvc', ...)}
+unq_srt_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'srt', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_srt_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'srt', 'scl', ...)}
+unq_srt_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'srt', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_srt_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'srt', 'vec', ...)}
+unq_srt_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'srt', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_srt_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'srt', 'vls', ...)}
+unq_srt_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'srt', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_str_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'str', 'arr', ...)}
+unq_str_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'str', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_str_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'str', 'dtf', ...)}
+unq_str_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'str', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_str_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'str', 'gen', ...)}
+unq_str_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'str', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_str_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'str', 'mat', ...)}
+unq_str_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'str', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_str_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'str', 'mvc', ...)}
+unq_str_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'str', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_str_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'str', 'scl', ...)}
+unq_str_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'str', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_str_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'str', 'vec', ...)}
+unq_str_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'str', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_str_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'str', 'vls', ...)}
+unq_str_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'str', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_uno_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'uno', 'arr', ...)}
+unq_uno_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'uno', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_uno_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'uno', 'dtf', ...)}
+unq_uno_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'uno', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_uno_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'uno', 'gen', ...)}
+unq_uno_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'uno', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_uno_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'uno', 'mat', ...)}
+unq_uno_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'uno', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_uno_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'uno', 'mvc', ...)}
+unq_uno_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'uno', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_uno_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'uno', 'scl', ...)}
+unq_uno_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'uno', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_uno_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'uno', 'vec', ...)}
+unq_uno_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'uno', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_uno_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'uno', 'vls', ...)}
+unq_uno_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'uno', 'vls', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_whl_arr <- function(X, ...) {uj::unq_mmm_ccc(X, 'whl', 'arr', ...)}
+unq_whl_arr <- function(x, ...) {uj::unq_mmm_ccc(x, 'whl', 'arr', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_whl_dtf <- function(X, ...) {uj::unq_mmm_ccc(X, 'whl', 'dtf', ...)}
+unq_whl_dtf <- function(x, ...) {uj::unq_mmm_ccc(x, 'whl', 'dtf', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_whl_gen <- function(X, ...) {uj::unq_mmm_ccc(X, 'whl', 'gen', ...)}
+unq_whl_gen <- function(x, ...) {uj::unq_mmm_ccc(x, 'whl', 'gen', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_whl_mat <- function(X, ...) {uj::unq_mmm_ccc(X, 'whl', 'mat', ...)}
+unq_whl_mat <- function(x, ...) {uj::unq_mmm_ccc(x, 'whl', 'mat', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_whl_mvc <- function(X, ...) {uj::unq_mmm_ccc(X, 'whl', 'mvc', ...)}
+unq_whl_mvc <- function(x, ...) {uj::unq_mmm_ccc(x, 'whl', 'mvc', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_whl_scl <- function(X, ...) {uj::unq_mmm_ccc(X, 'whl', 'scl', ...)}
+unq_whl_scl <- function(x, ...) {uj::unq_mmm_ccc(x, 'whl', 'scl', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_whl_vec <- function(X, ...) {uj::unq_mmm_ccc(X, 'whl', 'vec', ...)}
+unq_whl_vec <- function(x, ...) {uj::unq_mmm_ccc(x, 'whl', 'vec', ...)}
 
 #' @rdname unq_mmm_ccc
 #' @export
-unq_whl_vls <- function(X, ...) {uj::unq_mmm_ccc(X, 'whl', 'vls', ...)}
+unq_whl_vls <- function(x, ...) {uj::unq_mmm_ccc(x, 'whl', 'vls', ...)}

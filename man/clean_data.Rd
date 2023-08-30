@@ -8,20 +8,20 @@
 \alias{clean_remode}
 \title{Functions to Interactively Clean Data Frames}
 \usage{
-clean_data(X, .clear = TRUE)
+clean_data(x, .CLEAR = TRUE)
 
-clean_select(X, .clear = TRUE)
+clean_select(x, .CLEAR = TRUE)
 
-clean_rename(X, .clear = TRUE)
+clean_rename(x, .CLEAR = TRUE)
 
-clean_recode(X, .clear = TRUE)
+clean_recode(x, .CLEAR = TRUE)
 
-clean_remode(X, .clear = TRUE)
+clean_remode(x, .CLEAR = TRUE)
 }
 \arguments{
-\item{X}{A data frame.}
+\item{x}{A data frame.}
 
-\item{.clear}{A logical scalar indicating whether to clear the console at the start of each data cleaning step.}
+\item{.CLEAR}{A logical scalar indicating whether to CLEAR the console at the start of each data cleaning step.}
 }
 \value{
 A data frame.

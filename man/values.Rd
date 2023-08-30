@@ -17,7 +17,7 @@
 \alias{v}
 \title{Named values (unique to package \code{uj})}
 \usage{
-values(Vec = FALSE)
+values(vec = FALSE)
 
 value_names()
 
@@ -27,7 +27,7 @@ value_table()
 
 value(...)
 
-vals(Vec = FALSE)
+vals(vec = FALSE)
 
 val_names()
 
@@ -35,7 +35,7 @@ val_table()
 
 val(...)
 
-vs(Vec = FALSE)
+vs(vec = FALSE)
 
 vnames()
 
@@ -44,6 +44,8 @@ vtable()
 v(...)
 }
 \arguments{
+\item{vec}{Logical scalar indicating whether to collapse multi-element values of the result using a pipe (|) delimiter.}
+
 \item{...}{Unquoted, comma-separated list of names of values to return. If multiple values are specified, they are coerced into a single atomic vector result.}
 }
 \value{
@@ -72,8 +74,8 @@ vtable()
 }
 \seealso{
 Other values: 
-\code{\link{Nth}()},
 \code{\link{atomize}()},
-\code{\link{na}()}
+\code{\link{na}()},
+\code{\link{nth}}
 }
 \concept{values}

@@ -171,336 +171,336 @@
 \usage{
 markdown()
 
-subs(X)
+subs(x)
 
-sups(X)
+sups(x)
 
-bfblu(X)
+bfblu(x)
 
-blblu(X)
+blblu(x)
 
-bmblu(X)
+bmblu(x)
 
-bdblu(X)
+bdblu(x)
 
-bfcyn(X)
+bfcyn(x)
 
-blcyn(X)
+blcyn(x)
 
-bmcyn(X)
+bmcyn(x)
 
-bdcyn(X)
+bdcyn(x)
 
-bfgrn(X)
+bfgrn(x)
 
-blgrn(X)
+blgrn(x)
 
-bmgrn(X)
+bmgrn(x)
 
-bdgrn(X)
+bdgrn(x)
 
-bfmag(X)
+bfmag(x)
 
-blmag(X)
+blmag(x)
 
-bmmag(X)
+bmmag(x)
 
-bdmag(X)
+bdmag(x)
 
-bforn(X)
+bforn(x)
 
-blorn(X)
+blorn(x)
 
-bmorn(X)
+bmorn(x)
 
-bdorn(X)
+bdorn(x)
 
-bfred(X)
+bfred(x)
 
-blred(X)
+blred(x)
 
-bmred(X)
+bmred(x)
 
-bdred(X)
+bdred(x)
 
-bfvlt(X)
+bfvlt(x)
 
-blvlt(X)
+blvlt(x)
 
-bmvlt(X)
+bmvlt(x)
 
-bdvlt(X)
+bdvlt(x)
 
-bfylw(X)
+bfylw(x)
 
-blylw(X)
+blylw(x)
 
-bmylw(X)
+bmylw(x)
 
-bdylw(X)
+bdylw(x)
 
-bwht(X)
+bwht(x)
 
-bg95(X)
+bg95(x)
 
-bg90(X)
+bg90(x)
 
-bg85(X)
+bg85(x)
 
-bg80(X)
+bg80(x)
 
-bg75(X)
+bg75(x)
 
-bg70(X)
+bg70(x)
 
-bg65(X)
+bg65(x)
 
-bg60(X)
+bg60(x)
 
-bg55(X)
+bg55(x)
 
-bg50(X)
+bg50(x)
 
-bg45(X)
+bg45(x)
 
-bg40(X)
+bg40(x)
 
-bg35(X)
+bg35(x)
 
-bg30(X)
+bg30(x)
 
-bg25(X)
+bg25(x)
 
-bg20(X)
+bg20(x)
 
-bg15(X)
+bg15(x)
 
-bg10(X)
+bg10(x)
 
-bg05(X)
+bg05(x)
 
-bblk(X)
+bblk(x)
 
-binv(X)
+binv(x)
 
-pfblu(X)
+pfblu(x)
 
-plblu(X)
+plblu(x)
 
-pmblu(X)
+pmblu(x)
 
-pdblu(X)
+pdblu(x)
 
-pfcyn(X)
+pfcyn(x)
 
-plcyn(X)
+plcyn(x)
 
-pmcyn(X)
+pmcyn(x)
 
-pdcyn(X)
+pdcyn(x)
 
-pfgrn(X)
+pfgrn(x)
 
-plgrn(X)
+plgrn(x)
 
-pmgrn(X)
+pmgrn(x)
 
-pdgrn(X)
+pdgrn(x)
 
-pfmag(X)
+pfmag(x)
 
-plmag(X)
+plmag(x)
 
-pmmag(X)
+pmmag(x)
 
-pdmag(X)
+pdmag(x)
 
-pforn(X)
+pforn(x)
 
-plorn(X)
+plorn(x)
 
-pmorn(X)
+pmorn(x)
 
-pdorn(X)
+pdorn(x)
 
-pfred(X)
+pfred(x)
 
-plred(X)
+plred(x)
 
-pmred(X)
+pmred(x)
 
-pdred(X)
+pdred(x)
 
-pfvlt(X)
+pfvlt(x)
 
-plvlt(X)
+plvlt(x)
 
-pmvlt(X)
+pmvlt(x)
 
-pdvlt(X)
+pdvlt(x)
 
-pfylw(X)
+pfylw(x)
 
-plylw(X)
+plylw(x)
 
-pmylw(X)
+pmylw(x)
 
-pdylw(X)
+pdylw(x)
 
-pwht(X)
+pwht(x)
 
-pg95(X)
+pg95(x)
 
-pg90(X)
+pg90(x)
 
-pg85(X)
+pg85(x)
 
-pg80(X)
+pg80(x)
 
-pg75(X)
+pg75(x)
 
-pg70(X)
+pg70(x)
 
-pg65(X)
+pg65(x)
 
-pg60(X)
+pg60(x)
 
-pg55(X)
+pg55(x)
 
-pg50(X)
+pg50(x)
 
-pg45(X)
+pg45(x)
 
-pg40(X)
+pg40(x)
 
-pg35(X)
+pg35(x)
 
-pg30(X)
+pg30(x)
 
-pg25(X)
+pg25(x)
 
-pg20(X)
+pg20(x)
 
-pg15(X)
+pg15(x)
 
-pg10(X)
+pg10(x)
 
-pg05(X)
+pg05(x)
 
-pblk(X)
+pblk(x)
 
-pinv(X)
+pinv(x)
 
-ifblu(X)
+ifblu(x)
 
-ilblu(X)
+ilblu(x)
 
-imblu(X)
+imblu(x)
 
-idblu(X)
+idblu(x)
 
-ifcyn(X)
+ifcyn(x)
 
-ilcyn(X)
+ilcyn(x)
 
-imcyn(X)
+imcyn(x)
 
-idcyn(X)
+idcyn(x)
 
-ifgrn(X)
+ifgrn(x)
 
-ilgrn(X)
+ilgrn(x)
 
-imgrn(X)
+imgrn(x)
 
-idgrn(X)
+idgrn(x)
 
-ifmag(X)
+ifmag(x)
 
-ilmag(X)
+ilmag(x)
 
-immag(X)
+immag(x)
 
-idmag(X)
+idmag(x)
 
-iforn(X)
+iforn(x)
 
-ilorn(X)
+ilorn(x)
 
-imorn(X)
+imorn(x)
 
-idorn(X)
+idorn(x)
 
-ifred(X)
+ifred(x)
 
-ilred(X)
+ilred(x)
 
-imred(X)
+imred(x)
 
-idred(X)
+idred(x)
 
-ifvlt(X)
+ifvlt(x)
 
-ilvlt(X)
+ilvlt(x)
 
-imvlt(X)
+imvlt(x)
 
-idvlt(X)
+idvlt(x)
 
-ifylw(X)
+ifylw(x)
 
-ilylw(X)
+ilylw(x)
 
-imylw(X)
+imylw(x)
 
-idylw(X)
+idylw(x)
 
-iwht(X)
+iwht(x)
 
-ig95(X)
+ig95(x)
 
-ig90(X)
+ig90(x)
 
-ig85(X)
+ig85(x)
 
-ig80(X)
+ig80(x)
 
-ig75(X)
+ig75(x)
 
-ig70(X)
+ig70(x)
 
-ig65(X)
+ig65(x)
 
-ig60(X)
+ig60(x)
 
-ig55(X)
+ig55(x)
 
-ig50(X)
+ig50(x)
 
-ig45(X)
+ig45(x)
 
-ig40(X)
+ig40(x)
 
-ig35(X)
+ig35(x)
 
-ig30(X)
+ig30(x)
 
-ig25(X)
+ig25(x)
 
-ig20(X)
+ig20(x)
 
-ig15(X)
+ig15(x)
 
-ig10(X)
+ig10(x)
 
-ig05(X)
+ig05(x)
 
-iblk(X)
+iblk(x)
 
-iinv(X)
+iinv(x)
 }
 \arguments{
-\item{X}{A \link[=cmp_chr_vec]{character vector} of text to be styled.}
+\item{x}{A \link[=cmp_chr_vec]{character vector} of text to be styled.}
 }
 \value{
 A markdown-styled character vector.

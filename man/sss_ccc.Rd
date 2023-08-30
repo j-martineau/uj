@@ -34,72 +34,72 @@
 \alias{sld_arr}
 \title{Shape + xclass combination properties}
 \usage{
-sss_ccc(X, SSS, CCC, ...)
+sss_ccc(x, .SSS, .CCC, ...)
 
 sss_ccc_funs()
 
-emp_arr(X, ...)
+emp_arr(x, ...)
 
-emp_dtf(X, ...)
+emp_dtf(x, ...)
 
-emp_gen(X, ...)
+emp_gen(x, ...)
 
-emp_mat(X, ...)
+emp_mat(x, ...)
 
-emp_vec(X, ...)
+emp_vec(x, ...)
 
-emp_vls(X, ...)
+emp_vls(x, ...)
 
-pnt_arr(X, ...)
+pnt_arr(x, ...)
 
-pnt_dtf(X, ...)
+pnt_dtf(x, ...)
 
-pnt_gen(X, ...)
+pnt_gen(x, ...)
 
-pnt_mat(X, ...)
+pnt_mat(x, ...)
 
-pnt_scl(X, ...)
+pnt_scl(x, ...)
 
-pnt_vec(X, ...)
+pnt_vec(x, ...)
 
-pnt_vls(X, ...)
+pnt_vls(x, ...)
 
-lin_arr(X, ...)
+lin_arr(x, ...)
 
-lin_dtf(X, ...)
+lin_dtf(x, ...)
 
-lin_gen(X, ...)
+lin_gen(x, ...)
 
-lin_mat(X, ...)
+lin_mat(x, ...)
 
-linMVC(X, ...)
+linMVC(x, ...)
 
-lin_vec(X, ...)
+lin_vec(x, ...)
 
-lin_vls(X, ...)
+lin_vls(x, ...)
 
-col_dtf(X, ...)
+col_dtf(x, ...)
 
-col_mat(X, ...)
+col_mat(x, ...)
 
-row_dtf(X, ...)
+row_dtf(x, ...)
 
-row_mat(X, ...)
+row_mat(x, ...)
 
-rct_dtf(X, ...)
+rct_dtf(x, ...)
 
-rct_mat(X, ...)
+rct_mat(x, ...)
 
-sqr_mat(X, ...)
+sqr_mat(x, ...)
 
-sld_arr(X, ...)
+sld_arr(x, ...)
 }
 \arguments{
-\item{X}{An R object.}
+\item{x}{An R object.}
 
-\item{SSS}{A character scalar single basic property from \code{link{sss_props}()}.}
+\item{.SSS}{A character scalar single basic property from \code{link{sss_props}()}.}
 
-\item{CCC}{A character scalar single xclass property from \code{link{ccc_props}()}}
+\item{.CCC}{A character scalar single xclass property from \code{link{ccc_props}()}}
 
 \item{...}{
   Arguments passed on to \code{\link[=meets]{meets}}
@@ -116,8 +116,8 @@ These functions check for the combination of \link[=sss]{shape} and \link[=ccc]{
 }
 \details{
 \tabular{ll}{  \code{sss_ccc_funs}   \tab What \link[=sss]{shape} + \link[=ccc]{xclass} combination \link[=prop_funs]{property functions} are there?                                                                                                   \cr   \tab   \cr
-  \verb{\{sss\}_\{ccc\}}    \tab Is \code{X} a match to single shape property \code{'{sss}'} and single xclass property \code{'{ccc}'}, where \code{{sss}} and \code{{ccc}} are placeholders for any given shape property and any given xclass property, respectively? \cr   \tab   \cr
-  \code{sss_ccc}        \tab Is \code{X} a match to the single shape and xclass properties in \code{SSS} and \code{CCCc}, respectively?                                                                                                                                  }
+  \verb{\{sss\}_\{ccc\}}    \tab Is \code{x} a match to single shape property \code{'{sss}'} and single xclass property \code{'{ccc}'}, where \code{{sss}} and \code{{ccc}} are placeholders for any given shape property and any given xclass property, respectively? \cr   \tab   \cr
+  \code{sss_ccc}        \tab Is \code{x} a match to the single shape and xclass properties in \code{SSS} and \code{CCCc}, respectively?                                                                                                                                  }
 \cr Some combinations of shape and xclass are nonsensical. That includes:
 \itemize{\item Shapes \code{emp} (empty) and \code{pnt} (point) combined with xclasses \code{mvc} (multivec) or \code{scl} (scalar).
 \item Shapes \code{row}, \code{col} (column), or \code{rct} (rectangular) combined with xclasses other than \code{dtf} (data.frame) or \code{mat} (matrix),
@@ -126,11 +126,11 @@ These functions check for the combination of \link[=sss]{shape} and \link[=ccc]{
 }
 \section{Specifying count and value restrictions}{
  Specifying restrictions in \code{...} is optional. The full set of recognized arguments names are defined in the following table along with the properties each specifies:
-\tabular{ll}{  \verb{.max, .maxr, .maxc}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.min, .minr, .minc}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
-  \verb{.lt, .le, .ge, .gt}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
-  \verb{.n, .nr, .nc}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
-  \code{.vals}                \tab A vector of valid values.                                                                                                                                 }
+\tabular{ll}{  \verb{.MAX, .MAXR, .MAXC}   \tab Scalar maximum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.MIN, .MINR, .MINC}   \tab Scalar minimum valid numbers of elements, rows, and columns, respectively.                                                                  \cr   \tab   \cr
+  \verb{.LT, .LE, .GE, .GT}   \tab \link[=cmp_srt_scl]{Complete sortable scalar} less-than, less-than-or-equal, greater-than-or-equal, and greater-than bounds, respectively. \cr   \tab   \cr
+  \verb{.N, .NR, .NC}         \tab A vector of valid numbers of elements, rows, and columns, respectively.                                                                    \cr   \tab   \cr
+  \code{.VALS}                \tab A vector of valid values.                                                                                                                                 }
 }
 
 \examples{

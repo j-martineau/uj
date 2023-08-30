@@ -264,21 +264,21 @@
 \usage{
 N()
 
-n_check(X, N = NULL, Min = NULL, Max = NULL, EQ = FALSE)
+n_check(x, .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE)
 
-n0(X)
+n0(x)
 
-n1(X)
+n1(x)
 
-n2(X)
+n2(x)
 
-n3(X)
+n3(x)
 
-n1p(X)
+n1p(x)
 
-n2p(X)
+n2p(x)
 
-n3p(X)
+n3p(x)
 
 nd()
 
@@ -312,37 +312,37 @@ not_nd2p(...)
 
 not_nd3p(...)
 
-nu(X)
+nu(x)
 
-nunq(X)
+nunq(x)
 
-nu0(X)
+nu0(x)
 
-nu1(X)
+nu1(x)
 
-nu2(X)
+nu2(x)
 
-nu3(X)
+nu3(x)
 
-nu1p(X)
+nu1p(x)
 
-nu2p(X)
+nu2p(x)
 
-nu3p(X)
+nu3p(x)
 
-not_nu0(X)
+not_nu0(x)
 
-not_nu1(X)
+not_nu1(x)
 
-not_nu2(X)
+not_nu2(x)
 
-not_nu3(X)
+not_nu3(x)
 
-not_nu1p(X)
+not_nu1p(x)
 
-not_nu2p(X)
+not_nu2p(x)
 
-not_nu3p(X)
+not_nu3p(x)
 
 nv(...)
 
@@ -376,529 +376,561 @@ not_nv2p(...)
 
 not_nv3p(...)
 
-nw(X)
+nw(x)
 
-nw0(X)
+nw0(x)
 
-nw1(X)
+nw1(x)
 
-nw2(X)
+nw2(x)
 
-nw3(X)
+nw3(x)
 
-nw1p(X)
+nw1p(x)
 
-nw2p(X)
+nw2p(x)
 
-nw3p(X)
+nw3p(x)
 
-not_nw0(X)
+not_nw0(x)
 
-not_nw1(X)
+not_nw1(x)
 
-not_nw2(X)
+not_nw2(x)
 
-not_nw3(X)
+not_nw3(x)
 
-not_nw1p(X)
+not_nw1p(x)
 
-not_nw2p(X)
+not_nw2p(x)
 
-not_nw3p(X)
+not_nw3p(x)
 
-neq(X, y)
+neq(x, y)
 
-ndif(X, y)
+ndif(x, y)
 
-nr(X)
+nr(x)
 
-nr0(X)
+nr0(x)
 
-nr1(X)
+nr1(x)
 
-nr2(X)
+nr2(x)
 
-nr3(X)
+nr3(x)
 
-nr1p(X)
+nr1p(x)
 
-nr2p(X)
+nr2p(x)
 
-nr3p(X)
+nr3p(x)
 
-not_nr0(X)
+not_nr0(x)
 
-not_nr1(X)
+not_nr1(x)
 
-not_nr2(X)
+not_nr2(x)
 
-not_nr3(X)
+not_nr3(x)
 
-not_nr1p(X)
+not_nr1p(x)
 
-not_nr2p(X)
+not_nr2p(x)
 
-not_nr3p(X)
+not_nr3p(x)
 
-nc(X)
+nc(x)
 
-nc0(X)
+nc0(x)
 
-nc1(X)
+nc1(x)
 
-nc2(X)
+nc2(x)
 
-nc3(X)
+nc3(x)
 
-nc1p(X)
+nc1p(x)
 
-nc2p(X)
+nc2p(x)
 
-nc3p(X)
+nc3p(x)
 
-not_nc0(X)
+not_nc0(x)
 
-not_nc1(X)
+not_nc1(x)
 
-not_nc2(X)
+not_nc2(x)
 
-not_nc3(X)
+not_nc3(x)
 
-not_nc1p(X)
+not_nc1p(x)
 
-not_nc2p(X)
+not_nc2p(x)
 
-not_nc3p(X)
+not_nc3p(x)
 
-nrc(X)
+nrc(x)
 
-nrc0(X)
+nrc0(x)
 
-nrc1(X)
+nrc1(x)
 
-nrc2p(X)
+nrc2p(x)
 
-not_nrc0(X)
+not_nrc0(x)
 
-not_nrc1(X)
+not_nrc1(x)
 
-not_nrc2p(X)
+not_nrc2p(x)
 
-nr0_nc0(X)
+nr0_nc0(x)
 
-nr0_nc1(X)
+nr0_nc1(x)
 
-nr0_nc2(X)
+nr0_nc2(x)
 
-nr0_nc1p(X)
+nr0_nc1p(x)
 
-nr0_nc2p(X)
+nr0_nc2p(x)
 
-nr0_nc3p(X)
+nr0_nc3p(x)
 
-nr1_nc0(X)
+nr1_nc0(x)
 
-nr1_nc1(X)
+nr1_nc1(x)
 
-nr1_nc2(X)
+nr1_nc2(x)
 
-nr1_nc1p(X)
+nr1_nc1p(x)
 
-nr1_nc2p(X)
+nr1_nc2p(x)
 
-nr1_nc3p(X)
+nr1_nc3p(x)
 
-nr2_nc0(X)
+nr2_nc0(x)
 
-nr2_nc1(X)
+nr2_nc1(x)
 
-nr2_nc2(X)
+nr2_nc2(x)
 
-nr2_nc1p(X)
+nr2_nc1p(x)
 
-nr2_nc2p(X)
+nr2_nc2p(x)
 
-nr2_nc3p(X)
+nr2_nc3p(x)
 
-nr1p_nc0(X)
+nr1p_nc0(x)
 
-nr1p_nc1(X)
+nr1p_nc1(x)
 
-nr1p_nc2(X)
+nr1p_nc2(x)
 
-nr1p_nc1p(X)
+nr1p_nc1p(x)
 
-nr1p_nc2p(X)
+nr1p_nc2p(x)
 
-nr1p_nc3p(X)
+nr1p_nc3p(x)
 
-nr2p_nc0(X)
+nr2p_nc0(x)
 
-nr2p_nc1(X)
+nr2p_nc1(x)
 
-nr2p_nc2(X)
+nr2p_nc2(x)
 
-nr2p_nc1p(X)
+nr2p_nc1p(x)
 
-nr2p_nc2p(X)
+nr2p_nc2p(x)
 
-nr2p_nc3p(X)
+nr2p_nc3p(x)
 
-nr3p_nc0(X)
+nr3p_nc0(x)
 
-nr3p_nc1(X)
+nr3p_nc1(x)
 
-nr3p_nc2(X)
+nr3p_nc2(x)
 
-nr3p_nc1p(X)
+nr3p_nc1p(x)
 
-nr3p_nc2p(X)
+nr3p_nc2p(x)
 
-nr3p_nc3p(X)
+nr3p_nc3p(x)
 
-not_nr0_nc0(X)
+not_nr0_nc0(x)
 
-not_nr0_nc1(X)
+not_nr0_nc1(x)
 
-not_nr0_nc2(X)
+not_nr0_nc2(x)
 
-not_nr0_nc1p(X)
+not_nr0_nc1p(x)
 
-not_nr0_nc2p(X)
+not_nr0_nc2p(x)
 
-not_nr0_nc3p(X)
+not_nr0_nc3p(x)
 
-not_nr1_nc0(X)
+not_nr1_nc0(x)
 
-not_nr1_nc1(X)
+not_nr1_nc1(x)
 
-not_nr1_nc2(X)
+not_nr1_nc2(x)
 
-not_nr1_nc1p(X)
+not_nr1_nc1p(x)
 
-not_nr1_nc2p(X)
+not_nr1_nc2p(x)
 
-not_nr1_nc3p(X)
+not_nr1_nc3p(x)
 
-not_nr2_nc0(X)
+not_nr2_nc0(x)
 
-not_nr2_nc1(X)
+not_nr2_nc1(x)
 
-not_nr2_nc2(X)
+not_nr2_nc2(x)
 
-not_nr2_nc1p(X)
+not_nr2_nc1p(x)
 
-not_nr2_nc2p(X)
+not_nr2_nc2p(x)
 
-not_nr2_nc3p(X)
+not_nr2_nc3p(x)
 
-not_nr1p_nc0(X)
+not_nr1p_nc0(x)
 
-not_nr1p_nc1(X)
+not_nr1p_nc1(x)
 
-not_nr1p_nc2(X)
+not_nr1p_nc2(x)
 
-not_nr1p_nc1p(X)
+not_nr1p_nc1p(x)
 
-not_nr1p_nc2p(X)
+not_nr1p_nc2p(x)
 
-not_nr1p_nc3p(X)
+not_nr1p_nc3p(x)
 
-not_nr2p_nc0(X)
+not_nr2p_nc0(x)
 
-not_nr2p_nc1(X)
+not_nr2p_nc1(x)
 
-not_nr2p_nc2(X)
+not_nr2p_nc2(x)
 
-not_nr2p_nc1p(X)
+not_nr2p_nc1p(x)
 
-not_nr2p_nc2p(X)
+not_nr2p_nc2p(x)
 
-not_nr2p_nc3p(X)
+not_nr2p_nc3p(x)
 
-not_nr3p_nc0(X)
+not_nr3p_nc0(x)
 
-not_nr3p_nc1(X)
+not_nr3p_nc1(x)
 
-not_nr3p_nc2(X)
+not_nr3p_nc2(x)
 
-not_nr3p_nc1p(X)
+not_nr3p_nc1p(x)
 
-not_nr3p_nc2p(X)
+not_nr3p_nc2p(x)
 
-not_nr3p_nc3p(X)
+not_nr3p_nc3p(x)
 
-ndim(X)
+ndim(x)
 
-ndim0(X)
+ndim0(x)
 
-ndim1(X)
+ndim1(x)
 
-ndim2(X)
+ndim2(x)
 
-ndim3(X)
+ndim3(x)
 
-ndim1p(X)
+ndim1p(x)
 
-ndim2p(X)
+ndim2p(x)
 
-ndim3p(X)
+ndim3p(x)
 
-not_ndim0(X)
+not_ndim0(x)
 
-not_ndim1(X)
+not_ndim1(x)
 
-not_ndim2(X)
+not_ndim2(x)
 
-not_ndim3(X)
+not_ndim3(x)
 
-not_ndim1p(X)
+not_ndim1p(x)
 
-not_ndim2p(X)
+not_ndim2p(x)
 
-not_ndim3p(X)
+not_ndim3p(x)
 
-nnav(X)
+nnav(x)
 
-nnav0(X)
+nnav0(x)
 
-nnav1(X)
+nnav1(x)
 
-nnav2(X)
+nnav2(x)
 
-nnav3(X)
+nnav3(x)
 
-nnav1p(X)
+nnav1p(x)
 
-nnav2p(X)
+nnav2p(x)
 
-nnav3p(X)
+nnav3p(x)
 
-not_nnav0(X)
+not_nnav0(x)
 
-not_nnav1(X)
+not_nnav1(x)
 
-not_nnav2(X)
+not_nnav2(x)
 
-not_nnav3(X)
+not_nnav3(x)
 
-not_nnav1p(X)
+not_nnav1p(x)
 
-not_nnav2p(X)
+not_nnav2p(x)
 
-not_nnav3p(X)
+not_nnav3p(x)
 
-nokv(X)
+nokv(x)
 
-nokv0(X)
+nokv0(x)
 
-nokv1(X)
+nokv1(x)
 
-nokv2(X)
+nokv2(x)
 
-nokv3(X)
+nokv3(x)
 
-nokv1p(X)
+nokv1p(x)
 
-nokv2p(X)
+nokv2p(x)
 
-nokv3p(X)
+nokv3p(x)
 
-not_nokv0(X)
+not_nokv0(x)
 
-not_nokv1(X)
+not_nokv1(x)
 
-not_nokv2(X)
+not_nokv2(x)
 
-not_nokv3(X)
+not_nokv3(x)
 
-not_nokv1p(X)
+not_nokv1p(x)
 
-not_nokv2p(X)
+not_nokv2p(x)
 
-not_nokv3p(X)
+not_nokv3p(x)
 
-ns(X)
+ns(x)
 
-ns0(X)
+ns0(x)
 
-ns1(X)
+ns1(x)
 
-ns2(X)
+ns2(x)
 
-ns3(X)
+ns3(x)
 
-ns1p(X)
+ns1p(x)
 
-ns2p(X)
+ns2p(x)
 
-ns3p(X)
+ns3p(x)
 
-not_ns0(X)
+not_ns0(x)
 
-not_ns1(X)
+not_ns1(x)
 
-not_ns2(X)
+not_ns2(x)
 
-not_ns3(X)
+not_ns3(x)
 
-not_ns1p(X)
+not_ns1p(x)
 
-not_ns2p(X)
+not_ns2p(x)
 
-not_ns3p(X)
+not_ns3p(x)
 
 ...N(
   ...,
-  N = NULL,
-  Min = NULL,
-  max = NULL,
-  EQ = FALSE,
-  A = FALSE,
-  Na = TRUE,
-  Vals = NULL,
-  LT = NULL,
-  LE = NULL,
-  GE = NULL,
-  GT = NULL
+  .N = NULL,
+  .MIN = NULL,
+  .MAX = NULL,
+  .EQ = FALSE,
+  .A = FALSE,
+  .NA = TRUE,
+  .VALS = NULL,
+  .LT = NULL,
+  .LE = NULL,
+  .GE = NULL,
+  .GT = NULL
 )
 
 ...ns(
   ...,
-  N = NULL,
-  Min = NULL,
-  Max = NULL,
-  Na = TRUE,
-  Vals = NULL,
-  LT = NULL,
-  LE = NULL,
-  GE = NULL,
-  GT = NULL
+  .N = NULL,
+  .MIN = NULL,
+  .MAX = NULL,
+  .NA = TRUE,
+  .VALS = NULL,
+  .LT = NULL,
+  .LE = NULL,
+  .GE = NULL,
+  .GT = NULL
 )
 
 ...minn(
   ...,
-  Na = TRUE,
-  Vals = NULL,
-  LT = NULL,
-  LE = NULL,
-  GE = NULL,
-  GT = NULL
+  .NA = TRUE,
+  .VALS = NULL,
+  .LT = NULL,
+  .LE = NULL,
+  .GE = NULL,
+  .GT = NULL
 )
 
 ...maxn(
   ...,
-  Na = TRUE,
-  Vals = NULL,
-  LT = NULL,
-  LE = NULL,
-  GE = NULL,
-  GT = NULL
+  .NA = TRUE,
+  .VALS = NULL,
+  .LT = NULL,
+  .LE = NULL,
+  .GE = NULL,
+  .GT = NULL
 )
 
 ...neq(
   ...,
-  Min = NULL,
-  Max = NULL,
-  Na = TRUE,
-  Vals = NULL,
-  LT = NULL,
-  LE = NULL,
-  GE = NULL,
-  GT = NULL
+  .MIN = NULL,
+  .MAX = NULL,
+  .NA = TRUE,
+  .VALS = NULL,
+  .LT = NULL,
+  .LE = NULL,
+  .GE = NULL,
+  .GT = NULL
 )
 
-...nw(..., N = NULL, Min = NULL, Max = NULL, EQ = FALSE, Na = FALSE, A = TRUE)
+...nw(
+  ...,
+  .N = NULL,
+  .MIN = NULL,
+  .MAX = NULL,
+  .EQ = FALSE,
+  .NA = FALSE,
+  .A = TRUE
+)
 
-...nt(..., N = NULL, Min = NULL, Max = NULL, EQ = FALSE, Na = FALSE, A = TRUE)
+...nt(
+  ...,
+  .N = NULL,
+  .MIN = NULL,
+  .MAX = NULL,
+  .EQ = FALSE,
+  .NA = FALSE,
+  .A = TRUE
+)
 
-...nf(..., N = NULL, Min = NULL, Max = NULL, EQ = FALSE, Na = FALSE, A = TRUE)
+...nf(
+  ...,
+  .N = NULL,
+  .MIN = NULL,
+  .MAX = NULL,
+  .EQ = FALSE,
+  .NA = FALSE,
+  .A = TRUE
+)
 
-...nu(..., N = NULL, Min = NULL, Max = NULL, EQ = FALSE, Na = TRUE, A = TRUE)
+...nu(
+  ...,
+  .N = NULL,
+  .MIN = NULL,
+  .MAX = NULL,
+  .EQ = FALSE,
+  .NA = TRUE,
+  .A = TRUE
+)
 
-...nr(..., N = NULL, Min = NULL, Max = NULL, EQ = FALSE)
+...nr(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE)
 
-...nc(..., N = NULL, Min = NULL, Max = NULL, EQ = FALSE)
+...nc(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE)
 
 ...n_ch(
   ...,
-  N = NULL,
-  Min = NULL,
-  Max = NULL,
-  EQ = FALSE,
-  Na = FALSE,
-  a = TRUE
+  .N = NULL,
+  .MIN = NULL,
+  .MAX = NULL,
+  .EQ = FALSE,
+  .NA = FALSE,
+  .A = TRUE
 )
 
-...n_nav(..., N = NULL, Min = NULL, Max = NULL, EQ = FALSE, a = TRUE)
+...n_nav(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .A = TRUE)
 
-...n_okv(..., N = NULL, Min = NULL, Max = NULL, EQ = FALSE, A = TRUE)
+...n_okv(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .A = TRUE)
 
-...nv(..., N = NULL, Min = NULL, Max = NULL, EQ = FALSE, a = TRUE)
+...nv(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .A = TRUE)
 }
 \arguments{
-\item{X}{\link[=Nnw]{non-negative whole-number} object.}
+\item{x}{\link[=Nnw]{non-negative whole-number} object.}
 
-\item{N}{Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec} of valid element, row, or column counts.}
+\item{.N}{Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec} of valid element, row, or column counts.}
 
-\item{Min}{Optional complete non-negative whole-number scalar giving minimum valid element, row, or column counts.}
+\item{.MIN}{Optional complete non-negative whole-number scalar giving minimum valid element, row, or column counts.}
 
-\item{Max}{Optional complete non-negative whole-number scalar giving maximum valid element, row, or column counts.}
+\item{.MAX}{Optional complete non-negative whole-number scalar giving maximum valid element, row, or column counts.}
 
-\item{EQ}{Non-\code{NA} scalar indicating whether all counts must be equal.}
+\item{.EQ}{Non-\code{NA} scalar indicating whether all counts must be equal.}
 
 \item{...}{One or more arguments to be examined for counts.}
 
-\item{A}{Non-\code{NA} scalar indicating whether to \link[=av]{atomize} \code{...} to create a single atomic vector before processing. If \code{A = FALSE}, each argument in \code{...} is processed separately.}
+\item{.A}{Non-\code{NA} scalar indicating whether to \link[=av]{atomize} \code{...} to create a single atomic vector before processing. If \code{.A = FALSE}, each argument in \code{...} is processed separately.}
 
-\item{Na}{Non-\code{NA} scalar whether \code{NA} values are allowed.}
+\item{.NA}{Non-\code{NA} scalar whether \code{NA} values are allowed.}
 
-\item{Vals}{Optional \link[=atm_vec]{atomic vec} indicating specific values to be counted.}
+\item{.VALS}{Optional \link[=atm_vec]{atomic vec} indicating specific values to be counted.}
 
-\item{LT}{Optional \link[=cmp_srt_scl]{complete sortable scalar} indicating specific values elements of \code{...} arguments must be less than in order to be counted.}
+\item{.LT}{Optional \link[=cmp_srt_scl]{complete sortable scalar} indicating specific values elements of \code{...} arguments must be less than in order to be counted.}
 
-\item{LE}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be less than or equal to in order to be counted}
+\item{.LE}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be less than or equal to in order to be counted}
 
-\item{GE}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be greater than or equal to in order to be counted.}
+\item{.GE}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be greater than or equal to in order to be counted.}
 
-\item{GT}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be greater than in order to be counted.}
+\item{.GT}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be greater than in order to be counted.}
 }
 \value{
-May be non-negative integer or a logical scalar or vector, depending the properties of primary argument(s) (i.e., \code{X} and \code{...}) and optional arguments (i.e., all others).
+May be non-negative integer or a logical scalar or vector, depending the properties of primary argument(s) (i.e., \code{x} and \code{...}) and optional arguments (i.e., all others).
 }
 \description{
 Dedicated counting functions
 }
 \details{
 The following functions are flexible, fully error-checked counting functions with optional count functionality driven by arguments:
-\tabular{ll}{  \code{n_check}   \tab Do counts given in \code{X} meet criteria in \code{c(N, Min, Max, EQ)}, if any? If none, returns \code{X}. \cr   \tab   \cr
+\tabular{ll}{  \code{n_check}   \tab Do counts given in \code{x} meet criteria in \code{c(N, .MIN, .MAX, .EQ)}, if any? If none, returns \code{x}. \cr   \tab   \cr
   \code{...N}      \tab Length(s) of \code{...} args with optional length validations.                                   \cr   \tab   \cr
   \code{...ns}     \tab Lengths of \code{...} args                                                                       \cr
   \code{...nv}     \tab Length after \link[=av]{atomizing}.                                                         \cr
   \code{...nch}    \tab Number of characters in each element.                                                       \cr
-  \code{...nrc}    \tab \code{NROW(X) * NCOL(X)}                                                                         \cr
+  \code{...nrc}    \tab \code{NROW(x) * NCOL(x)}                                                                         \cr
   \code{...nnav}   \tab Number of atomic \code{NA} values.                                                               \cr
   \code{...nokv}   \tab Number of atomic non-\code{NA} values.                                                           \cr
   \code{...neq}    \tab Are \code{...} arg lengths all the same?                                                         \cr
   \code{...ndif}   \tab Are \code{...} arg lengths \emph{not} all the same?                                                   \cr
-  \code{...minn}   \tab Min \code{...} arg length.                                                                       \cr
-  \code{...maxn}   \tab Max \code{...} arg length.                                                                         }
+  \code{...minn}   \tab .MIN \code{...} arg length.                                                                       \cr
+  \code{...maxn}   \tab .MAX \code{...} arg length.                                                                         }
 \strong{Functions evaluating length/count (in)equality}
-\tabular{ll}{  \code{ndif}   \tab Lengths of \code{X} and \code{y} are equal.   \cr
-  \code{neq}    \tab Lengths of \code{X} and \code{y} are different. }
+\tabular{ll}{  \code{ndif}   \tab Lengths of \code{x} and \code{y} are equal.   \cr
+  \code{neq}    \tab Lengths of \code{x} and \code{y} are different. }
 \strong{Functions getting counts/lengths}
-\tabular{ll}{  \code{N}             \tab \code{length(X)}                    \cr   \tab   \cr
+\tabular{ll}{  \code{N}             \tab \code{length(x)}                    \cr   \tab   \cr
   \verb{nd, ndots}     \tab \code{...length()}                               \cr
-  \code{nc}            \tab \code{NCOL(X)}                                   \cr
-  \code{nr}            \tab \code{NROW(X)}                                   \cr
-  \code{ns}            \tab \code{lengths(X)}                                \cr
-  \verb{nu, nunq}      \tab \code{length(unique(Atoms(...)))}                \cr
-  \verb{nv, nval}      \tab \code{length(Atoms(...))}                        \cr
-  \code{nw}            \tab \code{length(which(X))}             \cr   \tab   \cr
-  \code{nrc}           \tab \code{NROW(X) * NCOL(X)}            \cr   \tab   \cr
-  \code{nnav}          \tab \code{length(which(is.na(Atoms(X))))}            \cr
-  \code{nokv}          \tab \code{length(which(!is.na(Atoms(X))))}           \cr
-  \code{ndim}          \tab \code{f0(null(X), 0, f0(is_vec(X), 1, N(dim(X))))} }
+  \code{nc}            \tab \code{NCOL(x)}                                   \cr
+  \code{nr}            \tab \code{NROW(x)}                                   \cr
+  \code{ns}            \tab \code{lengths(x)}                                \cr
+  \verb{nu, nunq}      \tab \code{length(unique(atoms(...)))}                \cr
+  \verb{nv, nval}      \tab \code{length(atoms(...))}                        \cr
+  \code{nw}            \tab \code{length(which(x))}             \cr   \tab   \cr
+  \code{nrc}           \tab \code{NROW(x) * NCOL(x)}            \cr   \tab   \cr
+  \code{nnav}          \tab \code{length(which(is.na(atoms(x))))}            \cr
+  \code{nokv}          \tab \code{length(which(!is.na(atoms(x))))}           \cr
+  \code{ndim}          \tab \code{f0(null(x), 0, f0(is_vec(x), 1, N(dim(x))))} }
 \strong{Functions checking for specific counts/lengths}
 \cr\cr The functions described in the previous table also have convenience functions for checking for specific counts/lengths and for negation. Those convenience functions are formed by appending the following to function names:
 \tabular{ll}{  \code{'0'}    \tab \code{N = 0}  \cr
@@ -951,14 +983,14 @@ The negation functions are formed by prepending \code{not_}. All convenience fun
 }
 \examples{
 N <- 0:15
-nis(N, N = 0:5)
-nis(N, Nin = 3, Max = 12)
-nis(N, EQ = T)
-nis(rep(0, 3), EQ = T)
+nis(N, .N = 0:5)
+nis(N, .MIN = 3, .MAX = 12)
+nis(N, .EQ = T)
+nis(rep(0, 3), .EQ = T)
 nx(letters, LETTERS, 0:9, NULL)
-nx(letters, LETTERS, Vals = letters)
-nx(letters, LETTERS, LE = "M", GE = "m")
-nx(letters, LETTERS, LT = "M", GT = "m")
+nx(letters, LETTERS, .VALS = letters)
+nx(letters, LETTERS, .LE = "M", .GE = "m")
+nx(letters, LETTERS, .LT = "M", .GT = "m")
 n0(letters, LETTERS, TRUE, 0:1, 0:2, 0:9)
 n1(letters, LETTERS, TRUE, 0:1, 0:2, 0:9)
 n1p(letters, LETTERS, TRUE, 0:1, 0:2, 0:9)
@@ -967,23 +999,23 @@ nmin(letters, LETTERS, 0:9)
 nmax(letters, LETTERS, 0:9)
 nsame(letters, LETTERS, 0:9)
 nsame(letters, LETTERS)
-nsame(letters, LETTERS, LT = "M", GT = "m")
-nmin(letters, LETTERS, 0:9, Min = 11)
-nmax(letters, LETTERS, 0:9, Max = 11)
-nsame(letters, LETTERS, 0:9, Min = 11, Max = 25)
+nsame(letters, LETTERS, .LT = "M", .GT = "m")
+nmin(letters, LETTERS, 0:9, .MIN = 11)
+nmax(letters, LETTERS, 0:9, .MAX = 11)
+nsame(letters, LETTERS, 0:9, .MIN = 11, .MAX = 25)
 nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49)
 nt(0:99 \%in\% 50:59, 0:99 \%in\% 41:49)
-nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, N = 0:9)
-nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, Min = 9, Max = 19, EQ = T)
+nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .N = 0:9)
+nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .MIN = 9, .MAX = 19, .EQ = T)
 nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49)
-nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, N = 0:9)
-nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, Min = 9, Max = 19)
-nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, Min = 9, Max = 19, EQ = T)
+nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .N = 0:9)
+nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .MIN = 9, .MAX = 19)
+nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .MIN = 9, .MAX = 19, .EQ = T)
 nr(tibble(letters, LETTERS), matrix(c(letters, LETTERS), nrow = 2))
 nc(tibble(letters, LETTERS), matrix(c(letters, LETTERS), nrow = 2))
-nch(letters, EQ = T)
+nch(letters, .EQ = T)
 nch(letters, "a string")
-nch(letters, "a string", A = T)
+nch(letters, "a string", .A = T)
 }
 \seealso{
 Other extensions: 
