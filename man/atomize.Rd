@@ -75,9 +75,9 @@ Functions in this family are:
 \tabular{ll}{  \verb{atomize, atoms, av, a}   \tab Gets a vector of atomic values in \code{...} args. \cr
   \verb{unique_av, uav, uv}      \tab Calls \code{unique(av(...))}                       \cr
   \verb{which_av, wav, wv}       \tab Calls \code{which(av(...))}                        \cr
-  \verb{paste_av, pav, pv}       \tab Calls \code{paste0(P, av(...), S)}                 \cr
+  \verb{paste_av, pav, pv}       \tab Calls \code{paste0(p, av(...), s)}                 \cr
   \verb{sort_av, sav, sv}        \tab Calls \code{sort(av(...))}.                        \cr
-  \verb{glue_av, gav, gv}        \tab Calls \verb{paste0(av(...) collapse = G)}          \cr
+  \verb{glue_av, gav, gv}        \tab Calls \verb{paste0(av(...) collapse = g)}          \cr
   \verb{sort_uv, suv}            \tab Calls \code{sort(unique(av(...)))}                   }
 }
 \examples{
@@ -90,7 +90,7 @@ av(y)
 atoms(x, y)
 atomize(x, "d", y, 4)
 glue_av(letters, LETTERS, g = "-")
-paste_av(letters, P = "\u2022 ", s = ".")
+paste_av(letters, p = "\u2022 ", s = ".")
 sort_av(letters, LETTERS, 0:9)
 sort_uv(letters, LETTERS, 0:9)
 unique_av(letters, "d", 0:9, 5)

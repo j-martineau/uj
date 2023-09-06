@@ -89,7 +89,18 @@
 	} else {NULL}
 }
 
-# N ###
+# ppp_fast ####
+
+.check_VALID <- function(x, test, .VALID) {
+
+  if (test) {
+    x <- uj::av(x)
+    .VALID <- uj::av(.VALID)
+    if (base::length(.VALID) == 0) {T} else {uj::all_in(x, .VALID)}
+  } else {F}
+}
+
+# n ####
 
 .n_errs <- function(.N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .NA = FALSE, .A = FALSE) {
 	Errors <- NULL
@@ -156,9 +167,9 @@
 	.BG <- uj::failsafe(.BG)
 	.FG <- uj::failsafe(.FG)
 	.D <- uj::failsafe(.D)
-	OkST <- uj::f0(base::is.null(.ST), .OK.NULL.ST, uj:::.unq_chr_vec(.ST, Valid = base::c(uj::v(CrayonStyles), base::toupper(uj::v(CrayonStyles)))))
-	OkBg <- uj::f0(base::is.null(.BG), .OK.NULL.BG, uj:::.cmp_chr_scl(.BG, Valid = base::c(uj::v(CrayonBackgroundColors), base::toupper(uj::v(CrayonBackgroundColors)))))
-	OkFg <- uj::f0(base::is.null(.FG), .OK.NULL.FG, uj:::.cmp_chr_scl(.FG, Valid = base::c(uj::v(CrayonForegroundColors), base::toupper(uj::v(CrayonForegroundColors)))))
+	OkST <- uj::f0(base::is.null(.ST), .OK.NULL.ST, uj:::.unq_chr_vec(.ST, .VALID = base::c(uj::v(CrayonStyles), base::toupper(uj::v(CrayonStyles)))))
+	OkBg <- uj::f0(base::is.null(.BG), .OK.NULL.BG, uj:::.cmp_chr_scl(.BG, .VALID = base::c(uj::v(CrayonBackgroundColors), base::toupper(uj::v(CrayonBackgroundColors)))))
+	OkFg <- uj::f0(base::is.null(.FG), .OK.NULL.FG, uj:::.cmp_chr_scl(.FG, .VALID = base::c(uj::v(CrayonForegroundColors), base::toupper(uj::v(CrayonForegroundColors)))))
 	OkD <- uj:::.cmp_chr_scl(.D)
 	Errors <- NULL
 	if (!OkBg) {Errors <- base::c(Errors, "[.BG] must be a character scalar from bg_vals().")}
@@ -214,7 +225,7 @@
 }
 
 .cat_choose_list <- function(options, message, .ALL, .NONE, .MIN, .MAX, .FT, .FS, .FUN, .STACK, .CLEAR, .CANCEL = T) {
-  if (.clear) {uj::xconsole()}
+  if (.CLEAR) {uj::xconsole()}
   if (.FT != "") {
     TitleBG <- base::strsplit(.FT, "|", fixed = T)[[1]][1]
     TitleFG <- base::strsplit(.FT, "|", fixed = T)[[1]][2]

@@ -131,191 +131,191 @@
 \usage{
 ppp_fast()
 
-.ATM()
+.ATM(x, .VALID = NULL)
 
-.DEF(x)
+.DEF(x, .VALID = NULL)
 
-.FUN(x)
+.FUN(x, .VALID = NULL)
 
 .NIL(x)
 
 .NLL(x)
 
-.POP(x)
+.POP(x, .VALID = NULL)
 
-.RCR(x)
+.RCR(x, .VALID = NULL)
 
-.ARR(x)
+.ARR(x, .VALID = NULL)
 
-.DTF(x)
+.DTF(x, .VALID = NULL)
 
-.GEN(x)
+.GEN(x, .VALID = NULL)
 
-.MAT(x)
+.MAT(x, .VALID = NULL)
 
-.MVC(x)
+.MVC(x, .VALID = NULL)
 
-.SCL(x)
+.SCL(x, .VALID = NULL)
 
-.VLS(x)
+.VLS(x, .VALID = NULL)
 
-.VEC(x)
+.VEC(x, .VALID = NULL)
 
 .D0D(x)
 
-.D1D(x)
+.D1D(x, .VALID = NULL)
 
-.D2D(x)
+.D2D(x, .VALID = NULL)
 
-.DHD(x)
+.DHD(x, .VALID = NULL)
 
 .EUD(x)
 
-.E2D(x)
+.E2D(x, .VALID = NULL)
 
-.EHD(x)
+.EHD(x, .VALID = NULL)
 
-.E0D(x)
+.E0D(x, .VALID = NULL)
 
-.E1D(x)
+.E1D(x, .VALID = NULL)
 
 .NA0(x)
 
-.OK0(x)
+.OK0(x, .VALID = NULL)
 
-.DUP(x)
+.DUP(x, .VALID = NULL)
 
-.UNQ(x)
+.UNQ(x, .VALID = NULL)
 
-.CMP(x)
+.CMP(x, .VALID = NULL)
 
 .MSS(x)
 
-.PRT(x)
+.PRT(x, .VALID = NULL)
 
-.CH1(x)
+.CH1(x, .VALID = NULL)
 
-.CH3(x)
+.CH3(x, .VALID = NULL)
 
-.CHR(x)
+.CHR(x, .VALID = NULL)
 
-.STR(x)
+.STR(x, .VALID = NULL)
 
-.CLR(x)
+.CLR(x, .VALID = NULL)
 
-.FAC(x)
+.FAC(x, .VALID = NULL)
 
-.ORD(x)
+.ORD(x, .VALID = NULL)
 
-.UNO(x)
+.UNO(x, .VALID = NULL)
 
-.IND(x)
+.IND(x, .VALID = NULL)
 
-.NST(x)
+.NST(x, .VALID = NULL)
 
-.SRT(x)
+.SRT(x, .VALID = NULL)
 
-.LGL(x)
+.LGL(x, .VALID = NULL)
 
-.NUM(x)
+.NUM(x, .VALID = NULL)
 
-.WHL(x)
+.WHL(x, .VALID = NULL)
 
-.ODD(x)
+.ODD(x, .VALID = NULL)
 
-.EVN(x)
+.EVN(x, .VALID = NULL)
 
-.NGW(x)
+.NGW(x, .VALID = NULL)
 
-.NPW(x)
+.NPW(x, .VALID = NULL)
 
-.PSW(x)
+.PSW(x, .VALID = NULL)
 
-.FRC(x)
+.FRC(x, .VALID = NULL)
 
-.NEG(x)
+.NEG(x, .VALID = NULL)
 
-.POS(x)
+.POS(x, .VALID = NULL)
 
-.NNW(x)
+.NNW(x, .VALID = NULL)
 
-.NPS(x)
+.NPS(x, .VALID = NULL)
 
-.PCT(x)
+.PCT(x, .VALID = NULL)
 
-.PPN(x)
+.PPN(x, .VALID = NULL)
 
-.COL(x)
+.COL(x, .VALID = NULL)
 
-.ROW(x)
+.ROW(x, .VALID = NULL)
 
-.PNT(x)
+.PNT(x, .VALID = NULL)
 
-.SLD(x)
+.SLD(x, .VALID = NULL)
 
-.SQR(x)
+.SQR(x, .VALID = NULL)
 
-.EMP(x)
+.EMP(x, .VALID = NULL)
 
-.RCT(x)
+.RCT(x, .VALID = NULL)
 
-.LIN(x)
+.LIN(x, .VALID = NULL)
 
-.atm_dtf(x)
+.atm_dtf(x, .VALID = NULL)
 
-.atm_mat(x)
+.atm_mat(x, .VALID = NULL)
 
-.atm_scl(x)
+.atm_scl(x, .VALID = NULL)
 
-.atm_vec(x)
+.atm_vec(x, .VALID = NULL)
 
-.atm_vls(x)
+.atm_vls(x, .VALID = NULL)
 
-.chr_arr(x)
+.chr_arr(x, .VALID = NULL)
 
-.chr_dtf(x)
+.chr_dtf(x, .VALID = NULL)
 
-.chr_vec(x)
+.chr_vec(x, .VALID = NULL)
 
-.chr_vls(x)
+.chr_vls(x, .VALID = NULL)
 
-.cmp_atm(x)
+.cmp_atm(x, .VALID = NULL)
 
-.cmp_chr(x)
+.cmp_chr(x, .VALID = NULL)
 
-.cmp_num(x)
+.cmp_num(x, .VALID = NULL)
 
-.cmp_scl(x)
+.cmp_scl(x, .VALID = NULL)
 
-.cmp_vec(x)
+.cmp_vec(x, .VALID = NULL)
 
-.lgl_scl(x)
+.lgl_scl(x, .VALID = NULL)
 
-.nnw_vec(x)
+.nnw_vec(x, .VALID = NULL)
 
-.pop_atm(x)
+.pop_atm(x, .VALID = NULL)
 
-.pop_chr(x)
+.pop_chr(x, .VALID = NULL)
 
-.pop_dtf(x)
+.pop_dtf(x, .VALID = NULL)
 
-.pop_mat(x)
+.pop_mat(x, .VALID = NULL)
 
-.pop_srt(x)
+.pop_srt(x, .VALID = NULL)
 
-.pop_vec(x)
+.pop_vec(x, .VALID = NULL)
 
-.pop_vls(x)
+.pop_vls(x, .VALID = NULL)
 
-.cmp_atm_vec(x)
+.cmp_atm_vec(x, .VALID = NULL)
 
-.cmp_ch1_scl(x)
+.cmp_ch1_scl(x, .VALID = NULL)
 
-.cmp_ch1_vec(x)
+.cmp_ch1_vec(x, .VALID = NULL)
 
-.cmp_ch3_scl(x)
+.cmp_ch3_scl(x, .VALID = NULL)
 
-.cmp_ch3_vec(x)
+.cmp_ch3_vec(x, .VALID = NULL)
 
 .cmp_chr_arr(x, .VALID = NULL)
 
@@ -327,68 +327,73 @@ ppp_fast()
 
 .cmp_chr_scl(x, .VALID = NULL)
 
-.cmp_clr_vec(x)
+.cmp_clr_vec(x, .VALID = NULL)
 
-.cmp_lgl_scl(x)
+.cmp_lgl_scl(x, .VALID = NULL)
 
-.cmp_lgl_vec(x)
+.cmp_lgl_vec(x, .VALID = NULL)
 
-.cmp_nng_scl(x)
+.cmp_nng_scl(x, .VALID = NULL)
 
-.cmp_nnw_scl(x)
+.cmp_nnw_scl(x, .VALID = NULL)
 
-.cmp_nnw_vec(x)
+.cmp_nnw_vec(x, .VALID = NULL)
 
 .cmp_num_scl(x, .VALID = NULL)
 
 .cmp_num_vec(x, .VALID = NULL)
 
-.cmp_pos_vec(x)
+.cmp_pos_vec(x, .VALID = NULL)
 
-.cmp_ppn_vec(x)
+.cmp_ppn_vec(x, .VALID = NULL)
 
-.cmp_psw_scl(x)
+.cmp_psw_scl(x, .VALID = NULL)
 
-.cmp_psw_vec(x)
+.cmp_psw_vec(x, .VALID = NULL)
 
-.cmp_srt_vec(x)
+.cmp_srt_vec(x, .VALID = NULL)
 
-.cmp_str_scl(x)
+.cmp_str_scl(x, .VALID = NULL)
 
-.cmp_str_vec(x)
+.cmp_str_vec(x, .VALID = NULL)
 
-.cmp_whl_scl(x)
+.cmp_whl_scl(x, .VALID = NULL)
 
-.cmp_atm_mvc(x)
+.cmp_atm_mvc(x, .VALID = NULL)
 
-.unq_atm_mvc(x)
+.unq_atm_mvc(x, .VALID = NULL)
 
-.unq_atm_vec(x)
+.unq_atm_vec(x, .VALID = NULL)
 
-.unq_ch1_vec(x)
+.unq_ch1_vec(x, .VALID = NULL)
 
-.unq_ch3_vec(x)
+.unq_ch3_vec(x, .VALID = NULL)
 
 .unq_chr_vec(x, .VALID = NULL)
 
-.unq_nnw_vec(x)
+.unq_nnw_vec(x, .VALID = NULL)
 
 .unq_num_vec(x, .VALID = NULL)
 
-.unq_psw_vec(x)
+.unq_psw_vec(x, .VALID = NULL)
 
-.unq_str_vec(x)
+.unq_str_vec(x, .VALID = NULL)
 
-.atm_rct_dtf(x)
+.atm_rct_dtf(x, .VALID = NULL)
+}
+\arguments{
+\item{x}{Any object. See \emph{details}.}
+
+\item{.VALID}{An optional object containing valid atomic values to check against atomic values in \code{x}. See \emph{details}.}
 }
 \value{
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-Fast property checking for common checks
+Fast property checking for \code{\link{ppp}} functions without the dot prefix.
 }
 \details{
-Fast property checking for \code{\link{ppp}} functions without the dot prefix.
+When \code{.VALID} is supplied, both \code{x} and \code{.VALID} are \link[uj:av]{atomized} before checking whether all atomic elements of \code{x} are contained in the atomic elements of \code{.VALID}.
 }
 \seealso{
 Other properties: 

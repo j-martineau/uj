@@ -196,7 +196,7 @@ dnamed <- function(..., .U = T, BL = F) {uj::named(base::list(...), 0, .U, BL)}
 get_names <- function(x, .D = 0, .U = T, .ERR = F) {
   Errors <- NULL
   if (!uj:::.POP(x)) {Errors <- base::c(Errors, "[x] must be populated (?POP).")}
-  if (!uj:::.cmp_num_scl(.D, Valid = base::c(0:2, 12))) {Errors <- base::c(Errors, "[.D] must be 0, 1, 2, or 12.")}
+  if (!uj:::.cmp_num_scl(.D, .VALID = base::c(0:2, 12))) {Errors <- base::c(Errors, "[.D] must be 0, 1, 2, or 12.")}
   if (!uj:::.cmp_lgl_scl(.U)) {Errors <- base::c(Errors, "[.U] must be TRUE or FALSE.")}
   if (!uj:::.cmp_lgl_scl(.ERR)) {Errors <- base::c(Errors, "[.ERR] must be TRUE or FALSE.")}
   if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
