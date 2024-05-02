@@ -24,6 +24,6 @@
 #'
 #' @export
 run <- function(...) {
-  Code <- base::paste0(uj::av(...), collapse = "")
-  base::eval.parent(base::parse(text = Code), n = 1)
+  code <- base::paste0(uj::av(...), collapse = "")
+  base::eval.parent(base::parse(text = code), n = 1)
 }

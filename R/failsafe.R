@@ -1,3 +1,48 @@
+# internals ####
+
+# are x and y of compatible (sortable or unsortable) modes
+.compat <- function(x, y) {
+  if (base::is.character(x) & base::is.character(y)) {TRUE}
+  else if (base::is.logical(x) & base::is.logical(y)) {TRUE}
+  else if (base::is.numeric(x) & base::is.numeric(y)) {TRUE}
+  else if (base::is.ordered(x) & base::is.ordered(y)) {
+    xLevels <- base::levels(x)
+    yLevels <- base::levels(y)
+    if (base::length(xLevels) != base::length(yLevels)) {FALSE}
+    else {base::all(xLevels == yLevels)}
+  }
+  else if (base::is.factor(x) & !base::is.ordered(y)) {
+    xLevels <- base::levels(x)
+    yLevels <- base::levels(y)
+    if (base::length(xLevels) != base::length(yLevels)) {FALSE}
+    else {base::setequal(xLevels, yLevels)}
+  } else {FALSE}
+}
+
+# are x and y of comparable (sortable) modes
+.compar <- function(x, y) {
+  if (base::is.character(x) & base::is.character(y)) {TRUE}
+  else if (base::is.logical(x) & base::is.logical(y)) {TRUE}
+  else if (base::is.numeric(x) & base::is.numeric(y)) {TRUE}
+  else if (base::is.ordered(x) & base::is.ordered(y)) {
+    xLevels <- base::levels(x)
+    yLevels <- base::levels(y)
+    if (base::length(xLevels) != base::length(yLevels)) {FALSE}
+    else {base::all(xLevels == yLevels)}
+  } else {FALSE}
+}
+
+# are x and y of recyclable lengths (1, max(c(length(x), length(y))))
+.mismatch_n <- function(x, y) {
+  nx <- base::length(x)
+  ny <- base::length(y)
+  nxy <- base::c(nx, ny)
+  nValid <- base::c(1, nxy)
+  nx == 0 | ny == 0 | !base::all(nxy %in% nValid)
+}
+
+# externals ####
+
 #' @encoding UTF-8
 #' @family extensions
 #' @family logicals
@@ -54,6 +99,7 @@
 #' \tabular{ll}{  `%.is.%`      \tab `failsafe(identical(x, y))`                                  \cr
 #'                `%.isnt.%`    \tab `!(x %.is.% y)`                                              \cr   \tab   \cr
 #'                `%.in.%`      \tab `sapply(failsafe(x %in% y), isTRUE)`                         \cr
+#'                `%.in.%`      \tab if `x` is atomic scalar, `x %.in.% y`, otherwise `FALSE`     \cr
 #'                `%.mf.%`      \tab `!(x %.in.% y)` (missing from)                               \cr
 #'                `%.has.%`     \tab `y %.in.% x` (`x` has each `y` value)                        \cr
 #'                `%.lacks.%`   \tab `y %.mf.% x` (`x` lacks each `y` value)                      \cr   \tab   \cr
@@ -71,16 +117,15 @@
 #'                `%.and.%`     \tab values of `x` *and* `y` are `TRUE`                           \cr
 #'                `%.xor.%`     \tab values of *either* `x` *or* `y` are `TRUE`                   \cr
 #'                `%.nor.%`     \tab values of *neither* `x` *nor* `y` are `TRUE`                 \cr   \tab   \cr
-#'                `%.IN.%`      \tab if `x` is atomic scalar, `x %.in.% y`, otherwise `FALSE`     \cr
-#'                `%.MF.%`      \tab `x` is atomic scalar and `x %.mf.% y`                        \cr
-#'                `%.HAS.%`     \tab `y` is atomic scalar and `x %.has.% y`                       \cr
-#'                `%.LACKS.%`   \tab `y` is atomic scalar and `x %.lacks.% y`                     \cr   \tab   \cr
-#'                `%.EQ.%`      \tab `x` and `y` are atomic scalar and `x = y`  \eqn{^{(2)}}      \cr
-#'                `%.GE.%`      \tab `x` and `y` are atomic scalar and `x ≥ y`  \eqn{^{(2)}}      \cr
-#'                `%.GT.%`      \tab `x` and `y` are atomic scalar and `x > y`  \eqn{^{(2)}}      \cr
-#'                `%.LE.%`      \tab `x` and `y` are atomic scalar and `x ≤ y`  \eqn{^{(2)}}      \cr
-#'                `%.LT.%`      \tab `x` and `y` are atomic scalar and `x ≥ y`  \eqn{^{(2)}}      \cr
-#'                `%.DIF.%`     \tab `x` and `y` are *not* atomic scalar equal  \eqn{^{(3)}}      \cr   \tab   \cr
+#'                `%.mf.%`      \tab `x` is atomic scalar and `x %.mf.% y`                        \cr
+#'                `%.has.%`     \tab `y` is atomic scalar and `x %.has.% y`                       \cr
+#'                `%.lacks.%`   \tab `y` is atomic scalar and `x %.lacks.% y`                     \cr   \tab   \cr
+#'                `%.eq.%`      \tab `x` and `y` are atomic scalar and `x = y`  \eqn{^{(2)}}      \cr
+#'                `%.ge.%`      \tab `x` and `y` are atomic scalar and `x ≥ y`  \eqn{^{(2)}}      \cr
+#'                `%.gt.%`      \tab `x` and `y` are atomic scalar and `x > y`  \eqn{^{(2)}}      \cr
+#'                `%.le.%`      \tab `x` and `y` are atomic scalar and `x ≤ y`  \eqn{^{(2)}}      \cr
+#'                `%.lt.%`      \tab `x` and `y` are atomic scalar and `x ≥ y`  \eqn{^{(2)}}      \cr
+#'                `%.dIF.%`     \tab `x` and `y` are *not* atomic scalar equal  \eqn{^{(3)}}      \cr   \tab   \cr
 #'                `%.OR.%`      \tab `x` *and/or* `y` are scalar `TRUE`                           \cr
 #'                `%.AND.%`     \tab `x` *and* `y` are scalar `TRUE`                              \cr
 #'                `%.XOR.%`     \tab *either* `x` *or* `y` is scalar `TRUE`                       \cr
@@ -185,7 +230,7 @@
 #' @return A logical scalar or vector.
 #' @param ... Any objects/expressions to be evaluated, whether or not doing so produces an error.
 #' @param val,or,x,y Any object/expression to be evaluated, whether or not doing so produces an error.
-#' @param .DEF A character scalar default error message if forcing evaluation produces an error. If not a character scalar, it is replaced with the default.
+#' @param def A character scalar default error message if forcing evaluation produces an error. If not a character scalar, it is replaced with the default.
 #' @examples
 #' egfailsafe <- function() {
 #'   abc <- c("a", "b", "c")
@@ -201,11 +246,11 @@
 #'   combo <- list(mss.scl, lgl.scl, fac.vec, chr.mat, chr.dtf, numvls)
 #'   attr(abc, "custom") <- "custom"
 #'   list(`"a" %.AND.% FALSE`                    = "a" %.AND.% FALSE                   ,
-#'        `"a" %.IN.% abc`                       = "a" %.IN.% abc                      ,
+#'        `"a" %.in.% abc`                       = "a" %.in.% abc                      ,
 #'        `"a" %.NOR.% FALSE`                    = "a" %.OR.% FALSE                    ,
 #'        `"a" %.XOR.% FALSE`                    = "a" %.XOR.% FALSE                   ,
 #'        `"a" %.OR.% FALSE`                     = "a" %.OR.% FALSE                    ,
-#'        `"a" %.MF.% abc`                       = "a" %.MF.% abc                      ,
+#'        `"a" %.mf.% abc`                       = "a" %.mf.% abc                      ,
 #'        `"a" %.and.% FALSE`                    = "a" %.and.% FALSE                   ,
 #'        `"a" %.in.% abc`                       = "a" %.in.% abc                      ,
 #'        `"a" %.nor.% FALSE`                    = "a" %.or.% FALSE                    ,
@@ -215,8 +260,8 @@
 #'        `1 %.in.% abc`                         = 1 %.in.% abc                        ,
 #'        `1 %.mf.% abc`                         = 1 %.mf.% abc                        ,
 #'        `abc %.EQ.% abc`                       = abc %.EQ.% abc                      ,
-#'        `abc %.EQ.% letters[1:3]`              = abc %.EQ.% letters[1:3]             ,
-#'        `abc %.EQ.% NULL`                      = abc %.EQ.% NULL                     ,
+#'        `abc %.eq.% letters[1:3]`              = abc %.eq.% letters[1:3]             ,
+#'        `abc %.eq.% NULL`                      = abc %.eq.% NULL                     ,
 #'        `abc %.HAS.% "a"`                      = abc %.HAS.% "a"                     ,
 #'        `abc %.HAS.% 1`                        = abc %.HAS.% 1                       ,
 #'        `abc %.HAS.% NULL`                     = abc %.HAS.% NULL                    ,
@@ -224,9 +269,9 @@
 #'        `abc %.has.% 1:3`                      = abc %.has.% 1                       ,
 #'        `abc %.has.% NULL`                     = abc %.has.% NULL                    ,
 #'        `abc %.is.% NULL`                      = abc %.is.% NULL                     ,
-#'        `abc %.LACKS.% "a"`                    = abc %.LACKS.% "a"                   ,
-#'        `abc %.LACKS.% 1`                      = abc %.LACKS.% 1                     ,
-#'        `abc %.LACKS.% NULL`                   = abc %.LACKS.% NULL                  ,
+#'        `abc %.lacks.% "a"`                    = abc %.lacks.% "a"                   ,
+#'        `abc %.lacks.% 1`                      = abc %.lacks.% 1                     ,
+#'        `abc %.lacks.% NULL`                   = abc %.lacks.% NULL                  ,
 #'        `abc %.is.% abc`                       = abc %.is.% abc                      ,
 #'        `abc %.is.% letters[1:3]`              = abc %.is.% letters[1:3]             ,
 #'        `abc %.isnt.% abc`                     = abc %.isnt.% abc                    ,
@@ -660,13 +705,13 @@
 #' }
 #' egfailsafe()
 #' @export
-failsafe <- function(x, .DEF = "uj.failsafe.err") {
+failsafe <- function(x, def = "uj.failsafe.err") {
   x <- tryCatch(base::identity(x), error = function(e) e, finally = NULL)
   if (rlang::is_error(x)) {
-    .DEF <- tryCatch(base::identity(.DEF), error = function(e) e, finally = NULL)
-    if (rlang::is_error(.DEF)) {.DEF <- "uj.failsafe.err"}
-    base::attr(.DEF, "stack") <- uj::callers()
-    .DEF
+    def <- tryCatch(base::identity(def), error = function(e) e, finally = NULL)
+    if (rlang::is_error(def)) {def <- "uj.failsafe.err"}
+    base::attr(def, "stack") <- uj::callers()
+    def
   } else {x}
 }
 
@@ -1990,8 +2035,8 @@ lacks_many <- function(x, y) {uj::n_lacks(x, y) > 2}
 `%.xor.%` <- function(x, y) {
   if (uj::is_err(x) | uj::is_err(y)) {return(F)} else if (!base::is.logical(x) | !base::is.logical(y)) {return(F)}
   nXY <- base::c(base::length(x), base::length(y))
-  Valid <- base::c(1, base::max(nXY))
-  if (!base::all(nXY %in% Valid)) {F} else {base::xor(x, y)}
+  valid <- base::c(1, base::max(nXY))
+  if (!base::all(nXY %in% valid)) {F} else {base::xor(x, y)}
 }
 
 #' @rdname failsafe

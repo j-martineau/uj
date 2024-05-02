@@ -14,28 +14,28 @@
 \alias{new_dirs}
 \title{Evaluate and manipulate paths to files or folders}
 \usage{
-is_path(..., .ERR = F)
+is_path(..., err = F)
 
-as_path(..., .ERR = T)
+as_path(..., err = T)
 
-object_dirs(path, .ERR = T)
+object_dirs(path, err = T)
 
-parent_dirs(path, .ERR = T)
+parent_dirs(path, err = T)
 
-object_path(path, .ERR = T)
+object_path(path, err = T)
 
-parent_path(path, .ERR = T)
+parent_path(path, err = T)
 
-object_name(path, .ERR = T)
+object_name(path, err = T)
 
-parent_name(path, .ERR = T)
+parent_name(path, err = T)
 
 new_dirs(dirs, path = NULL)
 }
 \arguments{
 \item{...}{Atomic arguments pasted to create}
 
-\item{.ERR}{\code{TRUE} or \code{FALSE} indicating whether an error should be thrown if \code{...} is not a valid object path when collapsed to a character scalar.}
+\item{err}{\code{TRUE} or \code{FALSE} indicating whether an error should be thrown if \code{...} is not a valid object path when collapsed to a character scalar.}
 
 \item{path}{A \link[=cmp_chr_scl]{complete character scalar} path to either a directory or a file.}
 
@@ -102,7 +102,6 @@ Other extensions:
 \code{\link{failsafe}()},
 \code{\link{flex_rbind}()},
 \code{\link{fork}()},
-\code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{purge}()},

@@ -27,23 +27,23 @@
 #' rb(egD2x4, egD4x4, egD4x4b)
 #' @export
 cb <- function(...) {
-  if (base::...length() < 2) {uj::stopperr("[...] contains fewer than 2 arguments.", .PKG = "uj")}
+  if (base::...length() < 2) {ppp::stopperr("[...] contains fewer than 2 arguments.", pkg = "uj")}
   X <- base::list(...)
-  Dtf <- base::all(base::sapply(X, atm_dtf))
-  Mat <- base::all(base::sapply(X, atm_mat))
-  if (!Dtf & !Mat) {uj::stopperr("[...] must contain only atomic matrices or only atomic data.frames.", .PKG = "uj")}
-  if (uj::f0(Dtf, uj::compatible_dtfs("c", ...), uj::compatible_mats("c", ...))) {return(base::cbind(...))}
-  uj::stopperr("Arguments in [...] are not compatible for column binding.", .PKG = "uj")
+  dtf <- base::all(base::sapply(X, ppp::atm_dtf))
+  mat <- base::all(base::sapply(X, ppp::atm_mat))
+  if (!dtf & !mat) {ppp::stopperr("[...] must contain only atomic matrices or only atomic data.frames.", pkg = "uj")}
+  if (uj::f0(dtf, uj::compatible_dtfs("c", ...), uj::compatible_mats("c", ...))) {return(base::cbind(...))}
+  ppp::stopperr("Arguments in [...] are not compatible for column binding.", pkg = "uj")
 }
 
 #' @rdname cb
 #' @export
 rb <- function(...) {
-  if (base::...length() < 2) {uj::stopperr("[...] contains fewer than 2 arguments.", .PKG = "uj")}
-  X <- base::list(...)
-  Dtf <- base::all(base::sapply(X, atm_dtf))
-  Mat <- base::all(base::sapply(X, atm_mat))
-  if (!Dtf & !Mat) {uj::stopperr("[...] must contain only atomic matrices or only atomic data.frames.", .PKG = "uj")}
-  if (uj::f0(Dtf, uj::compatible_dtfs("r", ...), uj::compatible_mats("r", ...))) {return(base::rbind(...))}
-  uj::stopperr("Arguments in [...] are not compatible for row binding.", .PKG = "uj")
+  if (base::...length() < 2) {ppp::stopperr("[...] contains fewer than 2 arguments.", pkg = "uj")}
+  x <- base::list(...)
+  dtf <- base::all(base::sapply(x, ppp::atm_dtf))
+  mat <- base::all(base::sapply(x, ppp::atm_mat))
+  if (!dtf & !mat) {ppp::stopperr("[...] must contain only atomic matrices or only atomic data.frames.", pkg = "uj")}
+  if (uj::f0(dtf, uj::compatible_dtfs("r", ...), uj::compatible_mats("r", ...))) {return(base::rbind(...))}
+  ppp::stopperr("Arguments in [...] are not compatible for row binding.", pkg = "uj")
 }

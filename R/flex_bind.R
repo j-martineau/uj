@@ -6,29 +6,29 @@
 #' @return A data.frame.
 #' @export
 flex_rbind <- function(x, y) {
-  Errors <- NULL
-  if (!uj:::.atm_dtf(x)) {Errors <- base::c(Errors, "[x] must be an atomic data.frame (?uj::atm_dtf).")}
-  if (!uj:::.atm_dtf(y)) {Errors <- base::c(Errors, "[y] must be an atomic data.frame (?uj::atm_dtf).")}
-  if (uj::.DEF(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
+  errs <- NULL
+  if (!ppp::.atm_dtf(x)) {errs <- base::c(errs, "[x] must be an atomic data.frame (?atm_dtf).")}
+  if (!ppp::.atm_dtf(y)) {errs <- base::c(errs, "[y] must be an atomic data.frame (?atm_dtf).")}
+  if (uj::.DEF(errs)) {ppp::stopperr(errs, pkg = "uj")}
   xNames <- base::colnames(x)
   yNames <- base::colnames(y)
-  SharedNames <- base::intersect(xNames, yNames)
-  if (base::length(SharedNames) == 0) {uj::stopperr("No variables in [x] and [y] have the same name.", .PKG = "uj")}
-  AllNames <- base::unique(base::c(xNames, yNames))
-  UniqueNamesY <- AllNames[!(AllNames %in% xNames)]
-  UniqueNamesX <- AllNames[!(AllNames %in% yNames)]
-  for (Name in SharedNames) {if (!uj:::.compat(x[[Name]], y[[Name]])) {uj::stopperr("Variables contained in both [x] and [y] must be compatible.", .PKG = "uj")}}
-  for (Name in UniqueNamesX) {
-    NewCol <- tibble::tibble(y = base::rep.int(NA, base::nrow(y)))
-    base::colnames(NewCol) <- Name
-    y <- base::cbind(y, NewCol)
+  sharedNames <- base::intersect(xNames, yNames)
+  if (base::length(sharedNames) == 0) {ppp::stopperr("No variables in [x] and [y] have the same name.", pkg = "uj")}
+  allNames <- base::unique(base::c(xNames, yNames))
+  uniqueNamesY <- allNames[!(allNames %in% xNames)]
+  uniqueNamesX <- allNames[!(allNames %in% yNames)]
+  for (name in sharedNames) {if (!uj:::.compat(x[[name]], y[[name]])) {ppp::stopperr("Variables contained in both [x] and [y] must be compatible.", pkg = "uj")}}
+  for (name in uniqueNamesX) {
+    newCol <- tibble::tibble(y = base::rep.int(NA, base::nrow(y)))
+    base::colnames(newCol) <- name
+    y <- base::cbind(y, newCol)
   }
-  for (Name in UniqueNamesY) {
-    NewCol <- tibble::tibble(x = base::rep.int(NA, base::nrow(x)))
-    base::colnames(NewCol) <- Name
-    x <- base::cbind(x, NewCol)
+  for (name in uniqueNamesY) {
+    newCol <- tibble::tibble(x = base::rep.int(NA, base::nrow(x)))
+    base::colnames(newCol) <- name
+    x <- base::cbind(x, newCol)
   }
-  y <- y[ , AllNames]
-  x <- x[ , AllNames]
+  y <- y[ , allNames]
+  x <- x[ , allNames]
   base::rbind(x, y)
 }

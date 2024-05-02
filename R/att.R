@@ -10,7 +10,7 @@
 #'  \tabular{l}{  \eqn{^{(1)}} No `...` args indicates all attributes of `x`.}
 #' @param x An R object.
 #' @param ... Optional unquoted names of attributes of `x` or character objects. When none are provided, indicates all attributes of `x`.
-#' @param .A `TRUE` or `FALSE` indicating whether to \link[av]{atomize} the result and convert the resulting vector to character.
+#' @param .a `TRUE` or `FALSE` indicating whether to \link[av]{atomize} the result and convert the resulting vector to character.
 #' @return **An object**
 #' \cr\cr `add_att, set_att, rm_att, xatt`
 #' \cr\cr  **THE** `NULL` **object or a list**
@@ -18,26 +18,26 @@
 #' \cr\cr  **The** `NULL` **object or a character vector**
 #' \cr\cr `att_names`
 #' @export
-att <- function(x, ..., .A = FALSE) {
-  if (!uj:::.cmp_lgl_scl(.A)) {uj::stopperr("[.A] must be scalar TRUE or scalar FALSE.", .PKG = "uj")}
-  Atts <- base::attributes(x)
-  AttNames <- base::names(Atts)
-  GetNames <- base::as.character(uj::av(...))
-  nGet <- base::length(GetNames)
+att <- function(x, ..., .a = FALSE) {
+  if (!ppp:::.cmp_lgl_scl(.a)) {ppp::stopperr("[.a] must be scalar TRUE or scalar FALSE.", pkg = "ppp")}
+  atts     <- base::attributes(x)
+  attNames <- base::names(atts)
+  getNames <- base::as.character(uj::av(...))
+  nGet     <- base::length(getNames)
   if (nGet > 1) {
     Y <- NULL
-    for (GetName in GetNames) {
-      if (GetName %in% base::names(Atts)) {GetVal <- Atts[[GetName]]}
-      else {GetVal <- NULL}
-      GetVal <- base::list(val = GetVal)
-      base::names(GetVal) <- GetName
-      Y <- base::c(Y, GetVal)
+    for (getName in getNames) {
+      if (getName %in% base::names(atts)) {getVal <- atts[[getName]]}
+      else {getVal <- NULL}
+      getVal <- base::list(val = getVal)
+      base::names(getVal) <- getName
+      Y <- base::c(Y, getVal)
     }
   } else if (nGet == 1) {
-    if (GetNames %in% AttNames) {Y <- Atts[[GetNames]]}
-    else {Y <- NULL}
-  } else {Atts}
-  uj::f0(.A, uj::av(Y), Y)
+    if (getNames %in% attNames) {y <- atts[[getNames]]}
+    else {y <- NULL}
+  } else {atts}
+  uj::f0(.a, uj::av(y), y)
 }
 
 #' @rdname att
@@ -51,44 +51,44 @@ att_names <- function(x) {base::names(base::attributes(x))}
 #' @rdname att
 #' @export
 is_att <- function(x, name) {
-  if (!uj:::.cmp_chr_scl(name)) {uj::stopperr("[name] must be .A complete character scalar (?cmp_chr_scl).", .PKG = "uj")}
+  if (!ppp:::.cmp_chr_scl(name)) {ppp::stopperr("[name] must be .a complete character scalar (?cmp_chr_scl).", pkg = "ppp")}
   name %in% base::names(base::attributes(x))
 }
 
 #' @rdname att
 #' @export
 add_att <- function(x, ...) {
-  N <- base::...length()
-  if (N == 0) {uj::stopperr("There must be at least one [...] arg." , .PKG = "uj")}
-  Dots <- base::list(...)
-  Atts <- base::attributes(x)
-  DotNames <- base::names(Dots)
-  AttNames <- base::names(Atts)
-  if (base::any(DotNames %in% AttNames)) {uj::stopperr("Names of [...] args may not be the same as names of existing attributes.", .PKG = "uj")}
-  if (base::length(DotNames) != base::length(base::unique(DotNames))) {uj::stopperr("Names of [...] args must be unique.", .PKG = "uj")}
-  for (i in 1:N) {base::attr(x, DotNames[i]) <- base::...elt(i)}
+  n <- base::...length()
+  if (n == 0) {ppp::stopperr("There must be at least one [...] arg." , pkg = "ppp")}
+  dots <- base::list(...)
+  atts <- base::attributes(x)
+  dotNames <- base::names(dots)
+  attNames <- base::names(atts)
+  if (base::any(dotNames %in% attNames)) {ppp::stopperr("Names of [...] args may not be the same as names of existing attributes.", pkg = "ppp")}
+  if (base::length(dotNames) != base::length(base::unique(dotNames))) {ppp::stopperr("Names of [...] args must be unique.", pkg = "ppp")}
+  for (i in 1:N) {base::attr(x, dotNames[i]) <- base::...elt(i)}
   x
 }
 
 #' @rdname att
 #' @export
 set_att <- function(x, ...) {
-  nDots <- base::...length()
-  DotNames <- base::...names()
-  nuDotNames <- base::length(base::unique(DotNames))
-  if (nDots == 0) {uj::stopperr("There must be at least one [...] arg." , .PKG = "uj")}
-  if (nDots != nuDotNames) {uj::stopperr("Names of [...] args must be unique.", .PKG = "uj")}
-  for (i in 1:nDots) {base::attr(x, DotNames[i]) <- base::...elt(i)}
+  ndots <- base::...length()
+  dotNames <- base::...names()
+  nuDotNames <- base::length(base::unique(dotNames))
+  if (ndots == 0) {ppp::stopperr("There must be at least one [...] arg." , pkg = "ppp")}
+  if (ndots != nuDotNames) {ppp::stopperr("Names of [...] args must be unique.", pkg = "ppp")}
+  for (i in 1:ndots) {base::attr(x, dotNames[i]) <- base::...elt(i)}
   x
 }
 
 #' @rdname att
 #' @export
 rm_att <- function(x, ...) {
-  if (base::...length() == 0) {uj::stopperr("There must be at least one [...] arg." , .PKG = "uj")}
-  DropNames <- base::as.character(uj::av(...))
-  AttNames <- base::names(base::attributes(x))
-  for (DropName in DropNames) {if (DropName %in% AttNames) {base::attr(x, DropName) <- NULL}}
+  if (base::...length() == 0) {ppp::stopperr("There must be at least one [...] arg." , pkg = "ppp")}
+  dropNames <- base::as.character(uj::av(...))
+  attNames <- base::names(base::attributes(x))
+  for (dropName in dropNames) {if (dropName %in% attNames) {base::attr(x, dropName) <- NULL}}
   x
 }
 

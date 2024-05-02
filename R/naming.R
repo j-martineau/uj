@@ -24,13 +24,13 @@
 #'                `name_scl_vls`     \tab Create and name a scalar \code{\link[=VLS]{vlist}} }
 #' @param x Vector or list for `name_vals` and `val_names / vn`; matrix or data.frame for `rnames / rn`, `cnames / cn`, `rcnames / rcn`, `name_rcs`, `name_cols`, and `name_rows`; or any object for `name_scl_vls`.
 #' @param ... An arbitrary number of arguments.
-#' @param .D A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the dimension(s) to name: `0` for elements (of atomic or list vectors only), `1` for rows of matrices or tibbles, `2` for columns of matrices or data.frames, or `12` for rows and columns of matrices or data.frames.
-#' @param .U `TRUE` or `FALSE` indicating whether names must be unique.
+#' @param .d A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the dimension(s) to name: `0` for elements (of atomic or list vectors only), `1` for rows of matrices or tibbles, `2` for columns of matrices or data.frames, or `12` for rows and columns of matrices or data.frames.
+#' @param .u `TRUE` or `FALSE` indicating whether names must be unique.
 #' @param name A non-`NA` character scalar to name the single element of the resulting \link[=VLS]{vlist}.
 #' @param names,rnames,cnames,vnames A \link[=cmp_chr_vec]{complete character vec}.
-#' @param .ERR `TRUE` or `FALSE` indicating whether names must exist.
+#' @param .err `TRUE` or `FALSE` indicating whether names must exist.
 #' @param ERR `TRUE` or `FALSE` indicating whether `...` args must have names.
-#' @param .BL,BL `TRUE` or `FALSE` indicating whether blank strings (`""`) are allowed as names.
+#' @param .bl,BL `TRUE` or `FALSE` indicating whether blank strings (`""`) are allowed as names.
 #' @return **A \link[=VEC]{vec}, \link[=VLS]{vlist}, matrix, or data.frame** \cr\cr `name`
 #' \cr\cr  **A vector or a vlist of length** `2`                             \cr\cr `get_names`
 #' \cr\cr  **A matrix or data.frame**                                        \cr\cr `name_rcs, name_rows, name_cols`
@@ -54,8 +54,8 @@
 #'
 #' named(egVec)
 #' named(egVls)
-#' named(egMat, .D = 12)
-#' named(egDtf, .D = 2)
+#' named(egMat, .d = 12)
+#' named(egDtf, .d = 2)
 #'
 #' vals_are_named(egVls)
 #' rows_are_named(egMat)
@@ -66,8 +66,8 @@
 #' dots_are_named(var1 = egVec, var2 = egVls)
 #'
 #' get_names(egVls)
-#' get_names(egMat, .D = 1)
-#' get_names(egDtf, .D = 2)
+#' get_names(egMat, .d = 1)
+#' get_names(egDtf, .d = 2)
 #'
 #' en(egVec)
 #' en(egVls)
@@ -83,10 +83,10 @@
 #' name_rcs(egMat, letters[egVec], egVec)
 #' @export
 name_vals <- function(x, names) {
-  Errors <- NULL
-  if (!uj:::.VEC(x)) {Errors <- base::c(Errors, "[x] must be a vec (?VEC).")}
-  if (!uj:::.cmp_vec(names) | base::length(x) != base::length(names)) {Errors <- base::c(Errors, "[names] must be a complete vec (?cmp_vec) of the same length as [x].")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
+  errs <- NULL
+  if (!uj:::.vec(x)) {errs <- base::c(errs, "[x] must be a vec (?VEC).")}
+  if (!ppp::.cmp_vec(names) | base::length(x) != base::length(names)) {errs <- base::c(errs, "[names] must be a complete vec (?cmp_vec) of the same length as [x].")}
+  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
   base::names(x) <- names
   x
 }
@@ -94,10 +94,10 @@ name_vals <- function(x, names) {
 #' @rdname naming
 #' @export
 name_rows <- function(x, names) {
-  Errors <- NULL
-  if (!uj:::.D2D(x)) {Errors <- base::c(Errors, "[x] must be a matrix or data.frame.")}
-  if (!uj:::.cmp_vec(names) | base::NROW(x) != base::length(names)) {Errors <- base::c(Errors, "[names] must be a complete vec (?cmp_vec) of length as NROW(x).")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
+  errs <- NULL
+  if (!uj:::.d2D(x)) {errs <- base::c(errs, "[x] must be a matrix or data.frame.")}
+  if (!ppp::.cmp_vec(names) | base::NROW(x) != base::length(names)) {errs <- base::c(errs, "[names] must be a complete vec (?cmp_vec) of length as NROW(x).")}
+  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
   base::rownames(x) <- names
   x
 }
@@ -105,10 +105,10 @@ name_rows <- function(x, names) {
 #' @rdname naming
 #' @export
 name_cols <- function(x, names) {
-  Errors <- NULL
-  if (!uj:::.D2D(x)) {Errors <- base::c(Errors, "[x] must be a matrix or data.frame.")}
-  if (!uj:::.cmp_vec(names) | base::NCOL(x) != base::length(names)) {Errors <- base::c(Errors, "[names] must be a complete vec (?cmp_vec) of length as NCOL(x).")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
+  errs <- NULL
+  if (!uj:::.d2D(x)) {errs <- base::c(errs, "[x] must be a matrix or data.frame.")}
+  if (!ppp::.cmp_vec(names) | base::NCOL(x) != base::length(names)) {errs <- base::c(errs, "[names] must be a complete vec (?cmp_vec) of length as NCOL(x).")}
+  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
   base::colnames(x) <- names
   x
 }
@@ -116,7 +116,7 @@ name_cols <- function(x, names) {
 #' @rdname naming
 #' @export
 name_scl_vls <- function(x, name) {
-  if (!uj:::.cmp_scl(name)) {uj::stopperr("[name] must be a complete atomic scalar (?cmp_scl).", .PKG = "uj")}
+  if (!ppp::.cmp_scl(name)) {ppp::stopperr("[name] must be a complete atomic scalar (?cmp_scl).", pkg = "uj")}
   x <- base::list(x)
   base::names(x) <- name
   x
@@ -129,113 +129,113 @@ name_rcs <- function(x, rnames, cnames) {uj::name_rows(uj::name_cols(x, cnames),
 #' @rdname naming
 #' @export
 name <- function(x, vnames = NULL, rnames = NULL, cnames = NULL) {
-  if      (uj:::.D1D(x)) {uj::name_vals(x, vnames)}
-  else if (uj:::.D2D(x)) {uj::name_rcs(x, rnames, cnames)}
-  else {uj::stopperr("[x] must be a vec (?VEC), vlist (?VLS), matrix, or data.frame.", .PKG = "uj")}
+  if      (uj:::.d1D(x)) {uj::name_vals(x, vnames)}
+  else if (uj:::.d2D(x)) {uj::name_rcs(x, rnames, cnames)}
+  else {ppp::stopperr("[x] must be a vec (?VEC), vlist (?VLS), matrix, or data.frame.", pkg = "uj")}
 }
 
 #' @rdname naming
 #' @export
-named <- function(x, .D = 0, .U = T, .BL = F) {
-  OkX <- uj:::.pop_vec(x) | uj:::.pop_vls(x) | uj:::.pop_mat(x) | uj:::.pop_dtf(x)
-  if (uj::cmp_nnw_scl(.D)) {OkD <- .D %in% base::c(0, 1, 2, 12)} else {OkD <- F}
-  OkD1D <- uj::f0(!uj::D1D(x), T, .D == 0)
-  OkD2D <- uj::f0(!uj::D2D(x) | !OkD, T, dim %in% base::c(1, 2, 12))
-  Errors <- NULL
-  if (!OkX) {Errors <- base::c(Errors, "[x] must be a populated vector, vlist, matrix, or data.frame (?pop_vec, ?pop_vls, ?pop_mat, ?pop_dtf).")}
-  if (!OkD) {Errors <- base::c(Errors, "[.D] must be 0, 1, 2, or 12.")}
-  if (!OkD1D) {Errors <- base::c(Errors, "[.D] must be 0 when [x] is a vector, vlist (?VLS), or 1D array.")}
-  if (!OkD2D) {Errors <- base::c(Errors, "[.D] must be 1, 2, or 12 when [x] is a matrix or data.frame.")}
-  if (!uj:::.cmp_lgl_scl(.U)) {Errors <- base::c(Errors, "[.U] must be TRUE or FALSE.")}
-  if (!uj:::.cmp_lgl_scl(.BL)) {Errors <- base::c(Errors, "[.BL] must be TRUE or FALSE.")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  leOK <- ueOK <- beOK <- lrOK <- urOK <- brOK <- lcOK <- ucOK <- bcOK <- T      # initialize result scalars
-  if (.D == 0) {                                                                # if inspecting for element names
-    eNames <- base::names(x)                                                      # > get element names
-    leOK <- base::length(eNames) > 0                                              # > are elements named?
-    ueOK <- uj::f0(leOK & .U, base::length(eNames) == base::length(base::unique(eNames)), T)                 # > do names meet uniqueness specification?
-    beOK <- uj::f0(leOK & .BL, !base::any(eNames == ""), T)                              # > do names meet blankness specification?
+named <- function(x, .d = 0, .u = T, .bl = F) {
+  okX <- uj:::.pop_vec(x) | uj:::.pop_vls(x) | uj:::.pop_mat(x) | uj:::.pop_dtf(x)
+  if (ppp::cmp_nnw_scl(.d)) {okD <- .d %in% base::c(0, 1, 2, 12)} else {okD <- F}
+  okD1D <- uj::f0(!uj::D1D(x), T, .d == 0)
+  okD2D <- uj::f0(!uj::D2D(x) | !okD, T, dim %in% base::c(1, 2, 12))
+  errs <- NULL
+  if (!okX) {errs <- base::c(errs, "[x] must be a populated vector, vlist, matrix, or data.frame (?pop_vec, ?pop_vls, ?pop_mat, ?pop_dtf).")}
+  if (!okD) {errs <- base::c(errs, "[.d] must be 0, 1, 2, or 12.")}
+  if (!okD1D) {errs <- base::c(errs, "[.d] must be 0 when [x] is a vector, vlist (?VLS), or 1D array.")}
+  if (!okD2D) {errs <- base::c(errs, "[.d] must be 1, 2, or 12 when [x] is a matrix or data.frame.")}
+  if (!ppp::.cmp_lgl_scl(.u)) {errs <- base::c(errs, "[.u] must be TRUE or FALSE.")}
+  if (!ppp::.cmp_lgl_scl(.bl)) {errs <- base::c(errs, "[.bl] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  leOK <- ueOK <- beOK <- lrOK <- urOK <- brOK <- lcOK <- ucOK <- bcOK <- T                  # initialize result scalars
+  if (.d == 0) {                                                                             # if inspecting for element names
+    eNames <- base::names(x)                                                                 # > get element names
+    leOK <- base::length(eNames) > 0                                                         # > are elements named?
+    ueOK <- uj::f0(leOK & .u, base::length(eNames) == base::length(base::unique(eNames)), T) # > do names meet uniqueness specification?
+    beOK <- uj::f0(leOK & .bl, !base::any(eNames == ""), T)                                  # > do names meet blankness specification?
   }
-  if (.D %in% base::c(1, 12)) {
+  if (.d %in% base::c(1, 12)) {
     rnames <- base::rownames(x)
     lrOK <- base::length(rnames) > 0
-    urOK <- uj::f0(lrOK & .U, base::length(rnames) == base::length(base::unique(rnames)), T)
-    brOK <- uj::f0(lrOK & .BL, !base::any(rnames == ""), T)
+    urOK <- uj::f0(lrOK & .u, base::length(rnames) == base::length(base::unique(rnames)), T)
+    brOK <- uj::f0(lrOK & .bl, !base::any(rnames == ""), T)
   }
-  if (.D %in% base::c(2, 12)) {
+  if (.d %in% base::c(2, 12)) {
     cnames <- base::colnames(x)
     lcOK <- base::length(cnames) > 0
-    ucOK <- uj::f0(lcOK & .U, base::length(cnames) == base::length(base::unique(cnames)), T)
-    bcOK <- uj::f0(lcOK & .BL, !base::any(cnames == ""), T)
+    ucOK <- uj::f0(lcOK & .u, base::length(cnames) == base::length(base::unique(cnames)), T)
+    bcOK <- uj::f0(lcOK & .bl, !base::any(cnames == ""), T)
   }
   leOK & ueOK & beOK & lrOK & urOK & brOK & lcOK & ucOK & bcOK
 }
 
 #' @rdname naming
 #' @export
-named_elts <- function(x, .U = T, .BL = F) {uj::named(x, 0, .U, .BL)}
+named_elts <- function(x, .u = T, .bl = F) {uj::named(x, 0, .u, .bl)}
 
 #' @rdname naming
 #' @export
-named_rows <- function(x, .U = T, .BL = F) {uj::named(x, 1, .U, .BL)}
+named_rows <- function(x, .u = T, .bl = F) {uj::named(x, 1, .u, .bl)}
 
 #' @rdname naming
 #' @export
-named_cols <- function(x, .U = T, .BL = F) {uj::named(x, 2, .U, .BL)}
+named_cols <- function(x, .u = T, .bl = F) {uj::named(x, 2, .u, .bl)}
 
 #' @rdname naming
 #' @export
-named_rcs <- function(x, .U = T, .BL = F) {uj::named(x, 12, .U, .BL)}
+named_rcs <- function(x, .u = T, .bl = F) {uj::named(x, 12, .u, .bl)}
 
 #' @rdname naming
 #' @export
-dnamed <- function(..., .U = T, BL = F) {uj::named(base::list(...), 0, .U, BL)}
+dnamed <- function(..., .u = T, BL = F) {uj::named(base::list(...), 0, .u, BL)}
 
 #' @rdname naming
 #' @export
-get_names <- function(x, .D = 0, .U = T, .ERR = F) {
-  Errors <- NULL
-  if (!uj:::.POP(x)) {Errors <- base::c(Errors, "[x] must be populated (?POP).")}
-  if (!uj:::.cmp_num_scl(.D, .VALID = base::c(0:2, 12))) {Errors <- base::c(Errors, "[.D] must be 0, 1, 2, or 12.")}
-  if (!uj:::.cmp_lgl_scl(.U)) {Errors <- base::c(Errors, "[.U] must be TRUE or FALSE.")}
-  if (!uj:::.cmp_lgl_scl(.ERR)) {Errors <- base::c(Errors, "[.ERR] must be TRUE or FALSE.")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  if (.D == 0) {
+get_names <- function(x, .d = 0, .u = T, .err = F) {
+  errs <- NULL
+  if (!uj:::.POP(x)) {errs <- base::c(errs, "[x] must be populated (?POP).")}
+  if (!ppp::.cmp_num_scl(.d, .valid = base::c(0:2, 12))) {errs <- base::c(errs, "[.d] must be 0, 1, 2, or 12.")}
+  if (!ppp::.cmp_lgl_scl(.u)) {errs <- base::c(errs, "[.u] must be TRUE or FALSE.")}
+  if (!ppp::.cmp_lgl_scl(.err)) {errs <- base::c(errs, "[.err] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (.d == 0) {
     names <- base::names(x)
-    if (base::length(names) == 0 & !.ERR) {return(NULL)}
-    if (.ERR & base::length(names) == 0) {uj::stopperr("values of [x] are not named.", .PKG = "uj")}
-    if (.U & base::length(names) != base::length(base::unique(names))) {uj::stopperr("value names of [x] are not unique.", .PKG = "uj")}
+    if (base::length(names) == 0 & !.err) {return(NULL)}
+    if (.err & base::length(names) == 0) {ppp::stopperr("values of [x] are not named.", pkg = "uj")}
+    if (.u & base::length(names) != base::length(base::unique(names))) {ppp::stopperr("value names of [x] are not unique.", pkg = "uj")}
     names
-  } else if (!uj:::.D2D(x)) {uj::stopperr("[x] must be a matrix or a data.frame when .D is 1, 2, or 12.", .PKG = "uj")} else if (.D == 12) {
+  } else if (!uj:::.d2D(x)) {ppp::stopperr("[x] must be a matrix or a data.frame when .d is 1, 2, or 12.", pkg = "uj")} else if (.d == 12) {
     rnames <- base::rownames(x)
     cnames <- base::colnames(x)
-    if (.ERR & (base::length(rnames) == 0 | base::length(cnames) == 0)) {uj::stopperr("rows and/or columns of [x] are not named.", .PKG = "uj")}
-    else if (.U & (base::length(rnames) != base::length(base::unique(rnames)) | base::length(cnames) != base::length(base::unique(cnames)))) {uj::stopperr("row and/or column names of [x] are not unique.", .PKG = "uj")}
+    if (.err & (base::length(rnames) == 0 | base::length(cnames) == 0)) {ppp::stopperr("rows and/or columns of [x] are not named.", pkg = "uj")}
+    else if (.u & (base::length(rnames) != base::length(base::unique(rnames)) | base::length(cnames) != base::length(base::unique(cnames)))) {ppp::stopperr("row and/or column names of [x] are not unique.", pkg = "uj")}
     base::list(rows = rnames, cols = cnames)
-  } else if (.D == 1) {
+  } else if (.d == 1) {
     rnames <- base::rownames(x)
-    if (base::length(rnames) == 0 & !.ERR) {return(NULL)}
-    else if (.ERR & base::length(rnames) == 0) {uj::stopperr("rows of [x] are not named.", .PKG = "uj")}
-    else if (.U & base::length(rnames) != base::length(base::unique(rnames))) {uj::stopperr("row names of [x] are not unique.", .PKG = "uj")}
+    if (base::length(rnames) == 0 & !.err) {return(NULL)}
+    else if (.err & base::length(rnames) == 0) {ppp::stopperr("rows of [x] are not named.", pkg = "uj")}
+    else if (.u & base::length(rnames) != base::length(base::unique(rnames))) {ppp::stopperr("row names of [x] are not unique.", pkg = "uj")}
     rnames
-  } else if (.D == 2) {
+  } else if (.d == 2) {
     cnames <- base::colnames(x)
-    if (base::length(cnames) == 0 & !.ERR) {return(NULL)}
-    else if (.ERR & base::length(cnames) == 0) {uj::stopperr("columns of [x] are not named.", .PKG = "uj")}
-    else if (.U & base::length(cnames) != base::length(base::unique(cnames))) {uj::stopperr("column names of [x] are not unique.", .PKG = "uj")}
+    if (base::length(cnames) == 0 & !.err) {return(NULL)}
+    else if (.err & base::length(cnames) == 0) {ppp::stopperr("columns of [x] are not named.", pkg = "uj")}
+    else if (.u & base::length(cnames) != base::length(base::unique(cnames))) {ppp::stopperr("column names of [x] are not unique.", pkg = "uj")}
     cnames
   }
 }
 
 #' @rdname naming
 #' @export
-dnames <- function(..., .U = T, .ERR = F) {
-  if (base::...length() == 0) {uj::stopperr("No [...] args were supplied.", .PKG = "uj")}
+dnames <- function(..., .u = T, .err = F) {
+  if (base::...length() == 0) {ppp::stopperr("No [...] args were supplied.", pkg = "uj")}
   names <- base::...names()
   nNames <- base::length(names)
-  if (nNames == 0 & !.ERR) {return(NULL)}
-  if (.ERR & nNames == 0) {uj::stopperr("[...] args are not named", .PKG = "uj")}
-  if (.U & nNames != base::length(base::unique(names))) {uj::stopperr("[...] arg names are not unique.", .PKG = "uj")}
+  if (nNames == 0 & !.err) {return(NULL)}
+  if (.err & nNames == 0) {ppp::stopperr("[...] args are not named", pkg = "uj")}
+  if (.u & nNames != base::length(base::unique(names))) {ppp::stopperr("[...] arg names are not unique.", pkg = "uj")}
   dn
 }
 
@@ -245,7 +245,7 @@ dn <- dnames
 
 #' @rdname naming
 #' @export
-enames <- function(x, .U = T, .ERR = F) {uj::get_names(x, 0, .U, .ERR)}
+enames <- function(x, .u = T, .err = F) {uj::get_names(x, 0, .u, .err)}
 
 #' @rdname naming
 #' @export
@@ -253,7 +253,7 @@ en <- enames
 
 #' @rdname naming
 #' @export
-rnames <- function(x, .U = T, .ERR = F) {uj::get_names(x, 1, .U, .ERR)}
+rnames <- function(x, .u = T, .err = F) {uj::get_names(x, 1, .u, .err)}
 
 #' @rdname naming
 #' @export
@@ -261,7 +261,7 @@ rn <- rnames
 
 #' @rdname naming
 #' @export
-cnames <- function(x, .U = T, .ERR = F) {uj::get_names(x, 2, .U, .ERR)}
+cnames <- function(x, .u = T, .err = F) {uj::get_names(x, 2, .u, .err)}
 
 #' @rdname naming
 #' @export
@@ -269,7 +269,7 @@ cn <- cnames
 
 #' @rdname naming
 #' @export
-rcnames <- function(x, .U = T, .ERR = F) {uj::get_names(x, 12, .U, .ERR)}
+rcnames <- function(x, .u = T, .err = F) {uj::get_names(x, 12, .u, .err)}
 
 #' @rdname naming
 #' @export

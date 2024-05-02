@@ -105,7 +105,7 @@ pal_swatch(x)
 
 \item{nc, ng}{\link[=cmp_psw_scl]{Complete positive whole-number scalars} giving the number of colors and groups, respectively.}
 
-\item{.NA}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} counts as a valid color alpha level.}
+\item{.na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} counts as a valid color alpha level.}
 }
 \value{
 A character vector of \code{1} or more hexadecimal RGB + alpha color representations in the form \code{'#RRGGBBAA'}.
@@ -141,7 +141,7 @@ to sum to 1 to give the proportions of the resulting color that should come from
   \code{{xxx}}         \tab Creates versions of common color \code{'{xxx}'} by \code{p} = primary intensity, \code{s} = secondary intensity, and \code{a} = alpha, each in the interval \verb{[0, 1]}.                                                               }
 }
 \section{Recycling}{
- The only arguments not recycled are \verb{.NA, nc}, and \code{ng}.
+ The only arguments not recycled are \verb{.na, nc}, and \code{ng}.
 }
 
 \section{The Arguments \code{p} and \code{s}}{

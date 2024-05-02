@@ -36,7 +36,7 @@ dt_merge(
   suffixes = c(".x", ".y"),
   no.dups = TRUE,
   allow.cartesian = base::getOption("datatable.allow.cartesian"),
-  .SAY = TRUE
+  say = TRUE
 )
 
 dt_rows(x, r)
@@ -53,7 +53,7 @@ dt_wide(
   drop = TRUE,
   value.var = data.table:::guess(data),
   verbose = base::getOption("datatable.verbose"),
-  .SAY = TRUE
+  say = TRUE
 )
 }
 \arguments{
@@ -96,7 +96,7 @@ as any \code{by.x}.}
 
 \item{allow.cartesian}{See \code{allow.cartesian} in \code{\link[data.table]{[.data.table}}.}
 
-\item{.SAY}{Logical scalar indicating whether to update user on progress.}
+\item{say}{Logical scalar indicating whether to update user on progress.}
 
 \item{data}{ A \code{data.table}.}
 

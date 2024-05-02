@@ -9,9 +9,9 @@
 \alias{swap_cols}
 \title{Swap by Row Index, Column Index, Element Index, and Atomic Value.}
 \usage{
-swap(x, from = NULL, to = NULL, old = NULL, new = NULL, .DIM = 0, .ALL = FALSE)
+swap(x, from = NULL, to = NULL, old = NULL, new = NULL, .dim = 0, .all = FALSE)
 
-swap_vals(x, old, new, all = FALSE)
+swap_vals(x, old, new, .all = FALSE)
 
 swap_elt(x, from, to)
 
@@ -28,9 +28,9 @@ swap_cols(x, from, to)
 
 \item{new}{\link[=atm_vec]{An atomic vec} of replacement values. \code{length(new)} must be in \code{c(1, length(old))}.}
 
-\item{.DIM}{Dimension on which swapping occurs. \code{0} indicates swapping by element index of a non-empty vector, vlist, or other atomic object. \code{1} and \code{2} indicate, respectively, swapping rows and columns of a data.frame or matrix.}
+\item{.dim}{Dimension on which swapping occurs. \code{0} indicates swapping by element index of a non-empty vector, vlist, or other atomic object. \code{1} and \code{2} indicate, respectively, swapping rows and columns of a data.frame or matrix.}
 
-\item{.ALL}{\code{TRUE} or \code{FALSE} indicating whether all values of \code{x} must be contained in \code{old} (ignored when \code{old} and \code{new} are \code{NULL}).}
+\item{.all}{\code{TRUE} or \code{FALSE} indicating whether all values of \code{x} must be contained in \code{old} (ignored when \code{old} and \code{new} are \code{NULL}).}
 }
 \value{
 An object of the same class and dimensions as \code{x}.
@@ -56,7 +56,6 @@ Other extensions:
 \code{\link{failsafe}()},
 \code{\link{flex_rbind}()},
 \code{\link{fork}()},
-\code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},

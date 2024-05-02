@@ -6,14 +6,14 @@
 \alias{comparable_xy}
 \title{Are objects comparable?}
 \usage{
-comparable(..., .REC = FALSE)
+comparable(..., .rec = FALSE)
 
-comparable_xy(x, y, .REC = FALSE)
+comparable_xy(x, y, .rec = FALSE)
 }
 \arguments{
 \item{...}{An arbitrary number of arguments to be checked for comparability with each other.}
 
-\item{.REC}{\code{TRUE} or \code{FALSE} indicating whether \code{...} arguments must be recyclable to be comparable.}
+\item{.rec}{\code{TRUE} or \code{FALSE} indicating whether \code{...} arguments must be recyclable to be comparable.}
 
 \item{x, y}{Arguments to be checked for comparability.}
 }
@@ -44,7 +44,6 @@ Other extensions:
 \code{\link{failsafe}()},
 \code{\link{flex_rbind}()},
 \code{\link{fork}()},
-\code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
@@ -58,24 +57,8 @@ Other extensions:
 
 Other properties: 
 \code{\link{as_mmm}()},
-\code{\link{bbb_mmm}()},
-\code{\link{bbb}()},
 \code{\link{cls}()},
-\code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm}()},
-\code{\link{compatible}()},
-\code{\link{ddd}()},
-\code{\link{eee}()},
-\code{\link{iii}()},
-\code{\link{is_unique}()},
-\code{\link{meets}()},
-\code{\link{mmm_ccc}()},
-\code{\link{mmm}()},
-\code{\link{ppp_fast}()},
-\code{\link{ppp}()},
-\code{\link{sss}()},
-\code{\link{stopperr}()},
-\code{\link{unq_ccc}()}
+\code{\link{compatible}()}
 }
 \concept{extensions}
 \concept{properties}

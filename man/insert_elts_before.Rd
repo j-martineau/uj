@@ -23,7 +23,7 @@ insert_col_after(x, new.cols, col)
 insert_after_row(x, new.rows, row)
 }
 \arguments{
-\item{x}{For \code{insert_elt_before} and \code{insert_elt_after} a non-empty atomic vector. A non-empty atomic matrix or atomic data frame (?uj::atm_dtf) for all others.}
+\item{x}{For \code{insert_elt_before} and \code{insert_elt_after} a non-empty atomic vector. A non-empty atomic matrix or atomic data frame (?atm_dtf) for all others.}
 
 \item{new.elts}{An atomic vector compatible with \code{x} (?uj::compatible).}
 

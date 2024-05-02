@@ -245,7 +245,7 @@
 \alias{not_ns1p}
 \alias{not_ns2p}
 \alias{not_ns3p}
-\alias{...N}
+\alias{...n}
 \alias{...ns}
 \alias{...minn}
 \alias{...maxn}
@@ -264,7 +264,7 @@
 \usage{
 N()
 
-n_check(x, .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE)
+n_check(x, .n = NULL, .min = NULL, .max = NULL, .eq = FALSE)
 
 n0(x)
 
@@ -748,152 +748,152 @@ not_ns2p(x)
 
 not_ns3p(x)
 
-...N(
+...n(
   ...,
-  .N = NULL,
-  .MIN = NULL,
-  .MAX = NULL,
-  .EQ = FALSE,
-  .A = FALSE,
-  .NA = TRUE,
-  .VALS = NULL,
-  .LT = NULL,
-  .LE = NULL,
-  .GE = NULL,
-  .GT = NULL
+  .n = NULL,
+  .min = NULL,
+  .max = NULL,
+  .eq = FALSE,
+  .a = FALSE,
+  .na = TRUE,
+  .vals = NULL,
+  .lt = NULL,
+  .le = NULL,
+  .ge = NULL,
+  .gt = NULL
 )
 
 ...ns(
   ...,
-  .N = NULL,
-  .MIN = NULL,
-  .MAX = NULL,
-  .NA = TRUE,
-  .VALS = NULL,
-  .LT = NULL,
-  .LE = NULL,
-  .GE = NULL,
-  .GT = NULL
+  .n = NULL,
+  .min = NULL,
+  .max = NULL,
+  .na = TRUE,
+  .vals = NULL,
+  .lt = NULL,
+  .le = NULL,
+  .ge = NULL,
+  .gt = NULL
 )
 
 ...minn(
   ...,
-  .NA = TRUE,
-  .VALS = NULL,
-  .LT = NULL,
-  .LE = NULL,
-  .GE = NULL,
-  .GT = NULL
+  .na = TRUE,
+  .vals = NULL,
+  .lt = NULL,
+  .le = NULL,
+  .ge = NULL,
+  .gt = NULL
 )
 
 ...maxn(
   ...,
-  .NA = TRUE,
-  .VALS = NULL,
-  .LT = NULL,
-  .LE = NULL,
-  .GE = NULL,
-  .GT = NULL
+  .na = TRUE,
+  .vals = NULL,
+  .lt = NULL,
+  .le = NULL,
+  .ge = NULL,
+  .gt = NULL
 )
 
 ...neq(
   ...,
-  .MIN = NULL,
-  .MAX = NULL,
-  .NA = TRUE,
-  .VALS = NULL,
-  .LT = NULL,
-  .LE = NULL,
-  .GE = NULL,
-  .GT = NULL
+  .min = NULL,
+  .max = NULL,
+  .na = TRUE,
+  .vals = NULL,
+  .lt = NULL,
+  .le = NULL,
+  .ge = NULL,
+  .gt = NULL
 )
 
 ...nw(
   ...,
-  .N = NULL,
-  .MIN = NULL,
-  .MAX = NULL,
-  .EQ = FALSE,
-  .NA = FALSE,
-  .A = TRUE
+  .n = NULL,
+  .min = NULL,
+  .max = NULL,
+  .eq = FALSE,
+  .na = FALSE,
+  .a = TRUE
 )
 
 ...nt(
   ...,
-  .N = NULL,
-  .MIN = NULL,
-  .MAX = NULL,
-  .EQ = FALSE,
-  .NA = FALSE,
-  .A = TRUE
+  .n = NULL,
+  .min = NULL,
+  .max = NULL,
+  .eq = FALSE,
+  .na = FALSE,
+  .a = TRUE
 )
 
 ...nf(
   ...,
-  .N = NULL,
-  .MIN = NULL,
-  .MAX = NULL,
-  .EQ = FALSE,
-  .NA = FALSE,
-  .A = TRUE
+  .n = NULL,
+  .min = NULL,
+  .max = NULL,
+  .eq = FALSE,
+  .na = FALSE,
+  .a = TRUE
 )
 
 ...nu(
   ...,
-  .N = NULL,
-  .MIN = NULL,
-  .MAX = NULL,
-  .EQ = FALSE,
-  .NA = TRUE,
-  .A = TRUE
+  .n = NULL,
+  .min = NULL,
+  .max = NULL,
+  .eq = FALSE,
+  .na = TRUE,
+  .a = TRUE
 )
 
-...nr(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE)
+...nr(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE)
 
-...nc(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE)
+...nc(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE)
 
 ...n_ch(
   ...,
-  .N = NULL,
-  .MIN = NULL,
-  .MAX = NULL,
-  .EQ = FALSE,
-  .NA = FALSE,
-  .A = TRUE
+  .n = NULL,
+  .min = NULL,
+  .max = NULL,
+  .eq = FALSE,
+  .na = FALSE,
+  .a = TRUE
 )
 
-...n_nav(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .A = TRUE)
+...n_nav(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE, .a = TRUE)
 
-...n_okv(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .A = TRUE)
+...n_okv(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE, .a = TRUE)
 
-...nv(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .A = TRUE)
+...nv(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE, .a = TRUE)
 }
 \arguments{
 \item{x}{\link[=Nnw]{non-negative whole-number} object.}
 
-\item{.N}{Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec} of valid element, row, or column counts.}
+\item{.n}{Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec} of valid element, row, or column counts.}
 
-\item{.MIN}{Optional complete non-negative whole-number scalar giving minimum valid element, row, or column counts.}
+\item{.min}{Optional complete non-negative whole-number scalar giving minimum valid element, row, or column counts.}
 
-\item{.MAX}{Optional complete non-negative whole-number scalar giving maximum valid element, row, or column counts.}
+\item{.max}{Optional complete non-negative whole-number scalar giving maximum valid element, row, or column counts.}
 
-\item{.EQ}{Non-\code{NA} scalar indicating whether all counts must be equal.}
+\item{.eq}{Non-\code{NA} scalar indicating whether all counts must be equal.}
 
 \item{...}{One or more arguments to be examined for counts.}
 
-\item{.A}{Non-\code{NA} scalar indicating whether to \link[=av]{atomize} \code{...} to create a single atomic vector before processing. If \code{.A = FALSE}, each argument in \code{...} is processed separately.}
+\item{.a}{Non-\code{NA} scalar indicating whether to \link[=av]{atomize} \code{...} to create a single atomic vector before processing. If \code{.a = FALSE}, each argument in \code{...} is processed separately.}
 
-\item{.NA}{Non-\code{NA} scalar whether \code{NA} values are allowed.}
+\item{.na}{Non-\code{NA} scalar whether \code{NA} values are allowed.}
 
-\item{.VALS}{Optional \link[=atm_vec]{atomic vec} indicating specific values to be counted.}
+\item{.vals}{Optional \link[=atm_vec]{atomic vec} indicating specific values to be counted.}
 
-\item{.LT}{Optional \link[=cmp_srt_scl]{complete sortable scalar} indicating specific values elements of \code{...} arguments must be less than in order to be counted.}
+\item{.lt}{Optional \link[=cmp_srt_scl]{complete sortable scalar} indicating specific values elements of \code{...} arguments must be less than in order to be counted.}
 
-\item{.LE}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be less than or equal to in order to be counted}
+\item{.le}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be less than or equal to in order to be counted}
 
-\item{.GE}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be greater than or equal to in order to be counted.}
+\item{.ge}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be greater than or equal to in order to be counted.}
 
-\item{.GT}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be greater than in order to be counted.}
+\item{.gt}{Optional complete sortable scalar indicating specific values elements of \code{...} arguments must be greater than in order to be counted.}
 }
 \value{
 May be non-negative integer or a logical scalar or vector, depending the properties of primary argument(s) (i.e., \code{x} and \code{...}) and optional arguments (i.e., all others).
@@ -903,8 +903,8 @@ Dedicated counting functions
 }
 \details{
 The following functions are flexible, fully error-checked counting functions with optional count functionality driven by arguments:
-\tabular{ll}{  \code{n_check}   \tab Do counts given in \code{x} meet criteria in \code{c(N, .MIN, .MAX, .EQ)}, if any? If none, returns \code{x}. \cr   \tab   \cr
-  \code{...N}      \tab Length(s) of \code{...} args with optional length validations.                                   \cr   \tab   \cr
+\tabular{ll}{  \code{n_check}   \tab Do counts given in \code{x} meet criteria in \code{c(N, .min, .max, .eq)}, if any? If none, returns \code{x}. \cr   \tab   \cr
+  \code{...n}      \tab Length(s) of \code{...} args with optional length validations.                                   \cr   \tab   \cr
   \code{...ns}     \tab Lengths of \code{...} args                                                                       \cr
   \code{...nv}     \tab Length after \link[=av]{atomizing}.                                                         \cr
   \code{...nch}    \tab Number of characters in each element.                                                       \cr
@@ -913,8 +913,8 @@ The following functions are flexible, fully error-checked counting functions wit
   \code{...nokv}   \tab Number of atomic non-\code{NA} values.                                                           \cr
   \code{...neq}    \tab Are \code{...} arg lengths all the same?                                                         \cr
   \code{...ndif}   \tab Are \code{...} arg lengths \emph{not} all the same?                                                   \cr
-  \code{...minn}   \tab .MIN \code{...} arg length.                                                                       \cr
-  \code{...maxn}   \tab .MAX \code{...} arg length.                                                                         }
+  \code{...minn}   \tab .min \code{...} arg length.                                                                       \cr
+  \code{...maxn}   \tab .max \code{...} arg length.                                                                         }
 \strong{Functions evaluating length/count (in)equality}
 \tabular{ll}{  \code{ndif}   \tab Lengths of \code{x} and \code{y} are equal.   \cr
   \code{neq}    \tab Lengths of \code{x} and \code{y} are different. }
@@ -983,14 +983,14 @@ The negation functions are formed by prepending \code{not_}. All convenience fun
 }
 \examples{
 N <- 0:15
-nis(N, .N = 0:5)
-nis(N, .MIN = 3, .MAX = 12)
-nis(N, .EQ = T)
-nis(rep(0, 3), .EQ = T)
+nis(N, .n = 0:5)
+nis(N, .min = 3, .max = 12)
+nis(N, .eq = T)
+nis(rep(0, 3), .eq = T)
 nx(letters, LETTERS, 0:9, NULL)
-nx(letters, LETTERS, .VALS = letters)
-nx(letters, LETTERS, .LE = "M", .GE = "m")
-nx(letters, LETTERS, .LT = "M", .GT = "m")
+nx(letters, LETTERS, .vals = letters)
+nx(letters, LETTERS, .le = "M", .ge = "m")
+nx(letters, LETTERS, .lt = "M", .gt = "m")
 n0(letters, LETTERS, TRUE, 0:1, 0:2, 0:9)
 n1(letters, LETTERS, TRUE, 0:1, 0:2, 0:9)
 n1p(letters, LETTERS, TRUE, 0:1, 0:2, 0:9)
@@ -999,23 +999,23 @@ nmin(letters, LETTERS, 0:9)
 nmax(letters, LETTERS, 0:9)
 nsame(letters, LETTERS, 0:9)
 nsame(letters, LETTERS)
-nsame(letters, LETTERS, .LT = "M", .GT = "m")
-nmin(letters, LETTERS, 0:9, .MIN = 11)
-nmax(letters, LETTERS, 0:9, .MAX = 11)
-nsame(letters, LETTERS, 0:9, .MIN = 11, .MAX = 25)
+nsame(letters, LETTERS, .lt = "M", .gt = "m")
+nmin(letters, LETTERS, 0:9, .min = 11)
+nmax(letters, LETTERS, 0:9, .max = 11)
+nsame(letters, LETTERS, 0:9, .min = 11, .max = 25)
 nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49)
 nt(0:99 \%in\% 50:59, 0:99 \%in\% 41:49)
-nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .N = 0:9)
-nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .MIN = 9, .MAX = 19, .EQ = T)
+nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .n = 0:9)
+nw(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .min = 9, .max = 19, .eq = T)
 nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49)
-nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .N = 0:9)
-nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .MIN = 9, .MAX = 19)
-nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .MIN = 9, .MAX = 19, .EQ = T)
+nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .n = 0:9)
+nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .min = 9, .max = 19)
+nf(0:99 \%in\% 50:59, 0:99 \%in\% 41:49, .min = 9, .max = 19, .eq = T)
 nr(tibble(letters, LETTERS), matrix(c(letters, LETTERS), nrow = 2))
 nc(tibble(letters, LETTERS), matrix(c(letters, LETTERS), nrow = 2))
-nch(letters, .EQ = T)
+nch(letters, .eq = T)
 nch(letters, "a string")
-nch(letters, "a string", .A = T)
+nch(letters, "a string", .a = T)
 }
 \seealso{
 Other extensions: 
@@ -1029,7 +1029,6 @@ Other extensions:
 \code{\link{failsafe}()},
 \code{\link{flex_rbind}()},
 \code{\link{fork}()},
-\code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
@@ -1042,9 +1041,8 @@ Other extensions:
 \code{\link{value_exists}()}
 
 Other counts: 
-\code{\link{maxnch}()},
-\code{\link{meets}()}
+\code{\link{maxnch}()}
 }
-\concept{Dots}
 \concept{counts}
+\concept{dots}
 \concept{extensions}

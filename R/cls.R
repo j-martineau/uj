@@ -25,11 +25,11 @@ cls <- function(x) {base::class(x)}
 #' @rdname cls
 #' @export
 rm_cls <- function(x, ...) {
-  RmClass <- base::as.character(uj::uv(...))
-  AllClass <- base::class(x)
-  KeepClass <- AllClass[!(AllClass %in% RmClass)]
-  if (base::length(KeepClass) == 0) {uj::stopperr("There are no classes remaining.", .PKG = "uj")}
-  base::class(x) <- KeepClass
+  rmClass <- base::as.character(uj::uv(...))
+  allClass <- base::class(x)
+  keepClass <- allClass[!(allClass %in% rmClass)]
+  if (base::length(keepClass) == 0) {ppp::stopperr("There are no classes remaining.", pkg = "uj")}
+  base::class(x) <- keepClass
   x
 }
 
@@ -40,26 +40,26 @@ xcls <- rm_cls
 #' @rdname cls
 #' @export
 set_cls <- function(x, ...) {
-  NewClass <- base::as.character(uj::uv(...))
-  base::class(x) <- NewClass
+  newClass <- base::as.character(uj::uv(...))
+  base::class(x) <- newClass
   x
 }
 
 #' @rdname cls
 #' @export
 add_cls <- function(x, ...) {
-  CurrClass <- base::class(x)
-  NewClass <- base::as.character(uj::uv(...))
-  AllClass <- base::unique(base::c(CurrClass, NewClass))
-  base::class(x) <- AllClass
+  currClass <- base::class(x)
+  newClass <- base::as.character(uj::uv(...))
+  allClass <- base::unique(base::c(currClass, newClass))
+  base::class(x) <- allClass
   x
 }
 
 #' @rdname cls
 #' @export
 has_cls <- function(x, ...) {
-  CurrClass <- base::class(x)
-  CheckClass <- base::as.character(uj::uv(...))
-  base::all(CurrClass %in% CheckClass)
+  currClass <- base::class(x)
+  checkClass <- base::as.character(uj::uv(...))
+  base::all(currClass %in% checkClass)
   x
 }

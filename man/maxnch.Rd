@@ -42,8 +42,7 @@ Other strings:
 \code{\link{weave}()}
 
 Other counts: 
-\code{\link{N}()},
-\code{\link{meets}()}
+\code{\link{N}()}
 
 Other chars: 
 \code{\link{chn}()},

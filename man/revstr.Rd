@@ -5,12 +5,12 @@
 \alias{revstr}
 \title{Reverse strings}
 \usage{
-revstr(x, .NA = FALSE)
+revstr(x, na = FALSE)
 }
 \arguments{
 \item{x}{A \link[=chr_vec]{character vec}.}
 
-\item{.NA}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are acceptable.}
+\item{na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are acceptable.}
 }
 \value{
 An object of the same structure and dimension as \code{x}.

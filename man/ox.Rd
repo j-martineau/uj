@@ -30,90 +30,90 @@
 \alias{ox_or_greater}
 \alias{ox_or_less}
 \alias{ox_or_fewer}
-\title{Oxford-comma separated lists}
+\title{Oxford-comma separated lsts}
 \usage{
-ox(..., .CONJ = "and", .PREF = "", .QUOTE = 0)
+ox(..., conj = "and", pref = "", quote = 0)
 
-oxford(..., .CONJ = "and", .PREF = "", .QUOTE = 0)
+oxford(..., conj = "and", pref = "", quote = 0)
 
-oxford_comma(..., .CONJ = "and", .PREF = "", .QUOTE = 0)
+oxford_comma(..., conj = "and", pref = "", quote = 0)
 
-ox_n(..., .CONJ = "and", .COMP = "", .QUOTE = 0, .N = 1, .FIRST = TRUE)
+ox_n(..., conj = "and", comp = "", quote = 0, n = 1, first = TRUE)
 
-ox_and(..., .PREF = "", .QUOTE = 0)
+ox_and(..., pref = "", quote = 0)
 
-ox_or(..., .PREF = "", .QUOTE = 0)
+ox_or(..., pref = "", quote = 0)
 
-ox_nor(..., .PREF = "neither", .QUOTE = 0)
+ox_nor(..., pref = "neither", quote = 0)
 
-ox_either(..., .QUOTE = 0)
+ox_either(..., quote = 0)
 
-ox_neither(..., .QUOTE = 0)
+ox_neither(..., quote = 0)
 
-ox_all(..., .CONJ = "and", .QUOTE = 0)
+ox_all(..., conj = "and", quote = 0)
 
-ox_any(..., .CONJ = "or", .QUOTE = 0)
+ox_any(..., conj = "or", quote = 0)
 
-ox_none(..., .CONJ = "or", .QUOTE = 0)
+ox_none(..., conj = "or", quote = 0)
 
-ox_some(..., .CONJ = "and", .QUOTE = 0)
+ox_some(..., conj = "and", quote = 0)
 
-ox_exactly(..., .CONJ = "or", .N = 1, .QUOTE = 0)
+ox_exactly(..., conj = "or", n = 1, quote = 0)
 
-ox_less(..., .CONJ = "and", .N = 2, .QUOTE = 0)
+ox_less(..., conj = "and", n = 2, quote = 0)
 
-ox_more(..., .CONJ = "and", .N = 1, .QUOTE = 0)
+ox_more(..., conj = "and", n = 1, quote = 0)
 
-ox_fewer(..., .CONJ = "and", .N = 2, .QUOTE = 0)
+ox_fewer(..., conj = "and", n = 2, quote = 0)
 
-ox_greater(..., .CONJ = "and", .N = 2, .QUOTE = 0)
+ox_greater(..., conj = "and", n = 2, quote = 0)
 
-ox_at_least(..., .CONJ = "and", .N = 1, .QUOTE = 0)
+ox_at_least(..., conj = "and", n = 1, quote = 0)
 
-ox_at_most(..., .CONJ = "and", .N = 1, .QUOTE = 0)
+ox_at_most(..., conj = "and", n = 1, quote = 0)
 
-ox_no_greater(..., .CONJ = "and", .N = 1, .QUOTE = 0)
+ox_no_greater(..., conj = "and", n = 1, quote = 0)
 
-ox_no_fewer(..., .CONJ = "and", .N = 1, .QUOTE = 0)
+ox_no_fewer(..., conj = "and", n = 1, quote = 0)
 
-ox_no_more(..., .CONJ = "and", .N = 1, .QUOTE = 0)
+ox_no_more(..., conj = "and", n = 1, quote = 0)
 
-ox_no_less(..., .CONJ = "and", .N = 1, .QUOTE = 0)
+ox_no_less(..., conj = "and", n = 1, quote = 0)
 
-ox_or_more(..., .CONJ = "and", .N = 1, .QUOTE = 0)
+ox_or_more(..., conj = "and", n = 1, quote = 0)
 
-ox_or_greater(..., .CONJ = "and", .N = 1, .QUOTE = 0)
+ox_or_greater(..., conj = "and", n = 1, quote = 0)
 
-ox_or_less(..., .CONJ = "and", .N = 1, .QUOTE = 0)
+ox_or_less(..., conj = "and", n = 1, quote = 0)
 
-ox_or_fewer(..., .CONJ = "and", .N = 1, .QUOTE = 0)
+ox_or_fewer(..., conj = "and", n = 1, quote = 0)
 }
 \arguments{
 \item{...}{Any number of arguments coerceable to mode character.}
 
-\item{.CONJ}{A complete character scalar conjunction to use between the next to last and last elements of the list. Typical values are \code{and}, \code{or} and \code{nor}.}
+\item{conj}{A complete character scalar conjunction to use between the next to last and last elements of the lst. Typical values are \code{and}, \code{or} and \code{nor}.}
 
-\item{.PREF}{A \link[=cmp_chr_scl]{complete character scalar} prefix to prepend to the list.}
+\item{pref}{A \link[=cmp_chr_scl]{complete character scalar} prefix to prepend to the lst.}
 
-\item{.QUOTE}{\code{0}, \code{1}, or \code{2} indicating whether to leave list elements unquoted, single-quote the list elements, or double-quote the list elements.}
+\item{quote}{\code{0}, \code{1}, or \code{2} indicating whether to leave lst elements unquoted, single-quote the lst elements, or double-quote the lst elements.}
 
-\item{.COMP}{A complete character scalar used for comparing to \code{.N}, such as \code{'at least'} or \code{'or fewer'}.}
+\item{comp}{A complete character scalar used for comparing to \code{n}, such as \code{'at least'} or \code{'or fewer'}.}
 
-\item{.N}{A \link[=cmp_psw_scl]{complete positive whole-number scalar}.}
+\item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar}.}
 
-\item{.FIRST}{\code{TRUE} or \code{FALSE} used to determine whether \code{.COMP} is placed in front of \code{.N} rather than after \code{.N}.}
+\item{first}{\code{TRUE} or \code{FALSE} used to determine whether \code{comp} is placed in front of \code{n} rather than after \code{n}.}
 }
 \value{
 A character scalar.
 }
 \description{
-Create Oxford-comma separated lists with a variety of templates (see \emph{details}).
-\cr\cr With the exception of \code{.N > length(uj::av(...))}, these functions appropriately process lists of length \code{1} and \code{2}.
+Create Oxford-comma separated lsts with a variety of templates (see \emph{details}).
+\cr\cr With the exception of \code{n > length(uj::av(...))}, these functions appropriately process lsts of length \code{1} and \code{2}.
 }
 \details{
-Each function in this family operates from a template as shown in the following tables where \code{{conj}} and \code{{n}} represent the values of arguments \code{.CONJ} and \code{.N}; \code{{pref}} and \code{{comp}} indicate the potentially-\code{NULL} values of arguments \code{.PREF} and \code{.COMP}; and \verb{[a]}, \verb{[b]}, and \verb{[z]} represents elements of a list.
-\cr\cr \strong{Simple lists}
-\cr\cr These functions do not incorporate a number into the Oxford-comma separated list:
+Each function in this family operates from a template as shown in the following tables where \code{{conj}} and \code{{n}} represent the values of arguments \code{conj} and \code{n}; \code{{pref}} and \code{{comp}} indicate the potentially-\code{NULL} values of arguments \code{pref} and \code{comp}; and \verb{[a]}, \verb{[b]}, and \verb{[z]} represents elements of a lst.
+\cr\cr \strong{Simple lsts}
+\cr\cr These functions do not incorporate a number into the Oxford-comma separated lst:
 \tabular{ll}{  \code{ox}             \tab \code{'{pref} [a], [b], ..., {conj} [z]'}         \cr
   \code{oxford}         \tab                                              \cr
   \code{oxford_comma}   \tab                                              \cr   \tab   \cr
@@ -125,8 +125,8 @@ Each function in this family operates from a template as shown in the following 
   \code{ox_some}        \tab \code{'{pref} some of [a], [b], ..., {conj} [z]'} \cr
   \code{ox_either}      \tab \code{'{pref} either [a], [b], ..., or [z]'}      \cr
   \code{ox_neither}     \tab \code{'{pref} neither [a], [b], ..., nor [z]'}      }
-\cr\cr \strong{Numeric-comparison lists}
-\cr\cr These functions incorporate a number into the Oxford-comma separated list:
+\cr\cr \strong{Numeric-comparison lsts}
+\cr\cr These functions incorporate a number into the Oxford-comma separated lst:
 \tabular{ll}{  \code{ox_n}            \tab \code{'{n} of [a], [b], ..., {conj} [z]'}          \cr
   \code{ox_exactly}      \tab \code{'exactly {n} of [a], [b], ..., {conj} [z]'}         \cr
   \code{ox_less}         \tab \code{'less than {n} of [a], [b], ..., {conj} [z]'}       \cr
@@ -152,15 +152,15 @@ ox("apples", "bananas", "orange")
 ox_or(egFruits)
 ox_and(egFruits)
 ox_nor(egFruits)
-ox_nor(egFruits, .PREF = "")
+ox_nor(egFruits, pref = "")
 
 ox(egFruits)
-ox(egFruits, .CONJ = "or")
-ox(egFruits, .PREF = "neither", .CONJ = "nor")
+ox(egFruits, conj = "or")
+ox(egFruits, pref = "neither", conj = "nor")
 
-ox(egFruits, .PREF = "", .CONJ = "nor")
-ox(egFruits, .PREF = "either", .CONJ = "or")
-ox(egFruits, .PREF = "all of", .CONJ = "and")
+ox(egFruits, pref = "", conj = "nor")
+ox(egFruits, pref = "either", conj = "or")
+ox(egFruits, pref = "all of", conj = "and")
 
 ox_either(egFruits)
 ox_either("apples", "bananas", "oranges")
@@ -174,26 +174,26 @@ ox_all("apples", "bananas", "oranges")
 ox_none(egFruits)
 ox_none("apples", "bananas", "oranges")
 
-ox_n(egFruits, .N = 1)
-ox_n(egFruits, .CONJ = "and", .N = 2, .COMP = "from among")
-ox_n(egFruits, .CONJ = "and", .N = 2, .COMP = "at least", .FIRST = TRUE)
-ox_n(egFruits, .CONJ = "and", .N = 2, .COMP = "or more", .FIRST = FALSE)
+ox_n(egFruits, n = 1)
+ox_n(egFruits, conj = "and", n = 2, comp = "from among")
+ox_n(egFruits, conj = "and", n = 2, comp = "at least", first = TRUE)
+ox_n(egFruits, conj = "and", n = 2, comp = "or more", first = FALSE)
 
-ox_exactly(egFruits, .N = 2)
-ox_less(egFruits, .N = 2)
-ox_more(egFruits, .N = 2)
-ox_fewer(egFruits, .N = 2)
-ox_greater(egFruits, .N = 2)
-ox_at_least(egFruits, .N = 2)
-ox_at_most(egFruits, .N = 2)
-ox_no_greater(egFruits, .N = 2)
-ox_no_fewer(egFruits, .N = 2)
-ox_no_more(egFruits, .N = 2)
-ox_no_less(egFruits, .N = 2)
-ox_or_more(egFruits, .N = 2)
-ox_or_greater(egFruits, .N = 2)
-ox_or_less(egFruits, .N = 2)
-ox_or_fewer(egFruits, .N = 2)
+ox_exactly(egFruits, n = 2)
+ox_less(egFruits, n = 2)
+ox_more(egFruits, n = 2)
+ox_fewer(egFruits, n = 2)
+ox_greater(egFruits, n = 2)
+ox_at_least(egFruits, n = 2)
+ox_at_most(egFruits, n = 2)
+ox_no_greater(egFruits, n = 2)
+ox_no_fewer(egFruits, n = 2)
+ox_no_more(egFruits, n = 2)
+ox_no_less(egFruits, n = 2)
+ox_or_more(egFruits, n = 2)
+ox_or_greater(egFruits, n = 2)
+ox_or_less(egFruits, n = 2)
+ox_or_fewer(egFruits, n = 2)
 }
 \seealso{
 Other strings: 

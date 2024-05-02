@@ -34,11 +34,11 @@
 #' @export
 tocase <- function(case, ...) {
   x <- uj::av(...)
-  OkCase <- uj:::.cmp_chr_scl(case, .VALID = base::c("l", "s", "t", "u"))
-  Errors <- NULL
-  if (!OkCase) {Errors <- base::c(Errors, "[case] must be either 'l', 's', 't', or 'u'.")}
-  if (!uj:::.cmp_chr_vec(x)) {Errors <- base::c(Errors, "[...] must be contain character values.")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
+  okCase <- ppp::.cmp_chr_scl(case, valid = base::c("l", "s", "t", "u"))
+  errs <- NULL
+  if (!okCase) {errs <- base::c(errs, "[case] must be either 'l', 's', 't', or 'u'.")}
+  if (!ppp::.cmp_chr_vec(x)) {errs <- base::c(errs, "[...] must be contain character values.")}
+  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
   if      (case == "l") {base::tolower(x)}
   else if (case == "u") {base::toupper(x)}
   else if (case == "t") {stringr::str_to_title(x)}

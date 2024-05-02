@@ -29,13 +29,13 @@ xrows(x, rows)
 xcols(x, cols)
 }
 \arguments{
-\item{x}{For \verb{*vals} and \verb{*elts} an atomic vector. For \verb{*cols} and \verb{*rows}, a atomic data.frame (?uj::atm_dtf) or an atomic matrix.}
+\item{x}{For \verb{*vals} and \verb{*elts} an atomic vector. For \verb{*cols} and \verb{*rows}, a atomic data.frame (?atm_dtf) or an atomic matrix.}
 
-\item{vals}{A unique-valued atomic vector (?uj::unq_atm_vec) mode-compatible with \code{x}.}
+\item{vals}{A unique-valued atomic vector (?ppp::unq_atm_vec) mode-compatible with \code{x}.}
 
 \item{elts, rows, cols}{Atomic vector indexing elements, rows, or columns of \code{x} to be deleted, respectively. These are either
 \itemize{\item A uniquely-valued positive whole-number vector.
-\item A complete logical vector (?uj::cmp_lgl_vec) of length \code{length(x)}.
+\item A complete logical vector (?ppp::cmp_lgl_vec) of length \code{length(x)}.
 \item A uniquely-valued character vector of element/column/row names.   }}
 }
 \value{

@@ -16,24 +16,24 @@
 #' to_hex(egDEC)
 #' @export
 to_dec <- function(x) {
-  OkX <- F
-  OkEmp <- F
-  OkPref <- T
-  if (uj:::.cmp_chr(x)) {
-    Ch <- uj::av(base::strsplit(uj::av(x), "", fixed = TRUE))
-    Valid <- base::c("#", 0:9, letters[1:6], LETTERS[1:6])
-    OkX <- base::all(Ch %in% Valid)
-    if (OkX) {
-      PP <- uj::av(base::gregexpr("#", x, fixed = T))
+  okX <- F
+  okEmp <- F
+  okPref <- T
+  if (ppp::.cmp_chr(x)) {
+    ch <- uj::av(base::strsplit(uj::av(x), "", fixed = TRUE))
+    valid <- base::c("#", 0:9, letters[1:6], LETTERS[1:6])
+    okX <- base::all(ch %in% valid)
+    if (okX) {
+      pp <- uj::av(base::gregexpr("#", x, fixed = T))
       x  <- base::gsub("#", "", x, fixed = T)
-      OkPref <- base::length(base::which(PP > 1)) == 0
-      OkEmp <- base::length(base::which(base::nchar(x) == 0)) == 0
+      okPref <- base::length(base::which(pp)) == 0
+      okEmp <- base::length(base::which(base::nchar(x) == 0)) == 0
     }}
-  Errors <- NULL
-  if (!OkX) {Errors <- base::c(Errors, "[x] must be of mode character, have at least one value, contain no NA values, and contain only the characters in '#0123456789ABCDEFabcdef'.")}
-  if (!OkEmp) {Errors <- base::c(Errors, "After removing pound signs ('#'), one or more elements of [x] is a blank string.")}
-  if (!OkPref) {Errors <- base::c(Errors, "If pound signs ('#') are used, they must be the first character of any element of [x] in which they are used.")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
+  errs <- NULL
+  if (!okX) {errs <- base::c(errs, "[x] must be of mode character, have at least one value, contain no NA values, and contain only the characters in '#0123456789ABCDEFabcdef'.")}
+  if (!okEmp) {errs <- base::c(errs, "After removing pound signs ('#'), one or more elements of [x] is a blank string.")}
+  if (!okPref) {errs <- base::c(errs, "If pound signs ('#') are used, they must be the first character of any element of [x] in which they are used.")}
+  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
   .conv <- function(x) {
     x <- base::strsplit(x, "", T)[[1]]
     n <- base::length(x)
@@ -44,8 +44,8 @@ to_dec <- function(x) {
     x[x %in% c("e", "E")] <- "14"
     x[x %in% c("f", "F")] <- "15"
     x <- base::as.integer(x)
-    PlaceValue <- base::rev(16 ^ (0:(n - 1)))
-    y <- x * PlaceValue
+    placeValue <- base::rev(16 ^ (0:(n - 1)))
+    y <- x * placeValue
     base::sum(y)
   }
   x <- base::as.list(x)
@@ -55,7 +55,7 @@ to_dec <- function(x) {
 #' @rdname to_dec
 #' @export
 to_hex <- function(x) {
-  if (!uj:::.cmp_nnw_vec(x)) {uj::stopperr("[x] must be complete, non-negative whole-number vec (?cmp_nnw_vec).", .PKG = "uj")}
+  if (!ppp::.cmp_nnw_vec(x)) {ppp::stopperr("[x] must be complete, non-negative whole-number vec (?cmp_nnw_vec).", pkg = "uj")}
   base::paste0("#", base::toupper(base::as.character.hexmode(x)))
 }
 

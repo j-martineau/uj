@@ -11,7 +11,7 @@
 \alias{xatt}
 \title{Manage attributes}
 \usage{
-att(x, ..., .A = FALSE)
+att(x, ..., .a = FALSE)
 
 atts(x)
 
@@ -32,7 +32,7 @@ xatt(x, ...)
 
 \item{...}{Optional unquoted names of attributes of \code{x} or character objects. When none are provided, indicates all attributes of \code{x}.}
 
-\item{.A}{\code{TRUE} or \code{FALSE} indicating whether to \link[av]{atomize} the result and convert the resulting vector to character.}
+\item{.a}{\code{TRUE} or \code{FALSE} indicating whether to \link[av]{atomize} the result and convert the resulting vector to character.}
 }
 \value{
 \strong{An object}

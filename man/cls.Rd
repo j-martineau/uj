@@ -53,23 +53,7 @@ cls(egObj3)
 \seealso{
 Other properties: 
 \code{\link{as_mmm}()},
-\code{\link{bbb_mmm}()},
-\code{\link{bbb}()},
-\code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
-\code{\link{compatible}()},
-\code{\link{ddd}()},
-\code{\link{eee}()},
-\code{\link{iii}()},
-\code{\link{is_unique}()},
-\code{\link{meets}()},
-\code{\link{mmm_ccc}()},
-\code{\link{mmm}()},
-\code{\link{ppp_fast}()},
-\code{\link{ppp}()},
-\code{\link{sss}()},
-\code{\link{stopperr}()},
-\code{\link{unq_ccc}()}
+\code{\link{compatible}()}
 }
 \concept{properties}

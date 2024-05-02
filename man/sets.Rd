@@ -8,10 +8,10 @@
 sets(n)
 }
 \arguments{
-\item{n}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the length of set of unique values.}
+\item{n}{A \link[ppp:cmp_psw_scl]{complete positive whole-number scalar} indicating the length of set of unique values.}
 }
 \value{
-A \link[=cmp_psw_vls]{complete positive whole-number vlist}.
+A \link[ppp:cmp_psw_vls]{complete positive whole-number vlist}.
 }
 \description{
 Creates a list of elements containing indices to create all possible unique-value sets of size \code{1} to \code{n} from a length-\code{n} vector of unique values.
@@ -35,7 +35,6 @@ Other extensions:
 \code{\link{failsafe}()},
 \code{\link{flex_rbind}()},
 \code{\link{fork}()},
-\code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},

@@ -13,30 +13,30 @@
 \alias{setv}
 \title{Objects in environments of calling functions}
 \usage{
-value_exists(name, .ERR = T, .GENS = 1)
+value_exists(name, err = T, gens = 1)
 
-get_value(name, .ERR = T, .GENS = 1)
+get_value(name, err = T, gens = 1)
 
-set_value(name, val, .GENS = 1)
+set_value(name, val, gens = 1)
 
-val_exists(name, .ERR = T, .GENS = 1)
+val_exists(name, err = T, gens = 1)
 
-get_val(name, .ERR = T, .GENS = 1)
+get_val(name, err = T, gens = 1)
 
-set_val(name, val, .GENS = 1)
+set_val(name, val, gens = 1)
 
-vexists(name, .ERR = T, .GENS = 1)
+vexists(name, err = T, gens = 1)
 
-getv(name, .ERR = T, .GENS = 1)
+getv(name, err = T, gens = 1)
 
-setv(name, val, .GENS = 1)
+setv(name, val, gens = 1)
 }
 \arguments{
 \item{name}{A \link[=cmp_chr_scl]{complete character scalar} giving the name of an object.}
 
-\item{.ERR}{A non\code{NA} logical scalar indicating whether to throw an error if the object specified by \code{name} does not exist (i.e., rather than returning \code{FALSE}).}
+\item{err}{A non\code{NA} logical scalar indicating whether to throw an error if the object specified by \code{name} does not exist (i.e., rather than returning \code{FALSE}).}
 
-\item{.GENS}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of generations back in the function call stack to go.}
+\item{gens}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the number of generations back in the function call stack to go.}
 
 \item{val}{A value to place into the object specified by \code{name}.}
 }
@@ -46,10 +46,10 @@ setv(name, val, .GENS = 1)
 \cr\cr  \strong{An object}             \cr\cr \verb{get_value, get_val, getv}
 }
 \description{
-All functions in this family operate in the environment of the calling function \code{.GENS} generations back in the call stack.
-\tabular{ll}{  \verb{value_exists, val_exists, vexists}   \tab Checks for the existence of an object in the environment of the \code{.GENS}-specified calling function. \cr   \tab   \cr
-  \verb{get_value, get_val, getv}            \tab Gets the value of an object in the environment of the \code{.GENS}-specified calling function.           \cr   \tab   \cr
-  \verb{set_value, set_val, setv}            \tab Sets the value of an object in the environment of the \code{.GENS}-specified calling function.                          }
+All functions in this family operate in the environment of the calling function \code{gens} generations back in the call stack.
+\tabular{ll}{  \verb{value_exists, val_exists, vexists}   \tab Checks for the existence of an object in the environment of the \code{gens}-specified calling function. \cr   \tab   \cr
+  \verb{get_value, get_val, getv}            \tab Gets the value of an object in the environment of the \code{gens}-specified calling function.           \cr   \tab   \cr
+  \verb{set_value, set_val, setv}            \tab Sets the value of an object in the environment of the \code{gens}-specified calling function.                          }
 }
 \examples{
 egFunC <- function() {
@@ -59,33 +59,33 @@ egFunC <- function() {
   say("\n Parent Function: '", parent, "'")
   say("\n Grandparent Function: '", grand , "'")
   say("\n")
-  say("\n Variable 'A' exists in parent function '", parent, "': ", val_exists('A', .ERR = FALSE, .GENS = 1))
-  say("\n Variable 'B' exists in parent function '", parent, "': ", val_exists('B', .ERR = FALSE, .GENS = 1))
+  say("\n Variable 'A' exists in parent function '", parent, "': ", val_exists('A', err = FALSE, gens = 1))
+  say("\n Variable 'B' exists in parent function '", parent, "': ", val_exists('B', err = FALSE, gens = 1))
   say("\n")
-  say("\n Variable 'A' exists in grandparent function '", grand, "': ", val_exists('A', .ERR = FALSE, .GENS = 2))
-  say("\n Variable 'B' exists in grandparent function '", grand, "': ", val_exists('B', .ERR = FALSE, .GENS = 2))
+  say("\n Variable 'A' exists in grandparent function '", grand, "': ", val_exists('A', err = FALSE, gens = 2))
+  say("\n Variable 'B' exists in grandparent function '", grand, "': ", val_exists('B', err = FALSE, gens = 2))
   say("\n")
-  say("\n Value of variable 'B' in parent function '", parent, "': ", get_value('B', .ERR = FALSE, .GENS = 1))
-  say("\n Value of variable 'A' in grandparent function '", grand, "': ", get_value('A', .ERR = FALSE, .GENS = 2))
+  say("\n Value of variable 'B' in parent function '", parent, "': ", get_value('B', err = FALSE, gens = 1))
+  say("\n Value of variable 'A' in grandparent function '", grand, "': ", get_value('A', err = FALSE, gens = 2))
 
-  vSET('A', 'A', .GENS = 1)
-  vSET('B', 'B', .GENS = 2)
+  vSET('A', 'A', gens = 1)
+  vSET('B', 'B', gens = 2)
 
   say("\n")
-  say("\n vSET('A', 'A', .GENS = 1)")
-  say("\n vSET('B', 'B', .GENS = 2)")
+  say("\n vSET('A', 'A', gens = 1)")
+  say("\n vSET('B', 'B', gens = 2)")
   say("\n")
-  say("\n Variable 'A' exists in parent function '", parent, "': ", val_exists('A', .ERR = FALSE, .GENS = 1))
-  say("\n Variable 'B' exists in parent function '", parent, "': ", val_exists('B', .ERR = FALSE, .GENS = 1))
+  say("\n Variable 'A' exists in parent function '", parent, "': ", val_exists('A', err = FALSE, gens = 1))
+  say("\n Variable 'B' exists in parent function '", parent, "': ", val_exists('B', err = FALSE, gens = 1))
   say("\n")
-  say("\n Variable 'A' exists in grandparent function '", grand, "': ", val_exists('A', .ERR = FALSE, .GENS = 2))
-  say("\n Variable 'B' exists in grandparent function '", grand, "': ", val_exists('B', .ERR = FALSE, .GENS = 2))
+  say("\n Variable 'A' exists in grandparent function '", grand, "': ", val_exists('A', err = FALSE, gens = 2))
+  say("\n Variable 'B' exists in grandparent function '", grand, "': ", val_exists('B', err = FALSE, gens = 2))
   say("\n")
-  say("\n Value of variable 'A' in parent function '", parent, "': ", get_value('A', .ERR = FALSE, .GENS = 1))
-  say("\n Value of variable 'B' in parent function '", parent, "': ", get_value('B', .ERR = FALSE, .GENS = 1))
+  say("\n Value of variable 'A' in parent function '", parent, "': ", get_value('A', err = FALSE, gens = 1))
+  say("\n Value of variable 'B' in parent function '", parent, "': ", get_value('B', err = FALSE, gens = 1))
   say("\n")
-  say("\n Value of variable 'A' in grandparent function '", grand, "': ", get_value('A', .ERR = FALSE, .GENS = 2))
-  say("\n Value of variable 'B' in grandparent function '", grand, "': ", get_value('B', .ERR = FALSE, .GENS = 2))
+  say("\n Value of variable 'A' in grandparent function '", grand, "': ", get_value('A', err = FALSE, gens = 2))
+  say("\n Value of variable 'B' in grandparent function '", grand, "': ", get_value('B', err = FALSE, gens = 2))
 }
 egFunB <- function() {B <- 1; egFunC()}
 egFunA <- function() {A <- 0; egFunB()}
@@ -109,7 +109,6 @@ Other extensions:
 \code{\link{failsafe}()},
 \code{\link{flex_rbind}()},
 \code{\link{fork}()},
-\code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},

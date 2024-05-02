@@ -1,11 +1,11 @@
 #' @encoding UTF-8
 #' @family strings
-#' @title Oxford-comma separated lists
-#' @description Create Oxford-comma separated lists with a variety of templates (see *details*).
-#' \cr\cr With the exception of `.N > length(uj::av(...))`, these functions appropriately process lists of length `1` and `2`.
-#' @details Each function in this family operates from a template as shown in the following tables where `{conj}` and `{n}` represent the values of arguments `.CONJ` and `.N`; `{pref}` and `{comp}` indicate the potentially-`NULL` values of arguments `.PREF` and `.COMP`; and `[a]`, `[b]`, and `[z]` represents elements of a list.
-#' \cr\cr **Simple lists**
-#' \cr\cr These functions do not incorporate a number into the Oxford-comma separated list:
+#' @title Oxford-comma separated lsts
+#' @description Create Oxford-comma separated lsts with a variety of templates (see *details*).
+#' \cr\cr With the exception of `n > length(uj::av(...))`, these functions appropriately process lsts of length `1` and `2`.
+#' @details Each function in this family operates from a template as shown in the following tables where `{conj}` and `{n}` represent the values of arguments `conj` and `n`; `{pref}` and `{comp}` indicate the potentially-`NULL` values of arguments `pref` and `comp`; and `[a]`, `[b]`, and `[z]` represents elements of a lst.
+#' \cr\cr **Simple lsts**
+#' \cr\cr These functions do not incorporate a number into the Oxford-comma separated lst:
 #' \tabular{ll}{  `ox`             \tab `'{pref} [a], [b], ..., {conj} [z]'`         \cr
 #'                `oxford`         \tab                                              \cr
 #'                `oxford_comma`   \tab                                              \cr   \tab   \cr
@@ -17,8 +17,8 @@
 #'                `ox_some`        \tab `'{pref} some of [a], [b], ..., {conj} [z]'` \cr
 #'                `ox_either`      \tab `'{pref} either [a], [b], ..., or [z]'`      \cr
 #'                `ox_neither`     \tab `'{pref} neither [a], [b], ..., nor [z]'`      }
-#' \cr\cr **Numeric-comparison lists**
-#' \cr\cr These functions incorporate a number into the Oxford-comma separated list:
+#' \cr\cr **Numeric-comparison lsts**
+#' \cr\cr These functions incorporate a number into the Oxford-comma separated lst:
 #' \tabular{ll}{  `ox_n`            \tab `'{n} of [a], [b], ..., {conj} [z]'`          \cr
 #'                `ox_exactly`      \tab `'exactly {n} of [a], [b], ..., {conj} [z]'`         \cr
 #'                `ox_less`         \tab `'less than {n} of [a], [b], ..., {conj} [z]'`       \cr
@@ -36,12 +36,12 @@
 #'                `ox_or_fewer`     \tab `'{n} or fewer of [a], [b], ..., {conj} [z]'`        \cr
 #'                `ox_or_greater`   \tab `'{n} or greater of [a], [b], ..., {conj} [z]'`        }
 #' @param ... Any number of arguments coerceable to mode character.
-#' @param .PREF A \link[=cmp_chr_scl]{complete character scalar} prefix to prepend to the list.
-#' @param .CONJ A complete character scalar conjunction to use between the next to last and last elements of the list. Typical values are `and`, `or` and `nor`.
-#' @param .N A \link[=cmp_psw_scl]{complete positive whole-number scalar}.
-#' @param .COMP A complete character scalar used for comparing to `.N`, such as `'at least'` or `'or fewer'`.
-#' @param .FIRST `TRUE` or `FALSE` used to determine whether `.COMP` is placed in front of `.N` rather than after `.N`.
-#' @param .QUOTE `0`, `1`, or `2` indicating whether to leave list elements unquoted, single-quote the list elements, or double-quote the list elements.
+#' @param pref A \link[=cmp_chr_scl]{complete character scalar} prefix to prepend to the lst.
+#' @param conj A complete character scalar conjunction to use between the next to last and last elements of the lst. Typical values are `and`, `or` and `nor`.
+#' @param n A \link[=cmp_psw_scl]{complete positive whole-number scalar}.
+#' @param comp A complete character scalar used for comparing to `n`, such as `'at least'` or `'or fewer'`.
+#' @param first `TRUE` or `FALSE` used to determine whether `comp` is placed in front of `n` rather than after `n`.
+#' @param quote `0`, `1`, or `2` indicating whether to leave lst elements unquoted, single-quote the lst elements, or double-quote the lst elements.
 #' @return A character scalar.
 #' @examples
 #' egFruits <- c("apples", "bananas", "oranges")
@@ -51,15 +51,15 @@
 #' ox_or(egFruits)
 #' ox_and(egFruits)
 #' ox_nor(egFruits)
-#' ox_nor(egFruits, .PREF = "")
+#' ox_nor(egFruits, pref = "")
 #'
 #' ox(egFruits)
-#' ox(egFruits, .CONJ = "or")
-#' ox(egFruits, .PREF = "neither", .CONJ = "nor")
+#' ox(egFruits, conj = "or")
+#' ox(egFruits, pref = "neither", conj = "nor")
 #'
-#' ox(egFruits, .PREF = "", .CONJ = "nor")
-#' ox(egFruits, .PREF = "either", .CONJ = "or")
-#' ox(egFruits, .PREF = "all of", .CONJ = "and")
+#' ox(egFruits, pref = "", conj = "nor")
+#' ox(egFruits, pref = "either", conj = "or")
+#' ox(egFruits, pref = "all of", conj = "and")
 #'
 #' ox_either(egFruits)
 #' ox_either("apples", "bananas", "oranges")
@@ -73,52 +73,52 @@
 #' ox_none(egFruits)
 #' ox_none("apples", "bananas", "oranges")
 #'
-#' ox_n(egFruits, .N = 1)
-#' ox_n(egFruits, .CONJ = "and", .N = 2, .COMP = "from among")
-#' ox_n(egFruits, .CONJ = "and", .N = 2, .COMP = "at least", .FIRST = TRUE)
-#' ox_n(egFruits, .CONJ = "and", .N = 2, .COMP = "or more", .FIRST = FALSE)
+#' ox_n(egFruits, n = 1)
+#' ox_n(egFruits, conj = "and", n = 2, comp = "from among")
+#' ox_n(egFruits, conj = "and", n = 2, comp = "at least", first = TRUE)
+#' ox_n(egFruits, conj = "and", n = 2, comp = "or more", first = FALSE)
 #'
-#' ox_exactly(egFruits, .N = 2)
-#' ox_less(egFruits, .N = 2)
-#' ox_more(egFruits, .N = 2)
-#' ox_fewer(egFruits, .N = 2)
-#' ox_greater(egFruits, .N = 2)
-#' ox_at_least(egFruits, .N = 2)
-#' ox_at_most(egFruits, .N = 2)
-#' ox_no_greater(egFruits, .N = 2)
-#' ox_no_fewer(egFruits, .N = 2)
-#' ox_no_more(egFruits, .N = 2)
-#' ox_no_less(egFruits, .N = 2)
-#' ox_or_more(egFruits, .N = 2)
-#' ox_or_greater(egFruits, .N = 2)
-#' ox_or_less(egFruits, .N = 2)
-#' ox_or_fewer(egFruits, .N = 2)
+#' ox_exactly(egFruits, n = 2)
+#' ox_less(egFruits, n = 2)
+#' ox_more(egFruits, n = 2)
+#' ox_fewer(egFruits, n = 2)
+#' ox_greater(egFruits, n = 2)
+#' ox_at_least(egFruits, n = 2)
+#' ox_at_most(egFruits, n = 2)
+#' ox_no_greater(egFruits, n = 2)
+#' ox_no_fewer(egFruits, n = 2)
+#' ox_no_more(egFruits, n = 2)
+#' ox_no_less(egFruits, n = 2)
+#' ox_or_more(egFruits, n = 2)
+#' ox_or_greater(egFruits, n = 2)
+#' ox_or_less(egFruits, n = 2)
+#' ox_or_fewer(egFruits, n = 2)
 #' @export
-ox <- function(..., .CONJ = "and", .PREF = "", .QUOTE = 0) {
-  Vals <- uj::av(...)
-  if (!uj:::.cmp_nnw_scl(.QUOTE)) {OkQuote <- F} else {OkQuote <- .QUOTE %in% 0:2}
-  Errors <- NULL
-  if (base::length(Vals) == 0) {Errors <- base::c(Errors, "[...] is empty.")}
-  if (!uj:::.cmp_chr_scl(.CONJ)) {Errors <- base::c(Errors, "[.CONJ] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!uj:::.cmp_chr_scl(.PREF)) {Errors <- base::c(Errors, "[.PREF] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!OkQuote) {Errors <- base::c(Errors, "[.QUOTE] must be 0, 1, or 2.")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  nVals <- base::length(Vals)
-  if (.QUOTE == 1) {Vals <- base::paste0("'", Vals, "'")}
-  else if (.QUOTE == 2) {Vals <- base::paste0("\"", Vals, "\"")}
+ox <- function(..., conj = "and", pref = "", quote = 0) {
+  vals <- uj::av(...)
+  if (!ppp::.cmp_nnw_scl(quote)) {okQuote <- F} else {okQuote <- quote %in% 0:2}
+  errs <- NULL
+  if (base::length(vals) == 0) {errs <- base::c(errs, "[...] is empty.")}
+  if (!ppp::.cmp_chr_scl(conj)) {errs <- base::c(errs, "[conj] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!ppp::.cmp_chr_scl(pref)) {errs <- base::c(errs, "[pref] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!okQuote) {errs <- base::c(errs, "[quote] must be 0, 1, or 2.")}
+  if (!base::isnull(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  nVals <- base::length(vals)
+  if (quote == 1) {vals <- base::paste0("'", vals, "'")}
+  else if (quote == 2) {vals <- base::paste0("\"", vals, "\"")}
   if (nVals == 1) {
-    if (.CONJ == "nor") {uj::stopperr("[.CONJ = 'nor'], but [...] contains only 1 atomic element.", .PKG = "uj")}
-    else if (.CONJ == "or" & .PREF == "either") {uj::stopperr("[.CONJ = 'or'] and [.PREF = 'either'], but [...] contains only 1 atomic element.", .PKG = "uj")}
+    if (conj == "nor") {ppp::stopperr("[conj = 'nor'], but [...] contains only 1 atomic element.", pkg = "uj")}
+    else if (conj == "or" & pref == "either") {ppp::stopperr("[conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element.", pkg = "uj")}
   }
-  if (.PREF != "") {.PREF <- base::paste0(.PREF, " ")}                             # if pref(ix) is not empty, follow it with a space
-  Last <- Vals[nVals]                                                           # get the last element of X
-  if (nVals > 1) {                                                              # if there is more than one element in the list
-    List <- base::paste0(Vals[1:(nVals - 1)], collapse = ", ")                  # : create a comma separated list with all but the last element of X
-    if (nVals == 2) {ConjPref <- " "} else {ConjPref <- ", "}
-    ConjSuff <- " "
-    .CONJ <- base::paste0(ConjPref, .CONJ, ConjSuff)
-  } else {List <- .CONJ <- ""}
-  base::paste0(.PREF, List, .CONJ, Last)
+  if (pref != "") {pref <- base::paste0(pref, " ")}                             # if pref(ix) is not empty, follow it with a space
+  last <- vals[nVals]                                                           # get the last element of X
+  if (nVals > 1) {                                                              # if there is more than one element in the lst
+    lst <- base::paste0(vals[1:(nVals - 1)], collapse = ", ")                   # : create a comma separated lst with all but the last element of X
+    if (nVals == 2) {conjPref <- " "} else {conjPref <- ", "}
+    conjSuff <- " "
+    conj <- base::paste0(conjPref, conj, conjSuff)
+  } else {lst <- conj <- ""}
+  base::paste0(pref, lst, conj, last)
 }
 
 #' @rdname ox
@@ -131,114 +131,114 @@ oxford_comma <- ox
 
 #' @rdname ox
 #' @export
-ox_n <- function(..., .CONJ = "and", .COMP = "", .QUOTE = 0, .N = 1, .FIRST = TRUE) {
+ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, first = TRUE) {
   Vals <- uj::av(...)
-  if (!uj:::.cmp_nnw_scl(.QUOTE)) {OkQuote <- F} else {OkQuote <- .QUOTE %in% 0:2}
-  Errors <- NULL
-  if (base::length(Vals) == 0) {Errors <- base::c(errs, "[...] is empty.")}
-  if (uj:::.cmp_chr_scl(.CONJ)) {Errors <- base::c(errs, "[.CONJ] must be a complete character scalar (?cmp_chr_scl).")}
-  if (uj:::.cmp_chr_scl(.COMP)) {Errors <- base::c(errs, "[.COMP] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!OkQuote) {Errors <- base::c(Errors, "[.QUOTE] must be 0, 1, or 2.")}
-  if (!uj:::.cmp_nnw_scl(.N)) {Errors <- base::c(Errors, "[.N] must be a complete non-negative whole-number scalar (?cmp_nnw_scl)")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  if (.COMP == "") {.PREF <- base::paste(.N, "of")}
-  else if (.FIRST) {.PREF <- base::paste(.COMP, .N, "of")}
-  else            {.PREF <- base::paste(.N, .COMP, "of")}
-  uj::ox(Vals, .CONJ = .CONJ, .PREF = .PREF, .QUOTE = .QUOTE)
+  if (!ppp::.cmp_nnw_scl(quote)) {okQuote <- F} else {okQuote <- quote %in% 0:2}
+  errs <- NULL
+  if (base::length(Vals) == 0) {errs <- base::c(errs, "[...] is empty.")}
+  if (ppp::.cmp_chr_scl(conj)) {errs <- base::c(errs, "[conj] must be a complete character scalar (?cmp_chr_scl).")}
+  if (ppp::.cmp_chr_scl(comp)) {errs <- base::c(errs, "[comp] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!okQuote) {errs <- base::c(errs, "[quote] must be 0, 1, or 2.")}
+  if (!ppp::.cmp_nnw_scl(n)) {errs <- base::c(errs, "[n] must be a complete non-negative whole-number scalar (?cmp_nnw_scl)")}
+  if (!base::isnull(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (comp == "") {pref <- base::paste(n, "of")}
+  else if (first) {pref <- base::paste(comp, n, "of")}
+  else            {pref <- base::paste(n, comp, "of")}
+  uj::ox(Vals, conj = conj, pref = pref, quote = quote)
 }
 
 #' @rdname ox
 #' @export
-ox_and <- function(..., .PREF = "", .QUOTE = 0) {uj::ox(..., .PREF = .PREF, .CONJ = "and", .QUOTE = .QUOTE)}
+ox_and <- function(..., pref = "", quote = 0) {uj::ox(..., pref = pref, conj = "and", quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_or <- function(..., .PREF = "", .QUOTE = 0) {uj::ox(..., .PREF = .PREF, .CONJ = "or", .QUOTE = .QUOTE)}
+ox_or <- function(..., pref = "", quote = 0) {uj::ox(..., pref = pref, conj = "or", quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_nor <- function(..., .PREF = "neither", .QUOTE = 0) {uj::ox(..., .PREF = .PREF, .CONJ = "nor", .QUOTE = .QUOTE)}
+ox_nor <- function(..., pref = "neither", quote = 0) {uj::ox(..., pref = pref, conj = "nor", quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_either <- function(..., .QUOTE = 0) {uj::ox(..., .PREF = "either", .CONJ = "or", .QUOTE = .QUOTE)}
+ox_either <- function(..., quote = 0) {uj::ox(..., pref = "either", conj = "or", quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_neither <- function(..., .QUOTE = 0) {uj::ox(..., .PREF = "neither", .CONJ = "nor", .QUOTE = .QUOTE)}
+ox_neither <- function(..., quote = 0) {uj::ox(..., pref = "neither", conj = "nor", quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_all <- function(..., .CONJ = "and", .QUOTE = 0) {uj::ox(..., .PREF = "all of", .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_all <- function(..., conj = "and", quote = 0) {uj::ox(..., pref = "all of", conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_any <- function(..., .CONJ = "or", .QUOTE = 0) {uj::ox(..., .PREF = "any of", .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_any <- function(..., conj = "or", quote = 0) {uj::ox(..., pref = "any of", conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_none <- function(..., .CONJ = "or", .QUOTE = 0) {uj::ox(..., .PREF = "none of", .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_none <- function(..., conj = "or", quote = 0) {uj::ox(..., pref = "none of", conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_some <- function(..., .CONJ = "and", .QUOTE = 0) {uj::ox(..., .PREF = "some of", .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_some <- function(..., conj = "and", quote = 0) {uj::ox(..., pref = "some of", conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_exactly <- function(..., .CONJ = "or", .N = 1, .QUOTE = 0) {uj::ox_n(..., comp = "exactly", .N = .N, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_exactly <- function(..., conj = "or", n = 1, quote = 0) {uj::ox_n(..., comp = "exactly", n = n, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_less <- function(..., .CONJ = "and", .N = 2, .QUOTE = 0) {uj::ox_n(..., .COMP = "less than", .N = .N, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_less <- function(..., conj = "and", n = 2, quote = 0) {uj::ox_n(..., comp = "less than", n = n, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_more <- function(..., .CONJ = "and", .N = 1, .QUOTE = 0) {uj::ox_n(..., .COMP = "more than", .N = .N, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_more <- function(..., conj = "and", n = 1, quote = 0) {uj::ox_n(..., comp = "more than", n = n, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_fewer <- function(..., .CONJ = "and", .N = 2, .QUOTE = 0) {uj::ox_n(..., .COMP = "fewer than", .N = .N, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_fewer <- function(..., conj = "and", n = 2, quote = 0) {uj::ox_n(..., comp = "fewer than", n = n, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_greater <- function(..., .CONJ = "and", .N = 2, .QUOTE = 0) {uj::ox_n(..., .COMP = "greater than", .N = .N, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_greater <- function(..., conj = "and", n = 2, quote = 0) {uj::ox_n(..., comp = "greater than", n = n, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_at_least <- function(..., .CONJ = "and", .N = 1, .QUOTE = 0) {uj::ox_n(..., .COMP = "at least", .N = .N, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_at_least <- function(..., conj = "and", n = 1, quote = 0) {uj::ox_n(..., comp = "at least", n = n, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_at_most <- function(..., .CONJ = "and", .N = 1, .QUOTE = 0) {uj::ox_n(..., .COMP = "at most", .N = .N, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_at_most <- function(..., conj = "and", n = 1, quote = 0) {uj::ox_n(..., comp = "at most", n = n, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_no_greater <- function(..., .CONJ = "and", .N = 1, .QUOTE = 0) {uj::ox_n(..., .COMP = "no greater than", .N = .N, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_no_greater <- function(..., conj = "and", n = 1, quote = 0) {uj::ox_n(..., comp = "no greater than", n = n, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_no_fewer <- function(..., .CONJ = "and", .N = 1, .QUOTE = 0) {uj::ox_n(..., .COMP = "no fewer than", .N = .N, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_no_fewer <- function(..., conj = "and", n = 1, quote = 0) {uj::ox_n(..., comp = "no fewer than", n = n, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_no_more <- function(..., .CONJ = "and", .N = 1, .QUOTE = 0) {uj::ox_n(..., .COMP = "no more than", .N = .N, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_no_more <- function(..., conj = "and", n = 1, quote = 0) {uj::ox_n(..., comp = "no more than", n = n, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_no_less <- function(..., .CONJ = "and", .N = 1, .QUOTE = 0) {uj::ox_n(..., .COMP = "no less than", .N = .N, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_no_less <- function(..., conj = "and", n = 1, quote = 0) {uj::ox_n(..., comp = "no less than", n = n, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_or_more <- function(..., .CONJ = "and", .N = 1, .QUOTE = 0) {uj::ox_n(..., .COMP = "or more", .N = .N, .FIRST = F, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_or_more <- function(..., conj = "and", n = 1, quote = 0) {uj::ox_n(..., comp = "or more", n = n, first = F, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_or_greater <- function(..., .CONJ = "and", .N = 1, .QUOTE = 0) {uj::ox_n(..., .COMP = "or greater", .N = .N, .FIRST = F, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_or_greater <- function(..., conj = "and", n = 1, quote = 0) {uj::ox_n(..., comp = "or greater", n = n, first = F, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_or_less <- function(..., .CONJ = "and", .N = 1, .QUOTE = 0) {uj::ox_n(..., .COMP = "or less", .N = .N, .FIRST = F, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_or_less <- function(..., conj = "and", n = 1, quote = 0) {uj::ox_n(..., comp = "or less", n = n, first = F, conj = conj, quote = quote)}
 
 #' @rdname ox
 #' @export
-ox_or_fewer <- function(..., .CONJ = "and", .N = 1, .QUOTE = 0) {uj::ox_n(..., .COMP = "or fewer", .N = .N, .FIRST = F, .CONJ = .CONJ, .QUOTE = .QUOTE)}
+ox_or_fewer <- function(..., conj = "and", n = 1, quote = 0) {uj::ox_n(..., comp = "or fewer", n = n, first = F, conj = conj, quote = quote)}

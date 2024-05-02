@@ -4,14 +4,6 @@
 \encoding{UTF-8}
 \name{ujconstants}
 \alias{ujconstants}
-\alias{.PropFamilyVals}
-\alias{.PropFamilyDefs}
-\alias{.AllPropVals}
-\alias{.AllPropDefs}
-\alias{.CrayonSynonymVals}
-\alias{.CrayonSynonymDefs}
-\alias{.CrayonFamilyVals}
-\alias{.CrayonFamilyDefs}
 \alias{.BoldGreekVals}
 \alias{.BoldGreekDefs}
 \alias{.BoldGREEKvals}
@@ -34,38 +26,18 @@
 \alias{.OpenMarkdownColorDefs}
 \alias{.MiscVals}
 \alias{.MiscDefs}
-\alias{.UTF8vals}
-\alias{.UTF8defs}
+\alias{.uTF8vals}
+\alias{.uTF8defs}
 \alias{.LineTypeVals}
 \alias{.LinetypeDefs}
 \alias{.ShapeVals}
 \alias{.ShapeDefs}
 \alias{.CharSetVals}
 \alias{.CharSetDefs}
-\alias{.PropVals}
-\alias{.PropDefs}
-\alias{.CrayonVals}
-\alias{.CrayonDefs}
-\alias{.PkgVals}
-\alias{.PkgDefs}
+\alias{.pkgVals}
+\alias{.pkgDefs}
 \title{Package \code{uj} atomic scalar and vector constants}
 \format{
-An object of class \code{list} of length 14.
-
-An object of class \code{character} of length 14.
-
-An object of class \code{list} of length 1.
-
-An object of class \code{character} of length 1.
-
-An object of class \code{list} of length 14.
-
-An object of class \code{character} of length 14.
-
-An object of class \code{list} of length 3.
-
-An object of class \code{character} of length 3.
-
 An object of class \code{list} of length 24.
 
 An object of class \code{character} of length 24.
@@ -126,36 +98,12 @@ An object of class \code{list} of length 14.
 
 An object of class \code{character} of length 14.
 
-An object of class \code{list} of length 17.
+An object of class \code{list} of length 491.
 
-An object of class \code{character} of length 17.
-
-An object of class \code{list} of length 14.
-
-An object of class \code{character} of length 17.
-
-An object of class \code{list} of length 554.
-
-An object of class \code{character} of length 557.
+An object of class \code{character} of length 491.
 }
 \usage{
 ujconstants()
-
-.PropFamilyVals
-
-.PropFamilyDefs
-
-.AllPropVals
-
-.AllPropDefs
-
-.CrayonSynonymVals
-
-.CrayonSynonymDefs
-
-.CrayonFamilyVals
-
-.CrayonFamilyDefs
 
 .BoldGreekVals
 
@@ -201,9 +149,9 @@ ujconstants()
 
 .MiscDefs
 
-.UTF8vals
+.uTF8vals
 
-.UTF8defs
+.uTF8defs
 
 .LineTypeVals
 
@@ -217,17 +165,9 @@ ujconstants()
 
 .CharSetDefs
 
-.PropVals
+.pkgVals
 
-.PropDefs
-
-.CrayonVals
-
-.CrayonDefs
-
-.PkgVals
-
-.PkgDefs
+.pkgDefs
 }
 \value{
 Either a named list or a named character vector.
@@ -237,13 +177,10 @@ Lists of named scalars and/or vectors include the following lists and named char
 \tabular{ll}{
                              \tab \strong{Name of Associated}
 \cr \strong{Name of List}             \tab \strong{Definitions Vector}
-\cr \code{.PkgVals}                   \tab \code{.PkgDefs}
+\cr \code{.pkgVals}                   \tab \code{.pkgDefs}
 \cr \code{.MiscVals}                  \tab \code{.MiscDefs}
-\cr \code{.UTF8vals}                  \tab \code{.UTF8defs}
-\cr \code{.PropVals}                  \tab \code{.PropDefs}
+\cr \code{.uTF8vals}                  \tab \code{.uTF8defs}
 \cr \code{.ShapeVals}                 \tab \code{.ShapeDefs}
-\cr \code{.CrayonVals}                \tab \code{.CrayonDefs}
-\cr \code{.AllPropVals}               \tab \code{.AllPropDefs}
 \cr \code{.CharSetVals}               \tab \code{.CharsetDefs}
 \cr \code{.LineTypeVals}              \tab \code{.LineTypeDefs}
 \cr \code{.HexColorVals}              \tab \code{.HexColorDefs}
@@ -252,11 +189,8 @@ Lists of named scalars and/or vectors include the following lists and named char
 \cr \code{.BoldGREEKvals}             \tab \code{.BoldGREEKdefs}
 \cr \code{.PlainGreekVals}            \tab \code{.PlainGreekDefs}
 \cr \code{.PlainGREEKvals}            \tab \code{.PlainGREEKdefs}
-\cr \code{.PropFamilyVals}            \tab \code{.PropFamilyDefs}
 \cr \code{.ItalicGreekVals}           \tab \code{.ItalicGreekDefs}
 \cr \code{.ItalicGREEKvals}           \tab \code{.ItalicGREEKdefs}
-\cr \code{.CrayonFamilyVals}          \tab \code{.CrayonFamilyDefs}
-\cr \code{.CrayonSynonymVals}         \tab \code{.CrayonSynonymDefs}
 \cr \code{.BasicMarkdownVals}         \tab \code{.BasicMarkdownDefs}
 \cr \code{.OpenMarkdownColorVals}     \tab \code{.OpenMarkdownColorDefs}
 }

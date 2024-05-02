@@ -1,12 +1,27 @@
+# internals ####
+
+.n_errs <- function(.n = NULL, .min = NULL, .max = NULL, .eq = FALSE, .na = FALSE, .a = FALSE) {
+  errs <- NULL
+  if (!base::is.null(.n  ) & (!ppp::.cmp_nnw_vec(.n  ))) {errs <- base::c(errs, "[.n] must be NULL or a complete non-negative whole-number vec (?cmp_nnw_vec).")}
+  if (!base::is.null(.min) & (!ppp::.cmp_nnw_scl(.min))) {errs <- base::c(errs, "[.min] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!base::is.null(.max) & (!ppp::.cmp_nnw_scl(.max))) {errs <- base::c(errs, "[.max] must be NULL or a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
+  if (!uj::fs_tf(.eq)) {errs <- base::c(errs, "[.eq] must be TRUE or FALSE.")}
+  if (!uj::fs_tf(.na)) {errs <- base::c(errs, "[.na] must be TRUE or FALSE.")}
+  if (!uj::fs_tf(.a )) {errs <- base::c(errs, "[.a] must be TRUE or FALSE.")}
+  errs
+}
+
+# externals ####
+
 #' @encoding UTF-8
 #' @family extensions
 #' @family counts
-#' @family Dots
+#' @family dots
 #' @title Dedicated counting functions
 #' @details
 #' The following functions are flexible, fully error-checked counting functions with optional count functionality driven by arguments:
-#' \tabular{ll}{  `n_check`   \tab Do counts given in `x` meet criteria in `c(N, .MIN, .MAX, .EQ)`, if any? If none, returns `x`. \cr   \tab   \cr
-#'                `...N`      \tab Length(s) of `...` args with optional length validations.                                   \cr   \tab   \cr
+#' \tabular{ll}{  `n_check`   \tab Do counts given in `x` meet criteria in `c(N, .min, .max, .eq)`, if any? If none, returns `x`. \cr   \tab   \cr
+#'                `...n`      \tab Length(s) of `...` args with optional length validations.                                   \cr   \tab   \cr
 #'                `...ns`     \tab Lengths of `...` args                                                                       \cr
 #'                `...nv`     \tab Length after \link[=av]{atomizing}.                                                         \cr
 #'                `...nch`    \tab Number of characters in each element.                                                       \cr
@@ -15,8 +30,8 @@
 #'                `...nokv`   \tab Number of atomic non-`NA` values.                                                           \cr
 #'                `...neq`    \tab Are `...` arg lengths all the same?                                                         \cr
 #'                `...ndif`   \tab Are `...` arg lengths *not* all the same?                                                   \cr
-#'                `...minn`   \tab .MIN `...` arg length.                                                                       \cr
-#'                `...maxn`   \tab .MAX `...` arg length.                                                                         }
+#'                `...minn`   \tab .min `...` arg length.                                                                       \cr
+#'                `...maxn`   \tab .max `...` arg length.                                                                         }
 #' **Functions evaluating length/count (in)equality**
 #' \tabular{ll}{  `ndif`   \tab Lengths of `x` and `y` are equal.   \cr
 #'                `neq`    \tab Lengths of `x` and `y` are different. }
@@ -85,28 +100,28 @@
 #'     **`nr < 3`**   \tab `not_nr3p_nc0`  \tab `not_nr3p_nc1`  \tab `not_nr3p_nc2`  \tab `not_nr3p_nc1p`  \tab `not_nr3p_nc2p`  \tab `not_nr3p_nc3p`   }
 #' @param x \link[=Nnw]{non-negative whole-number} object.
 #' @param ... One or more arguments to be examined for counts.
-#' @param .N Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec} of valid element, row, or column counts.
-#' @param .MIN Optional complete non-negative whole-number scalar giving minimum valid element, row, or column counts.
-#' @param .MAX Optional complete non-negative whole-number scalar giving maximum valid element, row, or column counts.
-#' @param .EQ Non-`NA` scalar indicating whether all counts must be equal.
-#' @param .NA Non-`NA` scalar whether `NA` values are allowed.
-#' @param .A Non-`NA` scalar indicating whether to \link[=av]{atomize} `...` to create a single atomic vector before processing. If `.A = FALSE`, each argument in `...` is processed separately.
-#' @param .VALS Optional \link[=atm_vec]{atomic vec} indicating specific values to be counted.
-#' @param .LT Optional \link[=cmp_srt_scl]{complete sortable scalar} indicating specific values elements of `...` arguments must be less than in order to be counted.
-#' @param .LE Optional complete sortable scalar indicating specific values elements of `...` arguments must be less than or equal to in order to be counted
-#' @param .GE Optional complete sortable scalar indicating specific values elements of `...` arguments must be greater than or equal to in order to be counted.
-#' @param .GT Optional complete sortable scalar indicating specific values elements of `...` arguments must be greater than in order to be counted.
+#' @param .n Optional \link[=cmp_nnw_vec]{complete non-negative whole-number vec} of valid element, row, or column counts.
+#' @param .min Optional complete non-negative whole-number scalar giving minimum valid element, row, or column counts.
+#' @param .max Optional complete non-negative whole-number scalar giving maximum valid element, row, or column counts.
+#' @param .eq Non-`NA` scalar indicating whether all counts must be equal.
+#' @param .na Non-`NA` scalar whether `NA` values are allowed.
+#' @param .a Non-`NA` scalar indicating whether to \link[=av]{atomize} `...` to create a single atomic vector before processing. If `.a = FALSE`, each argument in `...` is processed separately.
+#' @param .vals Optional \link[=atm_vec]{atomic vec} indicating specific values to be counted.
+#' @param .lt Optional \link[=cmp_srt_scl]{complete sortable scalar} indicating specific values elements of `...` arguments must be less than in order to be counted.
+#' @param .le Optional complete sortable scalar indicating specific values elements of `...` arguments must be less than or equal to in order to be counted
+#' @param .ge Optional complete sortable scalar indicating specific values elements of `...` arguments must be greater than or equal to in order to be counted.
+#' @param .gt Optional complete sortable scalar indicating specific values elements of `...` arguments must be greater than in order to be counted.
 #' @return May be non-negative integer or a logical scalar or vector, depending the properties of primary argument(s) (i.e., `x` and `...`) and optional arguments (i.e., all others).
 #' @examples
 #' N <- 0:15
-#' nis(N, .N = 0:5)
-#' nis(N, .MIN = 3, .MAX = 12)
-#' nis(N, .EQ = T)
-#' nis(rep(0, 3), .EQ = T)
+#' nis(N, .n = 0:5)
+#' nis(N, .min = 3, .max = 12)
+#' nis(N, .eq = T)
+#' nis(rep(0, 3), .eq = T)
 #' nx(letters, LETTERS, 0:9, NULL)
-#' nx(letters, LETTERS, .VALS = letters)
-#' nx(letters, LETTERS, .LE = "M", .GE = "m")
-#' nx(letters, LETTERS, .LT = "M", .GT = "m")
+#' nx(letters, LETTERS, .vals = letters)
+#' nx(letters, LETTERS, .le = "M", .ge = "m")
+#' nx(letters, LETTERS, .lt = "M", .gt = "m")
 #' n0(letters, LETTERS, TRUE, 0:1, 0:2, 0:9)
 #' n1(letters, LETTERS, TRUE, 0:1, 0:2, 0:9)
 #' n1p(letters, LETTERS, TRUE, 0:1, 0:2, 0:9)
@@ -115,37 +130,37 @@
 #' nmax(letters, LETTERS, 0:9)
 #' nsame(letters, LETTERS, 0:9)
 #' nsame(letters, LETTERS)
-#' nsame(letters, LETTERS, .LT = "M", .GT = "m")
-#' nmin(letters, LETTERS, 0:9, .MIN = 11)
-#' nmax(letters, LETTERS, 0:9, .MAX = 11)
-#' nsame(letters, LETTERS, 0:9, .MIN = 11, .MAX = 25)
+#' nsame(letters, LETTERS, .lt = "M", .gt = "m")
+#' nmin(letters, LETTERS, 0:9, .min = 11)
+#' nmax(letters, LETTERS, 0:9, .max = 11)
+#' nsame(letters, LETTERS, 0:9, .min = 11, .max = 25)
 #' nw(0:99 %in% 50:59, 0:99 %in% 41:49)
 #' nt(0:99 %in% 50:59, 0:99 %in% 41:49)
-#' nw(0:99 %in% 50:59, 0:99 %in% 41:49, .N = 0:9)
-#' nw(0:99 %in% 50:59, 0:99 %in% 41:49, .MIN = 9, .MAX = 19, .EQ = T)
+#' nw(0:99 %in% 50:59, 0:99 %in% 41:49, .n = 0:9)
+#' nw(0:99 %in% 50:59, 0:99 %in% 41:49, .min = 9, .max = 19, .eq = T)
 #' nf(0:99 %in% 50:59, 0:99 %in% 41:49)
-#' nf(0:99 %in% 50:59, 0:99 %in% 41:49, .N = 0:9)
-#' nf(0:99 %in% 50:59, 0:99 %in% 41:49, .MIN = 9, .MAX = 19)
-#' nf(0:99 %in% 50:59, 0:99 %in% 41:49, .MIN = 9, .MAX = 19, .EQ = T)
+#' nf(0:99 %in% 50:59, 0:99 %in% 41:49, .n = 0:9)
+#' nf(0:99 %in% 50:59, 0:99 %in% 41:49, .min = 9, .max = 19)
+#' nf(0:99 %in% 50:59, 0:99 %in% 41:49, .min = 9, .max = 19, .eq = T)
 #' nr(tibble(letters, LETTERS), matrix(c(letters, LETTERS), nrow = 2))
 #' nc(tibble(letters, LETTERS), matrix(c(letters, LETTERS), nrow = 2))
-#' nch(letters, .EQ = T)
+#' nch(letters, .eq = T)
 #' nch(letters, "a string")
-#' nch(letters, "a string", .A = T)
+#' nch(letters, "a string", .a = T)
 #' @export
 N <- base::length
 
 #' @rdname N
 #' @export
-n_check <- function(x, .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE) {
-  errs <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
-  if (!base::is.null(errs)) {uj::stopperr(errs, .PKG = "uj")}
-  if (!base::is.null(.N) | !base::is.null(.MIN) | !base::is.null(.MAX) | .EQ) {
-    OkN <- uj::f0(base::is.null(N), T, base::all(x %in% N))
-    OkEQ <- uj::f0(.EQ, base::length(base::unique(x)) == 1, T)
-    OkMin <- uj::f0(base::is.null(.MIN), T, base::all(x >= .MIN))
-    OkMax <- uj::f0(base::is.null(.MAX), T, base::all(x <= .MAX))
-    OkN & OkMin & OkMax & OkEQ
+n_check <- function(x, .n = NULL, .min = NULL, .max = NULL, .eq = FALSE) {
+  errs <- uj:::.n_errs(.n = .n, .min = .min, .max = .max, .eq = .eq)
+  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(.n) | !base::is.null(.min) | !base::is.null(.max) | .eq) {
+    okN <- uj::f0(base::is.null(N), T, base::all(x %in% N))
+    okEQ <- uj::f0(.eq, base::length(base::unique(x)) == 1, T)
+    okMin <- uj::f0(base::is.null(.min), T, base::all(x >= .min))
+    okMax <- uj::f0(base::is.null(.max), T, base::all(x <= .max))
+    okN & okMin & okMax & okEQ
   } else {x}
 }
 
@@ -179,7 +194,7 @@ n2p <- function(x) {uj::N(x) > 1}
 #' @export
 n3p <- function(x) {uj::N(x) > 2}
 
-# N-Dot-args ####
+# N-dot-args ####
 
 #' @rdname N
 #' @export
@@ -904,8 +919,8 @@ not_nr3p_nc3p <- function(x) {!uj::nr3p_nc3p(x)}
 #' @export
 ndim <- function(x) {
   if (base::is.null(x)) {return(0)}
-  D <- base::dim(x)
-  if (base::is.null(D)) {1} else {base::length(D)}
+  d <- base::dim(x)
+  if (base::is.null(d)) {1} else {base::length(d)}
 }
 
 #' @rdname N
@@ -1150,92 +1165,92 @@ not_ns2p <- function(x) {!uj::ns2p(x)}
 #' @export
 not_ns3p <- function(x) {!uj::ns3p(x)}
 
-# ...N ####
+# ...n ####
 
 #' @rdname N
 #' @export
-...N <- function(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .A = FALSE, .NA = TRUE, .VALS = NULL, .LT = NULL, .LE = NULL, .GE = NULL, .GT = NULL) {
-  Errors <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ, .A = .A, .NA = .NA)
-  if (!base::is.null(Errors)) {stopperr(Errors, .PKG = "uj")}
-  Dots <- base::list(...)
-  Atoms <- uj::av(Dots)
-  if (base::isTRUE(.A)) {Dots <- list(Atoms)}
+...n <- function(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE, .a = FALSE, .na = TRUE, .vals = NULL, .lt = NULL, .le = NULL, .ge = NULL, .gt = NULL) {
+  errs <- uj:::.n_errs(.n = .n, .min = .min, .max = .max, .eq = .eq, .a = .a, .na = .na)
+  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  dots <- base::list(...)
+  atoms <- uj::av(dots)
+  if (base::isTRUE(.a)) {dots <- list(atoms)}
   ok.restrict <- function() {
-    if (!is.null(.VALS) & !is.null(.GE)) {if (!uj::comparable(.VALS, .GE)) {return(F)}}
-    if (!is.null(.VALS) & !is.null(.GT)) {if (!uj::comparable(.VALS, .GT)) {return(F)}}
-    if (!is.null(.VALS) & !is.null(.LE)) {if (!uj::comparable(.VALS, .LE)) {return(F)}}
-    if (!is.null(.VALS) & !is.null(.LT)) {if (!uj::comparable(.VALS, .LT)) {return(F)}}
-    if (!is.null(.GE) & !is.null(.GT)) {if (!uj::comparable(.GE, .GT)) {return(F)}}
-    if (!is.null(.GE) & !is.null(.LE)) {if (!uj::comparable(.GE, .LE)) {return(F)}}
-    if (!is.null(.GE) & !is.null(.LT)) {if (!uj::comparable(.GE, .LT)) {return(F)}}
-    if (!is.null(.GT) & !is.null(.LE)) {if (!uj::comparable(.GT, .LE)) {return(F)}}
-    if (!is.null(.GT) & !is.null(.LT)) {if (!uj::comparable(.GT, .LT)) {return(F)}}
-    if (!is.null(.LE) & !is.null(.LT)) {if (!uj::comparable(.LE, .LT)) {return(F)}}
+    if (!is.null(.vals) & !is.null(.ge)) {if (!uj::comparable(.vals, .ge)) {return(F)}}
+    if (!is.null(.vals) & !is.null(.gt)) {if (!uj::comparable(.vals, .gt)) {return(F)}}
+    if (!is.null(.vals) & !is.null(.le)) {if (!uj::comparable(.vals, .le)) {return(F)}}
+    if (!is.null(.vals) & !is.null(.lt)) {if (!uj::comparable(.vals, .lt)) {return(F)}}
+    if (!is.null(.ge) & !is.null(.gt)) {if (!uj::comparable(.ge, .gt)) {return(F)}}
+    if (!is.null(.ge) & !is.null(.le)) {if (!uj::comparable(.ge, .le)) {return(F)}}
+    if (!is.null(.ge) & !is.null(.lt)) {if (!uj::comparable(.ge, .lt)) {return(F)}}
+    if (!is.null(.gt) & !is.null(.le)) {if (!uj::comparable(.gt, .le)) {return(F)}}
+    if (!is.null(.gt) & !is.null(.lt)) {if (!uj::comparable(.gt, .lt)) {return(F)}}
+    if (!is.null(.le) & !is.null(.lt)) {if (!uj::comparable(.le, .lt)) {return(F)}}
     T
   }
   ok.dots.vals <- function() {
-    if (!is.null(.VALS)) {if (!base::all(base::sapply(Dots, uj::comparable_xy, y = .VALS))) {return(F)}}
+    if (!is.null(.vals)) {if (!base::all(base::sapply(dots, uj::comparable_xy, y = .vals))) {return(F)}}
     T
   }
   ok.dots.ineq <- function() {
-    if (!is.null(.GE)) {if (!base::all(base::sapply(Dots, uj::comparable_xy, y = .GE))) {return(F)}}
-    if (!is.null(.GT)) {if (!base::all(base::sapply(Dots, uj::comparable_xy, y = .GT))) {return(F)}}
-    if (!is.null(.LE)) {if (!base::all(base::sapply(Dots, uj::comparable_xy, y = .LE))) {return(F)}}
-    if (!is.null(.LT)) {if (!base::all(base::sapply(Dots, uj::comparable_xy, y = .LT))) {return(F)}}
+    if (!is.null(.ge)) {if (!base::all(base::sapply(dots, uj::comparable_xy, y = .ge))) {return(F)}}
+    if (!is.null(.gt)) {if (!base::all(base::sapply(dots, uj::comparable_xy, y = .gt))) {return(F)}}
+    if (!is.null(.le)) {if (!base::all(base::sapply(dots, uj::comparable_xy, y = .le))) {return(F)}}
+    if (!is.null(.lt)) {if (!base::all(base::sapply(dots, uj::comparable_xy, y = .lt))) {return(F)}}
     T
   }
-  if (base::...length() == 0) {Errors <- base::c(Errors, "[...] is empty.")}
-  if (!is.null(.VALS) & (!uj:::.cmp_atm(.VALS))) {Errors <- base::c(Errors, "[.VALS] must be NULL or a complete atomic object (?cmp_atm).")}
-  if (!is.null(.GE) & (!uj:::.cmp_srt_scl(.GE))) {Errors <- base::c(Errors, "[.GE] must be NULL or a complete sortable scalar (?cmp_srt_scl).")}
-  if (!is.null(.GT) & (!uj:::.cmp_srt_scl(.GT))) {Errors <- base::c(Errors, "[.GT] must be NULL or a complete sortable scalar (?cmp_srt_scl).")}
-  if (!is.null(.LE) & (!uj:::.cmp_srt_scl(.LE))) {Errors <- base::c(Errors, "[.LE] must be NULL or a complete sortable scalar (?cmp_srt_scl).")}
-  if (!is.null(.LT) & (!uj:::.cmp_srt_scl(.LT))) {Errors <- base::c(Errors, "[.LT] must be NULL or a complete sortable scalar (?cmp_srt_scl).")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  if (!.NA & !base::any(base::is.na(Atoms))) {Errors <- base::c(Errors, "[.NA = FALSE] but arguments in [...] contains NA values.")}
-  if (!ok.restrict()) {Errors <- base::c(Errors, "when two or more of [.GE], [.GT], [.LE], [.LT], and [.VALS] are not NULL, they must be comparable (?comparable) with each other.")}
-  if (!ok.dots.ineq()) {Errors <- base::c(Errors, "when [.GE], [.GT], [.LE], and/or [.LT] are not NULL, they must be comparable (?comparable) with all [...] args.")}
-  if (!ok.dots.vals()) {Errors <- base::c(Errors, "when [.VALS] is not NULL, it must be compatible (?uj::compatible) with all [...] args.")}
-  if (!base::is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  if (.A) {Dots <- base::list(Atoms)}
-  for (i in 1:uj::N(Dots)) {
-    Dot <- Dots[[i]]
-    if (!base::is.null(.VALS)) {Dot <- Dot[Dot %in% .VALS]}
-    if (!base::is.null(.LT)) {Dot <- Dot[Dot <  .LT]}
-    if (!base::is.null(.LE)) {Dot <- Dot[Dot <= .LE]}
-    if (!base::is.null(.GE)) {Dot <- Dot[Dot >= .GE]}
-    if (!base::is.null(.GT)) {Dot <- Dot[Dot >  .GT]}
-    Dots[[i]] <- Dot
+  if (base::...length() == 0) {errs <- base::c(errs, "[...] is empty.")}
+  if (!is.null(.vals) & (!ppp::.cmp_atm(.vals))) {errs <- base::c(errs, "[.vals] must be NULL or a complete atomic object (?cmp_atm).")}
+  if (!is.null(.ge) & (!ppp::.cmp_srt_scl(.ge))) {errs <- base::c(errs, "[.ge] must be NULL or a complete sortable scalar (?cmp_srt_scl).")}
+  if (!is.null(.gt) & (!ppp::.cmp_srt_scl(.gt))) {errs <- base::c(errs, "[.gt] must be NULL or a complete sortable scalar (?cmp_srt_scl).")}
+  if (!is.null(.le) & (!ppp::.cmp_srt_scl(.le))) {errs <- base::c(errs, "[.le] must be NULL or a complete sortable scalar (?cmp_srt_scl).")}
+  if (!is.null(.lt) & (!ppp::.cmp_srt_scl(.lt))) {errs <- base::c(errs, "[.lt] must be NULL or a complete sortable scalar (?cmp_srt_scl).")}
+  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!.na & !base::any(base::is.na(atoms))) {errs <- base::c(errs, "[.na = FALSE] but arguments in [...] contains NA values.")}
+  if (!ok.restrict()) {errs <- base::c(errs, "when two or more of [.ge], [.gt], [.le], [.lt], and [.vals] are not NULL, they must be comparable (?comparable) with each other.")}
+  if (!ok.dots.ineq()) {errs <- base::c(errs, "when [.ge], [.gt], [.le], and/or [.lt] are not NULL, they must be comparable (?comparable) with all [...] args.")}
+  if (!ok.dots.vals()) {errs <- base::c(errs, "when [.vals] is not NULL, it must be compatible (?uj::compatible) with all [...] args.")}
+  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (.a) {dots <- base::list(atoms)}
+  for (i in 1:uj::N(dots)) {
+    dot <- dots[[i]]
+    if (!base::is.null(.vals)) {dot <- dot[dot %in% .vals]}
+    if (!base::is.null(.lt)) {dot <- dot[dot <  .lt]}
+    if (!base::is.null(.le)) {dot <- dot[dot <= .le]}
+    if (!base::is.null(.ge)) {dot <- dot[dot >= .ge]}
+    if (!base::is.null(.gt)) {dot <- dot[dot >  .gt]}
+    dots[[i]] <- dot
   }
-  uj::n_check(uj::ns(Dots), .N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
+  uj::n_check(uj::ns(dots), .n = .n, .min = .min, .max = .max, .eq = .eq)
 }
 
 #' @rdname N
 #' @export
-...ns <- function(..., .N = NULL, .MIN = NULL, .MAX = NULL, .NA = TRUE, .VALS = NULL, .LT = NULL, .LE = NULL, .GE = NULL, .GT = NULL) {uj::...N(..., .N = .N, .MIN = .MIN, .MAX = .MAX, .NA = .NA, .A = F, .VALS = .VALS, .LT = .LT, .LE = .LE, .GE = .GE, .GT = .GT)}
+...ns <- function(..., .n = NULL, .min = NULL, .max = NULL, .na = TRUE, .vals = NULL, .lt = NULL, .le = NULL, .ge = NULL, .gt = NULL) {uj::...n(..., .n = .n, .min = .min, .max = .max, .na = .na, .a = F, .vals = .vals, .lt = .lt, .le = .le, .ge = .ge, .gt = .gt)}
 
 #' @rdname N
 #' @export
-...minn <- function(..., .NA = TRUE, .VALS = NULL, .LT = NULL, .LE = NULL, .GE = NULL, .GT = NULL) {base::min(uj::...N(..., .NA = .NA, .A = F, .VALS = .VALS, .LT = .LT, .LE = .LE, .GE = .GE, .GT = .GT))}
+...minn <- function(..., .na = TRUE, .vals = NULL, .lt = NULL, .le = NULL, .ge = NULL, .gt = NULL) {base::min(uj::...n(..., .na = .na, .a = F, .vals = .vals, .lt = .lt, .le = .le, .ge = .ge, .gt = .gt))}
 
 #' @rdname N
 #' @export
-...maxn <- function(..., .NA = TRUE, .VALS = NULL, .LT = NULL, .LE = NULL, .GE = NULL, .GT = NULL) {base::max(uj::...N(..., .NA = .NA, .A = F, .VALS = .VALS, .LT = .LT, .LE = .LE, .GE = .GE, .GT = .GT))}
+...maxn <- function(..., .na = TRUE, .vals = NULL, .lt = NULL, .le = NULL, .ge = NULL, .gt = NULL) {base::max(uj::...n(..., .na = .na, .a = F, .vals = .vals, .lt = .lt, .le = .le, .ge = .ge, .gt = .gt))}
 
 #' @rdname N
 #' @export
-...neq <- function(..., .MIN = NULL, .MAX = NULL, .NA = TRUE, .VALS = NULL, .LT = NULL, .LE = NULL, .GE = NULL, .GT = NULL) {uj::...N(..., .MIN = .MIN, .MAX = .MAX, .EQ = T, .NA = .NA, .A = F, .VALS = .VALS, .LT = .LT, .LE = .LE, .GE = .GE, .GT = .GT)}
+...neq <- function(..., .min = NULL, .max = NULL, .na = TRUE, .vals = NULL, .lt = NULL, .le = NULL, .ge = NULL, .gt = NULL) {uj::...n(..., .min = .min, .max = .max, .eq = T, .na = .na, .a = F, .vals = .vals, .lt = .lt, .le = .le, .ge = .ge, .gt = .gt)}
 
 #' @rdname N
 #' @export
-...nw <- function(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .NA = FALSE, .A = TRUE) {
-  Dots <- list(...)
-  Atoms <- uj::av(Dots)
-  Errors <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ, .NA = .NA, .A = .A)
-  if (!is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  if (base::isTRUE(.NA) & base::any(base::is.na(Atoms))) {uj::stopperr("[.NA = FALSE] but arguments in [...] contains NA values.", .PKG = "uj")}
-  if (base::isTRUE(.A)) {Dots <- base::list(Atoms)}
-  x <- uj::av(base::sapply(Dots, function(x) {base::length(base::which(x))}))
-  uj::n_check(x, .N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
+...nw <- function(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE, .na = FALSE, .a = TRUE) {
+  dots <- list(...)
+  atoms <- uj::av(dots)
+  errs <- uj:::.n_errs(.n = .n, .min = .min, .max = .max, .eq = .eq, .na = .na, .a = .a)
+  if (!is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (base::isTRUE(.na) & base::any(base::is.na(atoms))) {ppp::stopperr("[.na = FALSE] but arguments in [...] contains NA values.", pkg = "uj")}
+  if (base::isTRUE(.a)) {dots <- base::list(atoms)}
+  x <- uj::av(base::sapply(dots, function(x) {base::length(base::which(x))}))
+  uj::n_check(x, .n = .n, .min = .min, .max = .max, .eq = .eq)
 }
 
 #' @rdname N
@@ -1244,94 +1259,94 @@ not_ns3p <- function(x) {!uj::ns3p(x)}
 
 #' @rdname N
 #' @export
-...nf <- function(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .NA = FALSE, .A = TRUE) {
-  Dots <- list(...)
-  Atoms <- uj::av(Dots)
-  Errors <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ, .NA = .NA, .A = .A)
-  if (!is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  if (base::isTRUE(.NA) & base::any(base::is.na(Atoms))) {uj::stopperr("[.NA = FALSE] but arguments in [...] contains NA values.", .PKG = "uj")}
-  if (base::isTRUE(.A)) {Dots <- base::list(Atoms)}
-  x <- uj::av(base::sapply(Dots, function(x) {base::length(base::which(!x))}))
-  uj::n_check(x, .N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
+...nf <- function(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE, .na = FALSE, .a = TRUE) {
+  dots <- list(...)
+  atoms <- uj::av(dots)
+  errs <- uj:::.n_errs(.n = .n, .min = .min, .max = .max, .eq = .eq, .na = .na, .a = .a)
+  if (!is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (base::isTRUE(.na) & base::any(base::is.na(atoms))) {ppp::stopperr("[.na = FALSE] but arguments in [...] contains NA values.", pkg = "uj")}
+  if (base::isTRUE(.a)) {dots <- base::list(atoms)}
+  x <- uj::av(base::sapply(dots, function(x) {base::length(base::which(!x))}))
+  uj::n_check(x, .n = .n, .min = .min, .max = .max, .eq = .eq)
 }
 
 #' @rdname N
 #' @export
-...nu <- function(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .NA = TRUE, .A = TRUE) {
-  Dots <- list(...)
-  Atoms <- uj::av(Dots)
-  Errors <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ, .NA = .NA, .A = .A)
-  if (!is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  if (base::isTRUE(.NA) & base::any(base::is.na(Atoms))) {uj::stopperr("[.NA = FALSE] but arguments in [...] contains NA values.", .PKG = "uj")}
-  if (base::isTRUE(.A)) {Dots <- base::list(Atoms)}
-  x <- uj::av(base::sapply(Dots, function(x) {base::length(base::unique(x))}))
-  uj::n_check(x, .N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
+...nu <- function(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE, .na = TRUE, .a = TRUE) {
+  dots <- list(...)
+  atoms <- uj::av(dots)
+  errs <- uj:::.n_errs(.n = .n, .min = .min, .max = .max, .eq = .eq, .na = .na, .a = .a)
+  if (!is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (base::isTRUE(.na) & base::any(base::is.na(atoms))) {ppp::stopperr("[.na = FALSE] but arguments in [...] contains NA values.", pkg = "uj")}
+  if (base::isTRUE(.a)) {dots <- base::list(atoms)}
+  x <- uj::av(base::sapply(dots, function(x) {base::length(base::unique(x))}))
+  uj::n_check(x, .n = .n, .min = .min, .max = .max, .eq = .eq)
 }
 
 #' @rdname N
 #' @export
-...nr <- function(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE) {
-  Dots <- base::list(...)
-  Errors <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
-  if (!is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  x <- uj::av(base::sapply(Dots, base::nrow))
-  uj::n_check(x, .N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
+...nr <- function(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE) {
+  dots <- base::list(...)
+  errs <- uj:::.n_errs(.n = .n, .min = .min, .max = .max, .eq = .eq)
+  if (!is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  x <- uj::av(base::sapply(dots, base::nrow))
+  uj::n_check(x, .n = .n, .min = .min, .max = .max, .eq = .eq)
 }
 
 #' @rdname N
 #' @export
-...nc <- function(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE) {
-  Dots <- base::list(...)
-  Errors <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
-  if (!is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  x <- uj::av(base::sapply(Dots, base::ncol))
-  uj::n_check(x, .N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
+...nc <- function(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE) {
+  dots <- base::list(...)
+  errs <- uj:::.n_errs(.n = .n, .min = .min, .max = .max, .eq = .eq)
+  if (!is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  x <- uj::av(base::sapply(dots, base::ncol))
+  uj::n_check(x, .n = .n, .min = .min, .max = .max, .eq = .eq)
 }
 
 #' @rdname N
 #' @export
-...n_ch <- function(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .NA = FALSE, .A = TRUE) {
-  Dots <- base::list(...)
-  Atoms <- uj::av(Dots)
-  Errors <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ, .NA = .NA, .A = .A)
-  if (!is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  if (base::isTRUE(.NA) & base::any(base::is.na(Atoms))) {uj::stopperr("[.NA = FALSE] but arguments in [...] contains NA values.", .PKG = "uj")}
-  if (base::isTRUE(.A)) {Dots <- base::list(Atoms)}
-  x <- uj::av(base::sapply(Dots, base::nchar))
-  uj::n_check(x, .N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
+...n_ch <- function(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE, .na = FALSE, .a = TRUE) {
+  dots <- base::list(...)
+  atoms <- uj::av(dots)
+  errs <- uj:::.n_errs(.n = .n, .min = .min, .max = .max, .eq = .eq, .na = .na, .a = .a)
+  if (!is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (base::isTRUE(.na) & base::any(base::is.na(atoms))) {ppp::stopperr("[.na = FALSE] but arguments in [...] contains NA values.", pkg = "uj")}
+  if (base::isTRUE(.a)) {dots <- base::list(atoms)}
+  x <- uj::av(base::sapply(dots, base::nchar))
+  uj::n_check(x, .n = .n, .min = .min, .max = .max, .eq = .eq)
 }
 
 #' @rdname N
 #' @export
-...n_nav <- function(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .A = TRUE) {
-  Dots <- base::list(...)
-  Atoms <- uj::av(Dots)
-  Errors <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ, .A = .A)
-  if (!is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  if (base::isTRUE(.A)) {Dots <- base::list(Atoms)}
-  x <- uj::av(base::sapply(Dots, function(x) {base::length(base::which(base::is.na(x)))}))
-  uj::n_check(x, .N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
+...n_nav <- function(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE, .a = TRUE) {
+  dots <- base::list(...)
+  atoms <- uj::av(dots)
+  errs <- uj:::.n_errs(.n = .n, .min = .min, .max = .max, .eq = .eq, .a = .a)
+  if (!is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (base::isTRUE(.a)) {dots <- base::list(atoms)}
+  x <- uj::av(base::sapply(dots, function(x) {base::length(base::which(base::is.na(x)))}))
+  uj::n_check(x, .n = .n, .min = .min, .max = .max, .eq = .eq)
 }
 
 #' @rdname N
 #' @export
-...n_okv <- function(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .A = TRUE) {
-  Dots <- base::list(...)
-  Atoms <- uj::av(Dots)
-  Errors <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ, .A = .A)
-  if (!is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  if (base::isTRUE(.A)) {Dots <- base::list(Atoms)}
-  x <- uj::av(base::sapply(Dots, function(x) {base::length(base::which(!base::is.na(x)))}))
-  uj::n_check(x, .N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
+...n_okv <- function(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE, .a = TRUE) {
+  dots <- base::list(...)
+  atoms <- uj::av(dots)
+  errs <- uj:::.n_errs(.n = .n, .min = .min, .max = .max, .eq = .eq, .a = .a)
+  if (!is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (base::isTRUE(.a)) {dots <- base::list(atoms)}
+  x <- uj::av(base::sapply(dots, function(x) {base::length(base::which(!base::is.na(x)))}))
+  uj::n_check(x, .n = .n, .min = .min, .max = .max, .eq = .eq)
 }
 
 #' @rdname N
 #' @export
-...nv <- function(..., .N = NULL, .MIN = NULL, .MAX = NULL, .EQ = FALSE, .A = TRUE) {
-  Dots <- base::list(...)
-  Atoms <- uj::av(Dots)
-  Errors <- uj:::.n_errs(.N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ, .A = .A)
-  if (!is.null(Errors)) {uj::stopperr(Errors, .PKG = "uj")}
-  if (.A) {x <- base::length(Atoms)} else {x <- base::lengths(Dots)}
-  uj::n_check(x, .N = .N, .MIN = .MIN, .MAX = .MAX, .EQ = .EQ)
+...nv <- function(..., .n = NULL, .min = NULL, .max = NULL, .eq = FALSE, .a = TRUE) {
+  dots <- base::list(...)
+  atoms <- uj::av(dots)
+  errs <- uj:::.n_errs(.n = .n, .min = .min, .max = .max, .eq = .eq, .a = .a)
+  if (!is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (.a) {x <- base::length(atoms)} else {x <- base::lengths(dots)}
+  uj::n_check(x, .n = .n, .min = .min, .max = .max, .eq = .eq)
 }

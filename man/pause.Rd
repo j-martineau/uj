@@ -38,7 +38,6 @@ Other meta:
 \code{\link{ply}()},
 \code{\link{purge}()},
 \code{\link{recyclable_ns}()},
-\code{\link{run}()},
-\code{\link{say}()}
+\code{\link{run}()}
 }
 \concept{meta}

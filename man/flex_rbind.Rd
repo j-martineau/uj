@@ -28,7 +28,6 @@ Other extensions:
 \code{\link{dups}()},
 \code{\link{failsafe}()},
 \code{\link{fork}()},
-\code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},

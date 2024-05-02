@@ -1,16 +1,26 @@
+# internals ####
+
+.value_errs <- function(name, err = TRUE, gens = 1) {
+  fun <- uj::caller()
+  errs <- NULL
+  if (!ppp::.cmp_chr_scl(name)) {errs <- base::c(errs, "[name] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!ppp::.cmp_psw_scl(gens)) {errs <- base::c(errs, "[gens] must be a positive whole number scalar (?cmp_psw_scl).")}
+  if (!ppp::.cmp_lgl_scl(err )) {errs <- base::c(errs, "[err] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {ppp::stopperr(errs, fun = fun, pkg = "uj")}
+}
+
+# exported ####
+
 #' @encoding UTF-8
 #' @title Package `uj` atomic scalar and vector constants
 #' @description Lists of named scalars and/or vectors include the following lists and named character vectors defining elements of the associated lists:
 #' \tabular{ll}{
 #'                                    \tab **Name of Associated**
 #'   \cr **Name of List**             \tab **Definitions Vector**
-#'   \cr `.PkgVals`                   \tab `.PkgDefs`
+#'   \cr `.pkgVals`                   \tab `.pkgDefs`
 #'   \cr `.MiscVals`                  \tab `.MiscDefs`
-#'   \cr `.UTF8vals`                  \tab `.UTF8defs`
-#'   \cr `.PropVals`                  \tab `.PropDefs`
+#'   \cr `.uTF8vals`                  \tab `.uTF8defs`
 #'   \cr `.ShapeVals`                 \tab `.ShapeDefs`
-#'   \cr `.CrayonVals`                \tab `.CrayonDefs`
-#'   \cr `.AllPropVals`               \tab `.AllPropDefs`
 #'   \cr `.CharSetVals`               \tab `.CharsetDefs`
 #'   \cr `.LineTypeVals`              \tab `.LineTypeDefs`
 #'   \cr `.HexColorVals`              \tab `.HexColorDefs`
@@ -19,93 +29,14 @@
 #'   \cr `.BoldGREEKvals`             \tab `.BoldGREEKdefs`
 #'   \cr `.PlainGreekVals`            \tab `.PlainGreekDefs`
 #'   \cr `.PlainGREEKvals`            \tab `.PlainGREEKdefs`
-#'   \cr `.PropFamilyVals`            \tab `.PropFamilyDefs`
 #'   \cr `.ItalicGreekVals`           \tab `.ItalicGreekDefs`
 #'   \cr `.ItalicGREEKvals`           \tab `.ItalicGREEKdefs`
-#'   \cr `.CrayonFamilyVals`          \tab `.CrayonFamilyDefs`
-#'   \cr `.CrayonSynonymVals`         \tab `.CrayonSynonymDefs`
 #'   \cr `.BasicMarkdownVals`         \tab `.BasicMarkdownDefs`
 #'   \cr `.OpenMarkdownColorVals`     \tab `.OpenMarkdownColorDefs`
 #' }
 #' @return Either a named list or a named character vector.
 #' @export
 ujconstants <- function() {utils::help("ujconstants", package = "uj")}
-
-#' @rdname ujconstants
-#' @export
-.PropFamilyVals <- base::list(
-  bbb = base::c("atm", "def", "fun", "nil", "nll", "pop", "rcr"),
-  BBB = base::c("ATM", "DEF", "FUN", "NIL", "NLL", "POP", "RCR"),
-  ccc = base::c("arr", "dtf", "gen", "mat", "mvc", "scl", "vec", "vls"),
-  CCC = base::c("ARR", "DTF", "GEN", "MAT", "MVC", "SCL", "VEC", "VLS"),
-  ddd = base::c("d0d", "d1d", "d2d", "dhd"),
-  DDD = base::c("D0D", "D1D", "D2D", "DHD"),
-  eee = base::c("e0d", "e1d", "e2d", "ehd", "eud"),
-  EEE = base::c("E0D", "E1D", "E2D", "EHD", "EUD"),
-  iii = base::c("cmp", "dup", "mss", "na0", "ok0", "prt", "unq"),
-  III = base::c("CMP", "DUP", "MSS", "NA0", "OK0", "PRT", "UNQ"),
-  mmm = base::c("atm", "ch1", "ch3", "chr", "clr", "evn", "fac", "frc", "ind", "lgl", "neg", "ngw", "nng", "nnw", "nps", "npw", "nst", "num", "odd", "ord", "pct", "pos", "ppn", "psw", "srt", "str", "uno", "whl"),
-  MMM = base::c("ATM", "CH1", "CH3", "CHR", "CLR", "EVN", "FAC", "FRC", "IND", "LGL", "NEG", "NGW", "NNG", "NNW", "NPS", "NPW", "NST", "NUM", "ODD", "ORD", "PCT", "POS", "PPN", "PSW", "SRT", "STR", "UNO", "WHL"),
-  sss = base::c("col", "emp", "lin", "pnt", "rct", "row", "sld", "sqr"),
-  SSS = base::c("COL", "EMP", "LIN", "PNT", "RCT", "ROW", "SLD", "SQR")
-)
-
-#' @rdname ujconstants
-#' @export
-.PropFamilyDefs <- base::c(
-  bbb = "lowercase basic structural properties"        , BBB = "uppercase basic structural properties"        ,
-  ccc = "lowercase extended class properties"          , CCC = "uppercase extended class properties"          ,
-  ddd = "lowercase defined dimensionality properties"  , DDD = "uppercase defined dimensionality properties"  ,
-  eee = "lowercase effective dimensionality properties", EEE = "uppercase effective dimensionality properties",
-  iii = "lowercase integrity properties"               , III = "uppercase integrity properties"               ,
-  mmm = "lowercase extended mode properties"           , MMM = "uppercase extended mode properties"           ,
-  sss = "lowercase shape properties"                   , SSS = "uppercase shape properties"
-)
-
-#' @rdname ujconstants
-#' @export
-.AllPropVals <- base::list(AllPropVals = base::sort(base::unique(base::c(base::unlist(.PropFamilyVals, T, F), base::toupper(base::unlist(.PropFamilyVals, T, F))))))
-
-#' @rdname ujconstants
-#' @export
-.AllPropDefs <- "All uppercase and lowercase properties defined by package uj"
-
-#' @rdname ujconstants
-#' @export
-.CrayonSynonymVals <- base::list(
-  Bold = base::c("b", "bo", "bld", "bold", "bolded", "s", "st", "str", "strong"),
-  Plain = base::c("p", "pl", "pln", "plain", "r", "re", "res", "reset"),
-  Italic = base::c("i", "it", "itl", "ital", "italic", "italics", "italicized", "e", "em", "emp", "emph", "emphasis", "emphasized"),
-  Default = base::c("d", "def", "default"),
-  Underline = base::c("u", "un", "und", "under", "underline", "underlined"),
-  Red = base::c("r", "red"),
-  Blue = base::c("b", "blu", "blue"),
-  Cyan = base::c("c", "cyn", "cyan"),
-  Green = base::c("g", "grn", "green"),
-  Black = base::c("k", "blk", "black"),
-  White = base::c("w", "wht", "white"),
-  Yellow = base::c("y", "yel", "ylw", "yellow"),
-  Silver = base::c("s", "gry", "grey", "gray", "sil", "slv", "silver"),
-  Magenta = base::c("m", "mag", "magenta")
-)
-
-#' @rdname ujconstants
-#' @export
-.CrayonSynonymDefs <- base::c(Bold = "synonyms for 'bold'", Plain = "synonyms for 'plain'", Italic = "synonyms for 'italic'", Default = "synonyms for 'default'", Underline = "synonyms for 'underline'",
-                              Red = "synonyms for 'red'", Blue = "synonyms for 'blue'", Cyan = "synonyms for 'cyan'", Green = "synonyms for 'green'", Black = "synonyms for 'black'",
-                              White = "synonyms for 'white'", Yellow = "synonyms for 'yellow'", Silver = "synonyms for 'silver'", Magenta = "synonyms for 'magenta'")
-
-#' @rdname ujconstants
-#' @export
-.CrayonFamilyVals <- base::list(
-  CrayonStyles = base::sort(base::unlist(base::c(.CrayonSynonymVals$Bold, .CrayonSynonymVals$Default, .CrayonSynonymVals$Italic, .CrayonSynonymVals$Plain, .CrayonSynonymVals$Underline), T, F)),
-  CrayonBackgroundColors = base::sort(base::unlist(base::c(.CrayonSynonymVals$Blue, .CrayonSynonymVals$Cyan, .CrayonSynonymVals$Default, .CrayonSynonymVals$Green, .CrayonSynonymVals$Black, .CrayonSynonymVals$Magenta, .CrayonSynonymVals$Red, .CrayonSynonymVals$White, .CrayonSynonymVals$Yellow, .CrayonSynonymVals$Silver), T, F)),
-  CrayonForegroundColors = base::sort(base::unlist(base::c(.CrayonSynonymVals$Blue, .CrayonSynonymVals$Cyan, .CrayonSynonymVals$Default, .CrayonSynonymVals$Green, .CrayonSynonymVals$Black, .CrayonSynonymVals$Magenta, .CrayonSynonymVals$Red, .CrayonSynonymVals$White, .CrayonSynonymVals$Yellow), T, F))
-)
-
-#' @rdname ujconstants
-#' @export
-.CrayonFamilyDefs <- base::c(Styles = "all possible text style specifications", BackgroundColors = "all possible background color specifications", ForegroundColors = "all possible foreground color specifications")
 
 #' @rdname ujconstants
 #' @export
@@ -252,11 +183,11 @@ ujconstants <- function() {utils::help("ujconstants", package = "uj")}
 
 #' @rdname ujconstants
 #' @export
-.UTF8vals <- base::list(back = "\U005C", back1 = " \U005C ", backs = "\U005C\U005C", backs1 = " \U005C\U005C ", bullet = "\u2022", bullet1 = " \u2022 ", by = "\u00D7", by1 = " \u00D7 ", chi2 = "*\U03C7*<sup>2</sup>", colon = "\U003A", colon1 = "\U003A ", comma = "\U002C", comma1 = "\U002C ", dagger = "\U2020", dagger2 = "\U2021", dash = "\U002D", dash1 = " \U002D ", dn = "\U2193", dn1 = " \U2193 ", em = "\U2014" , em1 = " \U2014 ", en0 = "\U2013" , en1 = " \U2013 ", eq = "\U003D", eq1 = " \U003D ", ge = "\u2265", ge1 = " \u2265 ", le = "\u2264", le1 = " \u2264 ", lft = "\u2190", lft1 = " \u2190 ", ne = "\u2260", ne1 = " \u2260 ", pipe = "\U007C", pipe1 = " \U007C ", plus = "\U002B", plus1 = " \U002B ", rgt = "\u2192", rgt1 = " \u2192 ", section = "\U00A7", semi = "\U003B", semi1 = "\U003B ", slash = "\U002F", slash1 = " \U002F ", slashes = "\U002F\U002F", slashes1 = " \U002F\U002F ", star = "\U002A", star1 = " \U002A ", tilde = "\U007E", tilde1 = " \U007E ", up = "\U2191", up1 = " \U2191 ", inf = "\U221E", pm = " \U00B1 ", pm0 = "\U00B1", le = " \U2264 ", le0 = "\U2264", ge = " \U2265 ", ge0 = "\U2265", ne = " \U2260", ne0 = "\U2260", approx = " \U2248 ", approx0 = "\U2248", dmd = " \U2B29 ", dmd0 = "\U2B29", . = "\U002E", dot = "\U002E", tick = "\U0060", nbsp = "\U0080", space = "\U0020", under = "\U005F")
+.uTF8vals <- base::list(back = "\U005C", back1 = " \U005C ", backs = "\U005C\U005C", backs1 = " \U005C\U005C ", bullet = "\u2022", bullet1 = " \u2022 ", by = "\u00D7", by1 = " \u00D7 ", chi2 = "*\U03C7*<sup>2</sup>", colon = "\U003A", colon1 = "\U003A ", comma = "\U002C", comma1 = "\U002C ", dagger = "\U2020", dagger2 = "\U2021", dash = "\U002D", dash1 = " \U002D ", dn = "\U2193", dn1 = " \U2193 ", em = "\U2014" , em1 = " \U2014 ", en0 = "\U2013" , en1 = " \U2013 ", eq = "\U003D", eq1 = " \U003D ", ge = "\u2265", ge1 = " \u2265 ", le = "\u2264", le1 = " \u2264 ", lft = "\u2190", lft1 = " \u2190 ", ne = "\u2260", ne1 = " \u2260 ", pipe = "\U007C", pipe1 = " \U007C ", plus = "\U002B", plus1 = " \U002B ", rgt = "\u2192", rgt1 = " \u2192 ", section = "\U00A7", semi = "\U003B", semi1 = "\U003B ", slash = "\U002F", slash1 = " \U002F ", slashes = "\U002F\U002F", slashes1 = " \U002F\U002F ", star = "\U002A", star1 = " \U002A ", tilde = "\U007E", tilde1 = " \U007E ", up = "\U2191", up1 = " \U2191 ", inf = "\U221E", pm = " \U00B1 ", pm0 = "\U00B1", le = " \U2264 ", le0 = "\U2264", ge = " \U2265 ", ge0 = "\U2265", ne = " \U2260", ne0 = "\U2260", approx = " \U2248 ", approx0 = "\U2248", dmd = " \U2B29 ", dmd0 = "\U2B29", . = "\U002E", dot = "\U002E", tick = "\U0060", nbsp = "\U0080", space = "\U0020", under = "\U005F")
 
 #' @rdname ujconstants
 #' @export
-.UTF8defs <- base::c(back = "backslash", back1 = "padded backslash", backs = "double backslash", backs1 = "padded double backslash", bullet = "bullet", bullet1 = "padded bullet", by = "by operator", by1 = "padded 'by' operator", chi2 = "(italic chi)squared" , colon = "colon" , colon1 = "padded colon (followed by space)", comma = "comma" , comma1 = "padded comma (followed by space)", dagger = "dagger sign", dagger2 = "double dagger sign", dash = "unpadded dash", dash1 = "padded dash", dn = "down arrow", dn1 = "padded down arrow", em = "em dash", em1 = "padded em dash", en0 = "en dash", en1 = "padded en dash", eq = "equals operator", eq1 = "padded equal sign", ge = "greater than or equal operator", ge1 = "padded greater than or equal", le = "less than or equal operator", le1 = "padded less than or equal", lft = "left arrow", lft1 = "padded left arrow", ne = "does not equal operator", ne1 = "padded does not equal", pipe = "pipe", pipe1 = "padded pipe", plus = "plus operator", plus1 = "padded plus operator", pm = "plus or minus operator", pm1 = "padded plus or minus sign", rgt = "right arrow", rgt1 = "padded right arrow", section = "section symbol", semi = "semicolon", semi1 = "padded semi-colon (followed by space)", slash = "slash" , slash1 = "padded slash", slashes = "unpadded double slash", slashes1 = "padded double slash", star = "asterisk", star1 = "padded asterisk", tilde = "tilde" , tilde1 = "padded tilde", up = "up arrow", up1 = "padded up arrow", inf = "unicode infinity", pm =  "padded plus or minus", pm0 = "unpadded plus or minus", le = "padded less than or equal", le0 = "unpadded less than or equal", ge = "padded greater than or equal", ge0 = "unpadded greater than or equal", ne = " padded not equal", ne0 = "unpadded not equal", approx = "padded approximately equal", approx0 = "unpadded approximately equal", dmd = "padded diamond", dmd0 = "unpadded diamond", . = "period", dot = "period", tick = "backtick", nbsp = "non-breaking space", space = "space" , under = "underscore")
+.uTF8defs <- base::c(back = "backslash", back1 = "padded backslash", backs = "double backslash", backs1 = "padded double backslash", bullet = "bullet", bullet1 = "padded bullet", by = "by operator", by1 = "padded 'by' operator", chi2 = "(italic chi)squared" , colon = "colon" , colon1 = "padded colon (followed by space)", comma = "comma" , comma1 = "padded comma (followed by space)", dagger = "dagger sign", dagger2 = "double dagger sign", dash = "unpadded dash", dash1 = "padded dash", dn = "down arrow", dn1 = "padded down arrow", em = "em dash", em1 = "padded em dash", en0 = "en dash", en1 = "padded en dash", eq = "equals operator", eq1 = "padded equal sign", ge = "greater than or equal operator", ge1 = "padded greater than or equal", le = "less than or equal operator", le1 = "padded less than or equal", lft = "left arrow", lft1 = "padded left arrow", ne = "does not equal operator", ne1 = "padded does not equal", pipe = "pipe", pipe1 = "padded pipe", plus = "plus operator", plus1 = "padded plus operator", pm = "plus or minus operator", pm1 = "padded plus or minus sign", rgt = "right arrow", rgt1 = "padded right arrow", section = "section symbol", semi = "semicolon", semi1 = "padded semi-colon (followed by space)", slash = "slash" , slash1 = "padded slash", slashes = "unpadded double slash", slashes1 = "padded double slash", star = "asterisk", star1 = "padded asterisk", tilde = "tilde" , tilde1 = "padded tilde", up = "up arrow", up1 = "padded up arrow", inf = "unicode infinity", pm =  "padded plus or minus", pm0 = "unpadded plus or minus", le = "padded less than or equal", le0 = "unpadded less than or equal", ge = "padded greater than or equal", ge0 = "unpadded greater than or equal", ne = " padded not equal", ne0 = "unpadded not equal", approx = "padded approximately equal", approx0 = "unpadded approximately equal", dmd = "padded diamond", dmd0 = "unpadded diamond", . = "period", dot = "period", tick = "backtick", nbsp = "non-breaking space", space = "space" , under = "underscore")
 
 #' @rdname ujconstants
 #' @export
@@ -336,140 +267,11 @@ ujconstants <- function() {utils::help("ujconstants", package = "uj")}
 
 #' @rdname ujconstants
 #' @export
-.PropVals <- base::list(
-  bbb = .PropFamilyVals$bbb,
-  BBB = .PropFamilyVals$BBB,
-  ccc = .PropFamilyVals$ccc,
-  CCC = .PropFamilyVals$CCC,
-  ddd = .PropFamilyVals$ddd,
-  DDD = .PropFamilyVals$DDD,
-  eee = .PropFamilyVals$eee,
-  EEE = .PropFamilyVals$EEE,
-  iii = .PropFamilyVals$iii,
-  III = .PropFamilyVals$III,
-  mmm = .PropFamilyVals$mmm,
-  MMM = .PropFamilyVals$MMM,
-  sss = .PropFamilyVals$sss,
-  SSS = .PropFamilyVals$SSS,
-  ppp = base::sort(base::unique(base::tolower(.AllPropVals[[1]]))),
-  PPP = base::sort(base::unique(base::toupper(.AllPropVals[[1]]))),
-  XXX = base::sort(.AllPropVals[[1]])
-)
+.pkgVals <- base::c(.MiscVals, .CharSetVals, .uTF8vals, .HexColorVals, .EnclosureVals, .ShapeVals, .LineTypeVals, .BoldGreekVals, .PlainGreekVals, .ItalicGreekVals, .BoldGREEKvals, .PlainGREEKvals, .ItalicGREEKvals, .BasicMarkdownVals, .OpenMarkdownColorVals)
 
 #' @rdname ujconstants
 #' @export
-.PropDefs <- base::c(
-  bbb = "lowercase basic property values >> bbb_props() >> i.e., basic structural properties",
-  BBB = "uppercase basic property values >> toupper(bbb_props()) >> i.e., uppercase basic structural properties",
-  ccc = "lowercase xclass property values >> ccc_props() >> i.e., extended class properties",
-  CCC = "uppercase xclass property values >> toupper(ccc_props()) >> i.e., uppercase extended class properties",
-  ddd = "lowercase defined-D property values >> ddd_props() >> i.e., defined dimensionality properties",
-  DDD = "uppercase defined-D property values >> toupper(ddd_props()) >> i.e., uppercase defined dimensionality properties",
-  eee = "lowercase effective-D property values >> eee_props() >> i.e., effective dimensionality properties",
-  EEE = "uppercase effective-D property values >> toupper(eee_props()) >> i.e., uppercase effective dimensionality properties",
-  iii = "lowercase integrity property values >> iii_props() >> i.e., degree of completeness and uniqueness properties",
-  III = "uppercase integrity property values >> toupper(iii_props()) >> i.e., uppercase completeness and uniqueness properties",
-  mmm = "lowercase xmode property values >> mmm_props() >> i.e., extended mode properties",
-  MMM = "uppercase xmode property values >> toupper(mmm_props()) >> i.e., uppercase extended mode properties",
-  sss = "lowercase shape property values >> sss_props() >> i.e., geometric shape properties",
-  SSS = "uppercase shape property values >> toupper(sss_props()) >> i.e., uppercase geometric shape properties",
-  ppp = "all possible lowercase property values defined by package uj",
-  PPP = "all possible uppercaes property values defined by package uj",
-  XXX = "all possible upper and lowercase property values defined by package uj"
-)
-
-#' @rdname ujconstants
-#' @export
-.CrayonVals <- base::list(
-  CrayonBold = .CrayonSynonymVals$Bold,
-  CrayonPlain = .CrayonSynonymVals$Plain,
-  CrayonItalic = .CrayonSynonymVals$Italic,
-  CrayonDefault = .CrayonSynonymVals$Default,
-  CrayonUnderline = .CrayonSynonymVals$Underline,
-  CrayonRed = .CrayonSynonymVals$Red,
-  CrayonBlue = .CrayonSynonymVals$Blue,
-  CrayonCyan = .CrayonSynonymVals$Cyan,
-  CrayonGreen = .CrayonSynonymVals$Green,
-  CrayonBlack = .CrayonSynonymVals$Black,
-  CrayonWhite = .CrayonSynonymVals$White,
-  CrayonSilver = .CrayonSynonymVals$Silver,
-  CrayonYellow = .CrayonSynonymVals$Yellow,
-  CrayonMagenta = .CrayonSynonymVals$Magenta
-)
-
-#' @rdname ujconstants
-#' @export
-.CrayonDefs <- base::c(
-  CrayonBold = "synonymous names for bold text style (used by uj::crayons functions)",
-  CrayonPlain = "synonymous names for plain text style (used by uj::crayons functions)",
-  CrayonItalic = "synonymous names for italic text style (used by uj::crayons functions)",
-  CrayonDefault = "synonymous names for default text style and color (used by uj::crayons functions)",
-  CrayonUnderline = "synonymous names for underline text style (used by uj::crayons functions)",
-  CrayonRed = "synonymous names for red (used by uj::crayons functions)",
-  CrayonBlue = "synonymous names for blue (used by uj::crayons functions)",
-  CrayonCyan = "synonymous names for cyan (used by uj::crayons functions)",
-  CrayonGreen = "synonymous names for green (used by uj::crayons functions)",
-  CrayonBlack = "synonymous names for black (used by uj::crayons functions)",
-  CrayonWhite = "synonymous names for white (used by uj::crayons functions)",
-  CrayonSilver = "synonymous names for silver/grey/gray (used by uj::crayons functions)",
-  CrayonYellow = "synonymous names for yellow (used by uj::crayons functions)",
-  CrayonMagenta = "synonymous names for magenta (used by uj::crayons functions)",
-  CrayonStyles = "all possible names for text styles (used by uj::crayons functions)",
-  CrayonBackgroundColors = "all possible names for background text colors (used by uj::crayons functions)",
-  CrayonForegroundColors = "all possible names for foreground text colors (used by uj::crayons functions)"
-)
-
-#' @rdname ujconstants
-#' @export
-.PkgVals <- base::c(
-  .MiscVals,
-  .PropVals,
-  .AllPropVals,
-  .CharSetVals,
-  .UTF8vals,
-  .HexColorVals,
-  .EnclosureVals,
-  .ShapeVals,
-  .LineTypeVals,
-  .CrayonVals,
-  .CrayonFamilyVals,
-  .CrayonSynonymVals,
-  .PropFamilyVals,
-  .BoldGreekVals,
-  .PlainGreekVals,
-  .ItalicGreekVals,
-  .BoldGREEKvals,
-  .PlainGREEKvals,
-  .ItalicGREEKvals,
-  .BasicMarkdownVals,
-  .OpenMarkdownColorVals
-)
-
-#' @rdname ujconstants
-#' @export
-.PkgDefs <- base::c(
-  .MiscDefs,
-  .PropDefs,
-  .AllPropDefs,
-  .CharSetDefs,
-  .UTF8defs,
-  .HexColorDefs,
-  .EnclosureDefs,
-  .ShapeDefs,
-  .LinetypeDefs,
-  .CrayonDefs,
-  .CrayonFamilyDefs,
-  .CrayonSynonymDefs,
-  .PropFamilyDefs,
-  .BoldGreekDefs,
-  .PlainGreekDefs,
-  .ItalicGreekDefs,
-  .BoldGREEKdefs,
-  .PlainGREEKdefs,
-  .ItalicGREEKdefs,
-  .BasicMarkdownDefs,
-  .OpenMarkdownColorDefs
-)
+.pkgDefs <- base::c(.MiscDefs, .CharSetDefs, .uTF8defs, .HexColorDefs, .EnclosureDefs, .ShapeDefs, .LinetypeDefs, .BoldGreekDefs, .PlainGreekDefs, .ItalicGreekDefs, .BoldGREEKdefs, .PlainGREEKdefs, .ItalicGREEKdefs, .BasicMarkdownDefs, .OpenMarkdownColorDefs)
 
 #' @encoding UTF-8
 #' @family values
@@ -496,8 +298,8 @@ ujconstants <- function() {utils::help("ujconstants", package = "uj")}
 #' vtable()
 #' @export
 values <- function(vec = FALSE) {
-  Out <- uj::.PkgVals
-  base::attr(Out, "Defs") <- uj::.PkgDefs
+  Out <- uj::pkgVals
+  base::attr(Out, "Defs") <- uj::pkgDefs
   uj::f0(vec, uj::av(base::sapply(Out, base::paste0, collapse = "|")), Out)
 }
 

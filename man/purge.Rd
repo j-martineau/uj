@@ -107,7 +107,7 @@ All purge (\code{x}) functions include garbage collection.
   \verb{xglobal, xall}                \tab    \emph{the global environment}              }
 }
 \examples{
-egFunNames <- c("base::c", "uj::cmp_chr_scl", "run")
+egFunNames <- c("base::c", "ppp::cmp_chr_scl", "run")
 xpref(egFunNames)
 \dontrun{
   ## build a ggplot scatterplot object (y.)
@@ -153,7 +153,6 @@ Other extensions:
 \code{\link{failsafe}()},
 \code{\link{flex_rbind}()},
 \code{\link{fork}()},
-\code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
@@ -170,8 +169,7 @@ Other meta:
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{recyclable_ns}()},
-\code{\link{run}()},
-\code{\link{say}()}
+\code{\link{run}()}
 
 Other purge: 
 \code{\link{rm_vals}()}

@@ -8,15 +8,15 @@
 weave(tmp, ...)
 }
 \arguments{
-\item{tmp}{A \link[=cmp_chr_scl]{complete character scalar} template with embedded escape sequences. See details.}
+\item{tmp}{A \link[=cmp_chr_scl]{complete character scalar} template with embedded escape seqs. See details.}
 
-\item{...}{Arbitrary number of unnamed atomic scalar/vector arguments to be inserted into \code{tmp} with formatting specified in inlay escape sequences. The \code{n}-th argument in \code{...} corresponds to the \code{n}-th inlay escape sequence in \code{tmp}. The number of inlay escape sequences in \code{tmp} must be equal to the number of \code{...} arguments. See details.}
+\item{...}{Arbitrary number of unnamed atomic scalar/vector arguments to be inserted into \code{tmp} with formatting specified in inlay escape seqs. The \code{n}-th argument in \code{...} corresponds to the \code{n}-th inlay escape seq in \code{tmp}. The number of inlay escape seqs in \code{tmp} must be equal to the number of \code{...} arguments. See details.}
 }
 \value{
 A character scalar.
 }
 \description{
-A reformulation of \code{\link[base]{sprintf}} relying on a template containing escape sequences which in turn contain formatting switches. Escape sequences specify where to insert inlay arguments. Switches specify how to format arguments to be inlaid, and come in three families as shown in the table below
+A reformulation of \code{\link[base]{sprintf}} relying on a template containing escape seqs which in turn contain formatting switches. Escape seqs specify where to insert inlay arguments. switches specify how to format arguments to be inlaid, and come in three families as shown in the table below
 \tabular{llll}{
   \strong{Switch} \tab   \strong{Switch Type}                  \tab   \strong{Sample}  \tab   \strong{Text of Result}    \cr
   \strong{Value}  \tab   \strong{(and Formatting)}             \tab   \strong{Arg}     \tab   \strong{with Sample Arg}   \cr
@@ -45,10 +45,10 @@ A reformulation of \code{\link[base]{sprintf}} relying on a template containing 
   \code{'c'}      \tab   \code{list    }(\code{c(.)} statement)     \tab   \code{arg = 1:3} \tab   \code{'c(1, 2, 3)'}        \cr
   \code{'p'}      \tab   \code{list    }(paren-enclosed)       \tab   \code{arg = 1:3} \tab   \code{'(1, 2, 3)'}         \cr
   \code{'s'}      \tab   \code{list    }(bracket-enclosed)     \tab   \code{arg = 1:3} \tab   \code{'[1, 2, 3]'}           }
-\cr\cr \strong{Escape sequences} are formatted as \code{'{@}'}, \code{'{@x}'}, \code{'{@xy}'}, and \verb{'\{@xyz\}} where \code{x}, \code{y}, and \code{z} are formatting switches and where there may only be \code{1} formatting switch per family.
-\cr\cr Escape sequences in format \code{'{@}'} mean 'insert \link[=atm_scl]{atomic scalar} arg \emph{as is}'.
-\cr\cr Escape sequences in formats \verb{'\{@x\}', '\{@xy\}',} and \code{'{@xyz}'} mean 'insert \link[=atm_scl]{atomic vec} arg \emph{after applying}, respectively, switch \code{x}; switches \code{x} and \code{y}; and switches \code{x}, \code{y}, and \code{z}.'
-\cr\cr \strong{Ordering of switches in escape sequences} is arbitrary. Regardless of order in escape sequences, any \code{decimal} switches are applied first, followed by any \code{quote} switches, followed by any \code{list} switches.
+\cr\cr \strong{Escape seqs} are formatted as \code{'{@}'}, \code{'{@x}'}, \code{'{@xy}'}, and \verb{'\{@xyz\}} where \code{x}, \code{y}, and \code{z} are formatting switches and where there may only be \code{1} formatting switch per family.
+\cr\cr Escape seqs in format \code{'{@}'} mean 'insert \link[=atm_scl]{atomic scalar} arg \emph{as is}'.
+\cr\cr Escape seqs in formats \verb{'\{@x\}', '\{@xy\}',} and \code{'{@xyz}'} mean 'insert \link[=atm_scl]{atomic vec} arg \emph{after applying}, respectively, switch \code{x}; switches \code{x} and \code{y}; and switches \code{x}, \code{y}, and \code{z}.'
+\cr\cr \strong{Ordering of switches in escape seqs} is arbitrary. Regardless of order in escape seqs, any \code{decimal} switches are applied first, followed by any \code{quote} switches, followed by any \code{list} switches.
 }
 \examples{
 cat(weave('{@}', FALSE))

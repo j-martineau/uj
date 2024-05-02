@@ -40,39 +40,39 @@ name_rcs(x, rnames, cnames)
 
 name(x, vnames = NULL, rnames = NULL, cnames = NULL)
 
-named(x, .D = 0, .U = T, .BL = F)
+named(x, .d = 0, .u = T, .bl = F)
 
-named_elts(x, .U = T, .BL = F)
+named_elts(x, .u = T, .bl = F)
 
-named_rows(x, .U = T, .BL = F)
+named_rows(x, .u = T, .bl = F)
 
-named_cols(x, .U = T, .BL = F)
+named_cols(x, .u = T, .bl = F)
 
-named_rcs(x, .U = T, .BL = F)
+named_rcs(x, .u = T, .bl = F)
 
-dnamed(..., .U = T, BL = F)
+dnamed(..., .u = T, BL = F)
 
-get_names(x, .D = 0, .U = T, .ERR = F)
+get_names(x, .d = 0, .u = T, .err = F)
 
-dnames(..., .U = T, .ERR = F)
+dnames(..., .u = T, .err = F)
 
-dn(..., .U = T, .ERR = F)
+dn(..., .u = T, .err = F)
 
-enames(x, .U = T, .ERR = F)
+enames(x, .u = T, .err = F)
 
-en(x, .U = T, .ERR = F)
+en(x, .u = T, .err = F)
 
-rnames(x, .U = T, .ERR = F)
+rnames(x, .u = T, .err = F)
 
-rn(x, .U = T, .ERR = F)
+rn(x, .u = T, .err = F)
 
-cnames(x, .U = T, .ERR = F)
+cnames(x, .u = T, .err = F)
 
-cn(x, .U = T, .ERR = F)
+cn(x, .u = T, .err = F)
 
-rcnames(x, .U = T, .ERR = F)
+rcnames(x, .u = T, .err = F)
 
-rcn(x, .U = T, .ERR = F)
+rcn(x, .u = T, .err = F)
 }
 \arguments{
 \item{x}{Vector or list for \code{name_vals} and \code{val_names / vn}; matrix or data.frame for \code{rnames / rn}, \code{cnames / cn}, \code{rcnames / rcn}, \code{name_rcs}, \code{name_cols}, and \code{name_rows}; or any object for \code{name_scl_vls}.}
@@ -81,15 +81,15 @@ rcn(x, .U = T, .ERR = F)
 
 \item{name}{A non-\code{NA} character scalar to name the single element of the resulting \link[=VLS]{vlist}.}
 
-\item{.D}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the dimension(s) to name: \code{0} for elements (of atomic or list vectors only), \code{1} for rows of matrices or tibbles, \code{2} for columns of matrices or data.frames, or \code{12} for rows and columns of matrices or data.frames.}
+\item{.d}{A \link[=cmp_psw_scl]{complete positive whole-number scalar} giving the dimension(s) to name: \code{0} for elements (of atomic or list vectors only), \code{1} for rows of matrices or tibbles, \code{2} for columns of matrices or data.frames, or \code{12} for rows and columns of matrices or data.frames.}
 
-\item{.U}{\code{TRUE} or \code{FALSE} indicating whether names must be unique.}
+\item{.u}{\code{TRUE} or \code{FALSE} indicating whether names must be unique.}
 
-\item{.BL, BL}{\code{TRUE} or \code{FALSE} indicating whether blank strings (\code{""}) are allowed as names.}
+\item{.bl, BL}{\code{TRUE} or \code{FALSE} indicating whether blank strings (\code{""}) are allowed as names.}
 
 \item{...}{An arbitrary number of arguments.}
 
-\item{.ERR}{\code{TRUE} or \code{FALSE} indicating whether names must exist.}
+\item{.err}{\code{TRUE} or \code{FALSE} indicating whether names must exist.}
 
 \item{ERR}{\code{TRUE} or \code{FALSE} indicating whether \code{...} args must have names.}
 }
@@ -141,8 +141,8 @@ egDtf
 
 named(egVec)
 named(egVls)
-named(egMat, .D = 12)
-named(egDtf, .D = 2)
+named(egMat, .d = 12)
+named(egDtf, .d = 2)
 
 vals_are_named(egVls)
 rows_are_named(egMat)
@@ -153,8 +153,8 @@ dots_are_named(egVec, egVls)
 dots_are_named(var1 = egVec, var2 = egVls)
 
 get_names(egVls)
-get_names(egMat, .D = 1)
-get_names(egDtf, .D = 2)
+get_names(egMat, .d = 1)
+get_names(egDtf, .d = 2)
 
 en(egVec)
 en(egVls)
@@ -182,7 +182,6 @@ Other extensions:
 \code{\link{failsafe}()},
 \code{\link{flex_rbind}()},
 \code{\link{fork}()},
-\code{\link{is_unique}()},
 \code{\link{na}()},
 \code{\link{paths}},
 \code{\link{purge}()},

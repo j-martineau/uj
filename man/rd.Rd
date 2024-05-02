@@ -3,26 +3,28 @@
 \encoding{UTF-8}
 \name{rd}
 \alias{rd}
-\alias{rd_csv}
-\alias{rd_clip}
 \alias{rd_xsv}
+\alias{rd_csv}
 \alias{rd_tsv}
+\alias{rd_clip}
 \title{Thin and extended functionality wrappers of \code{readr} functions.}
 \usage{
 rd()
 
-rd_csv(file = NULL, ...)
+rd_xsv(d, type = "data file", file = NULL, ...)
+
+rd_csv(type = "data file", file = NULL, ...)
+
+rd_tsv(type = "data file", file = NULL, ...)
 
 rd_clip()
-
-rd_xsv(file = NULL, .D = NULL, ...)
-
-rd_tsv(file = NULL, ...)
 }
 \arguments{
-\item{file}{Either \code{NULL} or a \link[=cmp_chr_vec]{complete character vector} that resolves to a file path. When \code{file = NULL} the user is asked to select a file using a system dialog box.}
+\item{d}{Either \code{NULL} or a \link[=cmp_ch1_scl]{complete onechar scalar} text delimiter.}
 
-\item{.D}{Either \code{NULL} or a \link[=cmp_ch1_scl]{complete onechar scalar} text delimiter.}
+\item{type}{A \link[=cmp_str_scl]{complete string scalar} describing the type of file to be read.}
+
+\item{file}{Either \code{NULL} or a \link[=cmp_chr_vec]{complete character vector} that resolves to a file path. When \code{file = NULL} the user is asked to select a file using a system dialog box.}
 }
 \value{
 \strong{Varies}       \cr\cr \code{rd_clip}
@@ -36,7 +38,7 @@ Read the clipboard and text files, but prompting user to choose a file if no fil
   \code{rd_csv}    \tab Extends \code{\link[readr]{read_csv}}\eqn{^{(1)}}   \cr
   \code{rd_tsv}    \tab Extends \code{\link[readr]{read_tsv}}\eqn{^{(1)}}   \cr
   \code{rd_xsv}    \tab Extends \code{\link[readr]{read_delim}}\eqn{^{(1)}} \cr   \tab     }
-\tabular{l}{  \eqn{^{(1)}} \code{file = NULL} prompts the user to select a file.                       }
+\tabular{l}{  \eqn{^{(1)}} \verb{file = NULL} prompts the user to select a file.}
 }
 \seealso{
 Other extensions: 
@@ -51,7 +53,6 @@ Other extensions:
 \code{\link{failsafe}()},
 \code{\link{flex_rbind}()},
 \code{\link{fork}()},
-\code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},

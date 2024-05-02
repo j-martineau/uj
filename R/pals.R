@@ -1,3 +1,22 @@
+# internals ####
+
+.pal_errs <- function(tot, unq, max.unq, stack) {
+  fun <- uj::caller()
+  errs <- NULL
+  if (!ppp::.cmp_psw_scl(tot)) {errs <- base::c(errs, "[tot] must be a positive whole number scalar.")}
+  if (!ppp::.cmp_psw_scl(unq)) {errs <- base::c(errs, "[unq] must be a positive whole number scalar.")}
+  if (!base::is.null(errs)) {ppp::stopperr(errs, fun = fun, pkg = "uj", stack = stack)}
+  if (unq > max.unq) {ppp::stopperr("[unq] is greater than the number of unique values available for the designated palette.", fun = fun, pkg = "uj", stack = stack)}
+}
+
+.pal_vals <- function(type, tot, unq) {
+  vals <- uj::run("uj::v(", type, ")")[1:unq]
+  while (base::length(vals) < tot) {vals <- base::c(vals, vals)}
+  vals[1:tot]
+}
+
+# exported ####
+
 #' @name pals
 #' @encoding UTF-8
 #' @family plots
@@ -125,16 +144,16 @@ colors_sensitive <- function(tot, unq = min(12, tot)) {
 #' @rdname pals
 #' @export
 build_palette <- function(type, tot, unq) {
-  ValidTypes <- base::c('colors.dark', 'colors.bright', 'colors.sensitive', 'line.types', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes')
-  ValidUnqNs <- base::c(colors.sensitive = 10, colors.standard = 10, linetypes = 9, letter.shapes = 26, LETTER.shapes = 26, digit.shapes0 = 10, digit.shapes = 9, open.shapes = 7, punch.shapes = 7, empty.shapes = 5, fill.shapes = 5, solid.shapes = 4)
-  Errs <- NULL
-  if      (!uj::.cmp_chr_scl(type)) {Errs <- base::c(Errs, "[type] must be a character scalar in c('colors.sensitive', 'colors.standard', 'linetypes', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes').")}
-  else if (!(type %in% ValidTypes)) {Errs <- base::c(Errs, "[type] must be a character scalar in c('colors.sensitive', 'colors.standard', 'linetypes', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes').")}
-  if      (!uj::.cmp_psw_scl(tot )) {Errs <- base::c(Errs, "[tot] must be positive whole-number scalar.")}
-  if      (!uj::.cmp_psw_scl(unq )) {Errs <- base::c(Errs, "[unq] must be positive whole-number scalar.")}
-  if (!base::is.null(Errs)) {uj::stopperr(Errs, .PKG = "uj")}
-  if (unq > tot) {uj::stopperr("[unq] is greater than [tot]", .PKG = "uj")}
-  unq < base::min(unq, ValidUnqNs[type])
+  validTypes <- base::c('colors.dark', 'colors.bright', 'colors.sensitive', 'line.types', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes')
+  validUnqNs <- base::c(colors.sensitive = 10, colors.standard = 10, linetypes = 9, letter.shapes = 26, LETTER.shapes = 26, digit.shapes0 = 10, digit.shapes = 9, open.shapes = 7, punch.shapes = 7, empty.shapes = 5, fill.shapes = 5, solid.shapes = 4)
+  errs <- NULL
+  if      (!ppp::.cmp_chr_scl(type)) {errs <- base::c(errs, "[type] must be a character scalar in c('colors.sensitive', 'colors.standard', 'linetypes', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes').")}
+  else if (!(type %in% validTypes )) {errs <- base::c(errs, "[type] must be a character scalar in c('colors.sensitive', 'colors.standard', 'linetypes', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes').")}
+  if      (!ppp::.cmp_psw_scl(tot )) {errs <- base::c(errs, "[tot] must be positive whole-number scalar.")}
+  if      (!ppp::.cmp_psw_scl(unq )) {errs <- base::c(errs, "[unq] must be positive whole-number scalar.")}
+  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (unq > tot) {ppp::stopperr("[unq] is greater than [tot]", pkg = "uj")}
+  unq < base::min(unq, validUnqNs[type])
   uj::pal_vals(type, tot, unq)
 }
 

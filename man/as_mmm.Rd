@@ -11,13 +11,13 @@
 \alias{as_lgl}
 \alias{as_ord}
 \alias{as_uno}
-\title{Coerce to base mode or \code{xmode}}
+\title{Coerce to base mode or \code{\link[mmm]{extended mode}}}
 \usage{
-as_mmm(x, mode, levs = NULL, .NA = FALSE)
+as_mmm(x, mode, levs = NULL, na = FALSE)
 
-as_chr(x, .NA = FALSE)
+as_chr(x, na = FALSE)
 
-as_clr(x, .NA = FALSE)
+as_clr(x, na = FALSE)
 
 as_fun(x)
 
@@ -34,34 +34,34 @@ as_uno(x, levs)
 \arguments{
 \item{x}{For \code{as_clr}, an object of mode character; for \code{as_fun}, a character scalar function name or a function object; for \code{as_ord} and \code{as_uno}, an atomic object; and for all others, any R object.}
 
-\item{mode}{A \link[mode]{three-char scalar} containing an \link[mode]{extended mode} value.}
+\item{mode}{A \link[mmm]{threechar scalar} containing an \link[mmm]{extended mode} value.}
 
-\item{levs}{Optional \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for \code{asORD}).}
+\item{levs}{Optional \link[=cmp_vec]{complete atomic vec} of factor levels (ordered factor levels for \code{as_ord}).}
 
-\item{..NA}{\code{TRUE} or \code{FALSE} indicating whether \code{.NA} values are acceptable.}
+\item{na}{\code{TRUE} or \code{FALSE} indicating whether \code{NA} values are acceptable.}
 }
 \value{
-\strong{An object of base mode} \code{'character'}                         \cr\cr \code{as_chr}
-\cr\cr  \strong{An object of base mode} \code{'integer'}                           \cr\cr \code{as_int}
-\cr\cr  \strong{An object of base mode} \code{'logical'}                           \cr\cr \code{as_lgl}
-\cr\cr  \strong{An object of base mode} \code{'numeric'}                           \cr\cr \code{as_num}
-\cr\cr  \strong{An object of \link[=mode]{xmode}} \code{'ord'} (ordered factor)     \cr\cr \code{as_ord}
-\cr\cr  \strong{An object of xmode} \code{'uno'} (unordered factor)                \cr\cr \code{as_uno}
-\cr\cr  \strong{An object of xmode} \code{'clr'} (hex color in form \code{'#RRGGBBAA'}) \cr\cr \code{as_clr}
+\strong{An object of base mode} \code{'character'}                                 \cr\cr \code{as_chr}
+\cr\cr  \strong{An object of base mode} \code{'integer'}                                   \cr\cr \code{as_int}
+\cr\cr  \strong{An object of base mode} \code{'logical'}                                   \cr\cr \code{as_lgl}
+\cr\cr  \strong{An object of base mode} \code{'numeric'}                                   \cr\cr \code{as_num}
+\cr\cr  \strong{An object of \link[=mode]{extended mode}} \code{'ord'} (ordered factor)    \cr\cr \code{as_ord}
+\cr\cr  \strong{An object of extended mode} \code{'uno'} (unordered factor)                \cr\cr \code{as_uno}
+\cr\cr  \strong{An object of extended mode} \code{'clr'} (hex color in form \code{'#RRGGBBAA'}) \cr\cr \code{as_clr}
 }
 \description{
-Functions to coerce objects to \link[base:mode]{base mode} or \code{\link[=mode]{xmode}}.
+Functions to coerce objects to \link[base:mode]{base mode} or \code{\link[=mode]{extended mode}}.
 }
 \details{
 Functions in this family are as follows:
-\tabular{ll}{  \code{as_chr}   \tab Thinly wraps \code{\link[base]{as.character}}.                                                        \cr
-  \code{as_int}   \tab Thinly wraps \code{\link[base]{as.integer}}.                                                          \cr
-  \code{as_num}   \tab Thinly wraps \code{\link[base]{as.numeric}}.                                                          \cr
-  \code{as_lgl}   \tab Thinly wraps \code{\link[base]{as.logical}}.                                             \cr   \tab   \cr
-  \code{as_ord}   \tab As xmode \code{'ord'} (ordered factor). Wraps \code{factor(x, levels = levs, ordered = TRUE)}.     \cr   \tab   \cr
-  \code{as_uno}   \tab As xmode \code{'uno'} (unordered factor). Wraps \code{factor(x, levels = levs, ordered = FALSE)}.  \cr   \tab   \cr
-  \code{as_clr}   \tab Coerces character color values to hexadecimal.                                           \cr   \tab   \cr
-  \code{as_fun}   \tab If \code{x} is a character scalar function return that function, but if \code{x} is a function object, return it. }
+\tabular{ll}{  \code{as_chr}   \tab Thinly wraps \code{\link[base]{as.character}}.                                                          \cr
+  \code{as_int}   \tab Thinly wraps \code{\link[base]{as.integer}}.                                                            \cr
+  \code{as_num}   \tab Thinly wraps \code{\link[base]{as.numeric}}.                                                            \cr
+  \code{as_lgl}   \tab Thinly wraps \code{\link[base]{as.logical}}.                                                            \cr   \tab   \cr
+  \code{as_ord}   \tab As extended mode \code{'ord'} (ordered factor). Wraps \code{factor(x, levels = levs, ordered = TRUE)}.            \cr   \tab   \cr
+  \code{as_uno}   \tab As extended mode \code{'uno'} (unordered factor). Wraps \code{factor(x, levels = levs, ordered = FALSE)}.         \cr   \tab   \cr
+  \code{as_clr}   \tab Coerces character color values to hexadecimal.                                                          \cr   \tab   \cr
+  \code{as_fun}   \tab If \code{x} is a character scalar function return that function, but if \code{x} is a function object, return it.                }
 }
 \examples{
 bins. <- sample(c(0, 1), 10, replace = T)
@@ -90,24 +90,8 @@ as_ord(clrs., levs = sort(unique(clrs.)))
 }
 \seealso{
 Other properties: 
-\code{\link{bbb_mmm}()},
-\code{\link{bbb}()},
 \code{\link{cls}()},
-\code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm}()},
 \code{\link{comparable}()},
-\code{\link{compatible}()},
-\code{\link{ddd}()},
-\code{\link{eee}()},
-\code{\link{iii}()},
-\code{\link{is_unique}()},
-\code{\link{meets}()},
-\code{\link{mmm_ccc}()},
-\code{\link{mmm}()},
-\code{\link{ppp_fast}()},
-\code{\link{ppp}()},
-\code{\link{sss}()},
-\code{\link{stopperr}()},
-\code{\link{unq_ccc}()}
+\code{\link{compatible}()}
 }
 \concept{properties}

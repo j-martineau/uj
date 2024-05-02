@@ -293,7 +293,7 @@
 \alias{\%.nor.\%}
 \title{failsafe functions that \strong{always} return a valid object.}
 \usage{
-failsafe(x, .DEF = "uj.failsafe.err")
+failsafe(x, def = "uj.failsafe.err")
 
 is_err(x)
 
@@ -872,7 +872,7 @@ x \%.xor.\% y
 x \%.nor.\% y
 }
 \arguments{
-\item{.DEF}{A character scalar default error message if forcing evaluation produces an error. If not a character scalar, it is replaced with the default.}
+\item{def}{A character scalar default error message if forcing evaluation produces an error. If not a character scalar, it is replaced with the default.}
 
 \item{val, or, x, y}{Any object/expression to be evaluated, whether or not doing so produces an error.}
 
@@ -934,6 +934,7 @@ an error object otherwise with the attribute \code{stack = uj::callers()}. \cr �
 \tabular{ll}{  \verb{\%.is.\%}      \tab \code{failsafe(identical(x, y))}                                  \cr
   \verb{\%.isnt.\%}    \tab \code{!(x \%.is.\% y)}                                              \cr   \tab   \cr
   \verb{\%.in.\%}      \tab \code{sapply(failsafe(x \%in\% y), isTRUE)}                         \cr
+  \verb{\%.in.\%}      \tab if \code{x} is atomic scalar, \code{x \%.in.\% y}, otherwise \code{FALSE}     \cr
   \verb{\%.mf.\%}      \tab \code{!(x \%.in.\% y)} (missing from)                               \cr
   \verb{\%.has.\%}     \tab \code{y \%.in.\% x} (\code{x} has each \code{y} value)                        \cr
   \verb{\%.lacks.\%}   \tab \code{y \%.mf.\% x} (\code{x} lacks each \code{y} value)                      \cr   \tab   \cr
@@ -951,16 +952,15 @@ an error object otherwise with the attribute \code{stack = uj::callers()}. \cr �
   \verb{\%.and.\%}     \tab values of \code{x} \emph{and} \code{y} are \code{TRUE}                           \cr
   \verb{\%.xor.\%}     \tab values of \emph{either} \code{x} \emph{or} \code{y} are \code{TRUE}                   \cr
   \verb{\%.nor.\%}     \tab values of \emph{neither} \code{x} \emph{nor} \code{y} are \code{TRUE}                 \cr   \tab   \cr
-  \verb{\%.IN.\%}      \tab if \code{x} is atomic scalar, \code{x \%.in.\% y}, otherwise \code{FALSE}     \cr
-  \verb{\%.MF.\%}      \tab \code{x} is atomic scalar and \code{x \%.mf.\% y}                        \cr
-  \verb{\%.HAS.\%}     \tab \code{y} is atomic scalar and \code{x \%.has.\% y}                       \cr
-  \verb{\%.LACKS.\%}   \tab \code{y} is atomic scalar and \code{x \%.lacks.\% y}                     \cr   \tab   \cr
-  \verb{\%.EQ.\%}      \tab \code{x} and \code{y} are atomic scalar and \code{x = y}  \eqn{^{(2)}}      \cr
-  \verb{\%.GE.\%}      \tab \code{x} and \code{y} are atomic scalar and \verb{x ≥ y}  \eqn{^{(2)}}      \cr
-  \verb{\%.GT.\%}      \tab \code{x} and \code{y} are atomic scalar and \code{x > y}  \eqn{^{(2)}}      \cr
-  \verb{\%.LE.\%}      \tab \code{x} and \code{y} are atomic scalar and \verb{x ≤ y}  \eqn{^{(2)}}      \cr
-  \verb{\%.LT.\%}      \tab \code{x} and \code{y} are atomic scalar and \verb{x ≥ y}  \eqn{^{(2)}}      \cr
-  \verb{\%.DIF.\%}     \tab \code{x} and \code{y} are \emph{not} atomic scalar equal  \eqn{^{(3)}}      \cr   \tab   \cr
+  \verb{\%.mf.\%}      \tab \code{x} is atomic scalar and \code{x \%.mf.\% y}                        \cr
+  \verb{\%.has.\%}     \tab \code{y} is atomic scalar and \code{x \%.has.\% y}                       \cr
+  \verb{\%.lacks.\%}   \tab \code{y} is atomic scalar and \code{x \%.lacks.\% y}                     \cr   \tab   \cr
+  \verb{\%.eq.\%}      \tab \code{x} and \code{y} are atomic scalar and \code{x = y}  \eqn{^{(2)}}      \cr
+  \verb{\%.ge.\%}      \tab \code{x} and \code{y} are atomic scalar and \verb{x ≥ y}  \eqn{^{(2)}}      \cr
+  \verb{\%.gt.\%}      \tab \code{x} and \code{y} are atomic scalar and \code{x > y}  \eqn{^{(2)}}      \cr
+  \verb{\%.le.\%}      \tab \code{x} and \code{y} are atomic scalar and \verb{x ≤ y}  \eqn{^{(2)}}      \cr
+  \verb{\%.lt.\%}      \tab \code{x} and \code{y} are atomic scalar and \verb{x ≥ y}  \eqn{^{(2)}}      \cr
+  \verb{\%.dIF.\%}     \tab \code{x} and \code{y} are \emph{not} atomic scalar equal  \eqn{^{(3)}}      \cr   \tab   \cr
   \verb{\%.OR.\%}      \tab \code{x} \emph{and/or} \code{y} are scalar \code{TRUE}                           \cr
   \verb{\%.AND.\%}     \tab \code{x} \emph{and} \code{y} are scalar \code{TRUE}                              \cr
   \verb{\%.XOR.\%}     \tab \emph{either} \code{x} \emph{or} \code{y} is scalar \code{TRUE}                       \cr
@@ -1078,11 +1078,11 @@ egfailsafe <- function() {
   combo <- list(mss.scl, lgl.scl, fac.vec, chr.mat, chr.dtf, numvls)
   attr(abc, "custom") <- "custom"
   list(`"a" \%.AND.\% FALSE`                    = "a" \%.AND.\% FALSE                   ,
-       `"a" \%.IN.\% abc`                       = "a" \%.IN.\% abc                      ,
+       `"a" \%.in.\% abc`                       = "a" \%.in.\% abc                      ,
        `"a" \%.NOR.\% FALSE`                    = "a" \%.OR.\% FALSE                    ,
        `"a" \%.XOR.\% FALSE`                    = "a" \%.XOR.\% FALSE                   ,
        `"a" \%.OR.\% FALSE`                     = "a" \%.OR.\% FALSE                    ,
-       `"a" \%.MF.\% abc`                       = "a" \%.MF.\% abc                      ,
+       `"a" \%.mf.\% abc`                       = "a" \%.mf.\% abc                      ,
        `"a" \%.and.\% FALSE`                    = "a" \%.and.\% FALSE                   ,
        `"a" \%.in.\% abc`                       = "a" \%.in.\% abc                      ,
        `"a" \%.nor.\% FALSE`                    = "a" \%.or.\% FALSE                    ,
@@ -1092,8 +1092,8 @@ egfailsafe <- function() {
        `1 \%.in.\% abc`                         = 1 \%.in.\% abc                        ,
        `1 \%.mf.\% abc`                         = 1 \%.mf.\% abc                        ,
        `abc \%.EQ.\% abc`                       = abc \%.EQ.\% abc                      ,
-       `abc \%.EQ.\% letters[1:3]`              = abc \%.EQ.\% letters[1:3]             ,
-       `abc \%.EQ.\% NULL`                      = abc \%.EQ.\% NULL                     ,
+       `abc \%.eq.\% letters[1:3]`              = abc \%.eq.\% letters[1:3]             ,
+       `abc \%.eq.\% NULL`                      = abc \%.eq.\% NULL                     ,
        `abc \%.HAS.\% "a"`                      = abc \%.HAS.\% "a"                     ,
        `abc \%.HAS.\% 1`                        = abc \%.HAS.\% 1                       ,
        `abc \%.HAS.\% NULL`                     = abc \%.HAS.\% NULL                    ,
@@ -1101,9 +1101,9 @@ egfailsafe <- function() {
        `abc \%.has.\% 1:3`                      = abc \%.has.\% 1                       ,
        `abc \%.has.\% NULL`                     = abc \%.has.\% NULL                    ,
        `abc \%.is.\% NULL`                      = abc \%.is.\% NULL                     ,
-       `abc \%.LACKS.\% "a"`                    = abc \%.LACKS.\% "a"                   ,
-       `abc \%.LACKS.\% 1`                      = abc \%.LACKS.\% 1                     ,
-       `abc \%.LACKS.\% NULL`                   = abc \%.LACKS.\% NULL                  ,
+       `abc \%.lacks.\% "a"`                    = abc \%.lacks.\% "a"                   ,
+       `abc \%.lacks.\% 1`                      = abc \%.lacks.\% 1                     ,
+       `abc \%.lacks.\% NULL`                   = abc \%.lacks.\% NULL                  ,
        `abc \%.is.\% abc`                       = abc \%.is.\% abc                      ,
        `abc \%.is.\% letters[1:3]`              = abc \%.is.\% letters[1:3]             ,
        `abc \%.isnt.\% abc`                     = abc \%.isnt.\% abc                    ,
@@ -1549,7 +1549,6 @@ Other extensions:
 \code{\link{dups}()},
 \code{\link{flex_rbind}()},
 \code{\link{fork}()},
-\code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
@@ -1560,12 +1559,6 @@ Other extensions:
 \code{\link{sum0}()},
 \code{\link{swap}()},
 \code{\link{value_exists}()}
-
-Other logicals: 
-\code{\link{meets}()}
-
-Other errs: 
-\code{\link{stopperr}()}
 }
 \concept{errs}
 \concept{extensions}

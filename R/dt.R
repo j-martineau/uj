@@ -14,7 +14,7 @@
 #' @param x Any object for `as_dt`, `is_dt`, and `ie_dt`. A \code{\link[data.table]{data.table}} for all others.
 #' @param y A data.table to be merged with `x`.
 #' @param row,col \link[=cmp_ind_vec]{Complete indexer vecs} or \link[=cmp_chr_vec]{complete character vecs} identifying rows and columns of `x`, respectively.
-#' @param .SAY Logical scalar indicating whether to update user on progress.
+#' @param say Logical scalar indicating whether to update user on progress.
 #' @return A data.table.
 #' @export
 as_dt <- data.table::as.data.table
@@ -38,12 +38,12 @@ dt_cols <- function(x, col) {x[ , col, with = FALSE]}
 #' @rdname dt
 #' @inherit data.table::merge
 #' @export
-dt_merge <- function(x, y, by = NULL, by.x = NULL, by.y = NULL, all = FALSE, all.x = all, all.y = all, sort = TRUE, suffixes = c(".x", ".y"), no.dups = TRUE, allow.cartesian = base::getOption("datatable.allow.cartesian"), .SAY = TRUE) {
-  if (.SAY) {uj::say("wait", Sub = 2)}
+dt_merge <- function(x, y, by = NULL, by.x = NULL, by.y = NULL, all = FALSE, all.x = all, all.y = all, sort = TRUE, suffixes = c(".x", ".y"), no.dups = TRUE, allow.cartesian = base::getOption("datatable.allow.cartesian"), say = TRUE) {
+  if (say) {base::cat(".(wait)")}
   if (base::is.null(by) & base::is.null(by.x) & base::is.null(by.y)) {Data <- data.table::merge.data.table(x, y, all = all, all.x = all.x, all.y = all.y, sort = sort, suffixes = suffixes, no.dups = no.dups, allow.cartesian = allow.cartesian)}
   else if (!base::is.null(by)) {Data <- data.table::merge.data.table(x, y, by = by, all = all, all.x = all.x, all.y = all.y, sort = sort, suffixes = suffixes, no.dups = no.dups, allow.cartesian = allow.cartesian)}
   else {Data <- data.table::merge.data.table(x, y, by.x = by.x, by.y = by.y, all = all, all.x = all.x, all.y = all.y, sort = sort, suffixes = suffixes, no.dups = no.dups, allow.cartesian = allow.cartesian)}
-  if (.SAY) {uj::say("done", Sub = 2)}
+  if (say) {base::cat(".(done)")}
   Data
 }
 
@@ -54,14 +54,14 @@ dt_rows <- function(x, r) {x[r, ]}
 #' @rdname dt
 #' @inherit data.table::dcast
 #' @export
-dt_wide <- function(data, formula, fun.aggregate = NULL, sep = "_", ..., margins = NULL, subset = NULL, fill = NULL, drop = TRUE, value.var = data.table:::guess(data), verbose = base::getOption("datatable.verbose"), .SAY = TRUE) {
-  if (.SAY) {uj::say("wait", .SUB = 2)}
+dt_wide <- function(data, formula, fun.aggregate = NULL, sep = "_", ..., margins = NULL, subset = NULL, fill = NULL, drop = TRUE, value.var = data.table:::guess(data), verbose = base::getOption("datatable.verbose"), say = TRUE) {
+  if (say) {base::cat(".(wait)")}
   Code <- base::paste0("data.table::dcast.data.table(data, formula, sep = sep, ..., drop = drop, value.var = value.var, verbose = verbose",
                        uj::f0(base::is.null(fun.aggregate), "", ", fun.aggregate = fun.aggregate"),
                        uj::f0(base::is.null(margins), "", ", margins = margins"),
                        uj::f0(base::is.null(subset), "", ", subset = subset"),
                        uj::f0(base::is.null(fill), "", ", fill = fill"), ")")
   data <- uj::run(Code)
-  if (.SAY) {uj::say("done", .SUB = 2)}
+  if (say) {base::cat(".(done)")}
   data
 }

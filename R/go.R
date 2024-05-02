@@ -7,24 +7,24 @@
 #' @export
 go <- function(...) {
   .rproj <- function(x) {base::substr(x, base::nchar(x) - base::nchar(".Rproj") + 1, base::nchar(x)) == ".Rproj"}
-  File <- base::match.call()
-  File <- base::as.character(File)
-  if (base::length(File) != 2) {uj::stopperr("Invalid call.", .PKG = "uj")}
-  File <- File[2]
+  file <- base::match.call()
+  file <- base::as.character(file)
+  if (base::length(file) != 2) {ppp::stopperr("Invalid call.", pkg = "uj")}
+  file <- file[2]
   if (base::is.null(File)) {
-    Path <- uj::choose_doc(".Rproj")
-    if (!.rproj(File)) {uj::stopperr("The selected File is not an R project.", .PKG = "uj")}
+    path <- uj::choose_doc(".Rproj")
+    if (!.rproj(file)) {ppp::stopperr("The selected File is not an R project.", pkg = "uj")}
     base::gc(verbose = F)
     rstudioapi::openProject(Path)
   } else {
-    Sep <- base::.Platform$file.sep
-    Dir <- uj::parent_path(base::getwd())
-    Doc <- base::paste0(Dir, Sep, File, Sep, File, ".Rproj")
-    Doc <- uj::as_path(Doc)
+    d <- base::.Platform$file.sep
+    dir <- uj::parent_path(base::getwd())
+    doc <- base::paste0(dir, d, file, d, file, ".Rproj")
+    doc <- uj::as_path(doc)
     base::gc(verbose = F)
-    if (!base::file.exists(Doc)) {uj::stopperr("No such R project", .PKG = "uj")}
+    if (!base::file.exists(doc)) {ppp::stopperr("No such R project", pkg = "uj")}
     base::gc(verbose = F)
-    rstudioapi::openProject(path = Doc)
+    rstudioapi::openProject(path = doc)
   }
 }
 

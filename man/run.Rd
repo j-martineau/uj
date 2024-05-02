@@ -42,7 +42,6 @@ Other meta:
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{purge}()},
-\code{\link{recyclable_ns}()},
-\code{\link{say}()}
+\code{\link{recyclable_ns}()}
 }
 \concept{meta}

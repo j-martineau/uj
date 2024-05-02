@@ -1,5 +1,77 @@
 # internals ####
 
+.getfun <- function(x) {
+  def <- "..unknown.."
+  x   <- uj::av(base::strsplit(x, ":::", fixed = T))
+  x   <- uj::av(base::strsplit(x, "::" , fixed = T))
+  N   <- base::length(x)
+  if (N == 0) {x <- ""} else if (N > 1) {x <- x[2]}
+  x   <- uj::av(base::strsplit(x, "(", fixed = T))
+  x   <- uj::av(base::strsplit(x, " ", fixed = T))
+  n   <- base::length(x)
+  if (N == 0) {x <- ""} else if (n > 1) {x <- x[1]}
+  if (x == "") {def} else {x}
+}
+
+.getpkg <- function(x) {
+  def <- "..??.."
+  x   <- uj::av(base::strsplit(x, ":::", fixed = T))
+  x   <- uj::av(base::strsplit(x, ":: ", fixed = T))
+  n   <- base::length(x)
+  if (n < 2) {def} else {x[1]}
+}
+
+.getsep <- function(x) {if (base::length(uj::av(base::strsplit(x, ":::", fixed = T))) > 1) {":::"} else {"::"}}
+
+.stack2pkgfuns <- function(stack, max.len = 35, vec = T, pkg.only = F, fun.only = F) {
+  def  <- "..??.."
+  funs <- base::sapply(stack, uj:::.getfun)
+  pkgs <- base::sapply(stack, uj:::.getpkg)
+  seps <- base::sapply(stack, uj:::.getsep)
+  ok   <- funs != def
+  funs <- funs[ok]
+  pkgs <- pkgs[ok]
+  seps <- seps[ok]
+  pkgs[pkgs == "..R.."] <- "[R]"
+  funs[funs == "..command.line.."] <- "[command.line]"
+  pkgs[pkgs == def] <- "[??]"
+  funs[funs == def] <- "[??]"
+  if (pkg.only) {pkgs} else if (fun.only) {funs} else if (vec) {base::paste0(pkgs, seps, funs)} else {tibble::tibble(pkg = pkgs, fun = funs)}
+}
+
+.stack2funs <- function(stack, max.len) {
+  def  <- "..??.."
+  funs <- base::sapply(stack, uj:::.getfun)
+  ok   <- funs != def
+  funs <- funs[ok]
+  if (base::length(funs) == 0) {funs <- def}
+  funs[funs == "..command.line.."] <- "[command.line]"
+  funs[funs == def               ] <- "[??]"
+  funs
+}
+
+.stack2pkgs <- function(stack, max.len) {
+  def  <- "..??.."
+  funs <- base::sapply(stack, uj:::.getfun)
+  pkgs <- base::sapply(stack, uj:::.getpkg)
+  ok   <- funs != def
+  pkgs <- pkgs[ok]
+  if (base::length(pkgs) == 0) {pkgs <- def}
+  pkgs[pkgs == "..R.."] <- "[R]"
+  pkgs[pkgs ==  def   ] <- "[??]"
+  pkgs
+}
+
+.fun_pkg_stack <- function(fun, pkg, stack, .fun, .stack) {
+  if (fun   == "") {fun   <- .fun     }
+  if (pkg   == "") {pkg   <- "..??.." }
+  if (stack == "") {stack <- .stack   }
+  fun   <- uj:::stack2funs(fun, 1000)
+  pkg   <- uj:::stack2pkgs(pkg, 1000)
+  stack <- base::paste0(uj:::stack2pkgfuns(stack, max.len = 35, vec = T), collapse = " >> ")
+  base::list(fun = fun, pkg = pkg, stack = stack)
+}
+
 #' @encoding UTF-8
 #' @family environments
 #' @family meta
@@ -30,9 +102,9 @@
 #'                `callers`         \tab Names of all calling functions, (excludes *self*).       \cr   \tab   \cr
 #'                `lineage`         \tab Names of all lineage functions (includes *self*).                       }
 #' @param n A \link[cmp_psw_vec]{complete positive whole-number scalar} giving the number of generations back in the function call stack to go.
-#' @param .ERR `TRUE` or `FALSE` indicating whether to throw an error if one is encountered.
-#' @param .SCL `TRUE` or `FALSE` indicating whether to collapse package and function into a character scalar rather than as a two element list with one element for packages and another for functions.
-#' @param .VEC `TRUE` or `FALSE` indicating whether to represent both package and function in a character vector rather than as a two element list with one element for packages and another for functions.
+#' @param err `TRUE` or `FALSE` indicating whether to throw an error if one is encountered.
+#' @param scl `TRUE` or `FALSE` indicating whether to collapse package and function into a character scalar rather than as a two element list with one element for packages and another for functions.
+#' @param vec `TRUE` or `FALSE` indicating whether to represent both package and function in a character vector rather than as a two element list with one element for packages and another for functions.
 #' @param ... An arbitrary number of \link[=cmp_psw_vec]{complete positive whole-number vecs} giving the number(s) of generations back in the function call stack to go.
 #' @return **An integer scalar**                                            \cr\cr `ncallers`
 #' \cr\cr  **A `list(pkg = <character vector>, fun = <character vector>)`** \cr\cr  All others when `vec = FALSE` or `scl = FALSE`.
@@ -42,18 +114,18 @@
 #' egD <- function() {list(self      = self()                   ,
 #'                         caller    = caller()                 ,
 #'                         callers   = callers()                ,
-#'                         caller2   = caller2(.ERR = F)        ,
-#'                         caller3   = callerN(3, .ERR = F)     ,
-#'                         callers23 = callersN(2, 3, .ERR = F) ,
+#'                         caller2   = caller2(err = F)        ,
+#'                         caller3   = callerN(3, err = F)     ,
+#'                         callers23 = callersN(2, 3, err = F) ,
 #'                         ncallers  = ncallers()               ,
 #'                         ancestor  = ancestor()               ,
 #'                         lineage   = lineage()                )}
 #' egC <- function() {list(self      = self()                   ,
 #'                         caller    = caller()                 ,
 #'                         callers   = callers()                ,
-#'                         caller2   = caller2(.ERR = F)        ,
-#'                         caller3   = callerN(3, .ERR = F)     ,
-#'                         callers23 = callersN(2, 3, .ERR = F) ,
+#'                         caller2   = caller2(err = F)        ,
+#'                         caller3   = callerN(3, err = F)     ,
+#'                         callers23 = callersN(2, 3, err = F) ,
 #'                         ncallers  = ncallers()               ,
 #'                         ancestor  = ancestor()               ,
 #'                         lineage   = lineage()                ,
@@ -61,9 +133,9 @@
 #' egB <- function() {list(self      = self()                   ,
 #'                         caller    = caller()                 ,
 #'                         callers   = callers()                ,
-#'                         caller2   = caller2(.ERR = F)        ,
-#'                         caller3   = callerN(3, .ERR = F)     ,
-#'                         callers23 = callersN(2, 3, .ERR = F) ,
+#'                         caller2   = caller2(err = F)        ,
+#'                         caller3   = callerN(3, err = F)     ,
+#'                         callers23 = callersN(2, 3, err = F) ,
 #'                         ncallers  = ncallers()               ,
 #'                         ancestor  = ancestor()               ,
 #'                         lineage   = lineage()                ,
@@ -71,9 +143,9 @@
 #' egA <- function() {list(self      = self()                   ,
 #'                         caller    = caller()                 ,
 #'                         callers   = callers()                ,
-#'                         caller2   = caller2(.ERR = F)        ,
-#'                         caller3   = callerN(3, .ERR = F)     ,
-#'                         callers23 = callersN(2, 3, .ERR = F) ,
+#'                         caller2   = caller2(err = F)        ,
+#'                         caller3   = callerN(3, err = F)     ,
+#'                         callers23 = callersN(2, 3, err = F) ,
 #'                         ncallers  = ncallers()               ,
 #'                         ancestor  = ancestor()               ,
 #'                         lineage   = lineage()                ,
@@ -81,21 +153,21 @@
 #' egA()
 #' av(egA())
 #' @export
-callers <- function(.VEC = TRUE) {
-  if (!uj::fs_t(.VEC)) {.VEC <- F}
-  Stack <- base::c(base::rev(base::as.character(base::sys.calls())), "..R..::..command.line..()")
-  if (base::length(Stack) == 2) {Stack <- base::c(Stack, "..R..::..command.line..()")}
-  uj:::.stack2pkgfuns(Stack[3:base::length(Stack)], 35, .VEC = .VEC)
+callers <- function(vec = TRUE) {
+  if (!uj::fs_t(vec)) {vec <- F}
+  stack <- base::c(base::rev(base::as.character(base::sys.calls())), "..r..::..command.line..()")
+  if (base::length(stack) == 2) {stack <- base::c(stack, "..r..::..command.line..()")}
+  uj:::.stack2pkgfuns(stack[3:base::length(stack)], 35, vec = vec)
 }
 
 #' @rdname callers
 #' @export
-caller <- function(.SCL = TRUE) {
-  if (!uj::fs_t(.SCL)) {.SCL <- F}
-  Stack <- base::sys.calls()
-  Stack <- base::c(base::rev(base::as.character(Stack)), "..R..::..command.line..()")
-  if (base::length(Stack) == 2) {Stack <- base::c(Stack, "..R..::..command.line..()")}
-  uj:::.stack2pkgfuns(Stack[3], 100, .VEC = .SCL)
+caller <- function(scl = TRUE) {
+  if (!uj::fs_t(scl)) {scl <- F}
+  stack <- base::sys.calls()
+  stack <- base::c(base::rev(base::as.character(stack)), "..r..::..command.line..()")
+  if (base::length(stack) == 2) {stack <- base::c(stack, "..r..::..command.line..()")}
+  uj:::.stack2pkgfuns(stack[3], 100, vec = scl)
 }
 
 #' @rdname callers
@@ -104,81 +176,81 @@ caller1 <- caller
 
 #' @rdname callers
 #' @export
-caller2 <- function(.SCL = TRUE) {
-  if (!uj::fs_t(.SCL)) {.SCL <- F}
-  Stack <- base::sys.calls()
-  Stack <- base::c(base::rev(base::as.character(Stack)), "..R..::..command.line..()")
-  if (base::length(Stack) == 2) {Stack <- base::c(Stack, "..R..::..command.line..()")}
-  if (base::length(Stack) == 3) {Stack <- base::c(Stack, "..R..::..command.line..()")}
-  uj:::.stack2pkgfuns(Stack[4], 100, .VEC = .SCL)
+caller2 <- function(scl = TRUE) {
+  if (!uj::fs_t(scl)) {scl <- F}
+  stack <- base::sys.calls()
+  stack <- base::c(base::rev(base::as.character(stack)), "..r..::..command.line..()")
+  if (base::length(stack) == 2) {stack <- base::c(stack, "..r..::..command.line..()")}
+  if (base::length(stack) == 3) {stack <- base::c(stack, "..r..::..command.line..()")}
+  uj:::.stack2pkgfuns(stack[4], 100, vec = scl)
 }
 
 #' @rdname callers
 #' @export
-callerN <- function(n, .ERR = TRUE, .SCL = TRUE) {
-  if (!uj::fs_t(.ERR)) {.ERR <- T}
-  if (!uj::fs_t(.SCL)) {.SCL <- T}
-  if (!uj:::.cmp_psw_scl(n)) {uj::stopperr("[n] must be a complete positive whole number scalar (?cmp_psw_scl).", .PKG = "uj")}
-  Stack <- base::sys.calls()
-  Stack <- base::c(base::rev(base::as.character(Stack)), "..R..::..command.line..()")
-  if (base::length(Stack) == 2) {Stack <- base::c(Stack, "..R..::..command.line..()")}
-  Stack <- Stack[3:base::length(Stack)]
-  nStack <- base::length(Stack)
-  if (.ERR & n > nStack) {uj::stopperr("[n] is greater than number of calling functions.", .PKG = "uj")}
-  n <- base::min(n, nStack)
-  uj:::.stack2pkgfuns(Stack[n], 100, .VEC = .SCL)
+callerN <- function(n, err = TRUE, scl = TRUE) {
+  if (!uj::fs_t(err)) {err <- T}
+  if (!uj::fs_t(scl)) {scl <- T}
+  if (!ppp::.cmp_psw_scl(n)) {ppp::stopperr("[n] must be a complete positive whole number scalar (?cmp_psw_scl).", pkg = "uj")}
+  stack <- base::sys.calls()
+  stack <- base::c(base::rev(base::as.character(stack)), "..r..::..command.line..()")
+  if (base::length(stack) == 2) {stack <- base::c(stack, "..r..::..command.line..()")}
+  stack <- stack[3:base::length(stack)]
+  nstack <- base::length(stack)
+  if (err & n > nstack) {ppp::stopperr("[n] is greater than number of calling functions.", pkg = "uj")}
+  n <- base::min(n, nstack)
+  uj:::.stack2pkgfuns(stack[n], 100, vec = scl)
 }
 
 #' @rdname callers
 #' @export
-callersN <- function(..., .ERR = TRUE, .VEC = TRUE) {
-  if (!uj::fs_t(.ERR)) {.ERR <- T}
-  if (!uj::fs_t(.VEC)) {.VEC <- T}
+callersN <- function(..., err = TRUE, vec = TRUE) {
+  if (!uj::fs_t(err)) {err <- T}
+  if (!uj::fs_t(vec)) {vec <- T}
   Ns <- uj::av(...)
-  if (!uj:::.cmp_psw_vec(Ns)) {uj::stopperr("All [...] args must be complete positive whole-number vecs (?cmp_psw_vec).", .PKG = "uj")}
-  Stack <- base::sys.calls()
-  Stack <- base::c(base::rev(base::as.character(Stack)), "..R..::..command.line..()")
-  if (base::length(Stack) == 2) {Stack <- base::c(Stack, "..R..::..command.line..()")}
-  Stack <- Stack[3:base::length(Stack)]
-  nStack <- base::length(Stack)
-  if (err & base::any(Ns > nStack)) {uj::stopperr("A value in [...] is greater than number of calling functions.", .PKG = "uj")}
-  uj:::.stack2pkgfuns(Stack[Ns[Ns <= nStack]], 35, .VEC = .VEC)
+  if (!ppp::.cmp_psw_vec(Ns)) {ppp::stopperr("All [...] args must be complete positive whole-number vecs (?cmp_psw_vec).", pkg = "uj")}
+  stack <- base::sys.calls()
+  stack <- base::c(base::rev(base::as.character(stack)), "..r..::..command.line..()")
+  if (base::length(stack) == 2) {stack <- base::c(stack, "..r..::..command.line..()")}
+  stack <- stack[3:base::length(stack)]
+  nstack <- base::length(stack)
+  if (err & base::any(Ns > nstack)) {ppp::stopperr("A value in [...] is greater than number of calling functions.", pkg = "uj")}
+  uj:::.stack2pkgfuns(stack[Ns[Ns <= nstack]], 35, vec = vec)
 }
 
 #' @rdname callers
 #' @export
 ncallers <- function() {
-  Stack <- base::sys.calls()
-  Stack <- base::c(base::rev(base::as.character(Stack)), "..R..::..command.line..()")
-  if (base::length(Stack) == 2) {Stack <- base::c(Stack, "..R..::..command.line..()")}
-  Stack <- Stack[3:base::length(Stack)]
-  base::length(uj:::.stack2pkgfuns(Stack, 35, T))
+  stack <- base::sys.calls()
+  stack <- base::c(base::rev(base::as.character(stack)), "..r..::..command.line..()")
+  if (base::length(stack) == 2) {stack <- base::c(stack, "..r..::..command.line..()")}
+  stack <- stack[3:base::length(stack)]
+  base::length(uj:::.stack2pkgfuns(stack, 35, T))
 }
 
 #' @rdname callers
 #' @export
-lineage <- function(.VEC = TRUE) {
-  if (!uj::fs_t(.VEC)) {.VEC <- F}
-  Stack <- base::sys.calls()
-  Stack <- base::c(base::rev(base::as.character(Stack)), "..R..::..command.line..()")
-  Stack <- Stack[2:base::length(Stack)]
-  uj:::.stack2pkgfuns(Stack, 35, .VEC = .VEC)
+lineage <- function(vec = TRUE) {
+  if (!uj::fs_t(vec)) {vec <- F}
+  stack <- base::sys.calls()
+  stack <- base::c(base::rev(base::as.character(stack)), "..r..::..command.line..()")
+  stack <- stack[2:base::length(stack)]
+  uj:::.stack2pkgfuns(stack, 35, vec = vec)
 }
 
 #' @rdname callers
 #' @export
-self <- function(.SCL = TRUE) {
-  if (!uj::fs_t(.SCL)) {.SCL <- F}
-  Stack <- base::sys.calls()
-  Stack <- base::c(base::rev(base::as.character(Stack)), "..R..::..command.line..()")[2]
-  uj:::.stack2pkgfuns(Stack, 100, .VEC = .SCL)
+self <- function(scl = TRUE) {
+  if (!uj::fs_t(scl)) {scl <- F}
+  stack <- base::sys.calls()
+  stack <- base::c(base::rev(base::as.character(stack)), "..r..::..command.line..()")[2]
+  uj:::.stack2pkgfuns(stack, 100, vec = scl)
 }
 
 #' @rdname callers
 #' @export
-ancestor <- function(.SCL = TRUE) {
-  if (!uj::fs_t(.SCL)) {.SCL <- F}
-  Stack <- uj::callers()
-  Stack[base::max(1, base::length(Stack) - 1)]
-  uj:::.stack2pkgfuns(Stack, 100, .VEC = .SCL)
+ancestor <- function(scl = TRUE) {
+  if (!uj::fs_t(scl)) {scl <- F}
+  stack <- uj::callers()
+  stack[base::max(1, base::length(stack) - 1)]
+  uj:::.stack2pkgfuns(stack, 100, vec = scl)
 }

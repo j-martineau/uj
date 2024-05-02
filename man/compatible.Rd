@@ -8,9 +8,9 @@
 \alias{compatible_dtfs}
 \title{Are objects compatible?}
 \usage{
-compatible(..., .REC = FALSE)
+compatible(..., .rec = FALSE)
 
-compatible_xy(x, y, .REC = FALSE)
+compatible_xy(x, y, .rec = FALSE)
 
 compatible_mats(dim, ...)
 
@@ -19,7 +19,7 @@ compatible_dtfs(dim, ...)
 \arguments{
 \item{...}{An arbitrary number of arguments to be checked for compatibility with each other.}
 
-\item{.REC}{\code{TRUE} or \code{FALSE} indicating whether arguments in \code{...} must be recyclable to be compatible.}
+\item{.rec}{\code{TRUE} or \code{FALSE} indicating whether arguments in \code{...} must be recyclable to be compatible.}
 
 \item{dim}{Integer scalar indicating type of binding to check for compatibility (1 = row, 2 = col).}
 }
@@ -58,11 +58,11 @@ egDTFncl9 <- data.frame(N = egN9, C = egC9, L = egL9)
 egDTFcln7 <- data.frame(C = egC7, L = egL7, N = egN7)
 egDTFcln9 <- data.frame(C = egC9, L = egL9, N = egN9)
 compatible(egn0, egN7, egN9)
-compatible(egC0, egC7, egC9, .REC = T)
+compatible(egC0, egC7, egC9, .rec = T)
 compatible(egC0, egC7, egC9)
-compatible(egL0, egL7, egL9, .REC = T)
+compatible(egL0, egL7, egL9, .rec = T)
 compatible(egL0, egL7, egL9)
-compatible(egn0, egN7, egN9, .REC = T)
+compatible(egn0, egN7, egN9, .rec = T)
 compatible(u09, u79, u99)
 compatible(u00, u07, u09)
 compatible(o09, o79, o99)
@@ -84,7 +84,6 @@ Other extensions:
 \code{\link{failsafe}()},
 \code{\link{flex_rbind}()},
 \code{\link{fork}()},
-\code{\link{is_unique}()},
 \code{\link{naming}},
 \code{\link{na}()},
 \code{\link{paths}},
@@ -98,24 +97,8 @@ Other extensions:
 
 Other properties: 
 \code{\link{as_mmm}()},
-\code{\link{bbb_mmm}()},
-\code{\link{bbb}()},
 \code{\link{cls}()},
-\code{\link{cmp_ccc}()},
-\code{\link{cmp_mmm}()},
-\code{\link{comparable}()},
-\code{\link{ddd}()},
-\code{\link{eee}()},
-\code{\link{iii}()},
-\code{\link{is_unique}()},
-\code{\link{meets}()},
-\code{\link{mmm_ccc}()},
-\code{\link{mmm}()},
-\code{\link{ppp_fast}()},
-\code{\link{ppp}()},
-\code{\link{sss}()},
-\code{\link{stopperr}()},
-\code{\link{unq_ccc}()}
+\code{\link{comparable}()}
 }
 \concept{extensions}
 \concept{properties}

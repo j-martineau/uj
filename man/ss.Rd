@@ -30,91 +30,91 @@
 \alias{uss_pdb}
 \title{Split strings and select/check for elements}
 \usage{
-ss(.D, ..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .U = FALSE, .N = NULL)
+ss(d, ..., trm = TRUE, sqz = TRUE, drop = TRUE, u = FALSE, n = NULL)
 
-ch(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL, .U = FALSE)
+ch(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-chars(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL, .U = FALSE)
+chars(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss0(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL, .U = FALSE)
+ss0(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
 ss_tb(
-  .D,
+  d,
   ...,
   name = "string",
   part = "part",
-  .TRM = TRUE,
-  .SQZ = TRUE,
-  .DROP = TRUE,
-  .U = FALSE,
-  .N = NULL
+  trm = TRUE,
+  sqz = TRUE,
+  drop = TRUE,
+  u = FALSE,
+  n = NULL
 )
 
-ss1(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL, .U = FALSE)
+ss1(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_p(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL, .U = FALSE)
+ss_p(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_d(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL, .U = FALSE)
+ss_d(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_b(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL, .U = FALSE)
+ss_b(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_pd(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL, .U = FALSE)
+ss_pd(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_pb(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL, .U = FALSE)
+ss_pb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_db(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL, .U = FALSE)
+ss_db(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_pdb(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL, .U = FALSE)
+ss_pdb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-uss(d, ..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
+uss(d, ..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uch(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
+uch(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uchars(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
+uchars(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss0(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
+uss0(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
 uss_tb(
   d,
   ...,
   name = "string",
   part = "part",
-  .TRM = TRUE,
-  .SQZ = TRUE,
-  .DROP = TRUE,
-  .N = NULL
+  trm = TRUE,
+  sqz = TRUE,
+  drop = TRUE,
+  n = NULL
 )
 
-uss1(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
+uss1(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_p(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
+uss_p(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_d(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
+uss_d(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_b(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
+uss_b(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_pd(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
+uss_pd(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_pb(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
+uss_pb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_db(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
+uss_db(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_pdb(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
+uss_pdb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 }
 \arguments{
-\item{.D}{A complete character vec of a delimiter or delimiters to use in splitting strings.}
+\item{d}{A complete character vec of a delimiter or delimiters to use in splitting strings.}
 
 \item{...}{An arbitrary number of objects to be \link[=av]{atomized} before splitting.}
 
-\item{.TRM}{\code{TRUE} or \code{FALSE} indicating whether to trim white space from each side of each element of the result.}
+\item{trm}{\code{TRUE} or \code{FALSE} indicating whether to trim white space from each side of each element of the result.}
 
-\item{.SQZ}{\code{TRUE} or \code{FALSE} indicating whether to squeeze the result by removing extra internal whitespace.}
+\item{sqz}{\code{TRUE} or \code{FALSE} indicating whether to squeeze the result by removing extra internal whitespace.}
 
-\item{.DROP}{\code{TRUE} or \code{FALSE}. For functions associated character-wise splitting (i.e., ending in \code{0} or \code{ch}), indicates whether to drop resulting values that are not letters, digits, or spaces. For all others, indicates whether to drop resulting blank string values.}
+\item{drop}{\code{TRUE} or \code{FALSE}. For functions associated character-wise splitting (i.e., ending in \code{0} or \code{ch}), indicates whether to drop resulting values that are not letters, digits, or spaces. For all others, indicates whether to drop resulting blank string values.}
 
-\item{.U}{complete non-\code{NA} scalar indicating whether to reduce the result to unique values.}
+\item{u}{complete non-\code{NA} scalar indicating whether to reduce the result to unique values.}
 
-\item{.N}{An optional \link[=cmp_psw_scl]{complete positive whole-number vec} specifying one or more elements to be extracted from the result.}
+\item{n}{An optional \link[=cmp_psw_scl]{complete positive whole-number vec} specifying one or more elements to be extracted from the result.}
 
 \item{name}{A \link[=cmp_chr_scl]{complete character scalar} name of the variable to hold the original strings.}
 
@@ -133,10 +133,10 @@ uss_pdb(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
 \itemize{\item \link[=av]{Atomize} \code{...}, collapsing it to a simple atomic vector.
 \item Coerce the result to a character vector.
 \item Split each element of the vector along the delimiter(s) in \code{d}, producing a potentially longer character vector.
-\item If \code{.N} is not \code{NULL}, extract the \code{n}-th elements(s) from the result.
-\item If \code{.TRM = TRUE}, trim white space (i.e., spaces, tabs, newlines) from both ends of each element of the result.
-\item If \code{.SQZ = TRUE}, remove leading and trailing white space and replace any multi character interior white-space sequences inside the result with a single space.
-\item If \code{.U = TRUE}, reduce the result to unique values.}
+\item If \code{n} is not \code{NULL}, extract the \code{n}-th elements(s) from the result.
+\item If \code{trm = TRUE}, trim white space (i.e., spaces, tabs, newlines) from both ends of each element of the result.
+\item If \code{sqz = TRUE}, remove leading and trailing white space and replace any multi character interior white-space sequences inside the result with a single space.
+\item If \code{u = TRUE}, reduce the result to unique values.}
 }
 \details{
 \strong{The function} \code{ss}
@@ -144,7 +144,7 @@ uss_pdb(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
 \cr\cr \strong{The functions} \code{ch/chars}
 \cr\cr Split strings in constituent characters (by using a blank-string delimiter).
 \cr\cr \strong{The function} \code{sstb}
-\cr\cr Requires that splitting each element of \code{x} along the delimiter \code{d} and post-processing the results based on optional args \code{.TRM}, \code{.SQZ}, \code{.DROP}, \code{n}, and \code{.U} will result in vectors of the same length. Those resulting same-length vectors are then placed into a data.frame. For example, the following console excerpt demonstrates a call to \code{ss_tb} and its result.
+\cr\cr Requires that splitting each element of \code{x} along the delimiter \code{d} and post-processing the results based on optional args \code{trm}, \code{sqz}, \code{drop}, \code{n}, and \code{u} will result in vectors of the same length. Those resulting same-length vectors are then placed into a data.frame. For example, the following console excerpt demonstrates a call to \code{ss_tb} and its result.
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{> sstb('|', 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p', name = 'original', part = 'letter')
 
@@ -165,22 +165,22 @@ uss_pdb(..., .TRM = TRUE, .SQZ = TRUE, .DROP = TRUE, .N = NULL)
   \code{'_b'}     \tab broken pipe         \tab \code{'¦'}                                                                               }
 \tabular{ll}{  \verb{     }    \tab \eqn{^{(1)}} Splits strings into constituent characters, making \code{ss0(.)} functionally equivalent to \code{ch(.)}. }
 \cr \strong{Functions filtering for unique values}
-\cr\cr Prepending \code{.U} to a function name reduces the result of calling the original function to unique values.
+\cr\cr Prepending \code{u} to a function name reduces the result of calling the original function to unique values.
 }
 \examples{
 ss("", "super-cooled")
 ss("|", "super||cooled", "super|heated")
 ss_0("super-cooled", "super-heated")
 ss_1("super cooled", "super heated")
-ss_p("super|cooled", "super|heated", .U = TRUE)
+ss_p("super|cooled", "super|heated", u = TRUE)
 ss_d("super.cooled", "super.heated")
 ss_b("super¦cooled", "super¦heated")
 ss_pd("super|cooled", "super.heated")
 ss_pb("super|cooled", "super¦heated")
 ss_db("super.cooled", "super¦heated")
-ss_pdb("super|cooled¦|super|heated", .U = TRUE)
-ss_pdb(" super|cooled  ¦super..  heated", .N = 3)
-ss_pdb(" super|cooled  ¦super..  heated", .TRM = F, .SQZ = F, .DROP = F, .N = 3)
+ss_pdb("super|cooled¦|super|heated", u = TRUE)
+ss_pdb(" super|cooled  ¦super..  heated", n = 3)
+ss_pdb(" super|cooled  ¦super..  heated", trm = F, sqz = F, drop = F, n = 3)
 uss("", "super-cooled")
 uss("|", "super|cooled", "super|heated")
 uss_0("super-cooled", "super-heated")

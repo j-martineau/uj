@@ -40,9 +40,9 @@
 na <- function(x) {
   .na <- function(x) {base::is.na(x)}
   if (uj:::.pop_atm(x)) {.na(x)}
-  else if (uj:::.atm_dtf(x)) {base::apply(x, 2, .na)}
-  else if (uj:::.atm_vls(x)) {base::sapply(x, .na)}
-  else {uj::stopperr("[x] must be populated and atomic (?pop_atm), a populated atomic vlist (?atm_vls), or a populated atomic data.frame (?atm_dtf).", .PKG = "uj")}
+  else if (ppp::.atm_dtf(x)) {base::apply(x, 2, .na)}
+  else if (ppp::.atm_vls(x)) {base::sapply(x, .na)}
+  else {ppp::stopperr("[x] must be populated and atomic (?pop_atm), a populated atomic vlist (?atm_vls), or a populated atomic data.frame (?atm_dtf).", pkg = "uj")}
 }
 
 #' @rdname na
@@ -50,9 +50,9 @@ na <- function(x) {
 ok <- function(x) {
   .ok <- function(x) {!base::is.na(x)}
   if (uj:::.pop_atm(x)) {.ok(x)}
-  else if (uj:::.atm_dtf(x)) {base::apply(x, 2, .ok)}
-  else if (uj:::.atm_vls(x)) {base::sapply(x, .ok)}
-  else {uj::stopperr("[x] must be populated and atomic (?pop_atm), a populated atomic vlist (?atm_vls), or a populated atomic data.frame (?atm_dtf).", .PKG = "uj")}
+  else if (ppp::.atm_dtf(x)) {base::apply(x, 2, .ok)}
+  else if (ppp::.atm_vls(x)) {base::sapply(x, .ok)}
+  else {ppp::stopperr("[x] must be populated and atomic (?pop_atm), a populated atomic vlist (?atm_vls), or a populated atomic data.frame (?atm_dtf).", pkg = "uj")}
 }
 
 #' @rdname na
@@ -61,18 +61,18 @@ sub_na <- function(x, sub) {
   if (base::length(x) == 0) {return(x)}
   if (base::is.atomic(x)) {
     if (uj::compatible_xy(x, sub)) {x[base::is.na(x)] <- sub; return(x)}
-    else {uj::stopperr("[x] and [sub] are of incompatible modes (?compatible).", .PKG = "uj")}
-  } else if (uj:::.atm_dtf(x)) {
+    else {ppp::stopperr("[x] and [sub] are of incompatible modes (?compatible).", pkg = "uj")}
+  } else if (ppp::.atm_dtf(x)) {
     if (base::all(base::apply(x, 2, base::is.atomic))) {
       if (base::all(base::apply(x, 2, uj::compatible_xy, y = sub))) {base::apply(x, 2, uj::sub_na, sub = sub)}
-      else {uj::stopperr("[sub] is incompatible (?incompatible) with one or more columns of [x].", .PKG = "uj")}
-    } else {uj::stopperr("When [x] is a data.frame, its columns must be atomic.", .PKG = "uj")}
-  } else if (uj:::.atm_vls(x)) {
+      else {ppp::stopperr("[sub] is incompatible (?incompatible) with one or more columns of [x].", pkg = "uj")}
+    } else {ppp::stopperr("When [x] is a data.frame, its columns must be atomic.", pkg = "uj")}
+  } else if (ppp::.atm_vls(x)) {
     if (base::all(base::sapply(x, base::is.atomic))) {
       if (base::all(base::sapply(x, uj::compatible_xy, y = sub))) {base::lapply(x, uj::sub_na, sub = sub)}
-      else {uj::stopperr("[sub] is incompatible (?incompatible) with one or more elements of [x].", .PKG = "uj")}
-    } else {uj::stopperr("When [x] is a vlist (?VLS), its elements must be atomic.", .PKG = "uj")}
-  } else {uj::stopperr("[x] must be populated and atomic (?pop_atm), a populated atomic vlist (?atm_vls), or a populated atomic data.frame (?atm_dtf).", .PKG = "uj")}
+      else {ppp::stopperr("[sub] is incompatible (?incompatible) with one or more elements of [x].", pkg = "uj")}
+    } else {ppp::stopperr("When [x] is a vlist (?VLS), its elements must be atomic.", pkg = "uj")}
+  } else {ppp::stopperr("[x] must be populated and atomic (?pop_atm), a populated atomic vlist (?atm_vls), or a populated atomic data.frame (?atm_dtf).", pkg = "uj")}
 }
 
 #' @rdname na
@@ -87,10 +87,10 @@ ok0 <- function(x) {if (base::length(x) != 1 | !base::is.atomic(x)) {F} else {!b
 #' @export
 rm_na <- function(x) {
   if (uj:::.atm.dtf(x)) {
-    Atoms <- uj::av(x)
+    atoms <- uj::av(x)
     if (!base::any(base::is.na(x))) {x}
-    else {Atoms[!base::is.na(Atoms)]}
+    else {atoms[!base::is.na(atoms)]}
   } else if (base::is.atomic(x)) {x[!base::is.na(x)]}
   else if (uj:::.atm.vls(x)) {base::lapply(x, uj::rm_na)}
-  else {uj::stopperr("[x] must be populated and atomic (?pop_atm), a populated atomic vlist (?atm_vls), or a populated atomic data.frame (?atm_dtf).", .PKG = "uj")}
+  else {ppp::stopperr("[x] must be populated and atomic (?pop_atm), a populated atomic vlist (?atm_vls), or a populated atomic data.frame (?atm_dtf).", pkg = "uj")}
 }
