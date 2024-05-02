@@ -59,7 +59,7 @@ value_exists <- function(name, err = T, gens = 1) {
     call <- uj::caller()
     targ <- uj::callers(gens + 1)
     if (gens > 1) {Targ <- base::c("target function (", targ, ") ", gens, " generations back from the ")} else {targ <- ""}
-    if (err) {ppp::stopperr(base::paste0("No object named [name = '", name, "'] exists in the environment of the ", targ, "calling function (", cakll, ")."), pkg = "uj")}
+    if (err) {ppp::stopperr(base::paste0("No object named [name = '", name, "'] exists in the environment of the ", targ, "calling function (", call, ")."), pkg = "uj")}
     F
   } else {T}
 }
