@@ -43,7 +43,7 @@ atomize <- function(...) {
 #' @rdname atomize
 #' @export
 glue_av <- function(..., g = "") {
-  if (!ppp::.cmp_chr_scl(g)) {g <- ""}
+  if (!uj::.cmp_chr_scl(g)) {g <- ""}
   x <- base::as.vector(base::unlist(base::list(...), T, F))
   base::attributes(x) <- NULL
   base::paste0(x, collapse = g)
@@ -52,8 +52,8 @@ glue_av <- function(..., g = "") {
 #' @rdname atomize
 #' @export
 paste_av <- function(..., p = "", s = "") {
-  if (!ppp::.cmp_chr_scl(p)) {p <- ""}
-  if (!ppp::.cmp_chr_scl(s)) {s <- ""}
+  if (!uj::.cmp_chr_scl(p)) {p <- ""}
+  if (!uj::.cmp_chr_scl(s)) {s <- ""}
   x <- base::as.vector(base::unlist(base::list(...), T, F))
   base::attributes(x) <- NULL
   base::paste0(base::paste(x, sep = p), s)

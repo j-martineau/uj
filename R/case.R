@@ -15,14 +15,14 @@
 #' case("three", 1, letters, .names = c("three", "four"), .def = "default")
 #' @export
 case <- function(.name, ..., .names = NULL, .def = "err") {
-  okNames <- uj::f0(base::is.null(.names), T, uj::f0(!ppp::.atm_vec(.names), F, base::length(.names) == base::...length()))
+  okNames <- uj::f0(base::is.null(.names), T, uj::f0(!uj::.atm_vec(.names), F, base::length(.names) == base::...length()))
   errs <- NULL
-  if (!ppp::.cmp_scl(.name)) {errs <- base::c(errs, "[.name] must be a non-NA atomic scalar (?cmp_scl).")}
+  if (!uj::.cmp_scl(.name)) {errs <- base::c(errs, "[.name] must be a non-NA atomic scalar (?cmp_scl).")}
   if (base::...length() == 0) {errs <- base::c(errs, "[...] is empty.")}
   if (!okNames) {errs <- base::c(errs, "[.names] must be NULL or an atomic vector of length equal to ...length()")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   .names <- uj::dot_names(..., .subs = .names, .req = T, .bl = F, .u = T)
   i <- base::which(.names == .name)
-  if (ppp::.cmp_chr_scl(.def, valid = 'err') & base::length(i) != 1) {ppp::stopperr("[.name] must match 1 argument in [...].", pkg = "uj")}
+  if (uj::.cmp_chr_scl(.def, valid = 'err') & base::length(i) != 1) {uj::stopperr("[.name] must match 1 argument in [...].", pkg = "uj")}
   uj::f0(base::length(i) == 1, base::...elt(i), .def)
 }

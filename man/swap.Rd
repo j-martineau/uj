@@ -20,7 +20,7 @@ swap_rows(x, from, to)
 swap_cols(x, from, to)
 }
 \arguments{
-\item{x}{A non-empty data.frame, matrix, vlist (?uj::VLS), or an atomic object of any dimension.}
+\item{x}{A non-empty data.frame, matrix, vlist (?VLS), or an atomic object of any dimension.}
 
 \item{from, to}{Uniquely valued non-zero whole number vectors indexing source (\code{from}) and destination (\code{to}) positions, rows, or columns. \code{from < 0} and \code{to < 0} index from the last value rather than the first.}
 

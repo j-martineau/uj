@@ -56,8 +56,8 @@ compatible <- function(..., .rec = FALSE) {
   n <- base::length(x)
   errs <- NULL
   if (N < 2) {errs <- base::c(errs, "[...] must contain multiple arguments.")}
-  if (!ppp::.cmp_lgl_scl(.rec)) {errs <- base::c(errs, "[.rec] must be TRUE or FALSE.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.cmp_lgl_scl(.rec)) {errs <- base::c(errs, "[.rec] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   if (.rec) {
     un <- base::length(base::unique(x))
     nr <- base::max(un) / un
@@ -103,10 +103,10 @@ compatible_mats <- function(dim, ...) {
   x <- base::list(...)
   n <- base::length(x)
   errs <- NULL
-  if (!ppp::.cmp_num_scl(dim, valid = 1:2)) {errs <- base::c(errs, "[dim] must be integer scalar 1 or 2.")}
+  if (!uj::.cmp_num_scl(dim, valid = 1:2)) {errs <- base::c(errs, "[dim] must be integer scalar 1 or 2.")}
   if (n < 2) {errs <- base::c(errs, "[...] must contain 2+ atomic matrices (?atm_mat).")}
-  else if (!base::all(base::sapply(x, ppp::.atm_mat))) {errs <- base::c(errs, "[...] must contain 2+ atomic matrices (?atm_mat).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  else if (!base::all(base::sapply(x, uj::.atm_mat))) {errs <- base::c(errs, "[...] must contain 2+ atomic matrices (?atm_mat).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   for (i in 2:N) {
     curr <- x[[i]]
     prev <- x[[i - 1]]
@@ -123,10 +123,10 @@ compatible_dtfs <- function(dim, ...) {
   x <- base::list(...)
   n <- base::length(x)
   errs <- NULL
-  if (!ppp::.cmp_num_scl(dim, valid = 1:2)) {errs <- base::c(errs, "[dim] must be integer scalar 1 or 2.")}
+  if (!uj::.cmp_num_scl(dim, valid = 1:2)) {errs <- base::c(errs, "[dim] must be integer scalar 1 or 2.")}
   if (n < 2) {errs <- base::c(errs, "[...] must contain 2+ atomic data.frames (?atm_dtf).")}
-  else if (!base::all(base::sapply(x, ppp::.atm_dtf))) {errs <- base::c(errs, "[...] must contain 2+ atomic data.frames (?atm_dtf).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  else if (!base::all(base::sapply(x, uj::.atm_dtf))) {errs <- base::c(errs, "[...] must contain 2+ atomic data.frames (?atm_dtf).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   for (i in 2:N) {
     curr <- x[[i]]
     prev <- x[[i - 1]]

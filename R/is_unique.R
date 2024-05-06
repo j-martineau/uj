@@ -14,7 +14,7 @@
 #' is_unique(letters)
 #' is_unq(sample(letters, 27, replace = T))
 #' @export
-uniqueness <- function() {utils::help("uniqueness", package = "ppp")}
+uniqueness <- function() {utils::help("uniqueness", package = "uj")}
 
 #' @describeIn uniqueness Evaluate whether `x` *is* a unique data.frame, list, or vector depending on values of `a` and `na`.
 #' @export
@@ -22,14 +22,14 @@ is_unique <- function(x, a = FALSE, na = FALSE) {
   u_dtf <- function(D) {base::nrow(base::unique(D)) == base::nrow(D)}
   u_gen <- function(G) {base::length(base::unique(G)) == base::length(G)}
   errs <- NULL
-  if (!ppp:::.cmp_lgl_scl(a)) {errs <- base::c(errs, "[a] must be TRUE or FALSE.")}
-  if (!ppp:::.cmp_lgl_scl(na)) {errs <- base::c(errs, "[na] must be TRUE or FALSE.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "ppp")}
+  if (!uj::.cmp_lgl_scl(a)) {errs <- base::c(errs, "[a] must be TRUE or FALSE.")}
+  if (!uj::.cmp_lgl_scl(na)) {errs <- base::c(errs, "[na] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   atoms <- uj::av(x)
   if (a) {x <- atoms}
   if (base::length(atoms) > 0) {
     okNa <- na | !base::any(base::isna(atoms))
-    if (!okNa) {ppp::stopperr("[na = FALSE] but [x] contains NA values.", pkg = "ppp")}
+    if (!okNa) {uj::stopperr("[na = FALSE] but [x] contains NA values.", pkg = "uj")}
     if (base::is.data.frame(x)) {u_dtf(x)}
     else if (base::is.list(x)) {u_gen(x)}
     else {u_gen(atoms)}

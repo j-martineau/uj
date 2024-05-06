@@ -66,9 +66,9 @@
   if (fun   == "") {fun   <- .fun     }
   if (pkg   == "") {pkg   <- "..??.." }
   if (stack == "") {stack <- .stack   }
-  fun   <- uj:::stack2funs(fun, 1000)
-  pkg   <- uj:::stack2pkgs(pkg, 1000)
-  stack <- base::paste0(uj:::stack2pkgfuns(stack, max.len = 35, vec = T), collapse = " >> ")
+  fun   <- uj:::.stack2funs(fun, 1000)
+  pkg   <- uj:::.stack2pkgs(pkg, 1000)
+  stack <- base::paste0(uj:::.stack2pkgfuns(stack, max.len = 35, vec = T), collapse = " >> ")
   base::list(fun = fun, pkg = pkg, stack = stack)
 }
 
@@ -190,13 +190,13 @@ caller2 <- function(scl = TRUE) {
 callerN <- function(n, err = TRUE, scl = TRUE) {
   if (!uj::fs_t(err)) {err <- T}
   if (!uj::fs_t(scl)) {scl <- T}
-  if (!ppp::.cmp_psw_scl(n)) {ppp::stopperr("[n] must be a complete positive whole number scalar (?cmp_psw_scl).", pkg = "uj")}
+  if (!uj::.cmp_psw_scl(n)) {uj::stopperr("[n] must be a complete positive whole number scalar (?cmp_psw_scl).", pkg = "uj")}
   stack <- base::sys.calls()
   stack <- base::c(base::rev(base::as.character(stack)), "..r..::..command.line..()")
   if (base::length(stack) == 2) {stack <- base::c(stack, "..r..::..command.line..()")}
   stack <- stack[3:base::length(stack)]
   nstack <- base::length(stack)
-  if (err & n > nstack) {ppp::stopperr("[n] is greater than number of calling functions.", pkg = "uj")}
+  if (err & n > nstack) {uj::stopperr("[n] is greater than number of calling functions.", pkg = "uj")}
   n <- base::min(n, nstack)
   uj:::.stack2pkgfuns(stack[n], 100, vec = scl)
 }
@@ -207,13 +207,13 @@ callersN <- function(..., err = TRUE, vec = TRUE) {
   if (!uj::fs_t(err)) {err <- T}
   if (!uj::fs_t(vec)) {vec <- T}
   Ns <- uj::av(...)
-  if (!ppp::.cmp_psw_vec(Ns)) {ppp::stopperr("All [...] args must be complete positive whole-number vecs (?cmp_psw_vec).", pkg = "uj")}
+  if (!uj::.cmp_psw_vec(Ns)) {uj::stopperr("All [...] args must be complete positive whole-number vecs (?cmp_psw_vec).", pkg = "uj")}
   stack <- base::sys.calls()
   stack <- base::c(base::rev(base::as.character(stack)), "..r..::..command.line..()")
   if (base::length(stack) == 2) {stack <- base::c(stack, "..r..::..command.line..()")}
   stack <- stack[3:base::length(stack)]
   nstack <- base::length(stack)
-  if (err & base::any(Ns > nstack)) {ppp::stopperr("A value in [...] is greater than number of calling functions.", pkg = "uj")}
+  if (err & base::any(Ns > nstack)) {uj::stopperr("A value in [...] is greater than number of calling functions.", pkg = "uj")}
   uj:::.stack2pkgfuns(stack[Ns[Ns <= nstack]], 35, vec = vec)
 }
 

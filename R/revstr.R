@@ -41,8 +41,8 @@
 revstr <- function(x, na = FALSE) {
   frev <- function(xx) {base::paste0(base::rev(uj::av(base::strsplit(xx, "", fixed = T))))}
   frevs <- function(x) {base::sapply(x, frev)}
-  okX <- uj::f0(ppp::.chr_vec(x), T, uj::f0(ppp::.chr_arr(x), T, uj::f0(base::length(x) == 0, F, uj::f0(ppp::.chr_vls(x), T, ppp::.chr_dtf(x)))))
-  okNAS <- ppp::.cmp_lgl_scl(na)
+  okX <- uj::f0(uj::.chr_vec(x), T, uj::f0(uj::.chr_arr(x), T, uj::f0(base::length(x) == 0, F, uj::f0(uj::.chr_vls(x), T, uj::.chr_dtf(x)))))
+  okNAS <- uj::.cmp_lgl_scl(na)
   okNAX <- uj::f0(!okNAS, T, uj::f0(na, T, !base::any(base::isna(uj::av(x)))))
   errs <- NULL
   if (!okX  ) {base::c(errs, "[x] must be an atomic character object (?atm_chr), character vlist (?chr_vls), or character data.frame (?chr_dtf).")}

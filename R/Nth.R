@@ -1,14 +1,14 @@
 # internals ####
 
 .nth_errs <- function(x, n, scl.count, stack) {
-  okN <- uj::f0(scl.count, ppp::.cmp_psw_scl(n), ppp::.cmp_psw_vec(n))
+  okN <- uj::f0(scl.count, uj::.cmp_psw_scl(n), uj::.cmp_psw_vec(n))
   fun <- uj::caller()
   errs <- NULL
-  if (!uj:::.pop_vec(x)   ) {errs <- base::c(errs, "[x] is not a populated vector (?pop_vec)."                          )}
+  if (!uj::.pop_vec(x)   ) {errs <- base::c(errs, "[x] is not a populated vector (?pop_vec)."                          )}
   if ( scl.count & !okN   ) {errs <- base::c(errs, "[n] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
   if (!scl.count & !okN   ) {errs <- base::c(errs, "[n] must be a complete positive whole-number vector (?cmp_psw_vec).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, fun = fun, pkg = "uj", stack = stack)}
-  if (base::any(n > base::length(x))) {ppp::stopperr(base::paste0(uj::f0(scl.count, "", "The largest value in")," [n] is greater than the number of elements in [x]."), fun = fun, pkg = "uj", stack = stack)}
+  if (!base::is.null(errs)) {uj::stopperr(errs, fun = fun, pkg = "uj", stack = stack)}
+  if (base::any(n > base::length(x))) {uj::stopperr(base::paste0(uj::f0(scl.count, "", "The largest value in")," [n] is greater than the number of elements in [x]."), fun = fun, pkg = "uj", stack = stack)}
 }
 
 # exported ####

@@ -26,8 +26,8 @@ dups <- function(...) {
 #' @export
 idups <- function(x, int = F) {
   errs <- NULL
-  if (!ppp::.atm_vec(x)) {errs <- base::c(errs, "[x] must be an atomic vec (?atm_vec).")}
-  if (!ppp::.cmp_lgl_scl(int)) {errs <- base::c(errs, "[int] must be TRUE or FALSE.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.atm_vec(x)) {errs <- base::c(errs, "[x] must be an atomic vec (?atm_vec).")}
+  if (!uj::.cmp_lgl_scl(int)) {errs <- base::c(errs, "[int] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   uj::f0(int, base::which(base::duplicated(x)), base::duplicated(x))
 }

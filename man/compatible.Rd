@@ -98,7 +98,10 @@ Other extensions:
 Other properties: 
 \code{\link{as_mmm}()},
 \code{\link{cls}()},
-\code{\link{comparable}()}
+\code{\link{comparable}()},
+\code{\link{iii_PROPS}()},
+\code{\link{mmm_PROPS}()},
+\code{\link{sss_PROPS}()}
 }
 \concept{extensions}
 \concept{properties}

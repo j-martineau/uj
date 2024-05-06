@@ -21,8 +21,8 @@ comparable <- function(..., .rec = FALSE) {
   n <- base::length(x)
   errs <- NULL
   if (n < 2) {errs <- base::c(errs, "[...] must contain multiple arguments.")}
-  if (!ppp::.cmp_lgl_scl(.rec)) {errs <- base::c(errs, "[.rec] must be TRUE or FALSE.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.cmp_lgl_scl(.rec)) {errs <- base::c(errs, "[.rec] must be TRUE or FALSE.")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   if (.rec) {
     unqNs <- base::unique(base::lengths(x))
     nReps <- base::max(unqNs) / unqNs

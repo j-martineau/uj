@@ -84,18 +84,18 @@ fork <- function(x, y, n, na = n) {
   errNA <- uj::f0(nNA == 1 & base::is.character(na), na == 'err', F)
   naNA <- uj::f0(nNA == 1 & base::is.atomic(na), base::isna(na), F)
   incNas <- errNA | naNA
-  okX <- ppp::.cmp_lgl_vec(x)
-  okY <- uj::f0(!uj:::.vec(y), F, uj::f0(!okX, T, nY %in% base::c(1, base::max(1, nX))))
-  okN <- uj::f0(!uj:::.vec(n), F, uj::f0(!okX, T, nN %in% base::c(1, base::max(1, nX))))
-  okNA <- uj::f0(!uj:::.vec(na), F, uj::f0(!okX, T, nNA %in% base::c(1, base::max(1, nX))))
+  okX <- uj::.cmp_lgl_vec(x)
+  okY <- uj::f0(!uj::.VEC(y), F, uj::f0(!okX, T, nY %in% base::c(1, base::max(1, nX))))
+  okN <- uj::f0(!uj::.VEC(n), F, uj::f0(!okX, T, nN %in% base::c(1, base::max(1, nX))))
+  okNA <- uj::f0(!uj::.VEC(na), F, uj::f0(!okX, T, nNA %in% base::c(1, base::max(1, nX))))
   errs <- NULL
   if (!okX) {errs <- base::c(errs, "[x] must be a logical vec (?cmp_lgl_vec).")}
   if (!okY) {errs <- base::c(errs, "[y] must be of length 1 or a vector of the same length as [x].")}
   if (!okN) {errs <- base::c(errs, "[n] must be of length 1 or a vector of the same length as [x].")}
   if (!okNA) {errs <- base::c(errs, "[na] must be of length 1 or a vector of the same length as [x].")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   okTny <- okX & okY & okN
-  okArg <- uj::f0(!errNA | !okX, T, ppp::.cmp_lgl_vec(x))
+  okArg <- uj::f0(!errNA | !okX, T, uj::.cmp_lgl_vec(x))
   okTny <- uj::f0(!okTny, NULL, uj::f0(incNas, uj::compatible(y, n, na), uj::compatible(y, n)))
   if (!okArg) {errs <- base::c(errs, "[na = 'err'] but [x] contains NA values.")}
   if (!okTny) {errs <- base::c(errs, uj::f0(incNas, "[y], [n], and [na] must be of compatible (?compatible) modes.", "[y] and [n] must be of compatible (?compatible) modes."))}
@@ -115,31 +115,31 @@ fork <- function(x, y, n, na = n) {
 #' @rdname fork
 #' @export
 f1 <- function(x, y, n, na = n, err = n) {
-  errErr <- uj::f0(ppp::.cmp_chr_scl(err), err == "err", F)
-  errNAS <- uj::f0(ppp::.cmp_chr_scl(na), na == "err", F)
-  naX <- uj:::na0(x)
+  errErr <- uj::f0(uj::.cmp_chr_scl(err), err == "err", F)
+  errNAS <- uj::f0(uj::.cmp_chr_scl(na), na == "err", F)
+  naX <- uj:::.NA0(x)
   x <- uj::failsafe(x)
   if (base::isTRUE(x)) {y}
   else if (base::isFALSE(x)) {n}
   else if (naX & !errNAS) {na}
-  else if (!uj:::.lgl_scl(x) & !errErr) {err}
-  else if (naX) {ppp::stopperr("[x] must be atomic, scalar, and TRUE, FALSE, or NA.", pkg = "uj")}
-  else {ppp::stopperr("[x] must be atomic, scalar, and TRUE or FALSE.", pkg = "uj")}
+  else if (!uj::.lgl_scl(x) & !errErr) {err}
+  else if (naX) {uj::stopperr("[x] must be atomic, scalar, and TRUE, FALSE, or NA.", pkg = "uj")}
+  else {uj::stopperr("[x] must be atomic, scalar, and TRUE or FALSE.", pkg = "uj")}
 }
 
 #' @rdname fork
 #' @export
 nll_if <- function(x, ..., .d = " ") {
-  if (!ppp::.cmp_chr_scl(.d)) {.d <-  " "}
+  if (!uj::.cmp_chr_scl(.d)) {.d <-  " "}
   uj::f0(base::isTRUE(x), NULL, base::paste0(uj::av(...), collapse = .d))
 }
 
 #' @rdname fork
 #' @export
 nll_ifs <- function(..., .d = " ", .cond = "all") {
-  .bad_dots <- function(STACK) {ppp::stopperr("There must be both named and unnamed [...] args.", fun = "nll_ifs", pkg = "uj", stack = STACK)}
-  if (!ppp::.cmp_chr_scl(uj::failsafe(.d))) {.d <- " "}
-  if (!ppp::.cmp_chr_scl(.cond, .valid = base::c("all", "any", "none"))) {.cond <- "all"}
+  .bad_dots <- function(STACK) {uj::stopperr("There must be both named and unnamed [...] args.", fun = "nll_ifs", pkg = "uj", stack = STACK)}
+  if (!uj::.cmp_chr_scl(uj::failsafe(.d))) {.d <- " "}
+  if (!uj::.cmp_chr_scl(.cond, valid = base::c("all", "any", "none"))) {.cond <- "all"}
   dots <- base::list(...)
   labs <- base::names(dots)
   if (base::length(labs) == 0) {.bad_dots(uj::callers())}
@@ -172,11 +172,11 @@ nll_if_none <- function(..., .d = " ") {uj::nll_ifs(..., .d = " ", .cond = "none
 #' @rdname fork
 #' @export
 nll_ifs <- function(..., .d = " ") {
-  if (!ppp::.cmp_chr_scl(uj::failsafe(.d))) {.d <- " "}
+  if (!uj::.cmp_chr_scl(uj::failsafe(.d))) {.d <- " "}
   nDots <- base::...length()
   nPairs <- nDots / 2
   hasPairs <- nPairs == base::round(nPairs)
-  if (nDots == 0 | !hasPairs) {ppp::stopperr("The number of [...] args must be even and greater than 0.", pkg = "uj")}
+  if (nDots == 0 | !hasPairs) {uj::stopperr("The number of [...] args must be even and greater than 0.", pkg = "uj")}
   y <- NULL
   for (i in base::seq(from = 1, to = nDots - 1, by = 2)) {
     test <- uj::failsafe(base::...elt(i))

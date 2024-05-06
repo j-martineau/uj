@@ -57,14 +57,14 @@ pgrid <- function(.p, ..., .ch = F, .crossed = F, .na = F) {
   dots <- base::list(...)
   errs <- NULL
   if (base::length(dots) == 0) {errs <- base::c(errs, "[...] is empty.")}
-  if (!base::all(base::sapply(dots, ppp::.cmp_vec))) {errs <- base::c(errs, "All arguments in [...] must be complete atomic vector+'s (?cmp_vec)")}
+  if (!base::all(base::sapply(dots, uj::.cmp_vec))) {errs <- base::c(errs, "All arguments in [...] must be complete atomic vector+'s (?cmp_vec)")}
   if (!base::all(base::sapply(dots, base::length) > 0)) {errs <- base::c(errs, "[...] contains an empty element.")}
-  if (!ppp::.cmp_chr_scl(.p)) {errs <- base::c(errs, "[.p] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!ppp::.cmp_lgl_scl(.ch)) {errs <- base::c(errs, "[.ch] must be TRUE or FALSE.")}
-  if (!ppp::.cmp_lgl_scl(.crossed)) {errs <- base::c(errs, "[.crossed] must be TRUE or FALSE.")}
-  if (!ppp::.cmp_lgl_scl(.na)) {errs <- base::c(errs, "[.crossed] must be TRUE or FALSE.")}
+  if (!uj::.cmp_chr_scl(.p)) {errs <- base::c(errs, "[.p] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!uj::.cmp_lgl_scl(.ch)) {errs <- base::c(errs, "[.ch] must be TRUE or FALSE.")}
+  if (!uj::.cmp_lgl_scl(.crossed)) {errs <- base::c(errs, "[.crossed] must be TRUE or FALSE.")}
+  if (!uj::.cmp_lgl_scl(.na)) {errs <- base::c(errs, "[.crossed] must be TRUE or FALSE.")}
   if (base::isFALSE(.na) & base::any(base::is.na(uj::av(dots)))) {errs <- base::c(errs, "Arguments in [...] may not contain [NA] values when [.na = FALSE].")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = NULL)}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = NULL)}
   call <- base::paste0("base::c(base::as.character(dots[[", 1:uj::N(dots), "]]), uj::f0(.crossed, '', NULL))")
   call <- base::paste0(call, collapse = ", ")
   call <- base::paste0("base::expand.grid(", call, ", stringsAsFactors = F)")

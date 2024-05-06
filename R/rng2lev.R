@@ -23,15 +23,15 @@
 #' @export
 rng2lev <- function(x, cuts, levs) {
   errs <- NULL
-  if (!ppp::.pop_srt(x)) {errs <- base::c(errs, "[x] must be a sortable atomic object (?pop_srt).")}
-  if (!ppp::.cmp_srt_vec(cuts)) {errs <- base::c(errs, "[cuts] must be a complete sortable vec (?cmp_srt_vec).")}
-  if (!ppp::.cmp_srt_vec(levs)) {errs <- base::c(errs, "[levs] must be a complete sortable vec (?cmp_srt_vec).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.pop_srt(x)) {errs <- base::c(errs, "[x] must be a sortable atomic object (?pop_srt).")}
+  if (!uj::.cmp_srt_vec(cuts)) {errs <- base::c(errs, "[cuts] must be a complete sortable vec (?cmp_srt_vec).")}
+  if (!uj::.cmp_srt_vec(levs)) {errs <- base::c(errs, "[levs] must be a complete sortable vec (?cmp_srt_vec).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   if (!base::all(base::sort(cuts) == cuts)) {errs <- base::c(errs, "[cuts] must be sorted in increasing order.")}
   if (base::length(cuts) != base::length(base::unique(cuts))) {errs <- base::c(errs, "[cuts] contains duplicate values.")}
   if (base::length(cuts) != base::length(levs) - 1) {errs <- base::c(errs, "length(cuts) must equal length(levs) - 1.")}
   if (!uj::comparable(x, cuts)) {errs <- base::c(errs, "[x] and [cuts] must be of comparable modes (?comparable).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   y <- x
   y[1:base::length(y)] <- NA
   if (base::is.character(x)) {y <- base::as.character(y)}

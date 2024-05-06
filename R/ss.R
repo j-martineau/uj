@@ -81,13 +81,13 @@
 #' @export
 ss <- function(d, ..., trm = TRUE, sqz = TRUE, drop = TRUE, u = FALSE, n = NULL) {
   errs <- NULL
-  if (!base::all(base::sapply(base::list(...), uj:::.CHR))) {errs <- base::c(errs, "[...] must contain at least one argument, all of which must be character generics (?chr_gen).")}
-  if (!ppp::.cmp_lgl_scl(sqz)) {errs <- base::c(errs, "[sqz] must be TRUE or FALSE.")}
-  if (!ppp::.cmp_lgl_scl(trm)) {errs <- base::c(errs, "[trm] must be TRUE or FALSE.")}
-  if (!ppp::.cmp_chr_vec(d)) {errs <- base::c(errs, "[d] must be a complete character vec (?cmp_chr_vec).")}
-  if (!ppp::.cmp_lgl_scl(u)) {errs <- base::c(errs, "[u] must be TRUE or FALSE.")}
-  if (!uj::f0(base::isnull(n), T, ppp::.cmp_psw_vec(n))) {errs <- base::c(errs, "[n] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).")}
-  if (!base::isnull(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::all(base::sapply(base::list(...), uj::.CHR))) {errs <- base::c(errs, "[...] must contain at least one argument, all of which must be character generics (?chr_gen).")}
+  if (!uj::.cmp_lgl_scl(sqz)) {errs <- base::c(errs, "[sqz] must be TRUE or FALSE.")}
+  if (!uj::.cmp_lgl_scl(trm)) {errs <- base::c(errs, "[trm] must be TRUE or FALSE.")}
+  if (!uj::.cmp_chr_vec(d)) {errs <- base::c(errs, "[d] must be a complete character vec (?cmp_chr_vec).")}
+  if (!uj::.cmp_lgl_scl(u)) {errs <- base::c(errs, "[u] must be TRUE or FALSE.")}
+  if (!uj::f0(base::isnull(n), T, uj::.cmp_psw_vec(n))) {errs <- base::c(errs, "[n] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).")}
+  if (!base::isnull(errs)) {uj::stopperr(errs, pkg = "uj")}
   x <- uj::av(...)
   for (d in d) {x <- uj::av(base::strsplit(base::as.character(x), d, fixed = T))}
   if (trm) {x <- uj::trm(x)}
@@ -125,7 +125,7 @@ ss_tb <- function(d, ..., name = "string", part = "part", trm = TRUE, sqz = TRUE
   y <- base::lapply(x, ss, d = d, trm = trm, sqz = sqz, drop = drop, n = n, u = u)
   nDots <- base::length(x)
   if (nDots > 1) {
-    if (!uj::recyclable_ns(base::lengths(y))) {ppp::stopperr("[...] args must be recyclable upon splitting and post-processing using optional args.", pkg = "uj")}
+    if (!uj::recyclable_ns(base::lengths(y))) {uj::stopperr("[...] args must be recyclable upon splitting and post-processing using optional args.", pkg = "uj")}
     ns <- base::lengths(y)
     if (base::length(base::unique(ns)) > 1) {
       reps <- base::max(ns) / ns

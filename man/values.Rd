@@ -67,7 +67,7 @@ the contents of the named element, and the attribute \code{'descriptions'} gives
 }
 \examples{
 v(.)
-v(pipe, pipe0, eq)
+v(pipe, pipe1, eq)
 vnames()
 values()
 vtable()

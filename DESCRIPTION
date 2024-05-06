@@ -1,20 +1,11 @@
 Package: uj
-Title: Utilities by JAM: flexible, compact utility code
+Title: Utilities by JAM
 Version: 0.0.0.9000
 Authors@R:
     person(given = "Joseph", family = "Martineau",
            email = "martineauj@gmail.com", role = c("aut", "cre"))
-Description: Defines new object types (scalar, vect, mvect, vlist), extended
-    classes such as atomic data.frames, extended modes such as non-negative
-    whole numbered, fundamental types, shapes, defined dimensionality, effective
-    dimensionality, and completeness. Check for any combination of properties
-    plus compatibility and comparability of objects; valid element, row, and
-    column counts; and valid element values. Robust variable validation, more
-    compact and new features for 'apply' functionality, string management,
-    failsafe logical functions, and some additional general utility functions
-    that make my coding life easier.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Description: This package is a collection of utility functions I have created over time falling into several categories, including thin wrappers for functions in other packages, extended-functionality wrappers for functions in other packages, extended properties and property checking (?ppp), comprehensive property-based error banking/checking/throwing (?check_xxx, ?stopperr), failsafe object evaluation (?failsafe), string building, text formatting for plotting, text formatting for display on the console, interaction with the user via the console (?alert), and rectangular data cleaning (?clean_data)
+License: GPL > 3
 Encoding: UTF-8
 Imports:
     tidyverse, tibble, stringr, scales

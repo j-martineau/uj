@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{blank}
 \alias{blank}
-\title{Blank strings}
+\title{Is an Object a Scalar Blank String?}
 \usage{
 blank(x)
 }
@@ -14,15 +14,15 @@ blank(x)
 A logical scalar
 }
 \description{
-Evaluate whether \code{x} is a blank string scalar (i.e., \code{""}).
+Evaluates whether \code{x} is a blank string scalar (i.e., \code{""}).
 }
 \examples{
-blank(NA)
-blank(c("", ""))
 blank("")
-blank(v(blank))
 blank(2)
+blank(NA)
 blank(NULL)
+blank(v(blank))
+blank(c("", ""))
 }
 \seealso{
 Other strings: 

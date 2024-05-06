@@ -54,6 +54,9 @@ cls(egObj3)
 Other properties: 
 \code{\link{as_mmm}()},
 \code{\link{comparable}()},
-\code{\link{compatible}()}
+\code{\link{compatible}()},
+\code{\link{iii_PROPS}()},
+\code{\link{mmm_PROPS}()},
+\code{\link{sss_PROPS}()}
 }
 \concept{properties}

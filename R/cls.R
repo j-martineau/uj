@@ -28,7 +28,7 @@ rm_cls <- function(x, ...) {
   rmClass <- base::as.character(uj::uv(...))
   allClass <- base::class(x)
   keepClass <- allClass[!(allClass %in% rmClass)]
-  if (base::length(keepClass) == 0) {ppp::stopperr("There are no classes remaining.", pkg = "uj")}
+  if (base::length(keepClass) == 0) {uj::stopperr("There are no classes remaining.", pkg = "uj")}
   base::class(x) <- keepClass
   x
 }

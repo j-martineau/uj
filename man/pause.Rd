@@ -34,6 +34,7 @@ Pause for \code{x} seconds, then resume execution.
 \seealso{
 Other meta: 
 \code{\link{callers}()},
+\code{\link{console_basics}()},
 \code{\link{dot_args}()},
 \code{\link{ply}()},
 \code{\link{purge}()},

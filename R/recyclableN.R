@@ -53,11 +53,11 @@
 recyclable_ns <- function(..., .n = NULL, .min = NULL, .max = NULL, .targ = NULL) {
   ns     <- uj::av(...)
   okDots <- base::length(ns) > 0
-  okNs   <- uj::f0(!okDots, T, ppp::.cmp_psw_vec(ns))
-  okN    <- uj::f0(base::is.null(.n), T, ppp::.cmp_psw_vec(.n))
-  okMIN  <- uj::f0(base::is.null(.min), T, ppp::.cmp_psw_scl(.min))
-  okMAX  <- uj::f0(base::is.null(.max), T, ppp::.cmp_psw_scl(.max))
-  okTARG <- uj::f0(base::is.null(.targ), T, ppp::.cmp_psw_scl(.targ))
+  okNs   <- uj::f0(!okDots, T, uj::.cmp_psw_vec(ns))
+  okN    <- uj::f0(base::is.null(.n), T, uj::.cmp_psw_vec(.n))
+  okMIN  <- uj::f0(base::is.null(.min), T, uj::.cmp_psw_scl(.min))
+  okMAX  <- uj::f0(base::is.null(.max), T, uj::.cmp_psw_scl(.max))
+  okTARG <- uj::f0(base::is.null(.targ), T, uj::.cmp_psw_scl(.targ))
   errs   <- NULL
   if (!okDots) {errs <- base::c(errs, "[...] is empty.")}
   if (!okNs  ) {errs <- base::c(errs, "[...] must atomize (?av) to a complete positive whole-number vec (?cmp_psw_vec).")}
@@ -65,7 +65,7 @@ recyclable_ns <- function(..., .n = NULL, .min = NULL, .max = NULL, .targ = NULL
   if (!okMIN ) {errs <- base::c(errs, "[.min] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
   if (!okMAX ) {errs <- base::c(errs, "[.max] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
   if (!okTARG) {errs <- base::c(errs, "[.targ] must be NULL or a complete positive whole-number scalar (?cmp_psw_scl).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   if (base::is.null(.targ)) {.targ <- base::max(ns)}
   reps <- .targ / ns
   if (!base::all(reps == base::round(reps))) {return(F)}
@@ -81,11 +81,11 @@ recyclable <- function(..., .n = NULL, .min = 1, .max = NULL, .targ = NULL, .err
   x    <- base::list(...)
   errs <- NULL
   if (base::length(x) == 0                      ) {errs <- base::c(errs, "[...] is empty.")}
-  if (!base::all(base::sapply(x, ppp::.atm_vec))) {errs <- base::c(errs, "Arguments in [...] must be atomic vecs (?atm_vec).")}
-  if (!ppp::.cmp_lgl_scl(.err)                  ) {errs <- base::c(errs, "[.err] must be scalar TRUE or scalar FALSE.")}
-  if (!base::is.null(errs)                      ) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::all(base::sapply(x, uj::.atm_vec))) {errs <- base::c(errs, "Arguments in [...] must be atomic vecs (?atm_vec).")}
+  if (!uj::.cmp_lgl_scl(.err)                  ) {errs <- base::c(errs, "[.err] must be scalar TRUE or scalar FALSE.")}
+  if (!base::is.null(errs)                      ) {uj::stopperr(errs, pkg = "uj")}
   y <- uj::recyclable_ns(uj::ns(x), .n = .n, .min = .min, .max = .max, .targ = .targ)
-  if (.err & !y) {ppp::stopperr("[...] arguments are not recyclable.", pkg = "uj")}
+  if (.err & !y) {uj::stopperr("[...] arguments are not recyclable.", pkg = "uj")}
   y
 }
 

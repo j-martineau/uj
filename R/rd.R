@@ -2,11 +2,11 @@
   if (base::is.null(file)) {
     prompt <- uj::f0(d == ",", "comma (,)", uj::f0(d == "\t", "tab", uj::f0(d == " ", "space", uj::f0(d == ".", "dot (.)", uj::f0(d == "|", "pipe (|)", uj::f0(d == ":", "colon (:)", uj::f0(d == ";", "semicolon (;)", uj::f0(d == "`", "backtick (`)", uj::f0(d == "^", "caret (^)", uj::f0(d == "~", "tilde (~)", uj::g("`", d, "`")))))))))))
     prompt <- base::paste0(type, "in rectangular", prompt, "delimited text format", collapse = " ")
-    file   <- dlg::choose_doc(prompt)
+    file   <- uj::choose_doc(prompt)
   }
-  if (!ppp::.cmp_chr_vec(file)) {ppp::stopperr("[file] must be NULL or a complete character vec (?cmp_chr_vec)", pkg = "uj")}
+  if (!uj::.cmp_chr_vec(file)) {uj::stopperr("[file] must be NULL or a complete character vec (?cmp_chr_vec)", pkg = "uj")}
   file <- base::paste0(file, collapse = "")
-  if (!base::file.exists(file)) {ppp::stopperr(base::paste0("the specified file ('", file, "') does not exist."), pkg = "uj")}
+  if (!base::file.exists(file)) {uj::stopperr(base::paste0("the specified file ('", file, "') does not exist."), pkg = "uj")}
   file
 }
 
@@ -35,10 +35,10 @@ rd <- function() {utils::help("rd", package = "uj")}
 #' @export
 rd_xsv <- function(d, type = "data file", file = NULL, ...) {
   errs <- NULL
-  if (!ppp::.cmp_ch1_scl(d   )) {errs <- base::c(errs, "[d] must be a complete onechar scalar (?cmp_ch1_scl).")}
-  if (!ppp::.cmp_str_scl(type)) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
-  if (!base::is.null(file    )) {if (!ppp::.cmp_str_scl(file)) {errs <- base::c(errs, "[file] must be a complete string scalar (?cmp_str_scl).")}}
-  if (!base::is.null(errs    )) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.cmp_ch1_scl(d   )) {errs <- base::c(errs, "[d] must be a complete onechar scalar (?cmp_ch1_scl).")}
+  if (!uj::.cmp_str_scl(type)) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
+  if (!base::is.null(file    )) {if (!uj::.cmp_str_scl(file)) {errs <- base::c(errs, "[file] must be a complete string scalar (?cmp_str_scl).")}}
+  if (!base::is.null(errs    )) {uj::stopperr(errs, pkg = "uj")}
   readr::read_delim(uj:::.rd_filename(type, file, d), delim = d, ...)
 }
 
@@ -46,9 +46,9 @@ rd_xsv <- function(d, type = "data file", file = NULL, ...) {
 #' @export
 rd_csv <- function(type = "data file", file = NULL, ...) {
   errs <- NULL
-  if (!ppp::.cmp_str_scl(type)) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
-  if (!base::is.null(file    )) {if (!ppp::.cmp_str_scl(file)) {errs <- base::c(errs, "[file] must be a complete string scalar (?cmp_str_scl).")}}
-  if (!base::is.null(errs    )) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.cmp_str_scl(type)) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
+  if (!base::is.null(file    )) {if (!uj::.cmp_str_scl(file)) {errs <- base::c(errs, "[file] must be a complete string scalar (?cmp_str_scl).")}}
+  if (!base::is.null(errs    )) {uj::stopperr(errs, pkg = "uj")}
   readr::read_csv(uj:::.rd_filename(type, file, ","), ...)
 }
 
@@ -56,9 +56,9 @@ rd_csv <- function(type = "data file", file = NULL, ...) {
 #' @export
 rd_tsv <- function(type = "data file", file = NULL, ...) {
   errs <- NULL
-  if (!ppp::.cmp_str_scl(type)) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
-  if (!base::is.null(file    )) {if (!ppp::.cmp_str_scl(file)) {errs <- base::c(errs, "[file] must be a complete string scalar (?cmp_str_scl).")}}
-  if (!base::is.null(errs    )) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.cmp_str_scl(type)) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
+  if (!base::is.null(file    )) {if (!uj::.cmp_str_scl(file)) {errs <- base::c(errs, "[file] must be a complete string scalar (?cmp_str_scl).")}}
+  if (!base::is.null(errs    )) {uj::stopperr(errs, pkg = "uj")}
   readr::read_tsv(uj:::.rd_filename(type, file, "\t"), ...)
 }
 

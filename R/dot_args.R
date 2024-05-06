@@ -85,11 +85,11 @@ dot_by_name <- function(.name, .def, ...) {
   errs <- NULL
   if (uj::is_err(.name)) {errs <- base::c(errs, "[.name] must be a complete character scalar (?cmp_chr_scl).")}
   if (uj::is_err(.def)) {errs <- base::c(errs, "[.def] is not a valid R object.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
-  if (!ppp::.cmp_chr_scl(.name)) {ppp::stopperr("[.name] must be a complete character scalar (?cmp_chr_scl).", pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!uj::.cmp_chr_scl(.name)) {uj::stopperr("[.name] must be a complete character scalar (?cmp_chr_scl).", pkg = "uj")}
   if (base::...length() == 0) {return(.def)}
   i <- base::which(base::...names() == .name)
-  if (base::length(i) > 1) {ppp::stopperr("[.name] matches the names of multiple [...] arguments.", pkg = "uj")}
+  if (base::length(i) > 1) {uj::stopperr("[.name] matches the names of multiple [...] arguments.", pkg = "uj")}
   if (base::length(i) == 0) {.def} else {base::...elt(i)}
 }
 
@@ -99,11 +99,11 @@ dots_by_name <- function(.names, .defs, ...) {
   errs <- NULL
   if (uj::is_err(.names)) {errs <- base::c(errs, "[.names] must be a unique character vec (?unq_chr_vec).")}
   if (uj::is_err(.defs)) {errs <- base::c(errs, "[.defs] is not a valid R object.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
-  if (!ppp::.unq_chr_vec(.names)) {errs <- base::c(errs, "[.names] must be a unique character vec (?unq_chr_vec).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!uj::.unq_chr_vec(.names)) {errs <- base::c(errs, "[.names] must be a unique character vec (?unq_chr_vec).")}
   if (base::is.data.frame(.defs) | !base::is.list(.defs) | base::length(.defs) != base::length(.names)) {errs <- base::c(errs, "[.defs] must be a non-data.frame list of length equal to length(.names).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
-  if (!base::setequal(.names, base::names(.defs))) {ppp::stopperr("setequal(.names, names(.defs)) must be TRUE.", pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::setequal(.names, base::names(.defs))) {uj::stopperr("setequal(.names, names(.defs)) must be TRUE.", pkg = "uj")}
   if (base::...length() == 0) {return(.defs[.names])}
   if (base::length(.names) == 1) {return(uj::dot_by_name(.names, .defs, ...))}
   y <- NULL
@@ -131,13 +131,13 @@ dot_names <- function(..., .subs = NULL, .req = TRUE, .bl = FALSE, .u = TRUE) {
   if (!base::isTRUE(.req) & !base::isFALSE(.req)) {errs <- base::c(errs, "[.req] must be TRUE or FALSE.")}
   if (!base::isTRUE(.bl) & !base::isFALSE(.bl)) {errs <- base::c(errs, "[.bl] must be TRUE or FALSE.")}
   if (!base::isTRUE(.u) & !base::isFALSE(.u)) {errs <- base::c(errs, "[.u] must be TRUE or FALSE.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   allNamed <- uj::f0(nDots != base::length(dotNames), F,
                       uj::f0(!base::any(base::is.na(dotNames)), T,
-                             uj::f0(base::length(.subs) != nDots, F, ppp::.unq_chr_vec(.subs))))
-  if (!allNamed) {ppp::stopperr("When [.req = TRUE], all [...] args must be named or [.subs] must be a complete character vec (?cmp_chr_vec) of length [...length()].", pkg = "uj")}
+                             uj::f0(base::length(.subs) != nDots, F, uj::.unq_chr_vec(.subs))))
+  if (!allNamed) {uj::stopperr("When [.req = TRUE], all [...] args must be named or [.subs] must be a complete character vec (?cmp_chr_vec) of length [...length()].", pkg = "uj")}
   if (!.bl) {dotNames[dotNames == ""] <- .subs[dotNames == ""]}
-  if (.u & !uj:::...u(dotNames)) {ppp::stopperr("When [.u = TRUE], [...names()] and [.subs], taken together, must give unique names for all [...] args.", pkg = "uj")}
+  if (.u & !uj::...u(dotNames)) {uj::stopperr("When [.u = TRUE], [...names()] and [.subs], taken together, must give unique names for all [...] args.", pkg = "uj")}
   dotNames
 }
 
@@ -171,9 +171,9 @@ anon_dots <- function(...) {
 #' @export
 named_dot <- function(.n, ...) {
   .n <- uj::failsafe(.n)
-  if (!ppp::.cmp_psw_scl(.n)) {ppp::stopperr("[.n] must be a positive whole-number scalar in 1:length(named_dots(...)).", pkg = "uj")}
+  if (!uj::.cmp_psw_scl(.n)) {uj::stopperr("[.n] must be a positive whole-number scalar in 1:length(named_dots(...)).", pkg = "uj")}
   x <- uj::named_dots(...)
-  if (.n > base::length(x)) {ppp::stopperr("[.n] is greater than length(named_dots(...)).", pkg = "uj")}
+  if (.n > base::length(x)) {uj::stopperr("[.n] is greater than length(named_dots(...)).", pkg = "uj")}
   x[.n]
 }
 
@@ -181,9 +181,9 @@ named_dot <- function(.n, ...) {
 #' @export
 anon_dot <- function(.n, ...) {
   .n <- uj::failsafe(.n)
-  if (!ppp::.cmp_psw_scl(.n)) {ppp::stopperr("[.n] must be a positive whole-number scalar in 1:length(named_dots(...)).", pkg = "uj")}
+  if (!uj::.cmp_psw_scl(.n)) {uj::stopperr("[.n] must be a positive whole-number scalar in 1:length(named_dots(...)).", pkg = "uj")}
   x <- uj::anon_dots(...)
-  if (.n > base::length(x)) {ppp::stopperr("[.n] is greater than length(anon_dots(...)).", pkg = "uj")}
+  if (.n > base::length(x)) {uj::stopperr("[.n] is greater than length(anon_dots(...)).", pkg = "uj")}
   x[.n]
 }
 
@@ -197,14 +197,14 @@ flex_dot <- function(.n, ..., .glue = FALSE, .def = "", .d = " ") {
   nDots <- base::...length()
   nDef <- base::length(.def)
   errs <- NULL
-  if (!ppp::.cmp_psw_scl(.n)) {errs <- base::c(errs, "[.n] must be a positive whole-number scalar in 1:length(named_dots(...)).")}
-  if (!ppp::.cmp_lgl_scl(.glue)) {errs <- base::c(errs, "[.glue] must be TRUE or FALSE ().")}
-  if (!ppp::.cmp_chr_vec(.def)) {errs <- base::c(errs, "[.def] must be a complete character vec (?cmp_chr_vec).")}
-  if (!ppp::.cmp_chr_scl(.d)) {errs <- base::c(errs, "[.d] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.cmp_psw_scl(.n)) {errs <- base::c(errs, "[.n] must be a positive whole-number scalar in 1:length(named_dots(...)).")}
+  if (!uj::.cmp_lgl_scl(.glue)) {errs <- base::c(errs, "[.glue] must be TRUE or FALSE ().")}
+  if (!uj::.cmp_chr_vec(.def)) {errs <- base::c(errs, "[.def] must be a complete character vec (?cmp_chr_vec).")}
+  if (!uj::.cmp_chr_scl(.d)) {errs <- base::c(errs, "[.d] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   if (!(.n %in% 1:nDots)) {errs <- base::c(errs, "[.n] must be in 1:...length().")}
   if (nDef != 1 & nDef != nDots) {errs <- base::c(errs, "[.def] must be of length 1 or of length ...length().")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   if (base::...length() > 0) {
     parts <- base::as.list(base::sys.call(base::length(base::sys.calls()) - 1))
     partNames <- base::names(parts)
@@ -223,8 +223,8 @@ flex_dot <- function(.n, ..., .glue = FALSE, .def = "", .d = " ") {
     if      (dotError                   ) {y <- dotLabel}
     else if (base::is.function(dotValue)) {y <- dotLabel}
     else if (dotName != ""              ) {y <- base::as.character(uj::av(dotValue))}
-    else if (!uj:::.CMP(dotValue)       ) {y <- dotLabel}
-    else if (!uj:::.CHR(dotValue)       ) {y <- dotLabel}
+    else if (!uj::.CMP(dotValue)       ) {y <- dotLabel}
+    else if (!uj::.CHR(dotValue)       ) {y <- dotLabel}
     else                                  {y <- dotValue}
     if (base::is.null(y)) {y <- ""}
     if (.glue) {base::paste0(uj::av(y), collapse = .d)} else {y}
@@ -235,10 +235,10 @@ flex_dot <- function(.n, ..., .glue = FALSE, .def = "", .d = " ") {
 #' @export
 flex_dots <- function(..., .glue = FALSE, .def = "", .d = " ") {
   errs <- NULL
-  if (!ppp::.cmp_lgl_scl(.glue)) {errs <- base::c(errs, "[.glue] must be TRUE or FALSE ().")}
-  if (!ppp::.cmp_chr_vec(.def)) {errs <- base::c(errs, "[.def] must be a complete character vec (?cmp_chr_vec).")}
-  if (!ppp::.cmp_chr_scl(.d)) {errs <- base::c(errs, "[.d] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.cmp_lgl_scl(.glue)) {errs <- base::c(errs, "[.glue] must be TRUE or FALSE ().")}
+  if (!uj::.cmp_chr_vec(.def)) {errs <- base::c(errs, "[.def] must be a complete character vec (?cmp_chr_vec).")}
+  if (!uj::.cmp_chr_scl(.d)) {errs <- base::c(errs, "[.d] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   if (base::...length() > 0) {
     y <- NULL
     for (i in 1:base::...length()) {y <- base::c(y, base::list(uj::flex_dot(..., .n = i, .glue = .glue, .def = .def, .d = .d)))}
@@ -253,10 +253,10 @@ glue_dot <- function(..., .n = 1, .def = "", .d = " ") {
   .def <- uj::failsafe(.def)
   .d <- uj::failsafe(.d)
   errs <- NULL
-  if (!ppp::.cmp_psw_scl(.n)) {errs <- base::c(errs, "[.n] must be a positive whole-number scalar in 1:length(named_dots(...)).")}
-  if (!ppp::.cmp_chr_vec(.def)) {errs <- base::c(errs, "[.def] must be a complete character vec (?cmp_chr_vec).")}
-  if (!ppp::.cmp_chr_scl(.d)) {errs <- base::c(errs, "[.d] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.cmp_psw_scl(.n)) {errs <- base::c(errs, "[.n] must be a positive whole-number scalar in 1:length(named_dots(...)).")}
+  if (!uj::.cmp_chr_vec(.def)) {errs <- base::c(errs, "[.def] must be a complete character vec (?cmp_chr_vec).")}
+  if (!uj::.cmp_chr_scl(.d)) {errs <- base::c(errs, "[.d] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   if (.n <= base::...length()) {
     y <- uj::failsafe(base::...elt(.n))
     if (!uj::is_err(y)) {
@@ -271,9 +271,9 @@ glue_dots <- function(..., .def = "", .d = " ") {
   .def <- uj::failsafe(.def)
   .d <- uj::failsafe(.d)
   errs <- NULL
-  if (!ppp::.cmp_chr_vec(.def)) {errs <- base::c(errs, "[.def] must be a complete character vec (?cmp_chr_vec).")}
-  if (!ppp::.cmp_chr_scl(.d)) {errs <- base::c(errs, "[.d] must be a complete character scalar (?cmp_chr_scl).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.cmp_chr_vec(.def)) {errs <- base::c(errs, "[.def] must be a complete character vec (?cmp_chr_vec).")}
+  if (!uj::.cmp_chr_scl(.d)) {errs <- base::c(errs, "[.d] must be a complete character scalar (?cmp_chr_scl).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   y <- ""
   for (i in 1:base::...length()) {y <- base::c(y, uj::glue_dot(base::...elt(i), .n = i, .def = .def, .d = .d))}
   base::paste0(uj::av(y), collapse = .d)

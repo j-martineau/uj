@@ -50,14 +50,14 @@
 #' @export
 weave <- function(tmp, ...) {
   nDots <- base::...length()
-  okTmp <- ppp::.cmp_chr_scl(tmp)
+  okTmp <- uj::.cmp_chr_scl(tmp)
   okN   <- nDots > 0
-  okPPP <- base::ifelse(okN, base::all(base::sapply(base::list(...), ppp::cmp_chr)), T)
+  okPPP <- base::ifelse(okN, base::all(base::sapply(base::list(...), uj::cmp_atm)), T)
   errs  <- NULL
   if (!okN  ) {errs <- base::c(errs, "[...] is empty.")}
   if (!okTmp) {errs <- base::c(errs, "[tmp] must be a complete character scalar (?cmp_chr_scl).")}
   if (!okPPP) {errs <- base::c(errs, "Arguments in [...] must be complete character objects (?cmp_chr).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   dots            <- base::list(...)                                                                                                                      # The arguments to weave into X
   nonScl          <- " is not scalar, but the "                                                                                                           # argument is not scalar
   nonNum          <- " is not numeric, but the "                                                                                                          # argument is not numeric
@@ -85,16 +85,17 @@ weave <- function(tmp, ...) {
   switches1       <- uj::f0(base::setequal(uj::av(switches1), -1), NULL, uj::tb(Type = 1, Position = uj::av(switches1), Length = 4))                      # tibble of 1-switch pattern positions and lengths
   switches2       <- uj::f0(base::setequal(uj::av(switches2), -1), NULL, uj::tb(Type = 2, Position = uj::av(switches2), Length = 5))                      # tibble of 2-switch pattern positions and lengths
   switches3       <- uj::f0(base::setequal(uj::av(switches3), -1), NULL, uj::tb(Type = 3, Position = uj::av(switches3), Length = 6))                      # tibble of 3-switch pattern positions and lengths
-  switches        <- base::rbind(switches0, switches1, switches2, switches3)                                                                              # tibble of all switch pattern positions and lengths
-  switches        <- switches[base::order(switches$Position, decreasing = T), ]                                                                           # sort by decreasing position of first letter of pattern in [tmp]
+  switchesTbl     <- base::rbind(switches0, switches1, switches2, switches3)                                                                              # tibble of all switch pattern positions and lengths
+  switchesTbl     <- switchesTbl[base::order(switchesTbl$Position, decreasing = T), ]                                                                           # sort by decreasing position of first letter of pattern in [tmp]
   nswitches <- uj::nr(switches)                                                                                                                           # number of switch patterns found in [tmp]
-  if (nswitches != nDots) {ppp::stopperr(base::paste0(nMismatch, "(", nswitches, ") don't match."), pkg = "uj")}
+  if (nswitches != nDots) {uj::stopperr(base::paste0(nMismatch, "(", nswitches, ") don't match."), pkg = "uj")}
   dots <- base::rev(dots)
+  for (i in 1:base::length(dots)) {dots[[i]] <- base::as.character(dots[[i]])}
   errs <- NULL
   for (i in 1:nswitches) {
     prev0    <- 1
     next1    <- base::nchar(tmp)
-    code0    <- switches$pos[i]
+    code0    <- switches$Position[i]
     code1    <- code0 + switches$Length[i] - 1
     prev1    <- code0 - 1
     next0    <- code1 + 1
@@ -123,7 +124,7 @@ weave <- function(tmp, ...) {
                             uj::f0(okQuote, NULL, base::paste0("The ", seq, hasMult, quoteSwitches)),
                             uj::f0(okDecimal, NULL, base::paste0("The ", seq, hasMult, decimalSwitches)))
       if (okList & okQuote & okDecimal) {
-        dot <- dot[[i]]
+        dot <- dots[[i]]
         dotLen <- base::length(dot)
         okList <- nList == 1 | dotLen == 1
         okDot <- nDecimal == 0 | base::is.numeric(dot)
@@ -161,6 +162,6 @@ weave <- function(tmp, ...) {
 
           tmp <- base::paste0(prevText, dot, nextText)
   }}}}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   tmp
 }

@@ -14,8 +14,8 @@
 maxnch <- function(...) {
   x <- uj::av(...)
   x <- x[!base::is.na(x)]
-  if (base::length(x) == 0) {ppp::stopperr("[...] does not contain any non-NA values.", pkg = "uj")}
-  if (!base::is.character(x)) {ppp::stopperr("[...] does not contain any character objects.", pkg = "uj")}
+  if (base::length(x) == 0) {uj::stopperr("[...] does not contain any non-NA values.", pkg = "uj")}
+  if (!base::is.character(x)) {uj::stopperr("[...] does not contain any character objects.", pkg = "uj")}
   base::max(base::nchar(x))
 }
 

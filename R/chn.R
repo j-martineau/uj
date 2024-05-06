@@ -13,12 +13,12 @@
 #' charN(words, 10)
 #' @export
 chn <- function(x, n) {
-  okX <- uj:::.pop_chr(x)
-  if (ppp::.cmp_psw_scl(n)) {okN <- TRUE} else {okN <- base::length(n) == base::length(x)}
+  okX <- uj::.pop_chr(x)
+  if (uj::.cmp_psw_scl(n)) {okN <- TRUE} else {okN <- base::length(n) == base::length(x)}
   errs <- NULL
   if (!okN) {errs <- base::c(errs, "[n] must be a complete positive whole-number valued scalar (?cmp_psw_scl) or of the same dimension as [x].")}
   if (!okX) {errs <- base::c(errs, "[x] must be an populated atomic object of mode 'character' (?pop_chr).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   base::substr(x, n, n)
 }
 

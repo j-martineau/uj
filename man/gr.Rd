@@ -3,11 +3,11 @@
 \encoding{UTF-8}
 \name{gr}
 \alias{gr}
-\alias{str_h}
+\alias{st_h}
 \alias{str_w}
 \title{Thin wrappers of \code{graphics} functions.}
 \usage{
-str_h(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...)
+st_h(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...)
 
 str_w(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...)
 }

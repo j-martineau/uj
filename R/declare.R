@@ -90,7 +90,7 @@
 #' dtfNA(egABC, 3)
 #' @export
 dtf <- function(..., ..cn = NULL) {
-  labs1 <- uj::f0(base::is.null(..cn), NULL, uj::f0(ppp::.cmp_chr_scl(..cn), uj::av(base::strsplit(..cn, "|", fixed = T)), ..cn))
+  labs1 <- uj::f0(base::is.null(..cn), NULL, uj::f0(uj::.cmp_chr_scl(..cn), uj::av(base::strsplit(..cn, "|", fixed = T)), ..cn))
   labs2 <- uj::dn()
   labs <- uj::f0(!base::is.null(labs1), labs1, labs2)
   x <- base::list(...)
@@ -104,10 +104,10 @@ dtf <- function(..., ..cn = NULL) {
   if (!okLb1) {errs <- base::c(errs, "the number of column names in [..cn] must equal [...length()] when [..cn] is not NULL.")}
   if (!okLb2) {errs <- base::c(errs, "[...] arguments must be named when [..cn = NULL].")}
   if (!okLbs) {errs <- base::c(errs, "column names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   ns <- uj::ns(x)
   maxN <- base::max(ns)
-  ok1 <- base::all(base::sapply(x, ppp::.atm_vec))
+  ok1 <- base::all(base::sapply(x, uj::.atm_vec))
   ok2 <- base::all(ns > 0)
   ok3 <- uj::f0(!ok1, T, base::all((maxN / ns) == base::round(maxN / ns)))
   ok4 <- base::length(labs) == base::length(base::unique(labs))
@@ -115,7 +115,7 @@ dtf <- function(..., ..cn = NULL) {
   if (!ok2) {errs <- base::c(errs, "[...] arguments may not be of length 0.")}
   if (!ok3) {errs <- base::c(errs, "[...] arguments are not recyclable.")}
   if (!ok4) {errs <- base::c(errs, "column names must be unique.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   x <- tibble::tibble(...)
   base::colnames(x) <- labs
   x
@@ -127,7 +127,7 @@ dtf. <- function(...) {
   labs <- base::as.character(base::match.call())
   labs <- labs[2:base::length(labs)]
   okN <- base::...length() > 0
-  avc <- uj::f0(!okN, T, base::all(base::sapply(base::list(...), ppp::.atm_vec)))
+  avc <- uj::f0(!okN, T, base::all(base::sapply(base::list(...), uj::.atm_vec)))
   unq <- uj::f0(!okN, T, base::length(labs) == base::length(base::unique(labs)))
   lab <- uj::f0(!okN | !unq, T, uj:::.labs_ok(labs))
   if (okN & avc) {
@@ -141,7 +141,7 @@ dtf. <- function(...) {
   if (!avc) {errs <- base::c(errs, "[...] arguments must be atomic vecs (?atm_vec).")}
   if (!rec) {errs <- base::c(errs, "[...] arguments are not recyclable.")}
   if (!lab) {errs <- base::c(errs, "[...] argument names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   code <- base::paste0("tibble::tibble(", base::paste0(base::paste0(labs, "=", labs), collapse = ", "), ")")
   base::eval.parent(base::parse(text = code, n = 1))
 }
@@ -149,9 +149,9 @@ dtf. <- function(...) {
 #' @rdname declare
 #' @export
 dtf0 <- function(.cn) {
-  if (!ppp::.cmp_chr_vec(.cn)) {ppp::stopperr("[.cn] must be a complete character vector (?cmp_chr_vec).", pkg = "uj")}
+  if (!uj::.cmp_chr_vec(.cn)) {uj::stopperr("[.cn] must be a complete character vector (?cmp_chr_vec).", pkg = "uj")}
   .cn <- uj::av(base::strsplit(.cn, "|", fixed = T))
-  if (!uj:::.labs_ok(.cn)) {ppp::stopperr("column names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.", pkg = "uj")}
+  if (!uj:::.labs_ok(.cn)) {uj::stopperr("column names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.", pkg = "uj")}
   code <- base::paste0("tibble::tibble(", base::paste0(base::paste0(.cn, " = NA"), collapse = ", "), ", rows = 0)")
   uj::run(code)
 }
@@ -160,11 +160,11 @@ dtf0 <- function(.cn) {
 #' @export
 dtfNA <- function(.cn, .nr) {
   errs <- NULL
-  if (!ppp::.cmp_chr_vec(.cn)) {errs <- base::c(errs, "[.cn] must be a complete character vector (?cmp_chr_vec).")}
-  if (!ppp::.cmp_psw_scl(.nr)) {errs <- base::c(errs, "[.nr] must be NULL or a positive whole number scalar (?cmp_psw_scl).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.cmp_chr_vec(.cn)) {errs <- base::c(errs, "[.cn] must be a complete character vector (?cmp_chr_vec).")}
+  if (!uj::.cmp_psw_scl(.nr)) {errs <- base::c(errs, "[.nr] must be NULL or a positive whole number scalar (?cmp_psw_scl).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   .cn <- uj::av(base::strsplit(.cn, "|", fixed = T))
-  if (!uj:::.labs_ok(.cn)) {ppp::stopperr("Column names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.", pkg = "uj")}
+  if (!uj:::.labs_ok(.cn)) {uj::stopperr("Column names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.", pkg = "uj")}
   code <- base::paste0("tibble::tibble(", base::paste0(base::paste0(.cn, " = base::rep.int(NA, .nr)"), collapse = ", "), ")")
   uj::run(code)
 }
@@ -176,13 +176,13 @@ mat <- function(..., .r = 1, .nr = NULL, .nc = NULL, .br = F, .rn = NULL, .cn = 
   x <- uj::av(...)
   if (base::length(x) == 0) {x <- NA}
   errs <- NULL
-  if (!ppp::.cmp_psw_scl(.r)) {errs <- base::c(errs, "[.r] must be a positive whole number scalar (?cmp_psw_scl).")}
-  if (!base::is.null(.nr) & !ppp::.cmp_nnw_scl(.nr)) {errs <- base::c(errs, "[.nr] must be NULL or a non-negative whole number scalar (?cmp_nnw_scl).")}
-  if (!base::is.null(.nc) & !ppp::.cmp_nnw_scl(.nc)) {errs <- base::c(errs, "[.nc] must be NULL or a non-negative whole number scalar (?cmp_nnw_scl).")}
-  if (!ppp::.cmp_lgl_scl(.br)) {errs <- base::c(errs, "[.br] must be TRUE or FALSE.")}
-  if (!base::is.null(.rn) & !ppp::.cmp_nnw_scl(.rn)) {errs <- base::c(errs, "[.rn] must be NULL or a complete character vector (?cmp_chr_vec).")}
-  if (!base::is.null(.cn) & !ppp::.cmp_nnw_scl(.cn)) {errs <- base::c(errs, "[.cn] must be NULL or a complete character vector (?cmp_chr_vec).")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!uj::.cmp_psw_scl(.r)) {errs <- base::c(errs, "[.r] must be a positive whole number scalar (?cmp_psw_scl).")}
+  if (!base::is.null(.nr) & !uj::.cmp_nnw_scl(.nr)) {errs <- base::c(errs, "[.nr] must be NULL or a non-negative whole number scalar (?cmp_nnw_scl).")}
+  if (!base::is.null(.nc) & !uj::.cmp_nnw_scl(.nc)) {errs <- base::c(errs, "[.nc] must be NULL or a non-negative whole number scalar (?cmp_nnw_scl).")}
+  if (!uj::.cmp_lgl_scl(.br)) {errs <- base::c(errs, "[.br] must be TRUE or FALSE.")}
+  if (!base::is.null(.rn) & !uj::.cmp_nnw_scl(.rn)) {errs <- base::c(errs, "[.rn] must be NULL or a complete character vector (?cmp_chr_vec).")}
+  if (!base::is.null(.cn) & !uj::.cmp_nnw_scl(.cn)) {errs <- base::c(errs, "[.cn] must be NULL or a complete character vector (?cmp_chr_vec).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   x <- base::rep.int(x, .r)
   if (base::length(x) == 1) {x <- base::rep.int(x, .nr * .nc)}
   if (base::is.null(.nr) & base::is.null(.nc)) {.nr <- 1; .nc <- base::length(x)}
@@ -190,7 +190,7 @@ mat <- function(..., .r = 1, .nr = NULL, .nc = NULL, .br = F, .rn = NULL, .cn = 
   else if (base::is.null(.nc)) {.nc <- base::length(x) / .nr}
   matchBoth <- .nr * .nc == base::length(x)
   matchOne <- .nr == round(.nr) & .nc == round(.nc)
-  if (!matchBoth | !matchOne) {ppp::stopperr("[.r * length(av(...))] is not divisible by [.nr] and/or [.nc].", pkg = "uj")}
+  if (!matchBoth | !matchOne) {uj::stopperr("[.r * length(av(...))] is not divisible by [.nr] and/or [.nc].", pkg = "uj")}
   .rn <- uj::f0(base::is.null(.rn), NULL, uj::av(base::strsplit(.rn, "|", fixed = T)))
   .cn <- uj::f0(base::is.null(.cn), NULL, uj::av(base::strsplit(.cn, "|", fixed = T)))
   okRN <- uj::f0(base::is.null(.rn), T, base::length(.rn) == .nr)
@@ -208,8 +208,8 @@ mat <- function(..., .r = 1, .nr = NULL, .nc = NULL, .br = F, .rn = NULL, .cn = 
 #' @rdname declare
 #' @export
 matNA <- function(.nr = 1, .nc = 1, .rn = NULL, .cn = NULL) {
-  okNR <- ppp::.cmp_nnw_scl(.nr)
-  okNC <- ppp::.cmp_nnw_scl(.nc)
+  okNR <- uj::.cmp_nnw_scl(.nr)
+  okNC <- uj::.cmp_nnw_scl(.nc)
   okRN <- uj::f0(uj::N(.rn) == 0, T, uj::is_EQ(uj::N(.rn), .nr))
   okCN <- uj::f0(uj::N(.cn) == 0, T, uj::is_EQ(uj::N(.cn), .nc))
   errs <- NULL
@@ -217,7 +217,7 @@ matNA <- function(.nr = 1, .nc = 1, .rn = NULL, .cn = NULL) {
   if (!okNC) {errs <- base::c(errs, "[.nc] must be a non-negative whole-number scalar.")}
   if (!okRN) {errs <- base::c(errs, "[.rn] must be NULL or of length [.nr].")}
   if (!okRN) {errs <- base::c(errs, "[.cn] must be NULL or of length [.nc].")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   x <- base::matrix(NA, nrow = .nr, ncol = .cn)
   if (!base::is.null(.rn)) {base::rownames(x) <- .rn}
   if (!base::is.null(.cn)) {base::rownames(x) <- .cn}
@@ -228,14 +228,14 @@ matNA <- function(.nr = 1, .nc = 1, .rn = NULL, .cn = NULL) {
 #' @rdname declare
 #' @export
 matd <- function(x = 1, .r = 1) {
-  okX <- (uj:::.NUM(x) | uj:::.LGL(x) | uj:::.CHR(x))
-  okR <- ppp::.cmp_psw_scl(.r)
+  okX <- (uj::.NUM(x) | uj::.LGL(x) | uj::.CHR(x))
+  okR <- uj::.cmp_psw_scl(.r)
   okGE1 <- uj::f0(!okX | !okR, T, base::length(x) > 1 | .r > 1)
   errs <- NULL
   if (!okX) {errs <- base::c(errs, "[x] must be an numeric, logical, or character.")}
   if (!okR) {errs <- base::c(errs, "[.r] must a positive whole-number scalar (?cmp_psw_scl).")}
   if (!okGE1) {errs <- base::c(errs, "Neither [length(x)] nor [.r] is greater than 1.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   .nr <- base::nrow(x)
   .nc <- base::ncol(x)
   if (base::is.matrix(x)) {if (.nr > 0 & .nr == .nc) {x <- base::diag(x, .nr, .nc)}}
@@ -243,7 +243,7 @@ matd <- function(x = 1, .r = 1) {
   if (.r > 1) {x <- base::rep(x, .r)}
   if (base::all(base::is.na(x))) {x[base::is.na(x)] <- NA_real_}
   n <- base::length(x)
-  bl <- uj::f0(uj:::.NUM(x), 0, uj::f0(uj:::.LGL(x), F, uj::f0(uj:::.CHR(x), "", NA)))
+  bl <- uj::f0(uj::.NUM(x), 0, uj::f0(uj::.LGL(x), F, uj::f0(uj::.CHR(x), "", NA)))
   y <- base::matrix(bl, nrow = n, ncol = n)
   base::diag(y) <- x
   y
@@ -252,12 +252,12 @@ matd <- function(x = 1, .r = 1) {
 #' @rdname declare
 #' @export
 vec <- function(..., .r = 1, .vn = NULL) {
-  if (base::...length() > 0 | ppp::.cmp_psw_scl(.r)) {
+  if (base::...length() > 0 | uj::.cmp_psw_scl(.r)) {
     x <- uj::av(...)
     errs <- NULL
-    if (!ppp::.cmp_nnw_scl(.r)) {errs <- base::c(errs, "[.r] must be a non-negative whole-number scalar (?cmp_nnw_scl).")}
-    if (!base::is.null(.vn) & !ppp::.cmp_chr_vec(.vn)) {errs <- base::c(errs, "[.vn] must be NULL or a complete character vec (?cmp_chr_vec).")}
-    if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+    if (!uj::.cmp_nnw_scl(.r)) {errs <- base::c(errs, "[.r] must be a non-negative whole-number scalar (?cmp_nnw_scl).")}
+    if (!base::is.null(.vn) & !uj::.cmp_chr_vec(.vn)) {errs <- base::c(errs, "[.vn] must be NULL or a complete character vec (?cmp_chr_vec).")}
+    if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
     if (.r > 1) {x <- base::rep.int(x, .r)}
     if (!base::is.null(.vn)) {
       .vn <- uj::av(base::strsplit(.vn, "|", fixed = T))
@@ -267,7 +267,7 @@ vec <- function(..., .r = 1, .vn = NULL) {
       base::names(x) <- .vn
     }
     x
-  } else if (!ppp::.cmp_nnw_scl(.r)) {ppp::stopperr("[.r] must be a non-negative whole-number scalar (?cmp_nnw_scl).", pkg = "uj")}
+  } else if (!uj::.cmp_nnw_scl(.r)) {uj::stopperr("[.r] must be a non-negative whole-number scalar (?cmp_nnw_scl).", pkg = "uj")}
   else {base::vector()}
 }
 
@@ -277,7 +277,7 @@ vec. <- function(...) {
   labs <- base::as.character(base::match.call())
   labs <- labs[2:base::length(labs)]
   okN <- base::...length() > 0
-  asc <- uj::f0(!okN, T, base::all(base::sapply(base::list(...), ppp::.atm_scl)))
+  asc <- uj::f0(!okN, T, base::all(base::sapply(base::list(...), uj::.atm_scl)))
   unq <- uj::f0(!okN, T, base::length(labs) == base::length(base::unique(labs)))
   lab <- uj::f0(!okN | !unq, T, uj:::.labs_ok(labs))
   errs <- NULL
@@ -285,7 +285,7 @@ vec. <- function(...) {
   if (!unq) {errs <- base::c(errs, "[...] argument names must be uniquely.")}
   if (!asc) {errs <- base::c(errs, "[...] arguments must be atomic and scalar (?atm_scl).")}
   if (!lab) {errs <- base::c(errs, "[...] argument names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   code <- base::paste0("base::c(", base::paste0(uj::p0(labs, "=", labs), collapse = ", "), ")")
   base::eval.parent(base::parse(text = code, n = 1))
 }
@@ -297,16 +297,16 @@ vecNA <- function(.r) {base::rep.int(NA, .r)}
 #' @rdname declare
 #' @export
 vls <- function(..., .vn = NULL) {
-  export <- uj::f0(ppp::cmp_chr_vec(.vn), uj::av(base::strsplit(.vn, "|", fixed = T)), .vn)
+  export <- uj::f0(uj::cmp_chr_vec(.vn), uj::av(base::strsplit(.vn, "|", fixed = T)), .vn)
   y <- base::list(...)
   nDots <- base::length(y)
-  okVN <- uj::f0(base::is.null(export), T, uj::f0(!ppp::cmp_chr_vec(.vn), F, base::length(.vn) == nDots))
+  okVN <- uj::f0(base::is.null(export), T, uj::f0(!uj::cmp_chr_vec(.vn), F, base::length(.vn) == nDots))
   errs <- NULL
   if (nDots == 0) {errs <- base::c(errs, "[...] is empty.")}
   if (!okVN) {errs <- base::c(errs, "[.vn] must be NULL or match the number of arguments in [...].")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
-  if (!uj::f0(base::is.null(.vn), T, uj:::.labs_ok(.vn))) {ppp::stopperr("element names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.", pkg = "uj")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!uj::f0(base::is.null(.vn), T, uj:::.labs_ok(.vn))) {uj::stopperr("element names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.", pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   uj::name_vals(y, .vn)
 }
 
@@ -322,7 +322,7 @@ vls. <- function(...) {
   if (!okN) {errs <- base::c(errs, "[...] is empty.")}
   if (!unq) {errs <- base::c(errs, "[...] arguments must be uniquely named.")}
   if (!lab) {errs <- base::c(errs, "[...] argument names must contain only unaccented English letters, numerals, periods, and underscores. They must begin with a letter or a period followed by a letter and must end with a letter or numeral.")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   code <- base::paste0("list(", base::paste0(base::paste0(labs, "=", labs), collapse = ", "), ")")
   base::eval.parent(base::parse(text = code, n = 1))
 }

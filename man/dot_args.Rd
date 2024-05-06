@@ -143,6 +143,7 @@ egdot_args(letters, digits = 0:9, data.frame(letters, 0:26))
 \seealso{
 Other meta: 
 \code{\link{callers}()},
+\code{\link{console_basics}()},
 \code{\link{pause}()},
 \code{\link{ply}()},
 \code{\link{purge}()},

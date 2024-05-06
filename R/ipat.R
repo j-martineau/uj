@@ -3,9 +3,9 @@
 .pat_errs <- function(x, pat, stack) {
   errs <- NULL
   fun <- uj::caller()
-  if (!ppp::.cmp_chr_vec(x  )) {base::c(errs, "[x] must be a complete character vec (?cmp_chr_vec)."  )}
-  if (!ppp::.cmp_str_scl(pat)) {base::c(errs, "[pat] must be a complete string scalar (?cmp_str_scl).")}
-  ppp::stopperr(errs, fun = fun, pkg = "uj", stack = stack)
+  if (!uj::.cmp_chr_vec(x  )) {base::c(errs, "[x] must be a complete character vec (?cmp_chr_vec)."  )}
+  if (!uj::.cmp_str_scl(pat)) {base::c(errs, "[pat] must be a complete string scalar (?cmp_str_scl).")}
+  uj::stopperr(errs, fun = fun, pkg = "uj", stack = stack)
 }
 
 # exported

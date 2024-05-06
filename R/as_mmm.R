@@ -51,32 +51,32 @@
 as_mmm <- function(x, mode, levs = NULL, na = FALSE) {
   valid <- base::c("chr", "clr", "fun", "int", "num", "lgl", "ord", "uno")
   err <- "Unrecognized mode; valid values are c('chr', 'clr', 'fun', 'int', 'num', 'lgl', 'ord', 'uno')."
-  if (!ppp::.cmp_chr_scl(mode)) {ppp::stopperr(err, pkg = "uj")}
-  else if (uj::not_IN(base::tolower(mode), valid)) {ppp::stopperr(err, pkg = "uj")}
+  if (!uj::.cmp_chr_scl(mode)) {uj::stopperr(err, pkg = "uj")}
+  else if (uj::not_IN(base::tolower(mode), valid)) {uj::stopperr(err, pkg = "uj")}
   else {mode <- base::tolower(mode)}
   if (mode == "clr") {
     errs <- NULL
     if (!base::is.character(x)) {errs <- base::c(errs, "[x] is not of mode character.")}
-    if (!ppp:::.cmp_lgl_scl(na)) {errs <- base::c(errs, "[.na] must be TRUE or FALSE.")}
-    if (base::isTRUE(na) & base::any(base::isna(uj::av(x)))) {errs <- base::c(errs, "[x] contains na values but [.na = FALSE].")}
-    if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
-    if (!base::all(base::isna(x))) {
+    if (!uj::.cmp_lgl_scl(na)) {errs <- base::c(errs, "[.na] must be TRUE or FALSE.")}
+    if (base::isTRUE(na) & base::any(base::is.na(uj::av(x)))) {errs <- base::c(errs, "[x] contains na values but [.na = FALSE].")}
+    if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+    if (!base::all(base::is.na(x))) {
       Y <- tryCatch(grDevices::col2rgb(x[!base::is.na(x)], T), error = function(e) e, finally = NULL)
-      if (uj::is_err(Y)) {ppp::stopperr("[x] does not contain only valid color values.", pkg = "uj")}
+      if (uj::is_err(Y)) {uj::stopperr("[x] does not contain only valid color values.", pkg = "uj")}
       Y <- Y / 255
       Y <- grDevices::rgb(Y[1, ], Y[2, ], Y[3, ], Y[4, ])
       x[!base::is.na(x)] <- Y
     }
   } else if (mode == "fun") {if (!base::is.function(x)) {
     x <- tryCatch(base::match.fun(x), error = function(e) e, finally = NULL)
-    if (uj::is_err(x)) {ppp::stopperr("[x] is neither a function nor a character scalar name of a function.", pkg = "uj")}
+    if (uj::is_err(x)) {uj::stopperr("[x] is neither a function nor a character scalar name of a function.", pkg = "uj")}
   }} else if (mode == "chr") {x <- base::as.character(x)}
   else if (mode == "int") {x <- base::as.integer(x)}
   else if (mode == "lgl") {x <- base::as.logical(x)}
   else if (mode == "num") {x <- base::as.numeric(x)}
   else if (mode == "ord") {x <- base::factor(x, levels = levs, ordered = T)}
   else if (mode == "uno") {x <- base::factor(x, levels = levs, ordered = F)}
-  else {ppp::stopperr("Unrecognized mode.", pkg = "uj")}
+  else {uj::stopperr("Unrecognized mode.", pkg = "uj")}
   x
 }
 

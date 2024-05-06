@@ -82,6 +82,7 @@ Other environments:
 
 Other meta: 
 \code{\link{callers}()},
+\code{\link{console_basics}()},
 \code{\link{dot_args}()},
 \code{\link{pause}()},
 \code{\link{ply}()},

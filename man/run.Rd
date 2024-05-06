@@ -38,6 +38,7 @@ egRUNalias2 <- function(x, y) {egRUNalias1(x, y)}
 \seealso{
 Other meta: 
 \code{\link{callers}()},
+\code{\link{console_basics}()},
 \code{\link{dot_args}()},
 \code{\link{pause}()},
 \code{\link{ply}()},

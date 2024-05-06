@@ -48,14 +48,14 @@ u2u <- function(x, old, new) {
                    in2cm = 2.54     , in2in = 1        , in2mm = 25.4    , in2pt = 72     ,
                    mm2cm = 0.1      , mm2in = 0.0393701, mm2mm = 1       , mm2pt = 2.83465,
                    pt2cm = 0.0352778, pt2in = 0.0138889, pt2mm = 0.352778, pt2pt = 1      )
-  okX   <- ppp::.cmp_num(x)
-  okOld <- ppp::.cmp_chr_scl(old, .valid = units)
-  okNew <- ppp::.cmp_chr_scl(new, .valid = units)
+  okX   <- uj::.cmp_num(x)
+  okOld <- uj::.cmp_chr_scl(old, valid = units)
+  okNew <- uj::.cmp_chr_scl(new, valid = units)
   errs <- NULL
   if (!okX  ) {errs <- base::c(errs, "[x] must be a complete numeric object (?cmp_num).")}
   if (!okOld) {errs <- base::c(errs, "[old] must be a character scalar in c('cm', 'in', 'mm', 'pt').")}
   if (!okNew) {errs <- base::c(errs, "[new] must be a character scalar in c('cm', 'in', 'mm', 'pt').")}
-  if (!base::is.null(errs)) {ppp::stopperr(errs, .fun = "u2u", pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, .fun = "u2u", pkg = "uj")}
   x * convs[[base::paste0(old, "2", new)]]
 }
 

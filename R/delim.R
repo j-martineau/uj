@@ -5,9 +5,9 @@
   two <- "D" %in% base::names(args)
   dots <- N > 0
   pops <- uj::f0(!dots, T, base::all(ns > 0))
-  ccsd <- ppp::.cmp_chr_scl(args$d)
-  CCSD <- uj::f0(!two, T, ppp::.cmp_chr_scl(args$D))
-  atms <- uj::f0(!CCSD, T, base::all(base::sapply(args$dots, ppp::atm_vec)))
+  ccsd <- uj::.cmp_chr_scl(args$d)
+  CCSD <- uj::f0(!two, T, uj::.cmp_chr_scl(args$D))
+  atms <- uj::f0(!CCSD, T, base::all(base::sapply(args$dots, uj::atm_vec)))
   recs <- uj::f0(a | !pops, T, uj::recyclable_ns(base::max(ns) / ns))
   errs <- NULL
   if (!dots) {errs <- base::c(errs, "[...] is empty.")}
@@ -94,7 +94,7 @@ delim <- function() {utils::help("delim", package = "uj")}
 da <- function(d, ...) {
   if (base::...length() == 0) {return("")}
   errs <- uj:::.delim_errs(base::list(d = d, Dots =  base::list(...)), a = TRUE)
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   base::paste(..., sep = d)
 }
 
@@ -104,7 +104,7 @@ dw <- function(d, ...) {
   dw0 <- function(x) {base::paste0(uj::av(x), collapse = d)}
   if (base::...length() == 0) {return("")}
   errs <- uj:::.delim_errs(base::list(d = d, Dots =  base::list(...)), a = TRUE)
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   base::sapply(base::list(...), dw0)
 }
 
@@ -113,7 +113,7 @@ dw <- function(d, ...) {
 daw <- function(d, D, ...) {
   if (base::...length() == 0) {return("")}
   errs <- uj:::.delim_errs(base::list(d = d, D = D, Dots =  base::list(...)), a = TRUE)
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   x <- base::paste0(..., sep = d)
   base::paste0(uj::av(x), collapse = D)
 }
@@ -124,7 +124,7 @@ dww <- function(d, D, ...) {
   dw0 <- function(x) {base::paste0(uj::av(x), collapse = d)}
   if (base::...length() == 0) {return("")}
   errs <- uj:::.delim_errs(base::list(d = d, D = D, Dots =  base::list(...)), a = TRUE)
-  if (!base::is.null(errs)) {ppp::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
   x <- base::sapply(base::list(...), dw0)
   base::paste0(uj::av(x), collapse = D)
 }
