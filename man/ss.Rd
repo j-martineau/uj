@@ -6,28 +6,28 @@
 \alias{ch}
 \alias{chars}
 \alias{ss0}
-\alias{ss_tb}
+\alias{sstb}
 \alias{ss1}
-\alias{ss_p}
-\alias{ss_d}
-\alias{ss_b}
-\alias{ss_pd}
-\alias{ss_pb}
-\alias{ss_db}
-\alias{ss_pdb}
+\alias{ssp}
+\alias{ssd}
+\alias{ssb}
+\alias{sspd}
+\alias{sspb}
+\alias{ssdb}
+\alias{sspdb}
 \alias{uss}
 \alias{uch}
 \alias{uchars}
 \alias{uss0}
-\alias{uss_tb}
+\alias{usstb}
 \alias{uss1}
-\alias{uss_p}
-\alias{uss_d}
-\alias{uss_b}
-\alias{uss_pd}
-\alias{uss_pb}
-\alias{uss_db}
-\alias{uss_pdb}
+\alias{ussp}
+\alias{ussd}
+\alias{ussb}
+\alias{usspd}
+\alias{usspb}
+\alias{ussdb}
+\alias{usspdb}
 \title{Split strings and select/check for elements}
 \usage{
 ss(d, ..., trm = TRUE, sqz = TRUE, drop = TRUE, u = FALSE, n = NULL)
@@ -38,7 +38,7 @@ chars(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
 ss0(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_tb(
+sstb(
   d,
   ...,
   name = "string",
@@ -52,19 +52,19 @@ ss_tb(
 
 ss1(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_p(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
+ssp(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_d(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
+ssd(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_b(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
+ssb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_pd(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
+sspd(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_pb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
+sspb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_db(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
+ssdb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
-ss_pdb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
+sspdb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE)
 
 uss(d, ..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
@@ -74,7 +74,7 @@ uchars(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
 uss0(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_tb(
+usstb(
   d,
   ...,
   name = "string",
@@ -87,19 +87,19 @@ uss_tb(
 
 uss1(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_p(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+ussp(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_d(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+ussd(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_b(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+ussb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_pd(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+usspd(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_pb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+usspb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_db(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+ussdb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 
-uss_pdb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
+usspdb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 }
 \arguments{
 \item{d}{A complete character vec of a delimiter or delimiters to use in splitting strings.}
@@ -170,31 +170,31 @@ uss_pdb(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL)
 \examples{
 ss("", "super-cooled")
 ss("|", "super||cooled", "super|heated")
-ss_0("super-cooled", "super-heated")
-ss_1("super cooled", "super heated")
-ss_p("super|cooled", "super|heated", u = TRUE)
-ss_d("super.cooled", "super.heated")
-ss_b("super¦cooled", "super¦heated")
-ss_pd("super|cooled", "super.heated")
-ss_pb("super|cooled", "super¦heated")
-ss_db("super.cooled", "super¦heated")
-ss_pdb("super|cooled¦|super|heated", u = TRUE)
-ss_pdb(" super|cooled  ¦super..  heated", n = 3)
-ss_pdb(" super|cooled  ¦super..  heated", trm = F, sqz = F, drop = F, n = 3)
+ss0("super-cooled", "super-heated")
+ss1("super cooled", "super heated")
+ssp("super|cooled", "super|heated", u = TRUE)
+ssd("super.cooled", "super.heated")
+ssb("super¦cooled", "super¦heated")
+sspd("super|cooled", "super.heated")
+sspb("super|cooled", "super¦heated")
+ssdb("super.cooled", "super¦heated")
+sspdb("super|cooled¦|super|heated", u = TRUE)
+sspdb(" super|cooled  ¦super..  heated", n = 3)
+sspdb(" super|cooled  ¦super..  heated", trm = F, sqz = F, drop = F, n = 3)
 uss("", "super-cooled")
 uss("|", "super|cooled", "super|heated")
-uss_0("super-cooled", "super-heated")
-uss_1("super cooled", "super heated")
-uss_p("super|cooled", "super|heated")
-uss_p("super|cooled", "super|heated")
-uss_d("super.cooled", "super.heated")
-uss_b("super¦cooled", "super¦heated")
-uss_pd("super|cooled", "super.heated")
-uss_pb("super|cooled", "super¦heated")
-uss_db("super.cooled", "super¦heated")
-uss_pdb("super|cooled¦super|heated")
-ss_tb("|", 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p')
-ss_tb("|", 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p', name = 'original', part = 'letter')
+uss0("super-cooled", "super-heated")
+uss1("super cooled", "super heated")
+ussp("super|cooled", "super|heated")
+ussp("super|cooled", "super|heated")
+ussd("super.cooled", "super.heated")
+ussb("super¦cooled", "super¦heated")
+usspd("super|cooled", "super.heated")
+usspb("super|cooled", "super¦heated")
+ussdb("super.cooled", "super¦heated")
+usspdb("super|cooled¦super|heated")
+sstb("|", 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p')
+sstb("|", 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p', name = 'original', part = 'letter')
 }
 \seealso{
 Other strings: 

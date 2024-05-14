@@ -13,9 +13,9 @@
 #' @examples
 #' tb(letters = letters, numbers = 1:26, constant = pi)
 #' trb(~letters, ~numbers, ~constant,
-#'     "a"     , 1,      , pi       ,
-#'     "b"     , 2,      , pi       ,
-#'     "c"     , 3,      , pi       )
+#'     "a"     , 1       , pi       ,
+#'     "b"     , 2       , pi       ,
+#'     "c"     , 3       , pi       )
 #' tbr("a", 1, pi)
 #' as_tb(list(letters = letters, numbers = 1:26, constant = pi))
 #' is_tb(tb(letters))

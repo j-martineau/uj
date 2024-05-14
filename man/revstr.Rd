@@ -5,7 +5,7 @@
 \alias{revstr}
 \title{Reverse strings}
 \usage{
-revstr(x, na = FALSE)
+revstr(x)
 }
 \arguments{
 \item{x}{A \link[=chr_vec]{character vec}.}
@@ -19,36 +19,29 @@ An object of the same structure and dimension as \code{x}.
 Reverses the order of characters in each element of a non-empty \link[=atm_chr]{atomic character object}, \link[=chr_vls]{character vlist} or \link[=chr_dtf]{character data.frame}.
 }
 \examples{
-egBanana <- c(banana = "banana")
-egCarrot <- c(carrot = "torrac")
-egApple <- c(apple = "apple")
-eg0 <- c(zero = "orez")
-
-egFront <- c(egApple, egBanana)
-egBack <- c(eg0, egCarrot)
-
-egMat22 <- matrix(c(egFront, egBack.), nrow = 2)
-egVls13 <- list(scl = av(egApple), vec = av(egBanana, egBack))
-egDtf22 <- data.frame(front = av(egFront), back = av(egBack))
-egDtfNA <- data.frame(front = av(NA, egFront), back = av(egBack, NA))
-
-egBack
-revstr(egBack)
-
-egFront
-revstr(egFront)
-
-egMat22
-revstr(egMat22)
-
-egVLS13
-revstr(egVLS13)
-
-egDtf22
-revstr(egDtf22)
-
-egDtfNA
-revstr(egDtfNA, na = TRUE)
+egRevStr <- function() {
+  egBanana <- "banana"
+  egApple  <- "apple"
+  egCarrot <- "torrac"
+  egZero   <- "orez"
+  egFront  <- base::c(egApple, egBanana)
+  egBack   <- base::c(egZero , egCarrot)
+  egMat22  <- base::matrix(base::c(egFront, egBack), nrow = 2)
+  egVls13  <- base::list(front = egFront, back = egBack)
+  egDtf22  <- base::data.frame(front = egFront, back = egBack)
+  base::list(
+    egBanana = egBanana, revBanana = uj::revstr(egBanana),
+    egCarrot = egCarrot, revCarrot = uj::revstr(egCarrot),
+    egApple  = egApple , revApple  = uj::revstr(egApple ),
+    egZero   = egZero  , revZero   = uj::revstr(egZero  ),
+    egFront  = egFront , revFront  = uj::revstr(egFront ),
+    egBack   = egBack  , revBack   = uj::revstr(egBack  ),
+    egMat22  = egMat22 , revMat22  = uj::revstr(egMat22 ),
+    egVls13  = egVls13 , revVls13  = uj::revstr(egVls13 ),
+    egDtf22  = egDtf22 , revDtf22  = uj::revstr(egDtf22 ))
+}
+egRevStr <- egRevStr()
+egRevStr
 }
 \seealso{
 Other strings: 

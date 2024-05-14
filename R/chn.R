@@ -10,7 +10,7 @@
 #' words
 #' chn(words, 1)
 #' chn(words, 3)
-#' charN(words, 10)
+#' charn(words, 10)
 #' @export
 chn <- function(x, n) {
   okX <- uj::.pop_chr(x)
@@ -18,7 +18,7 @@ chn <- function(x, n) {
   errs <- NULL
   if (!okN) {errs <- base::c(errs, "[n] must be a complete positive whole-number valued scalar (?cmp_psw_scl) or of the same dimension as [x].")}
   if (!okX) {errs <- base::c(errs, "[x] must be an populated atomic object of mode 'character' (?pop_chr).")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   base::substr(x, n, n)
 }
 

@@ -4,9 +4,9 @@
     prompt <- base::paste0(type, "in rectangular", prompt, "delimited text format", collapse = " ")
     file   <- uj::choose_doc(prompt)
   }
-  if (!uj::.cmp_chr_vec(file)) {uj::stopperr("[file] must be NULL or a complete character vec (?cmp_chr_vec)", pkg = "uj")}
+  if (!uj::.cmp_chr_vec(file)) {uj::stopperr("[file] must be NULL or a complete character vec (?cmp_chr_vec)")}
   file <- base::paste0(file, collapse = "")
-  if (!base::file.exists(file)) {uj::stopperr(base::paste0("the specified file ('", file, "') does not exist."), pkg = "uj")}
+  if (!base::file.exists(file)) {uj::stopperr(base::paste0("the specified file ('", file, "') does not exist."))}
   file
 }
 
@@ -38,7 +38,7 @@ rd_xsv <- function(d, type = "data file", file = NULL, ...) {
   if (!uj::.cmp_ch1_scl(d   )) {errs <- base::c(errs, "[d] must be a complete onechar scalar (?cmp_ch1_scl).")}
   if (!uj::.cmp_str_scl(type)) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
   if (!base::is.null(file    )) {if (!uj::.cmp_str_scl(file)) {errs <- base::c(errs, "[file] must be a complete string scalar (?cmp_str_scl).")}}
-  if (!base::is.null(errs    )) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs    )) {uj::stopperr(errs)}
   readr::read_delim(uj:::.rd_filename(type, file, d), delim = d, ...)
 }
 
@@ -48,7 +48,7 @@ rd_csv <- function(type = "data file", file = NULL, ...) {
   errs <- NULL
   if (!uj::.cmp_str_scl(type)) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
   if (!base::is.null(file    )) {if (!uj::.cmp_str_scl(file)) {errs <- base::c(errs, "[file] must be a complete string scalar (?cmp_str_scl).")}}
-  if (!base::is.null(errs    )) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs    )) {uj::stopperr(errs)}
   readr::read_csv(uj:::.rd_filename(type, file, ","), ...)
 }
 
@@ -58,7 +58,7 @@ rd_tsv <- function(type = "data file", file = NULL, ...) {
   errs <- NULL
   if (!uj::.cmp_str_scl(type)) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
   if (!base::is.null(file    )) {if (!uj::.cmp_str_scl(file)) {errs <- base::c(errs, "[file] must be a complete string scalar (?cmp_str_scl).")}}
-  if (!base::is.null(errs    )) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs    )) {uj::stopperr(errs)}
   readr::read_tsv(uj:::.rd_filename(type, file, "\t"), ...)
 }
 

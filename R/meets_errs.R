@@ -16,7 +16,7 @@ meets_errs <- function(x, ...) {
   if (base::length(names) != base::length(dots)) {errors <- base::c(errors, "All [...] arguments must be named.")}
   if (base::length(names) != base::length(base::unique(names))) {errors <- base::c(errors, "names of [...] arguments must be unique.")}
   if (!base::all(names %in% valid)) {errors <- base::c(errors, base::paste0("All names of [...] arguments must be from c('.n', '.nr', '.nc', '.min', '.minr', '.minc', '.max', '.maxr', '.maxc', '.vals', '.lt', '.le', '.ge', '.gt')."))}
-  if (!base::is.null(errors)) {uj::stopper(errors, fun = "meets", pkg = "uj")}
+  if (!base::is.null(errors)) {uj::stopper(errors, fun = "meets")}
   if (".n" %in% names) {if (!uj::.cmp_nnw_vec(dots$.n)) {errors <- base::c(errors, "[.n] must be a non-negative whole-number vector (?cmp_nnw_vec) if supplied.")}}
   if (".min" %in% names) {if (!uj::cmp_nnw_scl(dots$.min)) {errors <- base::c(errors, "[.min] must be a non-negative whole-number scalar (?cmp_nnw_scl) if supplied.")}}
   if (".max" %in% names) {if (!uj::cmp_nnw_scl(dots$.max)) {errors <- base::c(errors, "[.max] must be a non-negative whole-number scalar (?cmp_nnw_scl) if supplied.")}}
@@ -64,5 +64,5 @@ meets_errs <- function(x, ...) {
     if (!uj::.cmp_srt_scl(dots$.gt)) {errors <- base::c(errors, "[.gt] must be a complete sortable scalar (?cmp_srt_scl).")}
     else if (!uj::.compar(x, dots$.gt)) {errors <- base::c(errors, "[x] and [.gt] must be of comparable, sortable modes.")}
   }
-  if (!base::is.null(errors)) {uj::stopper(errors, .FUN = "meets", .PKG = "ppp")}
+  if (!base::is.null(errors)) {uj::stopper(errors, fun = "meets")}
 }

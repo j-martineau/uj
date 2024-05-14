@@ -33,19 +33,12 @@ Checks whether any count- or value-restrictions are carried in \code{...} argume
 
 \seealso{
 Other utils: 
-\code{\link{av}()},
-\code{\link{callers}()},
-\code{\link{caller}()},
 \code{\link{check_valid}()},
 \code{\link{combo2props}()},
 \code{\link{compat}()},
-\code{\link{fun_pkg_stack}()},
-\code{\link{is_err}()},
-\code{\link{not_err}()},
 \code{\link{ox_vals}()},
-\code{\link{spec2_combos}()},
+\code{\link{spec2combos}()},
 \code{\link{spec2props}()},
-\code{\link{stack2funs}()},
-\code{\link{stack2pkgs}()}
+\code{\link{stack2funs}()}
 }
 \concept{utils}

@@ -1,6 +1,6 @@
 #' @encoding UTF-8
 #' @family utils
-#' @title Check `x` Against valid Values and Against a Test
+#' @title Check `x` Against Valid Values and Against a Test
 #' @param x An object.
 #' @param test A non-missing logical scalar.
 #' @param valid Either `NULL` or an atomic vector of valid values.

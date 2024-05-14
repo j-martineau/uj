@@ -20,9 +20,9 @@ case <- function(.name, ..., .names = NULL, .def = "err") {
   if (!uj::.cmp_scl(.name)) {errs <- base::c(errs, "[.name] must be a non-NA atomic scalar (?cmp_scl).")}
   if (base::...length() == 0) {errs <- base::c(errs, "[...] is empty.")}
   if (!okNames) {errs <- base::c(errs, "[.names] must be NULL or an atomic vector of length equal to ...length()")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   .names <- uj::dot_names(..., .subs = .names, .req = T, .bl = F, .u = T)
   i <- base::which(.names == .name)
-  if (uj::.cmp_chr_scl(.def, valid = 'err') & base::length(i) != 1) {uj::stopperr("[.name] must match 1 argument in [...].", pkg = "uj")}
+  if (uj::.cmp_chr_scl(.def, valid = 'err') & base::length(i) != 1) {uj::stopperr("[.name] must match 1 argument in [...].")}
   uj::f0(base::length(i) == 1, base::...elt(i), .def)
 }

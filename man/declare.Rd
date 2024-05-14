@@ -129,10 +129,8 @@ dtfNA(egABC, 3)
 \seealso{
 Other extensions: 
 \code{\link{N}()},
-\code{\link{atomize}()},
+\code{\link{atomize_funs}()},
 \code{\link{case}()},
-\code{\link{cb}()},
-\code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{dups}()},
 \code{\link{failsafe}()},
@@ -145,8 +143,8 @@ Other extensions:
 \code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
-\code{\link{sum0}()},
-\code{\link{swap}()},
+\code{\link{stats0}()},
+\code{\link{swaps}()},
 \code{\link{value_exists}()}
 }
 \concept{extensions}

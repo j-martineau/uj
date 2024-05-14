@@ -1827,10 +1827,8 @@ c(not_ns3p(NS0), not_ns3p(NS1), not_ns3p(NS2), not_ns3p(NS3), not_ns3p(NS4), not
 }
 \seealso{
 Other extensions: 
-\code{\link{atomize}()},
+\code{\link{atomize_funs}()},
 \code{\link{case}()},
-\code{\link{cb}()},
-\code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
@@ -1844,8 +1842,8 @@ Other extensions:
 \code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
-\code{\link{sum0}()},
-\code{\link{swap}()},
+\code{\link{stats0}()},
+\code{\link{swaps}()},
 \code{\link{value_exists}()}
 
 Other counts: 

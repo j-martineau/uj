@@ -55,9 +55,9 @@ compatible <- function(..., .rec = FALSE) {
   x <- base::list(...)
   n <- base::length(x)
   errs <- NULL
-  if (N < 2) {errs <- base::c(errs, "[...] must contain multiple arguments.")}
+  if (n < 2) {errs <- base::c(errs, "[...] must contain multiple arguments.")}
   if (!uj::.cmp_lgl_scl(.rec)) {errs <- base::c(errs, "[.rec] must be TRUE or FALSE.")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   if (.rec) {
     un <- base::length(base::unique(x))
     nr <- base::max(un) / un
@@ -71,7 +71,7 @@ compatible <- function(..., .rec = FALSE) {
   if (!chr & !lgl & !num) {
     if (ord | uno) {
       levs <- base::sapply(x, base::levels)
-      if (ord) {for (i in 2:N) {
+      if (ord) {for (i in 2:n) {
         currLevs <- levs[[i]]
         prevLevs <- levs[[i - 1]]
         if (base::length(currLevs) != base::length(prevLevs)) {return(F)}
@@ -79,7 +79,7 @@ compatible <- function(..., .rec = FALSE) {
         num2 <- base::is.numeric(currLevs) & base::is.numeric(prevLevs)
         if (!chr2 & !num2) {return(F)}
         if (base::any(currLevs != prevLevs)) {return(F)}
-      }} else if (uno) {for (i in 2:N) {
+      }} else if (uno) {for (i in 2:n) {
         currLevs <- levs[[i]]
         prevLevs <- levs[[i - 1]]
         if (base::length(currLevs) != base::length(prevLevs)) {return(F)}
@@ -106,8 +106,8 @@ compatible_mats <- function(dim, ...) {
   if (!uj::.cmp_num_scl(dim, valid = 1:2)) {errs <- base::c(errs, "[dim] must be integer scalar 1 or 2.")}
   if (n < 2) {errs <- base::c(errs, "[...] must contain 2+ atomic matrices (?atm_mat).")}
   else if (!base::all(base::sapply(x, uj::.atm_mat))) {errs <- base::c(errs, "[...] must contain 2+ atomic matrices (?atm_mat).")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
-  for (i in 2:N) {
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
+  for (i in 2:n) {
     curr <- x[[i]]
     prev <- x[[i - 1]]
     if      (dim == 1 & base::ncol(prev) != base::ncol(curr)) {return(F)}
@@ -126,8 +126,8 @@ compatible_dtfs <- function(dim, ...) {
   if (!uj::.cmp_num_scl(dim, valid = 1:2)) {errs <- base::c(errs, "[dim] must be integer scalar 1 or 2.")}
   if (n < 2) {errs <- base::c(errs, "[...] must contain 2+ atomic data.frames (?atm_dtf).")}
   else if (!base::all(base::sapply(x, uj::.atm_dtf))) {errs <- base::c(errs, "[...] must contain 2+ atomic data.frames (?atm_dtf).")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
-  for (i in 2:N) {
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
+  for (i in 2:n) {
     curr <- x[[i]]
     prev <- x[[i - 1]]
     if (dim == 2 & base::nrow(curr) != base::nrow(prev)) {return(F)}

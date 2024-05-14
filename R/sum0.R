@@ -1,26 +1,8 @@
-#' @name sum0
 #' @encoding UTF-8
 #' @family missingness
 #' @family extensions
-#' @title Compute stats ignoring `NA` values
+#' @title Compute Statistics Ignoring `NA` Calues
 #' @description Simple wrappers for calculating statistics ignoring any `NA` values.
-#' @details
-#' \tabular{ll}{  `cmeans0`   \tab Calls `colMeans(x, na.rm = T)`          \cr
-#'                `rmeans0`   \tab Calls `rowMeans(x, na.rm = T)`          \cr
-#'                `csums0`    \tab Calls `colSums(x, na.rm = T)`           \cr
-#'                `rsums0`    \tab Calls `rowSums(x, na.rm = T)`           \cr
-#'                `csds0`     \tab Calls `apply(x, 2, sd, na.rm = T)`      \cr
-#'                `rsds0`     \tab Calls `apply(x, 1, sd, na.rm = T)`      \cr
-#'                `pmin0`     \tab Calls `pmin(..., na.rm = T)`            \cr
-#'                `pmax0`     \tab Calls `pmax(..., na.rm = T)`            \cr
-#'                `mean0`     \tab Calls `mean(av(...), na.rm = T)`        \cr
-#'                `min0`      \tab Calls `min(av(...), na.rm = T)`         \cr
-#'                `max0`      \tab Calls `max(av(...), na.rm = T)`         \cr
-#'                `sum0`      \tab Calls `sum(av(...), na.rm = T)`         \cr
-#'                `var0`      \tab Calls `var(av(...), na.rm = T)`         \cr
-#'                `cor0`      \tab Calls `cor(x, y, use = 'complete.obs')` \cr
-#'                `cov0`      \tab Calls `cov(x, y, use = 'complete.obs')` \cr
-#'                `sd0`       \tab Calls `sd(av(...), na.rm = T)`            }
 #' @param ... Scalars, vectors, or matrices. Reduced a single vector of atomic values for `sd0`, `min0`, `max0`, and `mean0`.
 #' @param x A \link[=cmp_num_vec]{complete numeric vec} or a \link[=cmp_num_mat]{complete numeric matrix}.
 #' @param y An optional complete numeric vec or a complete numeric matrix.
@@ -36,7 +18,7 @@
 #' egVec2[sample(1:20, 1)] <- NA
 #' egVec3[sample(1:20, 2)] <- NA
 #' egMat1[sample(1:100, 5)] <- NA
-#' egMat1 <- matrix(mat1, nrow = 10)
+#' egMat1 <- matrix(egMat1, nrow = 10)
 #' rownames(egMat1) <- paste0("R", 1:10)
 #' colnames(egMat1) <- paste0("C", 1:10)
 #' egDtf1 <- as.data.frame(egMat1)
@@ -68,72 +50,76 @@
 #' list(mean = mean0(egX), min = min0(egX), max = max0(egX),
 #'       sum = sum0( egX), var = var0(egX), sd  = sd0( egX))
 #' @export
+stats0 <- function() {utils::help("stats0", package = "uj")}
+
+#' @describeIn stats0 Calculate sum ignoring `NA` values.
+#' @export
 sum0 <- function(...) {base::sum(uj::av(...), na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate standard deviation ignoring `NA` values.
 #' @export
 sd0 <- function(...) {stats::sd(uj::av(...), na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate correlation ignoring `NA` values.
 #' @export
 cor0 <- function(x, y = NULL) {stats::cor(x, y, use = "complete.obs")}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate covariance ignoring `NA` values.
 #' @export
 cov0 <- function(x, y = NULL) {stats::cov(x, y, use = "complete.obs")}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate minimum value ignoring `NA` values.
 #' @export
 min0 <- function(...) {base::min(uj::av(...), na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate maximum ignoring `NA` values.
 #' @export
 max0 <- function(...) {base::max(uj::av(...), na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate variance ignoring `NA` values.
 #' @export
-var0 <- function(...) {base::var(uj::av(...), na.rm = T)}
+var0 <- function(...) {stats::var(uj::av(...), na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate pairmin values ignoring `NA` values.
 #' @export
 pmin0 <- function(...) {base::pmin(..., na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate pairmax values ignoring `NA` values.
 #' @export
 pmax0 <- function(...) {base::pmax(..., na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate mean value ignoring `NA` values.
 #' @export
 mean0 <- function(...) {base::mean(uj::av(...), na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate column standard deviations ignoring `NA` values.
 #' @export
 csds0 <- function(x) {base::apply(x, 2, stats::sd, na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate row standard deviations ignoring `NA` values.
 #' @export
 rsds0 <- function(x) {base::apply(x, 1, stats::sd, na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate column variances ignoring `NA` values.
 #' @export
 cvars0 <- function(x) {base::apply(x, 2, stats::var, na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate row variances ignoring `NA` values.
 #' @export
 rvars0 <- function(x) {base::apply(x, 1, stats::var, na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate column sums ignoring `NA` values.
 #' @export
 csums0 <- function(x) {base::colSums(x, na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate row sums ignoring `NA` values.
 #' @export
 rsums0 <- function(x) {base::rowSums(x, na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate column means ignoring `NA` values.
 #' @export
 cmeans0 <- function(x) {base::colMeans(x, na.rm = T)}
 
-#' @rdname sum0
+#' @describeIn stats0 Calculate row means ignoring `NA` values.
 #' @export
 rmeans0 <- function(x) {base::rowMeans(x, na.rm = T)}

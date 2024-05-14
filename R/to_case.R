@@ -38,7 +38,7 @@ tocase <- function(case, ...) {
   errs <- NULL
   if (!okCase) {errs <- base::c(errs, "[case] must be either 'l', 's', 't', or 'u'.")}
   if (!uj::.cmp_chr_vec(x)) {errs <- base::c(errs, "[...] must be contain character values.")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   if      (case == "l") {base::tolower(x)}
   else if (case == "u") {base::toupper(x)}
   else if (case == "t") {stringr::str_to_title(x)}

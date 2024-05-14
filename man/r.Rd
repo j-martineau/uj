@@ -42,10 +42,8 @@ re(2, 3, 0:2, 3)
 \seealso{
 Other extensions: 
 \code{\link{N}()},
-\code{\link{atomize}()},
+\code{\link{atomize_funs}()},
 \code{\link{case}()},
-\code{\link{cb}()},
-\code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
@@ -58,8 +56,8 @@ Other extensions:
 \code{\link{purge}()},
 \code{\link{rd}()},
 \code{\link{sets}()},
-\code{\link{sum0}()},
-\code{\link{swap}()},
+\code{\link{stats0}()},
+\code{\link{swaps}()},
 \code{\link{value_exists}()}
 }
 \concept{extensions}

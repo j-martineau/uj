@@ -118,17 +118,16 @@ pt2mm(1:3)
 }
 \seealso{
 Other conversions: 
+\code{\link{hex_dec_funs}()},
 \code{\link{rng2lev}()},
-\code{\link{to_dec}()},
 \code{\link{tocase}()}
 
 Other plots: 
-\code{\link{color}},
+\code{\link{color_funs}()},
 \code{\link{ggp}()},
 \code{\link{gr}},
 \code{\link{markdown}()},
-\code{\link{pals}()},
-\code{\link{sca}()}
+\code{\link{pals}()}
 }
 \concept{conversions}
 \concept{plots}

@@ -16,20 +16,20 @@ map_data(
 )
 }
 \arguments{
-\item{x}{A \link[ppp:rct_atm_dtf]{rectangular atomic data.frame} whose variables are to be mapped.}
+\item{x}{A \link[=rct_atm_dtf]{rectangular atomic data.frame} whose variables are to be mapped.}
 
-\item{roles}{\link[uj::unq_str_mvc]{Unique string multivec} containing labels for \emph{required} variable roles (that are also valid object names without back-quoting).}
+\item{roles}{\link[=unq_str_mvc]{Unique string multivec} containing labels for \emph{required} variable roles (that are also valid object names without back-quoting).}
 
-\item{defs}{\link[uj::unq_str_mvc]{Unique string multivec} with \code{length(defs) == length(roles)} containing definitions/descriptions associated with corresponding values of \code{roles}.}
+\item{defs}{\link[=unq_str_mvc]{Unique string multivec} with \code{length(defs) == length(roles)} containing definitions/descriptions associated with corresponding values of \code{roles}.}
 
-\item{opt.roles}{Optional \link[uj::unq_str_mvc]{unique string multivec} containing labels for \emph{optional} variable roles (that are also valid object names without back-quoting).}
+\item{opt.roles}{Optional \link[=unq_str_mvc]{unique string multivec} containing labels for \emph{optional} variable roles (that are also valid object names without back-quoting).}
 
-\item{opt.defs}{Optional \link[uj::unq_str_mvc]{unique string multivec} with \code{length(opt.defs) == length(opt.roles)} containing definitions/descriptions associated with corresponding values of \code{opt.roles}.}
+\item{opt.defs}{Optional \link[=unq_str_mvc]{unique string multivec} with \code{length(opt.defs) == length(opt.roles)} containing definitions/descriptions associated with corresponding values of \code{opt.roles}.}
 
 \item{trim, rename, clear}{Logical scalar indicating, respectively, whether to trim un-mapped variables from \code{x}, whether to rename mapped variables using the associated values of \code{roles} and \code{opt.roles}, and whether to clear the console with each stop in the variable mapping process.}
 }
 \value{
-A \link[ppp:rct_atm_dtf]{rectangular atomic data.frame}.
+A \link[=rct_atm_dtf]{rectangular atomic data.frame}.
 }
 \description{
 Utility to map variables in a data.frame to specific roles, with options to trim variables not assigned to roles, to rename variables to match variable roles (vs. attaching a variable map as an attribute), and to clear the console with each step in variable mapping.

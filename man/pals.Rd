@@ -90,11 +90,10 @@ The functions in this family create palettes of various types from values of sou
 }
 \seealso{
 Other plots: 
-\code{\link{color}},
+\code{\link{color_funs}()},
 \code{\link{ggp}()},
 \code{\link{gr}},
 \code{\link{markdown}()},
-\code{\link{sca}()},
 \code{\link{u2u}()}
 }
 \concept{plots}

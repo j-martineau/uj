@@ -75,10 +75,8 @@ compatible_dtfs("c", dtfNCL7, dtfCLN7)
 \seealso{
 Other extensions: 
 \code{\link{N}()},
-\code{\link{atomize}()},
+\code{\link{atomize_funs}()},
 \code{\link{case}()},
-\code{\link{cb}()},
-\code{\link{comparable}()},
 \code{\link{declare}},
 \code{\link{dups}()},
 \code{\link{failsafe}()},
@@ -91,17 +89,16 @@ Other extensions:
 \code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
-\code{\link{sum0}()},
-\code{\link{swap}()},
+\code{\link{stats0}()},
+\code{\link{swaps}()},
 \code{\link{value_exists}()}
 
 Other properties: 
 \code{\link{as_mmm}()},
 \code{\link{cls}()},
-\code{\link{comparable}()},
-\code{\link{iii_PROPS}()},
-\code{\link{mmm_PROPS}()},
-\code{\link{sss_PROPS}()}
+\code{\link{iii_prop_funs}()},
+\code{\link{mmm_prop_funs}()},
+\code{\link{sss_prop_funs}()}
 }
 \concept{extensions}
 \concept{properties}

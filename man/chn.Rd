@@ -26,7 +26,7 @@ words <- stringr::fruit[1:10]
 words
 chn(words, 1)
 chn(words, 3)
-charN(words, 10)
+charn(words, 10)
 }
 \seealso{
 Other strings: 

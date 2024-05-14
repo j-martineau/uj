@@ -14,7 +14,7 @@ clean_data <- function(x, clear = TRUE) {
   errs <- NULL
   if (!uj::.atm_rct_dtf(x    )) {errs <- base::c(errs, "[x] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
   if (!uj::.cmp_lgl_scl(clear)) {errs <- base::c(errs, "[clear] must TRUE or FALSE.")}
-  if (!base::is.null(errs     )) {uj::stopperr(errs, pkg = "rwd")}
+  if (!base::is.null(errs     )) {uj::stopperr(errs)}
   x <- uj::clean_select(x, clear = clear)
   x <- uj::clean_rename(x, clear = clear)
   x <- uj::clean_recode(x, clear = clear)
@@ -28,7 +28,7 @@ clean_select <- function(x, clear = TRUE) {
   errs <- NULL
   if (!uj::.atm_rct_dtf(x    )) {errs <- base::c(errs, "[x] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
   if (!uj::.cmp_lgl_scl(clear)) {errs <- base::c(errs, "[clear] must TRUE or FALSE.")}
-  if (!base::is.null(errs     )) {uj::stopperr(errs, pkg = "rwd")}
+  if (!base::is.null(errs     )) {uj::stopperr(errs)}
   varsToKeep <- uj::chooseN(uj::cn(x), "What variables do you want to retain?", clear = clear)
   x[ , varsToKeep]
 }
@@ -40,7 +40,7 @@ clean_rename <- function(x, clear = TRUE) {
   errs <- NULL
   if (!uj::.atm_rct_dtf(x   )) {errs <- base::c(errs, "[x] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
   if (!uj::.cmp_lgl_scl(clear)) {errs <- base::c(errs, "[clear] must TRUE or FALSE.")}
-  if (!base::is.null(errs     )) {uj::stopperr(errs, pkg = "rwd")}
+  if (!base::is.null(errs     )) {uj::stopperr(errs)}
   oldNames <- uj::chooseN(uj::cn(x), "What variables do you want to rename?", .none = T, clear = clear)
   nOld     <- uj::N(oldNames)
   if (uj::not_BL(oldNames) & nOld != 0) {
@@ -59,7 +59,7 @@ clean_recode <- function(x, clear = TRUE) {
   errs <- NULL
   if (!uj::.atm_rct_dtf(x    )) {errs <- base::c(errs, "[x] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
   if (!uj::.cmp_lgl_scl(clear)) {errs <- base::c(errs, "[clear] must TRUE or FALSE.")}
-  if (!base::is.null(errs     )) {uj::stopperr(errs, pkg = "rwd")}
+  if (!base::is.null(errs     )) {uj::stopperr(errs)}
   varsToRecode <- uj::chooseN(uj::cn(x), "What variables do you want to recode?", .none = T, clear = clear)
   for (varToRecode in varsToRecode) {
     originalVar   <- uj::av(x[ , varToRecode])
@@ -100,7 +100,7 @@ clean_remode <- function(x, clear = TRUE) {
   errs <- NULL
   if (!uj::.atm_rct_dtf(x    )) {errs <- base::c(errs, "[x] must have 2+ rows, 2+ columns, and all columns must be atomic.")}
   if (!uj::.cmp_lgl_scl(clear)) {errs <- base::c(errs, "[clear] must TRUE or FALSE.")}
-  if (!base::is.null(errs     )) {uj::stopperr(errs, pkg = "rwd")}
+  if (!base::is.null(errs     )) {uj::stopperr(errs)}
   toRemode <- uj::chooseN(uj::cn(x), "What variables do you want to re-MODE?", .none = T, clear = clear)
   allModes <- c("character", "integer", "logical", "numeric")
   for (var in toRemode) {

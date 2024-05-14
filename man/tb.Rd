@@ -45,9 +45,9 @@ Thin wrappers of functions from package \code{tibble}. See links in \emph{detail
 \examples{
 tb(letters = letters, numbers = 1:26, constant = pi)
 trb(~letters, ~numbers, ~constant,
-    "a"     , 1,      , pi       ,
-    "b"     , 2,      , pi       ,
-    "c"     , 3,      , pi       )
+    "a"     , 1       , pi       ,
+    "b"     , 2       , pi       ,
+    "c"     , 3       , pi       )
 tbr("a", 1, pi)
 as_tb(list(letters = letters, numbers = 1:26, constant = pi))
 is_tb(tb(letters))
@@ -59,7 +59,6 @@ Other wraps:
 \code{\link{dt}()},
 \code{\link{ggp}()},
 \code{\link{gr}},
-\code{\link{rd}()},
-\code{\link{sca}()}
+\code{\link{rd}()}
 }
 \concept{wraps}

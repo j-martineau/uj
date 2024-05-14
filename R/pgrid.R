@@ -64,7 +64,7 @@ pgrid <- function(.p, ..., .ch = F, .crossed = F, .na = F) {
   if (!uj::.cmp_lgl_scl(.crossed)) {errs <- base::c(errs, "[.crossed] must be TRUE or FALSE.")}
   if (!uj::.cmp_lgl_scl(.na)) {errs <- base::c(errs, "[.crossed] must be TRUE or FALSE.")}
   if (base::isFALSE(.na) & base::any(base::is.na(uj::av(dots)))) {errs <- base::c(errs, "Arguments in [...] may not contain [NA] values when [.na = FALSE].")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = NULL)}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   call <- base::paste0("base::c(base::as.character(dots[[", 1:uj::N(dots), "]]), uj::f0(.crossed, '', NULL))")
   call <- base::paste0(call, collapse = ", ")
   call <- base::paste0("base::expand.grid(", call, ", stringsAsFactors = F)")

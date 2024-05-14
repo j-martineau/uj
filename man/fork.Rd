@@ -18,17 +18,15 @@ fork(x, y, n, na = n)
 
 f1(x, y, n, na = n, err = n)
 
-nll_if(x, ..., .d = " ")
+nll_if(x, ..., d = " ")
 
-nll_ifs(..., .d = " ")
+nll_ifs(..., .d = " ", .cond = "all")
 
 nll_if_any(..., .d = " ")
 
 nll_if_all(..., .d = " ")
 
 nll_if_none(..., .d = " ")
-
-nll_ifs(..., .d = " ")
 }
 \arguments{
 \item{x}{A logical scalar (if not,\code{x} it is replaced by \code{FALSE}).}
@@ -75,7 +73,7 @@ Return different types of objects for \code{TRUE} and \code{FALSE} and return \c
   \code{nll_if_any}    \tab Returns \code{NULL} upon encountering a \code{TRUE} named \code{...} arg. Returns \code{.d} if none is encountered. \cr   \tab   \cr
   \code{nll_if_all}    \tab Returns \code{.d} upon encountering a non-\code{TRUE} named \code{...} arg. Returns \code{NULL} if none is encountered.            }
 \cr\cr \strong{\code{nll_ifs}}
-\cr\cr Calls \code{nll_if_none(..., .d = .d)} when \code{.cond = 'none'}. Calls \code{nll_if_any(..., .d = .d)} when \verb{.cond = 'any}. Calls \code{nll_if_all(..., .d = .d)} when \code{.cond} takes any other value (including \code{'all'})
+\cr\cr Calls \code{nll_if_none(..., d = d)} when \code{.cond = 'none'}. Calls \code{nll_if_any(..., d = d)} when \verb{.cond = 'any}. Calls \code{nll_if_all(..., d = d)} when \code{.cond} takes any other value (including \code{'all'})
 \cr\cr \strong{\code{nlls_ifs}}
 \cr\cr Conditionally compiles messages into a character vector. Each non-\code{TRUE} odd-numbered \code{...} arg's message (\link[=glue_dots]{collapsed} from the following \code{...} arg) is added to the compilation. If all odd-numbered \code{...} args are \code{TRUE}, returns \code{NULL}.
 }
@@ -115,10 +113,8 @@ nll_if_none(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "none")
 \seealso{
 Other extensions: 
 \code{\link{N}()},
-\code{\link{atomize}()},
+\code{\link{atomize_funs}()},
 \code{\link{case}()},
-\code{\link{cb}()},
-\code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
@@ -131,13 +127,13 @@ Other extensions:
 \code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
-\code{\link{sum0}()},
-\code{\link{swap}()},
+\code{\link{stats0}()},
+\code{\link{swaps}()},
 \code{\link{value_exists}()}
 
 Other forks: 
 \code{\link{case}()},
-\code{\link{swap}()}
+\code{\link{swaps}()}
 }
 \concept{extensions}
 \concept{forks}

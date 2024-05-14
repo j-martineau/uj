@@ -158,7 +158,7 @@ rlabs <- function(x) {base::rownames(x)}
 #' @export
 vlabs <- function(x) {base::names(x)}
 
-# is(nt) class ####
+# is(nt) mode ####
 
 #' @rdname basics
 #' @export

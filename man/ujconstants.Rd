@@ -26,10 +26,10 @@
 \alias{.OpenMarkdownColorDefs}
 \alias{.MiscVals}
 \alias{.MiscDefs}
-\alias{.uTF8vals}
-\alias{.uTF8defs}
+\alias{.UTF8vals}
+\alias{.UTF8defs}
 \alias{.LineTypeVals}
-\alias{.LinetypeDefs}
+\alias{.LineTypeDefs}
 \alias{.ShapeVals}
 \alias{.ShapeDefs}
 \alias{.CharSetVals}
@@ -72,7 +72,7 @@ An object of class \code{character} of length 9.
 
 An object of class \code{list} of length 53.
 
-An object of class \code{character} of length 51.
+An object of class \code{character} of length 53.
 
 An object of class \code{list} of length 150.
 
@@ -82,7 +82,7 @@ An object of class \code{list} of length 18.
 
 An object of class \code{character} of length 18.
 
-An object of class \code{list} of length 71.
+An object of class \code{list} of length 73.
 
 An object of class \code{character} of length 73.
 
@@ -98,9 +98,9 @@ An object of class \code{list} of length 14.
 
 An object of class \code{character} of length 14.
 
-An object of class \code{list} of length 491.
+An object of class \code{list} of length 493.
 
-An object of class \code{character} of length 491.
+An object of class \code{character} of length 493.
 }
 \usage{
 ujconstants()
@@ -149,13 +149,13 @@ ujconstants()
 
 .MiscDefs
 
-.uTF8vals
+.UTF8vals
 
-.uTF8defs
+.UTF8defs
 
 .LineTypeVals
 
-.LinetypeDefs
+.LineTypeDefs
 
 .ShapeVals
 
@@ -179,7 +179,7 @@ Lists of named scalars and/or vectors include the following lists and named char
 \cr \strong{Name of List}             \tab \strong{Definitions Vector}
 \cr \code{.pkgVals}                   \tab \code{.pkgDefs}
 \cr \code{.MiscVals}                  \tab \code{.MiscDefs}
-\cr \code{.uTF8vals}                  \tab \code{.uTF8defs}
+\cr \code{.UTF8vals}                  \tab \code{.UTF8defs}
 \cr \code{.ShapeVals}                 \tab \code{.ShapeDefs}
 \cr \code{.CharSetVals}               \tab \code{.CharsetDefs}
 \cr \code{.LineTypeVals}              \tab \code{.LineTypeDefs}
@@ -194,5 +194,28 @@ Lists of named scalars and/or vectors include the following lists and named char
 \cr \code{.BasicMarkdownVals}         \tab \code{.BasicMarkdownDefs}
 \cr \code{.OpenMarkdownColorVals}     \tab \code{.OpenMarkdownColorDefs}
 }
+}
+\examples{
+egConstants <- function() {
+  print(.LineTypeVals)
+  print(.LineTypeDefs)
+  print(data.frame(name = names(.MiscVals), value = uj::av(.MiscVals), definition = uj::av(.MiscDefs)))
+  print(data.frame(name = names(.UTF8vals), value = uj::av(.UTF8vals), definition = uj::av(.UTF8defs)))
+  print(data.frame(name = names(.EnclosureVals), value = uj::av(.EnclosureVals), definition = uj::av(.EnclosureDefs)))
+  print(data.frame(name = names(.BoldGreekVals), value = uj::av(.BoldGreekVals), definition = uj::av(.BoldGreekDefs)))
+  print(data.frame(name = names(.BoldGREEKvals), value = uj::av(.BoldGREEKvals), definition = uj::av(.BoldGREEKdefs)))
+  print(data.frame(name = names(.PlainGreekVals), value = uj::av(.PlainGreekVals), definition = uj::av(.PlainGreekDefs)))
+  print(data.frame(name = names(.PlainGREEKvals), value = uj::av(.PlainGREEKvals), definition = uj::av(.PlainGREEKdefs)))
+  print(data.frame(name = names(.ItalicGreekVals), value = uj::av(.ItalicGreekVals), definition = uj::av(.ItalicGreekDefs)))
+  print(data.frame(name = names(.ItalicGREEKvals), value = uj::av(.ItalicGREEKvals), definition = uj::av(.ItalicGREEKdefs)))
+  print(data.frame(name = names(.BasicMarkdownVals), value = uj::av(.BasicMarkdownVals), definition = uj::av(.BasicMarkdownDefs)))
+  print(data.frame(name = names(.OpenMarkdownColorVals), value = uj::av(.OpenMarkdownColorVals), definition = uj::av(.OpenMarkdownColorDefs)))
+  print(uj::name_vals(.HexColorVals, .HexColorDefs))
+  print(uj::name_vals(.ShapeVals, .ShapeDefs))
+  print(uj::name_vals(.CharSetVals, .CharSetDefs))
+  print(uj::name_vals(.pkgVals, .pkgDefs))
+}
+
+egConstants()
 }
 \keyword{datasets}

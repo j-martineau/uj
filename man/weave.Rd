@@ -3,63 +3,100 @@
 \encoding{UTF-8}
 \name{weave}
 \alias{weave}
-\title{Weave inlay values into a string}
+\title{Weave Inlay Values into a String}
 \usage{
-weave(tmp, ...)
+weave(template, ...)
 }
 \arguments{
-\item{tmp}{A \link[=cmp_chr_scl]{complete character scalar} template with embedded escape seqs. See details.}
-
 \item{...}{Arbitrary number of unnamed atomic scalar/vector arguments to be inserted into \code{tmp} with formatting specified in inlay escape seqs. The \code{n}-th argument in \code{...} corresponds to the \code{n}-th inlay escape seq in \code{tmp}. The number of inlay escape seqs in \code{tmp} must be equal to the number of \code{...} arguments. See details.}
+
+\item{tmp}{A \link[=cmp_chr_scl]{complete character scalar} template with embedded escape seqs. See details.}
 }
 \value{
 A character scalar.
 }
 \description{
-A reformulation of \code{\link[base]{sprintf}} relying on a template containing escape seqs which in turn contain formatting switches. Escape seqs specify where to insert inlay arguments. switches specify how to format arguments to be inlaid, and come in three families as shown in the table below
+A reformulation of \code{\link[base]{sprintf}} relying on a template containing escape switch sequences which specify formatting. The location of escape switch sequences specify where to insert inlay arguments and the content of escape switch sequences specify how to format arguments to be inlaid, and come in four families as shown in the table below:
 \tabular{llll}{
-  \strong{Switch} \tab   \strong{Switch Type}                  \tab   \strong{Sample}  \tab   \strong{Text of Result}    \cr
-  \strong{Value}  \tab   \strong{(and Formatting)}             \tab   \strong{Arg}     \tab   \strong{with Sample Arg}   \cr
-  \code{'0'}      \tab   \code{decimal }(\code{0} decimal points)   \tab   \code{arg = pi}  \tab   \code{3}                   \cr
-  \code{'1'}      \tab   \code{decimal }(\code{1} decimal point)    \tab   \code{arg = pi}  \tab   \code{3.1}                 \cr
-  \code{'2'}      \tab   \code{decimal }(\code{2} decimal points)   \tab   \code{arg = pi}  \tab   \code{3.14}                \cr
-  \code{'3'}      \tab   \code{decimal }(\code{3} decimal points)   \tab   \code{arg = pi}  \tab   \code{3.141}               \cr
-  \code{'4'}      \tab   \code{decimal }(\code{4} decimal points)   \tab   \code{arg = pi}  \tab   \code{3.1415}              \cr
-  \code{'5'}      \tab   \code{decimal }(\code{5} decimal points)   \tab   \code{arg = pi}  \tab   \code{3.14159}             \cr
-  \code{'6'}      \tab   \code{decimal }(\code{6} decimal points)   \tab   \code{arg = pi}  \tab   \code{3.141592}            \cr
-  \code{'7'}      \tab   \code{decimal }(\code{7} decimal points)   \tab   \code{arg = pi}  \tab   \code{3.1415926}           \cr
-  \code{'8'}      \tab   \code{decimal }(\code{8} decimal points)   \tab   \code{arg = pi}  \tab   \code{3.14159265}          \cr
-  \code{'9'}      \tab   \code{decimal }(\code{9} decimal points)   \tab   \code{arg = pi}  \tab   \code{3.141592653}         \cr
-  \code{'q'}      \tab   \code{quote   }(single straight)      \tab   \code{arg = 'x'} \tab   \code{'x'}                 \cr
-  \code{'Q'}      \tab   \code{quote   }(double straight)      \tab   \code{arg = 'x'} \tab   \code{"x"}                 \cr
-  \code{'t'}      \tab   \code{quote   }(single typeset)       \tab   \code{arg = 'x'} \tab   \verb{‘x’}                 \cr
-  \code{'T'}      \tab   \code{quote   }(double typeset)       \tab   \code{arg = 'x'} \tab   \verb{“x”}                 \cr
-  \code{'l'}      \tab   \code{list    }(simple)               \tab   \code{arg = 1:3} \tab   \verb{1, 2, 3}             \cr
-  \code{'|'}      \tab   \code{list    }(Oxford 'or')          \tab   \code{arg = 1:3} \tab   \verb{1, 2, or 3}          \cr
-  \code{'&'}      \tab   \code{list    }(Oxford 'and')         \tab   \code{arg = 1:3} \tab   \verb{1, 2, and 3}         \cr
-  \code{'a'}      \tab   \code{list    }(Oxford 'all of')      \tab   \code{arg = 1:3} \tab   \verb{any of 1, 2, or 3}   \cr
-  \code{'A'}      \tab   \code{list    }(Oxford 'any of')      \tab   \code{arg = 1:3} \tab   \verb{all of 1, 2, and 3}  \cr
-  \code{'e'}      \tab   \code{list    }(Oxford 'either/or')   \tab   \code{arg = 1:3} \tab   \verb{either 1, 2, or 3}   \cr
-  \code{'n'}      \tab   \code{list    }(Oxford 'neither/nor') \tab   \code{arg = 1:3} \tab   \verb{neither 1, 2, nor 3} \cr
-  \code{'b'}      \tab   \code{list    }(brace-enclosed)       \tab   \code{arg = 1:3} \tab   \code{'{1, 2, 3}'}         \cr
-  \code{'c'}      \tab   \code{list    }(\code{c(.)} statement)     \tab   \code{arg = 1:3} \tab   \code{'c(1, 2, 3)'}        \cr
-  \code{'p'}      \tab   \code{list    }(paren-enclosed)       \tab   \code{arg = 1:3} \tab   \code{'(1, 2, 3)'}         \cr
-  \code{'s'}      \tab   \code{list    }(bracket-enclosed)     \tab   \code{arg = 1:3} \tab   \code{'[1, 2, 3]'}           }
-\cr\cr \strong{Escape seqs} are formatted as \code{'{@}'}, \code{'{@x}'}, \code{'{@xy}'}, and \verb{'\{@xyz\}} where \code{x}, \code{y}, and \code{z} are formatting switches and where there may only be \code{1} formatting switch per family.
-\cr\cr Escape seqs in format \code{'{@}'} mean 'insert \link[=atm_scl]{atomic scalar} arg \emph{as is}'.
-\cr\cr Escape seqs in formats \verb{'\{@x\}', '\{@xy\}',} and \code{'{@xyz}'} mean 'insert \link[=atm_scl]{atomic vec} arg \emph{after applying}, respectively, switch \code{x}; switches \code{x} and \code{y}; and switches \code{x}, \code{y}, and \code{z}.'
-\cr\cr \strong{Ordering of switches in escape seqs} is arbitrary. Regardless of order in escape seqs, any \code{decimal} switches are applied first, followed by any \code{quote} switches, followed by any \code{list} switches.
+  \strong{Switch} \tab   \strong{Switch Type}                  \tab   \strong{Sample}    \tab   \strong{Text of Result}    \cr
+  \strong{Value}  \tab   \strong{(and Formatting)}             \tab   \strong{\code{...} Arg} \tab   \strong{with Sample Arg}   \cr
+  \code{'0'}      \tab   \code{decimal }(\code{0} decimal points)   \tab   \code{pi}          \tab   \code{'3'}                 \cr
+  \code{'1'}      \tab   \code{decimal }(\code{1} decimal point)    \tab   \code{pi}          \tab   \code{'3.1'}               \cr
+  \code{'2'}      \tab   \code{decimal }(\code{2} decimal points)   \tab   \code{pi}          \tab   \code{'3.14'}              \cr
+  \code{'3'}      \tab   \code{decimal }(\code{3} decimal points)   \tab   \code{pi}          \tab   \code{'3.141'}             \cr
+  \code{'4'}      \tab   \code{decimal }(\code{4} decimal points)   \tab   \code{pi}          \tab   \code{'3.1415'}            \cr
+  \code{'5'}      \tab   \code{decimal }(\code{5} decimal points)   \tab   \code{pi}          \tab   \code{'3.14159'}           \cr
+  \code{'6'}      \tab   \code{decimal }(\code{6} decimal points)   \tab   \code{pi}          \tab   \code{'3.141592'}          \cr
+  \code{'7'}      \tab   \code{decimal }(\code{7} decimal points)   \tab   \code{pi}          \tab   \code{'3.1415926'}         \cr
+  \code{'8'}      \tab   \code{decimal }(\code{8} decimal points)   \tab   \code{pi}          \tab   \code{'3.14159265'}        \cr
+  \code{'9'}      \tab   \code{decimal }(\code{9} decimal points)   \tab   \code{pi}          \tab   \code{'3.141592653'}       \cr
+  \code{'q'}      \tab   \code{quote   }(single straight)      \tab   \code{'x'}         \tab   \code{'x'}                 \cr
+  \code{'Q'}      \tab   \code{quote   }(double straight)      \tab   \code{'x'}         \tab   \code{"x"}                 \cr
+  \code{'t'}      \tab   \code{quote   }(single typeset)       \tab   \code{'x'}         \tab   \verb{‘x’}                 \cr
+  \code{'T'}      \tab   \code{quote   }(double typeset)       \tab   \code{'x'}         \tab   \verb{“x”}                 \cr
+  \code{'l'}      \tab   \code{list    }(simple list)          \tab   \code{1:3}         \tab   \verb{1, 2, 3}             \cr
+  \code{'|'}      \tab   \code{list    }(Oxford 'or')          \tab   \code{1:3}         \tab   \verb{1, 2, or 3}          \cr
+  \code{'&'}      \tab   \code{list    }(Oxford 'and')         \tab   \code{1:3}         \tab   \verb{1, 2, and 3}         \cr
+  \code{'a'}      \tab   \code{list    }(Oxford 'all of')      \tab   \code{1:3}         \tab   \verb{any of 1, 2, or 3}   \cr
+  \code{'A'}      \tab   \code{list    }(Oxford 'any of')      \tab   \code{1:3}         \tab   \verb{all of 1, 2, and 3}  \cr
+  \code{'e'}      \tab   \code{list    }(Oxford 'either/or')   \tab   \code{1:3}         \tab   \verb{either 1, 2, or 3}   \cr
+  \code{'n'}      \tab   \code{list    }(Oxford 'neither/nor') \tab   \code{1:3}         \tab   \verb{neither 1, 2, nor 3} \cr
+  \code{'c'}      \tab   \code{list    }(\code{c(.)} statement)     \tab   \code{1:3}         \tab   \code{'c(1, 2, 3)'}        \cr
+  \code{'b'}      \tab   \code{paren   }(brace-enclosed)       \tab   \code{1}           \tab   \code{'{1}'}               \cr
+  \code{'p'}      \tab   \code{paren   }(paren-enclosed)       \tab   \code{2}           \tab   \code{'(2)'}               \cr
+  \code{'r'}      \tab   \code{paren   }(round-enclosed)       \tab   \code{2}           \tab   \code{'(2)'}               \cr
+  \code{'s'}      \tab   \code{paren   }(square-enclosed)      \tab   \code{3}           \tab   \code{'[3]'}                 }
+NOTE that \code{'p'} and \code{'r'} are synonyms for round parentheses.
+\cr\cr
+\strong{Escape Switch Sequences}
+\cr\cr Escape switch sequences are formatted as \code{'{@}'}, \code{'{@w}'}, \code{'{@wx}'}, \code{'{@wxy}'}, or \verb{'\{@wxyz\}} where \code{w}, \code{x}, \code{y}, and \code{z} are formatting switches from the four formatting switch families. Note that the first switch encountered from a given family is the switch that is applied. That is, if there are multiple switches from any given family, only the first is recognized and applied. Any others are ignored.
+\cr\cr Escape switch sequences in format \code{'{@}'} mean 'insert \link[=atm_scl]{atomic scalar} \code{...} arg \emph{as is}'.
+\cr\cr Escape switch sequences in format \code{'{@w}'} mean 'insert \link[=atm_vec]{atomic vec} \code{...} arg after applying switch \code{w}.'
+\cr\cr Escape switch sequences in format \code{'{@wx}'} mean 'insert \link[=atm_vec]{atomic vec} \code{...} arg after applying switches \code{w} and \code{x}.'
+\cr\cr Escape switch sequences in format \code{'{@wxy}'} mean 'insert \link[=atm_vec]{atomic vec} \code{...} arg after applying switches \code{w}, \code{x}, and \code{y}.'
+\cr\cr Escape switch sequences in format \code{'{@wxyz}'} mean 'insert \link[=atm_vec]{atomic vec} \code{...} arg after applying switches \code{w}, \code{x}, \code{y}, and \code{z}.'
+\cr\cr \strong{Ordering of switches}
+\cr\cr Ordering of switches within an escape switch sequence is arbitrary. Regardless of order in escape switches, any \code{decimal} switches are applied first, followed by any \code{quote} switches, followed by any \code{list} switches, followed by any \code{paren}.
 }
 \examples{
-cat(weave('{@}', FALSE))
-cat(weave('{@}', 42))
-cat(weave('{@b}', 4:7))
-cat(weave('{@q}', 'foo::bar'))
-cat(weave('{@0}', pi))
-cat(weave('{@c2}', c(pi, exp(1), 42)))
-cat(weave('{@Q6}', pi))
-cat(weave('{@et3}', c(pi, exp(1))))
-cat(weave('{@aq}', c('me', 'myself', 'I')))
+egWeave <- function() {
+
+  cat("\n\n", uj::weave('{@}', FALSE))
+  cat("\n\n", uj::weave('{@}', 42))
+  cat("\n\n", uj::weave('{@b}', 4:7))
+  cat("\n\n", uj::weave('{@q}', 'foo::bar'))
+  cat("\n\n", uj::weave('{@0}', pi))
+  cat("\n\n", uj::weave('{@c2}', c(pi, exp(1), 42)))
+  cat("\n\n", uj::weave('{@Q6}', pi))
+  cat("\n\n", uj::weave('{@et3}', c(pi, exp(1))))
+  cat("\n\n", uj::weave('{@aq}', c('me', 'myself', 'I')))
+  cat("\n\n", uj::weave('{@A2tb}', c(pi, exp(1), 42)))
+
+  template <- paste0('Once upon a time, I came across {@} {@r0} little pigs. They looked highly {@&}. ',
+                     'After some discrete inquiry, I learned their names were {@T&}. I went to their ' ,
+                     'houses, which were made of {@|}. I said {@t}. But ever so rudely, they replied ' ,
+                     '{@Q}. So, I {@&}. Then I fried them up nicely crisp, and I ate my piggy {@9b}.' )
+
+  cat("\n\n")
+
+  cat(
+    uj::weave(
+      template,
+      "three",
+      pi,
+      c("tasty", "well-fed", "naive"),
+      c("Lasagna", "Ziti", "Linguini"),
+      c("straw", "sticks", "bricks"),
+      "little pig, little pig, let me come in",
+      "not by the hair of my chinny chin chin",
+      c("huffed", "puffed", "blew their houses down"),
+      pi
+    )
+  )
+
+}
+
+egWeave()
 }
 \seealso{
 Other strings: 

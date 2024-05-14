@@ -24,12 +24,12 @@ is_unique <- function(x, a = FALSE, na = FALSE) {
   errs <- NULL
   if (!uj::.cmp_lgl_scl(a)) {errs <- base::c(errs, "[a] must be TRUE or FALSE.")}
   if (!uj::.cmp_lgl_scl(na)) {errs <- base::c(errs, "[na] must be TRUE or FALSE.")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   atoms <- uj::av(x)
   if (a) {x <- atoms}
   if (base::length(atoms) > 0) {
     okNa <- na | !base::any(base::isna(atoms))
-    if (!okNa) {uj::stopperr("[na = FALSE] but [x] contains NA values.", pkg = "uj")}
+    if (!okNa) {uj::stopperr("[na = FALSE] but [x] contains NA values.")}
     if (base::is.data.frame(x)) {u_dtf(x)}
     else if (base::is.list(x)) {u_gen(x)}
     else {u_gen(atoms)}

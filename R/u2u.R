@@ -55,7 +55,7 @@ u2u <- function(x, old, new) {
   if (!okX  ) {errs <- base::c(errs, "[x] must be a complete numeric object (?cmp_num).")}
   if (!okOld) {errs <- base::c(errs, "[old] must be a character scalar in c('cm', 'in', 'mm', 'pt').")}
   if (!okNew) {errs <- base::c(errs, "[new] must be a character scalar in c('cm', 'in', 'mm', 'pt').")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, .fun = "u2u", pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs, .fun = "u2u")}
   x * convs[[base::paste0(old, "2", new)]]
 }
 

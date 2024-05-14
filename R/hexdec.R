@@ -1,4 +1,3 @@
-#' @name to_dec
 #' @encoding UTF-8
 #' @family conversions
 #' @title Convert non-negative whole numbers between decimal and hexadecimal
@@ -8,62 +7,46 @@
 #' @return **A non-negative whole number object**                                 \cr `to_dec, todec`
 #' \cr\cr  **A character object of non-negative whole number hexadecimal values** \cr `to_hex, tohex`
 #' @examples
-#' egDEC <- sample(1:100, 5)
-#' egHEX <- c("10", "#B25", "2bc4a", "#FF")
-#' egDEC
-#' egHEX
-#' to_dec(egHEX)
-#' to_hex(egDEC)
+#' egHexDec <- function() {
+#'   RGBA   <- col2rgb("orange", alpha = 0.5)
+#'   HEX1   <- rgb(RGBA[1] / 255, RGBA[2] / 255, RGBA[3] / 255, RGBA[4] / 255)
+#'   HEX1   <- c(substr(HEX1, 2, 3), substr(HEX1, 4, 5), substr(HEX1, 6, 7), substr(HEX1, 8, 9))
+#'   DEC1   <- to_dec(HEX1)
+#'   HEX2   <- to_hex(DEC1)
+#'   HEX12A <- tohex(12)
+#'   DEC12A <- todec(HEX12A)
+#'   HEX12B <- tohex(DEC12A)
+#'   list(RGBA = RGBA, HEX1 = HEX2, HEX12A = HEX12A, HEX12B = HEX12B, DEC1 = DEC1, DEC12A = DEC12A)
+#' }
+#' egHexDec <- egHexDec()
+#' egHexDec
+#' @export
+hex_dec_funs <- function() {help::utils("hex_dec_funs", package = "uj")}
+
+#' @describeIn hex_dec_funs Convert hexadecimal numerals to decimal numerals.
 #' @export
 to_dec <- function(x) {
-  browser()
-  okX <- F
-  okEmp <- F
-  okPref <- T
   if (uj::.cmp_chr(x)) {
-    ch <- uj::av(base::strsplit(uj::av(x), "", fixed = TRUE))
-    valid <- base::c("#", 0:9, letters[1:6], LETTERS[1:6])
-    okX <- base::all(ch %in% valid)
-    if (okX) {
-      pp <- uj::av(base::gregexpr("#", x, fixed = T))
-      x  <- base::gsub("#", "", x, fixed = T)
-      okPref <- base::length(base::which(pp)) == 0
-      okEmp <- base::length(base::which(base::nchar(x) == 0)) == 0
-    }}
-  errs <- NULL
-  if (!okX) {errs <- base::c(errs, "[x] must be of mode character, have at least one value, contain no NA values, and contain only the characters in '#0123456789ABCDEFabcdef'.")}
-  if (!okEmp) {errs <- base::c(errs, "After removing pound signs ('#'), one or more elements of [x] is a blank string.")}
-  if (!okPref) {errs <- base::c(errs, "If pound signs ('#') are used, they must be the first character of any element of [x] in which they are used.")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
-  .conv <- function(x) {
-    x <- base::strsplit(x, "", T)[[1]]
-    n <- base::length(x)
-    x[x %in% base::c("a", "A")] <- "10"
-    x[x %in% c("b", "B")] <- "11"
-    x[x %in% c("c", "C")] <- "12"
-    x[x %in% c("d", "D")] <- "13"
-    x[x %in% c("e", "E")] <- "14"
-    x[x %in% c("f", "F")] <- "15"
-    x <- base::as.integer(x)
-    placeValue <- base::rev(16 ^ (0:(n - 1)))
-    y <- x * placeValue
-    base::sum(y)
-  }
-  x <- base::as.list(x)
-  base::sapply(base::lapply(x, uj::ch), .conv)
+    x <- base::toupper(base::gsub("#", "", x, fixed = T))
+    if (base::any(x == "")) {uj::stopperr("After removing '#' prefixes, at least one elemnt of [x] is a blank string.")}
+    ch <- uj::av(base::strsplit(x, "", fixed = TRUE))
+    valid <- base::c(0:9, LETTERS[1:6])
+    if (!base::all(ch %in% valid)) {uj::stopperr("At least one element of [x] contains invalid characters.")}
+    base::strtoi(x, base = 16L)
+  } else {uj::stopperr("[x] must be a complete character object (?cmp_chr).")}
 }
 
-#' @rdname to_dec
+#' @describeIn hex_dec_funs Convert decimal numerals to hexadecimal numerals (*not* prefixed by `'#'`).
 #' @export
 to_hex <- function(x) {
-  if (!uj::.cmp_nnw_vec(x)) {uj::stopperr("[x] must be complete, non-negative whole-number vec (?cmp_nnw_vec).", pkg = "uj")}
-  base::paste0("#", base::toupper(base::as.character.hexmode(x)))
+  if (!uj::.cmp_nnw_vec(x)) {uj::stopperr("[x] must be complete, non-negative whole-number vec (?cmp_nnw_vec).")}
+  base::toupper(base::as.character.hexmode(x))
 }
 
-#' @rdname to_dec
+#' @describeIn hex_dec_funs An alias for to_dec
 #' @export
 todec <- to_dec
 
-#' @rdname to_dec
+#' @describeIn hex_dec_funs An aliax for to_hex
 #' @export
 tohex <- to_hex

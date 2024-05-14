@@ -22,24 +22,5 @@ sca("#FF00FF", 0.1)
 \seealso{
 Other colors: 
 \code{\link{markdown}()}
-
-Other plots: 
-\code{\link{color}},
-\code{\link{ggp}()},
-\code{\link{gr}},
-\code{\link{markdown}()},
-\code{\link{pals}()},
-\code{\link{u2u}()}
-
-Other wraps: 
-\code{\link{basics}()},
-\code{\link{dp}()},
-\code{\link{dt}()},
-\code{\link{ggp}()},
-\code{\link{gr}},
-\code{\link{rd}()},
-\code{\link{tb}()}
 }
 \concept{colors}
-\concept{plots}
-\concept{wraps}

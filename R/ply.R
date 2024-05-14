@@ -70,7 +70,7 @@
 #' vls_ply(egChrVls, paste0, collapse = "")
 #' @export
 ply <- function(.x, .fun, ..., .dim = 0, .proc = NULL) {
-  if (base::length(.x) == 0) {uj::stopperr("[.x] is empty.", pkg = "uj")}
+  if (base::length(.x) == 0) {uj::stopperr("[.x] is empty.")}
   vNames <- base::c("a1", "a2", "s", "na", "arg", "out", "agg")
   vAggs  <- base::c("none", "any", "all", "one", "two")
   pNames <- base::names(.proc)
@@ -107,10 +107,10 @@ ply <- function(.x, .fun, ..., .dim = 0, .proc = NULL) {
   if (!okA1  ) {errs <- base::c(errs, "When supplied, [.proc$a1] must be TRUE or FALSE.")}
   if (!okA2  ) {errs <- base::c(errs, "When supplied, [.proc$a2] must be TRUE or FALSE.")}
   if (!okS   ) {errs <- base::c(errs, "When supplied, [.proc$s] must be TRUE or FALSE.")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   if (a1) {.x <- uj::av(.x)}
   if (!base::is.null(arg)) {okMatch <- uj::PPP(.x, arg)} else {okMatch <- FALSE}
-  if (!okMatch) {uj::stopperr("[.x] does not match [.proc$arg = '", arg, "'].", pkg = "uj")}
+  if (!okMatch) {uj::stopperr("[.x] does not match [.proc$arg = '", arg, "'].")}
   if (d0) {
     if (base::is.arrary(.x) | base::is.data.frame(.x)) {.x <- base::apply(.x, 1:base::length(base::dim(.x)), .fun, ...)}
     else if (base::is.null(.x) | uj:::.VEC(.x)) {.x <- base::sapply(.x, .fun, ...)}
@@ -120,13 +120,13 @@ ply <- function(.x, .fun, ..., .dim = 0, .proc = NULL) {
   else {.x <- base::apply(.x, .dim, .fun, ...)}
   if (s) {.x <- base::simplify2array(.x)}
   if (a2) {.x <- uj::av(.x)}
-  if (!uj::f0(base::is.null(out), T, uj::PPP(.x, out))) {uj::stopperr("[.x] does not match [.proc$out = '", out, "'].", pkg = "uj")}
+  if (!uj::f0(base::is.null(out), T, uj::PPP(.x, out))) {uj::stopperr("[.x] does not match [.proc$out = '", out, "'].")}
   if (!base::is.null(agg)) {
     err <- uj::f0(uj::.cmp_chr_scl(na), na == "err", F)
     errs <- NULL
     if (!uj::.LGL(.x)) {errs <- base::c(errs, "[.proc$agg] is not NULL, but results of applying [.fun] are not of mode logical.")}
     if (err & base::any(base::is.na(uj::av(.x)))) {errs <- base::c(errs, "Applying [.fun] produced NA values, but [.proc$na = 'err'].")}
-    if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+    if (!base::is.null(errs)) {uj::stopperr(errs)}
     if (!err) {.x[base::is.na(.x)] <- na}
     if      (agg == "all" ) {base::length(which(.x)) == base::length(.x)}
     else if (agg == "none") {base::length(which(.x)) == 0}

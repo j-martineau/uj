@@ -31,9 +31,7 @@ case("three", 1, letters, .names = c("three", "four"), .def = "default")
 \seealso{
 Other extensions: 
 \code{\link{N}()},
-\code{\link{atomize}()},
-\code{\link{cb}()},
-\code{\link{comparable}()},
+\code{\link{atomize_funs}()},
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
@@ -47,13 +45,13 @@ Other extensions:
 \code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
-\code{\link{sum0}()},
-\code{\link{swap}()},
+\code{\link{stats0}()},
+\code{\link{swaps}()},
 \code{\link{value_exists}()}
 
 Other forks: 
 \code{\link{fork}()},
-\code{\link{swap}()}
+\code{\link{swaps}()}
 }
 \concept{extensions}
 \concept{forks}

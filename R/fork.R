@@ -27,7 +27,7 @@
 #'                `nll_if_any`    \tab Returns `NULL` upon encountering a `TRUE` named `...` arg. Returns `.d` if none is encountered. \cr   \tab   \cr
 #'                `nll_if_all`    \tab Returns `.d` upon encountering a non-`TRUE` named `...` arg. Returns `NULL` if none is encountered.            }
 #' \cr\cr **`nll_ifs`**
-#' \cr\cr Calls `nll_if_none(..., .d = .d)` when `.cond = 'none'`. Calls `nll_if_any(..., .d = .d)` when `.cond = 'any`. Calls `nll_if_all(..., .d = .d)` when `.cond` takes any other value (including `'all'`)
+#' \cr\cr Calls `nll_if_none(..., d = d)` when `.cond = 'none'`. Calls `nll_if_any(..., d = d)` when `.cond = 'any`. Calls `nll_if_all(..., d = d)` when `.cond` takes any other value (including `'all'`)
 #' \cr\cr **`nlls_ifs`**
 #' \cr\cr Conditionally compiles messages into a character vector. Each non-`TRUE` odd-numbered `...` arg's message (\link[=glue_dots]{collapsed} from the following `...` arg) is added to the compilation. If all odd-numbered `...` args are `TRUE`, returns `NULL`.
 #' @param na An object of any type for `f1`. An atomic scalar \link[=compatible]{compatible} with `y` and `n` for `fork`, with the additional possibility of `na = 'err'` to indicate an error should be thrown if any values in `x` are `NA`.
@@ -93,7 +93,7 @@ fork <- function(x, y, n, na = n) {
   if (!okY) {errs <- base::c(errs, "[y] must be of length 1 or a vector of the same length as [x].")}
   if (!okN) {errs <- base::c(errs, "[n] must be of length 1 or a vector of the same length as [x].")}
   if (!okNA) {errs <- base::c(errs, "[na] must be of length 1 or a vector of the same length as [x].")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   okTny <- okX & okY & okN
   okArg <- uj::f0(!errNA | !okX, T, uj::.cmp_lgl_vec(x))
   okTny <- uj::f0(!okTny, NULL, uj::f0(incNas, uj::compatible(y, n, na), uj::compatible(y, n)))
@@ -123,21 +123,21 @@ f1 <- function(x, y, n, na = n, err = n) {
   else if (base::isFALSE(x)) {n}
   else if (naX & !errNAS) {na}
   else if (!uj::.lgl_scl(x) & !errErr) {err}
-  else if (naX) {uj::stopperr("[x] must be atomic, scalar, and TRUE, FALSE, or NA.", pkg = "uj")}
-  else {uj::stopperr("[x] must be atomic, scalar, and TRUE or FALSE.", pkg = "uj")}
+  else if (naX) {uj::stopperr("[x] must be atomic, scalar, and TRUE, FALSE, or NA.")}
+  else {uj::stopperr("[x] must be atomic, scalar, and TRUE or FALSE.")}
 }
 
 #' @rdname fork
 #' @export
-nll_if <- function(x, ..., .d = " ") {
-  if (!uj::.cmp_chr_scl(.d)) {.d <-  " "}
-  uj::f0(base::isTRUE(x), NULL, base::paste0(uj::av(...), collapse = .d))
+nll_if <- function(x, ..., d = " ") {
+  if (!uj::.cmp_chr_scl(d)) {d <-  " "}
+  uj::f0(base::isTRUE(x), NULL, base::paste0(uj::av(...), collapse = d))
 }
 
 #' @rdname fork
 #' @export
 nll_ifs <- function(..., .d = " ", .cond = "all") {
-  .bad_dots <- function(STACK) {uj::stopperr("There must be both named and unnamed [...] args.", fun = "nll_ifs", pkg = "uj", stack = STACK)}
+  .bad_dots <- function(STACK) {uj::stopperr("There must be both named and unnamed [...] args.", fun = "nll_ifs", stack = STACK)}
   if (!uj::.cmp_chr_scl(uj::failsafe(.d))) {.d <- " "}
   if (!uj::.cmp_chr_scl(.cond, valid = base::c("all", "any", "none"))) {.cond <- "all"}
   dots <- base::list(...)
@@ -168,20 +168,3 @@ nll_if_all <- function(..., .d = " ") {uj::nll_ifs(..., .d = " ", .cond = "all")
 #' @rdname fork
 #' @export
 nll_if_none <- function(..., .d = " ") {uj::nll_ifs(..., .d = " ", .cond = "none")}
-
-#' @rdname fork
-#' @export
-nll_ifs <- function(..., .d = " ") {
-  if (!uj::.cmp_chr_scl(uj::failsafe(.d))) {.d <- " "}
-  nDots <- base::...length()
-  nPairs <- nDots / 2
-  hasPairs <- nPairs == base::round(nPairs)
-  if (nDots == 0 | !hasPairs) {uj::stopperr("The number of [...] args must be even and greater than 0.", pkg = "uj")}
-  y <- NULL
-  for (i in base::seq(from = 1, to = nDots - 1, by = 2)) {
-    test <- uj::failsafe(base::...elt(i))
-    mssg <- uj::failsafe(base::...elt(i + 1))
-    y <- base::c(y, uj::nll_if(test, mssg, .d = .d))
-  }
-  y
-}

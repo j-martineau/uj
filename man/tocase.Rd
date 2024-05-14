@@ -66,8 +66,8 @@ tocase("u", egList)
 }
 \seealso{
 Other conversions: 
+\code{\link{hex_dec_funs}()},
 \code{\link{rng2lev}()},
-\code{\link{to_dec}()},
 \code{\link{u2u}()}
 
 Other strings: 

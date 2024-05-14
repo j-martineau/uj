@@ -58,11 +58,11 @@ is_path <- function(..., err = F) {
   if (!okNs) {errs <- base::c(errs, "An argument in [...] is empty.")}
   if (!uj::f0(okN | okNs, T, base::all(base::sapply(x, uj::.cmp_chr)))) {errs <- base::c(errs, "Arguments in [...] must be complete character scalars/vecs (?cmp_chr_scl, ?cmp_chr_vec).")}
   if (!uj::.cmp_lgl_scl(err)) {errs <- base::c(errs, "[err] must be TRUE or FALSE.")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   path <- base::file.path(...)
   if (base::file.exists(path)) {return(T)}
   ok <- !uj::is_err(tryCatch(base::file.create(path, showWarnings = F), error = function(e) e, finally = NULL))
-  if (!ok & err) {uj::stopperr("[...] doesn't resolve to a valid file/folder path.", pkg = "uj")}
+  if (!ok & err) {uj::stopperr("[...] doesn't resolve to a valid file/folder path.")}
   if (ok) {base::file.remove(path)}
   ok
 }
@@ -72,7 +72,7 @@ is_path <- function(..., err = F) {
 as_path <- function(..., err = T) {
   d <- base::.Platform$file.sep
   path <- tryCatch(base::file.path(...), error = function(e) e, finally = NULL)
-  if (uj::is_err(path)) {uj::stopperr("[...] does not resolve to a valid file/folder path.", pkg = "uj")}
+  if (uj::is_err(path)) {uj::stopperr("[...] does not resolve to a valid file/folder path.")}
   path <- base::strsplit(path, d, fixed = T)[[1]]
   args <- base::paste0("path[", 1:base::length(path), "]")
   args <- base::paste0(args, collapse = ", ")

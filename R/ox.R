@@ -102,13 +102,13 @@ ox <- function(..., conj = "and", pref = "", quote = 0) {
   if (!uj::.cmp_chr_scl(conj)) {errs <- base::c(errs, "[conj] must be a complete character scalar (?cmp_chr_scl).")}
   if (!uj::.cmp_chr_scl(pref)) {errs <- base::c(errs, "[pref] must be a complete character scalar (?cmp_chr_scl).")}
   if (!okQuote) {errs <- base::c(errs, "[quote] must be 0, 1, or 2.")}
-  if (!base::isnull(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   nVals <- base::length(vals)
   if (quote == 1) {vals <- base::paste0("'", vals, "'")}
   else if (quote == 2) {vals <- base::paste0("\"", vals, "\"")}
   if (nVals == 1) {
-    if (conj == "nor") {uj::stopperr("[conj = 'nor'], but [...] contains only 1 atomic element.", pkg = "uj")}
-    else if (conj == "or" & pref == "either") {uj::stopperr("[conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element.", pkg = "uj")}
+    if (conj == "nor") {uj::stopperr("[conj = 'nor'], but [...] contains only 1 atomic element.")}
+    else if (conj == "or" & pref == "either") {uj::stopperr("[conj = 'or'] and [pref = 'either'], but [...] contains only 1 atomic element.")}
   }
   if (pref != "") {pref <- base::paste0(pref, " ")}                             # if pref(ix) is not empty, follow it with a space
   last <- vals[nVals]                                                           # get the last element of X
@@ -140,7 +140,7 @@ ox_n <- function(..., conj = "and", comp = "", quote = 0, n = 1, first = TRUE) {
   if (uj::.cmp_chr_scl(comp)) {errs <- base::c(errs, "[comp] must be a complete character scalar (?cmp_chr_scl).")}
   if (!okQuote) {errs <- base::c(errs, "[quote] must be 0, 1, or 2.")}
   if (!uj::.cmp_nnw_scl(n)) {errs <- base::c(errs, "[n] must be a complete non-negative whole-number scalar (?cmp_nnw_scl)")}
-  if (!base::isnull(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   if (comp == "") {pref <- base::paste(n, "of")}
   else if (first) {pref <- base::paste(comp, n, "of")}
   else            {pref <- base::paste(n, comp, "of")}

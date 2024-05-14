@@ -30,9 +30,9 @@ rd_tsv(type = "data file", file = NULL, ...)
 rd_clip()
 }
 \arguments{
-\item{d}{Either \code{NULL} or a \link[ppp:cmp_ch1_scl]{complete onechar scalar} text delimiter.}
+\item{d}{Either \code{NULL} or a \link[=cmp_ch1_scl]{complete onechar scalar} text delimiter.}
 
-\item{type}{A \link[ppp:cmp_str_scl]{complete string scalar} describing the type of file to be read.}
+\item{type}{A \link[=cmp_str_scl]{complete string scalar} describing the type of file to be read.}
 
 \item{file}{Either \code{NULL} or a \link[=cmp_chr_vec]{complete character vector} that resolves to a file path. When \code{file = NULL} the user is asked to select a file using a system dialog box.}
 }
@@ -64,10 +64,8 @@ Read the clipboard and text files, but prompting user to choose a file if no fil
 \seealso{
 Other extensions: 
 \code{\link{N}()},
-\code{\link{atomize}()},
+\code{\link{atomize_funs}()},
 \code{\link{case}()},
-\code{\link{cb}()},
-\code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
@@ -80,8 +78,8 @@ Other extensions:
 \code{\link{purge}()},
 \code{\link{r}()},
 \code{\link{sets}()},
-\code{\link{sum0}()},
-\code{\link{swap}()},
+\code{\link{stats0}()},
+\code{\link{swaps}()},
 \code{\link{value_exists}()}
 
 Other wraps: 
@@ -90,7 +88,6 @@ Other wraps:
 \code{\link{dt}()},
 \code{\link{ggp}()},
 \code{\link{gr}},
-\code{\link{sca}()},
 \code{\link{tb}()}
 
 Other files: 
@@ -98,10 +95,8 @@ Other files:
 
 Other extensions: 
 \code{\link{N}()},
-\code{\link{atomize}()},
+\code{\link{atomize_funs}()},
 \code{\link{case}()},
-\code{\link{cb}()},
-\code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
@@ -114,8 +109,8 @@ Other extensions:
 \code{\link{purge}()},
 \code{\link{r}()},
 \code{\link{sets}()},
-\code{\link{sum0}()},
-\code{\link{swap}()},
+\code{\link{stats0}()},
+\code{\link{swaps}()},
 \code{\link{value_exists}()}
 
 Other wraps: 
@@ -124,7 +119,6 @@ Other wraps:
 \code{\link{dt}()},
 \code{\link{ggp}()},
 \code{\link{gr}},
-\code{\link{sca}()},
 \code{\link{tb}()}
 
 Other files: 

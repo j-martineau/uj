@@ -14,7 +14,7 @@ os <- function() {
     "  'windows' when .Platform$OS.type  == 'windows'  \n", "  'unix'    when .Platform$OS.type  == 'unix'     \n",
     "  'mac'     when .Platform$OS.type  == 'unix'     \n", "            & Sys.info()['sysname'] == 'Darwin'   \n",
     "                                                  \n", "However, in this case, the values are:            \n",
-    "  .Platform$OS.type      == '", type, "'          \n", "  Sys.info()['sysname']  == '", name, "'          \n"), pkg = "uj"
+    "  .Platform$OS.type      == '", type, "'          \n", "  Sys.info()['sysname']  == '", name, "'          \n")
   )} else if (type == "windows") {"win"}
   else if (name == "Darwin" ) {"mac"}
   else if (type == "unix"   ) {"unix"}

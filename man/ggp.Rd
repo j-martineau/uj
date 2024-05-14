@@ -437,11 +437,10 @@ These functions thinly wrap \code{ggplot2} functions unless otherwise noted:
 }
 \seealso{
 Other plots: 
-\code{\link{color}},
+\code{\link{color_funs}()},
 \code{\link{gr}},
 \code{\link{markdown}()},
 \code{\link{pals}()},
-\code{\link{sca}()},
 \code{\link{u2u}()}
 
 Other wraps: 
@@ -450,7 +449,6 @@ Other wraps:
 \code{\link{dt}()},
 \code{\link{gr}},
 \code{\link{rd}()},
-\code{\link{sca}()},
 \code{\link{tb}()}
 }
 \concept{plots}

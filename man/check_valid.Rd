@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{check_valid}
 \alias{check_valid}
-\title{Check \code{x} Against valid Values and Against a Test}
+\title{Check \code{x} Against Valid Values and Against a Test}
 \usage{
 check_valid(x, test, valid)
 }
@@ -17,23 +17,16 @@ check_valid(x, test, valid)
 \item{return}{A logical scalar.}
 }
 \description{
-Check \code{x} Against valid Values and Against a Test
+Check \code{x} Against Valid Values and Against a Test
 }
 \seealso{
 Other utils: 
-\code{\link{av}()},
-\code{\link{callers}()},
-\code{\link{caller}()},
 \code{\link{combo2props}()},
 \code{\link{compat}()},
-\code{\link{fun_pkg_stack}()},
-\code{\link{is_err}()},
 \code{\link{meets_errs}()},
-\code{\link{not_err}()},
 \code{\link{ox_vals}()},
-\code{\link{spec2_combos}()},
+\code{\link{spec2combos}()},
 \code{\link{spec2props}()},
-\code{\link{stack2funs}()},
-\code{\link{stack2pkgs}()}
+\code{\link{stack2funs}()}
 }
 \concept{utils}

@@ -566,11 +566,10 @@ Other colors:
 \code{\link{sca}()}
 
 Other plots: 
-\code{\link{color}},
+\code{\link{color_funs}()},
 \code{\link{ggp}()},
 \code{\link{gr}},
 \code{\link{pals}()},
-\code{\link{sca}()},
 \code{\link{u2u}()}
 }
 \concept{colors}

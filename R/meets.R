@@ -26,7 +26,7 @@
 meets <- function(x, ...) {
   if (base::...length() == 0) {return(T)}
   errs <- uj::meets_errs(x, ...)
-  if (!base::is.null(errs)) {uj::stopperr(errs, .PKG = "ppp")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   atoms <- uj::av(x)
   if (uj::.D1D(x)) {nx <- base::length(x)} else {nx <- base::prod(base::dim(x))}
   atoms <- atoms[!base::is.na(atoms)]

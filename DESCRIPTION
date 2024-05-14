@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R:
     person(given = "Joseph", family = "Martineau",
            email = "martineauj@gmail.com", role = c("aut", "cre"))
-Description: This package is a collection of utility functions I have created over time falling into several categories, including thin wrappers for functions in other packages, extended-functionality wrappers for functions in other packages, extended properties and property checking (?ppp), comprehensive property-based error banking/checking/throwing (?check_xxx, ?stopperr), failsafe object evaluation (?failsafe), string building, text formatting for plotting, text formatting for display on the console, interaction with the user via the console (?alert), and rectangular data cleaning (?clean_data)
+Description: This package is a collection of utility functions I have created over time falling into several categories, including (A) thin wrappers for functions in other packages, (B) extended-functionality wrappers for functions in other packages, (C) extended properties and property checking (?ppp), (D) comprehensive property-based error banking/checking/throwing (?check_xxx, ?stopperr, ?checkerr), (E) failsafe object evaluation (?failsafe), (F) string building, (G) text formatting for plotting, (H) text formatting for display on the console, (I) interaction with the user via the console (?alert), and (J) rectangular data cleaning (?clean_data).
 License: GPL > 3
 Encoding: UTF-8
 Imports:

@@ -5,7 +5,7 @@
   if (!base::all(base::sapply(base::list(...), uj::.atm_vec))) {errs <- base::c(errs, "Arguments in [...] must be atomic vecs (?atm_vec).")}
   if (!base::ifelse(base::is.null(r), T, uj::.cmp_psw_scl(r))) {errs <- base::c(errs, "[r] must be a positive whole-number scalar (?cmp_psw_scl).")}
   if (!base::ifelse(base::is.null(e), T, uj::.cmp_psw_scl(e))) {errs <- base::c(errs, "[e] must be a positive whole-number scalar (?cmp_psw_scl).")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, fun = fun, pkg = 'uj', stack = stack)}
+  if (!base::is.null(errs)) {uj::stopperr(errs, fun = fun, stack = stack)}
 }
 
 # exported

@@ -27,7 +27,7 @@
 #' sqz(trm(c("a ", "b", "c", " ", "d  ", "")))
 #' @export
 spaces <- function(n) {
-  if (!uj::.cmp_nnw_scl(n)) {uj::stopperr("[n] must be a complete positive whole-number scalar (?cmp_psw_scl).", pkg = "uj")}
+  if (!uj::.cmp_nnw_scl(n)) {uj::stopperr("[n] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
   base::paste0(base::rep.int(" ", n), collapse = "")
 }
 
@@ -50,20 +50,21 @@ pad <- function(..., n = 0, s = "r", p = " ") {
   if (!okAtm | !okCmp) {errs <- base::c(errs, "[...] arguments must be complete and atomic (?cmp_atm).")}
   if (!uj::.cmp_nnw_scl(n)) {errs <- base::c(errs, "[n] must be a complete non-negative whole-number scalar (?cmp_nnw_scl).")}
   if (!uj::.cmp_ch1_vec(p)) {errs <- base::c(errs, "[p] must be a complete onechar scalar (?cmp_ch1_vec).")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
+  s <- uj::f0(s == "r", "right", uj::f0(s == "l", "left", "both"))
   base::sapply(uj::av(...), stringr::str_pad, width = n, side = s, pad = p)
 }
 
 #' @rdname spaces
 #' @export
 sqz <- function(...) {
-  if (!base::all(base::sapply(base::list(...), uj::.cmp_chr))) {uj::stopperr("[...] must contain at least one argument, and all must be complete character objects (?cmp_chr).", pkg = "uj")}
+  if (!base::all(base::sapply(base::list(...), uj::.cmp_chr))) {uj::stopperr("[...] must contain at least one argument, and all must be complete character objects (?cmp_chr).")}
   stringr::str_squish(uj::av(...))
 }
 
 #' @rdname spaces
 #' @export
 trm <- function(...) {
-  if (!base::all(base::sapply(base::list(...), uj::.cmp_chr))) {uj::stopperr("[...] must contain at least one argument, and all must be complete character objects (?cmp_chr)", pkg = "uj")}
+  if (!base::all(base::sapply(base::list(...), uj::.cmp_chr))) {uj::stopperr("[...] must contain at least one argument, and all must be complete character objects (?cmp_chr)")}
   stringr::str_trim(uj::av(...))
 }

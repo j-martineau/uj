@@ -91,9 +91,6 @@ Other meta:
 \code{\link{purge}()},
 \code{\link{recyclable_ns}()},
 \code{\link{run}()}
-
-Other user: 
-\code{\link{dialog}}
 }
 \concept{meta}
 \concept{user}

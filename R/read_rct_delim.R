@@ -13,15 +13,15 @@ rd_filename <- function(file, type, d) {
     prompt <- base::paste0(type, "in rectangular", sep, "delimited text format", collapse = " ")
     file   <- uj::choose_doc(prompt)
   }
-  if (!uj::.cmp_chr_vec(file)) {uj::stopperr("[file] must be NULL or a complete character vec (?cmp_chr_vec)", pkg = "uj")}
+  if (!uj::.cmp_chr_vec(file)) {uj::stopperr("[file] must be NULL or a complete character vec (?cmp_chr_vec)")}
   file <- base::paste0(file, collapse = "")
-  if (!base::file.exists(file)) {uj::stopperr(base::paste0("the specified file ('", file, "') does not exist."), pkg = "uj")}
+  if (!base::file.exists(file)) {uj::stopperr(base::paste0("the specified file ('", file, "') does not exist."))}
   file
 }
 
 #' @title Interactively Select and Read a Rectangular Delimited Text Data File
-#' @param type A \link[ppp:cmp_str_scl]{complete string scalar} description of the type of data file to be read.
-#' @param d A \link[ppp:cmp_ch1_scl]{complete onechar scalar} text delimiter.
+#' @param type A \link[=cmp_str_scl]{complete string scalar} description of the type of data file to be read.
+#' @param d A \link[=cmp_ch1_scl]{complete onechar scalar} text delimiter.
 #' @param clear A logical scalar indicating whether to clear the console to denote a new user interaction.
 #' @return A data.frame.
 #' @export
@@ -31,7 +31,7 @@ read_rct_delim <- function(type, d = ",", clear = TRUE) {
   if (!uj::cmp_str_scl(type )) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
   if (!uj::cmp_ch1_scl(d    )) {errs <- base::c(errs, "[d] must be a complete onechar scalar (?cmp_ch1_scl)."  )}
   if (!uj::cmp_lgl_scl(clear)) {errs <- base::c(errs, "[clear] must be scalar TRUE or scalar FALSE."           )}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "rwd")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   sep <- uj::f0(uj::is_EQ(d, "," ), "comma"   ,
          uj::f0(uj::is_EQ(d, "\t"), "tab"     ,
          uj::f0(uj::is_EQ(d, "`" ), "backtick",
@@ -58,8 +58,8 @@ read_rct_delim <- function(type, d = ",", clear = TRUE) {
 #'                `rd_tsv`    \tab Extends \code{\link[readr]{read_tsv}}\eqn{^{(1)}}   \cr
 #'                `rd_xsv`    \tab Extends \code{\link[readr]{read_delim}}\eqn{^{(1)}} \cr   \tab     }
 #'  \tabular{l}{  \eqn{^{(1)}} `file = NULL` prompts the user to select a file.}
-#' @param d Either `NULL` or a \link[ppp:cmp_ch1_scl]{complete onechar scalar} text delimiter.
-#' @param type A \link[ppp:cmp_str_scl]{complete string scalar} describing the type of file to be read.
+#' @param d Either `NULL` or a \link[=cmp_ch1_scl]{complete onechar scalar} text delimiter.
+#' @param type A \link[=cmp_str_scl]{complete string scalar} describing the type of file to be read.
 #' @param file Either `NULL` or a \link[=cmp_chr_vec]{complete character vector} that resolves to a file path. When `file = NULL` the user is asked to select a file using a system dialog box.
 #' @return **Varies**       \cr\cr `rd_clip`
 #' \cr\cr  **A data.frame** \cr\cr `rd_csv, rd_tsv, rd_xsv`
@@ -73,7 +73,7 @@ rd_xsv <- function(d, type = "data file", file = NULL, ...) {
   if (!uj::.cmp_ch1_scl(d            )) {errs <- base::c(errs, "[d] must be a complete onechar scalar (?cmp_ch1_scl).")}
   if (!uj::.cmp_str_scl(type         )) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
   if (!uj::nll_or(file, "cmp_str_scl")) {errs <- base::c(errs, "[file] must be a complete string scalar (?cmp_str_scl).")}
-  if (!base::is.null(errs             )) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs             )) {uj::stopperr(errs)}
   readr::read_delim(uj:::rd_filename(type, file, d), delim = d, ...)
 }
 
@@ -83,7 +83,7 @@ rd_csv <- function(type = "data file", file = NULL, ...) {
   errs <- NULL
   if (!uj::.cmp_str_scl(type         )) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
   if (!uj::nll_or(file, "cmp_str_scl")) {errs <- base::c(errs, "[file] must be a complete string scalar (?cmp_str_scl).")}
-  if (!base::is.null(errs             )) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs             )) {uj::stopperr(errs)}
   readr::read_csv(uj:::rd_filename(type, file, ","), ...)
 }
 
@@ -93,7 +93,7 @@ rd_tsv <- function(type = "data file", file = NULL, ...) {
   errs <- NULL
   if (!uj::.cmp_str_scl(type         )) {errs <- base::c(errs, "[type] must be a complete string scalar (?cmp_str_scl).")}
   if (!uj::nll_or(file, "cmp_str_scl")) {errs <- base::c(errs, "[file] must be a complete string scalar (?cmp_str_scl).")}
-  if (!base::is.null(errs             )) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs             )) {uj::stopperr(errs)}
   readr::read_tsv(uj:::rd_filename(type, file, "\t"), ...)
 }
 

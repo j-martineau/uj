@@ -58,23 +58,27 @@ v(...)
 Get names, definitions, and values of special \code{uj} package named values.
 }
 \details{
-\tabular{ll}{  \verb{value_names, val_names, vnames}   \tab Get names of all package values.                                                                             \cr   \tab   \cr
-  \verb{value_table, val_table, vtable}   \tab Get a data.frame of all \code{uj}-specific named values with three columns: \code{name}, \code{value}, and \code{description},
-where named values with multiple elements are pipe-delimited and all values are converted to mode character. \cr   \tab   \cr
-  \verb{values, values, vs}               \tab Get a named list where names are the arguments submitted to \code{v(...)}, element values are the values of
-the contents of the named element, and the attribute \code{'descriptions'} gives associated verbose descriptions. \cr   \tab   \cr
-  \verb{value, val, v}                    \tab Gets package values by name.                                                                                                }
+\tabular{ll}{  \verb{value_names, val_names, vnames}   \tab Get names of all package values.                                                                                                                                                                                        \cr   \tab   \cr
+  \verb{value_table, val_table, vtable}   \tab Get a data.frame of all \code{uj}-specific named values with three columns: \code{name}, \code{value}, and \code{description}, where named values with multiple elements are pipe-delimited and all values are converted to mode character. \cr   \tab   \cr
+  \verb{values, values, vs}               \tab Get a named list where names are the arguments submitted to \code{v(...)}, element values are the values of the contents of the named element, and the attribute \code{'descriptions'} gives associated verbose descriptions.     \cr   \tab   \cr
+  \verb{value, val, v}                    \tab Gets package values by name.                                                                                                                                                                                                           }
 }
 \examples{
-v(.)
-v(pipe, pipe1, eq)
-vnames()
-values()
-vtable()
+egValues <- function() {
+
+  print(uj::v(.))
+  print(uj::v(pipe, pipe1, eq))
+  print(uj::vnames())
+  print(uj::values())
+  print(uj::vtable())
+
+}
+
+egValues()
 }
 \seealso{
 Other values: 
-\code{\link{atomize}()},
+\code{\link{atomize_funs}()},
 \code{\link{na}()},
 \code{\link{nth}}
 }

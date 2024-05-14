@@ -9,15 +9,15 @@ flex_rbind <- function(x, y) {
   errs <- NULL
   if (!uj::.atm_dtf(x)) {errs <- base::c(errs, "[x] must be an atomic data.frame (?atm_dtf).")}
   if (!uj::.atm_dtf(y)) {errs <- base::c(errs, "[y] must be an atomic data.frame (?atm_dtf).")}
-  if (uj::.DEF(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (uj::.DEF(errs)) {uj::stopperr(errs)}
   xNames <- base::colnames(x)
   yNames <- base::colnames(y)
   sharedNames <- base::intersect(xNames, yNames)
-  if (base::length(sharedNames) == 0) {uj::stopperr("No variables in [x] and [y] have the same name.", pkg = "uj")}
+  if (base::length(sharedNames) == 0) {uj::stopperr("No variables in [x] and [y] have the same name.")}
   allNames <- base::unique(base::c(xNames, yNames))
   uniqueNamesY <- allNames[!(allNames %in% xNames)]
   uniqueNamesX <- allNames[!(allNames %in% yNames)]
-  for (name in sharedNames) {if (!uj:::.compat(x[[name]], y[[name]])) {uj::stopperr("Variables contained in both [x] and [y] must be compatible.", pkg = "uj")}}
+  for (name in sharedNames) {if (!uj:::.compat(x[[name]], y[[name]])) {uj::stopperr("Variables contained in both [x] and [y] must be compatible.")}}
   for (name in uniqueNamesX) {
     newCol <- tibble::tibble(y = base::rep.int(NA, base::nrow(y)))
     base::colnames(newCol) <- name

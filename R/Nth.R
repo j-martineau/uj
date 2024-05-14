@@ -7,8 +7,8 @@
   if (!uj::.pop_vec(x)   ) {errs <- base::c(errs, "[x] is not a populated vector (?pop_vec)."                          )}
   if ( scl.count & !okN   ) {errs <- base::c(errs, "[n] must be a complete positive whole-number scalar (?cmp_psw_scl).")}
   if (!scl.count & !okN   ) {errs <- base::c(errs, "[n] must be a complete positive whole-number vector (?cmp_psw_vec).")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, fun = fun, pkg = "uj", stack = stack)}
-  if (base::any(n > base::length(x))) {uj::stopperr(base::paste0(uj::f0(scl.count, "", "The largest value in")," [n] is greater than the number of elements in [x]."), fun = fun, pkg = "uj", stack = stack)}
+  if (!base::is.null(errs)) {uj::stopperr(errs, fun = fun, stack = stack)}
+  if (base::any(n > base::length(x))) {uj::stopperr(base::paste0(uj::f0(scl.count, "", "The largest value in")," [n] is greater than the number of elements in [x]."), fun = fun, stack = stack)}
 }
 
 # exported ####

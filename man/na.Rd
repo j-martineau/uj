@@ -66,14 +66,12 @@ rm_na(egMat)
 }
 \seealso{
 Other missingness: 
-\code{\link{sum0}()}
+\code{\link{stats0}()}
 
 Other extensions: 
 \code{\link{N}()},
-\code{\link{atomize}()},
+\code{\link{atomize_funs}()},
 \code{\link{case}()},
-\code{\link{cb}()},
-\code{\link{comparable}()},
 \code{\link{compatible}()},
 \code{\link{declare}},
 \code{\link{dups}()},
@@ -86,12 +84,12 @@ Other extensions:
 \code{\link{rd}()},
 \code{\link{r}()},
 \code{\link{sets}()},
-\code{\link{sum0}()},
-\code{\link{swap}()},
+\code{\link{stats0}()},
+\code{\link{swaps}()},
 \code{\link{value_exists}()}
 
 Other values: 
-\code{\link{atomize}()},
+\code{\link{atomize_funs}()},
 \code{\link{nth}},
 \code{\link{values}()}
 }

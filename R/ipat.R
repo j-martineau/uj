@@ -5,7 +5,7 @@
   fun <- uj::caller()
   if (!uj::.cmp_chr_vec(x  )) {base::c(errs, "[x] must be a complete character vec (?cmp_chr_vec)."  )}
   if (!uj::.cmp_str_scl(pat)) {base::c(errs, "[pat] must be a complete string scalar (?cmp_str_scl).")}
-  uj::stopperr(errs, fun = fun, pkg = "uj", stack = stack)
+  uj::stopperr(errs, fun = fun, stack = stack)
 }
 
 # exported

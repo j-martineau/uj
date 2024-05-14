@@ -91,10 +91,9 @@ as_ord(clrs., levs = sort(unique(clrs.)))
 \seealso{
 Other properties: 
 \code{\link{cls}()},
-\code{\link{comparable}()},
 \code{\link{compatible}()},
-\code{\link{iii_PROPS}()},
-\code{\link{mmm_PROPS}()},
-\code{\link{sss_PROPS}()}
+\code{\link{iii_prop_funs}()},
+\code{\link{mmm_prop_funs}()},
+\code{\link{sss_prop_funs}()}
 }
 \concept{properties}

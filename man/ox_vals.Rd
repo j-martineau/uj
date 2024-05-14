@@ -14,25 +14,24 @@ ox_vals(x, join)
 }
 \value{
 A character scalar.
+egOxVals <- function() {
+base::list(and.letters = uj::ox_vals(letters, "and"),
+or.digits   = uj::ox_vals(0:9    , "or" ))
+}
+
+egOxVals()
 }
 \description{
 Simple Oxford-Comma Lists
 }
 \seealso{
 Other utils: 
-\code{\link{av}()},
-\code{\link{callers}()},
-\code{\link{caller}()},
 \code{\link{check_valid}()},
 \code{\link{combo2props}()},
 \code{\link{compat}()},
-\code{\link{fun_pkg_stack}()},
-\code{\link{is_err}()},
 \code{\link{meets_errs}()},
-\code{\link{not_err}()},
-\code{\link{spec2_combos}()},
+\code{\link{spec2combos}()},
 \code{\link{spec2props}()},
-\code{\link{stack2funs}()},
-\code{\link{stack2pkgs}()}
+\code{\link{stack2funs}()}
 }
 \concept{utils}

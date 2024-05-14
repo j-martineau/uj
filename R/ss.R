@@ -34,7 +34,7 @@
 #'                 `'_p'`     \tab pipe                \tab `'|'`                                                                             \cr
 #'                 `'_d'  `   \tab dot                 \tab `'.'`                                                                             \cr
 #'                 `'_b'`     \tab broken pipe         \tab `'¦'`                                                                               }
-#'  \tabular{ll}{  `     `    \tab \eqn{^{(1)}} Splits strings into constituent characters, making `ss0(.)` functionally equivalent to `ch(.)`. }
+#' \tabular{ll}{  `     `    \tab \eqn{^{(1)}} Splits strings into constituent characters, making `ss0(.)` functionally equivalent to `ch(.)`. }
 #' \cr **Functions filtering for unique values**
 #' \cr\cr Prepending `u` to a function name reduces the result of calling the original function to unique values.
 #' @param ... An arbitrary number of objects to be \link[=av]{atomized} before splitting.
@@ -53,31 +53,31 @@
 #' @examples
 #' ss("", "super-cooled")
 #' ss("|", "super||cooled", "super|heated")
-#' ss_0("super-cooled", "super-heated")
-#' ss_1("super cooled", "super heated")
-#' ss_p("super|cooled", "super|heated", u = TRUE)
-#' ss_d("super.cooled", "super.heated")
-#' ss_b("super¦cooled", "super¦heated")
-#' ss_pd("super|cooled", "super.heated")
-#' ss_pb("super|cooled", "super¦heated")
-#' ss_db("super.cooled", "super¦heated")
-#' ss_pdb("super|cooled¦|super|heated", u = TRUE)
-#' ss_pdb(" super|cooled  ¦super..  heated", n = 3)
-#' ss_pdb(" super|cooled  ¦super..  heated", trm = F, sqz = F, drop = F, n = 3)
+#' ss0("super-cooled", "super-heated")
+#' ss1("super cooled", "super heated")
+#' ssp("super|cooled", "super|heated", u = TRUE)
+#' ssd("super.cooled", "super.heated")
+#' ssb("super¦cooled", "super¦heated")
+#' sspd("super|cooled", "super.heated")
+#' sspb("super|cooled", "super¦heated")
+#' ssdb("super.cooled", "super¦heated")
+#' sspdb("super|cooled¦|super|heated", u = TRUE)
+#' sspdb(" super|cooled  ¦super..  heated", n = 3)
+#' sspdb(" super|cooled  ¦super..  heated", trm = F, sqz = F, drop = F, n = 3)
 #' uss("", "super-cooled")
 #' uss("|", "super|cooled", "super|heated")
-#' uss_0("super-cooled", "super-heated")
-#' uss_1("super cooled", "super heated")
-#' uss_p("super|cooled", "super|heated")
-#' uss_p("super|cooled", "super|heated")
-#' uss_d("super.cooled", "super.heated")
-#' uss_b("super¦cooled", "super¦heated")
-#' uss_pd("super|cooled", "super.heated")
-#' uss_pb("super|cooled", "super¦heated")
-#' uss_db("super.cooled", "super¦heated")
-#' uss_pdb("super|cooled¦super|heated")
-#' ss_tb("|", 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p')
-#' ss_tb("|", 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p', name = 'original', part = 'letter')
+#' uss0("super-cooled", "super-heated")
+#' uss1("super cooled", "super heated")
+#' ussp("super|cooled", "super|heated")
+#' ussp("super|cooled", "super|heated")
+#' ussd("super.cooled", "super.heated")
+#' ussb("super¦cooled", "super¦heated")
+#' usspd("super|cooled", "super.heated")
+#' usspb("super|cooled", "super¦heated")
+#' ussdb("super.cooled", "super¦heated")
+#' usspdb("super|cooled¦super|heated")
+#' sstb("|", 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p')
+#' sstb("|", 'a|b|c|d', 'e|f|g|h', 'i|j|k|l', 'm|n|o|p', name = 'original', part = 'letter')
 #' @export
 ss <- function(d, ..., trm = TRUE, sqz = TRUE, drop = TRUE, u = FALSE, n = NULL) {
   errs <- NULL
@@ -86,14 +86,14 @@ ss <- function(d, ..., trm = TRUE, sqz = TRUE, drop = TRUE, u = FALSE, n = NULL)
   if (!uj::.cmp_lgl_scl(trm)) {errs <- base::c(errs, "[trm] must be TRUE or FALSE.")}
   if (!uj::.cmp_chr_vec(d)) {errs <- base::c(errs, "[d] must be a complete character vec (?cmp_chr_vec).")}
   if (!uj::.cmp_lgl_scl(u)) {errs <- base::c(errs, "[u] must be TRUE or FALSE.")}
-  if (!uj::f0(base::isnull(n), T, uj::.cmp_psw_vec(n))) {errs <- base::c(errs, "[n] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).")}
-  if (!base::isnull(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!uj::f0(base::is.null(n), T, uj::.cmp_psw_vec(n))) {errs <- base::c(errs, "[n] must be NULL or a complete positive whole-number vec (?cmp_psw_vec).")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   x <- uj::av(...)
   for (d in d) {x <- uj::av(base::strsplit(base::as.character(x), d, fixed = T))}
   if (trm) {x <- uj::trm(x)}
   if (sqz) {x <- uj::sqz(x)}
   if (drop) {x <- x[x != ""]}
-  if (!base::isnull(n)) {x <- x[n]}
+  if (!base::is.null(n)) {x <- x[n]}
   if (u) {x <- base::unique(x)}
   x
 }
@@ -120,12 +120,12 @@ ss0 <- ch
 
 #' @rdname ss
 #' @export
-ss_tb <- function(d, ..., name = "string", part = "part", trm = TRUE, sqz = TRUE, drop = TRUE, u = FALSE, n = NULL) {
+sstb <- function(d, ..., name = "string", part = "part", trm = TRUE, sqz = TRUE, drop = TRUE, u = FALSE, n = NULL) {
   x <- uj::av(...)
   y <- base::lapply(x, ss, d = d, trm = trm, sqz = sqz, drop = drop, n = n, u = u)
   nDots <- base::length(x)
   if (nDots > 1) {
-    if (!uj::recyclable_ns(base::lengths(y))) {uj::stopperr("[...] args must be recyclable upon splitting and post-processing using optional args.", pkg = "uj")}
+    if (!uj::recyclable_ns(base::lengths(y))) {uj::stopperr("[...] args must be recyclable upon splitting and post-processing using optional args.")}
     ns <- base::lengths(y)
     if (base::length(base::unique(ns)) > 1) {
       reps <- base::max(ns) / ns
@@ -146,31 +146,31 @@ ss1 <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {
 
 #' @rdname ss
 #' @export
-ss_p <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss("|", ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
+ssp <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss("|", ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
 
 #' @rdname ss
 #' @export
-ss_d <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss(".", ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
+ssd <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss(".", ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
 
 #' @rdname ss
 #' @export
-ss_b <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss("¦", ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
+ssb <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss("¦", ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
 
 #' @rdname ss
 #' @export
-ss_pd <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss(c("|", "."), ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
+sspd <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss(c("|", "."), ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
 
 #' @rdname ss
 #' @export
-ss_pb <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss(c("|", "¦"), ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
+sspb <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss(c("|", "¦"), ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
 
 #' @rdname ss
 #' @export
-ss_db <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss(c(".", "¦"), ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
+ssdb <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss(c(".", "¦"), ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
 
 #' @rdname ss
 #' @export
-ss_pdb <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss(c("|", ".", "¦"), ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
+sspdb <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL, u = FALSE) {uj::ss(c("|", ".", "¦"), ..., trm = trm, sqz = sqz, drop = drop, n = n, u = u)}
 
 #' @rdname ss
 #' @export
@@ -190,7 +190,7 @@ uss0 <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ss0(..
 
 #' @rdname ss
 #' @export
-uss_tb <- function(d, ..., name = "string", part = "part", trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ss_tb(d, ..., name = name, part = part, sqz = sqz, drop = drop, u = TRUE, n = n)}
+usstb <- function(d, ..., name = "string", part = "part", trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ss_tb(d, ..., name = name, part = part, sqz = sqz, drop = drop, u = TRUE, n = n)}
 
 #' @rdname ss
 #' @export
@@ -198,28 +198,28 @@ uss1 <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ss1(..
 
 #' @rdname ss
 #' @export
-uss_p <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ss_p(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
+ussp <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ssp(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
 
 #' @rdname ss
 #' @export
-uss_d <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ss_d(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
+ussd <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ssd(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
 
 #' @rdname ss
 #' @export
-uss_b <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ss_b(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
+ussb <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ssb(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
 
 #' @rdname ss
 #' @export
-uss_pd <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ss_pd(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
+usspd <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::sspd(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
 
 #' @rdname ss
 #' @export
-uss_pb <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ss_pb(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
+usspb <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::sspb(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
 
 #' @rdname ss
 #' @export
-uss_db <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ss_db(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
+ussdb <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ssdb(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
 
 #' @rdname ss
 #' @export
-uss_pdb <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::ss_pdb(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}
+usspdb <- function(..., trm = TRUE, sqz = TRUE, drop = TRUE, n = NULL) {uj::sspdb(..., trm = trm, sqz = sqz, drop = drop, u = TRUE, n = n)}

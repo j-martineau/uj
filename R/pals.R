@@ -5,8 +5,8 @@
   errs <- NULL
   if (!uj::.cmp_psw_scl(tot)) {errs <- base::c(errs, "[tot] must be a positive whole number scalar.")}
   if (!uj::.cmp_psw_scl(unq)) {errs <- base::c(errs, "[unq] must be a positive whole number scalar.")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, fun = fun, pkg = "uj", stack = stack)}
-  if (unq > max.unq) {uj::stopperr("[unq] is greater than the number of unique values available for the designated palette.", fun = fun, pkg = "uj", stack = stack)}
+  if (!base::is.null(errs)) {uj::stopperr(errs, fun = fun, stack = stack)}
+  if (unq > max.unq) {uj::stopperr("[unq] is greater than the number of unique values available for the designated palette.", fun = fun, stack = stack)}
 }
 
 .pal_vals <- function(type, tot, unq) {
@@ -151,8 +151,8 @@ build_palette <- function(type, tot, unq) {
   else if (!(type %in% validTypes )) {errs <- base::c(errs, "[type] must be a character scalar in c('colors.sensitive', 'colors.standard', 'linetypes', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes').")}
   if      (!uj::.cmp_psw_scl(tot )) {errs <- base::c(errs, "[tot] must be positive whole-number scalar.")}
   if      (!uj::.cmp_psw_scl(unq )) {errs <- base::c(errs, "[unq] must be positive whole-number scalar.")}
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
-  if (unq > tot) {uj::stopperr("[unq] is greater than [tot]", pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
+  if (unq > tot) {uj::stopperr("[unq] is greater than [tot]")}
   unq < base::min(unq, validUnqNs[type])
   uj::pal_vals(type, tot, unq)
 }

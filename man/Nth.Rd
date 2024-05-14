@@ -45,7 +45,7 @@ Extract the \code{n}-th, \code{n}-th from last, first \code{n}, and last \code{n
 }
 \seealso{
 Other values: 
-\code{\link{atomize}()},
+\code{\link{atomize_funs}()},
 \code{\link{na}()},
 \code{\link{values}()}
 }

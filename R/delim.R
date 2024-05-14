@@ -94,7 +94,7 @@ delim <- function() {utils::help("delim", package = "uj")}
 da <- function(d, ...) {
   if (base::...length() == 0) {return("")}
   errs <- uj:::.delim_errs(base::list(d = d, Dots =  base::list(...)), a = TRUE)
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   base::paste(..., sep = d)
 }
 
@@ -104,7 +104,7 @@ dw <- function(d, ...) {
   dw0 <- function(x) {base::paste0(uj::av(x), collapse = d)}
   if (base::...length() == 0) {return("")}
   errs <- uj:::.delim_errs(base::list(d = d, Dots =  base::list(...)), a = TRUE)
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   base::sapply(base::list(...), dw0)
 }
 
@@ -113,7 +113,7 @@ dw <- function(d, ...) {
 daw <- function(d, D, ...) {
   if (base::...length() == 0) {return("")}
   errs <- uj:::.delim_errs(base::list(d = d, D = D, Dots =  base::list(...)), a = TRUE)
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   x <- base::paste0(..., sep = d)
   base::paste0(uj::av(x), collapse = D)
 }
@@ -124,7 +124,7 @@ dww <- function(d, D, ...) {
   dw0 <- function(x) {base::paste0(uj::av(x), collapse = d)}
   if (base::...length() == 0) {return("")}
   errs <- uj:::.delim_errs(base::list(d = d, D = D, Dots =  base::list(...)), a = TRUE)
-  if (!base::is.null(errs)) {uj::stopperr(errs, pkg = "uj")}
+  if (!base::is.null(errs)) {uj::stopperr(errs)}
   x <- base::sapply(base::list(...), dw0)
   base::paste0(uj::av(x), collapse = D)
 }

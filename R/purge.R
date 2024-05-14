@@ -142,7 +142,7 @@ xcon <- purge_console
 #' @export
 purge_pref <- function(funs) {
   base::gc(verbose = FALSE)
-  if (!uj::.cmp_chr_vec(funs)) {uj::stopperr("[funs] must be a complete character vec (?cmp_chr_vec).", pkg = "uj")}
+  if (!uj::.cmp_chr_vec(funs)) {uj::stopperr("[funs] must be a complete character vec (?cmp_chr_vec).")}
   where <- base::regexpr(":::", funs, fixed = T)
   where[where == -1] <- -2
   funs <- base::substr(funs, where + 3, base::nchar(funs))
@@ -208,22 +208,22 @@ rm_vals <- function(x, vals) {
   errs <- NULL
   if (!uj::.atm_vec(x)) {errs <- base::c(errs, "[x] must be an atomic vec (?atm_vec).")}
   if (!uj::.unq_vec(vals)) {errs <- base::c(errs, "[vals] must be a unique-valued atomic vec (?uj::unq_vec).")}
-  if (uj::DEF(errs)) {uj::stopperr(errs, pkg = "uj")}
-  if (!uj:::.compat(x, vals)) {uj::stopper("[x] and [vals] must be of compatible modes.", pkg = "uj")}
+  if (uj::DEF(errs)) {uj::stopperr(errs)}
+  if (!uj:::.compat(x, vals)) {uj::stopper("[x] and [vals] must be of compatible modes.")}
   x <- x[!(x %in% vals)]
 }
 
 #' @rdname rm_vals
 #' @export
 rm_elts <- function(x, elts) {
-  if (!uj::.atm_vec(x)) {uj::stopper("[x] must be an atomic vec (?atm_vec).", pkg = "uj")}
+  if (!uj::.atm_vec(x)) {uj::stopper("[x] must be an atomic vec (?atm_vec).")}
   n <- base::length(x)
   if (uj::unq_whl_vec(elts)) {
     if (base::all(elts != 0)) {
       elts[elts < 0] <- n + elts[elts < 0] - 1
       if (base::all(elts <= n)) {x[1:n[!(1:n %in% elts)], ]}
       else {uj::stopper("[elts] may not contain values larger than length(x).")}
-    } else {uj::stopperr("[elts] may not contain 0.", pkg = "uj")}
+    } else {uj::stopperr("[elts] may not contain 0.")}
   } else if (uj::cmp_lgl_vec(elts)) {
     if (uj::N(elts) == n) {x[!elts]}
     else {uj::stopper("length(elts) must equal length(x) when [elts] is of mode logical.")}
@@ -236,7 +236,7 @@ rm_elts <- function(x, elts) {
 #' @rdname rm_vals
 #' @export
 rm_rows <- function(x, rows) {
-  if (!(uj::.atm_mat(x) | uj::.atm_dtf(x)) | !uj::.POP(x)) {uj::stopperr("[x] must be an atomic matrix or an atomic data frame (?atm_dtf).", pkg = "uj")}
+  if (!(uj::.atm_mat(x) | uj::.atm_dtf(x)) | !uj::.POP(x)) {uj::stopperr("[x] must be an atomic matrix or an atomic data frame (?atm_dtf).")}
   n <- base::nrow(x)
   if (uj::unq_whl_vec(rows)) {
     if (base::all(rows != 0)) {
@@ -255,7 +255,7 @@ rm_rows <- function(x, rows) {
 #' @rdname rm_vals
 #' @export
 rm_cols <- function(x, cols) {
-  if (!(uj::.atm_mat(x) | uj::.atm_dtf(x)) | !uj::.POP(x)) {uj::stopperr("[x] must be an atomic matrix or an atomic data frame (?atm_dtf).", pkg = "uj")}
+  if (!(uj::.atm_mat(x) | uj::.atm_dtf(x)) | !uj::.POP(x)) {uj::stopperr("[x] must be an atomic matrix or an atomic data frame (?atm_dtf).")}
   n <- base::ncol(x)
   if (uj::unq_psw_vec(x)) {
     if (base::all(cols <= n)) {x[1:n[!(1:n %in% cols)], ]}

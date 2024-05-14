@@ -44,8 +44,8 @@ Manage classes
 }
 \examples{
 egObj1 <- data.frame(letters = letters, numbers = 1:26, stringsAsFactors = F)
-egObj2 <- setCLS(egObj1, c("new", cls(egObj1)))
-egObj3 <- setCLS(egObj1, "new")
+egObj2 <- set_cls(egObj1, c("new", cls(egObj1)))
+egObj3 <- set_cls(egObj1, "new")
 cls(egObj1)
 cls(egObj2)
 cls(egObj3)
@@ -53,10 +53,9 @@ cls(egObj3)
 \seealso{
 Other properties: 
 \code{\link{as_mmm}()},
-\code{\link{comparable}()},
 \code{\link{compatible}()},
-\code{\link{iii_PROPS}()},
-\code{\link{mmm_PROPS}()},
-\code{\link{sss_PROPS}()}
+\code{\link{iii_prop_funs}()},
+\code{\link{mmm_prop_funs}()},
+\code{\link{sss_prop_funs}()}
 }
 \concept{properties}

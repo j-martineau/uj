@@ -14,8 +14,8 @@
 #' \cr\cr  **An object**          \cr\cr `add_cls, set_cls, rm_cls, xcls`
 #' @examples
 #' egObj1 <- data.frame(letters = letters, numbers = 1:26, stringsAsFactors = F)
-#' egObj2 <- setCLS(egObj1, c("new", cls(egObj1)))
-#' egObj3 <- setCLS(egObj1, "new")
+#' egObj2 <- set_cls(egObj1, c("new", cls(egObj1)))
+#' egObj3 <- set_cls(egObj1, "new")
 #' cls(egObj1)
 #' cls(egObj2)
 #' cls(egObj3)
@@ -28,7 +28,7 @@ rm_cls <- function(x, ...) {
   rmClass <- base::as.character(uj::uv(...))
   allClass <- base::class(x)
   keepClass <- allClass[!(allClass %in% rmClass)]
-  if (base::length(keepClass) == 0) {uj::stopperr("There are no classes remaining.", pkg = "uj")}
+  if (base::length(keepClass) == 0) {uj::stopperr("There are no classes remaining.")}
   base::class(x) <- keepClass
   x
 }
