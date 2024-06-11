@@ -22,25 +22,3 @@ sets(2)
 sets(3)
 sets(4)
 }
-\seealso{
-Other extensions: 
-\code{\link{N}()},
-\code{\link{atomize_funs}()},
-\code{\link{case}()},
-\code{\link{compatible}()},
-\code{\link{declare}},
-\code{\link{dups}()},
-\code{\link{failsafe}()},
-\code{\link{flex_rbind}()},
-\code{\link{fork}()},
-\code{\link{naming}},
-\code{\link{na}()},
-\code{\link{paths}},
-\code{\link{purge}()},
-\code{\link{rd}()},
-\code{\link{r}()},
-\code{\link{stats0}()},
-\code{\link{swaps}()},
-\code{\link{value_exists}()}
-}
-\concept{extensions}

@@ -14,9 +14,9 @@
 #' comparable(list(az., 1:10), az., 1:10)
 #' comparable(factor(az., az., ordered = T), factor("q", az., ordered = T))
 #' @export
-comparable_funs <- function() {utils::help("comparable_funs", package = "uj")}
+comparable_help <- function() {utils::help("comparable_help", package = "uj")}
 
-#' @describeIn comparable_funs Check an arbitrary number of `...` arguments for comparability. Also checks for mutual recyclability when `.rec = TRUE`.
+#' @describeIn comparable_help Check an arbitrary number of `...` arguments for comparability. Also checks for mutual recyclability when `.rec = TRUE`.
 #' @export
 comparable <- function(..., .rec = FALSE) {
   x <- base::list(...)
@@ -48,6 +48,6 @@ comparable <- function(..., .rec = FALSE) {
   } else {T}
 }
 
-#' @describeIn comparable_funs Checks `x` and `y` for comparability. Also checks for mutual recyclability when `rec = T`.
+#' @describeIn comparable_help Checks `x` and `y` for comparability. Also checks for mutual recyclability when `rec = T`.
 #' @export
 comparable_xy <- function(x, y, rec = FALSE) {uj::comparable(x, y, .rec = rec)}

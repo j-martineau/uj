@@ -1,6 +1,6 @@
 #' @encoding UTF-8
 #' @family Errs
-#' @title Error checking, banking, and processing
+#' @title Error Checking, Banking, and Processing
 #' @description Bank error messages in the immediate environment of a function to allow for exhaustive error checking before throwing an exception. Results in a possibly multiple-error, accumulated message to be processed upon completion of error checking.
 #' @details **Primary stopping functions**
 #' \tabular{ll}{  `stopperr` or `stopper`   \tab Stops execution by:                                                                                                                                                                                                             \cr

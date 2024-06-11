@@ -2,17 +2,7 @@
 #' @family conversions
 #' @family plots
 #' @title Convert plotting units
-#' @description Functions in this family convert among common plotting units.
-#' @details Unit conversion functions take the following forms.
-#' \tabular{ll}{  **Function**   \tab **Type of**                                              \cr
-#'                **Form**       \tab **Conversion**                                           \cr
-#'                `{aa}2{bb}`    \tab from `'{aa}'` units to `'{bb}'` units\eqn{^{(1)}}.       \cr
-#'                `{aa}2u`       \tab from `'{aa}'` units to `new` units\eqn{^{(1,2)}}.        \cr
-#'                `u2{bb}`       \tab from `old` units to `'{bb}'` units\eqn{^{(1,2)}}.        \cr
-#'                `u2u`          \tab from `old` units to `new` units.\eqn{^{(2)}}               }
-#'  \tabular{l}{  \eqn{^{(1)}} `{aa}` and `{bb}` are placeholders for any given plotting unit. \cr
-#'                \eqn{^{(2)}} `old` and `new` are user supplied arguments.                      }
-#' \cr\cr Available unit codes are:
+#' @description Functions in this family convert among common plotting units. Available unit codes are:
 #' \tabular{ll}{  `'cm'`   \tab centimeters    \cr
 #'                `'in'`   \tab inches         \cr
 #'                `'mm'`   \tab millimeters    \cr
@@ -42,6 +32,10 @@
 #' pt2in(1:3)
 #' pt2mm(1:3)
 #' @export
+u2u_help <- function() {utils::help("u2u_help", package = "uj")}
+
+#' @describeIn u2u_help Converts `x` from `old` units to `new` units
+#' @export
 u2u <- function(x, old, new) {
   units <- base::c("cm", "in", "mm", "pt")
   convs <- base::c(cm2cm = 1        , cm2in = 0.393701 , cm2mm = 10      , cm2pt = 28.3465,
@@ -59,82 +53,82 @@ u2u <- function(x, old, new) {
   x * convs[[base::paste0(old, "2", new)]]
 }
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from `old` units to centimeters.
 #' @export
 u2cm <- function(x, old) {uj::u2u(x, old, "cm")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from `old` units to inches.
 #' @export
 u2in <- function(x, old) {uj::u2u(x, old, "in")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from `old` units to millimeters.
 #' @export
 u2mm <- function(x, old) {uj::u2u(x, old, "mm")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from `old` units to points.
 #' @export
 u2pt <- function(x, old) {uj::u2u(x, old, "pt")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from centimeters to `new` units.
 #' @export
 cm2u <- function(x, new) {uj::u2u(x, "cm", new)}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from inches to `new` units.
 #' @export
 in2u <- function(x, new) {uj::u2u(x, "in", new)}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from millimeters to `new` units.
 #' @export
 mm2u <- function(x, new) {uj::u2u(x, "mm", new)}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from points to `new` units.
 #' @export
 pt2u <- function(x, new) {uj::u2u(x, "pt", new)}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from centimeters to inches.
 #' @export
 cm2in <- function(x) {uj::u2u(x, "cm", "in")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from centimeters to millimeters.
 #' @export
 cm2mm <- function(x) {uj::u2u(x, "cm", "mm")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from centimeters to points.
 #' @export
 cm2pt <- function(x) {uj::u2u(x, "cm", "pt")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from inches to centimeters.
 #' @export
 in2cm <- function(x) {uj::u2u(x, "in", "cm")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from inches to millimeters.
 #' @export
 in2mm <- function(x) {uj::u2u(x, "in", "mm")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from inches to points.
 #' @export
 in2pt <- function(x) {uj::u2u(x, "in", "pt")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from millimeters to centimeters.
 #' @export
 mm2cm <- function(x) {uj::u2u(x, "mm", "cm")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from millimeters to inches.
 #' @export
 mm2in <- function(x) {uj::u2u(x, "mm", "in")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from millimeters to points.
 #' @export
 mm2pt <- function(x) {uj::u2u(x, "mm", "pt")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from points to centimeters.
 #' @export
 pt2cm <- function(x) {uj::u2u(x, "pt", "cm")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from points to inches.
 #' @export
 pt2in <- function(x) {uj::u2u(x, "pt", "in")}
 
-#' @rdname u2u
+#' @describeIn u2u_help Converts `x` from points to millimeters.
 #' @export
 pt2mm <- function(x) {uj::u2u(x, "pt", "mm")}

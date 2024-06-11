@@ -29,29 +29,8 @@ case("three", one = 1, two = letters, .def = "default")
 case("three", 1, letters, .names = c("three", "four"), .def = "default")
 }
 \seealso{
-Other extensions: 
-\code{\link{N}()},
-\code{\link{atomize_funs}()},
-\code{\link{compatible}()},
-\code{\link{declare}},
-\code{\link{dups}()},
-\code{\link{failsafe}()},
-\code{\link{flex_rbind}()},
-\code{\link{fork}()},
-\code{\link{naming}},
-\code{\link{na}()},
-\code{\link{paths}},
-\code{\link{purge}()},
-\code{\link{rd}()},
-\code{\link{r}()},
-\code{\link{sets}()},
-\code{\link{stats0}()},
-\code{\link{swaps}()},
-\code{\link{value_exists}()}
-
 Other forks: 
-\code{\link{fork}()},
-\code{\link{swaps}()}
+\code{\link{fork_help}()},
+\code{\link{swap_help}()}
 }
-\concept{extensions}
 \concept{forks}

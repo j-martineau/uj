@@ -1,4 +1,3 @@
-#' @name as_mmm
 #' @encoding UTF-8
 #' @family properties
 #' @title Coerce to base mode or \code{\link[mmm]{extended mode}}

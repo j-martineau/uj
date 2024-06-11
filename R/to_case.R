@@ -3,12 +3,6 @@
 #' @family strings
 #' @title Convert string case
 #' @description Convert among lower, sentence, title, and upper cases.
-#' @details Functions in this family convert string case as follows:
-#' \tabular{ll}{  `totitle, tc`   \tab Convert to \link[stringr:str_to_sentence]{title case}.    \cr
-#'                `tosent, sc`    \tab Convert to \link[stringr:str_to_sentence]{sentence case}. \cr
-#'                `tocase`        \tab Convert to case `case`.                                   \cr
-#'                `lc`            \tab Convert to \link[base:tolower]{lower case}.               \cr
-#'                `uc`            \tab Convert to \link[base:toupper]{upper case}.                 }
 #' @param ... An arbitrary number of non-empty character arguments.
 #' @param case A case insensitive \link[=cmp_ch1_scl]{complete onechar scalar}. Either `'l'`, `'s'`, `'t'`, or `'u'` to indicate lower, sentence, title, or upper case, respectively.
 #' @return A character vector.
@@ -45,26 +39,26 @@ tocase <- function(case, ...) {
   else                  {stringr::str_to_sentence(x)}
 }
 
-#' @rdname tocase
+#' @describeIn tocase Converts to \link[stringr:str_to_sentence]{sentence case}.
 #' @export
 tosent <- function(...) {uj::tocase("s", ...)}
 
-#' @rdname tocase
+#' @describeIn tocase Converts to \link[stringr:str_to_sentence]{title case}.
 #' @export
 totitle <- function(...) {uj::tocase("t", ...)}
 
-#' @rdname tocase
+#' @describeIn tocase Converts to \link[base:tolower]{lower case}.
 #' @export
 lc <- function(...) {uj::tocase("l", ...)}
 
-#' @rdname tocase
+#' @describeIn tocase Converts to \link[stringr:str_to_sentence]{sentence case}.
 #' @export
 sc <- function(...) {uj::tocase("s", ...)}
 
-#' @rdname tocase
+#' @describeIn tocase Converts to \link[stringr:str_to_sentence]{title case}.
 #' @export
 tc <- function(...) {uj::tocase("t", ...)}
 
-#' @rdname tocase
+#' @describeIn tocase Converts to \link[base:toupper]{upper case}.
 #' @export
 uc <- function(...) {uj::tocase("u", ...)}

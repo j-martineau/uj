@@ -1,4 +1,5 @@
 #' @encoding UTF-8
+#' @family properties
 #' @title Combo Uniqueness and Extended Mode Properties
 #' @description Functions for checking combinations of \link[=UNQ]{uniqueness} and \link[=mmm]{extended mode} subject to any count or value restrictions in `...`.
 #' @param x An R object.
@@ -74,21 +75,21 @@
 #' c(unq_uno(UnqUno), unq_uno(UnqOrd), unq_uno(c(UnqUno, UnqUno)))
 #' c(unq_whl(UnqWhl), unq_whl(UnqNum), unq_whl(c(UnqWhl, UnqWhl)))
 #' @export
-unq_mmm_prop_funs <- function() {utils::help("unq_mmm_prop_funs", package = "uj")}
+unq_mmm_help <- function() {utils::help("unq_mmm_help", package = "uj")}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for completened and against the extended mode in `mmm` subject to any count and/or value restrictions in `mmm`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for completened and against the extended mode in `mmm` subject to any count and/or value restrictions in `mmm`. Returns a logical scalar.
 #' @export
 unq_mmm <- function(x, mmm, ...) {if (uj::cmp_mmm(x, mmm, ...)) {base::length(x) == base::length(base::unique(x))} else {F}}
 
-#' @describeIn unq_mmm_prop_funs Lists all combo uniqueness plus extended mode property checking functions. Returns a character vector.
+#' @describeIn unq_mmm_help Lists all combo uniqueness plus extended mode property checking functions. Returns a character vector.
 #' @export
 unq_mmm_funs <- function() {base::paste0('unq_', uj::mmm_props())}
 
-#' @describeIn unq_mmm_prop_funs Lists all combo uniqueness plus extended mode properties.
+#' @describeIn unq_mmm_help Lists all combo uniqueness plus extended mode properties.
 #' @export
 unq_mmm_props <- function() {base::paste0('unq_', uj::mmm_props())}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for atomic-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for atomic-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_atm <- function(x, ...) {
   if (base::is.atomic(x)) {
@@ -96,110 +97,114 @@ unq_atm <- function(x, ...) {
   } else {F}
 }
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for onechar-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for onechar-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_ch1 <- function(x, ...) {uj::unq_mmm(x, 'ch1', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for threechar-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for threechar-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_ch3 <- function(x, ...) {uj::unq_mmm(x, 'ch3', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for character-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for character-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_chr <- function(x, ...) {uj::unq_mmm(x, 'chr', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for color-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for color-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_clr <- function(x, ...) {uj::unq_mmm(x, 'clr', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for even-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for correlation-valued-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @export
+unq_cor <- function(x, ...) {uj::unq_mmm(x, 'cor', ...)}
+
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for even-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_evn <- function(x, ...) {uj::unq_mmm(x, 'evn', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for factor-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for factor-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_fac <- function(x, ...) {uj::unq_mmm(x, 'fac', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for fractional-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for fractional-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_frc <- function(x, ...) {uj::unq_mmm(x, 'frc', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for indexer-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for indexer-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_ind <- function(x, ...) {uj::unq_mmm(x, 'ind', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for logical-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for logical-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_lgl <- function(x, ...) {uj::unq_mmm(x, 'lgl', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for negative-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for negative-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_num <- function(x, ...) {uj::unq_mmm(x, 'num', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for negative-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for negative-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_neg <- function(x, ...) {uj::unq_mmm(x, 'neg', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for negative-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for negative-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_ngw <- function(x, ...) {uj::unq_mmm(x, 'ngw', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for non-negative-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for non-negative-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_nng <- function(x, ...) {uj::unq_mmm(x, 'nng', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for non-negative-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for non-negative-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_nnw <- function(x, ...) {uj::unq_mmm(x, 'nnw', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for non-positive-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for non-positive-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_nps <- function(x, ...) {uj::unq_mmm(x, 'nps', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for non-positive-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for non-positive-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_npw <- function(x, ...) {uj::unq_mmm(x, 'npw', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for non-sortable-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for non-sortable-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_nst <- function(x, ...) {uj::unq_mmm(x, 'nst', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for odd-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for odd-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_odd <- function(x, ...) {uj::unq_mmm(x, 'odd', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for ordered-factor-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for ordered-factor-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_ord <- function(x, ...) {uj::unq_mmm(x, 'ord', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for percent-valued-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for percent-valued-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_pct <- function(x, ...) {uj::unq_mmm(x, 'pct', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for positive-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for positive-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_pos <- function(x, ...) {uj::unq_mmm(x, 'pos', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for proportion-value-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for proportion-value-numeric-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_ppn <- function(x, ...) {uj::unq_mmm(x, 'ppn', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for positive-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for positive-whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_psw <- function(x, ...) {uj::unq_mmm(x, 'psw', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for sortable-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for sortable-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_srt <- function(x, ...) {uj::unq_mmm(x, 'srt', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for string-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for string-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_str <- function(x, ...) {uj::unq_mmm(x, 'str', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for unordered-factor-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for unordered-factor-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_uno <- function(x, ...) {uj::unq_mmm(x, 'uno', ...)}
 
-#' @describeIn unq_mmm_prop_funs Checks `x` for uniqueness and for whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
+#' @describeIn unq_mmm_help Checks `x` for uniqueness and for whole-number-ness subject to any count and/or value restrictions in `...`. Returns a logical scalar.
 #' @export
 unq_whl <- function(x, ...) {uj::unq_mmm(x, 'whl', ...)}

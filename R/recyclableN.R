@@ -3,11 +3,7 @@
 #' @family meta
 #' @title Recycling and recyclability
 #' @description Check for and conduct recycling in the environment that calls functions from this family.
-#' @details Arguments are recyclable if all of their lengths are divisors of the argument with the greatest length subject to any settings in the optional arguments `ns.`, `min.`, `max.`, and/or `targ.`.
-#' \cr\cr Functions in this family are:
-#' \tabular{ll}{  `recyclableN`   \tab Are lengths in `...` recyclable?.                 \cr   \tab   \cr
-#'                `recyclable`    \tab Are `...` arguments are recyclable?               \cr   \tab   \cr
-#'                `recycle`       \tab Recycles `...` arguments in the calling function.                }
+#' \cr\cr Arguments are recyclable if all of their lengths are divisors of the argument with the greatest length subject to any settings in the optional arguments `.n`, `.min`, `.max`, and/or `.targ`.
 #' @param ... For `recycle`, named arguments to be recycled in the environment of the calling function. For `recyclable_n`, one or more objects containing only positive whole number values (\link[=av]{atomized} before processing).
 #' @param .n Either `NULL` or a \link[=cmp_psw_vec]{complete positive whole-number vec} (?cmp_psw_vec) giving the set of valid recycled argument lengths.
 #' @param .min Either `NULL` or a \link[=cmp_psw_scl]{complete positive whole-number scalar} (?cmp_psw_scl) giving the minimum valid recycled argument length.
@@ -50,6 +46,10 @@
 #' recyclable(egN3, egC3, egC1)
 #' recyclable(egN3, egC3, egN3)
 #' @export
+recycling_help <- function() {utils::help("recycling", package = "uj")}
+
+#' @describeIn recycling_help Checks whether numeric scalar arguments in `...` indicate recyclable lengths, subject to restrictions in `.n`, `.min`, `.max`, and `.targ`.
+#' @export
 recyclable_ns <- function(..., .n = NULL, .min = NULL, .max = NULL, .targ = NULL) {
   ns     <- uj::av(...)
   okDots <- base::length(ns) > 0
@@ -75,7 +75,7 @@ recyclable_ns <- function(..., .n = NULL, .min = NULL, .max = NULL, .targ = NULL
   T
 }
 
-#' @rdname recyclable_ns
+#' @describeIn recycling_help Checks whether arguments in `...` are recyclable, subject to restrictions in `.n`, `.min`, `.max`, and `.targ`.
 #' @export
 recyclable <- function(..., .n = NULL, .min = 1, .max = NULL, .targ = NULL, .err = FALSE) {
   x    <- base::list(...)
@@ -89,7 +89,7 @@ recyclable <- function(..., .n = NULL, .min = 1, .max = NULL, .targ = NULL, .err
   y
 }
 
-#' @rdname recyclable_ns
+#' @describeIn recycling_help Recycles named arguments in `...` in the environment of the calling function, subject to restrictions in `.n`, `.min`, `.max`, and `.targ`.
 #' @export
 recycle <- function(..., .n = NULL, .min = 1, .max = NULL, .targ = NULL) {
   uj::recyclable(..., .n = .n, .min = .min, .max = .max, .targ = .targ, .err = T)

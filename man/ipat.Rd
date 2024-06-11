@@ -67,13 +67,14 @@ Other strings:
 \code{\link{fsub}()},
 \code{\link{gr}},
 \code{\link{makestr}()},
-\code{\link{markdown}()},
+\code{\link{markdown_help}()},
 \code{\link{maxnch}()},
+\code{\link{ox_vals}()},
 \code{\link{ox}()},
-\code{\link{pgrid}()},
+\code{\link{pgrid_help}()},
 \code{\link{revstr}()},
 \code{\link{spaces}()},
-\code{\link{ss}()},
+\code{\link{ss_help}()},
 \code{\link{tocase}()},
 \code{\link{weave}()}
 }

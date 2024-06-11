@@ -16,25 +16,3 @@ A data.frame.
 \description{
 Checks for compatibility of variables with the same name in both variables. Adds \code{NA}-populated variables to each data frame as needed to allow for row binding. Variables in the resulting data.frame are sorted left to right in ascending order of variable name.
 }
-\seealso{
-Other extensions: 
-\code{\link{N}()},
-\code{\link{atomize_funs}()},
-\code{\link{case}()},
-\code{\link{compatible}()},
-\code{\link{declare}},
-\code{\link{dups}()},
-\code{\link{failsafe}()},
-\code{\link{fork}()},
-\code{\link{naming}},
-\code{\link{na}()},
-\code{\link{paths}},
-\code{\link{purge}()},
-\code{\link{rd}()},
-\code{\link{r}()},
-\code{\link{sets}()},
-\code{\link{stats0}()},
-\code{\link{swaps}()},
-\code{\link{value_exists}()}
-}
-\concept{extensions}

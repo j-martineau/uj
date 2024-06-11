@@ -4,7 +4,7 @@
 \name{maxnch}
 \alias{maxnch}
 \alias{maxlen}
-\title{Length of longest string}
+\title{Length of Longest String}
 \usage{
 maxnch(...)
 
@@ -32,12 +32,13 @@ Other strings:
 \code{\link{gr}},
 \code{\link{ipat}()},
 \code{\link{makestr}()},
-\code{\link{markdown}()},
+\code{\link{markdown_help}()},
+\code{\link{ox_vals}()},
 \code{\link{ox}()},
-\code{\link{pgrid}()},
+\code{\link{pgrid_help}()},
 \code{\link{revstr}()},
 \code{\link{spaces}()},
-\code{\link{ss}()},
+\code{\link{ss_help}()},
 \code{\link{tocase}()},
 \code{\link{weave}()}
 
@@ -48,9 +49,8 @@ Other chars:
 \code{\link{chn}()},
 \code{\link{revstr}()},
 \code{\link{spaces}()},
-\code{\link{ss}()}
+\code{\link{ss_help}()}
 }
-\concept{base_extensions}
 \concept{chars}
 \concept{counts}
 \concept{strings}

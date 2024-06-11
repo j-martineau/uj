@@ -21,7 +21,7 @@
 \alias{checker}
 \alias{bankerr}
 \alias{bankerrs}
-\title{Error checking, banking, and processing}
+\title{Error Checking, Banking, and Processing}
 \usage{
 stopperr(..., fun = "", stack = "")
 
@@ -162,6 +162,6 @@ egErrors  <- function(..., tf = NA, lgl = 42, not = FALSE, pop = NULL,
 }
 \seealso{
 Other Errs: 
-\code{\link{check_xxx_funs}()}
+\code{\link{check_xxx_help}()}
 }
 \concept{Errs}

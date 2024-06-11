@@ -16,7 +16,6 @@
 
 #' @name declare
 #' @encoding UTF-8
-#' @family extensions
 #' @title Declare basic .r objects with extended functionality
 #' @description This family of functions enforces the restrictions that names must (a) contain only ASCII letters, numerals, `'.'`, and `'_'`; (b) begin with a letter or `'.'` followed by a letter; and (c) end with a letter or numeral.
 #' \cr\cr **Functions declaring \link[=atm_dtf]{atomic data.frames}:**

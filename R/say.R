@@ -1,6 +1,6 @@
 #' @encoding UTF-8
 #' @family meta
-#' @family user
+#' @family console
 #' @title User updates and interaction via the console in default color and style
 #' @param ... An arbitrary number of atomic arguments to be atomized collapsed into a character scalar message to the user. If no values are supplied and `lev = NA` or `lev = 6`, prints a single dot (`.`) immediately following the current contents of the console.
 #' @param lev Either `NA` to print the message in `...` immediately following the current contents of the console or a value from `1:6` to use the console for up to `6` levels of user updates. See function `say` below.
@@ -35,9 +35,9 @@
 #' chat.()
 #' \dontrun{continue()}
 #' @export
-console_basics <- function() {utils::help("console_basics", package = "dlg")}
+console_help <- function() {utils::help("console_help", package = "dlg")}
 
-#' @describeIn console_basics Flattens `...` to a character scalar message and either (a) prints it to the console or (b) structures it as an update and prints it to the console. When `...` is empty, the message defaults to a single dot (`"."`). Allows for structuring user update messages at hierarchical levels as explained in the following table:
+#' @describeIn console_help Flattens `...` to a character scalar message and either (a) prints it to the console or (b) structures it as an update and prints it to the console. When `...` is empty, the message defaults to a single dot (`"."`). Allows for structuring user update messages at hierarchical levels as explained in the following table:
 #'  \tabular{ll}{  VALUE      \tab PREFIX OF MESSAGE          \cr
 #'                 OF `lev`   \tab POSTED TO CONSOLE          \cr
 #'                 `0`        \tab < none >                   \cr
@@ -68,18 +68,18 @@ say <- function(..., lev = 0, sub = 0, clear = FALSE) {
   base::cat(msg)
 }
 
-#' @describeIn console_basics Flattens `...` into a character scalar and prints it to the console preceded and succeeded by a new line.
+#' @describeIn console_help Flattens `...` into a character scalar and prints it to the console preceded and succeeded by a new line.
 #' @export
 cat0 <- function(..., clear = FALSE) {uj::say("\n", ..., "\n", clear = clear)}
 
-#' @describeIn console_basics Prints `"Hit [enter] or [return] to continue"` to the console and pause execution until the user hits the enter or return key.
+#' @describeIn console_help Prints `"Hit [enter] or [return] to continue"` to the console and pause execution until the user hits the enter or return key.
 #' @export
 continue <- function(clear = FALSE) {
   if (clear) {uj::xcon()}
   base::readline("Press [enter] or [return] to continue: ")
 }
 
-#' @describeIn console_basics Clears the console.
+#' @describeIn console_help Clears the console.
 #' @export
 xcon <- function() {
   base::gc(verbose = FALSE)

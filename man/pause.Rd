@@ -34,11 +34,11 @@ Pause for \code{x} seconds, then resume execution.
 \seealso{
 Other meta: 
 \code{\link{callers}()},
-\code{\link{console_basics}()},
+\code{\link{console_help}()},
 \code{\link{dot_args}()},
-\code{\link{ply}()},
-\code{\link{purge}()},
-\code{\link{recyclable_ns}()},
+\code{\link{ply_help}()},
+\code{\link{purge_help}()},
+\code{\link{recycling_help}()},
 \code{\link{run}()}
 }
 \concept{meta}

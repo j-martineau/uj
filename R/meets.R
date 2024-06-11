@@ -1,4 +1,5 @@
 #' @encoding UTF-8
+#' @family properties
 #' @title Evaluate whether an object meets count and/or value restrictions
 #' @description Evaluates whether `x` meets any count and value restrictions are provided in `...`. If none are provided, returns `TRUE`.
 #' @param x An object.

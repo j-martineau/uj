@@ -59,11 +59,11 @@ Thin wrappers of \code{dplyr} functions
 }
 \seealso{
 Other wraps: 
-\code{\link{basics}()},
+\code{\link{basics_help}()},
 \code{\link{dt}()},
-\code{\link{ggp}()},
+\code{\link{gg_help}()},
 \code{\link{gr}},
-\code{\link{rd}()},
-\code{\link{tb}()}
+\code{\link{rd_help}()},
+\code{\link{tb_help}()}
 }
 \concept{wraps}

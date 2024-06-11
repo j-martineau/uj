@@ -18,7 +18,7 @@
 #' strw(sent1)
 #' strw(sent2)
 #' strw(sent12)
-st_h <- graphics::strheight
+str_h <- graphics::strheight
 
 #' @rdname gr
 #' @export

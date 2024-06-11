@@ -35,9 +35,7 @@ egStack2Funs()
 Other utils: 
 \code{\link{check_valid}()},
 \code{\link{combo2props}()},
-\code{\link{compat}()},
 \code{\link{meets_errs}()},
-\code{\link{ox_vals}()},
 \code{\link{spec2combos}()},
 \code{\link{spec2props}()}
 }

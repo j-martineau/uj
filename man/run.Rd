@@ -38,11 +38,11 @@ egRUNalias2 <- function(x, y) {egRUNalias1(x, y)}
 \seealso{
 Other meta: 
 \code{\link{callers}()},
-\code{\link{console_basics}()},
+\code{\link{console_help}()},
 \code{\link{dot_args}()},
 \code{\link{pause}()},
-\code{\link{ply}()},
-\code{\link{purge}()},
-\code{\link{recyclable_ns}()}
+\code{\link{ply_help}()},
+\code{\link{purge_help}()},
+\code{\link{recycling_help}()}
 }
 \concept{meta}

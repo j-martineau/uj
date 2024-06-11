@@ -37,8 +37,8 @@ rng2lev(ordVALS, ordCUTS, rngLEVS)
 }
 \seealso{
 Other conversions: 
-\code{\link{hex_dec_funs}()},
+\code{\link{hex_dec_help}()},
 \code{\link{tocase}()},
-\code{\link{u2u}()}
+\code{\link{u2u_help}()}
 }
 \concept{conversions}

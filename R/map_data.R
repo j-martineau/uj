@@ -1,3 +1,4 @@
+#' @encoding UTF-8
 #' @title Map Variables in a Data Frame to Specified Roles
 #' @description Utility to map variables in a data.frame to specific roles, with options to trim variables not assigned to roles, to rename variables to match variable roles (vs. attaching a variable map as an attribute), and to clear the console with each step in variable mapping.
 #' @details Variable mapping is conducted interactively via the console for all variable roles in `roles` and `opt.roles` that do not have matching variable names in `x`. For variable roles in `roles` and `opt.roles` that have matching variable names in `x`, matching is done automatically.

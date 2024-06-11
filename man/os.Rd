@@ -19,7 +19,7 @@ os()
 \seealso{
 Other environments: 
 \code{\link{callers}()},
-\code{\link{recyclable_ns}()},
+\code{\link{recycling_help}()},
 \code{\link{value_exists}()}
 }
 \concept{environments}

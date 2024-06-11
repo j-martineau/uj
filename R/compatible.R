@@ -1,5 +1,4 @@
 #' @encoding UTF-8
-#' @family extensions
 #' @family properties
 #' @title Are objects compatible?
 #' @description

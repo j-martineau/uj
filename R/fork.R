@@ -1,44 +1,13 @@
-#' @name fork
 #' @encoding UTF-8
-#' @family extensions
 #' @family forks
 #' @title Enhancements of \code{\link[base]{ifelse}}.
 #' @description Return different types of objects for `TRUE` and `FALSE` and return `NULL`  conditional on the number of `TRUE` values.
-#' @details **`fork`**
-#' \cr\cr Evaluates logical scalar or logical vector `x` and return an object of the same length as `x` where:
-#' \itemize{\item `TRUE` values of `x` are replaced by corresponding values of `y`.
-#'          \item `FALSE` values of `x` are replaced by corresponding values of `n`.
-#'          \item `NA` values of `x` are replaced by `na` (unless `na = 'err'`, in which case if there are any `NA` values in `x`, throws an error). }
-#' \cr\cr **`f0`**
-#' \cr\cr If `x` is scalar `TRUE`, returns `y`. If `x` is anything else, returns `n`.
-#' \cr\cr **`f1`**
-#' \cr\cr Error-checked version of `f0`. Evaluates and processes logical scalar `x` in the following manner:
-#' \itemize{\item If `x = TRUE`, returns `y`.
-#'          \item If `x = FALSE`, returns `y`.
-#'          \item If `x = NA`, returns `na` unless `na = 'err'`, in which case, an error is thrown.
-#'          \item If `x` is neither a logical scalar nor scalar `NA`, returns `err` unless `err = 'err'`, in which case an error is thrown. }
-#' \cr\cr **Functions beginning with `nll_if`**
-#' \cr\cr These functions are useful for compiling error messages. They thus return `NULL` if error checks are passed and a message if they are not.
-#' \cr\cr **`nll_if`**
-#' \cr\cr If `x` is scalar `TRUE`, returns `NULL`, otherwise collapses `...` args to a character scalar using delimiter `.d` and returns the result.
-#' \cr\cr **`nll_if_<cond.>`**
-#' \cr\cr These functions take both named and unnamed `...` args. Named `...` args other than `.d` are evaluated for `TRUE`-ness (any value that is not scalar `TRUE` is considered `FALSE`). Unnamed `...` args are \link[=glue_dots]{collapsed} into a character scalar value named `.d` using the delimiter in arg `.d`
-#' \tabular{ll}{  `nll_if_none`   \tab Returns `.d` upon encountering a `TRUE` named `...` arg. Returns `NULL` if none is encountered. \cr   \tab   \cr
-#'                `nll_if_any`    \tab Returns `NULL` upon encountering a `TRUE` named `...` arg. Returns `.d` if none is encountered. \cr   \tab   \cr
-#'                `nll_if_all`    \tab Returns `.d` upon encountering a non-`TRUE` named `...` arg. Returns `NULL` if none is encountered.            }
-#' \cr\cr **`nll_ifs`**
-#' \cr\cr Calls `nll_if_none(..., d = d)` when `.cond = 'none'`. Calls `nll_if_any(..., d = d)` when `.cond = 'any`. Calls `nll_if_all(..., d = d)` when `.cond` takes any other value (including `'all'`)
-#' \cr\cr **`nlls_ifs`**
-#' \cr\cr Conditionally compiles messages into a character vector. Each non-`TRUE` odd-numbered `...` arg's message (\link[=glue_dots]{collapsed} from the following `...` arg) is added to the compilation. If all odd-numbered `...` args are `TRUE`, returns `NULL`.
 #' @param na An object of any type for `f1`. An atomic scalar \link[=compatible]{compatible} with `y` and `n` for `fork`, with the additional possibility of `na = 'err'` to indicate an error should be thrown if any values in `x` are `NA`.
 #' @param err Either `'err'` or an object to be returned when `x` is not an atomic scalar in `c(TRUE, FALSE, NA)`.
 #' @param x A logical scalar (if not,`x` it is replaced by `FALSE`).
 #' @param y,n Any valid R object.
-#' @param .d A character scalar delimiter for collapsing objects into scalar character objects. If `.d` is not a character scalar, it is replaced by `" "`.
+#' @param d,.d A character scalar delimiter for collapsing objects into scalar character objects. If `.d` is not a character scalar, it is replaced by `" "`.
 #' @param .cond A character scalar in `c('all', 'any', 'none')`. If `.cond` is not of an allowed value, it is replaced by `'all'`.
-#' @return **A length-**`length(x)` **atomic object**      \cr\cr `fork`
-#' \cr\cr  **An arbitrary object**                         \cr\cr `f0, f1`
-#' \cr\cr  **A character scalar or the** `NULL` **object** \cr\cr `nll_if, nll_ifs, nll_if_all` \cr `nll_if_any, nll_if_none`
 #' @examples
 #' fork(c(TRUE, FALSE, TRUE, NA), 1, 2)
 #' fork(c(TRUE, FALSE, TRUE, NA), 1, 2, na = 0)
@@ -72,9 +41,17 @@
 #' nll_if_all(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "all")
 #' nll_if_none(t1 = TRUE, t2 = FALSE, t3 = FALSE, "not", "none")
 #' @export
+fork_help <- function() {utils::help("fork_help", package = "uj")}
+
+#' @describeIn fork_help If `x` is scalar `TRUE`, returns `y`. If `x` is anything else, returns `n`.
+#' @export
 f0 <- function(x, y, n) {if (base::isTRUE(uj::failsafe(x))) {uj::failsafe(y)} else {uj::failsafe(n)}}
 
-#' @rdname fork
+#' @describeIn fork_help Evaluates logical scalar or logical vector `x` and return an object of the same length as `x` where:
+#' \itemize{\item `TRUE` values of `x` are replaced by corresponding values of `y`.
+#'          \item `FALSE` values of `x` are replaced by corresponding values of `n`.
+#'          \item `NA` values of `x` are replaced by `na` (unless `na = 'err'`, in which case if there are any `NA` values in `x`, throws an error). }
+#'   Returns a length-`length(x)` atomic object.
 #' @export
 fork <- function(x, y, n, na = n) {
   nX <- base::length(x)
@@ -112,7 +89,11 @@ fork <- function(x, y, n, na = n) {
   y
 }
 
-#' @rdname fork
+#' @describeIn fork_help Error-checked version of `f0`. Evaluates and processes logical scalar `x` in the following manner:
+#' \itemize{\item If `x = TRUE`, returns `y`.
+#'          \item If `x = FALSE`, returns `y`.
+#'          \item If `x = NA`, returns `na` unless `na = 'err'`, in which case, an error is thrown.
+#'          \item If `x` is neither a logical scalar nor scalar `NA`, returns `err` unless `err = 'err'`, in which case an error is thrown. }
 #' @export
 f1 <- function(x, y, n, na = n, err = n) {
   errErr <- uj::f0(uj::.cmp_chr_scl(err), err == "err", F)
@@ -127,14 +108,14 @@ f1 <- function(x, y, n, na = n, err = n) {
   else {uj::stopperr("[x] must be atomic, scalar, and TRUE or FALSE.")}
 }
 
-#' @rdname fork
+#' @describeIn fork_help If `x` is scalar `TRUE`, returns `NULL`, otherwise collapses `...` args to a character scalar using delimiter `d` and returns the result.
 #' @export
 nll_if <- function(x, ..., d = " ") {
   if (!uj::.cmp_chr_scl(d)) {d <-  " "}
   uj::f0(base::isTRUE(x), NULL, base::paste0(uj::av(...), collapse = d))
 }
 
-#' @rdname fork
+#' @describeIn fork_help Calls `nll_if_none(..., d = .d)` when `.cond = 'none'`. Calls `nll_if_any(..., d = .d)` when `.cond = 'any`. Calls `nll_if_all(..., d = .d)` when `.cond` takes any other value (including `'all'`)
 #' @export
 nll_ifs <- function(..., .d = " ", .cond = "all") {
   .bad_dots <- function(STACK) {uj::stopperr("There must be both named and unnamed [...] args.", fun = "nll_ifs", stack = STACK)}
@@ -157,14 +138,14 @@ nll_ifs <- function(..., .d = " ", .cond = "all") {
   if (.cond == "any") {NULL} else {known}
 }
 
-#' @rdname fork
+#' @describeIn fork_help Returns `NULL` if any named `...` argument is scalar `TRUE`. Otherwise, returns a message composed of unnamed `...` args collapsed into a character scalar using the delimiter `.d`.
 #' @export
 nll_if_any <- function(..., .d = " ") {uj::nll_ifs(..., .d = " ", .cond = "any")}
 
-#' @rdname fork
+#' @describeIn fork_help Returns `NULL` if all named `...` arguments are scalar `TRUE`. Otherwise, returns a message composed of unnamed `...` args collapsed into a character scalar using the delimiter `.d`.
 #' @export
 nll_if_all <- function(..., .d = " ") {uj::nll_ifs(..., .d = " ", .cond = "all")}
 
-#' @rdname fork
+#' @describeIn fork_help Returns `NULL` if no named `...` argument is scalar `TRUE`. Otherwise, returns a message composed of unnamed `...` args collapsed into a character scalar using the delimiter `.d`.
 #' @export
 nll_if_none <- function(..., .d = " ") {uj::nll_ifs(..., .d = " ", .cond = "none")}

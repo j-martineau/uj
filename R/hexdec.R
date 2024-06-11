@@ -1,11 +1,7 @@
 #' @encoding UTF-8
 #' @family conversions
 #' @title Convert non-negative whole numbers between decimal and hexadecimal
-#' @description \tabular{ll}{  `to_dec, todec`   \tab Converts hexadecimal \link[=cmp_chr]{complete character object} `x` from hexadecimal to decimal. `x` may be formatted as either `'hhh...'` or `'#hhh...'` where `h` is a placeholder for a hexidecimal digit in either upper or lower case. \cr   \tab   \cr
-#'                             `to_hex, tohex`   \tab Converts \link[=cmp_psw]{complete positive whole-number} `x` to hexadecimal formatted as `'#HHH...'` where `H` is a placeholder for an uppercase hexadecimal digit.                                                                                        }
-#' @param x A \link[=cmp_nnw]{complete non-negative whole-number object} or a \link[=cmp_chr]{complete character vec} containing only non-negative whole-number hexademical values.
-#' @return **A non-negative whole number object**                                 \cr `to_dec, todec`
-#' \cr\cr  **A character object of non-negative whole number hexadecimal values** \cr `to_hex, tohex`
+#' @param x A \link[=cmp_nnw]{complete non-negative whole-number object} (`to_hex` and `tohex`) or a \link[=cmp_chr]{complete character vec} containing only non-negative whole-number hexademical values (`to_dec` or `todec`).
 #' @examples
 #' egHexDec <- function() {
 #'   RGBA   <- col2rgb("orange", alpha = 0.5)
@@ -21,9 +17,9 @@
 #' egHexDec <- egHexDec()
 #' egHexDec
 #' @export
-hex_dec_funs <- function() {help::utils("hex_dec_funs", package = "uj")}
+hex_dec_help <- function() {help::utils("hex_dec_help", package = "uj")}
 
-#' @describeIn hex_dec_funs Convert hexadecimal numerals to decimal numerals.
+#' @describeIn hex_dec_help Convert hexadecimal numerals to decimal numerals. Returns a non-negative whole-number object.
 #' @export
 to_dec <- function(x) {
   if (uj::.cmp_chr(x)) {
@@ -36,17 +32,17 @@ to_dec <- function(x) {
   } else {uj::stopperr("[x] must be a complete character object (?cmp_chr).")}
 }
 
-#' @describeIn hex_dec_funs Convert decimal numerals to hexadecimal numerals (*not* prefixed by `'#'`).
+#' @describeIn hex_dec_help Convert decimal numerals to hexadecimal numerals (*not* prefixed by `'#'`). Returns a character object of non-negative whole number hexadecimal values.
 #' @export
 to_hex <- function(x) {
   if (!uj::.cmp_nnw_vec(x)) {uj::stopperr("[x] must be complete, non-negative whole-number vec (?cmp_nnw_vec).")}
   base::toupper(base::as.character.hexmode(x))
 }
 
-#' @describeIn hex_dec_funs An alias for to_dec
+#' @describeIn hex_dec_help An alias for `to_dec.`
 #' @export
 todec <- to_dec
 
-#' @describeIn hex_dec_funs An aliax for to_hex
+#' @describeIn hex_dec_help An aliax for `to_hex.`
 #' @export
 tohex <- to_hex

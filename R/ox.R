@@ -1,5 +1,23 @@
 #' @encoding UTF-8
 #' @family strings
+#' @title Simple Oxford-Comma Lists
+#' @param x A character vector to be formatted as an Oxford-comma list.
+#' @param join A character scalar conjunction for between the next to last and last elements of `x`.
+#' @return A character scalar.
+#' egOxVals <- function() {
+#'   base::list(and.letters = uj::ox_vals(letters, "and"),
+#'              or.digits   = uj::ox_vals(0:9    , "or" ))
+#' }
+#'
+#' egOxVals()
+#' @export
+ox_vals <- function(x, join) {
+  n <- base::length(x)
+  if (n == 1) {x} else if (n == 2) {base::paste0(x[1], " ", join, " ", x[2])} else {base::paste0(base::paste0(x[1:(n - 1)], collapse = ", "), ", ", join, " ", x[n])}
+}
+
+#' @encoding UTF-8
+#' @family strings
 #' @title Oxford-comma separated lsts
 #' @description Create Oxford-comma separated lsts with a variety of templates (see *details*).
 #' \cr\cr With the exception of `n > length(uj::av(...))`, these functions appropriately process lsts of length `1` and `2`.

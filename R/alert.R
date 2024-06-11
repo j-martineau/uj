@@ -1,8 +1,7 @@
 # alert utils ####
 
-
 #' @encoding UTF-8
-#' @family alert_utils
+#' @family console
 #' @title Validate Formatting Argument Values
 #' @param st Optional style spec.
 #' @param bg Optional background color spec.
@@ -11,14 +10,40 @@
 #' @param nullst Logical scalar indicating whether a `NULL` style spec is valid.
 #' @param nullbg Logical scalar indicating whether a `NULL` background color spec is valid.
 #' @param nullfg Logical scalar indicating whether a `NULL` foreground color spec is valid.
+#' @param opts   An atomic vector of options to choose from.
+#' @param mssg   Character scalar message to prompt the selection.
+#' @param all    Logical scalar indicating whether it is valid to select all options.
+#' @param none   Logical scalar indicating whether it is valid to select none of the options.
+#' @param min    Non-negative integer scalar minimum number of options to select.
+#' @param max    Positive integer scalar maximum numver of options to select.
+#' @param ft     Character scalar title formatting spec.
+#' @param fs     Character scalar subtitle formatting spec.
+#' @param fun    Character scalar name of calling function.
+#' @param stack  Character vector call stack.
+#' @param clear  Logical scalar indicating whether to clear the console before alerting the user to the selection.
+#' @param cancel Logical scalar indicating whether cancellation of selection is valid.
 #' @examples
+#' egOkFmt <- function() {
+#'   base::list(blank  = uj::.ok_fmt(""),
+#'              null   = uj::.ok_fmt(NULL),
+#'              bad.st = uj::.ok_fmt("q|r|b"),
+#'              ok.all = uj::.ok_fmt("y|r|b"),
+#'              padded = uj::.ok_fmt("  yellow | red | bold  "))
+#' }
+#' egOkFmt()
 #' \dontrun{
 #'   uj::.fmt_errs(),
 #'   uj::.fmt_errs(d = 100),
 #'   uj::.fmt_errs(st = "", bg = "", fg = ""),
 #'   uj::.fmt_errs(st = "q", bg = "q", fg = "q"),
 #'   uj::.fmt_errs(nullst = F, nullbg = F, nullfg = F))
+#'   uj::.choose_from(letters, "What letter?", T, N, 0, 26, "b|s|u", "w|b|p", "console", "console", F)
+#'   uj::.choose_from(0:9    , "What number?", F, F, 1, 1 , "r|y|b", "y|r|i", "console", "console", T, cancel = F)
 #' }
+#' @export
+alert_utils <- function() {utils::help("alert_utils", package = "uj")}
+
+#' @describeIn alert_utils Validate Formatting Argument Values
 #' @export
 .fmt_errs <- function(st = NULL, bg = NULL, fg = NULL, d = " ", nullst = TRUE, nullbg = TRUE, nullfg = TRUE) {
   st   <- uj::failsafe(st)
@@ -37,19 +62,7 @@
   if (!base::is.null(errs)) {uj::stopperr(errs)}
 }
 
-#' @encoding UTF-8
-#' @family alert_utils
-#' @title Validate Formatting Argument Values
-#' @param x Character vector format spec (element 1 is style, element 2 is foreground color, element 3 is background color). May be a pipe-delimited character scalar.
-#' @examples
-#' egOkFmt <- function() {
-#'   base::list(blank  = uj::.ok_fmt(""),
-#'              null   = uj::.ok_fmt(NULL),
-#'              bad.st = uj::.ok_fmt("q|r|b"),
-#'              ok.all = uj::.ok_fmt("y|r|b"),
-#'              padded = uj::.ok_fmt("  yellow | red | bold  "))
-#' }
-#' egOkFmt()
+#' @describeIn alert_utils Validate Formatting Argument Values
 #' @export
 .ok_fmt <- function(x) {
   if (base::is.null(x)) {return(F)}
@@ -59,30 +72,14 @@
   else {x[1] %in% uj::.bgs() & x[2] %in% uj::.fgs() & base::all(x[3] %in% uj::.sts())}
 }
 
-#' @encoding UTF-8
-#' @family alert_utils
-#' @title Choose from a List of Options with a Given Message and a Variety of Options
-#' @param opts   An atomic vector of options to choose from.
-#' @param mssg   Character scalar message to prompt the selection.
-#' @param all    Logical scalar indicating whether it is valid to select all options.
-#' @param none   Logical scalar indicating whether it is valid to select none of the options.
-#' @param min    Non-negative integer scalar minimum number of options to select.
-#' @param max    Positive integer scalar maximum numver of options to select.
-#' @param ft     Character scalar title formatting spec.
-#' @param fs     Character scalar subtitle formatting spec.
-#' @param fun    Character scalar name of calling function.
-#' @param stack  Character vector call stack.
-#' @param clear  Logical scalar indicating whether to clear the console before alerting the user to the selection.
-#' @param cancel Logical scalar indicating whether cancellation of selection is valid.
-#' @return An atomic vector.
-#' @examples
-#' \dontrun{
-#'   uj::.choose_from(letters, "What letter?", T, N, 0, 26, "b|s|u", "w|b|p", "console", "console", F)
-#'   uj::.choose_from(0:9    , "What number?", F, F, 1, 1 , "r|y|b", "y|r|i", "console", "console", T, cancel = F)
-#' }
-#'
+#' @describeIn alert_utils Choose from a List of Options with a Given Message and a Variety of Options
 #' @export
 .choose_from <- function(opts, mssg, all, none, min, max, ft, fs, fun, stack, clear, cancel = T) {
+  from <- uj::caller()
+  fromY <- from == "YES"
+  fromN <- from == "NO"
+  fromO <- from == "OK"
+  fromX <- from == "CANCEL"
   if (clear) {uj::xcon()}
   if (ft != "") {
     tbg <- base::strsplit(ft, "|", fixed = T)[[1]][1]
@@ -95,44 +92,66 @@
     sst <- base::strsplit(fs, "|", fixed = T)[[1]][3]
   } else {sbg <- sfg <- NULL}
   uj::alert(mssg, title = "response required", ft = ft, fs = fs, clear = clear)
-  if (cancel) {
-    if (TRUE) {base::cat(uj::txt("\nCODE   OPTION         ", bg = sbg, fg = sfg, st = sst))}
-    if (TRUE) {base::cat("\n   X = { CANCEL }")}
-    if (none) {base::cat("\n   N = { NONE }")}
-    if (all ) {base::cat("\n   A = { ALL }")}
+  if (fromY | fromN) {
+    base::cat(uj::txt("\nCODE   OPTION         ", bg = sbg, fg = sfg, st = sst))
+    base::cat("\n   y = yes")
+    base::cat("\n   n = no")
+    base::cat("\n\n")
+    base::cat(uj::txt("Enter the code for one of the above options:", d = " ", bg = tbg, fg = tfg, st = tst))
+    ans <- base::toupper(base::trimws(base::readline(), which = "both"))
+    if      (ans == "Y") {return("yes")}
+    else if (ans == "N") {return("no")}
+    else {uj::stopperr("Unrecognized selection code(s).", fun = fun, stack = stack)}
+  } else if (fromO | fromX) {
+    base::cat(uj::txt("\nCODE   OPTION         ", bg = sbg, fg = sfg, st = sst))
+    base::cat("\n   o = ok")
+    base::cat("\n   x = cancel")
+    base::cat("\n\n")
+    base::cat(uj::txt("Enter the code for one of the above options:", d = " ", bg = tbg, fg = tfg, st = tst))
+    ans <- base::toupper(base::trimws(base::readline(), which = "both"))
+    if      (ans == "O") {return("ok")}
+    else if (ans == "X") {return("cancel")}
+    else {uj::stopperr("Unrecognized selection code(s).", fun = fun, stack = stack)}
   } else {
-    if (TRUE) {base::cat(uj::txt("\nCODE   OPTION         ", bg = sbg, fg = sfg, st = sst))}
-    if (none) {base::cat("\n   N = { NONE }")}
-    if (all ) {base::cat("\n   A = { ALL }")}
+    if (cancel) {
+      if (TRUE) {base::cat(uj::txt("\nCODE   OPTION         ", bg = sbg, fg = sfg, st = sst))}
+      if (TRUE) {base::cat("\n   X = { CANCEL }")}
+      if (none) {base::cat("\n   N = { NONE }")}
+      if (all ) {base::cat("\n   A = { ALL }")}
+    } else {
+      if (TRUE) {base::cat(uj::txt("\nCODE   OPTION         ", bg = sbg, fg = sfg, st = sst))}
+      if (none) {base::cat("\n   N = { NONE }")}
+      if (all ) {base::cat("\n   A = { ALL }")}
+    }
+    for (i in 1:base::length(opts)) {
+      code <- base::as.character(i)
+      pref <- uj::p0(base::rep.int(" ", 4 - base::nchar(code)), collapse = "")
+      inf  <- " = "
+      opt  <- base::gsub(" ", " ", opts[i], fixed = T)
+      base::cat("\n", pref, code, inf, opt, sep = "")
+    }
+    base::cat("\n\n")
+    if      (min == 1 & max == 1) {base::cat(uj::txt("Enter the code for"                       , min,            "of the above options:", d = " ", bg = tbg, fg = tfg, st = tst))}
+    else if (min ==     max     ) {base::cat(uj::txt("Enter a comma separated list of codes for", min,            "of the above options:", d = " ", bg = tbg, fg = tfg, st = tst))}
+    else                          {base::cat(uj::txt("Enter a comma separated list of codes for", min, "to", max, "of the above options:", d = " ", bg = tbg, fg = tfg, st = tst))}
+    ans <- base::toupper(base::trimws(base::strsplit(base::readline(), ",", fixed = TRUE)[[1]], which = "both"))
+    if (base::length(ans) == 1) {
+      if (cancel & ans == "X") {uj::stopperr("Canceled by user.", fun = fun, stack = stack)}
+      if (none   & ans == "N") {return(NULL)}
+      if (all    & ans == "A") {return(opts)}
+      ans <- base::as.numeric(ans)
+      if (!uj::.cmp_psw_scl(ans)) {uj::stopperr("Invalid selection code"                                         , fun = fun, stack = stack)}
+      if (1 < min               ) {uj::stopperr("Too few options selected."                                      , fun = fun, stack = stack)}
+      if (ans > uj::N(opts)     ) {uj::stopperr("Selection code is greater than the number of available options.", fun = fun, stack = stack)}
+    } else {
+      ans <- base::as.numeric(ans)
+      if (!uj::cmp_psw_vec(ans)       ) {uj::stopperr("Unrecognized selection code(s)."                                  , fun = fun, stack = stack)}
+      if (uj::N(ans) < min            ) {uj::stopperr("Too few options selected."                                        , fun = fun, stack = stack)}
+      if (uj::N(ans) > max            ) {uj::stopperr("Too many options selected."                                       , fun = fun, stack = stack)}
+      if (base::any(ans > uj::N(opts))) {uj::stopperr("A selection code is greater than the number of available options.", fun = fun, stack = stack)}
+    }
+    opts[ans]
   }
-  for (i in 1:base::length(opts)) {
-    code <- base::as.character(i)
-    pref <- uj::p0(base::rep.int(" ", 4 - base::nchar(code)), collapse = "")
-    inf  <- " = "
-    opt  <- base::gsub(" ", " ", opts[i], fixed = T)
-    base::cat("\n", pref, code, inf, opt, sep = "")
-  }
-  base::cat("\n\n")
-  if      (min == 1 & max == 1) {base::cat(uj::txt("Enter the code for"                       , min,            "of the above options:", d = " ", bg = tbg, fg = tfg, st = tst))}
-  else if (min ==     max     ) {base::cat(uj::txt("Enter a comma separated list of codes for", min,            "of the above options:", d = " ", bg = tbg, fg = tfg, st = tst))}
-  else                          {base::cat(uj::txt("Enter a comma separated list of codes for", min, "to", max, "of the above options:", d = " ", bg = tbg, fg = tfg, st = tst))}
-  ans <- base::toupper(base::trimws(base::strsplit(base::readline(), ",", fixed = TRUE)[[1]], which = "both"))
-  if (base::length(ans) == 1) {
-    if (cancel & ans == "X") {uj::stopperr("Canceled by user.", fun = fun, stack = stack)}
-    if (none   & ans == "N") {return(NULL)}
-    if (all    & ans == "A") {return(opts)}
-    ans <- base::as.numeric(ans)
-    if (!uj::.cmp_psw_scl(ans)) {uj::stopperr("Invalid selection code"                                         , fun = fun, stack = stack)}
-    if (1 < min               ) {uj::stopperr("Too few options selected."                                      , fun = fun, stack = stack)}
-    if (ans > uj::N(opts)     ) {uj::stopperr("Selection code is greater than the number of available options.", fun = fun, stack = stack)}
-  } else {
-    ans <- base::as.numeric(ans)
-    if (!uj::cmp_psw_vec(ans)       ) {uj::stopperr("Unrecognized selection code(s)."                                  , fun = fun, stack = stack)}
-    if (uj::N(ans) < min            ) {uj::stopperr("Too few options selected."                                        , fun = fun, stack = stack)}
-    if (uj::N(ans) > max            ) {uj::stopperr("Too many options selected."                                       , fun = fun, stack = stack)}
-    if (base::any(ans > uj::N(opts))) {uj::stopperr("A selection code is greater than the number of available options.", fun = fun, stack = stack)}
-  }
-  opts[ans]
 }
 
 # color_aliases ####
@@ -253,7 +272,6 @@ style_aliases <- function() {utils::help("style_aliases", package = "uj")}
 # match_alias ####
 
 #' @encoding UTF-8
-#' @family alert_utils
 #' @title Match Color or Style Aliases
 #' @description Returns the Official Color or Style Designation from Any Alias
 #' @param x A character scalar alias.
@@ -407,40 +425,17 @@ match_alias <- function() {utils::help("match_alias", package = "uj")}
 # alert ####
 
 #' @encoding UTF-8
-#' @title Console-Based User Dialog (may also use package `svDialogs` functions)
-#' @description All functions \link[=collapse_dots]{collapses} `...` args into a prompt. Each posts an alert to the console, posts the prompt (if any), followed by a specific action.
-#' @details
-#' \tabular{lrll}{   \tab `acknowledge` \tab   \tab Waits for user to acknowledge.                    \cr
-#'                   \tab               \tab   \tab                                                   \cr
-#'                   \tab `OK, CANCEL`  \tab   \tab Offers OK and CANCEL options.\eqn{^{(3)}}         \cr
-#'                   \tab               \tab   \tab                                                   \cr
-#'                   \tab `choose_doc`  \tab   \tab Asks user to choose a document.\eqn{^{(1)}}       \cr
-#'                   \tab `choose_dir`  \tab   \tab Asks user to choose a directory.\eqn{^{(1)}}      \cr
-#'                   \tab               \tab   \tab                                                   \cr
-#'                   \tab `choose1`     \tab   \tab Asks user to choose `1` option.\eqn{^{(1)}}       \cr
-#'                   \tab `chooseN`     \tab   \tab Asks user to choose `1+` options\eqn{^{(1,2)}}    \cr
-#'                   \tab               \tab   \tab                                                   \cr
-#'                   \tab `YES, NO`     \tab   \tab Offers YES, NO, and CANCEL options.\eqn{^{(1,3)}} \cr
-#'                   \tab               \tab   \tab                                                   \cr
-#'                   \tab `ask_new`     \tab   \tab Asks for a list of new values.\eqn{^{(1)}}        \cr
-#'                   \tab               \tab   \tab                                                   \cr
-#'                   \tab `alert`       \tab   \tab No subsequent action.                             \cr
-#'                   \tab               \tab   \tab                                                   \cr
-#'                   \tab `ask`         \tab   \tab Asks for typed input.\eqn{^{(1)}}                 \cr
-#'                   \tab               \tab   \tab                                                     }
-#'  \tabular{l}{  \eqn{^{(1)}} Stops execution if user chooses `CANCEL`.                     \cr
-#'                \eqn{^{(2)}} Stops execution if `stop | (type = "error" & is.null(stop))`. \cr
-#'                \eqn{^{(3)}} Returns `TRUE` if user choice matches the function name.        }
-#' The following give templates for what the user sees, where any value derived from arguments will be absent if it is
-#' or resolves to a blank string.
+#' @title Console-Based User Dialog
+#' @description All functions collapse `...` args into a `d`-delimited prompt. Each posts an alert to the console, posts the prompt (if any), and follows up with a specific action.
+#' @details The following give templates for what the user sees, where any value derived from arguments will be absent if it is a blank string or resolves to a blank string.
 #' \cr\cr
 #' \strong{\code{alert}}
-#' \tabular{lrll}{   \tab **CONDITION**                       \tab   \tab **VALUE**                      \cr
-#'                   \tab \code{\link[=g]{g(d, title) != ""}} \tab   \tab formatted title from `title`.  \cr
-#'                   \tab \code{\link[=g]{g(d, sub) != ""  }} \tab   \tab formatted subtitle from `sub`. \cr
-#'                   \tab \code{\link[=g]{g(d, ...) != ""  }} \tab   \tab formatted message from `...`.  \cr
-#'                   \tab                                     \tab   \tab `< blank line >`               \cr
-#'                   \tab \code{\link[=g]{g(d, ps) != ""   }} \tab   \tab formatted postscript from `ps`.  }
+#' \tabular{lrll}{   \tab **CONDITION**       \tab   \tab **VALUE**                      \cr
+#'                   \tab `g(d, title) != ""` \tab   \tab formatted title from `title`.  \cr
+#'                   \tab `g(d, sub) != ""  ` \tab   \tab formatted subtitle from `sub`. \cr
+#'                   \tab `g(d, ...) != ""  ` \tab   \tab formatted message from `...`.  \cr
+#'                   \tab                     \tab   \tab `< blank line >`               \cr
+#'                   \tab `g(d, ps) != ""   ` \tab   \tab formatted postscript from `ps`.  }
 #' all other templates incorporate a call to `alert(.)` with components as shown below.
 #' \cr\cr\strong{\code{acknowledge}}
 #' \tabular{lrll}{   \tab **COMPONENT**   \tab   \tab **VALUE**                                \cr
@@ -457,7 +452,7 @@ match_alias <- function() {utils::help("match_alias", package = "uj")}
 #'                   \tab                 \tab   \tab `< blank line >`                  \cr
 #'                   \tab Postscript      \tab   \tab `'choose an option - Select one'` \cr
 #'                   \tab                 \tab   \tab `< blank line >`                  \cr
-#'                   \tab Cancel.Option   \tab   \tab `'X: { CANCEL }`'                 \cr
+#'                   \tab CANCEL.Option   \tab   \tab `'X: { CANCEL }`'                 \cr
 #'                   \tab Option.1        \tab   \tab `'1: < opts[1] >'`                \cr
 #'                   \tab Option.2        \tab   \tab `'2: < opts[2] >'`                \cr
 #'                   \tab ...             \tab   \tab ...                               \cr
@@ -471,7 +466,7 @@ match_alias <- function() {utils::help("match_alias", package = "uj")}
 #'                   \tab                 \tab   \tab `< blank line >`                                                               \cr
 #'                   \tab Postscript      \tab   \tab `'choose < n | between n1 and n2 > opts - Select one or more'`                 \cr
 #'                   \tab                 \tab   \tab `< blank line >`                                                               \cr
-#'                   \tab Cancel.Option   \tab   \tab `'X: { CANCEL }'`                                                              \cr
+#'                   \tab CANCEL.Option   \tab   \tab `'X: { CANCEL }'`                                                              \cr
 #'                   \tab Option.1        \tab   \tab `'1: < opts[1] >'`                                                             \cr
 #'                   \tab Option.2        \tab   \tab `'2: < opts[2] >'`                                                             \cr
 #'                   \tab ...             \tab   \tab ...                                                                            \cr
@@ -487,9 +482,9 @@ match_alias <- function() {utils::help("match_alias", package = "uj")}
 #'                   \tab                 \tab   \tab `< blank line >`                  \cr
 #'                   \tab Postscript      \tab   \tab `'choose an option - Select one'` \cr
 #'                   \tab                 \tab   \tab `< blank line >`                  \cr
-#'                   \tab Cancel.option   \tab   \tab `'1: { CANCEL }'`                 \cr
-#'                   \tab Yes.option      \tab   \tab `'2: { YES }'`                    \cr
-#'                   \tab No.option       \tab   \tab `'3: { NO }'`                     \cr
+#'                   \tab CANCEL.Option   \tab   \tab `'1: { CANCEL }'`                 \cr
+#'                   \tab YES.option      \tab   \tab `'2: { YES }'`                    \cr
+#'                   \tab NO.option       \tab   \tab `'3: { NO }'`                     \cr
 #'                   \tab Prompt          \tab   \tab `'Selection:'`                      }
 #' \strong{\code{OK}} and \strong{\code{CANCEL}}
 #' \tabular{lrll}{   \tab **COMPONENT**   \tab   \tab **VALUE**                         \cr
@@ -499,7 +494,7 @@ match_alias <- function() {utils::help("match_alias", package = "uj")}
 #'                   \tab                 \tab   \tab `< blank line >`                  \cr
 #'                   \tab Postscript      \tab   \tab `'choose an option - Select one'` \cr
 #'                   \tab                 \tab   \tab `< blank line >`                  \cr
-#'                   \tab Cancel.option   \tab   \tab `'1: { CANCEL }'`                 \cr
+#'                   \tab CANCEL.Option   \tab   \tab `'1: { CANCEL }'`                 \cr
 #'                   \tab OK.option       \tab   \tab `'2: { OK }'`                     \cr
 #'                   \tab Prompt          \tab   \tab `'Selection: '`                     }
 #' \strong{\code{ask}}
@@ -596,6 +591,10 @@ match_alias <- function() {utils::help("match_alias", package = "uj")}
 #'   egAlert()
 #' }
 #' @export
+alert_help <- function() {utils::help("alert_help", package = "uj")}
+
+#' @describeIn alert_help Collapses `...` into an alert message using `d` as a delimiter and issues the alert to the console with the specified title, subtitle, postscript and style/color formatting. Clears the console first if `clear = TRUE`.
+#' @export
 alert <- function(..., title = "alert", sub = "", ps = "", def = "", ft = "r|w|b", fs = "k|y|p", fm = "", fp = "k|y|i", d = " ", clear = FALSE) {
   fmt <- function(x, f) {
     if (f == "") {return(x)}
@@ -631,7 +630,7 @@ alert <- function(..., title = "alert", sub = "", ps = "", def = "", ft = "r|w|b
   if (err        ) {uj::stopperr("")}
 }
 
-#' @rdname alert
+#' @describeIn alert_help Posts an alert message with the title `ACKNOWLEDGMENT REQUIRED` and waits for the user to press the `[return]` or `[enter]` key.
 #' @export
 acknowledge <- function(..., sub = "", ps = "", ft = "r|w|b", fs = "k|y|p", fp = "k|y|i", d = " ", clear = FALSE) {
   uj::alert(..., title = "acknowledgment required", sub = sub, ps = "press [return] or [enter] to continue", ft = ft, fs = fs, fp = fp, d = d, clear = clear)
@@ -639,7 +638,7 @@ acknowledge <- function(..., sub = "", ps = "", ft = "r|w|b", fs = "k|y|p", fp =
   a <- NULL
 }
 
-#' @rdname alert
+#' @describeIn alert_help Posts an alert message and prompts the user to select one of the options in `opts`.
 #' @export
 choose1 <- function(opts, ..., ft = "r|w|b", fs = "k|y|p", d = " ", clear = FALSE) {
   if (!uj::.unq_atm_vec(opts)) {uj::stopperr("[opts] must be a unique atomic vec (?unq_atm_vec).")}
@@ -647,7 +646,7 @@ choose1 <- function(opts, ..., ft = "r|w|b", fs = "k|y|p", d = " ", clear = FALS
   uj::.choose_from(opts, msg, F, F, 1, 1, ft, fs, "choose1", uj::callers(), clear)
 }
 
-#' @rdname alert
+#' @describeIn alert_help Posts an alert message and prompts the user to select from `0` to `N` of the `N` options in `opts`. The minimum and maximum number of options to be selected are controlled by the arguments `n`, `min`, `max`, `all`, and `none`.
 #' @export
 chooseN <- function(opts, ..., n = NULL, min = NULL, max = NULL, all = base::is.null(c(n, max)), none = FALSE, ft = "r|w|b", fs = "k|y|p", d = " ", clear = FALSE) {
   errs <- NULL
@@ -681,38 +680,38 @@ chooseN <- function(opts, ..., n = NULL, min = NULL, max = NULL, all = base::is.
   uj::.choose_from(opts, msg, all, none, min, max, ft, fs, "chooseN", uj::callers(), clear)
 }
 
-#' @rdname alert
+#' @describeIn alert_help Posts an alert message and prompts the user to choose either `yes` or `no` as a response. Returns `TRUE` when the user chooses `yes`. Returns `FALSE` when the user chooses `no`.
 #' @export
 NO <- function(..., ft = "r|w|b", fs = "k|y|p", d = " ", clear = FALSE) {
   msg <- uj::p0(uj::av(...), collapse = d)
   uj::.choose_from(base::c("yes", "no"), msg, F, F, 1, 1, ft, fs, "NO", uj::callers(), clear) == "no"
 }
 
-#' @rdname alert
+#' @describeIn alert_help Posts an alert message and prompts the user to choose either `yes` or `no` as a response. Returns `TRUE` when the user chooses `no`. Returns `FALSE` when the user chooses `yes`.
 #' @export
 YES <- function(..., ft = "r|w|b", fs = "k|y|p", d = " ", clear = FALSE) {
   msg <- uj::p0(uj::av(...), collapse = d)
   uj::.choose_from(base::c("yes", "no"), msg, F, F, 1, 1, ft, fs, "YES", uj::callers(), clear) == "yes"
 }
 
-#' @rdname alert
+#' @describeIn alert_help Posts an alert message and prompts the user to choose either `ok` or `cancel` as a response. Returns `TRUE` when the user chooses `ok`. Returns `FALSE` when the user chooses `cancel`.
 #' @export
 OK <- function(..., ft = "r|w|b", fs = "k|y|p", d = " ", clear = FALSE) {
   msg <- uj::p0(uj::av(...), collapse = d)
-  uj::.choose_from(base::c("ok", "cancel"), msg, F, F, 1, 1, ft, fs, "OK", uj::callers(), clear, can = F) == "ok"
+  uj::.choose_from(base::c("ok", "cancel"), msg, F, F, 1, 1, ft, fs, "OK", uj::callers(), clear, cancel = F) == "ok"
 }
 
-#' @rdname alert
+#' @describeIn alert_help Posts an alert message and prompts the user to choose either `ok` or `cancel` as a response. Returns `TRUE` when the user chooses `cancel`. Returns `FALSE` when the user chooses `ok`.
 #' @export
 CANCEL <- function(..., ft = "r|w|b", fs = "k|y|p", d = " ", clear = FALSE) {
   msg <- uj::p0(uj::av(...), collapse = d)
-  uj::.choose_from(base::c("ok", "cancel"), msg, F, F, 1, 1, ft, fs, "CANCEL", uj::callers(), clear, can = F) == "cancel"
+  uj::.choose_from(base::c("ok", "cancel"), msg, F, F, 1, 1, ft, fs, "CANCEL", uj::callers(), clear, cancel = F) == "cancel"
 }
 
-#' @rdname alert
+#' @describeIn alert_help Posts an alert question and prompts the user to answer the question via entering text and hitting [return] or [enter]. Returns the entered text.
 #' @export
 ask <- function(..., Default = "", sub = "", ft = "r|w|b", fs = "k|y|p", fm = "", fp = "k|y|i", d = " ", clear = FALSE) {
-  msg <- uj::trm(..., d = "")
+  msg <- uj::g(d, uj::trm(...))
   msg <- uj::p0(msg, "\n\n(enter '{cancel}' to cancel)")
   uj::alert(msg, title = "response required", sub = sub, ps = "enter your response:", ft = ft, fs = fs, fm = fm, fp = fp, d = d, clear = clear)
   ans <- base::readline()
@@ -721,7 +720,7 @@ ask <- function(..., Default = "", sub = "", ft = "r|w|b", fs = "k|y|p", fm = ""
   ans
 }
 
-#' @rdname alert
+#' @describeIn alert_help Posts an alert message describing multiple values and prompts the user to enter new/replacement values. Returns a vector of new/replacement values.
 #' @export
 ask_new <- function(old, type = "replacement values", u = TRUE, sub = "", ft = "r|w|b", fs = "k|y|p", fm = "", fp = "k|y|i", d = "|", clear = FALSE) {
   errs <- NULL
@@ -754,7 +753,7 @@ ask_new <- function(old, type = "replacement values", u = TRUE, sub = "", ft = "
   ans
 }
 
-#' @rdname alert
+#' @describeIn alert_help Posts an alert message notifying the user that a dialog box will open and prompting the user to choose a directory/folder. Returns the path to the selected directory/folder.
 #' @export
 choose_dir <- function(dir.type = "directory", sub = "", ft = "r|w|b", fs = "k|y|p", fm = "", fp = "k|y|i", d = " ", clear = FALSE) {
   if (!uj::.cmp_chr_scl(dir.type)) {uj::stopperr("[dir.type] must be a complete character scalar (?cmp_chr_scl).")}
@@ -764,7 +763,7 @@ choose_dir <- function(dir.type = "directory", sub = "", ft = "r|w|b", fs = "k|y
   path
 }
 
-#' @rdname alert
+#' @describeIn alert_help Posts an alert message notifying the user that a dialog box will open and prompting the user to choose a file/document. Returns the path to the selected file/document.
 #' @export
 choose_doc <- function(doc.type = "document", sub = "", ft = "r|w|b", fs = "", fm = "", fp = "k|y|i", d = " ", clear = FALSE) {
   if (!uj::.cmp_chr_scl(doc.type)) {uj::stopperr("[doc.type] must be a complete character scalar (?cmp_chr_scl).")}
@@ -1150,7 +1149,6 @@ bg <- function(bg, ..., d = " ") {
 #' @rdname crayons
 #' @export
 txt <- function(..., bg = NULL, fg = NULL, st = NULL, d = " ") {
-  cat("\n bg = ", bg , ", fg = ", fg, " st = ", st)
   uj::.fmt_errs(bg = bg, fg = fg, st = st, d = d, nullbg = T, nullfg = T, nullst = T)
   x <- uj::g(d, ...)
   if (!base::is.null(st)) {x <- uj::st(base::tolower(st), x)}

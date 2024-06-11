@@ -35,25 +35,3 @@ dups(0:5, 5:10, 10:15, 15:20)
 idups(c(0:5, 5:10, 10:15, 15:20))
 idups(c(0:5, 5:10, 10:15, 15:20), int = T)
 }
-\seealso{
-Other extensions: 
-\code{\link{N}()},
-\code{\link{atomize_funs}()},
-\code{\link{case}()},
-\code{\link{compatible}()},
-\code{\link{declare}},
-\code{\link{failsafe}()},
-\code{\link{flex_rbind}()},
-\code{\link{fork}()},
-\code{\link{naming}},
-\code{\link{na}()},
-\code{\link{paths}},
-\code{\link{purge}()},
-\code{\link{rd}()},
-\code{\link{r}()},
-\code{\link{sets}()},
-\code{\link{stats0}()},
-\code{\link{swaps}()},
-\code{\link{value_exists}()}
-}
-\concept{extensions}

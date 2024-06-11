@@ -14,7 +14,6 @@
 # externals ####
 
 #' @encoding UTF-8
-#' @family extensions
 #' @family counts
 #' @family dots
 #' @title Dedicated counting functions

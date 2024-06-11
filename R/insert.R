@@ -1,14 +1,6 @@
 #' @encoding UTF-8
-#' @family function_form
 #' @title Manipulate positions, rows, and columns
-#' @details
-#' \tabular{ll}{  `insert_elts_before`   \tab Insert `Elts` into `x` before the `elt`-the positions of `x`. \cr   \tab   \cr
-#'                `insert_cols_before`   \tab Insert `Cols` into `x` before the `col`-th column of `x`.     \cr   \tab   \cr
-#'                `insert_rows_before`   \tab Insert `Rows` into `x` before the `row`-th row of `x`.        \cr   \tab   \cr
-#'                `insert_elts_after`    \tab Insert `Elts` into `x` after the `elt`-the position of `x`.   \cr   \tab   \cr
-#'                `insert_cols_after`    \tab Insert `Cols` into `x` after the `col`-th column of `x`.      \cr   \tab   \cr
-#'                `insert_rows_after`    \tab Insert `Rows` into `x` after the `row`-th row of `x`.                        }
-#' `elt < 0`, `col < 0`, and `row < 0` index from the last position, row, or column rather than the first.
+#' @details `elt < 0`, `col < 0`, and `row < 0` index from the last position, row, or column rather than the first.
 #' @param x For `insert_elt_before` and `insert_elt_after` a non-empty atomic vector. A non-empty atomic matrix or atomic data frame (?atm_dtf) for all others.
 #' @param new.elts An atomic vector compatible with `x` (?uj::compatible).
 #' @param new.cols A matrix or data.frame compatible witht `Y` for col binding.
@@ -17,6 +9,10 @@
 #' @param col A whole number scalar indexing a column of `x`. Negative values index from the last column.
 #' @param row A whole number scalar indexing a row of `x`. Negative values index from the last row.
 #' @return An object of the same class as `x` with increased dimension.
+#' @export
+insert_help <- function() {utils::help("insert_help", package = "uj")}
+
+#' @describeIn insert_help Insert `new.elts` into `x` before the `elt`-th positions of `x`.
 #' @export
 insert_elts_before <- function(x, new.elts, elt) {
   errs <- NULL
@@ -35,7 +31,7 @@ insert_elts_before <- function(x, new.elts, elt) {
   base::c(before, new.elts, after)
 }
 
-#' @rdname insert_elts_before
+#' @describeIn insert_help Insert `new.cols` into `x` before the `col`-th column of `x`.
 #' @export
 insert_cols_before <- function(x, new.cols, col) {
   errs <- NULL
@@ -56,7 +52,7 @@ insert_cols_before <- function(x, new.cols, col) {
   uj::f0(uj::.NLL(before), base::cbind(new.cols, x[ , after]), base::cbind(x[ , before], new.cols, x[ , after]))
 }
 
-#' @rdname insert_elts_before
+#' @describeIn insert_help Insert `new.rows` into `x` before the `row`-th row of `x`.
 #' @export
 insert_rows_before <- function(x, new.rows, row) {
   errs <- NULL
@@ -77,7 +73,7 @@ insert_rows_before <- function(x, new.rows, row) {
   uj::f0(uj::.NLL(before), base::rbind(new.rows, x[after, ]), base::rbind(x[before, ], new.rows, x[after, ]))
 }
 
-#' @rdname insert_elts_before
+#' @describeIn insert_help Insert `new.elts` into `x` after the `elt`-the position of `x`.
 #' @export
 insert_elt_after <- function(x, new.elts, elt) {
   errs <- NULL
@@ -96,7 +92,7 @@ insert_elt_after <- function(x, new.elts, elt) {
   base::c(before, new.elts, after)
 }
 
-#' @rdname insert_elts_before
+#' @describeIn insert_help Insert `new.cols` into `x` after the `col`-th column of `x`.
 #' @export
 insert_col_after <- function(x, new.cols, col) {
   errs <- NULL
@@ -117,7 +113,7 @@ insert_col_after <- function(x, new.cols, col) {
   uj::f0(uj::.NLL(after), base::cbind(x[ , before], new.cols), base::cbind(x[ , before], new.cols, x[ , after]))
 }
 
-#' @rdname insert_elts_before
+#' @describeIn insert_help Insert `new.rows` into `x` after the `row`-th row of `x`.
 #' @export
 insert_after_row <- function(x, new.rows, row) {
   errs <- NULL

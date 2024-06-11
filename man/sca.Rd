@@ -21,6 +21,6 @@ sca("#FF00FF", 0.1)
 }
 \seealso{
 Other colors: 
-\code{\link{markdown}()}
+\code{\link{markdown_help}()}
 }
 \concept{colors}

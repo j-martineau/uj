@@ -19,3 +19,9 @@ A data.frame.
 \description{
 Interactively Select and Read a Rectangular Delimited Text Data File
 }
+\seealso{
+Other files: 
+\code{\link{paths_help}()},
+\code{\link{rd_help}()}
+}
+\concept{files}

@@ -1,6 +1,6 @@
 #' @encoding UTF-8
 #' @family properties
-#' @title Manage classes
+#' @title Manage Classes
 #' @details
 #' \tabular{ll}{  `rm_cls, xcls`   \tab Removes class(es) in `...` from classes of `x`.               \cr   \tab   \cr
 #'                `has_cls`        \tab Evaluate whether class(es) in `...` are (all) classes of `x`. \cr   \tab   \cr

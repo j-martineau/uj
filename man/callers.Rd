@@ -181,16 +181,16 @@ egCallers()
 \seealso{
 Other environments: 
 \code{\link{os}()},
-\code{\link{recyclable_ns}()},
+\code{\link{recycling_help}()},
 \code{\link{value_exists}()}
 
 Other meta: 
-\code{\link{console_basics}()},
+\code{\link{console_help}()},
 \code{\link{dot_args}()},
 \code{\link{pause}()},
-\code{\link{ply}()},
-\code{\link{purge}()},
-\code{\link{recyclable_ns}()},
+\code{\link{ply_help}()},
+\code{\link{purge_help}()},
+\code{\link{recycling_help}()},
 \code{\link{run}()}
 }
 \concept{environments}

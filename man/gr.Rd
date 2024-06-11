@@ -3,11 +3,11 @@
 \encoding{UTF-8}
 \name{gr}
 \alias{gr}
-\alias{st_h}
+\alias{str_h}
 \alias{str_w}
 \title{Thin wrappers of \code{graphics} functions.}
 \usage{
-st_h(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...)
+str_h(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...)
 
 str_w(s, units = "user", cex = NULL, font = NULL, vfont = NULL, ...)
 }
@@ -37,30 +37,31 @@ Other strings:
 \code{\link{fsub}()},
 \code{\link{ipat}()},
 \code{\link{makestr}()},
-\code{\link{markdown}()},
+\code{\link{markdown_help}()},
 \code{\link{maxnch}()},
+\code{\link{ox_vals}()},
 \code{\link{ox}()},
-\code{\link{pgrid}()},
+\code{\link{pgrid_help}()},
 \code{\link{revstr}()},
 \code{\link{spaces}()},
-\code{\link{ss}()},
+\code{\link{ss_help}()},
 \code{\link{tocase}()},
 \code{\link{weave}()}
 
 Other plots: 
 \code{\link{color_funs}()},
-\code{\link{ggp}()},
-\code{\link{markdown}()},
-\code{\link{pals}()},
-\code{\link{u2u}()}
+\code{\link{gg_help}()},
+\code{\link{markdown_help}()},
+\code{\link{pals_help}()},
+\code{\link{u2u_help}()}
 
 Other wraps: 
-\code{\link{basics}()},
+\code{\link{basics_help}()},
 \code{\link{dp}()},
 \code{\link{dt}()},
-\code{\link{ggp}()},
-\code{\link{rd}()},
-\code{\link{tb}()}
+\code{\link{gg_help}()},
+\code{\link{rd_help}()},
+\code{\link{tb_help}()}
 }
 \concept{plots}
 \concept{strings}

@@ -36,14 +36,21 @@ A character vector.
 \description{
 Convert among lower, sentence, title, and upper cases.
 }
-\details{
-Functions in this family convert string case as follows:
-\tabular{ll}{  \verb{totitle, tc}   \tab Convert to \link[stringr:str_to_sentence]{title case}.    \cr
-  \verb{tosent, sc}    \tab Convert to \link[stringr:str_to_sentence]{sentence case}. \cr
-  \code{tocase}        \tab Convert to case \code{case}.                                   \cr
-  \code{lc}            \tab Convert to \link[base:tolower]{lower case}.               \cr
-  \code{uc}            \tab Convert to \link[base:toupper]{upper case}.                 }
-}
+\section{Functions}{
+\itemize{
+\item \code{tosent()}: Converts to \link[stringr:str_to_sentence]{sentence case}.
+
+\item \code{totitle()}: Converts to \link[stringr:str_to_sentence]{title case}.
+
+\item \code{lc()}: Converts to \link[base:tolower]{lower case}.
+
+\item \code{sc()}: Converts to \link[stringr:str_to_sentence]{sentence case}.
+
+\item \code{tc()}: Converts to \link[stringr:str_to_sentence]{title case}.
+
+\item \code{uc()}: Converts to \link[base:toupper]{upper case}.
+
+}}
 \examples{
 egSentence <- "This is a sentence."
 egTitle <- "This is a Title"
@@ -66,9 +73,9 @@ tocase("u", egList)
 }
 \seealso{
 Other conversions: 
-\code{\link{hex_dec_funs}()},
+\code{\link{hex_dec_help}()},
 \code{\link{rng2lev}()},
-\code{\link{u2u}()}
+\code{\link{u2u_help}()}
 
 Other strings: 
 \code{\link{blank}()},
@@ -78,13 +85,14 @@ Other strings:
 \code{\link{gr}},
 \code{\link{ipat}()},
 \code{\link{makestr}()},
-\code{\link{markdown}()},
+\code{\link{markdown_help}()},
 \code{\link{maxnch}()},
+\code{\link{ox_vals}()},
 \code{\link{ox}()},
-\code{\link{pgrid}()},
+\code{\link{pgrid_help}()},
 \code{\link{revstr}()},
 \code{\link{spaces}()},
-\code{\link{ss}()},
+\code{\link{ss_help}()},
 \code{\link{weave}()}
 }
 \concept{conversions}

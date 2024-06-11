@@ -52,9 +52,9 @@
 #'   egErrors()
 #' }
 #' @export
-check_xxx_funs <- function() {utils::help("check_xxx_funs", package = "uj")}
+check_xxx_help <- function() {utils::help("check_xxx_help", package = "uj")}
 
-#' @describeIn check_xxx_funs Checks named `...` arguments for scalar `TRUE`-ness. If any named `...` argument is not scalar `TRUE`, collapses *unnamed* `...` args to an error message template, replacing the escape sequence `'{@@}'` with each non-qualifying *named* `...` arg's name.
+#' @describeIn check_xxx_help Checks named `...` arguments for scalar `TRUE`-ness. If any named `...` argument is not scalar `TRUE`, collapses *unnamed* `...` args to an error message template, replacing the escape sequence `'{@@}'` with each non-qualifying *named* `...` arg's name.
 #' @export
 check_t <- function(..., .d = " ") {
   if (uj::is_err(.d)) {.d <- " "} else if (!base::is.character(.d) | base::length(.d) != 1) {.d <- " "} else if (base::is.na(.d)) {.d <- " "}
@@ -71,12 +71,12 @@ check_t <- function(..., .d = " ") {
   for (i in 1:base::length(dots)) {if (!dots[[1]]) {uj::bankerr(base::gsub("{@}", base::paste0("[", labs[i], "]"), mssg, fixed = T), gens = 1)}}
 }
 
-#' @describeIn check_xxx_funs Checks named `...` arguments for scalar `TRUE`-ness or scalar `FALSE`-ness. If any named `...` argument is neither scalar `TRUE` nor scalar `FALSE`, banks an error indicating that the argument must be scalar `TRUE` or scalar `FALSE`. NOTE: unnamed `...` arguments are not valid.
+#' @describeIn check_xxx_help Checks named `...` arguments for scalar `TRUE`-ness or scalar `FALSE`-ness. If any named `...` argument is neither scalar `TRUE` nor scalar `FALSE`, banks an error indicating that the argument must be scalar `TRUE` or scalar `FALSE`. NOTE: unnamed `...` arguments are not valid.
 #' @export
 check_tf <- function(...) {
   errs <- NULL
   if (base::...length() == 0) {errs <- base::c(errs, "There are no [...] args")}
-  if (!uj::all_named(...)) {errs <- base::c(errs, "All [...] args must be uniquely named without using \"\".")}
+  if (!uj::all_dots_named(...)) {errs <- base::c(errs, "All [...] args must be uniquely named without using \"\".")}
   if (!base::is.null(errs)  ) {uj::stopperr(errs)}
   labs <- base::...names()
   dots <- base::list(...)
@@ -84,14 +84,14 @@ check_tf <- function(...) {
   for (i in 1:base::length(ok)) {if (!ok[i]) {uj::bankerr("[", labs[i], "] must be scalar TRUE or scalar FALSE.", gens = 1, d = "")}}
 }
 
-#' @describeIn check_xxx_funs Checks each named `...` arg for scalar `TRUE`-ness, scalar `FALSE`-ness, scalar `NA`-ness (if `.na` is scalar `TRUE`), or scalar membership in `.extras` (when `.extras` is a \link[=cmp_atm]{complete atomic object}). Banks an error for each `...` that does not qualify. NOTE: unnamed `...` arguments are not valid.
+#' @describeIn check_xxx_help Checks each named `...` arg for scalar `TRUE`-ness, scalar `FALSE`-ness, scalar `NA`-ness (if `.na` is scalar `TRUE`), or scalar membership in `.extras` (when `.extras` is a \link[=cmp_atm]{complete atomic object}). Banks an error for each `...` that does not qualify. NOTE: unnamed `...` arguments are not valid.
 #' @export
 check_lgl <- function(..., .na = FALSE, .extras = NULL) {
   if (uj::.cmp_lgl_scl(.na)) {    .na <- .na    } else {.na     <- F   }
   if (uj::.cmp_atm(.extras)) {.extras <- .extras} else {.extras <- NULL}
   errs    <- NULL
   if (base::...length() > 0) {errs <- base::c(errs, "There are no [...] args")}
-  if (uj::all_named(...)   ) {errs <- base::c(errs, "All [...] args must be uniquely named without using \"\".")}
+  if (uj::all_dots_named(...)   ) {errs <- base::c(errs, "All [...] args must be uniquely named without using \"\".")}
   if (!base::is.null(errs) ) {uj::stopperr(errs)}
   X <- base::list(...)
   if (!(base::all(base::sapply(X, uj::.atm_scl)))) {uj::stopperr("All [...] args must be atomic scalars.")}
@@ -111,7 +111,7 @@ check_lgl <- function(..., .na = FALSE, .extras = NULL) {
   }
 }
 
-#' @describeIn check_xxx_funs Checks each named `...` argument for `NULL`-ness or for any property describe by any property function named in character argument `.funs`. Banks an automatically-generated error message for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
+#' @describeIn check_xxx_help Checks each named `...` argument for `NULL`-ness or for any property describe by any property function named in character argument `.funs`. Banks an automatically-generated error message for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
 #' @export
 check_nll_or <- function(.funs, ..., .vals = NULL) {
   .funs  <- uj::failsafe(.funs)
@@ -126,7 +126,7 @@ check_nll_or <- function(.funs, ..., .vals = NULL) {
   labs   <- base::...names()
   nX     <- base::...length()
   okX    <- nX > 0
-  if (!okX                ) {okLabs <- T} else {okLabs <- uj::all_named(...)}
+  if (!okX                ) {okLabs <- T} else {okLabs <- uj::all_dots_named(...)}
   if (base::is.null(.vals)) {okVals <- T} else {okVals <- uj::.cmp_vals(.vals)}
   if (!okX   ) {errs <- base::c(errs, "[...] arguments must be supplied.")}
   if (!okLabs) {errs <- base::c(errs, "[...] args must be uniquely named without using blank strings.")}
@@ -137,14 +137,14 @@ check_nll_or <- function(.funs, ..., .vals = NULL) {
   for (i in 1:nX) {if (!base::is.null(base::...elt(i))) {
     ok <- F
     for (fun in .funs) {
-      ok <- ok | uj::run(Fun, "(base::...elt(i))")
+      ok <- ok | uj::run(fun, "(base::...elt(i))")
       if (ok & !base::is.null(.vals)) {ok <- ok & base::all(base::...elt(i) %in% .vals)}
     }
     if (!ok) {uj::bankerr(errs[i], gens = 1)}
   }}
 }
 
-#' @describeIn check_xxx_funs Checks each named `...` argument for scalar `NA`-ness or for any property describe by any property function named in character argument `.funs`. Banks an automatically-generated error message for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
+#' @describeIn check_xxx_help Checks each named `...` argument for scalar `NA`-ness or for any property describe by any property function named in character argument `.funs`. Banks an automatically-generated error message for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
 #' @export
 check_nas_or <- function(.funs, ..., .vals = NULL) {
   .funs  <- uj::failsafe(.funs)
@@ -159,7 +159,7 @@ check_nas_or <- function(.funs, ..., .vals = NULL) {
   labs   <- base::...names()
   nX     <- base::...length()
   okX    <- nX > 0
-  if (!okX                ) {okLabs <- T} else {OkLabs <- uj::all_named(...)}
+  if (!okX                ) {okLabs <- T} else {OkLabs <- uj::all_dots_named(...)}
   if (base::is.null(.vals)) {okVals <- T} else {okVals <- uj::.cmp_atm(.vals) }
   if (!okX   ) {errs <- base::c(errs, "[...] okVals must be supplied.")}
   if (!okLabs) {errs <- base::c(errs, "[...] args must be uniquely named without using blank strings.")}
@@ -177,7 +177,7 @@ check_nas_or <- function(.funs, ..., .vals = NULL) {
   }}
 }
 
-#' @describeIn check_xxx_funs Checks each named `...` argument for any one the classes named in character argument `.cls`. Banks an automatically-generated error message for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
+#' @describeIn check_xxx_help Checks each named `...` argument for any one the classes named in character argument `.cls`. Banks an automatically-generated error message for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
 #' @export
 check_cls <- function(.cls, ...) {
   if (uj::is_err(.cls)) {uj::stopperr("[.cls] must be a complete character vec (?cmp_chr_vec)")}
@@ -206,7 +206,7 @@ check_cls <- function(.cls, ...) {
   }
 }
 
-#' @describeIn check_xxx_funs Checks each named `...` for \link[=POP]{populated-ness} (i.e., non-`NULL` and not of length `0`). Banks an error for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
+#' @describeIn check_xxx_help Checks each named `...` for \link[=POP]{populated-ness} (i.e., non-`NULL` and not of length `0`). Banks an error for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
 #' @export
 check_pop <- function(...) {
   dots   <- uj::named_dots(...)
@@ -225,7 +225,7 @@ check_pop <- function(...) {
   for (i in 1:base::length(dots)) {if (base::length(dots[[i]]) == 0) {uj::bankerr("[", labs[i], "] is NULL or empty.", gens = 1, d = "")}}
 }
 
-#' @describeIn check_xxx_funs Checks each named `...` argument for a match to any of the property functions named in `.funs`, and if there is a match and atomic argument `.vals` is non-`NULL`, whether the values are all contained in atomic argument `.vals`. Banks an error for each `...` argument that does not qualify. NOTE: Unname `...` arguments are not valid.
+#' @describeIn check_xxx_help Checks each named `...` argument for a match to any of the property functions named in `.funs`, and if there is a match and atomic argument `.vals` is non-`NULL`, whether the values are all contained in atomic argument `.vals`. Banks an error for each `...` argument that does not qualify. NOTE: Unname `...` arguments are not valid.
 #' @export
 check_funs <- function(.funs, ..., .vals = NULL) {
   if (!uj::.cmp_chr_vec(.funs)) {uj::stopperr("[.funs] must be a complete character vec (?cmp_chr_vec).")}
@@ -255,7 +255,7 @@ check_funs <- function(.funs, ..., .vals = NULL) {
   }
 }
 
-#' @describeIn check_xxx_funs Checks each named `...` argument for a match to the property spec in character argument `.spec` with the additional check for disallowed `NA` values if logical scalar argument `.na = FALSE`. Banks an error for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
+#' @describeIn check_xxx_help Checks each named `...` argument for a match to the property spec in character argument `.spec` with the additional check for disallowed `NA` values if logical scalar argument `.na = FALSE`. Banks an error for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
 #' @export
 check_spec <- function(.spec, ..., .na = F) {
   n      <- base::...length()
@@ -291,7 +291,7 @@ check_spec <- function(.spec, ..., .na = F) {
   }
 }
 
-#' @describeIn check_xxx_funs Checks each named `...` argument for atomic-ness and for containing only the atomic values given in `.vals`. Banks an error for each non-qualifying `...` argument. NOTE: Unnamed `...` arguments are not valid.
+#' @describeIn check_xxx_help Checks each named `...` argument for atomic-ness and for containing only the atomic values given in `.vals`. Banks an error for each non-qualifying `...` argument. NOTE: Unnamed `...` arguments are not valid.
 #' @export
 check_vals <- function(.vals, ..., .a = TRUE, .na = FALSE) {
   valid <- function(y) {
@@ -319,7 +319,7 @@ check_vals <- function(.vals, ..., .a = TRUE, .na = FALSE) {
   if (!okUnq ) {errs <- base::c(errs, "[...] arg names must be unique.")}
   if (!base::is.null(errs)) {uj::stopperr(errs)}
   dots <- base::list(...)
-  atm  <- base::sapply(dots, uj::.POP) & base::sapply(dots, uj::.aTM)
+  atm  <- base::sapply(dots, uj::.POP) & base::sapply(dots, uj::.ATM)
   if (.a & !base::all(atm)) {uj::stopperr("When [.a = TRUE], all [...] args must be populated and atomic (?pop_atm).")}
   if (!.a) {
     vls <- base::sapply(dots, uj::atm_vls)
@@ -329,7 +329,7 @@ check_vals <- function(.vals, ..., .a = TRUE, .na = FALSE) {
   for (i in 1:n) {if (!valid(dots[[i]])) {uj::bankerr("[", labs[i], "] contains 1 or more values not in [.vals].", gens = 1, d = "")}}
 }
 
-#' @describeIn check_xxx_funs Checks each named `...` argument (assumed to be of mode `'character'`) for whether it contains only the characters contained in the character argument `.chars`. When `.a = TRUE`, \link[=av]{atomizes} `...` before value checking. Banks an error for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
+#' @describeIn check_xxx_help Checks each named `...` argument (assumed to be of mode `'character'`) for whether it contains only the characters contained in the character argument `.chars`. When `.a = TRUE`, \link[=av]{atomizes} `...` before value checking. Banks an error for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
 #' @export
 check_chars <- function(.chars, ..., .a = TRUE) {
   valid <- function(y) {
@@ -368,7 +368,7 @@ check_chars <- function(.chars, ..., .a = TRUE) {
   for (i in 1:n) {if (!valid(dots[[i]])) {uj::bankerr("[", labs[i], "] contains 1 or more characters not in [.chars].", gens = 1, d = "")}}
 }
 
-#' @describeIn check_xxx_funs Checks each `...` argument for a match to at least one value of the property spec on character argument `.spec`. Optionally checks whether all `...` arguments are named (when `.named = TRUE`). Banks an error for missing `...` argument names (if there are an missing names and `.named = TRUE`). Also banks an error for any non-qualifying `...` argument. for whether it contains only the characters contained in the character argument `.chars`. When `.a = TRUE`, \link[=av]{atomizes} `...` before value checking. Banks an error for each `...` argument that does not qualify.
+#' @describeIn check_xxx_help Checks each `...` argument for a match to at least one value of the property spec on character argument `.spec`. Optionally checks whether all `...` arguments are named (when `.named = TRUE`). Banks an error for missing `...` argument names (if there are an missing names and `.named = TRUE`). Also banks an error for any non-qualifying `...` argument. for whether it contains only the characters contained in the character argument `.chars`. When `.a = TRUE`, \link[=av]{atomizes} `...` before value checking. Banks an error for each `...` argument that does not qualify.
 #' @export
 check_dots <- function(.spec, ..., .named = FALSE) {
   n   <- base::...length()
@@ -397,7 +397,7 @@ check_dots <- function(.spec, ..., .named = FALSE) {
   if (!base::all(base::sapply(base::list(...), uj::PPP, spec = .spec))) {uj::stopperr(base::paste0("All [...] args must be ", uj::spec_concise(.spec), "."))}
 }
 
-#' @describeIn check_xxx_funs Assumes two named, atomic, scalar `...` arguments. Checks that the value of the second named `...` argument is appropriate given the value of the first `...` argument by identifying which element of `.whens` is equal to the value of the first `...` argument, and checking the corresponding element of `.vals` against the second `...` argument. Banks an error if the value of the first and the value of the second `...` arguments do not pass the check. NOTE: There must be only two named `...` arguments and unnamed `...` arguments are not valid.
+#' @describeIn check_xxx_help Assumes two named, atomic, scalar `...` arguments. Checks that the value of the second named `...` argument is appropriate given the value of the first `...` argument by identifying which element of `.whens` is equal to the value of the first `...` argument, and checking the corresponding element of `.vals` against the second `...` argument. Banks an error if the value of the first and the value of the second `...` arguments do not pass the check. NOTE: There must be only two named `...` arguments and unnamed `...` arguments are not valid.
 #' @export
 check_when <- function(.whens, .vals, ...) {
   labs     <- base::...names()
@@ -439,7 +439,7 @@ check_when <- function(.whens, .vals, ...) {
     }}
 }
 
-#' @describeIn check_xxx_funs Checks each named `...` argument for validity (i.e., evaluating an argument does not produce an error). Banks an error for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
+#' @describeIn check_xxx_help Checks each named `...` argument for validity (i.e., evaluating an argument does not produce an error). Banks an error for each `...` argument that does not qualify. NOTE: Unnamed `...` arguments are not valid.
 #' @export
 check_fail <- function(...) {
   n      <- base::...length()

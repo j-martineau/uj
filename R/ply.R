@@ -2,39 +2,22 @@
 #' @family meta
 #' @title Variations on `apply` functions
 #' @description Apply a function over elements, rows, columns, or all dimensions; to an atomic object, a \link[=MVC]{multivec}, \link[=VEC]{vec}, \link[=VLS]{vlist}, matrix, or data.frame; and/or check the number of `TRUE` values in the result.
-#' @details
-#' \tabular{ll}{  `none_ply`   \tab Check for `0` resulting `TRUE` values\eqn{^{(1)}}.               \cr
-#'                `one_ply`    \tab Check for `1` resulting `TRUE` values\eqn{^{(1)}}.               \cr
-#'                `two_ply`    \tab Check for `2+` resulting `TRUE` values\eqn{^{(1)}}.              \cr
-#'                `any_ply`    \tab Check for `1+` resulting `TRUE` values\eqn{^{(1)}}.              \cr
-#'                `some_ply`   \tab Check for `2+` resulting `TRUE` values\eqn{^{(1)}}.              \cr
-#'                `many_ply`   \tab Check for `3+` resulting `TRUE` values\eqn{^{(1)}}.              \cr
-#'                `all_ply`    \tab Check for *only* resulting `TRUE` values\eqn{^{(1)}}.            \cr   \tab   \cr
-#'                `atm_ply`    \tab Apply `.fun` to \link[=av]{atomized} `.x`.                         \cr
-#'                `mvc_ply`    \tab Apply `.fun` to elements of \link[=atm_mvc]{atomic multivec} `.x`. \cr
-#'                `vec_ply`    \tab Apply `.fun` to elements of \link[=atm_vec]{atomic vec} `.x`.      \cr
-#'                `vls_ply`    \tab Apply `.fun` to elements of \link[=atm_vls]{atomic vlist} `.x`.    \cr   \tab   \cr
-#'                `row_ply`    \tab Apply `.fun` to rows of `.x`.                                      \cr
-#'                `col_ply`    \tab Apply `.fun` to columns of `.x`.                                   \cr
-#'                `dim_ply`    \tab Apply `.fun` to cells of `.x`.                                     \cr   \tab   \cr
-#'                `ply`        \tab Generalized `ply` function.                                      \cr   \tab     }
-#'  \tabular{l}{  \eqn{^{(1)}} These functions assume that applying `.fun` produces `'logical'` results.             }
 #' @section The `.proc` argument: When not `NULL`, the `.proc` argument is an optional list with up to seven named elements, which give processing instructions as follows:
-#' \tabular{ll}{  **Name + value**    \tab **Processing instructions**                                  \cr
-#'                `$arg = '{spec}'`   \tab Check `.x` for match to \code{\link[=ppp]{spec}}\eqn{^{(1)}}. \cr
-#'                `$out = '{spec}'`   \tab Check result for match to `'{spec}'`.\eqn{^{(1)}}            \cr   \tab   \cr
-#'                `$agg = 'none'`     \tab Inspect result for `0` `TRUE` values.                        \cr
-#'                `$agg = 'one'`      \tab Inspect result for `1` `TRUE` values.                        \cr
-#'                `$agg = 'two'`      \tab Inspect result for `2+` `TRUE` values.                       \cr
-#'                `$agg = 'any'`      \tab Inspect result for *any* `TRUE` values.                      \cr
-#'                `$agg = 'all'`      \tab Inspect result for *only* `TRUE` values.                     \cr   \tab   \cr
-#'                `$na = 'err'`       \tab Throw error if result has any `NA` values.                   \cr
-#'                `$na = FALSE`       \tab Replace resulting `NA`s with `FALSE`.                        \cr
-#'                `$na = TRUE`        \tab Replace resulting `NA`s with `TRUE`.                         \cr   \tab   \cr
-#'                `$a1 = TRUE`        \tab \link[=av]{Atomize} `.x`.                                     \cr
-#'                `$a2 = TRUE`        \tab Atomize the result.                                          \cr   \tab   \cr
-#'                `$s = TRUE`         \tab \link[base:simplify2array]{Simplify} the result.             \cr   \tab     }
-#'  \tabular{l}{  \eqn{^{(1)}} `{spec}` is a placeholder for a \link[=is_prop_spec]{valid property spec}.              }
+#'   \tabular{ll}{  **Name + value**    \tab **Processing instructions**                                  \cr
+#'                  `$arg = '{spec}'`   \tab Check `.x` for match to \code{\link[=ppp]{spec}}\eqn{^{(1)}}. \cr
+#'                  `$out = '{spec}'`   \tab Check result for match to `'{spec}'`.\eqn{^{(1)}}            \cr   \tab   \cr
+#'                  `$agg = 'none'`     \tab Inspect result for `0` `TRUE` values.                        \cr
+#'                  `$agg = 'one'`      \tab Inspect result for `1` `TRUE` values.                        \cr
+#'                  `$agg = 'two'`      \tab Inspect result for `2+` `TRUE` values.                       \cr
+#'                  `$agg = 'any'`      \tab Inspect result for *any* `TRUE` values.                      \cr
+#'                  `$agg = 'all'`      \tab Inspect result for *only* `TRUE` values.                     \cr   \tab   \cr
+#'                  `$na = 'err'`       \tab Throw error if result has any `NA` values.                   \cr
+#'                  `$na = FALSE`       \tab Replace resulting `NA`s with `FALSE`.                        \cr
+#'                  `$na = TRUE`        \tab Replace resulting `NA`s with `TRUE`.                         \cr   \tab   \cr
+#'                  `$a1 = TRUE`        \tab \link[=av]{Atomize} `.x`.                                     \cr
+#'                  `$a2 = TRUE`        \tab Atomize the result.                                          \cr   \tab   \cr
+#'                  `$s = TRUE`         \tab \link[base:simplify2array]{Simplify} the result.             \cr   \tab     }
+#'    \tabular{l}{  \eqn{^{(1)}} `{spec}` is a placeholder for a \link[=is_prop_spec]{valid property spec}.              }
 #' @param .x An object to apply `.fun` to.
 #' @param .fun Function or character scalar name of a function to apply to `.x`.
 #' @param ... An arbitrary number of additional arguments to be passed to the function `.fun`.
@@ -68,6 +51,10 @@
 #' row_ply(egNumMat, sum)
 #' col_ply(egChrDtf, paste0, collapse = "")
 #' vls_ply(egChrVls, paste0, collapse = "")
+#' @export
+ply_help <- function() {utils::help("ply_help", package = "uj")}
+
+#' @describeIn ply_help Generalized `ply` function.
 #' @export
 ply <- function(.x, .fun, ..., .dim = 0, .proc = NULL) {
   if (base::length(.x) == 0) {uj::stopperr("[.x] is empty.")}
@@ -140,91 +127,91 @@ ply <- function(.x, .fun, ..., .dim = 0, .proc = NULL) {
   .x
 }
 
-#' @rdname ply
+#' @describeIn ply_help Check for `0` resulting `TRUE` values in the result (assumes that `.fun` produces logical values).
 #' @export
 none_ply <- function(.x, .fun, ..., .dim = 0, .proc = NULL) {
   .proc <- "none"
   uj::ply(.x, .fun, ..., .dim = .dim, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Check for `1+` resulting `TRUE` values in the result (assumes that `.fun` produces logical values).
 #' @export
 any_ply <- function(.x, .fun, ..., .dim = 0, .proc = NULL) {
   .proc$agg <- "any"
   uj::ply(.x, .fun, ..., .dim = .dim, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Check for `2+` resulting `TRUE` values in the result (assumes that `.fun` produces logical values).
 #' @export
 some_ply <- function(.x, .fun, ..., .dim = 0, .proc = NULL) {
   .proc$agg <- "some"
   uj::ply(.x, .fun, ..., .dim = .dim, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Check for `3+` resulting `TRUE` values in the result (assumes that `.fun` produces logical values).
 #' @export
 many_ply <- function(.x, .fun, ..., .dim = 0, .proc = NULL) {
   .proc$agg <- "many"
   uj::ply(.x, .fun, ..., .dim = .dim, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Check for *only* `TRUE` values in the result (assumes that `.fun` produces logical values).
 #' @export
 all_ply <- function(.x, .fun, ..., .dim = 0, .proc = NULL) {
   .proc$agg <- "all"
   uj::ply(.x, .fun, ..., .dim = .dim, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Check for exactly `1` resulting `TRUE` values in the result (assumes that `.fun` produces logical values).
 #' @export
 one_ply <- function(.x, .fun, ..., .dim = 0, .proc = NULL) {
   .proc$agg <- "one"
   uj::ply(.x, .fun, ..., .dim = .dim, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Check for exactly `2` resulting `TRUE` values in the result (assumes that `.fun` produces logical values).
 #' @export
 two_ply <- function(.x, .fun, ..., .dim = 0, .proc = NULL) {
   .proc$agg <- "two"
   uj::ply(.x, .fun, ..., .dim = .dim, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Apply `.fun` to \link[=av]{atomized} `.x`.
 #' @export
 atm_ply <- function(.x, .fun, ..., .proc = NULL) {
   .proc$a1 <- TRUE
   uj::ply(.x, .fun, ..., .dim = 0, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Apply `.fun` to elements of \link[=atm_mvc]{atomic multivec} `.x`.
 #' @export
 mvc_ply <- function(.x, .fun, ..., .proc = NULL) {
   .proc$arg <- 'mvc'
   uj::ply(.x, .fun, ..., .dim = 0, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Apply `.fun` to elements of \link[=atm_vec]{atomic vec} `.x`.
 #' @export
 vec_ply <- function(.x, .fun, ..., .proc = NULL) {
   .proc$arg <- 'vec'
   uj::ply(.x, .fun, ..., .dim = 0, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Apply `.fun` to rows of `.x`.
 #' @export
 row_ply <- function(.x, .fun, ..., .proc = NULL) {
   .proc$arg <- 'd2d'
   uj::ply(.x, .fun, ..., .dim = 1, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Apply `.fun` to columns of `.x`.
 #' @export
 col_ply <- function(.x, .fun, ..., .proc = NULL) {
   .proc$arg <- 'd2d'
   uj::ply(.x, .fun, ..., .dim = 2, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Apply `.fun` to cells of `.x`.
 #' @export
 dim_ply <- function(.x, .fun, ..., .proc = NULL) {
   nd <- base::length(base::dim(.x))
@@ -232,7 +219,7 @@ dim_ply <- function(.x, .fun, ..., .proc = NULL) {
   uj::ply(.x, .fun, ..., .dim = d, .proc = .proc)
 }
 
-#' @rdname ply
+#' @describeIn ply_help Apply `.fun` to elements of \link[=atm_vls]{atomic vlist} `.x`.
 #' @export
 vls_ply <- function(.x, .fun, ..., .proc = NULL) {
   .proc$arg <- 'pop_vls'

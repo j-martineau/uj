@@ -22,9 +22,7 @@ Check \code{x} Against Valid Values and Against a Test
 \seealso{
 Other utils: 
 \code{\link{combo2props}()},
-\code{\link{compat}()},
 \code{\link{meets_errs}()},
-\code{\link{ox_vals}()},
 \code{\link{spec2combos}()},
 \code{\link{spec2props}()},
 \code{\link{stack2funs}()}

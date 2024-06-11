@@ -40,3 +40,29 @@ meets(chrs, .vals = letters)
 meets(chrs, .gt = "a", .lt = "c")
 meets(sqrd, .ge = 1, .le = 16)
 }
+\seealso{
+Other properties: 
+\code{\link{as_mmm}()},
+\code{\link{bbb_ccc_help}()},
+\code{\link{bbb_help}()},
+\code{\link{bbb_mmm_prop_funs}()},
+\code{\link{ccc_help}()},
+\code{\link{cls}()},
+\code{\link{cmp_ccc_help}()},
+\code{\link{cmp_mmm_ccc_help}()},
+\code{\link{cmp_mmm_help}()},
+\code{\link{compatible}()},
+\code{\link{ddd_prop_funs}()},
+\code{\link{eee_help}()},
+\code{\link{iii_help}()},
+\code{\link{mmm_ccc_help}()},
+\code{\link{mmm_help}()},
+\code{\link{ppp_fast_help}()},
+\code{\link{ppp_help}()},
+\code{\link{sss_ccc_help}()},
+\code{\link{sss_prop_funs}()},
+\code{\link{unq_ccc_prop_funs}()},
+\code{\link{unq_mmm_ccc_help}()},
+\code{\link{unq_mmm_help}()}
+}
+\concept{properties}

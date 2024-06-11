@@ -44,7 +44,6 @@
 # externals ####
 
 #' @encoding UTF-8
-#' @family extensions
 #' @family logicals
 #' @family errs
 #' @title failsafe functions that **always** return a valid object.

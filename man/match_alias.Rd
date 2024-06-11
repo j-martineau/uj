@@ -139,10 +139,3 @@ egMatchAlias <- function() {
 }
 egMatchAlias()
 }
-\seealso{
-Other alert_utils: 
-\code{\link{.choose_from}()},
-\code{\link{.fmt_errs}()},
-\code{\link{.ok_fmt}()}
-}
-\concept{alert_utils}

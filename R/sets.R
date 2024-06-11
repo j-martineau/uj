@@ -1,5 +1,4 @@
 #' @encoding UTF-8
-#' @family extensions
 #' @title Create indices to build all possible non-empty sets
 #' @description Creates a list of elements containing indices to create all possible unique-value sets of size `1` to `n` from a length-`n` vector of unique values.
 #' @param n A \link[=cmp_psw_scl]{complete positive whole-number scalar} indicating the length of set of unique values.

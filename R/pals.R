@@ -17,7 +17,6 @@
 
 # exported ####
 
-#' @name pals
 #' @encoding UTF-8
 #' @family plots
 #' @title Plotting palettes
@@ -48,100 +47,100 @@
 #' \cr\cr  **A character vector**             \cr\cr `line_types`, `colors_dark`, `colors_bright`, `colors_sensitive` *and possibly* `build_palette`
 #' \cr\cr  **A positive whole number scalar** \cr\cr `blank_shape`
 #' @export
-pals <- function() {utils::help("pals", "uj")}
+pals_help <- function() {utils::help("pals_help", "uj")}
 
-#' @rdname pals
+#' @describeIn pals_help Returns a linetype palette composed of up to 9 unique linetypes. Sourced from `v(line.types)`. Consists of solid, 4 on 2 off dashed, 2 on 2 off dashed, 1 on 1 off dotted, 4 on 1 off 1 on 1 off dash-dotted, 2 on 1 off 1 on 1 off dash-dotted, 1 on 1 off 1 on 4 off dotted, 1 on 1 off 1 on 2 off dotted, and 1 on 4 off 4 on 1 off dot-dashed.
 #' @export
 line_types <- function(tot, unq = min(9, tot)) {
   uj:::.pal_errs(tot, unq, 9, uj::callers())
   uj:::.pal_vals("line.types", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a palette of fillable plotting shapes composed of up to 5 unique shapes. Sourced from `v(fill.shapes)`. Consists of circle, square, up triangle, down triangle, diamond.
 #' @export
 fill_shapes <- function(tot, unq = min(5, tot)) {
   uj:::.pal_errs(tot, unq, 5, uj::callers())
   uj:::.pal_vals("fill.shapes", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a palette of open plotting shapes composed of up to 5 unique shapes. Sourced from `v(open.shapes)`. Consists of `+`, `^` ,`v`, `<`, and `>` shapes.
 #' @export
 open_shapes <- function(tot, unq = min(5, tot)) {
   uj:::.pal_errs(tot, unq, 5, uj::callers())
   uj:::.pal_vals("open.shapes", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a palette of punctuation-based plotting shapes composed of up to 7 unique shapes. Sourced from `v(punc.shapes)`. Consists of `!`, `@`, `#`, `$`, `%`, `&`, and `?` shapes.
 #' @export
 punc_shapes <- function(tot, unq = min(7, tot)) {
   uj:::.pal_errs(tot, unq, 7, uj::callers())
   uj:::.pal_vals("punc.shapes", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a palette of empty (unfilled) plotting shapes composed of up to 5 unique shapes. Sourced from `v(empty.shapes)`. Consists of empty circle, square, up triangle, down triangle, and diamond.
 #' @export
 empty_shapes <- function(tot, unq = min(5, tot)) {
   uj:::.pal_errs(tot, unq, 5, uj::callers())
   uj:::.pal_vals("empty.shapes", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a palette of solid plotting shapes consisting of up to 4 unique shapes. Sourced from `v(solid.shapes)`. Consists of circle, square, up triangle, and diamond shapes.
 #' @export
 solid_shapes <- function(tot, unq = min(4, tot)) {
   uj:::.pal_errs(tot, unq, 4, uj::callers())
   uj:::.pal_vals("solid.shapes", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a palette of digit character plotting shapes consisting of up to 9 unique shapes. Sourced from `v(digit.shapes)`. Consists of the numerals from `1` to `9`.
 #' @export
 digit_shapes <- function(tot, unq = min(9, tot)) {
   uj:::.pal_errs(tot, unq, 9, uj::callers())
   uj:::.pal_vals("digit.shapes", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a palette of digit character plotting shapes consisting of up to 10 unique shapes. Sourced from `v(digit.shapes0)`. Consists of numerals from `0` to `9`.
 #' @export
 digit_shapes0 <- function(tot, unq = min(10, tot)) {
   uj:::.pal_errs(tot, unq, 10, uj::callers())
   uj:::.pal_vals("digit.shapes0", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a palette of lowercase letter plotting shapes consisting of up to 26 unique shapes. Sourced from `v(letter.shapes)`. Consists of English lowercase letters.
 #' @export
 letter_shapes <- function(tot, unq = min(26, tot)) {
   uj:::.pal_errs(tot, unq, 26, uj::callers())
   uj:::.pal_vals("letter.shapes", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a palette of uppercase letter plotting shapes consisting of up to 26 unique shapes. Sourced from `v(letter.shapes)`. Consists of English uppercase letters.
 #' @export
 LETTER_shapes <- function(tot, unq = min(26, tot)) {
   uj:::.pal_errs(tot, unq, 26, uj::callers())
   uj:::.pal_vals("LETTER.shapes", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a palette of dark hexademical plotting colors consisting of up to 6 unique colors. Sources from `v(.HexColorVals)$colors.dark`. Consists of dark blue, orange, magenta, cyan, red-orange and grey-green.
 #' @export
 colors_dark <- function(tot, unq = min(6, tot)) {
   uj:::.pal_errs(tot, unq, 6, uj::callers())
   uj:::.pal_vals("colors.dark", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a palette of bright hexademical plotting colors consisting of up to 6 unique colors. Sources from `v(.HexColorVals)$colors.bright`. Consists of bright blue, orange, magenta, cyan, red-orange and grey-green.
 #' @export
 colors_bright <- function(tot, unq = min(6, tot)) {
   uj:::.pal_errs(tot, unq, 6, uj::callers())
   uj:::.pal_vals("colors.bright", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a palette of dark and bright hexademical plotting colors sensitive to most forms of colorblindness consisting of up to 12 unique colors. Sources from `v(.HexColorVals)$colors.sensitive`. Consists of dark, then bright blue, orange, magenta, cyan, red-orange and grey-green.
 #' @export
 colors_sensitive <- function(tot, unq = min(12, tot)) {
   uj:::.pal_errs(tot, unq, 12, uj::callers())
   uj:::.pal_vals("colors.sensitive", tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Builds a plotting palette of any type, where `type` is one of `c('colors.dark', 'colors.bright', 'colors.sensitive', 'line.types', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes')`.
 #' @export
 build_palette <- function(type, tot, unq) {
   validTypes <- base::c('colors.dark', 'colors.bright', 'colors.sensitive', 'line.types', 'letter.shapes', 'LETTER.shapes', 'digit.shapes0', 'digit.shapes', 'open.shapes', 'punc.shapes', 'empty.shapes', 'fill.shapes', 'solid.shapes')
@@ -157,7 +156,7 @@ build_palette <- function(type, tot, unq) {
   uj::pal_vals(type, tot, unq)
 }
 
-#' @rdname pals
+#' @describeIn pals_help Returns a shape that prints nothing on a plot (i.e., a space as a plotting symbol).
 #' @export
 blank_shape <- function() {uj::v(blank.shape)}
 

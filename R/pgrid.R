@@ -2,15 +2,6 @@
 #' @family strings
 #' @title `expand.grid` for `paste` and `paste0`
 #' @description Generate all combinations of the values of 2 or more vectors and glue the combinations into a single character vector.
-#' @details
-#' \tabular{ll}{  `pgrid`    \tab Converts the `N` `...` arguments to character (with additional optional pre-processing) and create a character vector with each element
-#'                                consisting of sub-strings from across `...` arguments pasted together using the 'paste' `.p`. See the *the* `.crossed` *argument* section for how the value
-#'                                of `.crossed` affects the return value.           \cr   \tab   \cr
-#'                `pgridN`   \tab Calls `pgrid` with `.crossed = FALSE`\eqn{^{(1)}} \cr
-#'                `pgridX`   \tab Calls `pgrid` with `.crossed = TRUE`\eqn{^{(1)}}  \cr
-#'                `pgrid0`   \tab Calls `pgrid` with `.p = ""` (blank).             \cr
-#'                `pgrid1`   \tab Calls `pgrid` with `.p = " "` (space).            \cr   \tab     }
-#'  \tabular{l}{  \eqn{^{(1)}} See *the* `.crossed` *argument*.                       }
 #' @param ... Non-empty atomic objects.
 #' @param .p A \link[=cmp_chr_scl]{complete character scalar} to use as the 'paste'.
 #' @param .ch,.na Non-`NA` logical scalars indicating, respectively, whether to split each `...` arguments into its constituent characters after conversion to mode 'character' and whether `NA` values in `...` arguments are valid.
@@ -48,6 +39,10 @@
 #' pgrid0(x, y, z)
 #' pgrid1(x, y, z)
 #' @export
+pgrid_help <- function() {utils::help("pgrid_help", package = "uj")}
+
+#' @describeIn pgrid_help Converts the `N` `...` arguments to character (with additional optional pre-processing) and create a character vector with each element consisting of sub-strings from across `...` arguments pasted together using the 'paste' `.p`. See the *the* `.crossed` *argument* section for how the value of `.crossed` affects the return value.
+#' @export
 pgrid <- function(.p, ..., .ch = F, .crossed = F, .na = F) {
   .combo <- function(x) {
     x <- uj::av(x)
@@ -74,18 +69,18 @@ pgrid <- function(.p, ..., .ch = F, .crossed = F, .na = F) {
   y
 }
 
-#' @rdname pgrid
+#' @describeIn pgrid_help Calls `pgrid` with `.p = ""` (blank).
 #' @export
 pgrid0 <- function(..., .ch = F, .crossed = F, .na = FALSE) {uj::pgrid("", ..., .ch = .ch, .crossed = .crossed, .na = .na)}
 
-#' @rdname pgrid
+#' @describeIn pgrid_help Calls `pgrid` with `.p = " "` (space).
 #' @export
 pgrid1 <- function(..., .ch = F, .crossed = F, .na = FALSE) {uj::pgrid(" ", ..., .ch = .ch, .crossed = .crossed, .na = .na)}
 
-#' @rdname pgrid
+#' @describeIn pgrid_help Calls `pgrid` with `.crossed = FALSE` (see *the* `.crossed` *argument*).
 #' @export
 pgridN <- function(.p, ..., .ch = F, .na = FALSE) {uj::pgrid(.p, ..., .ch = .ch, .crossed = F, .na = .na)}
 
-#' @rdname pgrid
+#' @describeIn pgrid_help Calls `pgrid` with `.crossed = TRUE` (see *the* `.crossed` *argument*).
 #' @export
 pgridX <- function(.p, ..., .ch = F, .na = FALSE) {uj::pgrid(.p, ..., .ch = .ch, .crossed = T, .na = .na)}

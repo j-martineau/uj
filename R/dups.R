@@ -1,5 +1,4 @@
 #' @encoding UTF-8
-#' @family extensions
 #' @title Duplicate values.
 #' @description Extensions of \code{\link[base]{duplicated}}. Logically and numerically index duplicate values.
 #' @details

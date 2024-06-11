@@ -1,5 +1,4 @@
 #' @encoding UTF-8
-#' @family extensions
 #' @family forks
 #' @title Case as an extension of switch
 #' @description Takes a name (i.e., any atomic scalar) and matches that name to the name matching an element of `...` where matching can be achieved by matching the name of an argument in `...`. When names are supplied via `.names`, they substituted for the names of arguments in `...`. When no match is found and `.def = 'err'` an error is thrown, otherwise, the value of `.def` is returned.

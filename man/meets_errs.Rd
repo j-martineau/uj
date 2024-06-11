@@ -35,8 +35,6 @@ Checks whether any count- or value-restrictions are carried in \code{...} argume
 Other utils: 
 \code{\link{check_valid}()},
 \code{\link{combo2props}()},
-\code{\link{compat}()},
-\code{\link{ox_vals}()},
 \code{\link{spec2combos}()},
 \code{\link{spec2props}()},
 \code{\link{stack2funs}()}

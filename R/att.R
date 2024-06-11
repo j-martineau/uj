@@ -33,9 +33,9 @@
 #' egAtt <- egAtt()
 #' egAtt
 #' @export
-att_funs <- function() {utils::help("att_funs", package = "uj")}
+att_help <- function() {utils::help("att_help", package = "uj")}
 
-#' @describeIn att_funs Get the attributes of `.x` named in `...`, optionally \link[=av]{atomizing} the result when `.a = TRUE`. When there are no `...` args, gets all attributes of `.x`. Return value varies depending on `x` and `...`.
+#' @describeIn att_help Get the attributes of `.x` named in `...`, optionally \link[=av]{atomizing} the result when `.a = TRUE`. When there are no `...` args, gets all attributes of `.x`. Return value varies depending on `x` and `...`.
 #' @export
 att <- function(.x, ..., .a = FALSE) {
   if (base::...length() > 0) {
@@ -61,22 +61,22 @@ att <- function(.x, ..., .a = FALSE) {
   } else {base::attributes(.x)}
 }
 
-#' @describeIn att_funs Gets the attributes of `x`. Thinly wraps `attributes(x)`. Returns either `NULL` or a named list.
+#' @describeIn att_help Gets the attributes of `x`. Thinly wraps `attributes(x)`. Returns either `NULL` or a named list.
 #' @export
 atts <- function(x) {base::attributes(x)}
 
-#' @describeIn att_funs Gets the names of attributes of `x`. Thinly wraps `names(attributes(x))`. Returns either `NULL` or a character vector.
+#' @describeIn att_help Gets the names of attributes of `x`. Thinly wraps `names(attributes(x))`. Returns either `NULL` or a character vector.
 #' @export
 att_names <- function(x) {base::names(base::attributes(x))}
 
-#' @describeIn att_funs Evaluates whether `name` is the name of an attribute of `x`. Returns a logical scalar.
+#' @describeIn att_help Evaluates whether `name` is the name of an attribute of `x`. Returns a logical scalar.
 #' @export
 is_att <- function(x, name) {
   if (!uj::.cmp_chr_scl(name)) {uj::stopperr("[name] must be .a complete character scalar (?cmp_chr_scl).")}
   name %in% base::names(base::attributes(x))
 }
 
-#' @describeIn att_funs Adds attributes to `.x` as specified in `...` where attribute names are the names of `...` args and attribute values are the values of `...` args. Returns `x` with added attributes as specified in `...`.
+#' @describeIn att_help Adds attributes to `.x` as specified in `...` where attribute names are the names of `...` args and attribute values are the values of `...` args. Returns `x` with added attributes as specified in `...`.
 #' @export
 add_att <- function(.x, ...) {
   n <- base::...length()
@@ -91,7 +91,7 @@ add_att <- function(.x, ...) {
   .x
 }
 
-#' @describeIn att_funs Sets attributes of `.x` to the values specified in `...` where names of modified attributes are the names of `...` args and the values of modified attributes are the values of `...` args. Returns `x` with modified attribute values.
+#' @describeIn att_help Sets attributes of `.x` to the values specified in `...` where names of modified attributes are the names of `...` args and the values of modified attributes are the values of `...` args. Returns `x` with modified attribute values.
 #' @export
 set_att <- function(.x, ...) {
   ndots <- base::...length()
@@ -103,7 +103,7 @@ set_att <- function(.x, ...) {
   .x
 }
 
-#' @describeIn att_funs Removes from `x` any attributes named in `...` (where `...` is \link[=av]{atomized} to a character vector and split along pipes (`'|'`)). When there are no `...` args, removes all attributes from `x`. Returns `x` with the specified attributes removed.
+#' @describeIn att_help Removes from `x` any attributes named in `...` (where `...` is \link[=av]{atomized} to a character vector and split along pipes (`'|'`)). When there are no `...` args, removes all attributes from `x`. Returns `x` with the specified attributes removed.
 #' @export
 rm_att <- function(x, ...) {
   if (base::...length() > 0) {
@@ -114,17 +114,17 @@ rm_att <- function(x, ...) {
   x
 }
 
-#' @describeIn att_funs An alias for `rm_att`.
+#' @describeIn att_help An alias for `rm_att`.
 #' @export
 xatt <- rm_att
 
-#' @describeIn att_funs Removes all attributes from `x`. Returns `x` with all attributes removed.
+#' @describeIn att_help Removes all attributes from `x`. Returns `x` with all attributes removed.
 #' @export
 rm_atts <- function(x) {
   base::attributes(x) <- NULL
   x
 }
 
-#' @describeIn att_funs An alias for `rm_atts`.
+#' @describeIn att_help An alias for `rm_atts`.
 #' @export
 xatts <- rm_atts

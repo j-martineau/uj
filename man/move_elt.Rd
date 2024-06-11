@@ -38,10 +38,3 @@ Manipulate positions, rows, and columns
   \code{move_col}     \tab Move the \code{from}-th column of \code{x} to the \code{to}-th column of \code{x}.                                                    }
 \code{from < 0} and \code{to < 0} index from the last position, row, or column rather than the first.
 }
-\seealso{
-Other function_form: 
-\code{\link{insert_elts_before}()},
-\code{\link{put}()},
-\code{\link{rm_vals}()}
-}
-\concept{function_form}

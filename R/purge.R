@@ -1,15 +1,12 @@
 #' @encoding UTF-8
-#' @name purge
-#' @family extensions
 #' @family meta
 #' @family purge
 #' @title Purge objects and parts of objects
 #' @details All purge (`x`) functions include garbage collection.
-#' \tabular{ll}{  `purge_pref, rm_pref, xpref`   \tab Purge package prefixes\eqn{^{(1)}}    \cr
-#'                `purge_plot, rm_plot, xplot`   \tab Purge plots\eqn{^{(2)}}               \cr
+#' \tabular{ll}{  `purge_plot, rm_plot, xplot`   \tab                \cr
 #'                `purge_warn, rm_warn, xwarn`   \tab Purge warnings                        \cr
 #'                `purge_con, rm_con, xcon`      \tab Purge console                         \cr
-#'                `purge, x`                     \tab Purge specific objects                  }
+#'                `purge, x`                     \tab                   }
 #'  \tabular{l}{  \eqn{^{(1)}} Converts `'base::paste'` to `'paste'`, for example.           \cr
 #'                \eqn{^{(2)}} Followed by printing the object `x` if not `NULL`.            \cr   }
 #' \tabular{ll}{  `purge_global, purge_all`      \tab **WARNING: Use with care!**            \cr
@@ -54,6 +51,10 @@
 #'   warnings()
 #' }
 #' @export
+purge_help <- function() {utils::help("purge_help", package = "uj")}
+
+#' @describeIn purge_help Purge specific objects as named in `...` (unquoted object names).
+#' @export
 purge <- function(...) {
   x <- base::as.character(base::match.call())
   x <- x[2:base::length(x)]
@@ -62,39 +63,39 @@ purge <- function(...) {
   base::gc(verbose = FALSE)
 }
 
-#' @rdname purge
+#' @describeIn purge_help An aliase for `purge`.
 #' @export
 x <- purge
 
-#' @rdname purge
+#' @describeIn purge_help Closes all open plots/graphic devices, followed by printing `x` if not `NULL`.
 #' @export
-purge_plot <- function(x = NULL) {
+purge_plots <- function(x = NULL) {
   grDevices::graphics.off()
   if (!base::is.null(x)) {base::print(x)}
   base::gc(verbose = FALSE)
 }
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_plot`.
 #' @export
-rm_plot <- purge_plot
+rm_plot <- purge_plots
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_plot`.
 #' @export
-xplot <- purge_plot
+xplot <- purge_plots
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_plot`.
 #' @export
-purge_plots <- purge_plot
+purge_plot <- purge_plots
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_plot`.
 #' @export
-rm_plots <- purge_plot
+rm_plots <- purge_plots
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_plot`.
 #' @export
-xplots <- purge_plot
+xplots <- purge_plots
 
-#' @rdname purge
+#' @describeIn purge_help Purges warning messages.
 #' @export
 purge_warnings <- function() {
   base::gc(verbose = FALSE)
@@ -107,57 +108,38 @@ purge_warnings <- function() {
   }
 }
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_warnings`.
 #' @export
 purge_warn <- purge_warnings
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_warnings`.
 #' @export
 xwarnings <- purge_warnings
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_warnings`.
 #' @export
 xwarn <- purge_warnings
 
-#' @rdname purge
+#' @describeIn purge_help Purges the contents of the console.
 #' @export
 purge_console <- function() {
   base::gc(verbose = FALSE)
   base::cat("\014")
 }
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_console`.
 #' @export
 purge_con <- purge_console
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_console`.
 #' @export
 xconsole <- purge_console
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_console`.
 #' @export
 xcon <- purge_console
 
-#' @rdname purge
-#' @export
-purge_pref <- function(funs) {
-  base::gc(verbose = FALSE)
-  if (!uj::.cmp_chr_vec(funs)) {uj::stopperr("[funs] must be a complete character vec (?cmp_chr_vec).")}
-  where <- base::regexpr(":::", funs, fixed = T)
-  where[where == -1] <- -2
-  funs <- base::substr(funs, where + 3, base::nchar(funs))
-  base::substr(funs, base::regexpr("::", funs, fixed = T) + 2, base::nchar(funs))
-}
-
-#' @rdname purge
-#' @export
-rm_pref <- purge_pref
-
-#' @rdname purge
-#' @export
-xpref <- purge_pref
-
-#' @rdname purge
+#' @describeIn purge_help Purges the global environment.
 #' @export
 purge_global <- function() {
   base::rm(list = base::ls(envir = base::.GlobalEnv), envir = base::.GlobalEnv)
@@ -167,120 +149,22 @@ purge_global <- function() {
   base::gc(verbose = FALSE)
 }
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_global`.
 #' @export
 purge_all <- purge_global
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_global`.
 #' @export
 rm_global <- purge_global
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_global`.
 #' @export
 rm_all <- purge_global
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_global`.
 #' @export
 xglobal <- purge_global
 
-#' @rdname purge
+#' @describeIn purge_help An alias for `purge_global`.
 #' @export
 xall <- purge_global
-
-#' @encoding UTF-8
-#' @family function_form
-#' @family purge
-#' @title Manipulate positions, rows, and columns
-#' @details
-#' \tabular{ll}{  `purge_vals, rm_vals, xvals`   \tab Remove values in atomic vector `vals` from atomic vector `x`. \cr   \tab   \cr
-#'                `purge_elts, rm_elts, xelts`   \tab Delete elements of `x` indexed in `elts`                      \cr   \tab   \cr
-#'                `purge_rows, rm_rows, xrows`   \tab Delete rows of `x` indexed in `rows`.                         \cr   \tab   \cr
-#'                `purge_cols, rm_cols, xcols`   \tab Delete columns of `x` indexed in `cols`                                      }
-#' @param x For `*vals` and `*elts` an atomic vector. For `*cols` and `*rows`, a atomic data.frame (?atm_dtf) or an atomic matrix.
-#' @param vals A unique-valued atomic vector (?uj::unq_atm_vec) mode-compatible with `x`.
-#' @param elts,rows,cols Atomic vector indexing elements, rows, or columns of `x` to be deleted, respectively. These are either
-#'   \itemize{\item A uniquely-valued positive whole-number vector.
-#'            \item A complete logical vector (?uj::cmp_lgl_vec) of length `length(x)`.
-#'            \item A uniquely-valued character vector of element/column/row names.   }
-#' @return An object of the same class as `x`.
-#' @export
-rm_vals <- function(x, vals) {
-  errs <- NULL
-  if (!uj::.atm_vec(x)) {errs <- base::c(errs, "[x] must be an atomic vec (?atm_vec).")}
-  if (!uj::.unq_vec(vals)) {errs <- base::c(errs, "[vals] must be a unique-valued atomic vec (?uj::unq_vec).")}
-  if (uj::DEF(errs)) {uj::stopperr(errs)}
-  if (!uj:::.compat(x, vals)) {uj::stopper("[x] and [vals] must be of compatible modes.")}
-  x <- x[!(x %in% vals)]
-}
-
-#' @rdname rm_vals
-#' @export
-rm_elts <- function(x, elts) {
-  if (!uj::.atm_vec(x)) {uj::stopper("[x] must be an atomic vec (?atm_vec).")}
-  n <- base::length(x)
-  if (uj::unq_whl_vec(elts)) {
-    if (base::all(elts != 0)) {
-      elts[elts < 0] <- n + elts[elts < 0] - 1
-      if (base::all(elts <= n)) {x[1:n[!(1:n %in% elts)], ]}
-      else {uj::stopper("[elts] may not contain values larger than length(x).")}
-    } else {uj::stopperr("[elts] may not contain 0.")}
-  } else if (uj::cmp_lgl_vec(elts)) {
-    if (uj::N(elts) == n) {x[!elts]}
-    else {uj::stopper("length(elts) must equal length(x) when [elts] is of mode logical.")}
-  } else if (uj::unq_chr_scl(elts)) {
-    if (base::all(elts %in% base::names(x))) {x[elts]}
-    else {uj::stopperr("[elts] contains a name not in rownames(x).")}
-  } else {uj::stopperr("[elts] must contain only unique positive integers ≤ length(x), a complete logical vector of length(x), or a unique character vector containing only names of elements of [x].")}
-}
-
-#' @rdname rm_vals
-#' @export
-rm_rows <- function(x, rows) {
-  if (!(uj::.atm_mat(x) | uj::.atm_dtf(x)) | !uj::.POP(x)) {uj::stopperr("[x] must be an atomic matrix or an atomic data frame (?atm_dtf).")}
-  n <- base::nrow(x)
-  if (uj::unq_whl_vec(rows)) {
-    if (base::all(rows != 0)) {
-      if (base::all(rows <= n)) {x[1:n[!(1:n %in% rows)], ]}
-      else {uj::stopperr("[rows] may not contain values larger than nrow(x).")}
-    } else {uj::stopperr()}
-  } else if (uj::cmp_lgl_vec(rows)) {
-    if (base::length(rows) == n) {x[!rows, ]}
-    else {uj::stopper("length(rows) must equal nrow(x) when [rows] is of mode logical.")}
-  } else if (uj::unq_chr_scl(rows)) {
-    if (base::all(rows %in% base::rownames(x))) {x[rows, ]}
-    else {uj::stopperr("[rows] contains a name not in rownames(x).")}
-  } else {uj::stopperr("[rows] must contain only unique positive integers ≤ nrow(x), a complete logical vector of length nrow(x), or a unique character vector containing only rownames of [x].")}
-}
-
-#' @rdname rm_vals
-#' @export
-rm_cols <- function(x, cols) {
-  if (!(uj::.atm_mat(x) | uj::.atm_dtf(x)) | !uj::.POP(x)) {uj::stopperr("[x] must be an atomic matrix or an atomic data frame (?atm_dtf).")}
-  n <- base::ncol(x)
-  if (uj::unq_psw_vec(x)) {
-    if (base::all(cols <= n)) {x[1:n[!(1:n %in% cols)], ]}
-    else {uj::stopper("[cols] may not contain values larger than ncol(x).")}
-  } else if (uj::cmp_lgl_vec(cols)) {
-    if (base::length(cols) == n) {x[ , !cols]}
-    else {uj::stopper("length(cols) must equal ncol(x) when [cols] is of mode logical.")}
-  } else if (uj::unq_chr_scl(cols)) {
-    if (base::all(C %in% base::colnames(x))) {x[ , C]}
-    else {uj::stopper("[cols] contains a name not in colnames(x).")}
-  } else {uj::stopper("[cols] must contain only unique positive integers ≤ ncol(x), a complete logical vector of length ncol(x), or a unique character vector containing only colnames of [x].")}
-}
-
-#' @rdname rm_vals
-#' @export
-xvals <- rm_vals
-
-#' @rdname rm_vals
-#' @export
-xelts <- rm_elts
-
-#' @rdname rm_vals
-#' @export
-xrows <- rm_rows
-
-#' @rdname rm_vals
-#' @export
-xcols <- rm_cols

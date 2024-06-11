@@ -8,7 +8,7 @@
 \alias{set_cls}
 \alias{add_cls}
 \alias{has_cls}
-\title{Manage classes}
+\title{Manage Classes}
 \usage{
 cls(x)
 
@@ -33,7 +33,7 @@ has_cls(x, ...)
 \cr\cr  \strong{An object}          \cr\cr \verb{add_cls, set_cls, rm_cls, xcls}
 }
 \description{
-Manage classes
+Manage Classes
 }
 \details{
 \tabular{ll}{  \verb{rm_cls, xcls}   \tab Removes class(es) in \code{...} from classes of \code{x}.               \cr   \tab   \cr
@@ -53,9 +53,26 @@ cls(egObj3)
 \seealso{
 Other properties: 
 \code{\link{as_mmm}()},
+\code{\link{bbb_ccc_help}()},
+\code{\link{bbb_help}()},
+\code{\link{bbb_mmm_prop_funs}()},
+\code{\link{ccc_help}()},
+\code{\link{cmp_ccc_help}()},
+\code{\link{cmp_mmm_ccc_help}()},
+\code{\link{cmp_mmm_help}()},
 \code{\link{compatible}()},
-\code{\link{iii_prop_funs}()},
-\code{\link{mmm_prop_funs}()},
-\code{\link{sss_prop_funs}()}
+\code{\link{ddd_prop_funs}()},
+\code{\link{eee_help}()},
+\code{\link{iii_help}()},
+\code{\link{meets}()},
+\code{\link{mmm_ccc_help}()},
+\code{\link{mmm_help}()},
+\code{\link{ppp_fast_help}()},
+\code{\link{ppp_help}()},
+\code{\link{sss_ccc_help}()},
+\code{\link{sss_prop_funs}()},
+\code{\link{unq_ccc_prop_funs}()},
+\code{\link{unq_mmm_ccc_help}()},
+\code{\link{unq_mmm_help}()}
 }
 \concept{properties}

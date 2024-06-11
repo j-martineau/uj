@@ -1,30 +1,6 @@
-#' @name naming
 #' @encoding UTF-8
-#' @family extensions
 #' @title Naming utilities
 #' @description Get object names (with optional restrictions), check whether names exist (with optional restrictions), and apply names.
-#' @details
-#' \tabular{ll}{  `get_names`                     \tab Name retrieval                      \cr
-#'                `row_col_names, rcnames, rcn`   \tab Row and column names                \cr
-#'                `row_names, rnames, rn`         \tab Row names                           \cr
-#'                `col_names, cnames, cn`         \tab Column names                        \cr
-#'                `val_names, vnames, vn`         \tab Value/element names                 \cr   \tab   \cr
-#'                `named`                         \tab Name existence check                \cr   \tab   \cr
-#'                `named_rows_cols, named_rcs`    \tab Are both rows and columns named?    \cr
-#'                `rows_cols_named, rcs_named`    \tab                                     \cr   \tab   \cr
-#'                `named_cols, named_cs`          \tab Are columns of `x` named?           \cr
-#'                `cols_named, cs_named`          \tab                                     \cr   \tab   \cr
-#'                `named_rows, named_rs`          \tab Are rows of `x` named?              \cr
-#'                `rows_named, rs_named`          \tab                                     \cr   \tab   \cr
-#'                `elts_named, vals_named`        \tab Are values/elements of `x` named?   \cr
-#'                `es_named, vs_named`            \tab                                     \cr   \tab   \cr
-#'                `name`                          \tab Naming                              \cr
-#'                `name_rcs`                      \tab name rows and columns of `x`        \cr
-#'                `name_cols, name_cs`            \tab name columns of `x`.                \cr
-#'                `name_rows, name_rs`            \tab name rows of `x`.                   \cr
-#'                `name_vals, name_vs`            \tab name values/elements of`x`.         \cr
-#'                `name_elts, name_es`            \tab                                     \cr   \tab   \cr
-#'                `name_scl_vls, name_sv`         \tab Create and name a scalar \code{\link[=VLS]{vlist}} }
 #' @param x Vector or list for `name_vals`/`name_elts` and `val_names / elt_names / vn / en`; matrix or data.frame for `rnames / rn`, `cnames / cn`, `rcnames / rcn`, `name_rcs`, `name_cols`, and `name_rows`; or any object for `name_scl_vls`.
 #' @param ... An arbitrary number of arguments.
 #' @param bl `TRUE` or `FALSE` indicating whether blank strings (`""`) are allowed as names and `...` argument names, respectively.
@@ -33,14 +9,6 @@
 #' @param u `TRUE` or `FALSE` indicating whether names and `...` argument names must be unique, respectively.
 #' @param name A non-`NA` character scalar to name the single element of the resulting \link[=VLS]{vlist}.
 #' @param en,vn,rn,cn A \link[=cmp_chr_vec]{complete character vec} element, value, row, and column named, respectively.
-#' @return **A \link[=VEC]{vec}, \link[=VLS]{vlist}, matrix, or data.frame** \cr\cr `name`
-#' \cr\cr  **A vector or a vlist of length** `2`                             \cr\cr `get_names`
-#' \cr\cr  **A matrix or data.frame**                                        \cr\cr `name_rcs, name_rows, name_cols`
-#' \cr\cr  **A \link[=VLS]{vlist} of length** `2`                            \cr\cr `rc_names, rcn`
-#' \cr\cr  **A `1`-element \link[=VLS]{vlist}**                              \cr\cr `name_scl_vls`
-#' \cr\cr  **A character vector**                                            \cr\cr `rnames, cnames, enames`  \cr `rn, cn, en`
-#' \cr\cr  **A logical scalar**                                              \cr\cr `rcs_are_named, rows_are_named, cols_are_named` \cr `dots_are_named, vals_are_named, named`
-#' \cr\cr  **A vector or \link[=VLS]{vlist}**                                \cr\cr `name_vals`
 #' @examples
 #' egDotsNamed <- function(...) {dnamed(...)}
 #'
@@ -84,6 +52,10 @@
 #' name_cols(egDtf, c("letters", "LETTERS"))
 #' name_rcs(egMat, letters[egVec], egVec)
 #' @export
+naming_help <- function() {utils::help("naming_help", package = "uj")}
+
+#' @describeIn naming_help Named the values/elements of `x` as `vn`. Returns `x` with names applied.
+#' @export
 name_vals <- function(x, vn) {
   errs <- NULL
   if (!uj::.VEC(x)) {errs <- base::c(errs, "[x] must be a vec (?VEC).")}
@@ -93,19 +65,19 @@ name_vals <- function(x, vn) {
   x
 }
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `name_vals`.
 #' @export
 name_vs <- name_vals
 
-#' @rdname naming
+#' @describeIn naming_help Name the values/elements of `x` as `en`
 #' @export
 name_elts <- function(x, en) {uj::name_vals(x, en)}
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `name_elts`.
 #' @export
 name_es <- name_elts
 
-#' @rdname naming
+#' @describeIn naming_help Name the rows of `x` as `rn`. Returns `x` with row names applied.
 #' @export
 name_rows <- function(x, rn) {
   errs <- NULL
@@ -116,11 +88,11 @@ name_rows <- function(x, rn) {
   x
 }
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `name_rows`.
 #' @export
 name_rs <- name_rows
 
-#' @rdname naming
+#' @describeIn naming_help Name the columns of `x` as `cn`. Returns `x` with column names applied.
 #' @export
 name_cols <- function(x, cn) {
   errs <- NULL
@@ -131,11 +103,11 @@ name_cols <- function(x, cn) {
   x
 }
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `name_cols`.
 #' @export
 name_cs <- name_cols
 
-#' @rdname naming
+#' @describeIn naming_help Store `x` in a single-element list and name that element `en`. Returns a named, single-element list.
 #' @export
 name_scl_vls <- function(x, en) {
   if (!uj::.cmp_scl(en)) {uj::stopperr("[en] must be a complete atomic scalar (?cmp_scl).")}
@@ -144,19 +116,19 @@ name_scl_vls <- function(x, en) {
   x
 }
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `name_scl_vls`.
 #' @export
 name_sv <- name_scl_vls
 
-#' @rdname naming
+#' @describeIn naming_help Name the rows of `x` as `rn` and the columns of `x` as `cn`. Returns `x` with row and column names applied.
 #' @export
 name_rows_cols <- function(x, rn, cn) {uj::name_rows(uj::name_cols(x, cn), rn)}
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `name_rows_cols`.
 #' @export
 name_rcs <- name_rows_cols
 
-#' @rdname naming
+#' @describeIn naming_help Name the values/elements of, rows of, and/or columns of `x`. Returns `x` with specified names applied.
 #' @export
 name <- function(x, en = NULL, vn = NULL, rn = NULL, cn = NULL) {
   if      (uj::.D1D(x)) {uj::name_vals(x, uj::f0(base::is.null(en), vn, en))}
@@ -164,7 +136,7 @@ name <- function(x, en = NULL, vn = NULL, rn = NULL, cn = NULL) {
   else {uj::stopperr("[x] must be a vec (?VEC), vlist (?VLS), matrix, or data.frame.")}
 }
 
-#' @rdname naming
+#' @describeIn naming_help Evaluates whether elements/rows/columns/drawers/... of `x` are named, optionally checking for uniqueness and non-blankness. Returns a logical scalar or throws an error.
 #' @export
 named <- function(x, d = 0, u = T, bl = F) {
   okX <- uj::.pop_vec(x) | uj::.pop_vls(x) | uj::.pop_mat(x) | uj::.pop_dtf(x)
@@ -201,87 +173,95 @@ named <- function(x, d = 0, u = T, bl = F) {
   leOK & ueOK & beOK & lrOK & urOK & brOK & lcOK & ucOK & bcOK
 }
 
-#' @rdname naming
+#' @describeIn naming_help Evaluates whether elements/values of `x` are named, optionally checking for uniqueness and non-blankness. Returns a logical scalar or throws an error.
 #' @export
 named_elts <- function(x, u = T, bl = F) {uj::named(x, 0, u = u, bl = bl)}
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_elts`.
 #' @export
 elts_named <- named_elts
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_elts`.
 #' @export
-named_es <- elts_named
+named_es <- named_elts
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_elts`.
 #' @export
-es_named <- named_es
+es_named <- named_elts
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_elts`.
 #' @export
-named_vals <- elts_named
+named_vals <- named_elts
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_elts`.
 #' @export
-vals_named <- named_vals
+vals_named <- named_elts
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_elts`.
 #' @export
-named_vs <- elts_named
+named_vs <- named_elts
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_elts`.
 #' @export
-vs_named <- named_vs
+vs_named <- named_elts
 
-#' @rdname naming
+#' @describeIn naming_help Evaluates whether rows of `x` are named, optionally checking for uniqueness and non-blankness. Returns a logical scalar or throws an error.
 #' @export
 named_rows <- function(x, u = T, bl = F) {uj::named(x, 1, u = u, bl = bl)}
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_rows`.
 #' @export
 rows_named <- named_rows
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_rows`.
 #' @export
-named_rs <- rows_named
+named_rs <- named_rows
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_rows`.
 #' @export
-rs_named <- named_rs
+rs_named <- named_rows
 
-#' @rdname naming
+#' @describeIn naming_help Evaluates whether columns of `x` are named, optionally checking for uniqueness and non-blankness. Returns a logical scalar or throws an error.
 #' @export
 named_cols <- function(x, u = T, bl = F) {uj::named(x, 2, u = u, bl = bl)}
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_cols`.
 #' @export
 cols_named <- named_cols
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_cols`.
 #' @export
-named_cs <- cols_named
+named_cs <- named_cols
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_cols`.
 #' @export
-cs_named <- named_cs
+cs_named <- named_cols
 
-#' @rdname naming
+#' @describeIn naming_help Evaluates whether rows and columns of `x` are named, optionally checking for uniqueness and non-blankness. Returns a logical scalar or throws an error.
 #' @export
 named_rows_cols <- function(x, u = T, bl = F) {uj::named(x, 12, u = u, bl = bl)}
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_rows_cols`.
 #' @export
 rows_cols_named <- named_rows_cols
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_rows_cols`.
 #' @export
-named_rcs <- rows_cols_named
+named_rcs <- named_rows_cols
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `named_rows_cols`.
 #' @export
-rcs_named <- named_rcs
+rcs_named <- named_rows_cols
 
-#' @rdname naming
+#' @describeIn naming_help Evaluates whether all `...` arguments are named. Returns a logical scalar or throws an error.
+#' @export
+all_dots_named <- function(...) {
+  dLabs <- base::...names()
+  nDots <- base::...length()
+  uj::f0(uj::N(dLabs) == nDots, !base::any(dLabs == ""), F)
+}
+
+#' @describeIn naming_help Generalized name retrieval (elements/values/rows/cols/drawers/...), optionally checking for uniqueness. Returns either a character vector of a list of two character vectors, or throws an error.
 #' @export
 get_names <- function(x, d = 0, u = T, err = F) {
   errs <- NULL
@@ -318,46 +298,46 @@ get_names <- function(x, d = 0, u = T, err = F) {
   }
 }
 
-#' @rdname naming
+#' @describeIn naming_help Gets names of the elements/values of `x`, optionally checking for uniqueness. Returns a character vector or throws an error.
 #' @export
 enames <- function(x, u = T, err = F) {uj::get_names(x, d = 0, u = u, err = err)}
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `enames`.
 #' @export
 en <- enames
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `enames`.
 #' @export
 vnames <- enames
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `enames`.
 #' @export
 vn <- enames
 
-#' @rdname naming
+#' @describeIn naming_help Gets names of the rows of `x`, optionally checking for uniqueness. Returns a character vector or throws an error.
 #' @export
 rnames <- function(x, u = T, err = F) {uj::get_names(x, d = 1, u = u, err = err)}
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `rnames`.
 #' @export
 rn <- rnames
 
-#' @rdname naming
+#' @describeIn naming_help Gets names of the columns of `x`, optionally checking for uniqueness. Returns a character vector or throws an error.
 #' @export
 cnames <- function(x, u = T, err = F) {uj::get_names(x, d = 2, u = u, err = err)}
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `cnames`.
 #' @export
 cn <- cnames
 
-#' @rdname naming
+#' @describeIn naming_help Gets names of the rows and columns of `x`, optionally checking for uniqueness. Returns a character vector or throws an error.
 #' @export
 row_col_names <- function(x, u = T, err = F) {uj::get_names(x, d = 12, u = u, err = err)}
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `row_col_names`.
 #' @export
 rcnames <- row_col_names
 
-#' @rdname naming
+#' @describeIn naming_help An alias for `row_col_names`.
 #' @export
 rcn <- row_col_names

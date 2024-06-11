@@ -1,5 +1,4 @@
 #' @encoding UTF-8
-#' @family extensions
 #' @title Flexibly row bind two data frames
 #' @description Checks for compatibility of variables with the same name in both variables. Adds `NA`-populated variables to each data frame as needed to allow for row binding. Variables in the resulting data.frame are sorted left to right in ascending order of variable name.
 #' @param x,y Atomic data.frames.

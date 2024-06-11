@@ -1,5 +1,4 @@
 #' @encoding UTF-8
-#' @family function_form
 #' @title Manipulate positions, rows, and columns
 #' @details
 #' \tabular{ll}{  `move_val`     \tab Move value `val` of `x` into the `from`-th element of `x`. Assumes `length(which(x == val)) == 1`. \cr   \tab   \cr

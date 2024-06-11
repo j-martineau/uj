@@ -1,5 +1,4 @@
 #' @encoding UTF-8
-#' @name basics
 #' @family wraps
 #' @title Wrappers for `base` functions
 #' @description Wrappers for frequently used `base` package functions.
@@ -55,231 +54,230 @@
 #' spf(text, vars[1:3], vals[1:3], vars[4:6], vals[4:6])
 #' ### more examples ###
 #' @export
-basics <- function() {utils::help("basics", package = "uj")}
+basics_help <- function() {utils::help("basics", package = "uj")}
 
 # g (glue within) ####
 
-#' @rdname basics
+#' @describeIn basics_help Calls `paste0(av(...), collapse = g)`.
 #' @export
 g <- function(g, ...) {base::paste(uj::av(...), collapse = g)}
 
-#' @rdname basics
+#' @describeIn basics_help Calls `paste0(av(...), collapse = "")`.
 #' @export
 g0 <- function(...) {base::paste0(uj::av(...), collapse = "")}
 
-#' @rdname basics
+#' @describeIn basics_help Calls `paste0(av(...), collapse = " ")`.
 #' @export
 g1 <- function(...) {base::paste0(uj::av(...), collapse = " ")}
 
 # p (paste across) ####
 
-#' @rdname basics
-#' @inherit base::paste
+#' @describeIn basics_help Calls `paste0(..., sep = p)`.
 #' @export
 p <- function(p, ...) {base::paste(..., sep = p)}
 
-#' @rdname basics
+#' @describeIn basics_help Calls `paste0(...)`.
 #' @export
 p0 <- function(...) {base::paste0(...)}
 
-#' @rdname basics
+#' @describeIn basics_help Calls `paste(..., sep = " ")`.
 #' @export
 p1 <- function(...) {base::paste(..., sep = " ")}
 
 # special values ####
 
-#' @rdname basics
+#' @describeIn basics_help A thin wrapper for \code{\link[base]{is.na}}
 #' @export
 na <- function(x) {base::is.na(x)}
 
-#' @rdname basics
+#' @describeIn basics_help A thin wrapper for \code{\link[base]{!is.na}}
 #' @export
 ok <- function(x) {!base::is.na(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates which values of `x` are `NA`.
 #' @export
 wna <- function(x) {base::which(base::is.na(x))}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates which values of `x` are OK (i.e., not `NA`).
 #' @export
 wok <- function(x) {base::which(!base::is.na(x))}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is `NULL`.
 #' @export
 null <- function(x) {if (uj::is_err(x)) {T} else {base::is.null(x)}}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is defined (i.e., not `NULL`).
 #' @export
 def <- function(x) {if (uj::is_err(x)) {F} else {!base::is.null(x)}}
 
-#' @rdname basics
+#' @describeIn basics_help A thin wrapper for \code{\link[base]{floor}}
 #' @export
 lo <- function(x) {base::floor(x)}
 
-#' @rdname basics
+#' @describeIn basics_help A thin wrapper for \code{\link[base]{ceiling}}
 #' @export
 hi <- function(x) {base::ceiling(x)}
 
-#' @rdname basics
+#' @describeIn basics_help A thin wrapper for \code{\link[base]{nchar}}
 #' @export
 len <- function(x) {base::nchar(x)}
 
-#' @rdname basics
+#' @describeIn basics_help A thin wrapper for \code{\link[base]{substr}}
 #' @export
 mid <- function(x, start, stop) {base::substr(x, start, stop)}
 
-#' @rdname basics
+#' @describeIn basics_help A thin wrapper for \code{\link[base]{sprintf}}.
 #' @export
 spf <- function(fmt, ...) {base::sprintf(fmt, ...)}
 
-#' @rdname basics
+#' @describeIn basics_help Gets the levels (ordered, unordered factor) `x`.
 #' @export
 levs <- function(x) {base::levels(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is rounded to the nearest integer.
 #' @export
 rounded <- function(x) {base::all(x == base::round(x))}
 
 # names ####
 
-#' @rdname basics
+#' @describeIn basics_help Gets names of columns of `x`.
 #' @export
 clabs <- function(x) {base::colnames(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Gets names of dots (`...`).
 #' @export
 dlabs <- function() {base::eval.parent(base::...names())}
 
-#' @rdname basics
+#' @describeIn basics_help Gets names of the rows of `x`.
 #' @export
 rlabs <- function(x) {base::rownames(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Gets names of the values of `x`.
 #' @export
 vlabs <- function(x) {base::names(x)}
 
 # is(nt) mode ####
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is of atomic mode.
 #' @export
 is_atm <- function(x) {base::is.atomic(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is of mode character.
 #' @export
 is_chr <- function(x) {base::is.character(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is of mode factor.
 #' @export
 is_fac <- function(x) {base::is.factor(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is of mode integer.
 #' @export
 is_int <- function(x) {base::is.integer(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is of mode logical
 #' @export
 is_lgl <- function(x) {base::is.logical(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is of mode numeric.
 #' @export
 is_num <- function(x) {base::is.numeric(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is of mode ordered factor.
 #' @export
 is_ord <- function(x) {base::is.ordered(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is of mode unordered factor.
 #' @export
 is_uno <- function(x) {base::is.factor(x) & !base::is.ordered(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* atomic.
 #' @export
 not_atm <- function(x) {!base::is.atomic(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* of mode character
 #' @export
 not_chr <- function(x) {!base::is.character(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* of mode factor.
 #' @export
 not_fac <- function(x) {!base::is.factor(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* of mode integer.
 #' @export
 not_int <- function(x) {!base::is.integer(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* of mode logical.
 #' @export
 not_lgl <- function(x) {!base::is.logical(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* of mode numeric.
 #' @export
 not_num <- function(x) {!base::is.numeric(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* of mode ordered factor.
 #' @export
 not_ord <- function(x) {!base::is.ordered(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* of mode unordered factor.
 #' @export
 not_uno <- function(x) {!base::is.factor(x) | base::is.ordered(x)}
 
 # is(n't) class ####
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is an array.
 #' @export
 is_arr <- function(x) {base::is.array(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is a data.frame.
 #' @export
 is_dtf <- function(x) {base::is.data.frame(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is a function.
 #' @export
 is_fun <- function(x) {base::is.function(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is a list.
 #' @export
 is_lst <- function(x) {base::is.list(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is a matrix.
 #' @export
 is_mat <- function(x) {base::is.matrix(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is a vector.
 #' @export
 is_vec <- function(x) {base::is.vector(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* an array
 #' @export
 not_arr <- function(x) {!base::is.array(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* a data.frame.
 #' @export
 not_dtf <- function(x) {!base::is.data.frame(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* a function.
 #' @export
 not_fun <- function(x) {!base::is.function(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* a list.
 #' @export
 not_lst <- function(x) {!base::is.list(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* a matrix.
 #' @export
 not_mat <- function(x) {!base::is.matrix(x)}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether `x` is *not* a vector.
 #' @export
-not_veq <- function(x) {!base::is.vector(x)}
+not_vec <- function(x) {!base::is.vector(x)}
 
 # subsets ####
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether elements of `x` are contained in the atomic elements of `...`.
 #' @export
 x_in <- function(x, ...) {x[uj::is_in(x, ...)]}
 
-#' @rdname basics
+#' @describeIn basics_help Evaluates whether elements of `x` are missing from the atomic elements of `...`.
 #' @export
 x_mf <- function(x, ...) {x[uj::is_mf(x, ...)]}
