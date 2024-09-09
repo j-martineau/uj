@@ -3,8 +3,8 @@
 #' @title Compute Statistics Ignoring `NA` Calues
 #' @description Simple wrappers for calculating statistics ignoring any `NA` values.
 #' @param ... Scalars, vectors, or matrices. Reduced a single vector of atomic values for `sd0`, `min0`, `max0`, and `mean0`.
-#' @param x A \link[=cmp_num_vec]{complete numeric vec} or a \link[=cmp_num_mat]{complete numeric matrix}.
-#' @param y An optional complete numeric vec or a complete numeric matrix.
+#' @param x A \link[=num_vec]{numeric vector} or a \link[=num_mat]{numeric matrix}.
+#' @param y An optional numeric vector or numeric matrix.
 #' @return **A numeric vector**           \cr\cr `cmeans0, csums0, cvars0, csds0` \cr `rmeans0, rsums0, rvars0, rsds0` \cr `mean0, sum0, var0, sd0` \cr `pmin0, min0` \cr `pmax0, max0`
 #' \cr\cr  **A numeric vector or matrix** \cr\cr `cor0, cov0`
 #' @examples

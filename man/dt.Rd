@@ -74,17 +74,19 @@ If \code{y} has no key columns, this defaults to the key of \code{x}.}
 \item{all}{logical; \code{all = TRUE} is shorthand to save setting both
 \code{all.x = TRUE} and \code{all.y = TRUE}.}
 
-\item{all.x}{logical; if \code{TRUE}, then extra rows will be added to the
-output, one for each row in \code{x} that has no matching row in \code{y}.
-These rows will have 'NA's in those columns that are usually filled with values
-from \code{y}.  The default is \code{FALSE}, so that only rows with data from both
-\code{x} and \code{y} are included in the output.}
+\item{all.x}{logical; if \code{TRUE}, rows from \code{x} which have no matching row
+in \code{y} are included. These rows will have 'NA's in the columns that are usually
+filled with values from \code{y}. The default is \code{FALSE} so that only rows with
+data from both \code{x} and \code{y} are included in the output.}
 
 \item{all.y}{logical; analogous to \code{all.x} above.}
 
-\item{sort}{logical. If \code{TRUE} (default), the merged \code{data.table} is
-sorted by setting the key to the \code{by / by.x} columns. If \code{FALSE}, the
-result is not sorted.}
+\item{sort}{logical. If \code{TRUE} (default), the rows of the merged
+\code{data.table} are sorted by setting the key to the \code{by / by.x} columns. If
+\code{FALSE}, unlike base R's \code{merge} for which row order is unspecified, the
+row order in \code{x} is retained (including retaining the position of missing entries when
+\code{all.x=TRUE}), followed by \code{y} rows that don't match \code{x} (when \code{all.y=TRUE})
+retaining the order those appear in \code{y}.}
 
 \item{suffixes}{A \code{character(2)} specifying the suffixes to be used for
 making non-\code{by} column names unique. The suffix behaviour works in a similar
@@ -102,7 +104,7 @@ as any \code{by.x}.}
 
 \item{formula}{A formula of the form LHS ~ RHS to cast, see Details.}
 
-\item{fun.aggregate}{Should the data be aggregated before casting? If the formula doesn't identify a single observation for each cell, then aggregation defaults to \code{length} with a message.
+\item{fun.aggregate}{Should the data be aggregated before casting? If the formula doesn't identify a single observation for each cell, then aggregation defaults to \code{length} with a warning of class 'dt_missing_fun_aggregate_warning'.
 
   To use multiple aggregation functions, pass a \code{list}; see Examples. }
 
@@ -112,7 +114,7 @@ as any \code{by.x}.}
 
 \item{subset}{Specified if casting should be done on a subset of the data. Ex: \code{subset = .(col1 <= 5)} or \code{subset = .(variable != "January")}.}
 
-\item{fill}{Value with which to fill missing cells. If \code{fun.aggregate} is present, takes the value by applying the function on a 0-length vector.}
+\item{fill}{Value with which to fill missing cells. If \code{fill=NULL} and missing cells are present, then \code{fun.aggregate} is used on a 0-length vector to obtain a fill value.}
 
 \item{drop}{\code{FALSE} will cast by including all missing combinations.
 
@@ -129,7 +131,8 @@ A data.table.
 }
 \description{
 Fast merge of two \code{data.table}s. The \code{data.table} method behaves
-very similarly to that of \code{data.frame}s except that, by default, it attempts to merge
+similarly to \code{data.frame} except that row order is specified, and by
+default the columns to merge on are chosen:
 
 \itemize{
   \item at first based on the shared key columns, and if there are none,
@@ -138,7 +141,7 @@ very similarly to that of \code{data.frame}s except that, by default, it attempt
   \item then based on the common columns between the two \code{data.table}s.
 }
 
-Set the \code{by}, or \code{by.x} and \code{by.y} arguments explicitly to override this default.
+Use the \code{by}, \code{by.x} and \code{by.y} arguments explicitly to override this default.
 }
 \details{
 \tabular{ll}{  \code{dt_merge}   \tab Thinly wraps \code{\link[data.table]{merge}}.         \cr
@@ -160,16 +163,16 @@ merge(dt1, dt2, all = TRUE)
 (dt2 <- data.table(A = letters[rep(2:4, 2)], Y = 6:1, key = "A"))
 merge(dt1, dt2, allow.cartesian=TRUE)
 
-(dt1 <- data.table(A = c(rep(1L, 5), 2L), B = letters[rep(1:3, 2)], X = 1:6, key = "A,B"))
-(dt2 <- data.table(A = c(rep(1L, 5), 2L), B = letters[rep(2:4, 2)], Y = 6:1, key = "A,B"))
+(dt1 <- data.table(A = c(rep(1L, 5), 2L), B = letters[rep(1:3, 2)], X = 1:6, key = c("A", "B")))
+(dt2 <- data.table(A = c(rep(1L, 5), 2L), B = letters[rep(2:4, 2)], Y = 6:1, key = c("A", "B")))
 merge(dt1, dt2)
 merge(dt1, dt2, by="B", allow.cartesian=TRUE)
 
 # test it more:
-d1 <- data.table(a=rep(1:2,each=3), b=1:6, key="a,b")
+d1 <- data.table(a=rep(1:2,each=3), b=1:6, key=c("a", "b"))
 d2 <- data.table(a=0:1, bb=10:11, key="a")
 d3 <- data.table(a=0:1, key="a")
-d4 <- data.table(a=0:1, b=0:1, key="a,b")
+d4 <- data.table(a=0:1, b=0:1, key=c("a", "b"))
 
 merge(d1, d2)
 merge(d2, d1)
@@ -187,18 +190,24 @@ merge(d4, d1)
 merge(d1, d4, all=TRUE)
 merge(d4, d1, all=TRUE)
 
-# new feature, no need to set keys anymore
+# setkey is automatic by default
 set.seed(1L)
 d1 <- data.table(a=sample(rep(1:3,each=2)), z=1:6)
 d2 <- data.table(a=2:0, z=10:12)
 merge(d1, d2, by="a")
 merge(d1, d2, by="a", all=TRUE)
 
-# new feature, using by.x and by.y arguments
+# using by.x and by.y
 setnames(d2, "a", "b")
 merge(d1, d2, by.x="a", by.y="b")
 merge(d1, d2, by.x="a", by.y="b", all=TRUE)
 merge(d2, d1, by.x="b", by.y="a")
+
+# using incomparables values
+d1 <- data.table(a=c(1,2,NA,NA,3,1), z=1:6)
+d2 <- data.table(a=c(1,2,NA), z=10:12)
+merge(d1, d2, by="a")
+merge(d1, d2, by="a", incomparables=NA)
 }
 \seealso{
 Other wraps: 

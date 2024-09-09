@@ -1214,3 +1214,19 @@ ppp_fast_help <- function() {utils::help("ppp_fast_help", "uj")}
   for (i in 1:base::ncol(x)) {if (!uj::.ATM(x[[i]])) {return(F)}}
   uj::check_valid(x, T, valid)
 }
+
+#' @describeIn ppp_fast_help Super-fast check of whether an object is a data frame that has 2+ rows, has 2+ columns, and contains only atomic elements.
+#' @export
+.atmrctdtf <- function(x) {
+  if (base::is.data.frame(x)) {                                                                                          # IF [x] is a data frame
+    if (base::nrow(x) > 1) {                                                                                             # : IF [x] has 2+ rows
+      if (base::ncol(x) > 1) {                                                                                           # : : IF [x] has 2+ columns
+        for (i in 1:base::ncol(x)) {                                                                                     # : : : FOR each column of [x]
+          if (!base::is.atomic(x[[i]])) {return(F)}                                                                      # : : : : IF that column is non-atomic THEN return [FALSE]
+        }                                                                                                                # : : : END FOR
+        return(T)                                                                                                        # : : : return [TRUE]
+      }                                                                                                                  # : : END IF
+    }                                                                                                                    # : END IF
+  }                                                                                                                      # END IF
+  F                                                                                                                      # return [FALSE]
+}

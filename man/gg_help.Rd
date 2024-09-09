@@ -131,6 +131,8 @@ gg_grid(
   switch = NULL,
   drop = TRUE,
   margins = FALSE,
+  axes = "margins",
+  axis.labels = "all",
   facets = deprecated()
 )
 
@@ -155,6 +157,7 @@ gg_lab(
   label.padding = unit(0.25, "lines"),
   label.r = unit(0.15, "lines"),
   label.size = 0.25,
+  size.unit = "mm",
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE
@@ -184,7 +187,7 @@ gg_lin(
 
 gg_mar(t = 0, r = 0, b = 0, l = 0, unit = "pt")
 
-gg_sac(..., range = c(0.1, 1))
+gg_sac(name = waiver(), ..., range = c(0.1, 1))
 
 gg_scm(
   ...,
@@ -210,6 +213,7 @@ gg_sav(
   dpi = 300,
   limitsize = TRUE,
   bg = NULL,
+  create.dir = FALSE,
   ...
 )
 
@@ -223,7 +227,8 @@ gg_sxc(
   expand = waiver(),
   oob = censor,
   na.value = NA_real_,
-  trans = "identity",
+  transform = "identity",
+  trans = deprecated(),
   guide = waiver(),
   position = "bottom",
   sec.axis = waiver()
@@ -239,13 +244,15 @@ gg_syc(
   expand = waiver(),
   oob = censor,
   na.value = NA_real_,
-  trans = "identity",
+  transform = "identity",
+  trans = deprecated(),
   guide = waiver(),
   position = "left",
   sec.axis = waiver()
 )
 
 gg_thm(
+  ...,
   line,
   rect,
   text,
@@ -265,6 +272,8 @@ gg_thm(
   axis.text.y,
   axis.text.y.left,
   axis.text.y.right,
+  axis.text.theta,
+  axis.text.r,
   axis.ticks,
   axis.ticks.x,
   axis.ticks.x.top,
@@ -272,6 +281,14 @@ gg_thm(
   axis.ticks.y,
   axis.ticks.y.left,
   axis.ticks.y.right,
+  axis.ticks.theta,
+  axis.ticks.r,
+  axis.minor.ticks.x.top,
+  axis.minor.ticks.x.bottom,
+  axis.minor.ticks.y.left,
+  axis.minor.ticks.y.right,
+  axis.minor.ticks.theta,
+  axis.minor.ticks.r,
   axis.ticks.length,
   axis.ticks.length.x,
   axis.ticks.length.x.top,
@@ -279,6 +296,17 @@ gg_thm(
   axis.ticks.length.y,
   axis.ticks.length.y.left,
   axis.ticks.length.y.right,
+  axis.ticks.length.theta,
+  axis.ticks.length.r,
+  axis.minor.ticks.length,
+  axis.minor.ticks.length.x,
+  axis.minor.ticks.length.x.top,
+  axis.minor.ticks.length.x.bottom,
+  axis.minor.ticks.length.y,
+  axis.minor.ticks.length.y.left,
+  axis.minor.ticks.length.y.right,
+  axis.minor.ticks.length.theta,
+  axis.minor.ticks.length.r,
   axis.line,
   axis.line.x,
   axis.line.x.top,
@@ -286,6 +314,8 @@ gg_thm(
   axis.line.y,
   axis.line.y.left,
   axis.line.y.right,
+  axis.line.theta,
+  axis.line.r,
   legend.background,
   legend.margin,
   legend.spacing,
@@ -295,13 +325,28 @@ gg_thm(
   legend.key.size,
   legend.key.height,
   legend.key.width,
+  legend.key.spacing,
+  legend.key.spacing.x,
+  legend.key.spacing.y,
+  legend.frame,
+  legend.ticks,
+  legend.ticks.length,
+  legend.axis.line,
   legend.text,
-  legend.text.align,
+  legend.text.position,
   legend.title,
-  legend.title.align,
+  legend.title.position,
   legend.position,
+  legend.position.inside,
   legend.direction,
+  legend.byrow,
   legend.justification,
+  legend.justification.top,
+  legend.justification.bottom,
+  legend.justification.left,
+  legend.justification.right,
+  legend.justification.inside,
+  legend.location,
   legend.box,
   legend.box.just,
   legend.box.margin,
@@ -328,6 +373,7 @@ gg_thm(
   plot.caption.position,
   plot.tag,
   plot.tag.position,
+  plot.tag.location,
   plot.margin,
   strip.background,
   strip.background.x,
@@ -343,7 +389,6 @@ gg_thm(
   strip.text.y.right,
   strip.switch.pad.grid,
   strip.switch.pad.wrap,
-  ...,
   complete = FALSE,
   validate = TRUE
 )
@@ -365,6 +410,7 @@ gg_txt(
   nudge_x = 0,
   nudge_y = 0,
   check_overlap = FALSE,
+  size.unit = "mm",
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE
@@ -394,7 +440,9 @@ gg_wrap(
   switch = deprecated(),
   drop = TRUE,
   dir = "h",
-  strip.position = "top"
+  strip.position = "top",
+  axes = "margins",
+  axis.labels = "all"
 )
 
 gg_xlab(label)

@@ -304,7 +304,7 @@ enames <- function(x, u = T, err = F) {uj::get_names(x, d = 0, u = u, err = err)
 
 #' @describeIn naming_help An alias for `enames`.
 #' @export
-en <- enames
+en <- base::names
 
 #' @describeIn naming_help An alias for `enames`.
 #' @export
@@ -312,7 +312,7 @@ vnames <- enames
 
 #' @describeIn naming_help An alias for `enames`.
 #' @export
-vn <- enames
+vn <- base::names
 
 #' @describeIn naming_help Gets names of the rows of `x`, optionally checking for uniqueness. Returns a character vector or throws an error.
 #' @export
@@ -320,7 +320,7 @@ rnames <- function(x, u = T, err = F) {uj::get_names(x, d = 1, u = u, err = err)
 
 #' @describeIn naming_help An alias for `rnames`.
 #' @export
-rn <- rnames
+rn <- base::rownames
 
 #' @describeIn naming_help Gets names of the columns of `x`, optionally checking for uniqueness. Returns a character vector or throws an error.
 #' @export
@@ -328,7 +328,7 @@ cnames <- function(x, u = T, err = F) {uj::get_names(x, d = 2, u = u, err = err)
 
 #' @describeIn naming_help An alias for `cnames`.
 #' @export
-cn <- cnames
+cn <- base::colnames
 
 #' @describeIn naming_help Gets names of the rows and columns of `x`, optionally checking for uniqueness. Returns a character vector or throws an error.
 #' @export

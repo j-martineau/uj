@@ -136,6 +136,7 @@
 \alias{.unq_psw_vec}
 \alias{.unq_str_vec}
 \alias{.atm_rct_dtf}
+\alias{.atmrctdtf}
 \title{Fast Property Checking for Common Checks with Optional valid Values}
 \usage{
 ppp_fast_help()
@@ -409,6 +410,8 @@ ppp_fast_help()
 .unq_str_vec(x, valid = NULL)
 
 .atm_rct_dtf(x, valid = NULL)
+
+.atmrctdtf(x)
 }
 \arguments{
 \item{x}{Any object. See \emph{details}.}
@@ -695,6 +698,8 @@ When \code{valid} is supplied, both \code{x} and \code{valid} are \link[=av]{ato
 \item \code{.unq_str_vec()}: Checks for string vec non-\code{NA} uniqueness subject to any value restrictions in \code{valid}.
 
 \item \code{.atm_rct_dtf()}: Checks for atomic rectangular data-frame-ness subject to any value restrictions in \code{valid}.
+
+\item \code{.atmrctdtf()}: Super-fast check of whether an object is a data frame that has 2+ rows, has 2+ columns, and contains only atomic elements.
 
 }}
 \seealso{

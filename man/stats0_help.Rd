@@ -64,9 +64,9 @@ rmeans0(x)
 \arguments{
 \item{...}{Scalars, vectors, or matrices. Reduced a single vector of atomic values for \code{sd0}, \code{min0}, \code{max0}, and \code{mean0}.}
 
-\item{x}{A \link[=cmp_num_vec]{complete numeric vec} or a \link[=cmp_num_mat]{complete numeric matrix}.}
+\item{x}{A \link[=num_vec]{numeric vector} or a \link[=num_mat]{numeric matrix}.}
 
-\item{y}{An optional complete numeric vec or a complete numeric matrix.}
+\item{y}{An optional numeric vector or numeric matrix.}
 }
 \value{
 \strong{A numeric vector}           \cr\cr \verb{cmeans0, csums0, cvars0, csds0} \cr \verb{rmeans0, rsums0, rvars0, rsds0} \cr \verb{mean0, sum0, var0, sd0} \cr \verb{pmin0, min0} \cr \verb{pmax0, max0}

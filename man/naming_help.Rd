@@ -128,19 +128,19 @@ get_names(x, d = 0, u = T, err = F)
 
 enames(x, u = T, err = F)
 
-en(x, u = T, err = F)
+en()
 
 vnames()
 
-vn(x, u = T, err = F)
+vn()
 
 rnames(x, u = T, err = F)
 
-rn(x, u = T, err = F)
+rn(x, do.NULL = TRUE, prefix = "row")
 
 cnames(x, u = T, err = F)
 
-cn(x, u = T, err = F)
+cn(x, do.NULL = TRUE, prefix = "col")
 
 row_col_names(x, u = T, err = F)
 

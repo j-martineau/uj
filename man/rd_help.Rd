@@ -11,7 +11,7 @@
 \usage{
 rd_help()
 
-rd_xsv(d, type = "data file", file = NULL, ...)
+rd_xsv(d = NULL, type = "data file", file = NULL, ...)
 
 rd_csv(type = "data file", file = NULL, ...)
 
